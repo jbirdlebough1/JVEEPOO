@@ -21953,3 +21953,288 @@ Test telemetry sync
 [22:19:36] [RX] RX [f0080002]: a1 00 00 00 13 92 00 10 10 00 00 01 00 00 00 00 00 00 00 00
 [22:19:36] [RX] [★] SENSORS AUTHENTICATED: Model 5010 | Firmware v0.16.16.0
 [22:19:37] [RX] RX [0000fea1]: 01 1f 00 00
+[22:19:38] [RX] RX [0000fea1]: 01 1f 00 00
+[22:19:39] [RX] RX [0000fea1]: 01 1f 00 00
+[22:19:40] [RX] RX [0000fea1]: 01 1f 00 00
+[22:19:41] [RX] RX [0000fea1]: 01 1f 00 00
+[22:19:42] [RX] RX [0000fea1]: 01 1f 00 00
+[22:19:42] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[22:19:43] [RX] RX [0000fea1]: 01 1f 00 00
+[22:19:44] [RX] RX [0000fea1]: 01 1f 00 00
+[22:19:45] [RX] RX [0000fea1]: 01 1f 00 00
+[22:19:46] [RX] RX [0000fea1]: 01 1f 00 00
+[22:19:47] [RX] RX [0000fea1]: 01 1f 00 00
+[22:19:48] [RX] RX [0000fea1]: 01 1f 00 00
+[22:19:48] [RX] RX [f0080002]: a1 00 00 00 13 92 00 10 10 00 00 01 00 00 00 00 00 00 00 00
+[22:19:48] [RX] [★] SENSORS AUTHENTICATED: Model 5010 | Firmware v0.16.16.0
+[22:19:49] [RX] RX [0000fea1]: 01 1f 00 00
+[22:19:50] [RX] RX [0000fea1]: 01 1f 00 00
+[22:19:50] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[22:19:51] [RX] RX [0000fea1]: 01 1f 00 00
+[22:19:52] [RX] RX [0000fea1]: 01 1f 00 00
+[22:19:53] [RX] RX [0000fea1]: 01 1f 00 00
+[22:19:54] [RX] RX [0000fea1]: 01 1f 00 00
+[22:19:55] [RX] RX [0000fea1]: 01 1f 00 00
+[22:19:56] [RX] RX [0000fea1]: 01 1f 00 00
+[22:19:57] [RX] RX [0000fea1]: 01 1f 00 00
+[22:19:58] [RX] RX [0000fea1]: 01 1f 00 00
+[22:19:59] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[22:19:59] [RX] RX [0000fea1]: 01 1f 00 00
+[22:20:00] [RX] RX [0000fea1]: 01 1f 00 00
+[22:20:00] [RX] RX [f0080002]: a1 00 00 00 13 92 00 10 10 00 00 01 00 00 00 00 00 00 00 00
+[22:20:00] [RX] [★] SENSORS AUTHENTICATED: Model 5010 | Firmware v0.16.16.0
+[22:20:01] [RX] RX [0000fea1]: 01 1f 00 00
+[22:20:02] [RX] RX [0000fea1]: 01 1f 00 00
+[22:20:03] [RX] RX [0000fea1]: 01 1f 00 00
+[22:20:04] [RX] RX [0000fea1]: 01 1f 00 00
+[22:20:05] [RX] RX [0000fea1]: 01 1f 00 00
+[22:20:06] [RX] RX [0000fea1]: 01 1f 00 00
+[22:20:07] [RX] RX [0000fea1]: 01 1f 00 00
+[22:20:07] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[22:20:08] [RX] RX [0000fea1]: 01 1f 00 00
+[22:20:09] [RX] RX [0000fea1]: 01 1f 00 00
+[22:20:10] [RX] RX [0000fea1]: 01 1f 00 00
+[22:20:11] [RX] RX [0000fea1]: 01 1f 00 00
+[22:20:12] [RX] RX [0000fea1]: 01 1f 00 00
+[22:20:12] [RX] RX [f0080002]: a1 00 00 00 13 92 00 10 10 00 00 01 00 00 00 00 00 00 00 00
+[22:20:12] [RX] [★] SENSORS AUTHENTICATED: Model 5010 | Firmware v0.16.16.0
+[22:20:13] [RX] RX [0000fea1]: 01 1f 00 00
+[22:20:14] [RX] RX [0000fea1]: 01 1f 00 00
+[22:20:15] [RX] RX [0000fea1]: 01 1f 00 00
+[22:20:15] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[22:20:16] [RX] RX [0000fea1]: 01 1f 00 00
+[22:20:17] [RX] RX [0000fea1]: 01 1f 00 00
+[22:20:18] [RX] RX [0000fea1]: 01 1f 00 00
+[22:20:19] [RX] RX [0000fea1]: 01 1f 00 00
+[22:20:20] [RX] RX [0000fea1]: 01 1f 00 00
+[22:20:21] [RX] RX [0000fea1]: 01 1f 00 00
+[22:20:22] [RX] RX [0000fea1]: 01 1f 00 00
+[22:20:23] [RX] RX [0000fea1]: 01 1f 00 00
+[22:20:23] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[22:20:24] [RX] RX [0000fea1]: 01 1f 00 00
+[22:20:24] [RX] RX [f0080002]: a1 00 00 00 13 92 00 10 10 00 00 01 00 00 00 00 00 00 00 00
+[22:20:24] [RX] [★] SENSORS AUTHENTICATED: Model 5010 | Firmware v0.16.16.0
+[22:20:25] [RX] RX [0000fea1]: 01 1f 00 00
+[22:20:26] [RX] RX [0000fea1]: 01 1f 00 00
+[22:20:27] [RX] RX [0000fea1]: 01 1f 00 00
+[22:20:28] [RX] RX [0000fea1]: 01 1f 00 00
+[22:20:29] [RX] RX [0000fea1]: 01 1f 00 00
+[22:20:30] [RX] RX [0000fea1]: 01 1f 00 00
+[22:20:31] [RX] RX [0000fea1]: 01 1f 00 00
+[22:20:31] [TX] [*] Populating Setup parameters from active profile...
+[22:20:31] [RX] [+] Setup parameters populated successfully from active profile.
+[22:20:31] [SYS] Saved watch transponder recognized. Auto-connecting in background...
+[22:20:43] [TX] [*] Commencing optical PPG blood glucose scan [PRIVATE CALIBRATED MODE (0x89 0x01 0x01 0x01)]...
+[22:20:43] [TX] [*] Establishing link with watch...
+[22:20:43] [TX] Opening Bluetooth pairing array for new watch...
+[22:21:11] [TX] Connecting to GATT server on VEE (Attempt 1/3)...
+[22:21:20] [TX] Connecting to GATT server on VEE (Attempt 2/3)...
+[22:21:21] [TX] [*] Establishing link with watch...
+[22:21:21] [TX] Connecting to GATT server on VEE (Attempt 1/3)...
+[22:21:28] [TX] Connecting to GATT server on VEE (Attempt 3/3)...
+[22:21:28] [TX] Connecting to GATT server on VEE (Attempt 2/3)...
+[22:21:30] [TX] [*] Commencing optical PPG blood glucose scan [PRIVATE CALIBRATED MODE (0x89 0x01 0x01 0x01)]...
+[22:21:30] [TX] [*] Establishing link with watch...
+[22:21:30] [TX] Connecting to GATT server on VEE (Attempt 1/3)...
+[22:21:31] [RX] [+] GATT Subspace connection established!
+[22:21:32] [TX] Connecting to GATT server on VEE (Attempt 3/3)...
+[22:21:32] [TX] Connecting to GATT server on VEE (Attempt 2/3)...
+[22:21:32] [RX] [+] GATT Subspace connection established!
+[22:21:32] [RX] [+] GATT Subspace connection established!
+[22:21:34] [TX] [*] Commencing optical PPG blood glucose scan [PRIVATE CALIBRATED MODE (0x89 0x01 0x01 0x01)]...
+[22:21:34] [TX] [*] Establishing link with watch...
+[22:21:34] [TX] Connecting to GATT server on VEE (Attempt 1/3)...
+[22:21:34] [RX] [+] GATT Subspace connection established!
+[22:21:36] [RX] [★] Primary Command TX Bound: f0080003
+[22:21:36] [RX] [★] Primary Command TX Bound: f0080003
+[22:21:36] [RX] [★] Primary Command TX Bound: f0080003
+[22:21:36] [RX] [★] Primary Command TX Bound: f0080003
+[22:21:36] [RX] RX [0000fea1]: 01 1f 00 00
+[22:21:37] [TX] [*] Transmitting 0xA1 Authentication & Time Handshake...
+[22:21:37] [TX] TX [f0080003]: b8 01 02 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[22:21:37] [TX] TX [f0080003]: a1 00 00 00 07 ea 0b 12 16 15 25 00 01 e0 00 00 00 00 00 00
+[22:21:37] [TX] [*] Populating Setup parameters from active profile...
+[22:21:37] [RX] [+] Setup parameters populated successfully from active profile.
+[22:21:37] [TX] TX [f0080003]: 89 01 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[22:21:37] [TX] [*] Transmitting 0xA1 Authentication & Time Handshake...
+[22:21:37] [TX] TX [f0080003]: b8 01 02 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[22:21:37] [TX] TX [f0080003]: a1 00 00 00 07 ea 0b 12 16 15 25 00 01 e0 00 00 00 00 00 00
+[22:21:37] [TX] [*] Populating Setup parameters from active profile...
+[22:21:37] [RX] [+] Setup parameters populated successfully from active profile.
+[22:21:37] [TX] [*] Transmitting 0xA1 Authentication & Time Handshake...
+[22:21:37] [TX] TX [f0080003]: b8 01 02 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[22:21:37] [TX] TX [f0080003]: a1 00 00 00 07 ea 0b 12 16 15 25 00 01 e0 00 00 00 00 00 00
+[22:21:37] [TX] [*] Populating Setup parameters from active profile...
+[22:21:37] [RX] [+] Setup parameters populated successfully from active profile.
+[22:21:37] [TX] TX [f0080003]: 89 01 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[22:21:37] [TX] [*] Transmitting 0xA1 Authentication & Time Handshake...
+[22:21:37] [TX] TX [f0080003]: b8 01 02 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[22:21:37] [TX] TX [f0080003]: a1 00 00 00 07 ea 0b 12 16 15 25 00 01 e0 00 00 00 00 00 00
+[22:21:37] [TX] [*] Populating Setup parameters from active profile...
+[22:21:37] [RX] [+] Setup parameters populated successfully from active profile.
+[22:21:37] [TX] TX [f0080003]: 89 01 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[22:21:37] [ERR] TX Error: GATT operation already in progress.
+[22:21:37] [ERR] TX Error: GATT operation already in progress.
+[22:21:37] [ERR] TX Error: GATT operation already in progress.
+[22:21:37] [ERR] TX Error: GATT operation already in progress.
+[22:21:37] [ERR] TX Error: GATT operation already in progress.
+[22:21:37] [ERR] TX Error: GATT operation already in progress.
+[22:21:37] [ERR] TX Error: GATT operation already in progress.
+[22:21:37] [ERR] TX Error: GATT operation already in progress.
+[22:21:37] [ERR] TX Error: GATT operation already in progress.
+[22:21:37] [ERR] TX Error: GATT operation already in progress.
+[22:21:37] [RX] RX [f0080002]: a1 00 00 00 13 92 00 10 10 00 00 01 00 00 00 00 00 00 00 00
+[22:21:37] [RX] [★] SENSORS AUTHENTICATED: Model 5010 | Firmware v0.16.16.0
+[22:21:37] [RX] RX [0000fea1]: 01 1f 00 00
+[22:21:38] [RX] RX [0000fea1]: 01 1f 00 00
+[22:21:39] [RX] RX [0000fea1]: 01 1f 00 00
+[22:21:39] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[22:21:40] [RX] RX [0000fea1]: 01 1f 00 00
+[22:21:41] [RX] RX [0000fea1]: 01 1f 00 00
+[22:21:42] [RX] RX [0000fea1]: 01 1f 00 00
+[22:21:42] [TX] [*] Halting optical glucose scan...
+[22:21:42] [TX] TX [f0080003]: 89 01 02 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[22:21:42] [RX] RX [f0080002]: a1 00 00 00 13 92 00 10 10 00 00 01 00 00 00 00 00 00 00 00
+[22:21:42] [RX] [★] SENSORS AUTHENTICATED: Model 5010 | Firmware v0.16.16.0
+[22:21:43] [RX] RX [f0080002]: a1 00 00 00 13 92 00 10 10 00 00 01 00 00 00 00 00 00 00 00
+[22:21:43] [RX] [★] SENSORS AUTHENTICATED: Model 5010 | Firmware v0.16.16.0
+[22:21:43] [RX] RX [0000fea1]: 01 1f 00 00
+[22:21:44] [RX] RX [0000fea1]: 01 1f 00 00
+[22:21:45] [RX] RX [0000fea1]: 01 1f 00 00
+[22:21:46] [TX] [*] Commencing optical PPG blood glucose scan [PRIVATE CALIBRATED MODE (0x89 0x01 0x01 0x01)]...
+[22:21:46] [TX] TX [f0080003]: 89 01 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[22:21:46] [RX] RX [f0080002]: a1 00 00 00 13 92 00 10 10 00 00 01 00 00 00 00 00 00 00 00
+[22:21:46] [RX] [★] SENSORS AUTHENTICATED: Model 5010 | Firmware v0.16.16.0
+[22:21:46] [RX] RX [0000fea1]: 01 1f 00 00
+[22:21:47] [RX] RX [0000fea1]: 01 1f 00 00
+[22:21:48] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[22:21:48] [RX] RX [0000fea1]: 01 1f 00 00
+[22:21:49] [RX] RX [0000fea1]: 01 1f 00 00
+[22:21:50] [RX] RX [0000fea1]: 01 1f 00 00
+[22:21:51] [RX] RX [0000fea1]: 01 1f 00 00
+[22:21:52] [RX] RX [0000fea1]: 01 1f 00 00
+[22:21:53] [RX] RX [0000fea1]: 01 1f 00 00
+[22:21:54] [RX] RX [0000fea1]: 01 1f 00 00
+[22:21:55] [RX] RX [0000fea1]: 01 1f 00 00
+[22:21:55] [RX] RX [f0080002]: a1 00 00 00 13 92 00 10 10 00 00 01 00 00 00 00 00 00 00 00
+[22:21:55] [RX] [★] SENSORS AUTHENTICATED: Model 5010 | Firmware v0.16.16.0
+[22:21:56] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[22:21:56] [RX] RX [0000fea1]: 01 1f 00 00
+[22:21:57] [TX] [*] Initiating dual-sensor temperature acquisition...
+[22:21:57] [TX] TX [f0080003]: 87 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[22:21:57] [RX] RX [f0080002]: a1 00 00 00 13 92 00 10 10 00 00 01 00 00 00 00 00 00 00 00
+[22:21:57] [RX] [★] SENSORS AUTHENTICATED: Model 5010 | Firmware v0.16.16.0
+[22:21:57] [RX] RX [0000fea1]: 01 1f 00 00
+[22:21:58] [RX] RX [0000fea1]: 01 1f 00 00
+[22:21:59] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:00] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:01] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:02] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:03] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:04] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[22:22:04] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:05] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:06] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:07] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:07] [RX] RX [f0080002]: a1 00 00 00 13 92 00 10 10 00 00 01 00 00 00 00 00 00 00 00
+[22:22:07] [RX] [★] SENSORS AUTHENTICATED: Model 5010 | Firmware v0.16.16.0
+[22:22:08] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:09] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:10] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:11] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:12] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[22:22:12] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:13] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:14] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:15] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:16] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:17] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:18] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:19] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:19] [RX] RX [f0080002]: a1 00 00 00 13 92 00 10 10 00 00 01 00 00 00 00 00 00 00 00
+[22:22:19] [RX] [★] SENSORS AUTHENTICATED: Model 5010 | Firmware v0.16.16.0
+[22:22:20] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[22:22:20] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:21] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:22] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:23] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:24] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:25] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:26] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:27] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:28] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[22:22:28] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:29] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:30] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:31] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:31] [RX] RX [f0080002]: a1 00 00 00 13 92 00 10 10 00 00 01 00 00 00 00 00 00 00 00
+[22:22:31] [RX] [★] SENSORS AUTHENTICATED: Model 5010 | Firmware v0.16.16.0
+[22:22:32] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:33] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:34] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:35] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:36] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[22:22:36] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:37] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:38] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:39] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:40] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:41] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:42] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:43] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:43] [RX] RX [f0080002]: a1 00 00 00 13 92 00 10 10 00 00 01 00 00 00 00 00 00 00 00
+[22:22:43] [RX] [★] SENSORS AUTHENTICATED: Model 5010 | Firmware v0.16.16.0
+[22:22:44] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[22:22:44] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:45] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:46] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:47] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:48] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:49] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:50] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:51] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:52] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:52] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[22:22:53] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:54] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:55] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:55] [RX] RX [f0080002]: a1 00 00 00 13 92 00 10 10 00 00 01 00 00 00 00 00 00 00 00
+[22:22:55] [RX] [★] SENSORS AUTHENTICATED: Model 5010 | Firmware v0.16.16.0
+[22:22:56] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:57] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:58] [RX] RX [0000fea1]: 01 1f 00 00
+[22:22:59] [RX] RX [0000fea1]: 01 1f 00 00
+[22:23:00] [RX] RX [0000fea1]: 01 1f 00 00
+[22:23:01] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[22:23:01] [RX] RX [0000fea1]: 01 1f 00 00
+[22:23:02] [RX] RX [0000fea1]: 01 1f 00 00
+[22:23:03] [RX] RX [0000fea1]: 01 1f 00 00
+[22:23:04] [RX] RX [0000fea1]: 01 1f 00 00
+[22:23:05] [RX] RX [0000fea1]: 01 1f 00 00
+[22:23:07] [RX] RX [0000fea1]: 01 1f 00 00
+[22:23:07] [RX] RX [0000fea1]: 01 1f 00 00
+[22:23:08] [RX] RX [f0080002]: a1 00 00 00 13 92 00 10 10 00 00 01 00 00 00 00 00 00 00 00
+[22:23:08] [RX] [★] SENSORS AUTHENTICATED: Model 5010 | Firmware v0.16.16.0
+[22:23:08] [RX] RX [0000fea1]: 01 1f 00 00
+[22:23:09] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[22:23:11] [RX] RX [0000fea1]: 01 1f 00 00
+[22:23:11] [RX] RX [f0080002]: bd 03 01 01 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[22:23:11] [RX] RX [0000fea1]: 01 1f 00 00
+[22:23:11] [RX] RX [0000fea1]: 01 1f 00 00
+[22:23:15] [RX] RX [0000fea1]: 01 1f 00 00
+[22:23:16] [RX] RX [0000fea1]: 01 1f 00 00
+[22:23:21] [RX] RX [0000fea1]: 01 1f 00 00
+[22:23:22] [RX] RX [0000fea1]: 01 1f 00 00
+[22:23:24] [RX] RX [0000fea1]: 01 1f 00 00
+[22:23:24] [RX] RX [0000fea1]: 01 1f 00 00
+[22:23:25] [RX] RX [0000fea1]: 01 1f 00 00
+[22:23:25] [RX] RX [0000fea1]: 01 1f 00 00
+[22:23:25] [RX] RX [0000fea1]: 01 1f 00 00
+[22:23:25] [RX] RX [f0080002]: a1 00 00 00 13 92 00 10 10 00 00 01 00 00 00 00 00 00 00 00
+[22:23:25] [RX] [★] SENSORS AUTHENTICATED: Model 5010 | Firmware v0.16.16.0
+[22:23:27] [RX] RX [0000fea1]: 01 1f 00 00
+[22:23:28] [RX] RX [0000fea1]: 01 1f 00 00
+[22:23:28] [RX] RX [0000fea1]: 01 1f 00 00
+[22:23:28] [RX] RX [0000fea1]: 01 1f 00 00
+[22:23:29] [RX] RX [0000fea1]: 01 1f 00 00
+[22:23:35] [SYS] Watch link temporarily severed (sleep or range). Auto-reconnecting in background...
