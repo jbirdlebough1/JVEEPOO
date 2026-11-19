@@ -3905,7 +3905,7 @@
     }
 
     function soundRxPacket() {
-      playBeep(1600, 'triangle', 0.03, 0.03);
+      // Audio packet ticks completely disabled per clinical directive
     }
 
     function soundError() {
@@ -4316,7 +4316,7 @@
       const hex = Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join(' ');
       if (hex === "01 00 00 00") return;
 
-      soundRxPacket();
+      // Audio packet tick removed
       logLCARS(`RX [${charUuid.substring(0, 8)}]: ${hex}`, "rx");
 
       if (bytes.length === 0) return;
