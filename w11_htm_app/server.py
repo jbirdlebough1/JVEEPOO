@@ -282,7 +282,8 @@ async def run_ble_auto_sync_loop():
             for d in devices:
                 d_name = (d.name or "").lower()
                 d_address = (d.address or "").upper()
-                if TARGET_NAME in d_name or d_address == TARGET_MAC.upper():
+                # Recognize FITAOS, VEE, or MAC address
+                if any(k in d_name for k in ["vee", "fitaos", "fit"]) or d_address == TARGET_MAC.upper():
                     target_device = d
                     break
 
