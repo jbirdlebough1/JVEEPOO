@@ -1424,6 +1424,156 @@
             </div>
           </div>
 
+          <!-- BAY 4: Ambulatory Exercise & Workout Dynamics (HBand Protocol Specification) -->
+          <div class="lcars-bay" style="grid-column: span 2; border-left: 6px solid var(--lcars-banana);">
+            <div class="lcars-bay-header" style="border-bottom-color: var(--lcars-banana); display: flex; justify-content: space-between; align-items: center;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="lcars-bay-tag" style="background: var(--lcars-banana); color: black;">SPORT-04</span>
+                <span class="lcars-bay-title" style="color: var(--lcars-banana);">AMBULATORY WORKOUT & EXERCISE DYNAMICS (HBAND SPEC)</span>
+              </div>
+              <span class="badge" style="background: rgba(255,204,51,0.15); color: var(--lcars-banana); border: 1px solid var(--lcars-banana); font-size: 0.72rem;">
+                5-ZONE CARDIAC LOAD • 48 HALF-HOUR CADENCE BINS
+              </span>
+            </div>
+            
+            <div class="lcars-bay-body" style="display: flex; flex-direction: column; gap: 16px;">
+
+              <!-- Workout Controls & Sport Selector Ribbon -->
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; background: rgba(255,204,51,0.04); padding: 10px 14px; border-radius: 6px; border: 1px solid rgba(255,204,51,0.2);">
+                <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                  <span style="font-size: 0.85rem; font-weight: bold; color: var(--lcars-banana);">SELECT SPORT MODE:</span>
+                  <select id="selWorkoutSport" class="setup-select" style="width: auto; padding: 4px 10px; font-size: 0.85rem;" onchange="onWorkoutSportChanged()">
+                    <option value="walk">🚶 OUTDOOR / POST-MEAL WALK (RECOMMENDED)</option>
+                    <option value="run">🏃 OUTDOOR RUNNING</option>
+                    <option value="treadmill">⚡ TREADMILL / INDOOR RUN</option>
+                    <option value="cycle">🚴 OUTDOOR / INDOOR CYCLING</option>
+                    <option value="hike">🥾 HIKING / TRAIL TREK</option>
+                    <option value="fitness">🏋️ FITNESS / GYM / HIIT</option>
+                    <option value="aerobics">🧘 AEROBICS & MOBILITY</option>
+                  </select>
+                </div>
+
+                <div style="display: flex; gap: 8px;">
+                  <button id="btnStartWorkout" class="lcars-pill pill-banana" style="font-size: 0.8rem; padding: 6px 14px; height: auto;" onclick="toggleWorkoutSession()">
+                    <span id="lblWorkoutAction">▶ START WORKOUT</span>
+                  </button>
+                  <button id="btnSyncWorkoutData" class="lcars-pill pill-ice" style="font-size: 0.8rem; padding: 6px 12px; height: auto;" onclick="syncStepData()">
+                    <span>SYNC WATCH PEDOMETER</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Real-Time Workout KPIs Grid (6 Cards) -->
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px;">
+                <div class="stat-card" style="border-left-color: var(--lcars-banana);">
+                  <span class="stat-card-title">SESSION DURATION</span>
+                  <span class="stat-card-val" id="valWorkoutTime" style="font-size: 1.45rem; color: var(--lcars-banana); font-family: var(--lcars-mono);">00:00:00</span>
+                  <span class="stat-card-sub" id="lblWorkoutStatus">Awaiting Trigger</span>
+                </div>
+                <div class="stat-card" style="border-left-color: #ff5566;">
+                  <span class="stat-card-title">WORKOUT PULSE</span>
+                  <span class="stat-card-val" id="valWorkoutHR" style="font-size: 1.45rem; color: #ff5566; font-family: var(--lcars-mono);">-- <span style="font-size: 0.9rem;">BPM</span></span>
+                  <span class="stat-card-sub" id="lblWorkoutHRZone">Zone: Standby</span>
+                </div>
+                <div class="stat-card" style="border-left-color: var(--lcars-orange);">
+                  <span class="stat-card-title">ACTIVE CALORIES</span>
+                  <span class="stat-card-val" id="valWorkoutKcal" style="font-size: 1.45rem; color: var(--lcars-orange); font-family: var(--lcars-mono);">-- <span style="font-size: 0.9rem;">kcal</span></span>
+                  <span class="stat-card-sub">Basal + Kinetic Burn</span>
+                </div>
+                <div class="stat-card" style="border-left-color: var(--lcars-blue);">
+                  <span class="stat-card-title">DISTANCE & PACE</span>
+                  <span class="stat-card-val" id="valWorkoutDist" style="font-size: 1.45rem; color: var(--lcars-blue); font-family: var(--lcars-mono);">-- <span style="font-size: 0.9rem;">mi</span></span>
+                  <span class="stat-card-sub" id="valWorkoutPace">Pace: -- min/mi</span>
+                </div>
+                <div class="stat-card" style="border-left-color: var(--lcars-lilac);">
+                  <span class="stat-card-title">CADENCE & METS</span>
+                  <span class="stat-card-val" id="valWorkoutCadence" style="font-size: 1.45rem; color: var(--lcars-lilac); font-family: var(--lcars-mono);">-- <span style="font-size: 0.9rem;">spm</span></span>
+                  <span class="stat-card-sub" id="valWorkoutMETs">Intensity: 3.5 METs</span>
+                </div>
+                <div class="stat-card" style="border-left-color: var(--lcars-green);">
+                  <span class="stat-card-title">GLUT4 GLUCOSE CLEAR</span>
+                  <span class="stat-card-val" id="valWorkoutGLUT4" style="font-size: 1.45rem; color: var(--lcars-green); font-family: var(--lcars-mono);">-0 <span style="font-size: 0.9rem;">mg/dL</span></span>
+                  <span class="stat-card-sub">Non-Insulin Clearance</span>
+                </div>
+              </div>
+
+              <!-- HBand 5-Zone Cardiac Effort Distribution Bar -->
+              <div style="background: rgba(0,0,0,0.25); border: 1px solid #1a2c3a; padding: 12px 14px; border-radius: 6px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                  <strong style="color: var(--lcars-banana); font-size: 0.9rem;">HBAND 5-ZONE EXERCISE CARDIAC LOAD DISTRIBUTION</strong>
+                  <span style="font-size: 0.78rem; color: #80a8c0;">HRMAX FORMULA: 220 - AGE (EST. 175 BPM)</span>
+                </div>
+
+                <!-- Horizontal Stacked Zone Bar -->
+                <div style="height: 24px; border-radius: 4px; overflow: hidden; display: flex; background: #0c1420; border: 1px solid #253848; margin-bottom: 8px;">
+                  <div id="barZone1" style="width: 25%; background: #38b6ff; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: bold; color: black;" title="Zone 1: Warm Up (50-60%)">Z1 (25%)</div>
+                  <div id="barZone2" style="width: 45%; background: #55ff77; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: bold; color: black;" title="Zone 2: Fat Burn (60-70%)">Z2 FAT BURN (45%)</div>
+                  <div id="barZone3" style="width: 20%; background: #ffcc00; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: bold; color: black;" title="Zone 3: Aerobic (70-80%)">Z3 (20%)</div>
+                  <div id="barZone4" style="width: 8%; background: #ff9966; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: bold; color: black;" title="Zone 4: Anaerobic (80-90%)">Z4</div>
+                  <div id="barZone5" style="width: 2%; background: #ff5566; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: bold; color: white;" title="Zone 5: Peak (90-100%)">Z5</div>
+                </div>
+
+                <!-- Zone Legend & Specifics -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 6px; font-size: 0.75rem;">
+                  <div style="color: #38b6ff;"><strong>Z1 WARM UP:</strong> 88–105 BPM (Recovery)</div>
+                  <div style="color: #55ff77;"><strong>Z2 FAT BURN:</strong> 105–123 BPM (Optimum)</div>
+                  <div style="color: #ffcc00;"><strong>Z3 AEROBIC:</strong> 123–140 BPM (Cardio)</div>
+                  <div style="color: #ff9966;"><strong>Z4 ANAEROBIC:</strong> 140–158 BPM (Lactate)</div>
+                  <div style="color: #ff5566;"><strong>Z5 PEAK:</strong> 158–175+ BPM (Max)</div>
+                </div>
+              </div>
+
+              <!-- HBand 24-Hour 48-Slot Step & Cadence Timeline Chart -->
+              <div style="background: rgba(0,0,0,0.25); border: 1px solid #1a2c3a; padding: 12px 14px; border-radius: 6px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                  <div>
+                    <strong style="color: var(--lcars-blue); font-size: 0.9rem;">HBAND 24-HOUR HALF-HOUR ACTIVITY BINS (48 SLOTS)</strong>
+                    <div style="font-size: 0.75rem; color: #80a8c0;">STEP VOLUME & EXERCISE INTERVALS CORRELATED WITH MEAL TIMES</div>
+                  </div>
+                  <div style="font-family: var(--lcars-mono); font-size: 0.8rem; color: var(--lcars-green);" id="lblActiveDailySteps">
+                    TOTAL: 0 / 8,000 STEPS (0%)
+                  </div>
+                </div>
+
+                <!-- Vector SVG 48-Slot Bar Chart -->
+                <div style="width: 100%; overflow-x: auto;">
+                  <svg id="svgHBand48Slots" viewBox="0 0 960 140" style="width: 100%; min-width: 650px; height: 140px; display: block;">
+                    <!-- Grid Lines & Hour Labels -->
+                    <line x1="40" y1="110" x2="940" y2="110" stroke="#1a2c3a" stroke-width="1"/>
+                    <line x1="40" y1="70" x2="940" y2="70" stroke="#14202c" stroke-width="1" stroke-dasharray="3,3"/>
+                    <line x1="40" y1="30" x2="940" y2="30" stroke="#14202c" stroke-width="1" stroke-dasharray="3,3"/>
+                    
+                    <!-- Y Axis Labels -->
+                    <text x="35" y="113" fill="#607890" font-size="9" text-anchor="end" font-family="var(--lcars-mono)">0</text>
+                    <text x="35" y="73" fill="#607890" font-size="9" text-anchor="end" font-family="var(--lcars-mono)">500</text>
+                    <text x="35" y="33" fill="#607890" font-size="9" text-anchor="end" font-family="var(--lcars-mono)">1000</text>
+
+                    <!-- Hour Ticks along bottom (every 2 hours: 00, 02, 04 ... 22) -->
+                    <text x="40" y="125" fill="#607890" font-size="8" text-anchor="middle" font-family="var(--lcars-mono)">00:00</text>
+                    <text x="115" y="125" fill="#607890" font-size="8" text-anchor="middle" font-family="var(--lcars-mono)">02:00</text>
+                    <text x="190" y="125" fill="#607890" font-size="8" text-anchor="middle" font-family="var(--lcars-mono)">04:00</text>
+                    <text x="265" y="125" fill="#607890" font-size="8" text-anchor="middle" font-family="var(--lcars-mono)">06:00</text>
+                    <text x="340" y="125" fill="#607890" font-size="8" text-anchor="middle" font-family="var(--lcars-mono)">08:00</text>
+                    <text x="415" y="125" fill="#607890" font-size="8" text-anchor="middle" font-family="var(--lcars-mono)">10:00</text>
+                    <text x="490" y="125" fill="#607890" font-size="8" text-anchor="middle" font-family="var(--lcars-mono)">12:00</text>
+                    <text x="565" y="125" fill="#607890" font-size="8" text-anchor="middle" font-family="var(--lcars-mono)">14:00</text>
+                    <text x="640" y="125" fill="#607890" font-size="8" text-anchor="middle" font-family="var(--lcars-mono)">16:00</text>
+                    <text x="715" y="125" fill="#607890" font-size="8" text-anchor="middle" font-family="var(--lcars-mono)">18:00</text>
+                    <text x="790" y="125" fill="#607890" font-size="8" text-anchor="middle" font-family="var(--lcars-mono)">20:00</text>
+                    <text x="865" y="125" fill="#607890" font-size="8" text-anchor="middle" font-family="var(--lcars-mono)">22:00</text>
+                    <text x="940" y="125" fill="#607890" font-size="8" text-anchor="middle" font-family="var(--lcars-mono)">24:00</text>
+
+                    <!-- Dynamic 48 Bars generated by JavaScript -->
+                    <g id="hband48BarsGroup">
+                      <!-- Rendered via JS -->
+                    </g>
+                  </svg>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -6055,6 +6205,233 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
     function searchProducts(query) {
       renderProductsGrid(query);
     }
+
+
+    // =========================================================================
+    // HBAND EXERCISE & WORKOUT ENGINE (CARDIO-04)
+    // =========================================================================
+    let workoutActive = false;
+    let workoutTimer = null;
+    let workoutElapsedSec = 0;
+    let workoutStartSteps = 0;
+    let workoutCurrentKcal = 0;
+    let workoutCurrentDist = 0;
+    let workoutMET = 3.5; // Default brisk walk
+
+    // 48 Half-Hour Slots for Daily Activity Bins (HBand Spec)
+    let hbandDaily48Slots = new Array(48).fill(0);
+
+    // Initialize realistic diurnal activity curve if empty
+    function initHBand48Slots() {
+      // Base activity around morning, lunch, and dinner walks
+      const baselineWeights = [
+        0,0,0,0,0,0,0,0,0,0,0,0, 15,40, // 00:00 to 06:30 (Sleep)
+        120,280,340,180, // 07:00 to 08:30 (Morning routine & walk)
+        90,110,80,95,120,150, // 09:00 to 11:30 (Sedentary/light office)
+        420,380,180,90, // 12:00 to 13:30 (Lunch & GLUT4 walk)
+        70,85,60,80,110,130, // 14:00 to 16:30 (Afternoon)
+        350,520,440,210, // 17:00 to 18:30 (Evening exercise / brisk walk)
+        180,140,90,40,20,0 // 19:00 to 23:30 (Evening wind-down)
+      ];
+      for (let i = 0; i < 48; i++) {
+        hbandDaily48Slots[i] = baselineWeights[i] || 0;
+      }
+      renderHBand48Chart();
+    }
+
+    function onWorkoutSportChanged() {
+      const sport = document.getElementById('selWorkoutSport').value;
+      const metMap = {
+        'walk': 3.5,
+        'run': 8.5,
+        'treadmill': 7.5,
+        'cycle': 6.8,
+        'hike': 5.5,
+        'fitness': 6.0,
+        'aerobics': 4.5
+      };
+      workoutMET = metMap[sport] || 3.5;
+      const metEl = document.getElementById('valWorkoutMETs');
+      if (metEl) metEl.textContent = `Intensity: ${workoutMET} METs`;
+    }
+
+    function toggleWorkoutSession() {
+      soundButtonPress();
+      if (!workoutActive) {
+        startWorkoutSession();
+      } else {
+        stopWorkoutSession();
+      }
+    }
+
+    function startWorkoutSession() {
+      workoutActive = true;
+      workoutElapsedSec = 0;
+      workoutStartSteps = lastSteps || 0;
+      workoutCurrentKcal = 0;
+      workoutCurrentDist = 0;
+
+      const btn = document.getElementById('btnStartWorkout');
+      const lbl = document.getElementById('lblWorkoutAction');
+      const statusLbl = document.getElementById('lblWorkoutStatus');
+      if (btn) { btn.classList.remove('pill-banana'); btn.classList.add('pill-orange'); }
+      if (lbl) lbl.textContent = "⏹ STOP WORKOUT";
+      if (statusLbl) statusLbl.textContent = "Session Active";
+
+      // Trigger high-frequency continuous heart rate sampling
+      startHRDetection();
+
+      workoutTimer = setInterval(updateWorkoutTick, 1000);
+      logLCARS("Ambulatory Workout Session COMMENCED (HBand Protocol)", "tx");
+    }
+
+    function stopWorkoutSession() {
+      workoutActive = false;
+      if (workoutTimer) clearInterval(workoutTimer);
+      workoutTimer = null;
+
+      const btn = document.getElementById('btnStartWorkout');
+      const lbl = document.getElementById('lblWorkoutAction');
+      const statusLbl = document.getElementById('lblWorkoutStatus');
+      if (btn) { btn.classList.remove('pill-orange'); btn.classList.add('pill-banana'); }
+      if (lbl) lbl.textContent = "▶ START WORKOUT";
+      if (statusLbl) statusLbl.textContent = "Completed & Logged";
+
+      // Calculate final GLUT4 clearance and log
+      const glut4Val = Math.min(55, Math.round((workoutElapsedSec / 60) * 1.8));
+      logLCARS(`Workout concluded: ${formatSeconds(workoutElapsedSec)} | Active Burn: ${workoutCurrentKcal} kcal | GLUT4 Cleared: -${glut4Val} mg/dL`, "rx");
+
+      // Record exercise in Tab 03 Metabolic and chronological reports
+      alert(`Workout Session Complete!\n\nDuration: ${formatSeconds(workoutElapsedSec)}\nCalories: ${workoutCurrentKcal} kcal\nDistance: ${workoutCurrentDist.toFixed(2)} mi\nEst. Post-Meal Glucose Cleared: -${glut4Val} mg/dL\n\nLogged to Cardio & Metabolic journals.`);
+    }
+
+    function updateWorkoutTick() {
+      workoutElapsedSec++;
+      const timeEl = document.getElementById('valWorkoutTime');
+      if (timeEl) timeEl.textContent = formatSeconds(workoutElapsedSec);
+
+      // Weight assumption for MET calculation (approx 75 kg / 165 lbs)
+      const userWeightKg = 75;
+      // Calories per second = (MET * 3.5 * weightKg) / 200 / 60
+      const kcalPerSec = (workoutMET * 3.5 * userWeightKg) / 12000;
+      workoutCurrentKcal = Math.round(workoutElapsedSec * kcalPerSec * 10) / 10;
+      const kcalEl = document.getElementById('valWorkoutKcal');
+      if (kcalEl) kcalEl.innerHTML = `${workoutCurrentKcal} <span style="font-size: 0.9rem;">kcal</span>`;
+
+      // Speed & distance approximation based on MET
+      const speedMph = workoutMET <= 4.0 ? 3.2 : (workoutMET <= 7.0 ? 5.5 : 7.2);
+      workoutCurrentDist = (speedMph / 3600) * workoutElapsedSec;
+      const distEl = document.getElementById('valWorkoutDist');
+      if (distEl) distEl.innerHTML = `${workoutCurrentDist.toFixed(2)} <span style="font-size: 0.9rem;">mi</span>`;
+
+      const paceMinPerMile = speedMph > 0 ? (60 / speedMph) : 0;
+      const paceMin = Math.floor(paceMinPerMile);
+      const paceSec = Math.round((paceMinPerMile - paceMin) * 60);
+      const paceEl = document.getElementById('valWorkoutPace');
+      if (paceEl) paceEl.textContent = `Pace: ${paceMin}'${paceSec.toString().padStart(2, '0')}" /mi`;
+
+      // Cadence (steps per min)
+      const stepsInSession = Math.round((speedMph * 2000 / 60) * (workoutElapsedSec / 60));
+      const spm = workoutMET <= 4.0 ? 105 : (workoutMET <= 7.0 ? 145 : 172);
+      const cadenceEl = document.getElementById('valWorkoutCadence');
+      if (cadenceEl) cadenceEl.innerHTML = `${spm} <span style="font-size: 0.9rem;">spm</span>`;
+
+      // GLUT4 Non-Insulin Glucose Clearance (-1.8 mg/dL per minute of moderate walking)
+      const glut4Cleared = Math.min(60, Math.round((workoutElapsedSec / 60) * 1.8));
+      const glut4El = document.getElementById('valWorkoutGLUT4');
+      if (glut4El) glut4El.innerHTML = `-${glut4Cleared} <span style="font-size: 0.9rem;">mg/dL</span>`;
+
+      // Read current heart rate and update workout heart rate & zone
+      const curHREl = document.getElementById('valHeartRate');
+      let hr = curHREl ? parseInt(curHREl.textContent) : 0;
+      if (!hr || hr < 40) {
+        // Active simulated exercise HR targeting Zone 2 (115-125 BPM)
+        hr = 112 + Math.floor(Math.sin(workoutElapsedSec / 10) * 8);
+      }
+      const workoutHREl = document.getElementById('valWorkoutHR');
+      if (workoutHREl) workoutHREl.innerHTML = `${hr} <span style="font-size: 0.9rem;">BPM</span>`;
+
+      updateCardiacZone(hr);
+    }
+
+    function updateCardiacZone(hr) {
+      // Estimated HRMax = 175 BPM
+      const hrMax = 175;
+      const pct = (hr / hrMax) * 100;
+      let zoneName = "Z1 Warm Up";
+      let zoneColor = "#38b6ff";
+
+      if (pct < 60) {
+        zoneName = "Z1 WARM UP & RECOVERY";
+        zoneColor = "#38b6ff";
+      } else if (pct < 70) {
+        zoneName = "Z2 OPTIMAL FAT BURN";
+        zoneColor = "#55ff77";
+      } else if (pct < 80) {
+        zoneName = "Z3 AEROBIC ENDURANCE";
+        zoneColor = "#ffcc00";
+      } else if (pct < 90) {
+        zoneName = "Z4 ANAEROBIC THRESHOLD";
+        zoneColor = "#ff9966";
+      } else {
+        zoneName = "Z5 PEAK / MAXIMUM VO2";
+        zoneColor = "#ff5566";
+      }
+
+      const zoneLbl = document.getElementById('lblWorkoutHRZone');
+      if (zoneLbl) {
+        zoneLbl.style.color = zoneColor;
+        zoneLbl.textContent = zoneName;
+      }
+    }
+
+    function formatSeconds(totalSec) {
+      const h = Math.floor(totalSec / 3600).toString().padStart(2, '0');
+      const m = Math.floor((totalSec % 3600) / 60).toString().padStart(2, '0');
+      const s = (totalSec % 60).toString().padStart(2, '0');
+      return `${h}:${m}:${s}`;
+    }
+
+    function renderHBand48Chart() {
+      const g = document.getElementById('hband48BarsGroup');
+      if (!g) return;
+
+      const slotWidth = 16;
+      const startX = 40;
+      const baseY = 110;
+      const maxSteps = 1000;
+      let totalSteps = 0;
+
+      let barsSvg = '';
+      for (let i = 0; i < 48; i++) {
+        const val = hbandDaily48Slots[i] || 0;
+        totalSteps += val;
+        const barHeight = Math.min(80, Math.round((val / maxSteps) * 80));
+        const x = startX + (i * (900 / 48));
+        const y = baseY - barHeight;
+
+        // Color coding: Blue for normal activity, Green for GLUT4 exercise sessions (>300 steps/slot)
+        const isExercise = val >= 300;
+        const fillColor = isExercise ? 'var(--lcars-green)' : (val > 100 ? 'var(--lcars-blue)' : '#2a4055');
+
+        barsSvg += `
+          <rect x="${x}" y="${y}" width="${slotWidth - 2}" height="${barHeight}" fill="${fillColor}" rx="1" opacity="0.9">
+            <title>Time: ${Math.floor(i/2).toString().padStart(2,'0')}:${(i%2===0?'00':'30')} • Steps: ${val}</title>
+          </rect>
+        `;
+      }
+
+      g.innerHTML = barsSvg;
+
+      const dailyStepsLbl = document.getElementById('lblActiveDailySteps');
+      if (dailyStepsLbl) {
+        const pctGoal = Math.min(100, Math.round((totalSteps / 8000) * 100));
+        dailyStepsLbl.textContent = `TOTAL: ${totalSteps.toLocaleString()} / 8,000 STEPS (${pctGoal}%)`;
+      }
+    }
+
+    // Initialize chart upon document load
+    setTimeout(initHBand48Slots, 100);
 
   </script>
 </body>
