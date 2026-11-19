@@ -4148,12 +4148,16 @@
       }
 
       logLCARS("[+] GATT Subspace connection established!", "rx");
-      document.getElementById("ribbonComm").textContent = "LINKED & ONLINE";
-      document.getElementById("ribbonComm").style.color = "var(--lcars-green)";
       document.getElementById("ribbonDevice").textContent = `${bluetoothDevice.name || "VEE"}`;
 
       await setupGattChannels();
-      populateSetupFromDevice();
+      updateConnectionStateUI();
+      if (txCharacteristic) {
+        logLCARS("[★] Watch GATT channels ready and verified online!", "rx");
+        populateSetupFromDevice();
+      } else {
+        logLCARS("[!] GATT connected but command channel not ready. Retrying...", "err");
+      }
     }
 
     async function setupGattChannels() {
@@ -4198,10 +4202,39 @@
     let isAutoReconnecting = false;
     let autoReconnectTimer = null;
 
+    
+    // =========================================================================
+    // TRUE CONNECTION STATE WATCHDOG (CLE-004 FIX)
+    // Only displays "LINKED & ONLINE" (Green) when GATT is TRULY connected & TX ready
+    // =========================================================================
+    function updateConnectionStateUI() {
+      const isTrulyConnected = !!(bluetoothDevice && bluetoothDevice.gatt && bluetoothDevice.gatt.connected && txCharacteristic);
+      const elComm = document.getElementById("ribbonComm");
+      if (!elComm) return;
+
+      if (isTrulyConnected) {
+        if (elComm.textContent !== "LINKED & ONLINE") {
+          elComm.textContent = "LINKED & ONLINE";
+          elComm.style.color = "var(--lcars-green)";
+        }
+      } else if (isAutoReconnecting) {
+        if (elComm.textContent !== "AUTO-RECONNECTING...") {
+          elComm.textContent = "AUTO-RECONNECTING...";
+          elComm.style.color = "var(--lcars-banana)";
+        }
+      } else {
+        if (elComm.textContent !== "STANDBY (OFFLINE)") {
+          elComm.textContent = "STANDBY (OFFLINE)";
+          elComm.style.color = "var(--lcars-orange)";
+        }
+      }
+    }
+    setInterval(updateConnectionStateUI, 1000);
+
     function onDisconnected() {
-      logLCARS("Watch link temporarily severed (sleep or range). Auto-reconnecting in background...", "sys");
-      document.getElementById("ribbonComm").textContent = "AUTO-RECONNECTING...";
-      document.getElementById("ribbonComm").style.color = "var(--lcars-banana)";
+      txCharacteristic = null;
+      logLCARS("Watch link severed (screen asleep or out of range). Silently reconnecting in background...", "sys");
+      updateConnectionStateUI();
       startAutoReconnectLoop();
     }
 
@@ -4499,7 +4532,7 @@
         await proceedWithGattConnection();
         return !!txCharacteristic;
       } else {
-        // Try getting any known device without triggering popup
+        // Zero-click: Silently try any authorized device from Chrome permissions
         if (navigator.bluetooth && navigator.bluetooth.getDevices) {
           try {
             const devs = await navigator.bluetooth.getDevices();
@@ -4511,8 +4544,10 @@
             }
           } catch(e) {}
         }
-        await pairNewWatchPrompt();
-        return !!txCharacteristic;
+        // NEVER trigger pairing popup automatically! Log standby and let user initiate manually
+        logLCARS("[*] Watch sleeping or out of range. Background auto-link active (no popup).", "sys");
+        updateConnectionStateUI();
+        return false;
       }
     }
 
