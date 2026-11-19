@@ -4047,8 +4047,8 @@
             // Recognize FITAOS, VEE, or ANY previously paired device
             const target = (savedId ? devices.find(d => d.id === savedId) : null) || 
                            devices.find(d => d.name && (
-                             d.name.toUpperCase().includes('FITAOS') || 
                              d.name.toUpperCase().includes('VEE') || 
+                             d.name.toUpperCase().includes('FITAOS') || 
                              d.name.toUpperCase().includes('FIT')
                            )) ||
                            devices[0];
@@ -4065,27 +4065,19 @@
     async function attemptAutoLink() {
       const known = await checkKnownDevice();
       if (known) {
-        logLCARS(`Preconfigured watch recognized: ${known.name || 'VEE'} [${known.id}]. Auto-linking...`, "rx");
+        logLCARS(`Preconfigured watch recognized: ${known.name || 'VEE'} [${known.id}]. Auto-linking...`, 'rx');
         bluetoothDevice = known;
-        document.getElementById('unlinkedBanner').style.display = 'none';
-        document.getElementById('btnPairNew').style.display = 'none';
+        const b = document.getElementById('unlinkedBanner'); if (b) b.style.display = 'none';
+        const p = document.getElementById('btnPairNew'); if (p) p.style.display = 'none';
         await proceedWithGattConnection();
       } else {
-        const savedId = localStorage.getItem('veepoo_saved_id');
-        if (savedId) {
-          // Never ask to pair again! Keep searching silently in background
-          logLCARS("Saved watch transponder recognized. Auto-connecting in background...", "sys");
-          document.getElementById('unlinkedBanner').style.display = 'none';
-          document.getElementById('btnPairNew').style.display = 'none';
-          document.getElementById("ribbonComm").textContent = "AUTO-CONNECTING...";
-          document.getElementById("ribbonComm").style.color = "var(--lcars-banana)";
-          startAutoReconnectLoop();
-        } else {
-          // Brand new first-time setup
-          logLCARS("No preconfigured transponder found. Ready for first-time pairing.", "sys");
-          document.getElementById('unlinkedBanner').style.display = 'flex';
-          document.getElementById('btnPairNew').style.display = 'flex';
-          document.getElementById("ribbonComm").textContent = "AWAITING PAIR";
+        logLCARS('Watch transponder ready. Click ENGAGE WATCH or COMM LINK ribbon to link.', 'sys');
+        const b = document.getElementById('unlinkedBanner'); if (b) b.style.display = 'flex';
+        const p = document.getElementById('btnPairNew'); if (p) p.style.display = 'inline-flex';
+        const r = document.getElementById('ribbonComm');
+        if (r) {
+          r.textContent = 'STANDBY (CLICK TO ENGAGE)';
+          r.style.color = 'var(--lcars-orange)';
         }
       }
     }
@@ -4094,69 +4086,83 @@
       soundButtonPress();
       initAudio();
       try {
-        logLCARS("Opening Bluetooth pairing array for new watch...", "tx");
+        logLCARS('Opening Bluetooth selection array for VEE / FITAOS...', 'tx');
         bluetoothDevice = await navigator.bluetooth.requestDevice({
-          filters: [{ name: 'VEE' }, { namePrefix: 'VEE' }],
+          filters: [
+            { name: 'VEE' },
+            { namePrefix: 'VEE' },
+            { namePrefix: 'vee' },
+            { name: 'FITAOS' },
+            { namePrefix: 'FITAOS' },
+            { namePrefix: 'fit' }
+          ],
           optionalServices: [
             '0000fee7-0000-1000-8000-00805f9b34fb',
             '0000fee8-0000-1000-8000-00805f9b34fb',
+            '0000fea1-0000-1000-8000-00805f9b34fb',
+            '0000ae00-0000-1000-8000-00805f9b34fb',
+            '0000ae40-0000-1000-8000-00805f9b34fb',
             VEEPOO_SERVICE_UUID,
             'f0020001-0451-4000-b000-000000000000',
             'f0030001-0451-4000-b000-000000000000',
-            '0000ae00-0000-1000-8000-00805f9b34fb',
             'device_information',
             'battery_service'
           ]
         });
         localStorage.setItem('veepoo_saved_id', bluetoothDevice.id);
-        document.getElementById('unlinkedBanner').style.display = 'none';
-        document.getElementById('btnPairNew').style.display = 'none';
+        const b = document.getElementById('unlinkedBanner'); if (b) b.style.display = 'none';
+        const p = document.getElementById('btnPairNew'); if (p) p.style.display = 'none';
         await proceedWithGattConnection();
       } catch (err) {
         soundError();
-        logLCARS(`Pairing Aborted: ${err.message}`, "err");
+        logLCARS(`Pairing / Authorization Cancelled: ${err.message}`, 'err');
       }
     }
 
     async function proceedWithGattConnection() {
+      if (!bluetoothDevice) return;
       // 1. Force Python daemon to release radio before Chrome opens GATT link
       try {
         await fetch('/api/radio_yield', { method: 'POST' });
         await new Promise(r => setTimeout(r, 200));
       } catch (e) {}
 
-      document.getElementById("ribbonDevice").textContent = `${bluetoothDevice.name || "VEE"}`;
-      document.getElementById("ribbonComm").textContent = "LINKING...";
+      const dName = bluetoothDevice.name || 'VEE';
+      document.getElementById('ribbonDevice').textContent = dName;
+      document.getElementById('ribbonComm').textContent = 'LINKING...';
+      document.getElementById('ribbonComm').style.color = 'var(--lcars-banana)';
+
+      bluetoothDevice.removeEventListener('gattserverdisconnected', onDisconnected);
       bluetoothDevice.addEventListener('gattserverdisconnected', onDisconnected);
 
       let attempts = 0;
       while (attempts < 3) {
         attempts++;
         try {
-          logLCARS(`Connecting to GATT server on ${bluetoothDevice.name} (Attempt ${attempts}/3)...`, "tx");
+          logLCARS(`Connecting to GATT server on ${dName} (Attempt ${attempts}/3)...`, 'tx');
           gattServer = await bluetoothDevice.gatt.connect();
           if (gattServer.connected) break;
         } catch (connErr) {
           if (attempts >= 3) {
             soundError();
-            logLCARS(`Connection Failed: ${connErr.message}. Ensure watch screen is awake.`, "err");
-            document.getElementById("ribbonComm").textContent = "STANDBY";
+            logLCARS(`Connection Failed: ${connErr.message}. Ensure watch screen is lit & awake.`, 'err');
+            updateConnectionStateUI();
             return;
           }
-          await new Promise(r => setTimeout(r, 1000));
+          await new Promise(r => setTimeout(r, 1200));
         }
       }
 
-      logLCARS("[+] GATT Subspace connection established!", "rx");
-      document.getElementById("ribbonDevice").textContent = `${bluetoothDevice.name || "VEE"}`;
+      logLCARS('[+] GATT Subspace connection established!', 'rx');
+      document.getElementById('ribbonDevice').textContent = dName;
 
       await setupGattChannels();
       updateConnectionStateUI();
       if (txCharacteristic) {
-        logLCARS("[★] Watch GATT channels ready and verified online!", "rx");
+        logLCARS('[★] Watch GATT channels ready and verified online!', 'rx');
         populateSetupFromDevice();
       } else {
-        logLCARS("[!] GATT connected but command channel not ready. Retrying...", "err");
+        logLCARS('[!] GATT connected but command channel not ready. Retrying...', 'err');
       }
     }
 
@@ -4166,74 +4172,100 @@
       txCharacteristic = null;
 
       try {
-        const services = await gattServer.getPrimaryServices();
-        for (const s of services) {
+        // Direct target Veepoo Primary Service (Fast & Reliable)
+        let vService = null;
+        try {
+          vService = await gattServer.getPrimaryService(VEEPOO_SERVICE_UUID);
+        } catch(e) {}
+
+        if (vService) {
           try {
-            const chars = await s.getCharacteristics();
-            for (const c of chars) {
-              if (c.properties.write || c.properties.writeWithoutResponse) {
-                allWriteChars.push(c);
-                if (c.uuid.toLowerCase().includes("f0080003")) {
-                  txCharacteristic = c;
-                  logLCARS(`[★] Primary Command TX Bound: ${c.uuid.substring(0, 8)}`, "rx");
-                } else if (!txCharacteristic) {
-                  txCharacteristic = c;
+            txCharacteristic = await vService.getCharacteristic(VEEPOO_WRITE_UUID);
+            allWriteChars.push(txCharacteristic);
+            logLCARS(`[★] Primary Command TX Bound: ${txCharacteristic.uuid.substring(0, 8)}`, 'rx');
+          } catch(e) {}
+          try {
+            const rxChar = await vService.getCharacteristic(VEEPOO_NOTIFY_UUID);
+            await rxChar.startNotifications();
+            rxChar.removeEventListener('characteristicvaluechanged', onTelemetryReceived);
+            rxChar.addEventListener('characteristicvaluechanged', onTelemetryReceived);
+            rxCharacteristics.push(rxChar);
+            logLCARS(`[★] Telemetry RX Stream Bound: ${rxChar.uuid.substring(0, 8)}`, 'rx');
+          } catch(e) {}
+        }
+
+        // Also discover any additional notify / write services
+        try {
+          const services = await gattServer.getPrimaryServices();
+          for (const s of services) {
+            try {
+              const chars = await s.getCharacteristics();
+              for (const c of chars) {
+                if (c.properties.write || c.properties.writeWithoutResponse) {
+                  if (!allWriteChars.includes(c)) allWriteChars.push(c);
+                  if (c.uuid.toLowerCase().includes('f0080003') && !txCharacteristic) {
+                    txCharacteristic = c;
+                  }
+                }
+                if (c.properties.notify || c.properties.indicate) {
+                  try {
+                    await c.startNotifications();
+                    c.removeEventListener('characteristicvaluechanged', onTelemetryReceived);
+                    c.addEventListener('characteristicvaluechanged', onTelemetryReceived);
+                    if (!rxCharacteristics.includes(c)) rxCharacteristics.push(c);
+                  } catch (e) {}
                 }
               }
-
-              if (c.properties.notify || c.properties.indicate) {
-                try {
-                  await c.startNotifications();
-                  c.addEventListener('characteristicvaluechanged', onTelemetryReceived);
-                  rxCharacteristics.push(c);
-                } catch (e) {}
-              }
-            }
-          } catch (e) {}
-        }
+            } catch (e) {}
+          }
+        } catch(e) {}
       } catch (err) {
-        logLCARS(`Channel notice: ${err.message}`, "err");
+        logLCARS(`Channel notice: ${err.message}`, 'err');
       }
 
-      logLCARS("[*] Transmitting 0xA1 Authentication & Time Handshake...", "tx");
+      logLCARS('[*] Transmitting 0xA1 Authentication & Time Handshake...', 'tx');
       sendAuthHandshake();
     }
 
     let isAutoReconnecting = false;
     let autoReconnectTimer = null;
 
-    
     // =========================================================================
     // TRUE CONNECTION STATE WATCHDOG (CLE-004 FIX)
-    // Only displays "LINKED & ONLINE" (Green) when GATT is TRULY connected & TX ready
+    // Only displays LINKED & ONLINE (Green) when GATT is TRULY connected & TX ready
     // =========================================================================
     function updateConnectionStateUI() {
       const isTrulyConnected = !!(bluetoothDevice && bluetoothDevice.gatt && bluetoothDevice.gatt.connected && txCharacteristic);
-      const elComm = document.getElementById("ribbonComm");
-      if (!elComm) return;
+      const elComm = document.getElementById('ribbonComm');
+      const unlinkedBanner = document.getElementById('unlinkedBanner');
+      const btnPairNew = document.getElementById('btnPairNew');
 
       if (isTrulyConnected) {
-        if (elComm.textContent !== "LINKED & ONLINE") {
-          elComm.textContent = "LINKED & ONLINE";
-          elComm.style.color = "var(--lcars-green)";
+        if (elComm) {
+          elComm.textContent = 'LINKED & ONLINE';
+          elComm.style.color = 'var(--lcars-green)';
         }
+        if (unlinkedBanner) unlinkedBanner.style.display = 'none';
+        if (btnPairNew) btnPairNew.style.display = 'none';
       } else if (isAutoReconnecting) {
-        if (elComm.textContent !== "AUTO-RECONNECTING...") {
-          elComm.textContent = "AUTO-RECONNECTING...";
-          elComm.style.color = "var(--lcars-banana)";
+        if (elComm) {
+          elComm.textContent = 'AUTO-RECONNECTING...';
+          elComm.style.color = 'var(--lcars-banana)';
         }
       } else {
-        if (elComm.textContent !== "STANDBY (OFFLINE)") {
-          elComm.textContent = "STANDBY (OFFLINE)";
-          elComm.style.color = "var(--lcars-orange)";
+        if (elComm) {
+          elComm.textContent = 'STANDBY (CLICK TO ENGAGE)';
+          elComm.style.color = 'var(--lcars-orange)';
         }
+        if (unlinkedBanner) unlinkedBanner.style.display = 'flex';
+        if (btnPairNew) btnPairNew.style.display = 'inline-flex';
       }
     }
     setInterval(updateConnectionStateUI, 1000);
 
     function onDisconnected() {
       txCharacteristic = null;
-      logLCARS("Watch link severed (screen asleep or out of range). Silently reconnecting in background...", "sys");
+      logLCARS('Watch link severed (screen asleep or out of range). Reconnecting in background...', 'sys');
       updateConnectionStateUI();
       startAutoReconnectLoop();
     }
@@ -4246,26 +4278,27 @@
       while (!gattServer || !gattServer.connected) {
         attempt++;
         try {
-          const known = await checkKnownDevice();
-          if (known) {
-            bluetoothDevice = known;
+          const target = bluetoothDevice || await checkKnownDevice();
+          if (target) {
+            bluetoothDevice = target;
             bluetoothDevice.removeEventListener('gattserverdisconnected', onDisconnected);
             bluetoothDevice.addEventListener('gattserverdisconnected', onDisconnected);
             
             gattServer = await bluetoothDevice.gatt.connect();
             if (gattServer.connected) {
-              logLCARS(`[+] Watch link automatically restored (Attempt ${attempt})!`, "rx");
+              logLCARS(`[+] Watch link automatically restored (Attempt ${attempt})!`, 'rx');
               await setupGattChannels();
-              document.getElementById("ribbonComm").textContent = "LINKED & ONLINE";
-              document.getElementById("ribbonComm").style.color = "var(--lcars-green)";
+              updateConnectionStateUI();
               isAutoReconnecting = false;
               return;
             }
           }
         } catch (err) {
-          // Silent retry every 2.5 seconds
+          // Paced silent retry
         }
-        await new Promise(r => setTimeout(r, 2500));
+        // Paced backoff: 3s for first 5 attempts, then 8s to avoid hammering Windows BLE
+        const delay = (attempt < 5) ? 3000 : 8000;
+        await new Promise(r => setTimeout(r, delay));
       }
       isAutoReconnecting = false;
     }
@@ -4532,7 +4565,7 @@
         await proceedWithGattConnection();
         return !!txCharacteristic;
       } else {
-        // Zero-click: Silently try any authorized device from Chrome permissions
+        // Check if any devices authorized in Chrome
         if (navigator.bluetooth && navigator.bluetooth.getDevices) {
           try {
             const devs = await navigator.bluetooth.getDevices();
@@ -4544,10 +4577,9 @@
             }
           } catch(e) {}
         }
-        // NEVER trigger pairing popup automatically! Log standby and let user initiate manually
-        logLCARS("[*] Watch sleeping or out of range. Background auto-link active (no popup).", "sys");
-        updateConnectionStateUI();
-        return false;
+        // If no device recognized in Chrome, prompt user to select VEE
+        await pairNewWatchPrompt();
+        return !!txCharacteristic;
       }
     }
 
@@ -8147,11 +8179,12 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
   
     // Keep server.py proximity daemon informed that Chrome holds the radio
     function pingBrowserActiveToDaemon() {
-      // Keep Python daemon from stealing the radio whenever this web page is open
-      fetch('/api/browser_active', { method: 'POST' }).catch(() => {});
+      // Only signal active radio lock when Chrome is actively linked or connecting
+      if (bluetoothDevice && ((bluetoothDevice.gatt && bluetoothDevice.gatt.connected) || isAutoReconnecting)) {
+        fetch('/api/browser_active', { method: 'POST' }).catch(() => {});
+      }
     }
     setInterval(pingBrowserActiveToDaemon, 3000);
-    pingBrowserActiveToDaemon(); // Ping immediately on page load
 </script>
 </body>
 </html>
