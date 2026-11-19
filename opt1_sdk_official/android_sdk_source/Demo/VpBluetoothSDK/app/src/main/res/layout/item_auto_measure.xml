@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp"
+    android:layout_width="match_parent"
+    android:background="#89f0f0f0"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tvAutoMeasureName"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Heart Rate"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="#000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tvMeasureTime"
+        app:layout_constraintStart_toEndOf="@id/tvAutoMeasureName"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="测量时间：18:30 - 23:00"
+        android:layout_marginStart="20dp"
+        android:textSize="17sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tvMeasureInterval"
+        app:layout_constraintStart_toEndOf="@id/tvAutoMeasureName"
+        app:layout_constraintTop_toBottomOf="@id/tvMeasureTime"
+        android:text="测量间隔：5 分钟"
+        android:layout_marginStart="20dp"
+        android:textSize="17sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+
+    <com.github.iielse.switchbutton.SwitchView
+        android:id="@+id/sv"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/llLowOxygen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@id/tvMeasureInterval"
+        app:layout_constraintTop_toBottomOf="@id/tvMeasureInterval">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="低氧提醒"
+            android:textSize="14sp"
+            android:textColor="#000" />
+
+        <com.github.iielse.switchbutton.SwitchView
+            android:id="@+id/svLowOxygen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SwitchView">
+        <attr name="hasShadow" format="boolean"/>
+        <attr name="primaryColor" format="color"/>
+        <attr name="primaryColorDark" format="color"/>
+        <attr name="offColor" format="color"/>
+        <attr name="offColorDark" format="color"/>
+        <attr name="barColor" format="color"/>
+        <attr name="bgColor" format="color"/>
+        <attr name="shadowColor" format="color"/>
+        <attr name="ratioAspect" format="float"/>
+        <attr name="isOpened" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="CollapseCardLogView">
+        <!-- 卡片标题文字 -->
+        <attr name="collapseTitle" format="string"/>
+        <!-- 标题文字颜色 -->
+        <attr name="collapseTitleColor" format="color"/>
+        <!-- 标题文字大小 -->
+        <attr name="collapseTitleSize" format="dimension"/>
+        <!-- 默认是否展开 -->
+        <attr name="collapseDefaultExpand" format="boolean"/>
+        <!-- 卡片背景色 -->
+        <attr name="collapseCardBg" format="color"/>
+        <attr name="collapseLogHeight" format="dimension"/>
+        <attr name="collapseSubTitle" format="string"/>
+        <attr name="collapseSubTitleColor" format="color"/>
+        <attr name="collapseSubTitleSize" format="dimension"/>
+    </declare-styleable>
+</resources>

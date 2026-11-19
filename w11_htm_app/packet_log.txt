@@ -1,0 +1,1486 @@
+
+=== Server Session Started ===
+Test telemetry sync
+[4:06:22 PM] [rx] Saved watch found in local cache. Click 'Reconnect Saved Watch' for 1-click connect.
+[4:06:30 PM] [err] Auto-reconnect requires previously paired permissions.
+[4:06:32 PM] [tx] Requesting Bluetooth device picker...
+[4:06:55 PM] [tx] Connecting to GATT Server on VEE (attempt 1/3)...
+[4:06:55 PM] [rx] Connected! Discovering all GATT services & characteristics...
+[4:07:00 PM] [INFO] Discovered 5 primary service(s).
+[4:07:00 PM] [INFO]  Service: 0000fee7-0000-1000-8000-00805f9b34fb
+[4:07:00 PM] [INFO]     Char: 0000fea1-0000-1000-8000-00805f9b34fb [read, notify]
+[4:07:00 PM] [rx]     -> Subscribed to Notifications on 0000fea1-0000-1000-8000-00805f9b34fb
+[4:07:00 PM] [INFO]     Char: 0000fea2-0000-1000-8000-00805f9b34fb [read, write, indicate]
+[4:07:00 PM] [rx]     -> Subscribed to Notifications on 0000fea2-0000-1000-8000-00805f9b34fb
+[4:07:00 PM] [INFO]     Char: 0000fec7-0000-1000-8000-00805f9b34fb [write]
+[4:07:00 PM] [INFO]     Char: 0000fec8-0000-1000-8000-00805f9b34fb [indicate]
+[4:07:00 PM] [rx]     -> Subscribed to Notifications on 0000fec8-0000-1000-8000-00805f9b34fb
+[4:07:00 PM] [INFO]     Char: 0000fec9-0000-1000-8000-00805f9b34fb [read]
+[4:07:00 PM] [INFO]  Service: f0080001-0451-4000-b000-000000000000
+[4:07:00 PM] [INFO]     Char: f0080002-0451-4000-b000-000000000000 [notify]
+[4:07:00 PM] [rx]     -> Subscribed to Notifications on f0080002-0451-4000-b000-000000000000
+[4:07:00 PM] [INFO]     Char: f0080003-0451-4000-b000-000000000000 [write, writeWithoutResponse]
+[4:07:00 PM] [INFO]  Service: f0020001-0451-4000-b000-000000000000
+[4:07:00 PM] [INFO]     Char: f0020002-0451-4000-b000-000000000000 [notify]
+[4:07:00 PM] [rx] RX HEX: 01 00 00 00
+[4:07:01 PM] [rx]     -> Subscribed to Notifications on f0020002-0451-4000-b000-000000000000
+[4:07:01 PM] [INFO]     Char: f0020003-0451-4000-b000-000000000000 [writeWithoutResponse]
+[4:07:01 PM] [INFO]  Service: 0000ae00-0000-1000-8000-00805f9b34fb
+[4:07:01 PM] [INFO]     Char: 0000ae01-0000-1000-8000-00805f9b34fb [writeWithoutResponse]
+[4:07:01 PM] [INFO]     Char: 0000ae02-0000-1000-8000-00805f9b34fb [notify]
+[4:07:01 PM] [rx]     -> Subscribed to Notifications on 0000ae02-0000-1000-8000-00805f9b34fb
+[4:07:01 PM] [INFO]  Service: f0030001-0451-4000-b000-000000000000
+[4:07:01 PM] [INFO]     Char: f0030002-0451-4000-b000-000000000000 [writeWithoutResponse, notify]
+[4:07:01 PM] [rx]     -> Subscribed to Notifications on f0030002-0451-4000-b000-000000000000
+[4:07:01 PM] [INFO]     Char: f0030003-0451-4000-b000-000000000000 [writeWithoutResponse]
+[4:07:01 PM] [rx] [+] Primary TX Write Channel Bound: 0000ae01-0000-1000-8000-00805f9b34fb
+[4:07:01 PM] [tx] [*] Performing Veepoo Authentication & Time Sync Handshake (0xA1)...
+[4:07:01 PM] [tx] TX HEX (0000ae01): a1 00 00 00 07 ea 0b 12 10 07 01 00 01 e0 00 00 00 00 00 00
+[4:07:01 PM] [rx] RX HEX: 01 00 00 00
+[4:07:02 PM] [rx] RX HEX: 01 00 00 00
+[4:07:03 PM] [rx] RX HEX: 01 00 00 00
+[4:07:04 PM] [rx] RX HEX: 01 00 00 00
+[4:07:05 PM] [rx] RX HEX: 01 00 00 00
+[4:07:06 PM] [tx] TX HEX (0000ae01): 89 01 01 00
+[4:07:06 PM] [rx] RX HEX: 01 00 00 00
+[4:07:07 PM] [rx] RX HEX: 01 00 00 00
+[4:07:08 PM] [rx] RX HEX: 01 00 00 00
+[4:07:09 PM] [rx] RX HEX: 01 00 00 00
+[4:07:10 PM] [rx] RX HEX: 01 00 00 00
+[4:07:11 PM] [rx] RX HEX: 01 00 00 00
+[4:07:12 PM] [rx] RX HEX: 01 00 00 00
+[4:07:14 PM] [rx] RX HEX: 01 00 00 00
+[4:07:14 PM] [rx] RX HEX: 01 00 00 00
+[4:07:15 PM] [rx] RX HEX: 01 00 00 00
+[4:07:16 PM] [rx] RX HEX: 01 00 00 00
+[4:07:17 PM] [rx] RX HEX: 01 00 00 00
+[4:07:18 PM] [rx] RX HEX: 01 00 00 00
+[4:07:19 PM] [rx] RX HEX: 01 00 00 00
+[4:07:20 PM] [rx] RX HEX: 01 00 00 00
+[4:07:21 PM] [rx] RX HEX: 01 00 00 00
+[4:07:22 PM] [rx] RX HEX: 01 00 00 00
+[4:07:23 PM] [tx] TX HEX (0000ae01): 87 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:07:23 PM] [rx] RX HEX: 01 00 00 00
+[4:07:24 PM] [rx] RX HEX: 01 00 00 00
+[4:07:25 PM] [rx] RX HEX: 01 00 00 00
+[4:07:26 PM] [rx] RX HEX: 01 00 00 00
+[4:07:27 PM] [rx] RX HEX: 01 00 00 00
+[4:07:28 PM] [rx] RX HEX: 01 00 00 00
+[4:07:29 PM] [rx] RX HEX: 01 00 00 00
+[4:07:30 PM] [rx] RX HEX: 01 00 00 00
+[4:07:31 PM] [rx] RX HEX: 01 00 00 00
+[4:07:32 PM] [rx] RX HEX: 01 00 00 00
+[4:07:33 PM] [rx] RX HEX: 01 00 00 00
+[4:07:34 PM] [rx] RX HEX: 01 00 00 00
+[4:07:35 PM] [tx] TX HEX (0000ae01): a1 00 00 00 07 ea 0b 12 10 07 23 00 01 e0 00 00 00 00 00 00
+[4:07:35 PM] [rx] RX HEX: 01 00 00 00
+[4:07:36 PM] [rx] RX HEX: 01 00 00 00
+[4:07:37 PM] [rx] RX HEX: 01 00 00 00
+[4:07:38 PM] [rx] RX HEX: 01 00 00 00
+[4:07:39 PM] [rx] RX HEX: 01 00 00 00
+[4:07:40 PM] [rx] RX HEX: 01 00 00 00
+[4:07:41 PM] [rx] RX HEX: 01 00 00 00
+[4:07:42 PM] [rx] RX HEX: 01 00 00 00
+[4:07:43 PM] [rx] RX HEX: 01 00 00 00
+[4:07:44 PM] [rx] RX HEX: 01 00 00 00
+[4:07:45 PM] [tx] TX HEX (0000ae01): a1 00 00 00 07 ea 0b 12 10 07 2d 00 01 e0 00 00 00 00 00 00
+[4:07:46 PM] [rx] RX HEX: 01 00 00 00
+[4:07:46 PM] [rx] RX HEX: 01 00 00 00
+[4:07:47 PM] [rx] RX HEX: 01 00 00 00
+[4:07:48 PM] [rx] RX HEX: 01 00 00 00
+[4:07:49 PM] [rx] RX HEX: 01 00 00 00
+[4:07:50 PM] [rx] RX HEX: 01 00 00 00
+[4:07:52 PM] [rx] RX HEX: 01 00 00 00
+[4:07:53 PM] [rx] RX HEX: 01 00 00 00
+[4:07:54 PM] [rx] RX HEX: 01 00 00 00
+[4:07:55 PM] [rx] RX HEX: 01 00 00 00
+[4:07:56 PM] [rx] RX HEX: 01 00 00 00
+[4:07:57 PM] [rx] RX HEX: 01 00 00 00
+[4:07:57 PM] [rx] RX HEX: 01 00 00 00
+[4:07:59 PM] [rx] RX HEX: 01 00 00 00
+[4:08:00 PM] [rx] RX HEX: 01 00 00 00
+[4:08:01 PM] [rx] RX HEX: 01 00 00 00
+[4:08:02 PM] [rx] RX HEX: 01 00 00 00
+[4:08:03 PM] [rx] RX HEX: 01 00 00 00
+[4:08:04 PM] [rx] RX HEX: 01 00 00 00
+[4:08:05 PM] [rx] RX HEX: 01 00 00 00
+[4:08:06 PM] [rx] RX HEX: 01 00 00 00
+[4:08:07 PM] [rx] RX HEX: 01 00 00 00
+[4:08:08 PM] [rx] RX HEX: 01 00 00 00
+[4:08:09 PM] [rx] RX HEX: 01 00 00 00
+[4:08:10 PM] [rx] RX HEX: 01 00 00 00
+[4:08:11 PM] [rx] RX HEX: 01 00 00 00
+[4:08:12 PM] [rx] RX HEX: 01 00 00 00
+[4:08:13 PM] [rx] RX HEX: 01 00 00 00
+[4:08:14 PM] [rx] RX HEX: 01 00 00 00
+[4:08:15 PM] [rx] RX HEX: 01 00 00 00
+[4:08:16 PM] [rx] RX HEX: 01 00 00 00
+[4:08:17 PM] [rx] RX HEX: 01 00 00 00
+[4:08:18 PM] [rx] RX HEX: 01 00 00 00
+[4:08:19 PM] [rx] RX HEX: 01 00 00 00
+[4:08:20 PM] [rx] RX HEX: 01 00 00 00
+[4:08:21 PM] [rx] RX HEX: 01 00 00 00
+[4:08:22 PM] [rx] RX HEX: 01 00 00 00
+[4:08:23 PM] [rx] RX HEX: 01 00 00 00
+[4:08:24 PM] [rx] RX HEX: 01 00 00 00
+[4:08:25 PM] [rx] RX HEX: 01 00 00 00
+[4:08:26 PM] [rx] RX HEX: 01 00 00 00
+[4:08:27 PM] [rx] RX HEX: 01 00 00 00
+[4:08:28 PM] [rx] RX HEX: 01 00 00 00
+[4:08:29 PM] [rx] RX HEX: 01 00 00 00
+[4:08:30 PM] [rx] RX HEX: 01 00 00 00
+[4:08:31 PM] [rx] RX HEX: 01 00 00 00
+[4:08:32 PM] [rx] RX HEX: 01 00 00 00
+[4:08:33 PM] [rx] RX HEX: 01 00 00 00
+[4:08:34 PM] [rx] RX HEX: 01 00 00 00
+[4:08:35 PM] [rx] RX HEX: 01 00 00 00
+[4:08:36 PM] [rx] RX HEX: 01 00 00 00
+[4:08:37 PM] [rx] RX HEX: 01 00 00 00
+[4:08:38 PM] [rx] RX HEX: 01 00 00 00
+[4:08:39 PM] [rx] RX HEX: 01 00 00 00
+[4:08:40 PM] [rx] RX HEX: 01 00 00 00
+[4:08:41 PM] [rx] RX HEX: 01 00 00 00
+[4:08:42 PM] [rx] RX HEX: 01 00 00 00
+[4:08:43 PM] [rx] RX HEX: 01 00 00 00
+[4:08:44 PM] [rx] RX HEX: 01 00 00 00
+[4:08:45 PM] [rx] RX HEX: 01 00 00 00
+[4:08:46 PM] [rx] RX HEX: 01 00 00 00
+[4:08:47 PM] [rx] RX HEX: 01 00 00 00
+[4:08:48 PM] [rx] RX HEX: 01 00 00 00
+[4:08:49 PM] [rx] RX HEX: 01 00 00 00
+[4:08:50 PM] [rx] RX HEX: 01 00 00 00
+[4:08:51 PM] [rx] RX HEX: 01 00 00 00
+[4:08:52 PM] [rx] RX HEX: 01 00 00 00
+[4:08:53 PM] [rx] RX HEX: 01 00 00 00
+[4:08:54 PM] [rx] RX HEX: 01 00 00 00
+[4:08:55 PM] [rx] RX HEX: 01 00 00 00
+[4:08:56 PM] [rx] RX HEX: 01 00 00 00
+[4:08:57 PM] [rx] RX HEX: 01 00 00 00
+[4:08:58 PM] [rx] RX HEX: 01 00 00 00
+[4:08:59 PM] [rx] RX HEX: 01 00 00 00
+[4:09:00 PM] [rx] RX HEX: 01 00 00 00
+[4:09:01 PM] [rx] RX HEX: 01 00 00 00
+[4:09:02 PM] [rx] RX HEX: 01 00 00 00
+[4:09:03 PM] [rx] RX HEX: 01 00 00 00
+[4:09:04 PM] [rx] RX HEX: 01 00 00 00
+[4:09:05 PM] [rx] RX HEX: 01 00 00 00
+[4:09:06 PM] [rx] RX HEX: 01 00 00 00
+[4:09:07 PM] [rx] RX HEX: 01 00 00 00
+[4:09:08 PM] [rx] RX HEX: 01 00 00 00
+[4:09:09 PM] [rx] RX HEX: 01 00 00 00
+[4:09:10 PM] [rx] RX HEX: 01 00 00 00
+[4:09:11 PM] [rx] RX HEX: 01 00 00 00
+[4:09:12 PM] [rx] RX HEX: 01 00 00 00
+[4:09:13 PM] [rx] RX HEX: 01 00 00 00
+[4:09:14 PM] [rx] RX HEX: 01 00 00 00
+[4:09:15 PM] [rx] RX HEX: 01 00 00 00
+[4:09:16 PM] [rx] RX HEX: 01 00 00 00
+[4:09:17 PM] [rx] RX HEX: 01 00 00 00
+[4:09:18 PM] [rx] RX HEX: 01 00 00 00
+[4:09:19 PM] [rx] RX HEX: 01 00 00 00
+[4:09:20 PM] [rx] RX HEX: 01 00 00 00
+[4:09:21 PM] [rx] RX HEX: 01 00 00 00
+[4:09:22 PM] [rx] RX HEX: 01 00 00 00
+[4:09:23 PM] [rx] RX HEX: 01 00 00 00
+[4:09:24 PM] [rx] RX HEX: 01 00 00 00
+[4:09:25 PM] [rx] RX HEX: 01 00 00 00
+[4:09:26 PM] [rx] RX HEX: 01 00 00 00
+[4:09:27 PM] [rx] RX HEX: 01 00 00 00
+[4:09:27 PM] [rx] Saved watch found in local cache. Click 'Reconnect Saved Watch' for 1-click connect.
+[4:09:31 PM] [err] Auto-reconnect requires previously paired permissions.
+[4:09:50 PM] [tx] Requesting Bluetooth device picker...
+[4:09:58 PM] [tx] Connecting to GATT Server on VEE (attempt 1/3)...
+[4:09:58 PM] [rx] Connected! Discovering all GATT services & characteristics...
+[4:10:01 PM] [err] Error: No TX Characteristic found.
+[4:10:03 PM] [INFO] Discovered 5 primary service(s).
+[4:10:03 PM] [INFO]  Service: 0000fee7-0000-1000-8000-00805f9b34fb
+[4:10:03 PM] [INFO]     Char: 0000fea1-0000-1000-8000-00805f9b34fb [read, notify]
+[4:10:03 PM] [rx]     -> Subscribed to Notifications on 0000fea1-0000-1000-8000-00805f9b34fb
+[4:10:03 PM] [INFO]     Char: 0000fea2-0000-1000-8000-00805f9b34fb [read, write, indicate]
+[4:10:03 PM] [rx]     -> Subscribed to Notifications on 0000fea2-0000-1000-8000-00805f9b34fb
+[4:10:03 PM] [INFO]     Char: 0000fec7-0000-1000-8000-00805f9b34fb [write]
+[4:10:03 PM] [INFO]     Char: 0000fec8-0000-1000-8000-00805f9b34fb [indicate]
+[4:10:03 PM] [rx]     -> Subscribed to Notifications on 0000fec8-0000-1000-8000-00805f9b34fb
+[4:10:03 PM] [INFO]     Char: 0000fec9-0000-1000-8000-00805f9b34fb [read]
+[4:10:03 PM] [INFO]  Service: f0080001-0451-4000-b000-000000000000
+[4:10:03 PM] [INFO]     Char: f0080002-0451-4000-b000-000000000000 [notify]
+[4:10:03 PM] [rx]     -> Subscribed to Notifications on f0080002-0451-4000-b000-000000000000
+[4:10:03 PM] [INFO]     Char: f0080003-0451-4000-b000-000000000000 [write, writeWithoutResponse]
+[4:10:03 PM] [rx]     -> [★] Bound PRIMARY Veepoo TX Channel: f0080003-0451-4000-b000-000000000000
+[4:10:03 PM] [INFO]  Service: f0020001-0451-4000-b000-000000000000
+[4:10:03 PM] [INFO]     Char: f0020002-0451-4000-b000-000000000000 [notify]
+[4:10:03 PM] [rx]     -> Subscribed to Notifications on f0020002-0451-4000-b000-000000000000
+[4:10:03 PM] [INFO]     Char: f0020003-0451-4000-b000-000000000000 [writeWithoutResponse]
+[4:10:03 PM] [INFO]  Service: 0000ae00-0000-1000-8000-00805f9b34fb
+[4:10:03 PM] [INFO]     Char: 0000ae01-0000-1000-8000-00805f9b34fb [writeWithoutResponse]
+[4:10:03 PM] [INFO]     Char: 0000ae02-0000-1000-8000-00805f9b34fb [notify]
+[4:10:04 PM] [rx]     -> Subscribed to Notifications on 0000ae02-0000-1000-8000-00805f9b34fb
+[4:10:04 PM] [INFO]  Service: f0030001-0451-4000-b000-000000000000
+[4:10:04 PM] [INFO]     Char: f0030002-0451-4000-b000-000000000000 [writeWithoutResponse, notify]
+[4:10:04 PM] [rx]     -> Subscribed to Notifications on f0030002-0451-4000-b000-000000000000
+[4:10:04 PM] [INFO]     Char: f0030003-0451-4000-b000-000000000000 [writeWithoutResponse]
+[4:10:04 PM] [rx] [+] Primary TX Write Channel Bound: f0080003-0451-4000-b000-000000000000
+[4:10:04 PM] [tx] [*] Performing Veepoo Authentication & Time Sync Handshake (0xA1)...
+[4:10:04 PM] [tx] TX HEX (f0080003): a1 00 00 00 07 ea 0b 12 10 0a 04 00 01 e0 00 00 00 00 00 00
+[4:10:04 PM] [rx] RX HEX (f0080002): a7 01 00 01 01 01 01 00 02 14 01 01 03 00 00 01 00 06 05 01
+[4:10:04 PM] [rx] RX HEX (f0080002): a7 00 03 04 00 03 05 00 01 01 05 01 01 01 02 06 03 00 01 02
+[4:10:04 PM] [rx] RX HEX (f0080002): a7 02 11 00 02 01 01 04 01 00 00 00 01 00 00 04 01 01 01 03
+[4:10:04 PM] [rx] RX HEX (f0080002): a7 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 04
+[4:10:04 PM] [rx] RX HEX (f0080002): ad 02 02 02 02 02 00 02 02 00 02 02 02 02 02 02 02 00 00 02
+[4:10:04 PM] [rx] RX HEX (f0080002): ad 02 02 02 02 02 00 02 00 00 00 00 00 00 00 00 00 00 00 10
+[4:10:04 PM] [rx] RX HEX (f0080002): b8 02 02 01 01 01 00 00 00 00 01 01 00 00 00 00 01 00 00 00
+[4:10:04 PM] [rx] RX HEX (f0080002): b8 02 00 00 01 02 00 01 00 00 02 01 01 01 00 00 00 00 00 01
+[4:10:04 PM] [rx] RX HEX (f0080002): bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:10:04 PM] [rx] RX HEX (f0080002): a1 00 00 06 13 92 00 10 10 00 00 01 16 f6 83 40 de 8b 00 00
+[4:10:04 PM] [rx] [+] AUTH SUCCESS! Model: 5010 | Firmware: v0.16.16.0 | Status: 6
+[4:10:12 PM] [tx] TX HEX (f0080003): 87 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:10:12 PM] [rx] RX HEX (f0080002): 87 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:10:13 PM] [rx] RX HEX (f0080002): 87 01 01 07 00 4a 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:10:14 PM] [rx] RX HEX (f0080002): 87 01 01 07 08 4a 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:10:15 PM] [rx] RX HEX (f0080002): 87 01 01 07 10 64 01 29 01 00 00 00 00 00 00 00 00 00 00 00
+[4:10:16 PM] [rx] RX HEX (f0080002): 87 01 01 07 1a 64 01 29 01 00 00 00 00 00 00 00 00 00 00 00
+[4:10:17 PM] [rx] RX HEX (f0080002): 87 01 01 07 23 64 01 29 01 00 00 00 00 00 00 00 00 00 00 00
+[4:10:18 PM] [rx] RX HEX (f0080002): 87 01 01 07 2d 64 01 29 01 00 00 00 00 00 00 00 00 00 00 00
+[4:10:19 PM] [rx] RX HEX (f0080002): 87 01 01 07 35 64 01 29 01 00 00 00 00 00 00 00 00 00 00 00
+[4:10:20 PM] [rx] RX HEX (f0080002): 87 01 01 07 3f 64 01 29 01 00 00 00 00 00 00 00 00 00 00 00
+[4:10:21 PM] [rx] RX HEX (f0080002): 87 01 01 07 49 64 01 29 01 00 00 00 00 00 00 00 00 00 00 00
+[4:10:22 PM] [rx] RX HEX (f0080002): 87 01 01 07 51 64 01 29 01 00 00 00 00 00 00 00 00 00 00 00
+[4:10:23 PM] [rx] RX HEX (f0080002): 87 01 01 07 59 64 01 29 01 00 00 00 00 00 00 00 00 00 00 00
+[4:10:24 PM] [rx] RX HEX (f0080002): 87 01 01 07 63 64 01 29 01 00 00 00 00 00 00 00 00 00 00 00
+[4:10:25 PM] [rx] RX HEX (f0080002): 87 01 01 07 64 64 01 29 01 00 00 00 00 00 00 00 00 00 00 00
+[4:10:32 PM] [tx] TX HEX (f0080003): a1 00 00 00 07 ea 0b 12 10 0a 20 00 01 e0 00 00 00 00 00 00
+[4:10:33 PM] [rx] RX HEX (f0080002): a7 01 00 01 01 01 01 00 02 14 01 01 03 00 00 01 00 06 05 01
+[4:10:33 PM] [rx] RX HEX (f0080002): a7 00 03 04 00 03 05 00 01 01 05 01 01 01 02 06 03 00 01 02
+[4:10:33 PM] [rx] RX HEX (f0080002): a7 02 11 00 02 01 01 04 01 00 00 00 01 00 00 04 01 01 01 03
+[4:10:33 PM] [rx] RX HEX (f0080002): a7 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 04
+[4:10:33 PM] [rx] RX HEX (f0080002): ad 02 02 02 02 02 00 02 02 00 02 02 02 02 02 02 02 00 00 02
+[4:10:33 PM] [rx] RX HEX (f0080002): ad 02 02 02 02 02 00 02 00 00 00 00 00 00 00 00 00 00 00 10
+[4:10:33 PM] [rx] RX HEX (f0080002): b8 02 02 01 01 01 00 00 00 00 01 01 00 00 00 00 01 00 00 00
+[4:10:33 PM] [rx] RX HEX (f0080002): b8 02 00 00 01 02 00 01 00 00 02 01 01 01 00 00 00 00 00 01
+[4:10:33 PM] [rx] RX HEX (f0080002): bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:10:33 PM] [rx] RX HEX (f0080002): a1 00 00 06 13 92 00 10 10 00 00 01 16 f6 83 40 de 8b 00 00
+[4:10:33 PM] [rx] [+] AUTH SUCCESS! Model: 5010 | Firmware: v0.16.16.0 | Status: 6
+[4:10:39 PM] [tx] TX HEX (f0080003): a1 00 00 00 07 ea 0b 12 10 0a 27 00 01 e0 00 00 00 00 00 00
+[4:10:39 PM] [rx] RX HEX (f0080002): a7 01 00 01 01 01 01 00 02 14 01 01 03 00 00 01 00 06 05 01
+[4:10:39 PM] [rx] RX HEX (f0080002): a7 00 03 04 00 03 05 00 01 01 05 01 01 01 02 06 03 00 01 02
+[4:10:39 PM] [rx] RX HEX (f0080002): a7 02 11 00 02 01 01 04 01 00 00 00 01 00 00 04 01 01 01 03
+[4:10:39 PM] [rx] RX HEX (f0080002): a7 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 04
+[4:10:39 PM] [rx] RX HEX (f0080002): ad 02 02 02 02 02 00 02 02 00 02 02 02 02 02 02 02 00 00 02
+[4:10:39 PM] [rx] RX HEX (f0080002): ad 02 02 02 02 02 00 02 00 00 00 00 00 00 00 00 00 00 00 10
+[4:10:39 PM] [rx] RX HEX (f0080002): b8 02 02 01 01 01 00 00 00 00 01 01 00 00 00 00 01 00 00 00
+[4:10:39 PM] [rx] RX HEX (f0080002): b8 02 00 00 01 02 00 01 00 00 02 01 01 01 00 00 00 00 00 01
+[4:10:39 PM] [rx] RX HEX (f0080002): bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:10:39 PM] [rx] RX HEX (f0080002): a1 00 00 06 13 92 00 10 10 00 00 01 16 f6 83 40 de 8b 00 00
+[4:10:39 PM] [rx] [+] AUTH SUCCESS! Model: 5010 | Firmware: v0.16.16.0 | Status: 6
+[4:10:59 PM] [rx] RX HEX (f0080002): bd 03 01 00 02 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:14:44 PM] [tx] TX HEX (f0080003): 89 01 01 00
+[4:14:45 PM] [rx] RX HEX (f0080002): 89 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:14:45 PM] [INFO] [+] Blood Glucose: 1% progress | Risk: Normal
+[4:14:45 PM] [rx] RX HEX (f0080002): 89 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:14:45 PM] [INFO] [+] Blood Glucose: 1% progress | Risk: Normal
+[4:14:46 PM] [rx] RX HEX (f0080002): 89 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:14:46 PM] [INFO] [+] Blood Glucose: 1% progress | Risk: Normal
+[4:14:47 PM] [rx] RX HEX (f0080002): 89 01 01 00 06 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:14:47 PM] [INFO] [+] Blood Glucose: 1% progress | Risk: Normal
+[4:14:48 PM] [rx] RX HEX (f0080002): 89 01 01 00 0c 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:14:48 PM] [INFO] [+] Blood Glucose: 1% progress | Risk: Normal
+[4:14:49 PM] [rx] RX HEX (f0080002): 89 01 01 00 12 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:14:49 PM] [INFO] [+] Blood Glucose: 1% progress | Risk: Normal
+[4:14:50 PM] [rx] RX HEX (f0080002): 89 01 01 00 18 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:14:50 PM] [INFO] [+] Blood Glucose: 1% progress | Risk: Normal
+[4:14:51 PM] [rx] RX HEX (f0080002): 89 01 01 00 1e 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:14:51 PM] [INFO] [+] Blood Glucose: 1% progress | Risk: Normal
+[4:14:52 PM] [rx] RX HEX (f0080002): 89 01 01 00 24 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:14:52 PM] [INFO] [+] Blood Glucose: 1% progress | Risk: Normal
+[4:14:53 PM] [rx] RX HEX (f0080002): 89 01 01 00 2a 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:14:53 PM] [INFO] [+] Blood Glucose: 1% progress | Risk: Normal
+[4:14:54 PM] [rx] RX HEX (f0080002): 89 01 01 00 30 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:14:54 PM] [INFO] [+] Blood Glucose: 1% progress | Risk: Normal
+[4:14:55 PM] [rx] RX HEX (f0080002): 89 01 01 00 36 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:14:55 PM] [INFO] [+] Blood Glucose: 1% progress | Risk: Normal
+[4:14:56 PM] [rx] RX HEX (f0080002): 89 01 01 00 3c 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:14:56 PM] [INFO] [+] Blood Glucose: 1% progress | Risk: Normal
+[4:14:57 PM] [rx] RX HEX (f0080002): 89 01 01 00 42 44 02 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:14:57 PM] [INFO] [+] Blood Glucose: 1% progress | Risk: Normal
+[4:14:58 PM] [rx] RX HEX (f0080002): 89 01 01 00 48 49 02 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:14:58 PM] [INFO] [+] Blood Glucose: 1% progress | Risk: Normal
+[4:14:59 PM] [rx] RX HEX (f0080002): 89 01 01 00 4e 44 02 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:14:59 PM] [INFO] [+] Blood Glucose: 1% progress | Risk: Normal
+[4:15:00 PM] [rx] RX HEX (f0080002): 89 01 01 00 54 65 02 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:15:00 PM] [INFO] [+] Blood Glucose: 1% progress | Risk: Normal
+[4:15:01 PM] [rx] RX HEX (f0080002): 89 01 01 00 5a 3c 02 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:15:01 PM] [INFO] [+] Blood Glucose: 1% progress | Risk: Normal
+[4:15:02 PM] [rx] RX HEX (f0080002): 89 01 01 00 60 38 02 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:15:02 PM] [INFO] [+] Blood Glucose: 1% progress | Risk: Normal
+[4:15:03 PM] [rx] RX HEX (f0080002): 89 01 01 00 64 38 02 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:15:03 PM] [INFO] [+] Blood Glucose: 1% progress | Risk: Normal
+[4:15:19 PM] [rx] Saved watch found in local cache. Click 'Reconnect Saved Watch' for 1-click connect.
+[4:15:27 PM] [tx] Targeting saved watch 'VEE'...
+[4:15:40 PM] [err] Reconnect Error: User cancelled the requestDevice() chooser.
+[4:15:51 PM] [tx] Requesting Bluetooth device picker...
+[4:15:56 PM] [tx] Connecting to GATT Server on VEE (attempt 1/3)...
+[4:16:04 PM] [err] [!] Attempt 1 timed out. Retrying in 1s (keep watch screen awake)...
+[4:16:05 PM] [tx] Connecting to GATT Server on VEE (attempt 2/3)...
+[4:16:13 PM] [err] [!] Attempt 2 timed out. Retrying in 1s (keep watch screen awake)...
+[4:16:14 PM] [tx] Connecting to GATT Server on VEE (attempt 3/3)...
+[4:16:18 PM] [rx] Connected! Discovering all GATT services & characteristics...
+[4:16:23 PM] [INFO] Discovered 5 primary service(s).
+[4:16:23 PM] [INFO]  Service: 0000fee7-0000-1000-8000-00805f9b34fb
+[4:16:23 PM] [INFO]     Char: 0000fea1-0000-1000-8000-00805f9b34fb [read, notify]
+[4:16:23 PM] [rx]     -> Subscribed to Notifications on 0000fea1-0000-1000-8000-00805f9b34fb
+[4:16:23 PM] [INFO]     Char: 0000fea2-0000-1000-8000-00805f9b34fb [read, write, indicate]
+[4:16:23 PM] [rx]     -> Subscribed to Notifications on 0000fea2-0000-1000-8000-00805f9b34fb
+[4:16:23 PM] [INFO]     Char: 0000fec7-0000-1000-8000-00805f9b34fb [write]
+[4:16:23 PM] [INFO]     Char: 0000fec8-0000-1000-8000-00805f9b34fb [indicate]
+[4:16:24 PM] [rx]     -> Subscribed to Notifications on 0000fec8-0000-1000-8000-00805f9b34fb
+[4:16:24 PM] [INFO]     Char: 0000fec9-0000-1000-8000-00805f9b34fb [read]
+[4:16:24 PM] [INFO]  Service: f0080001-0451-4000-b000-000000000000
+[4:16:24 PM] [INFO]     Char: f0080002-0451-4000-b000-000000000000 [notify]
+[4:16:24 PM] [rx]     -> Subscribed to Notifications on f0080002-0451-4000-b000-000000000000
+[4:16:24 PM] [INFO]     Char: f0080003-0451-4000-b000-000000000000 [write, writeWithoutResponse]
+[4:16:24 PM] [INFO]  Service: f0020001-0451-4000-b000-000000000000
+[4:16:24 PM] [rx]     -> [★] Bound PRIMARY Veepoo TX Channel: f0080003-0451-4000-b000-000000000000
+[4:16:24 PM] [INFO]     Char: f0020002-0451-4000-b000-000000000000 [notify]
+[4:16:24 PM] [rx]     -> Subscribed to Notifications on f0020002-0451-4000-b000-000000000000
+[4:16:24 PM] [INFO]     Char: f0020003-0451-4000-b000-000000000000 [writeWithoutResponse]
+[4:16:24 PM] [INFO]  Service: 0000ae00-0000-1000-8000-00805f9b34fb
+[4:16:24 PM] [INFO]     Char: 0000ae01-0000-1000-8000-00805f9b34fb [writeWithoutResponse]
+[4:16:24 PM] [INFO]     Char: 0000ae02-0000-1000-8000-00805f9b34fb [notify]
+[4:16:24 PM] [rx]     -> Subscribed to Notifications on 0000ae02-0000-1000-8000-00805f9b34fb
+[4:16:24 PM] [INFO]  Service: f0030001-0451-4000-b000-000000000000
+[4:16:24 PM] [INFO]     Char: f0030002-0451-4000-b000-000000000000 [writeWithoutResponse, notify]
+[4:16:24 PM] [rx]     -> Subscribed to Notifications on f0030002-0451-4000-b000-000000000000
+[4:16:24 PM] [INFO]     Char: f0030003-0451-4000-b000-000000000000 [writeWithoutResponse]
+[4:16:24 PM] [rx] [+] Primary TX Write Channel Bound: f0080003-0451-4000-b000-000000000000
+[4:16:24 PM] [tx] [*] Performing Veepoo Authentication & Time Sync Handshake (0xA1)...
+[4:16:24 PM] [tx] TX HEX (f0080003): a1 00 00 00 07 ea 0b 12 10 10 18 00 01 e0 00 00 00 00 00 00
+[4:16:24 PM] [rx] RX HEX (f0080002): a7 01 00 01 01 01 01 00 02 14 01 01 03 00 00 01 00 06 05 01
+[4:16:24 PM] [rx] RX HEX (f0080002): a7 00 03 04 00 03 05 00 01 01 05 01 01 01 02 06 03 00 01 02
+[4:16:24 PM] [rx] RX HEX (f0080002): a7 02 11 00 02 01 01 04 01 00 00 00 01 00 00 04 01 01 01 03
+[4:16:24 PM] [rx] RX HEX (f0080002): a7 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 04
+[4:16:24 PM] [rx] RX HEX (f0080002): ad 02 02 02 02 02 00 02 02 00 02 02 02 02 02 02 02 00 00 02
+[4:16:24 PM] [rx] RX HEX (f0080002): ad 02 02 02 02 02 00 02 00 00 00 00 00 00 00 00 00 00 00 10
+[4:16:24 PM] [rx] RX HEX (f0080002): b8 02 02 01 01 01 00 00 00 00 01 01 00 00 00 00 01 00 00 00
+[4:16:24 PM] [rx] RX HEX (f0080002): b8 02 00 00 01 02 00 01 00 00 02 01 01 01 00 00 00 00 00 01
+[4:16:24 PM] [rx] RX HEX (f0080002): bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:16:24 PM] [rx] RX HEX (f0080002): a1 00 00 06 13 92 00 10 10 00 00 01 16 f6 83 40 de 8b 00 00
+[4:16:24 PM] [rx] [+] AUTH SUCCESS! Model: 5010 | Firmware: v0.16.16.0 | Status: 6
+[4:16:27 PM] [tx] TX HEX (f0080003): 89 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:16:28 PM] [rx] RX HEX (f0080002): 89 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:16:28 PM] [INFO] [+] Blood Glucose: 1% progress | Risk: Normal
+[4:16:28 PM] [rx] RX HEX (f0080002): 89 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:16:28 PM] [INFO] [+] Blood Glucose: 1% progress | Risk: Normal
+[4:16:29 PM] [rx] RX HEX (f0080002): 89 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:16:29 PM] [INFO] [+] Blood Glucose: 1% progress | Risk: Normal
+[4:16:30 PM] [rx] RX HEX (f0080002): 89 01 01 00 06 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:16:30 PM] [INFO] [+] Blood Glucose: 1% progress | Risk: Normal
+[4:16:31 PM] [INFO] [+] Blood Glucose: 1% progress | Risk: Normal
+[4:16:31 PM] [rx] RX HEX (f0080002): 89 01 01 00 0c 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:16:32 PM] [rx] RX HEX (f0080002): 89 01 01 00 12 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:16:32 PM] [INFO] [+] Blood Glucose: 1% progress | Risk: Normal
+[4:16:33 PM] [rx] RX HEX (f0080002): 89 01 01 00 18 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:16:33 PM] [INFO] [+] Blood Glucose: 1% progress | Risk: Normal
+[4:16:34 PM] [rx] RX HEX (f0080002): 89 01 01 00 1e 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:16:34 PM] [INFO] [+] Blood Glucose: 1% progress | Risk: Normal
+[4:16:35 PM] [rx] RX HEX (f0080002): 89 01 01 00 24 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:16:35 PM] [INFO] [+] Blood Glucose: 1% progress | Risk: Normal
+[4:16:36 PM] [rx] RX HEX (f0080002): 89 01 01 00 2a 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:16:36 PM] [INFO] [+] Blood Glucose: 1% progress | Risk: Normal
+[4:16:37 PM] [rx] RX HEX (f0080002): 89 01 01 00 36 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:16:37 PM] [INFO] [+] Blood Glucose: 1% progress | Risk: Normal
+[4:16:38 PM] [rx] RX HEX (f0080002): 89 01 01 00 36 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:16:38 PM] [INFO] [+] Blood Glucose: 1% progress | Risk: Normal
+[4:16:39 PM] [rx] RX HEX (f0080002): 89 01 01 00 3c 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:16:39 PM] [INFO] [+] Blood Glucose: 1% progress | Risk: Normal
+[4:16:40 PM] [rx] RX HEX (f0080002): 89 01 01 00 42 43 02 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:16:40 PM] [INFO] [+] Blood Glucose: 1% progress | Risk: Normal
+[4:16:41 PM] [rx] RX HEX (f0080002): 89 01 01 00 48 54 02 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:16:41 PM] [INFO] [+] Blood Glucose: 1% progress | Risk: Normal
+[4:16:42 PM] [rx] RX HEX (f0080002): 89 01 01 00 4e 37 02 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:16:42 PM] [INFO] [+] Blood Glucose: 1% progress | Risk: Normal
+[4:16:43 PM] [rx] RX HEX (f0080002): 89 01 01 00 54 3e 02 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:16:43 PM] [INFO] [+] Blood Glucose: 1% progress | Risk: Normal
+[4:16:44 PM] [rx] RX HEX (f0080002): 89 01 01 00 60 3a 02 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:16:44 PM] [INFO] [+] Blood Glucose: 1% progress | Risk: Normal
+[4:16:45 PM] [rx] RX HEX (f0080002): 89 01 01 00 60 3a 02 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:16:45 PM] [INFO] [+] Blood Glucose: 1% progress | Risk: Normal
+[4:16:46 PM] [rx] RX HEX (f0080002): 89 01 01 00 64 3a 02 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:16:46 PM] [INFO] [+] Blood Glucose: 1% progress | Risk: Normal
+[4:17:09 PM] [tx] TX HEX (f0080003): 87 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:17:09 PM] [rx] RX HEX (f0080002): 87 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:17:10 PM] [rx] RX HEX (f0080002): 87 01 01 07 00 4a 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:17:11 PM] [rx] RX HEX (f0080002): 87 01 01 07 08 4a 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:17:12 PM] [rx] RX HEX (f0080002): 87 01 01 07 10 64 01 24 01 00 00 00 00 00 00 00 00 00 00 00
+[4:17:13 PM] [rx] RX HEX (f0080002): 87 01 01 07 19 64 01 24 01 00 00 00 00 00 00 00 00 00 00 00
+[4:17:14 PM] [rx] RX HEX (f0080002): 87 01 01 07 21 64 01 24 01 00 00 00 00 00 00 00 00 00 00 00
+[4:17:15 PM] [rx] RX HEX (f0080002): 87 01 01 07 2a 64 01 24 01 00 00 00 00 00 00 00 00 00 00 00
+[4:17:16 PM] [rx] RX HEX (f0080002): 87 01 01 07 33 64 01 24 01 00 00 00 00 00 00 00 00 00 00 00
+[4:17:17 PM] [rx] RX HEX (f0080002): 87 01 01 07 3d 64 01 24 01 00 00 00 00 00 00 00 00 00 00 00
+[4:17:18 PM] [rx] RX HEX (f0080002): 87 01 01 07 46 64 01 24 01 00 00 00 00 00 00 00 00 00 00 00
+[4:17:19 PM] [rx] RX HEX (f0080002): 87 01 01 07 4f 64 01 24 01 00 00 00 00 00 00 00 00 00 00 00
+[4:17:19 PM] [rx] RX HEX (f0080002): bd 03 01 00 02 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:17:20 PM] [rx] RX HEX (f0080002): 87 01 01 07 57 64 01 24 01 00 00 00 00 00 00 00 00 00 00 00
+[4:17:21 PM] [rx] RX HEX (f0080002): 87 01 01 07 5f 64 01 24 01 00 00 00 00 00 00 00 00 00 00 00
+[4:17:22 PM] [rx] RX HEX (f0080002): 87 01 01 07 64 64 01 24 01 00 00 00 00 00 00 00 00 00 00 00
+[4:17:49 PM] [tx] TX HEX (f0080003): a1 00 00 00 07 ea 0b 12 10 11 31 00 01 e0 00 00 00 00 00 00
+[4:17:49 PM] [rx] RX HEX (f0080002): a7 01 00 01 01 01 01 00 02 14 01 01 03 00 00 01 00 06 05 01
+[4:17:49 PM] [rx] RX HEX (f0080002): a7 00 03 04 00 03 05 00 01 01 05 01 01 01 02 06 03 00 01 02
+[4:17:49 PM] [rx] RX HEX (f0080002): a7 02 11 00 02 01 01 04 01 00 00 00 01 00 00 04 01 01 01 03
+[4:17:49 PM] [rx] RX HEX (f0080002): a7 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 04
+[4:17:49 PM] [rx] RX HEX (f0080002): ad 02 02 02 02 02 00 02 02 00 02 02 02 02 02 02 02 00 00 02
+[4:17:49 PM] [rx] RX HEX (f0080002): ad 02 02 02 02 02 00 02 00 00 00 00 00 00 00 00 00 00 00 10
+[4:17:49 PM] [rx] RX HEX (f0080002): b8 02 02 01 01 01 00 00 00 00 01 01 00 00 00 00 01 00 00 00
+[4:17:49 PM] [rx] RX HEX (f0080002): b8 02 00 00 01 02 00 01 00 00 02 01 01 01 00 00 00 00 00 01
+[4:17:49 PM] [rx] RX HEX (f0080002): bd 03 01 00 02 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:17:49 PM] [rx] RX HEX (f0080002): a1 00 00 06 13 92 00 10 10 00 00 01 16 f6 83 40 de 8b 00 00
+[4:17:49 PM] [rx] [+] AUTH SUCCESS! Model: 5010 | Firmware: v0.16.16.0 | Status: 6
+[4:17:52 PM] [tx] TX HEX (f0080003): a1 00 00 00 07 ea 0b 12 10 11 34 00 01 e0 00 00 00 00 00 00
+[4:17:52 PM] [rx] RX HEX (f0080002): a7 01 00 01 01 01 01 00 02 14 01 01 03 00 00 01 00 06 05 01
+[4:17:52 PM] [rx] RX HEX (f0080002): a7 00 03 04 00 03 05 00 01 01 05 01 01 01 02 06 03 00 01 02
+[4:17:52 PM] [rx] RX HEX (f0080002): a7 02 11 00 02 01 01 04 01 00 00 00 01 00 00 04 01 01 01 03
+[4:17:52 PM] [rx] RX HEX (f0080002): a7 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 04
+[4:17:52 PM] [rx] RX HEX (f0080002): ad 02 02 02 02 02 00 02 02 00 02 02 02 02 02 02 02 00 00 02
+[4:17:52 PM] [rx] RX HEX (f0080002): ad 02 02 02 02 02 00 02 00 00 00 00 00 00 00 00 00 00 00 10
+[4:17:52 PM] [rx] RX HEX (f0080002): b8 02 02 01 01 01 00 00 00 00 01 01 00 00 00 00 01 00 00 00
+[4:17:52 PM] [rx] RX HEX (f0080002): b8 02 00 00 01 02 00 01 00 00 02 01 01 01 00 00 00 00 00 01
+[4:17:52 PM] [rx] RX HEX (f0080002): bd 03 01 00 02 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:17:52 PM] [rx] RX HEX (f0080002): a1 00 00 06 13 92 00 10 10 00 00 01 16 f6 83 40 de 8b 00 00
+[4:17:52 PM] [rx] [+] AUTH SUCCESS! Model: 5010 | Firmware: v0.16.16.0 | Status: 6
+[4:22:36 PM] [rx] Saved watch found in local cache. Click 'Reconnect Saved Watch' for 1-click connect.
+[4:22:40 PM] [tx] Targeting saved watch 'VEE'...
+[4:22:54 PM] [err] Reconnect Error: User cancelled the requestDevice() chooser.
+[4:23:30 PM] [tx] Requesting Bluetooth device picker...
+[4:23:43 PM] [tx] Connecting to GATT Server on VEE (attempt 1/3)...
+[4:23:44 PM] [rx] Connected! Discovering all GATT services & characteristics...
+[4:23:49 PM] [INFO] Discovered 5 primary service(s).
+[4:23:49 PM] [INFO]  Service: 0000fee7-0000-1000-8000-00805f9b34fb
+[4:23:49 PM] [INFO]     Char: 0000fea1-0000-1000-8000-00805f9b34fb [read, notify]
+[4:23:49 PM] [rx]     -> Subscribed to Notifications on 0000fea1-0000-1000-8000-00805f9b34fb
+[4:23:49 PM] [INFO]     Char: 0000fea2-0000-1000-8000-00805f9b34fb [read, write, indicate]
+[4:23:49 PM] [rx]     -> Subscribed to Notifications on 0000fea2-0000-1000-8000-00805f9b34fb
+[4:23:49 PM] [INFO]     Char: 0000fec7-0000-1000-8000-00805f9b34fb [write]
+[4:23:49 PM] [INFO]     Char: 0000fec8-0000-1000-8000-00805f9b34fb [indicate]
+[4:23:50 PM] [rx]     -> Subscribed to Notifications on 0000fec8-0000-1000-8000-00805f9b34fb
+[4:23:50 PM] [INFO]     Char: 0000fec9-0000-1000-8000-00805f9b34fb [read]
+[4:23:50 PM] [INFO]  Service: f0080001-0451-4000-b000-000000000000
+[4:23:50 PM] [INFO]     Char: f0080002-0451-4000-b000-000000000000 [notify]
+[4:23:50 PM] [rx]     -> Subscribed to Notifications on f0080002-0451-4000-b000-000000000000
+[4:23:50 PM] [INFO]     Char: f0080003-0451-4000-b000-000000000000 [write, writeWithoutResponse]
+[4:23:50 PM] [rx]     -> [★] Bound PRIMARY Veepoo TX Channel: f0080003-0451-4000-b000-000000000000
+[4:23:50 PM] [INFO]  Service: f0020001-0451-4000-b000-000000000000
+[4:23:50 PM] [INFO]     Char: f0020002-0451-4000-b000-000000000000 [notify]
+[4:23:50 PM] [rx]     -> Subscribed to Notifications on f0020002-0451-4000-b000-000000000000
+[4:23:50 PM] [INFO]     Char: f0020003-0451-4000-b000-000000000000 [writeWithoutResponse]
+[4:23:50 PM] [INFO]  Service: 0000ae00-0000-1000-8000-00805f9b34fb
+[4:23:50 PM] [INFO]     Char: 0000ae01-0000-1000-8000-00805f9b34fb [writeWithoutResponse]
+[4:23:50 PM] [INFO]     Char: 0000ae02-0000-1000-8000-00805f9b34fb [notify]
+[4:23:50 PM] [rx]     -> Subscribed to Notifications on 0000ae02-0000-1000-8000-00805f9b34fb
+[4:23:50 PM] [INFO]  Service: f0030001-0451-4000-b000-000000000000
+[4:23:50 PM] [INFO]     Char: f0030002-0451-4000-b000-000000000000 [writeWithoutResponse, notify]
+[4:23:50 PM] [rx]     -> Subscribed to Notifications on f0030002-0451-4000-b000-000000000000
+[4:23:50 PM] [INFO]     Char: f0030003-0451-4000-b000-000000000000 [writeWithoutResponse]
+[4:23:50 PM] [rx] [+] Primary TX Write Channel Bound: f0080003-0451-4000-b000-000000000000
+[4:23:50 PM] [tx] [*] Performing Veepoo Authentication & Time Sync Handshake (0xA1)...
+[4:23:50 PM] [tx] TX HEX (f0080003): a1 00 00 00 07 ea 0b 12 10 17 32 00 01 e0 00 00 00 00 00 00
+[4:23:50 PM] [rx] RX HEX (f0080002): a7 01 00 01 01 01 01 00 02 14 01 01 03 00 00 01 00 06 05 01
+[4:23:50 PM] [rx] RX HEX (f0080002): a7 00 03 04 00 03 05 00 01 01 05 01 01 01 02 06 03 00 01 02
+[4:23:50 PM] [rx] RX HEX (f0080002): a7 02 11 00 02 01 01 04 01 00 00 00 01 00 00 04 01 01 01 03
+[4:23:50 PM] [rx] RX HEX (f0080002): a7 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 04
+[4:23:50 PM] [rx] RX HEX (f0080002): ad 02 02 02 02 02 00 02 02 00 02 02 02 02 02 02 02 00 00 02
+[4:23:50 PM] [rx] RX HEX (f0080002): ad 02 02 02 02 02 00 02 00 00 00 00 00 00 00 00 00 00 00 10
+[4:23:50 PM] [rx] RX HEX (f0080002): b8 02 02 01 01 01 00 00 00 00 01 01 00 00 00 00 01 00 00 00
+[4:23:50 PM] [rx] RX HEX (f0080002): b8 02 00 00 01 02 00 01 00 00 02 01 01 01 00 00 00 00 00 01
+[4:23:50 PM] [rx] RX HEX (f0080002): bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:23:50 PM] [rx] RX HEX (f0080002): a1 00 00 06 13 92 00 10 10 00 00 01 16 f6 83 40 de 8b 00 00
+[4:23:50 PM] [rx] [+] AUTH SUCCESS! Model: 5010 | Firmware: v0.16.16.0 | Status: 6
+[4:23:52 PM] [tx] TX HEX (f0080003): 89 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:23:52 PM] [rx] RX HEX (f0080002): 89 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:23:52 PM] [INFO] [🩸] Blood Glucose: 0% progress | Value: 0 mg/dL (0.00 mmol/L) | Risk: Normal
+[4:23:53 PM] [rx] RX HEX (f0080002): 89 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:23:53 PM] [INFO] [🩸] Blood Glucose: 0% progress | Value: 0 mg/dL (0.00 mmol/L) | Risk: Normal
+[4:23:54 PM] [rx] RX HEX (f0080002): 89 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:23:54 PM] [INFO] [🩸] Blood Glucose: 0% progress | Value: 0 mg/dL (0.00 mmol/L) | Risk: Normal
+[4:23:55 PM] [rx] RX HEX (f0080002): 89 01 01 00 06 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:23:55 PM] [INFO] [🩸] Blood Glucose: 6% progress | Value: 0 mg/dL (0.00 mmol/L) | Risk: Normal
+[4:23:56 PM] [rx] RX HEX (f0080002): 89 01 01 00 0c 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:23:56 PM] [INFO] [🩸] Blood Glucose: 12% progress | Value: 0 mg/dL (0.00 mmol/L) | Risk: Normal
+[4:23:57 PM] [rx] RX HEX (f0080002): 89 01 01 00 12 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:23:57 PM] [INFO] [🩸] Blood Glucose: 18% progress | Value: 0 mg/dL (0.00 mmol/L) | Risk: Normal
+[4:23:58 PM] [rx] RX HEX (f0080002): 89 01 01 00 18 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:23:58 PM] [INFO] [🩸] Blood Glucose: 24% progress | Value: 0 mg/dL (0.00 mmol/L) | Risk: Normal
+[4:23:59 PM] [rx] RX HEX (f0080002): 89 01 01 00 1e 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:23:59 PM] [INFO] [🩸] Blood Glucose: 30% progress | Value: 0 mg/dL (0.00 mmol/L) | Risk: Normal
+[4:24:00 PM] [rx] RX HEX (f0080002): 89 01 01 00 24 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:24:00 PM] [INFO] [🩸] Blood Glucose: 36% progress | Value: 0 mg/dL (0.00 mmol/L) | Risk: Normal
+[4:24:01 PM] [rx] RX HEX (f0080002): 89 01 01 00 2a 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:24:01 PM] [INFO] [🩸] Blood Glucose: 42% progress | Value: 0 mg/dL (0.00 mmol/L) | Risk: Normal
+[4:24:02 PM] [rx] RX HEX (f0080002): 89 01 01 00 30 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:24:02 PM] [INFO] [🩸] Blood Glucose: 48% progress | Value: 0 mg/dL (0.00 mmol/L) | Risk: Normal
+[4:24:03 PM] [rx] RX HEX (f0080002): 89 01 01 00 36 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:24:03 PM] [INFO] [🩸] Blood Glucose: 54% progress | Value: 0 mg/dL (0.00 mmol/L) | Risk: Normal
+[4:24:04 PM] [rx] RX HEX (f0080002): 89 01 01 00 3c 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:24:04 PM] [INFO] [🩸] Blood Glucose: 60% progress | Value: 0 mg/dL (0.00 mmol/L) | Risk: Normal
+[4:24:05 PM] [rx] RX HEX (f0080002): 89 01 01 00 42 34 02 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:24:05 PM] [INFO] [🩸] Blood Glucose: 66% progress | Value: 102 mg/dL (5.64 mmol/L) | Risk: Normal
+[4:24:06 PM] [rx] RX HEX (f0080002): 89 01 01 00 48 46 02 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:24:06 PM] [INFO] [🩸] Blood Glucose: 72% progress | Value: 105 mg/dL (5.82 mmol/L) | Risk: Normal
+[4:24:07 PM] [rx] RX HEX (f0080002): 89 01 01 00 4e 4d 02 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:24:07 PM] [INFO] [🩸] Blood Glucose: 78% progress | Value: 106 mg/dL (5.89 mmol/L) | Risk: Normal
+[4:24:08 PM] [rx] RX HEX (f0080002): 89 01 01 00 54 46 02 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:24:08 PM] [INFO] [🩸] Blood Glucose: 84% progress | Value: 105 mg/dL (5.82 mmol/L) | Risk: Normal
+[4:24:09 PM] [rx] RX HEX (f0080002): 89 01 01 00 5a 46 02 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:24:09 PM] [INFO] [🩸] Blood Glucose: 90% progress | Value: 105 mg/dL (5.82 mmol/L) | Risk: Normal
+[4:24:10 PM] [rx] RX HEX (f0080002): 89 01 01 00 60 45 02 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:24:10 PM] [INFO] [🩸] Blood Glucose: 96% progress | Value: 105 mg/dL (5.81 mmol/L) | Risk: Normal
+[4:24:11 PM] [rx] RX HEX (f0080002): 89 01 01 00 64 45 02 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:24:11 PM] [INFO] [🩸] Blood Glucose: 100% progress | Value: 105 mg/dL (5.81 mmol/L) | Risk: Normal
+[4:24:19 PM] [tx] TX HEX (f0080003): 87 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:24:19 PM] [rx] RX HEX (f0080002): 87 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:24:19 PM] [INFO] [🌡️] Temp (0%): Core 32.0°F | Skin 32.0°F
+[4:24:20 PM] [rx] RX HEX (f0080002): 87 01 01 07 00 4a 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:24:20 PM] [INFO] [🌡️] Temp (0%): Core 91.4°F | Skin 32.0°F
+[4:24:21 PM] [rx] RX HEX (f0080002): 87 01 01 07 08 83 01 db 02 00 00 00 00 00 00 00 00 00 00 00
+[4:24:21 PM] [INFO] [🌡️] Temp (8%): Core 101.7°F | Skin 163.6°F
+[4:24:22 PM] [rx] RX HEX (f0080002): 87 01 01 07 10 62 01 1b 01 00 00 00 00 00 00 00 00 00 00 00
+[4:24:22 PM] [INFO] [🌡️] Temp (16%): Core 95.7°F | Skin 82.9°F
+[4:24:23 PM] [rx] RX HEX (f0080002): 87 01 01 07 1a 62 01 1b 01 00 00 00 00 00 00 00 00 00 00 00
+[4:24:23 PM] [INFO] [🌡️] Temp (26%): Core 95.7°F | Skin 82.9°F
+[4:24:24 PM] [rx] RX HEX (f0080002): 87 01 01 07 24 62 01 1b 01 00 00 00 00 00 00 00 00 00 00 00
+[4:24:24 PM] [INFO] [🌡️] Temp (36%): Core 95.7°F | Skin 82.9°F
+[4:24:25 PM] [rx] RX HEX (f0080002): 87 01 01 07 2d 62 01 1b 01 00 00 00 00 00 00 00 00 00 00 00
+[4:24:25 PM] [INFO] [🌡️] Temp (45%): Core 95.7°F | Skin 82.9°F
+[4:24:26 PM] [rx] RX HEX (f0080002): 87 01 01 07 36 62 01 1b 01 00 00 00 00 00 00 00 00 00 00 00
+[4:24:26 PM] [INFO] [🌡️] Temp (54%): Core 95.7°F | Skin 82.9°F
+[4:24:27 PM] [rx] RX HEX (f0080002): 87 01 01 07 3e 62 01 1b 01 00 00 00 00 00 00 00 00 00 00 00
+[4:24:27 PM] [INFO] [🌡️] Temp (62%): Core 95.7°F | Skin 82.9°F
+[4:24:28 PM] [rx] RX HEX (f0080002): 87 01 01 07 46 62 01 1b 01 00 00 00 00 00 00 00 00 00 00 00
+[4:24:28 PM] [INFO] [🌡️] Temp (70%): Core 95.7°F | Skin 82.9°F
+[4:24:29 PM] [rx] RX HEX (f0080002): 87 01 01 07 4e 62 01 1b 01 00 00 00 00 00 00 00 00 00 00 00
+[4:24:29 PM] [INFO] [🌡️] Temp (78%): Core 95.7°F | Skin 82.9°F
+[4:24:30 PM] [rx] RX HEX (f0080002): 87 01 01 07 57 62 01 1c 01 00 00 00 00 00 00 00 00 00 00 00
+[4:24:30 PM] [INFO] [🌡️] Temp (87%): Core 95.7°F | Skin 83.1°F
+[4:24:31 PM] [INFO] [🌡️] Temp (97%): Core 95.7°F | Skin 82.9°F
+[4:24:31 PM] [rx] RX HEX (f0080002): 87 01 01 07 61 62 01 1b 01 00 00 00 00 00 00 00 00 00 00 00
+[4:24:32 PM] [rx] RX HEX (f0080002): 87 01 01 07 64 62 01 1c 01 00 00 00 00 00 00 00 00 00 00 00
+[4:24:32 PM] [INFO] [🌡️] Temp (100%): Core 95.7°F | Skin 83.1°F
+[4:24:45 PM] [rx] RX HEX (f0080002): bd 03 01 00 02 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:24:56 PM] [tx] TX HEX (f0080003): a1 00 00 00 07 ea 0b 12 10 18 38 00 01 e0 00 00 00 00 00 00
+[4:24:56 PM] [rx] RX HEX (f0080002): a7 01 00 01 01 01 01 00 02 14 01 01 03 00 00 01 00 06 05 01
+[4:24:56 PM] [rx] RX HEX (f0080002): a7 00 03 04 00 03 05 00 01 01 05 01 01 01 02 06 03 00 01 02
+[4:24:56 PM] [rx] RX HEX (f0080002): a7 02 11 00 02 01 01 04 01 00 00 00 01 00 00 04 01 01 01 03
+[4:24:56 PM] [rx] RX HEX (f0080002): a7 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 04
+[4:24:56 PM] [rx] RX HEX (f0080002): ad 02 02 02 02 02 00 02 02 00 02 02 02 02 02 02 02 00 00 02
+[4:24:56 PM] [rx] RX HEX (f0080002): ad 02 02 02 02 02 00 02 00 00 00 00 00 00 00 00 00 00 00 10
+[4:24:56 PM] [rx] RX HEX (f0080002): b8 02 02 01 01 01 00 00 00 00 01 01 00 00 00 00 01 00 00 00
+[4:24:56 PM] [rx] RX HEX (f0080002): b8 02 00 00 01 02 00 01 00 00 02 01 01 01 00 00 00 00 00 01
+[4:24:56 PM] [rx] RX HEX (f0080002): bd 03 01 00 02 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:24:56 PM] [rx] RX HEX (f0080002): a1 00 00 06 13 92 00 10 10 00 00 01 16 f6 83 40 de 8b 00 00
+[4:24:56 PM] [rx] [+] AUTH SUCCESS! Model: 5010 | Firmware: v0.16.16.0 | Status: 6
+[4:25:03 PM] [tx] TX HEX (f0080003): a1 00 00 00 07 ea 0b 12 10 19 03 00 01 e0 00 00 00 00 00 00
+[4:25:03 PM] [rx] RX HEX (f0080002): a7 01 00 01 01 01 01 00 02 14 01 01 03 00 00 01 00 06 05 01
+[4:25:03 PM] [rx] RX HEX (f0080002): a7 00 03 04 00 03 05 00 01 01 05 01 01 01 02 06 03 00 01 02
+[4:25:03 PM] [rx] RX HEX (f0080002): a7 02 11 00 02 01 01 04 01 00 00 00 01 00 00 04 01 01 01 03
+[4:25:03 PM] [rx] RX HEX (f0080002): a7 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 04
+[4:25:03 PM] [rx] RX HEX (f0080002): ad 02 02 02 02 02 00 02 02 00 02 02 02 02 02 02 02 00 00 02
+[4:25:03 PM] [rx] RX HEX (f0080002): ad 02 02 02 02 02 00 02 00 00 00 00 00 00 00 00 00 00 00 10
+[4:25:03 PM] [rx] RX HEX (f0080002): b8 02 02 01 01 01 00 00 00 00 01 01 00 00 00 00 01 00 00 00
+[4:25:03 PM] [rx] RX HEX (f0080002): b8 02 00 00 01 02 00 01 00 00 02 01 01 01 00 00 00 00 00 01
+[4:25:03 PM] [rx] RX HEX (f0080002): bd 03 01 00 02 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[4:25:03 PM] [rx] RX HEX (f0080002): a1 00 00 06 13 92 00 10 10 00 00 01 16 f6 83 40 de 8b 00 00
+[4:25:03 PM] [rx] [+] AUTH SUCCESS! Model: 5010 | Firmware: v0.16.16.0 | Status: 6
+[16:32:14] [TX] Querying local transponder cache for recognized watch...
+[16:32:14] [TX] No active transponder pairing in browser cache. Requesting transponder authorization...
+[16:32:14] [TX] Opening transponder scan array...
+[16:32:36] [TX] Establishing GATT Subspace link (Attempt 1/3)...
+[16:32:36] [RX] [+] GATT Subspace connection established!
+[16:32:42] [RX] [★] Primary Command TX Channel Bound: f0080003
+[16:32:42] [TX] [*] Transmitting 0xA1 Authentication & Chronometer Synchronization...
+[16:32:42] [TX] TX [f0080003]: a1 00 00 00 07 ea 0b 12 10 20 2a 00 01 e0 00 00 00 00 00 00
+[16:32:42] [RX] RX [f0080002]: a7 01 00 01 01 01 01 00 02 14 01 01 03 00 00 01 00 06 05 01
+[16:32:42] [RX] RX [f0080002]: a7 00 03 04 00 03 05 00 01 01 05 01 01 01 02 06 03 00 01 02
+[16:32:42] [RX] RX [f0080002]: a7 02 11 00 02 01 01 04 01 00 00 00 01 00 00 04 01 01 01 03
+[16:32:42] [RX] RX [f0080002]: a7 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 04
+[16:32:42] [RX] RX [f0080002]: ad 02 02 02 02 02 00 02 02 00 02 02 02 02 02 02 02 00 00 02
+[16:32:42] [RX] RX [f0080002]: ad 02 02 02 02 02 00 02 00 00 00 00 00 00 00 00 00 00 00 10
+[16:32:42] [RX] RX [f0080002]: b8 02 02 01 01 01 00 00 00 00 01 01 00 00 00 00 01 00 00 00
+[16:32:42] [RX] RX [f0080002]: b8 02 00 00 01 02 00 01 00 00 02 01 01 01 00 00 00 00 00 01
+[16:32:42] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[16:32:42] [RX] RX [f0080002]: a1 00 00 06 13 92 00 10 10 00 00 01 16 f6 83 40 de 8b 00 00
+[16:32:42] [RX] [★] SENSORS AUTHENTICATED: Model 5010 | Firmware v0.16.16.0
+[16:32:46] [TX] [*] Commencing optical PPG blood glucose scan cycle...
+[16:32:46] [TX] TX [f0080003]: 89 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[16:32:46] [RX] RX [f0080002]: 89 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[16:32:46] [RX] RX [f0080002]: 89 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[16:32:47] [RX] RX [f0080002]: 89 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[16:32:48] [RX] RX [f0080002]: 89 01 01 00 06 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[16:32:49] [RX] RX [f0080002]: 89 01 01 00 0c 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[16:32:50] [RX] RX [f0080002]: 89 01 01 00 12 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[16:32:51] [RX] RX [f0080002]: 89 01 01 00 18 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[16:32:52] [RX] RX [f0080002]: 89 01 01 00 1e 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[16:32:53] [RX] RX [f0080002]: 89 01 01 00 24 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[16:32:54] [RX] RX [f0080002]: 89 01 01 00 2a 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[16:32:55] [RX] RX [f0080002]: 89 01 01 00 30 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[16:32:56] [RX] RX [f0080002]: 89 01 01 00 36 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[16:32:57] [RX] RX [f0080002]: 89 01 01 00 3c 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[16:32:58] [RX] RX [f0080002]: 89 01 01 00 42 5f 02 00 00 00 00 00 00 00 00 00 00 00 00 00
+[16:32:59] [RX] RX [f0080002]: 89 01 01 00 48 4f 02 00 00 00 00 00 00 00 00 00 00 00 00 00
+[16:33:00] [RX] RX [f0080002]: 89 01 01 00 4e 63 02 00 00 00 00 00 00 00 00 00 00 00 00 00
+[16:33:01] [RX] RX [f0080002]: 89 01 01 00 54 4e 02 00 00 00 00 00 00 00 00 00 00 00 00 00
+[16:33:02] [RX] RX [f0080002]: 89 01 01 00 5a 5a 02 00 00 00 00 00 00 00 00 00 00 00 00 00
+[16:33:03] [RX] RX [f0080002]: 89 01 01 00 60 57 02 00 00 00 00 00 00 00 00 00 00 00 00 00
+[16:33:04] [RX] RX [f0080002]: 89 01 01 00 64 57 02 00 00 00 00 00 00 00 00 00 00 00 00 00
+[16:33:12] [TX] [*] Initiating dual-sensor thermal matrix acquisition...
+[16:33:12] [TX] TX [f0080003]: 87 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[16:33:12] [RX] RX [f0080002]: 87 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[16:33:12] [RX] RX [f0080002]: 87 01 01 07 00 4a 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[16:33:13] [RX] RX [f0080002]: 87 01 01 07 09 4a 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[16:33:14] [RX] RX [f0080002]: 87 01 01 07 13 62 01 18 01 00 00 00 00 00 00 00 00 00 00 00
+[16:33:15] [RX] RX [f0080002]: 87 01 01 07 1c 62 01 18 01 00 00 00 00 00 00 00 00 00 00 00
+[16:33:16] [RX] RX [f0080002]: 87 01 01 07 24 62 01 18 01 00 00 00 00 00 00 00 00 00 00 00
+[16:33:17] [RX] RX [f0080002]: 87 01 01 07 2e 62 01 18 01 00 00 00 00 00 00 00 00 00 00 00
+[16:33:18] [RX] RX [f0080002]: 87 01 01 07 40 62 01 18 01 00 00 00 00 00 00 00 00 00 00 00
+[16:33:19] [RX] RX [f0080002]: 87 01 01 07 40 62 01 18 01 00 00 00 00 00 00 00 00 00 00 00
+[16:33:20] [RX] RX [f0080002]: 87 01 01 07 49 5c 01 17 01 00 00 00 00 00 00 00 00 00 00 00
+[16:33:21] [RX] RX [f0080002]: 87 01 01 07 53 62 01 18 01 00 00 00 00 00 00 00 00 00 00 00
+[16:33:22] [RX] RX [f0080002]: 87 01 01 07 5d 62 01 18 01 00 00 00 00 00 00 00 00 00 00 00
+[16:33:23] [RX] RX [f0080002]: 87 01 01 07 64 5c 01 17 01 00 00 00 00 00 00 00 00 00 00 00
+[16:33:37] [RX] RX [f0080002]: bd 03 01 00 02 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[16:33:39] [TX] [*] Synchronizing watch real-time chronometer with host...
+[16:33:39] [TX] TX [f0080003]: a1 00 00 00 07 ea 0b 12 10 21 27 00 01 e0 00 00 00 00 00 00
+[16:33:39] [RX] RX [f0080002]: a7 01 00 01 01 01 01 00 02 14 01 01 03 00 00 01 00 06 05 01
+[16:33:39] [RX] RX [f0080002]: a7 00 03 04 00 03 05 00 01 01 05 01 01 01 02 06 03 00 01 02
+[16:33:39] [RX] RX [f0080002]: a7 02 11 00 02 01 01 04 01 00 00 00 01 00 00 04 01 01 01 03
+[16:33:39] [RX] RX [f0080002]: a7 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 04
+[16:33:39] [RX] RX [f0080002]: ad 02 02 02 02 02 00 02 02 00 02 02 02 02 02 02 02 00 00 02
+[16:33:39] [RX] RX [f0080002]: ad 02 02 02 02 02 00 02 00 00 00 00 00 00 00 00 00 00 00 10
+[16:33:39] [RX] RX [f0080002]: b8 02 02 01 01 01 00 00 00 00 01 01 00 00 00 00 01 00 00 00
+[16:33:39] [RX] RX [f0080002]: b8 02 00 00 01 02 00 01 00 00 02 01 01 01 00 00 00 00 00 01
+[16:33:39] [RX] RX [f0080002]: bd 03 01 00 02 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[16:33:39] [RX] RX [f0080002]: a1 00 00 06 13 92 00 10 10 00 00 01 16 f6 83 40 de 8b 00 00
+[16:33:39] [RX] [★] SENSORS AUTHENTICATED: Model 5010 | Firmware v0.16.16.0
+[16:33:42] [TX] [*] Interrogating watch hardware revision and battery matrix...
+[16:33:42] [TX] TX [f0080003]: 03 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[16:42:32] [TX] [*] Interrogating watch hardware revision and battery matrix...
+[16:42:32] [TX] TX [f0080003]: 03 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[16:48:34] [TX] [*] Populating Setup parameters from local profile...
+[16:48:34] [SYS] [+] Using initialized baseline parameters for Model 5010.
+[16:48:49] [TX] [*] Initiating arterial blood pressure oscillometric detection...
+[16:48:49] [ERR] Error: No active TX channel bound.
+[16:49:37] [TX] [*] Commencing pulse oximetry (SpO2) detection...
+[16:49:37] [ERR] Error: No active TX channel bound.
+[16:52:14] [TX] [*] Commencing optical PPG blood glucose scan...
+[16:52:14] [ERR] Error: No active TX channel bound.
+[16:53:06] [TX] [*] Initiating dual-sensor temperature acquisition...
+[16:53:06] [ERR] Error: No active TX channel bound.
+[16:53:20] [TX] [*] Commencing continuous dynamic heart rate scan...
+[16:53:20] [ERR] Error: No active TX channel bound.
+[16:53:25] [TX] [*] Commencing autonomic nervous HRV acquisition...
+[16:53:25] [ERR] Error: No active TX channel bound.
+[16:53:42] [TX] [*] Synchronizing watch pedometer and active calories (0x07)...
+[16:53:42] [ERR] Error: No active TX channel bound.
+[17:08:46] [TX] [*] Populating Setup parameters from local profile...
+[17:08:46] [SYS] [+] Using initialized baseline parameters for Model 5010.
+[17:08:46] [SYS] No preconfigured transponder found. Ready for first-time pairing.
+[17:08:56] [TX] Opening Bluetooth pairing array for new watch...
+[17:09:22] [TX] Connecting to GATT server on VEE (Attempt 1/3)...
+[17:09:22] [RX] [+] GATT Subspace connection established!
+[17:09:28] [RX] [★] Primary Command TX Bound: f0080003
+[17:09:28] [TX] [*] Transmitting 0xA1 Authentication & Time Handshake...
+[17:09:28] [TX] TX [f0080003]: a1 00 00 00 07 ea 0b 12 11 09 1c 00 01 e0 00 00 00 00 00 00
+[17:09:28] [TX] [*] Populating Setup parameters from local profile...
+[17:09:28] [SYS] [+] Using initialized baseline parameters for Model 5010.
+[17:09:28] [RX] RX [f0080002]: a7 01 00 01 01 01 01 00 02 14 01 01 03 00 00 01 00 06 05 01
+[17:09:28] [RX] RX [f0080002]: a7 00 03 04 00 03 05 00 01 01 05 01 01 01 02 06 03 00 01 02
+[17:09:28] [RX] RX [f0080002]: a7 02 11 00 02 01 01 04 01 00 00 00 01 00 00 04 01 01 01 03
+[17:09:28] [RX] RX [f0080002]: a7 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 04
+[17:09:28] [RX] RX [f0080002]: ad 02 02 02 02 02 00 02 02 00 02 02 02 02 02 02 02 00 00 02
+[17:09:28] [RX] RX [f0080002]: ad 02 02 02 02 02 00 02 00 00 00 00 00 00 00 00 00 00 00 10
+[17:09:28] [RX] RX [f0080002]: b8 02 02 01 01 01 00 00 00 00 01 01 00 00 00 00 01 00 00 00
+[17:09:28] [RX] RX [f0080002]: b8 02 00 00 01 02 00 01 00 00 02 01 01 01 00 00 00 00 00 01
+[17:09:28] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:09:28] [RX] RX [f0080002]: a1 00 00 06 13 92 00 10 10 00 00 01 16 f6 83 40 de 8b 00 00
+[17:09:28] [RX] [★] SENSORS AUTHENTICATED: Model 5010 | Firmware v0.16.16.0
+[17:09:31] [TX] [*] Commencing optical PPG blood glucose scan...
+[17:09:31] [TX] TX [f0080003]: 89 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:09:32] [RX] RX [f0080002]: 89 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:09:32] [RX] RX [f0080002]: 89 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:09:33] [RX] RX [f0080002]: 89 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:09:34] [RX] RX [f0080002]: 89 01 01 00 06 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:09:35] [RX] RX [f0080002]: 89 01 01 00 0c 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:09:36] [RX] RX [f0080002]: 89 01 01 00 12 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:09:37] [RX] RX [f0080002]: 89 01 01 00 18 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:09:38] [RX] RX [f0080002]: 89 01 01 00 1e 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:09:39] [RX] RX [f0080002]: 89 01 01 00 24 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:09:40] [RX] RX [f0080002]: 89 01 01 00 2a 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:09:41] [RX] RX [f0080002]: 89 01 01 00 30 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:09:42] [RX] RX [f0080002]: 89 01 01 00 36 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:09:43] [RX] RX [f0080002]: 89 01 01 00 3c 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:09:44] [RX] RX [f0080002]: 89 01 01 00 42 4f 02 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:09:45] [RX] RX [f0080002]: 89 01 01 00 48 4f 02 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:09:46] [RX] RX [f0080002]: 89 01 01 00 4e 4f 02 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:09:47] [RX] RX [f0080002]: 89 01 01 00 54 59 02 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:09:48] [RX] RX [f0080002]: 89 01 01 00 5a 51 02 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:09:49] [RX] RX [f0080002]: 89 01 01 00 60 68 02 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:09:50] [RX] RX [f0080002]: 89 01 01 00 64 68 02 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:09:53] [TX] [*] Initiating arterial blood pressure oscillometric detection (0x90)...
+[17:09:53] [TX] TX [f0080003]: 90 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:09:54] [RX] RX [f0080002]: 90 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:09:54] [RX] RX [f0080002]: 90 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:09:55] [RX] RX [f0080002]: 90 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:09:56] [RX] RX [f0080002]: 90 00 00 04 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:09:57] [RX] RX [f0080002]: 90 00 00 08 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:09:58] [RX] RX [f0080002]: 90 00 00 0c 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:09:59] [RX] RX [f0080002]: 90 00 00 10 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:10:00] [RX] RX [f0080002]: 90 00 00 14 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:10:01] [RX] RX [f0080002]: 90 00 00 18 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:10:02] [RX] RX [f0080002]: 90 00 00 1c 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:10:03] [RX] RX [f0080002]: 90 00 00 20 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:10:04] [RX] RX [f0080002]: 90 00 00 24 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:10:05] [RX] RX [f0080002]: 90 00 00 28 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:10:06] [RX] RX [f0080002]: 90 00 00 2c 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:10:07] [RX] RX [f0080002]: 90 00 00 30 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:10:08] [RX] RX [f0080002]: 90 00 00 34 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:10:09] [RX] RX [f0080002]: 90 00 00 38 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:10:10] [RX] RX [f0080002]: 90 00 00 3c 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:10:11] [RX] RX [f0080002]: 90 00 00 40 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:10:12] [RX] RX [f0080002]: 90 00 00 44 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:10:13] [RX] RX [f0080002]: 90 00 00 48 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:10:14] [RX] RX [f0080002]: 90 00 00 4c 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:10:15] [RX] RX [f0080002]: 90 00 00 50 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:10:16] [RX] RX [f0080002]: 90 00 00 54 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:10:17] [RX] RX [f0080002]: 90 00 00 58 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:10:18] [RX] RX [f0080002]: 90 00 00 5c 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:10:19] [RX] RX [f0080002]: 90 00 00 60 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:10:20] [RX] RX [f0080002]: 90 79 51 64 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:10:23] [RX] RX [f0080002]: bd 03 01 00 02 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:10:27] [TX] [*] Initiating dual-sensor temperature acquisition...
+[17:10:27] [TX] TX [f0080003]: 87 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:10:27] [RX] RX [f0080002]: 87 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:10:28] [RX] RX [f0080002]: 87 01 01 07 00 4a 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:10:29] [RX] RX [f0080002]: 87 01 01 07 10 64 01 29 01 00 00 00 00 00 00 00 00 00 00 00
+[17:10:30] [RX] RX [f0080002]: 87 01 01 07 10 64 01 29 01 00 00 00 00 00 00 00 00 00 00 00
+[17:10:31] [RX] RX [f0080002]: 87 01 01 07 19 64 01 29 01 00 00 00 00 00 00 00 00 00 00 00
+[17:10:32] [RX] RX [f0080002]: 87 01 01 07 23 64 01 28 01 00 00 00 00 00 00 00 00 00 00 00
+[17:10:33] [RX] RX [f0080002]: 87 01 01 07 2c 64 01 29 01 00 00 00 00 00 00 00 00 00 00 00
+[17:10:34] [RX] RX [f0080002]: 87 01 01 07 34 64 01 29 01 00 00 00 00 00 00 00 00 00 00 00
+[17:10:35] [RX] RX [f0080002]: 87 01 01 07 3d 64 01 28 01 00 00 00 00 00 00 00 00 00 00 00
+[17:10:36] [RX] RX [f0080002]: 87 01 01 07 45 64 01 28 01 00 00 00 00 00 00 00 00 00 00 00
+[17:10:37] [RX] RX [f0080002]: 87 01 01 07 4d 64 01 28 01 00 00 00 00 00 00 00 00 00 00 00
+[17:10:38] [RX] RX [f0080002]: 87 01 01 07 55 64 01 28 01 00 00 00 00 00 00 00 00 00 00 00
+[17:10:39] [RX] RX [f0080002]: 87 01 01 07 5f 64 01 28 01 00 00 00 00 00 00 00 00 00 00 00
+[17:10:40] [RX] RX [f0080002]: 87 01 01 07 64 64 01 28 01 00 00 00 00 00 00 00 00 00 00 00
+[17:10:43] [TX] [*] Commencing pulse oximetry (SpO2) detection (0x80)...
+[17:10:43] [TX] TX [f0080003]: 80 01 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:10:45] [RX] RX [f0080002]: 80 01 00 00 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:10:46] [RX] RX [f0080002]: 80 01 00 00 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:10:47] [RX] RX [f0080002]: 80 01 00 00 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:10:48] [RX] RX [f0080002]: 80 01 00 00 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:10:49] [RX] RX [f0080002]: 80 01 00 00 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:10:50] [RX] RX [f0080002]: 80 01 00 00 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:10:51] [RX] RX [f0080002]: 80 01 00 00 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:10:52] [RX] RX [f0080002]: 80 01 00 00 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:10:53] [RX] RX [f0080002]: 80 01 00 00 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:10:54] [RX] RX [f0080002]: 80 01 00 00 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:10:55] [RX] RX [f0080002]: 80 01 00 00 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:10:56] [RX] RX [f0080002]: 80 01 00 00 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:10:57] [RX] RX [f0080002]: 80 01 00 00 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:10:58] [RX] RX [f0080002]: 80 01 00 00 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:10:59] [RX] RX [f0080002]: 80 01 00 00 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:00] [RX] RX [f0080002]: 80 01 00 63 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:01] [RX] RX [f0080002]: 80 01 00 63 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:02] [RX] RX [f0080002]: 80 01 00 63 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:03] [RX] RX [f0080002]: 80 01 00 63 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:04] [RX] RX [f0080002]: 80 01 00 63 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:05] [RX] RX [f0080002]: 80 01 00 63 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:06] [RX] RX [f0080002]: 80 01 00 63 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:07] [RX] RX [f0080002]: 80 01 00 63 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:08] [RX] RX [f0080002]: 80 01 00 63 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:09] [RX] RX [f0080002]: 80 01 00 63 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:10] [RX] RX [f0080002]: 80 01 00 61 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:11] [RX] RX [f0080002]: 80 01 00 61 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:12] [RX] RX [f0080002]: 80 01 00 61 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:13] [RX] RX [f0080002]: 80 01 00 61 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:14] [RX] RX [f0080002]: 80 01 00 61 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:15] [RX] RX [f0080002]: 80 01 00 61 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:16] [RX] RX [f0080002]: 80 01 00 61 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:17] [RX] RX [f0080002]: 80 01 00 61 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:18] [RX] RX [f0080002]: 80 01 00 61 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:19] [RX] RX [f0080002]: 80 01 00 61 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:20] [RX] RX [f0080002]: 80 01 00 61 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:21] [RX] RX [f0080002]: 80 01 00 61 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:22] [RX] RX [f0080002]: 80 01 00 61 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:23] [RX] RX [f0080002]: 80 01 00 61 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:24] [RX] RX [f0080002]: 80 01 00 61 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:25] [RX] RX [f0080002]: 80 01 00 60 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:26] [RX] RX [f0080002]: 80 01 00 60 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:27] [RX] RX [f0080002]: 80 01 00 60 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:28] [RX] RX [f0080002]: 80 01 00 60 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:29] [RX] RX [f0080002]: 80 01 00 60 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:30] [RX] RX [f0080002]: 80 01 00 62 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:31] [RX] RX [f0080002]: 80 01 00 62 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:32] [RX] RX [f0080002]: 80 01 00 62 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:33] [RX] RX [f0080002]: 80 01 00 62 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:34] [RX] RX [f0080002]: 80 01 00 62 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:35] [RX] RX [f0080002]: 80 01 00 62 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:36] [RX] RX [f0080002]: 80 01 00 62 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:37] [RX] RX [f0080002]: 80 01 00 62 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:38] [RX] RX [f0080002]: 80 01 00 62 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:39] [RX] RX [f0080002]: 80 01 00 62 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:40] [RX] RX [f0080002]: 80 01 00 61 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:41] [RX] RX [f0080002]: 80 01 00 61 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:42] [RX] RX [f0080002]: 80 01 00 61 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:43] [RX] RX [f0080002]: 80 01 00 61 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:44] [RX] RX [f0080002]: 80 01 00 61 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:44] [TX] [*] Commencing continuous dynamic heart rate scan (0xD0)...
+[17:11:44] [TX] TX [f0080003]: d0 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:45] [RX] RX [f0080002]: d0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:46] [RX] RX [f0080002]: d0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:47] [RX] RX [f0080002]: d0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:48] [RX] RX [f0080002]: d0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:49] [RX] RX [f0080002]: d0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:50] [RX] RX [f0080002]: d0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:51] [RX] RX [f0080002]: d0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:52] [RX] RX [f0080002]: d0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:53] [RX] RX [f0080002]: d0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:54] [RX] RX [f0080002]: d0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:55] [RX] RX [f0080002]: d0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:56] [RX] RX [f0080002]: d0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:57] [RX] RX [f0080002]: d0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:58] [RX] RX [f0080002]: d0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:11:59] [RX] RX [f0080002]: d0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:00] [RX] RX [f0080002]: d0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:01] [RX] RX [f0080002]: d0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:02] [RX] RX [f0080002]: d0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:03] [RX] RX [f0080002]: d0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:04] [RX] RX [f0080002]: d0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:05] [RX] RX [f0080002]: d0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:06] [RX] RX [f0080002]: d0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:07] [RX] RX [f0080002]: d0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:08] [RX] RX [f0080002]: d0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:09] [RX] RX [f0080002]: d0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:10] [RX] RX [f0080002]: d0 56 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:11] [RX] RX [f0080002]: d0 56 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:12] [RX] RX [f0080002]: d0 56 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:13] [RX] RX [f0080002]: d0 56 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:14] [RX] RX [f0080002]: d0 56 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:15] [RX] RX [f0080002]: d0 56 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:16] [RX] RX [f0080002]: d0 56 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:17] [RX] RX [f0080002]: d0 56 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:18] [RX] RX [f0080002]: d0 56 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:19] [RX] RX [f0080002]: d0 56 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:19] [TX] [*] Commencing autonomic nervous HRV acquisition...
+[17:12:19] [TX] TX [f0080003]: 91 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:20] [RX] RX [f0080002]: 91 01 01 00 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:20] [RX] RX [f0080002]: d0 56 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:21] [RX] RX [f0080002]: d0 56 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:22] [RX] RX [f0080002]: d0 56 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:23] [RX] RX [f0080002]: d0 56 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:24] [RX] RX [f0080002]: d0 56 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:25] [RX] RX [f0080002]: d0 56 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:26] [RX] RX [f0080002]: d0 56 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:27] [RX] RX [f0080002]: d0 56 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:28] [RX] RX [f0080002]: d0 56 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:29] [RX] RX [f0080002]: d0 56 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:30] [RX] RX [f0080002]: d0 56 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:31] [RX] RX [f0080002]: d0 56 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:32] [RX] RX [f0080002]: d0 56 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:33] [RX] RX [f0080002]: d0 56 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:34] [RX] RX [f0080002]: d0 56 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:35] [RX] RX [f0080002]: d0 56 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:36] [RX] RX [f0080002]: d0 56 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:37] [RX] RX [f0080002]: d0 56 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:38] [RX] RX [f0080002]: d0 56 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:39] [RX] RX [f0080002]: d0 56 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:40] [RX] RX [f0080002]: d0 56 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:41] [RX] RX [f0080002]: d0 56 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:42] [RX] RX [f0080002]: d0 56 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:43] [RX] RX [f0080002]: d0 56 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:44] [RX] RX [f0080002]: d0 56 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:45] [RX] RX [f0080002]: d0 56 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:46] [RX] RX [f0080002]: d0 56 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:47] [RX] RX [f0080002]: d0 56 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:48] [RX] RX [f0080002]: d0 56 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:49] [RX] RX [f0080002]: d0 56 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:50] [RX] RX [f0080002]: d0 57 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:51] [RX] RX [f0080002]: d0 57 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:52] [RX] RX [f0080002]: d0 57 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:53] [RX] RX [f0080002]: d0 58 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:54] [RX] RX [f0080002]: d0 58 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:55] [RX] RX [f0080002]: d0 59 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:56] [RX] RX [f0080002]: d0 5a 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:57] [RX] RX [f0080002]: d0 5a 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:58] [RX] RX [f0080002]: d0 5b 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:12:59] [RX] RX [f0080002]: d0 5c 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:00] [RX] RX [f0080002]: d0 5a 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:01] [RX] RX [f0080002]: d0 5a 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:02] [RX] RX [f0080002]: d0 5a 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:03] [RX] RX [f0080002]: d0 5a 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:04] [RX] RX [f0080002]: d0 5a 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:05] [RX] RX [f0080002]: d0 5a 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:06] [RX] RX [f0080002]: d0 5a 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:07] [RX] RX [f0080002]: d0 5a 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:08] [RX] RX [f0080002]: d0 5a 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:09] [RX] RX [f0080002]: d0 59 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:10] [RX] RX [f0080002]: d0 58 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:11] [RX] RX [f0080002]: d0 58 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:12] [RX] RX [f0080002]: d0 58 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:13] [RX] RX [f0080002]: d0 58 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:14] [RX] RX [f0080002]: d0 59 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:15] [RX] RX [f0080002]: d0 59 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:16] [RX] RX [f0080002]: d0 59 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:17] [RX] RX [f0080002]: d0 59 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:18] [RX] RX [f0080002]: d0 5a 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:19] [RX] RX [f0080002]: d0 5a 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:20] [RX] RX [f0080002]: d0 5a 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:21] [RX] RX [f0080002]: d0 5b 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:22] [RX] RX [f0080002]: d0 5c 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:23] [RX] RX [f0080002]: d0 5c 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:24] [RX] RX [f0080002]: d0 5d 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:25] [RX] RX [f0080002]: d0 5e 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:26] [RX] RX [f0080002]: d0 5e 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:27] [RX] RX [f0080002]: d0 5e 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:28] [RX] RX [f0080002]: d0 61 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:29] [RX] RX [f0080002]: d0 61 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:30] [RX] RX [f0080002]: d0 62 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:31] [RX] RX [f0080002]: d0 60 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:32] [RX] RX [f0080002]: d0 5d 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:33] [RX] RX [f0080002]: d0 56 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:34] [RX] RX [f0080002]: d0 53 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:35] [RX] RX [f0080002]: d0 4d 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:36] [RX] RX [f0080002]: d0 4b 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:37] [RX] RX [f0080002]: d0 45 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:38] [RX] RX [f0080002]: d0 44 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:39] [RX] RX [f0080002]: d0 44 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:40] [RX] RX [f0080002]: d0 44 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:41] [RX] RX [f0080002]: d0 44 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:42] [RX] RX [f0080002]: d0 43 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:43] [RX] RX [f0080002]: d0 43 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:44] [RX] RX [f0080002]: d0 43 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:45] [RX] RX [f0080002]: d0 43 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:46] [RX] RX [f0080002]: d0 43 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:47] [RX] RX [f0080002]: d0 44 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:48] [RX] RX [f0080002]: d0 45 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:48] [TX] [*] Halting heart rate scan (0xD0)...
+[17:13:48] [TX] TX [f0080003]: d0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:13:48] [RX] RX [f0080002]: d0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:14:37] [TX] [*] Halting HRV detection...
+[17:14:37] [TX] TX [f0080003]: 91 01 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:14:38] [RX] RX [f0080002]: 91 01 02 00 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:18:38] [TX] TX [f0080003]: 61 01 49 af 4b 07 d0 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:18:38] [TX] TX [f0080003]: 93 0a 03 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:18:38] [RX] [★] Parameters successfully saved and transmitted to watch!
+[17:18:41] [ERR] TX Error: GATT operation already in progress.
+[17:18:41] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:18:48] [TX] [*] Synchronizing watch real-time chronometer (0xA1)...
+[17:18:48] [TX] TX [f0080003]: a1 00 00 00 07 ea 0b 12 11 12 30 00 01 e0 00 00 00 00 00 00
+[17:18:49] [RX] RX [f0080002]: a7 01 00 01 01 01 01 00 02 14 01 01 03 00 00 01 00 06 05 01
+[17:18:49] [RX] RX [f0080002]: a7 00 03 04 00 03 05 00 01 01 05 01 01 01 02 06 03 00 01 02
+[17:18:49] [RX] RX [f0080002]: a7 02 11 00 02 01 01 04 01 00 00 00 01 00 00 04 01 01 01 03
+[17:18:49] [RX] RX [f0080002]: a7 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 04
+[17:18:49] [RX] RX [f0080002]: ad 02 02 02 02 02 00 02 02 00 02 02 02 02 02 02 02 00 00 02
+[17:18:49] [RX] RX [f0080002]: ad 02 02 02 02 02 00 02 00 00 00 00 00 00 00 00 00 00 00 10
+[17:18:49] [RX] RX [f0080002]: b8 02 02 01 01 01 00 00 00 00 01 01 00 00 00 00 01 00 00 00
+[17:18:49] [RX] RX [f0080002]: b8 02 00 00 01 02 00 01 00 00 02 01 01 01 00 00 00 00 00 01
+[17:18:49] [RX] RX [f0080002]: bd 03 01 00 02 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:18:49] [RX] RX [f0080002]: a1 00 00 06 13 92 00 10 10 00 00 01 16 f6 83 40 de 8b 00 00
+[17:18:49] [RX] [★] SENSORS AUTHENTICATED: Model 5010 | Firmware v0.16.16.0
+[17:18:53] [TX] [*] Synchronizing watch real-time chronometer (0xA1)...
+[17:18:53] [TX] TX [f0080003]: a1 00 00 00 07 ea 0b 12 11 12 35 00 01 e0 00 00 00 00 00 00
+[17:18:54] [RX] RX [f0080002]: a7 01 00 01 01 01 01 00 02 14 01 01 03 00 00 01 00 06 05 01
+[17:18:54] [RX] RX [f0080002]: a7 00 03 04 00 03 05 00 01 01 05 01 01 01 02 06 03 00 01 02
+[17:18:54] [RX] RX [f0080002]: a7 02 11 00 02 01 01 04 01 00 00 00 01 00 00 04 01 01 01 03
+[17:18:54] [RX] RX [f0080002]: a7 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 04
+[17:18:54] [RX] RX [f0080002]: ad 02 02 02 02 02 00 02 02 00 02 02 02 02 02 02 02 00 00 02
+[17:18:54] [RX] RX [f0080002]: ad 02 02 02 02 02 00 02 00 00 00 00 00 00 00 00 00 00 00 10
+[17:18:54] [RX] RX [f0080002]: b8 02 02 01 01 01 00 00 00 00 01 01 00 00 00 00 01 00 00 00
+[17:18:54] [RX] RX [f0080002]: b8 02 00 00 01 02 00 01 00 00 02 01 01 01 00 00 00 00 00 01
+[17:18:54] [RX] RX [f0080002]: bd 03 01 00 02 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:18:54] [RX] RX [f0080002]: a1 00 00 06 13 92 00 10 10 00 00 01 16 f6 83 40 de 8b 00 00
+[17:18:54] [RX] [★] SENSORS AUTHENTICATED: Model 5010 | Firmware v0.16.16.0
+[17:18:56] [TX] [*] Querying hardware revision & battery matrix (0x03)...
+[17:18:56] [TX] TX [f0080003]: 03 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:19:28] [SYS] Curve fill under plots: HIDDEN
+[17:19:29] [SYS] Curve fill under plots: ENABLED
+[17:20:50] [TX] [*] Commencing optical PPG blood glucose scan...
+[17:20:50] [TX] TX [f0080003]: 89 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:20:51] [RX] RX [f0080002]: 89 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:20:51] [RX] RX [f0080002]: 89 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:20:52] [RX] RX [f0080002]: 89 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:20:53] [RX] RX [f0080002]: 89 01 01 00 06 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:20:54] [RX] RX [f0080002]: 89 01 01 00 0c 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:20:55] [RX] RX [f0080002]: 89 01 01 00 12 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:20:56] [RX] RX [f0080002]: 89 01 01 00 18 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:20:57] [RX] RX [f0080002]: 89 01 01 00 1e 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:20:58] [RX] RX [f0080002]: 89 01 01 00 24 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:20:59] [RX] RX [f0080002]: 89 01 01 00 2a 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:21:00] [RX] RX [f0080002]: 89 01 01 00 30 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:21:01] [RX] RX [f0080002]: 89 01 01 00 36 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:21:02] [RX] RX [f0080002]: 89 01 01 00 3c 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:21:03] [RX] RX [f0080002]: 89 01 01 00 42 42 02 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:21:04] [RX] RX [f0080002]: 89 01 01 00 48 3d 02 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:21:05] [RX] RX [f0080002]: 89 01 01 00 4e 42 02 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:21:06] [RX] RX [f0080002]: 89 01 01 00 54 42 02 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:21:07] [RX] RX [f0080002]: 89 01 01 00 5a 42 02 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:21:08] [RX] RX [f0080002]: 89 01 01 00 60 4b 02 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:21:09] [RX] RX [f0080002]: 89 01 01 00 64 4b 02 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:24:31] [TX] [*] Populating Setup parameters from local profile...
+[17:24:31] [SYS] [+] Using initialized baseline parameters for Model 5010.
+[17:24:31] [SYS] No preconfigured transponder found. Ready for first-time pairing.
+[17:24:55] [ERR] Subspace link severed: Watch entered sleep mode.
+[17:33:52] [TX] Opening Bluetooth pairing array for new watch...
+[17:33:52] [ERR] Pairing Aborted: Cannot read properties of undefined (reading 'requestDevice')
+[17:35:07] [TX] [*] Commencing optical PPG blood glucose scan...
+[17:35:07] [TX] [*] Establishing link with watch...
+[17:35:07] [ERR] Pairing Aborted: Cannot read properties of undefined (reading 'requestDevice')
+[17:35:07] [TX] Opening Bluetooth pairing array for new watch...
+[17:35:07] [ERR] Error: Could not connect to watch. Ensure watch screen is awake.
+[17:41:04] [TX] [*] Halting optical glucose scan...
+[17:41:04] [TX] [*] Establishing link with watch...
+[17:41:04] [TX] Opening Bluetooth pairing array for new watch...
+[17:41:04] [ERR] Pairing Aborted: Cannot read properties of undefined (reading 'requestDevice')
+[17:41:04] [ERR] Error: Could not connect to watch. Ensure watch screen is awake.
+[17:41:07] [ERR] Pairing Aborted: Cannot read properties of undefined (reading 'requestDevice')
+[17:41:07] [TX] [*] Commencing optical PPG blood glucose scan...
+[17:41:07] [TX] [*] Establishing link with watch...
+[17:41:07] [TX] Opening Bluetooth pairing array for new watch...
+[17:41:07] [ERR] Error: Could not connect to watch. Ensure watch screen is awake.
+[17:42:37] [TX] Opening Bluetooth pairing array for new watch...
+[17:42:37] [ERR] Pairing Aborted: Cannot read properties of undefined (reading 'requestDevice')
+[17:50:32] [TX] [*] Commencing optical PPG blood glucose scan...
+[17:50:32] [TX] [*] Establishing link with watch...
+[17:50:32] [TX] Connecting to GATT server on VEE (Attempt 1/3)...
+[17:50:41] [TX] Connecting to GATT server on VEE (Attempt 2/3)...
+[17:50:50] [TX] Connecting to GATT server on VEE (Attempt 3/3)...
+[17:50:58] [ERR] Connection Failed: Connection Error: Connection attempt failed.. Ensure watch screen is awake.
+[17:50:58] [TX] TX [f0080003]: 89 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:50:58] [ERR] TX Error: Failed to execute 'writeValueWithResponse' on 'BluetoothRemoteGATTCharacteristic': GATT Server is disconnected. Cannot perform GATT operations. (Re)connect first with `device.gatt.connect`.
+[17:52:02] [TX] [*] Populating Setup parameters from local profile...
+[17:52:02] [RX] [+] Setup parameters populated successfully from active profile.
+[17:52:02] [SYS] No preconfigured transponder found. Ready for first-time pairing.
+[17:52:16] [TX] [*] Commencing optical PPG blood glucose scan [PRIVATE CALIBRATED MODE (0x89 0x01 0x01 0x01)]...
+[17:52:16] [TX] [*] Establishing link with watch...
+[17:52:16] [TX] Opening Bluetooth pairing array for new watch...
+[17:52:39] [TX] Connecting to GATT server on VEE (Attempt 1/3)...
+[17:52:46] [TX] [*] Commencing optical PPG blood glucose scan [PRIVATE CALIBRATED MODE (0x89 0x01 0x01 0x01)]...
+[17:52:46] [TX] [*] Establishing link with watch...
+[17:52:46] [TX] Connecting to GATT server on VEE (Attempt 1/3)...
+[17:52:48] [TX] Connecting to GATT server on VEE (Attempt 2/3)...
+[17:52:48] [TX] Connecting to GATT server on VEE (Attempt 2/3)...
+[17:52:55] [TX] [*] Querying Watch Blood Glucose Calibration Offset (0x89 0x02 0x02)...
+[17:52:55] [TX] [*] Establishing link with watch...
+[17:52:55] [TX] Connecting to GATT server on VEE (Attempt 1/3)...
+[17:52:57] [TX] Connecting to GATT server on VEE (Attempt 3/3)...
+[17:52:57] [TX] Connecting to GATT server on VEE (Attempt 3/3)...
+[17:52:57] [TX] Connecting to GATT server on VEE (Attempt 2/3)...
+[17:52:58] [RX] [+] GATT Subspace connection established!
+[17:52:58] [ERR] Connection Failed: Connection Error: Connection attempt failed.. Ensure watch screen is awake.
+[17:52:58] [ERR] Error: Could not connect to watch. Ensure watch screen is awake.
+[17:52:59] [TX] Connecting to GATT server on VEE (Attempt 3/3)...
+[17:52:59] [RX] [+] GATT Subspace connection established!
+[17:53:12] [RX] [★] Primary Command TX Bound: f0080003
+[17:53:12] [RX] [★] Primary Command TX Bound: f0080003
+[17:53:12] [TX] [*] Transmitting 0xA1 Authentication & Time Handshake...
+[17:53:12] [TX] TX [f0080003]: a1 00 00 00 07 ea 0b 12 11 35 0c 00 01 e0 00 00 00 00 00 00
+[17:53:12] [TX] [*] Populating Setup parameters from local profile...
+[17:53:12] [RX] [+] Setup parameters populated successfully from active profile.
+[17:53:12] [TX] TX [f0080003]: 89 01 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:53:12] [TX] [*] Transmitting 0xA1 Authentication & Time Handshake...
+[17:53:12] [TX] TX [f0080003]: a1 00 00 00 07 ea 0b 12 11 35 0c 00 01 e0 00 00 00 00 00 00
+[17:53:12] [TX] [*] Populating Setup parameters from local profile...
+[17:53:12] [RX] [+] Setup parameters populated successfully from active profile.
+[17:53:12] [TX] TX [f0080003]: 89 02 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:53:12] [ERR] TX Error: GATT operation already in progress.
+[17:53:12] [ERR] TX Error: GATT operation already in progress.
+[17:53:12] [ERR] TX Error: GATT operation already in progress.
+[17:53:12] [RX] RX [f0080002]: a7 01 00 01 01 01 01 00 02 14 01 01 03 00 00 01 00 06 05 01
+[17:53:12] [RX] RX [f0080002]: a7 00 03 04 00 03 05 00 01 01 05 01 01 01 02 06 03 00 01 02
+[17:53:12] [RX] RX [f0080002]: a7 02 11 00 02 01 01 04 01 00 00 00 01 00 00 04 01 01 01 03
+[17:53:12] [RX] RX [f0080002]: a7 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 04
+[17:53:12] [RX] RX [f0080002]: ad 02 02 02 02 02 00 02 02 00 02 02 02 02 02 02 02 00 00 02
+[17:53:12] [RX] RX [f0080002]: ad 02 02 02 02 02 00 02 00 00 00 00 00 00 00 00 00 00 00 10
+[17:53:12] [RX] RX [f0080002]: b8 02 02 01 01 01 00 00 00 00 01 01 00 00 00 00 01 00 00 00
+[17:53:12] [RX] RX [f0080002]: b8 02 00 00 01 02 00 01 00 00 02 01 01 01 00 00 00 00 00 01
+[17:53:12] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:53:12] [RX] RX [f0080002]: a1 00 00 06 13 92 00 10 10 00 00 01 16 f6 83 40 de 8b 00 00
+[17:53:12] [RX] [★] SENSORS AUTHENTICATED: Model 5010 | Firmware v0.16.16.0
+[17:53:13] [TX] [*] Querying Watch Blood Glucose Calibration Offset (0x89 0x02 0x02)...
+[17:53:13] [TX] TX [f0080003]: 89 02 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:53:13] [RX] RX [f0080002]: 89 02 02 01 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:53:13] [RX] [★ GLUCOSE CALIBRATION] Watch stored baseline: 0 mg/dL (0.00 mmol/L) | Private Mode: ACTIVE
+[17:53:15] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:53:23] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:53:24] [SYS] Glucose scan mode switched to: PUBLIC (GENERIC 106 MG/DL)
+[17:53:26] [SYS] Glucose scan mode switched to: PRIVATE (CALIBRATED 140 MG/DL)
+[17:53:31] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:53:31] [TX] [*] Halting optical glucose scan...
+[17:53:31] [TX] TX [f0080003]: 89 01 02 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:53:32] [RX] RX [f0080002]: 89 01 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:53:33] [TX] [*] Halting optical glucose scan...
+[17:53:33] [TX] TX [f0080003]: 89 01 02 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:53:33] [RX] RX [f0080002]: 89 01 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:53:37] [TX] [*] Commencing optical PPG blood glucose scan [PRIVATE CALIBRATED MODE (0x89 0x01 0x01 0x01)]...
+[17:53:37] [TX] TX [f0080003]: 89 01 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:53:37] [RX] RX [f0080002]: 89 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:53:38] [RX] RX [f0080002]: 89 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:53:39] [RX] RX [f0080002]: 89 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:53:39] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:53:40] [RX] RX [f0080002]: 89 01 01 00 06 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:53:41] [RX] RX [f0080002]: 89 01 01 00 0c 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:53:42] [RX] RX [f0080002]: 89 01 01 00 12 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:53:43] [RX] RX [f0080002]: 89 01 01 00 18 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:53:44] [RX] RX [f0080002]: 89 01 01 00 1e 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:53:45] [RX] RX [f0080002]: 89 01 01 00 24 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:53:46] [RX] RX [f0080002]: 89 01 01 00 2a 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:53:47] [RX] RX [f0080002]: 89 01 01 00 30 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:53:47] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:53:48] [RX] RX [f0080002]: 89 01 01 00 36 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:53:49] [RX] RX [f0080002]: 89 01 01 00 3c 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:53:50] [RX] RX [f0080002]: 89 01 01 00 42 29 03 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:53:51] [RX] RX [f0080002]: 89 01 01 00 48 41 03 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:53:52] [RX] RX [f0080002]: 89 01 01 00 4e 14 03 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:53:53] [RX] RX [f0080002]: 89 01 01 00 54 39 03 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:53:54] [RX] RX [f0080002]: 89 01 01 00 5a 28 03 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:53:55] [RX] RX [f0080002]: 89 01 01 00 60 24 03 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:53:55] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:53:56] [RX] RX [f0080002]: 89 01 01 00 64 24 03 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:54:03] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:54:12] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:54:20] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:54:28] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:54:32] [SYS] [★] ALL LOCAL DATA PURGED. SICKBAY CONSOLE ZEROED OUT.
+[17:54:36] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:54:44] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:54:52] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:55:00] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:55:08] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:55:16] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:55:25] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:55:33] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:55:41] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:55:49] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:55:57] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:56:05] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:56:13] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:56:21] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:56:29] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:56:37] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:56:46] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:56:54] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:57:02] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:57:10] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:57:18] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:57:26] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:57:34] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:57:43] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:57:51] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:57:59] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:58:07] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:58:15] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:58:23] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:58:31] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:58:40] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:58:48] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:58:56] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:59:04] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:59:12] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:59:20] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:59:28] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:59:37] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:59:45] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[17:59:53] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:00:01] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:00:09] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:00:17] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:00:25] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:00:33] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:00:42] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:00:50] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:00:58] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:01:06] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:01:14] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:01:22] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:01:30] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:01:39] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:01:47] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:01:55] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:02:03] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:02:11] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:02:19] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:02:27] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:02:35] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:02:44] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:02:52] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:03:00] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:03:08] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:03:16] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:03:24] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:03:32] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:03:40] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:03:49] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:03:57] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:04:05] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:04:13] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:04:21] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:04:29] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:04:37] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:04:46] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:04:54] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:05:02] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:05:10] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:05:18] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:05:26] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:05:34] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:05:42] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:05:51] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:05:59] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:06:07] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:06:15] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:06:23] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:06:31] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:06:39] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:06:47] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:06:56] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:07:04] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:07:12] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:07:20] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:07:28] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:07:36] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:07:44] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:07:53] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:08:01] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:08:09] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:08:17] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:08:25] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:08:33] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:08:41] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:08:49] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:08:58] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:09:06] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:09:14] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:09:22] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:09:30] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:09:38] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:09:46] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:09:54] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:10:03] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:10:11] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:10:19] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:10:27] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:10:35] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:10:43] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:10:51] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:10:59] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:11:08] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:11:16] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:11:24] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:11:32] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:11:40] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:11:48] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:11:56] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:12:04] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:12:13] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:12:21] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:12:29] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:12:37] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:12:45] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:12:53] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:13:01] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:13:10] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:13:18] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:13:26] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:13:34] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:13:42] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:13:50] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:13:58] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:14:06] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:14:15] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:14:23] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:14:31] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:14:39] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:14:47] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:14:55] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:15:04] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:15:12] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:15:20] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:15:28] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:15:36] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:15:44] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:15:52] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:16:00] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:16:09] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:16:17] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:16:25] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:16:33] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:16:41] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:16:49] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:16:57] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:17:05] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:17:14] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:17:22] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:17:30] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:17:38] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:17:46] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:17:54] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:18:03] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:18:11] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:18:19] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:18:27] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:18:35] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:18:43] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:18:51] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:18:59] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:19:08] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:19:16] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:19:24] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:19:32] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:19:40] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:19:49] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:19:57] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:20:05] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:20:13] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:20:21] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:20:29] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:20:37] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:20:45] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:20:54] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:21:02] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:21:10] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:21:18] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:21:26] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:21:34] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:21:42] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:21:50] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:21:59] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:22:07] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:22:15] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:22:23] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:22:31] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:22:39] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:22:47] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:22:55] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:23:04] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:23:12] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:23:20] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:23:28] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:23:36] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:23:44] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:23:52] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:24:00] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:24:09] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:24:17] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:24:25] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:24:33] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:24:41] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:24:49] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:24:57] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:25:05] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:25:14] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:25:22] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:25:30] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:25:38] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:25:46] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:25:54] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:26:02] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:26:10] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:26:19] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:26:27] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:26:35] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:26:43] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:26:51] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:26:59] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:27:07] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:27:16] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:27:24] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:27:32] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:27:40] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:27:48] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:27:56] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:28:05] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:28:13] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:28:21] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:28:29] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:28:37] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:28:45] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:28:53] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:29:01] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:29:09] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:29:18] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:29:26] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:29:34] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:29:42] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:29:50] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:29:58] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:30:06] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:30:15] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:30:23] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:30:31] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:30:39] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:30:47] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:30:55] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:31:03] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:31:11] [SYS] Telemetry buffer purged by sickbay console operator.
+[18:31:12] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:31:20] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:31:28] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:31:36] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:31:44] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:31:52] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:31:55] [RX] RX [f0080002]: c7 01 01 04 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:32:00] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:32:08] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:32:13] [TX] TX [f0080003]: 61 01 49 af 4b 07 d0 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:32:13] [TX] TX [f0080003]: 93 0a 03 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:32:13] [RX] [★] Parameters successfully saved and transmitted to watch!
+[18:32:15] [ERR] TX Error: GATT operation already in progress.
+[18:32:15] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:32:16] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:32:25] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:32:33] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:32:41] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:32:49] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:32:57] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:33:05] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:33:13] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:33:21] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:33:29] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:33:38] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:33:46] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:33:54] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:34:02] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:34:10] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:34:18] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:34:26] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:34:35] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:34:43] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:34:51] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:34:59] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:35:07] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:35:15] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:35:23] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:35:31] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:35:40] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:35:48] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:35:56] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:36:04] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:36:12] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:36:20] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:36:28] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:36:37] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:36:45] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:36:53] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:37:01] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:37:09] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:37:17] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:37:25] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:37:33] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:37:42] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:37:50] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:37:58] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:38:06] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:38:14] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:38:22] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:38:30] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:39:30] [RX] RX [f0080002]: bd 03 01 00 02 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+[18:43:10] [TX] [*] Populating Setup parameters from active profile...
+[18:43:10] [RX] [+] Setup parameters populated successfully from active profile.
+[18:43:10] [SYS] No preconfigured transponder found. Ready for first-time pairing.

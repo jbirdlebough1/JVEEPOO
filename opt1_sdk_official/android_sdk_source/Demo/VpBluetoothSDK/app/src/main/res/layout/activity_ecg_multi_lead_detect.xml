@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/vTitle"
+        layout="@layout/layout_title_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="I导联"
+        android:textColor="@android:color/black"
+        android:textSize="12sp" />
+
+    <com.timaimee.vpdemo.activity.EcgDetectView
+        android:id="@+id/ehrv1"
+        android:layout_width="match_parent"
+        android:layout_height="80dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="II导联"
+        android:textColor="@android:color/black"
+        android:textSize="12sp" />
+
+    <com.timaimee.vpdemo.activity.EcgDetectView
+        android:id="@+id/ehrv2"
+        android:layout_width="match_parent"
+        android:layout_height="80dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="III导联"
+        android:textColor="@android:color/black"
+        android:textSize="12sp" />
+
+    <com.timaimee.vpdemo.activity.EcgDetectView
+        android:id="@+id/ehrv3"
+        android:layout_width="match_parent"
+        android:layout_height="80dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AVR导联"
+        android:textColor="@android:color/black"
+        android:textSize="12sp" />
+
+    <com.timaimee.vpdemo.activity.EcgDetectView
+        android:id="@+id/ehrv4"
+        android:layout_width="match_parent"
+        android:layout_height="80dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AVL导联"
+        android:textColor="@android:color/black"
+        android:textSize="12sp" />
+
+    <com.timaimee.vpdemo.activity.EcgDetectView
+        android:id="@+id/ehrv5"
+        android:layout_width="match_parent"
+        android:layout_height="80dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AVF导联"
+        android:textColor="@android:color/black"
+        android:textSize="12sp" />
+
+    <com.timaimee.vpdemo.activity.EcgDetectView
+        android:id="@+id/ehrv6"
+        android:layout_width="match_parent"
+        android:layout_height="80dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/btnStart"
+            style="@style/vpButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="8dp"
+            android:text="开始ECG测量" />
+
+        <TextView
+            android:id="@+id/tvProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@android:color/black"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/btnStop"
+            style="@style/vpButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="center"
+            android:paddingStart="16dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="8dp"
+            android:text="结束ECG测量" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="center" />
+
+
+</LinearLayout>

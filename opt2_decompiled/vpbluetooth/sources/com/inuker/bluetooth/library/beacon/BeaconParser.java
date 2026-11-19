@@ -1,0 +1,73 @@
+package com.inuker.bluetooth.library.beacon;
+
+import com.inuker.bluetooth.library.utils.ByteUtils;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.util.ArrayList;
+import java.util.List;
+
+/* JADX INFO: loaded from: vpbluetooth-1.20.aar:classes.jar:com/inuker/bluetooth/library/beacon/BeaconParser.class */
+public class BeaconParser {
+    private byte[] bytes;
+    private ByteBuffer mByteBuffer;
+
+    public BeaconParser(BeaconItem item) {
+        this(item.bytes);
+    }
+
+    public BeaconParser(byte[] bytes) {
+        this.bytes = bytes;
+        this.mByteBuffer = ByteBuffer.wrap(bytes).order(ByteOrder.LITTLE_ENDIAN);
+    }
+
+    public void setPosition(int position) {
+        this.mByteBuffer.position(position);
+    }
+
+    public int readByte() {
+        return this.mByteBuffer.get() & 255;
+    }
+
+    public int readShort() {
+        return this.mByteBuffer.getShort() & 65535;
+    }
+
+    public boolean getBit(int n, int index) {
+        return (n & (1 << index)) != 0;
+    }
+
+    public static List<BeaconItem> parseBeacon(byte[] bytes) {
+        BeaconItem item;
+        ArrayList<BeaconItem> items = new ArrayList<>();
+        int i = 0;
+        while (true) {
+            int i2 = i;
+            if (i2 >= bytes.length || (item = parse(bytes, i2)) == null) {
+                break;
+            }
+            items.add(item);
+            i = i2 + item.len + 1;
+        }
+        return items;
+    }
+
+    private static BeaconItem parse(byte[] bytes, int startIndex) {
+        byte length;
+        BeaconItem item = null;
+        if (bytes.length - startIndex >= 2 && (length = bytes[startIndex]) > 0) {
+            byte type = bytes[startIndex + 1];
+            int firstIndex = startIndex + 2;
+            if (firstIndex < bytes.length) {
+                item = new BeaconItem();
+                int endIndex = (firstIndex + length) - 2;
+                if (endIndex >= bytes.length) {
+                    endIndex = bytes.length - 1;
+                }
+                item.type = type & 255;
+                item.len = length;
+                item.bytes = ByteUtils.getBytes(bytes, firstIndex, endIndex);
+            }
+        }
+        return item;
+    }
+}

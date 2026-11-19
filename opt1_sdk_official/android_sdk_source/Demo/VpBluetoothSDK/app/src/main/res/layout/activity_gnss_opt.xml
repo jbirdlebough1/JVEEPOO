@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <include
+        android:id="@+id/vTitle"
+        layout="@layout/layout_title_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvDeviceState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/vTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:text="设备连接：未连接"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:textColor="#666666"/>
+
+    <TextView
+        android:id="@+id/tvGuardState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tvDeviceState"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="6dp"
+        android:layout_marginStart="10dp"
+        android:text="守护状态：未开启"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:textColor="#666666"/>
+
+    <LinearLayout
+        android:id="@+id/llGuardButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tvGuardState"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnStartSafetyProtection"
+            style="@style/vpButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="4dp"
+            android:text="开启守护"/>
+
+        <Button
+            android:id="@+id/btnStopSafetyProtection"
+            style="@style/vpButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="0dp"
+            android:text="结束守护"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvCoordinate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/llGuardButtons"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="最新坐标：暂无\n更新时间：--"
+        android:textSize="14sp"
+        android:textColor="#333333"/>
+
+    <ScrollView
+        android:id="@+id/svTestInfo"
+        android:layout_width="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvCoordinate"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/text_info_bg"
+        android:layout_height="0dp">
+        <TextView
+            android:id="@+id/tvTestInfo"
+            android:padding="10dp"
+            android:textSize="14sp"
+            android:textColor="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,12 @@
+package vpno.nordicsemi.android.dfu.internal.exception;
+
+import java.io.IOException;
+
+/* JADX INFO: loaded from: vpprotocol-2.3.96.15.aar:classes.jar:vpno/nordicsemi/android/dfu/internal/exception/SizeValidationException.class */
+public class SizeValidationException extends IOException {
+    private static final long serialVersionUID = -6467104024030837875L;
+
+    public SizeValidationException(String str) {
+        super(str);
+    }
+}

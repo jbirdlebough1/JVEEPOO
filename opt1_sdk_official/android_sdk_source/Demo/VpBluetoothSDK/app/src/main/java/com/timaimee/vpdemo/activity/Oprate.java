@@ -1,0 +1,260 @@
+package com.timaimee.vpdemo.activity;
+
+/**
+ * Created by Administrator on 2017/11/25.
+ */
+
+public interface Oprate {
+    String PWD_COMFIRM = "1、设备密码-验证";
+    String NEED_COMFIRM = "需要密码确认";
+    String UNNEED_COMFIRM = "无需密码确认";
+    String PWD_COMFIRM_2_DISCONNECT = "发起BT立马断开";
+    String PWD_COMFIRM_2_DISCONNECT_ = "直接断开BLE";
+    String DISCONNECT_2_RECONNECT = "断开BLE-重连";
+    String PERSONINFO_SYNC = "2、个人信息-设置";
+    String SETTING_FIRST = "<--先操作1、2";
+    String PWD_MODIFY = "设备密码-修改";
+    String OTA_UPGRADE = "OTA固件升级";
+    String TEMPTURE_DETECT_START = "测量温度-开始"; //#####->v2
+    String TEMPTURE_DETECT_STOP = "测量温度-结束"; //#####->v2
+    String HEART_DETECT_START = "Measure Heart Rate - Start"; //#####->v2
+    String HEART_DETECT_STOP = "Heart Rate Measurement - End"; //#####->v2
+    String BP_DETECT_START = "Measuring Blood Pressure - Start"; //#####->v2
+    String BP_DETECT_STOP = "Measuring Blood Pressure - End"; //#####->v2
+    String BP_DETECTMODEL_SETTING = "Blood Pressure模式-设置"; //#####->v2
+    String BP_DETECTMODEL_READ = "Blood Pressure模式-读取"; //#####->v2
+    String BP_DETECTMODEL_SETTING_ADJUSTE = "Blood Pressure模式[动态调整]-设置"; //#####->v2
+    String BP_DETECTMODEL_SETTING_ADJUSTE_CANCEL = "Blood Pressure模式[动态调整]-取消"; //#####->v2
+    String SPORT_CURRENT_READ = "当前计步-读取"; //#####->v2
+    String CAMERA_START = "拍照模式-开始"; //#####->v2
+    String CAMERA_STOP = "拍照模式-停止"; //#####->v2
+    String ALARM_SETTING = "闹钟-设置"; //#####->v2
+    String ALARM_READ = "闹钟-读取"; //#####->v2
+    String ALARM_NEW_READ = "新闹钟-读取"; //#####->v2
+    String ALARM_NEW_ADD = "新闹钟-添加"; //#####->v2
+    String ALARM_NEW_MODIFY = "新闹钟-修改"; //#####->v2
+    String ALARM_NEW_DELETE = "新闹钟-删除"; //#####->v2
+    String ALARM_NEW_LISTENER = "新闹钟-监听状态改变";
+    String ALARM_NEW_ = "新闹钟"; //#####->v2
+    String LONGSEAT_SETTING_OPEN = "久坐-打开"; //#####->v2
+    String LONGSEAT_SETTING_CLOSE = "久坐-关闭"; //#####->v2
+    String LONGSEAT_READ = "久坐-读取"; //#####->v2
+    String LANGUAGE_CHINESE = "语言设置-中文";  //#####->v2
+    String LANGUAGE_ENGLISH = "语言设置-英文"; //#####->v2
+    String BATTERY = "电池状态-读取"; //#####->v2
+    String NIGHT_TURN_WRIST_OPEN = "夜间转腕-打开";
+    String NIGHT_TURN_WRIST_CLOSE = "夜间转腕-关闭";
+    String NIGHT_TURN_WRIST_READ = "夜间转腕-读取";
+    String NIGHT_TURN_WRIST_CUSTOM_TIME = "夜间转腕-自定义时间";
+    String NIGHT_TURN_WRIST_CUSTOM_TIME_LEVEL = "Nighttime Wrist Turn - Customize Time and Level";
+    String FINDPHONE = "手机防丢";
+    String CHECK_WEAR_SETING_OPEN = "佩戴检测-打开"; //#####->v2
+    String CHECK_WEAR_SETING_CLOSE = "佩戴检测-关闭"; //#####->v2
+    String FINDDEVICE_SETTING_OPEN = "设备防丢-打开"; //#####->v2
+    String FINDDEVICE_SETTING_CLOSE = "设备防丢-关闭"; //#####->v2
+    String FINDDEVICE_READ = "设备防丢-读取"; //#####->v2
+    String DEVICE_COUSTOM_READ = "个性化-读取"; //#####->v2
+    String DEVICE_COUSTOM_SETTING = "个性化-设置"; //#####->v2
+    String DEVICE_ECG_ALWAYS_OPEN = "ECG常开-开";
+    String DEVICE_ECG_ALWAYS_CLOSE = "ECG常开-关";
+    String SOCIAL_MSG_SETTING = "社交消息提醒1包-设置"; //#####->v2
+    String SOCIAL_MSG_SETTING2 = "社交消息提醒2包-设置"; //#####->v2
+    String SOCIAL_MSG_READ = "社交消息提醒-读取设置"; //#####->v2
+    String SOCIAL_MSG_SEND = "社交消息提醒-发送内容"; //#####->v2
+    String SOCIAL_PHONE_IDLE_OR_OFFHOOK = "Social Media Notification - Incoming call answered"; //#####->v2
+    String DEVICE_CONTROL_PHONE = "监听手环-挂断，静音";
+    String HEARTWRING_READ = "Heart Rate报警-读取"; //#####->v2
+    String HEARTWRING_OPEN = "Heart Rate报警-打开"; //#####->v2
+    String HEARTWRING_CLOSE = "Heart Rate报警-关闭"; //#####->v2
+    String SPO2H_OPEN = "Blood Oxygen (SpO2)-读取"; //#####->v2
+    String SPO2H_CLOSE = "Blood Oxygen (SpO2)-结束"; //#####->v2
+    String SPO2H_AUTO_DETECT_READ = "Blood Oxygen (SpO2)自动检测-读取"; //#####->v2
+    String SPO2H_AUTO_DETECT_OPEN = "Blood Oxygen (SpO2)自动检测-打开"; //#####->v2
+    String SPO2H_AUTO_DETECT_CLOSE = "Blood Oxygen (SpO2)自动检测-关闭"; //#####->v2
+    String FATIGUE_OPEN = "疲劳度-读取"; //#####->v2
+    String FATIGUE_CLOSE = "疲劳度-结束"; //#####->v2
+    String WOMEN_SETTING = "女性状态-设置"; //#####->v2
+    String WOMEN_READ = "女性状态-读取"; //#####->v2
+    String COUNT_DOWN_WATCH_CLOSE_UI = "倒计时-手表单独使用(关闭界面)";
+    String COUNT_DOWN_WATCH_OPEN_UI = "倒计时-手表单独使用(打开界面)";
+    String COUNT_DOWN_APP = "倒计时-App使用";
+    String COUNT_DOWN_APP_READ = "倒计时-读取";
+    String GPS_KAABA = "GPS时区&克尔白";
+    String GPS_REPORT_START = "GPS上报";
+    String READ_CHANTING = "读取诵经";
+    String SCREEN_LIGHT_SETTING = "屏幕调节-设置";
+    String SCREEN_LIGHT_READ = "屏幕调节-读取";
+    String SCREEN_STYLE_READ = "屏幕样式-读取";
+    String SCREEN_STYLE_SETTING = "屏幕样式-设置";
+    String AIM_SPROT_CALC = "Target Step Count - Calculation";
+    String INSTITUTION_TRANSLATION = "公英制转换";
+    String READ_TEMPTURE_DATA = "读取温度数据"; //#####->v2
+    String READ_HEALTH_DRINK = "读取健康数据-饮酒";
+    String READ_HEALTH_SLEEP = "读取健康数据-Sleep";
+    String READ_HEALTH_SLEEP_FROM = "Read Health Data - Sleep - From Which Day";
+    String READ_HEALTH_SLEEP_SINGLEDAY = "Read Health Data - Sleep - Read This Day";
+    String READ_HEALTH_ORIGINAL = "读取健康数据-5分钟"; //#####->v2
+    String READ_HEALTH_ORIGINAL_FROM = "读取健康数据-从哪天起"; //#####->v2
+    String READ_HEALTH_ORIGINAL_SINGLEDAY = "读取健康数据-读这天"; //#####->v2
+    String READ_HEALTH = "读取健康数据-全部"; //#####->v2
+    String READ_HEALTH_V2 = "读取健康数据-新版DEMO"; //#####->v2
+    String OAD = "固件升级"; //#####->v2
+    String SHOW_SP = "显示sp";
+    String SPORT_MODE_ORIGIN_READ = "读取数据-运动模式";
+    String SPORT_MODE_ORIGIN_READSTAUTS = "读取状态-运动模式";
+    String SPORT_MODE_ORIGIN_START = "开启-运动模式";
+    String SPORT_MODE_START_INDOOR = "开启-室内步行";
+    String SPORT_MODE_ORIGIN_END = "结束-运动模式";
+    String SPO2H_ORIGIN_READ = "Read Data - Blood Oxygen (SpO2) Data"; //########## 旧版协议v3
+    String HRV_ORIGIN_READ = "读取数据-HRV数据"; //########## 旧版协议v3
+    String HRV_START_DETECT = "开始HRV测量"; //#####->v2
+    String HRV_STOP_DETECT = "停止HRV测量"; //#####->v2
+    String CLEAR_DEVICE_DATA = "恢复出厂设置(清除数据)";
+    String DISCONNECT = "蓝牙连接-断开-退出";
+    String DETECT_PTT = "PTT";
+    String DETECT_START_ECG = "开始测量ECG"; //#####->v2
+    String DETECT_STOP_ECG = "结束测量ECG"; //#####->v2
+    String LOW_POWER_READ = "低功耗-读取"; //#####->v2
+    String LOW_POWER_OPEN = "低功耗-开"; //#####->v2
+    String LOW_POWER_CLOSE = "低功耗-关"; //#####->v2
+    String S22_READ_DATA = "S22-数据读取";
+    String S22_READ_STATE = "S22-状态读取";
+    String S22_SETTING_STATE_OPEN = "S22-状态设置(开)";
+    String S22_SETTING_STATE_CLOSE = "S22-状态设置(关)";
+    String BP_FUNCTION_READ = "Blood Pressure状态(读取)";
+    String BP_FUNCTION_SETTING = "Blood Pressure状态(设置)";
+    String WEATHER_READ_STATUEINFO = "天气状态(读取)";
+    String SET_WATCH_TIME = "设置时间";
+    String WEATHER_SETTING_STATUEINFO_ON = "天气状态(开)";  //#####->v2
+    String WEATHER_SETTING_STATUEINFO_OFF = "天气状态(关)"; //#####->v2
+    String WEATHER_SETTING_DATA = "天气数据(设置)"; //#####->v2
+
+    String LIANSUO_SOS = "联硕-监听SOS";
+    String LIANSUO_SEND_ORDER = "联硕-发送命令";
+    String LIANSUO_SEND_CONTENT = "联硕-发送内容";
+    String UI_UPDATE_AGPS = "UI升级-AGPS";
+    String UI_UPDATE_CUSTOM = "UI升级-自定义表盘";
+    String UI_UPDATE_SERVER = "UI升级-服务器表盘";
+    String GPS_EPHEMERIS = "GPS星历-GpsEphemeris";
+    String SYNC_MUSIC_INFO_PLAY = "音乐-播放"; //#####->v2
+    String SYNC_MUSIC_INFO_PAUSE = "音乐-暂停"; //#####->v2
+    String VOLUME = "音量"; //#####->v2
+    String UI_UPDATE_G15IMG = "UI升级-G15图片传输"; //#####->v2
+    String TEXT_ALARM_ADD = "文字闹钟添加"; //#####->v2
+    String TEXT_ALARM_MODIFY = "文字闹钟修改"; //#####->v2
+    String TEXT_ALARM_READ = "文字闹钟读取"; //#####->v2
+    String TEXT_ALARM_DELETE = "文字闹钟删除"; //#####->v2
+    String TEXT_ALARM = "文字闹钟"; //#####->v2
+    String ORIGIN_LOG = "原始数据日志";
+    String RR = "RR逐跳帧";
+    String G15_QR_CODE = "G15二维码"; //#####->v2
+    String ECG_AUTO_REPORT_TEXT = "ECG常开数据监听";
+    String START_BLOOD_GLUCOSE = "Start Blood Glucose Monitoring"; //#####->v2
+    String STOP_BLOOD_GLUCOSE = "Stop Blood Glucose Monitoring"; //#####->v2
+    String BLOOD_GLUCOSE_P_READ = "Blood Glucose私人模式读取"; //#####->v2
+    String BLOOD_GLUCOSE_P_SETTING = "Blood Glucose私人模式设置"; //#####->v2
+
+    String BLOOD_GLUCOSE_MULTIPLE_READ = "Blood GlucoseMulti-Calibration Readout"; //#####->v2
+    String BLOOD_GLUCOSE_MULTIPLE_SETTING = "Blood GlucoseMulti-Calibration Settings"; //#####->v2
+    String FIND_DEVICE = "查找手机";
+    String BLE_RENAME = "蓝牙4.0重命名";
+    String BT_RENAME = "蓝牙3.0重命名";
+    String BT_CONNECT_DEFAULT = "连接BT-默认";
+    String BT_CONNECT_BREDR = "连接BT-双模";
+    String BT_CONNECT_AUTO = "连接BT-单模";
+    String BT_CONNECT_BREDR2AUTO = "连接BT-双模2单模";
+    String BT_CLOSE = "关闭BT";
+    String BLE_DISCONNECT = "断开BLE";
+    String BT_READ = "读取BT";
+    String HEALTH_REMIND = "健康提醒";//#####->v2
+    String JL_NOTIFY_OPEN = "杰理通知打开"; //#####->v2
+    String JL_AUTH = "杰理认证"; //#####->v2
+    String JL_INIT_FILE_SYS = "杰理文件系统"; //#####->v2
+    String JL_SET_PHOTO_DIAL = "杰理表盘设置"; //#####->v2
+
+    String JL_DEVICE = "杰理手表相关"; //#####->v2
+
+    String JL_DEVICE_OTA = "杰理OTA"; //#####->v2
+
+    String CONTACT = "联系人"; //#####->v2
+    String GATT_CLOSE = "Gatt-Close";
+    String FUNCTION_SWITCH = "全局监听开关";//#####->v2
+    String READ_ECG_ID = "读取ECG ID";
+    String READ_ECG_DATA = "读取ECG 数据";
+    String SET_ECG_NEW_DATA_REPORT = "监听新ecg数据上报";
+
+    String DETECT_START_BODY_COMPONENT = "开始测量身体成分"; //#####->v2
+    String DETECT_STOP_BODY_COMPONENT = "结束测量身体成分"; //#####->v2
+    String READ_BODY_COMPONENT_ID = "读取身体成分ID"; //#####->v2
+    String READ_BODY_COMPONENT_DATA = "读取身体成分数据"; //#####->v2
+
+    String SET_BODY_COMPONENT_NEW_DATA_REPORT = "监听新身体成分数据上报"; //#####->v2
+    String SHARE_LOG = "分享日志"; //#####->v2
+    String READ_BLOOD_COMPOSITION_CALIBRATION = "Read blood component calibration value"; //#####->v2
+    String SETTING_BLOOD_COMPOSITION_CALIBRATION = "Set the Calibration value for blood components"; //#####->v2
+
+    String DETECT_START_BLOOD_COMPONENT = "开始测量血液成分"; //#####->v2
+    String DETECT_STOP_BLOOD_COMPONENT = "结束测量血液成分"; //#####->v2
+    String DETECT_MULTI_ECG_DETECT = "ECG多导联";
+    String WORLD_CLOCK = "世界时钟"; //#####->v2
+    String G08W_HEALTH_ALARM_INTERVAL = "G08W-健康报警区间";//#####->v2
+    String G08W_PPG_DATA_CALLBACK = "G08W-PPG数据监听回调";
+
+    String MAGNETIC_OPEN = "磁疗"; //#####->v2
+    String READ_MANUAL_DATA = "读取手动测量数据"; //#####->v2
+    String TCM_DIAGNOSIS_START = "开始中医诊断"; //#####->v2
+    String TCM_DIAGNOSIS_STOP = "结束中医诊断"; //#####->v2
+    String TCM_DIAGNOSIS_SHARE = "分享数据";
+    String TEXT_IMAGE_MSG_PUSH = "图文推送"; //#####->v2
+    String JH58_PPG = "JH58PPG相关"; //#####->v2
+    String MINI_CHECKUP = "微体检"; //#####->v2
+
+    String GSR_START = "开始皮电测量"; //#####->v2
+    String GSR_STOP = "结束皮电测量"; //#####->v2
+    String PRESSURE_DETECT_START = "压力测量-开始"; //#####->v2
+    String PRESSURE_DETECT_STOP = "压力测量-结束"; //#####->v2
+    String RESET_DEVICE_DATA = "复位"; //#####->v2
+    String POWER_OFF_DEVICE = "关机"; //#####->v2
+    String ZT163_DEVICE_ALWAYS_OFF_SCREEN = "合镁ZT163设备常灭屏"; //#####->v2
+    String GNSS_SOS_SAFETY_PROTECTION = "GNSS&亲情安全守护&SOS"; //#####->v2
+    String FUN_SWITCH_READ = "健康辅助-读取"; //#####->v2
+    String FUN_SWITCH_SETTING = "健康辅助-设置"; //#####->v2
+    String FUN_4G = "4G功能"; //#####->v2
+    String AUTO_MEASURE = "自动测量"; //#####->v2
+    String NRF_OTA = "NRF OTA"; //#####->v2
+    String QIU_GUO_TCM = "秋果中医数据"; //#####->v2
+    String QX17_DATA_ACQUISITION = "QX17数据采集"; //#####->v2
+    String QH15_HEALTH_DATA = "QH15健康数据"; //#####->v2
+    String MET_DETECT_START = "Met测量-开始"; //#####->v2
+    String MET_DETECT_STOP = "Met测量-结束"; //#####->v2
+    String EMOTION_DETECT_START = "情绪测量-开始"; //#####->v2
+    String EMOTION_DETECT_STOP = "情绪测量-结束"; //#####->v2
+    String B3_READ = "B3自动测量读取"; //#####->v2
+    String DA_SPORT = "DA运动控制";
+    String NONE = "NONE";
+    String[] oprateStr = new String[]{
+            /*PWD_COMFIRM,NEED_COMFIRM,UNNEED_COMFIRM, */PWD_COMFIRM_2_DISCONNECT, PWD_COMFIRM_2_DISCONNECT_, PERSONINFO_SYNC, SETTING_FIRST, DISCONNECT,
+            BT_CONNECT_DEFAULT, BT_CONNECT_BREDR, BT_CONNECT_AUTO, BT_CONNECT_BREDR2AUTO, BT_CLOSE, BLE_DISCONNECT, PWD_MODIFY, OTA_UPGRADE,
+            SHARE_LOG, GPS_KAABA, GPS_REPORT_START, READ_CHANTING, HEART_DETECT_START, HEART_DETECT_STOP, TEMPTURE_DETECT_START, TEMPTURE_DETECT_STOP, READ_TEMPTURE_DATA, BP_DETECT_START, BP_DETECT_STOP, BP_DETECTMODEL_SETTING, BP_DETECTMODEL_READ,
+            BP_DETECTMODEL_SETTING_ADJUSTE_CANCEL, BP_DETECTMODEL_SETTING_ADJUSTE,
+            SPORT_CURRENT_READ, CAMERA_START, CAMERA_STOP, ALARM_SETTING, ALARM_READ, /*ALARM_NEW_READ, ALARM_NEW_ADD, ALARM_NEW_MODIFY, ALARM_NEW_DELETE,*/ ALARM_NEW_LISTENER, ALARM_NEW_,
+            LONGSEAT_SETTING_OPEN, LONGSEAT_SETTING_CLOSE, LONGSEAT_READ, LANGUAGE_CHINESE, LANGUAGE_ENGLISH,
+            BATTERY, NIGHT_TURN_WRIST_OPEN, NIGHT_TURN_WRIST_CLOSE, NIGHT_TURN_WRIST_READ, NIGHT_TURN_WRIST_CUSTOM_TIME, NIGHT_TURN_WRIST_CUSTOM_TIME_LEVEL,
+            DEVICE_COUSTOM_READ, DEVICE_COUSTOM_SETTING, DEVICE_ECG_ALWAYS_OPEN, DEVICE_ECG_ALWAYS_CLOSE, FINDPHONE,
+            CHECK_WEAR_SETING_OPEN, CHECK_WEAR_SETING_CLOSE,
+            FINDDEVICE_SETTING_OPEN, FINDDEVICE_SETTING_CLOSE, FINDDEVICE_READ,
+            SOCIAL_MSG_SETTING, SOCIAL_MSG_SETTING2, SOCIAL_MSG_READ, SOCIAL_MSG_SEND, DEVICE_CONTROL_PHONE, SOCIAL_PHONE_IDLE_OR_OFFHOOK, HEARTWRING_READ, HEARTWRING_OPEN, HEARTWRING_CLOSE,
+            SPO2H_OPEN, SPO2H_CLOSE, SPO2H_AUTO_DETECT_READ, SPO2H_AUTO_DETECT_OPEN, SPO2H_AUTO_DETECT_CLOSE, FATIGUE_OPEN, FATIGUE_CLOSE, WOMEN_SETTING, WOMEN_READ, COUNT_DOWN_WATCH_CLOSE_UI, COUNT_DOWN_WATCH_OPEN_UI, COUNT_DOWN_APP_READ, SCREEN_LIGHT_SETTING, SCREEN_LIGHT_READ, SCREEN_STYLE_READ, SCREEN_STYLE_SETTING, AIM_SPROT_CALC, INSTITUTION_TRANSLATION,
+            READ_HEALTH_SLEEP, READ_HEALTH_SLEEP_FROM, READ_HEALTH_SLEEP_SINGLEDAY, READ_HEALTH_DRINK, READ_HEALTH_ORIGINAL,
+            READ_HEALTH_ORIGINAL_FROM, READ_HEALTH_ORIGINAL_SINGLEDAY, READ_HEALTH, READ_HEALTH_V2, SET_WATCH_TIME,
+            OAD, SHOW_SP, SPORT_MODE_ORIGIN_READ, SPORT_MODE_ORIGIN_READSTAUTS, SPORT_MODE_START_INDOOR, SPORT_MODE_ORIGIN_START, SPORT_MODE_ORIGIN_END, SPO2H_ORIGIN_READ, HRV_ORIGIN_READ, HRV_START_DETECT, HRV_STOP_DETECT, CLEAR_DEVICE_DATA
+            , DETECT_START_ECG, DETECT_STOP_ECG, NONE, LOW_POWER_READ, LOW_POWER_OPEN, LOW_POWER_CLOSE, S22_READ_DATA, S22_READ_STATE, S22_SETTING_STATE_OPEN, S22_SETTING_STATE_CLOSE, DETECT_PTT, BP_FUNCTION_READ, BP_FUNCTION_SETTING
+            , WEATHER_READ_STATUEINFO, WEATHER_SETTING_STATUEINFO_ON, WEATHER_SETTING_STATUEINFO_OFF, WEATHER_SETTING_DATA, LIANSUO_SOS, LIANSUO_SEND_ORDER, LIANSUO_SEND_CONTENT, UI_UPDATE_AGPS, UI_UPDATE_CUSTOM, UI_UPDATE_SERVER, GPS_EPHEMERIS
+            , UI_UPDATE_G15IMG, SYNC_MUSIC_INFO_PLAY, SYNC_MUSIC_INFO_PAUSE, VOLUME,/*TEXT_ALARM_READ,TEXT_ALARM_ADD,TEXT_ALARM_MODIFY,TEXT_ALARM_DELETE,*/TEXT_ALARM, ORIGIN_LOG, RR, G15_QR_CODE, ECG_AUTO_REPORT_TEXT
+            , START_BLOOD_GLUCOSE, STOP_BLOOD_GLUCOSE, BLOOD_GLUCOSE_P_READ, BLOOD_GLUCOSE_P_SETTING, BLOOD_GLUCOSE_MULTIPLE_READ, BLOOD_GLUCOSE_MULTIPLE_SETTING, FIND_DEVICE, BLE_RENAME, BT_RENAME, BT_READ, BLE_DISCONNECT, HEALTH_REMIND, FUNCTION_SWITCH,
+            /*JL_NOTIFY_OPEN, JL_AUTH, JL_INIT_FILE_SYS, JL_SET_PHOTO_DIAL, JL_DEVICE_OTA, */JL_DEVICE, CONTACT, GATT_CLOSE, READ_ECG_ID, READ_ECG_DATA, SET_ECG_NEW_DATA_REPORT, DETECT_START_BODY_COMPONENT, DETECT_STOP_BODY_COMPONENT, READ_BODY_COMPONENT_ID, READ_BODY_COMPONENT_DATA, SET_BODY_COMPONENT_NEW_DATA_REPORT,
+            READ_BLOOD_COMPOSITION_CALIBRATION, SETTING_BLOOD_COMPOSITION_CALIBRATION, DETECT_START_BLOOD_COMPONENT, DETECT_STOP_BLOOD_COMPONENT, DETECT_MULTI_ECG_DETECT, WORLD_CLOCK, G08W_HEALTH_ALARM_INTERVAL, G08W_PPG_DATA_CALLBACK, MAGNETIC_OPEN, READ_MANUAL_DATA, TCM_DIAGNOSIS_START, TCM_DIAGNOSIS_STOP,
+            TEXT_IMAGE_MSG_PUSH, JH58_PPG, MINI_CHECKUP, GSR_START, GSR_STOP, ZT163_DEVICE_ALWAYS_OFF_SCREEN, GNSS_SOS_SAFETY_PROTECTION, FUN_SWITCH_READ, FUN_SWITCH_SETTING, FUN_4G, AUTO_MEASURE, NRF_OTA, QIU_GUO_TCM, QX17_DATA_ACQUISITION, QH15_HEALTH_DATA, MET_DETECT_START, MET_DETECT_STOP,
+            EMOTION_DETECT_START, EMOTION_DETECT_STOP, B3_READ, DA_SPORT, PRESSURE_DETECT_START, PRESSURE_DETECT_STOP, RESET_DEVICE_DATA, POWER_OFF_DEVICE
+    };
+}

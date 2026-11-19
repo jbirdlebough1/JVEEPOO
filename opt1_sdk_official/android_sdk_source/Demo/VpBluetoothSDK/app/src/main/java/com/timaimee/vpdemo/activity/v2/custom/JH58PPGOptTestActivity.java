@@ -1,0 +1,471 @@
+package com.timaimee.vpdemo.activity.v2.custom;
+
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.RadioGroup;
+import android.widget.ScrollView;
+import android.widget.TextView;
+import android.widget.Toast;
+import androidx.core.content.FileProvider;
+
+import com.inuker.bluetooth.library.Code;
+import com.timaimee.vpdemo.R;
+import com.timaimee.vpdemo.activity.v2.BaseVPBLETestActivity;
+import com.veepoo.protocol.VPOperateManager;
+import com.veepoo.protocol.listener.data.IPPGRawDataReadListener;
+import com.veepoo.protocol.listener.data.IActiveMeasurementDataListener;
+import com.veepoo.protocol.listener.data.IPPGRealTimeTransmissionListener;
+import com.veepoo.protocol.listener.data.IJH58MeasurementStateListener;
+import com.veepoo.protocol.listener.data.IPPGSwitchOperaterListener;
+import com.veepoo.protocol.model.datas.AccelerationData;
+import com.veepoo.protocol.model.datas.PPGRawData;
+import com.veepoo.protocol.model.datas.PPGReadData;
+import com.veepoo.protocol.model.datas.PPGSecondData;
+import com.veepoo.protocol.model.datas.TimeData;
+import com.veepoo.protocol.model.enums.EJH58MeasurementState;
+import com.veepoo.protocol.model.enums.PPGSwitchStatus;
+import com.veepoo.protocol.model.enums.PPGTestMode;
+import com.veepoo.protocol.util.thread.HBThreadPools;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.util.List;
+import java.util.Locale;
+
+public class JH58PPGOptTestActivity extends BaseVPBLETestActivity implements View.OnClickListener {
+
+    Button btnReadPPGTestStatus;
+    Button btnStartRealTimePPGRawDataTransfer;
+    Button btnStopRealTimePPGRawDataTransfer;
+    Button btnReadPPGRawData;
+    Button btnDatePicker;
+    Button btnTimePicker;
+    Button btnShareData;
+    Button btnActiveMeasureRealTime;
+    Button btnActiveMeasureBreakpoint;
+    Button btnCloseActiveMeasure;
+    TextView tvPPGTestStatus;
+    TextView tvPPGOptInfo;
+
+    RadioGroup rgPPGTestMode;
+    RadioGroup rgReadPPGTestMode;
+    ScrollView svInfo;
+
+    TimeData timeData = null;
+
+    PPGSwitchStatus ppgSwitchStatus = PPGSwitchStatus.MODE1_ON;
+    PPGTestMode ppgTestMode = PPGTestMode.MODE1;
+
+    StringBuilder sb = new StringBuilder();
+
+    @Override
+    public int getLayoutID() {
+        return R.layout.activity_jh58ppg_test;
+    }
+
+    @Override
+    public String pageTitle() {
+        return "JH58PPG测试";
+    }
+
+    @Override
+    public void initView() {
+        btnStartRealTimePPGRawDataTransfer = findViewById(R.id.btnStartRealTimePPGRawDataTransfer);
+        btnStopRealTimePPGRawDataTransfer = findViewById(R.id.btnStopRealTimePPGRawDataTransfer);
+        btnReadPPGTestStatus = findViewById(R.id.tvAutoMeasureType);
+        btnReadPPGRawData = findViewById(R.id.btnReadPPGRawData);
+        btnDatePicker = findViewById(R.id.btnDatePicker);
+        btnTimePicker = findViewById(R.id.btnTimePicker);
+        btnShareData = findViewById(R.id.btnShareData);
+        btnActiveMeasureRealTime = findViewById(R.id.btnActiveMeasureRealTime);
+        btnActiveMeasureBreakpoint = findViewById(R.id.btnActiveMeasureBreakpoint);
+        btnCloseActiveMeasure = findViewById(R.id.btnCloseActiveMeasure);
+        tvPPGTestStatus = findViewById(R.id.tvAutoMeasureStatusTitle);
+        tvPPGOptInfo = findViewById(R.id.tvPPGOptInfo);
+        rgPPGTestMode = findViewById(R.id.rgPPGTestMode);
+        rgReadPPGTestMode = findViewById(R.id.rgReadPPGTestMode);
+        svInfo = findViewById(R.id.svInfo);
+    }
+
+    @Override
+    public void initData() {
+        rgReadPPGTestMode.check(R.id.rbReadMode1On);
+        btnDatePicker.setOnClickListener(this);
+        btnTimePicker.setOnClickListener(this);
+        btnReadPPGTestStatus.setOnClickListener(this);
+        btnReadPPGRawData.setOnClickListener(this);
+        btnShareData.setOnClickListener(this);
+        btnStartRealTimePPGRawDataTransfer.setOnClickListener(this);
+        btnStopRealTimePPGRawDataTransfer.setOnClickListener(this);
+        btnActiveMeasureRealTime.setOnClickListener(this);
+        btnActiveMeasureBreakpoint.setOnClickListener(this);
+        btnCloseActiveMeasure.setOnClickListener(this);
+
+        timeData = new TimeData();
+        timeData.setCurrentTime();
+        timeData.setHour(0);
+        timeData.setMinute(0);
+        timeData.setSecond(0);
+
+        btnDatePicker.setText(timeData.toDatabaseDateString());
+        btnTimePicker.setText(timeData.getClock() + ":00");
+
+        rgReadPPGTestMode.setOnCheckedChangeListener((group, checkedId) -> {
+            if (checkedId == R.id.rbReadMode1On) {
+                ppgTestMode = PPGTestMode.MODE1;
+            } else if (checkedId == R.id.rbReadMode2On) {
+                ppgTestMode = PPGTestMode.MODE2;
+            } else if (checkedId == R.id.rbReadMode3On) {
+                ppgTestMode = PPGTestMode.MODE3;
+            }
+        });
+
+        rgPPGTestMode.setOnCheckedChangeListener((group, checkedId) -> {
+            if (checkedId == R.id.rbAllOff) {
+                ppgSwitchStatus = PPGSwitchStatus.ALL_OFF;
+            } else if (checkedId == R.id.rbMode1On) {
+                ppgSwitchStatus = PPGSwitchStatus.MODE1_ON;
+            } else if (checkedId == R.id.rbMode2On) {
+                ppgSwitchStatus = PPGSwitchStatus.MODE2_ON;
+            }
+            vpBleManager.setPPGSwitchStatus(ppgSwitchStatus,
+                    code -> tvPPGOptInfo.setText("Send command to set PPG measurement switch status" + (code == Code.REQUEST_SUCCESS ? "成功" : "失败")));
+        });
+
+        readPPGTestStatus();
+
+        vpBleManager.addPPGTestSwitchStatusListener(new IPPGSwitchOperaterListener() {
+            @Override
+            public void onPPGSwitchStatusRead(PPGSwitchStatus switchStatus) {
+                tvPPGTestStatus.setText(switchStatus.getDes());
+                if (switchStatus != PPGSwitchStatus.ALL_OFF) {
+                    ppgSwitchStatus = switchStatus;
+                }
+            }
+
+            @Override
+            public void onPPGSwitchStatusSetting(PPGSwitchStatus switchStatus) {
+                tvPPGOptInfo.setText("PPG测量模式开关设置成功：" + switchStatus);
+            }
+
+            @Override
+            public void onPPGSwitchStatusReport(PPGSwitchStatus switchStatus) {
+                tvPPGOptInfo.setText("PPG测量模式开关上报：" + switchStatus);
+            }
+        });
+
+        vpBleManager.addDevicePPGRealTimeTransferListener(new IPPGRealTimeTransmissionListener() {
+            @Override
+            public void onDeviceRequestPPGRealTimeTransfer(boolean isRequestOpen) {
+                appendMsg("设备请求PPG实时传输：" + (isRequestOpen ? "【开启】" : "【关闭】"));
+            }
+
+            @Override
+            public void onAppRequestPPGRealTimeTransfer(boolean isSuccess) {
+                appendMsg("App请求PPG实时传输：" + (isSuccess ? "成功" : "失败"));
+            }
+
+            @Override
+            public void onGreenLightDataReport(List<Integer> greenLightDataList) {
+                appendMsg("收到绿光信号>>> " + greenLightDataList);
+            }
+
+            @Override
+
+            public void onAccelerationDataReport(List<AccelerationData> accDataList) {
+                appendMsg("收到加速度信号>>> " + accDataList);
+            }
+        });
+    }
+
+    @Override
+    public void initEvent() {
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        if (id == R.id.btnDatePicker) {
+            new DatePickerDialog(this, (view, year, month, dayOfMonth) -> {
+                timeData.setYear(year);
+                timeData.setMonth(month + 1);
+                timeData.setDay(dayOfMonth);
+                btnDatePicker.setText(String.format(Locale.CHINA, "%04d-%02d-%02d", year, month + 1, dayOfMonth));
+            }, TimeData.getSystemYear(), TimeData.getSystemMonth(), TimeData.getSystemDay()).show();
+        } else if (id == R.id.btnTimePicker) {
+            new TimePickerDialog(this, (view, hourOfDay, minute) -> {
+                timeData.setHour(hourOfDay);
+                timeData.setMinute(minute);
+                timeData.setSecond(0);
+                btnTimePicker.setText(String.format(Locale.CHINA, "%02d:%02d:00", hourOfDay, minute));
+            }, timeData.getHour(), timeData.getMinute(), true).show();
+        } else if (id == R.id.btnReadPPGRawData) {
+            readPPGRawData();
+        } else if (id == R.id.btnShareData) {
+            shareData();
+        } else if (id == R.id.tvAutoMeasureType) {
+            readPPGTestStatus();
+        } else if (id == R.id.btnStartRealTimePPGRawDataTransfer) {
+            startPPGRawDataRealTimeTransfer();
+        } else if (id == R.id.btnStopRealTimePPGRawDataTransfer) {
+            stopPPGRawDataRealTimeTransfer();
+        } else if (id == R.id.btnActiveMeasureRealTime) {
+            activeMeasureRealTime();
+        } else if (id == R.id.btnActiveMeasureBreakpoint) {
+            activeMeasureBreakpoint();
+        } else if (id == R.id.btnCloseActiveMeasure) {
+            closeActiveMeasure();
+        }
+    }
+
+    private void readPPGTestStatus() {
+        vpBleManager.readPPGSwitchStatus(
+                code -> tvPPGOptInfo.setText("Send command to read PPG measurement switch status" + (code == Code.REQUEST_SUCCESS ? "成功" : "失败")));
+    }
+
+    private PPGReadData ppgReadData = null;
+
+    private void readPPGRawData() {
+        sb.setLength(0);
+        appendMsg("【读取】PPG原始数据~");
+        appendMsg("Time:" + timeData.toFullDateTimeString() + " , Mode:" + ppgTestMode);
+
+        vpBleManager.readPPGRawData(timeData, ppgTestMode,
+                code -> appendMsg("~【Send command to read PPG measurement switch status" + (code == Code.REQUEST_SUCCESS ? "成功】" : "失败】")),
+                new IPPGRawDataReadListener() {
+                    @Override
+                    public void onPPGReadStart(int count) {
+                        appendMsg("开始读取PPG原始数据。\nA total of " + count + " sets of data");
+                    }
+
+                    @Override
+                    public void onPPGRawDataRead(int index, int count, PPGRawData ppgRawData) {
+                        appendMsg("PPG原始数据读取中。\n>>>>>>>>>【" + index + "/" + count + "】 --> " + ppgRawData);
+                    }
+
+                    @Override
+                    public void onPPGRawDataReadComplete(PPGReadData readData) {
+                        appendMsg("PPG原始数据读取完成。\n" + readData);
+                        ppgReadData = readData;
+                    }
+
+                    @Override
+                    public void onPPGRawDataReadStop() {
+                        appendMsg("PPG原始数据读取停止。");
+                    }
+                });
+    }
+
+    private void startPPGRawDataRealTimeTransfer() {
+        sb.setLength(0);
+        appendMsg("APP请求【开始】PPG实时传输");
+        vpBleManager.startPPGRealTimeTransmission(
+                code -> appendMsg("【Start】PPG real-time transmission command sent" + (code == Code.REQUEST_SUCCESS ? "成功" : "失败")),
+                new IPPGRealTimeTransmissionListener() {
+                    @Override
+                    public void onDeviceRequestPPGRealTimeTransfer(boolean isRequestOpen) {
+                        appendMsg("设备请求PPG实时传输：" + (isRequestOpen ? "【开启】" : "【关闭】"));
+                    }
+
+                    @Override
+                    public void onAppRequestPPGRealTimeTransfer(boolean isSuccess) {
+                        appendMsg("App请求PPG实时传输：" + (isSuccess ? "成功" : "失败"));
+                    }
+
+                    @Override
+                    public void onGreenLightDataReport(List<Integer> greenLightDataList) {
+                        appendMsg("收到绿光信号>>> " + greenLightDataList);
+                    }
+
+                    @Override
+                    public void onAccelerationDataReport(List<AccelerationData> accDataList) {
+                        appendMsg("收到加速度信号>>> " + accDataList);
+                    }
+                }
+        );
+    }
+
+    private void stopPPGRawDataRealTimeTransfer() {
+        sb.setLength(0);
+        appendMsg("APP请求【停止】PPG实时传输");
+        VPOperateManager.getInstance().stopPPGRealTimeTransmission(
+                code -> appendMsg("【Stop】PPG real-time transmission command sent" + (code == Code.REQUEST_SUCCESS ? "成功" : "失败"))
+        );
+    }
+
+    private void shareData() {
+        if (ppgReadData == null) {
+            Toast.makeText(this, "暂无读取数据可以分享", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        String fileName = "JH58PPG原生数据读取.txt";
+        HBThreadPools.getInstance().execute(() -> {
+            StringBuilder sb = new StringBuilder();
+            sb.append("Total number of data:").append(ppgReadData.getDataCount()).append("groups\n");
+            for (PPGRawData ppgRawData : ppgReadData.getPpgRawDataList()) {
+                sb.append("Group【").append(ppgRawData.getIndex()).append("/").append(ppgReadData.getDataCount()).append("】:")
+                        .append(TimeData.getTimeBeanByTimestampSecond((int) ppgRawData.getTimestamp()).toFullDateTimeString())
+                        .append(", Data Volume=").append(ppgRawData.getCount()).append(", Total").append(ppgRawData.getPpgSecondDataList().size()).append("秒数据。\n");
+                for (PPGSecondData ppgSecondData : ppgRawData.getPpgSecondDataList()) {
+                    sb.append(ppgSecondData.toDataStr()).append("\n");
+                }
+            }
+            appendTextToExternalFilesDir(JH58PPGOptTestActivity.this, fileName, sb.toString());
+            runOnUiThread(() -> {
+                File externalFilesDir = getExternalFilesDir(null);
+                if (externalFilesDir == null) {
+                    Log.e("FileSave", "无法获取外部存储目录");
+                    return;
+                }
+                File targetFile = new File(externalFilesDir, fileName);
+                shareTxtContent(JH58PPGOptTestActivity.this, targetFile.getAbsolutePath(), "分享PPG读取的原始数据");
+            });
+        });
+    }
+
+    public void shareTxtContent(Context context, String filePath, String chooserTitle) {
+        File file = new File(filePath);
+        if (!file.exists()) {
+            Toast.makeText(context, "文件不存在", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        Uri uri = getUri(context, filePath);
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+        shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        context.startActivity(Intent.createChooser(shareIntent, chooserTitle));
+    }
+
+    private Uri getUri(Context context, String filePath) {
+        if (Build.VERSION.SDK_INT >= 24) {
+            return FileProvider.getUriForFile(context, "com.timaimee.vpdemo.fileProvider", new File(filePath));
+        } else {
+            return Uri.fromFile(new File(filePath));
+        }
+    }
+
+    public static void appendTextToExternalFilesDir(Context context, String filename, String textContent) {
+        File externalFilesDir = context.getExternalFilesDir(null);
+        if (externalFilesDir == null) {
+            Log.e("FileSave", "无法获取外部存储目录");
+            return;
+        }
+        File targetFile = new File(externalFilesDir, filename);
+
+        try (FileOutputStream fos = new FileOutputStream(targetFile, false);
+             OutputStreamWriter osw = new OutputStreamWriter(fos)) {
+
+            osw.write(textContent);
+            osw.flush();
+            Log.i("FileSave", "保存成功: " + targetFile.getAbsolutePath());
+
+        } catch (IOException e) {
+            Log.e("FileSave", "保存失败: " + e.getMessage());
+        }
+    }
+
+    private void activeMeasureRealTime() {
+        sb.setLength(0);
+        appendMsg("主动测量-实时传输：正在开启...");
+        vpBleManager.activeJH58MeasurementState(EJH58MeasurementState.ACTIVE_MEASUREMENT_REAL_TIME,
+                code -> appendMsg("主动测量-实时传输：" + (code == com.inuker.bluetooth.library.Code.REQUEST_SUCCESS ? "Setup successful": "Setup failed")),
+                new IActiveMeasurementDataListener() {
+                    @Override
+                    public void onMeasurementStateResult(@NotNull EJH58MeasurementState state, int ack) {
+                        String ackDes;
+                        switch (ack) {
+                            case 0x01:
+                                ackDes = "成功";
+                                break;
+                            case 0x02:
+                                ackDes = "The device is performing a manual measurement (the device is busy))";
+                                break;
+                            case 0x03:
+                                ackDes = "设备处于低电状态";
+                                break;
+                            default:
+                                ackDes = "未知(" + ack + ")";
+                                break;
+                        }
+                        appendMsg("主动测量状态设置应答：state=" + state.getDes() + ", ack=" + ackDes);
+                    }
+
+                    @Override
+                    public void onActiveMeasurementDataStart(int totalSeconds) {
+                        appendMsg("开始接收主动测量数据（Estimated total: " + totalSeconds + " seconds）");
+                    }
+
+                    @Override
+                    public void onActiveMeasurementDataReceived(PPGRawData ppgRawData) {
+                        appendMsg(">>> " + ppgRawData);
+                    }
+                });
+    }
+
+    private void activeMeasureBreakpoint() {
+        sb.setLength(0);
+        appendMsg("主动测量-断点传输：正在开启...");
+        vpBleManager.activeJH58MeasurementState(EJH58MeasurementState.ACTIVE_MEASUREMENT_BREAKPOINT,
+                code -> appendMsg("主动测量-断点传输：" + (code == com.inuker.bluetooth.library.Code.REQUEST_SUCCESS ? "Setup successful": "Setup failed")),
+                new IActiveMeasurementDataListener() {
+                    @Override
+                    public void onMeasurementStateResult(@NotNull EJH58MeasurementState state, int ack) {
+                        String ackDes;
+                        switch (ack) {
+                            case 0x01:
+                                ackDes = "成功";
+                                break;
+                            case 0x02:
+                                ackDes = "The device is performing a manual measurement (the device is busy))";
+                                break;
+                            case 0x03:
+                                ackDes = "设备处于低电状态";
+                                break;
+                            default:
+                                ackDes = "未知(" + ack + ")";
+                                break;
+                        }
+                        appendMsg("主动测量状态设置应答：state=" + state.getDes() + ", ack=" + ackDes);
+                    }
+
+                    @Override
+                    public void onActiveMeasurementDataStart(int totalSeconds) {
+                        appendMsg("Start receiving active measurement data (breakpoint)（Estimated total: " + totalSeconds + " seconds）");
+                    }
+
+                    @Override
+                    public void onActiveMeasurementDataReceived(PPGRawData ppgRawData) {
+                        appendMsg(">>> " + ppgRawData);
+                    }
+                });
+    }
+
+    private void closeActiveMeasure() {
+        sb.setLength(0);
+        appendMsg("关闭主动测量：正在关闭...");
+        vpBleManager.activeJH58MeasurementState(EJH58MeasurementState.CLOSE_ACTIVE_MEASUREMENT,
+                code -> appendMsg("Disable active measurement:" + (code == com.inuker.bluetooth.library.Code.REQUEST_SUCCESS ? "Setup successful" : "设置失败")),
+                null);
+    }
+
+    private void appendMsg(String msg) {
+        runOnUiThread(() -> {
+            sb.append(msg).append("\n");
+            tvPPGOptInfo.setText(sb.toString());
+            svInfo.fullScroll(View.FOCUS_DOWN);
+        });
+    }
+}

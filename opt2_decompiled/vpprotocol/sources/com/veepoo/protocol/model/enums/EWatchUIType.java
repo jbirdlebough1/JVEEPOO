@@ -1,0 +1,116 @@
+package com.veepoo.protocol.model.enums;
+
+/* JADX INFO: loaded from: vpprotocol-2.3.96.15.aar:classes.jar:com/veepoo/protocol/model/enums/EWatchUIType.class */
+public enum EWatchUIType {
+    ROUND_240_240(1),
+    RECT_240_240(2),
+    RECT_240_280(3),
+    RECT_240_280_QFN(4),
+    ROUND_240_240_QFN(5),
+    RECT_240_295(6),
+    RECT_240_295_QFN(7),
+    ROUND_360_360_QFN(8),
+    RECT_240_280_BLACK_QFN(9),
+    RECT_80_160(10),
+    RECT_135_240_QFN(12),
+    RECT_172_320_QFN(13),
+    RECT_167_240_QFN(14),
+    RECT_240_284_QFN(15),
+    RECT_240_286_QFN(16),
+    RECT_320_380_QFN(17),
+    RECT_200_320_QFN(18),
+    ROUND_JL_360_360(48),
+    RECT_JL_240_280(49),
+    RECT_JL_240_284(50),
+    RECT_JL_240_286(51),
+    RECT_JL_368_448(52),
+    ROUND_JL_466_466(53),
+    ROUND_JL_412_412(54),
+    RECT_JL_320_380(55),
+    RECT_JL_240_296(56),
+    RECT_JL_320_386(57),
+    RECT_JL_410_502(58),
+    RECT_JL_240_292(59),
+    ROUND_JL_240_240(60),
+    RECT_JL_200_320(61),
+    RECT_JL_172_320(62),
+    ROUND_JL_390_390(63),
+    RECT_JL_390_450(64),
+    ROUND_JL_416_416(65),
+    RECT_JL_240_296_APPLE(66),
+    ROUND_JL_320_320(67),
+    RECT_JL_240_280_APPLE(68),
+    RECT_JL_240_284_APPLE(69),
+    RECT_JL_240_286_APPLE(70),
+    RECT_JL_368_448_APPLE(71),
+    RECT_JL_320_380_APPLE(72),
+    RECT_JL_320_386_APPLE(73),
+    RECT_JL_410_502_APPLE(74),
+    RECT_JL_240_292_APPLE(75),
+    ROUND_JL_240_240_APPLE(76),
+    ROUND_JL_360_360_APPLE(77),
+    ROUND_JL_412_412_APPLE(78),
+    ROUND_JL_466_466_APPLE(79),
+    ROUND_JL_480_480(80),
+    RECT_JL_240_240(81),
+    RECT_JL_228_460(82),
+    RECT_JL_320_360(83),
+    ROUND_JL_360_360_QHYF(84),
+    RECT_JL_410_502_TYPE1(85),
+    RECT_JL_360_360(86),
+    ROUND_JL_480_480_EARTH(87),
+    RECT_JL_360_360_LANDSCAPE(88),
+    RECT_JL_320_386_EARTH(89),
+    RECT_JL_320_386_CANTON_TOWER(90),
+    ROUND_JL_466_466_EARTH(123),
+    RECT_JL_410_502_EARTH(125),
+    RECT_JL_410_502_AURORA(126),
+    ROUND_360_360(65281),
+    ZK_ROUND_466(91),
+    ZK_ROUND_360(92),
+    ZK_RECT_240_296(93),
+    ZK_RECT_240_280(94),
+    ZK_RECT_240_284(95),
+    ZK_RECT_200_320(97),
+    ZK_RECT_240_296_YIHUI(98),
+    ZK_RECT_368_448(99),
+    ZK_RECT_240_284_XMD(100),
+    ZK_RECT_172_320(101),
+    ZK_RECT_320_386(102),
+    ZK_ROUND_466_P569X(103),
+    ZK_ROUND_360_P569X(104),
+    ZK_RECT_240_296_P569X(105),
+    ZK_RECT_240_280_P569X(106),
+    ZK_RECT_240_284_P569X(107),
+    ZK_RECT_200_320_P569X(108),
+    ZK_RECT_368_448_P569X(109),
+    ZK_RECT_172_320_P569X(110),
+    ZK_RECT_320_386_P569X(111),
+    ZK_RECT_410_502(112),
+    ZK_RECT_410_502_P569X(113),
+    ZK_RECT_390_450(114),
+    ZK_RECT_390_450_P569X(115),
+    ZK_RECT_360_360(116),
+    ZK_RECT_360_360_P569X(117),
+    ZK_ROUND_360_360_EARTH_P569X(118),
+    ZK_RECT_320_38X_EARTH_P569X(119),
+    ZK_ROUND_466_466_EARTH_P569X(120),
+    ZK_RECT_410_502_EARTH_P569X(121),
+    ZK_ROUND_240(122);
+
+    int value;
+
+    EWatchUIType(int i) {
+        this.value = i;
+    }
+
+    public static EWatchUIType getEWatchUIType(int i) {
+        for (int i2 = 0; i2 < values().length; i2++) {
+            EWatchUIType eWatchUIType = values()[i2];
+            if (i == eWatchUIType.value) {
+                return eWatchUIType;
+            }
+        }
+        return ROUND_240_240;
+    }
+}

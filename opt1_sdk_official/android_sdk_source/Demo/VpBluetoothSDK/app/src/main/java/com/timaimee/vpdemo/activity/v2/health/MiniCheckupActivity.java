@@ -1,0 +1,207 @@
+package com.timaimee.vpdemo.activity.v2.health;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.inuker.bluetooth.library.Code;
+import com.timaimee.vpdemo.R;
+import com.timaimee.vpdemo.activity.v2.DeviceMenu;
+import com.veepoo.protocol.VPOperateManager;
+import com.veepoo.protocol.listener.IMiniCheckupOptListener;
+import com.veepoo.protocol.model.datas.MiniCheckupBPAirPump;
+import com.veepoo.protocol.model.datas.MiniCheckupBPPhotoelectric;
+import com.veepoo.protocol.model.datas.MiniCheckupBasePersonalInfo;
+import com.veepoo.protocol.model.datas.MiniCheckupBloodComponent;
+import com.veepoo.protocol.model.datas.MiniCheckupBodyComponent;
+import com.veepoo.protocol.model.datas.MiniCheckupDetailData;
+import com.veepoo.protocol.model.datas.MiniCheckupResultData;
+import com.veepoo.protocol.model.datas.MiniCheckupSkinElectricity;
+import com.veepoo.protocol.model.enums.EMiniCheckupTestErrorCode;
+
+import java.util.Locale;
+
+public class MiniCheckupActivity extends Activity implements IMiniCheckupOptListener, View.OnClickListener {
+    Button btnStartMiniCheckup;
+    Button btnStopMiniCheckup;
+    TextView tvMiniCheckupInfo;
+    TextView tvTitle;
+    ImageView ivBack;
+    StringBuilder sb = new StringBuilder();
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_mini_checkup);
+        btnStopMiniCheckup = findViewById(R.id.btnStopRealTimePPGRawDataTransfer);
+        btnStartMiniCheckup = findViewById(R.id.btnReadPPGRawData);
+        tvMiniCheckupInfo = findViewById(R.id.tvMiniCheckupInfo);
+        tvTitle = findViewById(R.id.tvTitle);
+        ivBack = findViewById(R.id.ivBack);
+        tvTitle.setText(DeviceMenu.Health.MiniCheckUp);
+        btnStopMiniCheckup.setOnClickListener(this);
+        btnStartMiniCheckup.setOnClickListener(this);
+        ivBack.setOnClickListener(this);
+    }
+
+    @Override
+    public void onMiniCheckupTestProgress(int progress) {
+        tvMiniCheckupInfo.setText(String.format(Locale.CHINA, "▶【Start] Micro-examination instruction written successfully！\n 测量中... %d%%", progress));
+    }
+
+    @Override
+    public void onMiniCheckupStopSuccess() {
+        appendMsg("⏹️微体检测量已【停止】");
+    }
+
+    @Override
+    public void onMiniCheckupTestFailed(@NonNull EMiniCheckupTestErrorCode errorCode) {
+        appendMsg("⚠️微体检测量【失败】:" + errorCode);
+    }
+
+    @Override
+    public void onMiniCheckupSuccess(@NonNull MiniCheckupResultData testResultData) {
+        appendMsg("微体检测量【成功】-->");
+        appendMsg("【Heart Rate】:" + testResultData.getHeartRate() + "bmp");
+        appendMsg("【Blood Oxygen (SpO2)】:" + testResultData.getBloodOxygen() + "%");
+        appendMsg("【压力】:" + testResultData.getStress());
+        appendMsg("【情绪】:" + testResultData.getEmotion());
+        appendMsg("【疲劳度】:" + testResultData.getFatigue());
+        appendMsg("【Blood Glucose】:" + testResultData.getBloodGlucose() + "mmol/L");
+        appendMsg("【Body Temperature】:" + testResultData.getBodyTemperature() + "℃");
+        appendMsg("【Blood Pressure（收缩压）】:" + testResultData.getSystolicBloodPressure());
+        appendMsg("【Blood Pressure（舒张压）】:" + testResultData.getDiastolicBloodPressure());
+        appendMsg("【HRV】:" + testResultData.getHrv());
+    }
+
+    @Override
+    public void onMiniCheckupDetailTestSuccess(@NonNull MiniCheckupDetailData data) {
+        appendMsg("微体检详情测量【成功】-->");
+        appendMsg("【个人信息】:" + getBasePersonalInfo(data.getBasePersonalInfo()));
+        appendMsg("【Heart Rate】:" + data.getHeartRate() + " bmp");
+        appendMsg("【Blood Oxygen (SpO2)】:" + data.getBloodOxygen() + "%");
+        appendMsg("【压力】:" + data.getStress());
+        appendMsg("【情绪】:" + data.getEmotion());
+        appendMsg("【疲劳度】:" + data.getFatigue());
+        appendMsg("【Blood Glucose类型】:" + getBloodGlucoseTypeDes(data.getBloodGlucoseType()));
+        appendMsg("【Blood Glucose】:" + data.getBloodGlucose() + " mmol/L");
+        appendMsg("【Body Temperature]:" + ((data.getBodyTemperature() == -273.15f) ? "Not supported" : (data.getBodyTemperature() + "℃")));
+        appendMsg("【Original Temperature]:" + ((data.getOriginalTemperature() == -273.15f) ? "Not supported" : (data.getBodyTemperature() + "℃")));
+        appendMsg("【HRV】:" + data.getHrv());
+        appendMsg("【气泵Blood Pressure】:" + getBpDS(data.getBpAirPump()));
+        appendMsg("【光电Blood Pressure】:" + getBpDS(data.getBpPhotoelectric()));
+        appendMsg("【血液成分】:" + getBloodComponent(data.getBloodComponent()));
+        appendMsg("【身体成分】:" + getBodyComponent(data.getBodyComponent()));
+        appendMsg("【皮电】:" + getSkinElectricity(data.getSkinElectricity()));
+    }
+
+    private String getBasePersonalInfo(MiniCheckupBasePersonalInfo personalInfo) {
+        if (personalInfo == null) return "不支持";
+        return "性别:" + personalInfo.getGender()
+                + " 年龄:" + personalInfo.getAge()
+                + " 身高:" + personalInfo.getHeight()
+                + " 体重:" + personalInfo.getWeight();
+    }
+
+    private String getBpDS(MiniCheckupBPAirPump bpAirPump) {
+        if (bpAirPump == null) return "不支持";
+        return bpAirPump.getDiastolicBloodPressure() + " - " + bpAirPump.getSystolicBloodPressure();
+    }
+
+    private String getBpDS(MiniCheckupBPPhotoelectric bpPhotoelectric) {
+        if (bpPhotoelectric == null) return "不支持";
+        return bpPhotoelectric.getDiastolicBloodPressure() + " - " + bpPhotoelectric.getSystolicBloodPressure();
+    }
+
+    public String getBloodComponent(MiniCheckupBloodComponent bloodComponent) {
+        if (bloodComponent == null) return "不支持";
+        return "尿酸:" + bloodComponent.getUricAcid()
+                + " 总胆固醇:" + bloodComponent.gettCHO()
+                + " 甘油三酸酯:" + bloodComponent.gettAG()
+                + " 高密度脂蛋白:" + bloodComponent.gethDL()
+                + " 低密度脂蛋白:" + bloodComponent.getlDL();
+    }
+
+    public String getSkinElectricity(MiniCheckupSkinElectricity skinElectricity) {
+        if (skinElectricity == null) return "不支持";
+        return "情绪:" + skinElectricity.getEmotion()
+                + " 皮肤含水量:" + skinElectricity.getSkinMoistureContent()
+                + " 抑郁症风险:" + skinElectricity.getDepressionRisk()
+                + " 交感神经活跃度:" + skinElectricity.getSympatheticActivity()
+                + " 皮质醇浓度:" + skinElectricity.getCortisolConcentration();
+    }
+
+    public String getBodyComponent(MiniCheckupBodyComponent bodyComponent) {
+        if (bodyComponent == null) return "不支持";
+        return "性别:" + bodyComponent.getGender()
+                + " 年龄:" + bodyComponent.getAge()
+                + " 身高:" + bodyComponent.getHeight()
+                + " 体重:" + bodyComponent.getWeight()
+                + " BMI:" + bodyComponent.getBMI()
+                + " 体脂率:" + bodyComponent.getBodyFatRate()
+                + " 脂肪量:" + bodyComponent.getFatRate()
+                + " 去脂体重:" + bodyComponent.getFFM()
+                + " 肌肉率:" + bodyComponent.getMuscleRate()
+                + " 肌肉量:" + bodyComponent.getMuscleMass()
+                + " 皮下脂肪:" + bodyComponent.getSubcutaneousFat()
+                + " 体内水分:" + bodyComponent.getBodyWater()
+                + " 含水量:" + bodyComponent.getWaterContent()
+                + " 骨骼肌率:" + bodyComponent.getSkeletalMuscleRate()
+                + " 骨量:" + bodyComponent.getBoneMass()
+                + " 蛋白质占比:" + bodyComponent.getProteinProportion()
+                + " 蛋白质量:" + bodyComponent.getProteinMass()
+                + " 基础代谢率:" + bodyComponent.getBasalMetabolicRate()
+                ;
+    }
+
+    private String getBloodGlucoseTypeDes(int type) {
+        switch (type) {
+            case 0:
+                return "不支持";
+            case 1:
+                return "Display Blood Glucose Value";
+            case 2:
+                return "Display Blood Glucose Risk Level";
+        }
+        return "未知";
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == btnStartMiniCheckup) {
+            sb.setLength(0);
+            VPOperateManager.getInstance().startMiniCheckup(code -> {
+                if (code == Code.REQUEST_SUCCESS) {
+                    appendMsg("✅️【Start] Micro-examination instruction written successfully！");
+                } else {
+                    appendMsg("⚠️【开始】微体检指令写入失败！");
+                }
+            }, this);
+        }
+        if (v == btnStopMiniCheckup) {
+            VPOperateManager.getInstance().stopMiniCheckup(code -> {
+                if (code == Code.REQUEST_SUCCESS) {
+                    appendMsg("✅️【停止】微体检指令写入成功！");
+                } else {
+                    appendMsg("⚠️【停止】微体检指令写入失败！");
+                }
+            }, this);
+        }
+
+        if (v == ivBack) {
+            finish();
+        }
+    }
+
+    private void appendMsg(String msg) {
+        sb.append(msg).append("\n");
+        tvMiniCheckupInfo.setText(sb.toString());
+    }
+
+}

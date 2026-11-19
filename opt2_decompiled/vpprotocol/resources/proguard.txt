@@ -1,0 +1,52 @@
+# 本文件为 consumer 混淆规则：随 vpprotocol AAR 一起提供给客户 App，在客户 App 混淆时生效。
+
+# libopusJni.so 为静态注册 JNI（符号 Java_vip_inode_demo_opusaudiodemo_utils_OpusUtils_*），
+# 类名/包名/方法名必须保留，否则客户 App 混淆后运行时报 UnsatisfiedLinkError
+-keep class vip.inode.demo.opusaudiodemo.utils.OpusUtils {
+    *;
+}
+
+# AI Opus 转 PCM 对外能力（管理器 + 回调接口）保持类名与方法名，便于客户实现回调与查阅文档
+-keep class com.veepoo.protocol.util.opus.AiOpus2PcmManager {
+    public protected *;
+}
+-keep class com.veepoo.protocol.listener.data.OnOpusDecode2PcmListener {
+    public protected *;
+}
+
+# AI 表盘预览图传输对外能力（管理器/裁剪/发送器 + 回调接口）保持类名与方法名
+-keep class com.veepoo.protocol.util.ai.** {
+    public protected *;
+}
+-keep class com.veepoo.protocol.AiDialPreviewManager {
+    public protected *;
+}
+-keep class com.veepoo.protocol.listener.data.OnAiDialPreviewSendListener {
+    public protected *;
+}
+
+# AI 功能操作类与错误码枚举（AIAppErrorCode / AIDeviceErrorCode）对外暴露，
+# 客户 App 通过 AIFunctionOpt.AIAppErrorCode.SUCCESS 等访问其枚举常量与 code 字段，
+# 混淆需完整保留。注意：枚举常量名必须用 -keepclassmembers enum 显式保留
+# （仅 -keep class ...$* 时 R8 仍可能将常量名混淆为 vp_a/vp_b 等短名）
+-keep class com.veepoo.protocol.operate.AIFunctionOpt {
+    public protected *;
+}
+-keep class com.veepoo.protocol.operate.AIFunctionOpt$AIAppErrorCode
+-keep class com.veepoo.protocol.operate.AIFunctionOpt$AIDeviceErrorCode
+-keepclassmembers enum com.veepoo.protocol.operate.AIFunctionOpt$AIAppErrorCode {
+    public *;
+}
+-keepclassmembers enum com.veepoo.protocol.operate.AIFunctionOpt$AIDeviceErrorCode {
+    public *;
+}
+
+# AI 功能核心回调接口（配置/问答/表盘/录音）由客户 App 实现，混淆需保留接口与方法名，
+# 否则客户实现类的方法签名与混淆后的接口不匹配，回调不触发
+-keep class com.veepoo.protocol.listener.data.IAiRecordListener { *; }
+-keep class com.veepoo.protocol.listener.data.OnAIConfigOptListener { *; }
+-keep class com.veepoo.protocol.listener.data.OnAIQAOptListener { *; }
+-keep class com.veepoo.protocol.listener.data.OnAIDialOptListener { *; }
+
+# AI 设备配置模型（onAIDeviceConfigRead 回调携带，客户读取字段）
+-keep class com.veepoo.protocol.model.datas.AIDeviceConfigBean { *; }

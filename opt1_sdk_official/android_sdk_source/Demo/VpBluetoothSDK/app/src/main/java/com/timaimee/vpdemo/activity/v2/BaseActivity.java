@@ -1,0 +1,188 @@
+package com.timaimee.vpdemo.activity.v2;
+
+import android.graphics.Color;
+import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.AbsoluteSizeSpan;
+import android.text.style.ForegroundColorSpan;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ScrollView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.gyf.immersionbar.ImmersionBar;
+import com.inuker.bluetooth.library.Code;
+import com.timaimee.vpdemo.R;
+import com.veepoo.protocol.VPOperateManager;
+import com.veepoo.protocol.listener.base.IBleWriteResponse;
+import com.veepoo.protocol.util.FunctionCheckUtil;
+
+public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
+
+    public TextView tvTitle = null;
+    public ImageView ivBack = null;
+
+    public VPOperateManager vpBleManager;
+    public FunctionCheckUtil fCheck;
+
+    public SpannableStringBuilder sb = new SpannableStringBuilder();
+    public TextView tvTestInfo = null;
+    public ScrollView svTestInfo = null;
+
+    public final IBleWriteResponse defaultResponse = code -> {
+        if (Code.REQUEST_SUCCESS == code) {
+            showToast(pageTitle() + " : 指令写入成功");
+        } else {
+            showToast(pageTitle() + " : 指令写入失败");
+        }
+    };
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(getLayoutID());
+        ImmersionBar.with(this)
+                .statusBarColorInt(Color.BLACK)      // 状态栏纯黑
+                .navigationBarColorInt(Color.BLACK)  // 可选：底部导航栏也黑
+                .statusBarDarkFont(true)   // 白色文字（必须false）
+                .fitsSystemWindows(true)             // 关键：不侵入布局
+                .init();
+        vpBleManager = VPOperateManager.getInstance();
+        fCheck = FunctionCheckUtil.getInstance(this);
+        initView();
+        initData();
+        initEvent();
+        tvTitle = findViewById(R.id.tvTitle);
+        ivBack = findViewById(R.id.ivBack);
+
+        if (hasCommonMsgUI()) {
+            initCommonUI();
+        }
+
+        if (tvTitle != null) {
+            tvTitle.setText(pageTitle());
+        }
+        ivBack.setOnClickListener(view -> finish());
+    }
+
+    public abstract int getLayoutID();
+
+    public abstract String pageTitle();
+
+    public abstract void initView();
+
+    public abstract void initData();
+
+    public abstract void initEvent();
+
+    public void showToast(String msg) {
+        runOnUiThread(() -> Toast.makeText(BaseActivity.this, msg, Toast.LENGTH_SHORT).show());
+    }
+
+    public void initCommonUI() {
+        svTestInfo = findViewById(R.id.svTestInfo);
+        tvTestInfo = findViewById(R.id.tvTestInfo);
+    }
+
+    public boolean hasCommonMsgUI() {
+        return false;
+    }
+
+    public void appendResult(String msg) {
+        if (!checkCommonUI()) return;
+        sb.append("\n").append(msg);
+        tvTestInfo.setText(sb.toString());
+        scrollToBottom();
+    }
+
+    // 添加 红色大号字体
+    public void appendRedLargeText(String msg) {
+        if (!checkCommonUI()) return;
+        SpannableString spannable = new SpannableString(msg + "\n");
+        // 红色
+        spannable.setSpan(new ForegroundColorSpan(Color.RED),
+                0, spannable.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        // 大号字体 20sp
+        spannable.setSpan(new AbsoluteSizeSpan(20, true),
+                0, spannable.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        sb.append(spannable);
+        tvTestInfo.setText(sb);
+        scrollToBottom();
+    }
+
+    // 添加 蓝色中号字体
+    public void appendBlueMiddleText(String msg) {
+        if (!checkCommonUI()) return;
+        SpannableString spannable = new SpannableString(msg + "\n");
+        // 蓝色
+        spannable.setSpan(new ForegroundColorSpan(Color.BLUE),
+                0, spannable.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        // 中号字体 16sp
+        spannable.setSpan(new AbsoluteSizeSpan(16, true),
+                0, spannable.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        sb.append(spannable);
+        tvTestInfo.setText(sb);
+        scrollToBottom();
+    }
+
+    /**
+     * The log automatically scrolls to the bottom after new entries are added, making it easy to view the latest messages.
+     */
+    private void scrollToBottom() {
+        if (svTestInfo != null) {
+            svTestInfo.post(() -> svTestInfo.fullScroll(View.FOCUS_DOWN));
+        }
+    }
+
+
+    public void clearTestInfo() {
+        if (!checkCommonUI()) return;
+        sb.clear();
+        tvTestInfo.setText("");
+    }
+
+    private boolean checkCommonUI(){
+        return hasCommonMsgUI() && tvTestInfo != null && svTestInfo != null;
+    }
+
+
+    protected boolean checkFunction(String functionName) {
+        boolean isSupport = true;
+        switch (functionName) {
+            case DeviceMenu.Health.BloodComponent -> isSupport = fCheck.checkBloodComponent();
+            case DeviceMenu.Health.BodyTemperature -> isSupport = fCheck.checkTemptureByApp();
+            case DeviceMenu.Health.BodyComponent -> isSupport = fCheck.checkBodyComponent();
+            case DeviceMenu.Health.MiniCheckUp -> isSupport = fCheck.checkMiniCheckup();
+            case DeviceMenu.Health.GSR -> isSupport = fCheck.checkGSR();
+            case DeviceMenu.Health.BloodGlucose -> isSupport = fCheck.checkBgAdjusting() || fCheck.checkBgMultipleAdjusting();
+            case DeviceMenu.Health.BloodPress -> isSupport = fCheck.checkBp();
+            case DeviceMenu.Health.ECG -> isSupport = fCheck.checkECG();
+            case DeviceMenu.Health.Fatigue -> isSupport = fCheck.checkFtg();
+            case DeviceMenu.Health.ECG_MULTI -> isSupport = fCheck.checkEcgMultiLead();
+            case DeviceMenu.Other.IMG_TXT_PUSH -> isSupport = fCheck.checkTextImagePush();
+            case DeviceMenu.Other.WORLD_CLOCK -> isSupport = fCheck.checkWorldClock();
+            case DeviceMenu.Other.WEATHER -> isSupport = fCheck.checkWeather();
+            case DeviceMenu.Other.PHOTOGRAPH -> isSupport = fCheck.checkCamera();
+            case DeviceMenu.Other.DEVICE_4G -> isSupport = fCheck.check4g();
+            case DeviceMenu.Other.DEVICE_ANTI_LOSS -> isSupport = fCheck.check4g();
+            case DeviceMenu.Other.CHECK_WEAR -> isSupport = fCheck.checkCheckWear();
+            case DeviceMenu.Switch.HEALTH_SUPPORT -> isSupport = fCheck.checkHealthAssessment();
+        }
+        if (!isSupport) {
+            showFunctionNotSupport(functionName);
+        }
+        return isSupport;
+    }
+
+    private void showFunctionNotSupport(String functionName) {
+        showToast( "The "+functionName +" function is currently not supported on this device");
+    }
+
+}

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/vTitle"
+        layout="@layout/layout_title_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvPushText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="推送文本"
+        android:textColor="@color/real_red"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vTitle" />
+
+    <EditText
+        android:id="@+id/etSendContent"
+        style="@style/ProtocolEditText"
+        android:layout_width="match_parent"
+        android:hint="请输入您推送的文本信息"
+        android:layout_margin="4dp"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvPushText" />
+
+    <Button
+        android:id="@+id/btnPushText"
+        style="@style/vpButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="40dp"
+        android:text="推送文本"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etSendContent" />
+
+    <TextView
+        android:id="@+id/tvPushImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="推送图片"
+        android:textColor="@color/real_red"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnPushText" />
+
+    <ImageView
+        android:id="@+id/ivWatchFace1"
+        android:background="#f2f2f2"
+        android:layout_width="156dp"
+        android:layout_height="180dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toStartOf="@id/ivWatchFace2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPushImage" />
+
+    <ImageView
+        android:id="@+id/ivWatchFace2"
+        android:layout_width="156dp"
+        android:layout_height="180dp"
+        android:background="#f2f2f2"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivWatchFace1"
+        app:layout_constraintTop_toBottomOf="@+id/tvPushImage" />
+
+    <RadioGroup
+        android:id="@+id/rbImageSelect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivWatchFace1">
+
+        <RadioButton
+            android:id="@+id/rbImage01"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_weight="1"
+            android:gravity="center" />
+
+        <RadioButton
+            android:id="@+id/rbImage02"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_weight="1"
+            android:gravity="center" />
+
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/etWidth"
+        style="@style/ProtocolEditText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/etHeight"
+        app:layout_constraintTop_toBottomOf="@id/rbImageSelect"
+        android:inputType="number"
+        android:hint="请输入裁剪宽"
+        android:layout_width="0dp"
+        android:layout_height="40dp"/>
+
+    <EditText
+        android:id="@+id/etHeight"
+        style="@style/ProtocolEditText"
+        app:layout_constraintStart_toEndOf="@id/etWidth"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rbImageSelect"
+        android:inputType="number"
+        android:hint="请输入裁剪高"
+        android:layout_width="0dp"
+        android:layout_height="40dp"/>
+
+    <Button
+        android:id="@+id/btnSelectImage"
+        style="@style/vpButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="40dp"
+        android:text="相册选择"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etWidth" />
+
+    <Button
+        android:id="@+id/btnPushImage"
+        style="@style/vpButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="40dp"
+        android:text="推送图片"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnSelectImage" />
+
+    <TextView
+        android:id="@+id/tvPushInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#000"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:text="推送图文信息"
+        android:textColor="#fff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnPushImage" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

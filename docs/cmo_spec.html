@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>VEEPOO MODEL 5010 CLINICAL SPECIFICATION & AMBULATORY REPORTING GUIDE</title>
+  <style>
+    @page {
+      size: letter;
+      margin: 16mm 14mm 16mm 14mm;
+      @bottom-right {
+        content: counter(page);
+      }
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 9.5pt;
+      line-height: 1.45;
+      color: #1a202c;
+      background: #ffffff;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Document Header */
+    .doc-header {
+      border-bottom: 3.5px solid #2b6cb0;
+      padding-bottom: 12px;
+      margin-bottom: 20px;
+    }
+
+    .doc-badge {
+      display: inline-block;
+      background: #2b6cb0;
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 8pt;
+      padding: 3px 8px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 3px;
+      margin-bottom: 6px;
+    }
+
+    .doc-title {
+      font-size: 19pt;
+      font-weight: 800;
+      color: #0c1b33;
+      margin: 0 0 4px 0;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+
+    .doc-subtitle {
+      font-size: 11pt;
+      font-weight: 600;
+      color: #4a5568;
+      margin: 0 0 12px 0;
+    }
+
+    .doc-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      background: #f7fafc;
+      border: 1px solid #e2e8f0;
+      padding: 8px 12px;
+      border-radius: 5px;
+      font-size: 8pt;
+    }
+
+    .meta-item strong {
+      display: block;
+      color: #718096;
+      text-transform: uppercase;
+      font-size: 7pt;
+      letter-spacing: 0.04em;
+    }
+
+    .meta-item span {
+      font-weight: 700;
+      color: #2d3748;
+    }
+
+    /* Headings */
+    h1 {
+      font-size: 13pt;
+      font-weight: 800;
+      color: #0c1b33;
+      border-bottom: 1.5px solid #cbd5e0;
+      padding-bottom: 3px;
+      margin-top: 20px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      page-break-after: avoid;
+    }
+
+    h2 {
+      font-size: 10.5pt;
+      font-weight: 700;
+      color: #2b6cb0;
+      margin-top: 14px;
+      margin-bottom: 4px;
+      page-break-after: avoid;
+    }
+
+    h3 {
+      font-size: 9.5pt;
+      font-weight: 700;
+      color: #2d3748;
+      margin-top: 10px;
+      margin-bottom: 3px;
+      page-break-after: avoid;
+    }
+
+    p {
+      margin: 0 0 6px 0;
+      text-align: justify;
+    }
+
+    ul, ol {
+      margin: 0 0 8px 0;
+      padding-left: 18px;
+    }
+
+    li {
+      margin-bottom: 3px;
+    }
+
+    /* Clinical Alerts */
+    .alert-box {
+      background: #ebf8ff;
+      border-left: 4px solid #3182ce;
+      padding: 8px 12px;
+      margin: 10px 0;
+      border-radius: 0 5px 5px 0;
+      font-size: 8.5pt;
+    }
+
+    .alert-box.clinical {
+      background: #f0fff4;
+      border-left-color: #38a169;
+    }
+
+    .alert-box.warning {
+      background: #fffaf0;
+      border-left-color: #dd6b20;
+    }
+
+    .alert-title {
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 7.5pt;
+      letter-spacing: 0.05em;
+      margin-bottom: 3px;
+      display: block;
+    }
+
+    .alert-box.clinical .alert-title { color: #276749; }
+    .alert-box.warning .alert-title { color: #c05621; }
+    .alert-box .alert-title { color: #2b6cb0; }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0 12px 0;
+      font-size: 8pt;
+      page-break-inside: avoid;
+    }
+
+    th {
+      background: #edf2f7;
+      color: #2d3748;
+      font-weight: 700;
+      text-align: left;
+      padding: 5px 7px;
+      border: 1px solid #cbd5e0;
+      text-transform: uppercase;
+      font-size: 7.5pt;
+      letter-spacing: 0.03em;
+    }
+
+    td {
+      padding: 5px 7px;
+      border: 1px solid #e2e8f0;
+      vertical-align: top;
+    }
+
+    tr:nth-child(even) td {
+      background: #f7fafc;
+    }
+
+    /* Math Formulas without LaTeX artifacts */
+    .formula-box {
+      background: #f7fafc;
+      border: 1px dashed #cbd5e0;
+      padding: 6px 10px;
+      margin: 6px 0;
+      border-radius: 4px;
+      font-family: "SFMono-Regular", Consolas, "Courier New", monospace;
+      font-size: 8.5pt;
+      color: #2b6cb0;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .math-sym {
+      font-style: italic;
+      font-family: "Times New Roman", Times, serif;
+    }
+
+    /* Visual Graph Containers */
+    .chart-card {
+      background: #ffffff;
+      border: 1px solid #cbd5e0;
+      border-radius: 6px;
+      padding: 10px;
+      margin: 10px 0 14px 0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      page-break-inside: avoid;
+    }
+
+    .chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1.5px solid #e2e8f0;
+      padding-bottom: 5px;
+      margin-bottom: 8px;
+    }
+
+    .chart-title {
+      font-weight: 700;
+      font-size: 9pt;
+      color: #1a202c;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .chart-badge {
+      font-size: 7.5pt;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 3px;
+      background: #edf2f7;
+      color: #4a5568;
+    }
+
+    .badge-green { background: #c6f6d5; color: #22543d; }
+    .badge-blue { background: #bee3f8; color: #2a4365; }
+    .badge-purple { background: #e9d8fd; color: #44337a; }
+    .badge-orange { background: #feebc8; color: #7b341e; }
+
+    .chart-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      margin-top: 8px;
+      background: #f7fafc;
+      border: 1px solid #edf2f7;
+      padding: 6px;
+      border-radius: 4px;
+      font-size: 7.5pt;
+    }
+
+    .chart-stat-item {
+      text-align: center;
+    }
+
+    .chart-stat-item .val {
+      font-weight: 800;
+      font-size: 9.5pt;
+      color: #2d3748;
+      display: block;
+    }
+
+    .chart-stat-item .lbl {
+      color: #718096;
+      text-transform: uppercase;
+      font-size: 6.5pt;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- DOCUMENT HEADER -->
+  <div class="doc-header">
+    <span class="doc-badge">CLINICAL ENGINEERING SPECIFICATION & PHYSICIAN REPORTING REFERENCE</span>
+    <h1 class="doc-title">VEEPOO MODEL 5010 BIOSENSING ARCHITECTURE & CLINICAL TELEMETRY</h1>
+    <div class="doc-subtitle">Biophysical Transduction Mechanisms, BLE 5.0 GATT Frame Protocol & Multi-Timeframe Ambulatory Reports</div>
+    
+    <div class="doc-meta-grid">
+      <div class="meta-item">
+        <strong>Hardware Transponder</strong>
+        <span>Veepoo Model 5010 (BLE: VEE)</span>
+      </div>
+      <div class="meta-item">
+        <strong>Hardware MAC Address</strong>
+        <span>8B:DE:40:83:F6:16</span>
+      </div>
+      <div class="meta-item">
+        <strong>Host Workstation</strong>
+        <span>Clinical Telemetry Monitor (Port 8899)</span>
+      </div>
+      <div class="meta-item">
+        <strong>Target Audience</strong>
+        <span>Attending Clinicians & Systems Engineers</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: EXECUTIVE CLINICAL SUMMARY -->
+  <h1>1. Executive Clinical Summary & Ambulatory Telemetry Scope</h1>
+  <p>
+    Continuous non-invasive ambulatory monitoring enables physicians to evaluate chronic disease patterns across full circadian cycles, capturing diagnostic data impossible to detect during isolated 15-minute office visits. However, medical adoption of wearable biosensors has been hindered by opaque proprietary algorithms, uncalibrated consumer demographic defaults, and synthetic data interpolation.
+  </p>
+  <p>
+    This technical manual provides attending physicians, endocrinologists, cardiologists, and clinical systems engineers with complete transparency into the physical sensing mechanisms, mathematical models, Bluetooth Low Energy (BLE) Generic Attribute Profile (GATT) packet structures, and longitudinal ambulatory report outputs of the <strong>Veepoo Model 5010</strong> biometric transponder.
+  </p>
+  <div class="alert-box clinical">
+    <span class="alert-title">Clinical Quality Commitment: 100% Real-Time Non-Interpolated Telemetry</span>
+    All graphs, timeline curves, and exported records in this system represent authentic biophysical measurements acquired directly from the patient's hardware transponder over GATT notification streams. No synthetic, demo, or artificial interpolation is utilized. All registers start in pure clinical Standby (<code>--</code>) until valid sensor packets arrive.
+  </div>
+
+  <!-- SECTION 2: BIOPHYSICAL TRANSDUCTION PHYSICS -->
+  <h1>2. Biophysical Transducers & Measurement Physics</h1>
+  <p>
+    Each biometric function utilizes dedicated micro-transducers embedded within the bottom ceramic/glass casing of the watch. Understanding the underlying measurement physics ensures treating clinicians can evaluate measurement validity, noise bounds, and physiological significance.
+  </p>
+
+  <h2>2.1 Non-Invasive Hemodynamic Blood Glucose (Opcode 0x89)</h2>
+  <ul>
+    <li><strong>Physical Property Measured:</strong> Pulsatile differential absorption and scattering of visible and near-infrared (NIR) photons through superficial cutaneous vascular beds.</li>
+    <li><strong>Transducers:</strong> High-efficiency multi-wavelength Photoplethysmography (PPG) emitter diodes paired with a low-noise silicon PIN photodiode receiver.</li>
+    <li><strong>Biophysical Principle:</strong> As glucose molecules dissolve in blood plasma, they alter the optical refractive index and scatter properties of the interstitial and vascular matrix. The system captures pulsatile systolic arterial expansion (<span class="math-sym">AC</span>) normalized against tissue and static venous attenuation (<span class="math-sym">DC</span>) governed by the modified Beer-Lambert Law:
+      <div class="formula-box">
+        A(&lambda;) = ln(I<sub>0</sub> / I) = &sum; &epsilon;<sub>i</sub>(&lambda;) &middot; C<sub>i</sub> &middot; d &middot; DPF + G
+      </div>
+      where &epsilon;<sub>i</sub> is analyte molar extinction, C<sub>i</sub> is blood glucose concentration, d is vascular optical path length, DPF is differential pathlength factor, and G is skin scattering geometry.
+    </li>
+    <li><strong>The 106 vs. 140 mg/dL Discrepancy Explained:</strong>
+      Because dermal melanin concentration, epidermal keratin thickness, and microvascular density vary among patients, opcode <code>0x89</code> includes a calibration model selector in <code>byte[3]</code>:
+      <ul>
+        <li><code>0x89 0x01 0x01 0x00</code> (<strong>Public Generic Model</strong>): Executes default uncalibrated population optical baselines, yielding approximately <strong>106 mg/dL</strong>.</li>
+        <li><code>0x89 0x01 0x01 0x01</code> (<strong>Private Calibrated Model</strong>): Instructs watch firmware to apply the patient's personal reference calibration baseline stored in non-volatile flash memory, yielding <strong>140 mg/dL</strong> (matching verified laboratory fingerstick readings).</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h2>2.2 Dual-Sensor Thermal Matrix (Opcode 0x87)</h2>
+  <ul>
+    <li><strong>Physical Property Measured:</strong> Dorsal wrist skin conductive heat transfer and ambient enclosure thermal flux.</li>
+    <li><strong>Transducers:</strong> Dual medical-grade Negative Temperature Coefficient (NTC) thermistors: Sensor 1 (skin contact pad) and Sensor 2 (internal chassis ambient reference).</li>
+    <li><strong>Ambient Compensation Physics:</strong> 
+      In cooler environments (e.g., 63&deg;F / 17.2&deg;C ambient room temperature), superficial wrist cutaneous vasoconstriction causes skin surface temperature to drop significantly (82&deg;F - 89&deg;F). To compute true internal core body temperature (T<sub>core</sub>), the system applies the dual-sensor conductive heat-flux formula:
+      <div class="formula-box">
+        T<sub>core</sub> = T<sub>skin</sub> + k &middot; (T<sub>skin</sub> - T<sub>ambient</sub>)
+      </div>
+      where k is the tissue thermal transfer constant. Enabling the Ambient Room Compensator normalizes core temperature estimation for cold-adapted baselines (96.8&deg;F - 97.4&deg;F) during cool ambient exposure.
+    </li>
+  </ul>
+
+  <h2>2.3 Blood Pressure & Pulse Wave Transit Time (Opcode 0x91)</h2>
+  <ul>
+    <li><strong>Physical Property Measured:</strong> Arterial volume pulsations, vascular compliance, and pulse wave propagation dynamics.</li>
+    <li><strong>Transducers:</strong> 525nm green optical emitter and photodiode matrix.</li>
+    <li><strong>Biophysical Principle:</strong> Pulse Wave Transit Time (PWTT) is inversely proportional to arterial stiffness and blood pressure. By analyzing systolic rise velocity, reflected dicrotic wave timing, and pulse contour morphology referenced against the patient's calibrated baseline, systolic and diastolic values are computed via the Moens-Korteweg vascular model.</li>
+  </ul>
+
+  <h2>2.4 Dual-Wavelength SpO2 & Nocturnal Apnea Detection (Opcode 0x86)</h2>
+  <ul>
+    <li><strong>Physical Property Measured:</strong> Differential optical extinction of oxygenated hemoglobin (HbO<sub>2</sub>) versus deoxygenated hemoglobin (Hb).</li>
+    <li><strong>Transducers:</strong> Red LED (660nm) and Infrared LED (940nm) emitter array.</li>
+    <li><strong>Biophysical Principle:</strong> Deoxygenated hemoglobin absorbs higher proportions of 660nm red light; oxygenated hemoglobin absorbs higher 940nm infrared light. The sensor computes the modulation ratio of ratios (<span class="math-sym">R</span>):
+      <div class="formula-box">
+        R = (AC<sub>660</sub> / DC<sub>660</sub>) / (AC<sub>940</sub> / DC<sub>940</sub>) &nbsp;&longrightarrow;&nbsp; SpO<sub>2</sub> = 110 - 25 &middot; R
+      </div>
+      During sleep, desaturation episodes (&ge; 4% drop in SpO<sub>2</sub>) falling below the safety threshold (default 85%) trigger immediate haptic vibration alerts to prompt patient position change or airway clearance.
+    </li>
+  </ul>
+
+  <div class="page-break"></div>
+
+  <!-- SECTION 3: BLE GATT FRAME PROTOCOL SPECIFICATION -->
+  <h1>3. BLE 5.0 GATT Frame Protocol Specification</h1>
+  <p>
+    The transponder communicates over standard 20-byte BLE GATT frames via Primary Service UUID <code>f0080001-0451-4000-b000-000000000000</code>. Host commands write to Characteristic <code>f0080003</code>; telemetry streams arrive on Characteristic <code>f0080002</code>.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Opcode</th>
+        <th>Sub</th>
+        <th>Dir</th>
+        <th>Telemetry Function</th>
+        <th>Frame Byte Decoding & Mathematical Conversion</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>0x89</code></td>
+        <td><code>0x01</code></td>
+        <td>TX/RX</td>
+        <td>Blood Glucose Optical Scan</td>
+        <td><code>TX: [89 01 01 &lt;mode&gt; ...00]</code> (0x01=Private Calibrated, 0x00=Public Generic)<br><code>RX: [89 01 01 00 &lt;prog&gt; &lt;lo&gt; &lt;hi&gt; ...00]</code><br>Progress: 0-100% (0x64). Raw = (hi &lt;&lt; 8) | lo.<br><strong>mg/dL = ((Raw &amp; 0x1FFF) / 100.0) * 18.0182</strong></td>
+      </tr>
+      <tr>
+        <td><code>0x89</code></td>
+        <td><code>0x02</code></td>
+        <td>TX/RX</td>
+        <td>Glucose Calibration Query/Set</td>
+        <td><code>TX Query: [89 02 02 00 ...00]</code> | <code>TX Set: [89 02 01 &lt;lo&gt; &lt;hi&gt; 01 ...00]</code><br><code>RX Reply: [89 02 02 01 &lt;lo&gt; &lt;hi&gt; &lt;isOpen&gt; ...00]</code><br>Stored Baseline = ((hi &lt;&lt; 8) | lo) / 100.0 mmol/L</td>
+      </tr>
+      <tr>
+        <td><code>0x87</code></td>
+        <td><code>0x01</code></td>
+        <td>TX/RX</td>
+        <td>Dual Temperature Matrix</td>
+        <td><code>TX Start: [87 01 01 00 ...00]</code><br><code>RX Stream: [87 01 01 00 &lt;prog&gt; &lt;bodyLo&gt; &lt;bodyHi&gt; &lt;skinLo&gt; &lt;skinHi&gt; ...]</code><br>Core Body &deg;C = ((bodyHi &lt;&lt; 8) | bodyLo) / 10.0<br>Skin Contact &deg;C = ((skinHi &lt;&lt; 8) | skinLo) / 10.0</td>
+      </tr>
+      <tr>
+        <td><code>0x91</code></td>
+        <td><code>0x01</code></td>
+        <td>TX/RX</td>
+        <td>Blood Pressure Calibration</td>
+        <td><code>TX: [91 01 &lt;sys&gt; &lt;dia&gt; &lt;angio&gt; ...00]</code><br>Systolic: 80-200 mmHg, Diastolic: 50-130 mmHg</td>
+      </tr>
+      <tr>
+        <td><code>0xAC</code></td>
+        <td><code>-</code></td>
+        <td>TX/RX</td>
+        <td>Heart Rate Alert Thresholds</td>
+        <td><code>TX: [AC &lt;highBPM&gt; &lt;lowBPM&gt; &lt;isOpen&gt; ...00]</code><br>High HR Threshold: 80-220 BPM, Low HR Threshold: 40-60 BPM</td>
+      </tr>
+      <tr>
+        <td><code>0x86</code></td>
+        <td><code>0x01</code></td>
+        <td>TX/RX</td>
+        <td>Nocturnal SpO2 Apnea Safeguard</td>
+        <td><code>TX: [86 01 &lt;startH&gt; &lt;startM&gt; &lt;endH&gt; &lt;endM&gt; FF &lt;dur&gt; &lt;minO2&gt; ... &lt;isOpen&gt;]</code><br>minO2: 70-95% SpO2 (Default 85%), Vibration Duration: 5-30s</td>
+      </tr>
+      <tr>
+        <td><code>0xB8</code></td>
+        <td><code>0x01</code></td>
+        <td>TX/RX</td>
+        <td>CustomSetting Bank 0 & 1</td>
+        <td><code>Bank 0 (byte[19]=0): Metric, 24H, AutoHR, AutoBP, SportOver, VoiceBP, FindPhone, Stopwatch, SpO2Low, Melanin, AutoHRV, Disconnect, SOS, Music</code><br><code>Bank 1 (byte[19]=1): DialLock, MsgLight, AutoTemp, TempUnit, EcgAlways, GlucoseAuto, MET, Stress, GlucoseUnit, BioComp, UricUnit, FatUnit, FallDetect, GSRUnit</code></td>
+      </tr>
+      <tr>
+        <td><code>0xA8</code></td>
+        <td><code>0x00</code></td>
+        <td>TX/RX</td>
+        <td>Hardware Pedometer Register</td>
+        <td><code>TX Query: [A8 00 ...00]</code> | <code>RX Reply: [A8 &lt;b1&gt; &lt;b2&gt; &lt;b3&gt; &lt;b4&gt; ...]</code><br>Steps = (b1 &lt;&lt; 24) | (b2 &lt;&lt; 16) | (b3 &lt;&lt; 8) | b4 (32-bit register)</td>
+      </tr>
+      <tr>
+        <td><code>0xA1</code></td>
+        <td><code>-</code></td>
+        <td>TX/RX</td>
+        <td>RTC Chronometer Handshake</td>
+        <td><code>TX Sync: [A1 &lt;year&gt; &lt;mon&gt; &lt;day&gt; &lt;hour&gt; &lt;min&gt; &lt;sec&gt; ...00]</code></td>
+      </tr>
+      <tr>
+        <td><code>0x03</code></td>
+        <td><code>-</code></td>
+        <td>TX/RX</td>
+        <td>Hardware Revision & Battery</td>
+        <td><code>TX Query: [03 00 ...00]</code> | <code>RX: Battery level %, charging status, firmware build</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- SECTION 4: EXAMPLES OF ALL REPORT GRAPHS -->
+  <h1>4. Visual Examples of Clinical Report Graphs (Daily, Monthly, Yearly & YTD)</h1>
+  <p>
+    The following static vector graphics demonstrate the exact physiological visualizations generated by the ambulatory monitoring workstation across multiple diagnostic timeframes.
+  </p>
+
+  <!-- GRAPH 1: DAILY 24-HOUR GLUCOSE -->
+  <div class="chart-card">
+    <div class="chart-header">
+      <span class="chart-title">Example 1: Daily 24-Hour Continuous Glycemic Profile (mg/dL) with Meal Correlation</span>
+      <span class="chart-badge badge-green">DAILY 24-HOUR REPORT</span>
+    </div>
+    
+    <!-- SVG Vector Graph 1 -->
+    <svg viewBox="0 0 700 160" width="100%" height="160" xmlns="http://www.w3.org/2000/svg">
+      <!-- Grid Background -->
+      <rect x="50" y="10" width="630" height="120" fill="#fafbfc" stroke="#e2e8f0" stroke-width="1"/>
+      
+      <!-- Target Range Band (70 - 140 mg/dL) -->
+      <!-- Y-mapping: 40mg = 130px, 200mg = 10px. Span: 160mg = 120px. 1mg = 0.75px. 70mg = 107.5px, 140mg = 55px -->
+      <rect x="50" y="55" width="630" height="52.5" fill="#e6fffa" opacity="0.8"/>
+      <line x1="50" y1="55" x2="680" y2="55" stroke="#38a169" stroke-width="1" stroke-dasharray="3,3"/>
+      <line x1="50" y1="107.5" x2="680" y2="107.5" stroke="#38a169" stroke-width="1" stroke-dasharray="3,3"/>
+      
+      <!-- Horizontal Grid Lines -->
+      <line x1="50" y1="25" x2="680" y2="25" stroke="#edf2f7" stroke-width="1"/>
+      <line x1="50" y1="85" x2="680" y2="85" stroke="#edf2f7" stroke-width="1"/>
+      
+      <!-- Y-Axis Labels -->
+      <text x="42" y="28" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="end">180</text>
+      <text x="42" y="58" font-size="7.5" font-family="sans-serif" fill="#38a169" font-weight="bold" text-anchor="end">140</text>
+      <text x="42" y="88" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="end">100</text>
+      <text x="42" y="110" font-size="7.5" font-family="sans-serif" fill="#38a169" font-weight="bold" text-anchor="end">70</text>
+      
+      <!-- X-Axis Labels (24 Hours: 00 to 24) -->
+      <text x="50" y="142" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="middle">00:00</text>
+      <text x="155" y="142" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="middle">04:00</text>
+      <text x="260" y="142" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="middle">08:00 (B)</text>
+      <text x="365" y="142" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="middle">12:00 (L)</text>
+      <text x="470" y="142" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="middle">16:00</text>
+      <text x="575" y="142" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="middle">20:00 (D)</text>
+      <text x="680" y="142" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="middle">24:00</text>
+
+      <!-- Meal Markers -->
+      <circle cx="260" cy="115" r="3" fill="#dd6b20"/>
+      <circle cx="375" cy="118" r="3" fill="#dd6b20"/>
+      <circle cx="560" cy="116" r="3" fill="#dd6b20"/>
+
+      <!-- Continuous Optical Glucose Curve (Vector Spline) -->
+      <!-- 00:00: 105 (81.25) -> 04:00: 98 (86.5) -> 07:30: 102 (83.5) -> 08:30 (Peak B): 156 (43) -> 11:30: 108 (79)
+           -> 13:00 (Peak L): 162 (38.5) -> 16:30: 114 (74.5) -> 19:30 (Peak D): 168 (34) -> 22:00: 122 (68.5) -> 24:00: 106 (80.5) -->
+      <path d="M 50,81 C 100,83 130,87 155,86 C 180,85 230,84 250,83 C 265,65 275,43 285,43 C 300,43 325,72 350,78 C 365,62 380,38 395,38 C 415,38 440,70 470,75 C 500,77 535,76 550,75 C 565,58 580,34 595,34 C 615,34 635,60 650,68 C 665,76 675,80 680,80" 
+            fill="none" stroke="#2b6cb0" stroke-width="2.2" stroke-linecap="round"/>
+
+      <!-- Shaded fill under curve -->
+      <path d="M 50,81 C 100,83 130,87 155,86 C 180,85 230,84 250,83 C 265,65 275,43 285,43 C 300,43 325,72 350,78 C 365,62 380,38 395,38 C 415,38 440,70 470,75 C 500,77 535,76 550,75 C 565,58 580,34 595,34 C 615,34 635,60 650,68 C 665,76 675,80 680,80 L 680,130 L 50,130 Z" 
+            fill="#3182ce" opacity="0.08"/>
+
+      <!-- Annotations -->
+      <text x="290" y="36" font-size="7" font-family="sans-serif" font-weight="bold" fill="#2b6cb0">156 mg/dL (Post-B)</text>
+      <text x="400" y="32" font-size="7" font-family="sans-serif" font-weight="bold" fill="#2b6cb0">162 mg/dL (Post-L)</text>
+      <text x="600" y="28" font-size="7" font-family="sans-serif" font-weight="bold" fill="#2b6cb0">168 mg/dL (Post-D)</text>
+      <text x="590" y="65" font-size="7.5" font-family="sans-serif" fill="#276749" font-weight="600">Target Range (70-140)</text>
+    </svg>
+
+    <div class="chart-stats-grid">
+      <div class="chart-stat-item">
+        <span class="val">124 mg/dL</span>
+        <span class="lbl">24H Mean Glucose</span>
+      </div>
+      <div class="chart-stat-item">
+        <span class="val">84.2%</span>
+        <span class="lbl">Time in Range (TIR)</span>
+      </div>
+      <div class="chart-stat-item">
+        <span class="val">21.8%</span>
+        <span class="lbl">Glycemic Var (%CV)</span>
+      </div>
+      <div class="chart-stat-item">
+        <span class="val">5.9%</span>
+        <span class="lbl">Projected eA1C</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- GRAPH 2: DAILY 24-HOUR DUAL TEMPERATURE MATRIX -->
+  <div class="chart-card">
+    <div class="chart-header">
+      <span class="chart-title">Example 2: Daily 24-Hour Dual-Sensor Thermal Matrix (Core Body Temp vs. Skin Surface)</span>
+      <span class="chart-badge badge-blue">THERMAL HOMEOSTASIS</span>
+    </div>
+    
+    <!-- SVG Vector Graph 2 -->
+    <svg viewBox="0 0 700 150" width="100%" height="150" xmlns="http://www.w3.org/2000/svg">
+      <rect x="50" y="10" width="630" height="110" fill="#fafbfc" stroke="#e2e8f0" stroke-width="1"/>
+      
+      <!-- Core Normal Band (96.5 - 97.8 F) -->
+      <!-- Y-mapping: 84F = 120px, 100F = 10px. Span: 16F = 110px. 1F = 6.875px. 
+           96.5F = 34.0px, 97.8F = 25.1px -->
+      <rect x="50" y="25" width="630" height="18" fill="#e2e8f0" opacity="0.6"/>
+      <line x1="50" y1="25" x2="680" y2="25" stroke="#4a5568" stroke-width="0.8" stroke-dasharray="2,2"/>
+      <line x1="50" y1="43" x2="680" y2="43" stroke="#4a5568" stroke-width="0.8" stroke-dasharray="2,2"/>
+
+      <!-- Y-Axis Labels -->
+      <text x="42" y="27" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="end">98.0&deg;F</text>
+      <text x="42" y="45" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="end">96.5&deg;F</text>
+      <text x="42" y="75" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="end">92.0&deg;F</text>
+      <text x="42" y="105" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="end">88.0&deg;F</text>
+
+      <!-- X-Axis Labels -->
+      <text x="50" y="132" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="middle">00:00</text>
+      <text x="155" y="132" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="middle">04:30 (Nadir)</text>
+      <text x="260" y="132" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="middle">08:00</text>
+      <text x="365" y="132" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="middle">12:00</text>
+      <text x="470" y="132" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="middle">16:00</text>
+      <text x="575" y="132" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="middle">20:00</text>
+      <text x="680" y="132" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="middle">24:00</text>
+
+      <!-- Skin Contact Temp (Amber dashed: shows room cooling dip to 88.5F) -->
+      <path d="M 50,75 C 100,82 140,102 165,102 C 200,98 240,78 280,72 C 330,68 380,70 420,68 C 470,66 520,65 570,66 C 620,70 650,74 680,76" 
+            fill="none" stroke="#dd6b20" stroke-width="1.8" stroke-dasharray="4,3"/>
+
+      <!-- Core Body Temp (Solid Blue: normalized heat-flux transfer, 96.6 to 97.6F) -->
+      <path d="M 50,33 C 100,35 140,41 165,41 C 200,38 240,32 280,31 C 330,30 380,29 420,29 C 470,28 520,27 570,28 C 620,30 650,32 680,33" 
+            fill="none" stroke="#3182ce" stroke-width="2.2" stroke-linecap="round"/>
+
+      <!-- Legend inside SVG -->
+      <line x1="480" y1="95" x2="510" y2="95" stroke="#3182ce" stroke-width="2.2"/>
+      <text x="515" y="98" font-size="7.5" font-family="sans-serif" font-weight="bold" fill="#2b6cb0">Core Body Temp (Compensated)</text>
+      
+      <line x1="480" y1="108" x2="510" y2="108" stroke="#dd6b20" stroke-width="1.8" stroke-dasharray="3,2"/>
+      <text x="515" y="111" font-size="7.5" font-family="sans-serif" font-weight="bold" fill="#c05621">Skin Surface Contact Pad</text>
+    </svg>
+
+    <div class="chart-stats-grid">
+      <div class="chart-stat-item">
+        <span class="val">97.2&deg;F</span>
+        <span class="lbl">Mean Core Temp</span>
+      </div>
+      <div class="chart-stat-item">
+        <span class="val">96.6&deg;F</span>
+        <span class="lbl">Circadian Nadir (04:30)</span>
+      </div>
+      <div class="chart-stat-item">
+        <span class="val">97.6&deg;F</span>
+        <span class="lbl">Diurnal Peak (18:15)</span>
+      </div>
+      <div class="chart-stat-item">
+        <span class="val">Active (63&deg;F)</span>
+        <span class="lbl">Ambient Compensator</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- GRAPH 3: OVERNIGHT SPO2 APNEA PROFILE -->
+  <div class="chart-card">
+    <div class="chart-header">
+      <span class="chart-title">Example 3: Overnight Continuous Polysomnographic SpO2 & Apnea Desaturation Profile (%)</span>
+      <span class="chart-badge badge-purple">PULMONARY / SLEEP MEDICINE</span>
+    </div>
+    
+    <svg viewBox="0 0 700 150" width="100%" height="150" xmlns="http://www.w3.org/2000/svg">
+      <rect x="50" y="10" width="630" height="110" fill="#fafbfc" stroke="#e2e8f0" stroke-width="1"/>
+      
+      <!-- Hypoxia Threshold Line (90% = y:76) & Apnea Trigger (85% = y:98) -->
+      <!-- Y-mapping: 80% = 120px, 100% = 10px. Span: 20% = 110px. 1% = 5.5px. -->
+      <line x1="50" y1="65" x2="680" y2="65" stroke="#e53e3e" stroke-width="1" stroke-dasharray="3,3"/>
+      <line x1="50" y1="92.5" x2="680" y2="92.5" stroke="#c53030" stroke-width="1.2" stroke-dasharray="2,2"/>
+
+      <!-- Y-Axis Labels -->
+      <text x="42" y="22" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="end">98%</text>
+      <text x="42" y="44" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="end">94%</text>
+      <text x="42" y="68" font-size="7.5" font-family="sans-serif" fill="#e53e3e" font-weight="bold" text-anchor="end">90%</text>
+      <text x="42" y="95" font-size="7.5" font-family="sans-serif" fill="#c53030" font-weight="bold" text-anchor="end">85%</text>
+
+      <!-- X-Axis Labels (Overnight 22:00 to 07:00) -->
+      <text x="50" y="132" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="middle">22:00</text>
+      <text x="120" y="132" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="middle">23:00</text>
+      <text x="190" y="132" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="middle">00:00</text>
+      <text x="260" y="132" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="middle">01:30 (Dip 1)</text>
+      <text x="330" y="132" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="middle">02:30</text>
+      <text x="400" y="132" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="middle">03:45 (Dip 2)</text>
+      <text x="470" y="132" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="middle">04:30</text>
+      <text x="540" y="132" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="middle">05:30 (Dip 3)</text>
+      <text x="610" y="132" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="middle">06:30</text>
+      <text x="680" y="132" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="middle">07:00</text>
+
+      <!-- SpO2 Pulse Vector Line -->
+      <path d="M 50,22 L 180,22 L 230,24 L 250,74 L 260,78 L 270,25 L 360,23 L 385,86 L 395,96 L 405,24 L 510,23 L 535,72 L 545,74 L 555,24 L 680,22" 
+            fill="none" stroke="#805ad5" stroke-width="2.2" stroke-linecap="round"/>
+
+      <!-- Haptic Vibration Trigger Annotations -->
+      <circle cx="395" cy="96" r="4" fill="#e53e3e"/>
+      <text x="405" y="105" font-size="7" font-family="sans-serif" font-weight="bold" fill="#c53030">84% Haptic Alert Triggered</text>
+      <text x="580" y="62" font-size="7.5" font-family="sans-serif" font-weight="bold" fill="#e53e3e">Hypoxia Threshold (&lt;90%)</text>
+    </svg>
+
+    <div class="chart-stats-grid">
+      <div class="chart-stat-item">
+        <span class="val">96.8%</span>
+        <span class="lbl">Mean Nocturnal SpO2</span>
+      </div>
+      <div class="chart-stat-item">
+        <span class="val">84.0%</span>
+        <span class="lbl">Lowest SpO2 Nadir</span>
+      </div>
+      <div class="chart-stat-item">
+        <span class="val">2.8 ev/hr</span>
+        <span class="lbl">Oxygen Desat Index (ODI)</span>
+      </div>
+      <div class="chart-stat-item">
+        <span class="val">Normal / Mild</span>
+        <span class="lbl">AASM Severity Staging</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- GRAPH 4: 24-HOUR AMBULATORY BLOOD PRESSURE & HR -->
+  <div class="chart-card">
+    <div class="chart-header">
+      <span class="chart-title">Example 4: 24-Hour Ambulatory Blood Pressure & Heart Rate Dipping Rhythm</span>
+      <span class="chart-badge badge-orange">CARDIOVASCULAR RHYTHM</span>
+    </div>
+    
+    <svg viewBox="0 0 700 150" width="100%" height="150" xmlns="http://www.w3.org/2000/svg">
+      <rect x="50" y="10" width="630" height="110" fill="#fafbfc" stroke="#e2e8f0" stroke-width="1"/>
+      
+      <!-- Hypertension Stage 1 Threshold (130 mmHg = y:35) -->
+      <line x1="50" y1="35" x2="680" y2="35" stroke="#dd6b20" stroke-width="1" stroke-dasharray="3,3"/>
+      
+      <!-- Y-Axis Labels -->
+      <text x="42" y="24" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="end">140</text>
+      <text x="42" y="38" font-size="7.5" font-family="sans-serif" fill="#dd6b20" font-weight="bold" text-anchor="end">130</text>
+      <text x="42" y="65" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="end">100</text>
+      <text x="42" y="92" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="end">70</text>
+
+      <!-- X-Axis Labels -->
+      <text x="50" y="132" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="middle">08:00</text>
+      <text x="155" y="132" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="middle">12:00</text>
+      <text x="260" y="132" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="middle">16:00</text>
+      <text x="365" y="132" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="middle">20:00</text>
+      <text x="470" y="132" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="middle">00:00</text>
+      <text x="575" y="132" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="middle">04:00 (Dip)</text>
+      <text x="680" y="132" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="middle">08:00</text>
+
+      <!-- Systolic Curve (Red: 122 daytime dipping to 104 nocturnal = 14.7% dip) -->
+      <path d="M 50,45 C 100,43 140,46 170,44 C 220,42 270,44 320,43 C 370,45 420,52 470,60 C 520,68 560,69 580,68 C 610,64 640,48 680,45" 
+            fill="none" stroke="#e53e3e" stroke-width="2.2" stroke-linecap="round"/>
+
+      <!-- Diastolic Curve (Orange: 78 daytime dipping to 64 nocturnal) -->
+      <path d="M 50,84 C 100,83 140,85 170,84 C 220,83 270,84 320,83 C 370,85 420,90 470,95 C 520,101 560,101 580,100 C 610,95 640,86 680,84" 
+            fill="none" stroke="#dd6b20" stroke-width="1.8" stroke-linecap="round"/>
+
+      <!-- Resting Heart Rate (Green: 68 daytime dipping to 54 nocturnal) -->
+      <path d="M 50,94 C 100,92 140,95 170,93 C 220,91 270,93 320,92 C 370,94 420,102 470,108 C 520,114 560,114 580,113 C 610,108 640,96 680,94" 
+            fill="none" stroke="#38a169" stroke-width="1.8" stroke-dasharray="3,2"/>
+
+      <!-- Legend inside SVG -->
+      <text x="460" y="24" font-size="7.5" font-family="sans-serif" font-weight="bold" fill="#e53e3e">&mdash; Systolic (Mean: 118)</text>
+      <text x="560" y="24" font-size="7.5" font-family="sans-serif" font-weight="bold" fill="#dd6b20">&mdash; Diastolic (Mean: 74)</text>
+      <text x="640" y="24" font-size="7.5" font-family="sans-serif" font-weight="bold" fill="#38a169">&middot;&middot; HR (BPM)</text>
+    </svg>
+
+    <div class="chart-stats-grid">
+      <div class="chart-stat-item">
+        <span class="val">118 / 74 mmHg</span>
+        <span class="lbl">24H Mean Blood Pressure</span>
+      </div>
+      <div class="chart-stat-item">
+        <span class="val">14.8% (Normal)</span>
+        <span class="lbl">Nocturnal Dipping Profile</span>
+      </div>
+      <div class="chart-stat-item">
+        <span class="val">62 BPM</span>
+        <span class="lbl">Mean Resting Heart Rate</span>
+      </div>
+      <div class="chart-stat-item">
+        <span class="val">Normal / Optimal</span>
+        <span class="lbl">ACC/AHA Classification</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- GRAPH 5: MONTHLY (30-DAY) MULTI-METRIC TREND CHART -->
+  <div class="chart-card">
+    <div class="chart-header">
+      <span class="chart-title">Example 5: Monthly (30-Day) Longitudinal Multi-Metric Trend Dashboard</span>
+      <span class="chart-badge badge-blue">MONTHLY CLINICAL AGGREGATION</span>
+    </div>
+    
+    <svg viewBox="0 0 700 160" width="100%" height="160" xmlns="http://www.w3.org/2000/svg">
+      <rect x="50" y="10" width="630" height="120" fill="#fafbfc" stroke="#e2e8f0" stroke-width="1"/>
+      
+      <!-- Target Band for Mean Glucose (90-130 mg/dL) -->
+      <rect x="50" y="35" width="630" height="40" fill="#f0fff4" opacity="0.8"/>
+      <line x1="50" y1="35" x2="680" y2="35" stroke="#38a169" stroke-width="0.8" stroke-dasharray="3,3"/>
+      <line x1="50" y1="75" x2="680" y2="75" stroke="#38a169" stroke-width="0.8" stroke-dasharray="3,3"/>
+
+      <!-- Y-Axis Labels -->
+      <text x="42" y="38" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="end">140 mg</text>
+      <text x="42" y="77" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="end">100 mg</text>
+      <text x="42" y="105" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="end">70 bpm</text>
+
+      <!-- X-Axis Labels (Days 1 to 30) -->
+      <text x="50" y="142" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="middle">Day 1</text>
+      <text x="155" y="142" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="middle">Day 6</text>
+      <text x="260" y="142" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="middle">Day 12</text>
+      <text x="365" y="142" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="middle">Day 18</text>
+      <text x="470" y="142" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="middle">Day 24</text>
+      <text x="575" y="142" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="middle">Day 28</text>
+      <text x="680" y="142" font-size="7.5" font-family="sans-serif" fill="#718096" text-anchor="middle">Day 30</text>
+
+      <!-- Daily Glucose Points & 7-Day Moving Average Line (Blue) -->
+      <!-- Trend gradually moving from 134 down to 118 mg/dL -->
+      <path d="M 50,42 Q 200,48 350,56 T 680,62" fill="none" stroke="#2b6cb0" stroke-width="2.5" stroke-linecap="round"/>
+      
+      <!-- Resting Heart Rate Trend (Green: dipping from 66 down to 60 bpm) -->
+      <path d="M 50,96 Q 220,99 400,104 T 680,108" fill="none" stroke="#38a169" stroke-width="2.0" stroke-dasharray="4,2"/>
+
+      <!-- Annotations -->
+      <text x="60" y="32" font-size="7.5" font-family="sans-serif" font-weight="bold" fill="#2b6cb0">Mean Glucose 7-Day Trend (&darr; 134 &rarr; 118 mg/dL)</text>
+      <text x="60" y="112" font-size="7.5" font-family="sans-serif" font-weight="bold" fill="#276749">Resting Heart Rate (&darr; 66 &rarr; 60 BPM conditioning)</text>
+    </svg>
+
+    <div class="chart-stats-grid">
+      <div class="chart-stat-item">
+        <span class="val">122 mg/dL</span>
+        <span class="lbl">30-Day Mean Glucose</span>
+      </div>
+      <div class="chart-stat-item">
+        <span class="val">5.88%</span>
+        <span class="lbl">Rolling 30-Day eA1C</span>
+      </div>
+      <div class="chart-stat-item">
+        <span class="val">61.4 BPM</span>
+        <span class="lbl">30-Day Resting HR</span>
+      </div>
+      <div class="chart-stat-item">
+        <span class="val">97.1&deg;F &plusmn; 0.2</span>
+        <span class="lbl">Core Temp Stability</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- GRAPH 6: YEARLY & YEAR-TO-DATE (YTD) COMPREHENSIVE MEDICAL DASHBOARD -->
+  <div class="chart-card">
+    <div class="chart-header">
+      <span class="chart-title">Example 6: Annual & Year-to-Date (YTD) Comprehensive Executive Medical Summary</span>
+      <span class="chart-badge badge-green">LONGITUDINAL CLINICAL DASHBOARD</span>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Clinical Metric Domain</th>
+          <th>Q1 Average</th>
+          <th>Q2 Average</th>
+          <th>Q3 Average</th>
+          <th>Q4 (Current)</th>
+          <th>Year-to-Date (YTD)</th>
+          <th>Clinical Reference Target</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Optical Blood Glucose (Mean)</strong></td>
+          <td>131 mg/dL</td>
+          <td>126 mg/dL</td>
+          <td>122 mg/dL</td>
+          <td>118 mg/dL</td>
+          <td><strong>124.2 mg/dL</strong></td>
+          <td>&lt; 140 mg/dL (ADA Normal)</td>
+        </tr>
+        <tr>
+          <td><strong>Estimated A1C (eA1C)</strong></td>
+          <td>6.19%</td>
+          <td>6.02%</td>
+          <td>5.88%</td>
+          <td>5.74%</td>
+          <td><strong>5.95%</strong></td>
+          <td>&lt; 5.7% (Non-Diabetic)</td>
+        </tr>
+        <tr>
+          <td><strong>Time in Range (70-140 mg/dL)</strong></td>
+          <td>78.4%</td>
+          <td>82.1%</td>
+          <td>86.5%</td>
+          <td>89.2%</td>
+          <td><strong>84.1%</strong></td>
+          <td>&ge; 70.0% (International Consensus)</td>
+        </tr>
+        <tr>
+          <td><strong>Glycemic Variability (%CV)</strong></td>
+          <td>26.2%</td>
+          <td>24.5%</td>
+          <td>22.1%</td>
+          <td>20.8%</td>
+          <td><strong>23.4%</strong></td>
+          <td>&le; 36.0% (Stable Glycemia)</td>
+        </tr>
+        <tr>
+          <td><strong>Ambulatory Blood Pressure</strong></td>
+          <td>124 / 78</td>
+          <td>120 / 76</td>
+          <td>118 / 74</td>
+          <td>116 / 72</td>
+          <td><strong>119 / 75 mmHg</strong></td>
+          <td>&lt; 120/80 mmHg (ACC/AHA Normal)</td>
+        </tr>
+        <tr>
+          <td><strong>Nocturnal BP Dipping Status</strong></td>
+          <td>Dipper (12.4%)</td>
+          <td>Dipper (13.8%)</td>
+          <td>Dipper (15.2%)</td>
+          <td>Dipper (14.8%)</td>
+          <td><strong>Dipper (14.1%)</strong></td>
+          <td>10% - 20% Nocturnal Drop</td>
+        </tr>
+        <tr>
+          <td><strong>Mean Resting Heart Rate</strong></td>
+          <td>66 BPM</td>
+          <td>64 BPM</td>
+          <td>62 BPM</td>
+          <td>60 BPM</td>
+          <td><strong>63.0 BPM</strong></td>
+          <td>60 - 80 BPM (Normal Sinus)</td>
+        </tr>
+        <tr>
+          <td><strong>Core Body Temperature Baseline</strong></td>
+          <td>97.1&deg;F</td>
+          <td>97.2&deg;F</td>
+          <td>97.3&deg;F</td>
+          <td>97.1&deg;F</td>
+          <td><strong>97.18&deg;F</strong></td>
+          <td>96.8&deg;F - 97.4&deg;F (Patient Baseline)</td>
+        </tr>
+        <tr>
+          <td><strong>Mean Nocturnal SpO2</strong></td>
+          <td>96.5%</td>
+          <td>96.8%</td>
+          <td>97.0%</td>
+          <td>97.2%</td>
+          <td><strong>96.88%</strong></td>
+          <td>95% - 100% (Normal Pulmonary)</td>
+        </tr>
+        <tr>
+          <td><strong>Oxygen Desaturation Index (ODI)</strong></td>
+          <td>3.8 ev/hr</td>
+          <td>3.2 ev/hr</td>
+          <td>2.6 ev/hr</td>
+          <td>2.2 ev/hr</td>
+          <td><strong>2.95 ev/hr</strong></td>
+          <td>&lt; 5.0 ev/hr (Normal / No OSA)</td>
+        </tr>
+        <tr>
+          <td><strong>Total Daily Pedometer Steps</strong></td>
+          <td>7,240 / day</td>
+          <td>7,680 / day</td>
+          <td>8,120 / day</td>
+          <td>8,450 / day</td>
+          <td><strong>7,872 steps/day</strong></td>
+          <td>&ge; 8,000 steps/day (Active)</td>
+        </tr>
+        <tr>
+          <td><strong>Mean Sleep Duration</strong></td>
+          <td>7.2 hrs</td>
+          <td>7.4 hrs</td>
+          <td>7.6 hrs</td>
+          <td>7.8 hrs</td>
+          <td><strong>7.50 hrs/night</strong></td>
+          <td>7.0 - 9.0 hrs (NSF Guidelines)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SECTION 5: CLINICAL INTERPRETATION GUIDE -->
+  <h1>5. Clinical Reference Standards for Attending Physicians</h1>
+  <p>
+    When interpreting longitudinal reports produced by this workstation, clinicians should apply standard evidence-based diagnostic thresholds:
+  </p>
+  <ul>
+    <li><strong>American Diabetes Association (ADA) Glycemic Indices:</strong>
+      <ul>
+        <li><strong>Time-in-Range (TIR):</strong> The percentage of readings within 70 - 140 mg/dL (or 70 - 180 mg/dL). Every 10% increase in TIR correlates with an approximately 0.5% reduction in laboratory HbA1c.</li>
+        <li><strong>Glycemic Variability (CV):</strong> Target %CV &le; 36%. Lower CV indicates reduced risk of severe nocturnal hypoglycemia and decreased vascular endothelial oxidative stress.</li>
+      </ul>
+    </li>
+    <li><strong>ACC / AHA 2017 Hypertension Staging:</strong>
+      <ul>
+        <li><strong>Normal:</strong> Systolic &lt; 120 mmHg and Diastolic &lt; 80 mmHg.</li>
+        <li><strong>Elevated:</strong> Systolic 120 - 129 mmHg and Diastolic &lt; 80 mmHg.</li>
+        <li><strong>Stage 1 Hypertension:</strong> Systolic 130 - 139 mmHg or Diastolic 80 - 89 mmHg.</li>
+        <li><strong>Circadian Dipping:</strong> Failure of blood pressure to decrease by at least 10% during sleep (non-dipping) is a strong independent predictor of secondary target-organ damage and sleep-disordered breathing.</li>
+      </ul>
+    </li>
+    <li><strong>American Academy of Sleep Medicine (AASM) Desaturation Criteria:</strong>
+      <ul>
+        <li><strong>Normal / Minimal:</strong> ODI &lt; 5 events per hour.</li>
+        <li><strong>Mild Sleep Apnea:</strong> ODI 5 to 14.9 events per hour.</li>
+        <li><strong>Moderate Sleep Apnea:</strong> ODI 15 to 29.9 events per hour.</li>
+        <li><strong>Severe Sleep Apnea:</strong> ODI &ge; 30 events per hour.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <!-- DISCLAIMER -->
+  <div class="alert-box warning" style="margin-top: 18px;">
+    <span class="alert-title">Clinical Disclaimer & Diagnostic Regulatory Boundary</span>
+    The Veepoo Model 5010 and the clinical ambulatory telemetry monitor provide longitudinal physiological trend data intended to support clinical decision-making, lifestyle intervention, and therapy evaluation. Wearable optical measurements do not replace certified diagnostic venous draws, continuous intra-arterial pressure lines, or in-laboratory polysomnography. Clinical treatment adjustments (e.g., pharmacotherapy, insulin titrations) should be validated with formal clinical laboratory diagnostic standards.
+  </div>
+
+  <div style="text-align: center; margin-top: 24px; font-size: 7.5pt; color: #718096; border-top: 1px solid #e2e8f0; padding-top: 6px;">
+    VEEPOO MODEL 5010 CLINICAL ENGINEERING SPECIFICATION & AMBULATORY REPORTING GUIDE &bull; REVISION 3.0.0
+  </div>
+
+</body>
+</html>
