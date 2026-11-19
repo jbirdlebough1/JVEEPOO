@@ -314,7 +314,18 @@ async def run_ble_auto_sync_loop():
                             for i, b in enumerate(auth_bytes):
                                 auth_pkt[i] = b
                             await client.write_gatt_char(VEEPOO_WRITE_UUID, auth_pkt, response=False)
-                            await asyncio.sleep(1.0)
+                            await asyncio.sleep(0.5)
+
+                            # 1b. Command Watch to 12-Hour System (AM/PM) & Imperial Units (0xB8 Page 0)
+                            # Byte 0 = 0xB8, Byte 1 = 0x01 (Set), Byte 2 = 0x02 (Imperial), Byte 3 = 0x02 (12-Hour system)
+                            cfg_12hr = bytearray(20)
+                            cfg_12hr[0] = 0xB8
+                            cfg_12hr[1] = 0x01
+                            cfg_12hr[2] = 0x02  # Imperial
+                            cfg_12hr[3] = 0x02  # 12-Hour AM/PM Format
+                            await client.write_gatt_char(VEEPOO_WRITE_UUID, cfg_12hr, response=False)
+                            print("[*] Transmitted 12-Hour AM/PM Format Command (0xB8) to watch.")
+                            await asyncio.sleep(0.5)
 
                             # 2. Query Battery (0xA0)
                             bat_pkt = bytearray(20)

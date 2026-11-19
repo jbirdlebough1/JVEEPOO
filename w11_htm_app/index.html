@@ -3370,7 +3370,10 @@
                   330° Continuous Outer Glucose Ring (60–200 mg/dL • Green 70–160 • Yellow 160–180 • Red &gt;180) + Ped &amp; HR Pods + Skeleton Dual Time
                 </div>
               </div>
-              <div style="display: flex; gap: 8px; align-items: center;">
+              <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+                <button id="btnSet12HourFormat" class="lcars-pill pill-lilac" style="font-size: 0.8rem; padding: 6px 14px; height: auto; cursor: pointer;" onclick="setWatch12HourFormat()" title="Send Opcode 0xB8 to configure physical watch to 12-hour AM/PM format">
+                  <span>🕒 SET WATCH TO 12-HR (AM/PM)</span>
+                </button>
                 <button id="btnChronoUnit" class="lcars-pill pill-blue" style="font-size: 0.8rem; padding: 6px 14px; height: auto; cursor: pointer;" onclick="toggleChronoUnit()">
                   <span>UNIT: MG/DL</span>
                 </button>
@@ -3390,90 +3393,99 @@
                 <div style="position: relative; width: 280px; height: 326px; background: #000; border: 8px solid #1a2332; border-radius: 36px; box-shadow: 0 0 25px rgba(0,0,0,0.8), 0 0 10px rgba(85, 255, 119, 0.2); overflow: hidden; display: flex; align-items: center; justify-content: center;">
                   
                   <!-- SVG Dial Canvas (Exact 240x280 aspect ratio) -->
-                  <svg id="svgHybridDial" width="240" height="280" viewBox="0 0 240 280" style="background: #020408; font-family: 'Share Tech Mono', Consolas, sans-serif;">
+                  <svg id="svgHybridDial" width="240" height="280" viewBox="0 0 240 280" style="background: #060b14; font-family: 'Share Tech Mono', Consolas, sans-serif;">
                     
-                    <!-- Outer Bezel Ring & Ticks -->
-                    <circle cx="120" cy="140" r="114" fill="none" stroke="#0e1420" stroke-width="1.5" />
-                    <circle cx="120" cy="140" r="98" fill="none" stroke="#080c14" stroke-width="1" />
+                    <!-- High-Contrast Outer Bezel Plate & Guide Rings -->
+                    <circle cx="120" cy="140" r="118" fill="#09101c" stroke="#1e293b" stroke-width="2" />
+                    <circle cx="120" cy="140" r="114" fill="none" stroke="#2a3b53" stroke-width="1.5" />
+                    <circle cx="120" cy="140" r="96" fill="none" stroke="#2a3b53" stroke-width="1.5" />
+
+                    <!-- SCULPTED BACKGROUND GROOVE (Deep Channel for Visible Path on Dark Areas) -->
+                    <path id="trackGroove" d="" fill="none" stroke="#131e30" stroke-width="17" stroke-linecap="round" />
 
                     <!-- CONTINUOUS 330° OUTER GLUCOSE TRACK (Clockwise from Bottom 6 o'clock, through Left, Top, Right, to Bottom) -->
                     <!-- Zone 0: Hypo alert tick (60 to 70 mg/dL) -->
-                    <path id="trackZoneHypo" d="" fill="none" stroke="rgba(204,51,51,0.5)" stroke-width="8" stroke-linecap="round" />
+                    <path id="trackZoneHypo" d="" fill="none" stroke="rgba(239,68,68,0.7)" stroke-width="14" stroke-linecap="round" />
                     <!-- Zone 1: Target Green (70 to 160 mg/dL) -->
-                    <path id="trackZoneGreen" d="" fill="none" stroke="rgba(85,255,119,0.3)" stroke-width="8" />
+                    <path id="trackZoneGreen" d="" fill="none" stroke="rgba(34,197,94,0.5)" stroke-width="14" />
                     <!-- Zone 2: Elevated Yellow (160 to 180 mg/dL) -->
-                    <path id="trackZoneYellow" d="" fill="none" stroke="rgba(255,204,102,0.35)" stroke-width="8" />
+                    <path id="trackZoneYellow" d="" fill="none" stroke="rgba(234,179,8,0.6)" stroke-width="14" />
                     <!-- Zone 3: Spike Red (>180 to 200 mg/dL) -->
-                    <path id="trackZoneRed" d="" fill="none" stroke="rgba(204,51,51,0.4)" stroke-width="8" stroke-linecap="round" />
+                    <path id="trackZoneRed" d="" fill="none" stroke="rgba(239,68,68,0.7)" stroke-width="14" stroke-linecap="round" />
 
                     <!-- THE ACTIVE DYNAMIC GLUCOSE FILL RING (Sweeps to current value) -->
-                    <path id="arcValGlucose" d="" fill="none" stroke="#55ff77" stroke-width="9" stroke-linecap="round" style="filter: drop-shadow(0 0 4px #55ff77);" />
+                    <path id="arcValGlucose" d="" fill="none" stroke="#22c55e" stroke-width="14" stroke-linecap="round" style="filter: drop-shadow(0 0 6px #22c55e);" />
 
-                    <!-- Key Threshold Tick Marks & Numbers on Ring -->
-                    <g font-size="7" font-weight="bold" fill="#64748b" text-anchor="middle">
+                    <!-- HIGH-VISIBILITY BLUE INDICATOR PUCK (Rides at current value for instant reading) -->
+                    <circle id="dotValGlucoseGlow" cx="120" cy="140" r="14" fill="rgba(0, 229, 255, 0.45)" style="filter: drop-shadow(0 0 8px #00e5ff);" />
+                    <circle id="dotValGlucose" cx="120" cy="140" r="8" fill="#00e5ff" stroke="#ffffff" stroke-width="2.5" />
+                    <circle id="dotValGlucoseCore" cx="120" cy="140" r="3" fill="#ffffff" />
+
+                    <!-- LARGE, HIGH-CONTRAST THRESHOLD NUMBERS (Senior-Friendly Bold Scale) -->
+                    <g font-size="11" font-weight="900" text-anchor="middle" letter-spacing="0.5">
                       <!-- 60 (Bottom Left Start) -->
-                      <text x="100" y="254" fill="#cc3333">60</text>
+                      <text x="96" y="222" fill="#ff4444" stroke="#000" stroke-width="0.8">60</text>
                       <!-- 70 (Threshold Green) -->
-                      <text x="44" y="222" fill="#55ff77">70</text>
-                      <!-- 100 (Nominal) -->
-                      <text x="20" y="143" fill="#55ff77">100</text>
+                      <text x="64" y="206" fill="#44ff77" stroke="#000" stroke-width="0.8">70</text>
+                      <!-- 100 (Nominal Left) -->
+                      <text x="38" y="108" fill="#44ff77" stroke="#000" stroke-width="0.8">100</text>
                       <!-- 130 (Top Center Normal Limit) -->
-                      <text x="120" y="24" fill="#55ff77">130</text>
-                      <!-- 160 (Yellow Threshold) -->
-                      <text x="220" y="143" fill="#ffcc66">160</text>
-                      <!-- 180 (Red Threshold) -->
-                      <text x="196" y="222" fill="#cc3333">180</text>
+                      <text x="120" y="44" fill="#44ff77" stroke="#000" stroke-width="0.8">130</text>
+                      <!-- 160 (Yellow Warning) -->
+                      <text x="202" y="108" fill="#ffdd44" stroke="#000" stroke-width="0.8">160</text>
+                      <!-- 180 (Red Spike) -->
+                      <text x="196" y="180" fill="#ff4444" stroke="#000" stroke-width="0.8">180</text>
                       <!-- 200 (Bottom Right End) -->
-                      <text x="140" y="254" fill="#cc3333">200</text>
+                      <text x="144" y="222" fill="#ff4444" stroke="#000" stroke-width="0.8">200</text>
                     </g>
 
-                    <!-- TOP SUB-DIAL: DIGITAL CLOCK & DATE (12 o'clock) -->
-                    <rect x="74" y="48" width="92" height="34" rx="6" fill="#060910" stroke="#1a2332" stroke-width="1.5" />
-                    <text id="chronoDigitalTime" x="120" y="70" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="bold" letter-spacing="1">12:45</text>
-                    <text id="chronoDigitalDate" x="120" y="79" text-anchor="middle" fill="#ffcc66" font-size="7.5" font-weight="bold" letter-spacing="0.5">WED NOV 18</text>
+                    <!-- TOP SUB-DIAL: 12-HOUR DIGITAL CLOCK & DATE (12 o'clock) -->
+                    <rect x="65" y="47" width="110" height="39" rx="8" fill="#091220" stroke="#2a3b53" stroke-width="2" />
+                    <text id="chronoDigitalTime" x="120" y="69" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="900" letter-spacing="1">12:45 PM</text>
+                    <text id="chronoDigitalDate" x="120" y="80" text-anchor="middle" fill="#ffcc66" font-size="9" font-weight="bold" letter-spacing="0.5">WED NOV 18</text>
 
                     <!-- CENTER-LEFT: PRIMARY GLUCOSE METRIC HUB (9 o'clock) -->
-                    <circle cx="62" cy="140" r="28" fill="#060a12" stroke="#1e293b" stroke-width="1.5" />
-                    <text x="62" y="125" text-anchor="middle" fill="#94a3b8" font-size="7">GLUCOSE</text>
-                    <text id="chronoPodGlucose" x="62" y="145" text-anchor="middle" fill="#55ff77" font-size="17" font-weight="bold">124</text>
-                    <text id="chronoPodGlucoseUnit" x="62" y="157" text-anchor="middle" fill="#94a3b8" font-size="7.5">mg/dL</text>
+                    <circle cx="60" cy="140" r="32" fill="#091220" stroke="#00e5ff" stroke-width="2.5" />
+                    <text x="60" y="123" text-anchor="middle" fill="#94a3b8" font-size="9" font-weight="bold">GLUCOSE</text>
+                    <text id="chronoPodGlucose" x="60" y="146" text-anchor="middle" fill="#44ff77" font-size="25" font-weight="900">124</text>
+                    <text id="chronoPodGlucoseUnit" x="60" y="161" text-anchor="middle" fill="#cbd5e1" font-size="9.5" font-weight="bold">mg/dL</text>
 
                     <!-- CENTER-RIGHT: HEART RATE NUMERICAL READOUT (3 o'clock) -->
-                    <circle cx="178" cy="140" r="28" fill="#060a12" stroke="#1e293b" stroke-width="1.5" />
-                    <text x="178" y="125" text-anchor="middle" fill="#94a3b8" font-size="7">HEART RATE</text>
-                    <text id="chronoPodHr" x="178" y="145" text-anchor="middle" fill="#ffaa55" font-size="17" font-weight="bold">72</text>
-                    <text x="178" y="157" text-anchor="middle" fill="#94a3b8" font-size="7.5">BPM</text>
+                    <circle cx="180" cy="140" r="30" fill="#091220" stroke="#334155" stroke-width="2" />
+                    <text x="180" y="124" text-anchor="middle" fill="#94a3b8" font-size="9" font-weight="bold">PULSE / HR</text>
+                    <text id="chronoPodHr" x="180" y="146" text-anchor="middle" fill="#fb923c" font-size="22" font-weight="900">72</text>
+                    <text x="180" y="160" text-anchor="middle" fill="#cbd5e1" font-size="9.5" font-weight="bold">BPM</text>
 
                     <!-- BOTTOM: PEDOMETER STEPS READOUT (6 o'clock) -->
-                    <rect x="74" y="196" width="92" height="34" rx="6" fill="#060a12" stroke="#1e293b" stroke-width="1.5" />
-                    <text x="120" y="208" text-anchor="middle" fill="#94a3b8" font-size="7">PEDOMETER</text>
-                    <text id="chronoPodSteps" x="120" y="223" text-anchor="middle" fill="#6699cc" font-size="15" font-weight="bold">8,420</text>
+                    <rect x="68" y="196" width="104" height="36" rx="8" fill="#091220" stroke="#334155" stroke-width="2" />
+                    <text x="120" y="208" text-anchor="middle" fill="#94a3b8" font-size="9" font-weight="bold">DAILY STEPS</text>
+                    <text id="chronoPodSteps" x="120" y="225" text-anchor="middle" fill="#38bdf8" font-size="17" font-weight="900">8,420</text>
 
                     <!-- BATTERY READOUT -->
-                    <text id="chronoBattery" x="120" y="103" text-anchor="middle" fill="#55ff77" font-size="8">🔋 85% • NOMINAL</text>
+                    <text id="chronoBattery" x="120" y="103" text-anchor="middle" fill="#44ff77" font-size="9.5" font-weight="bold">🔋 85% • NOMINAL</text>
 
                     <!-- SKELETONIZED ANALOG HANDS (Pivoting at center 120, 140) -->
                     <!-- Hour Hand (Length 50, Width 7, Skeleton cut-out center) -->
                     <g id="handHour" transform="rotate(0, 120, 140)">
-                      <polygon points="116.5,140 117.5,90 120,84 122.5,90 123.5,140" fill="rgba(255,204,102,0.35)" stroke="#ffcc66" stroke-width="2" />
-                      <line x1="120" y1="130" x2="120" y2="96" stroke="#020408" stroke-width="2.5" />
+                      <polygon points="116,140 117.5,90 120,84 122.5,90 124,140" fill="rgba(255,204,102,0.4)" stroke="#ffcc66" stroke-width="2.5" />
+                      <line x1="120" y1="130" x2="120" y2="96" stroke="#060b14" stroke-width="3" />
                     </g>
 
                     <!-- Minute Hand (Length 78, Width 5, Skeleton cut-out center) -->
                     <g id="handMinute" transform="rotate(0, 120, 140)">
-                      <polygon points="117.5,140 118.5,65 120,58 121.5,65 122.5,140" fill="rgba(255,255,255,0.3)" stroke="#ffffff" stroke-width="2" />
-                      <line x1="120" y1="130" x2="120" y2="70" stroke="#020408" stroke-width="2" />
+                      <polygon points="117,140 118.5,65 120,58 121.5,65 123,140" fill="rgba(255,255,255,0.35)" stroke="#ffffff" stroke-width="2.5" />
+                      <line x1="120" y1="130" x2="120" y2="70" stroke="#060b14" stroke-width="2.5" />
                     </g>
 
                     <!-- Sweeping Second Hand (Thin Starfleet Orange needle) -->
                     <g id="handSecond" transform="rotate(0, 120, 140)">
-                      <line x1="120" y1="160" x2="120" y2="44" stroke="#ff9900" stroke-width="1.5" />
-                      <circle cx="120" cy="140" r="5" fill="#ff9900" />
-                      <circle cx="120" cy="52" r="3" fill="#ff9900" />
+                      <line x1="120" y1="160" x2="120" y2="44" stroke="#ff9900" stroke-width="1.8" />
+                      <circle cx="120" cy="140" r="5.5" fill="#ff9900" />
+                      <circle cx="120" cy="52" r="3.5" fill="#ff9900" />
                     </g>
 
                     <!-- Center Cap Pin -->
-                    <circle cx="120" cy="140" r="2.5" fill="#000" stroke="#ffcc66" stroke-width="1.5" />
+                    <circle cx="120" cy="140" r="3" fill="#000" stroke="#ffcc66" stroke-width="2" />
 
                   </svg>
 
@@ -4396,6 +4408,13 @@
     }
 
     function sendAuthHandshake() {
+      // Proactively ensure watch is in 12-Hour System (0xB8 Page 0, byte[3] = 2)
+      try {
+        const c0 = new Uint8Array(20);
+        c0[0] = 0xB8; c0[1] = 0x01; c0[2] = 0x02; c0[3] = 0x02;
+        sendCommandBytes(c0);
+      } catch(e) {}
+
       const buf = new Uint8Array(20);
       buf[0] = 0xA1; buf[1] = 0x00; buf[2] = 0x00; buf[3] = 0x00;
       const now = new Date();
@@ -7438,10 +7457,9 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
     loadVeepooDialCatalog();
 
     // =========================================================================
-    // UNIFIED OUTER GLUCOSE RING CHRONOMETER ENGINE (Live Ticking & Continuous Sweep)
+    // UNIFIED OUTER GLUCOSE RING CHRONOMETER ENGINE (Senior/Elderly-Friendly Edition)
+    // High-Contrast Groove, Large Bold Scale Numbers, 12-Hour Clock, Glowing Blue Indicator Dot
     // Range: 60-200 mg/dL | Green 70-160 | Yellow 160-180 | Red >180
-    // Starts at Bottom (6 o'clock), sweeps clockwise Left -> Top -> Right -> Bottom
-    // Numerical Pods for Pedometer Steps and Heart Rate (no competing outer rings)
     // =========================================================================
     let chronoSimulationMode = false;
     let chronoUnitMmol = false; // false = mg/dL, true = mmol/L
@@ -7476,6 +7494,10 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
     }
 
     function initUnifiedGlucoseRing() {
+      // 0. Base High-Contrast Channel Groove (full 330 deg span)
+      const arcGroove = document.getElementById('trackGroove');
+      if (arcGroove) arcGroove.setAttribute('d', describeArc(120, 140, 105, 195, 525));
+
       // Zone 0: Hypo tick (60 to 70 mg/dL) -> 195 to 218.5 deg
       const arcHypo = document.getElementById('trackZoneHypo');
       if (arcHypo) arcHypo.setAttribute('d', describeArc(120, 140, 105, 195, glucoseToAngle(70)));
@@ -7494,7 +7516,6 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
     }
 
     function updateChronoDial(glucose, steps, hr) {
-      // Dynamic sweep of outer ring from 195 deg to current glucose angle
       const targetAngle = glucoseToAngle(glucose);
       const arcValG = document.getElementById('arcValGlucose');
       if (arcValG) {
@@ -7502,21 +7523,39 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
         // Color follows current clinical threshold:
         // Green 70-160 | Yellow 160-180 | Red >180 (or <70 Hypo)
         if (glucose < 70) {
-          arcValG.setAttribute('stroke', '#cc3333');
-          arcValG.style.filter = "drop-shadow(0 0 5px #cc3333)";
+          arcValG.setAttribute('stroke', '#ef4444');
+          arcValG.style.filter = "drop-shadow(0 0 6px #ef4444)";
         } else if (glucose <= 160) {
-          arcValG.setAttribute('stroke', '#55ff77');
-          arcValG.style.filter = "drop-shadow(0 0 6px #55ff77)";
+          arcValG.setAttribute('stroke', '#22c55e');
+          arcValG.style.filter = "drop-shadow(0 0 6px #22c55e)";
         } else if (glucose <= 180) {
-          arcValG.setAttribute('stroke', '#ffcc66');
-          arcValG.style.filter = "drop-shadow(0 0 6px #ffcc66)";
+          arcValG.setAttribute('stroke', '#facc15');
+          arcValG.style.filter = "drop-shadow(0 0 6px #facc15)";
         } else {
-          arcValG.setAttribute('stroke', '#cc3333');
-          arcValG.style.filter = "drop-shadow(0 0 7px #cc3333)";
+          arcValG.setAttribute('stroke', '#ef4444');
+          arcValG.style.filter = "drop-shadow(0 0 7px #ef4444)";
         }
       }
 
-      // Numerical Pod Update
+      // VIBRANT BLUE INDICATOR PUCK (Rides dynamically at exact current reading)
+      const pos = polarToCartesian(120, 140, 105, targetAngle);
+      const dot = document.getElementById('dotValGlucose');
+      const dotGlow = document.getElementById('dotValGlucoseGlow');
+      const dotCore = document.getElementById('dotValGlucoseCore');
+      if (dot) {
+        dot.setAttribute('cx', pos.x.toFixed(2));
+        dot.setAttribute('cy', pos.y.toFixed(2));
+      }
+      if (dotGlow) {
+        dotGlow.setAttribute('cx', pos.x.toFixed(2));
+        dotGlow.setAttribute('cy', pos.y.toFixed(2));
+      }
+      if (dotCore) {
+        dotCore.setAttribute('cx', pos.x.toFixed(2));
+        dotCore.setAttribute('cy', pos.y.toFixed(2));
+      }
+
+      // Primary Glucose Pod (9 o'clock)
       const elPodG = document.getElementById('chronoPodGlucose');
       const elPodUnit = document.getElementById('chronoPodGlucoseUnit');
       if (elPodG) {
@@ -7529,17 +7568,17 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
           if (elPodUnit) elPodUnit.textContent = "mg/dL";
         }
 
-        if (glucose < 70) elPodG.setAttribute('fill', '#cc3333');
-        else if (glucose <= 160) elPodG.setAttribute('fill', '#55ff77');
-        else if (glucose <= 180) elPodG.setAttribute('fill', '#ffcc66');
-        else elPodG.setAttribute('fill', '#cc3333');
+        if (glucose < 70) elPodG.setAttribute('fill', '#ef4444');
+        else if (glucose <= 160) elPodG.setAttribute('fill', '#44ff77');
+        else if (glucose <= 180) elPodG.setAttribute('fill', '#facc15');
+        else elPodG.setAttribute('fill', '#ef4444');
       }
 
-      // Steps readout (numerical pod only, no outer ring)
+      // Steps readout (numerical pod only)
       const elPodS = document.getElementById('chronoPodSteps');
       if (elPodS) elPodS.textContent = Math.round(steps).toLocaleString();
 
-      // HR readout (numerical pod only, no outer ring)
+      // HR readout (numerical pod only)
       const elPodH = document.getElementById('chronoPodHr');
       if (elPodH) elPodH.textContent = Math.round(hr);
 
@@ -7557,6 +7596,26 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
       const btn = document.getElementById('btnChronoUnit');
       if (btn) btn.innerHTML = `<span>UNIT: ${chronoUnitMmol ? 'MMOL/L' : 'MG/DL'}</span>`;
       updateChronoSim();
+    }
+
+    // Explicit 12-Hour System command to Watch via Opcode 0xB8 Page 0 (byte[3]=2) and 0xA1
+    async function setWatch12HourFormat() {
+      soundButtonPress();
+      logLCARS("[*] Transmitting Opcode 0xB8 Page 0 to configure Watch to 12-Hour AM/PM format...", "tx");
+      
+      // 0xB8 Page 0: byte 0=0xB8, byte 1=1 (Set), byte 2=2 (Imperial), byte 3=2 (12-Hour format)
+      const c0 = new Uint8Array(20);
+      c0[0] = 0xB8;
+      c0[1] = 0x01; // Set
+      c0[2] = 0x02; // Imperial
+      c0[3] = 0x02; // 12-Hour System (2 = 12hr, 1 = 24hr)
+      await sendCommandBytes(c0);
+
+      // Follow up with RTC synchronization
+      setTimeout(() => {
+        sendAuthHandshake();
+        logLCARS("[+] Watch hardware successfully configured to 12-Hour AM/PM system!", "rx");
+      }, 350);
     }
 
     function tickChronoClock() {
@@ -7580,12 +7639,13 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
       const sHand = document.getElementById('handSecond');
       if (sHand) sHand.setAttribute('transform', `rotate(${secAngle}, 120, 140)`);
 
-      // 12 o'clock Digital Clock & Date
+      // 12 o'clock Digital Clock & Date (STRICT 12-HOUR FORMAT WITH AM/PM)
       const elDig = document.getElementById('chronoDigitalTime');
       if (elDig) {
-        const hh = String(hours).padStart(2, '0');
+        const h12 = (hours % 12) || 12;
         const mm = String(minutes).padStart(2, '0');
-        elDig.textContent = `${hh}:${mm}`;
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        elDig.textContent = `${h12}:${mm} ${ampm}`;
       }
 
       const elDate = document.getElementById('chronoDigitalDate');
@@ -7640,10 +7700,10 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
         } else {
           lblG.textContent = `${Math.round(g)} mg/dL`;
         }
-        if (g < 70) lblG.style.color = '#cc3333';
-        else if (g <= 160) lblG.style.color = '#55ff77';
-        else if (g <= 180) lblG.style.color = '#ffcc66';
-        else lblG.style.color = '#cc3333';
+        if (g < 70) lblG.style.color = '#ef4444';
+        else if (g <= 160) lblG.style.color = '#44ff77';
+        else if (g <= 180) lblG.style.color = '#facc15';
+        else lblG.style.color = '#ef4444';
       }
 
       document.getElementById('lblTestSteps').textContent = `${Math.round(s).toLocaleString()} Steps`;
