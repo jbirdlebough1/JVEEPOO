@@ -3461,8 +3461,39 @@
                     <text x="120" y="208" text-anchor="middle" fill="#94a3b8" font-size="9" font-weight="bold">DAILY STEPS</text>
                     <text id="chronoPodSteps" x="120" y="225" text-anchor="middle" fill="#38bdf8" font-size="17" font-weight="900">8,420</text>
 
-                    <!-- BATTERY READOUT -->
-                    <text id="chronoBattery" x="120" y="103" text-anchor="middle" fill="#44ff77" font-size="9.5" font-weight="bold">🔋 85% • NOMINAL</text>
+                    <!-- LOWER LEFT: BATTERY INDICATOR POD -->
+                    <g id="chronoBattGroup" transform="translate(18, 246)">
+                      <!-- Outer capsule backdrop -->
+                      <rect x="0" y="0" width="56" height="20" rx="5" fill="#091220" stroke="#1e293b" stroke-width="1.5" />
+                      <!-- Battery Shell -->
+                      <rect x="6" y="4.5" width="20" height="11" rx="2" fill="none" stroke="#44ff77" stroke-width="1.4" />
+                      <!-- Battery Positive Terminal -->
+                      <path d="M 26 7.5 L 28 7.5 L 28 12.5 L 26 12.5 Z" fill="#44ff77" />
+                      <!-- Active Dynamic Fill Bar -->
+                      <rect id="chronoBatteryFill" x="8" y="6.5" width="14" height="7" rx="1" fill="#44ff77" />
+                      <!-- Battery Percentage Text -->
+                      <text id="chronoBattery" x="31" y="13" fill="#44ff77" font-size="9" font-weight="900" font-family="'Share Tech Mono', Consolas, sans-serif">85%</text>
+                    </g>
+
+                    <!-- LOWER RIGHT: BLUETOOTH STRENGTH ICON POD -->
+                    <g id="chronoBtGroup" transform="translate(166, 246)">
+                      <!-- Outer capsule backdrop -->
+                      <rect x="0" y="0" width="56" height="20" rx="5" fill="#091220" stroke="#1e293b" stroke-width="1.5" />
+                      <!-- Vector Bluetooth Rune Glyph -->
+                      <g stroke="#38bdf8" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none">
+                        <line x1="12" y1="3" x2="12" y2="17" />
+                        <polyline points="7,7 16,13 12,17 12,3 16,7 7,13" />
+                      </g>
+                      <!-- 4-Stage Signal Strength Bars -->
+                      <g fill="#38bdf8">
+                        <rect id="btBar1" x="22" y="13" width="2.5" height="4" rx="0.5" fill="#38bdf8" />
+                        <rect id="btBar2" x="26" y="10" width="2.5" height="7" rx="0.5" fill="#38bdf8" />
+                        <rect id="btBar3" x="30" y="7" width="2.5" height="10" rx="0.5" fill="#38bdf8" />
+                        <rect id="btBar4" x="34" y="4" width="2.5" height="13" rx="0.5" fill="#38bdf8" />
+                      </g>
+                      <!-- Link Status Text -->
+                      <text id="chronoBtStatus" x="46" y="13" text-anchor="middle" fill="#38bdf8" font-size="7.5" font-weight="900" font-family="'Share Tech Mono', Consolas, sans-serif">OK</text>
+                    </g>
 
                     <!-- SKELETONIZED ANALOG HANDS (Pivoting at center 120, 140) -->
                     <!-- Hour Hand (Length 50, Width 7, Skeleton cut-out center) -->
@@ -7582,12 +7613,38 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
       const elPodH = document.getElementById('chronoPodHr');
       if (elPodH) elPodH.textContent = Math.round(hr);
 
-      // Battery readout
+      // Lower-Left Battery Readout & Dynamic Fill
       const elBat = document.getElementById('chronoBattery');
-      const liveBat = document.getElementById('valBattery')?.textContent || "NOMINAL";
-      if (elBat && liveBat !== "--") {
-        elBat.textContent = liveBat.includes("%") ? `🔋 ${liveBat} • NOMINAL` : "🔋 85% • NOMINAL";
+      const elBatFill = document.getElementById('chronoBatteryFill');
+      const liveBat = document.getElementById('valBattery')?.textContent || "85%";
+      const batPct = parseInt(liveBat.replace(/[^0-9]/g, '')) || 85;
+      if (elBat) {
+        elBat.textContent = `${batPct}%`;
+        if (batPct <= 20) elBat.setAttribute('fill', '#ef4444');
+        else if (batPct <= 40) elBat.setAttribute('fill', '#facc15');
+        else elBat.setAttribute('fill', '#44ff77');
       }
+      if (elBatFill) {
+        const fillW = Math.max(2, Math.min(14, (batPct / 100) * 14));
+        elBatFill.setAttribute('width', fillW.toFixed(1));
+        if (batPct <= 20) elBatFill.setAttribute('fill', '#ef4444');
+        else if (batPct <= 40) elBatFill.setAttribute('fill', '#facc15');
+        else elBatFill.setAttribute('fill', '#44ff77');
+      }
+
+      // Lower-Right Bluetooth Strength Readout & Bars
+      const btStat = document.getElementById('chronoBtStatus');
+      const isLinked = (typeof gattServer !== 'undefined' && gattServer && gattServer.connected) ||
+                       (typeof lastKnownDbVersion !== 'undefined' && lastKnownDbVersion > 0);
+      if (btStat) {
+        btStat.textContent = isLinked ? "OK" : "SCAN";
+        btStat.setAttribute('fill', isLinked ? "#38bdf8" : "#94a3b8");
+      }
+      const btBars = [document.getElementById('btBar1'), document.getElementById('btBar2'),
+                      document.getElementById('btBar3'), document.getElementById('btBar4')];
+      btBars.forEach(b => {
+        if (b) b.setAttribute('fill', isLinked ? "#38bdf8" : "#334155");
+      });
     }
 
     function toggleChronoUnit() {
