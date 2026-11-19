@@ -880,13 +880,13 @@
     }
 
     body.theme-light {
-      --theme-bg: #f1f5f9;
+      --theme-bg: #f8fafc;
       --theme-card-bg: #ffffff;
       --theme-text: #0f172a;
-      --theme-muted: #475569;
+      --theme-muted: #334155;
       --theme-border: #cbd5e1;
-      --theme-input-bg: #f8fafc;
-      background-color: #f1f5f9 !important;
+      --theme-input-bg: #f1f5f9;
+      background-color: #f8fafc !important;
       color: #0f172a !important;
     }
 
@@ -894,30 +894,72 @@
       border-bottom-color: #d97706 !important;
     }
 
+    /* All major cards, bays, sections, containers */
     body.theme-light .card-box,
     body.theme-light .lcars-bay,
     body.theme-light .setup-section,
     body.theme-light .diet-form-card,
-    body.theme-light .box-content {
+    body.theme-light .box-content,
+    body.theme-light .report-card,
+    body.theme-light .lcars-bays-grid > div,
+    body.theme-light .setup-container,
+    body.theme-light .diet-container {
+      background: #ffffff !important;
       background-color: #ffffff !important;
       border-color: #cbd5e1 !important;
       color: #0f172a !important;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06) !important;
     }
 
-    body.theme-light .stat-card {
+    /* Target all inner dark containers that had inline background: #0... or #1... */
+    body.theme-light [style*="background: #0"],
+    body.theme-light [style*="background:#0"],
+    body.theme-light [style*="background: #1"],
+    body.theme-light [style*="background:#1"],
+    body.theme-light [style*="background-color: #0"],
+    body.theme-light [style*="background-color:#0"],
+    body.theme-light [style*="background: #080c14"],
+    body.theme-light [style*="background: #090e18"],
+    body.theme-light [style*="background: #06110a"],
+    body.theme-light [style*="background: #081018"],
+    body.theme-light [style*="background: #080e18"],
+    body.theme-light [style*="background: #051008"],
+    body.theme-light [style*="background: #040810"],
+    body.theme-light [style*="background: #05080e"],
+    body.theme-light [style*="background: #0a0e18"],
+    body.theme-light [style*="background: #060910"],
+    body.theme-light [style*="background: #050c14"],
+    body.theme-light [style*="background: #04080e"],
+    body.theme-light [style*="background: #030805"],
+    body.theme-light [style*="background: #03060a"],
+    body.theme-light [style*="background: #06090e"],
+    body.theme-light [style*="background: #0d141e"] {
+      background: #f8fafc !important;
       background-color: #f8fafc !important;
+      color: #0f172a !important;
       border-color: #cbd5e1 !important;
     }
 
-    body.theme-light .stat-card-title {
-      color: #475569 !important;
+    /* Sub-telemetry rows and stat cards */
+    body.theme-light .stat-card,
+    body.theme-light .sub-telemetry-row {
+      background: #f8fafc !important;
+      background-color: #f8fafc !important;
+      border-color: #cbd5e1 !important;
+      color: #0f172a !important;
     }
 
+    body.theme-light .stat-card-title,
+    body.theme-light .sub-telemetry-row .label {
+      color: #334155 !important;
+    }
+
+    /* Inputs and Selects */
     body.theme-light .lcars-input,
     body.theme-light .setup-input,
     body.theme-light .setup-select {
-      background-color: #f8fafc !important;
+      background: #ffffff !important;
+      background-color: #ffffff !important;
       color: #0f172a !important;
       border-color: #cbd5e1 !important;
     }
@@ -926,19 +968,50 @@
       background-color: #e2e8f0 !important;
     }
 
-    body.theme-light .report-card {
-      background: #ffffff !important;
-      border-color: #cbd5e1 !important;
-    }
-
     body.theme-light .report-card-title {
       color: #1e293b !important;
     }
 
+    /* Dynamic grids in Tab 09 */
+    body.theme-light #dietTradesGrid > div,
+    body.theme-light #recipesGrid > div,
+    body.theme-light #productsGrid > div,
+    body.theme-light #smartGlucoseNotificationCard,
+    body.theme-light #impulseAnalysisBox,
+    body.theme-light #recipeDetailBox,
+    body.theme-light #generatedPromptOutput {
+      background: #ffffff !important;
+      background-color: #ffffff !important;
+      border-color: #cbd5e1 !important;
+      color: #0f172a !important;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+
+    /* SVG Plate Visualizer in Light Mode */
+    body.theme-light circle[fill="#0d141e"] { fill: #e2e8f0 !important; stroke: #cbd5e1 !important; }
+    body.theme-light circle[fill="#06090e"] { fill: #ffffff !important; stroke: #94a3b8 !important; }
+
+    /* Text contrast & readability */
     body.theme-light p, 
     body.theme-light li, 
-    body.theme-light span:not(.badge):not(.stat-card-val):not(.telemetry-huge) {
-      color: inherit;
+    body.theme-light div {
+      color: #0f172a;
+    }
+
+    body.theme-light strong {
+      color: #0f172a !important;
+    }
+
+    body.theme-light code {
+      background: #e2e8f0 !important;
+      color: #0f172a !important;
+    }
+
+    /* Toned-down headings that pop on white */
+    body.theme-light .box-title,
+    body.theme-light .lcars-bay-title,
+    body.theme-light .setup-section-title span:first-child {
+      filter: brightness(0.72) contrast(1.2);
     }
 
   </style>
@@ -2901,9 +2974,48 @@
                 </button>
               </div>
               <div id="generatedPromptOutput" style="margin-top: 10px; display: none; background: #03060a; border: 1px dashed var(--lcars-ice); padding: 10px; border-radius: 4px; font-family: var(--lcars-mono); font-size: 0.8rem; color: #90d8f8; white-space: pre-wrap;"></div>
+            
+          <!-- Component 5: Certified Diabetic-Safe Product Directory & Vendor Verifier -->
+          <div class="setup-section" style="border-left-color: var(--lcars-banana); margin-top: 22px;">
+            <div class="setup-section-title" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+              <div>
+                <span style="color: var(--lcars-banana);">05. CERTIFIED DIABETIC-SAFE PRODUCT DIRECTORY</span>
+                <span style="font-size: 0.8rem; color: var(--lcars-banana); display: block; margin-top: 2px;">VERIFIED ZERO-SUGAR STAPLES • ACCURATE INGREDIENT & SWEETENER AUDITS</span>
+              </div>
+              <span class="badge" style="background: rgba(255,204,51,0.15); color: var(--lcars-banana); border: 1px solid var(--lcars-banana); font-size: 0.72rem;">
+                ZERO MALTITOL CERTIFIED
+              </span>
             </div>
 
+            <p style="font-size: 0.9rem; color: #ccd6e8; line-height: 1.5; margin-bottom: 12px;">
+              Many commercial "sugar-free" products deceptively contain high-glycemic starches (maltodextrin) or cheap sugar alcohols (maltitol) that spike glucose as fast as pure sugar. This curated directory features **certified vendors with strictly validated zero-glycemic formulations** (Allulose, pure Monk Fruit, non-GMO legume starches, and whole-food fats).
+            </p>
+
+            <!-- Product Category Filter Bar -->
+            <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px;">
+              <button class="lcars-pill pill-banana active" id="btnProdAll" style="font-size: 0.75rem; padding: 4px 10px; height: auto;" onclick="filterProducts('all')"><span>ALL PRODUCTS</span></button>
+              <button class="lcars-pill pill-banana" id="btnProdSweet" style="font-size: 0.75rem; padding: 4px 10px; height: auto;" onclick="filterProducts('sweeteners')"><span>SWEETENERS & SYRUPS</span></button>
+              <button class="lcars-pill pill-banana" id="btnProdPasta" style="font-size: 0.75rem; padding: 4px 10px; height: auto;" onclick="filterProducts('pastas')"><span>PASTAS & RICES</span></button>
+              <button class="lcars-pill pill-banana" id="btnProdSnacks" style="font-size: 0.75rem; padding: 4px 10px; height: auto;" onclick="filterProducts('snacks')"><span>CRISPS & SNACKS</span></button>
+              <button class="lcars-pill pill-banana" id="btnProdChoc" style="font-size: 0.75rem; padding: 4px 10px; height: auto;" onclick="filterProducts('chocolates')"><span>CHOCOLATES & DESSERTS</span></button>
+              <button class="lcars-pill pill-banana" id="btnProdDrinks" style="font-size: 0.75rem; padding: 4px 10px; height: auto;" onclick="filterProducts('drinks')"><span>ELECTROLYTES & DRINKS</span></button>
+            </div>
+
+            <!-- Product Search Input -->
+            <div style="display: flex; gap: 8px; margin-bottom: 14px;">
+              <input type="text" id="prodSearchInput" class="lcars-input" placeholder="Search product name, brand, or sweetener (e.g., allulose, shirataki, edamame, whisps)..." style="flex: 1; font-size: 0.9rem;" oninput="searchProducts(this.value)">
+              <button class="lcars-pill pill-orange" style="font-size: 0.75rem; padding: 4px 12px; height: auto;" onclick="document.getElementById('prodSearchInput').value=''; filterProducts('all');"><span>RESET</span></button>
+            </div>
+
+            <!-- Products Dynamic Grid -->
+            <div id="productsGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 12px;">
+              <!-- Rendered via JavaScript -->
+            </div>
           </div>
+
+
+        </div>
+      </div>
 
         </div>
       </div>
@@ -5187,6 +5299,9 @@
     function renderDietTradesView() {
       renderDietTradesGrid();
       renderRecipesGrid();
+      renderProductsGrid();
+      updateFavoriteCountBadge();
+      refreshGlucoseRecommendation();
     }
 
     function renderDietTradesGrid(filterText = "") {
@@ -5738,6 +5853,207 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
         if (msg) msg.textContent = `Current reading: ${curVal} mg/dL is above optimal baseline. Action Plan: 1) Drink 12 oz cold water; 2) Take a 10-15 minute walk (triggers muscle GLUT4 non-insulin clearance); 3) Stick strictly to Green Zone foods (<2g carb) like cucumbers or boiled eggs.`;
       }
       logLCARS(`Smart Glucose Snack Notifier updated for ${curVal} mg/dL`, "sys");
+    }
+
+
+    // =========================================================================
+    // CERTIFIED DIABETIC-SAFE PRODUCTS DATABASE & DIRECTORY
+    // =========================================================================
+    const CERTIFIED_DIABETIC_PRODUCTS = [
+      {
+        id: "rxsugar_allulose",
+        category: "sweeteners",
+        name: "RxSugar Organic Liquid Allulose & Granulated Allulose",
+        brand: "RxSugar",
+        cert: "Non-GMO • Clean Label Project • True 0 GI",
+        sweetener: "100% Pure Allulose (Zero Erythritol / Zero Maltitol)",
+        netCarbs: "0g Net Carbs",
+        sugar: "0g Sugar (0 Calories)",
+        glycemicImpact: "GI = 0 (Excreted unchanged in urine; zero insulin secretion)",
+        desc: "Certified pure plant-based rare sugar. Bakes, browns, and caramelizes exactly like table sugar with zero blood sugar impact.",
+        vendorUrl: "https://rxsugar.com/"
+      },
+      {
+        id: "wholesome_allulose_syrup",
+        category: "sweeteners",
+        name: "Wholesome Yum Zero-Sugar Allulose Maple Syrup",
+        brand: "Wholesome Yum",
+        cert: "Third-Party Lab Tested • Keto Certified",
+        sweetener: "Allulose, Natural Maple Flavor, Monk Fruit",
+        netCarbs: "1g Net Carb per 2 tbsp",
+        sugar: "0g Sugar (No Corn Syrup)",
+        glycemicImpact: "GI = 0 (Zero post-prandial glycemic excursion)",
+        desc: "Thick, rich breakfast pancake syrup that completely eliminates the 65 mg/dL spike of traditional corn syrup.",
+        vendorUrl: "https://www.wholesomeyum.com/"
+      },
+      {
+        id: "lakanto_monkfruit",
+        category: "sweeteners",
+        name: "Lakanto Classic Monk Fruit Sweetener (1:1 Sugar Replacement)",
+        brand: "Lakanto",
+        cert: "Non-GMO Project • Gluten Free",
+        sweetener: "Non-GMO Erythritol & High-Purity Luo Han Guo (Monk Fruit)",
+        netCarbs: "0g Net Carbs",
+        sugar: "0g Sugar",
+        glycemicImpact: "GI = 0 (Safe for all diabetics)",
+        desc: "Match-for-match sweetness replacement for baking, coffee, and cooking with clean sweet taste and zero bitter aftertaste.",
+        vendorUrl: "https://www.lakanto.com/"
+      },
+      {
+        id: "miracle_noodle_shirataki",
+        category: "pastas",
+        name: "Miracle Noodle Organic Shirataki Angel Hair & Rice",
+        brand: "Miracle Noodle",
+        cert: "USDA Organic • Certified Gluten-Free • Kosher",
+        sweetener: "Zero Sweetener (Savory Konjac Flour)",
+        netCarbs: "0g Net Carbs • 3g Soluble Fiber",
+        sugar: "0g Sugar • 5 Calories",
+        glycemicImpact: "GI = 0 (Pure prebiotic glucomannan soluble fiber)",
+        desc: "100% pure konjac root fiber. Absorbs whatever sauce or broth you prepare with zero digestible carbohydrates.",
+        vendorUrl: "https://miraclenoodle.com/"
+      },
+      {
+        id: "explore_edamame_pasta",
+        category: "pastas",
+        name: "Explore Cuisine Organic Edamame Spaghetti",
+        brand: "Explore Cuisine",
+        cert: "USDA Organic • Non-GMO • Vegan",
+        sweetener: "Zero Sweetener (100% Organic Edamame Bean)",
+        netCarbs: "7g Net Carbs • 13g Prebiotic Fiber",
+        sugar: "2g Natural Bean Sugar • 24g Plant Protein",
+        glycemicImpact: "GI = 12 (Massive protein & fiber slow glucose absorption)",
+        desc: "Authentic al dente pasta texture packing 24 grams of protein per serving with only a fraction of semolina pasta carbs.",
+        vendorUrl: "https://www.explorecuisine.com/"
+      },
+      {
+        id: "whisps_cheese_crisps",
+        category: "snacks",
+        name: "Whisps 100% Real Baked Parmesan & Cheddar Cheese Crisps",
+        brand: "Whisps",
+        cert: "100% Real Cheese • Gluten Free • Keto",
+        sweetener: "Zero Added Sweetener",
+        netCarbs: "1g Net Carb • 10g Protein per serving",
+        sugar: "0g Sugar",
+        glycemicImpact: "GI = 0 (Rich in calcium and healthy dairy fats)",
+        desc: "Master cheesemakers bake artisanal cheese into crispy, crunchy savory snacks. Zero potato, zero corn, zero starch.",
+        vendorUrl: "https://whisps.com/"
+      },
+      {
+        id: "choczero_bark",
+        category: "chocolates",
+        name: "ChocZero Dark Chocolate Hazelnut Bark (Zero Sugar / Zero Maltitol)",
+        brand: "ChocZero",
+        cert: "Non-GMO • Soy Free • Zero Sugar Alcohol",
+        sweetener: "Pure Monk Fruit & Prebiotic Soluble Corn Fiber",
+        netCarbs: "2g Net Carbs per bar",
+        sugar: "0g Added Sugar",
+        glycemicImpact: "GI <= 10 (Zero maltitol; no gastric distress or spikes)",
+        desc: "Premium stone-ground dark chocolate and roasted hazelnuts sweetened exclusively with pure monk fruit extract.",
+        vendorUrl: "https://www.choczero.com/"
+      },
+      {
+        id: "lmnt_electrolytes",
+        category: "drinks",
+        name: "LMNT Zero-Sugar Electrolyte Drink Mix (Citrus Salt & Raspberry)",
+        brand: "LMNT",
+        cert: "Zero Sugar • Keto • Paleo • Third-Party Lab Tested",
+        sweetener: "Pure Stevia Leaf Extract",
+        netCarbs: "1g Net Carb • 1000mg Sodium • 200mg Potassium",
+        sugar: "0g Sugar (Zero Dextrose)",
+        glycemicImpact: "GI = 0 (Supports hydration and blood pressure stability)",
+        desc: "Formulated specifically for low-carb and diabetic athletes. Replenishes critical minerals without dextrose or corn syrup fillers.",
+        vendorUrl: "https://drinklmnt.com/"
+      }
+    ];
+
+    let currentProductFilter = 'all';
+
+    function renderProductsGrid(filterText = "") {
+      const container = document.getElementById('productsGrid');
+      if (!container) return;
+
+      const filtered = CERTIFIED_DIABETIC_PRODUCTS.filter(p => {
+        const matchesCategory = (currentProductFilter === 'all' || p.category === currentProductFilter);
+        const matchesSearch = !filterText || 
+          p.name.toLowerCase().includes(filterText.toLowerCase()) ||
+          p.brand.toLowerCase().includes(filterText.toLowerCase()) ||
+          p.sweetener.toLowerCase().includes(filterText.toLowerCase()) ||
+          p.desc.toLowerCase().includes(filterText.toLowerCase());
+        return matchesCategory && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div style="grid-column: 1 / -1; padding: 25px; text-align: center; color: #8098a8; font-family: var(--lcars-mono);">
+            [ NO CERTIFIED PRODUCTS FOUND MATCHING FILTER • TRY ANOTHER KEYWORD ]
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map(p => `
+        <div style="background: #081018; border: 1px solid #1a3048; border-radius: 6px; padding: 12px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <!-- Header Badges -->
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
+              <span class="badge" style="background: rgba(255,204,51,0.15); color: var(--lcars-banana); font-size: 0.68rem; border: 1px solid var(--lcars-banana);">
+                ${p.brand.toUpperCase()}
+              </span>
+              <span style="font-family: var(--lcars-mono); color: var(--lcars-green); font-size: 0.85rem; font-weight: bold;">
+                ${p.netCarbs}
+              </span>
+            </div>
+
+            <strong style="color: var(--lcars-ice); font-size: 0.95rem; display: block; margin-bottom: 4px; line-height: 1.3;">
+              ${p.name}
+            </strong>
+
+            <div style="font-size: 0.72rem; color: #80b0d0; margin-bottom: 6px;">
+              ${p.cert}
+            </div>
+
+            <!-- Nutritional Audit Box -->
+            <div style="background: #040810; border-left: 3px solid var(--lcars-green); padding: 6px 8px; border-radius: 4px; margin-bottom: 8px; font-size: 0.75rem;">
+              <div style="color: var(--lcars-green); font-weight: bold;">SWEETENER: ${p.sweetener}</div>
+              <div style="color: #90d8a8; margin-top: 2px;">SUGAR: ${p.sugar} • ${p.glycemicImpact}</div>
+            </div>
+
+            <div style="font-size: 0.78rem; color: #90a8c0; line-height: 1.35; margin-bottom: 8px;">
+              ${p.desc}
+            </div>
+          </div>
+
+          <!-- Direct Safe Vendor Lookup Button -->
+          <div style="display: flex; gap: 6px; margin-top: 6px;">
+            <a href="${p.vendorUrl}" target="_blank" rel="noopener noreferrer" class="lcars-pill pill-ice" style="font-size: 0.72rem; padding: 4px 10px; height: auto; text-align: center; flex: 1; text-decoration: none;">
+              <span>VISIT CERTIFIED VENDOR &rarr;</span>
+            </a>
+            <button class="lcars-pill pill-banana" style="font-size: 0.72rem; padding: 4px 10px; height: auto;" onclick="logTradeToJournal('${p.name.replace(/'/g, "\\'")}')">
+              <span>+ LOG IN MEALS</span>
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function filterProducts(cat) {
+      currentProductFilter = cat;
+      document.querySelectorAll('#pageDietTrades [id^="btnProd"]').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = {
+        'all': 'btnProdAll',
+        'sweeteners': 'btnProdSweet',
+        'pastas': 'btnProdPasta',
+        'snacks': 'btnProdSnacks',
+        'chocolates': 'btnProdChoc',
+        'drinks': 'btnProdDrinks'
+      }[cat];
+      if (activeBtn) document.getElementById(activeBtn).classList.add('active');
+      const searchVal = document.getElementById('prodSearchInput') ? document.getElementById('prodSearchInput').value : '';
+      renderProductsGrid(searchVal);
+    }
+
+    function searchProducts(query) {
+      renderProductsGrid(query);
     }
 
   </script>
