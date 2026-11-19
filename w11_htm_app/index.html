@@ -4119,6 +4119,12 @@
     }
 
     async function proceedWithGattConnection() {
+      // 1. Force Python daemon to release radio before Chrome opens GATT link
+      try {
+        await fetch('/api/radio_yield', { method: 'POST' });
+        await new Promise(r => setTimeout(r, 200));
+      } catch (e) {}
+
       document.getElementById("ribbonDevice").textContent = `${bluetoothDevice.name || "VEE"}`;
       document.getElementById("ribbonComm").textContent = "LINKING...";
       bluetoothDevice.addEventListener('gattserverdisconnected', onDisconnected);
@@ -8106,11 +8112,11 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
   
     // Keep server.py proximity daemon informed that Chrome holds the radio
     function pingBrowserActiveToDaemon() {
-      if (bluetoothDevice && bluetoothDevice.gatt && bluetoothDevice.gatt.connected) {
-        fetch('/api/browser_active', { method: 'POST' }).catch(() => {});
-      }
+      // Keep Python daemon from stealing the radio whenever this web page is open
+      fetch('/api/browser_active', { method: 'POST' }).catch(() => {});
     }
-    setInterval(pingBrowserActiveToDaemon, 4000);
+    setInterval(pingBrowserActiveToDaemon, 3000);
+    pingBrowserActiveToDaemon(); // Ping immediately on page load
 </script>
 </body>
 </html>

@@ -43,7 +43,7 @@ def record_browser_activity():
 
 def is_browser_active():
     # If browser sent a log or telemetry in the last 45 seconds, it is actively managing BLE
-    return (time.time() - last_browser_activity) < 45.0
+    return (time.time() - last_browser_activity) < 60.0
 
 ble_state = {
     "status": "INITIALIZING",
@@ -460,6 +460,13 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
         elif self.path == "/api/browser_active":
             record_browser_activity()
             self.send_json_response({"status": "BROWSER_ACTIVE_CONFIRMED"})
+
+        elif self.path == "/api/radio_yield":
+            # Force background scanner to immediately yield BLE adapter to browser
+            record_browser_activity()
+            ble_state["status"] = "CHROME_LINK_ACTIVE"
+            ble_state["contention_warning"] = False
+            self.send_json_response({"status": "RADIO_YIELDED_TO_BROWSER"})
 
         elif self.path == "/api/telemetry":
             record_browser_activity()
