@@ -4720,16 +4720,59 @@
             <div class="setup-section-title" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
               <div>
                 <span style="color: var(--lcars-orange);">01. ACTIVE PHARMACOLOGICAL REGIMEN &amp; INTAKE SCHEDULE</span>
-                <span style="font-size: 0.8rem; color: var(--lcars-gray); display: block;">PRESCRIBED DOSAGE, TIMING &amp; DAILY ADHERENCE</span>
+                <span style="font-size: 0.8rem; color: var(--lcars-gray); display: block;">PRESCRIBED DOSAGE, TIMING &amp; DAILY ADHERENCE • 2 DAILY INTAKE SCHEDULES</span>
               </div>
-              <div style="display: flex; gap: 8px;">
-                <button class="lcars-btn btn-peach" style="padding: 4px 14px; font-size: 0.8rem;" onclick="switchTab('reports')">VIEW IN SYNCHRONIZED TALL CHART (TAB 04)</button>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <button class="lcars-btn btn-green" style="padding: 4px 14px; font-size: 0.8rem;" onclick="openAddMedModal()">+ ADD MEDICATION</button>
+                <button class="lcars-btn btn-orange" style="padding: 4px 12px; font-size: 0.8rem;" onclick="resetMedicationRegimen()">RESET REGIMEN</button>
+                <button class="lcars-btn btn-peach" style="padding: 4px 14px; font-size: 0.8rem;" onclick="switchTab('reports')">VIEW IN TALL CHART (TAB 04)</button>
               </div>
             </div>
 
-            <!-- Active Meds Grid -->
-            <div id="activeMedicationsGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 12px; margin-top: 6px;">
-              <!-- Populated by JavaScript -->
+            <!-- INTAKE SCHEDULE 1: MORNING REGIMEN (WITH BREAKFAST) -->
+            <div style="background: #040b15; border: 1px solid #1a3250; border-left: 5px solid var(--lcars-banana); border-radius: 8px; padding: 14px; margin-top: 12px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 8px; border-bottom: 1px solid #14253c; padding-bottom: 8px;">
+                <div>
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <span style="font-size: 1.25rem;">🌅</span>
+                    <strong style="color: var(--lcars-banana); font-size: 1.05rem; font-family: var(--lcars-mono); letter-spacing: 0.5px;">INTAKE 1: MORNING REGIMEN (WITH BREAKFAST)</strong>
+                    <span class="badge" style="background: rgba(255,204,102,0.15); color: var(--lcars-banana); border: 1px solid var(--lcars-banana); font-size: 0.72rem;">08:00 AM SCHEDULE</span>
+                  </div>
+                  <div style="font-size: 0.8rem; color: var(--lcars-gray); margin-top: 2px;">
+                    Complete primary morning pharmacological suite taken with breakfast. Includes split Metformin 1,000 mg + metabolic &amp; cardio protectors.
+                  </div>
+                </div>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                  <button class="lcars-btn btn-green" style="padding: 5px 14px; font-size: 0.8rem; font-weight: bold;" onclick="takeAllMorningMeds()">✓ TAKE ALL MORNING MEDS</button>
+                  <button class="lcars-btn btn-banana" style="padding: 5px 12px; font-size: 0.8rem;" onclick="openAddMedModal('morning')">+ ADD MORNING MED</button>
+                </div>
+              </div>
+              <div id="gridMorningMeds" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 12px; margin-top: 8px;">
+                <!-- Morning meds populated by JavaScript -->
+              </div>
+            </div>
+
+            <!-- INTAKE SCHEDULE 2: DINNER REGIMEN (WITH DINNER) -->
+            <div style="background: #040b15; border: 1px solid #231b3b; border-left: 5px solid var(--lcars-lilac); border-radius: 8px; padding: 14px; margin-top: 14px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 8px; border-bottom: 1px solid #221b36; padding-bottom: 8px;">
+                <div>
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <span style="font-size: 1.25rem;">🌙</span>
+                    <strong style="color: var(--lcars-lilac); font-size: 1.05rem; font-family: var(--lcars-mono); letter-spacing: 0.5px;">INTAKE 2: DINNER REGIMEN (WITH DINNER)</strong>
+                    <span class="badge" style="background: rgba(204,153,255,0.15); color: var(--lcars-lilac); border: 1px solid var(--lcars-lilac); font-size: 0.72rem;">06:30 PM SCHEDULE</span>
+                  </div>
+                  <div style="font-size: 0.8rem; color: var(--lcars-gray); margin-top: 2px;">
+                    Evening split Metformin 1,000 mg dose taken with evening meal to sustain overnight hepatic glucose suppression.
+                  </div>
+                </div>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                  <button class="lcars-btn btn-green" style="padding: 5px 14px; font-size: 0.8rem; font-weight: bold;" onclick="takeDinnerMeds()">✓ TAKE DINNER METFORMIN</button>
+                  <button class="lcars-btn btn-lilac" style="padding: 5px 12px; font-size: 0.8rem;" onclick="openAddMedModal('dinner')">+ ADD DINNER MED</button>
+                </div>
+              </div>
+              <div id="gridDinnerMeds" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 12px; margin-top: 8px;">
+                <!-- Dinner meds populated by JavaScript -->
+              </div>
             </div>
           </div>
 
@@ -5153,6 +5196,69 @@
           </div>
         </div>
 
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       EDIT / ADD PRESCRIBED MEDICATION MODAL
+       ========================================================================= -->
+  <div id="modalEditMedication" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.82); z-index: 99999; backdrop-filter: blur(4px); align-items: center; justify-content: center;">
+    <div style="background: var(--theme-card-bg, #080c14); border: 2px solid var(--lcars-orange); border-radius: 10px; width: 92%; max-width: 620px; max-height: 90vh; overflow-y: auto; box-shadow: 0 0 35px rgba(255, 153, 0, 0.3); padding: 22px;">
+      
+      <!-- Modal Header -->
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--lcars-orange); padding-bottom: 10px; margin-bottom: 16px;">
+        <div>
+          <span style="background: var(--lcars-orange); color: #000; font-family: var(--lcars-mono); font-weight: bold; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; margin-right: 8px;">RX-EDIT</span>
+          <span id="modalEditMedTitle" style="font-family: var(--lcars-font); font-size: 1.25rem; font-weight: 700; color: var(--lcars-orange); letter-spacing: 0.05em;">EDIT PRESCRIBED MEDICATION</span>
+        </div>
+        <button class="lcars-btn btn-peach" style="width: auto; padding: 4px 14px;" onclick="closeEditMedModal()">CLOSE [X]</button>
+      </div>
+
+      <input type="hidden" id="editMedId">
+
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <div class="setup-field">
+          <label class="setup-label">MEDICATION NAME</label>
+          <input type="text" id="editMedName" class="setup-input" placeholder="e.g. Metformin Extended-Release (Glucophage XR)">
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div class="setup-field">
+            <label class="setup-label">PRESCRIBED DOSAGE</label>
+            <input type="text" id="editMedDose" class="setup-input" placeholder="e.g. 1,000 mg">
+          </div>
+          <div class="setup-field">
+            <label class="setup-label">DAILY INTAKE TIME</label>
+            <select id="editMedSlot" class="setup-input">
+              <option value="morning">🌅 Morning Regimen (with Breakfast)</option>
+              <option value="dinner">🌙 Dinner Regimen (with Dinner)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="setup-field">
+          <label class="setup-label">INTAKE SCHEDULE DETAILS</label>
+          <input type="text" id="editMedSchedule" class="setup-input" placeholder="e.g. Oral with Breakfast (Split Dose 1 of 2)">
+        </div>
+
+        <div class="setup-field">
+          <label class="setup-label">CLINICAL INDICATION &amp; MECHANISM</label>
+          <input type="text" id="editMedIndication" class="setup-input" placeholder="e.g. Type 2 Diabetes • Hepatic Gluconeogenesis Suppression">
+        </div>
+
+        <div class="setup-field">
+          <label class="setup-label">STATUS</label>
+          <select id="editMedStatus" class="setup-input">
+            <option value="ACTIVE">ACTIVE (Daily Prescribed)</option>
+            <option value="PAUSED">PAUSED (Temporarily Suspended)</option>
+          </select>
+        </div>
+
+        <div style="display: flex; gap: 10px; margin-top: 10px;">
+          <button class="lcars-btn btn-green" style="flex: 2; height: 38px; font-weight: bold;" onclick="saveMedicationModal()">✓ SAVE MEDICATION</button>
+          <button class="lcars-btn btn-peach" style="flex: 1; height: 38px;" onclick="closeEditMedModal()">CANCEL</button>
+        </div>
       </div>
     </div>
   </div>
@@ -8313,19 +8419,14 @@
     // -------------------------------------------------------------------------
     // 2. MEDICATION MANAGEMENT & CHANGE LOG STATE (11-MEDICATION)
     // -------------------------------------------------------------------------
-    let medicationList = [];
-    try {
-      const savedMeds = localStorage.getItem('veepoo_medication_list');
-      if (savedMeds) medicationList = JSON.parse(savedMeds);
-    } catch (e) {}
-
-    if (!medicationList || medicationList.length === 0) {
-      medicationList = [
+    function getDefaultMedicationList() {
+      return [
         {
           id: 1,
           name: "Metformin Extended-Release (Glucophage XR)",
           dose: "1,000 mg",
-          schedule: "Oral BID • Breakfast & Dinner",
+          slot: "morning",
+          schedule: "Oral with Breakfast (Split Dose 1 of 2)",
           indication: "Type 2 Diabetes • Hepatic Gluconeogenesis Suppression",
           status: "ACTIVE",
           lastTaken: "Today 08:15 AM (Breakfast)"
@@ -8334,6 +8435,7 @@
           id: 2,
           name: "Empagliflozin (Jardiance)",
           dose: "10 mg",
+          slot: "morning",
           schedule: "Oral Daily • Morning with Breakfast",
           indication: "SGLT2 Inhibitor • Renal Glucose Clearance & Cardiorenal Protection",
           status: "ACTIVE",
@@ -8343,14 +8445,86 @@
           id: 3,
           name: "Lisinopril",
           dose: "10 mg",
-          schedule: "Oral Daily • Morning",
+          slot: "morning",
+          schedule: "Oral Daily • Morning with Breakfast",
           indication: "ACE Inhibitor • Renal Microvascular Protection & Blood Pressure Homeostasis",
           status: "ACTIVE",
-          lastTaken: "Today 08:15 AM"
+          lastTaken: "Today 08:15 AM (Breakfast)"
+        },
+        {
+          id: 4,
+          name: "Metformin Extended-Release (Glucophage XR)",
+          dose: "1,000 mg",
+          slot: "dinner",
+          schedule: "Oral with Dinner (Split Dose 2 of 2)",
+          indication: "Type 2 Diabetes • Hepatic Gluconeogenesis Suppression (Evening & Overnight)",
+          status: "ACTIVE",
+          lastTaken: "Pending today (Dinner)"
         }
       ];
-      try { localStorage.setItem('veepoo_medication_list', JSON.stringify(medicationList)); } catch (e) {}
     }
+
+    function normalizeMedicationList(list) {
+      if (!list || !Array.isArray(list) || list.length === 0) {
+        return getDefaultMedicationList();
+      }
+      let hasDinner = false;
+      let metforminMorning = null;
+
+      list.forEach(m => {
+        if (!m.slot) {
+          const s = ((m.schedule || "") + " " + (m.name || "")).toLowerCase();
+          if (s.includes("dinner") || s.includes("evening") || s.includes("pm") || s.includes("night")) {
+            m.slot = "dinner";
+          } else {
+            m.slot = "morning";
+          }
+        }
+        if (m.slot === "dinner") hasDinner = true;
+        if (m.name && m.name.toLowerCase().includes("metformin") && m.slot === "morning") {
+          metforminMorning = m;
+        }
+      });
+
+      // User requirement: two intake times: morning with complete list, dinner with just metformin.
+      // If there is no dinner slot med, establish the split Metformin 1000mg with dinner.
+      if (!hasDinner) {
+        if (metforminMorning) {
+          metforminMorning.schedule = "Oral with Breakfast (Split Dose 1 of 2)";
+          list.push({
+            id: Date.now() + 101,
+            name: metforminMorning.name,
+            dose: metforminMorning.dose || "1,000 mg",
+            slot: "dinner",
+            schedule: "Oral with Dinner (Split Dose 2 of 2)",
+            indication: metforminMorning.indication || "Type 2 Diabetes • Hepatic Gluconeogenesis Suppression (Evening & Overnight)",
+            status: "ACTIVE",
+            lastTaken: "Pending today (Dinner)"
+          });
+        } else {
+          list.push({
+            id: Date.now() + 102,
+            name: "Metformin Extended-Release (Glucophage XR)",
+            dose: "1,000 mg",
+            slot: "dinner",
+            schedule: "Oral with Dinner (Split Dose 2 of 2)",
+            indication: "Type 2 Diabetes • Hepatic Gluconeogenesis Suppression (Evening & Overnight)",
+            status: "ACTIVE",
+            lastTaken: "Pending today (Dinner)"
+          });
+        }
+      }
+      return list;
+    }
+
+    let medicationList = [];
+    try {
+      const savedMeds = localStorage.getItem('veepoo_medication_list');
+      if (savedMeds) medicationList = JSON.parse(savedMeds);
+    } catch (e) {}
+
+    medicationList = normalizeMedicationList(medicationList);
+    try { localStorage.setItem('veepoo_medication_list', JSON.stringify(medicationList)); } catch (e) {}
 
     let medicationChangeLog = [];
     try {
@@ -8473,40 +8647,230 @@
       }
     }
 
+    function takeAllMorningMeds() {
+      soundButtonPress();
+      const now = new Date();
+      const timeStr = `Today ${now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} (Breakfast)`;
+      let count = 0;
+      medicationList = medicationList.map(m => {
+        if (m.slot !== 'dinner') {
+          m.lastTaken = timeStr;
+          count++;
+        }
+        return m;
+      });
+      try { localStorage.setItem('veepoo_medication_list', JSON.stringify(medicationList)); } catch (e) {}
+      renderMedicationView();
+      logLCARS(`[✓ INTAKE 1 CONFIRMED] All ${count} morning medications taken at ${timeStr}. Adherence recorded.`, "rx");
+      if (typeof showToast === 'function') showToast(`✓ All ${count} morning medications marked as taken!`);
+    }
+
+    function takeDinnerMeds() {
+      soundButtonPress();
+      const now = new Date();
+      const timeStr = `Today ${now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} (Dinner)`;
+      let count = 0;
+      medicationList = medicationList.map(m => {
+        if (m.slot === 'dinner') {
+          m.lastTaken = timeStr;
+          count++;
+        }
+        return m;
+      });
+      try { localStorage.setItem('veepoo_medication_list', JSON.stringify(medicationList)); } catch (e) {}
+      renderMedicationView();
+      logLCARS(`[✓ INTAKE 2 CONFIRMED] Dinner medication (Metformin split) taken at ${timeStr}. Adherence recorded.`, "rx");
+      if (typeof showToast === 'function') showToast(`✓ Dinner medication marked as taken!`);
+    }
+
+    function openEditMedModal(medId) {
+      soundButtonPress();
+      const m = medicationList.find(x => x.id === medId);
+      if (!m) return;
+      const titleEl = document.getElementById('modalEditMedTitle');
+      if (titleEl) titleEl.innerText = "EDIT PRESCRIBED MEDICATION";
+      document.getElementById('editMedId').value = m.id;
+      document.getElementById('editMedName').value = m.name || "";
+      document.getElementById('editMedDose').value = m.dose || "";
+      document.getElementById('editMedSlot').value = m.slot || "morning";
+      document.getElementById('editMedSchedule').value = m.schedule || "";
+      document.getElementById('editMedIndication').value = m.indication || "";
+      document.getElementById('editMedStatus').value = m.status || "ACTIVE";
+      const modal = document.getElementById('modalEditMedication');
+      if (modal) modal.style.display = 'flex';
+    }
+
+    function openAddMedModal(defaultSlot) {
+      soundButtonPress();
+      const titleEl = document.getElementById('modalEditMedTitle');
+      if (titleEl) titleEl.innerText = "ADD NEW MEDICATION TO REGIMEN";
+      document.getElementById('editMedId').value = "";
+      document.getElementById('editMedName').value = "";
+      document.getElementById('editMedDose').value = "";
+      const slot = defaultSlot || "morning";
+      document.getElementById('editMedSlot').value = slot;
+      document.getElementById('editMedSchedule').value = slot === 'dinner' ? "Oral with Dinner" : "Oral with Breakfast";
+      document.getElementById('editMedIndication').value = "";
+      document.getElementById('editMedStatus').value = "ACTIVE";
+      const modal = document.getElementById('modalEditMedication');
+      if (modal) modal.style.display = 'flex';
+    }
+
+    function closeEditMedModal() {
+      soundButtonPress();
+      const modal = document.getElementById('modalEditMedication');
+      if (modal) modal.style.display = 'none';
+    }
+
+    function saveMedicationModal() {
+      soundButtonPress();
+      const idVal = document.getElementById('editMedId').value;
+      const name = document.getElementById('editMedName').value.trim();
+      const dose = document.getElementById('editMedDose').value.trim();
+      const slot = document.getElementById('editMedSlot').value;
+      const schedule = document.getElementById('editMedSchedule').value.trim();
+      const indication = document.getElementById('editMedIndication').value.trim();
+      const status = document.getElementById('editMedStatus').value;
+
+      if (!name) {
+        alert("Please enter a medication name.");
+        return;
+      }
+
+      if (idVal) {
+        const numId = parseInt(idVal, 10);
+        medicationList = medicationList.map(m => {
+          if (m.id === numId) {
+            return {
+              ...m,
+              name: name,
+              dose: dose || m.dose,
+              slot: slot,
+              schedule: schedule || m.schedule,
+              indication: indication || m.indication,
+              status: status
+            };
+          }
+          return m;
+        });
+        logLCARS(`[★ MED UPDATED] ${name} (${dose || 'Std'}) saved. Slot: ${slot.toUpperCase()}`, "rx");
+      } else {
+        const newMed = {
+          id: Date.now(),
+          name: name,
+          dose: dose || "Standard Dose",
+          slot: slot,
+          schedule: schedule || (slot === 'dinner' ? "Oral with Dinner" : "Oral with Breakfast"),
+          indication: indication || "Prescribed Maintenance Therapy",
+          status: status,
+          lastTaken: "Pending today"
+        };
+        medicationList.push(newMed);
+        logLCARS(`[★ MED ADDED] ${name} (${dose || 'Std'}) added to ${slot.toUpperCase()} regimen.`, "rx");
+      }
+
+      try { localStorage.setItem('veepoo_medication_list', JSON.stringify(medicationList)); } catch (e) {}
+      closeEditMedModal();
+      renderMedicationView();
+      if (typeof renderTallSynchronizedChart === 'function') renderTallSynchronizedChart(currentTallChartTimeframe);
+    }
+
+    function deleteMedication(medId) {
+      soundButtonPress();
+      const m = medicationList.find(x => x.id === medId);
+      const name = m ? m.name : `ID ${medId}`;
+      if (confirm(`Remove "${name}" from your active medication regimen?`)) {
+        medicationList = medicationList.filter(x => x.id !== medId);
+        try { localStorage.setItem('veepoo_medication_list', JSON.stringify(medicationList)); } catch (e) {}
+        renderMedicationView();
+        if (typeof renderTallSynchronizedChart === 'function') renderTallSynchronizedChart(currentTallChartTimeframe);
+        logLCARS(`[-] Medication removed from regimen: ${name}`, "rx");
+      }
+    }
+
+    function titrateMedication(medId) {
+      soundButtonPress();
+      const m = medicationList.find(x => x.id === medId);
+      if (m) {
+        const nameEl = document.getElementById('medChangeName');
+        const oldDoseEl = document.getElementById('medChangeOldDose');
+        if (nameEl) nameEl.value = m.name;
+        if (oldDoseEl) oldDoseEl.value = m.dose;
+        const comp2 = document.getElementById('medChangeTimestamp');
+        if (comp2) comp2.scrollIntoView({ behavior: 'smooth' });
+        logLCARS(`[TITRATION] Populated titration form for ${m.name}. Ready for physician change details.`, "rx");
+      }
+    }
+
+    function resetMedicationRegimen() {
+      soundButtonPress();
+      if (confirm("Reset medication regimen to standard 2-intake schedule (Morning complete meds + Dinner Metformin)?")) {
+        medicationList = getDefaultMedicationList();
+        try { localStorage.setItem('veepoo_medication_list', JSON.stringify(medicationList)); } catch (e) {}
+        renderMedicationView();
+        if (typeof renderTallSynchronizedChart === 'function') renderTallSynchronizedChart(currentTallChartTimeframe);
+        logLCARS(`[RX RESET] Regimen reset to 2-intake schedule: Morning suite + Dinner Metformin split.`, "rx");
+      }
+    }
+
     function renderMedicationView() {
       initMedChangeTime();
-      const grid = document.getElementById('activeMedicationsGrid');
-      if (grid) {
-        grid.innerHTML = '';
-        medicationList.forEach(m => {
-          const card = document.createElement('div');
-          card.style.background = '#06101c';
-          card.style.border = '1px solid #1a2f4a';
-          card.style.borderRadius = '6px';
-          card.style.padding = '14px';
-          card.style.display = 'flex';
-          card.style.flexDirection = 'column';
-          card.style.gap = '8px';
-          card.innerHTML = `
-            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-              <div>
-                <strong style="color: var(--lcars-banana); font-size: 1.05rem;">${m.name}</strong>
-                <div style="font-size: 0.8rem; color: #80c890; margin-top: 2px;">${m.indication}</div>
-              </div>
-              <span class="badge" style="background: rgba(85,255,119,0.15); color: var(--lcars-green); font-size: 0.72rem; border: 1px solid var(--lcars-green);">${m.status}</span>
+      const morningGrid = document.getElementById('gridMorningMeds');
+      const dinnerGrid = document.getElementById('gridDinnerMeds');
+
+      if (morningGrid) morningGrid.innerHTML = '';
+      if (dinnerGrid) dinnerGrid.innerHTML = '';
+
+      const morningMeds = medicationList.filter(m => m.slot !== 'dinner');
+      const dinnerMeds = medicationList.filter(m => m.slot === 'dinner');
+
+      function buildCard(m) {
+        const card = document.createElement('div');
+        card.style.background = '#06101c';
+        card.style.border = '1px solid #1a2f4a';
+        card.style.borderRadius = '6px';
+        card.style.padding = '14px';
+        card.style.display = 'flex';
+        card.style.flexDirection = 'column';
+        card.style.gap = '8px';
+        const isActive = m.status === 'ACTIVE';
+        card.innerHTML = `
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
+            <div>
+              <strong style="color: var(--lcars-banana); font-size: 1.02rem;">${m.name}</strong>
+              <div style="font-size: 0.78rem; color: #80c890; margin-top: 2px;">${m.indication || 'Pharmacological therapy'}</div>
             </div>
-            <div style="background: #091728; border-radius: 4px; padding: 8px 10px; font-family: var(--lcars-mono); font-size: 0.85rem;">
-              <div style="color: var(--lcars-text);"><span style="color: var(--lcars-gray);">DOSAGE:</span> <strong style="color: var(--lcars-banana);">${m.dose}</strong></div>
-              <div style="color: var(--lcars-text); margin-top: 2px;"><span style="color: var(--lcars-gray);">SCHEDULE:</span> ${m.schedule}</div>
-              <div style="color: var(--lcars-green); margin-top: 2px;"><span style="color: var(--lcars-gray);">LAST INTAKE:</span> ${m.lastTaken}</div>
-            </div>
-            <div style="display: flex; gap: 8px; margin-top: 4px;">
-              <button class="lcars-btn btn-green" style="flex: 2; padding: 5px 10px; font-size: 0.8rem; font-weight: bold;" onclick="recordMedDoseTaken(${m.id})">✓ TAKEN TODAY (CONFIRM)</button>
-              <button class="lcars-btn btn-orange" style="flex: 1; padding: 5px 10px; font-size: 0.8rem;" onclick="document.getElementById('medChangeName').value='${m.name}'; document.getElementById('medChangeOldDose').value='${m.dose}'; switchTab('medication');">TITRATE</button>
-            </div>
-          `;
-          grid.appendChild(card);
-        });
+            <span class="badge" style="background: ${isActive ? 'rgba(85,255,119,0.15)' : 'rgba(255,153,102,0.15)'}; color: ${isActive ? 'var(--lcars-green)' : 'var(--lcars-peach)'}; font-size: 0.72rem; border: 1px solid ${isActive ? 'var(--lcars-green)' : 'var(--lcars-peach)'};">${m.status || 'ACTIVE'}</span>
+          </div>
+          <div style="background: #091728; border-radius: 4px; padding: 8px 10px; font-family: var(--lcars-mono); font-size: 0.83rem;">
+            <div style="color: var(--lcars-text);"><span style="color: var(--lcars-gray);">DOSAGE:</span> <strong style="color: var(--lcars-banana);">${m.dose}</strong></div>
+            <div style="color: var(--lcars-text); margin-top: 2px;"><span style="color: var(--lcars-gray);">SCHEDULE:</span> ${m.schedule || (m.slot === 'dinner' ? 'Oral with Dinner' : 'Oral with Breakfast')}</div>
+            <div style="color: var(--lcars-green); margin-top: 2px;"><span style="color: var(--lcars-gray);">LAST INTAKE:</span> ${m.lastTaken || 'Pending today'}</div>
+          </div>
+          <div style="display: flex; gap: 6px; margin-top: 4px; flex-wrap: wrap;">
+            <button class="lcars-btn btn-green" style="flex: 2; min-width: 95px; padding: 5px 8px; font-size: 0.78rem; font-weight: bold;" onclick="recordMedDoseTaken(${m.id})">✓ TAKEN</button>
+            <button class="lcars-btn btn-banana" style="flex: 1; min-width: 55px; padding: 5px 8px; font-size: 0.78rem;" onclick="openEditMedModal(${m.id})">EDIT</button>
+            <button class="lcars-btn btn-orange" style="flex: 1; min-width: 60px; padding: 5px 8px; font-size: 0.78rem;" onclick="titrateMedication(${m.id})">TITRATE</button>
+            <button class="lcars-btn btn-pink" style="flex: 1; min-width: 60px; padding: 5px 8px; font-size: 0.78rem;" onclick="deleteMedication(${m.id})">DELETE</button>
+          </div>
+        `;
+        return card;
+      }
+
+      if (morningGrid) {
+        if (morningMeds.length === 0) {
+          morningGrid.innerHTML = `<div style="padding: 16px; color: var(--lcars-gray); font-family: var(--lcars-mono); font-size: 0.85rem; grid-column: 1 / -1; text-align: center; border: 1px dashed #1a2f4a; border-radius: 4px;">NO MORNING MEDICATIONS CONFIGURED • CLICK "+ ADD MORNING MED" ABOVE</div>`;
+        } else {
+          morningMeds.forEach(m => morningGrid.appendChild(buildCard(m)));
+        }
+      }
+
+      if (dinnerGrid) {
+        if (dinnerMeds.length === 0) {
+          dinnerGrid.innerHTML = `<div style="padding: 16px; color: var(--lcars-gray); font-family: var(--lcars-mono); font-size: 0.85rem; grid-column: 1 / -1; text-align: center; border: 1px dashed #231b3b; border-radius: 4px;">NO DINNER MEDICATIONS CONFIGURED • CLICK "+ ADD DINNER MED" ABOVE</div>`;
+        } else {
+          dinnerMeds.forEach(m => dinnerGrid.appendChild(buildCard(m)));
+        }
       }
 
       const list = document.getElementById('medicationChangeList');
