@@ -1,0 +1,661 @@
+[
+  {
+    "name": "C164",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 180040,
+    "prev_size": 36082
+  },
+  {
+    "name": "C166",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 168704,
+    "prev_size": 42652
+  },
+  {
+    "name": "C169",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 168704,
+    "prev_size": 45731
+  },
+  {
+    "name": "C006",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 205252,
+    "prev_size": 44717
+  },
+  {
+    "name": "C176",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 197312,
+    "prev_size": 94556
+  },
+  {
+    "name": "C173",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 297952,
+    "prev_size": 58897
+  },
+  {
+    "name": "C174",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 299424,
+    "prev_size": 228228
+  },
+  {
+    "name": "C171",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 263312,
+    "prev_size": 52088
+  },
+  {
+    "name": "C170",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 204152,
+    "prev_size": 95641
+  },
+  {
+    "name": "C163",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 168704,
+    "prev_size": 47286
+  },
+  {
+    "name": "C104",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 267432,
+    "prev_size": 44070
+  },
+  {
+    "name": "C162",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 174748,
+    "prev_size": 44533
+  },
+  {
+    "name": "C175",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 220112,
+    "prev_size": 152592
+  },
+  {
+    "name": "C142",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 300588,
+    "prev_size": 57332
+  },
+  {
+    "name": "C145",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 289836,
+    "prev_size": 40442
+  },
+  {
+    "name": "C141",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 266488,
+    "prev_size": 49121
+  },
+  {
+    "name": "C105",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 232224,
+    "prev_size": 28451
+  },
+  {
+    "name": "C138",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 265136,
+    "prev_size": 139876
+  },
+  {
+    "name": "C125",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 318992,
+    "prev_size": 26353
+  },
+  {
+    "name": "C144",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 269124,
+    "prev_size": 79206
+  },
+  {
+    "name": "C122",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 328072,
+    "prev_size": 23091
+  },
+  {
+    "name": "C123",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 437784,
+    "prev_size": 29005
+  },
+  {
+    "name": "C112",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 213120,
+    "prev_size": 36473
+  },
+  {
+    "name": "C085",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 355528,
+    "prev_size": 60077
+  },
+  {
+    "name": "C136",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 359412,
+    "prev_size": 29745
+  },
+  {
+    "name": "C106",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 247196,
+    "prev_size": 47006
+  },
+  {
+    "name": "C114",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 176180,
+    "prev_size": 42892
+  },
+  {
+    "name": "C117",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 206852,
+    "prev_size": 52750
+  },
+  {
+    "name": "C093",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 313860,
+    "prev_size": 17109
+  },
+  {
+    "name": "C146",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 295064,
+    "prev_size": 54952
+  },
+  {
+    "name": "C103",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 202896,
+    "prev_size": 21520
+  },
+  {
+    "name": "C092",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 396032,
+    "prev_size": 48649
+  },
+  {
+    "name": "C089",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 383924,
+    "prev_size": 43983
+  },
+  {
+    "name": "C101",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 230972,
+    "prev_size": 172856
+  },
+  {
+    "name": "C084",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 311044,
+    "prev_size": 44178
+  },
+  {
+    "name": "C088",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 335112,
+    "prev_size": 63635
+  },
+  {
+    "name": "C086",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 250488,
+    "prev_size": 38300
+  },
+  {
+    "name": "C082",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 227112,
+    "prev_size": 34911
+  },
+  {
+    "name": "C091",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 242044,
+    "prev_size": 21118
+  },
+  {
+    "name": "C064",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 364728,
+    "prev_size": 21114
+  },
+  {
+    "name": "C011",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 426848,
+    "prev_size": 23622
+  },
+  {
+    "name": "C090",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 305756,
+    "prev_size": 36200
+  },
+  {
+    "name": "C111",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 184620,
+    "prev_size": 41240
+  },
+  {
+    "name": "C081",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 441636,
+    "prev_size": 43478
+  },
+  {
+    "name": "C095",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 313800,
+    "prev_size": 26568
+  },
+  {
+    "name": "C097",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 292216,
+    "prev_size": 46374
+  },
+  {
+    "name": "C099",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 355024,
+    "prev_size": 189125
+  },
+  {
+    "name": "C038",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 230268,
+    "prev_size": 22500
+  },
+  {
+    "name": "C098",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 255620,
+    "prev_size": 198896
+  },
+  {
+    "name": "C083",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 320224,
+    "prev_size": 29940
+  },
+  {
+    "name": "C049",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 248308,
+    "prev_size": 30455
+  },
+  {
+    "name": "C075",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 168380,
+    "prev_size": 66709
+  },
+  {
+    "name": "C078",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 288776,
+    "prev_size": 20732
+  },
+  {
+    "name": "C065",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 200776,
+    "prev_size": 39359
+  },
+  {
+    "name": "C041",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 248972,
+    "prev_size": 59478
+  },
+  {
+    "name": "C076",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 242116,
+    "prev_size": 70091
+  },
+  {
+    "name": "C074",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 254124,
+    "prev_size": 87052
+  },
+  {
+    "name": "C062",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 341956,
+    "prev_size": 34848
+  },
+  {
+    "name": "C070",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 291100,
+    "prev_size": 172856
+  },
+  {
+    "name": "C072",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 444356,
+    "prev_size": 75101
+  },
+  {
+    "name": "C060",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 218940,
+    "prev_size": 56010
+  },
+  {
+    "name": "C016",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 240620,
+    "prev_size": 68255
+  },
+  {
+    "name": "C052",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 193112,
+    "prev_size": 22314
+  },
+  {
+    "name": "C050",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 210076,
+    "prev_size": 58195
+  },
+  {
+    "name": "C048",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 363668,
+    "prev_size": 30862
+  },
+  {
+    "name": "C037",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 290128,
+    "prev_size": 47609
+  },
+  {
+    "name": "C025",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 238796,
+    "prev_size": 73216
+  },
+  {
+    "name": "C053",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 343780,
+    "prev_size": 114045
+  },
+  {
+    "name": "C033",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 210648,
+    "prev_size": 28582
+  },
+  {
+    "name": "C047",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 285164,
+    "prev_size": 45695
+  },
+  {
+    "name": "C045",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 230012,
+    "prev_size": 12090
+  },
+  {
+    "name": "C069",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 364428,
+    "prev_size": 119974
+  },
+  {
+    "name": "C028",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 159008,
+    "prev_size": 58647
+  },
+  {
+    "name": "C063",
+    "bin_ok": true,
+    "prev_ok": false,
+    "bin_size": 296048,
+    "prev_size": 0,
+    "prev_err": "<urlopen error timed out>"
+  },
+  {
+    "name": "C054",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 246380,
+    "prev_size": 29940
+  },
+  {
+    "name": "C035",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 277780,
+    "prev_size": 25361
+  },
+  {
+    "name": "C029",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 380880,
+    "prev_size": 73308
+  },
+  {
+    "name": "C026",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 247164,
+    "prev_size": 25071
+  },
+  {
+    "name": "C027",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 332212,
+    "prev_size": 23617
+  },
+  {
+    "name": "C036",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 154888,
+    "prev_size": 622640
+  },
+  {
+    "name": "C039",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 258384,
+    "prev_size": 57103
+  },
+  {
+    "name": "C058",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 232012,
+    "prev_size": 172856
+  },
+  {
+    "name": "C051",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 371256,
+    "prev_size": 41715
+  },
+  {
+    "name": "C055",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 376648,
+    "prev_size": 80752
+  },
+  {
+    "name": "C040",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 240028,
+    "prev_size": 16767
+  },
+  {
+    "name": "C030",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 209288,
+    "prev_size": 147493
+  },
+  {
+    "name": "C046",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 339856,
+    "prev_size": 565113
+  },
+  {
+    "name": "C031",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 333744,
+    "prev_size": 284207
+  },
+  {
+    "name": "C042",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 344612,
+    "prev_size": 167783
+  },
+  {
+    "name": "C056",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 381072,
+    "prev_size": 394430
+  },
+  {
+    "name": "C024",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 104212,
+    "prev_size": 376555
+  },
+  {
+    "name": "C022",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 232472,
+    "prev_size": 96643
+  },
+  {
+    "name": "C044",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 420296,
+    "prev_size": 217776
+  },
+  {
+    "name": "C043",
+    "bin_ok": true,
+    "prev_ok": true,
+    "bin_size": 341944,
+    "prev_size": 552721
+  }
+]
