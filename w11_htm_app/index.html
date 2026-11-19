@@ -3396,6 +3396,22 @@
                 <button id="btnChronoUnit" class="lcars-pill pill-blue" style="font-size: 0.8rem; padding: 6px 14px; height: auto; cursor: pointer;" onclick="toggleChronoUnit()">
                   <span>UNIT: MG/DL</span>
                 </button>
+                <!-- NIGHT VISION THEME SELECTOR -->
+                <div style="display: flex; gap: 4px; background: rgba(0,0,0,0.4); padding: 3px 6px; border-radius: 20px; border: 1px solid #1e3a5f; align-items: center;">
+                  <button id="btnThemeDay" class="lcars-pill pill-blue" style="font-size: 0.72rem; padding: 4px 10px; height: auto; cursor: pointer; border: 2px solid #00d2ff;" onclick="setDialVisionTheme('day')">
+                    <span>☀️ DAY BLUE</span>
+                  </button>
+                  <button id="btnThemeRedNight" class="lcars-pill pill-red" style="font-size: 0.72rem; padding: 4px 10px; height: auto; cursor: pointer;" onclick="setDialVisionTheme('red_night')" title="Tactical Red Night Vision: Preserves retinal rod dark adaptation">
+                    <span>🔴 RED NIGHT</span>
+                  </button>
+                  <button id="btnThemeBlueNight" class="lcars-pill pill-blue" style="font-size: 0.72rem; padding: 4px 10px; height: auto; cursor: pointer;" onclick="setDialVisionTheme('blue_night')" title="Submarine Deep Blue Night Vision">
+                    <span>🔵 DEEP BLUE</span>
+                  </button>
+                  <button id="btnThemeAutoNight" class="lcars-pill pill-lilac" style="font-size: 0.72rem; padding: 4px 10px; height: auto; cursor: pointer;" onclick="setDialVisionTheme('auto')" title="Auto-Night: Switches to Red Night Vision from 21:00 to 07:00">
+                    <span id="lblThemeAuto">🌙 AUTO-NIGHT</span>
+                  </button>
+                </div>
+
                 <button class="lcars-pill pill-green" style="font-size: 0.8rem; padding: 6px 14px; height: auto; cursor: pointer;" onclick="toggleChronoMode()">
                   <span id="lblChronoMode">MODE: REAL SENSORS</span>
                 </button>
@@ -3408,18 +3424,30 @@
             <div class="box-content" style="padding: 18px;">
               <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: center;">
 
-                <!-- THE 240x280 PHYSICAL SIMULATOR FRAME -->
+                <!-- LIVE APPLY PROGRESS & HARDWARE VERIFICATION BAR -->
+              <div id="applyProgressContainer" style="display: none; width: 100%; max-width: 600px; margin: 0 auto 16px auto; background: rgba(0,0,0,0.6); border: 2px solid var(--lcars-banana); border-radius: 8px; padding: 12px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                  <span id="lblApplyStep" style="font-size: 0.82rem; font-weight: bold; color: var(--lcars-banana);">INITIALIZING GATT FLASH LINK...</span>
+                  <span id="lblApplyPct" style="font-size: 0.9rem; font-weight: 900; color: #ffffff;">0%</span>
+                </div>
+                <div style="width: 100%; height: 12px; background: #0c1829; border-radius: 6px; overflow: hidden; border: 1px solid #1e3a5f;">
+                  <div id="applyProgressBar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #22c55e); transition: width 0.25s ease;"></div>
+                </div>
+                <div id="lblApplyStatus" style="font-size: 0.75rem; color: #94a3b8; margin-top: 6px; font-family: monospace;">Awaiting hardware controller confirmation...</div>
+              </div>
+
+              <!-- THE 240x280 PHYSICAL SIMULATOR FRAME -->
                 <div style="position: relative; width: 280px; height: 326px; background: #000; border: 8px solid #1a2332; border-radius: 36px; box-shadow: 0 0 25px rgba(0,0,0,0.8), 0 0 10px rgba(85, 255, 119, 0.2); overflow: hidden; display: flex; align-items: center; justify-content: center;">
                   
                   <!-- SVG Dial Canvas (Exact 240x280 aspect ratio) -->
-                  <svg id="svgHybridDial" width="240" height="280" viewBox="0 0 240 280" style="background: #07152b; font-family: 'Share Tech Mono', Consolas, sans-serif;">
+                  <svg id="svgHybridDial" width="240" height="280" viewBox="0 0 240 280" style="background: #07152b; font-family: 'Share Tech Mono', Consolas, sans-serif; transition: background 0.3s ease;">
                     
-                    <!-- HIGH-CONTRAST BLUE OUTER BEZEL PLATE -->
-                    <circle cx="120" cy="140" r="118" fill="#091b36" stroke="#1d4ed8" stroke-width="2" />
+                    <!-- HIGH-CONTRAST OUTER BEZEL PLATE -->
+                    <circle id="dialBezelPlate" cx="120" cy="140" r="118" fill="#091b36" stroke="#1d4ed8" stroke-width="2" />
                     
-                    <!-- HIGH-VISIBILITY BLUE OUTER & INNER RING BORDERS (Senior High-Contrast) -->
-                    <circle cx="120" cy="140" r="114" fill="none" stroke="#00d2ff" stroke-width="2" style="filter: drop-shadow(0 0 3px #00a8ff);" />
-                    <circle cx="120" cy="140" r="96" fill="none" stroke="#00d2ff" stroke-width="2" style="filter: drop-shadow(0 0 3px #00a8ff);" />
+                    <!-- HIGH-VISIBILITY OUTER & INNER RING BORDERS -->
+                    <circle id="dialRingOuter" cx="120" cy="140" r="114" fill="none" stroke="#00d2ff" stroke-width="2" style="filter: drop-shadow(0 0 3px #00a8ff);" />
+                    <circle id="dialRingInner" cx="120" cy="140" r="96" fill="none" stroke="#00d2ff" stroke-width="2" style="filter: drop-shadow(0 0 3px #00a8ff);" />
 
                     <!-- SCULPTED NAVY BLUE BACKGROUND GROOVE (Deep Channel for Visible Path) -->
                     <path id="trackGroove" d="" fill="none" stroke="#0d2346" stroke-width="17" stroke-linecap="round" />
@@ -3457,7 +3485,7 @@
 
                     <!-- CENTER-RIGHT: PULSE / HEART RATE (3 o'clock) -->
                     <circle cx="180" cy="140" r="32" fill="#091c38" stroke="#fb923c" stroke-width="2.5" />
-                    <text x="180" y="123" text-anchor="middle" fill="#93c5fd" font-size="9" font-weight="bold">PULSE / HR</text>
+                    <text x="180" y="123" text-anchor="middle" fill="#93c5fd" font-size="9" font-weight="bold">PULSE</text>
                     <text id="chronoPodHr" x="180" y="146" text-anchor="middle" fill="#fb923c" font-size="22" font-weight="900">72</text>
                     <text x="180" y="160" text-anchor="middle" fill="#cbd5e1" font-size="9.5" font-weight="bold">BPM</text>
 
@@ -4220,6 +4248,40 @@
         const version = `${bytes[6]}.${bytes[7]}.${bytes[8]}.${bytes[9]}`;
         document.getElementById("ribbonFw").textContent = `MODEL ${devNum} / v${version}`;
         logLCARS(`[★] SENSORS AUTHENTICATED: Model ${devNum} | Firmware v${version}`, "rx");
+      }
+
+            // 0xC7: Watch Face Hardware Style ACK & Verification
+      if (header === 0xC7 && bytes.length >= 3) {
+        const isSuccess = bytes[1] === 0x01;
+        const activeSlot = bytes.length > 2 ? bytes[2] : 0;
+        const uiType = bytes.length > 3 ? bytes[3] : 0;
+        const sourceName = uiType === 0x02 ? "SPI FLASH CUSTOM (0x02)" : "FIRMWARE ROM (0x00)";
+        
+        logLCARS(`[✔] HARDWARE WATCH FACE ACK: Slot ${activeSlot} Engaged (${sourceName})`, "rx");
+
+        const elActive = document.getElementById('lblCurrentActiveFace');
+        const elSource = document.getElementById('lblActiveFaceSource');
+        const elSlot = document.getElementById('lblActiveFaceSlot');
+        
+        if (elActive) elActive.textContent = `SLOT ${activeSlot} (${sourceName})`;
+        if (elSource) elSource.textContent = sourceName;
+        if (elSlot) elSlot.textContent = `Slot ${activeSlot}`;
+
+        // Complete progress bar if active
+        const pCont = document.getElementById('applyProgressContainer');
+        const pBar = document.getElementById('applyProgressBar');
+        const pPct = document.getElementById('lblApplyPct');
+        const pStep = document.getElementById('lblApplyStep');
+        const pStat = document.getElementById('lblApplyStatus');
+        
+        if (pBar && pCont && pCont.style.display !== 'none') {
+          pBar.style.width = '100%';
+          if (pPct) pPct.textContent = '100%';
+          if (pStep) pStep.textContent = `✔ WATCH HARDWARE CONFIRMED: SLOT ${activeSlot} ACTIVE!`;
+          if (pStat) pStat.textContent = `GATT ACK 0xC7: Screen controller refreshed. Hardware slot ${activeSlot} verified.`;
+          soundSuccess();
+          setTimeout(() => { if (pCont) pCont.style.display = 'none'; }, 3500);
+        }
       }
 
       // 0x87: Dual-Sensor Temperature Telemetry
@@ -7389,7 +7451,31 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
 
     async function applyWatchFace(styleIndex, styleName) {
       soundButtonPress();
-      logLCARS(`[*] Transmitting Watch Face Change -> ${styleName} (Style ${styleIndex})...`, "tx");
+      const pCont = document.getElementById('applyProgressContainer');
+      const pBar = document.getElementById('applyProgressBar');
+      const pPct = document.getElementById('lblApplyPct');
+      const pStep = document.getElementById('lblApplyStep');
+      const pStat = document.getElementById('lblApplyStatus');
+
+      if (pCont) pCont.style.display = 'block';
+      if (pBar) pBar.style.width = '20%';
+      if (pPct) pPct.textContent = '20%';
+      if (pStep) pStep.textContent = `CONNECTING TO FITAOS HARDWARE...`;
+      if (pStat) pStat.textContent = `Targeting Slot ${styleIndex} (${styleName})...`;
+
+      const ok = await ensureConnected();
+      if (!ok) {
+        if (pStep) pStep.textContent = 'BLUETOOTH LINK FAILED';
+        if (pStat) pStat.textContent = 'Ensure watch screen is turned on and in range.';
+        soundError();
+        return;
+      }
+
+      if (pBar) pBar.style.width = '50%';
+      if (pPct) pPct.textContent = '50%';
+      if (pStep) pStep.textContent = `TRANSMITTING OPCODE 0xC7 (SET SLOT ${styleIndex})...`;
+      if (pStat) pStat.textContent = `Sending 20-byte command packet to BLE RX...`;
+
       // Opcode 0xC7, sub-cmd 0x01 = Set Screen Style, styleIndex, uiFromType=0 (Default Firmware)
       const pkt = [0xC7, 0x01, styleIndex & 0xFF, 0x00];
       await sendGattCommandBytes(pkt, `Set Watch Face Style ${styleIndex} (0xC7)`);
@@ -7407,7 +7493,18 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
           card.style.border = "1px solid var(--lcars-border)";
         }
       });
-      logLCARS(`[+] Watch Face Switched to Style ${styleIndex}!`, "rx");
+
+      if (pBar) pBar.style.width = '80%';
+      if (pPct) pPct.textContent = '80%';
+      if (pStep) pStep.textContent = `VERIFYING HARDWARE CONFIRMATION (QUERY 0xC7 0x02)...`;
+      if (pStat) pStat.textContent = `Auditing active slot on watch controller...`;
+
+      // Query active face to trigger verified hardware ACK
+      setTimeout(async () => {
+        await sendCommandBytes([0xC7, 0x02, 0x00, 0x00]);
+        // Also ensure 12hr format
+        setWatch12HourFormat();
+      }, 400);
     }
 
     async function applyScreenTimeout(seconds) {
@@ -7715,6 +7812,10 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
     }
 
     function tickChronoClock() {
+      // Check auto theme transition if auto mode is enabled
+      if (currentDialTheme === 'auto' && Math.floor(Date.now() / 1000) % 60 === 0) {
+        setDialVisionTheme('auto', true);
+      }
       const now = new Date();
       const hours = now.getHours();
       const minutes = now.getMinutes();
@@ -7764,7 +7865,99 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
         updateChronoDial(g, s, h);
       }
 
+      setDialVisionTheme(currentDialTheme, true);
       requestAnimationFrame(tickChronoClock);
+    }
+
+    
+    // =========================================================================
+    // DIAL VISION MODES (DAY BLUE, TACTICAL RED NIGHT, DEEP BLUE NIGHT, AUTO)
+    // =========================================================================
+    let currentDialTheme = localStorage.getItem('veepoo_dial_theme') || 'day';
+
+    function setDialVisionTheme(theme, isAutoTrigger = false) {
+      if (!isAutoTrigger) {
+        soundButtonPress();
+        currentDialTheme = theme;
+        localStorage.setItem('veepoo_dial_theme', theme);
+      }
+
+      let activeMode = theme;
+      if (theme === 'auto') {
+        const hr = new Date().getHours();
+        activeMode = (hr >= 21 || hr < 7) ? 'red_night' : 'day';
+        const lbl = document.getElementById('lblThemeAuto');
+        if (lbl) lbl.textContent = `🌙 AUTO (${activeMode === 'red_night' ? 'RED NIGHT' : 'DAY BLUE'})`;
+      }
+
+      // Highlight active button
+      ['btnThemeDay', 'btnThemeRedNight', 'btnThemeBlueNight', 'btnThemeAutoNight'].forEach(btnId => {
+        const btn = document.getElementById(btnId);
+        if (btn) btn.style.border = "1px solid transparent";
+      });
+      if (theme === 'day') {
+        const b = document.getElementById('btnThemeDay'); if (b) b.style.border = "2px solid #00d2ff";
+      } else if (theme === 'red_night') {
+        const b = document.getElementById('btnThemeRedNight'); if (b) b.style.border = "2px solid #ef4444";
+      } else if (theme === 'blue_night') {
+        const b = document.getElementById('btnThemeBlueNight'); if (b) b.style.border = "2px solid #38bdf8";
+      } else if (theme === 'auto') {
+        const b = document.getElementById('btnThemeAutoNight'); if (b) b.style.border = "2px solid var(--lcars-lilac)";
+      }
+
+      const svgDial = document.getElementById('svgHybridDial');
+      const bezel = document.getElementById('dialBezelPlate');
+      const rOuter = document.getElementById('dialRingOuter');
+      const rInner = document.getElementById('dialRingInner');
+      const groove = document.getElementById('trackGroove');
+      const hHandPoly = document.querySelector('#handHour polygon');
+      const hHandLine = document.querySelector('#handHour line');
+      const mHandPoly = document.querySelector('#handMinute polygon');
+      const mHandLine = document.querySelector('#handMinute line');
+      const centerPin = document.querySelector('#svgHybridDial circle[r="4"]');
+
+      if (!svgDial) return;
+
+      if (activeMode === 'red_night') {
+        // TACTICAL COCKPIT RED NIGHT VISION (Preserves Rhodopsin & Night Vision)
+        svgDial.style.background = "#140003";
+        if (bezel) { bezel.setAttribute('fill', '#1f0105'); bezel.setAttribute('stroke', '#7f1d1d'); }
+        if (rOuter) { rOuter.setAttribute('stroke', '#ef4444'); rOuter.style.filter = "drop-shadow(0 0 4px #dc2626)"; }
+        if (rInner) { rInner.setAttribute('stroke', '#ef4444'); rInner.style.filter = "drop-shadow(0 0 4px #dc2626)"; }
+        if (groove) groove.setAttribute('stroke', '#2b0308');
+        if (hHandPoly) { hHandPoly.setAttribute('fill', '#ff3344'); hHandPoly.setAttribute('stroke', '#000'); }
+        if (hHandLine) { hHandLine.setAttribute('stroke', '#ffd1d5'); }
+        if (mHandPoly) { mHandPoly.setAttribute('fill', '#fca5a5'); mHandPoly.setAttribute('stroke', '#000'); }
+        if (mHandLine) { mHandLine.setAttribute('stroke', '#ef4444'); }
+        if (centerPin) { centerPin.setAttribute('fill', '#ff3344'); }
+        logLCARS("[*] Dial switched to Tactical Red Night Vision (Rod-photoreceptor preservation).", "rx");
+      } else if (activeMode === 'blue_night') {
+        // DEEP SUBMARINE BLUE NIGHT VISION
+        svgDial.style.background = "#030a16";
+        if (bezel) { bezel.setAttribute('fill', '#051329'); bezel.setAttribute('stroke', '#0369a1'); }
+        if (rOuter) { rOuter.setAttribute('stroke', '#38bdf8'); rOuter.style.filter = "drop-shadow(0 0 4px #0284c7)"; }
+        if (rInner) { rInner.setAttribute('stroke', '#38bdf8'); rInner.style.filter = "drop-shadow(0 0 4px #0284c7)"; }
+        if (groove) groove.setAttribute('stroke', '#061a38');
+        if (hHandPoly) { hHandPoly.setAttribute('fill', '#ffe600'); hHandPoly.setAttribute('stroke', '#000'); }
+        if (hHandLine) { hHandLine.setAttribute('stroke', '#ffffff'); }
+        if (mHandPoly) { mHandPoly.setAttribute('fill', '#93c5fd'); mHandPoly.setAttribute('stroke', '#000'); }
+        if (mHandLine) { mHandLine.setAttribute('stroke', '#38bdf8'); }
+        if (centerPin) { centerPin.setAttribute('fill', '#ffe600'); }
+        logLCARS("[*] Dial switched to Submarine Deep Blue Night Vision.", "rx");
+      } else {
+        // DAYLIGHT SPEC (BLUE BACKGROUND + HIGH CONTRAST)
+        svgDial.style.background = "#07152b";
+        if (bezel) { bezel.setAttribute('fill', '#091b36'); bezel.setAttribute('stroke', '#1d4ed8'); }
+        if (rOuter) { rOuter.setAttribute('stroke', '#00d2ff'); rOuter.style.filter = "drop-shadow(0 0 3px #00a8ff)"; }
+        if (rInner) { rInner.setAttribute('stroke', '#00d2ff'); rInner.style.filter = "drop-shadow(0 0 3px #00a8ff)"; }
+        if (groove) groove.setAttribute('stroke', '#0d2346');
+        if (hHandPoly) { hHandPoly.setAttribute('fill', '#ffe600'); hHandPoly.setAttribute('stroke', '#000'); }
+        if (hHandLine) { hHandLine.setAttribute('stroke', '#ffffff'); }
+        if (mHandPoly) { mHandPoly.setAttribute('fill', '#ffffff'); mHandPoly.setAttribute('stroke', '#000'); }
+        if (mHandLine) { mHandLine.setAttribute('stroke', '#38bdf8'); }
+        if (centerPin) { centerPin.setAttribute('fill', '#ffe600'); }
+        logLCARS("[*] Dial switched to Daylight High-Contrast Blue Specification.", "rx");
+      }
     }
 
     function toggleChronoMode() {
@@ -7810,18 +8003,50 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
 
     async function applyHybridChronoToWatch() {
       soundButtonPress();
-      logLCARS("[*] Restoring Clean Factory Style 0 on Watch (Opcode 0xC7 0x01 0x00 0x00)...", "tx");
+      const pCont = document.getElementById('applyProgressContainer');
+      const pBar = document.getElementById('applyProgressBar');
+      const pPct = document.getElementById('lblApplyPct');
+      const pStep = document.getElementById('lblApplyStep');
+      const pStat = document.getElementById('lblApplyStatus');
+
+      if (pCont) pCont.style.display = 'block';
+      if (pBar) pBar.style.width = '20%';
+      if (pPct) pPct.textContent = '20%';
+      if (pStep) pStep.textContent = 'AWAKENING WATCH GATT DISPLAY PIPELINE...';
+      if (pStat) pStat.textContent = 'Checking Bluetooth link to FITAOS...';
+
+      const ok = await ensureConnected();
+      if (!ok) {
+        if (pStep) pStep.textContent = 'BLUETOOTH LINK FAILED';
+        if (pStat) pStat.textContent = 'Ensure watch screen is turned on and in range.';
+        soundError();
+        return;
+      }
+
+      if (pBar) pBar.style.width = '50%';
+      if (pPct) pPct.textContent = '50%';
+      if (pStep) pStep.textContent = 'TRANSMITTING BIO-METABOLIC DIAL COMMAND (0xC7 0x01 0x00 0x00)...';
+      if (pStat) pStat.textContent = 'Restoring clean factory ROM Style 0...';
+
       // Opcode 0xC7, sub-cmd 0x01 = Set Screen Style, styleIndex 0x00, uiFromType 0x00 (Clean Default ROM Face)
       const pkt = [0xC7, 0x01, 0x00, 0x00];
       await sendCommandBytes(pkt);
+
       document.getElementById('lblCurrentActiveFace').textContent = "STYLE 0: BIO-METABOLIC LCARS CONSOLE";
       document.getElementById('lblActiveFaceSource').textContent = "FIRMWARE ROM DEFAULT (0x00)";
-      logLCARS("[+] Clean Factory Style 0 restored successfully on watch!", "rx");
-      
-      // Also ensure 12-hour format is active
-      setTimeout(() => {
-        setWatch12HourFormat();
-      }, 400);
+      logLCARS("[+] Clean Factory Style 0 command sent to watch!", "rx");
+
+      if (pBar) pBar.style.width = '80%';
+      if (pPct) pPct.textContent = '80%';
+      if (pStep) pStep.textContent = 'ENFORCING 12-HOUR AM/PM FORMAT & AUDITING HARDWARE ACK...';
+      if (pStat) pStat.textContent = 'Sending 0xB8 Page 0 and reading 0xC7 status...';
+
+      setTimeout(async () => {
+        await setWatch12HourFormat();
+        setTimeout(async () => {
+          await sendCommandBytes([0xC7, 0x02, 0x00, 0x00]);
+        }, 300);
+      }, 350);
     }
 
     // Initialize unified ring on page load
