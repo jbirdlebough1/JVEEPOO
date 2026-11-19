@@ -232,15 +232,23 @@
       letter-spacing: 0.1em;
     }
 
+    .ribbon-label {
+      font-size: 0.75rem;
+      color: #94a3b8 !important;
+      letter-spacing: 0.1em;
+      font-weight: 700;
+    }
+
     .ribbon-value {
       font-size: 1.15rem;
       font-weight: 700;
-      color: var(--lcars-text);
+      color: #ffffff !important;
       font-family: var(--lcars-mono);
       margin-top: 2px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      text-shadow: 0 0 4px rgba(255,255,255,0.3);
     }
 
     /* Tab Page Containers */
@@ -3340,25 +3348,25 @@
               </div>
               <div style="display: flex; gap: 6px; flex-wrap: wrap; align-items: center;">
                 <span style="font-size: 0.75rem; color: var(--lcars-banana); font-weight: bold; text-transform: uppercase;">SELECT / OVERWRITE SLOT:</span>
-                <button class="lcars-btn btn-banana" style="font-size: 0.78rem; padding: 5px 12px; font-weight: bold; cursor: pointer;" onclick="applyWatchFace(0, 'SLOT 0: CLEAN DEFAULT ROM')">
+                <button class="lcars-btn btn-banana" style="width: auto !important; font-size: 0.78rem; padding: 5px 12px; font-weight: bold; cursor: pointer;" onclick="applyWatchFace(0, 'SLOT 0: CLEAN DEFAULT ROM')">
                   ⚡ SLOT 0 (DEFAULT)
                 </button>
-                <button class="lcars-pill pill-blue" style="font-size: 0.78rem; padding: 5px 10px; height: auto; cursor: pointer;" onclick="applyWatchFace(1, 'SLOT 1: SPORT ANALOG')">
+                <button class="lcars-pill pill-blue" style="width: auto !important; font-size: 0.78rem; padding: 5px 10px; height: auto; cursor: pointer;" onclick="applyWatchFace(1, 'SLOT 1: SPORT ANALOG')">
                   <span>SLOT 1</span>
                 </button>
-                <button class="lcars-pill pill-blue" style="font-size: 0.78rem; padding: 5px 10px; height: auto; cursor: pointer;" onclick="applyWatchFace(2, 'SLOT 2: BIG DIGITAL')">
+                <button class="lcars-pill pill-blue" style="width: auto !important; font-size: 0.78rem; padding: 5px 10px; height: auto; cursor: pointer;" onclick="applyWatchFace(2, 'SLOT 2: BIG DIGITAL')">
                   <span>SLOT 2</span>
                 </button>
-                <button class="lcars-pill pill-blue" style="font-size: 0.78rem; padding: 5px 10px; height: auto; cursor: pointer;" onclick="applyWatchFace(3, 'SLOT 3: CHRONOMETER')">
+                <button class="lcars-pill pill-blue" style="width: auto !important; font-size: 0.78rem; padding: 5px 10px; height: auto; cursor: pointer;" onclick="applyWatchFace(3, 'SLOT 3: CHRONOMETER')">
                   <span>SLOT 3</span>
                 </button>
-                <button class="lcars-pill pill-blue" style="font-size: 0.78rem; padding: 5px 10px; height: auto; cursor: pointer;" onclick="applyWatchFace(4, 'SLOT 4: HEALTH MATRIX')">
+                <button class="lcars-pill pill-blue" style="width: auto !important; font-size: 0.78rem; padding: 5px 10px; height: auto; cursor: pointer;" onclick="applyWatchFace(4, 'SLOT 4: HEALTH MATRIX')">
                   <span>SLOT 4</span>
                 </button>
-                <button class="lcars-pill pill-orange" style="font-size: 0.78rem; padding: 5px 12px; height: auto; cursor: pointer;" onclick="overwriteDynamicWatchSlot(1)" title="Activate Dynamic Custom Slot on Watch">
+                <button class="lcars-pill pill-orange" style="width: auto !important; font-size: 0.78rem; padding: 5px 12px; height: auto; cursor: pointer;" onclick="overwriteDynamicWatchSlot(1)" title="Activate Dynamic Custom Slot on Watch">
                   <span>⚡ OVERWRITE CUSTOM SLOT</span>
                 </button>
-                <button class="lcars-pill pill-lilac" style="font-size: 0.78rem; padding: 5px 10px; height: auto; cursor: pointer;" onclick="queryCurrentWatchFace()">
+                <button class="lcars-pill pill-lilac" style="width: auto !important; font-size: 0.78rem; padding: 5px 10px; height: auto; cursor: pointer;" onclick="queryCurrentWatchFace()">
                   <span>🔍 AUDIT SLOTS</span>
                 </button>
               </div>
