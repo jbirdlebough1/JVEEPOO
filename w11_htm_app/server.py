@@ -683,8 +683,8 @@ def run():
     init_database()
     start_ble_background_thread()
 
-    socketserver.TCPServer.allow_reuse_address = True
-    with socketserver.TCPServer(("", PORT), VeepooHandler) as httpd:
+    socketserver.ThreadingTCPServer.allow_reuse_address = True
+    with socketserver.ThreadingTCPServer(("", PORT), VeepooHandler) as httpd:
         print(f"[*] HTTP Telemetry Server running on http://localhost:{PORT}")
         print(f"[*] Background BLE Auto-Sync active. Standby for watch proximity...")
         try:
