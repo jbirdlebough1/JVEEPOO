@@ -24,3 +24,5 @@ for idx, line in enumerate(lines, 1):
 
 print(f"Extra </div> tags after cleaning: {len(extra_closes)}")
 print(f"Unclosed divs after cleaning: {len(stack)}")
+for item in stack:
+    print(f"  Unclosed from line {item[0]}: {item[1]}")

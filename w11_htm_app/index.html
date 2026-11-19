@@ -2470,9 +2470,9 @@
 
           <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--lcars-banana); padding-bottom: 8px;">
             <div>
-              <span style="font-size: 1.5rem; font-weight: 700; color: var(--lcars-banana);">CLINICAL GUIDED HELP & DIAGNOSTIC TROUBLESHOOTING</span>
+              <span style="font-size: 1.5rem; font-weight: 700; color: var(--lcars-banana);">CLINICAL GUIDED HELP & PHYSICIAN COLLABORATION FAQ</span>
               <div style="font-size: 0.85rem; color: var(--lcars-lilac); margin-top: 2px;">
-                TECHNICAL ANSWERS, PROTOCOL FAQS & SENSOR SIGNAL QUALITY DIAGNOSTICS
+                HOW PATIENT & PHYSICIAN UTILIZE, LEARN, AND MENTOR WITH THE LCARS WORKSTATION
               </div>
             </div>
             <div style="display: flex; gap: 8px;">
@@ -2481,51 +2481,75 @@
             </div>
           </div>
 
-          <!-- Section 1: Top Technical FAQs -->
+          <!-- Section 1: Top Clinical & Mentoring FAQs -->
           <div class="setup-section" style="border-left-color: var(--lcars-banana);">
             <div class="setup-section-title">
-              <span style="color: var(--lcars-banana);">TOP PROTOCOL & MEASUREMENT FAQS</span>
-              <span style="font-size: 0.8rem; color: var(--lcars-banana);">SENIOR ENGINEER & MEDICAL OFFICER NOTES</span>
+              <span style="color: var(--lcars-banana);">01. CLINICAL WORKSTATION & DOCTOR COLLABORATION FAQS</span>
+              <span style="font-size: 0.8rem; color: var(--lcars-banana);">HOW TO OPERATE, CALIBRATE & MENTOR TOGETHER</span>
             </div>
             <div style="display: flex; flex-direction: column; gap: 14px; font-size: 0.95rem; line-height: 1.5;">
 
+              <!-- Q1: Public vs Private Modes -->
               <div style="background: #090e18; padding: 14px; border-radius: 6px; border-left: 4px solid var(--lcars-orange);">
-                <strong style="color: var(--lcars-orange); font-size: 1.05rem;">Q1: Why did my manual blood glucose test on the watch show 140 mg/dL, while the initial host scan showed 106 mg/dL?</strong>
+                <strong style="color: var(--lcars-orange); font-size: 1.05rem;">Q1: What are Public vs. Private Modes, and why should I get with my doctor to set up Private Mode?</strong>
                 <p style="margin-top: 6px; color: #ccd6e8;">
-                  <strong>Root Cause:</strong> The Veepoo optical glucose protocol (opcode <code>0x89</code>) includes a mode flag in <code>byte[3]</code>. Setting <code>byte[3] = 0x00</code> invokes the <em>Public Generic Population Model</em>, which applies uncalibrated default optical constants (~106 mg/dL). Setting <code>byte[3] = 0x01</code> invokes the <em>Private Calibrated Model</em>, which applies your personalized baseline stored in watch flash memory (~140 mg/dL).<br>
-                  <strong>Solution:</strong> The LCARS console now defaults to <code>MODE: PRIVATE (140)</code>. You can toggle this live via the <code>[ MODE: PRIVATE (140) ]</code> button in Bay 1.
+                  <strong>Two Operating Modes in Watch Firmware (Opcode 0x89):</strong>
+                </p>
+                <ul style="margin-left: 20px; color: #ccd6e8; display: flex; flex-direction: column; gap: 4px; margin-top: 4px;">
+                  <li><strong>Public Mode (Generic Population Model, byte[3] = 0x00):</strong> Applies uncalibrated default optical absorption constants. Regardless of your true metabolic state, it will float around a generic baseline (~106 mg/dL). It does not know your personal skin thickness, melanin, or capillary geometry.</li>
+                  <li><strong>Private Mode (Calibrated Personalized Model, byte[3] = 0x01):</strong> Applies your personalized baseline reference stored directly into non-volatile watch flash memory (e.g., 140 mg/dL or your confirmed fasting blood test).</li>
+                </ul>
+                <p style="margin-top: 6px; color: #ccd6e8;">
+                  <strong style="color: var(--lcars-banana);">Doctor Setup Mandate:</strong> Schedule a consultation with your primary care physician, endocrinologist, or diabetes educator. Perform an in-office reference capillary fingerstick test (or review lab fasting blood draw). Input this reference into <strong>01-VITALS</strong> or <strong>05-CONFIG</strong> Section 02 (Opcode <code>0x89 0x02 0x01 &lt;lo&gt; &lt;hi&gt; 0x01</code>). Once saved, the watch operates in <strong>Private Mode</strong>, transforming it into a personalized continuous trend detector aligned with your medical records.
                 </p>
               </div>
 
+              <!-- Q2: How Patient & Doctor Utilize LCARS Together -->
               <div style="background: #090e18; padding: 14px; border-radius: 6px; border-left: 4px solid var(--lcars-blue);">
-                <strong style="color: var(--lcars-blue); font-size: 1.05rem;">Q2: Why did my core temperature read 85.5°F previously?</strong>
+                <strong style="color: var(--lcars-blue); font-size: 1.05rem;">Q2: How do my doctor and I utilize and learn the LCARS workstation for ongoing diabetes mentoring?</strong>
                 <p style="margin-top: 6px; color: #ccd6e8;">
-                  <strong>Root Cause:</strong> In early packet reverse engineering, the skin thermistor register (<code>bytes[7..8]</code>) and internal core sensor register (<code>bytes[5..6]</code>) were inverted. In a cool 63°F room, superficial wrist skin temperature naturally plummets, causing uncompensated skin readings to read ~85.5°F.<br>
-                  <strong>Solution:</strong> The registers are now properly mapped. The contact skin sensor correctly reports skin temperature, while the clinical core temperature algorithm applies heat-flux compensation to report accurate core body temperature within your physiological range (96.8°F–97.4°F).
+                  <strong>From Monologue to Closed-Loop Mentoring:</strong> In standard clinical practice, a doctor only sees an isolated 3-month HbA1c lab number, which cannot show daily spikes, nocturnal hypoxia, or post-meal crashes. The LCARS workstation turns diabetes care into a continuous learning partnership:
                 </p>
+                <ul style="margin-left: 20px; color: #ccd6e8; display: flex; flex-direction: column; gap: 4px; margin-top: 4px;">
+                  <li><strong>Visualizing Cause and Effect:</strong> When you log a meal in <strong>03-METABOLIC</strong>, subsequent watch scans plot the exact glycemic slope. Your doctor can review the curve and show you: <em>"Look at how that soda created an acute 65 mg/dL spike, but when you made the ADA Trade to iced hibiscus tea, your curve remained flat in the green zone."</em></li>
+                  <li><strong>Empowering Children & Families:</strong> For young patients (such as an 8-year-old child), visual feedback eliminates shame and confusion. Instead of being told "you can't eat that," the child and parents see the real-time "Safe Operating Zone" traffic light and learn which trades keep their energy steady and safe.</li>
+                  <li><strong>Medication Adjustment:</strong> As diet trades, post-meal walking, and sleep improve, your doctor can safely titrate medication doses (Metformin, GLP-1 RAs, or insulin) downwards, preventing hypoglycemia while hitting glycemic targets.</li>
+                </ul>
               </div>
 
+              <!-- Q3: Scan Progression -->
               <div style="background: #090e18; padding: 14px; border-radius: 6px; border-left: 4px solid var(--lcars-green);">
-                <strong style="color: var(--lcars-green); font-size: 1.05rem;">Q3: How many measurement packets are collected during a single scan?</strong>
+                <strong style="color: var(--lcars-green); font-size: 1.05rem;">Q3: How many measurement packets are processed during a single scan cycle?</strong>
                 <p style="margin-top: 6px; color: #ccd6e8;">
-                  When <code>COMMENCE SCAN</code> is triggered, the watch optical engine activates and emits continuous GATT packets at 1-second intervals over characteristic <code>f0080002</code>. A full cycle processes exactly 100 progress steps over approximately 20 to 30 seconds. The live progression is visualized on the orange/green track and mirrored in the packet log.
+                  When <code>COMMENCE SCAN</code> is clicked, the watch optical sensor illuminates and streams real-time BLE GATT packets at 1-second intervals over characteristic <code>f0080002</code>. A full clinical acquisition processes exactly 100 progress steps (0% to 100%) over approximately 20 to 30 seconds. During acquisition, the status displays pulsating orange <code>SCANNING (n%)</code> and turns solid clinical diagnostic green <code>COMPLETE (100%)</code> upon conclusion.
                 </p>
               </div>
 
+              <!-- Q4: Reliable Connectivity -->
               <div style="background: #090e18; padding: 14px; border-radius: 6px; border-left: 4px solid var(--lcars-lilac);">
-                <strong style="color: var(--lcars-lilac); font-size: 1.05rem;">Q4: How do I ensure reliable Bluetooth GATT connection?</strong>
+                <strong style="color: var(--lcars-lilac); font-size: 1.05rem;">Q4: How do I maintain seamless Bluetooth connection with the watch?</strong>
                 <p style="margin-top: 6px; color: #ccd6e8;">
-                  <strong>1. Screen Awake:</strong> Nordic and JieLi BLE controllers enter aggressive low-power sleep when the watch screen is off. Wake the watch screen before clicking Connect.<br>
-                  <strong>2. Screen Timeout:</strong> Increase screen timeout to 10 or 15 seconds in <strong>05-CONFIG</strong> Section 08.<br>
-                  <strong>3. Seamless Auto-Link:</strong> Once authorized, the LCARS application stores the device identity and auto-reconnects in the background upon page load.
+                  <strong>1. Screen Illumination:</strong> Wearable BLE chipsets throttle radio broadcast when the watch display sleeps. Tap the screen or press the side button to illuminate it prior to connecting.<br>
+                  <strong>2. Screen Timeout Setting:</strong> In <strong>05-CONFIG</strong> Section 08, set screen timeout to 10 or 15 seconds to give the host radio sufficient time to exchange cryptographic handshakes.<br>
+                  <strong>3. Transparent Auto-Reconnect:</strong> Once bonded, the LCARS workstation automatically re-establishes connection in the background upon page load without asking you to re-pair.
                 </p>
               </div>
 
+              <!-- Q5: Printing Data and Results for Doctor -->
               <div style="background: #090e18; padding: 14px; border-radius: 6px; border-left: 4px solid var(--lcars-ice);">
-                <strong style="color: var(--lcars-ice); font-size: 1.05rem;">Q5: How do I verify pure 100% real data with zero mock/demo values?</strong>
+                <strong style="color: var(--lcars-ice); font-size: 1.05rem;">Q5: How can I print out my data, reports, and clinical results for doctor visits?</strong>
                 <p style="margin-top: 6px; color: #ccd6e8;">
-                  All metric displays, timeline plots, and report cards initialize to clean standby state (<code>--</code>). No simulated data is ever injected into the telemetry pipeline. Every single metric displayed on screen originates strictly from live GATT packet frames decoded from your Veepoo Model 5010 hardware.
+                  The LCARS workstation provides three dedicated, medical-grade export methods:
                 </p>
+                <ol style="margin-left: 20px; color: #ccd6e8; display: flex; flex-direction: column; gap: 4px; margin-top: 4px;">
+                  <li><strong>Print / PDF Clinical Summary (04-REPORTS):</strong> Navigate to <strong>04-REPORTS</strong>. Select your reporting window (<code>DAILY</code>, <code>WEEKLY</code>, <code>MONTHLY 30-DAY</code>, or <code>ANNUAL & YTD SUMMARY</code>). Click <strong><code>[ PRINT REPORT / SAVE PDF ]</code></strong> (or press <code>Ctrl+P</code>). The workstation uses print-optimized CSS that removes black background UI chrome and renders clean, high-resolution vector charts, glucose ranges, eA1C trends, and nocturnal dipping tables onto white clinical letterhead ready for your doctor's medical chart.</li>
+                  <li><strong>Electronic Health Record (EHR) CSV Export:</strong> Click <strong><code>[ EXPORT CLINICAL CSV ]</code></strong> in Tab 04 to download raw timestamped telemetry in RFC-4180 format for direct import into Epic, Cerner, or patient portal records.</li>
+                  <li><strong>Senior Engineering & Medical Officer Specification PDF:</strong> A formal 10-page clinical handbook detailing biophysical transducers, physics, opcodes, and clinical interpretation is stored locally and viewable at: <br>
+                    <a href="http://localhost:8899/docs/VEEPOO_5010_CLINICAL_SPECIFICATION_AND_REPORTING_GUIDE.pdf" target="_blank" style="color: var(--lcars-blue); text-decoration: underline;">
+                      http://localhost:8899/docs/VEEPOO_5010_CLINICAL_SPECIFICATION_AND_REPORTING_GUIDE.pdf
+                    </a>
+                  </li>
+                </ol>
               </div>
 
             </div>
@@ -2570,19 +2594,90 @@
           <div class="box-header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1a2c1e; padding-bottom: 12px; margin-bottom: 18px;">
             <div>
               <span class="box-title" style="color: var(--lcars-green); font-size: 1.15rem; letter-spacing: 2px;">
-                09-ADA DIET TRADES & CLINICAL RECIPES • METABOLIC SYNERGY ENGINE
+                09-ADA DIET TRADES, CLINICAL RECIPES & PATIENT MENTORING ENGINE
               </span>
               <div style="font-size: 0.8rem; color: #80c890; margin-top: 3px;">
-                AMERICAN DIABETES ASSOCIATION (ADA) STANDARDS OF CARE • 4-PILLAR PHARMACOTHERAPY OPTIMIZATION
+                AMERICAN DIABETES ASSOCIATION (ADA) STANDARDS OF CARE • CLOSED-LOOP PHYSICIAN & PATIENT COACHING
               </div>
             </div>
             <div style="display: flex; gap: 8px;">
               <span class="badge" style="background: rgba(85,255,119,0.15); color: var(--lcars-green); border: 1px solid var(--lcars-green); font-size: 0.75rem;">
-                CLINICAL GRADE
+                CLINICAL MENTORING
               </span>
               <span class="badge" style="background: rgba(56,182,255,0.15); color: var(--lcars-blue); border: 1px solid var(--lcars-blue); font-size: 0.75rem;">
                 AIR-GAPPED PRIVACY
               </span>
+            </div>
+          </div>
+
+          <!-- Component 0: Closed-Loop Glucose Smart Snack Notifier & Safe Operating Area -->
+          <div class="setup-section" style="border-left-color: var(--lcars-green); margin-bottom: 22px; background: rgba(85,255,119,0.03);">
+            <div class="setup-section-title" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+              <div>
+                <span style="color: var(--lcars-green);">00. SMART GLUCOSE-DRIVEN SNACK & MEAL NOTIFIER</span>
+                <span style="font-size: 0.8rem; color: var(--lcars-green); display: block; margin-top: 2px;">CLOSED-LOOP TELEMETRY TO DIETARY GUIDANCE</span>
+              </div>
+              <div style="display: flex; gap: 8px; align-items: center;">
+                <span style="font-size: 0.8rem; color: #80c890;">CURRENT GLUCOSE:</span>
+                <span id="notifierCurrentGlucose" style="font-family: var(--lcars-mono); font-size: 1.2rem; font-weight: bold; color: var(--lcars-banana);">106 mg/dL</span>
+              </div>
+            </div>
+
+            <!-- Dynamic Notification Card -->
+            <div id="smartGlucoseNotificationCard" style="background: #06110a; border: 1px solid #1a3822; padding: 12px 16px; border-radius: 6px; margin-top: 8px; display: flex; align-items: center; gap: 14px;">
+              <div id="trafficLightIndicator" style="width: 22px; height: 22px; border-radius: 50%; background: var(--lcars-green); box-shadow: 0 0 10px var(--lcars-green); flex-shrink: 0;"></div>
+              <div style="flex: 1;">
+                <strong id="notifierTitle" style="color: var(--lcars-green); font-size: 0.95rem;">SAFE OPERATING ZONE ACTIVE • TARGET GLYCEMIC BAND</strong>
+                <div id="notifierMessage" style="font-size: 0.85rem; color: #b0d0c0; margin-top: 2px; line-height: 1.4;">
+                  Your current reading is in the optimal target zone (106 mg/dL). Fuel your body with clean zero-sugar options like pastured hard-boiled eggs, celery with natural almond butter, or iced hibiscus tea.
+                </div>
+              </div>
+              <button class="lcars-pill pill-green" style="font-size: 0.75rem; padding: 5px 12px; height: auto;" onclick="refreshGlucoseRecommendation()">
+                <span>SYNC SUGGESTIONS</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Component 0B: Impulse Food Helper & Cost Analysis (Kid & Family Friendly) -->
+          <div class="setup-section" style="border-left-color: var(--lcars-orange); margin-bottom: 22px;">
+            <div class="setup-section-title">
+              <span style="color: var(--lcars-orange);">IMPULSE FOOD HELPER • "WHAT IS THE COST & WHAT CAN I HAVE?"</span>
+              <span style="font-size: 0.8rem; color: var(--lcars-orange);">CHILD & FAMILY FRIENDLY • SAFE OPERATING AREA ANALYSIS</span>
+            </div>
+
+            <p style="font-size: 0.9rem; color: #ccd6e8; line-height: 1.5; margin-bottom: 12px;">
+              Whether you or an 8-year-old child are craving a treat, this tool answers: <strong>"Here is what that food will do to your body (the cost), and here is a safer collection of delicious options that keep you in your Safe Operating Zone."</strong>
+            </p>
+
+            <!-- Impulse Food Quick Buttons -->
+            <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px;">
+              <button class="lcars-pill pill-orange" style="font-size: 0.8rem; padding: 6px 14px; height: auto;" onclick="analyzeImpulseFood('cookie')"><span>🍪 CHOCOLATE CHIP COOKIE</span></button>
+              <button class="lcars-pill pill-orange" style="font-size: 0.8rem; padding: 6px 14px; height: auto;" onclick="analyzeImpulseFood('icecream')"><span>🍨 ICE CREAM</span></button>
+              <button class="lcars-pill pill-orange" style="font-size: 0.8rem; padding: 6px 14px; height: auto;" onclick="analyzeImpulseFood('donut')"><span>🍩 GLAZED DONUT</span></button>
+              <button class="lcars-pill pill-orange" style="font-size: 0.8rem; padding: 6px 14px; height: auto;" onclick="analyzeImpulseFood('chips')"><span>🥔 POTATO CHIPS</span></button>
+              <button class="lcars-pill pill-orange" style="font-size: 0.8rem; padding: 6px 14px; height: auto;" onclick="analyzeImpulseFood('soda')"><span>🥤 SODA / SWEET TEA</span></button>
+              <button class="lcars-pill pill-orange" style="font-size: 0.8rem; padding: 6px 14px; height: auto;" onclick="analyzeImpulseFood('candy')"><span>🍬 GUMMIES / CANDY</span></button>
+            </div>
+
+            <!-- Impulse Analysis Result Box -->
+            <div id="impulseAnalysisBox" style="background: #080e18; border: 1px solid #1a2c3e; border-radius: 6px; padding: 16px; display: none;">
+              <!-- Populated by JavaScript -->
+            </div>
+
+            <!-- Kid & Parent Traffic Light Legend -->
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 14px;" class="setup-grid">
+              <div style="background: rgba(85,255,119,0.08); border-left: 4px solid var(--lcars-green); padding: 10px; border-radius: 4px;">
+                <strong style="color: var(--lcars-green); font-size: 0.9rem;">🟢 GREEN: SAFE TO ENJOY (&lt;4g Net)</strong>
+                <div style="font-size: 0.8rem; color: #a0d8b0; margin-top: 3px;">0g added sugar. You can eat freely! Keeps energy high and blood sugar flat in your target zone.</div>
+              </div>
+              <div style="background: rgba(255,204,51,0.08); border-left: 4px solid var(--lcars-banana); padding: 10px; border-radius: 4px;">
+                <strong style="color: var(--lcars-banana); font-size: 0.9rem;">🟡 YELLOW: CHECK WITH ADULT (5-10g Net)</strong>
+                <div style="font-size: 0.8rem; color: #d0c890; margin-top: 3px;">Moderate carbs. Enjoy a small portion, pair with protein, and take a 10-minute post-snack walk!</div>
+              </div>
+              <div style="background: rgba(255,85,85,0.08); border-left: 4px solid #ff5555; padding: 10px; border-radius: 4px;">
+                <strong style="color: #ff8888; font-size: 0.9rem;">🔴 RED: DANGER SPIKE (15g+ Sugar)</strong>
+                <div style="font-size: 0.8rem; color: #e0a0a0; margin-top: 3px;">Rapid sugar spike (+50 to 70 mg/dL). Causes fatigue crashes and metabolic strain. Trade it with our tool!</div>
+              </div>
             </div>
           </div>
 
@@ -2775,6 +2870,7 @@
 
             <!-- Filter Chips -->
             <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px;">
+              <button class="lcars-pill pill-green" id="btnRecFavs" style="font-size: 0.75rem; padding: 4px 10px; height: auto;" onclick="filterRecipes('favorites')"><span id="lblFavCount">★ FAVORITES (0)</span></button>
               <button class="lcars-pill pill-blue active" id="btnRecAll" style="font-size: 0.75rem; padding: 4px 10px; height: auto;" onclick="filterRecipes('all')"><span>ALL RECIPES</span></button>
               <button class="lcars-pill pill-blue" id="btnRecBfast" style="font-size: 0.75rem; padding: 4px 10px; height: auto;" onclick="filterRecipes('breakfast')"><span>BREAKFAST (&lt;5g Net)</span></button>
               <button class="lcars-pill pill-blue" id="btnRecDinner" style="font-size: 0.75rem; padding: 4px 10px; height: auto;" onclick="filterRecipes('dinner')"><span>15-MIN DINNERS</span></button>
@@ -5205,12 +5301,18 @@
       const container = document.getElementById('recipesGrid');
       if (!container) return;
 
-      const filtered = ADA_RECIPES.filter(r => currentRecipeFilter === 'all' || r.category === currentRecipeFilter);
+      const favs = getFavoriteRecipes();
+      const filtered = ADA_RECIPES.filter(r => {
+        if (currentRecipeFilter === 'favorites') return favs.includes(r.id);
+        if (currentRecipeFilter === 'all') return true;
+        return r.category === currentRecipeFilter;
+      });
 
       container.innerHTML = filtered.map(r => `
         <div style="background: #081018; border: 1px solid #1a3044; border-radius: 6px; padding: 12px; display: flex; flex-direction: column; justify-content: space-between;">
           <div>
             <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
+              <button class="lcars-pill ${isRecipeFavorite(r.id) ? "pill-banana active" : "pill-ice"}" style="font-size: 0.7rem; padding: 2px 8px; height: auto;" onclick="toggleRecipeFavorite('${r.id}')"><span>${isRecipeFavorite(r.id) ? "★ FAVORITE" : "☆ SAVE"}</span></button>
               <span class="badge" style="background: rgba(56,182,255,0.15); color: var(--lcars-blue); font-size: 0.7rem; border: 1px solid var(--lcars-blue);">
                 ${r.time.toUpperCase()}
               </span>
@@ -5379,6 +5481,264 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
 
     // Initialize saved theme on page load
     applyTheme(currentTheme);
+
+
+    // =========================================================================
+    // IMPULSE FOOD HELPER & COST ANALYSIS (Safe Operating Area for Patient/Child)
+    // =========================================================================
+    const IMPULSE_FOOD_DATABASE = {
+      cookie: {
+        name: "Chocolate Chip Cookie (Standard Bakery / Packaged)",
+        sugarCarbs: "32g Carbs • 22g Added Sugar",
+        gi: 78,
+        costSpike: "+65 mg/dL Spike",
+        costDetails: "Within 35 minutes, glucose surges from 106 to 170+ mg/dL. This stresses pancreatic beta-cells, causes an insulin surge, and is followed by a reactive fatigue crash.",
+        trafficLight: "red",
+        saferOptions: [
+          {
+            title: "Almond Flour Allulose Chocolate Chip Cookie",
+            macros: "1g Net Carb • 0g Added Sugar • 6g Protein",
+            spike: "+4 mg/dL (Safe Zone)",
+            why: "Uses non-glycemic allulose and healthy almond flour fats to deliver identical warm cookie chewiness without spiking glucose."
+          },
+          {
+            title: "Dark Chocolate Peanut Butter Keto Fat Bomb",
+            macros: "2g Net Carbs • 0g Added Sugar • 5g Protein",
+            spike: "+3 mg/dL (Safe Zone)",
+            why: "Natural unsweetened peanut butter and 85% dark chocolate sweetened with monk fruit provide deep rich satisfaction."
+          }
+        ]
+      },
+      icecream: {
+        name: "Traditional Vanilla / Chocolate Ice Cream (1 cup)",
+        sugarCarbs: "36g Carbs • 28g Sucrose/Corn Syrup",
+        gi: 65,
+        costSpike: "+55 mg/dL Spike",
+        costDetails: "Liquid sugar and milk lactose rapidly flood the bloodstream. Creates an immediate post-prandial glycemic spike and triggers sugar craving cycles.",
+        trafficLight: "red",
+        saferOptions: [
+          {
+            title: "Allulose-Sweetened Creamy Custard / Keto Gelato",
+            macros: "3g Net Carbs • 0g Added Sugar • 4g Protein",
+            spike: "+5 mg/dL (Safe Zone)",
+            why: "Real heavy cream and pure allulose freeze identically to regular ice cream with zero glycemic response."
+          },
+          {
+            title: "Whipped Frozen Greek Yogurt & Tart Blackberries",
+            macros: "4g Net Carbs • 0g Added Sugar • 14g High Protein",
+            spike: "+6 mg/dL (Safe Zone)",
+            why: "High protein slows digestion while dark berry polyphenols actively improve insulin receptor sensitivity."
+          }
+        ]
+      },
+      donut: {
+        name: "Glazed Donut / Frosted Pastry",
+        sugarCarbs: "34g Carbs • 18g Sugar • Hydrogenated Oil",
+        gi: 76,
+        costSpike: "+70 mg/dL Spike",
+        costDetails: "Refined wheat starch fried in oil and coated in glaze. Causes severe oxidative vascular stress and pushes glucose into the 180+ mg/dL zone.",
+        trafficLight: "red",
+        saferOptions: [
+          {
+            title: "Cinnamon Swirl Almond Flour Waffle or Cloud Bread",
+            macros: "2g Net Carbs • 0g Added Sugar • 8g Protein",
+            spike: "+3 mg/dL (Safe Zone)",
+            why: "Fluffy, warm cinnamon treat sweetened with Ceylon cinnamon and monk fruit."
+          }
+        ]
+      },
+      chips: {
+        name: "Potato Chips / Nacho Tortilla Chips (2 oz bag)",
+        sugarCarbs: "32g Fast Starch • Oxidized Seed Oils",
+        gi: 75,
+        costSpike: "+50 mg/dL Spike",
+        costDetails: "Fast amylopectin starches hydrolyze in the mouth into glucose almost as fast as pure table sugar.",
+        trafficLight: "red",
+        saferOptions: [
+          {
+            title: "Baked Aged Parmesan Cheese Crisps (Whisps style)",
+            macros: "1g Net Carb • 0g Sugar • 12g Protein",
+            spike: "+1 mg/dL (Safe Zone)",
+            why: "100% real cheese baked crisp; crunchy, salty, savory with zero starch."
+          },
+          {
+            title: "Salted Roasted Pumpkin Seeds (Pepitas)",
+            macros: "2g Net Carbs • High Magnesium & Zinc",
+            spike: "+2 mg/dL (Safe Zone)",
+            why: "Crunchy satisfying crunch loaded with minerals that support insulin regulation."
+          }
+        ]
+      },
+      soda: {
+        name: "Regular Cola / Sweetened Fruit Iced Tea (12 oz)",
+        sugarCarbs: "39g Pure High-Fructose Corn Syrup",
+        gi: 68,
+        costSpike: "+75 mg/dL Spike",
+        costDetails: "The single most hazardous diabetes landmine. Liquid fructose bypasses hepatic satiety checkpoints, spiking glucose and triggering fatty liver storage.",
+        trafficLight: "red",
+        saferOptions: [
+          {
+            title: "Cold-Brew Hibiscus & Tart Berry Tea w/ Ice",
+            macros: "0g Net Carbs • 0g Sugar • 0 Calories",
+            spike: "+0 mg/dL (Flatline Safe Zone)",
+            why: "Naturally tart, sweet fruit notes with cardioprotective anthocyanins."
+          },
+          {
+            title: "Sparkling Mineral Water with Fresh Lime & Mint",
+            macros: "0g Net Carbs • 0g Sugar",
+            spike: "+0 mg/dL (Flatline Safe Zone)",
+            why: "Crisp effervescence and essential hydration with zero metabolic cost."
+          }
+        ]
+      },
+      candy: {
+        name: "Gummy Candies / Fruit Chews / Hard Candy",
+        sugarCarbs: "28g Pure Dextrose & Corn Syrup",
+        gi: 80,
+        costSpike: "+70 mg/dL Spike",
+        costDetails: "Pure glucose/dextrose that enters the bloodstream within 8 minutes, causing extreme glycemic volatility.",
+        trafficLight: "red",
+        saferOptions: [
+          {
+            title: "Gelatin Zero-Sugar Fruit Bites (Sweetened with Stevia/Allulose)",
+            macros: "0g Net Carbs • 0g Sugar • 6g Collagen Protein",
+            spike: "+0 mg/dL (Safe Zone)",
+            why: "Chewy, fruity, colorful snack safe for kids with gut-healing collagen."
+          }
+        ]
+      }
+    };
+
+    function analyzeImpulseFood(foodKey) {
+      soundButtonPress();
+      const food = IMPULSE_FOOD_DATABASE[foodKey];
+      const box = document.getElementById('impulseAnalysisBox');
+      if (!food || !box) return;
+
+      box.style.display = 'block';
+      box.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; border-bottom: 1px solid #1a2c3e; padding-bottom: 8px;">
+          <div>
+            <span style="font-size: 1.15rem; font-weight: bold; color: var(--lcars-orange);">${food.name}</span>
+            <div style="font-size: 0.8rem; color: #ff8888; margin-top: 2px;">GI: ${food.gi} • ${food.sugarCarbs}</div>
+          </div>
+          <span class="badge" style="background: rgba(255,85,85,0.2); color: #ff8888; border: 1px solid #ff5555; font-size: 0.8rem;">
+            ${food.costSpike.toUpperCase()}
+          </span>
+        </div>
+
+        <!-- The Physiological Cost -->
+        <div style="background: rgba(255,85,85,0.06); border-left: 4px solid #ff5555; padding: 10px 14px; border-radius: 4px; margin-bottom: 14px;">
+          <strong style="color: #ffaaaa; font-size: 0.88rem;">THE PHYSIOLOGICAL COST:</strong>
+          <p style="font-size: 0.84rem; color: #e8c0c0; margin-top: 4px; line-height: 1.4;">
+            ${food.costDetails}
+          </p>
+        </div>
+
+        <!-- Safer Collection of Options (Safe Operating Area) -->
+        <div>
+          <strong style="color: var(--lcars-green); font-size: 0.95rem; text-transform: uppercase;">
+            🟢 SAFER COLLECTION OF OPTIONS (KEEPS YOU IN THE SAFE ZONE):
+          </strong>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; margin-top: 8px;">
+            ${food.saferOptions.map(opt => `
+              <div style="background: #051008; border: 1px solid #1a3822; padding: 12px; border-radius: 6px;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px;">
+                  <strong style="color: var(--lcars-green); font-size: 0.9rem;">${opt.title}</strong>
+                  <span class="badge" style="background: rgba(85,255,119,0.18); color: var(--lcars-green); font-size: 0.7rem;">${opt.spike}</span>
+                </div>
+                <div style="font-size: 0.78rem; color: var(--lcars-banana); margin-bottom: 4px;">${opt.macros}</div>
+                <div style="font-size: 0.8rem; color: #a0c8b0; line-height: 1.35;">${opt.why}</div>
+                <button class="lcars-pill pill-green" style="font-size: 0.7rem; padding: 3px 8px; height: auto; margin-top: 8px;" onclick="logTradeToJournal('${opt.title.replace(/'/g, "\\'")}')">
+                  <span>+ CHOOSE THIS SAFE OPTION</span>
+                </button>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <div style="margin-top: 12px; display: flex; justify-content: flex-end;">
+          <button class="lcars-pill pill-orange" style="font-size: 0.75rem; padding: 3px 12px; height: auto;" onclick="document.getElementById('impulseAnalysisBox').style.display='none'">
+            <span>CLOSE ANALYSIS [X]</span>
+          </button>
+        </div>
+      `;
+      box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    // =========================================================================
+    // SAVED FAVORITES RECIPES DATABASE (localStorage)
+    // =========================================================================
+    function getFavoriteRecipes() {
+      try {
+        const saved = localStorage.getItem('veepoo_favorite_recipes');
+        return saved ? JSON.parse(saved) : [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function isRecipeFavorite(recipeId) {
+      return getFavoriteRecipes().includes(recipeId);
+    }
+
+    function toggleRecipeFavorite(recipeId) {
+      soundButtonPress();
+      let favs = getFavoriteRecipes();
+      if (favs.includes(recipeId)) {
+        favs = favs.filter(id => id !== recipeId);
+        logLCARS(`Removed recipe "${recipeId}" from favorites`, "sys");
+      } else {
+        favs.push(recipeId);
+        logLCARS(`Saved recipe "${recipeId}" to favorites`, "sys");
+      }
+      try {
+        localStorage.setItem('veepoo_favorite_recipes', JSON.stringify(favs));
+      } catch (e) {}
+      updateFavoriteCountBadge();
+      renderRecipesGrid();
+      // If currently viewing detail, refresh it
+      const detailBox = document.getElementById('recipeDetailBox');
+      if (detailBox && detailBox.style.display !== 'none') {
+        viewRecipeDetail(recipeId);
+      }
+    }
+
+    function updateFavoriteCountBadge() {
+      const favs = getFavoriteRecipes();
+      const lbl = document.getElementById('lblFavCount');
+      if (lbl) lbl.textContent = `★ FAVORITES (${favs.length})`;
+    }
+
+    // Refresh smart glucose recommendations based on live watch reading
+    function refreshGlucoseRecommendation() {
+      soundButtonPress();
+      // Read current glucose from Bay 1 or memory
+      const curGlucoseEl = document.getElementById('valGlucose');
+      const curVal = curGlucoseEl ? parseInt(curGlucoseEl.textContent) || 106 : 106;
+      
+      const badge = document.getElementById('notifierCurrentGlucose');
+      const light = document.getElementById('trafficLightIndicator');
+      const title = document.getElementById('notifierTitle');
+      const msg = document.getElementById('notifierMessage');
+
+      if (badge) badge.textContent = `${curVal} mg/dL`;
+
+      if (curVal <= 95) {
+        if (light) { light.style.background = 'var(--lcars-blue)'; light.style.boxShadow = '0 0 10px var(--lcars-blue)'; }
+        if (title) { title.style.color = 'var(--lcars-blue)'; title.textContent = "GLUCOSE IS STEADY & LOW • PRIME TIME FOR SUSTAINED ENERGY"; }
+        if (msg) msg.textContent = `Current reading: ${curVal} mg/dL. Your baseline is low and steady. Great time for balanced protein and fiber: pasture-raised eggs with avocado, celery with almond butter, or chia seed pudding.`;
+      } else if (curVal <= 125) {
+        if (light) { light.style.background = 'var(--lcars-green)'; light.style.boxShadow = '0 0 10px var(--lcars-green)'; }
+        if (title) { title.style.color = 'var(--lcars-green)'; title.textContent = "OPTIMAL SAFE OPERATING ZONE ACTIVE (TARGET BAND)"; }
+        if (msg) msg.textContent = `Current reading: ${curVal} mg/dL. You are in your physician-recommended target band! Maintain stability with zero-sugar meals like wild salmon with asparagus, chicken stir-fry with cauliflower rice, or fresh berries.`;
+      } else {
+        if (light) { light.style.background = '#ff5555'; light.style.boxShadow = '0 0 10px #ff5555'; }
+        if (title) { title.style.color = '#ff8888'; title.textContent = "ELEVATED GLUCOSE DETECTED • TRIGGER 4-PILLAR CLEARANCE"; }
+        if (msg) msg.textContent = `Current reading: ${curVal} mg/dL is above optimal baseline. Action Plan: 1) Drink 12 oz cold water; 2) Take a 10-15 minute walk (triggers muscle GLUT4 non-insulin clearance); 3) Stick strictly to Green Zone foods (<2g carb) like cucumbers or boiled eggs.`;
+      }
+      logLCARS(`Smart Glucose Snack Notifier updated for ${curVal} mg/dL`, "sys");
+    }
 
   </script>
 </body>
