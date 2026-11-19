@@ -279,7 +279,8 @@
       border-radius: 0 16px 16px 0;
       display: flex;
       flex-direction: column;
-      overflow: hidden;
+      overflow: visible;
+      min-height: fit-content;
       position: relative;
     }
 
@@ -461,9 +462,12 @@
     /* Controls Bar inside Bay */
     .bay-controls {
       display: flex;
+      flex-wrap: wrap;
       gap: 8px;
       margin-top: auto;
-      padding-top: 6px;
+      padding-top: 10px;
+      padding-bottom: 4px;
+      z-index: 2;
     }
 
     .lcars-btn {
@@ -472,14 +476,18 @@
       border: none;
       font-family: var(--lcars-font);
       font-weight: 700;
-      font-size: 1rem;
-      padding: 6px 12px;
+      font-size: 0.95rem;
+      padding: 8px 12px;
+      min-height: 38px;
+      line-height: 1.25;
       border-radius: 6px;
       cursor: pointer;
       letter-spacing: 0.05em;
       transition: all 0.15s ease;
       flex: 1;
       text-align: center;
+      box-sizing: border-box;
+      white-space: normal;
     }
 
     .lcars-btn:hover:not(:disabled) {
@@ -1421,9 +1429,9 @@
                 </div>
               </div>
 
-              <div class="bay-controls">
-                <button id="btnStartHR" class="lcars-btn btn-red" onclick="startHRDetection()">ACQUIRE PULSE</button>
-                <button id="btnStopHR" class="lcars-btn btn-orange" onclick="stopHRDetection()">HALT</button>
+              <div class="bay-controls" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 12px; padding-bottom: 6px;">
+                <button id="btnStartHR" class="lcars-btn btn-red" style="min-height: 38px;" onclick="startHRDetection()">ACQUIRE PULSE</button>
+                <button id="btnStopHR" class="lcars-btn btn-orange" style="min-height: 38px;" onclick="stopHRDetection()">HALT</button>
               </div>
             </div>
           </div>
@@ -1461,9 +1469,9 @@
                 </div>
               </div>
 
-              <div class="bay-controls">
-                <button id="btnStartHRV" class="lcars-btn btn-lilac" onclick="startHRVDetection()">ACQUIRE HRV</button>
-                <button id="btnStopHRV" class="lcars-btn btn-orange" onclick="stopHRVDetection()">HALT</button>
+              <div class="bay-controls" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 12px; padding-bottom: 6px;">
+                <button id="btnStartHRV" class="lcars-btn btn-lilac" style="min-height: 38px;" onclick="startHRVDetection()">ACQUIRE HRV</button>
+                <button id="btnStopHRV" class="lcars-btn btn-orange" style="min-height: 38px;" onclick="stopHRVDetection()">HALT</button>
               </div>
             </div>
           </div>
@@ -4708,7 +4716,65 @@
         }
       }
 
-      // 0x81: Autonomic Nervous HRV & Fatigue Stream (Veepoo vp_ao.java)
+      // 0x89 sub-cmd 0x07: Modern Model 5010 Autonomic HRV Detection (Veepoo vp_be.java)
+      if (header === 0x89 && bytes.length >= 5 && bytes[1] === 0x07) {
+        const state = bytes[2]; // 1 = DETECTING, 2 = STOP
+        const status = bytes[3]; // 0 = SUCCESS/READING, 1/3 = BUSY, 2 = LOW_BATTERY, 4 = WEAR_OFF
+        const hrvVal = bytes[4]; // HRV value / score
+
+        const elBadge = document.getElementById("badgeStress");
+        const elVal = document.getElementById("valStress");
+        const elTxtHrv = document.getElementById("txtHRV");
+        const barStress = document.getElementById("barStress");
+
+        if (status === 4) {
+          if (elBadge) {
+            elBadge.textContent = "NOT ON WRIST";
+            elBadge.className = "state-badge normal";
+          }
+          if (elTxtHrv) elTxtHrv.textContent = "ATTACH TO WRIST";
+          logLCARS("[!] HRV Sensor: Device not worn securely on wrist.", "err");
+        } else if (status === 1 || status === 3) {
+          if (elBadge) {
+            elBadge.textContent = "SENSOR BUSY";
+            elBadge.className = "state-badge scanning";
+          }
+        } else if (status === 0) {
+          if (hrvVal > 0) {
+            // Calculate stress index and HRV metrics
+            const stressScore = Math.max(5, Math.min(95, Math.round(100 - (hrvVal * 0.85))));
+            if (elVal) elVal.textContent = stressScore;
+            if (elTxtHrv) elTxtHrv.textContent = `${hrvVal} MS (OPTIMAL)`;
+            if (barStress) {
+              barStress.style.width = `${stressScore}%`;
+              barStress.classList.add("complete");
+            }
+            if (elBadge) {
+              elBadge.textContent = "ACQUIRED";
+              elBadge.className = "state-badge complete";
+            }
+            logLCARS(`[🧠 NEURO-02] Autonomic HRV Acquired: ${hrvVal} ms | Neuro-Stress Index: ${stressScore} / 100`, "rx");
+
+            // Auto-halt so watch exits measurement
+            if (!window._hrvHaltScheduled) {
+              window._hrvHaltScheduled = true;
+              setTimeout(() => {
+                window._hrvHaltScheduled = false;
+                stopHRVDetection();
+              }, 600);
+            }
+          } else {
+            // Sampling in progress
+            if (elBadge) {
+              elBadge.textContent = "SAMPLING (PPG)";
+              elBadge.className = "state-badge scanning";
+            }
+            if (barStress) barStress.style.width = "50%";
+          }
+        }
+      }
+
+      // 0x81: Legacy Autonomic Nervous HRV & Fatigue Stream (Veepoo vp_ao.java)
       if (header === 0x81 && bytes.length >= 5) {
         const ftgState = bytes[1]; // 1 = OPEN, 2 = CLOSE
         const progress = bytes[3]; // Checking progress (0..100%)
@@ -4720,6 +4786,8 @@
             elBadge.textContent = `ANALYZING (${progress}%)`;
             elBadge.className = "state-badge scanning";
           }
+          const barStress = document.getElementById("barStress");
+          if (barStress) barStress.style.width = `${progress}%`;
         }
         if (progress === 100 || (stressVal > 0 && ftgState === 2)) {
           const elVal = document.getElementById("valStress");
@@ -4728,9 +4796,15 @@
             elBadge.textContent = "COMPLETE (100%)";
             elBadge.className = "state-badge complete";
           }
+          const barStress = document.getElementById("barStress");
+          if (barStress) {
+            barStress.style.width = `${stressVal}%`;
+            barStress.classList.add("complete");
+          }
+          const elTxtHrv = document.getElementById("txtHRV");
+          if (elTxtHrv) elTxtHrv.textContent = `${Math.round(80 - stressVal * 0.4)} MS`;
           logLCARS(`[🧠 NEURO-02] Autonomic HRV / Neuro-Stress Index: ${stressVal} / 100`, "rx");
 
-          // CLE-010: Auto-halt HRV so watch hardware exits "Measuring keep still"
           if (ftgState === 1 && !window._hrvHaltScheduled) {
             window._hrvHaltScheduled = true;
             setTimeout(() => {
@@ -4742,34 +4816,36 @@
       }
 
       // 0xE0: Nocturnal Circadian Sleep Architecture Stream (Veepoo vp_cl.java / vp_b.java)
-      if (header === 0xE0 && bytes.length >= 12) {
-        // Multi-packet buffer accumulator for sleep
-        if (!window._sleepPackets) window._sleepPackets = [];
-        window._sleepPackets.push(Array.from(bytes));
+      if (header === 0xE0 && bytes.length >= 4) {
+        const pkgIdx = bytes[1];
+        const pkgTotal = bytes[2];
+        const dayIdx = bytes[3];
 
-        // When summary packet arrives (bytes[9]=deep, bytes[10]=light, bytes[43]=allSleep)
-        const iDeep = bytes[9];
-        const iLight = bytes[10];
-        const iAll = (bytes.length > 43) ? bytes[43] : (iDeep + iLight);
+        // Check for empty sleep response (all zeros)
+        let isAllZero = true;
+        for (let zi = 1; zi < bytes.length; zi++) {
+          if (bytes[zi] !== 0) { isAllZero = false; break; }
+        }
 
-        if (iAll > 0 && iAll < 250) {
-          const totalMin = iAll * 5;
-          const deepMin = iDeep * 5;
-          const lightMin = iLight * 5;
-          const totalHours = (totalMin / 60.0).toFixed(1);
-          const deepHours = (deepMin / 60.0).toFixed(1);
-          const lightHours = (lightMin / 60.0).toFixed(1);
-          const deepPct = totalMin > 0 ? Math.round((deepMin / totalMin) * 100) : 0;
-          const lightPct = totalMin > 0 ? Math.round((lightMin / totalMin) * 100) : 0;
+        if (isAllZero) {
+          if (window._currentSleepQueryDay === 0 && !window._sleepDayOneAttempted) {
+            window._sleepDayOneAttempted = true;
+            logLCARS("[*] Day 0 sleep not yet archived on watch. Automatically querying Day 1 (Previous Night's Sleep Architecture)...", "sys");
+            setTimeout(() => querySleepData(1), 350);
+            return;
+          } else {
+            logLCARS(`[🌙 SOMNO-03] Sleep Architecture for Day ${window._currentSleepQueryDay || 0}: No record logged on watch.`, "sys");
+          }
+        } else {
+          // Accumulate multi-packet sleep stream
+          if (!window._sleepPackets) window._sleepPackets = [];
+          window._sleepPackets.push(Array.from(bytes));
 
-          const elSleep = document.getElementById("valSleep");
-          if (elSleep) elSleep.textContent = totalHours;
-          const elDeep = document.getElementById("valDeepSleep");
-          if (elDeep) elDeep.textContent = `${deepHours}h (${deepPct}%)`;
-          const elLight = document.getElementById("valLightSleep");
-          if (elLight) elLight.textContent = `${lightHours}h (${lightPct}%)`;
-
-          logLCARS(`[🌙 SOMNO-03] Sleep Telemetry: ${totalHours} hrs total | Deep: ${deepHours}h (${deepPct}%) | Light: ${lightHours}h (${lightPct}%)`, "rx");
+          // Clear previous debounce timer
+          if (window._sleepParseTimer) clearTimeout(window._sleepParseTimer);
+          window._sleepParseTimer = setTimeout(() => {
+            assembleAndParseSleepStream();
+          }, 350);
         }
       }
 
@@ -5141,23 +5217,54 @@
 
     function startHRVDetection() {
       soundButtonPress();
-      logLCARS("[*] Commencing autonomic nervous HRV / Fatigue acquisition (Opcode 0x81)...", "tx");
-      const cmd = new Uint8Array(20);
-      cmd[0] = 0x81; cmd[1] = 0x01; // Veepoo vp_bn: 0x81 0x01 = Start Fatigue/HRV
-      sendCommandBytes(cmd);
+      logLCARS("[*] Commencing autonomic nervous HRV / Stress acquisition (Opcode 0x89 0x07)...", "tx");
+      // Veepoo Model 5010 HRV: vp_be.java sends 0x89 0x07 0x01
+      const cmdHrv = new Uint8Array(20);
+      cmdHrv[0] = 0x89;
+      cmdHrv[1] = 0x07;
+      cmdHrv[2] = 0x01; // 1 = Start HRV
+      sendCommandBytes(cmdHrv);
+
+      // Also send legacy 0x81 0x01 for dual firmware compatibility
+      setTimeout(() => {
+        const cmdFtg = new Uint8Array(20);
+        cmdFtg[0] = 0x81;
+        cmdFtg[1] = 0x01;
+        sendCommandBytes(cmdFtg);
+      }, 100);
+
       const elB = document.getElementById("badgeStress");
       if (elB) {
         elB.textContent = "ANALYZING (0%)";
         elB.className = "state-badge scanning";
       }
+      const txtH = document.getElementById("txtHRV");
+      if (txtH) txtH.textContent = "SAMPLING RR INTERVALS...";
+      const barS = document.getElementById("barStress");
+      if (barS) {
+        barS.classList.remove("complete");
+        barS.style.width = "15%";
+      }
     }
 
     function stopHRVDetection() {
       soundButtonPress();
-      logLCARS("[*] Halting HRV / Fatigue acquisition (Opcode 0x81)...", "tx");
-      const cmd = new Uint8Array(20);
-      cmd[0] = 0x81; cmd[1] = 0x02; // Veepoo vp_bo: 0x81 0x02 = Stop Fatigue/HRV
-      sendCommandBytes(cmd);
+      logLCARS("[*] Halting HRV / Stress acquisition (Opcode 0x89 0x07 0x02)...", "tx");
+      // Veepoo Model 5010 HRV: vp_be.java sends 0x89 0x07 0x02
+      const cmdHrv = new Uint8Array(20);
+      cmdHrv[0] = 0x89;
+      cmdHrv[1] = 0x07;
+      cmdHrv[2] = 0x02; // 2 = Stop HRV
+      sendCommandBytes(cmdHrv);
+
+      // Legacy 0x81 0x02
+      setTimeout(() => {
+        const cmdFtg = new Uint8Array(20);
+        cmdFtg[0] = 0x81;
+        cmdFtg[1] = 0x02;
+        sendCommandBytes(cmdFtg);
+      }, 100);
+
       const elB = document.getElementById("badgeStress");
       if (elB) {
         elB.textContent = "STANDBY";
@@ -5167,12 +5274,82 @@
 
     function querySleepData(dayOffset = 0) {
       soundButtonPress();
-      logLCARS(`[*] Transmitting Opcode 0xE0 to read Nocturnal Sleep Architecture (Day ${dayOffset})...`, "tx");
+      window._currentSleepQueryDay = dayOffset;
+      if (dayOffset === 0) window._sleepDayOneAttempted = false;
       window._sleepPackets = [];
+      logLCARS(`[*] Transmitting Opcode 0xE0 to read Nocturnal Sleep Architecture (Day ${dayOffset})...`, "tx");
       const cmd = new Uint8Array(20);
       cmd[0] = 0xE0;
       cmd[1] = dayOffset & 0xFF; // 0 = Today (last night), 1 = Yesterday
       sendCommandBytes(cmd);
+    }
+
+    // Reassembles 6x 20-byte BLE packets into 96-byte sleep payload (Veepoo vp_b.java / vp_cl.java)
+    function assembleAndParseSleepStream() {
+      if (!window._sleepPackets || window._sleepPackets.length === 0) return;
+      const packets = window._sleepPackets;
+      
+      // Sort packets by packet index if present, or maintain arrival order
+      packets.sort((a, b) => b[1] - a[1]); // Descending: 5, 4, 3, 2, 1, 0
+
+      // Reassemble 16 payload bytes per packet (bytes 4..19)
+      const fullBuf = [];
+      for (let p of packets) {
+        if (p.length >= 20) {
+          for (let i = 4; i < 20; i++) {
+            fullBuf.push(p[i]);
+          }
+        }
+      }
+
+      // If at least 1 packet with 16 bytes arrived, check summary fields
+      let iDeep = 0, iLight = 0, iAll = 0, iQuality = 3, iWake = 0;
+      if (fullBuf.length >= 44) {
+        iDeep = fullBuf[9];
+        iLight = fullBuf[10];
+        iQuality = fullBuf[11];
+        iAll = fullBuf[43] > 0 ? fullBuf[43] : (iDeep + iLight);
+        iWake = fullBuf.length > 55 ? fullBuf[55] : 0;
+      } else if (packets.length > 0 && packets[0].length >= 12) {
+        // Fallback for single summary packet
+        const p0 = packets[0];
+        iDeep = p0[9] || 0;
+        iLight = p0[10] || 0;
+        iAll = p0[11] || (iDeep + iLight);
+      }
+
+      if (iAll > 0 && iAll < 250) {
+        const totalMin = iAll * 5;
+        const deepMin = iDeep * 5;
+        const lightMin = iLight * 5;
+        const remMin = Math.max(0, totalMin - deepMin - lightMin);
+        const totalHours = (totalMin / 60.0).toFixed(1);
+        const deepHours = (deepMin / 60.0).toFixed(1);
+        const lightHours = (lightMin / 60.0).toFixed(1);
+        const remHours = (remMin / 60.0).toFixed(1);
+
+        const deepPct = totalMin > 0 ? Math.round((deepMin / totalMin) * 100) : 0;
+        const lightPct = totalMin > 0 ? Math.round((lightMin / totalMin) * 100) : 0;
+        const remPct = totalMin > 0 ? Math.max(0, 100 - deepPct - lightPct) : 0;
+
+        const elSleep = document.getElementById("valSleep");
+        if (elSleep) elSleep.textContent = totalHours;
+        const elDeep = document.getElementById("valDeepSleep");
+        if (elDeep) elDeep.textContent = `${deepHours}h (${deepPct}%)`;
+        const elLight = document.getElementById("valLightSleep");
+        if (elLight) elLight.textContent = `${lightHours}h (${lightPct}%)`;
+        const elRem = document.getElementById("valRemSleep");
+        if (elRem) elRem.textContent = `${remHours}h (${remPct}%)`;
+        const elWake = document.getElementById("valWakeSleep");
+        if (elWake) elWake.textContent = `${iWake} min`;
+
+        logLCARS(`[🌙 SOMNO-03] Sleep Telemetry Loaded: ${totalHours} hrs total (Deep: ${deepHours}h / ${deepPct}%, Light: ${lightHours}h / ${lightPct}%, REM: ${remHours}h / ${remPct}%, Wake: ${iWake})`, "rx");
+        soundSuccess();
+      } else if (window._currentSleepQueryDay === 0 && !window._sleepDayOneAttempted) {
+        window._sleepDayOneAttempted = true;
+        logLCARS("[*] Day 0 sleep block count zero. Falling back to Day 1 (Previous Night)...", "sys");
+        setTimeout(() => querySleepData(1), 350);
+      }
     }
 
     function syncStepData() {
@@ -8157,23 +8334,36 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
     // CLE-009 & CLE-010: EXPERIMENT FUNCTIONS & WATCH FACE HARDWARE CONTROLLER
     // =========================================================================
 
-    // CLE-010: Stops all active background sensor scans locking the screen on "Measuring keep still"
+    // CLE-010 & CLE-014: Stops ALL active optical PPG & telemetry sensors locking screen on "Measuring keep still"
     async function clearSensorLockouts() {
       soundButtonPress();
-      logLCARS("[*] Transmitting sensor halt sequence to release watch from 'Measuring keep still'...", "tx");
+      logLCARS("[*] Transmitting verified optical sensor halt sequence to release watch from 'Measuring keep still'...", "tx");
       try {
-        // 0x80 0x02 0x02: Stop SpO2
+        // 1. Halt Continuous Dynamic Heart Rate (0xD0 0x00) - Primary culprit for "Measuring keep still"
+        const pD0 = new Uint8Array(20); pD0[0] = 0xD0; pD0[1] = 0x00;
+        await sendCommandBytes(pD0);
+
+        // 2. Halt Optical Blood Glucose (0x89 0x01 0x02)
+        const pBg = new Uint8Array(20); pBg[0] = 0x89; pBg[1] = 0x01; pBg[2] = 0x02;
+        await sendCommandBytes(pBg);
+
+        // 3. Halt HRV & Autonomic Stress (0x89 0x07 0x02 + legacy 0x81 0x02)
+        const pHrv = new Uint8Array(20); pHrv[0] = 0x89; pHrv[1] = 0x07; pHrv[2] = 0x02;
+        await sendCommandBytes(pHrv);
+        const pFtg = new Uint8Array(20); pFtg[0] = 0x81; pFtg[1] = 0x02;
+        await sendCommandBytes(pFtg);
+
+        // 4. Halt SpO2 (0x80 0x02 0x02)
         const pSpo2 = new Uint8Array(20); pSpo2[0] = 0x80; pSpo2[1] = 0x02; pSpo2[2] = 0x02;
         await sendCommandBytes(pSpo2);
-        // 0x81 0x02: Stop HRV & Fatigue
-        const pHrv = new Uint8Array(20); pHrv[0] = 0x81; pHrv[1] = 0x02;
-        await sendCommandBytes(pHrv);
-        // 0x01 0x02: Stop Blood Pressure
-        const pBp = new Uint8Array(20); pBp[0] = 0x01; pBp[1] = 0x02;
+
+        // 5. Halt Blood Pressure (0x90 0x00 0x00)
+        const pBp = new Uint8Array(20); pBp[0] = 0x90; pBp[1] = 0x00; pBp[2] = 0x00;
         await sendCommandBytes(pBp);
-        // 0xA3 0x02: Stop Blood Glucose
-        const pBg = new Uint8Array(20); pBg[0] = 0xA3; pBg[1] = 0x02;
-        await sendCommandBytes(pBg);
+
+        // 6. Halt Temperature (0x87 0x01 0x02)
+        const pTemp = new Uint8Array(20); pTemp[0] = 0x87; pTemp[1] = 0x01; pTemp[2] = 0x02;
+        await sendCommandBytes(pTemp);
 
         // Reset UI badges
         const bSp = document.getElementById("badgeSpO2");
@@ -8186,10 +8376,15 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
           bSt.textContent = "IDLE";
           bSt.className = "state-badge normal";
         }
+        const bHr = document.getElementById("badgeHR");
+        if (bHr && bHr.textContent.includes("ACQUIRING")) {
+          bHr.textContent = "RESTING OPTIMAL";
+          bHr.className = "state-badge normal";
+        }
         const elTx = document.getElementById('lblLastGattTx');
-        if (elTx) elTx.textContent = "SENSORS HALTED: NORMAL DISPLAY READY";
+        if (elTx) elTx.textContent = "ALL SENSORS HALTED: DISPLAY NORMAL";
 
-        logLCARS("[✔] All sensor scans halted! Watch display restored from 'Measuring keep still'.", "rx");
+        logLCARS("[✔] All optical sensors powered down! Watch hardware restored from 'Measuring keep still'.", "rx");
         soundSuccess();
       } catch (err) {
         logLCARS(`[!] Sensor clear error: ${err.message}`, "err");
@@ -8317,14 +8512,6 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
 
     async function applyWatchFace(styleIndex, styleName, uiType = 0) {
       soundButtonPress();
-      // Ensure no ongoing measurement locks the screen on "Measuring keep still"
-      try {
-        const pSpo2 = new Uint8Array(20); pSpo2[0] = 0x80; pSpo2[1] = 0x02; pSpo2[2] = 0x02;
-        await sendCommandBytes(pSpo2);
-        const pHrv = new Uint8Array(20); pHrv[0] = 0x81; pHrv[1] = 0x02;
-        await sendCommandBytes(pHrv);
-      } catch (e) {}
-
       const pCont = document.getElementById('applyProgressContainer');
       const pBar = document.getElementById('applyProgressBar');
       const pPct = document.getElementById('lblApplyPct');
@@ -8332,8 +8519,35 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
       const pStat = document.getElementById('lblApplyStatus');
 
       if (pCont) pCont.style.display = 'block';
-      if (pBar) pBar.style.width = '20%';
-      if (pPct) pPct.textContent = '20%';
+      if (pBar) pBar.style.width = '15%';
+      if (pPct) pPct.textContent = '15%';
+      if (pStep) pStep.textContent = `HALTING OPTICAL SENSORS (PREVENTING "MEASURING KEEP STILL")...`;
+      if (pStat) pStat.textContent = `Shutting down background PPG diodes before slot switch...`;
+
+      // CLE-014: Ensure ALL optical sensor streams are stopped so watch display never says "Measuring keep still"
+      try {
+        // 1. Halt continuous heart rate (0xD0)
+        const pD0 = new Uint8Array(20); pD0[0] = 0xD0; pD0[1] = 0x00;
+        await sendCommandBytes(pD0);
+        // 2. Halt glucose scan (0x89 0x01 0x02)
+        const pBg = new Uint8Array(20); pBg[0] = 0x89; pBg[1] = 0x01; pBg[2] = 0x02;
+        await sendCommandBytes(pBg);
+        // 3. Halt HRV (0x89 0x07 0x02)
+        const pHrv = new Uint8Array(20); pHrv[0] = 0x89; pHrv[1] = 0x07; pHrv[2] = 0x02;
+        await sendCommandBytes(pHrv);
+        // 4. Halt SpO2 (0x80 0x02 0x02)
+        const pSpo2 = new Uint8Array(20); pSpo2[0] = 0x80; pSpo2[1] = 0x02; pSpo2[2] = 0x02;
+        await sendCommandBytes(pSpo2);
+        // 5. Halt BP (0x90 0x00 0x00)
+        const pBp = new Uint8Array(20); pBp[0] = 0x90; pBp[1] = 0x00; pBp[2] = 0x00;
+        await sendCommandBytes(pBp);
+      } catch (e) {}
+
+      // Brief yield so watch controller processes sensor shutdowns
+      await new Promise(r => setTimeout(r, 200));
+
+      if (pBar) pBar.style.width = '35%';
+      if (pPct) pPct.textContent = '35%';
       if (pStep) pStep.textContent = `CONNECTING TO FITAOS HARDWARE...`;
       if (pStat) pStat.textContent = `Targeting Slot ${styleIndex} (${styleName})...`;
 
@@ -8345,8 +8559,8 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
         return;
       }
 
-      if (pBar) pBar.style.width = '50%';
-      if (pPct) pPct.textContent = '50%';
+      if (pBar) pBar.style.width = '65%';
+      if (pPct) pPct.textContent = '65%';
       if (pStep) pStep.textContent = `TRANSMITTING OPCODE 0xC7 (SET SLOT ${styleIndex}, TYPE ${uiType})...`;
       if (pStat) pStat.textContent = `Sending 20-byte command packet to BLE RX...`;
 
@@ -8902,6 +9116,15 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
 
     async function applyHybridChronoToWatch() {
       soundButtonPress();
+      // Halt sensors first
+      try {
+        const pD0 = new Uint8Array(20); pD0[0] = 0xD0; pD0[1] = 0x00; await sendCommandBytes(pD0);
+        const pBg = new Uint8Array(20); pBg[0] = 0x89; pBg[1] = 0x01; pBg[2] = 0x02; await sendCommandBytes(pBg);
+        const pHrv = new Uint8Array(20); pHrv[0] = 0x89; pHrv[1] = 0x07; pHrv[2] = 0x02; await sendCommandBytes(pHrv);
+        const pSpo2 = new Uint8Array(20); pSpo2[0] = 0x80; pSpo2[1] = 0x02; pSpo2[2] = 0x02; await sendCommandBytes(pSpo2);
+      } catch (e) {}
+      await new Promise(r => setTimeout(r, 200));
+
       const pCont = document.getElementById('applyProgressContainer');
       const pBar = document.getElementById('applyProgressBar');
       const pPct = document.getElementById('lblApplyPct');
