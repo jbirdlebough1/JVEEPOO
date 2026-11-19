@@ -866,6 +866,81 @@
       justify-content: space-between;
       margin-bottom: 12px;
     }
+
+    /* =========================================================================
+       CLINICAL LIGHT / DARK THEME SYSTEM
+       ========================================================================= */
+    :root {
+      --theme-bg: var(--lcars-black);
+      --theme-card-bg: #05080e;
+      --theme-text: var(--lcars-text);
+      --theme-muted: #889bb0;
+      --theme-border: #141e2c;
+      --theme-input-bg: #080c14;
+    }
+
+    body.theme-light {
+      --theme-bg: #f1f5f9;
+      --theme-card-bg: #ffffff;
+      --theme-text: #0f172a;
+      --theme-muted: #475569;
+      --theme-border: #cbd5e1;
+      --theme-input-bg: #f8fafc;
+      background-color: #f1f5f9 !important;
+      color: #0f172a !important;
+    }
+
+    body.theme-light .lcars-header {
+      border-bottom-color: #d97706 !important;
+    }
+
+    body.theme-light .card-box,
+    body.theme-light .lcars-bay,
+    body.theme-light .setup-section,
+    body.theme-light .diet-form-card,
+    body.theme-light .box-content {
+      background-color: #ffffff !important;
+      border-color: #cbd5e1 !important;
+      color: #0f172a !important;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+
+    body.theme-light .stat-card {
+      background-color: #f8fafc !important;
+      border-color: #cbd5e1 !important;
+    }
+
+    body.theme-light .stat-card-title {
+      color: #475569 !important;
+    }
+
+    body.theme-light .lcars-input,
+    body.theme-light .setup-input,
+    body.theme-light .setup-select {
+      background-color: #f8fafc !important;
+      color: #0f172a !important;
+      border-color: #cbd5e1 !important;
+    }
+
+    body.theme-light .lcars-bar-track {
+      background-color: #e2e8f0 !important;
+    }
+
+    body.theme-light .report-card {
+      background: #ffffff !important;
+      border-color: #cbd5e1 !important;
+    }
+
+    body.theme-light .report-card-title {
+      color: #1e293b !important;
+    }
+
+    body.theme-light p, 
+    body.theme-light li, 
+    body.theme-light span:not(.badge):not(.stat-card-val):not(.telemetry-huge) {
+      color: inherit;
+    }
+
   </style>
 </head>
 <body>
@@ -884,10 +959,13 @@
           <div class="actual-datetime" id="actualDateTime">WEDNESDAY, NOV 18, 2026 4:40:00 PM PST</div>
           <div class="lcars-stardate" id="stardateClock">STARDATE 103214.7 • SEC-SYS-ONLINE</div>
         </div>
+        <div style="margin-left: 12px;">
+          <button id="btnHeaderThemeToggle" class="lcars-pill pill-banana" style="padding: 4px 10px; font-size: 0.72rem; height: auto;" onclick="toggleTheme()">
+            <span id="lblHeaderTheme">THEME: DARK</span>
+          </button>
+        </div>
       </div>
 
-      
-      </div>
     </header>
 
     <!-- Left LCARS Navigation Rail (Ultra-Clean Ergonomics) -->
@@ -968,8 +1046,6 @@
         </div>
       </div>
 
-      
-      </div>
 
       <!-- =====================================================================
            TAB 1: CORE VITALS (Optical Glucose, Dual Temp, Blood Pressure, SpO2)
@@ -1151,8 +1227,6 @@
         </div>
       </div>
 
-      
-      </div>
 
       <!-- =====================================================================
            TAB 2: CARDIOVASCULAR, HRV, STRESS & SLEEP
@@ -1280,8 +1354,6 @@
         </div>
       </div>
 
-      
-      </div>
 
       <!-- =====================================================================
            TAB 3: METABOLIC ACTIVITY & NUTRITION JOURNAL
@@ -1401,8 +1473,6 @@
         </div>
       </div>
 
-      
-      </div>
 
       <!-- =====================================================================
            TAB 4: REPORTS (Daily, Weekly Full Reports, Min/Max/Avg, Charts)
@@ -1627,8 +1697,6 @@
         </div>
       </div>
 
-      
-      </div>
 
       <!-- =====================================================================
            TAB 5: SCROLLABLE HARDWARE SETUP & PARAMETERS
@@ -1992,6 +2060,19 @@
               <span style="font-size: 0.8rem; color: var(--lcars-ice);">CMD 0xB1 / 0xAA / 0xB8</span>
             </div>
             <div class="setup-grid">
+              <!-- Workstation Theme Switcher -->
+              <div class="setup-field" style="grid-column: span 2; background: rgba(255,204,51,0.06); padding: 12px; border-radius: 6px; border: 1px solid rgba(255,204,51,0.25); margin-bottom: 6px;">
+                <label class="setup-label" style="color: var(--lcars-banana); font-size: 0.9rem;">WORKSTATION DISPLAY THEME (LIGHT / DARK)</label>
+                <div style="display: flex; gap: 10px; margin-top: 6px;">
+                  <button type="button" id="btnThemeDark" class="lcars-pill pill-orange active" style="flex: 1; font-size: 0.85rem; padding: 6px 14px; height: auto;" onclick="setTheme('dark')">
+                    <span>DARK THEME (OLED / HIGH CONTRAST)</span>
+                  </button>
+                  <button type="button" id="btnThemeLight" class="lcars-pill pill-banana" style="flex: 1; font-size: 0.85rem; padding: 6px 14px; height: auto;" onclick="setTheme('light')">
+                    <span>LIGHT THEME (CLINICAL DAYLIGHT SPEC)</span>
+                  </button>
+                </div>
+              </div>
+
               <div class="setup-field">
                 <label class="setup-label">SCREEN-ON TIMEOUT DURATION</label>
                 <select id="cfgScreenTimeout" class="setup-select">
@@ -2208,8 +2289,6 @@
         </div>
       </div>
 
-      
-      </div>
 
       <!-- =====================================================================
            TAB 6: SUBSPACE BLE LOG & DIRECT HARDWARE PROTOCOL COMMANDS
@@ -2250,8 +2329,6 @@
         </div>
       </div>
 
-      
-      </div>
 
 <!-- =====================================================================
            TAB 7: OPERATIONS (Clinical Operations, Transducer Calibration & Doctor Collaboration)
@@ -5258,6 +5335,50 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
       outBox.textContent = promptTemplate;
       logLCARS("Generated ADA Clinical Prompt for Gemini (Air-Gapped)", "sys");
     }
+
+
+    // =========================================================================
+    // CLINICAL THEME MANAGER (DARK OLED / LIGHT CLINICAL)
+    // =========================================================================
+    let currentTheme = localStorage.getItem('veepoo_theme') || 'dark';
+
+    function applyTheme(theme) {
+      currentTheme = theme;
+      const lbl = document.getElementById('lblHeaderTheme');
+      const btnDark = document.getElementById('btnThemeDark');
+      const btnLight = document.getElementById('btnThemeLight');
+
+      if (theme === 'light') {
+        document.body.classList.add('theme-light');
+        if (lbl) lbl.textContent = "THEME: LIGHT";
+        if (btnLight) btnLight.classList.add('active');
+        if (btnDark) btnDark.classList.remove('active');
+      } else {
+        document.body.classList.remove('theme-light');
+        if (lbl) lbl.textContent = "THEME: DARK";
+        if (btnDark) btnDark.classList.add('active');
+        if (btnLight) btnLight.classList.remove('active');
+      }
+      try {
+        localStorage.setItem('veepoo_theme', theme);
+      } catch (e) {}
+    }
+
+    function toggleTheme() {
+      soundButtonPress();
+      const next = currentTheme === 'light' ? 'dark' : 'light';
+      applyTheme(next);
+      logLCARS(`Workstation display theme switched: ${next.toUpperCase()}`, "sys");
+    }
+
+    function setTheme(theme) {
+      soundButtonPress();
+      applyTheme(theme);
+      logLCARS(`Workstation display theme set: ${theme.toUpperCase()}`, "sys");
+    }
+
+    // Initialize saved theme on page load
+    applyTheme(currentTheme);
 
   </script>
 </body>
