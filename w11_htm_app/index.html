@@ -2227,7 +2227,7 @@
             <div class="setup-grid">
               <div class="setup-field">
                 <label class="setup-label">PERSONAL REFERENCE BASELINE (MG/DL)</label>
-                <input type="number" id="cfgGlucoseBaseline" class="setup-input" value="192" min="40" max="400">
+                <input type="number" id="cfgGlucoseBaseline" class="setup-input" value="160" min="40" max="400">
               </div>
               <div class="setup-field">
                 <label class="setup-label">MEASUREMENT CALIBRATION MODEL</label>
@@ -2958,7 +2958,7 @@
                   <div style="display: flex; gap: 14px; flex-wrap: wrap; align-items: flex-end;">
                     <div class="setup-field" style="margin: 0; min-width: 170px;">
                       <label class="setup-label">VENOUS LAB GLUCOSE (MG/DL)</label>
-                      <input type="number" id="calcLabGlucose" class="setup-input" value="192" min="40" max="400" style="font-size: 1.1rem; color: var(--lcars-green); font-weight: bold;" oninput="runOperationsLabCalc('glucose')">
+                      <input type="number" id="calcLabGlucose" class="setup-input" value="160" min="40" max="400" style="font-size: 1.1rem; color: var(--lcars-green); font-weight: bold;" oninput="runOperationsLabCalc('glucose')">
                     </div>
                     <div style="font-family: var(--lcars-mono); font-size: 0.9rem; color: var(--lcars-gray); align-self: center; padding-bottom: 6px;">— OR —</div>
                     <div class="setup-field" style="margin: 0; min-width: 150px;">
@@ -4922,13 +4922,22 @@
         const rawMg = Math.round(rawMmol * 18.0182);
         lastRawGlucoseMg = rawMg;
 
-        // Apply Active Clinical Calibration Model
+        // Apply Active Clinical Calibration Model (Prevents Double-Calibration)
+        // When watch is in Private Mode (1), watch hardware ALREADY scales using register 0x89 0x02!
         let displayMg = rawMg;
+        const isWatchPrivateMode = (glucoseDetectMode === 1);
+        
         if (rawMg > 0) {
-          if (glucoseCalMode === 'temp_8_3_a1c') {
-            displayMg = Math.round(rawMg + 41.5);
-          } else if (glucoseCalMode === 'custom_clinic' && typeof customClinicOffsetMg === 'number') {
-            displayMg = Math.round(rawMg + customClinicOffsetMg);
+          if (isWatchPrivateMode) {
+            // Watch hardware EEPROM calibration is active: display directly matches watch screen
+            displayMg = rawMg;
+          } else {
+            // Watch is in Public / Generic mode: apply software offset
+            if (glucoseCalMode === 'temp_8_3_a1c') {
+              displayMg = Math.round(rawMg + 41.5);
+            } else if (glucoseCalMode === 'custom_clinic' && typeof customClinicOffsetMg === 'number') {
+              displayMg = Math.round(rawMg + customClinicOffsetMg);
+            }
           }
         }
         lastGlucoseMg = displayMg;
@@ -6146,23 +6155,8 @@
         transmitGlucoseCalibration(cfg.glucoseBaseline);
       }, 250);
 
-      // 2b. Transmit 60 - 200 mg/dL Glucose Alarm Range to Watch (0x89 0x03)
-      setTimeout(() => {
-        const lowMg = cfg.glucoseAlarmLow || 60;
-        const highMg = cfg.glucoseAlarm || 200;
-        const lowRaw = Math.round((lowMg / 18.0182) * 100);
-        const highRaw = Math.round((highMg / 18.0182) * 100);
-        const gAlarmCmd = new Uint8Array(20);
-        gAlarmCmd[0] = 0x89;
-        gAlarmCmd[1] = 0x03; // Alarm setting opcode
-        gAlarmCmd[2] = 0x01; // Enable
-        gAlarmCmd[3] = lowRaw & 0xFF;
-        gAlarmCmd[4] = (lowRaw >> 8) & 0xFF;
-        gAlarmCmd[5] = highRaw & 0xFF;
-        gAlarmCmd[6] = (highRaw >> 8) & 0xFF;
-        sendCommandBytes(gAlarmCmd);
-        logLCARS(`[*] Transmitted Glucose Safety Window: ${lowMg} – ${highMg} mg/dL (Opcode 0x89 0x03)...`, 'tx');
-      }, 380);
+      // Note: 60 - 200 mg/dL is a software clinical Time-in-Range (TIR) safety window.
+      // (Opcode 0x89 0x03 in Veepoo SDK is multi-meal calibration, not an alarm limit).
 
       // 3. Blood Pressure Baseline Calibration (0x91)
       setTimeout(() => {
@@ -9818,10 +9812,10 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
       
       // Update baseline field in setup
       const cfgBase = document.getElementById('cfgGlucoseBaseline');
-      if (cfgBase) cfgBase.value = 192;
+      if (cfgBase) cfgBase.value = 160;
 
       // Program watch EEPROM to aligned 192 mg/dL
-      transmitGlucoseCalibration(192);
+      transmitGlucoseCalibration(160);
 
       updateCalUIStatus();
       if (typeof renderReportsView === 'function') renderReportsView();
