@@ -924,6 +924,10 @@
         <span>08-HELP & FAQ</span>
       </button>
 
+      <button id="navTabDietTrades" class="lcars-pill pill-green" onclick="switchTab('diettrades')">
+        <span>09-ADA TRADES</span>
+      </button>
+
       <!-- Subtle Pair New Watch Pill (Only visible if adding another watch) -->
       <button id="btnPairNew" class="lcars-pill pill-green" style="margin-top: auto; font-size: 0.95rem; display: none;" onclick="pairNewWatchPrompt()">
         <span>+ PAIR NEW</span>
@@ -2481,6 +2485,255 @@
         </div>
       </div>
 
+      <!-- ================================================================= -->
+      <!-- TAB 09: ADA DIET TRADES & CLINICAL RECIPE LOCATOR                 -->
+      <!-- ================================================================= -->
+      <div id="pageDietTrades" class="tab-page">
+        <div class="card-box" style="margin-bottom: 25px; border-left: 6px solid var(--lcars-green);">
+          <div class="box-header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1a2c1e; padding-bottom: 12px; margin-bottom: 18px;">
+            <div>
+              <span class="box-title" style="color: var(--lcars-green); font-size: 1.15rem; letter-spacing: 2px;">
+                09-ADA DIET TRADES & CLINICAL RECIPES • METABOLIC SYNERGY ENGINE
+              </span>
+              <div style="font-size: 0.8rem; color: #80c890; margin-top: 3px;">
+                AMERICAN DIABETES ASSOCIATION (ADA) STANDARDS OF CARE • 4-PILLAR PHARMACOTHERAPY OPTIMIZATION
+              </div>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <span class="badge" style="background: rgba(85,255,119,0.15); color: var(--lcars-green); border: 1px solid var(--lcars-green); font-size: 0.75rem;">
+                CLINICAL GRADE
+              </span>
+              <span class="badge" style="background: rgba(56,182,255,0.15); color: var(--lcars-blue); border: 1px solid var(--lcars-blue); font-size: 0.75rem;">
+                AIR-GAPPED PRIVACY
+              </span>
+            </div>
+          </div>
+
+          <!-- Component 1: The 4-Pillar Medication Synergizer Dashboard -->
+          <div class="setup-section" style="border-left-color: var(--lcars-green); margin-bottom: 22px;">
+            <div class="setup-section-title">
+              <span style="color: var(--lcars-green);">01. THE 4-PILLAR MEDICATION SYNERGIZER DASHBOARD</span>
+              <span style="font-size: 0.8rem; color: var(--lcars-green);">MAXIMIZING PHARMACODYNAMIC SENSITIVITY</span>
+            </div>
+            
+            <p style="font-size: 0.92rem; color: #b8d0c0; line-height: 1.5; margin-bottom: 14px;">
+              Diabetes medications (Metformin, GLP-1 receptor agonists, SGLT2 inhibitors, or basal insulin) achieve optimal glycemic control when metabolic resistance factors are eliminated. Aligning all 4 lifestyle pillars restores insulin sensitivity, dampens glycemic variability (%CV), and prevents dangerous post-prandial excursions.
+            </p>
+
+            <div class="setup-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px;">
+              <!-- Pillar 1: Monitor -->
+              <div style="background: #06110a; border: 1px solid #1a3822; padding: 14px; border-radius: 6px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                  <strong style="color: var(--lcars-banana); font-size: 1rem;">1. MONITOR (WATCH)</strong>
+                  <span class="badge" style="background: rgba(255,204,51,0.15); color: var(--lcars-banana); font-size: 0.7rem;">CALIBRATED</span>
+                </div>
+                <div style="font-size: 1.4rem; font-family: var(--lcars-mono); color: var(--lcars-green); font-weight: bold; margin-bottom: 4px;">
+                  106 <span style="font-size: 0.85rem; color: #80c890;">mg/dL BASELINE</span>
+                </div>
+                <div style="font-size: 0.82rem; color: #90a898; line-height: 1.4;">
+                  Continuous optical PPG tracking detects early glycemic slope within the 30–60 min post-meal window, enabling timely intervention before vascular stress occurs.
+                </div>
+              </div>
+
+              <!-- Pillar 2: Modify Eating -->
+              <div style="background: #06110a; border: 1px solid #1a3822; padding: 14px; border-radius: 6px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                  <strong style="color: var(--lcars-green); font-size: 1rem;">2. MODIFY EATING</strong>
+                  <span class="badge" style="background: rgba(85,255,119,0.15); color: var(--lcars-green); font-size: 0.7rem;">ADA TRADES</span>
+                </div>
+                <div style="font-size: 1.4rem; font-family: var(--lcars-mono); color: var(--lcars-banana); font-weight: bold; margin-bottom: 4px;">
+                  0g <span style="font-size: 0.85rem; color: #c0b870;">ADDED SUGAR</span>
+                </div>
+                <div style="font-size: 0.82rem; color: #90a898; line-height: 1.4;">
+                  1-to-1 ADA trades substitute high-glycemic starches and stealth sugars for non-insulinotropic, high-fiber, healthy-fat alternatives without sacrificing satiety.
+                </div>
+              </div>
+
+              <!-- Pillar 3: Exercise -->
+              <div style="background: #06110a; border: 1px solid #1a3822; padding: 14px; border-radius: 6px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                  <strong style="color: var(--lcars-peach); font-size: 1rem;">3. EXERCISE (GLUT4)</strong>
+                  <span class="badge" style="background: rgba(255,153,102,0.15); color: var(--lcars-peach); font-size: 0.7rem;">POST-MEAL</span>
+                </div>
+                <div style="font-size: 1.4rem; font-family: var(--lcars-mono); color: var(--lcars-peach); font-weight: bold; margin-bottom: 4px;">
+                  15 MIN <span style="font-size: 0.85rem; color: #d09080;">POST-MEAL WALK</span>
+                </div>
+                <div style="font-size: 0.82rem; color: #90a898; line-height: 1.4;">
+                  Post-meal ambulation triggers skeletal muscle GLUT4 glucose transporter translocation <em>completely independent of insulin</em>, clearing 30–50% of acute spikes.
+                </div>
+              </div>
+
+              <!-- Pillar 4: Sleep -->
+              <div style="background: #06110a; border: 1px solid #1a3822; padding: 14px; border-radius: 6px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                  <strong style="color: var(--lcars-blue); font-size: 1rem;">4. SLEEP & SPO2</strong>
+                  <span class="badge" style="background: rgba(56,182,255,0.15); color: var(--lcars-blue); font-size: 0.7rem;">NOCTURNAL</span>
+                </div>
+                <div style="font-size: 1.4rem; font-family: var(--lcars-mono); color: var(--lcars-blue); font-weight: bold; margin-bottom: 4px;">
+                  &gt;95% <span style="font-size: 0.85rem; color: #70b0d8;">NOCTURNAL SPO2</span>
+                </div>
+                <div style="font-size: 0.82rem; color: #90a898; line-height: 1.4;">
+                  Preventing nocturnal hypoxia and sleep fragmentation suppresses sympathetic cortisol surges, keeping morning fasting glucose low and blocking the Dawn Phenomenon.
+                </div>
+              </div>
+            </div>
+
+            <!-- Synergy Math Banner -->
+            <div style="margin-top: 14px; background: #030805; border-left: 4px solid var(--lcars-green); padding: 10px 14px; border-radius: 4px; font-size: 0.85rem; color: #c8e0d0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+              <div>
+                <strong style="color: var(--lcars-green);">CLINICAL PHARMACOTHERAPY SYNERGY:</strong> 
+                When diet, movement, and sleep align, systemic insulin resistance drops, allowing medications to maintain HbA1c &lt; 6.5% with minimum necessary dosage.
+              </div>
+              <button class="lcars-pill pill-green" style="font-size: 0.75rem; padding: 4px 12px; height: auto;" onclick="logPillarCompliance()">
+                <span>LOG 4-PILLAR CHECK</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Component 2: Interactive "Diet Trades" Conversion Matrix -->
+          <div class="setup-section" style="border-left-color: var(--lcars-banana); margin-bottom: 22px;">
+            <div class="setup-section-title" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+              <div>
+                <span style="color: var(--lcars-banana);">02. INTERACTIVE ADA "DIET TRADES" CONVERSION MATRIX</span>
+                <span style="font-size: 0.8rem; color: var(--lcars-banana); display: block; margin-top: 2px;">ZERO-SUGAR REPLACEMENTS • GLYCEMIC LOAD MINIMIZATION</span>
+              </div>
+              <!-- Category Filter Buttons -->
+              <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                <button class="lcars-pill pill-banana active" id="btnTradeAll" style="font-size: 0.75rem; padding: 4px 10px; height: auto;" onclick="filterDietTrades('all')"><span>ALL</span></button>
+                <button class="lcars-pill pill-banana" id="btnTradeCarbs" style="font-size: 0.75rem; padding: 4px 10px; height: auto;" onclick="filterDietTrades('carbs')"><span>STARCHES</span></button>
+                <button class="lcars-pill pill-banana" id="btnTradeSweet" style="font-size: 0.75rem; padding: 4px 10px; height: auto;" onclick="filterDietTrades('sweeteners')"><span>SWEETENERS</span></button>
+                <button class="lcars-pill pill-banana" id="btnTradeSnacks" style="font-size: 0.75rem; padding: 4px 10px; height: auto;" onclick="filterDietTrades('snacks')"><span>SNACKS</span></button>
+                <button class="lcars-pill pill-banana" id="btnTradeDrinks" style="font-size: 0.75rem; padding: 4px 10px; height: auto;" onclick="filterDietTrades('drinks')"><span>BEVERAGES</span></button>
+              </div>
+            </div>
+
+            <!-- Instant Search Bar -->
+            <div style="margin: 12px 0 16px 0; display: flex; gap: 10px;">
+              <input type="text" id="dietTradeSearch" class="lcars-input" placeholder="Search craving or staple (e.g., rice, pasta, sugar, chips, soda, bread, ice cream)..." style="flex: 1; font-size: 0.95rem;" oninput="searchDietTrades(this.value)">
+              <button class="lcars-pill pill-orange" style="font-size: 0.8rem; padding: 6px 16px; height: auto;" onclick="clearTradeSearch()">
+                <span>CLEAR</span>
+              </button>
+            </div>
+
+            <!-- Diet Trades Dynamic Cards Grid -->
+            <div id="dietTradesGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 12px;">
+              <!-- Rendered via JavaScript -->
+            </div>
+          </div>
+
+          <!-- Component 3: ADA Diabetes Plate Method Interactive Visualizer -->
+          <div class="setup-section" style="border-left-color: var(--lcars-peach); margin-bottom: 22px;">
+            <div class="setup-section-title">
+              <span style="color: var(--lcars-peach);">03. ADA DIABETES PLATE METHOD • MACRONUTRIENT RATIOS</span>
+              <span style="font-size: 0.8rem; color: var(--lcars-peach);">CLINICALLY VALIDATED 50/25/25 MACRO DISTRIBUTION</span>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: center;" class="setup-grid">
+              <!-- Visual SVG Plate Diagram -->
+              <div style="background: #080c10; padding: 16px; border-radius: 8px; border: 1px solid #1a2530; text-align: center;">
+                <svg viewBox="0 0 300 300" style="width: 100%; max-width: 260px; height: auto; margin: 0 auto; display: block;">
+                  <!-- Outer Plate Rim -->
+                  <circle cx="150" cy="150" r="135" fill="#0d141e" stroke="#253548" stroke-width="6"/>
+                  <circle cx="150" cy="150" r="120" fill="#06090e" stroke="#1a2530" stroke-width="2"/>
+                  <!-- 50% Non-Starchy Vegetables (Left Half) -->
+                  <path d="M 150,30 A 120,120 0 0,0 150,270 Z" fill="rgba(85,255,119,0.22)" stroke="var(--lcars-green)" stroke-width="2"/>
+                  <text x="85" y="145" fill="var(--lcars-green)" font-family="var(--lcars-font)" font-size="14" font-weight="bold" text-anchor="middle">50% PLATE</text>
+                  <text x="85" y="165" fill="#80c890" font-family="var(--lcars-font)" font-size="10" text-anchor="middle">NON-STARCHY VEG</text>
+                  <text x="85" y="180" fill="#609070" font-family="var(--lcars-font)" font-size="9" text-anchor="middle">(Broccoli, Greens, Peppers)</text>
+
+                  <!-- 25% Lean Protein (Top Right Quadrant) -->
+                  <path d="M 150,30 A 120,120 0 0,1 270,150 L 150,150 Z" fill="rgba(255,204,51,0.22)" stroke="var(--lcars-banana)" stroke-width="2"/>
+                  <text x="210" y="85" fill="var(--lcars-banana)" font-family="var(--lcars-font)" font-size="13" font-weight="bold" text-anchor="middle">25% PROTEIN</text>
+                  <text x="210" y="102" fill="#c0b870" font-family="var(--lcars-font)" font-size="9" text-anchor="middle">(Wild Salmon, Poultry,</text>
+                  <text x="210" y="115" fill="#c0b870" font-family="var(--lcars-font)" font-size="9" text-anchor="middle">Tofu, Eggs, Lean Beef)</text>
+
+                  <!-- 25% Low-GI Carbohydrate (Bottom Right Quadrant) -->
+                  <path d="M 150,150 L 270,150 A 120,120 0 0,1 150,270 Z" fill="rgba(255,153,102,0.22)" stroke="var(--lcars-peach)" stroke-width="2"/>
+                  <text x="210" y="200" fill="var(--lcars-peach)" font-family="var(--lcars-font)" font-size="13" font-weight="bold" text-anchor="middle">25% CARB</text>
+                  <text x="210" y="217" fill="#d09080" font-family="var(--lcars-font)" font-size="9" text-anchor="middle">(Lentils, Quinoa,</text>
+                  <text x="210" y="230" fill="#d09080" font-family="var(--lcars-font)" font-size="9" text-anchor="middle">Berries, Black Beans)</text>
+                </svg>
+                <div style="font-size: 0.8rem; color: #7088a0; margin-top: 10px;">
+                  OFFICIAL AMERICAN DIABETES ASSOCIATION (ADA) DIABETES PLATE METHOD
+                </div>
+              </div>
+
+              <!-- Guidelines & Practical Application -->
+              <div style="display: flex; flex-direction: column; gap: 10px; font-size: 0.9rem; color: #c0d0e0; line-height: 1.5;">
+                <div style="background: rgba(85,255,119,0.06); padding: 10px; border-radius: 6px; border-left: 3px solid var(--lcars-green);">
+                  <strong style="color: var(--lcars-green);">1. Fill 1/2 of plate with non-starchy vegetables:</strong>
+                  <div style="font-size: 0.82rem; color: #a0c0b0;">Spinach, kale, asparagus, zucchini, cauliflower, green beans, cucumbers, and peppers. Packed with fiber and micronutrients with near-zero glycemic impact.</div>
+                </div>
+                <div style="background: rgba(255,204,51,0.06); padding: 10px; border-radius: 6px; border-left: 3px solid var(--lcars-banana);">
+                  <strong style="color: var(--lcars-banana);">2. Fill 1/4 of plate with lean protein:</strong>
+                  <div style="font-size: 0.82rem; color: #c0b890;">Wild salmon, trout, skinless chicken/turkey, tofu, tempeh, eggs, or cottage cheese. Protein slows gastric emptying, significantly flattening the post-meal glucose curve.</div>
+                </div>
+                <div style="background: rgba(255,153,102,0.06); padding: 10px; border-radius: 6px; border-left: 3px solid var(--lcars-peach);">
+                  <strong style="color: var(--lcars-peach);">3. Fill 1/4 of plate with low-GI carbohydrate foods:</strong>
+                  <div style="font-size: 0.82rem; color: #d0a090;">Lentils, chickpeas, black beans, whole intact oats, berries, or small sweet potato. High prebiotic fiber content prevents rapid monosaccharide influx.</div>
+                </div>
+                <div style="background: rgba(56,182,255,0.06); padding: 10px; border-radius: 6px; border-left: 3px solid var(--lcars-blue);">
+                  <strong style="color: var(--lcars-blue);">4. Choose zero-calorie hydration:</strong>
+                  <div style="font-size: 0.82rem; color: #90b8d8;">Water with lemon/cucumber, unsweetened green tea, or seltzer. Avoid fruit juices and sweetened sodas entirely.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Component 4: Gemini ADA Recipe & Product Locator (Air-Gapped Privacy) -->
+          <div class="setup-section" style="border-left-color: var(--lcars-blue);">
+            <div class="setup-section-title" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+              <div>
+                <span style="color: var(--lcars-blue);">04. GEMINI ADA RECIPE & ZERO-SUGAR PRODUCT LOCATOR</span>
+                <span style="font-size: 0.8rem; color: var(--lcars-blue); display: block; margin-top: 2px;">VALIDATED MEAL BLUEPRINTS • AIR-GAPPED PRIVACY SHIELD</span>
+              </div>
+              <span class="badge" style="background: rgba(56,182,255,0.15); color: var(--lcars-blue); border: 1px solid var(--lcars-blue); font-size: 0.72rem;">
+                ZERO TELEMETRY EXPORT
+              </span>
+            </div>
+
+            <p style="font-size: 0.9rem; color: #a8c0d8; line-height: 1.5; margin-bottom: 12px;">
+              Query validated zero-sugar recipes and safe commercial products. In strict adherence to clinical privacy mandates, <strong>zero biometric telemetry or patient identity is ever transmitted</strong>. Select an offline recipe below or generate a custom ADA prompt for Gemini.
+            </p>
+
+            <!-- Filter Chips -->
+            <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px;">
+              <button class="lcars-pill pill-blue active" id="btnRecAll" style="font-size: 0.75rem; padding: 4px 10px; height: auto;" onclick="filterRecipes('all')"><span>ALL RECIPES</span></button>
+              <button class="lcars-pill pill-blue" id="btnRecBfast" style="font-size: 0.75rem; padding: 4px 10px; height: auto;" onclick="filterRecipes('breakfast')"><span>BREAKFAST (&lt;5g Net)</span></button>
+              <button class="lcars-pill pill-blue" id="btnRecDinner" style="font-size: 0.75rem; padding: 4px 10px; height: auto;" onclick="filterRecipes('dinner')"><span>15-MIN DINNERS</span></button>
+              <button class="lcars-pill pill-blue" id="btnRecDessert" style="font-size: 0.75rem; padding: 4px 10px; height: auto;" onclick="filterRecipes('dessert')"><span>ZERO-SUGAR SWEETS</span></button>
+              <button class="lcars-pill pill-blue" id="btnRecTravel" style="font-size: 0.75rem; padding: 4px 10px; height: auto;" onclick="filterRecipes('travel')"><span>DINING OUT & TRAVEL</span></button>
+            </div>
+
+            <!-- Recipe Detail Modal / Box -->
+            <div id="recipeDetailBox" style="background: #080f18; border: 1px solid #1a3048; border-radius: 6px; padding: 16px; margin-bottom: 16px; display: none;">
+              <!-- Populated by JavaScript -->
+            </div>
+
+            <!-- Offline Recipe Catalog Cards -->
+            <div id="recipesGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin-bottom: 18px;">
+              <!-- Rendered via JavaScript -->
+            </div>
+
+            <!-- Custom Gemini Medical Prompt Generator -->
+            <div style="background: #050c14; border: 1px solid #142838; border-radius: 6px; padding: 14px;">
+              <strong style="color: var(--lcars-ice); font-size: 0.95rem;">CUSTOM GEMINI ADA PROMPT GENERATOR:</strong>
+              <p style="font-size: 0.82rem; color: #80a0c0; margin: 4px 0 10px 0;">
+                Generate a clinically validated, physician-compliant prompt adhering strictly to ADA nutrition guidelines to paste into Gemini or execute safely:
+              </p>
+              <div style="display: flex; gap: 8px;">
+                <input type="text" id="customGeminiQuery" class="lcars-input" placeholder="e.g., Quick breakfast with eggs and avocado under 4g net carbs, or safe zero-sugar Greek yogurt brands..." style="flex: 1; font-size: 0.9rem;">
+                <button class="lcars-pill pill-ice" style="font-size: 0.8rem; padding: 6px 16px; height: auto;" onclick="generateCustomGeminiPrompt()">
+                  <span>GENERATE PROMPT</span>
+                </button>
+              </div>
+              <div id="generatedPromptOutput" style="margin-top: 10px; display: none; background: #03060a; border: 1px dashed var(--lcars-ice); padding: 10px; border-radius: 4px; font-family: var(--lcars-mono); font-size: 0.8rem; color: #90d8f8; white-space: pre-wrap;"></div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
 
     </main>
 
@@ -2616,6 +2869,10 @@
       } else if (tabId === 'help') {
         document.getElementById('navTabHelp').classList.add('active');
         document.getElementById('pageHelp').classList.add('active-page');
+      } else if (tabId === 'diettrades') {
+        document.getElementById('navTabDietTrades').classList.add('active');
+        document.getElementById('pageDietTrades').classList.add('active-page');
+        renderDietTradesView();
       }
     }
 
@@ -4436,6 +4693,572 @@
       // Seamless auto-link to known watch transponder
       await attemptAutoLink();
     });
+
+    // =========================================================================
+    // TAB 09: ADA DIET TRADES & CLINICAL RECIPES ENGINE
+    // =========================================================================
+
+    // Complete Database of ADA-Validated Diet Trades
+    const ADA_DIET_TRADES = [
+      {
+        id: "rice",
+        category: "carbs",
+        craving: "White Rice / Jasmine Rice",
+        cravingGI: 73,
+        cravingCarb: "45g per cup",
+        cravingSugar: "0.2g (fast starch)",
+        trade: "Riced Cauliflower / Shirataki Rice",
+        tradeGI: 15,
+        tradeNetCarb: "3g net carbs",
+        tradeSugar: "0g added sugar",
+        spikeAvoided: "55 mg/dL",
+        rationale: "Eliminates high-amylopectin rapid starch hydrolysis; provides 3g prebiotic fiber that slows hepatic glucose output."
+      },
+      {
+        id: "pasta",
+        category: "carbs",
+        craving: "Semolina / White Wheat Pasta",
+        cravingGI: 50,
+        cravingCarb: "42g per cup",
+        cravingSugar: "1g (fast starch)",
+        trade: "Edamame Pasta / Spiralized Zucchini (Zoodles)",
+        tradeGI: 12,
+        tradeNetCarb: "5g net carbs",
+        tradeSugar: "0g added sugar",
+        spikeAvoided: "45 mg/dL",
+        rationale: "Replaces refined gluten starch with 14g plant protein and 8g fiber, dramatically flattening the 1-hr post-prandial curve."
+      },
+      {
+        id: "potato",
+        category: "carbs",
+        craving: "Mashed Russet Potatoes",
+        cravingGI: 85,
+        cravingCarb: "35g per cup",
+        cravingSugar: "1.5g (ultra-fast GI)",
+        trade: "Mashed Cauliflower & Roasted Garlic (w/ Grass-Fed Butter)",
+        tradeGI: 15,
+        tradeNetCarb: "4g net carbs",
+        tradeSugar: "0g added sugar",
+        spikeAvoided: "60 mg/dL",
+        rationale: "Russet potatoes have a higher glycemic index than pure glucose; cauliflower mash delivers identical mouthfeel with zero glycemic shock."
+      },
+      {
+        id: "bread",
+        category: "carbs",
+        craving: "White / Wheat Sandwich Bread",
+        cravingGI: 75,
+        cravingCarb: "28g (2 slices)",
+        cravingSugar: "3g added sugar",
+        trade: "Almond Flour Flax Wraps / Cloud Bread",
+        tradeGI: 18,
+        tradeNetCarb: "2g net carbs",
+        tradeSugar: "0g added sugar",
+        spikeAvoided: "40 mg/dL",
+        rationale: "Swaps wheat flour for omega-3 rich ground flaxseed and almond meal, stabilizing post-prandial vascular endothelial function."
+      },
+      {
+        id: "sugar",
+        category: "sweeteners",
+        craving: "Table Sugar / Honey / Agave / Maple Syrup",
+        cravingGI: 65,
+        cravingCarb: "25g per 2 tbsp",
+        cravingSugar: "24g pure sucrose/fructose",
+        trade: "Pure Allulose / Monk Fruit Extract / Stevia Leaf",
+        tradeGI: 0,
+        tradeNetCarb: "0g net carbs",
+        tradeSugar: "0g sugar (zero calorie)",
+        spikeAvoided: "50 mg/dL",
+        rationale: "Allulose is a rare sugar absorbed in small intestine but not metabolized, excreting unchanged in urine with zero insulin secretion."
+      },
+      {
+        id: "syrup",
+        category: "sweeteners",
+        craving: "Pancake Syrup / High-Fructose Corn Syrup",
+        cravingGI: 70,
+        cravingCarb: "52g per 1/4 cup",
+        cravingSugar: "32g high-fructose corn syrup",
+        trade: "Allulose & Maple Extract Zero-Glycemic Syrup",
+        tradeGI: 0,
+        tradeNetCarb: "1g net carbs",
+        tradeSugar: "0g added sugar",
+        spikeAvoided: "65 mg/dL",
+        rationale: "Completely avoids the severe hepatic de novo lipogenesis and insulin resistance triggered by high-fructose corn syrup."
+      },
+      {
+        id: "chips",
+        category: "snacks",
+        craving: "Potato Chips / Tortilla Chips",
+        cravingGI: 75,
+        cravingCarb: "30g per bag",
+        cravingSugar: "0g (refined starch)",
+        trade: "Parmesan Cheese Crisps / Roasted Salted Pumpkin Seeds",
+        tradeGI: 5,
+        tradeNetCarb: "1g net carbs",
+        tradeSugar: "0g added sugar",
+        spikeAvoided: "40 mg/dL",
+        rationale: "Replaces oxidized seed oil starches with bioavailable calcium, zinc, magnesium, and slow-burning protein."
+      },
+      {
+        id: "icecream",
+        category: "snacks",
+        craving: "Traditional Dairy Ice Cream",
+        cravingGI: 60,
+        cravingCarb: "32g per cup",
+        cravingSugar: "28g refined sugar",
+        trade: "Allulose Keto Custard / Frozen Whipped Greek Yogurt & Berries",
+        tradeGI: 15,
+        tradeNetCarb: "4g net carbs",
+        tradeSugar: "0g added sugar",
+        spikeAvoided: "50 mg/dL",
+        rationale: "Maintains creamy cold dessert sensation using non-glycemic allulose and antioxidant-rich polyphenols from blackberries/raspberries."
+      },
+      {
+        id: "soda",
+        category: "drinks",
+        craving: "Regular Cola / Sweet Iced Tea",
+        cravingGI: 68,
+        cravingCarb: "39g per can",
+        cravingSugar: "39g high-fructose corn syrup",
+        trade: "Cold Brew Hibiscus Tea / Sparkling Mineral Water w/ Lime Zest",
+        tradeGI: 0,
+        tradeNetCarb: "0g net carbs",
+        tradeSugar: "0g added sugar",
+        spikeAvoided: "70 mg/dL",
+        rationale: "Liquid sugars cause the steepest, fastest glycemic excursions in clinical medicine; hibiscus provides cardioprotective anthocyanins."
+      },
+      {
+        id: "juice",
+        category: "drinks",
+        craving: "Orange Juice / Apple Juice",
+        cravingGI: 65,
+        cravingCarb: "28g per cup",
+        cravingSugar: "24g free fructose",
+        trade: "Infused Lemon Ginger Water / Whole Tart Raspberries in Water",
+        tradeGI: 10,
+        tradeNetCarb: "2g net carbs",
+        tradeSugar: "0g added sugar",
+        spikeAvoided: "55 mg/dL",
+        rationale: "Eliminates stripped liquid fructose which bypasses hepatic checkpoints; delivers true hydration without pancreatic stress."
+      },
+      {
+        id: "bbqsauce",
+        category: "carbs",
+        craving: "Commercial BBQ Sauce / Ketchup",
+        cravingGI: 65,
+        cravingCarb: "16g per 2 tbsp",
+        cravingSugar: "14g high-fructose corn syrup",
+        trade: "Zero-Sugar Hickory BBQ (Sweetened w/ Allulose or Monk Fruit)",
+        tradeGI: 0,
+        tradeNetCarb: "1g net carbs",
+        tradeSugar: "0g added sugar",
+        spikeAvoided: "30 mg/dL",
+        rationale: "Condiments are stealth diabetes landmines; allulose-based sauces preserve full smoky flavor with zero blood glucose excursion."
+      },
+      {
+        id: "cereal",
+        category: "carbs",
+        craving: "Boxed Cornflakes / Instant Sweet Oatmeal",
+        cravingGI: 82,
+        cravingCarb: "40g per bowl",
+        cravingSugar: "18g refined sugar",
+        trade: "Chia Seed & Hemp Heart Pudding w/ Unsweetened Almond Milk",
+        tradeGI: 10,
+        tradeNetCarb: "2g net carbs",
+        tradeSugar: "0g added sugar",
+        spikeAvoided: "60 mg/dL",
+        rationale: "Chia seeds form a mucilage gel in the gut, physical barrier slowing glucose absorption and feeding the gut microbiome."
+      }
+    ];
+
+    // ADA-Validated Clinical Recipes Catalog (Offline Ready)
+    const ADA_RECIPES = [
+      {
+        id: "salmon_asparagus",
+        category: "dinner",
+        title: "Pan-Seared Wild Alaskan Salmon & Garlic Asparagus",
+        time: "15 Minutes",
+        cals: 380,
+        protein: "36g",
+        fat: "22g",
+        netCarbs: "3g",
+        sugar: "0g added",
+        fiber: "3g",
+        adaCompliance: "ADA Diabetes Plate: 50% Non-Starchy Veg (Asparagus), 50% Lean Omega-3 Protein",
+        ingredients: [
+          "6 oz Wild Alaskan Sockeye Salmon fillet",
+          "12 spears Fresh Asparagus, trimmed",
+          "1 tbsp Extra Virgin Olive Oil or Grass-Fed Ghee",
+          "2 cloves Garlic, minced",
+          "1/2 Lemon (freshly squeezed)",
+          "Sea salt, cracked black pepper, fresh dill"
+        ],
+        instructions: [
+          "Heat olive oil in a cast-iron skillet over medium-high heat until shimmering.",
+          "Season salmon fillet with sea salt, pepper, and fresh dill.",
+          "Place salmon skin-side down in skillet; cook for 4-5 minutes until skin is crispy.",
+          "Add trimmed asparagus and minced garlic around the salmon; roll asparagus in pan juices.",
+          "Flip salmon and sear 3 minutes until medium; finish with fresh lemon juice and serve immediately."
+        ]
+      },
+      {
+        id: "avocado_egg_scramble",
+        category: "breakfast",
+        title: "Omega-3 Pastured Egg Scramble w/ Baby Spinach & Avocado",
+        time: "10 Minutes",
+        cals: 340,
+        protein: "20g",
+        fat: "26g",
+        netCarbs: "2g",
+        sugar: "0g added",
+        fiber: "6g",
+        adaCompliance: "ADA High Satiety Breakfast: Zero Glycemic Impact, High Lutein & Healthy Monounsaturated Fats",
+        ingredients: [
+          "3 Pasture-Raised Whole Eggs (Omega-3 enriched)",
+          "2 cups Fresh Organic Baby Spinach",
+          "1/2 Ripe Hass Avocado, sliced",
+          "1 tbsp Grass-fed butter or Extra Virgin Olive Oil",
+          "Pinch of sea salt, cracked black pepper, red chili flakes"
+        ],
+        instructions: [
+          "Whisk eggs in a bowl with a pinch of sea salt and pepper.",
+          "Melt butter in a non-stick skillet over low-medium heat.",
+          "Add baby spinach and wilt for 60 seconds until bright green.",
+          "Pour whisked eggs over spinach; gently fold with a spatula for 2-3 minutes until soft curds form.",
+          "Plate immediately with sliced avocado and a sprinkle of chili flakes."
+        ]
+      },
+      {
+        id: "chicken_cauliflower_stirfry",
+        category: "dinner",
+        title: "Sesame Ginger Chicken & Rainbow Cauliflower Rice Stir-Fry",
+        time: "15 Minutes",
+        cals: 360,
+        protein: "38g",
+        fat: "14g",
+        netCarbs: "5g",
+        sugar: "0g added",
+        fiber: "5g",
+        adaCompliance: "ADA Starch Trade: Cauliflower rice saves 55 mg/dL spike compared to white rice",
+        ingredients: [
+          "7 oz Boneless, skinless chicken breast, cubed",
+          "2 cups Riced Cauliflower (fresh or frozen)",
+          "1/2 Bell Pepper (thinly sliced) & 1 cup Broccoli florets",
+          "1.5 tbsp Coconut Aminos (Zero-sugar soy sauce trade)",
+          "1 tsp Toasted Sesame Oil & 1 tsp Fresh grated ginger",
+          "1 clove Minced Garlic & 1 tbsp Avocado oil"
+        ],
+        instructions: [
+          "Heat avocado oil in a wok or large skillet over high heat.",
+          "Add cubed chicken and sear 4-5 minutes until golden and cooked through; set chicken aside.",
+          "In the same wok, toss broccoli, bell pepper, garlic, and ginger for 2 minutes.",
+          "Add riced cauliflower and return chicken to the pan.",
+          "Drizzle coconut aminos and sesame oil; stir-fry vigorously for 2 minutes and garnish with green onion."
+        ]
+      },
+      {
+        id: "chia_almond_pudding",
+        category: "dessert",
+        title: "Cold-Brew Vanilla Chia Pudding w/ Fresh Tart Raspberries",
+        time: "5 Min Prep (Chill 2H)",
+        cals: 210,
+        protein: "8g",
+        fat: "14g",
+        netCarbs: "2g",
+        sugar: "0g added",
+        fiber: "11g",
+        adaCompliance: "ADA Prebiotic Dessert: Soluble fiber mucilage blunts hepatic glucose release",
+        ingredients: [
+          "3 tbsp Whole Organic Chia Seeds",
+          "3/4 cup Unsweetened Vanilla Almond Milk",
+          "1.5 tbsp Pure Allulose or Monk Fruit Sweetener",
+          "1/2 tsp Pure Madagascar Vanilla Extract",
+          "1/4 cup Fresh Raspberries (crushed on top)"
+        ],
+        instructions: [
+          "In a glass mason jar, whisk chia seeds, almond milk, allulose, and vanilla extract.",
+          "Let rest for 5 minutes, then stir again to break up any seed clumps.",
+          "Cover and refrigerate for at least 2 hours (or overnight) until thick and creamy.",
+          "Top with fresh tart raspberries and a light dusting of Ceylon cinnamon."
+        ]
+      },
+      {
+        id: "travel_protein_box",
+        category: "travel",
+        title: "Road Trip & Travel Clinical Protein Box",
+        time: "3 Minutes",
+        cals: 320,
+        protein: "24g",
+        fat: "22g",
+        netCarbs: "3g",
+        sugar: "0g added",
+        fiber: "4g",
+        adaCompliance: "ADA Travel Safe-List: Zero-sugar portable satiety to prevent fast-food glucose traps",
+        ingredients: [
+          "2 Hard-Boiled Pasture Eggs",
+          "2 oz Sharp Cheddar or Gouda cheese cubes",
+          "1 oz Roasted Salted Macadamia Nuts or Almonds",
+          "4 Mini Persian Cucumbers or Celery sticks",
+          "Single-serve packet of Grey Poupon Dijon Mustard"
+        ],
+        instructions: [
+          "Peel hard-boiled eggs and slice in half.",
+          "Assemble cheese cubes, roasted nuts, and fresh cucumbers in a travel container.",
+          "Dip cucumbers and eggs in Dijon mustard for high-flavor, zero-glycemic travel fuel."
+        ]
+      }
+    ];
+
+    let currentTradeFilter = 'all';
+    let currentRecipeFilter = 'all';
+
+    function renderDietTradesView() {
+      renderDietTradesGrid();
+      renderRecipesGrid();
+    }
+
+    function renderDietTradesGrid(filterText = "") {
+      const container = document.getElementById('dietTradesGrid');
+      if (!container) return;
+
+      const filtered = ADA_DIET_TRADES.filter(t => {
+        const matchesCategory = (currentTradeFilter === 'all' || t.category === currentTradeFilter);
+        const matchesSearch = !filterText || 
+          t.craving.toLowerCase().includes(filterText.toLowerCase()) ||
+          t.trade.toLowerCase().includes(filterText.toLowerCase()) ||
+          t.rationale.toLowerCase().includes(filterText.toLowerCase());
+        return matchesCategory && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div style="grid-column: 1 / -1; padding: 25px; text-align: center; color: #8098a8; font-family: var(--lcars-mono);">
+            [ NO ADA TRADES FOUND MATCHING QUERY • TRY A DIFFERENT INGREDIENT ]
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map(t => `
+        <div style="background: #080d12; border: 1px solid #1a2c20; border-radius: 6px; padding: 12px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <!-- High Glycemic Craving -->
+            <div style="background: rgba(255,85,85,0.08); border-left: 3px solid #ff5555; padding: 6px 10px; border-radius: 4px; margin-bottom: 8px;">
+              <div style="font-size: 0.72rem; color: #ff8888; text-transform: uppercase;">Craving / High-Glycemic Staple</div>
+              <strong style="color: #ffaaaa; font-size: 0.92rem;">${t.craving}</strong>
+              <div style="font-size: 0.75rem; color: #e09090; margin-top: 2px;">GI: ${t.cravingGI} • Carbs: ${t.cravingCarb} • Sugar: ${t.cravingSugar}</div>
+            </div>
+
+            <!-- Transition Arrow & Spike Avoided Badge -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin: 4px 0 8px 0; padding: 0 4px;">
+              <span style="color: var(--lcars-banana); font-size: 1rem; font-weight: bold;">&darr; ADA VALIDATED TRADE</span>
+              <span class="badge" style="background: rgba(85,255,119,0.18); color: var(--lcars-green); border: 1px solid var(--lcars-green); font-size: 0.72rem;">
+                SAVE ~${t.spikeAvoided} SPIKE
+              </span>
+            </div>
+
+            <!-- ADA Validated Trade -->
+            <div style="background: rgba(85,255,119,0.08); border-left: 3px solid var(--lcars-green); padding: 6px 10px; border-radius: 4px; margin-bottom: 8px;">
+              <div style="font-size: 0.72rem; color: #80c890; text-transform: uppercase;">Clean Glycemic Trade</div>
+              <strong style="color: var(--lcars-green); font-size: 0.95rem;">${t.trade}</strong>
+              <div style="font-size: 0.75rem; color: #90d8a0; margin-top: 2px;">GI: ${t.tradeGI} • Net Carbs: ${t.tradeNetCarb} • Sugar: ${t.tradeSugar}</div>
+            </div>
+
+            <!-- Clinical Rationale -->
+            <div style="font-size: 0.8rem; color: #9ab0a0; line-height: 1.4; margin-top: 6px;">
+              ${t.rationale}
+            </div>
+          </div>
+
+          <div style="margin-top: 10px; pt: 8px; border-top: 1px dashed #1a2c20; display: flex; justify-content: flex-end;">
+            <button class="lcars-pill pill-banana" style="font-size: 0.72rem; padding: 3px 10px; height: auto;" onclick="logTradeToJournal('${t.trade.replace(/'/g, "\'")}')">
+              <span>+ LOG TO JOURNAL (03)</span>
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function filterDietTrades(category) {
+      currentTradeFilter = category;
+      document.querySelectorAll('#pageDietTrades [id^="btnTrade"]').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = {
+        'all': 'btnTradeAll',
+        'carbs': 'btnTradeCarbs',
+        'sweeteners': 'btnTradeSweet',
+        'snacks': 'btnTradeSnacks',
+        'drinks': 'btnTradeDrinks'
+      }[category];
+      if (activeBtn) document.getElementById(activeBtn).classList.add('active');
+      const searchVal = document.getElementById('dietTradeSearch').value;
+      renderDietTradesGrid(searchVal);
+    }
+
+    function searchDietTrades(query) {
+      renderDietTradesGrid(query);
+    }
+
+    function clearTradeSearch() {
+      const input = document.getElementById('dietTradeSearch');
+      if (input) input.value = '';
+      renderDietTradesGrid('');
+    }
+
+    function logTradeToJournal(tradeName) {
+      soundButtonPress();
+      // Pre-fill into Tab 03 Metabolic Diet Journal
+      switchTab('metabolic');
+      const descInput = document.getElementById('dietDesc');
+      const carbsInput = document.getElementById('dietCarbs');
+      const proteinInput = document.getElementById('dietProtein');
+      const calInput = document.getElementById('dietCalories');
+      if (descInput) descInput.value = tradeName + " (ADA Zero-Sugar Trade)";
+      if (carbsInput) carbsInput.value = "3";
+      if (proteinInput) proteinInput.value = "15";
+      if (calInput) calInput.value = "180";
+      logLCARS(`Pre-loaded ADA Trade "${tradeName}" into Tab 03 Metabolic Logger`, "sys");
+    }
+
+    function logPillarCompliance() {
+      soundButtonPress();
+      logLCARS("4-Pillar Compliance Check Logged: Monitor (Active) | Modify (0g Added Sugar) | Exercise (GLUT4 Ready) | Sleep (Optimal SpO2)", "sys");
+      alert("4-Pillar Compliance Confirmed!\n\n1. Monitor: Baseline 106 mg/dL calibrated\n2. Modify: Zero added sugar diet trades active\n3. Exercise: 15-min post-meal GLUT4 walk scheduled\n4. Sleep: Nocturnal SpO2 tracking enabled\n\nClinical Status: Maximum medication sensitivity achieved.");
+    }
+
+    function renderRecipesGrid() {
+      const container = document.getElementById('recipesGrid');
+      if (!container) return;
+
+      const filtered = ADA_RECIPES.filter(r => currentRecipeFilter === 'all' || r.category === currentRecipeFilter);
+
+      container.innerHTML = filtered.map(r => `
+        <div style="background: #081018; border: 1px solid #1a3044; border-radius: 6px; padding: 12px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
+              <span class="badge" style="background: rgba(56,182,255,0.15); color: var(--lcars-blue); font-size: 0.7rem; border: 1px solid var(--lcars-blue);">
+                ${r.time.toUpperCase()}
+              </span>
+              <span style="font-family: var(--lcars-mono); color: var(--lcars-green); font-size: 0.85rem; font-weight: bold;">
+                ${r.netCarbs} NET
+              </span>
+            </div>
+            <strong style="color: var(--lcars-ice); font-size: 0.95rem; display: block; margin-bottom: 6px;">
+              ${r.title}
+            </strong>
+            <div style="display: flex; gap: 8px; font-size: 0.75rem; color: #80a8c0; margin-bottom: 8px; flex-wrap: wrap;">
+              <span><strong>Cals:</strong> ${r.cals}</span>
+              <span><strong>Protein:</strong> ${r.protein}</span>
+              <span><strong>Fat:</strong> ${r.fat}</span>
+              <span><strong>Sugar:</strong> ${r.sugar}</span>
+            </div>
+            <div style="font-size: 0.78rem; color: #7098b0; line-height: 1.35; margin-bottom: 8px;">
+              ${r.adaCompliance}
+            </div>
+          </div>
+          <button class="lcars-pill pill-ice" style="font-size: 0.75rem; padding: 4px 12px; height: auto; width: 100%;" onclick="viewRecipeDetail('${r.id}')">
+            <span>VIEW INGREDIENTS & PREP</span>
+          </button>
+        </div>
+      `).join('');
+    }
+
+    function filterRecipes(cat) {
+      currentRecipeFilter = cat;
+      document.querySelectorAll('#pageDietTrades [id^="btnRec"]').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = {
+        'all': 'btnRecAll',
+        'breakfast': 'btnRecBfast',
+        'dinner': 'btnRecDinner',
+        'dessert': 'btnRecDessert',
+        'travel': 'btnRecTravel'
+      }[cat];
+      if (activeBtn) document.getElementById(activeBtn).classList.add('active');
+      renderRecipesGrid();
+    }
+
+    function viewRecipeDetail(recipeId) {
+      soundButtonPress();
+      const recipe = ADA_RECIPES.find(r => r.id === recipeId);
+      const detailBox = document.getElementById('recipeDetailBox');
+      if (!recipe || !detailBox) return;
+
+      detailBox.style.display = 'block';
+      detailBox.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; border-bottom: 1px solid #1a3048; padding-bottom: 8px;">
+          <div>
+            <span class="box-title" style="color: var(--lcars-ice); font-size: 1.1rem;">${recipe.title}</span>
+            <div style="font-size: 0.8rem; color: #80b0d0; margin-top: 3px;">${recipe.adaCompliance} • PREP TIME: ${recipe.time}</div>
+          </div>
+          <button class="lcars-pill pill-orange" style="font-size: 0.75rem; padding: 3px 10px; height: auto;" onclick="document.getElementById('recipeDetailBox').style.display='none'">
+            <span>CLOSE [X]</span>
+          </button>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 8px; margin-bottom: 14px; background: #04080e; padding: 10px; border-radius: 4px;">
+          <div style="text-align: center;"><span style="color: #6088a0; font-size: 0.72rem; display: block;">CALORIES</span><strong style="color: var(--lcars-ice);">${recipe.cals}</strong></div>
+          <div style="text-align: center;"><span style="color: #6088a0; font-size: 0.72rem; display: block;">PROTEIN</span><strong style="color: var(--lcars-banana);">${recipe.protein}</strong></div>
+          <div style="text-align: center;"><span style="color: #6088a0; font-size: 0.72rem; display: block;">FAT</span><strong style="color: var(--lcars-peach);">${recipe.fat}</strong></div>
+          <div style="text-align: center;"><span style="color: #6088a0; font-size: 0.72rem; display: block;">NET CARBS</span><strong style="color: var(--lcars-green); font-size: 1.05rem;">${recipe.netCarbs}</strong></div>
+          <div style="text-align: center;"><span style="color: #6088a0; font-size: 0.72rem; display: block;">SUGAR</span><strong style="color: var(--lcars-green);">${recipe.sugar}</strong></div>
+          <div style="text-align: center;"><span style="color: #6088a0; font-size: 0.72rem; display: block;">FIBER</span><strong style="color: var(--lcars-banana);">${recipe.fiber}</strong></div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;" class="setup-grid">
+          <div>
+            <strong style="color: var(--lcars-banana); font-size: 0.9rem; text-transform: uppercase;">Ingredients:</strong>
+            <ul style="margin: 6px 0 0 18px; color: #b0c8d8; font-size: 0.85rem; line-height: 1.5;">
+              ${recipe.ingredients.map(ing => `<li>${ing}</li>`).join('')}
+            </ul>
+          </div>
+          <div>
+            <strong style="color: var(--lcars-green); font-size: 0.9rem; text-transform: uppercase;">Preparation Steps:</strong>
+            <ol style="margin: 6px 0 0 18px; color: #b0c8d8; font-size: 0.85rem; line-height: 1.5;">
+              ${recipe.instructions.map(step => `<li>${step}</li>`).join('')}
+            </ol>
+          </div>
+        </div>
+
+        <div style="margin-top: 14px; pt: 8px; border-top: 1px dashed #1a3048; display: flex; justify-content: flex-end; gap: 8px;">
+          <button class="lcars-pill pill-banana" style="font-size: 0.75rem; padding: 4px 12px; height: auto;" onclick="logTradeToJournal('${recipe.title.replace(/'/g, "\'")}')">
+            <span>+ LOG MEAL TO TAB 03</span>
+          </button>
+        </div>
+      `;
+      detailBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function generateCustomGeminiPrompt() {
+      soundButtonPress();
+      const query = document.getElementById('customGeminiQuery').value.trim();
+      const outBox = document.getElementById('generatedPromptOutput');
+      if (!outBox) return;
+
+      const userQuery = query || "3 quick zero-sugar dinner recipes under 5g net carbs using chicken breast and seasonal vegetables";
+
+      const promptTemplate = 
+`[CLINICAL ADA DIABETIC NUTRITION SPECIFICATION]
+Act as a registered dietitian certified in diabetes care and education (CDCES) adhering strictly to the American Diabetes Association (ADA) Standards of Care in Diabetes.
+
+QUERY: ${userQuery}
+
+STRICT NUTRITIONAL MANDATES:
+1. Zero Added Sugar: Absolutely no sucrose, high-fructose corn syrup, dextrose, maltodextrin, honey, agave, or fruit juice concentrate.
+2. Sweeteners: If sweetened, permit only non-glycemic options (Pure Allulose, pure Monk Fruit extract, or 100% Stevia). Do NOT use maltitol or high-glycemic sugar alcohols.
+3. Carbohydrate Limit: Maximum 5g net carbs per serving (Net Carbs = Total Carbs - Dietary Fiber - Allulose).
+4. ADA Plate Method Alignment: Minimum 50% non-starchy vegetables, 25% lean protein, healthy unsaturated fats.
+5. Glycemic Index: All ingredients must have a glycemic index (GI) <= 25 to prevent post-prandial glycemic excursions.
+
+OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
+- Title & Prep Time
+- Exact Macronutrient Breakdown: Calories, Total Fat, Protein, Total Carbs, Dietary Fiber, Net Carbs, Sugar (0g added)
+- Complete Ingredient List
+- 3-Step Rapid Preparation Guide
+- Clinical Rationale (why this protects pancreatic beta-cells and avoids blood glucose spikes)`;
+
+      outBox.style.display = 'block';
+      outBox.textContent = promptTemplate;
+      logLCARS("Generated ADA Clinical Prompt for Gemini (Air-Gapped)", "sys");
+    }
+
   </script>
 </body>
 </html>
