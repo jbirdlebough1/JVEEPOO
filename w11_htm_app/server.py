@@ -266,6 +266,13 @@ async def run_ble_auto_sync_loop():
 
     while True:
         try:
+            # If Chrome Web Bluetooth is active, yield radio completely
+            if is_browser_active():
+                ble_state["status"] = "CHROME_LINK_ACTIVE"
+                ble_state["contention_warning"] = False
+                await asyncio.sleep(4.0)
+                continue
+
             ble_state["status"] = "SCANNING_PROXIMITY"
             ble_state["contention_warning"] = False
 
@@ -355,8 +362,12 @@ async def run_ble_auto_sync_loop():
                     err_msg = str(conn_err)
                     print(f"[-] Auto-Sync connection failed: {err_msg}")
                     # Likely phone contention (HBand holding channel)
-                    ble_state["contention_warning"] = True
-                    ble_state["status"] = "PHONE_CONTENTION_OR_BUSY"
+                    if is_browser_active():
+                        ble_state["contention_warning"] = False
+                        ble_state["status"] = "CHROME_LINK_ACTIVE"
+                    else:
+                        ble_state["contention_warning"] = True
+                        ble_state["status"] = "PHONE_CONTENTION_OR_BUSY"
 
                 finally:
                     ble_state["active_connection"] = False
@@ -445,6 +456,10 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
             self.send_json_response({"status": "TRIGGERED", "message": "Proximity scanner waking immediately."})
 
         # 2. Accept Telemetry from Browser Web Bluetooth
+        elif self.path == "/api/browser_active":
+            record_browser_activity()
+            self.send_json_response({"status": "BROWSER_ACTIVE_CONFIRMED"})
+
         elif self.path == "/api/telemetry":
             record_browser_activity()
             content_length = int(self.headers.get("Content-Length", 0))

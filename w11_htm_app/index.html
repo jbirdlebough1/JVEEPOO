@@ -3338,9 +3338,21 @@
                   GATT Protocol Opcode <strong>0xC7</strong> (Screen Style) • Opcode <strong>0xB4</strong> (Screen Timeout) • Opcode <strong>0xB1</strong> (Backlight Brightness)
                 </div>
               </div>
-              <div style="display: flex; gap: 8px;">
-                <button class="lcars-pill pill-lilac" style="font-size: 0.8rem; padding: 6px 14px; height: auto; cursor: pointer;" onclick="queryCurrentWatchFace()">
-                  <span>🔍 IDENTIFY ACTIVE FACE FROM WATCH</span>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <button class="lcars-btn btn-banana" style="font-size: 0.82rem; padding: 6px 14px; font-weight: bold; cursor: pointer;" onclick="applyWatchFace(0, 'STYLE 0: CLEAN DEFAULT ROM FACE')">
+                  ⚡ RESTORE CLEAN ORIGINAL WATCH FACE (STYLE 0)
+                </button>
+                <button class="lcars-pill pill-blue" style="font-size: 0.8rem; padding: 6px 12px; height: auto; cursor: pointer;" onclick="applyWatchFace(1, 'STYLE 1: SPORT ANALOG')">
+                  <span>STYLE 1</span>
+                </button>
+                <button class="lcars-pill pill-blue" style="font-size: 0.8rem; padding: 6px 12px; height: auto; cursor: pointer;" onclick="applyWatchFace(2, 'STYLE 2: BIG DIGITAL')">
+                  <span>STYLE 2</span>
+                </button>
+                <button class="lcars-pill pill-blue" style="font-size: 0.8rem; padding: 6px 12px; height: auto; cursor: pointer;" onclick="applyWatchFace(3, 'STYLE 3: CHRONOMETER')">
+                  <span>STYLE 3</span>
+                </button>
+                <button class="lcars-pill pill-lilac" style="font-size: 0.8rem; padding: 6px 12px; height: auto; cursor: pointer;" onclick="queryCurrentWatchFace()">
+                  <span>🔍 AUDIT ACTIVE FACE</span>
                 </button>
               </div>
             </div>
@@ -7388,24 +7400,12 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
     }
 
     async function sendGattCommandBytes(cmdArray, label) {
-      if (!txCharacteristic) {
-        logLCARS(`Notice: GATT Channel offline. Watch will receive command on next sync.`, "sys");
-        return;
-      }
       const payload = new Uint8Array(20);
       for (let i = 0; i < cmdArray.length; i++) {
         payload[i] = cmdArray[i];
       }
-      try {
-        if (txCharacteristic.writeValueWithoutResponse) {
-          await txCharacteristic.writeValueWithoutResponse(payload);
-        } else {
-          await txCharacteristic.writeValue(payload);
-        }
-        logLCARS(`TX [${label}]: ${Array.from(payload).map(b => b.toString(16).padStart(2,'0')).join(' ')}`, "tx");
-      } catch (err) {
-        logLCARS(`Command Error (${label}): ${err.message}`, "err");
-      }
+      logLCARS(`[*] Transmitting ${label || 'GATT Command'}...`, "tx");
+      return await sendCommandBytes(payload);
     }
 
   
@@ -7771,13 +7771,18 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
 
     async function applyHybridChronoToWatch() {
       soundButtonPress();
-      logLCARS("[*] Transmitting Unified Glucose Ring Chronometer to Watch...", "tx");
-      // Opcode 0xC7: apply custom watch face layout (custom slot 0x02)
-      const pkt = [0xC7, 0x01, 0x00, 0x02];
-      await sendGattCommandBytes(pkt, "Set Unified Glucose Ring Dial (0xC7)");
-      document.getElementById('lblCurrentActiveFace').textContent = "UNIFIED PERIMETER GLUCOSE CHRONOMETER";
-      document.getElementById('lblActiveFaceSource').textContent = "CUSTOM DIAL SLOT (0x02)";
-      logLCARS("[+] Unified Perimeter Glucose Chronometer active on watch!", "rx");
+      logLCARS("[*] Restoring Clean Factory Style 0 on Watch (Opcode 0xC7 0x01 0x00 0x00)...", "tx");
+      // Opcode 0xC7, sub-cmd 0x01 = Set Screen Style, styleIndex 0x00, uiFromType 0x00 (Clean Default ROM Face)
+      const pkt = [0xC7, 0x01, 0x00, 0x00];
+      await sendCommandBytes(pkt);
+      document.getElementById('lblCurrentActiveFace').textContent = "STYLE 0: BIO-METABOLIC LCARS CONSOLE";
+      document.getElementById('lblActiveFaceSource').textContent = "FIRMWARE ROM DEFAULT (0x00)";
+      logLCARS("[+] Clean Factory Style 0 restored successfully on watch!", "rx");
+      
+      // Also ensure 12-hour format is active
+      setTimeout(() => {
+        setWatch12HourFormat();
+      }, 400);
     }
 
     // Initialize unified ring on page load
@@ -7786,6 +7791,14 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
       requestAnimationFrame(tickChronoClock);
     }, 400);
 
-  </script>
+  
+    // Keep server.py proximity daemon informed that Chrome holds the radio
+    function pingBrowserActiveToDaemon() {
+      if (bluetoothDevice && bluetoothDevice.gatt && bluetoothDevice.gatt.connected) {
+        fetch('/api/browser_active', { method: 'POST' }).catch(() => {});
+      }
+    }
+    setInterval(pingBrowserActiveToDaemon, 4000);
+</script>
 </body>
 </html>
