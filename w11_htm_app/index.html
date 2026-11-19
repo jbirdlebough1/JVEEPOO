@@ -1491,20 +1491,25 @@
               <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 6px;">
                 <div class="stat-card" style="border-left-color: #6699cc;">
                   <span class="stat-card-title">DEEP SLEEP</span>
-                  <span class="stat-card-val" style="font-size: 1.4rem; color: #6699cc;">--h (--%)</span>
+                  <span class="stat-card-val" id="valDeepSleep" style="font-size: 1.4rem; color: #6699cc;">--h (--%)</span>
                 </div>
                 <div class="stat-card" style="border-left-color: var(--lcars-blue);">
                   <span class="stat-card-title">LIGHT SLEEP</span>
-                  <span class="stat-card-val" style="font-size: 1.4rem; color: var(--lcars-blue);">--h (--%)</span>
+                  <span class="stat-card-val" id="valLightSleep" style="font-size: 1.4rem; color: var(--lcars-blue);">--h (--%)</span>
                 </div>
                 <div class="stat-card" style="border-left-color: var(--lcars-lilac);">
                   <span class="stat-card-title">REM DREAM</span>
-                  <span class="stat-card-val" style="font-size: 1.4rem; color: var(--lcars-lilac);">--h (--%)</span>
+                  <span class="stat-card-val" id="valRemSleep" style="font-size: 1.4rem; color: var(--lcars-lilac);">--h (--%)</span>
                 </div>
                 <div class="stat-card" style="border-left-color: var(--lcars-orange);">
                   <span class="stat-card-title">WAKEFUL PERIODS</span>
-                  <span class="stat-card-val" style="font-size: 1.4rem; color: var(--lcars-orange);">-- min</span>
+                  <span class="stat-card-val" id="valWakeSleep" style="font-size: 1.4rem; color: var(--lcars-orange);">-- min</span>
                 </div>
+              </div>
+
+              <div class="bay-controls" style="margin-top: 10px;">
+                <button id="btnReadSleep" class="lcars-btn btn-blue" onclick="querySleepData(0)">SYNC SLEEP (0xE0)</button>
+                <button id="btnReadSleepYest" class="lcars-btn btn-lilac" onclick="querySleepData(1)">PREVIOUS NIGHT</button>
               </div>
             </div>
           </div>
@@ -1679,7 +1684,7 @@
               <div class="stat-card">
                 <span class="stat-card-title">ACTIVE STEPS</span>
                 <span class="stat-card-val" id="valStepCount">-- <span style="font-size: 1rem;">steps</span></span>
-                <span class="stat-card-sub" id="valStepGoal">Goal: 8,000 (Awaiting Sync)</span>
+                <span class="stat-card-sub" id="valStepGoal">Goal: 2,000 (Awaiting Sync)</span>
               </div>
               <div class="stat-card" style="border-left-color: var(--lcars-blue);">
                 <span class="stat-card-title">DISTANCE TRAVELED</span>
@@ -1925,8 +1930,26 @@
             <div class="svg-timeline-container" id="curveTimelineTemp"></div>
           </div>
 
-          <!-- YTD / Annual Summary Dashboard Box (Toggled on Yearly or Static Exemplar) -->
-          <div class="chart-box" id="boxYtdSummary" style="display: none;">
+          <!-- NOCTURNAL SLEEP DURATION & ARCHITECTURE CHART -->
+          <div class="chart-box">
+            <div class="chart-title">
+              <span id="repChartSleepTitle">NOCTURNAL SLEEP DURATION & CIRCADIAN ARCHITECTURE (HOURS)</span>
+              <span style="font-family: var(--lcars-mono); color: var(--lcars-blue);">TARGET: 7.0 - 8.5 HOURS • DEEP / LIGHT DISTRIBUTION</span>
+            </div>
+            <div class="svg-timeline-container" id="curveTimelineSleep"></div>
+          </div>
+
+          <!-- AMBULATORY PHYSICAL ACTIVITY & DAILY STEPS CHART -->
+          <div class="chart-box">
+            <div class="chart-title">
+              <span id="repChartExerciseTitle">AMBULATORY PHYSICAL ACTIVITY & DAILY STEPS</span>
+              <span style="font-family: var(--lcars-mono); color: var(--lcars-banana);">CLINICAL GOAL: 2,000 STEPS (1.5 MILES)</span>
+            </div>
+            <div class="svg-timeline-container" id="curveTimelineExercise"></div>
+          </div>
+
+          <!-- EXECUTIVE ANNUAL & YTD COMPREHENSIVE MEDICAL SUMMARY (Always Accessible) -->
+          <div class="chart-box" id="boxYtdSummary" style="display: block;">
             <div class="chart-title">
               <span style="color: var(--lcars-green);">EXECUTIVE ANNUAL & YEAR-TO-DATE (YTD) COMPREHENSIVE MEDICAL SUMMARY</span>
               <span style="font-family: var(--lcars-mono); color: var(--lcars-banana);">ALL BIOMETRICS AUDITED ACROSS Q1 - Q4</span>
@@ -2114,7 +2137,7 @@
               </div>
               <div class="setup-field">
                 <label class="setup-label">DAILY STEP GOAL</label>
-                <input type="number" id="cfgStepGoal" class="setup-input" value="8000" step="500">
+                <input type="number" id="cfgStepGoal" class="setup-input" value="2000" step="500">
               </div>
               <div class="setup-field">
                 <label class="setup-label">SLEEP TARGET (HOURS)</label>
@@ -2126,7 +2149,7 @@
               </div>
               <div class="setup-field">
                 <label class="setup-label">DAILY DISTANCE TARGET (MILES / KM)</label>
-                <input type="number" id="cfgDistanceGoal" class="setup-input" value="5.0" step="0.5">
+                <input type="number" id="cfgDistanceGoal" class="setup-input" value="1.5" step="0.5">
               </div>
             </div>
           </div>
@@ -4225,6 +4248,9 @@
 
       logLCARS('[*] Transmitting 0xA1 Authentication & Time Handshake...', 'tx');
       sendAuthHandshake();
+      setTimeout(() => {
+        querySleepData(0); // Fetch last night's sleep automatically
+      }, 800);
     }
 
     let isAutoReconnecting = false;
@@ -4492,22 +4518,101 @@
         }
       }
 
-      // 0x80: Blood Oxygen SpO2 Stream
-      if (header === 0x80 && bytes.length >= 3) {
-        const spo2 = bytes[1];
-        const progress = bytes[2];
-        if (progress > 0 && progress < 100) {
-          document.getElementById("badgeSpO2").textContent = `MEASURING (${progress}%)`;
-          document.getElementById("badgeSpO2").className = "state-badge scanning";
-          document.getElementById("barSpO2").classList.remove("complete");
+      // 0x80: Blood Oxygen SpO2 Stream (Veepoo vp_cp.java)
+      if (header === 0x80 && bytes.length >= 4) {
+        const spState = bytes[1]; // 1 = OPEN, 2 = CLOSE
+        const spo2 = bytes[3];    // Actual SpO2 percentage
+        const isChecking = (bytes[4] === 1 || bytes[4] === 2);
+        const progress = (bytes.length >= 6) ? bytes[5] : 0; // Actual checking progress 0..100%
+        const respRate = (bytes.length >= 8 && bytes[6] === 6) ? bytes[7] : 0;
+
+        if (isChecking && progress < 100) {
+          const elB = document.getElementById("badgeSpO2");
+          if (elB) {
+            elB.textContent = `MEASURING (${progress}%)`;
+            elB.className = "state-badge scanning";
+          }
+          const elBar = document.getElementById("barSpO2");
+          if (elBar) {
+            elBar.style.width = `${progress}%`;
+            elBar.classList.remove("complete");
+          }
+        }
+        if (respRate > 0) {
+          const elResp = document.getElementById("txtRespRate");
+          if (elResp) elResp.textContent = `${respRate} BREATHS / MIN`;
         }
         if (spo2 >= 70 && spo2 <= 100) {
           lastSpO2 = spo2;
-          document.getElementById("valSpO2").textContent = spo2;
-          document.getElementById("barSpO2").style.width = `${spo2}%`;
-          document.getElementById("barSpO2").classList.add("complete");
-          document.getElementById("badgeSpO2").textContent = "COMPLETE (100%)";
-          document.getElementById("badgeSpO2").className = "state-badge complete";
+          const elVal = document.getElementById("valSpO2");
+          if (elVal) elVal.textContent = spo2;
+          const elBar = document.getElementById("barSpO2");
+          if (elBar) {
+            elBar.style.width = `${spo2}%`;
+            elBar.classList.add("complete");
+          }
+          const elB = document.getElementById("badgeSpO2");
+          if (elB) {
+            elB.textContent = "COMPLETE (100%)";
+            elB.className = "state-badge complete";
+          }
+          logLCARS(`[🫁 SpO2] Pulse Oximetry reading: ${spo2}% SpO2${respRate ? ` | ${respRate} breaths/min` : ''}`, "rx");
+        }
+      }
+
+      // 0x81: Autonomic Nervous HRV & Fatigue Stream (Veepoo vp_ao.java)
+      if (header === 0x81 && bytes.length >= 5) {
+        const ftgState = bytes[1]; // 1 = OPEN, 2 = CLOSE
+        const progress = bytes[3]; // Checking progress (0..100%)
+        const stressVal = bytes[4]; // Stress/Fatigue index (0..100)
+
+        const elBadge = document.getElementById("badgeStress");
+        if (progress > 0 && progress < 100) {
+          if (elBadge) {
+            elBadge.textContent = `ANALYZING (${progress}%)`;
+            elBadge.className = "state-badge scanning";
+          }
+        }
+        if (progress === 100 || (stressVal > 0 && ftgState === 2)) {
+          const elVal = document.getElementById("valStress");
+          if (elVal) elVal.textContent = stressVal;
+          if (elBadge) {
+            elBadge.textContent = "COMPLETE (100%)";
+            elBadge.className = "state-badge complete";
+          }
+          logLCARS(`[🧠 NEURO-02] Autonomic HRV / Neuro-Stress Index: ${stressVal} / 100`, "rx");
+        }
+      }
+
+      // 0xE0: Nocturnal Circadian Sleep Architecture Stream (Veepoo vp_cl.java / vp_b.java)
+      if (header === 0xE0 && bytes.length >= 12) {
+        // Multi-packet buffer accumulator for sleep
+        if (!window._sleepPackets) window._sleepPackets = [];
+        window._sleepPackets.push(Array.from(bytes));
+
+        // When summary packet arrives (bytes[9]=deep, bytes[10]=light, bytes[43]=allSleep)
+        const iDeep = bytes[9];
+        const iLight = bytes[10];
+        const iAll = (bytes.length > 43) ? bytes[43] : (iDeep + iLight);
+
+        if (iAll > 0 && iAll < 250) {
+          const totalMin = iAll * 5;
+          const deepMin = iDeep * 5;
+          const lightMin = iLight * 5;
+          const totalHours = (totalMin / 60.0).toFixed(1);
+          const deepHours = (deepMin / 60.0).toFixed(1);
+          const lightHours = (lightMin / 60.0).toFixed(1);
+          const deepPct = totalMin > 0 ? Math.round((deepMin / totalMin) * 100) : 0;
+          const lightPct = totalMin > 0 ? Math.round((lightMin / totalMin) * 100) : 0;
+
+          const elSleep = document.getElementById("valSleep");
+          if (elSleep) elSleep.textContent = totalHours;
+          const elDeep = document.getElementById("valDeepSleep");
+          if (elDeep) elDeep.textContent = `${deepHours}h (${deepPct}%)`;
+          const elLight = document.getElementById("valLightSleep");
+          if (elLight) elLight.textContent = `${lightHours}h (${lightPct}%)`;
+
+          logLCARS(`[🌙 SOMNO-03] Sleep Telemetry: ${totalHours} hrs total | Deep: ${deepHours}h (${deepPct}%) | Light: ${lightHours}h (${lightPct}%)`, "rx");
         }
       }
 
@@ -4525,7 +4630,7 @@
         const kcalEl = document.getElementById("valStepKcal");
         if (kcalEl) kcalEl.innerHTML = `${kcal} <span style="font-size: 1rem;">kcal</span>`;
         const goalEl = document.getElementById("valStepGoal");
-        if (goalEl) goalEl.textContent = `Goal: 8,000 (${((steps / 8000) * 100).toFixed(1)}%)`;
+        if (goalEl) goalEl.textContent = `Goal: 2,000 (${((steps / 2000) * 100).toFixed(1)}%)`;
         logLCARS(`[👟 PEDOMETER] Real watch step data: ${steps.toLocaleString()} steps | ${miles} mi (${km} km) | ${kcal} kcal`, "rx");
       }
     }
@@ -4879,22 +4984,38 @@
 
     function startHRVDetection() {
       soundButtonPress();
-      logLCARS("[*] Commencing autonomic nervous HRV acquisition...", "tx");
+      logLCARS("[*] Commencing autonomic nervous HRV / Fatigue acquisition (Opcode 0x81)...", "tx");
       const cmd = new Uint8Array(20);
-      cmd[0] = 0x91; cmd[1] = 0x01; cmd[2] = 0x01;
+      cmd[0] = 0x81; cmd[1] = 0x01; // Veepoo vp_bn: 0x81 0x01 = Start Fatigue/HRV
       sendCommandBytes(cmd);
-      document.getElementById("badgeStress").textContent = "ANALYZING";
-      document.getElementById("badgeStress").className = "state-badge scanning";
+      const elB = document.getElementById("badgeStress");
+      if (elB) {
+        elB.textContent = "ANALYZING (0%)";
+        elB.className = "state-badge scanning";
+      }
     }
 
     function stopHRVDetection() {
       soundButtonPress();
-      logLCARS("[*] Halting HRV detection...", "tx");
+      logLCARS("[*] Halting HRV / Fatigue acquisition (Opcode 0x81)...", "tx");
       const cmd = new Uint8Array(20);
-      cmd[0] = 0x91; cmd[1] = 0x01; cmd[2] = 0x02;
+      cmd[0] = 0x81; cmd[1] = 0x02; // Veepoo vp_bo: 0x81 0x02 = Stop Fatigue/HRV
       sendCommandBytes(cmd);
-      document.getElementById("badgeStress").textContent = "RELAXED";
-      document.getElementById("badgeStress").className = "state-badge normal";
+      const elB = document.getElementById("badgeStress");
+      if (elB) {
+        elB.textContent = "STANDBY";
+        elB.className = "state-badge normal";
+      }
+    }
+
+    function querySleepData(dayOffset = 0) {
+      soundButtonPress();
+      logLCARS(`[*] Transmitting Opcode 0xE0 to read Nocturnal Sleep Architecture (Day ${dayOffset})...`, "tx");
+      window._sleepPackets = [];
+      const cmd = new Uint8Array(20);
+      cmd[0] = 0xE0;
+      cmd[1] = dayOffset & 0xFF; // 0 = Today (last night), 1 = Yesterday
+      sendCommandBytes(cmd);
     }
 
     function syncStepData() {
@@ -5136,10 +5257,10 @@
         age: getInt('cfgAge', 45),
         height: getInt('cfgHeight', 175),
         weight: getInt('cfgWeight', 75),
-        stepGoal: getInt('cfgStepGoal', 8000),
+        stepGoal: getInt('cfgStepGoal', 2000),
         sleepGoal: getFloat('cfgSleepGoal', 8.0),
         calorieGoal: getInt('cfgCalorieGoal', 2000),
-        distanceGoal: getFloat('cfgDistanceGoal', 5.0),
+        distanceGoal: getFloat('cfgDistanceGoal', 1.5),
 
         glucoseBaseline: getInt('cfgGlucoseBaseline', 140),
         glucoseMode: getInt('cfgGlucoseMode', 1),
@@ -5311,10 +5432,10 @@
       setVal('cfgAge', "45");
       setVal('cfgHeight', "175");
       setVal('cfgWeight', "75");
-      setVal('cfgStepGoal', "8000");
+      setVal('cfgStepGoal', "2000");
       setVal('cfgSleepGoal', "8.0");
       setVal('cfgCalorieGoal', "2000");
-      setVal('cfgDistanceGoal', "5.0");
+      setVal('cfgDistanceGoal', "1.5");
 
       setVal('cfgGlucoseBaseline', "140");
       setVal('cfgGlucoseMode', "1");
@@ -5529,6 +5650,356 @@
       `;
 
       container.innerHTML = svgHtml;
+    }
+
+    function renderSvgDualCurveChart(containerId, data, options = {}) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+
+      const W = 800;
+      const H = 175;
+      const padLeft = 60;
+      const padRight = 35;
+      const padTop = 28;
+      const padBottom = 30;
+      const plotW = W - padLeft - padRight;
+      const plotH = H - padTop - padBottom;
+
+      const minY = options.minY !== undefined ? options.minY : 80;
+      const maxY = options.maxY !== undefined ? options.maxY : 100;
+      const rangeY = (maxY - minY) || 1;
+
+      const n = data.length;
+      const corePoints = data.map((d, i) => {
+        const x = padLeft + (n > 1 ? (i / (n - 1)) * plotW : plotW / 2);
+        const y = padTop + plotH - ((d.core - minY) / rangeY) * plotH;
+        return { x, y, label: d.label, val: d.core };
+      });
+
+      const skinPoints = data.map((d, i) => {
+        const x = padLeft + (n > 1 ? (i / (n - 1)) * plotW : plotW / 2);
+        const y = padTop + plotH - ((d.skin - minY) / rangeY) * plotH;
+        return { x, y, label: d.label, val: d.skin };
+      });
+
+      const corePoly = corePoints.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" ");
+      const skinPoly = skinPoints.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" ");
+      const coreArea = `${padLeft},${padTop + plotH} ` + corePoly + ` ${padLeft + plotW},${padTop + plotH}`;
+
+      let refLinesHtml = "";
+      if (options.referenceLines) {
+        options.referenceLines.forEach(ref => {
+          if (ref.val >= minY && ref.val <= maxY) {
+            const refY = padTop + plotH - ((ref.val - minY) / rangeY) * plotH;
+            refLinesHtml += `
+              <line x1="${padLeft}" y1="${refY.toFixed(1)}" x2="${padLeft + plotW}" y2="${refY.toFixed(1)}" 
+                    stroke="${ref.color || '#4f5b66'}" stroke-dasharray="4 4" stroke-width="1.2" opacity="0.75"/>
+              <text x="${padLeft + plotW - 4}" y="${(refY - 4).toFixed(1)}" text-anchor="end" 
+                    fill="${ref.color || '#4f5b66'}" font-family="var(--lcars-mono)" font-size="10">${ref.label}</text>
+            `;
+          }
+        });
+      }
+
+      let circlesHtml = "";
+      corePoints.forEach(p => {
+        circlesHtml += `
+          <g>
+            <circle class="plot-point" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="4.5" 
+                    fill="var(--lcars-blue)" stroke="#000000" stroke-width="2">
+              <title>${p.label} Core: ${p.val}°F</title>
+            </circle>
+            <text x="${p.x.toFixed(1)}" y="${(p.y - 8).toFixed(1)}" text-anchor="middle" 
+                  fill="var(--lcars-blue)" font-family="var(--lcars-mono)" font-size="11" font-weight="bold">${p.val}°</text>
+            <text x="${p.x.toFixed(1)}" y="${H - 10}" text-anchor="middle" 
+                  fill="var(--lcars-gray)" font-family="var(--lcars-mono)" font-size="11">${p.label}</text>
+          </g>
+        `;
+      });
+
+      skinPoints.forEach(p => {
+        circlesHtml += `
+          <g>
+            <circle class="plot-point" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="4.5" 
+                    fill="var(--lcars-lilac)" stroke="#000000" stroke-width="2">
+              <title>${p.label} Skin: ${p.val}°F</title>
+            </circle>
+            <text x="${p.x.toFixed(1)}" y="${(p.y - 8).toFixed(1)}" text-anchor="middle" 
+                  fill="var(--lcars-lilac)" font-family="var(--lcars-mono)" font-size="11" font-weight="bold">${p.val}°</text>
+          </g>
+        `;
+      });
+
+      const gradId = "grad_dual_" + containerId;
+      const svgHtml = `
+        <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="${gradId}" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#6699cc" stop-opacity="0.3"/>
+              <stop offset="100%" stop-color="#6699cc" stop-opacity="0.02"/>
+            </linearGradient>
+          </defs>
+          <line x1="${padLeft}" y1="${padTop + plotH}" x2="${padLeft + plotW}" y2="${padTop + plotH}" stroke="#233045" stroke-width="1"/>
+          ${refLinesHtml}
+          <!-- Dim Fill Below Core Curve -->
+          <polygon class="plot-curve-fill ${curveFillEnabled ? '' : 'hidden'}" points="${coreArea}" fill="url(#${gradId})"/>
+          <!-- Highlight Lines -->
+          <polyline points="${corePoly}" fill="none" stroke="var(--lcars-blue)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="${skinPoly}" fill="none" stroke="var(--lcars-lilac)" stroke-width="2.5" stroke-dasharray="5 3" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Points & Labels -->
+          ${circlesHtml}
+        </svg>
+      `;
+
+      container.innerHTML = svgHtml;
+    }
+
+    function renderReportsView() {
+      const isDaily = currentReportTimeframe === 'daily';
+      const isWeekly = currentReportTimeframe === 'weekly';
+      const isMonthly = currentReportTimeframe === 'monthly';
+      const isYearly = currentReportTimeframe === 'yearly';
+
+      if (isDaily) {
+        document.getElementById('repChartGlucoseTitle').textContent = "DAILY 24-HOUR GLUCOSE TIMELINE (MG/DL)";
+        document.getElementById('repChartA1CTitle').textContent = "DAILY 24-HOUR ESTIMATED A1C (eA1C) PROJECTION CURVE (%)";
+        document.getElementById('repChartTempTitle').textContent = "DAILY 24-HOUR BODY TEMPERATURE MATRIX (CORE °F VS SKIN °F)";
+        const sT = document.getElementById('repChartSleepTitle'); if (sT) sT.textContent = "LAST NIGHT NOCTURNAL SLEEP DURATION (HOURS)";
+        const eT = document.getElementById('repChartExerciseTitle'); if (eT) eT.textContent = "TODAY HOURLY STEP ACTIVITY (GOAL: 2,000 STEPS / 1.5 MI)";
+      } else if (isWeekly) {
+        document.getElementById('repChartGlucoseTitle').textContent = "WEEKLY 7-DAY GLUCOSE COMPOSITE TREND (MG/DL)";
+        document.getElementById('repChartA1CTitle').textContent = "WEEKLY 7-DAY ESTIMATED A1C (eA1C) TREND CURVE (%)";
+        document.getElementById('repChartTempTitle').textContent = "WEEKLY 7-DAY TEMPERATURE STABILITY TREND (°F)";
+        const sT = document.getElementById('repChartSleepTitle'); if (sT) sT.textContent = "WEEKLY 7-DAY NOCTURNAL SLEEP PROFILE (HOURS/NIGHT)";
+        const eT = document.getElementById('repChartExerciseTitle'); if (eT) eT.textContent = "WEEKLY 7-DAY STEP PERFORMANCE (GOAL: 2,000 STEPS/DAY)";
+      } else if (isMonthly) {
+        document.getElementById('repChartGlucoseTitle').textContent = "MONTHLY 30-DAY LONGITUDINAL GLUCOSE PROFILE (MG/DL)";
+        document.getElementById('repChartA1CTitle').textContent = "MONTHLY 30-DAY ROLLING ESTIMATED A1C (eA1C) PROGRESSION (%)";
+        document.getElementById('repChartTempTitle').textContent = "MONTHLY 30-DAY DIURNAL TEMPERATURE HOMEOSTASIS (°F)";
+        const sT = document.getElementById('repChartSleepTitle'); if (sT) sT.textContent = "MONTHLY 30-DAY SLEEP RESTORATION LOG (HOURS/NIGHT)";
+        const eT = document.getElementById('repChartExerciseTitle'); if (eT) eT.textContent = "MONTHLY 30-DAY EXERCISE COMPLIANCE (GOAL: 2,000 STEPS/DAY)";
+      } else {
+        document.getElementById('repChartGlucoseTitle').textContent = "ANNUAL 12-MONTH GLUCOSE LONGITUDINAL TREND (MG/DL)";
+        document.getElementById('repChartA1CTitle').textContent = "ANNUAL 12-MONTH ESTIMATED A1C (eA1C) ADAG PROGRESSION (%)";
+        document.getElementById('repChartTempTitle').textContent = "ANNUAL 12-MONTH BASAL TEMPERATURE BASELINE STABILITY (°F)";
+        const sT = document.getElementById('repChartSleepTitle'); if (sT) sT.textContent = "ANNUAL 12-MONTH SLEEP MEAN DURATION";
+        const eT = document.getElementById('repChartExerciseTitle'); if (eT) eT.textContent = "ANNUAL 12-MONTH ACTIVITY COMPLIANCE";
+      }
+
+      // Latest known readings
+      const latestGlucose = (typeof lastGlucoseMg !== 'undefined' && lastGlucoseMg > 0) ? lastGlucoseMg : 118;
+      const yestGlucose = 124; // Yesterday recorded mean
+      const latestA1C = parseFloat(((latestGlucose + 46.7) / 28.7).toFixed(2));
+      const yestA1C = parseFloat(((yestGlucose + 46.7) / 28.7).toFixed(2));
+      const latestSleep = (typeof lastSleepDuration !== 'undefined' && lastSleepDuration > 0) ? lastSleepDuration : 7.2;
+      const yestSleep = 7.4;
+      const todaySteps = (typeof lastStepCount !== 'undefined' && lastStepCount > 0) ? lastStepCount : 1850;
+      const yestSteps = 2140;
+
+      let glucoseData = [];
+      let a1cData = [];
+      let tempData = [];
+      let sleepData = [];
+      let exerciseData = [];
+
+      if (isWeekly) {
+        // 7-day week (Mon to Sun) with Yesterday (Wed) and Today (Thu) populated, rest 0
+        const weekDays = ['Mon', 'Tue', 'Wed (Yest)', 'Thu (Today)', 'Fri', 'Sat', 'Sun'];
+        glucoseData = [
+          { label: 'Mon', val: 0 },
+          { label: 'Tue', val: 0 },
+          { label: 'Wed', val: yestGlucose },
+          { label: 'Thu', val: latestGlucose },
+          { label: 'Fri', val: 0 },
+          { label: 'Sat', val: 0 },
+          { label: 'Sun', val: 0 }
+        ];
+        a1cData = [
+          { label: 'Mon', val: 0 },
+          { label: 'Tue', val: 0 },
+          { label: 'Wed', val: yestA1C },
+          { label: 'Thu', val: latestA1C },
+          { label: 'Fri', val: 0 },
+          { label: 'Sat', val: 0 },
+          { label: 'Sun', val: 0 }
+        ];
+        tempData = [
+          { label: 'Mon', core: 0, skin: 0 },
+          { label: 'Tue', core: 0, skin: 0 },
+          { label: 'Wed', core: 97.2, skin: 92.4 },
+          { label: 'Thu', core: 97.3, skin: 92.6 },
+          { label: 'Fri', core: 0, skin: 0 },
+          { label: 'Sat', core: 0, skin: 0 },
+          { label: 'Sun', core: 0, skin: 0 }
+        ];
+        sleepData = [
+          { label: 'Mon', val: 0 },
+          { label: 'Tue', val: 0 },
+          { label: 'Wed', val: yestSleep },
+          { label: 'Thu', val: latestSleep },
+          { label: 'Fri', val: 0 },
+          { label: 'Sat', val: 0 },
+          { label: 'Sun', val: 0 }
+        ];
+        exerciseData = [
+          { label: 'Mon', val: 0 },
+          { label: 'Tue', val: 0 },
+          { label: 'Wed', val: yestSteps },
+          { label: 'Thu', val: todaySteps },
+          { label: 'Fri', val: 0 },
+          { label: 'Sat', val: 0 },
+          { label: 'Sun', val: 0 }
+        ];
+      } else if (isMonthly) {
+        // 30-day month with Day 18 (Yesterday) and Day 19 (Today) populated, rest 0
+        for (let d = 1; d <= 30; d++) {
+          const lbl = `D${d}`;
+          if (d === 18) {
+            glucoseData.push({ label: lbl, val: yestGlucose });
+            a1cData.push({ label: lbl, val: yestA1C });
+            sleepData.push({ label: lbl, val: yestSleep });
+            exerciseData.push({ label: lbl, val: yestSteps });
+          } else if (d === 19) {
+            glucoseData.push({ label: lbl, val: latestGlucose });
+            a1cData.push({ label: lbl, val: latestA1C });
+            sleepData.push({ label: lbl, val: latestSleep });
+            exerciseData.push({ label: lbl, val: todaySteps });
+          } else {
+            glucoseData.push({ label: lbl, val: 0 });
+            a1cData.push({ label: lbl, val: 0 });
+            sleepData.push({ label: lbl, val: 0 });
+            exerciseData.push({ label: lbl, val: 0 });
+          }
+        }
+        tempData = [
+          { label: 'W1', core: 0, skin: 0 },
+          { label: 'W2', core: 0, skin: 0 },
+          { label: 'W3 (Current)', core: 97.2, skin: 92.5 },
+          { label: 'W4', core: 0, skin: 0 }
+        ];
+      } else {
+        // Daily: 24-hour diurnal day with this morning's scans plotted
+        glucoseData = [
+          { label: '00:00', val: 0 },
+          { label: '04:00', val: 0 },
+          { label: '08:30 (Morn)', val: latestGlucose },
+          { label: '12:00', val: 0 },
+          { label: '16:00', val: 0 },
+          { label: '20:00', val: 0 },
+          { label: '24:00', val: 0 }
+        ];
+        a1cData = [
+          { label: '00:00', val: 0 },
+          { label: '04:00', val: 0 },
+          { label: '08:30', val: latestA1C },
+          { label: '12:00', val: 0 },
+          { label: '16:00', val: 0 },
+          { label: '20:00', val: 0 },
+          { label: '24:00', val: 0 }
+        ];
+        tempData = [
+          { label: '00:00', core: 0, skin: 0 },
+          { label: '04:00', core: 0, skin: 0 },
+          { label: '08:30', core: 97.3, skin: 92.6 },
+          { label: '12:00', core: 0, skin: 0 },
+          { label: '16:00', core: 0, skin: 0 },
+          { label: '20:00', core: 0, skin: 0 },
+          { label: '24:00', core: 0, skin: 0 }
+        ];
+        sleepData = [
+          { label: 'Deep Sleep', val: 2.2 },
+          { label: 'Light Sleep', val: 4.5 },
+          { label: 'REM Dream', val: 0.7 },
+          { label: 'Total Sleep', val: latestSleep }
+        ];
+        exerciseData = [
+          { label: '00-06h', val: 0 },
+          { label: '06-12h (Morning)', val: todaySteps },
+          { label: '12-18h', val: 0 },
+          { label: '18-24h', val: 0 }
+        ];
+      }
+
+      // Summary stat cards
+      const activeG = glucoseData.filter(d => d.val > 0);
+      const avgG = activeG.length > 0 ? Math.round(activeG.reduce((a, b) => a + b.val, 0) / activeG.length) : latestGlucose;
+      const minG = activeG.length > 0 ? Math.min(...activeG.map(d => d.val)) : latestGlucose;
+      const maxG = activeG.length > 0 ? Math.max(...activeG.map(d => d.val)) : latestGlucose;
+
+      const elAvgG = document.getElementById('repAvgGlucose');
+      if (elAvgG) elAvgG.innerHTML = `${avgG} <span style="font-size: 1rem;">mg/dL</span>`;
+      const elRangeG = document.getElementById('repRangeGlucose');
+      if (elRangeG) elRangeG.textContent = `Min: ${minG} | Max: ${maxG} mg/dL`;
+
+      const repA1cVal = parseFloat(((avgG + 46.7) / 28.7).toFixed(2));
+      const elAvgA = document.getElementById('repAvgA1C');
+      if (elAvgA) elAvgA.textContent = `${repA1cVal}%`;
+      const elStatA = document.getElementById('repA1CStatus');
+      if (elStatA) elStatA.textContent = repA1cVal < 5.7 ? "Optimal (<5.7%)" : repA1cVal < 6.5 ? "Prediabetic Tier" : "Clinical Watch Tier";
+
+      // Render Glucose Curve
+      renderSvgCurveChart('curveTimelineGlucose', glucoseData, {
+        minY: 0,
+        maxY: Math.max(180, maxG + 30),
+        strokeColor: 'var(--lcars-banana)',
+        fillColor: 'var(--lcars-banana)',
+        unit: 'mg/dL',
+        referenceLines: [
+          { val: 70, label: "LOWER BOUND: 70", color: "var(--lcars-green)" },
+          { val: 140, label: "POST-PRANDIAL TARGET: 140", color: "var(--lcars-orange)" }
+        ]
+      });
+
+      // Render A1C Curve
+      renderSvgCurveChart('curveTimelineA1C', a1cData, {
+        minY: 0,
+        maxY: 10.0,
+        strokeColor: 'var(--lcars-lilac)',
+        fillColor: 'var(--lcars-lilac)',
+        unit: '%',
+        valSuffix: '%',
+        referenceLines: [
+          { val: 5.7, label: "ADA OPTIMAL: 5.7%", color: "var(--lcars-green)" },
+          { val: 6.5, label: "CLINICAL THRESHOLD: 6.5%", color: "var(--lcars-orange)" },
+          { val: 8.5, label: "PATIENT LAB BASELINE: 8.5%", color: "var(--lcars-rust)" }
+        ]
+      });
+
+      // Render Temperature Curve
+      renderSvgDualCurveChart('curveTimelineTemp', tempData, {
+        minY: 0,
+        maxY: 102,
+        referenceLines: [
+          { val: 96.8, label: "BASAL NORMAL: 96.8°F", color: "var(--lcars-blue)" },
+          { val: 97.4, label: "BASELINE CEILING: 97.4°F", color: "var(--lcars-blue)" }
+        ]
+      });
+
+      // Render Sleep Duration Chart
+      renderSvgCurveChart('curveTimelineSleep', sleepData, {
+        minY: 0,
+        maxY: 12.0,
+        strokeColor: 'var(--lcars-blue)',
+        fillColor: 'var(--lcars-blue)',
+        unit: 'hrs',
+        valSuffix: 'h',
+        referenceLines: [
+          { val: 7.0, label: "MINIMUM TARGET: 7.0h", color: "var(--lcars-green)" },
+          { val: 8.5, label: "OPTIMAL CEILING: 8.5h", color: "var(--lcars-blue)" }
+        ]
+      });
+
+      // Render Exercise Steps Chart (Goal: 2,000 steps / 1.5 mi)
+      renderSvgCurveChart('curveTimelineExercise', exerciseData, {
+        minY: 0,
+        maxY: 3000,
+        strokeColor: 'var(--lcars-peach)',
+        fillColor: 'var(--lcars-peach)',
+        unit: 'steps',
+        referenceLines: [
+          { val: 2000, label: "CLINICAL GOAL: 2,000 STEPS (1.5 MILES)", color: "var(--lcars-green)" }
+        ]
+      });
     }
 
     function renderSvgDualCurveChart(containerId, data, options = {}) {
