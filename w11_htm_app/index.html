@@ -1180,7 +1180,7 @@
         <button class="lcars-btn btn-banana" style="flex: none; width: 180px;" onclick="pairNewWatchPrompt()">PAIR & INITIALIZE</button>
       </div>
 
-      <!-- Real-Time Status Ribbon -->
+      <!-- Real-Time Status Ribbon (Single Consolidated 4-Bay Line) -->
       <div class="lcars-ribbon">
         <div class="ribbon-item" style="cursor: pointer;" onclick="ensureConnected()" title="Click to Connect/Reconnect Watch">
           <div class="ribbon-label">COMM LINK STATE (CLICK TO ENGAGE)</div>
@@ -1194,11 +1194,7 @@
           <div class="ribbon-label">HARDWARE REVISION</div>
           <div class="ribbon-value" id="ribbonFw">MODEL 5010 / v0.16.16.0</div>
         </div>
-        <div class="ribbon-item green">
-          <div class="ribbon-label">HOST SYSTEM CLOCK</div>
-          <div class="ribbon-value" id="ribbonHostTime">--:--:--</div>
-        </div>
-        <div class="ribbon-item peach" id="ribbonSyncItem" style="cursor: pointer;" onclick="triggerWatchSyncNow()" title="Click to Trigger Immediate Watch Sync">
+        <div class="ribbon-item green" id="ribbonSyncItem" style="cursor: pointer;" onclick="triggerWatchSyncNow()" title="Click to Trigger Immediate Watch Sync">
           <div class="ribbon-label">VAULT SYNC STATUS (CLICK TO SYNC)</div>
           <div class="ribbon-value" id="ribbonSyncStatus" style="color: var(--lcars-green);">● SYNC NOMINAL</div>
         </div>
@@ -3973,8 +3969,7 @@
         hour12: true
       };
       document.getElementById('actualDateTime').textContent = now.toLocaleDateString('en-US', options).toUpperCase();
-      document.getElementById('ribbonHostTime').textContent = now.toTimeString().split(' ')[0];
-
+      
       const year = now.getFullYear();
       const startOfYear = new Date(year, 0, 1);
       const dayOfYear = (now - startOfYear) / (1000 * 60 * 60 * 24);
