@@ -1,11 +1,8 @@
 import re
 
 with open(r'D:\veepoo\w11_htm_app\index.html', encoding='utf-8') as f:
-    text = f.read()
+    lines = f.readlines()
 
-cleaned = text.replace('\n      \n      </div>\n', '\n')
-
-lines = cleaned.splitlines()
 stack = []
 extra_closes = []
 
@@ -22,7 +19,10 @@ for idx, line in enumerate(lines, 1):
             label = f'{m.group(1)}="{m.group(2)}"' if m else t[:30]
             stack.append((idx, label))
 
-print(f"Extra </div> tags after cleaning: {len(extra_closes)}")
-print(f"Unclosed divs after cleaning: {len(stack)}")
+print(f"Extra </div> tags: {len(extra_closes)}")
+for item in extra_closes:
+    print(f"  Extra </div> at line {item[0]}: {item[1]}")
+
+print(f"\nUnclosed divs: {len(stack)}")
 for item in stack:
     print(f"  Unclosed from line {item[0]}: {item[1]}")
