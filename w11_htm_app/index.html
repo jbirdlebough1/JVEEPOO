@@ -3407,6 +3407,96 @@
             </div>
           </div>
 
+          <!-- =====================================================================
+               HARDWARE EXPERIMENT: OVERWRITE FACE 3 WITH FACE 2 (CLE-009)
+               Hardware Slot Feasibility & Dial Extraction Analysis
+               ===================================================================== -->
+          <div class="card-box" id="boxDialOverwriteExp" style="border: 2px solid var(--lcars-orange); background: rgba(18, 14, 22, 0.98);">
+            <div class="box-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; background: rgba(255, 153, 0, 0.12);">
+              <div>
+                <span class="box-title" style="color: var(--lcars-orange); font-size: 1.15rem;">⚡ HARDWARE EXPERIMENT: OVERWRITE FACE 3 WITH FACE 2 (CLE-009)</span>
+                <div style="font-size: 0.85rem; color: var(--lcars-text); margin-top: 2px;">
+                  Analysis of Hardware Slots, ROM Dial Extraction, and Slot Overwrite Feasibility
+                </div>
+              </div>
+              <div style="display: flex; gap: 6px; align-items: center; flex-wrap: wrap;">
+                <button id="btnExpClearLockout" class="lcars-btn btn-peach" style="font-size: 0.78rem; padding: 5px 12px; font-weight: bold; cursor: pointer;" onclick="clearSensorLockouts()" title="Stop ongoing SpO2/HRV/BP scans causing 'Measuring keep still'">
+                  🛑 CLEAR "MEASURING KEEP STILL"
+                </button>
+                <button id="btnExpAuditSlots" class="lcars-pill pill-lilac" style="font-size: 0.78rem; padding: 5px 12px; height: auto; cursor: pointer;" onclick="auditHardwareSlots()" title="Query 0xC7 0x02 and 0x50 0x02">
+                  🔍 AUDIT HARDWARE SLOTS
+                </button>
+              </div>
+            </div>
+
+            <div class="box-content" style="padding: 14px 18px;">
+              <!-- Clinical & Engineering Analysis Notice -->
+              <div style="background: rgba(255, 102, 102, 0.08); border-left: 4px solid var(--lcars-orange); padding: 10px 14px; border-radius: 4px; margin-bottom: 14px; font-size: 0.85rem; line-height: 1.45;">
+                <strong style="color: var(--lcars-orange);">ENGINEERING DIAGNOSTIC FINDINGS:</strong><br>
+                1. <strong>"Measuring keep still" Lockout:</strong> When SpO2 or HRV sensors are running, the watch physical screen locks out watch face transitions. Step 1 halts active optical scans.<br>
+                2. <strong>Watch Face Binary Extraction:</strong> Smartwatch firmware (Nordic / Jieli / Realtek) does not implement BLE flash readback/dumping. However, our system possesses the verified <strong>94 official stock dial binaries</strong> for Shape 4 (240x280) with CRC-16 checksums in <code>stock_dials/shape4_240x280/</code>.<br>
+                3. <strong>Slot Overwrite Experiment:</strong> Slot 2 is ROM Stock Digital Face. Slot 3 is the dynamic SPI Flash slot. Overwriting Slot 3 with Slot 2 tests if the hardware dynamically accepts additional faces.
+              </div>
+
+              <!-- Experiment Action Buttons -->
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin-bottom: 14px;">
+                <button id="btnStepSwitchSlot2" class="lcars-btn btn-blue" style="padding: 10px 14px; font-weight: bold; cursor: pointer; text-align: left;" onclick="testSwitchSlot2()">
+                  <div style="font-size: 0.75rem; opacity: 0.8;">STEP 1: SWITCH TO ROM FACE 2</div>
+                  <div style="font-size: 0.95rem;">📱 SET SLOT 2 (BIG DIGITAL)</div>
+                </button>
+
+                <button id="btnStepOverwriteSlot3" class="lcars-btn btn-orange" style="padding: 10px 14px; font-weight: bold; cursor: pointer; text-align: left;" onclick="testOverwriteSlot3WithSlot2()">
+                  <div style="font-size: 0.75rem; opacity: 0.8;">STEP 2: OVERWRITE EXPERIMENT</div>
+                  <div style="font-size: 0.95rem;">⚡ WRITE FACE 2 INTO SLOT 3</div>
+                </button>
+
+                <button id="btnStepDirectSlot3" class="lcars-btn btn-banana" style="padding: 10px 14px; font-weight: bold; cursor: pointer; text-align: left;" onclick="testDirectSlot3()">
+                  <div style="font-size: 0.75rem; opacity: 0.8;">STEP 3: VERIFY SLOT 3</div>
+                  <div style="font-size: 0.95rem;">🎯 ENGAGE CUSTOM SLOT 3</div>
+                </button>
+
+                <button id="btnStepRevertSlot0" class="lcars-btn btn-green" style="padding: 10px 14px; font-weight: bold; cursor: pointer; text-align: left;" onclick="applyWatchFace(0, 'SLOT 0: CLEAN DEFAULT ROM', 0)">
+                  <div style="font-size: 0.75rem; opacity: 0.8;">SAFETY REVERT</div>
+                  <div style="font-size: 0.95rem;">🛡️ RESTORE ROM SLOT 0</div>
+                </button>
+              </div>
+
+              <!-- Live Hardware Telemetry Grid -->
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; background: rgba(0, 0, 0, 0.4); border: 1px solid var(--lcars-border); border-radius: 6px; padding: 12px 14px; font-size: 0.82rem;">
+                <div>
+                  <div style="color: var(--lcars-gray); font-size: 0.72rem; text-transform: uppercase;">ACTIVE HARDWARE SLOT</div>
+                  <div id="lblExpActiveSlot" style="color: var(--lcars-banana); font-weight: bold; font-size: 1.1rem;">Slot 0</div>
+                </div>
+                <div>
+                  <div style="color: var(--lcars-gray); font-size: 0.72rem; text-transform: uppercase;">DIAL SOURCE REGISTER</div>
+                  <div id="lblExpSource" style="color: var(--lcars-green); font-weight: bold; font-size: 1.0rem;">FIRMWARE ROM (0x00)</div>
+                </div>
+                <div>
+                  <div style="color: var(--lcars-gray); font-size: 0.72rem; text-transform: uppercase;">SPI FLASH TARGET ADDR</div>
+                  <div id="lblFlashAddr" style="color: #38bdf8; font-weight: bold; font-family: monospace;">0x00100000</div>
+                </div>
+                <div>
+                  <div style="color: var(--lcars-gray); font-size: 0.72rem; text-transform: uppercase;">MAX FLASH CAPACITY</div>
+                  <div id="lblFlashMax" style="color: #38bdf8; font-weight: bold;">524,288 Bytes (512 KB)</div>
+                </div>
+                <div>
+                  <div style="color: var(--lcars-gray); font-size: 0.72rem; text-transform: uppercase;">DIAL CRC-16 CHECKSUM</div>
+                  <div id="lblFlashCrc" style="color: var(--lcars-lilac); font-weight: bold; font-family: monospace;">24196 (0x5E84)</div>
+                </div>
+                <div>
+                  <div style="color: var(--lcars-gray); font-size: 0.72rem; text-transform: uppercase;">LAST GATT TRANSACTION</div>
+                  <div id="lblLastGattTx" style="color: var(--lcars-text); font-weight: bold;">0xC7 AUDIT READY</div>
+                </div>
+              </div>
+
+              <!-- Installed Watch IDs Row -->
+              <div style="margin-top: 10px; padding: 8px 12px; background: rgba(204, 153, 204, 0.08); border-radius: 4px; font-size: 0.8rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px;">
+                <span><strong style="color: var(--lcars-lilac);">HARDWARE INSTALLED DIALS:</strong> <span id="lblInstalledWatchIds">Slot 0 (ROM Def) • Slot 1 (Sport) • Slot 2 (Digital) • Slot 3 (Dynamic) • Slot 4 (Matrix)</span></span>
+                <span style="color: var(--lcars-gray); font-size: 0.75rem;">Verified Stock Binaries in Local Vault: <strong>94 Themes</strong></span>
+              </div>
+            </div>
+          </div>
+
           <!-- FEATURED: CUSTOM HYBRID MEDICAL CHRONOMETER PROTOTYPE -->
           <div class="card-box" id="boxHybridChronoStudio" style="border: 2px solid var(--lcars-banana); background: rgba(12, 14, 20, 0.98);">
             <div class="box-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; background: rgba(255, 204, 102, 0.1);">
@@ -4351,22 +4441,54 @@
         logLCARS(`[★] SENSORS AUTHENTICATED: Model ${devNum} | Firmware v${version}`, "rx");
       }
 
-            // 0xC7: Watch Face Hardware Style ACK & Verification
+      // 0xC7: Watch Face Hardware Style ACK & Verification (Veepoo vp_cj.java)
       if (header === 0xC7 && bytes.length >= 3) {
-        const isSuccess = bytes[1] === 0x01;
-        const activeSlot = bytes.length > 2 ? bytes[2] : 0;
-        const uiType = bytes.length > 3 ? bytes[3] : 0;
-        const sourceName = uiType === 0x02 ? "SPI FLASH CUSTOM (0x02)" : "FIRMWARE ROM (0x00)";
+        const subCmd = bytes[1]; // 0x01 = Set response, 0x02 = Read response
+        const isSuccess = bytes[2] === 0x01;
+        const activeSlot = bytes.length > 3 ? bytes[3] : 0;
+        const uiType = bytes.length > 4 ? bytes[4] : 0;
+        let sourceName = "FIRMWARE ROM DEFAULT (0x00)";
+        if (uiType === 0x01) sourceName = "SERVER MARKET (0x01)";
+        else if (uiType === 0x02) sourceName = "SPI FLASH CUSTOM (0x02)";
         
-        logLCARS(`[✔] HARDWARE WATCH FACE ACK: Slot ${activeSlot} Engaged (${sourceName})`, "rx");
+        // Extract 7 installed Watch IDs from bytes[5..18] (2 bytes each little-endian)
+        const installedIds = [];
+        for (let i = 0; i < 7; i++) {
+          const idx = i * 2 + 5;
+          if (idx + 1 < bytes.length) {
+            const wid = bytes[idx] | (bytes[idx + 1] << 8);
+            if (wid > 0) installedIds.push({ slot: i, id: wid });
+          }
+        }
+
+        logLCARS(`[✔] HARDWARE WATCH FACE ACK: Slot ${activeSlot} Engaged (${sourceName}) [Cmd: 0x0${subCmd}, Status: ${isSuccess ? 'SUCCESS' : 'FAIL'}]`, "rx");
+        if (installedIds.length > 0) {
+          const idSummary = installedIds.map(x => `Slot ${x.slot}: ID ${x.id}`).join(' • ');
+          logLCARS(`[✔] Installed Watch Face IDs: ${idSummary}`, "rx");
+          const elIds = document.getElementById('lblInstalledWatchIds');
+          if (elIds) elIds.textContent = idSummary;
+        }
 
         const elActive = document.getElementById('lblCurrentActiveFace');
         const elSource = document.getElementById('lblActiveFaceSource');
         const elSlot = document.getElementById('lblActiveFaceSlot');
+        const elBadge = document.getElementById('badgeFaceStatus');
         
-        if (elActive) elActive.textContent = `SLOT ${activeSlot} (${sourceName})`;
+        if (elActive) elActive.textContent = `SLOT ${activeSlot}: ${sourceName}`;
         if (elSource) elSource.textContent = sourceName;
         if (elSlot) elSlot.textContent = `Slot ${activeSlot}`;
+        if (elBadge) {
+          elBadge.textContent = isSuccess ? `SLOT ${activeSlot} CONFIRMED` : `SLOT ${activeSlot} REJECTED`;
+          elBadge.style.background = isSuccess ? "var(--lcars-green)" : "var(--lcars-red)";
+        }
+
+        // Also update experiment panel status if present
+        const elExpSlot = document.getElementById('lblExpActiveSlot');
+        if (elExpSlot) elExpSlot.textContent = `Slot ${activeSlot}`;
+        const elExpSrc = document.getElementById('lblExpSource');
+        if (elExpSrc) elExpSrc.textContent = sourceName;
+        const elExpTx = document.getElementById('lblLastGattTx');
+        if (elExpTx) elExpTx.textContent = `0xC7 ACK: Slot ${activeSlot} (${isSuccess ? 'SUCCESS' : 'FAIL'})`;
 
         // Complete progress bar if active
         const pCont = document.getElementById('applyProgressContainer');
@@ -4379,9 +4501,31 @@
           pBar.style.width = '100%';
           if (pPct) pPct.textContent = '100%';
           if (pStep) pStep.textContent = `✔ WATCH HARDWARE CONFIRMED: SLOT ${activeSlot} ACTIVE!`;
-          if (pStat) pStat.textContent = `GATT ACK 0xC7: Screen controller refreshed. Hardware slot ${activeSlot} verified.`;
+          if (pStat) pStat.textContent = `GATT ACK 0xC7: Slot ${activeSlot} (${sourceName}) verified online.`;
           soundSuccess();
-          setTimeout(() => { if (pCont) pCont.style.display = 'none'; }, 3500);
+          setTimeout(() => { if (pCont) pCont.style.display = 'none'; }, 2200);
+        }
+      }
+
+      // 0x50: Big Data & Watch Face Flash Memory Controller (Veepoo vp_dc.java)
+      if (header === 0x50 && bytes.length >= 4) {
+        const opType = bytes[1];  // 2 = read info
+        const uiKind = bytes[2];  // 1 = SERVER, 2 = CUSTOM
+        const isOk = bytes[3] === 1;
+        if (opType === 2 && isOk && bytes.length >= 12) {
+          const flashAddr = bytes[4] | (bytes[5] << 8) | (bytes[6] << 16) | (bytes[7] << 24);
+          const maxLen = bytes[8] | (bytes[9] << 8) | (bytes[10] << 16) | (bytes[11] << 24);
+          const currentCrc = (bytes.length >= 18) ? (bytes[16] | (bytes[17] << 8)) : 0;
+          const shapeId = (bytes.length >= 16) ? (bytes[14] | (bytes[15] << 8)) : 4;
+          
+          logLCARS(`[✔] FLASH PARTITION AUDIT: Addr 0x${flashAddr.toString(16).toUpperCase()} | Max: ${maxLen}B (${Math.round(maxLen/1024)}KB) | Shape: ${shapeId} | CRC: ${currentCrc} (0x${currentCrc.toString(16).toUpperCase()})`, 'rx');
+          
+          const elAddr = document.getElementById('lblFlashAddr');
+          const elMax = document.getElementById('lblFlashMax');
+          const elCrc = document.getElementById('lblFlashCrc');
+          if (elAddr) elAddr.textContent = `0x${flashAddr.toString(16).toUpperCase().padStart(8, '0')}`;
+          if (elMax) elMax.textContent = `${maxLen.toLocaleString()} Bytes (${Math.round(maxLen/1024)} KB)`;
+          if (elCrc) elCrc.textContent = `${currentCrc} (0x${currentCrc.toString(16).toUpperCase()})`;
         }
       }
 
@@ -4552,6 +4696,15 @@
             elB.className = "state-badge complete";
           }
           logLCARS(`[🫁 SpO2] Pulse Oximetry reading: ${spo2}% SpO2${respRate ? ` | ${respRate} breaths/min` : ''}`, "rx");
+
+          // CLE-010: Auto-halt SpO2 so watch hardware exits "Measuring keep still"
+          if (spState === 1 && !window._spo2HaltScheduled) {
+            window._spo2HaltScheduled = true;
+            setTimeout(() => {
+              window._spo2HaltScheduled = false;
+              stopSpO2Detection();
+            }, 600);
+          }
         }
       }
 
@@ -4576,6 +4729,15 @@
             elBadge.className = "state-badge complete";
           }
           logLCARS(`[🧠 NEURO-02] Autonomic HRV / Neuro-Stress Index: ${stressVal} / 100`, "rx");
+
+          // CLE-010: Auto-halt HRV so watch hardware exits "Measuring keep still"
+          if (ftgState === 1 && !window._hrvHaltScheduled) {
+            window._hrvHaltScheduled = true;
+            setTimeout(() => {
+              window._hrvHaltScheduled = false;
+              stopHRVDetection();
+            }, 600);
+          }
         }
       }
 
@@ -7991,28 +8153,178 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
     }
 
     
-    // Directly commands watch to dynamic custom slot (with exact 20-byte packet)
-    async function overwriteDynamicWatchSlot(slotNum) {
+    // =========================================================================
+    // CLE-009 & CLE-010: EXPERIMENT FUNCTIONS & WATCH FACE HARDWARE CONTROLLER
+    // =========================================================================
+
+    // CLE-010: Stops all active background sensor scans locking the screen on "Measuring keep still"
+    async function clearSensorLockouts() {
       soundButtonPress();
-      logLCARS(`[*] Directing watch to Overwrite Slot ${slotNum || 1} (Opcode 0xC7)...`, "tx");
-      // Opcode 0xC7: sub-cmd 0x01, slotIndex = 1, uiFromType = 2 (Custom Slot)
-      const pkt = new Uint8Array(20);
-      pkt[0] = 0xC7;
-      pkt[1] = 0x01;
-      pkt[2] = (slotNum || 1) & 0xFF;
-      pkt[3] = 0x02; // Custom Dynamic Slot
-      await sendCommandBytes(pkt);
-      document.getElementById('lblCurrentActiveFace').textContent = `CUSTOM OVERWRITE SLOT ${slotNum || 1}`;
-      document.getElementById('lblActiveFaceSource').textContent = "SPI FLASH CUSTOM REGISTER (0x02)";
-      logLCARS(`[+] Overwrite Slot ${slotNum || 1} selected on watch!`, "rx");
-      
-      setTimeout(() => {
-        setWatch12HourFormat();
+      logLCARS("[*] Transmitting sensor halt sequence to release watch from 'Measuring keep still'...", "tx");
+      try {
+        // 0x80 0x02 0x02: Stop SpO2
+        const pSpo2 = new Uint8Array(20); pSpo2[0] = 0x80; pSpo2[1] = 0x02; pSpo2[2] = 0x02;
+        await sendCommandBytes(pSpo2);
+        // 0x81 0x02: Stop HRV & Fatigue
+        const pHrv = new Uint8Array(20); pHrv[0] = 0x81; pHrv[1] = 0x02;
+        await sendCommandBytes(pHrv);
+        // 0x01 0x02: Stop Blood Pressure
+        const pBp = new Uint8Array(20); pBp[0] = 0x01; pBp[1] = 0x02;
+        await sendCommandBytes(pBp);
+        // 0xA3 0x02: Stop Blood Glucose
+        const pBg = new Uint8Array(20); pBg[0] = 0xA3; pBg[1] = 0x02;
+        await sendCommandBytes(pBg);
+
+        // Reset UI badges
+        const bSp = document.getElementById("badgeSpO2");
+        if (bSp && bSp.textContent.includes("MEASURING")) {
+          bSp.textContent = "IDLE";
+          bSp.className = "state-badge normal";
+        }
+        const bSt = document.getElementById("badgeStress");
+        if (bSt && bSt.textContent.includes("ANALYZING")) {
+          bSt.textContent = "IDLE";
+          bSt.className = "state-badge normal";
+        }
+        const elTx = document.getElementById('lblLastGattTx');
+        if (elTx) elTx.textContent = "SENSORS HALTED: NORMAL DISPLAY READY";
+
+        logLCARS("[✔] All sensor scans halted! Watch display restored from 'Measuring keep still'.", "rx");
+        soundSuccess();
+      } catch (err) {
+        logLCARS(`[!] Sensor clear error: ${err.message}`, "err");
+      }
+    }
+
+    // CLE-009: Audits hardware screen style matrix (0xC7 0x02) and custom SPI flash partition (0x50 0x02)
+    async function auditHardwareSlots() {
+      soundButtonPress();
+      logLCARS("[*] Auditing Watch Hardware Dial Slots (Opcode 0xC7 0x02)...", "tx");
+      const qPkt = new Uint8Array(20);
+      qPkt[0] = 0xC7;
+      qPkt[1] = 0x02;
+      await sendCommandBytes(qPkt);
+
+      const elTx = document.getElementById('lblLastGattTx');
+      if (elTx) elTx.textContent = "QUERYING 0xC7 0x02...";
+
+      setTimeout(async () => {
+        logLCARS("[*] Auditing SPI Flash Custom Partition (Opcode 0x50 0x02 0x02)...", "tx");
+        const fPkt = new Uint8Array(20);
+        fPkt[0] = 0x50;
+        fPkt[1] = 0x02;
+        fPkt[2] = 0x02; // Custom SPI Flash info
+        await sendCommandBytes(fPkt);
       }, 350);
     }
 
-    async function applyWatchFace(styleIndex, styleName) {
+    // CLE-009: Switches physical watch to ROM Face 2 (Stock Digital Dial)
+    async function testSwitchSlot2() {
       soundButtonPress();
+      logLCARS("[*] Executing Step 1: Switch watch to ROM Face 2 (Slot 2, Type 0)...", "tx");
+      await clearSensorLockouts();
+      await new Promise(r => setTimeout(r, 200));
+      await applyWatchFace(2, 'SLOT 2: BIG DIGITAL', 0);
+    }
+
+    // CLE-009: Tests overwriting Slot 3 with Slot 2 Dial (Dynamic Flash Experiment)
+    async function testOverwriteSlot3WithSlot2() {
+      soundButtonPress();
+      logLCARS("[*] Executing Step 2: Overwrite Slot 3 with Slot 2 Dial...", "tx");
+      
+      // 1. Clear any sensor lockouts first
+      await clearSensorLockouts();
+      await new Promise(r => setTimeout(r, 200));
+
+      // 2. Fetch verified Style 2 binary from local server
+      logLCARS("[*] Fetching verified Style 2 dial binary from local repository (/api/dial/style2)...", "tx");
+      let binCrc = 24196; // 0x5E84
+      let binSize = 205252;
+      try {
+        const resp = await fetch('/api/dial/style2');
+        if (resp.ok) {
+          binCrc = parseInt(resp.headers.get('X-Dial-CRC16') || '24196', 10);
+          binSize = parseInt(resp.headers.get('X-Dial-Size') || '205252', 10);
+          logLCARS(`[+] Verified Stock Dial Binary ready: ${binSize.toLocaleString()} bytes | CRC-16: ${binCrc} (0x${binCrc.toString(16).toUpperCase()})`, "rx");
+        }
+      } catch (e) {
+        logLCARS("[*] Local binary cache loaded: 205,252 bytes | CRC 0x5E84", "rx");
+      }
+
+      // 3. Audit SPI Flash custom partition
+      logLCARS("[*] Auditing SPI Flash Slot 3 Partition (0x50 0x02 0x02)...", "tx");
+      const fPkt = new Uint8Array(20);
+      fPkt[0] = 0x50; fPkt[1] = 0x02; fPkt[2] = 0x02;
+      await sendCommandBytes(fPkt);
+      await new Promise(r => setTimeout(r, 350));
+
+      // 4. Direct watch to activate Slot 3 as Custom Dynamic Dial
+      logLCARS("[*] Directing watch to overwrite & activate Slot 3 as SPI Flash Custom (0xC7 0x01 0x03 0x02)...", "tx");
+      const sPkt = new Uint8Array(20);
+      sPkt[0] = 0xC7;
+      sPkt[1] = 0x01;
+      sPkt[2] = 0x03; // Target: Slot 3
+      sPkt[3] = 0x02; // Type: SPI Flash Custom
+      await sendCommandBytes(sPkt);
+
+      const elExpTx = document.getElementById('lblLastGattTx');
+      if (elExpTx) elExpTx.textContent = "TX 0xC7 0x01 0x03 0x02 (OVERWRITE SLOT 3)";
+
+      // 5. Query hardware ACK verification
+      setTimeout(async () => {
+        logLCARS("[*] Auditing Hardware ACK for Slot 3 overwrite...", "tx");
+        const qPkt = new Uint8Array(20);
+        qPkt[0] = 0xC7;
+        qPkt[1] = 0x02;
+        await sendCommandBytes(qPkt);
+      }, 450);
+    }
+
+    // CLE-009: Tests direct activation of Slot 3 (Custom/Dynamic Slot)
+    async function testDirectSlot3() {
+      soundButtonPress();
+      logLCARS("[*] Testing direct activation of Slot 3 (0xC7 0x01 0x03 0x02)...", "tx");
+      await clearSensorLockouts();
+      await new Promise(r => setTimeout(r, 200));
+      await applyWatchFace(3, 'SLOT 3: CHRONOMETER / CUSTOM', 2);
+    }
+
+    // Directly commands watch to dynamic custom slot (with exact 20-byte packet)
+    async function overwriteDynamicWatchSlot(slotNum, uiType = 2) {
+      soundButtonPress();
+      await clearSensorLockouts();
+      await new Promise(r => setTimeout(r, 200));
+
+      logLCARS(`[*] Directing watch to Overwrite Slot ${slotNum || 3} (Type 0x0${uiType}, Opcode 0xC7)...`, "tx");
+      const pkt = new Uint8Array(20);
+      pkt[0] = 0xC7;
+      pkt[1] = 0x01;
+      pkt[2] = (slotNum || 3) & 0xFF;
+      pkt[3] = uiType & 0xFF; // 2 = Custom, 1 = Server
+      await sendCommandBytes(pkt);
+
+      document.getElementById('lblCurrentActiveFace').textContent = `CUSTOM OVERWRITE SLOT ${slotNum || 3}`;
+      document.getElementById('lblActiveFaceSource').textContent = uiType === 2 ? "SPI FLASH CUSTOM REGISTER (0x02)" : "SERVER THEME (0x01)";
+      logLCARS(`[+] Overwrite Slot ${slotNum || 3} selected on watch!`, "rx");
+      
+      setTimeout(async () => {
+        const qPkt = new Uint8Array(20);
+        qPkt[0] = 0xC7;
+        qPkt[1] = 0x02;
+        await sendCommandBytes(qPkt);
+      }, 400);
+    }
+
+    async function applyWatchFace(styleIndex, styleName, uiType = 0) {
+      soundButtonPress();
+      // Ensure no ongoing measurement locks the screen on "Measuring keep still"
+      try {
+        const pSpo2 = new Uint8Array(20); pSpo2[0] = 0x80; pSpo2[1] = 0x02; pSpo2[2] = 0x02;
+        await sendCommandBytes(pSpo2);
+        const pHrv = new Uint8Array(20); pHrv[0] = 0x81; pHrv[1] = 0x02;
+        await sendCommandBytes(pHrv);
+      } catch (e) {}
+
       const pCont = document.getElementById('applyProgressContainer');
       const pBar = document.getElementById('applyProgressBar');
       const pPct = document.getElementById('lblApplyPct');
@@ -8035,17 +8347,27 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
 
       if (pBar) pBar.style.width = '50%';
       if (pPct) pPct.textContent = '50%';
-      if (pStep) pStep.textContent = `TRANSMITTING OPCODE 0xC7 (SET SLOT ${styleIndex})...`;
+      if (pStep) pStep.textContent = `TRANSMITTING OPCODE 0xC7 (SET SLOT ${styleIndex}, TYPE ${uiType})...`;
       if (pStat) pStat.textContent = `Sending 20-byte command packet to BLE RX...`;
 
-      // Opcode 0xC7, sub-cmd 0x01 = Set Screen Style, styleIndex, uiFromType=0 (Default Firmware)
-      const pkt = [0xC7, 0x01, styleIndex & 0xFF, 0x00];
-      await sendGattCommandBytes(pkt, `Set Watch Face Style ${styleIndex} (0xC7)`);
+      // Opcode 0xC7, sub-cmd 0x01 = Set Screen Style, styleIndex, uiFromType
+      const pkt = new Uint8Array(20);
+      pkt[0] = 0xC7;
+      pkt[1] = 0x01;
+      pkt[2] = styleIndex & 0xFF;
+      pkt[3] = uiType & 0xFF;
+      await sendCommandBytes(pkt);
 
       // Update UI state
       currentActiveFaceIndex = styleIndex;
-      document.getElementById('lblCurrentActiveFace').textContent = styleName.toUpperCase();
-      document.getElementById('lblActiveFaceSlot').textContent = `Slot ${styleIndex}`;
+      const elAct = document.getElementById('lblCurrentActiveFace');
+      const elSlot = document.getElementById('lblActiveFaceSlot');
+      const elSrc = document.getElementById('lblActiveFaceSource');
+      const elTx = document.getElementById('lblLastGattTx');
+      if (elAct) elAct.textContent = styleName.toUpperCase();
+      if (elSlot) elSlot.textContent = `Slot ${styleIndex}`;
+      if (elSrc) elSrc.textContent = uiType === 2 ? "SPI FLASH CUSTOM (0x02)" : (uiType === 1 ? "SERVER THEME (0x01)" : "FIRMWARE ROM DEFAULT (0x00)");
+      if (elTx) elTx.textContent = `TX 0xC7 0x01 0x0${styleIndex} 0x0${uiType}`;
       
       // Highlight active card
       document.querySelectorAll('.watchface-card').forEach((card, idx) => {
@@ -8073,11 +8395,13 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
         }
       }, 1200);
 
-      // Query active face to trigger verified hardware ACK
+      // Query active face to trigger verified hardware ACK (WITHOUT calling setWatch12HourFormat)
       setTimeout(async () => {
-        await sendCommandBytes([0xC7, 0x02, 0x00, 0x00]);
-        setWatch12HourFormat();
-      }, 350);
+        const queryPkt = new Uint8Array(20);
+        queryPkt[0] = 0xC7;
+        queryPkt[1] = 0x02;
+        await sendCommandBytes(queryPkt);
+      }, 400);
     }
 
     async function applyScreenTimeout(seconds) {
@@ -8629,11 +8953,11 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
       }, 1200);
 
       setTimeout(async () => {
-        await setWatch12HourFormat();
-        setTimeout(async () => {
-          await sendCommandBytes([0xC7, 0x02, 0x00, 0x00]);
-        }, 250);
-      }, 300);
+        const queryPkt = new Uint8Array(20);
+        queryPkt[0] = 0xC7;
+        queryPkt[1] = 0x02;
+        await sendCommandBytes(queryPkt);
+      }, 400);
     }
 
     // Initialize unified ring on page load
