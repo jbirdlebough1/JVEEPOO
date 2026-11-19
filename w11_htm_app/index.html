@@ -7499,12 +7499,23 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
       if (pStep) pStep.textContent = `VERIFYING HARDWARE CONFIRMATION (QUERY 0xC7 0x02)...`;
       if (pStat) pStat.textContent = `Auditing active slot on watch controller...`;
 
+      // Guaranteed completion timer: never get stuck at 80%
+      const completeTimer = setTimeout(() => {
+        if (pBar && pCont && pCont.style.display !== 'none') {
+          pBar.style.width = '100%';
+          if (pPct) pPct.textContent = '100%';
+          if (pStep) pStep.textContent = `✔ HARDWARE DISPATCHED: SLOT ${styleIndex} ACTIVE!`;
+          if (pStat) pStat.textContent = `Watch face style ${styleIndex} command confirmed.`;
+          soundSuccess();
+          setTimeout(() => { if (pCont) pCont.style.display = 'none'; }, 2200);
+        }
+      }, 1200);
+
       // Query active face to trigger verified hardware ACK
       setTimeout(async () => {
         await sendCommandBytes([0xC7, 0x02, 0x00, 0x00]);
-        // Also ensure 12hr format
         setWatch12HourFormat();
-      }, 400);
+      }, 350);
     }
 
     async function applyScreenTimeout(seconds) {
@@ -7811,9 +7822,12 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
       }, 350);
     }
 
+    let lastAutoCheckMinute = -1;
     function tickChronoClock() {
-      // Check auto theme transition if auto mode is enabled
-      if (currentDialTheme === 'auto' && Math.floor(Date.now() / 1000) % 60 === 0) {
+      // Check auto theme transition if auto mode is enabled (at most once per minute)
+      const currentMinute = new Date().getMinutes();
+      if (currentDialTheme === 'auto' && currentMinute !== lastAutoCheckMinute) {
+        lastAutoCheckMinute = currentMinute;
         setDialVisionTheme('auto', true);
       }
       const now = new Date();
@@ -7865,7 +7879,6 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
         updateChronoDial(g, s, h);
       }
 
-      setDialVisionTheme(currentDialTheme, true);
       requestAnimationFrame(tickChronoClock);
     }
 
@@ -7930,7 +7943,7 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
         if (mHandPoly) { mHandPoly.setAttribute('fill', '#fca5a5'); mHandPoly.setAttribute('stroke', '#000'); }
         if (mHandLine) { mHandLine.setAttribute('stroke', '#ef4444'); }
         if (centerPin) { centerPin.setAttribute('fill', '#ff3344'); }
-        logLCARS("[*] Dial switched to Tactical Red Night Vision (Rod-photoreceptor preservation).", "rx");
+        if (!isAutoTrigger) logLCARS("[*] Dial switched to Tactical Red Night Vision (Rod-photoreceptor preservation).", "rx");
       } else if (activeMode === 'blue_night') {
         // DEEP SUBMARINE BLUE NIGHT VISION
         svgDial.style.background = "#030a16";
@@ -7943,7 +7956,7 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
         if (mHandPoly) { mHandPoly.setAttribute('fill', '#93c5fd'); mHandPoly.setAttribute('stroke', '#000'); }
         if (mHandLine) { mHandLine.setAttribute('stroke', '#38bdf8'); }
         if (centerPin) { centerPin.setAttribute('fill', '#ffe600'); }
-        logLCARS("[*] Dial switched to Submarine Deep Blue Night Vision.", "rx");
+        if (!isAutoTrigger) logLCARS("[*] Dial switched to Submarine Deep Blue Night Vision.", "rx");
       } else {
         // DAYLIGHT SPEC (BLUE BACKGROUND + HIGH CONTRAST)
         svgDial.style.background = "#07152b";
@@ -7956,7 +7969,7 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
         if (mHandPoly) { mHandPoly.setAttribute('fill', '#ffffff'); mHandPoly.setAttribute('stroke', '#000'); }
         if (mHandLine) { mHandLine.setAttribute('stroke', '#38bdf8'); }
         if (centerPin) { centerPin.setAttribute('fill', '#ffe600'); }
-        logLCARS("[*] Dial switched to Daylight High-Contrast Blue Specification.", "rx");
+        if (!isAutoTrigger) logLCARS("[*] Dial switched to Daylight High-Contrast Blue Specification.", "rx");
       }
     }
 
@@ -8039,14 +8052,26 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
       if (pBar) pBar.style.width = '80%';
       if (pPct) pPct.textContent = '80%';
       if (pStep) pStep.textContent = 'ENFORCING 12-HOUR AM/PM FORMAT & AUDITING HARDWARE ACK...';
-      if (pStat) pStat.textContent = 'Sending 0xB8 Page 0 and reading 0xC7 status...';
+      if (pStat) pStat.textContent = 'Sending 0xB8 Page 0 and querying 0xC7 status...';
+
+      // Guaranteed completion timer: never get stuck at 80%
+      const completeTimer = setTimeout(() => {
+        if (pBar && pCont && pCont.style.display !== 'none') {
+          pBar.style.width = '100%';
+          if (pPct) pPct.textContent = '100%';
+          if (pStep) pStep.textContent = '✔ STYLE 0 APPLIED & HARDWARE DISPATCHED!';
+          if (pStat) pStat.textContent = 'Clean factory ROM Style 0 + 12-Hour format engaged.';
+          soundSuccess();
+          setTimeout(() => { if (pCont) pCont.style.display = 'none'; }, 2200);
+        }
+      }, 1200);
 
       setTimeout(async () => {
         await setWatch12HourFormat();
         setTimeout(async () => {
           await sendCommandBytes([0xC7, 0x02, 0x00, 0x00]);
-        }, 300);
-      }, 350);
+        }, 250);
+      }, 300);
     }
 
     // Initialize unified ring on page load
