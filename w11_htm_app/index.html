@@ -1080,6 +1080,7 @@
           <div class="lcars-stardate" id="stardateClock">STARDATE 103214.7 • SEC-SYS-ONLINE</div>
         </div>
         <div style="margin-left: 12px; display: flex; gap: 8px; align-items: center;">
+          <span id="valBattery" style="display:none;">85%</span>
           <span id="headerSyncPill" class="lcars-pill pill-green" style="padding: 4px 10px; font-size: 0.72rem; height: auto;" title="Vault Telemetry Sync Status">
             ● SYNC: OK (&lt;1h)
           </span>
@@ -3364,17 +3365,20 @@
           <div class="card-box" id="boxHybridChronoStudio" style="border: 2px solid var(--lcars-banana); background: rgba(12, 14, 20, 0.98);">
             <div class="box-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; background: rgba(255, 204, 102, 0.1);">
               <div>
-                <span class="box-title" style="color: var(--lcars-banana); font-size: 1.15rem;">★ CUSTOM HYBRID MEDICAL CHRONOMETER PROTOTYPE</span>
+                <span class="box-title" style="color: var(--lcars-banana); font-size: 1.15rem;">★ UNIFIED PERIMETER GLUCOSE RING CHRONOMETER</span>
                 <div style="font-size: 0.85rem; color: var(--lcars-text); margin-top: 2px;">
-                  3-Segment Outer Circle Gauges (Glucose • Steps • HR) + Dual Skeleton Analog &amp; Digital Time
+                  330° Continuous Outer Glucose Ring (60–200 mg/dL • Green 70–160 • Yellow 160–180 • Red &gt;180) + Ped &amp; HR Pods + Skeleton Dual Time
                 </div>
               </div>
-              <div style="display: flex; gap: 8px;">
+              <div style="display: flex; gap: 8px; align-items: center;">
+                <button id="btnChronoUnit" class="lcars-pill pill-blue" style="font-size: 0.8rem; padding: 6px 14px; height: auto; cursor: pointer;" onclick="toggleChronoUnit()">
+                  <span>UNIT: MG/DL</span>
+                </button>
                 <button class="lcars-pill pill-green" style="font-size: 0.8rem; padding: 6px 14px; height: auto; cursor: pointer;" onclick="toggleChronoMode()">
                   <span id="lblChronoMode">MODE: REAL SENSORS</span>
                 </button>
                 <button class="lcars-btn btn-banana" style="font-weight: bold; padding: 6px 16px;" onclick="applyHybridChronoToWatch()">
-                  ⚡ APPLY TO WATCH (SLOT 0)
+                  ⚡ APPLY TO WATCH
                 </button>
               </div>
             </div>
@@ -3383,84 +3387,81 @@
               <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: center;">
 
                 <!-- THE 240x280 PHYSICAL SIMULATOR FRAME -->
-                <div style="position: relative; width: 280px; height: 326px; background: #000; border: 8px solid #1a2332; border-radius: 36px; box-shadow: 0 0 25px rgba(0,0,0,0.8), 0 0 10px rgba(255, 204, 102, 0.2); overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                <div style="position: relative; width: 280px; height: 326px; background: #000; border: 8px solid #1a2332; border-radius: 36px; box-shadow: 0 0 25px rgba(0,0,0,0.8), 0 0 10px rgba(85, 255, 119, 0.2); overflow: hidden; display: flex; align-items: center; justify-content: center;">
                   
                   <!-- SVG Dial Canvas (Exact 240x280 aspect ratio) -->
                   <svg id="svgHybridDial" width="240" height="280" viewBox="0 0 240 280" style="background: #020408; font-family: 'Share Tech Mono', Consolas, sans-serif;">
                     
-                    <!-- Outer Chapter Ring & Tick Marks -->
-                    <circle cx="120" cy="140" r="112" fill="none" stroke="#141c29" stroke-width="2" />
-                    <circle cx="120" cy="140" r="98" fill="none" stroke="#0a0e18" stroke-width="1" />
+                    <!-- Outer Bezel Ring & Ticks -->
+                    <circle cx="120" cy="140" r="114" fill="none" stroke="#0e1420" stroke-width="1.5" />
+                    <circle cx="120" cy="140" r="98" fill="none" stroke="#080c14" stroke-width="1" />
 
-                    <!-- Dial Hour Indices (12, 1, 2, ... 11) -->
-                    <!-- 12 Ticks -->
-                    <g stroke="#4f5b66" stroke-width="1.5">
-                      <line x1="120" y1="30" x2="120" y2="38" stroke="#ffcc66" stroke-width="3" />
-                      <line x1="175" y1="45" x2="171" y2="52" />
-                      <line x1="215" y1="85" x2="208" y2="89" />
-                      <line x1="230" y1="140" x2="222" y2="140" stroke="#ffaa55" stroke-width="2.5" />
-                      <line x1="215" y1="195" x2="208" y2="191" />
-                      <line x1="175" y1="235" x2="171" y2="228" />
-                      <line x1="120" y1="250" x2="120" y2="242" stroke="#ffcc66" stroke-width="3" />
-                      <line x1="65" y1="235" x2="69" y2="228" />
-                      <line x1="25" y1="195" x2="32" y2="191" />
-                      <line x1="10" y1="140" x2="18" y2="140" stroke="#55ff77" stroke-width="2.5" />
-                      <line x1="25" y1="85" x2="32" y2="89" />
-                      <line x1="65" y1="45" x2="69" y2="52" />
+                    <!-- CONTINUOUS 330° OUTER GLUCOSE TRACK (Clockwise from Bottom 6 o'clock, through Left, Top, Right, to Bottom) -->
+                    <!-- Zone 0: Hypo alert tick (60 to 70 mg/dL) -->
+                    <path id="trackZoneHypo" d="" fill="none" stroke="rgba(204,51,51,0.5)" stroke-width="8" stroke-linecap="round" />
+                    <!-- Zone 1: Target Green (70 to 160 mg/dL) -->
+                    <path id="trackZoneGreen" d="" fill="none" stroke="rgba(85,255,119,0.3)" stroke-width="8" />
+                    <!-- Zone 2: Elevated Yellow (160 to 180 mg/dL) -->
+                    <path id="trackZoneYellow" d="" fill="none" stroke="rgba(255,204,102,0.35)" stroke-width="8" />
+                    <!-- Zone 3: Spike Red (>180 to 200 mg/dL) -->
+                    <path id="trackZoneRed" d="" fill="none" stroke="rgba(204,51,51,0.4)" stroke-width="8" stroke-linecap="round" />
+
+                    <!-- THE ACTIVE DYNAMIC GLUCOSE FILL RING (Sweeps to current value) -->
+                    <path id="arcValGlucose" d="" fill="none" stroke="#55ff77" stroke-width="9" stroke-linecap="round" style="filter: drop-shadow(0 0 4px #55ff77);" />
+
+                    <!-- Key Threshold Tick Marks & Numbers on Ring -->
+                    <g font-size="7" font-weight="bold" fill="#64748b" text-anchor="middle">
+                      <!-- 60 (Bottom Left Start) -->
+                      <text x="100" y="254" fill="#cc3333">60</text>
+                      <!-- 70 (Threshold Green) -->
+                      <text x="44" y="222" fill="#55ff77">70</text>
+                      <!-- 100 (Nominal) -->
+                      <text x="20" y="143" fill="#55ff77">100</text>
+                      <!-- 130 (Top Center Normal Limit) -->
+                      <text x="120" y="24" fill="#55ff77">130</text>
+                      <!-- 160 (Yellow Threshold) -->
+                      <text x="220" y="143" fill="#ffcc66">160</text>
+                      <!-- 180 (Red Threshold) -->
+                      <text x="196" y="222" fill="#cc3333">180</text>
+                      <!-- 200 (Bottom Right End) -->
+                      <text x="140" y="254" fill="#cc3333">200</text>
                     </g>
 
-                    <!-- 1. TOP ARC: BLOOD GLUCOSE GAUGE (70 to 200 mg/dL) -->
-                    <!-- Background Arc -->
-                    <path id="arcBgGlucose" d="" fill="none" stroke="#1a2332" stroke-width="7" stroke-linecap="round" />
-                    <!-- Dynamic Progress Arc -->
-                    <path id="arcValGlucose" d="" fill="none" stroke="#55ff77" stroke-width="7" stroke-linecap="round" />
-                    <text x="120" y="24" text-anchor="middle" fill="#ffaa55" font-size="8" font-weight="bold" letter-spacing="1">GLUCOSE TARGET (70-130)</text>
+                    <!-- TOP SUB-DIAL: DIGITAL CLOCK & DATE (12 o'clock) -->
+                    <rect x="74" y="48" width="92" height="34" rx="6" fill="#060910" stroke="#1a2332" stroke-width="1.5" />
+                    <text id="chronoDigitalTime" x="120" y="70" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="bold" letter-spacing="1">12:45</text>
+                    <text id="chronoDigitalDate" x="120" y="79" text-anchor="middle" fill="#ffcc66" font-size="7.5" font-weight="bold" letter-spacing="0.5">WED NOV 18</text>
 
-                    <!-- 2. LOWER-RIGHT ARC: STEP GOAL (0 to 10k Steps) -->
-                    <path id="arcBgSteps" d="" fill="none" stroke="#1a2332" stroke-width="6" stroke-linecap="round" />
-                    <path id="arcValSteps" d="" fill="none" stroke="#6699cc" stroke-width="6" stroke-linecap="round" />
+                    <!-- CENTER-LEFT: PRIMARY GLUCOSE METRIC HUB (9 o'clock) -->
+                    <circle cx="62" cy="140" r="28" fill="#060a12" stroke="#1e293b" stroke-width="1.5" />
+                    <text x="62" y="125" text-anchor="middle" fill="#94a3b8" font-size="7">GLUCOSE</text>
+                    <text id="chronoPodGlucose" x="62" y="145" text-anchor="middle" fill="#55ff77" font-size="17" font-weight="bold">124</text>
+                    <text id="chronoPodGlucoseUnit" x="62" y="157" text-anchor="middle" fill="#94a3b8" font-size="7.5">mg/dL</text>
 
-                    <!-- 3. LOWER-LEFT ARC: HEART RATE & EFFORT (50 to 180 BPM) -->
-                    <path id="arcBgHr" d="" fill="none" stroke="#1a2332" stroke-width="6" stroke-linecap="round" />
-                    <path id="arcValHr" d="" fill="none" stroke="#ffaa55" stroke-width="6" stroke-linecap="round" />
+                    <!-- CENTER-RIGHT: HEART RATE NUMERICAL READOUT (3 o'clock) -->
+                    <circle cx="178" cy="140" r="28" fill="#060a12" stroke="#1e293b" stroke-width="1.5" />
+                    <text x="178" y="125" text-anchor="middle" fill="#94a3b8" font-size="7">HEART RATE</text>
+                    <text id="chronoPodHr" x="178" y="145" text-anchor="middle" fill="#ffaa55" font-size="17" font-weight="bold">72</text>
+                    <text x="178" y="157" text-anchor="middle" fill="#94a3b8" font-size="7.5">BPM</text>
 
-                    <!-- UPPER SUB-DIAL: DIGITAL CLOCK & DATE (12 o'clock) -->
-                    <rect x="76" y="52" width="88" height="32" rx="6" fill="#080c14" stroke="#1a2332" stroke-width="1" />
-                    <text id="chronoDigitalTime" x="120" y="73" text-anchor="middle" fill="#ffffff" font-size="19" font-weight="bold" letter-spacing="1">12:45</text>
-                    <text id="chronoDigitalDate" x="120" y="81" text-anchor="middle" fill="#ffcc66" font-size="7.5" font-weight="bold" letter-spacing="0.5">WED NOV 18</text>
+                    <!-- BOTTOM: PEDOMETER STEPS READOUT (6 o'clock) -->
+                    <rect x="74" y="196" width="92" height="34" rx="6" fill="#060a12" stroke="#1e293b" stroke-width="1.5" />
+                    <text x="120" y="208" text-anchor="middle" fill="#94a3b8" font-size="7">PEDOMETER</text>
+                    <text id="chronoPodSteps" x="120" y="223" text-anchor="middle" fill="#6699cc" font-size="15" font-weight="bold">8,420</text>
 
-                    <!-- LEFT SUB-DIAL (9 o'clock): BLOOD GLUCOSE POD -->
-                    <circle cx="62" cy="140" r="28" fill="#060910" stroke="#1e293b" stroke-width="1.5" />
-                    <text x="62" y="126" text-anchor="middle" fill="#94a3b8" font-size="7">GLUCOSE</text>
-                    <text id="chronoPodGlucose" x="62" y="145" text-anchor="middle" fill="#55ff77" font-size="16" font-weight="bold">124</text>
-                    <text x="62" y="157" text-anchor="middle" fill="#94a3b8" font-size="7.5">mg/dL →</text>
+                    <!-- BATTERY READOUT -->
+                    <text id="chronoBattery" x="120" y="103" text-anchor="middle" fill="#55ff77" font-size="8">🔋 85% • NOMINAL</text>
 
-                    <!-- RIGHT SUB-DIAL (3 o'clock): HEART RATE POD -->
-                    <circle cx="178" cy="140" r="28" fill="#060910" stroke="#1e293b" stroke-width="1.5" />
-                    <text x="178" y="126" text-anchor="middle" fill="#94a3b8" font-size="7">HEART RATE</text>
-                    <text id="chronoPodHr" x="178" y="145" text-anchor="middle" fill="#ffaa55" font-size="16" font-weight="bold">72</text>
-                    <text x="178" y="157" text-anchor="middle" fill="#94a3b8" font-size="7.5">BPM • ZONE 2</text>
-
-                    <!-- BOTTOM SUB-DIAL (6 o'clock): STEP COUNT POD -->
-                    <rect x="72" y="196" width="96" height="34" rx="6" fill="#060910" stroke="#1e293b" stroke-width="1.5" />
-                    <text x="120" y="208" text-anchor="middle" fill="#94a3b8" font-size="7">DAILY PEDOMETER</text>
-                    <text id="chronoPodSteps" x="120" y="222" text-anchor="middle" fill="#6699cc" font-size="14" font-weight="bold">8,420</text>
-
-                    <!-- BATTERY & PROTOCOL BADGE -->
-                    <text id="chronoBattery" x="120" y="104" text-anchor="middle" fill="#55ff77" font-size="8">🔋 85% • VEE 5010</text>
-
-                    <!-- SKELETONIZED ANALOG HANDS (Pivoting at 120, 140) -->
+                    <!-- SKELETONIZED ANALOG HANDS (Pivoting at center 120, 140) -->
                     <!-- Hour Hand (Length 50, Width 7, Skeleton cut-out center) -->
                     <g id="handHour" transform="rotate(0, 120, 140)">
-                      <!-- Outer rim -->
-                      <polygon points="116.5,140 117.5,90 120,84 122.5,90 123.5,140" fill="rgba(255,204,102,0.3)" stroke="#ffcc66" stroke-width="2" />
-                      <!-- Center cut-out transparent slot -->
+                      <polygon points="116.5,140 117.5,90 120,84 122.5,90 123.5,140" fill="rgba(255,204,102,0.35)" stroke="#ffcc66" stroke-width="2" />
                       <line x1="120" y1="130" x2="120" y2="96" stroke="#020408" stroke-width="2.5" />
                     </g>
 
                     <!-- Minute Hand (Length 78, Width 5, Skeleton cut-out center) -->
                     <g id="handMinute" transform="rotate(0, 120, 140)">
-                      <polygon points="117.5,140 118.5,65 120,58 121.5,65 122.5,140" fill="rgba(255,255,255,0.25)" stroke="#ffffff" stroke-width="2" />
+                      <polygon points="117.5,140 118.5,65 120,58 121.5,65 122.5,140" fill="rgba(255,255,255,0.3)" stroke="#ffffff" stroke-width="2" />
                       <line x1="120" y1="130" x2="120" y2="70" stroke="#020408" stroke-width="2" />
                     </g>
 
@@ -3478,53 +3479,49 @@
 
                 </div>
 
-                <!-- LIVE INTERACTIVE TEST BENCH & SLIDERS -->
+                <!-- LIVE INTERACTIVE TEST BENCH & CONTROLS -->
                 <div style="flex: 1; min-width: 290px; max-width: 480px; display: flex; flex-direction: column; gap: 14px;">
                   
+                  <!-- Glucose Test Slider -->
                   <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--lcars-border); border-radius: 8px; padding: 14px;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                      <strong style="color: var(--lcars-green); font-size: 0.95rem;">GLUCOSE TEST SLIDER (TOP ARC)</strong>
-                      <span id="lblTestGlucose" style="font-weight: bold; color: var(--lcars-green);">124 mg/dL</span>
+                      <strong style="color: var(--lcars-green); font-size: 0.95rem;">GLUCOSE TEST SLIDER (CONTINUOUS OUTER RING)</strong>
+                      <span id="lblTestGlucose" style="font-weight: bold; color: var(--lcars-green); font-size: 1.1rem;">124 mg/dL</span>
                     </div>
-                    <input type="range" id="sliderChronoGlucose" min="60" max="240" value="124" style="width: 100%; accent-color: var(--lcars-green);" oninput="updateChronoSim()">
-                    <div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--lcars-gray); margin-top: 2px;">
-                      <span>60 (Hypo)</span>
-                      <span>80-130 (ADA Target)</span>
-                      <span>180 (Elevated)</span>
-                      <span>240+ (Spike)</span>
+                    <input type="range" id="sliderChronoGlucose" min="60" max="200" value="124" style="width: 100%; accent-color: var(--lcars-green);" oninput="updateChronoSim()">
+                    
+                    <div style="display: flex; justify-content: space-between; font-size: 0.72rem; margin-top: 6px; font-weight: bold;">
+                      <span style="color: #cc3333;">&lt;70 (Hypo)</span>
+                      <span style="color: #55ff77;">70–160 (Target Green)</span>
+                      <span style="color: #ffcc66;">160–180 (Yellow)</span>
+                      <span style="color: #cc3333;">&gt;180 (Red)</span>
                     </div>
                   </div>
 
-                  <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--lcars-border); border-radius: 8px; padding: 14px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                      <strong style="color: var(--lcars-blue); font-size: 0.95rem;">PEDOMETER GOAL SLIDER (RIGHT ARC)</strong>
-                      <span id="lblTestSteps" style="font-weight: bold; color: var(--lcars-blue);">8,420 Steps</span>
+                  <!-- Steps & HR Sliders -->
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--lcars-border); border-radius: 8px; padding: 10px;">
+                      <div style="font-size: 0.75rem; color: var(--lcars-blue); font-weight: bold;">PEDOMETER COUNT</div>
+                      <div id="lblTestSteps" style="font-size: 1.1rem; font-weight: bold; color: var(--lcars-text); margin: 2px 0;">8,420</div>
+                      <input type="range" id="sliderChronoSteps" min="0" max="15000" step="200" value="8420" style="width: 100%; accent-color: var(--lcars-blue);" oninput="updateChronoSim()">
                     </div>
-                    <input type="range" id="sliderChronoSteps" min="0" max="15000" step="100" value="8420" style="width: 100%; accent-color: var(--lcars-blue);" oninput="updateChronoSim()">
-                    <div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--lcars-gray); margin-top: 2px;">
-                      <span>0 Steps</span>
-                      <span>5,000</span>
-                      <span>10,000 (Goal)</span>
-                      <span>15,000+</span>
+
+                    <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--lcars-border); border-radius: 8px; padding: 10px;">
+                      <div style="font-size: 0.75rem; color: var(--lcars-orange); font-weight: bold;">HEART RATE</div>
+                      <div id="lblTestHr" style="font-size: 1.1rem; font-weight: bold; color: var(--lcars-text); margin: 2px 0;">72 BPM</div>
+                      <input type="range" id="sliderChronoHr" min="50" max="160" value="72" style="width: 100%; accent-color: var(--lcars-orange);" oninput="updateChronoSim()">
                     </div>
                   </div>
 
-                  <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--lcars-border); border-radius: 8px; padding: 14px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                      <strong style="color: var(--lcars-orange); font-size: 0.95rem;">HEART RATE SLIDER (LEFT ARC)</strong>
-                      <span id="lblTestHr" style="font-weight: bold; color: var(--lcars-orange);">72 BPM</span>
-                    </div>
-                    <input type="range" id="sliderChronoHr" min="50" max="175" value="72" style="width: 100%; accent-color: var(--lcars-orange);" oninput="updateChronoSim()">
-                    <div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--lcars-gray); margin-top: 2px;">
-                      <span>50 (Resting)</span>
-                      <span>70-90 (Normal)</span>
-                      <span>120 (Zone 2)</span>
-                      <span>160+ (Peak)</span>
-                    </div>
-                  </div>
-
-                  <div style="font-size: 0.8rem; color: var(--lcars-text); line-height: 1.4; background: rgba(255, 153, 0, 0.08); border-left: 3px solid var(--lcars-orange); padding: 8px 12px; border-radius: 4px;">
-                    <strong>Notice the Skeleton Hands:</strong> As the hands sweep through 3:00, 6:00, and 9:00, the see-through center slot ensures you can always read your blood glucose, pulse, and step count numbers!
+                  <!-- Clinical Layout Summary Box -->
+                  <div style="font-size: 0.82rem; color: var(--lcars-text); line-height: 1.5; background: rgba(85, 255, 119, 0.06); border-left: 3px solid var(--lcars-green); padding: 10px 14px; border-radius: 4px;">
+                    <strong>Unified Outer Ring Logic:</strong> Starts at 6 o'clock (bottom), sweeps clockwise up through 9 o'clock (left), passes 12 o'clock (top), and down through 3 o'clock (right) back to bottom.
+                    <ul style="margin: 4px 0 0 16px; padding: 0;">
+                      <li><strong style="color: #55ff77;">70–160 mg/dL:</strong> Vibrant Green track (safe operating zone).</li>
+                      <li><strong style="color: #ffcc66;">160–180 mg/dL:</strong> Amber/Yellow track (post-meal boundary).</li>
+                      <li><strong style="color: #cc3333;">&gt;180 mg/dL:</strong> High-alert Red track.</li>
+                      <li>Ped Count &amp; Heart Rate stay clearly visible as dedicated pods without competing outer rings.</li>
+                    </ul>
                   </div>
 
                 </div>
@@ -7440,13 +7437,15 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
     // Load catalog on page load
     loadVeepooDialCatalog();
 
-  
     // =========================================================================
-    // HYBRID MEDICAL CHRONOMETER PROTOTYPE ENGINE (Live Ticking & Radial Arcs)
+    // UNIFIED OUTER GLUCOSE RING CHRONOMETER ENGINE (Live Ticking & Continuous Sweep)
+    // Range: 60-200 mg/dL | Green 70-160 | Yellow 160-180 | Red >180
+    // Starts at Bottom (6 o'clock), sweeps clockwise Left -> Top -> Right -> Bottom
+    // Numerical Pods for Pedometer Steps and Heart Rate (no competing outer rings)
     // =========================================================================
     let chronoSimulationMode = false;
+    let chronoUnitMmol = false; // false = mg/dL, true = mmol/L
 
-    // Helper: Polar to Cartesian coordinate converter for SVG Arcs
     function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
       const angleInRadians = (angleInDegrees - 90) * Math.PI / 180.0;
       return {
@@ -7455,69 +7454,109 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
       };
     }
 
-    // Helper: Generate SVG Arc path string
+    // Clean clockwise arc drawer (sweep-flag = 1)
     function describeArc(x, y, radius, startAngle, endAngle) {
-      const start = polarToCartesian(x, y, radius, endAngle);
-      const end = polarToCartesian(x, y, radius, startAngle);
-      const largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
+      const start = polarToCartesian(x, y, radius, startAngle);
+      const end = polarToCartesian(x, y, radius, endAngle);
+      const diff = endAngle - startAngle;
+      const largeArcFlag = diff > 180 ? "1" : "0";
       return [
-        "M", start.x, start.y, 
-        "A", radius, radius, 0, largeArcFlag, 0, end.x, end.y
+        "M", start.x.toFixed(2), start.y.toFixed(2),
+        "A", radius, radius, 0, largeArcFlag, 1, end.x.toFixed(2), end.y.toFixed(2)
       ].join(" ");
     }
 
-    function initChronoArcs() {
-      // 1. Top Glucose Arc Background: from -55 deg to +55 deg (110 deg span)
-      const arcBgG = document.getElementById('arcBgGlucose');
-      if (arcBgG) arcBgG.setAttribute('d', describeArc(120, 140, 105, -55, 55));
+    // Maps glucose value (60-200 mg/dL) to angle along 330-degree arc
+    // Start: 195 deg (bottom-left at 60 mg/dL)
+    // End: 525 deg (bottom-right at 200 mg/dL)
+    function glucoseToAngle(g) {
+      const gClamped = Math.max(60, Math.min(200, g));
+      const pct = (gClamped - 60) / (200 - 60);
+      return 195 + (pct * 330);
+    }
 
-      // 2. Lower-Right Steps Arc Background: from 68 deg to 168 deg (100 deg span)
-      const arcBgS = document.getElementById('arcBgSteps');
-      if (arcBgS) arcBgS.setAttribute('d', describeArc(120, 140, 105, 68, 168));
+    function initUnifiedGlucoseRing() {
+      // Zone 0: Hypo tick (60 to 70 mg/dL) -> 195 to 218.5 deg
+      const arcHypo = document.getElementById('trackZoneHypo');
+      if (arcHypo) arcHypo.setAttribute('d', describeArc(120, 140, 105, 195, glucoseToAngle(70)));
 
-      // 3. Lower-Left HR Arc Background: from 192 deg to 292 deg (100 deg span)
-      const arcBgH = document.getElementById('arcBgHr');
-      if (arcBgH) arcBgH.setAttribute('d', describeArc(120, 140, 105, 192, 292));
+      // Zone 1: Green Target (70 to 160 mg/dL) -> 218.5 to 430.7 deg
+      const arcGreen = document.getElementById('trackZoneGreen');
+      if (arcGreen) arcGreen.setAttribute('d', describeArc(120, 140, 105, glucoseToAngle(70), glucoseToAngle(160)));
+
+      // Zone 2: Yellow Boundary (160 to 180 mg/dL) -> 430.7 to 477.8 deg
+      const arcYellow = document.getElementById('trackZoneYellow');
+      if (arcYellow) arcYellow.setAttribute('d', describeArc(120, 140, 105, glucoseToAngle(160), glucoseToAngle(180)));
+
+      // Zone 3: Red Spike (>180 to 200 mg/dL) -> 477.8 to 525 deg
+      const arcRed = document.getElementById('trackZoneRed');
+      if (arcRed) arcRed.setAttribute('d', describeArc(120, 140, 105, glucoseToAngle(180), 525));
     }
 
     function updateChronoDial(glucose, steps, hr) {
-      // 1. Update Glucose Arc (70 to 200 mg/dL mapped to -55 to +55 deg)
-      const gClamped = Math.max(70, Math.min(200, glucose));
-      const gPct = (gClamped - 70) / (200 - 70);
-      const gEndAngle = -55 + (gPct * 110);
+      // Dynamic sweep of outer ring from 195 deg to current glucose angle
+      const targetAngle = glucoseToAngle(glucose);
       const arcValG = document.getElementById('arcValGlucose');
       if (arcValG) {
-        arcValG.setAttribute('d', describeArc(120, 140, 105, -55, Math.max(-54, gEndAngle)));
-        // Dynamic Color: Green <130, Yellow 130-180, Red >180
-        if (glucose <= 130) arcValG.setAttribute('stroke', '#55ff77');
-        else if (glucose <= 180) arcValG.setAttribute('stroke', '#ffcc66');
-        else arcValG.setAttribute('stroke', '#cc3333');
+        arcValG.setAttribute('d', describeArc(120, 140, 105, 195, Math.max(196, targetAngle)));
+        // Color follows current clinical threshold:
+        // Green 70-160 | Yellow 160-180 | Red >180 (or <70 Hypo)
+        if (glucose < 70) {
+          arcValG.setAttribute('stroke', '#cc3333');
+          arcValG.style.filter = "drop-shadow(0 0 5px #cc3333)";
+        } else if (glucose <= 160) {
+          arcValG.setAttribute('stroke', '#55ff77');
+          arcValG.style.filter = "drop-shadow(0 0 6px #55ff77)";
+        } else if (glucose <= 180) {
+          arcValG.setAttribute('stroke', '#ffcc66');
+          arcValG.style.filter = "drop-shadow(0 0 6px #ffcc66)";
+        } else {
+          arcValG.setAttribute('stroke', '#cc3333');
+          arcValG.style.filter = "drop-shadow(0 0 7px #cc3333)";
+        }
       }
+
+      // Numerical Pod Update
       const elPodG = document.getElementById('chronoPodGlucose');
+      const elPodUnit = document.getElementById('chronoPodGlucoseUnit');
       if (elPodG) {
-        elPodG.textContent = Math.round(glucose);
-        if (glucose <= 130) elPodG.setAttribute('fill', '#55ff77');
+        if (chronoUnitMmol) {
+          const mmol = (glucose / 18.0182).toFixed(1);
+          elPodG.textContent = mmol;
+          if (elPodUnit) elPodUnit.textContent = "mmol/L";
+        } else {
+          elPodG.textContent = Math.round(glucose);
+          if (elPodUnit) elPodUnit.textContent = "mg/dL";
+        }
+
+        if (glucose < 70) elPodG.setAttribute('fill', '#cc3333');
+        else if (glucose <= 160) elPodG.setAttribute('fill', '#55ff77');
         else if (glucose <= 180) elPodG.setAttribute('fill', '#ffcc66');
         else elPodG.setAttribute('fill', '#cc3333');
       }
 
-      // 2. Update Steps Arc (0 to 10k Steps mapped to 68 to 168 deg)
-      const sClamped = Math.max(0, Math.min(10000, steps));
-      const sPct = sClamped / 10000;
-      const sEndAngle = 68 + (sPct * 100);
-      const arcValS = document.getElementById('arcValSteps');
-      if (arcValS) arcValS.setAttribute('d', describeArc(120, 140, 105, 68, Math.max(69, sEndAngle)));
+      // Steps readout (numerical pod only, no outer ring)
       const elPodS = document.getElementById('chronoPodSteps');
       if (elPodS) elPodS.textContent = Math.round(steps).toLocaleString();
 
-      // 3. Update HR Arc (50 to 180 BPM mapped to 192 to 292 deg)
-      const hClamped = Math.max(50, Math.min(180, hr));
-      const hPct = (hClamped - 50) / (180 - 50);
-      const hEndAngle = 192 + (hPct * 100);
-      const arcValH = document.getElementById('arcValHr');
-      if (arcValH) arcValH.setAttribute('d', describeArc(120, 140, 105, 192, Math.max(193, hEndAngle)));
+      // HR readout (numerical pod only, no outer ring)
       const elPodH = document.getElementById('chronoPodHr');
       if (elPodH) elPodH.textContent = Math.round(hr);
+
+      // Battery readout
+      const elBat = document.getElementById('chronoBattery');
+      const liveBat = document.getElementById('valBattery')?.textContent || "NOMINAL";
+      if (elBat && liveBat !== "--") {
+        elBat.textContent = liveBat.includes("%") ? `🔋 ${liveBat} • NOMINAL` : "🔋 85% • NOMINAL";
+      }
+    }
+
+    function toggleChronoUnit() {
+      soundButtonPress();
+      chronoUnitMmol = !chronoUnitMmol;
+      const btn = document.getElementById('btnChronoUnit');
+      if (btn) btn.innerHTML = `<span>UNIT: ${chronoUnitMmol ? 'MMOL/L' : 'MG/DL'}</span>`;
+      updateChronoSim();
     }
 
     function tickChronoClock() {
@@ -7527,7 +7566,7 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
       const seconds = now.getSeconds();
       const ms = now.getMilliseconds();
 
-      // Hand rotation angles
+      // Analog Hand rotations
       const secAngle = (seconds * 6) + (ms * 0.006);
       const minAngle = (minutes * 6) + (seconds * 0.1);
       const hourAngle = ((hours % 12) * 30) + (minutes * 0.5);
@@ -7541,7 +7580,7 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
       const sHand = document.getElementById('handSecond');
       if (sHand) sHand.setAttribute('transform', `rotate(${secAngle}, 120, 140)`);
 
-      // Update digital clock at 12 o'clock
+      // 12 o'clock Digital Clock & Date
       const elDig = document.getElementById('chronoDigitalTime');
       if (elDig) {
         const hh = String(hours).padStart(2, '0');
@@ -7549,7 +7588,14 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
         elDig.textContent = `${hh}:${mm}`;
       }
 
-      // If in real sensor mode, pull live values
+      const elDate = document.getElementById('chronoDigitalDate');
+      if (elDate) {
+        const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+        const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+        elDate.textContent = `${days[now.getDay()]} ${months[now.getMonth()]} ${now.getDate()}`;
+      }
+
+      // Pull real sensor readings if not simulating
       if (!chronoSimulationMode) {
         const gText = document.getElementById('valGlucose')?.textContent || "124";
         const sText = document.getElementById('valStepCount')?.textContent || "8420";
@@ -7587,7 +7633,19 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
       const s = parseFloat(document.getElementById('sliderChronoSteps').value);
       const h = parseFloat(document.getElementById('sliderChronoHr').value);
 
-      document.getElementById('lblTestGlucose').textContent = `${Math.round(g)} mg/dL`;
+      const lblG = document.getElementById('lblTestGlucose');
+      if (lblG) {
+        if (chronoUnitMmol) {
+          lblG.textContent = `${(g / 18.0182).toFixed(1)} mmol/L`;
+        } else {
+          lblG.textContent = `${Math.round(g)} mg/dL`;
+        }
+        if (g < 70) lblG.style.color = '#cc3333';
+        else if (g <= 160) lblG.style.color = '#55ff77';
+        else if (g <= 180) lblG.style.color = '#ffcc66';
+        else lblG.style.color = '#cc3333';
+      }
+
       document.getElementById('lblTestSteps').textContent = `${Math.round(s).toLocaleString()} Steps`;
       document.getElementById('lblTestHr').textContent = `${Math.round(h)} BPM`;
 
@@ -7596,18 +7654,18 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
 
     async function applyHybridChronoToWatch() {
       soundButtonPress();
-      logLCARS("[*] Transmitting Custom Hybrid Medical Chronometer to Watch...", "tx");
-      // Opcode 0xC7: apply custom watch face layout
+      logLCARS("[*] Transmitting Unified Glucose Ring Chronometer to Watch...", "tx");
+      // Opcode 0xC7: apply custom watch face layout (custom slot 0x02)
       const pkt = [0xC7, 0x01, 0x00, 0x02];
-      await sendGattCommandBytes(pkt, "Set Hybrid Chronometer Dial (0xC7)");
-      document.getElementById('lblCurrentActiveFace').textContent = "CUSTOM HYBRID MEDICAL CHRONOMETER";
+      await sendGattCommandBytes(pkt, "Set Unified Glucose Ring Dial (0xC7)");
+      document.getElementById('lblCurrentActiveFace').textContent = "UNIFIED PERIMETER GLUCOSE CHRONOMETER";
       document.getElementById('lblActiveFaceSource').textContent = "CUSTOM DIAL SLOT (0x02)";
-      logLCARS("[+] Custom Hybrid Chronometer active on watch!", "rx");
+      logLCARS("[+] Unified Perimeter Glucose Chronometer active on watch!", "rx");
     }
 
-    // Initialize Chronometer on page load
+    // Initialize unified ring on page load
     setTimeout(() => {
-      initChronoArcs();
+      initUnifiedGlucoseRing();
       requestAnimationFrame(tickChronoClock);
     }, 400);
 
