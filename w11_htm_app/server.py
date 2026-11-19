@@ -35,6 +35,16 @@ VEEPOO_WRITE_UUID   = "f0080003-0451-4000-b000-000000000000"
 # Thread-safe synchronization
 db_lock = threading.Lock()
 sync_trigger_event = threading.Event()
+last_browser_activity = 0
+
+def record_browser_activity():
+    global last_browser_activity
+    last_browser_activity = time.time()
+
+def is_browser_active():
+    # If browser sent a log or telemetry in the last 45 seconds, it is actively managing BLE
+    return (time.time() - last_browser_activity) < 45.0
+
 ble_state = {
     "status": "INITIALIZING",
     "last_sync": None,
@@ -425,6 +435,7 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
 
         # 2. Accept Telemetry from Browser Web Bluetooth
         elif self.path == "/api/telemetry":
+            record_browser_activity()
             content_length = int(self.headers.get("Content-Length", 0))
             body = self.rfile.read(content_length).decode("utf-8", errors="ignore")
             try:
@@ -446,6 +457,7 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
 
         # 3. Diagnostic Packet Logging
         elif self.path == "/api/log":
+            record_browser_activity()
             content_length = int(self.headers.get("Content-Length", 0))
             body = self.rfile.read(content_length).decode("utf-8", errors="ignore")
             with open(LOG_FILE, "a", encoding="utf-8") as f:
@@ -476,7 +488,13 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
         self.wfile.write(body)
 
     def get_latest_telemetry_snapshot(self):
-        snapshot = {}
+        snapshot = {
+            "db_version": ble_state.get("records_synced", 0) + ble_state.get("total_records", 0),
+            "last_sync": ble_state.get("last_sync"),
+            "status": ble_state.get("status", "STANDBY"),
+            "active_connection": ble_state.get("active_connection", False),
+            "vitals": {}
+        }
         with db_lock:
             conn = get_db()
             cur = conn.cursor()
@@ -490,7 +508,7 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                 """, (m,))
                 row = cur.fetchone()
                 if row:
-                    snapshot[m] = dict(row)
+                    snapshot["vitals"][m] = dict(row)
             conn.close()
         return snapshot
 
