@@ -13,13 +13,22 @@
 
 ## 🎬 Interactive Technical Presentation (40-Slide Audio-Visual Walkthrough)
 
-Before running or configuring the telemetry console, you can explore the complete audio-visual technical walkthrough directly in your browser using our auto-advancing blueprint player with synchronized voice narration:
+> [!NOTE]
+> **GitHub File Viewing Notice**: Clicking `.html` files directly within GitHub's web file browser displays raw source code instead of the rendered presentation. To experience the interactive walkthrough with Australian voiceover narration, use either **Option A (Download & Click to Open on PC)** or **Option B (Watch Live in Browser)**:
 
-👉 **[Launch Presentation: LCARS 5010 Clinical Telemetry Architecture (Interactive Web Player)](presentation/preview.html)**  
+### 💻 Option A: Download to PC & Click to Open (Recommended for Windows)
+1. **Download the 1-Click Launcher**: Click [**Download Preview_Presentation.exe**](https://raw.githubusercontent.com/jbirdlebough1/JVEEPOO/main/Preview_Presentation.exe) (or download the full repository as a [**ZIP Archive**](https://github.com/jbirdlebough1/JVEEPOO/archive/refs/heads/main.zip) and extract it).
+2. **Launch & Enjoy**: Double-click **`Preview_Presentation.exe`** on your Windows PC. It opens the presentation instantly in your default web browser (Edge, Chrome) with synchronized Australian voice narration and live telemetry scrolling!
+
+---
+
+### 🌐 Option B: Watch Live in Browser (Zero Download Required)
+You can launch the rendered presentation directly inside any desktop or mobile browser via our GitHub Pages deployment:
+
+👉 **[Launch Live Online Presentation (Interactive Web Player)](https://jbirdlebough1.github.io/JVEEPOO/presentation/preview.html)**  
 *(40-slide clinical architecture walkthrough: covers the clinical rationale, physician co-configuration, GLUT4 glycemic exercise kinetics, 8-stream biometric synthesis, medication titration tracking, and ADA goal management with Australian voice narration and live telemetry scrolling)*
 
 * 📁 **Source Assets & Narration Script**: [`presentation/`](presentation/) | [`presentation/TRANSCRIPT.md`](presentation/TRANSCRIPT.md)
-* 💻 **Standalone Windows 1-Click Launcher (Self-Contained)**: [`Preview_Presentation.exe`](Preview_Presentation.exe) *(Zero install, native Windows 11 launcher — double-click to launch the presentation instantly in your browser)*
 * 🩺 **Physician's Master Clinical Specification**: [`docs/generate_cmo_spec.py`](docs/generate_cmo_spec.py) | [`docs/cmo_spec.html`](docs/cmo_spec.html)
 
 ---

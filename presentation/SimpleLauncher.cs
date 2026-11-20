@@ -14,9 +14,11 @@ class Program
             localFile = Path.Combine(baseDir, "presentation", "preview.html");
         }
 
+        // 1. Prefer local presentation file if available
+        // 2. Otherwise open live hosted presentation on GitHub Pages
         string target = File.Exists(localFile)
             ? localFile
-            : "http://localhost:8899/presentation/preview.html";
+            : "https://jbirdlebough1.github.io/JVEEPOO/presentation/preview.html";
 
         try
         {
