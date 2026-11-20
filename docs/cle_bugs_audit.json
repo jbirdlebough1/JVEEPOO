@@ -510,5 +510,15 @@
     "comments": "Verified all 40 slide HTML templates and recompiled Preview_Presentation.exe launcher.",
     "created_at": "2026-11-19T19:13:37.099833",
     "resolved_at": "2026-11-19T19:13:37.099833"
+  },
+  {
+    "bug_id": "CLE-033",
+    "title": "Synchronize presentation left-right panels, add FITAOS 5150 hardware slide with photo, integrate Epic EHR push, add open source copyleft closing slide with sales and docs links, zero hex bytes",
+    "description": "Synchronized all 40 slide left and right panels with Aussie audio; added watch hardware photo on Slide 3; added Epic EHR push on Slides 25 & 39; added open-source copyleft closing slide with watch sales and docs links on Slide 40.",
+    "severity": "HIGH",
+    "status": "RESOLVED",
+    "affected_files": "build_presentation.py, all_slides_data.json, presentation/preview.html, presentation/slides/*.html, Preview_Presentation.exe",
+    "created_at": "2026-11-20 03:33:15Z",
+    "comments": "Verified across all 40 slides in both slides/ and presentation/ directories, preview.html player, and Preview_Presentation.exe."
   }
 ]
