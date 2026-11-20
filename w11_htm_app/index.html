@@ -1099,25 +1099,30 @@
 
   
             /* =========================================================================
-       SENIOR & LOW-VISION ACCESSIBILITY: HIGH-CONTRAST WHITE CARDS
-       Eliminates all washed-out pastel fills (pink, orange, peach, lilac, banana)
-       and minimizes pitch-black card interiors for crisp 21:1 visual clarity.
+       SENIOR & LOW-VISION ACCESSIBILITY: HIGH-CONTRAST WHITE CARDS & TELEMETRY
+       Eliminates all washed-out pastel fills (pink, orange, peach, lilac, banana),
+       converts dark card interiors to crisp 21:1 solid white surfaces (#ffffff),
+       and standardizes ultra-bold, high-luminance medical readouts for maximum
+       readability by senior and low-vision users.
        ========================================================================= */
 
-    /* All Cards, Boxes, Sections, and Callouts use solid White */
+    /* All Cards, Bays, Grids, Boxes, Sections, and Callouts use solid White */
     .stat-card,
     .diet-form-card,
     .diet-item-card,
     .setup-section,
     .card-box,
     .watchface-card,
+    .lcars-bay,
+    .lcars-bays-grid > div,
     #fullScanActiveHud,
     #timelinePointCardModal,
     .card-clinical-warning {
       background: #ffffff !important;
       color: #0f172a !important;
       border: 2px solid #cbd5e1 !important;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+      border-radius: 8px !important;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08) !important;
     }
 
     /* Headings, Titles & Strong text on white cards */
@@ -1133,17 +1138,199 @@
       font-weight: 800 !important;
     }
 
+    /* LCARS Bay Specifics: Header, Tag, Body, and Readouts */
+    .lcars-bay {
+      display: flex !important;
+      flex-direction: column !important;
+      overflow: hidden !important;
+    }
+
+    .lcars-bay-header {
+      background: #f8fafc !important;
+      padding: 10px 16px !important;
+      border-bottom: 3px solid #cbd5e1 !important;
+      display: flex !important;
+      align-items: center !important;
+    }
+
+    .lcars-bay-title {
+      font-size: 1.15rem !important;
+      font-weight: 800 !important;
+      color: #091428 !important;
+      letter-spacing: 0.04em !important;
+    }
+
+    .lcars-bay-tag {
+      font-weight: 800 !important;
+      font-size: 0.85rem !important;
+      padding: 3px 10px !important;
+      border-radius: 4px !important;
+      letter-spacing: 0.05em !important;
+      color: #ffffff !important;
+      background: #0284c7 !important;
+    }
+
+    .lcars-bay-body {
+      background: #ffffff !important;
+      color: #0f172a !important;
+      padding: 16px !important;
+      flex: 1 !important;
+    }
+
+    /* Primary Telemetry Readout Meter */
+    .telemetry-display {
+      border-bottom: 1.5px solid #e2e8f0 !important;
+      padding-bottom: 12px !important;
+      margin-bottom: 12px !important;
+      display: flex !important;
+      align-items: baseline !important;
+      gap: 10px !important;
+    }
+
+    .telemetry-huge {
+      font-size: 3.4rem !important;
+      font-weight: 900 !important;
+      font-family: var(--lcars-mono) !important;
+      line-height: 1 !important;
+      text-shadow: none !important;
+      color: #091428 !important;
+    }
+
+    /* Ultra-high-contrast Telemetry Numbers (Senior Medical Readouts) */
+    .telemetry-huge.hr,
+    #valHeartRate {
+      color: #dc2626 !important; /* Bold vivid medical crimson */
+      font-weight: 900 !important;
+      text-shadow: none !important;
+    }
+
+    .telemetry-huge.temp,
+    #valTemp {
+      color: #0284c7 !important; /* Bold cobalt electric blue */
+      font-weight: 900 !important;
+      text-shadow: none !important;
+    }
+
+    .telemetry-huge.bp,
+    #valBP {
+      color: #d97706 !important; /* Bold high-contrast amber */
+      font-weight: 900 !important;
+      text-shadow: none !important;
+    }
+
+    .telemetry-huge.spo2,
+    #valSpO2 {
+      color: #15803d !important; /* Bold medical forest green */
+      font-weight: 900 !important;
+      text-shadow: none !important;
+    }
+
+    .telemetry-huge.stress,
+    #valStress {
+      color: #4f46e5 !important; /* Bold high-contrast indigo */
+      font-weight: 900 !important;
+      text-shadow: none !important;
+    }
+
+    .telemetry-huge.motion {
+      color: #d97706 !important;
+      font-weight: 900 !important;
+      text-shadow: none !important;
+    }
+
+    #valSleep {
+      color: #0284c7 !important;
+      font-weight: 900 !important;
+      text-shadow: none !important;
+    }
+
+    #valGlucose {
+      color: #091428 !important;
+      font-weight: 900 !important;
+      text-shadow: none !important;
+    }
+
+    .telemetry-unit,
+    #unitGlucose {
+      font-size: 1.35rem !important;
+      font-weight: 800 !important;
+      color: #334155 !important;
+    }
+
+    .telemetry-state {
+      margin-left: auto !important;
+      text-align: right !important;
+    }
+    .telemetry-state > div {
+      color: #475569 !important;
+      font-weight: 700 !important;
+      font-size: 0.82rem !important;
+      letter-spacing: 0.03em !important;
+    }
+
+    /* Sub-telemetry breakdown rows & labels */
+    .sub-telemetry-row {
+      margin-top: 8px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 4px !important;
+    }
+
+    .row-meta {
+      color: #0f172a !important;
+      font-weight: 700 !important;
+      font-size: 0.88rem !important;
+      display: flex !important;
+      justify-content: space-between !important;
+    }
+
+    .row-meta span.label,
+    .sub-telemetry-row .label,
+    .label {
+      color: #091428 !important;
+      font-weight: 800 !important;
+      letter-spacing: 0.04em !important;
+    }
+
+    #txtHRZone,
+    #txtGlucoseProgress,
+    #txtGlucoseRisk,
+    #txtTempRisk,
+    #txtBPRisk,
+    #txtSpO2Risk {
+      color: #0f172a !important;
+      font-weight: 800 !important;
+    }
+
+    /* Progress bar track & fills */
+    .lcars-bar-track {
+      background: #e2e8f0 !important;
+      border: 1.5px solid #cbd5e1 !important;
+      height: 14px !important;
+      border-radius: 7px !important;
+      overflow: hidden !important;
+      display: flex !important;
+    }
+
+    .lcars-bar-fill.hr-bar {
+      background: linear-gradient(90deg, #dc2626, #ef4444) !important;
+    }
+
+    .lcars-bar-fill {
+      background: linear-gradient(90deg, #0284c7, #38bdf8) !important;
+    }
+
     /* Subtitles, labels, and descriptions on white cards */
     .stat-card-title,
     .setup-label,
     .stat-card-sub {
       color: #334155 !important;
-      font-weight: 600 !important;
+      font-weight: 700 !important;
     }
 
     .stat-card-val {
       color: #091428 !important;
-      font-weight: 800 !important;
+      font-weight: 900 !important;
     }
 
     /* Target any inline pastel / pink / orange / lilac / banana background on cards and convert to White */
@@ -1172,7 +1359,66 @@
       border: 2px solid #cbd5e1 !important;
     }
 
-    /* Ensure text inside converted pastel elements is crisp dark slate / black */
+    /* Convert all inline dark card backgrounds to White */
+    [style*="background: #080c14"],
+    [style*="background:#080c14"],
+    [style*="background: #090e18"],
+    [style*="background:#090e18"],
+    [style*="background: #182538"],
+    [style*="background:#182538"],
+    [style*="background: #060b13"],
+    [style*="background:#060b13"],
+    [style*="background: #0d1726"],
+    [style*="background:#0d1726"],
+    [style*="background: #06110a"],
+    [style*="background:#06110a"],
+    [style*="background: rgba(12, 14, 20"],
+    [style*="background:rgba(12, 14, 20"],
+    [style*="background: rgba(12,14,20"] {
+      background: #ffffff !important;
+      border-color: #cbd5e1 !important;
+      color: #0f172a !important;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06) !important;
+    }
+
+    /* Ensure text inside converted cards is crisp dark slate / black */
+    [style*="background: #080c14"] strong,
+    [style*="background: #090e18"] strong,
+    [style*="background: #182538"] strong,
+    [style*="background: #060b13"] strong,
+    [style*="background: #0d1726"] strong,
+    [style*="background: #06110a"] strong,
+    [style*="background: rgba(12, 14, 20"] strong,
+    [style*="background: rgba(230, 57, 70"] strong,
+    [style*="background: rgba(255, 187"] strong,
+    [style*="background: rgba(255, 153"] strong,
+    [style*="background: rgba(204, 153"] strong,
+    [style*="background: rgba(255, 204"] strong {
+      color: #091428 !important;
+      font-weight: 800 !important;
+    }
+
+    [style*="background: #080c14"] div,
+    [style*="background: #080c14"] p,
+    [style*="background: #080c14"] span,
+    [style*="background: #090e18"] div,
+    [style*="background: #090e18"] p,
+    [style*="background: #090e18"] span,
+    [style*="background: #182538"] div,
+    [style*="background: #182538"] p,
+    [style*="background: #182538"] span,
+    [style*="background: #060b13"] div,
+    [style*="background: #060b13"] p,
+    [style*="background: #060b13"] span,
+    [style*="background: #0d1726"] div,
+    [style*="background: #0d1726"] p,
+    [style*="background: #0d1726"] span,
+    [style*="background: #06110a"] div,
+    [style*="background: #06110a"] p,
+    [style*="background: #06110a"] span,
+    [style*="background: rgba(12, 14, 20"] div,
+    [style*="background: rgba(12, 14, 20"] p,
+    [style*="background: rgba(12, 14, 20"] span,
     [style*="background: rgba(230, 57, 70"] div,
     [style*="background: rgba(230, 57, 70"] p,
     [style*="background: rgba(230, 57, 70"] span,
@@ -1185,15 +1431,6 @@
     [style*="background: rgba(255, 204"] div,
     [style*="background: rgba(255, 204"] span {
       color: #1e293b !important;
-    }
-
-    [style*="background: rgba(230, 57, 70"] strong,
-    [style*="background: rgba(255, 187"] strong,
-    [style*="background: rgba(255, 153"] strong,
-    [style*="background: rgba(204, 153"] strong,
-    [style*="background: rgba(255, 204"] strong {
-      color: #091428 !important;
-      font-weight: 800 !important;
     }
 
     /* Clinical Safety Notice Cards: Clean White background with prominent Red/Amber Left Accent Bar */
@@ -1247,6 +1484,8 @@
     .btn-banana { background: #ca8a04 !important; color: #ffffff !important; font-weight: 700 !important; }
     .btn-peach { background: #ea580c !important; color: #ffffff !important; font-weight: 700 !important; }
     .btn-lilac, .btn-pink { background: #7c3aed !important; color: #ffffff !important; font-weight: 700 !important; }
+    .btn-red { background: #dc2626 !important; color: #ffffff !important; font-weight: 800 !important; }
+
 
   </style>
 </head>
@@ -1392,9 +1631,9 @@
 
           <!-- BAY 1: Non-Invasive Hemodynamic Blood Glucose -->
           <div class="lcars-bay">
-            <div class="lcars-bay-header">
-              <span class="lcars-bay-tag">BIO-01</span>
-              <span class="lcars-bay-title">HEMODYNAMIC OPTICAL GLUCOSE</span>
+            <div class="lcars-bay-header" style="border-bottom: 3px solid #ca8a04; background: #f8fafc;">
+              <span class="lcars-bay-tag" style="background: #ca8a04; color: white; font-weight: 800;">BIO-01</span>
+              <span class="lcars-bay-title" style="color: #091428; font-weight: 800;">HEMODYNAMIC OPTICAL GLUCOSE</span>
             </div>
             <div class="lcars-bay-body">
               <div class="telemetry-display">
@@ -1448,9 +1687,9 @@
 
           <!-- BAY 2: Dual-Sensor Body Temperature Matrix -->
           <div class="lcars-bay">
-            <div class="lcars-bay-header" style="border-bottom-color: var(--lcars-blue);">
-              <span class="lcars-bay-tag" style="background: var(--lcars-blue);">BIO-02</span>
-              <span class="lcars-bay-title" style="color: var(--lcars-blue);">DUAL-SENSOR THERMAL MATRIX</span>
+            <div class="lcars-bay-header" style="border-bottom: 3px solid #0284c7; background: #f8fafc;">
+              <span class="lcars-bay-tag" style="background: #0284c7; color: white; font-weight: 800;">BIO-02</span>
+              <span class="lcars-bay-title" style="color: #091428; font-weight: 800;">DUAL-SENSOR THERMAL MATRIX</span>
             </div>
             <div class="lcars-bay-body">
               <div class="telemetry-display">
@@ -1491,9 +1730,9 @@
 
           <!-- BAY 3: Blood Pressure Matrix -->
           <div class="lcars-bay">
-            <div class="lcars-bay-header" style="border-bottom-color: var(--lcars-peach);">
-              <span class="lcars-bay-tag" style="background: var(--lcars-peach); color: black;">BIO-03</span>
-              <span class="lcars-bay-title" style="color: var(--lcars-peach);">HEMODYNAMIC ARTERIAL PRESSURE (BP)</span>
+            <div class="lcars-bay-header" style="border-bottom: 3px solid #d97706; background: #f8fafc;">
+              <span class="lcars-bay-tag" style="background: #d97706; color: white; font-weight: 800;">BIO-03</span>
+              <span class="lcars-bay-title" style="color: #091428; font-weight: 800;">HEMODYNAMIC ARTERIAL PRESSURE (BP)</span>
             </div>
             <div class="lcars-bay-body">
               <div class="telemetry-display">
@@ -1531,9 +1770,9 @@
 
           <!-- BAY 4: Hemoglobin Oxygen Saturation (SpO2) -->
           <div class="lcars-bay">
-            <div class="lcars-bay-header" style="border-bottom-color: var(--lcars-green);">
-              <span class="lcars-bay-tag" style="background: var(--lcars-green); color: black;">BIO-04</span>
-              <span class="lcars-bay-title" style="color: var(--lcars-green);">HEMOGLOBIN OXYGEN SATURATION (SpO2)</span>
+            <div class="lcars-bay-header" style="border-bottom: 3px solid #15803d; background: #f8fafc;">
+              <span class="lcars-bay-tag" style="background: #15803d; color: white; font-weight: 800;">BIO-04</span>
+              <span class="lcars-bay-title" style="color: #091428; font-weight: 800;">HEMOGLOBIN OXYGEN SATURATION (SpO2)</span>
             </div>
             <div class="lcars-bay-body">
               <div class="telemetry-display">
@@ -1581,9 +1820,9 @@
 
           <!-- Heart Rate Dynamics -->
           <div class="lcars-bay" style="min-height: 310px;">
-            <div class="lcars-bay-header" style="border-bottom-color: #ff5566;">
-              <span class="lcars-bay-tag" style="background: #ff5566; color: white;">CARDIO-01</span>
-              <span class="lcars-bay-title" style="color: #ff5566;">DYNAMIC HEART RATE MATRIX</span>
+            <div class="lcars-bay-header" style="border-bottom: 3px solid #dc2626; background: #f8fafc;">
+              <span class="lcars-bay-tag" style="background: #dc2626; color: white; font-weight: 800;">CARDIO-01</span>
+              <span class="lcars-bay-title" style="color: #091428; font-weight: 800;">DYNAMIC HEART RATE MATRIX</span>
             </div>
             <div class="lcars-bay-body">
               <div class="telemetry-display">
@@ -1620,9 +1859,9 @@
 
           <!-- Autonomic HRV & Stress -->
           <div class="lcars-bay" style="min-height: 310px;">
-            <div class="lcars-bay-header" style="border-bottom-color: var(--lcars-lilac);">
-              <span class="lcars-bay-tag" style="background: var(--lcars-lilac); color: black;">NEURO-02</span>
-              <span class="lcars-bay-title" style="color: var(--lcars-lilac);">AUTONOMIC HRV & NEURO-STRESS</span>
+            <div class="lcars-bay-header" style="border-bottom: 3px solid #4f46e5; background: #f8fafc;">
+              <span class="lcars-bay-tag" style="background: #4f46e5; color: white; font-weight: 800;">NEURO-02</span>
+              <span class="lcars-bay-title" style="color: #091428; font-weight: 800;">AUTONOMIC HRV & NEURO-STRESS</span>
             </div>
             <div class="lcars-bay-body">
               <div class="telemetry-display">
@@ -1660,9 +1899,9 @@
 
           <!-- Sleep Architecture Bay -->
           <div class="lcars-bay" style="grid-column: span 2; margin-top: 14px;">
-            <div class="lcars-bay-header" style="border-bottom-color: var(--lcars-blue);">
-              <span class="lcars-bay-tag" style="background: var(--lcars-blue);">SOMNO-03</span>
-              <span class="lcars-bay-title" style="color: var(--lcars-blue);">CIRCADIAN SLEEP ARCHITECTURE</span>
+            <div class="lcars-bay-header" style="border-bottom: 3px solid #0284c7; background: #f8fafc;">
+              <span class="lcars-bay-tag" style="background: #0284c7; color: white; font-weight: 800;">SOMNO-03</span>
+              <span class="lcars-bay-title" style="color: #091428; font-weight: 800;">CIRCADIAN SLEEP ARCHITECTURE</span>
             </div>
             <div class="lcars-bay-body">
               <div class="telemetry-display">
@@ -4341,15 +4580,15 @@
             </div>
 
             <div class="box-content" style="padding: 12px 16px;">
-              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; background: rgba(204, 153, 204, 0.1); border: 1px solid var(--lcars-lilac); border-radius: 6px; padding: 12px 18px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; background: #f8fafc; border: 2px solid #cbd5e1; border-left: 6px solid #ca8a04; border-radius: 6px; padding: 14px 20px;">
                 <div>
-                  <div style="font-size: 0.75rem; color: var(--lcars-gray); text-transform: uppercase;">ACTIVE HARDWARE DIAL ON WATCH</div>
-                  <div id="lblCurrentActiveFace" style="font-size: 1.4rem; font-weight: bold; color: var(--lcars-banana);">STYLE 0: BIO-METABOLIC LCARS CONSOLE</div>
-                  <div style="font-size: 0.82rem; color: var(--lcars-text); margin-top: 2px;">
-                    Dial Source: <strong style="color: var(--lcars-green);" id="lblActiveFaceSource">FIRMWARE ROM DEFAULT (0x00)</strong> • Display Slot: <span id="lblActiveFaceSlot">Slot 0</span>
+                  <div style="font-size: 0.8rem; color: #475569; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em;">ACTIVE HARDWARE DIAL ON WATCH</div>
+                  <div id="lblCurrentActiveFace" style="font-size: 1.45rem; font-weight: 900; color: #091428; margin: 4px 0;">STYLE 0: BIO-METABOLIC LCARS CONSOLE</div>
+                  <div style="font-size: 0.88rem; color: #1e293b; margin-top: 2px;">
+                    Dial Source: <strong style="color: #15803d; font-weight: 800;" id="lblActiveFaceSource">FIRMWARE ROM DEFAULT (0x00)</strong> • Display Slot: <span id="lblActiveFaceSlot" style="font-weight: 800; color: #091428;">Slot 0</span>
                   </div>
                 </div>
-                <div id="badgeFaceStatus" style="background: var(--lcars-green); color: var(--lcars-black); font-weight: bold; padding: 4px 12px; border-radius: 4px; font-size: 0.85rem;">
+                <div id="badgeFaceStatus" style="background: #15803d; color: #ffffff; font-weight: 800; padding: 6px 14px; border-radius: 4px; font-size: 0.85rem; letter-spacing: 0.04em;">
                   CONFIRMED ACTIVE
                 </div>
               </div>
@@ -4447,8 +4686,8 @@
           </div>
 
           <!-- FEATURED: CUSTOM HYBRID MEDICAL CHRONOMETER PROTOTYPE -->
-          <div class="card-box" id="boxHybridChronoStudio" style="border: 2px solid var(--lcars-banana); background: rgba(12, 14, 20, 0.98);">
-            <div class="box-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; background: rgba(255, 204, 102, 0.1);">
+          <div class="card-box" id="boxHybridChronoStudio" style="border: 2px solid #cbd5e1; background: #ffffff; box-shadow: 0 4px 14px rgba(0,0,0,0.08);">
+            <div class="box-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; background: #f8fafc; border-bottom: 3px solid #ca8a04;">
               <div>
                 <span class="box-title" style="color: var(--lcars-banana); font-size: 1.15rem;">★ UNIFIED PERIMETER GLUCOSE RING CHRONOMETER</span>
                 <div style="font-size: 0.85rem; color: var(--lcars-text); margin-top: 2px;">
@@ -4681,7 +4920,7 @@
               <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;" id="watchFaceGalleryGrid">
 
                 <!-- Face 0: Bio-Metabolic LCARS Console -->
-                <div class="watchface-card" id="cardFace0" style="background: rgba(12, 14, 20, 0.95); border: 2px solid var(--lcars-banana); border-radius: 10px; padding: 14px; display: flex; flex-direction: column; justify-content: space-between;">
+                <div class="watchface-card" id="cardFace0" style="background: #ffffff; border: 2px solid var(--lcars-banana); border-radius: 10px; padding: 14px; display: flex; flex-direction: column; justify-content: space-between;">
                   <div>
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
                       <strong style="color: var(--lcars-banana); font-size: 1.05rem;">STYLE 0: BIO-LCARS DASHBOARD</strong>
@@ -4713,7 +4952,7 @@
                 </div>
 
                 <!-- Face 1: Minimalist Senior High-Contrast Digital -->
-                <div class="watchface-card" id="cardFace1" style="background: rgba(12, 14, 20, 0.95); border: 1px solid var(--lcars-border); border-radius: 10px; padding: 14px; display: flex; flex-direction: column; justify-content: space-between;">
+                <div class="watchface-card" id="cardFace1" style="background: #ffffff; border: 1px solid var(--lcars-border); border-radius: 10px; padding: 14px; display: flex; flex-direction: column; justify-content: space-between;">
                   <div>
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
                       <strong style="color: var(--lcars-peach); font-size: 1.05rem;">STYLE 1: SENIOR HIGH-CONTRAST</strong>
@@ -4735,7 +4974,7 @@
                 </div>
 
                 <!-- Face 2: Classic Medical Chronograph -->
-                <div class="watchface-card" id="cardFace2" style="background: rgba(12, 14, 20, 0.95); border: 1px solid var(--lcars-border); border-radius: 10px; padding: 14px; display: flex; flex-direction: column; justify-content: space-between;">
+                <div class="watchface-card" id="cardFace2" style="background: #ffffff; border: 1px solid var(--lcars-border); border-radius: 10px; padding: 14px; display: flex; flex-direction: column; justify-content: space-between;">
                   <div>
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
                       <strong style="color: var(--lcars-blue); font-size: 1.05rem;">STYLE 2: CLINICAL CHRONOGRAPH</strong>
@@ -4767,7 +5006,7 @@
                 </div>
 
                 <!-- Face 3: High-Aerobic Cardio Chronometer -->
-                <div class="watchface-card" id="cardFace3" style="background: rgba(12, 14, 20, 0.95); border: 1px solid var(--lcars-border); border-radius: 10px; padding: 14px; display: flex; flex-direction: column; justify-content: space-between;">
+                <div class="watchface-card" id="cardFace3" style="background: #ffffff; border: 1px solid var(--lcars-border); border-radius: 10px; padding: 14px; display: flex; flex-direction: column; justify-content: space-between;">
                   <div>
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
                       <strong style="color: var(--lcars-green); font-size: 1.05rem;">STYLE 3: SPORT &amp; METs CHRONO</strong>
