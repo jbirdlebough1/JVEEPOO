@@ -46,101 +46,27 @@
     .slide-badge {
       background: #0284c7;
       color: #ffffff;
-      font-size: 0.85rem;
-      font-weight: 800;
       font-family: monospace;
-      padding: 4px 12px;
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 6px 14px;
       border-radius: 4px;
+      letter-spacing: 0.05em;
     }
     .slide-body {
       flex: 1;
       display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 20px;
-      min-height: 0;
-    }
-    .content-card {
-      background: #ffffff;
-      color: #0f172a;
-      border: 2px solid #cbd5e1;
-      border-left: 8px solid #0284c7;
-      border-radius: 8px;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      overflow-y: auto;
-    }
-    .content-card h3 {
-      font-size: 1.15rem;
-      font-weight: 800;
-      color: #0c1b33;
-    }
-    .content-card p {
-      font-size: 0.92rem;
-      line-height: 1.55;
-      color: #1e293b;
-    }
-    .content-card ul {
-      margin-left: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      font-size: 0.9rem;
-      color: #334155;
-    }
-    .visual-card {
-      background: #0f1d32;
-      border: 2px solid #1e3a5f;
-      border-radius: 8px;
-      padding: 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      overflow-y: auto;
-    }
-    .visual-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1.5px solid #1e3a5f;
-      padding-bottom: 8px;
-      font-family: monospace;
-      font-size: 0.85rem;
-      color: #38bdf8;
-      font-weight: bold;
-    }
-    .metric-grid {
-      display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-    .metric-box {
-      background: #142742;
-      border: 1px solid #234573;
-      border-radius: 6px;
-      padding: 10px;
-    }
-    .metric-lbl {
-      font-size: 0.72rem;
-      color: #94a3b8;
-      font-weight: bold;
-      text-transform: uppercase;
-    }
-    .metric-val {
-      font-size: 1.45rem;
-      font-weight: 800;
-      color: #38bdf8;
-      font-family: monospace;
-      margin-top: 2px;
+      gap: 24px;
+      min-height: 0;
     }
     .slide-footer {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       color: #64748b;
+      font-family: monospace;
       border-top: 1px solid #1e293b;
       padding-top: 8px;
     }
@@ -157,44 +83,59 @@
     </div>
 
     <div class="slide-body">
-      <!-- High-Contrast White Content Card -->
-      <div class="content-card">
-        <h3>CLINICAL OBJECTIVE &amp; ARCHITECTURE</h3>
-        <p>Examining why intermittent spot-checks fail to capture metabolic kinetics, excursions, and nocturnal hypoglycemia.</p>
-        <ul>
-          <li><strong>Technical Standard:</strong> Model 5010 BLE 5.0 GATT direct communication with zero external egress.</li>
-          <li><strong>Clinical Focus:</strong> Continuous ambulatory telemetric monitoring for proactive Type 2 Diabetes care.</li>
-          <li><strong>Ergonomics:</strong> High-contrast solid white surfaces ensuring 21:1 visual clarity for seniors.</li>
+
+      <!-- High-Contrast Dynamic Content Card -->
+      <div class="content-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #0284c7; padding: 20px; border-radius: 8px; display: flex; flex-direction: column; overflow-y: auto;">
+        
+        <h3 style="color: #0284c7; font-size: 1.15rem; font-weight: 800; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 10px; text-transform: uppercase;">LIMITATIONS OF CONVENTIONAL SPOT-CHECKS</h3>
+        <p style="font-size: 0.95rem; color: #334155; margin-bottom: 12px; line-height: 1.5; font-weight: 500;">Examining why intermittent spot-checks fail to capture metabolic kinetics, excursions, and nocturnal hypoglycemia.</p>
+        <ul style="padding-left: 20px; margin-bottom: 14px; color: #1e293b; font-size: 0.88rem;">
+          
+          <li style="margin-bottom: 8px; line-height: 1.45;">
+            <strong style="color: #0369a1;">Missing Nocturnal Events:</strong> Isolated fingersticks cannot detect overnight glucose valleys occurring between 2 AM and 5 AM.
+          </li>
+        
+          <li style="margin-bottom: 8px; line-height: 1.45;">
+            <strong style="color: #0369a1;">Postprandial Excursions:</strong> Spot checks miss the peak post-meal glucose excursions that drive diabetic complications.
+          </li>
+        
+          <li style="margin-bottom: 8px; line-height: 1.45;">
+            <strong style="color: #0369a1;">Statistical Significance:</strong> 288 automated daily readings provide 100 times more clinical data than occasional fingersticks.
+          </li>
+        
         </ul>
-        <div style="background: #f1f5f9; border-left: 4px solid #0284c7; padding: 10px 14px; border-radius: 4px; font-size: 0.85rem; color: #1e293b; margin-top: auto;">
-          <strong>Audio Commentary:</strong> Australian Technical Narration automatically synchronized with slide progression.
+        <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 10px 14px; border-radius: 4px; font-size: 0.85rem; color: #14532d; margin-top: auto;">
+          <strong style="color: #15803d;">Key Takeaway:</strong> Continuous monitoring captures critical glycemic dynamics that single spot-checks completely miss.
         </div>
       </div>
+    
 
-
-        <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #dc2626;">
-          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #e2e8f0; padding-bottom:8px;">
-            <span style="font-family:monospace; font-weight:800; color:#dc2626; font-size:0.88rem;">THE SNAPSHOT FALLACY AUDIT</span>
-            <span style="background:#fee2e2; color:#b91c1c; font-weight:800; font-size:0.75rem; padding:2px 8px; border-radius:3px;">4 DOTS VS CONTINUOUS</span>
-          </div>
-          <div style="margin-top:8px; font-size:0.82rem; color:#334155; line-height:1.4;">
-            <div style="background:#fef2f2; border-left:4px solid #ef4444; padding:8px; border-radius:4px; margin-bottom:8px;">
-              <strong style="color:#991b1b;">Intermittent Spot-Checks (4 Fingersticks):</strong>
-              <div style="font-family:monospace; font-size:0.78rem; margin-top:3px; color:#7f1d1d;">07:00: 104 • 12:00: 108 • 18:00: 122 • 22:00: 108</div>
-              <div style="color:#b91c1c; font-size:0.72rem; margin-top:2px;">⚠️ Misses postprandial spike (232 mg/dL) and nocturnal nadir (162 mg/dL)!</div>
-            </div>
-            <div style="background:#f0fdf4; border-left:4px solid #22c55e; padding:8px; border-radius:4px;">
-              <strong style="color:#166534;">LCARS Continuous Optical Profile:</strong>
-              <div style="font-family:monospace; font-size:0.78rem; margin-top:3px; color:#14532d;">288 Continuous Telemetry Epochs / 24 Hours</div>
-              <div style="color:#15803d; font-size:0.72rem; margin-top:2px;">✓ Captures complete +70 mg/dL meal spikes & Dawn Phenomenon surges</div>
-            </div>
-          </div>
-          <div style="margin-top:10px; display:flex; justify-content:space-between; background:#f8fafc; padding:8px 12px; border-radius:4px; border:1px solid #e2e8f0; font-family:monospace; font-size:0.82rem; font-weight:bold;">
-            <span>UNSEEN EXCURSION CAPTURED:</span>
-            <span style="color:#dc2626;">+78 MG/DL SPIKE</span>
-          </div>
+      <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #dc2626; padding: 20px; border-radius: 8px; display: flex; flex-direction: column; overflow-y: auto;">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 12px;">
+          <span style="font-family: monospace; font-weight: 800; color: #0284c7; font-size: 0.92rem;">THE SNAPSHOT FALLACY AUDIT</span>
+          <span style="background: #f8fafc; color: #dc2626; font-weight: 800; font-size: 0.75rem; padding: 3px 10px; border-radius: 4px; border: 1.5px solid #dc2626;">CONTINUOUS VS SPOT-CHECK</span>
         </div>
+        <div style="flex: 1; display: flex; flex-direction: column;">
+          
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px;">
+            <div style="background:#fff1f2; border:1.5px solid #fecdd3; border-radius:4px; padding:8px;">
+              <div style="color:#e11d48; font-weight:800; font-size:0.75rem;">CONVENTIONAL FINGERSTICK</div>
+              <div style="font-size:1.1rem; font-weight:800; color:#9f1239; margin-top:4px; font-family:monospace;">1 TO 4 READINGS / DAY</div>
+              <div style="font-size:0.7rem; color:#881337; margin-top:4px;">Completely misses 95% of daytime spikes and nocturnal drops.</div>
+            </div>
+            <div style="background:#f0fdf4; border:1.5px solid #bbf7d0; border-radius:4px; padding:8px;">
+              <div style="color:#16a34a; font-weight:800; font-size:0.75rem;">MODEL 5010 CONTINUOUS</div>
+              <div style="font-size:1.1rem; font-weight:800; color:#14532d; margin-top:4px; font-family:monospace;">288 READINGS / 24 HRS</div>
+              <div style="font-size:0.7rem; color:#14532d; margin-top:4px;">Captures continuous kinetics every 5 minutes around the clock.</div>
+            </div>
+          </div>
+          <div style="margin-top:10px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:4px; padding:8px; font-family:monospace; font-size:0.75rem; color:#475569;">
+            Diagnostic Gain: +284 clinical observations per 24-hour cycle.
+          </div>
         
+        </div>
+      </div>
+    
     </div>
 
     <div class="slide-footer">
