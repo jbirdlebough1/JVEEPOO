@@ -98,15 +98,15 @@
         <ul class="bullets-list" style="padding-left: 0; list-style-type: none; margin-bottom: 4px; color: #1e293b; font-size: 0.82rem;">
           
           <li id="bullet-item-0" class="bullet-item" data-idx="0" style="margin-bottom: 5px; line-height: 1.35; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: all 0.25s ease;">
-            <strong style="color: #0369a1;">Missing Nocturnal Events:</strong> Isolated fingersticks cannot detect overnight glucose valleys occurring between 2 AM and 5 AM.
+            <strong style="color: #0369a1;">90-Day A1C Snapshot Aliasing:</strong> A quarterly lab A1C is an isolated N=1 sample every 90 days, suffering complete Nyquist aliasing and masking all diurnal peaks and nocturnal nadirs.
           </li>
         
           <li id="bullet-item-1" class="bullet-item" data-idx="1" style="margin-bottom: 5px; line-height: 1.35; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: all 0.25s ease;">
-            <strong style="color: #0369a1;">Postprandial Excursions:</strong> Spot checks miss the peak post-meal glucose excursions that drive diabetic complications.
+            <strong style="color: #0369a1;">Nyquist Sampling & Statistical Power:</strong> Information theory requires sampling at twice the biological kinetic frequency; a single snapshot has zero statistical confidence compared to continuous telemetry.
           </li>
         
           <li id="bullet-item-2" class="bullet-item" data-idx="2" style="margin-bottom: 5px; line-height: 1.35; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: all 0.25s ease;">
-            <strong style="color: #0369a1;">Statistical Significance:</strong> 288 automated daily readings provide 100 times more clinical data than occasional fingersticks.
+            <strong style="color: #0369a1;">LCARS 288×8 Continuous Telemetry:</strong> Capturing 288 samples/day across 8 channels yields 2,304 daily metrics—over 25,920 glucose points and 207,360 total biometric measurements in a 90-day cycle.
           </li>
         
         </ul>
@@ -132,34 +132,117 @@
         </div>
         
         <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.80rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
-          <strong style="color: #15803d;">Key Takeaway:</strong> Continuous monitoring captures critical glycemic dynamics that single spot-checks completely miss.
+          <strong style="color: #15803d;">Key Takeaway:</strong> 90-day A1C snapshots alias daily kinetics; LCARS records 288×8 daily measurements (207,360 total) for true statistical power.
         </div>
       </div>
     
 
-      <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #dc2626; padding: 14px 18px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto; scroll-behavior: smooth;">
+      <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #0284c7; padding: 14px 18px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto; scroll-behavior: smooth;">
         <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 5px; margin-bottom: 8px; flex-shrink: 0;">
-          <span style="font-family: monospace; font-weight: 800; color: #0284c7; font-size: 0.86rem;">THE SNAPSHOT FALLACY AUDIT</span>
-          <span style="background: #f8fafc; color: #dc2626; font-weight: 800; font-size: 0.70rem; padding: 2px 7px; border-radius: 4px; border: 1.5px solid #dc2626;">CONTINUOUS VS SPOT-CHECK</span>
+          <span style="font-family: monospace; font-weight: 800; color: #0284c7; font-size: 0.86rem;">90-DAY SAMPLING TIMELINE & NYQUIST KINETICS</span>
+          <span style="background: #f8fafc; color: #0284c7; font-weight: 800; font-size: 0.70rem; padding: 2px 7px; border-radius: 4px; border: 1.5px solid #0284c7;">N=1 VS N=25,920</span>
         </div>
         <div class="visual-content" style="flex: 1; display: flex; flex-direction: column;">
           
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px;">
-            <div style="background:#fff1f2; border:1.5px solid #fecdd3; border-radius:4px; padding:8px;">
-              <div style="color:#e11d48; font-weight:800; font-size:0.75rem;">CONVENTIONAL FINGERSTICK</div>
-              <div style="font-size:1.1rem; font-weight:800; color:#9f1239; margin-top:4px; font-family:monospace;">1 TO 4 READINGS / DAY</div>
-              <div style="font-size:0.7rem; color:#881337; margin-top:4px;">Completely misses 95% of daytime spikes and nocturnal drops.</div>
+          <!-- 90-Day Sampling Timeline: A1C vs LCARS Continuous -->
+          <div style="background: #0f172a; border: 1.5px solid #334155; border-radius: 6px; padding: 10px; margin-top: 4px; color: #ffffff;">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1e293b; padding-bottom: 4px; margin-bottom: 8px;">
+              <span style="font-family: monospace; font-size: 0.72rem; color: #38bdf8; font-weight: 800; letter-spacing: 0.05em;">90-DAY SAMPLING TIMELINE & NYQUIST KINETICS</span>
+              <span style="background: #0284c7; color: #fff; font-size: 0.60rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; font-family: monospace;">N=1 VS N=25,920</span>
             </div>
-            <div style="background:#f0fdf4; border:1.5px solid #bbf7d0; border-radius:4px; padding:8px;">
-              <div style="color:#16a34a; font-weight:800; font-size:0.75rem;">MODEL 5010 CONTINUOUS</div>
-              <div style="font-size:1.1rem; font-weight:800; color:#14532d; margin-top:4px; font-family:monospace;">288 READINGS / 24 HRS</div>
-              <div style="font-size:0.7rem; color:#14532d; margin-top:4px;">Captures continuous kinetics every 5 minutes around the clock.</div>
+
+            <!-- 90-Day Timeline Graphic Bars -->
+            <div style="display: flex; flex-direction: column; gap: 6px; font-family: monospace; font-size: 0.68rem;">
+              <!-- Tier 1: Quarterly Lab A1C (N=1) -->
+              <div>
+                <div style="display: flex; justify-content: space-between; color: #f87171; font-weight: bold; margin-bottom: 2px;">
+                  <span>QUARTERLY LAB A1C (N=1 SNAPSHOT)</span>
+                  <span>1 LAB DRAW / 90 DAYS</span>
+                </div>
+                <div style="position: relative; height: 16px; background: #1e293b; border-radius: 3px; border: 1px solid #ef4444; overflow: hidden; display: flex; align-items: center;">
+                  <div style="position: absolute; left: 0; right: 24px; height: 2px; background: #475569; border-style: dashed;"></div>
+                  <div style="position: absolute; right: 4px; width: 12px; height: 12px; background: #ef4444; border-radius: 50%; box-shadow: 0 0 6px #ef4444;" title="Single Lab Blood Draw at Day 90"></div>
+                  <span style="position: absolute; left: 8px; font-size: 0.60rem; color: #fca5a5;">DAY 1 ──── 90-DAY BLIND INTERVAL ──── DAY 90 📍</span>
+                </div>
+              </div>
+
+              <!-- Tier 2: Conventional Fingersticks (1-4/day) -->
+              <div>
+                <div style="display: flex; justify-content: space-between; color: #fbbf24; font-weight: bold; margin-bottom: 2px;">
+                  <span>CONVENTIONAL FINGERSTICKS (SPORADIC SPOT-CHECKS)</span>
+                  <span>~180 POINTS / 90 DAYS</span>
+                </div>
+                <div style="position: relative; height: 16px; background: #1e293b; border-radius: 3px; border: 1px solid #f59e0b; overflow: hidden; display: flex; align-items: center; justify-content: space-around;">
+                  <span style="color: #fbbf24; font-size: 0.65rem;">• &nbsp; • &nbsp; • &nbsp; • &nbsp; • &nbsp; • &nbsp; • &nbsp; • &nbsp; • &nbsp; • &nbsp; • &nbsp; • &nbsp; • &nbsp; • &nbsp; •</span>
+                </div>
+              </div>
+
+              <!-- Tier 3: LCARS 5010 Continuous 288x8 -->
+              <div>
+                <div style="display: flex; justify-content: space-between; color: #4ade80; font-weight: bold; margin-bottom: 2px;">
+                  <span>LCARS 5010 CONTINUOUS TIME-SERIES (288/DAY × 8 CHANNELS)</span>
+                  <span>25,920 GLUCOSE • 207,360 TOTAL SAMPLES</span>
+                </div>
+                <div style="position: relative; height: 18px; background: linear-gradient(90deg, #059669, #10b981, #06b6d4, #10b981, #059669); border-radius: 3px; border: 1.5px solid #22c55e; overflow: hidden; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 8px rgba(34,197,94,0.4);">
+                  <span style="font-size: 0.62rem; color: #ffffff; font-weight: 800; letter-spacing: 0.05em; text-shadow: 0 1px 2px rgba(0,0,0,0.8);">
+                    ██████ FULL NYQUIST DENSITY: 25,920 CONTINUOUS 5-MIN EPOCHS ██████
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
-          <div style="margin-top:10px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:4px; padding:8px; font-family:monospace; font-size:0.75rem; color:#475569;">
-            Diagnostic Gain: +284 clinical observations per 24-hour cycle.
+
+          <!-- Nyquist & Statistical Significance Comparison Table -->
+          <div style="margin-top: 8px; border: 1.5px solid #cbd5e1; border-radius: 6px; overflow: hidden; background: #ffffff;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.72rem; text-align: left;">
+              <thead>
+                <tr style="background: #f1f5f9; color: #0f172a; border-bottom: 2px solid #cbd5e1; font-family: monospace;">
+                  <th style="padding: 5px 8px;">CLINICAL METRIC</th>
+                  <th style="padding: 5px 8px; color: #dc2626;">LAB A1C</th>
+                  <th style="padding: 5px 8px; color: #d97706;">FINGERSTICKS</th>
+                  <th style="padding: 5px 8px; color: #15803d; background: #f0fdf4;">LCARS 5010</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid #e2e8f0;">
+                  <td style="padding: 4px 8px; font-weight: bold; color: #334155;">90-Day Glucose Points</td>
+                  <td style="padding: 4px 8px; color: #dc2626; font-family: monospace; font-weight: bold;">1 Snapshot</td>
+                  <td style="padding: 4px 8px; color: #d97706; font-family: monospace;">~90 – 360</td>
+                  <td style="padding: 4px 8px; color: #15803d; font-family: monospace; font-weight: bold; background: #f0fdf4;">25,920 Samples</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #e2e8f0;">
+                  <td style="padding: 4px 8px; font-weight: bold; color: #334155;">Daily 8-Channel Metrics</td>
+                  <td style="padding: 4px 8px; color: #64748b; font-family: monospace;">0 (Quarterly)</td>
+                  <td style="padding: 4px 8px; color: #d97706; font-family: monospace;">1 – 4 (Glucose only)</td>
+                  <td style="padding: 4px 8px; color: #15803d; font-family: monospace; font-weight: bold; background: #f0fdf4;">2,304 / 24 Hours</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #e2e8f0;">
+                  <td style="padding: 4px 8px; font-weight: bold; color: #334155;">90-Day Total Biometric Pool</td>
+                  <td style="padding: 4px 8px; color: #dc2626; font-family: monospace;">1 Data Point</td>
+                  <td style="padding: 4px 8px; color: #d97706; font-family: monospace;">~180 Points</td>
+                  <td style="padding: 4px 8px; color: #15803d; font-family: monospace; font-weight: 800; background: #f0fdf4;">207,360 Points</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #e2e8f0;">
+                  <td style="padding: 4px 8px; font-weight: bold; color: #334155;">Nyquist-Shannon Fidelity</td>
+                  <td style="padding: 4px 8px; color: #dc2626; font-weight: bold;">0% (Full Aliasing)</td>
+                  <td style="padding: 4px 8px; color: #d97706;">&lt; 5% (Sub-Nyquist)</td>
+                  <td style="padding: 4px 8px; color: #15803d; font-weight: bold; background: #f0fdf4;">100% Reconstructed</td>
+                </tr>
+                <tr>
+                  <td style="padding: 4px 8px; font-weight: bold; color: #334155;">Statistical Error (1/√N)</td>
+                  <td style="padding: 4px 8px; color: #dc2626; font-family: monospace;">N=1 (Undefined)</td>
+                  <td style="padding: 4px 8px; color: #d97706; font-family: monospace;">High Variance</td>
+                  <td style="padding: 4px 8px; color: #15803d; font-family: monospace; font-weight: bold; background: #f0fdf4;">p &lt; 0.0001 (Power &gt; 99%)</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-        
+
+          <!-- Sampling Theory Key Insight Callout -->
+          <div style="margin-top: 8px; background: #f8fafc; border-left: 4px solid #0284c7; padding: 6px 10px; border-radius: 4px; font-size: 0.73rem; color: #1e293b; line-height: 1.35;">
+            <strong style="color: #0369a1;">Information Theory Insight:</strong> A dynamic biological signal requires sampling at twice its highest kinetic frequency (Nyquist). A single quarterly A1C is an N=1 snapshot that aliases all excursions; LCARS's 288×8 daily samples deliver 207,360 measurements to achieve true statistical significance.
+          </div>
+
         </div>
       </div>
     

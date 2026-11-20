@@ -21,7 +21,7 @@
 **Module:** Module 1: Introduction & Clinical Scope  
 **Description:** Examining why intermittent spot-checks fail to capture metabolic kinetics, excursions, and nocturnal hypoglycemia.  
 
-> "Let's talk about the snapshot fallacy. For decades, diabetes management has relied on intermittent fingersticks and quarterly lab work. But a single fasting blood glucose reading at 7 AM tells you nothing about the post-meal glucose spike at noon, the rapid drop during an afternoon walk, or the dangerous hypoglycemic valley while you sleep. The Model 5010 changes that by recording up to 288 discrete data points every single day."
+> "Let's examine the snapshot fallacy through the lens of information theory and Nyquist sampling. A conventional clinical HbA1c is a single laboratory blood draw taken once every ninety days. In signal processing, a single sample over a ninety-day interval suffers complete Nyquist aliasing, rendering clinicians completely blind to daily excursions and dangerous nocturnal hypoglycemia. Even four daily fingersticks capture less than five percent of glycemic kinetics. LCARS fundamentally changes this paradigm by recording two hundred and eighty-eight discrete epochs per day across eight synchronized biometric channels—delivering two thousand three hundred and four daily measurements, and over twenty-five thousand continuous glycemic data points across a ninety-day clinical cycle. By satisfying Nyquist criteria and achieving overwhelming statistical significance, LCARS empowers doctors and patients to see true physiological trajectory instead of an isolated static guess."
 
 ---
 

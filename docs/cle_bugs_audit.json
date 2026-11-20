@@ -151,5 +151,22 @@
     "created_at": "2026-11-19 21:24:06",
     "updated_at": "2026-11-19 21:24:06",
     "resolved_at": "2026-11-19 21:24:06"
+  },
+  {
+    "id": 73,
+    "project_name": "JVEEPOO",
+    "bug_number": 43,
+    "bug_code": "CLE-043",
+    "build_number": "BUILD-20261119-07",
+    "title": "Add 90-day timeline contrasting A1C N=1 snapshot aliasing vs LCARS 288x8 continuous sampling with Nyquist criteria",
+    "status": "RESOLVED",
+    "component": "PRESENTATION / CLINICAL MATH / STATS",
+    "affected_files": "all_slides_data.json, presentation/audio/slide_02.mp3, audio/slide_02.mp3, presentation/slides/slide_02.html, slides/slide_02.html, presentation/preview.html, preview.html, TRANSCRIPT.md, docs/cle_bugs_audit.json",
+    "bug_loc": "Slide 02: The Snapshot Fallacy, all_slides_data.json, slide_02.mp3",
+    "resolution": "Implemented 90-day clinical sampling timeline on Slide 02 comparing quarterly Lab A1C (1 snapshot/90 days), sporadic fingersticks (~180 spots), and LCARS continuous telemetry (288/day across 8 channels = 2,304/day, yielding 25,920 glucose samples and 207,360 total biometric measurements); integrated Nyquist-Shannon kinetic reconstruction criteria and 1/sqrt(N) statistical significance analysis; re-rendered Slide 02 narration audio with en-AU-NatashaNeural and rebuilt all presentation assets.",
+    "comments": "Verified audio sync, 90-day graphic bars, comparison table, and rebuilt W11 launcher.",
+    "created_at": "2026-11-19 21:32:45",
+    "updated_at": "2026-11-19 21:32:45",
+    "resolved_at": "2026-11-19 21:32:45"
   }
 ]
