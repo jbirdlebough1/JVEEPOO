@@ -58734,3 +58734,19 @@ ivate Mode: ACTIVE
 [22:25:12] [TX] [*] Populating Setup parameters from active profile...
 [22:25:12] [SYS] [+] Using initialized baseline parameters for Model 5010.
 [22:25:12] [SYS] Watch transponder ready. Click ENGAGE WATCH or COMM LINK ribbon to link.
+[22:36:48] [TX] [*] Populating Setup parameters from active profile...
+[22:36:48] [SYS] [+] Using initialized baseline parameters for Model 5010.
+[22:36:48] [SYS] Watch transponder ready. Click ENGAGE WATCH or COMM LINK ribbon to link.
+[22:37:37] [TX] [*] Populating Setup parameters from active profile...
+[22:37:37] [SYS] [+] Using initialized baseline parameters for Model 5010.
+[22:37:37] [SYS] Watch transponder ready. Click ENGAGE WATCH or COMM LINK ribbon to link.
+[22:37:44] [TX] [*] Populating Setup parameters from active profile...
+[22:37:44] [SYS] [+] Using initialized baseline parameters for Model 5010.
+[22:37:44] [SYS] Watch transponder ready. Click ENGAGE WATCH or COMM LINK ribbon to link.
+[22:37:51] [TX] [*] Populating Setup parameters from active profile...
+[22:37:51] [SYS] [+] Using initialized baseline parameters for Model 5010.
+[22:37:51] [SYS] Smart Glucose Snack Notifier updated for 106 mg/dL
+[22:37:51] [SYS] Watch transponder ready. Click ENGAGE WATCH or COMM LINK ribbon to link.
+[22:38:00] [TX] [*] Populating Setup parameters from active profile...
+[22:38:00] [SYS] [+] Using initialized baseline parameters for Model 5010.
+[22:38:00] [SYS] Watch transponder ready. Click ENGAGE WATCH or COMM LINK ribbon to link.

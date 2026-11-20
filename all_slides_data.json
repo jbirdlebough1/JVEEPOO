@@ -802,25 +802,27 @@
     "right_badge": "NON-INSULIN CLEARANCE",
     "right_badge_col": "#ca8a04",
     "right_html": "\n          <div style=\"margin-top:10px; background:#fefce8; border:1.5px solid #fef08a; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.15rem; font-weight:800; color:#854d0e; font-family:monospace;\">MUSCLE CONTRACTION -> DIRECT UPTAKE</div>\n            <div style=\"font-size:0.84rem; color:#713f12; margin-top:6px; line-height:1.45;\">Mechanical stimulation triggers GLUT4 glucose transporter translocation to the muscle cell membrane, dropping blood sugar without pancreatic insulin.</div>\n          </div>\n        ",
-    "tab_screenshot": "images/lcars_tab_metabolic.png",
+    "tab_screenshot": "images/lcars_slide17_glut4_kinetics.png",
     "tab_title": "03-METABOLIC CONSOLE \u2022 ESTIMATED A1C (EA1C) PROJECTION",
     "step_focus": [
       {
         "bullet": 0,
-        "focus_desc": "Topic 1 Overview & Core Telemetry Target",
+        "focus_desc": "360\u00b0 Real-Time Physiological Telemetry Console",
         "scroll_pct": 0.0
       },
       {
         "bullet": 1,
-        "focus_desc": "Topic 2 Ambulatory Evidence & Biometric Dynamics",
-        "scroll_pct": 0.4
+        "focus_desc": "Skeletal Muscle GLUT4 Translocation Kinetics",
+        "scroll_pct": 0.35
       },
       {
         "bullet": 2,
-        "focus_desc": "Topic 3 Clinical Translation & Patient Outcome",
-        "scroll_pct": 0.8
+        "focus_desc": "Insulin-Independent Glycemic Drop Mechanism",
+        "scroll_pct": 0.7
       }
-    ]
+    ],
+    "tab_num": 3,
+    "image": "images/lcars_slide17_glut4_kinetics.png"
   },
   {
     "id": 18,
@@ -849,25 +851,27 @@
     "right_badge": "MEASURED \u0394G DROPS",
     "right_badge_col": "#15803d",
     "right_html": "\n          <div style=\"margin-top:10px; background:#f0fdf4; border:1.5px solid #bbf7d0; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.15rem; font-weight:800; color:#14532d; font-family:monospace;\">MORNING WALK: -27 MG/DL DROP</div>\n            <div style=\"font-size:0.84rem; color:#166534; margin-top:6px; line-height:1.45;\">32-minute walk at 08:30 (2,384 steps) reduced glucose from 192 mg/dL to 165 mg/dL. GLUT4 clearance verified.</div>\n          </div>\n        ",
-    "tab_screenshot": "images/lcars_tab_metabolic.png",
+    "tab_screenshot": "images/lcars_slide18_exercise_log.png",
     "tab_title": "03-METABOLIC CONSOLE \u2022 NOCTURNAL DAWN PHENOMENON",
     "step_focus": [
       {
         "bullet": 0,
-        "focus_desc": "Topic 1 Overview & Core Telemetry Target",
+        "focus_desc": "Exercise & Kinetic Activity Log Interface",
         "scroll_pct": 0.0
       },
       {
         "bullet": 1,
-        "focus_desc": "Topic 2 Ambulatory Evidence & Biometric Dynamics",
-        "scroll_pct": 0.4
+        "focus_desc": "Direct Delta G (\u0394G) Post-Walk Drop Calculation",
+        "scroll_pct": 0.35
       },
       {
         "bullet": 2,
-        "focus_desc": "Topic 3 Clinical Translation & Patient Outcome",
-        "scroll_pct": 0.8
+        "focus_desc": "Correlating Duration & Step Intensity with Recovery",
+        "scroll_pct": 0.7
       }
-    ]
+    ],
+    "tab_num": 3,
+    "image": "images/lcars_slide18_exercise_log.png"
   },
   {
     "id": 19,
@@ -896,25 +900,27 @@
     "right_badge": "CARBOHYDRATE EXCURSIONS",
     "right_badge_col": "#ca8a04",
     "right_html": "\n          <div style=\"margin-top:10px; background:#fefce8; border:1.5px solid #fef08a; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.15rem; font-weight:800; color:#854d0e; font-family:monospace;\">LUNCH: 34g NET CARBS \u2022 +44 MG/DL SPIKE</div>\n            <div style=\"font-size:0.84rem; color:#713f12; margin-top:6px; line-height:1.45;\">Lunch at 12:30 produced a 44 mg/dL excursion, peaking at 232 mg/dL at 13:30 before settling.</div>\n          </div>\n        ",
-    "tab_screenshot": "images/lcars_tab_metabolic.png",
+    "tab_screenshot": "images/lcars_slide19_meal_logger.png",
     "tab_title": "03-METABOLIC CONSOLE \u2022 GLUT4 EXERCISE POSTPRANDIAL CLEARANCE",
     "step_focus": [
       {
         "bullet": 0,
-        "focus_desc": "Topic 1 Overview & Core Telemetry Target",
+        "focus_desc": "Dietary Intake & Macronutrient Meal Logger",
         "scroll_pct": 0.0
       },
       {
         "bullet": 1,
-        "focus_desc": "Topic 2 Ambulatory Evidence & Biometric Dynamics",
-        "scroll_pct": 0.4
+        "focus_desc": "Net Carbs, Protein, Fat & Caloric Breakdown",
+        "scroll_pct": 0.35
       },
       {
         "bullet": 2,
-        "focus_desc": "Topic 3 Clinical Translation & Patient Outcome",
-        "scroll_pct": 0.8
+        "focus_desc": "Auto-Linked Ambulatory Glucose Correlation",
+        "scroll_pct": 0.7
       }
-    ]
+    ],
+    "tab_num": 3,
+    "image": "images/lcars_slide19_meal_logger.png"
   },
   {
     "id": 20,
@@ -943,25 +949,27 @@
     "right_badge": "GEMINI NUTRITION AI",
     "right_badge_col": "#059669",
     "right_html": "\n          <!-- Gemini AI Recipe & Seller Curator Card -->\n          <div style=\"background:#ecfdf5; border:1.5px solid #a7f3d0; border-radius:6px; padding:10px; margin-bottom:8px;\">\n            <div style=\"display:flex; justify-content:space-between; align-items:center;\">\n              <span style=\"font-weight:800; color:#065f46; font-size:0.82rem; font-family:monospace;\">GEMINI AI RECIPE & SELLER CURATOR</span>\n              <span style=\"background:#059669; color:#fff; font-size:0.65rem; font-weight:bold; padding:2px 6px; border-radius:3px;\">AI ASSISTED</span>\n            </div>\n            <div style=\"font-size:0.74rem; color:#047857; margin-top:4px; line-height:1.4;\">\n              Google Gemini Pro actively identifies ADA-compliant culinary recipes and links directly to verified commercial sellers offering diabetes-safe food, low-carb baking staples, and delicious zero-sugar drinks.\n            </div>\n          </div>\n\n          <!-- Smart 1-to-1 Food Trades Matrix -->\n          <div style=\"display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:8px;\">\n            <div style=\"background:#f8fafc; border:1px solid #cbd5e1; border-radius:4px; padding:6px 8px;\">\n              <div style=\"font-size:0.7rem; color:#dc2626; font-weight:bold;\">HIGH SPIKE FOOD</div>\n              <div style=\"font-size:0.78rem; font-weight:bold; color:#0f172a;\">White Bread / Rice</div>\n              <div style=\"font-size:0.68rem; color:#64748b;\">+48 mg/dL spike at 45 min</div>\n            </div>\n            <div style=\"background:#f0fdf4; border:1px solid #86efac; border-radius:4px; padding:6px 8px;\">\n              <div style=\"font-size:0.7rem; color:#15803d; font-weight:bold;\">GEMINI ADA SWAP</div>\n              <div style=\"font-size:0.78rem; font-weight:bold; color:#14532d;\">Cauliflower / Quinoa</div>\n              <div style=\"font-size:0.68rem; color:#15803d;\">Blunts peak by 38 mg/dL</div>\n            </div>\n            <div style=\"background:#f8fafc; border:1px solid #cbd5e1; border-radius:4px; padding:6px 8px;\">\n              <div style=\"font-size:0.7rem; color:#dc2626; font-weight:bold;\">HIGH SUGAR DRINK</div>\n              <div style=\"font-size:0.78rem; font-weight:bold; color:#0f172a;\">Sweet Tea / Soda</div>\n              <div style=\"font-size:0.68rem; color:#64748b;\">+65 mg/dL rapid spike</div>\n            </div>\n            <div style=\"background:#f0fdf4; border:1px solid #86efac; border-radius:4px; padding:6px 8px;\">\n              <div style=\"font-size:0.7rem; color:#15803d; font-weight:bold;\">GEMINI ADA SWAP</div>\n              <div style=\"font-size:0.78rem; font-weight:bold; color:#14532d;\">Stevia Botanical Infusion</div>\n              <div style=\"font-size:0.68rem; color:#15803d;\">0 mg/dL glycemic excursion</div>\n            </div>\n          </div>\n\n          <div style=\"background:#fdf4ff; border:1px solid #f0abfc; border-radius:4px; padding:6px 8px; font-size:0.72rem; color:#701a75;\">\n            <strong>Verified Sellers Directory:</strong> Sourced by Gemini to help patients order tested monk fruit, lupin flour, and artisan keto staples effortlessly.\n          </div>\n        ",
-    "tab_screenshot": "images/lcars_tab_diettrades.png",
+    "tab_screenshot": "images/lcars_slide20_diet_trades.png",
     "tab_title": "09-ADA DIET TRADES & GEMINI AI NUTRITION ENGINE",
     "step_focus": [
       {
         "bullet": 0,
-        "focus_desc": "Topic 1 Overview & Core Telemetry Target",
+        "focus_desc": "ADA Carbohydrate Trades & 1-to-1 Food Swap Comparator",
         "scroll_pct": 0.0
       },
       {
         "bullet": 1,
-        "focus_desc": "Topic 2 Ambulatory Evidence & Biometric Dynamics",
-        "scroll_pct": 0.4
+        "focus_desc": "Preventing Glycemic Spikes Without Sacrificing Satiety",
+        "scroll_pct": 0.35
       },
       {
         "bullet": 2,
-        "focus_desc": "Topic 3 Clinical Translation & Patient Outcome",
-        "scroll_pct": 0.8
+        "focus_desc": "Gemini Pro Diabetic Curated Recipes & Ingredient Trades",
+        "scroll_pct": 0.7
       }
-    ]
+    ],
+    "tab_num": 9,
+    "image": "images/lcars_slide20_diet_trades.png"
   },
   {
     "id": 21,
@@ -990,25 +998,27 @@
     "right_badge": "GLYCEMIC PHENOTYPE",
     "right_badge_col": "#0284c7",
     "right_html": "\n          <div style=\"margin-top:10px; background:#f0f9ff; border:1.5px solid #bae6fd; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#0369a1; font-family:monospace;\">PEAK LATENCY: 65 MIN \u2022 CLEARANCE: 1.1 MG/DL/MIN</div>\n            <div style=\"font-size:0.84rem; color:#075985; margin-top:6px; line-height:1.45;\">Empirical mathematical modeling of your individual carbohydrate absorption and active clearance kinetics.</div>\n          </div>\n        ",
-    "tab_screenshot": "images/lcars_tab_metabolic.png",
+    "tab_screenshot": "images/lcars_slide21_learning_engine.png",
     "tab_title": "03-METABOLIC CONSOLE \u2022 GLYCEMIC DYNAMICS ENGINE",
     "step_focus": [
       {
         "bullet": 0,
-        "focus_desc": "Topic 1 Overview & Core Telemetry Target",
+        "focus_desc": "The 'What Works For You' Diabetes Learning Engine",
         "scroll_pct": 0.0
       },
       {
         "bullet": 1,
-        "focus_desc": "Topic 2 Ambulatory Evidence & Biometric Dynamics",
-        "scroll_pct": 0.4
+        "focus_desc": "Personal Glycemic Phenotyping & Behavioral Rules",
+        "scroll_pct": 0.35
       },
       {
         "bullet": 2,
-        "focus_desc": "Topic 3 Clinical Translation & Patient Outcome",
-        "scroll_pct": 0.8
+        "focus_desc": "Automated Multi-Variable Correlation of Diet, Movement & Meds",
+        "scroll_pct": 0.7
       }
-    ]
+    ],
+    "tab_num": 3,
+    "image": "images/lcars_slide21_learning_engine.png"
   },
   {
     "id": 22,

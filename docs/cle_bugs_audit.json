@@ -219,5 +219,22 @@
     "created_at": "2026-11-19T22:28:49.804189",
     "updated_at": "2026-11-19T22:28:49.804189",
     "resolved_at": "2026-11-19T22:28:49.804189"
+  },
+  {
+    "id": 77,
+    "project_name": "JVEEPOO",
+    "bug_number": 47,
+    "bug_code": "CLE-047",
+    "build_number": "BUILD-2026.11.20-047",
+    "title": "Align Slides 17-21 directly to topic areas (Meal Logger, Exercise Log, ADA Trades, Learning Engine), pause on topic focus, and check in all on both GITs including .jsonl",
+    "status": "RESOLVED",
+    "component": "Presentation Curriculum & Git Checkin",
+    "affected_files": "all_slides_data.json, build_presentation.py, preview.html, w11_htm_app/index.html, images/lcars_slide1*.png, images/lcars_slide2*.png, session_logs/*.jsonl",
+    "bug_loc": "all_slides_data.json:Slides17-21, w11_htm_app/index.html:pageMetabolic, session_logs",
+    "resolution": "Added metabolic section IDs to w11_htm_app/index.html (secMetabolic360, secMetabolicExercise, secMetabolicDiet, secMetabolicTrades, secMetabolicLearning). Captured dedicated high-res screenshots for Slides 17-21 (lcars_slide17_glut4_kinetics.png, lcars_slide18_exercise_log.png, lcars_slide19_meal_logger.png, lcars_slide20_diet_trades.png, lcars_slide21_learning_engine.png) so Slide 19 and 20-21 go directly to their respective topic areas without redisplaying from the top. Ensured viewport pauses on the topic focus area until the talk is done. Copied full conversation transcripts (transcript.jsonl, transcript_full.jsonl, transcript_20261119_cle046.jsonl) into session_logs. Rebuilt 50 slides, preview player, and W11 launcher. Pushed to both origin (bare repo) and github.",
+    "comments": "Verified distinct topic alignment for Slides 17-21, immediate topic positioning on transition, steady plateau pause during talk, full session transcript archives in session_logs, and clean push to both origin and github remotes.",
+    "created_at": "2026-11-19T22:39:00.397497",
+    "updated_at": "2026-11-19T22:39:00.397497",
+    "resolved_at": "2026-11-19T22:39:00.397497"
   }
 ]
