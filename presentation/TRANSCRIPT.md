@@ -49,7 +49,7 @@
 
 ---
 
-## Slide 06: Physician-Patient Co-Pilot Collaboration Philosophy
+## Slide 06: Physician-Patient Collaborative Care Partnership
 **Module:** Module 2: Physician-Patient Alignment & Calibration  
 **Description:** Structuring the LCARS console as a shared clinical interface between the attending physician and patient.  
 

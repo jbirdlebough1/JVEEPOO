@@ -5,22 +5,22 @@ part2_slides = [
     {
         "id": 6, "num": "06",
         "module": "Module 2: Physician-Patient Alignment & Calibration",
-        "title": "Physician-Patient Co-Pilot Collaboration Philosophy",
+        "title": "Physician-Patient Collaborative Care Partnership",
         "desc": "Structuring the LCARS console as a shared clinical interface between the attending physician and patient.",
         "narration": "Module 2 focuses on collaboration. LCARS is not just a patient gadget; it is a shared clinical interface designed for you and your physician. Instead of guessing how your lifestyle affects your diabetes, your doctor can review hard ambulatory data, evaluate medication response, and collaboratively adjust your therapy during clinical visits.",
-        "card_title": "PHYSICIAN & PATIENT CO-PILOT PARTNERSHIP",
+        "card_title": "PHYSICIAN & PATIENT COLLABORATIVE PARTNERSHIP",
         "bullets": [
             ("Shared Clinical Portal", "Both doctor and patient review the exact same synchronized longitudinal graphs."),
             ("Objective Consultation Reviews", "Replaces subjective recall with 24-hour continuous biometric data."),
             ("Evidence-Based Titration", "Every prescription adjustment is grounded in direct ambulatory biofeedback.")
         ],
         "takeaway": "Transforms outpatient consultations from guesswork into a data-driven clinical partnership.",
-        "right_header": "PHYSICIAN CO-PILOT INTERFACE",
+        "right_header": "PHYSICIAN COLLABORATIVE INTERFACE",
         "right_badge": "SHARED CLINICAL PORTAL",
         "right_badge_col": "#0284c7",
         "right_html": """
           <div style="margin-top:10px; background:#f0f9ff; border:1.5px solid #bae6fd; border-radius:6px; padding:12px;">
-            <div style="font-size:1.15rem; font-weight:800; color:#0369a1; font-family:monospace;">CO-PILOT ACTIVE (ATTENDING MD + PATIENT)</div>
+            <div style="font-size:1.15rem; font-weight:800; color:#0369a1; font-family:monospace;">COLLABORATIVE CARE ACTIVE (ATTENDING MD + PATIENT)</div>
             <div style="font-size:0.84rem; color:#075985; margin-top:6px; line-height:1.45;">Dual-view portal enabling shared review of 24-hour glycemic excursions, exercise kinetics, and medication response.</div>
           </div>
           <div style="margin-top:10px; display:grid; grid-template-columns:1fr 1fr; gap:6px; font-family:monospace; font-size:0.75rem;">

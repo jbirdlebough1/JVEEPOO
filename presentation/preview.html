@@ -376,10 +376,10 @@
     "id": 6,
     "num": "06",
     "module": "Module 2: Physician-Patient Alignment & Calibration",
-    "title": "Physician-Patient Co-Pilot Collaboration Philosophy",
+    "title": "Physician-Patient Collaborative Care Partnership",
     "desc": "Structuring the LCARS console as a shared clinical interface between the attending physician and patient.",
     "narration": "Module 2 focuses on collaboration. LCARS is not just a patient gadget; it is a shared clinical interface designed for you and your physician. Instead of guessing how your lifestyle affects your diabetes, your doctor can review hard ambulatory data, evaluate medication response, and collaboratively adjust your therapy during clinical visits.",
-    "card_title": "PHYSICIAN & PATIENT CO-PILOT PARTNERSHIP",
+    "card_title": "PHYSICIAN & PATIENT COLLABORATIVE PARTNERSHIP",
     "bullets": [
       [
         "Shared Clinical Portal",
@@ -395,10 +395,10 @@
       ]
     ],
     "takeaway": "Transforms outpatient consultations from guesswork into a data-driven clinical partnership.",
-    "right_header": "PHYSICIAN CO-PILOT INTERFACE",
+    "right_header": "PHYSICIAN COLLABORATIVE INTERFACE",
     "right_badge": "SHARED CLINICAL PORTAL",
     "right_badge_col": "#0284c7",
-    "right_html": "\n          <div style=\"margin-top:10px; background:#f0f9ff; border:1.5px solid #bae6fd; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.15rem; font-weight:800; color:#0369a1; font-family:monospace;\">CO-PILOT ACTIVE (ATTENDING MD + PATIENT)</div>\n            <div style=\"font-size:0.84rem; color:#075985; margin-top:6px; line-height:1.45;\">Dual-view portal enabling shared review of 24-hour glycemic excursions, exercise kinetics, and medication response.</div>\n          </div>\n          <div style=\"margin-top:10px; display:grid; grid-template-columns:1fr 1fr; gap:6px; font-family:monospace; font-size:0.75rem;\">\n            <div style=\"background:#f8fafc; padding:6px; border-radius:3px; border:1px solid #e2e8f0;\">PATIENT VIEW: ACTIVE</div>\n            <div style=\"background:#f8fafc; padding:6px; border-radius:3px; border:1px solid #e2e8f0;\">MD AUDIT: READY</div>\n          </div>\n        ",
+    "right_html": "\n          <div style=\"margin-top:10px; background:#f0f9ff; border:1.5px solid #bae6fd; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.15rem; font-weight:800; color:#0369a1; font-family:monospace;\">COLLABORATIVE CARE ACTIVE (ATTENDING MD + PATIENT)</div>\n            <div style=\"font-size:0.84rem; color:#075985; margin-top:6px; line-height:1.45;\">Dual-view portal enabling shared review of 24-hour glycemic excursions, exercise kinetics, and medication response.</div>\n          </div>\n          <div style=\"margin-top:10px; display:grid; grid-template-columns:1fr 1fr; gap:6px; font-family:monospace; font-size:0.75rem;\">\n            <div style=\"background:#f8fafc; padding:6px; border-radius:3px; border:1px solid #e2e8f0;\">PATIENT VIEW: ACTIVE</div>\n            <div style=\"background:#f8fafc; padding:6px; border-radius:3px; border:1px solid #e2e8f0;\">MD AUDIT: READY</div>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_setup.png",
     "tab_title": "05-CONFIG CONSOLE \u2022 TRANSPONDER BINDING & GATT"
   },
@@ -1508,10 +1508,12 @@
       document.getElementById('lblTranscriptTitle').innerText = `SLIDE ${s.num}: ${s.title}`;
       document.getElementById('txtTranscript').innerText = s.narration;
 
-      // Reset scroll on right pane
+      // Reset scroll on right and left panes
       try {
         const iframe = document.getElementById('slideIframe');
         if (iframe && iframe.contentDocument) {
+          const leftViewport = iframe.contentDocument.querySelector('.left-screenshot-viewport');
+          if (leftViewport) leftViewport.scrollTop = 0;
           const rightCard = iframe.contentDocument.querySelector('.visual-card');
           if (rightCard) rightCard.scrollTop = 0;
         }
@@ -1548,6 +1550,13 @@
               try {
                 const iframe = document.getElementById('slideIframe');
                 if (iframe && iframe.contentDocument) {
+                  // Synchronized scroll of left LCARS console screenshot viewport
+                  const leftViewport = iframe.contentDocument.querySelector('.left-screenshot-viewport');
+                  if (leftViewport && leftViewport.scrollHeight > leftViewport.clientHeight) {
+                    const maxLeftScroll = leftViewport.scrollHeight - leftViewport.clientHeight;
+                    leftViewport.scrollTop = norm * maxLeftScroll;
+                  }
+                  // Synchronized scroll of right detailed metrics card
                   const rightCard = iframe.contentDocument.querySelector('.visual-card');
                   if (rightCard && rightCard.scrollHeight > rightCard.clientHeight) {
                     const maxScroll = rightCard.scrollHeight - rightCard.clientHeight;

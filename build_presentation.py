@@ -86,7 +86,7 @@ def generate_left_panel(s):
               LIVE CONSOLE
             </span>
           </div>
-          <div style="text-align: center; background: #000; overflow: hidden; height: 135px; display: flex; align-items: flex-start; justify-content: center;">
+          <div class="left-screenshot-viewport" style="text-align: center; background: #000; overflow-y: auto; height: 180px; position: relative; scroll-behavior: smooth;">
             <img src="{tab_img}" onerror="this.src='../{tab_img}'" alt="{tab_title}" style="width: 100%; height: auto; display: block; object-fit: cover; object-position: top center;">
           </div>
         </div>
@@ -530,10 +530,12 @@ preview_html_content = f"""<!DOCTYPE html>
       document.getElementById('lblTranscriptTitle').innerText = `SLIDE ${{s.num}}: ${{s.title}}`;
       document.getElementById('txtTranscript').innerText = s.narration;
 
-      // Reset scroll on right pane
+      // Reset scroll on right and left panes
       try {{
         const iframe = document.getElementById('slideIframe');
         if (iframe && iframe.contentDocument) {{
+          const leftViewport = iframe.contentDocument.querySelector('.left-screenshot-viewport');
+          if (leftViewport) leftViewport.scrollTop = 0;
           const rightCard = iframe.contentDocument.querySelector('.visual-card');
           if (rightCard) rightCard.scrollTop = 0;
         }}
@@ -570,6 +572,13 @@ preview_html_content = f"""<!DOCTYPE html>
               try {{
                 const iframe = document.getElementById('slideIframe');
                 if (iframe && iframe.contentDocument) {{
+                  // Synchronized scroll of left LCARS console screenshot viewport
+                  const leftViewport = iframe.contentDocument.querySelector('.left-screenshot-viewport');
+                  if (leftViewport && leftViewport.scrollHeight > leftViewport.clientHeight) {{
+                    const maxLeftScroll = leftViewport.scrollHeight - leftViewport.clientHeight;
+                    leftViewport.scrollTop = norm * maxLeftScroll;
+                  }}
+                  // Synchronized scroll of right detailed metrics card
                   const rightCard = iframe.contentDocument.querySelector('.visual-card');
                   if (rightCard && rightCard.scrollHeight > rightCard.clientHeight) {{
                     const maxScroll = rightCard.scrollHeight - rightCard.clientHeight;

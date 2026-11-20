@@ -580,5 +580,15 @@
     "affected_files": "all_slides_data.json, build_presentation.py, w11_htm_app/index.html, presentation/preview.html, presentation/slides/*.html, presentation/images/lcars_tab_*.png, presentation/audio/slide_08.mp3, presentation/audio/slide_20.mp3, presentation/audio/slide_37.mp3",
     "created_at": "2026-11-20 04:35:53Z",
     "comments": "Re-rendered narration audio for slides 8, 20, 37 with Natasha voice, regenerated all 40 slides, rebuilt preview player and W11 launcher."
+  },
+  {
+    "bug_id": "CLE-041",
+    "title": "Showcase LCARS GUI with tall 1200px screenshots, synchronized viewport scrolling, and purge Co-Pilot terminology",
+    "description": "Captured full 1200px vertical screenshots for all 12 LCARS console tabs; embedded live console preview under bullets on left panel; wired dual audio-synchronized scrolling for both left screenshot viewport and right details card; completely removed Co-Pilot terminology in favor of Collaborative Clinical Care.",
+    "severity": "MEDIUM",
+    "status": "RESOLVED",
+    "affected_files": "all_slides_data.json, build_presentation.py, build_presentation_part2.py, presentation/preview.html, presentation/slides/*.html, presentation/images/lcars_tab_*.png",
+    "created_at": "2026-11-20 04:56:09Z",
+    "comments": "Rebuilt presentation, verified zero Co-Pilot references, recompiled W11 executable launcher."
   }
 ]
