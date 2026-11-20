@@ -49,7 +49,7 @@ slides_data = [
         "id": 6, "num": "06",
         "title": "Physician-Patient Co-Pilot Collaboration Philosophy",
         "module": "Module 2: Physician-Patient Alignment & Calibration",
-        "desc": "Structuring the LCARS console as a shared clinical cockpit between the attending physician and patient.",
+        "desc": "Structuring the LCARS console as a shared clinical console between the attending physician and patient.",
         "narration": "LCARS is engineered as a true co-pilot tool for you and your physician. In clinic, your doctor configures target baselines, sets safe physiological limits, and reviews historical trends. At home, you wear the watch, log your meals and exercise, and observe direct cause-and-effect. When you meet for follow-ups, your doctor doesn't have to guess—the data tells the exact clinical story."
     },
     {
@@ -117,36 +117,36 @@ slides_data = [
     },
     {
         "id": 16, "num": "16",
-        "title": "03-METABOLIC Cockpit: Real-Time Physiological Telemetry",
-        "module": "Module 4: Tab 03 METABOLIC Cockpit & Behavioral Science",
+        "title": "03-METABOLIC Console: Real-Time Physiological Telemetry",
+        "module": "Module 4: Tab 03 METABOLIC Console & Behavioral Science",
         "desc": "Synthesizing all 6 primary biometric signals onto a unified real-time clinical dashboard.",
-        "narration": "Now we step into Tab 03: the METABOLIC Cockpit. Here, all primary physiological telemetry streams converge into six live summary tiles: Glucose, Blood Pressure, SpO2, Heart Rate with HRV, Temperature, and Step Motion. Instead of viewing isolated numbers, you and your doctor see a complete, unified snapshot of your cardiovascular and metabolic status in real time."
+        "narration": "Now we step into Tab 03: the METABOLIC Console. Here, all primary physiological telemetry streams converge into six live summary tiles: Glucose, Blood Pressure, SpO2, Heart Rate with HRV, Temperature, and Step Motion. Instead of viewing isolated numbers, you and your doctor see a complete, unified snapshot of your cardiovascular and metabolic status in real time."
     },
     {
         "id": 17, "num": "17",
         "title": "GLUT4 Translocation Kinetics: How Exercise Lowers Glucose",
-        "module": "Module 4: Tab 03 METABOLIC Cockpit & Behavioral Science",
+        "module": "Module 4: Tab 03 METABOLIC Console & Behavioral Science",
         "desc": "The cellular biochemistry of insulin-independent glucose uptake via skeletal muscle contraction.",
         "narration": "Let's look at the cellular science behind Tab 03. When skeletal muscles contract during aerobic exercise, calcium and AMP-activated protein kinase trigger the translocation of GLUT4 glucose transporters directly to cell membranes. This process bypasses defective insulin signaling entirely, soaking up circulating blood glucose and dramatically lowering plasma levels without requiring extra insulin."
     },
     {
         "id": 18, "num": "18",
         "title": "The GLUT4 Exercise Journal: Calculating Direct ΔG Glucose Drops",
-        "module": "Module 4: Tab 03 METABOLIC Cockpit & Behavioral Science",
+        "module": "Module 4: Tab 03 METABOLIC Console & Behavioral Science",
         "desc": "Logging workouts, cadence, and duration to model predictable glycemic drops of 22 to 35 mg/dL.",
         "narration": "In the GLUT4 Exercise Journal, you log your physical activity: whether it's a brisk post-meal walk, cycling, or resistance training. LCARS computes your exact glycemic drop, known as Delta G, which typically ranges from minus twenty-two to minus thirty-five milligrams per deciliter. This transforms exercise from an abstract chore into a precise, predictable clinical intervention."
     },
     {
         "id": 19, "num": "19",
         "title": "Macronutrient Meal Logger: Net Carbs, Protein, Fat & Calories",
-        "module": "Module 4: Tab 03 METABOLIC Cockpit & Behavioral Science",
+        "module": "Module 4: Tab 03 METABOLIC Console & Behavioral Science",
         "desc": "Chronological nutritional journaling capturing meal timestamps and glycemic load.",
         "narration": "Next is the Macronutrient Meal Logger. Whenever you eat, you record the meal name, timestamp, net carbs, protein, fat, and calories. This chronological meal record pins directly to your timeline. When you look back at your glucose curve two hours later, you can see the exact postprandial excursion curve caused by that specific meal."
     },
     {
         "id": 20, "num": "20",
         "title": "ADA 1-to-1 Carbohydrate Trades Engine",
-        "module": "Module 4: Tab 03 METABOLIC Cockpit & Behavioral Science",
+        "module": "Module 4: Tab 03 METABOLIC Console & Behavioral Science",
         "desc": "Direct carbohydrate-sparing dietary substitutions that blunt postprandial glucose excursions.",
         "narration": "One of our most powerful features is the ADA One-to-One Trades Comparator. It suggests direct, realistic dietary swaps that spare fifteen to thirty grams of net carbs per meal. Trading white rice for cauliflower rice, or swapping high-glycemic pasta for zucchini noodles, flattens postprandial spikes by thirty to forty-five milligrams per deciliter while keeping meals delicious."
     },
@@ -480,7 +480,7 @@ slide_template = """<!DOCTYPE html>
         </div>
       </div>
 
-      <!-- Telemetry Visual / Cockpit Card -->
+      <!-- Telemetry Visual / Console Card -->
       <div class="visual-card">
         <div class="visual-header">
           <span>LCARS TELEMETRY MONITOR</span>

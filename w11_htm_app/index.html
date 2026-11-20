@@ -757,7 +757,7 @@
 
     .svg-timeline-container {
       width: 100%;
-      height: 180px;
+      height: 225px !important;
       position: relative;
       background: #05070b;
       border-radius: 4px;
@@ -2121,11 +2121,11 @@
             </div>
           </div>
 
-          <!-- COMPONENT 1: 360° LIVE BIOMETRIC COCKPIT (MULTI-SENSOR TELEMETRY SYNTHESIS) -->
+          <!-- COMPONENT 1: 360° LIVE BIOMETRIC CONSOLE (MULTI-SENSOR TELEMETRY SYNTHESIS) -->
           <div class="diet-form-card" style="border-left-color: var(--lcars-banana);">
             <div class="setup-section-title" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
               <div>
-                <span style="color: var(--lcars-banana);">01. 360° REAL-TIME PHYSIOLOGICAL COCKPIT</span>
+                <span style="color: var(--lcars-banana);">01. 360° REAL-TIME PHYSIOLOGICAL CONSOLE</span>
                 <span style="font-size: 0.8rem; color: var(--lcars-gray); display: block;">SYNCHRONIZED SENSOR TELEMETRY &amp; METABOLIC HOMEOSTASIS</span>
               </div>
               <div style="display: flex; gap: 8px;">
@@ -4540,7 +4540,7 @@
             <div style="background: #ffffff; padding: 16px; border-radius: 8px; border: 2px solid #cbd5e1; border-left: 6px solid #15803d; margin-top: 14px;">
               <strong style="color: #0f172a; font-size: 1.05rem;">Q6: How does LCARS help my physician and me manage my diabetes better than isolated fingersticks?</strong>
               <div style="font-size: 0.88rem; color: #1e293b; line-height: 1.5; margin-top: 6px;">
-                Isolated fingersticks only show a static number at a single moment in time without context. LCARS provides a <strong>360-Degree Personal Health Cockpit</strong> that correlates 8 simultaneous telemetry streams (Glucose, BP, HR/HRV, SpO2, Skin Temp, Motion, Diet, and Medications).
+                Isolated fingersticks only show a static number at a single moment in time without context. LCARS provides a <strong>360-Degree Personal Health Console</strong> that correlates 8 simultaneous telemetry streams (Glucose, BP, HR/HRV, SpO2, Skin Temp, Motion, Diet, and Medications).
                 <br><br>
                 When you or your doctor scrub through your daily or weekly timeline on Tab 04, you can click on any glucose spike or drop to immediately reveal the exact meal carbs consumed, the exercise completed (and its resulting &Delta;G drop), and your medication adherence. Furthermore, when your doctor adjusts a prescription, logging the titration pins a <strong>"💊 MED CHANGE"</strong> marker across your charts, allowing both of you to objectively determine whether the change prompted glycemic <strong>progress or regression</strong>.
               </div>
@@ -7845,11 +7845,11 @@
       if (!container) return;
 
       const W = 800;
-      const H = 175;
+      const H = 225;
       const padLeft = 60;
       const padRight = 35;
-      const padTop = 28;
-      const padBottom = 30;
+      const padTop = 26;
+      const padBottom = 60;
       const plotW = W - padLeft - padRight;
       const plotH = H - padTop - padBottom;
 
@@ -7876,32 +7876,61 @@
         options.referenceLines.forEach((ref, rIdx) => {
           if (ref.val >= minY && ref.val <= maxY) {
             const refY = padTop + plotH - ((ref.val - minY) / rangeY) * plotH;
-            // Stagger labels so two close reference lines never overlap: alternate start / end positioning
             const isAlternate = (rIdx % 2 === 1);
             const anchor = isAlternate ? "start" : "end";
             const textX = isAlternate ? (padLeft + 8) : (padLeft + plotW - 8);
             refLinesHtml += `
               <line x1="${padLeft}" y1="${refY.toFixed(1)}" x2="${padLeft + plotW}" y2="${refY.toFixed(1)}" 
-                    stroke="${ref.color || '#4f5b66'}" stroke-dasharray="4 4" stroke-width="1.4" opacity="0.8"/>
+                    stroke="${ref.color || '#4f5b66'}" stroke-dasharray="4 4" stroke-width="1.5" opacity="0.85"/>
               <text x="${textX}" y="${(refY - 5).toFixed(1)}" text-anchor="${anchor}" 
-                    fill="${ref.color || '#334155'}" font-family="var(--lcars-mono)" font-size="10.5" font-weight="bold">${ref.label}</text>
+                    fill="${ref.color || '#0f172a'}" font-family="var(--lcars-mono)" font-size="10.5" font-weight="800"
+                    style="paint-order: stroke fill; stroke: #ffffff; stroke-width: 4px; stroke-linejoin: round;">${ref.label}</text>
             `;
           }
         });
       }
 
       let pointsHtml = "";
-      points.forEach(p => {
+      points.forEach((p, idx) => {
+        let timeText = p.label || "";
+        let eventText = "";
+        if (timeText.includes(" ")) {
+          const parts = timeText.split(" ");
+          timeText = parts[0];
+          eventText = parts.slice(1).join(" ").trim();
+        }
+
+        // Line 1: Clean time tick with subtle tick indicator
+        let labelHtml = `
+          <line x1="${p.x.toFixed(1)}" y1="${padTop + plotH}" x2="${p.x.toFixed(1)}" y2="${padTop + plotH + 4}" stroke="#94a3b8" stroke-width="1"/>
+          <text x="${p.x.toFixed(1)}" y="${(padTop + plotH + 16).toFixed(1)}" text-anchor="middle" 
+                fill="#0f172a" font-family="var(--lcars-mono)" font-size="11" font-weight="800">${timeText}</text>
+        `;
+
+        // Line 2 & Line 3: Staggered event labels so adjacent descriptions have full clearance
+        if (eventText) {
+          const isStagger = (idx % 2 === 1);
+          const eventY = isStagger ? (padTop + plotH + 46) : (padTop + plotH + 31);
+          const eventColor = isStagger ? "#0284c7" : "#0f766e";
+          labelHtml += `
+            <text x="${p.x.toFixed(1)}" y="${eventY.toFixed(1)}" text-anchor="middle" 
+                  fill="${eventColor}" font-family="var(--lcars-mono)" font-size="9.5" font-weight="800">${eventText}</text>
+          `;
+        }
+
+        // Flip value position if too close to top edge
+        const valY = (p.y < padTop + 14) ? (p.y + 15) : (p.y - 8);
+
         pointsHtml += `
           <g>
             <circle class="plot-point" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="4.5" 
-                    fill="${strokeColor}" stroke="#000000" stroke-width="2">
+                    fill="${strokeColor}" stroke="#ffffff" stroke-width="2">
               <title>${p.label}: ${p.val} ${unit}</title>
             </circle>
-            <text x="${p.x.toFixed(1)}" y="${(p.y - 8).toFixed(1)}" text-anchor="middle" 
-                  fill="${strokeColor}" font-family="var(--lcars-mono)" font-size="11" font-weight="bold">${p.val}${options.valSuffix || ''}</text>
-            <text x="${p.x.toFixed(1)}" y="${H - 10}" text-anchor="middle" 
-                  fill="var(--lcars-gray)" font-family="var(--lcars-mono)" font-size="11">${p.label}</text>
+            <text x="${p.x.toFixed(1)}" y="${valY.toFixed(1)}" text-anchor="middle" 
+                  fill="${strokeColor}" font-family="var(--lcars-mono)" font-size="11" font-weight="900"
+                  style="paint-order: stroke fill; stroke: #ffffff; stroke-width: 3.5px; stroke-linejoin: round;">${p.val}${options.valSuffix || ''}</text>
+            ${labelHtml}
           </g>
         `;
       });
@@ -7914,13 +7943,15 @@
               <stop offset="100%" stop-color="${options.fillColor || strokeColor}" stop-opacity="0.02"/>
             </linearGradient>
           </defs>
-          <line x1="${padLeft}" y1="${padTop + plotH}" x2="${padLeft + plotW}" y2="${padTop + plotH}" stroke="#233045" stroke-width="1"/>
+          <line x1="${padLeft}" y1="${padTop + plotH}" x2="${padLeft + plotW}" y2="${padTop + plotH}" stroke="#cbd5e1" stroke-width="1.5"/>
           ${refLinesHtml}
-          <!-- Dim Fill Below Curve -->
-          <polygon class="plot-curve-fill ${curveFillEnabled ? '' : 'hidden'}" points="${areaPoints}" fill="url(#${gradId})"/>
-          <!-- Highlight Line -->
-          <polyline points="${polyPoints}" fill="none" stroke="${strokeColor}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-          <!-- Points & Coordinates -->
+          <!-- Trend Fill -->
+          <polygon points="${areaPoints}" fill="url(#${gradId})"/>
+          <!-- Active Trend Curve -->
+          <polyline class="plot-curve" points="${polyPoints}" fill="none" stroke="${strokeColor}" 
+                    stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"
+                    style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));"/>
+          <!-- Data Points and Multi-Line Labels -->
           ${pointsHtml}
         </svg>
       `;
@@ -7933,11 +7964,11 @@
       if (!container) return;
 
       const W = 800;
-      const H = 175;
+      const H = 225;
       const padLeft = 60;
       const padRight = 35;
-      const padTop = 28;
-      const padBottom = 30;
+      const padTop = 26;
+      const padBottom = 60;
       const plotW = W - padLeft - padRight;
       const plotH = H - padTop - padBottom;
 
@@ -7967,45 +7998,75 @@
         options.referenceLines.forEach((ref, rIdx) => {
           if (ref.val >= minY && ref.val <= maxY) {
             const refY = padTop + plotH - ((ref.val - minY) / rangeY) * plotH;
-            // Stagger labels so two close reference lines never overlap: alternate start / end positioning
             const isAlternate = (rIdx % 2 === 1);
             const anchor = isAlternate ? "start" : "end";
             const textX = isAlternate ? (padLeft + 8) : (padLeft + plotW - 8);
             refLinesHtml += `
               <line x1="${padLeft}" y1="${refY.toFixed(1)}" x2="${padLeft + plotW}" y2="${refY.toFixed(1)}" 
-                    stroke="${ref.color || '#4f5b66'}" stroke-dasharray="4 4" stroke-width="1.4" opacity="0.8"/>
+                    stroke="${ref.color || '#4f5b66'}" stroke-dasharray="4 4" stroke-width="1.5" opacity="0.85"/>
               <text x="${textX}" y="${(refY - 5).toFixed(1)}" text-anchor="${anchor}" 
-                    fill="${ref.color || '#334155'}" font-family="var(--lcars-mono)" font-size="10.5" font-weight="bold">${ref.label}</text>
+                    fill="${ref.color || '#0f172a'}" font-family="var(--lcars-mono)" font-size="10.5" font-weight="800"
+                    style="paint-order: stroke fill; stroke: #ffffff; stroke-width: 4px; stroke-linejoin: round;">${ref.label}</text>
             `;
           }
         });
       }
 
       let circlesHtml = "";
-      corePoints.forEach(p => {
+      corePoints.forEach((p, idx) => {
+        let timeText = p.label || "";
+        let eventText = "";
+        if (timeText.includes(" ")) {
+          const parts = timeText.split(" ");
+          timeText = parts[0];
+          eventText = parts.slice(1).join(" ").trim();
+        }
+
+        // Line 1: Clean time tick
+        let labelHtml = `
+          <line x1="${p.x.toFixed(1)}" y1="${padTop + plotH}" x2="${p.x.toFixed(1)}" y2="${padTop + plotH + 4}" stroke="#94a3b8" stroke-width="1"/>
+          <text x="${p.x.toFixed(1)}" y="${(padTop + plotH + 16).toFixed(1)}" text-anchor="middle" 
+                fill="#0f172a" font-family="var(--lcars-mono)" font-size="11" font-weight="800">${timeText}</text>
+        `;
+
+        // Line 2 & Line 3: Staggered event labels
+        if (eventText) {
+          const isStagger = (idx % 2 === 1);
+          const eventY = isStagger ? (padTop + plotH + 46) : (padTop + plotH + 31);
+          const eventColor = isStagger ? "#0284c7" : "#0f766e";
+          labelHtml += `
+            <text x="${p.x.toFixed(1)}" y="${eventY.toFixed(1)}" text-anchor="middle" 
+                  fill="${eventColor}" font-family="var(--lcars-mono)" font-size="9.5" font-weight="800">${eventText}</text>
+          `;
+        }
+
+        const valY = (p.y < padTop + 14) ? (p.y + 15) : (p.y - 8);
+
         circlesHtml += `
           <g>
             <circle class="plot-point" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="4.5" 
-                    fill="var(--lcars-blue)" stroke="#000000" stroke-width="2">
+                    fill="var(--lcars-blue)" stroke="#ffffff" stroke-width="2">
               <title>${p.label} Core: ${p.val}°F</title>
             </circle>
-            <text x="${p.x.toFixed(1)}" y="${(p.y - 8).toFixed(1)}" text-anchor="middle" 
-                  fill="var(--lcars-blue)" font-family="var(--lcars-mono)" font-size="11" font-weight="bold">${p.val}°</text>
-            <text x="${p.x.toFixed(1)}" y="${H - 10}" text-anchor="middle" 
-                  fill="var(--lcars-gray)" font-family="var(--lcars-mono)" font-size="11">${p.label}</text>
+            <text x="${p.x.toFixed(1)}" y="${valY.toFixed(1)}" text-anchor="middle" 
+                  fill="var(--lcars-blue)" font-family="var(--lcars-mono)" font-size="11" font-weight="900"
+                  style="paint-order: stroke fill; stroke: #ffffff; stroke-width: 3.5px; stroke-linejoin: round;">${p.val}°</text>
+            ${labelHtml}
           </g>
         `;
       });
 
       skinPoints.forEach(p => {
+        const valY = (p.y < padTop + 14) ? (p.y + 15) : (p.y - 8);
         circlesHtml += `
           <g>
             <circle class="plot-point" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="4.5" 
-                    fill="var(--lcars-lilac)" stroke="#000000" stroke-width="2">
+                    fill="var(--lcars-lilac)" stroke="#ffffff" stroke-width="2">
               <title>${p.label} Skin: ${p.val}°F</title>
             </circle>
-            <text x="${p.x.toFixed(1)}" y="${(p.y - 8).toFixed(1)}" text-anchor="middle" 
-                  fill="var(--lcars-lilac)" font-family="var(--lcars-mono)" font-size="11" font-weight="bold">${p.val}°</text>
+            <text x="${p.x.toFixed(1)}" y="${valY.toFixed(1)}" text-anchor="middle" 
+                  fill="var(--lcars-lilac)" font-family="var(--lcars-mono)" font-size="11" font-weight="900"
+                  style="paint-order: stroke fill; stroke: #ffffff; stroke-width: 3.5px; stroke-linejoin: round;">${p.val}°</text>
           </g>
         `;
       });
@@ -8015,18 +8076,21 @@
         <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">
           <defs>
             <linearGradient id="${gradId}" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stop-color="#6699cc" stop-opacity="0.3"/>
-              <stop offset="100%" stop-color="#6699cc" stop-opacity="0.02"/>
+              <stop offset="0%" stop-color="var(--lcars-blue)" stop-opacity="0.32"/>
+              <stop offset="100%" stop-color="var(--lcars-blue)" stop-opacity="0.02"/>
             </linearGradient>
           </defs>
-          <line x1="${padLeft}" y1="${padTop + plotH}" x2="${padLeft + plotW}" y2="${padTop + plotH}" stroke="#233045" stroke-width="1"/>
+          <line x1="${padLeft}" y1="${padTop + plotH}" x2="${padLeft + plotW}" y2="${padTop + plotH}" stroke="#cbd5e1" stroke-width="1.5"/>
           ${refLinesHtml}
-          <!-- Dim Fill Below Core Curve -->
-          <polygon class="plot-curve-fill ${curveFillEnabled ? '' : 'hidden'}" points="${coreArea}" fill="url(#${gradId})"/>
-          <!-- Highlight Lines -->
-          <polyline points="${corePoly}" fill="none" stroke="var(--lcars-blue)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-          <polyline points="${skinPoly}" fill="none" stroke="var(--lcars-lilac)" stroke-width="2.5" stroke-dasharray="5 3" stroke-linecap="round" stroke-linejoin="round"/>
-          <!-- Points & Labels -->
+          <!-- Core Temp Fill -->
+          <polygon points="${coreArea}" fill="url(#${gradId})"/>
+          <!-- Dual Lines -->
+          <polyline class="plot-curve" points="${skinPoly}" fill="none" stroke="var(--lcars-lilac)" 
+                    stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4,3"/>
+          <polyline class="plot-curve" points="${corePoly}" fill="none" stroke="var(--lcars-blue)" 
+                    stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"
+                    style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));"/>
+          <!-- Points -->
           ${circlesHtml}
         </svg>
       `;
@@ -8473,112 +8537,6 @@
           tbody.appendChild(tr);
         });
       }
-    }
-
-    function renderSvgDualCurveChart(containerId, data, options = {}) {
-      const container = document.getElementById(containerId);
-      if (!container) return;
-
-      const W = 800;
-      const H = 175;
-      const padLeft = 60;
-      const padRight = 35;
-      const padTop = 28;
-      const padBottom = 30;
-      const plotW = W - padLeft - padRight;
-      const plotH = H - padTop - padBottom;
-
-      const minY = options.minY !== undefined ? options.minY : 80;
-      const maxY = options.maxY !== undefined ? options.maxY : 100;
-      const rangeY = (maxY - minY) || 1;
-
-      const n = data.length;
-      const corePoints = data.map((d, i) => {
-        const x = padLeft + (n > 1 ? (i / (n - 1)) * plotW : plotW / 2);
-        const y = padTop + plotH - ((d.core - minY) / rangeY) * plotH;
-        return { x, y, label: d.label, val: d.core };
-      });
-
-      const skinPoints = data.map((d, i) => {
-        const x = padLeft + (n > 1 ? (i / (n - 1)) * plotW : plotW / 2);
-        const y = padTop + plotH - ((d.skin - minY) / rangeY) * plotH;
-        return { x, y, label: d.label, val: d.skin };
-      });
-
-      const corePoly = corePoints.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" ");
-      const skinPoly = skinPoints.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" ");
-      const coreArea = `${padLeft},${padTop + plotH} ` + corePoly + ` ${padLeft + plotW},${padTop + plotH}`;
-
-      let refLinesHtml = "";
-      if (options.referenceLines) {
-        options.referenceLines.forEach((ref, rIdx) => {
-          if (ref.val >= minY && ref.val <= maxY) {
-            const refY = padTop + plotH - ((ref.val - minY) / rangeY) * plotH;
-            // Stagger labels so two close reference lines never overlap: alternate start / end positioning
-            const isAlternate = (rIdx % 2 === 1);
-            const anchor = isAlternate ? "start" : "end";
-            const textX = isAlternate ? (padLeft + 8) : (padLeft + plotW - 8);
-            refLinesHtml += `
-              <line x1="${padLeft}" y1="${refY.toFixed(1)}" x2="${padLeft + plotW}" y2="${refY.toFixed(1)}" 
-                    stroke="${ref.color || '#4f5b66'}" stroke-dasharray="4 4" stroke-width="1.4" opacity="0.8"/>
-              <text x="${textX}" y="${(refY - 5).toFixed(1)}" text-anchor="${anchor}" 
-                    fill="${ref.color || '#334155'}" font-family="var(--lcars-mono)" font-size="10.5" font-weight="bold">${ref.label}</text>
-            `;
-          }
-        });
-      }
-
-      let circlesHtml = "";
-      corePoints.forEach(p => {
-        circlesHtml += `
-          <g>
-            <circle class="plot-point" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="4.5" 
-                    fill="var(--lcars-blue)" stroke="#000000" stroke-width="2">
-              <title>${p.label} Core: ${p.val}°F</title>
-            </circle>
-            <text x="${p.x.toFixed(1)}" y="${(p.y - 8).toFixed(1)}" text-anchor="middle" 
-                  fill="var(--lcars-blue)" font-family="var(--lcars-mono)" font-size="11" font-weight="bold">${p.val}°</text>
-            <text x="${p.x.toFixed(1)}" y="${H - 10}" text-anchor="middle" 
-                  fill="var(--lcars-gray)" font-family="var(--lcars-mono)" font-size="11">${p.label}</text>
-          </g>
-        `;
-      });
-
-      skinPoints.forEach(p => {
-        circlesHtml += `
-          <g>
-            <circle class="plot-point" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="4.5" 
-                    fill="var(--lcars-lilac)" stroke="#000000" stroke-width="2">
-              <title>${p.label} Skin: ${p.val}°F</title>
-            </circle>
-            <text x="${p.x.toFixed(1)}" y="${(p.y - 8).toFixed(1)}" text-anchor="middle" 
-                  fill="var(--lcars-lilac)" font-family="var(--lcars-mono)" font-size="11" font-weight="bold">${p.val}°</text>
-          </g>
-        `;
-      });
-
-      const gradId = "grad_dual_" + containerId;
-      const svgHtml = `
-        <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">
-          <defs>
-            <linearGradient id="${gradId}" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stop-color="#6699cc" stop-opacity="0.3"/>
-              <stop offset="100%" stop-color="#6699cc" stop-opacity="0.02"/>
-            </linearGradient>
-          </defs>
-          <line x1="${padLeft}" y1="${padTop + plotH}" x2="${padLeft + plotW}" y2="${padTop + plotH}" stroke="#233045" stroke-width="1"/>
-          ${refLinesHtml}
-          <!-- Dim Fill Below Core Curve -->
-          <polygon class="plot-curve-fill ${curveFillEnabled ? '' : 'hidden'}" points="${coreArea}" fill="url(#${gradId})"/>
-          <!-- Highlight Lines -->
-          <polyline points="${corePoly}" fill="none" stroke="var(--lcars-blue)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-          <polyline points="${skinPoly}" fill="none" stroke="var(--lcars-lilac)" stroke-width="2.5" stroke-dasharray="5 3" stroke-linecap="round" stroke-linejoin="round"/>
-          <!-- Points & Labels -->
-          ${circlesHtml}
-        </svg>
-      `;
-
-      container.innerHTML = svgHtml;
     }
 
     function exportMedicalReport() {
@@ -9477,7 +9435,7 @@
     // 3. 360° PERSONAL HEALTH VIEW SYNTHESIS & INSIGHTS ENGINE
     // -------------------------------------------------------------------------
     function render360HealthView() {
-      // 1. Update 360° Real-Time Biometric Cockpit Tiles
+      // 1. Update 360° Real-Time Biometric Console Tiles
       const gTile = document.getElementById('tile360Glucose');
       const curG = (typeof lastGlucoseMg !== 'undefined' && lastGlucoseMg > 0) ? lastGlucoseMg : 160;
       if (gTile) gTile.innerHTML = `${curG} <span style="font-size: 0.9rem;">mg/dL</span>`;
@@ -12786,7 +12744,7 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
       if (!svgDial) return;
 
       if (activeMode === 'red_night') {
-        // TACTICAL COCKPIT RED NIGHT VISION (Preserves Rhodopsin & Night Vision)
+        // TACTICAL BRIDGE RED NIGHT VISION (Preserves Rhodopsin & Night Vision)
         svgDial.style.background = "#140003";
         if (bezel) { bezel.setAttribute('fill', '#1f0105'); bezel.setAttribute('stroke', '#7f1d1d'); }
         if (rOuter) { rOuter.setAttribute('stroke', '#ef4444'); rOuter.style.filter = "drop-shadow(0 0 4px #dc2626)"; }

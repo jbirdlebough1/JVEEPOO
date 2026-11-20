@@ -46,7 +46,7 @@
 
 ## Slide 06: Physician-Patient Co-Pilot Collaboration Philosophy
 **Module:** Module 2: Physician-Patient Alignment & Calibration  
-**Description:** Structuring the LCARS console as a shared clinical cockpit between the attending physician and patient.  
+**Description:** Structuring the LCARS console as a shared clinical console between the attending physician and patient.  
 
 > "LCARS is engineered as a true co-pilot tool for you and your physician. In clinic, your doctor configures target baselines, sets safe physiological limits, and reviews historical trends. At home, you wear the watch, log your meals and exercise, and observe direct cause-and-effect. When you meet for follow-ups, your doctor doesn't have to guess—the data tells the exact clinical story."
 
@@ -124,16 +124,16 @@
 
 ---
 
-## Slide 16: 03-METABOLIC Cockpit: Real-Time Physiological Telemetry
-**Module:** Module 4: Tab 03 METABOLIC Cockpit & Behavioral Science  
+## Slide 16: 03-METABOLIC Console: Real-Time Physiological Telemetry
+**Module:** Module 4: Tab 03 METABOLIC Console & Behavioral Science  
 **Description:** Synthesizing all 6 primary biometric signals onto a unified real-time clinical dashboard.  
 
-> "Now we step into Tab 03: the METABOLIC Cockpit. Here, all primary physiological telemetry streams converge into six live summary tiles: Glucose, Blood Pressure, SpO2, Heart Rate with HRV, Temperature, and Step Motion. Instead of viewing isolated numbers, you and your doctor see a complete, unified snapshot of your cardiovascular and metabolic status in real time."
+> "Now we step into Tab 03: the METABOLIC Console. Here, all primary physiological telemetry streams converge into six live summary tiles: Glucose, Blood Pressure, SpO2, Heart Rate with HRV, Temperature, and Step Motion. Instead of viewing isolated numbers, you and your doctor see a complete, unified snapshot of your cardiovascular and metabolic status in real time."
 
 ---
 
 ## Slide 17: GLUT4 Translocation Kinetics: How Exercise Lowers Glucose
-**Module:** Module 4: Tab 03 METABOLIC Cockpit & Behavioral Science  
+**Module:** Module 4: Tab 03 METABOLIC Console & Behavioral Science  
 **Description:** The cellular biochemistry of insulin-independent glucose uptake via skeletal muscle contraction.  
 
 > "Let's look at the cellular science behind Tab 03. When skeletal muscles contract during aerobic exercise, calcium and AMP-activated protein kinase trigger the translocation of GLUT4 glucose transporters directly to cell membranes. This process bypasses defective insulin signaling entirely, soaking up circulating blood glucose and dramatically lowering plasma levels without requiring extra insulin."
@@ -141,7 +141,7 @@
 ---
 
 ## Slide 18: The GLUT4 Exercise Journal: Calculating Direct ΔG Glucose Drops
-**Module:** Module 4: Tab 03 METABOLIC Cockpit & Behavioral Science  
+**Module:** Module 4: Tab 03 METABOLIC Console & Behavioral Science  
 **Description:** Logging workouts, cadence, and duration to model predictable glycemic drops of 22 to 35 mg/dL.  
 
 > "In the GLUT4 Exercise Journal, you log your physical activity: whether it's a brisk post-meal walk, cycling, or resistance training. LCARS computes your exact glycemic drop, known as Delta G, which typically ranges from minus twenty-two to minus thirty-five milligrams per deciliter. This transforms exercise from an abstract chore into a precise, predictable clinical intervention."
@@ -149,7 +149,7 @@
 ---
 
 ## Slide 19: Macronutrient Meal Logger: Net Carbs, Protein, Fat & Calories
-**Module:** Module 4: Tab 03 METABOLIC Cockpit & Behavioral Science  
+**Module:** Module 4: Tab 03 METABOLIC Console & Behavioral Science  
 **Description:** Chronological nutritional journaling capturing meal timestamps and glycemic load.  
 
 > "Next is the Macronutrient Meal Logger. Whenever you eat, you record the meal name, timestamp, net carbs, protein, fat, and calories. This chronological meal record pins directly to your timeline. When you look back at your glucose curve two hours later, you can see the exact postprandial excursion curve caused by that specific meal."
@@ -157,7 +157,7 @@
 ---
 
 ## Slide 20: ADA 1-to-1 Carbohydrate Trades Engine
-**Module:** Module 4: Tab 03 METABOLIC Cockpit & Behavioral Science  
+**Module:** Module 4: Tab 03 METABOLIC Console & Behavioral Science  
 **Description:** Direct carbohydrate-sparing dietary substitutions that blunt postprandial glucose excursions.  
 
 > "One of our most powerful features is the ADA One-to-One Trades Comparator. It suggests direct, realistic dietary swaps that spare fifteen to thirty grams of net carbs per meal. Trading white rice for cauliflower rice, or swapping high-glycemic pasta for zucchini noodles, flattens postprandial spikes by thirty to forty-five milligrams per deciliter while keeping meals delicious."

@@ -130,7 +130,7 @@ theme_js = """
       if (!svgDial) return;
 
       if (activeMode === 'red_night') {
-        // TACTICAL COCKPIT RED NIGHT VISION (Preserves Rhodopsin & Night Vision)
+        // TACTICAL BRIDGE RED NIGHT VISION (Preserves Rhodopsin & Night Vision)
         svgDial.style.background = "#140003";
         if (bezel) { bezel.setAttribute('fill', '#1f0105'); bezel.setAttribute('stroke', '#7f1d1d'); }
         if (rOuter) { rOuter.setAttribute('stroke', '#ef4444'); rOuter.style.filter = "drop-shadow(0 0 4px #dc2626)"; }
