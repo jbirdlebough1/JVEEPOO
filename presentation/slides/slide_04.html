@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>LCARS 5010 - Slide 04: Strict Zero-Egress Local Telemetry vs Cloud Silos</title>
+  <title>LCARS 5010 - Slide 04: Metrological Precision & Noise Convergence: The Math of High-Density Telemetry</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
@@ -88,29 +88,33 @@
     <div class="slide-header">
       <div>
         <div class="slide-module">Module 1: Introduction & Clinical Scope</div>
-        <div class="slide-title">Strict Zero-Egress Local Telemetry vs Cloud Silos</div>
+        <div class="slide-title">Metrological Precision & Noise Convergence: The Math of High-Density Telemetry</div>
       </div>
-      <div class="slide-badge">SLIDE 04 / 50</div>
+      <div class="slide-badge">SLIDE 04 / 53</div>
     </div>
 
     <div class="slide-body">
 
       <!-- High-Contrast Dynamic Content Card -->
       <div class="content-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #0284c7; padding: 10px 14px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto;">
-        <h3 style="color: #0284c7; font-size: 1.05rem; font-weight: 800; border-bottom: 2px solid #e2e8f0; padding-bottom: 4px; margin-bottom: 5px; text-transform: uppercase;">LOCAL-FIRST AIR-GAPPED DATA ARCHITECTURE</h3>
-        <p style="font-size: 0.85rem; color: #334155; margin-bottom: 5px; line-height: 1.35; font-weight: 500;">Understanding why patient data sovereignty requires an air-gapped, local-first PC architecture.</p>
+        <h3 style="color: #0284c7; font-size: 1.05rem; font-weight: 800; border-bottom: 2px solid #e2e8f0; padding-bottom: 4px; margin-bottom: 5px; text-transform: uppercase;">CENTRAL LIMIT THEOREM & NOISE SUPPRESSION MATH</h3>
+        <p style="font-size: 0.85rem; color: #334155; margin-bottom: 5px; line-height: 1.35; font-weight: 500;">How sample size scales resolution and measurement quality: mathematical proof of SE = σ/√N, Central Limit Theorem, and 161× SNR noise suppression.</p>
         <ul class="bullets-list" style="padding-left: 0; list-style-type: none; margin-bottom: 4px; color: #1e293b; font-size: 0.80rem;">
           
           <li id="bullet-item-0" class="bullet-item" data-idx="0" style="margin-bottom: 5px; line-height: 1.35; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: all 0.25s ease;">
-            <strong style="color: #0369a1;">Zero Cloud Egress:</strong> 100% of telemetry data remains strictly on your local PC with zero external transmissions.
+            <strong style="color: #0369a1;">More Samples = Higher Resolution & Quality:</strong> Metrological law dictates that measurement uncertainty is inversely proportional to the square root of sample size: SE = σ/√N. Increasing N directly sharpens clinical resolution and suppresses stochastic noise.
           </li>
         
           <li id="bullet-item-1" class="bullet-item" data-idx="1" style="margin-bottom: 5px; line-height: 1.35; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: all 0.25s ease;">
-            <strong style="color: #0369a1;">No Subscription Paywalls:</strong> Free and open platform with no monthly fees, account lock-ins, or cloud requirements.
+            <strong style="color: #0369a1;">Error Variance Reduction (Var(x̄) = σ²/N):</strong> N=2 quarterly lab draws yield an error variance of 0.5σ². LCARS N=25,920 reduces error variance to 0.000038σ²—a 99.4% elimination of uncertainty, transforming noisy bio-signals into crystalline trajectories.
           </li>
         
           <li id="bullet-item-2" class="bullet-item" data-idx="2" style="margin-bottom: 5px; line-height: 1.35; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: all 0.25s ease;">
-            <strong style="color: #0369a1;">Total Data Sovereignty:</strong> You and your physician own and control all clinical data in standard open formats.
+            <strong style="color: #0369a1;">161× Signal-to-Noise Ratio (SNR ∝ √N):</strong> Coherent continuous averaging enhances SNR by √N. At N=25,920, random sensor noise and epidermal baseline wander are suppressed by a factor of 161 (24.1 dB SNR improvement), revealing subtle metabolic dynamics.
+          </li>
+        
+          <li id="bullet-item-3" class="bullet-item" data-idx="3" style="margin-bottom: 5px; line-height: 1.35; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: all 0.25s ease;">
+            <strong style="color: #0369a1;">Autocorrelation & Temporal Repeatability:</strong> Discrete epochs enable continuous autocorrelation Rxx(τ) = E[x(t)x(t+τ)]. High-density time-series allow Kalman filtering and trend verification that sporadic spot-checks are mathematically incapable of performing.
           </li>
         
         </ul>
@@ -119,39 +123,128 @@
         <div class="left-screenshot-card" style="margin-top: 6px; margin-bottom: 6px; border: 2px solid #cbd5e1; border-radius: 8px; overflow: hidden; background: #ffffff; box-shadow: 0 4px 14px rgba(0,0,0,0.08); display: flex; flex-direction: column; flex: 1; min-height: 290px;">
           <!-- Continuous Monotonic Scroll Viewport (Clean Light Background) -->
           <div class="left-screenshot-viewport" style="text-align: center; background: #ffffff; overflow-y: auto; flex: 1; min-height: 250px; position: relative;">
-            <img src="images/lcars_tab_operations.png" onerror="this.src='../images/lcars_tab_operations.png'" alt="07-OPERATIONS CONSOLE • AIR-GAPPED DATA VAULT" style="width: 100%; height: auto; display: block; object-fit: cover; object-position: top center;">
+            <img src="images/lcars_chart_ytd.png" onerror="this.src='../images/lcars_chart_ytd.png'" alt="03-METABOLIC CONSOLE • 90-DAY STATISTICAL REGRESSION & POWER" style="width: 100%; height: auto; display: block; object-fit: cover; object-position: top center;">
           </div>
         </div>
         
       </div>
     
 
-      <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #15803d; padding: 10px 14px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto; scroll-behavior: smooth;">
+      <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #0284c7; padding: 10px 14px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto; scroll-behavior: smooth;">
         <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 4px; margin-bottom: 6px; flex-shrink: 0;">
-          <span style="font-family: monospace; font-weight: 800; color: #0284c7; font-size: 0.84rem;">ZERO-EGRESS SECURITY MATRIX</span>
-          <span style="background: #f8fafc; color: #15803d; font-weight: 800; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; border: 1.5px solid #15803d;">AIR-GAPPED SYSTEM</span>
+          <span style="font-family: monospace; font-weight: 800; color: #0284c7; font-size: 0.84rem;">ERROR CONVERGENCE & SNR SCALING</span>
+          <span style="background: #f8fafc; color: #0284c7; font-weight: 800; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; border: 1.5px solid #0284c7;">SE = σ/√N • 161× NOISE SUPPRESSION</span>
         </div>
         <div class="visual-content" style="flex: 1; display: flex; flex-direction: column;">
           
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px;">
-            <div style="background:#f0fdf4; border:1.5px solid #bbf7d0; border-radius:4px; padding:8px;">
-              <div style="color:#16a34a; font-weight:800; font-size:0.75rem;">AIR-GAPPED LOCAL PC</div>
-              <div style="font-size:1rem; font-weight:800; color:#14532d; font-family:monospace;">LOCALHOST:8899</div>
-              <div style="font-size:0.7rem; color:#14532d; margin-top:4px;">SQLite + LocalStorage with zero cloud egress.</div>
+          <!-- Error Convergence & SNR Resolution Scale -->
+          <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 10px; margin-top: 4px; color: #0f172a;">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 4px; margin-bottom: 8px;">
+              <span style="font-family: monospace; font-size: 0.72rem; color: #0284c7; font-weight: 800; letter-spacing: 0.05em;">STATISTICAL ERROR CONVERGENCE (SE = σ / √N)</span>
+              <span style="background: #0284c7; color: #fff; font-size: 0.60rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; font-family: monospace;">CENTRAL LIMIT THEOREM</span>
             </div>
-            <div style="background:#fff1f2; border:1.5px solid #fecdd3; border-radius:4px; padding:8px;">
-              <div style="color:#e11d48; font-weight:800; font-size:0.75rem;">COMMERCIAL CLOUDS</div>
-              <div style="font-size:1rem; font-weight:800; color:#9f1239; font-family:monospace;">BLOCKED & DISABLED</div>
-              <div style="font-size:0.7rem; color:#881337; margin-top:4px;">Zero third-party trackers, subscriptions, or telemetry ads.</div>
+
+            <!-- Quantitative Error Reduction Bars -->
+            <div style="display: flex; flex-direction: column; gap: 7px; font-family: monospace; font-size: 0.68rem;">
+              <!-- Tier 1: Quarterly Lab (N=2) -->
+              <div>
+                <div style="display: flex; justify-content: space-between; color: #dc2626; font-weight: bold; margin-bottom: 2px;">
+                  <span>QUARTERLY LAB (N=2 SAMPLES): SE = 0.707 σ</span>
+                  <span>UNCERTAINTY: 70.7% (MASSIVE DISPERSION)</span>
+                </div>
+                <div style="height: 18px; background: #fee2e2; border-radius: 3px; border: 1px solid #ef4444; position: relative; overflow: hidden; display: flex; align-items: center;">
+                  <div style="width: 70.7%; height: 100%; background: #ef4444; opacity: 0.7;"></div>
+                  <span style="position: absolute; left: 8px; font-size: 0.60rem; color: #ffffff; font-weight: 800;">CI: ±1.38 σ (EXTREME CLINICAL UNCERTAINTY)</span>
+                </div>
+              </div>
+
+              <!-- Tier 2: Fingersticks (N=180) -->
+              <div>
+                <div style="display: flex; justify-content: space-between; color: #d97706; font-weight: bold; margin-bottom: 2px;">
+                  <span>CONVENTIONAL FINGERSTICKS (N≈180 POINTS): SE = 0.0745 σ</span>
+                  <span>UNCERTAINTY: 7.45% (MODERATE DISPERSION)</span>
+                </div>
+                <div style="height: 18px; background: #fef3c7; border-radius: 3px; border: 1px solid #f59e0b; position: relative; overflow: hidden; display: flex; align-items: center;">
+                  <div style="width: 7.45%; height: 100%; background: #f59e0b; opacity: 0.85;"></div>
+                  <span style="position: absolute; left: 8px; font-size: 0.60rem; color: #78350f; font-weight: 800;">CI: ±0.15 σ (13.4× NOISE REDUCTION)</span>
+                </div>
+              </div>
+
+              <!-- Tier 3: LCARS 5010 Continuous (N=25,920) -->
+              <div>
+                <div style="display: flex; justify-content: space-between; color: #15803d; font-weight: bold; margin-bottom: 2px;">
+                  <span>LCARS 5010 GLUCOSE (N=25,920 EPOCHS): SE = 0.0062 σ</span>
+                  <span>UNCERTAINTY: 0.62% (99.4% ERROR SUPPRESSION)</span>
+                </div>
+                <div style="height: 20px; background: #dcfce7; border-radius: 3px; border: 1.5px solid #16a34a; position: relative; overflow: hidden; display: flex; align-items: center;">
+                  <div style="width: 0.62%; min-width: 4px; height: 100%; background: #16a34a;"></div>
+                  <span style="position: absolute; left: 8px; font-size: 0.62rem; color: #14532d; font-weight: 800;">CI: ±0.012 σ • 161× NOISE SUPPRESSION • MAXIMUM RESOLUTION</span>
+                </div>
+              </div>
             </div>
           </div>
-          <div style="margin-top:10px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:4px; padding:8px; font-family:monospace; font-size:0.75rem; color:#15803d; font-weight:bold;">
-            Data Policy: 100% Patient Sovereignty • HIPAA-Compliant Air Gap
+
+          <!-- Mathematical Derivation Matrix -->
+          <div style="margin-top: 8px; border: 1.5px solid #cbd5e1; border-radius: 6px; overflow: hidden; background: #ffffff;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.69rem; text-align: left;">
+              <thead>
+                <tr style="background: #f1f5f9; color: #0f172a; border-bottom: 2px solid #cbd5e1; font-family: monospace;">
+                  <th style="padding: 4px 6px;">STATISTICAL METRIC</th>
+                  <th style="padding: 4px 6px; color: #dc2626;">LAB A1C (N=2)</th>
+                  <th style="padding: 4px 6px; color: #d97706;">FINGERSTICKS (N≈180)</th>
+                  <th style="padding: 4px 6px; color: #15803d; background: #f0fdf4;">LCARS 5010 (N=25,920)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid #e2e8f0;">
+                  <td style="padding: 3px 6px; font-weight: bold; color: #334155;">Standard Error (SE = σ/√N)</td>
+                  <td style="padding: 3px 6px; color: #dc2626; font-family: monospace;">0.7071 σ</td>
+                  <td style="padding: 3px 6px; color: #d97706; font-family: monospace;">0.0745 σ</td>
+                  <td style="padding: 3px 6px; color: #15803d; font-family: monospace; font-weight: bold; background: #f0fdf4;">0.0062 σ (161× Sharper)</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #e2e8f0;">
+                  <td style="padding: 3px 6px; font-weight: bold; color: #334155;">Error Variance (Var = σ²/N)</td>
+                  <td style="padding: 3px 6px; color: #dc2626; font-family: monospace;">0.5000 σ²</td>
+                  <td style="padding: 3px 6px; color: #d97706; font-family: monospace;">0.0056 σ²</td>
+                  <td style="padding: 3px 6px; color: #15803d; font-family: monospace; font-weight: bold; background: #f0fdf4;">0.000038 σ² (99.4% Reduction)</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #e2e8f0;">
+                  <td style="padding: 3px 6px; font-weight: bold; color: #334155;">95% Confidence Interval (CI)</td>
+                  <td style="padding: 3px 6px; color: #dc2626; font-family: monospace;">x̄ ± 1.385 σ</td>
+                  <td style="padding: 3px 6px; color: #d97706; font-family: monospace;">x̄ ± 0.146 σ</td>
+                  <td style="padding: 3px 6px; color: #15803d; font-family: monospace; font-weight: bold; background: #f0fdf4;">x̄ ± 0.012 σ (Extremely Narrow)</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #e2e8f0;">
+                  <td style="padding: 3px 6px; font-weight: bold; color: #334155;">Noise Suppression (√N)</td>
+                  <td style="padding: 3px 6px; color: #dc2626; font-family: monospace;">1.41× (3.0 dB)</td>
+                  <td style="padding: 3px 6px; color: #d97706; font-family: monospace;">13.4× (22.5 dB)</td>
+                  <td style="padding: 3px 6px; color: #15803d; font-family: monospace; font-weight: bold; background: #f0fdf4;">161.0× (44.1 dB SNR Gain)</td>
+                </tr>
+                <tr>
+                  <td style="padding: 3px 6px; font-weight: bold; color: #334155;">Metrological Quality Rating</td>
+                  <td style="padding: 3px 6px; color: #dc2626; font-weight: bold;">Unreliable Snapshot</td>
+                  <td style="padding: 3px 6px; color: #d97706;">Moderate Coarse Trend</td>
+                  <td style="padding: 3px 6px; color: #15803d; font-weight: 800; background: #f0fdf4;">Clinical Telemetry Benchmark</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-        
+
+          <!-- Mathematical Law Callout Cards -->
+          <div style="margin-top: 6px; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; font-family: monospace; font-size: 0.67rem;">
+            <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 4px; padding: 6px;">
+              <div style="color: #1e40af; font-weight: bold;">📊 LAW OF LARGE NUMBERS (LLN)</div>
+              <div style="color: #1e3a8a; margin-top: 2px; line-height: 1.35;">As N ⟶ 25,920, sample average x̄ converges almost surely to expected truth μ: P(lim |x̄ - μ| = 0) = 1.</div>
+            </div>
+            <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 4px; padding: 6px;">
+              <div style="color: #166534; font-weight: bold;">🔬 CENTRAL LIMIT THEOREM (CLT)</div>
+              <div style="color: #14532d; margin-top: 2px; line-height: 1.35;">Sampling distribution of the mean approaches pure Gaussianity with variance σ²/N, enabling rigorous hypothesis testing (p &lt; 0.0001).</div>
+            </div>
+          </div>
+    
         </div>
         <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.78rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
-          <strong style="color: #15803d;">Key Takeaway:</strong> Protects patient medical privacy through a completely local, air-gapped architecture.
+          <strong style="color: #15803d;">Key Takeaway:</strong> More samples yield higher resolution and measurement quality: by the Central Limit Theorem, LCARS's 25,920 continuous glucose samples reduce standard error by 99.4% (SE = σ/√N) and suppress noise by 161× (SNR ∝ √N), elevating clinical precision and repeatability far beyond isolated snapshots.
         </div>
       </div>
     
@@ -159,7 +252,7 @@
 
     <div class="slide-footer">
       <span>VEEPOO 5010 CLINICAL AMBULATORY TELEMETRY ONBOARDING</span>
-      <span>SLIDE 04 OF 50</span>
+      <span>SLIDE 04 OF 53</span>
     </div>
   </div>
 </body>

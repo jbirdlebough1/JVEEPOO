@@ -466,7 +466,7 @@ preview_html_content = f"""<!DOCTYPE html>
       <div class="scrubber" onclick="onScrub(event)">
         <div id="scrubberFill" class="scrubber-fill"></div>
       </div>
-      <span id="lblSlideCounter" style="font-family: monospace; font-size: 11px; color: #0284c7; font-weight: 800; width: 65px; text-align: right;">01 / 50</span>
+      <span id="lblSlideCounter" style="font-family: monospace; font-size: 11px; color: #0284c7; font-weight: 800; width: 65px; text-align: right;">01 / {len(slides_data)}</span>
     </div>
 
     <div style="display: flex; gap: 8px; align-items: center;">
