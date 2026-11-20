@@ -31,7 +31,24 @@
     "right_badge_col": "#15803d",
     "right_html": "\n          <!-- 4-Specialist Care Team Grid -->\n          <div style=\"display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:6px;\">\n            <div style=\"background:#f0fdf4; border:1px solid #bbf7d0; border-radius:4px; padding:6px 8px;\">\n              <div style=\"font-size:0.68rem; color:#15803d; font-weight:800;\">\ud83d\udc8a DIABETIC PHARMACIST</div>\n              <div style=\"font-size:0.72rem; color:#166534; margin-top:2px;\">Medication titration, drug kinetics & adherence tracking</div>\n            </div>\n            <div style=\"background:#f0f9ff; border:1px solid #bae6fd; border-radius:4px; padding:6px 8px;\">\n              <div style=\"font-size:0.68rem; color:#0284c7; font-weight:800;\">\ud83e\ude7a PRIMARY CARE PHYSICIAN</div>\n              <div style=\"font-size:0.72rem; color:#0c4a6e; margin-top:2px;\">Routine outpatient review, systemic health & Epic records</div>\n            </div>\n            <div style=\"background:#fdf4ff; border:1px solid #f5d0fe; border-radius:4px; padding:6px 8px;\">\n              <div style=\"font-size:0.68rem; color:#a21caf; font-weight:800;\">\ud83d\udd2c ENDOCRINOLOGIST</div>\n              <div style=\"font-size:0.72rem; color:#701a75; margin-top:2px;\">Hormone kinetics, Dawn surge & insulin sensitivity</div>\n            </div>\n            <div style=\"background:#fffbeb; border:1px solid #fde68a; border-radius:4px; padding:6px 8px;\">\n              <div style=\"font-size:0.68rem; color:#d97706; font-weight:800;\">\ud83e\udd57 DIABETIC DIET SPECIALIST</div>\n              <div style=\"font-size:0.72rem; color:#92400e; margin-top:2px;\">ADA carb trades, macronutrient logs & GLUT4 walks</div>\n            </div>\n          </div>\n\n          <!-- Mission Dedication Banner -->\n          <div style=\"margin-top:10px; background:#f0fdf4; border:1.5px solid #86efac; border-radius:6px; padding:10px; text-align:center;\">\n            <div style=\"font-weight:900; color:#15803d; font-size:0.88rem; letter-spacing:0.02em; font-family:monospace;\">\n              \"THAT OTHERS MAY SURVIVE SUCCESSFULLY DIABETES\"\n            </div>\n            <div style=\"font-size:0.75rem; color:#166534; margin-top:4px; line-height:1.4;\">\n              Offered as an experimental open-source project. We encourage doctors, engineers, and community sponsors\u2014including Google\u2014to collaborate and improve these tools.\n            </div>\n          </div>\n\n          <div style=\"margin-top:10px; display:flex; justify-content:space-between; font-family:monospace; font-size:0.75rem; background:#f8fafc; padding:6px 10px; border-radius:4px; border:1px solid #e2e8f0;\">\n            <span style=\"color:#64748b;\">PATIENT STATUS:</span>\n            <span style=\"color:#0284c7; font-weight:bold;\">OUTPATIENT TYPE 2 DIABETES PROTOCOL</span>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_vitals.png",
-    "tab_title": "01-VITALS CONSOLE \u2022 CLINICAL AMBULATORY WORKBENCH"
+    "tab_title": "01-VITALS CONSOLE \u2022 CLINICAL AMBULATORY WORKBENCH",
+    "step_focus": [
+      {
+        "bullet": 0,
+        "focus_desc": "Topic 1 Overview & Core Telemetry Target",
+        "scroll_pct": 0.0
+      },
+      {
+        "bullet": 1,
+        "focus_desc": "Topic 2 Ambulatory Evidence & Biometric Dynamics",
+        "scroll_pct": 0.4
+      },
+      {
+        "bullet": 2,
+        "focus_desc": "Topic 3 Clinical Translation & Patient Outcome",
+        "scroll_pct": 0.8
+      }
+    ]
   },
   {
     "id": 2,
@@ -61,7 +78,24 @@
     "right_badge_col": "#0284c7",
     "right_html": "\n          <!-- 90-Day Sampling Timeline: A1C vs LCARS Continuous -->\n          <div style=\"background: #0f172a; border: 1.5px solid #334155; border-radius: 6px; padding: 10px; margin-top: 4px; color: #ffffff;\">\n            <div style=\"display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1e293b; padding-bottom: 4px; margin-bottom: 8px;\">\n              <span style=\"font-family: monospace; font-size: 0.72rem; color: #38bdf8; font-weight: 800; letter-spacing: 0.05em;\">90-DAY SAMPLING TIMELINE & NYQUIST KINETICS</span>\n              <span style=\"background: #0284c7; color: #fff; font-size: 0.60rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; font-family: monospace;\">N=1 VS N=25,920</span>\n            </div>\n\n            <!-- 90-Day Timeline Graphic Bars -->\n            <div style=\"display: flex; flex-direction: column; gap: 6px; font-family: monospace; font-size: 0.68rem;\">\n              <!-- Tier 1: Quarterly Lab A1C (N=1) -->\n              <div>\n                <div style=\"display: flex; justify-content: space-between; color: #f87171; font-weight: bold; margin-bottom: 2px;\">\n                  <span>QUARTERLY LAB A1C (N=1 SNAPSHOT)</span>\n                  <span>1 LAB DRAW / 90 DAYS</span>\n                </div>\n                <div style=\"position: relative; height: 16px; background: #1e293b; border-radius: 3px; border: 1px solid #ef4444; overflow: hidden; display: flex; align-items: center;\">\n                  <div style=\"position: absolute; left: 0; right: 24px; height: 2px; background: #475569; border-style: dashed;\"></div>\n                  <div style=\"position: absolute; right: 4px; width: 12px; height: 12px; background: #ef4444; border-radius: 50%; box-shadow: 0 0 6px #ef4444;\" title=\"Single Lab Blood Draw at Day 90\"></div>\n                  <span style=\"position: absolute; left: 8px; font-size: 0.60rem; color: #fca5a5;\">DAY 1 \u2500\u2500\u2500\u2500 90-DAY BLIND INTERVAL \u2500\u2500\u2500\u2500 DAY 90 \ud83d\udccd</span>\n                </div>\n              </div>\n\n              <!-- Tier 2: Conventional Fingersticks (1-4/day) -->\n              <div>\n                <div style=\"display: flex; justify-content: space-between; color: #fbbf24; font-weight: bold; margin-bottom: 2px;\">\n                  <span>CONVENTIONAL FINGERSTICKS (SPORADIC SPOT-CHECKS)</span>\n                  <span>~180 POINTS / 90 DAYS</span>\n                </div>\n                <div style=\"position: relative; height: 16px; background: #1e293b; border-radius: 3px; border: 1px solid #f59e0b; overflow: hidden; display: flex; align-items: center; justify-content: space-around;\">\n                  <span style=\"color: #fbbf24; font-size: 0.65rem;\">\u2022 &nbsp; \u2022 &nbsp; \u2022 &nbsp; \u2022 &nbsp; \u2022 &nbsp; \u2022 &nbsp; \u2022 &nbsp; \u2022 &nbsp; \u2022 &nbsp; \u2022 &nbsp; \u2022 &nbsp; \u2022 &nbsp; \u2022 &nbsp; \u2022 &nbsp; \u2022</span>\n                </div>\n              </div>\n\n              <!-- Tier 3: LCARS 5010 Continuous 288x8 -->\n              <div>\n                <div style=\"display: flex; justify-content: space-between; color: #4ade80; font-weight: bold; margin-bottom: 2px;\">\n                  <span>LCARS 5010 CONTINUOUS TIME-SERIES (288/DAY \u00d7 8 CHANNELS)</span>\n                  <span>25,920 GLUCOSE \u2022 207,360 TOTAL SAMPLES</span>\n                </div>\n                <div style=\"position: relative; height: 18px; background: linear-gradient(90deg, #059669, #10b981, #06b6d4, #10b981, #059669); border-radius: 3px; border: 1.5px solid #22c55e; overflow: hidden; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 8px rgba(34,197,94,0.4);\">\n                  <span style=\"font-size: 0.62rem; color: #ffffff; font-weight: 800; letter-spacing: 0.05em; text-shadow: 0 1px 2px rgba(0,0,0,0.8);\">\n                    \u2588\u2588\u2588\u2588\u2588\u2588 FULL NYQUIST DENSITY: 25,920 CONTINUOUS 5-MIN EPOCHS \u2588\u2588\u2588\u2588\u2588\u2588\n                  </span>\n                </div>\n              </div>\n            </div>\n          </div>\n\n          <!-- Nyquist & Statistical Significance Comparison Table -->\n          <div style=\"margin-top: 8px; border: 1.5px solid #cbd5e1; border-radius: 6px; overflow: hidden; background: #ffffff;\">\n            <table style=\"width: 100%; border-collapse: collapse; font-size: 0.72rem; text-align: left;\">\n              <thead>\n                <tr style=\"background: #f1f5f9; color: #0f172a; border-bottom: 2px solid #cbd5e1; font-family: monospace;\">\n                  <th style=\"padding: 5px 8px;\">CLINICAL METRIC</th>\n                  <th style=\"padding: 5px 8px; color: #dc2626;\">LAB A1C</th>\n                  <th style=\"padding: 5px 8px; color: #d97706;\">FINGERSTICKS</th>\n                  <th style=\"padding: 5px 8px; color: #15803d; background: #f0fdf4;\">LCARS 5010</th>\n                </tr>\n              </thead>\n              <tbody>\n                <tr style=\"border-bottom: 1px solid #e2e8f0;\">\n                  <td style=\"padding: 4px 8px; font-weight: bold; color: #334155;\">90-Day Glucose Points</td>\n                  <td style=\"padding: 4px 8px; color: #dc2626; font-family: monospace; font-weight: bold;\">1 Snapshot</td>\n                  <td style=\"padding: 4px 8px; color: #d97706; font-family: monospace;\">~90 \u2013 360</td>\n                  <td style=\"padding: 4px 8px; color: #15803d; font-family: monospace; font-weight: bold; background: #f0fdf4;\">25,920 Samples</td>\n                </tr>\n                <tr style=\"border-bottom: 1px solid #e2e8f0;\">\n                  <td style=\"padding: 4px 8px; font-weight: bold; color: #334155;\">Daily 8-Channel Metrics</td>\n                  <td style=\"padding: 4px 8px; color: #64748b; font-family: monospace;\">0 (Quarterly)</td>\n                  <td style=\"padding: 4px 8px; color: #d97706; font-family: monospace;\">1 \u2013 4 (Glucose only)</td>\n                  <td style=\"padding: 4px 8px; color: #15803d; font-family: monospace; font-weight: bold; background: #f0fdf4;\">2,304 / 24 Hours</td>\n                </tr>\n                <tr style=\"border-bottom: 1px solid #e2e8f0;\">\n                  <td style=\"padding: 4px 8px; font-weight: bold; color: #334155;\">90-Day Total Biometric Pool</td>\n                  <td style=\"padding: 4px 8px; color: #dc2626; font-family: monospace;\">1 Data Point</td>\n                  <td style=\"padding: 4px 8px; color: #d97706; font-family: monospace;\">~180 Points</td>\n                  <td style=\"padding: 4px 8px; color: #15803d; font-family: monospace; font-weight: 800; background: #f0fdf4;\">207,360 Points</td>\n                </tr>\n                <tr style=\"border-bottom: 1px solid #e2e8f0;\">\n                  <td style=\"padding: 4px 8px; font-weight: bold; color: #334155;\">Nyquist-Shannon Fidelity</td>\n                  <td style=\"padding: 4px 8px; color: #dc2626; font-weight: bold;\">0% (Full Aliasing)</td>\n                  <td style=\"padding: 4px 8px; color: #d97706;\">&lt; 5% (Sub-Nyquist)</td>\n                  <td style=\"padding: 4px 8px; color: #15803d; font-weight: bold; background: #f0fdf4;\">100% Reconstructed</td>\n                </tr>\n                <tr>\n                  <td style=\"padding: 4px 8px; font-weight: bold; color: #334155;\">Statistical Error (1/\u221aN)</td>\n                  <td style=\"padding: 4px 8px; color: #dc2626; font-family: monospace;\">N=1 (Undefined)</td>\n                  <td style=\"padding: 4px 8px; color: #d97706; font-family: monospace;\">High Variance</td>\n                  <td style=\"padding: 4px 8px; color: #15803d; font-family: monospace; font-weight: bold; background: #f0fdf4;\">p &lt; 0.0001 (Power &gt; 99%)</td>\n                </tr>\n              </tbody>\n            </table>\n          </div>\n\n          <!-- Sampling Theory Key Insight Callout -->\n          <div style=\"margin-top: 8px; background: #f8fafc; border-left: 4px solid #0284c7; padding: 6px 10px; border-radius: 4px; font-size: 0.73rem; color: #1e293b; line-height: 1.35;\">\n            <strong style=\"color: #0369a1;\">Information Theory Insight:</strong> A dynamic biological signal requires sampling at twice its highest kinetic frequency (Nyquist). A single quarterly A1C is an N=1 snapshot that aliases all excursions; LCARS's 288\u00d78 daily samples deliver 207,360 measurements to achieve true statistical significance.\n          </div>\n",
     "tab_screenshot": "images/lcars_tab_vitals.png",
-    "tab_title": "01-VITALS CONSOLE \u2022 288 CONTINUOUS TELEMETRY SAMPLES"
+    "tab_title": "01-VITALS CONSOLE \u2022 288 CONTINUOUS TELEMETRY SAMPLES",
+    "step_focus": [
+      {
+        "bullet": 0,
+        "focus_desc": "Topic 1 Overview & Core Telemetry Target",
+        "scroll_pct": 0.0
+      },
+      {
+        "bullet": 1,
+        "focus_desc": "Topic 2 Ambulatory Evidence & Biometric Dynamics",
+        "scroll_pct": 0.4
+      },
+      {
+        "bullet": 2,
+        "focus_desc": "Topic 3 Clinical Translation & Patient Outcome",
+        "scroll_pct": 0.8
+      }
+    ]
   },
   {
     "id": 3,
@@ -111,7 +145,24 @@
     "right_badge_col": "#0284c7",
     "right_html": "\n          <!-- Side-by-Side: Watch Photo and LCARS Console Screenshot -->\n          <div style=\"display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;\">\n            <!-- FITAOS 5150 Watch Photo -->\n            <div style=\"text-align: center; background: #050b14; border-radius: 8px; padding: 8px; border: 1.5px solid #cbd5e1; display: flex; flex-direction: column; align-items: center; justify-content: space-between;\">\n              <div style=\"height: 180px; display: flex; align-items: center; justify-content: center; width: 100%;\">\n                <img src=\"images/watch_fitaos5150.jpg\" onerror=\"this.src='../images/watch_fitaos5150.jpg'\" alt=\"FITAOS 5150 Smartwatch Transponder\" style=\"max-height: 175px; max-width: 100%; object-fit: contain; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.5);\">\n              </div>\n              <div style=\"margin-top: 6px;\">\n                <div style=\"color: #38bdf8; font-size: 0.78rem; font-weight: 800; font-family: monospace;\">FITAOS 5150 HARDWARE</div>\n                <div style=\"font-size: 0.72rem; color: #94a3b8; margin-top: 2px;\">\n                  Sales Site: <a href=\"https://fitaos.com\" target=\"_blank\" style=\"color: #38bdf8; font-weight: bold; text-decoration: underline;\">fitaos.com \u2197</a>\n                </div>\n              </div>\n            </div>\n\n            <!-- LCARS 5010 Workstation Console Screenshot -->\n            <div style=\"text-align: center; background: #050b14; border-radius: 8px; padding: 8px; border: 1.5px solid #cbd5e1; display: flex; flex-direction: column; align-items: center; justify-content: space-between;\">\n              <div style=\"height: 180px; display: flex; align-items: center; justify-content: center; width: 100%;\">\n                <img src=\"images/lcars_screenshot.jpg\" onerror=\"this.src='../images/lcars_screenshot.jpg'\" alt=\"LCARS 5010 Clinical Workstation Console\" style=\"max-height: 175px; max-width: 100%; object-fit: contain; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.5);\">\n              </div>\n              <div style=\"margin-top: 6px;\">\n                <div style=\"color: #22c55e; font-size: 0.78rem; font-weight: 800; font-family: monospace;\">LCARS 5010 CONSOLE</div>\n                <div style=\"font-size: 0.72rem; color: #94a3b8; margin-top: 2px;\">\n                  Air-Gapped Localhost:8899\n                </div>\n              </div>\n            </div>\n          </div>\n\n          <!-- Broad Veepoo Ecosystem Compatibility Box -->\n          <div style=\"background: #eff6ff; border: 1.5px solid #bfdbfe; border-radius: 6px; padding: 8px 10px;\">\n            <div style=\"display: flex; justify-content: space-between; align-items: center;\">\n              <span style=\"font-weight: 800; color: #1e40af; font-size: 0.8rem;\">BROAD VEEPOO COMPATIBILITY</span>\n              <span style=\"background: #2563eb; color: #fff; font-size: 0.65rem; font-weight: bold; padding: 2px 6px; border-radius: 3px;\">HBANDSDK</span>\n            </div>\n            <div style=\"font-size: 0.72rem; color: #1e3a8a; margin-top: 3px; line-height: 1.35;\">\n              Engineered by Google Gemini Pro using the open-source HBandSDK and Veepoo protocol repositories, enabling seamless plug-and-play support across dozens of Veepoo watch models (5010, RIG, G20, B20, E04).\n            </div>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_vitals.png",
-    "tab_title": "FITAOS 5150 HARDWARE TRANSPONDER & LCARS CONSOLE"
+    "tab_title": "FITAOS 5150 HARDWARE TRANSPONDER & LCARS CONSOLE",
+    "step_focus": [
+      {
+        "bullet": 0,
+        "focus_desc": "Topic 1 Overview & Core Telemetry Target",
+        "scroll_pct": 0.0
+      },
+      {
+        "bullet": 1,
+        "focus_desc": "Topic 2 Ambulatory Evidence & Biometric Dynamics",
+        "scroll_pct": 0.4
+      },
+      {
+        "bullet": 2,
+        "focus_desc": "Topic 3 Clinical Translation & Patient Outcome",
+        "scroll_pct": 0.8
+      }
+    ]
   },
   {
     "id": 4,
@@ -141,7 +192,24 @@
     "right_badge_col": "#15803d",
     "right_html": "\n          <div style=\"display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px;\">\n            <div style=\"background:#f0fdf4; border:1.5px solid #bbf7d0; border-radius:4px; padding:8px;\">\n              <div style=\"color:#16a34a; font-weight:800; font-size:0.75rem;\">AIR-GAPPED LOCAL PC</div>\n              <div style=\"font-size:1rem; font-weight:800; color:#14532d; font-family:monospace;\">LOCALHOST:8899</div>\n              <div style=\"font-size:0.7rem; color:#14532d; margin-top:4px;\">SQLite + LocalStorage with zero cloud egress.</div>\n            </div>\n            <div style=\"background:#fff1f2; border:1.5px solid #fecdd3; border-radius:4px; padding:8px;\">\n              <div style=\"color:#e11d48; font-weight:800; font-size:0.75rem;\">COMMERCIAL CLOUDS</div>\n              <div style=\"font-size:1rem; font-weight:800; color:#9f1239; font-family:monospace;\">BLOCKED & DISABLED</div>\n              <div style=\"font-size:0.7rem; color:#881337; margin-top:4px;\">Zero third-party trackers, subscriptions, or telemetry ads.</div>\n            </div>\n          </div>\n          <div style=\"margin-top:10px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:4px; padding:8px; font-family:monospace; font-size:0.75rem; color:#15803d; font-weight:bold;\">\n            Data Policy: 100% Patient Sovereignty \u2022 HIPAA-Compliant Air Gap\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_operations.png",
-    "tab_title": "07-OPERATIONS CONSOLE \u2022 AIR-GAPPED DATA VAULT"
+    "tab_title": "07-OPERATIONS CONSOLE \u2022 AIR-GAPPED DATA VAULT",
+    "step_focus": [
+      {
+        "bullet": 0,
+        "focus_desc": "Topic 1 Overview & Core Telemetry Target",
+        "scroll_pct": 0.0
+      },
+      {
+        "bullet": 1,
+        "focus_desc": "Topic 2 Ambulatory Evidence & Biometric Dynamics",
+        "scroll_pct": 0.4
+      },
+      {
+        "bullet": 2,
+        "focus_desc": "Topic 3 Clinical Translation & Patient Outcome",
+        "scroll_pct": 0.8
+      }
+    ]
   },
   {
     "id": 5,
@@ -171,7 +239,24 @@
     "right_badge_col": "#0284c7",
     "right_html": "\n          <div style=\"display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px;\">\n            <div style=\"background:#f8fafc; padding:8px; border-radius:4px; border:1px solid #e2e8f0;\">\n              <div style=\"font-size:0.7rem; color:#64748b; font-weight:bold;\">PRIMARY METRIC</div>\n              <div style=\"font-size:1.1rem; font-weight:800; color:#15803d; font-family:monospace;\">HbA1c &lt; 6.8%</div>\n            </div>\n            <div style=\"background:#f8fafc; padding:8px; border-radius:4px; border:1px solid #e2e8f0;\">\n              <div style=\"font-size:0.7rem; color:#64748b; font-weight:bold;\">TIME-IN-RANGE (TIR)</div>\n              <div style=\"font-size:1.1rem; font-weight:800; color:#0284c7; font-family:monospace;\">&gt; 70.0%</div>\n            </div>\n            <div style=\"background:#f8fafc; padding:8px; border-radius:4px; border:1px solid #e2e8f0;\">\n              <div style=\"font-size:0.7rem; color:#64748b; font-weight:bold;\">GLYCEMIC HARBOR</div>\n              <div style=\"font-size:1.1rem; font-weight:800; color:#d97706; font-family:monospace;\">60 - 200 MG/DL</div>\n            </div>\n            <div style=\"background:#f8fafc; padding:8px; border-radius:4px; border:1px solid #e2e8f0;\">\n              <div style=\"font-size:0.7rem; color:#64748b; font-weight:bold;\">HYPOGLYCEMIA LIMIT</div>\n              <div style=\"font-size:1.1rem; font-weight:800; color:#dc2626; font-family:monospace;\">&lt; 60 MG/DL (0%)</div>\n            </div>\n          </div>\n          <div style=\"margin-top:10px; background:#eff6ff; border:1px solid #bfdbfe; border-radius:4px; padding:8px; font-size:0.75rem; color:#1e3a8a;\">\n            Consensus: ADA/EASD 2024 Standards of Care for Continuous Telemetry.\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_metabolic.png",
-    "tab_title": "03-METABOLIC CONSOLE \u2022 GLYCEMIC TARGET HORIZON"
+    "tab_title": "03-METABOLIC CONSOLE \u2022 GLYCEMIC TARGET HORIZON",
+    "step_focus": [
+      {
+        "bullet": 0,
+        "focus_desc": "Topic 1 Overview & Core Telemetry Target",
+        "scroll_pct": 0.0
+      },
+      {
+        "bullet": 1,
+        "focus_desc": "Topic 2 Ambulatory Evidence & Biometric Dynamics",
+        "scroll_pct": 0.4
+      },
+      {
+        "bullet": 2,
+        "focus_desc": "Topic 3 Clinical Translation & Patient Outcome",
+        "scroll_pct": 0.8
+      }
+    ]
   },
   {
     "id": 6,
@@ -201,7 +286,24 @@
     "right_badge_col": "#0284c7",
     "right_html": "\n          <div style=\"margin-top:10px; background:#f0f9ff; border:1.5px solid #bae6fd; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.15rem; font-weight:800; color:#0369a1; font-family:monospace;\">COLLABORATIVE CARE ACTIVE (ATTENDING MD + PATIENT)</div>\n            <div style=\"font-size:0.84rem; color:#075985; margin-top:6px; line-height:1.45;\">Dual-view portal enabling shared review of 24-hour glycemic excursions, exercise kinetics, and medication response.</div>\n          </div>\n          <div style=\"margin-top:10px; display:grid; grid-template-columns:1fr 1fr; gap:6px; font-family:monospace; font-size:0.75rem;\">\n            <div style=\"background:#f8fafc; padding:6px; border-radius:3px; border:1px solid #e2e8f0;\">PATIENT VIEW: ACTIVE</div>\n            <div style=\"background:#f8fafc; padding:6px; border-radius:3px; border:1px solid #e2e8f0;\">MD AUDIT: READY</div>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_setup.png",
-    "tab_title": "05-CONFIG CONSOLE \u2022 TRANSPONDER BINDING & GATT"
+    "tab_title": "05-CONFIG CONSOLE \u2022 TRANSPONDER BINDING & GATT",
+    "step_focus": [
+      {
+        "bullet": 0,
+        "focus_desc": "Topic 1 Overview & Core Telemetry Target",
+        "scroll_pct": 0.0
+      },
+      {
+        "bullet": 1,
+        "focus_desc": "Topic 2 Ambulatory Evidence & Biometric Dynamics",
+        "scroll_pct": 0.4
+      },
+      {
+        "bullet": 2,
+        "focus_desc": "Topic 3 Clinical Translation & Patient Outcome",
+        "scroll_pct": 0.8
+      }
+    ]
   },
   {
     "id": 7,
@@ -231,7 +333,24 @@
     "right_badge_col": "#059669",
     "right_html": "\n          <div style=\"margin-top:10px; display:flex; flex-direction:column; gap:8px;\">\n            <div style=\"display:flex; justify-content:space-between; align-items:center; background:#fee2e2; border-left:4px solid #dc2626; padding:8px 12px; border-radius:4px;\">\n              <span style=\"font-size:0.82rem; font-weight:bold; color:#991b1b;\">Clinical Floor (Hypoglycemia Guard):</span>\n              <span style=\"font-family:monospace; font-size:0.9rem; color:#dc2626; font-weight:800;\">60 MG/DL</span>\n            </div>\n            <div style=\"display:flex; justify-content:space-between; align-items:center; background:#f0fdf4; border-left:4px solid #16a34a; padding:8px 12px; border-radius:4px;\">\n              <span style=\"font-size:0.82rem; font-weight:bold; color:#166534;\">Target Homeostasis Band:</span>\n              <span style=\"font-family:monospace; font-size:0.9rem; color:#15803d; font-weight:800;\">60 \u2013 200 MG/DL</span>\n            </div>\n            <div style=\"display:flex; justify-content:space-between; align-items:center; background:#fef3c7; border-left:4px solid #d97706; padding:8px 12px; border-radius:4px;\">\n              <span style=\"font-size:0.82rem; font-weight:bold; color:#92400e;\">Clinical Ceiling (Renal Threshold):</span>\n              <span style=\"font-family:monospace; font-size:0.9rem; color:#d97706; font-weight:800;\">200 MG/DL</span>\n            </div>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_log.png",
-    "tab_title": "06-DIAG LOG \u2022 SUBSPACE BLE PACKET INSPECTOR (F0080002/3)"
+    "tab_title": "06-DIAG LOG \u2022 SUBSPACE BLE PACKET INSPECTOR (F0080002/3)",
+    "step_focus": [
+      {
+        "bullet": 0,
+        "focus_desc": "Topic 1 Overview & Core Telemetry Target",
+        "scroll_pct": 0.0
+      },
+      {
+        "bullet": 1,
+        "focus_desc": "Topic 2 Ambulatory Evidence & Biometric Dynamics",
+        "scroll_pct": 0.4
+      },
+      {
+        "bullet": 2,
+        "focus_desc": "Topic 3 Clinical Translation & Patient Outcome",
+        "scroll_pct": 0.8
+      }
+    ]
   },
   {
     "id": 8,
@@ -261,7 +380,24 @@
     "right_badge_col": "#0284c7",
     "right_html": "\n          <div style=\"background:#eff6ff; border:1.5px solid #bfdbfe; border-radius:6px; padding:12px; margin-bottom:10px;\">\n            <div style=\"display:flex; justify-content:space-between; align-items:center;\">\n              <span style=\"font-size:0.85rem; font-weight:800; color:#1e40af; font-family:monospace;\">CLINICAL LAB ANCHOR (DOCTOR CONFIGURED)</span>\n              <span style=\"background:#2563eb; color:#fff; font-size:0.68rem; font-weight:bold; padding:2px 6px; border-radius:3px;\">ADAG STANDARD</span>\n            </div>\n            <div style=\"font-size:0.78rem; color:#1e3a8a; margin-top:6px; line-height:1.45;\">\n              Entered directly by the physician during setup. Optical absorption coefficients are mathematically calibrated to venous blood laboratory results.\n            </div>\n          </div>\n\n          <div style=\"background:#f8fafc; border:1px solid #cbd5e1; border-radius:6px; padding:10px; font-family:monospace; font-size:0.75rem; color:#334155;\">\n            <div style=\"font-weight:bold; color:#0284c7; margin-bottom:4px;\">ADA / ADAG CONSENSUS EQUATION:</div>\n            <div>eA1c (%) = [Mean Glucose (mg/dL) + 46.7] / 28.7</div>\n            <div style=\"margin-top:6px; color:#64748b; font-size:0.72rem;\">Precision Tracking \u2022 High-Resolution 288 Continuous Daily Samples</div>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_setup.png",
-    "tab_title": "05-CONFIG CONSOLE \u2022 DOCTOR CLINICAL CALIBRATION ANCHOR"
+    "tab_title": "05-CONFIG CONSOLE \u2022 DOCTOR CLINICAL CALIBRATION ANCHOR",
+    "step_focus": [
+      {
+        "bullet": 0,
+        "focus_desc": "Topic 1 Overview & Core Telemetry Target",
+        "scroll_pct": 0.0
+      },
+      {
+        "bullet": 1,
+        "focus_desc": "Topic 2 Ambulatory Evidence & Biometric Dynamics",
+        "scroll_pct": 0.4
+      },
+      {
+        "bullet": 2,
+        "focus_desc": "Topic 3 Clinical Translation & Patient Outcome",
+        "scroll_pct": 0.8
+      }
+    ]
   },
   {
     "id": 9,
@@ -291,7 +427,24 @@
     "right_badge_col": "#15803d",
     "right_html": "\n          <div style=\"margin-top:8px; display:flex; flex-direction:column; gap:8px;\">\n            <div style=\"display:flex; justify-content:space-between; align-items:center; background:#dcfce7; border-left:4px solid #16a34a; padding:8px 12px; border-radius:4px;\">\n              <span style=\"font-size:0.82rem; font-weight:bold; color:#166534;\">Private Calibrated Mode:</span>\n              <span style=\"font-family:monospace; font-size:0.85rem; color:#15803d; font-weight:800;\">ACTIVE (ENFORCED)</span>\n            </div>\n            <div style=\"display:flex; justify-content:space-between; align-items:center; background:#fee2e2; border-left:4px solid #dc2626; padding:8px 12px; border-radius:4px;\">\n              <span style=\"font-size:0.82rem; font-weight:bold; color:#991b1b;\">Generic Public Mode:</span>\n              <span style=\"font-family:monospace; font-size:0.85rem; color:#dc2626; font-weight:800;\">DISABLED (BLOCKED)</span>\n            </div>\n          </div>\n          <div style=\"margin-top:10px; font-size:0.78rem; color:#475569; background:#f8fafc; padding:8px; border-radius:4px;\">\n            \u2713 Ensures all glucose readings utilize patient-specific optical calibration coefficients.\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_operations.png",
-    "tab_title": "07-OPERATIONS CONSOLE \u2022 CIRCULAR FLASH STORAGE"
+    "tab_title": "07-OPERATIONS CONSOLE \u2022 CIRCULAR FLASH STORAGE",
+    "step_focus": [
+      {
+        "bullet": 0,
+        "focus_desc": "Topic 1 Overview & Core Telemetry Target",
+        "scroll_pct": 0.0
+      },
+      {
+        "bullet": 1,
+        "focus_desc": "Topic 2 Ambulatory Evidence & Biometric Dynamics",
+        "scroll_pct": 0.4
+      },
+      {
+        "bullet": 2,
+        "focus_desc": "Topic 3 Clinical Translation & Patient Outcome",
+        "scroll_pct": 0.8
+      }
+    ]
   },
   {
     "id": 10,
@@ -321,7 +474,24 @@
     "right_badge_col": "#0284c7",
     "right_html": "\n          <div style=\"display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px;\">\n            <div style=\"background:#f8fafc; padding:8px; border-radius:4px; border:1px solid #e2e8f0;\">\n              <div style=\"font-size:0.7rem; color:#64748b; font-weight:bold;\">SAMPLING FREQUENCY</div>\n              <div style=\"font-size:1.15rem; font-weight:800; color:#0284c7; font-family:monospace;\">5-MINUTE EPOCHS</div>\n            </div>\n            <div style=\"background:#f8fafc; padding:8px; border-radius:4px; border:1px solid #e2e8f0;\">\n              <div style=\"font-size:0.7rem; color:#64748b; font-weight:bold;\">DAILY DATA POINTS</div>\n              <div style=\"font-size:1.15rem; font-weight:800; color:#15803d; font-family:monospace;\">288 PER SENSOR</div>\n            </div>\n          </div>\n          <div style=\"margin-top:10px; background:#f1f5f9; padding:8px 10px; border-radius:4px; font-size:0.78rem; color:#334155; font-family:monospace;\">\n            Buffer: Circular SPI NOR Flash \u2022 Zero Packet Loss Architecture\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_setup.png",
-    "tab_title": "05-CONFIG CONSOLE \u2022 BACKGROUND AUTO-LINK DAEMON"
+    "tab_title": "05-CONFIG CONSOLE \u2022 BACKGROUND AUTO-LINK DAEMON",
+    "step_focus": [
+      {
+        "bullet": 0,
+        "focus_desc": "Topic 1 Overview & Core Telemetry Target",
+        "scroll_pct": 0.0
+      },
+      {
+        "bullet": 1,
+        "focus_desc": "Topic 2 Ambulatory Evidence & Biometric Dynamics",
+        "scroll_pct": 0.4
+      },
+      {
+        "bullet": 2,
+        "focus_desc": "Topic 3 Clinical Translation & Patient Outcome",
+        "scroll_pct": 0.8
+      }
+    ]
   },
   {
     "id": 11,
@@ -351,7 +521,24 @@
     "right_badge_col": "#dc2626",
     "right_html": "\n          <div style=\"display:flex; align-items:baseline; gap:8px; margin-top:8px;\">\n            <div style=\"font-size:2.8rem; font-weight:900; color:#dc2626; font-family:monospace; line-height:1;\">182</div>\n            <div style=\"font-size:1rem; font-weight:800; color:#64748b;\">MG/DL</div>\n          </div>\n          <div style=\"margin-top:10px; display:grid; grid-template-columns:1fr 1fr; gap:8px;\">\n            <div style=\"background:#f8fafc; padding:6px 10px; border-radius:4px; border:1px solid #e2e8f0; font-size:0.8rem; font-weight:bold; color:#0f172a;\">Estimated A1C: 8.0%</div>\n            <div style=\"background:#f8fafc; padding:6px 10px; border-radius:4px; border:1px solid #e2e8f0; font-size:0.8rem; font-weight:bold; color:#0f172a;\">Target: 60 - 200 mg/dL</div>\n          </div>\n          <div style=\"margin-top:10px; font-size:0.75rem; color:#64748b; font-family:monospace; border-top:1px solid #e2e8f0; padding-top:6px;\">\n            Status: Optimal Glycemic Stability \u2022 ADAG Formula Validated\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_vitals.png",
-    "tab_title": "01-VITALS CONSOLE \u2022 OPTICAL TONOMETRY SAMPLING"
+    "tab_title": "01-VITALS CONSOLE \u2022 OPTICAL TONOMETRY SAMPLING",
+    "step_focus": [
+      {
+        "bullet": 0,
+        "focus_desc": "Topic 1 Overview & Core Telemetry Target",
+        "scroll_pct": 0.0
+      },
+      {
+        "bullet": 1,
+        "focus_desc": "Topic 2 Ambulatory Evidence & Biometric Dynamics",
+        "scroll_pct": 0.4
+      },
+      {
+        "bullet": 2,
+        "focus_desc": "Topic 3 Clinical Translation & Patient Outcome",
+        "scroll_pct": 0.8
+      }
+    ]
   },
   {
     "id": 12,
@@ -381,7 +568,24 @@
     "right_badge_col": "#0284c7",
     "right_html": "\n          <div style=\"display:flex; align-items:baseline; gap:8px; margin-top:8px;\">\n            <div style=\"font-size:2.8rem; font-weight:900; color:#0284c7; font-family:monospace; line-height:1;\">97.2\u00b0</div>\n            <div style=\"font-size:1rem; font-weight:800; color:#64748b;\">CORE \u00b0F</div>\n          </div>\n          <div style=\"margin-top:10px; display:grid; grid-template-columns:1fr 1fr; gap:8px;\">\n            <div style=\"background:#f8fafc; padding:6px 10px; border-radius:4px; border:1px solid #e2e8f0; font-size:0.8rem; font-weight:bold; color:#0f172a;\">Skin Temp: 92.4\u00b0F</div>\n            <div style=\"background:#f8fafc; padding:6px 10px; border-radius:4px; border:1px solid #e2e8f0; font-size:0.8rem; font-weight:bold; color:#0f172a;\">Delta: 4.8\u00b0F Offset</div>\n          </div>\n          <div style=\"margin-top:10px; font-size:0.75rem; color:#64748b; font-family:monospace; border-top:1px solid #e2e8f0; padding-top:6px;\">\n            Circadian Assessment: Cold-Blooded Baseline Nominal\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_vitals.png",
-    "tab_title": "01-VITALS CONSOLE \u2022 RED/IR ARTERIAL SPO2 SENSING"
+    "tab_title": "01-VITALS CONSOLE \u2022 RED/IR ARTERIAL SPO2 SENSING",
+    "step_focus": [
+      {
+        "bullet": 0,
+        "focus_desc": "Topic 1 Overview & Core Telemetry Target",
+        "scroll_pct": 0.0
+      },
+      {
+        "bullet": 1,
+        "focus_desc": "Topic 2 Ambulatory Evidence & Biometric Dynamics",
+        "scroll_pct": 0.4
+      },
+      {
+        "bullet": 2,
+        "focus_desc": "Topic 3 Clinical Translation & Patient Outcome",
+        "scroll_pct": 0.8
+      }
+    ]
   },
   {
     "id": 13,
@@ -411,7 +615,24 @@
     "right_badge_col": "#d97706",
     "right_html": "\n          <div style=\"display:flex; align-items:baseline; gap:8px; margin-top:8px;\">\n            <div style=\"font-size:2.8rem; font-weight:900; color:#d97706; font-family:monospace; line-height:1;\">118 / 76</div>\n            <div style=\"font-size:1rem; font-weight:800; color:#64748b;\">MMHG</div>\n          </div>\n          <div style=\"margin-top:10px; display:grid; grid-template-columns:1fr 1fr; gap:8px;\">\n            <div style=\"background:#f8fafc; padding:6px 10px; border-radius:4px; border:1px solid #e2e8f0; font-size:0.8rem; font-weight:bold; color:#0f172a;\">Mean Arterial: 90 mmHg</div>\n            <div style=\"background:#f8fafc; padding:6px 10px; border-radius:4px; border:1px solid #e2e8f0; font-size:0.8rem; font-weight:bold; color:#0f172a;\">Status: Normative Dipping</div>\n          </div>\n          <div style=\"margin-top:10px; font-size:0.75rem; color:#64748b; font-family:monospace; border-top:1px solid #e2e8f0; padding-top:6px;\">\n            Method: Pulse Wave Transit Time Oscillometry\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_cardio.png",
-    "tab_title": "02-CARDIO CONSOLE \u2022 PWTT ARTERIAL BLOOD PRESSURE"
+    "tab_title": "02-CARDIO CONSOLE \u2022 PWTT ARTERIAL BLOOD PRESSURE",
+    "step_focus": [
+      {
+        "bullet": 0,
+        "focus_desc": "Topic 1 Overview & Core Telemetry Target",
+        "scroll_pct": 0.0
+      },
+      {
+        "bullet": 1,
+        "focus_desc": "Topic 2 Ambulatory Evidence & Biometric Dynamics",
+        "scroll_pct": 0.4
+      },
+      {
+        "bullet": 2,
+        "focus_desc": "Topic 3 Clinical Translation & Patient Outcome",
+        "scroll_pct": 0.8
+      }
+    ]
   },
   {
     "id": 14,
@@ -441,7 +662,24 @@
     "right_badge_col": "#15803d",
     "right_html": "\n          <div style=\"display:flex; align-items:baseline; gap:8px; margin-top:8px;\">\n            <div style=\"font-size:2.8rem; font-weight:900; color:#15803d; font-family:monospace; line-height:1;\">98%</div>\n            <div style=\"font-size:1rem; font-weight:800; color:#64748b;\">SATURATION</div>\n          </div>\n          <div style=\"margin-top:10px; display:grid; grid-template-columns:1fr 1fr; gap:8px;\">\n            <div style=\"background:#f8fafc; padding:6px 10px; border-radius:4px; border:1px solid #e2e8f0; font-size:0.8rem; font-weight:bold; color:#0f172a;\">Respiration: 16 RPM</div>\n            <div style=\"background:#f8fafc; padding:6px 10px; border-radius:4px; border:1px solid #e2e8f0; font-size:0.8rem; font-weight:bold; color:#0f172a;\">Apnea Index: Normal</div>\n          </div>\n          <div style=\"margin-top:10px; font-size:0.75rem; color:#64748b; font-family:monospace; border-top:1px solid #e2e8f0; padding-top:6px;\">\n            Sensors: 660nm Red / 940nm Infrared Continuous Reflectance\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_cardio.png",
-    "tab_title": "02-CARDIO CONSOLE \u2022 PWTT AMBULATORY BLOOD PRESSURE"
+    "tab_title": "02-CARDIO CONSOLE \u2022 PWTT AMBULATORY BLOOD PRESSURE",
+    "step_focus": [
+      {
+        "bullet": 0,
+        "focus_desc": "Topic 1 Overview & Core Telemetry Target",
+        "scroll_pct": 0.0
+      },
+      {
+        "bullet": 1,
+        "focus_desc": "Topic 2 Ambulatory Evidence & Biometric Dynamics",
+        "scroll_pct": 0.4
+      },
+      {
+        "bullet": 2,
+        "focus_desc": "Topic 3 Clinical Translation & Patient Outcome",
+        "scroll_pct": 0.8
+      }
+    ]
   },
   {
     "id": 15,
@@ -471,7 +709,24 @@
     "right_badge_col": "#4f46e5",
     "right_html": "\n          <div style=\"display:flex; align-items:baseline; gap:8px; margin-top:8px;\">\n            <div style=\"font-size:2.8rem; font-weight:900; color:#4f46e5; font-family:monospace; line-height:1;\">64</div>\n            <div style=\"font-size:1rem; font-weight:800; color:#64748b;\">MS SDNN</div>\n          </div>\n          <div style=\"margin-top:10px; display:grid; grid-template-columns:1fr 1fr; gap:8px;\">\n            <div style=\"background:#f8fafc; padding:6px 10px; border-radius:4px; border:1px solid #e2e8f0; font-size:0.8rem; font-weight:bold; color:#0f172a;\">Stress Score: Low (22)</div>\n            <div style=\"background:#f8fafc; padding:6px 10px; border-radius:4px; border:1px solid #e2e8f0; font-size:0.8rem; font-weight:bold; color:#0f172a;\">Tone: Vagal Dominance</div>\n          </div>\n          <div style=\"margin-top:10px; font-size:0.75rem; color:#64748b; font-family:monospace; border-top:1px solid #e2e8f0; padding-top:6px;\">\n            Status: Autonomic Recovery Optimal \u2022 Rest & Repair Active\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_cardio.png",
-    "tab_title": "02-CARDIO CONSOLE \u2022 AUTONOMIC HRV & STRESS MATRIX"
+    "tab_title": "02-CARDIO CONSOLE \u2022 AUTONOMIC HRV & STRESS MATRIX",
+    "step_focus": [
+      {
+        "bullet": 0,
+        "focus_desc": "Topic 1 Overview & Core Telemetry Target",
+        "scroll_pct": 0.0
+      },
+      {
+        "bullet": 1,
+        "focus_desc": "Topic 2 Ambulatory Evidence & Biometric Dynamics",
+        "scroll_pct": 0.4
+      },
+      {
+        "bullet": 2,
+        "focus_desc": "Topic 3 Clinical Translation & Patient Outcome",
+        "scroll_pct": 0.8
+      }
+    ]
   },
   {
     "id": 16,
@@ -501,7 +756,24 @@
     "right_badge_col": "#ca8a04",
     "right_html": "\n          <div style=\"margin-top:10px; background:#fefce8; border:1.5px solid #fef08a; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.15rem; font-weight:800; color:#854d0e; font-family:monospace;\">GLUCOSE 182 \u2022 HR 68 \u2022 TEMP 97.2\u00b0 \u2022 STEPS 2,384</div>\n            <div style=\"font-size:0.84rem; color:#713f12; margin-top:6px; line-height:1.45;\">Real-time unified synthesis correlating nutritional intake, exercise movement, and continuous physiological response.</div>\n          </div>\n          <div style=\"margin-top:10px; display:grid; grid-template-columns:1fr 1fr; gap:6px; font-family:monospace; font-size:0.76rem;\">\n            <div style=\"background:#f8fafc; padding:6px; border-radius:3px; border:1px solid #e2e8f0;\">POST-MEAL TARGET: &lt;180</div>\n            <div style=\"background:#f8fafc; padding:6px; border-radius:3px; border:1px solid #e2e8f0;\">GLUT4 EFFECT: -20 TO -40</div>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_metabolic.png",
-    "tab_title": "03-METABOLIC CONSOLE \u2022 24-HOUR CONTINUOUS CURVE"
+    "tab_title": "03-METABOLIC CONSOLE \u2022 24-HOUR CONTINUOUS CURVE",
+    "step_focus": [
+      {
+        "bullet": 0,
+        "focus_desc": "Topic 1 Overview & Core Telemetry Target",
+        "scroll_pct": 0.0
+      },
+      {
+        "bullet": 1,
+        "focus_desc": "Topic 2 Ambulatory Evidence & Biometric Dynamics",
+        "scroll_pct": 0.4
+      },
+      {
+        "bullet": 2,
+        "focus_desc": "Topic 3 Clinical Translation & Patient Outcome",
+        "scroll_pct": 0.8
+      }
+    ]
   },
   {
     "id": 17,
@@ -531,7 +803,24 @@
     "right_badge_col": "#ca8a04",
     "right_html": "\n          <div style=\"margin-top:10px; background:#fefce8; border:1.5px solid #fef08a; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.15rem; font-weight:800; color:#854d0e; font-family:monospace;\">MUSCLE CONTRACTION -> DIRECT UPTAKE</div>\n            <div style=\"font-size:0.84rem; color:#713f12; margin-top:6px; line-height:1.45;\">Mechanical stimulation triggers GLUT4 glucose transporter translocation to the muscle cell membrane, dropping blood sugar without pancreatic insulin.</div>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_metabolic.png",
-    "tab_title": "03-METABOLIC CONSOLE \u2022 ESTIMATED A1C (EA1C) PROJECTION"
+    "tab_title": "03-METABOLIC CONSOLE \u2022 ESTIMATED A1C (EA1C) PROJECTION",
+    "step_focus": [
+      {
+        "bullet": 0,
+        "focus_desc": "Topic 1 Overview & Core Telemetry Target",
+        "scroll_pct": 0.0
+      },
+      {
+        "bullet": 1,
+        "focus_desc": "Topic 2 Ambulatory Evidence & Biometric Dynamics",
+        "scroll_pct": 0.4
+      },
+      {
+        "bullet": 2,
+        "focus_desc": "Topic 3 Clinical Translation & Patient Outcome",
+        "scroll_pct": 0.8
+      }
+    ]
   },
   {
     "id": 18,
@@ -561,7 +850,24 @@
     "right_badge_col": "#15803d",
     "right_html": "\n          <div style=\"margin-top:10px; background:#f0fdf4; border:1.5px solid #bbf7d0; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.15rem; font-weight:800; color:#14532d; font-family:monospace;\">MORNING WALK: -27 MG/DL DROP</div>\n            <div style=\"font-size:0.84rem; color:#166534; margin-top:6px; line-height:1.45;\">32-minute walk at 08:30 (2,384 steps) reduced glucose from 192 mg/dL to 165 mg/dL. GLUT4 clearance verified.</div>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_metabolic.png",
-    "tab_title": "03-METABOLIC CONSOLE \u2022 NOCTURNAL DAWN PHENOMENON"
+    "tab_title": "03-METABOLIC CONSOLE \u2022 NOCTURNAL DAWN PHENOMENON",
+    "step_focus": [
+      {
+        "bullet": 0,
+        "focus_desc": "Topic 1 Overview & Core Telemetry Target",
+        "scroll_pct": 0.0
+      },
+      {
+        "bullet": 1,
+        "focus_desc": "Topic 2 Ambulatory Evidence & Biometric Dynamics",
+        "scroll_pct": 0.4
+      },
+      {
+        "bullet": 2,
+        "focus_desc": "Topic 3 Clinical Translation & Patient Outcome",
+        "scroll_pct": 0.8
+      }
+    ]
   },
   {
     "id": 19,
@@ -591,7 +897,24 @@
     "right_badge_col": "#ca8a04",
     "right_html": "\n          <div style=\"margin-top:10px; background:#fefce8; border:1.5px solid #fef08a; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.15rem; font-weight:800; color:#854d0e; font-family:monospace;\">LUNCH: 34g NET CARBS \u2022 +44 MG/DL SPIKE</div>\n            <div style=\"font-size:0.84rem; color:#713f12; margin-top:6px; line-height:1.45;\">Lunch at 12:30 produced a 44 mg/dL excursion, peaking at 232 mg/dL at 13:30 before settling.</div>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_metabolic.png",
-    "tab_title": "03-METABOLIC CONSOLE \u2022 GLUT4 EXERCISE POSTPRANDIAL CLEARANCE"
+    "tab_title": "03-METABOLIC CONSOLE \u2022 GLUT4 EXERCISE POSTPRANDIAL CLEARANCE",
+    "step_focus": [
+      {
+        "bullet": 0,
+        "focus_desc": "Topic 1 Overview & Core Telemetry Target",
+        "scroll_pct": 0.0
+      },
+      {
+        "bullet": 1,
+        "focus_desc": "Topic 2 Ambulatory Evidence & Biometric Dynamics",
+        "scroll_pct": 0.4
+      },
+      {
+        "bullet": 2,
+        "focus_desc": "Topic 3 Clinical Translation & Patient Outcome",
+        "scroll_pct": 0.8
+      }
+    ]
   },
   {
     "id": 20,
@@ -621,7 +944,24 @@
     "right_badge_col": "#059669",
     "right_html": "\n          <!-- Gemini AI Recipe & Seller Curator Card -->\n          <div style=\"background:#ecfdf5; border:1.5px solid #a7f3d0; border-radius:6px; padding:10px; margin-bottom:8px;\">\n            <div style=\"display:flex; justify-content:space-between; align-items:center;\">\n              <span style=\"font-weight:800; color:#065f46; font-size:0.82rem; font-family:monospace;\">GEMINI AI RECIPE & SELLER CURATOR</span>\n              <span style=\"background:#059669; color:#fff; font-size:0.65rem; font-weight:bold; padding:2px 6px; border-radius:3px;\">AI ASSISTED</span>\n            </div>\n            <div style=\"font-size:0.74rem; color:#047857; margin-top:4px; line-height:1.4;\">\n              Google Gemini Pro actively identifies ADA-compliant culinary recipes and links directly to verified commercial sellers offering diabetes-safe food, low-carb baking staples, and delicious zero-sugar drinks.\n            </div>\n          </div>\n\n          <!-- Smart 1-to-1 Food Trades Matrix -->\n          <div style=\"display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:8px;\">\n            <div style=\"background:#f8fafc; border:1px solid #cbd5e1; border-radius:4px; padding:6px 8px;\">\n              <div style=\"font-size:0.7rem; color:#dc2626; font-weight:bold;\">HIGH SPIKE FOOD</div>\n              <div style=\"font-size:0.78rem; font-weight:bold; color:#0f172a;\">White Bread / Rice</div>\n              <div style=\"font-size:0.68rem; color:#64748b;\">+48 mg/dL spike at 45 min</div>\n            </div>\n            <div style=\"background:#f0fdf4; border:1px solid #86efac; border-radius:4px; padding:6px 8px;\">\n              <div style=\"font-size:0.7rem; color:#15803d; font-weight:bold;\">GEMINI ADA SWAP</div>\n              <div style=\"font-size:0.78rem; font-weight:bold; color:#14532d;\">Cauliflower / Quinoa</div>\n              <div style=\"font-size:0.68rem; color:#15803d;\">Blunts peak by 38 mg/dL</div>\n            </div>\n            <div style=\"background:#f8fafc; border:1px solid #cbd5e1; border-radius:4px; padding:6px 8px;\">\n              <div style=\"font-size:0.7rem; color:#dc2626; font-weight:bold;\">HIGH SUGAR DRINK</div>\n              <div style=\"font-size:0.78rem; font-weight:bold; color:#0f172a;\">Sweet Tea / Soda</div>\n              <div style=\"font-size:0.68rem; color:#64748b;\">+65 mg/dL rapid spike</div>\n            </div>\n            <div style=\"background:#f0fdf4; border:1px solid #86efac; border-radius:4px; padding:6px 8px;\">\n              <div style=\"font-size:0.7rem; color:#15803d; font-weight:bold;\">GEMINI ADA SWAP</div>\n              <div style=\"font-size:0.78rem; font-weight:bold; color:#14532d;\">Stevia Botanical Infusion</div>\n              <div style=\"font-size:0.68rem; color:#15803d;\">0 mg/dL glycemic excursion</div>\n            </div>\n          </div>\n\n          <div style=\"background:#fdf4ff; border:1px solid #f0abfc; border-radius:4px; padding:6px 8px; font-size:0.72rem; color:#701a75;\">\n            <strong>Verified Sellers Directory:</strong> Sourced by Gemini to help patients order tested monk fruit, lupin flour, and artisan keto staples effortlessly.\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_diettrades.png",
-    "tab_title": "09-ADA DIET TRADES & GEMINI AI NUTRITION ENGINE"
+    "tab_title": "09-ADA DIET TRADES & GEMINI AI NUTRITION ENGINE",
+    "step_focus": [
+      {
+        "bullet": 0,
+        "focus_desc": "Topic 1 Overview & Core Telemetry Target",
+        "scroll_pct": 0.0
+      },
+      {
+        "bullet": 1,
+        "focus_desc": "Topic 2 Ambulatory Evidence & Biometric Dynamics",
+        "scroll_pct": 0.4
+      },
+      {
+        "bullet": 2,
+        "focus_desc": "Topic 3 Clinical Translation & Patient Outcome",
+        "scroll_pct": 0.8
+      }
+    ]
   },
   {
     "id": 21,
@@ -651,7 +991,24 @@
     "right_badge_col": "#0284c7",
     "right_html": "\n          <div style=\"margin-top:10px; background:#f0f9ff; border:1.5px solid #bae6fd; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#0369a1; font-family:monospace;\">PEAK LATENCY: 65 MIN \u2022 CLEARANCE: 1.1 MG/DL/MIN</div>\n            <div style=\"font-size:0.84rem; color:#075985; margin-top:6px; line-height:1.45;\">Empirical mathematical modeling of your individual carbohydrate absorption and active clearance kinetics.</div>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_metabolic.png",
-    "tab_title": "03-METABOLIC CONSOLE \u2022 GLYCEMIC DYNAMICS ENGINE"
+    "tab_title": "03-METABOLIC CONSOLE \u2022 GLYCEMIC DYNAMICS ENGINE",
+    "step_focus": [
+      {
+        "bullet": 0,
+        "focus_desc": "Topic 1 Overview & Core Telemetry Target",
+        "scroll_pct": 0.0
+      },
+      {
+        "bullet": 1,
+        "focus_desc": "Topic 2 Ambulatory Evidence & Biometric Dynamics",
+        "scroll_pct": 0.4
+      },
+      {
+        "bullet": 2,
+        "focus_desc": "Topic 3 Clinical Translation & Patient Outcome",
+        "scroll_pct": 0.8
+      }
+    ]
   },
   {
     "id": 22,
@@ -681,7 +1038,24 @@
     "right_badge_col": "#ca8a04",
     "right_html": "\n          <div style=\"margin-top:10px; background:#fefce8; border:1.5px solid #fef08a; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#854d0e; font-family:monospace;\">04:00 NADIR: 162 -> 07:00 FASTING: 174</div>\n            <div style=\"font-size:0.84rem; color:#713f12; margin-top:6px; line-height:1.45;\">Continuous 00:00 to 06:00 tracking distinguishes Somogyi rebound from hepatic Dawn Phenomenon with clinical certainty.</div>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_cardio.png",
-    "tab_title": "02-CARDIO CONSOLE \u2022 AUTONOMIC SYMPATHO-VAGAL BALANCE"
+    "tab_title": "02-CARDIO CONSOLE \u2022 AUTONOMIC SYMPATHO-VAGAL BALANCE",
+    "step_focus": [
+      {
+        "bullet": 0,
+        "focus_desc": "Topic 1 Overview & Core Telemetry Target",
+        "scroll_pct": 0.0
+      },
+      {
+        "bullet": 1,
+        "focus_desc": "Topic 2 Ambulatory Evidence & Biometric Dynamics",
+        "scroll_pct": 0.4
+      },
+      {
+        "bullet": 2,
+        "focus_desc": "Topic 3 Clinical Translation & Patient Outcome",
+        "scroll_pct": 0.8
+      }
+    ]
   },
   {
     "id": 23,
@@ -711,7 +1085,24 @@
     "right_badge_col": "#7c3aed",
     "right_html": "\n          <div style=\"margin-top:10px; background:#f5f3ff; border:1.5px solid #ddd6fe; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#5b21b6; font-family:monospace;\">7.4 HOURS TOTAL \u2022 DEEP DELTA 1.9 HOURS</div>\n            <div style=\"font-size:0.84rem; color:#4c1d95; margin-top:6px; line-height:1.45;\">Restorative delta sleep lowers systemic morning cortisol, optimizing next-day peripheral insulin sensitivity.</div>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_cardio.png",
-    "tab_title": "02-CARDIO CONSOLE \u2022 NOCTURNAL HYPOXIA & BP EXCURSIONS"
+    "tab_title": "02-CARDIO CONSOLE \u2022 NOCTURNAL HYPOXIA & BP EXCURSIONS",
+    "step_focus": [
+      {
+        "bullet": 0,
+        "focus_desc": "Topic 1 Overview & Core Telemetry Target",
+        "scroll_pct": 0.0
+      },
+      {
+        "bullet": 1,
+        "focus_desc": "Topic 2 Ambulatory Evidence & Biometric Dynamics",
+        "scroll_pct": 0.4
+      },
+      {
+        "bullet": 2,
+        "focus_desc": "Topic 3 Clinical Translation & Patient Outcome",
+        "scroll_pct": 0.8
+      }
+    ]
   },
   {
     "id": 24,
@@ -741,7 +1132,24 @@
     "right_badge_col": "#059669",
     "right_html": "\n          <div style=\"margin-top:10px; background:#ecfdf5; border:1.5px solid #a7f3d0; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#065f46; font-family:monospace;\">STEPS VS GLUCOSE: r = -0.79 CORRELATION</div>\n            <div style=\"font-size:0.84rem; color:#047857; margin-top:6px; line-height:1.45;\">Multi-variable mathematical alignment proves daily walking directly suppresses 24-hour mean glycemic load.</div>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_reports.png",
-    "tab_title": "04-REPORTS CONSOLE \u2022 BEHAVIORAL LOG & EVENT CORRELATION"
+    "tab_title": "04-REPORTS CONSOLE \u2022 BEHAVIORAL LOG & EVENT CORRELATION",
+    "step_focus": [
+      {
+        "bullet": 0,
+        "focus_desc": "Topic 1 Overview & Core Telemetry Target",
+        "scroll_pct": 0.0
+      },
+      {
+        "bullet": 1,
+        "focus_desc": "Topic 2 Ambulatory Evidence & Biometric Dynamics",
+        "scroll_pct": 0.4
+      },
+      {
+        "bullet": 2,
+        "focus_desc": "Topic 3 Clinical Translation & Patient Outcome",
+        "scroll_pct": 0.8
+      }
+    ]
   },
   {
     "id": 25,
@@ -774,8 +1182,27 @@
     "right_badge": "DIRECT EHR UPLOAD",
     "right_badge_col": "#0284c7",
     "right_html": "\n          <div style=\"margin-top:10px; background:#eff6ff; border:1.5px solid #bfdbfe; border-left:6px solid #0284c7; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#1e40af; font-family:monospace;\">1-CLICK PUSH TO DOCTOR'S EPIC SYSTEM</div>\n            <div style=\"font-size:0.84rem; color:#1e3a8a; margin-top:6px; line-height:1.45;\">Transmits certified HL7 FHIR continuous glucose tonometry, blood pressure dipping, and titration logs into permanent clinical records.</div>\n          </div>\n          <div style=\"margin-top:10px; display:flex; justify-content:space-between; font-family:monospace; font-size:0.75rem; background:#f8fafc; padding:6px 10px; border-radius:4px;\">\n            <span>EPIC STATUS:</span>\n            <span style=\"color:#15803d; font-weight:bold;\">COMMITTED TO PERMANENT CHART</span>\n          </div>\n        ",
-    "tab_screenshot": "images/lcars_tab_reports.png",
-    "tab_title": "04-REPORTS CONSOLE \u2022 HL7 FHIR R4 & EPIC MYCHART GATEWAY"
+    "tab_screenshot": "images/lcars_slide25_reports_overview.png",
+    "tab_title": "04-REPORTS CONSOLE \u2022 HL7 FHIR R4 & EPIC MYCHART GATEWAY",
+    "tab_num": 4,
+    "image": "images/lcars_slide25_reports_overview.png",
+    "step_focus": [
+      {
+        "bullet": 0,
+        "focus_desc": "Reports Console Top Header & Outpatient Clinical Flowsheet Overview",
+        "scroll_pct": 0.0
+      },
+      {
+        "bullet": 1,
+        "focus_desc": "Clinical Safety Contraindication Alert: Not for Type 1 Insulin Dosing",
+        "scroll_pct": 0.35
+      },
+      {
+        "bullet": 2,
+        "focus_desc": "Epic EHR Ambulatory Integration & Automated Outpatient Flowsheet Export",
+        "scroll_pct": 0.7
+      }
+    ]
   },
   {
     "id": 26,
@@ -804,8 +1231,27 @@
     "right_badge": "ZERO-OVERLAP X-AXIS",
     "right_badge_col": "#059669",
     "right_html": "\n          <div style=\"margin-top:10px; background:#ecfdf5; border:1.5px solid #a7f3d0; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#065f46; font-family:monospace;\">MULTI-LINE STAGGERED TIMELINE LABELS</div>\n            <div style=\"font-size:0.84rem; color:#047857; margin-top:6px; line-height:1.45;\">Line 1 time ticks with alternating event badges give descriptions 128px of clearance with zero collision.</div>\n          </div>\n          <div style=\"margin-top:10px; font-family:monospace; font-size:0.75rem; color:#475569; background:#f8fafc; padding:6px 10px; border-radius:4px;\">\n            X-Axis: 00:00 -> 04:00 (Nadir) -> 07:00 (Fasting) -> 08:30 (Walk) -> 13:30 (Peak) -> 24:00\n          </div>\n        ",
-    "tab_screenshot": "images/lcars_tab_reports.png",
-    "tab_title": "04-REPORTS CONSOLE \u2022 360\u00b0 SYNCHRONIZED TALL CHART"
+    "tab_screenshot": "images/lcars_slide26_tall_chart_header.png",
+    "tab_title": "04-REPORTS CONSOLE \u2022 360\u00b0 SYNCHRONIZED TALL CHART",
+    "tab_num": 4,
+    "image": "images/lcars_slide26_tall_chart_header.png",
+    "step_focus": [
+      {
+        "bullet": 0,
+        "focus_desc": "Single Tall Synchronized Multi-Measurement Canvas Architecture",
+        "scroll_pct": 0.0
+      },
+      {
+        "bullet": 1,
+        "focus_desc": "Timeframe Selector Controls: Daily 24-hr, Weekly 7-day, Yearly 12-mo",
+        "scroll_pct": 0.35
+      },
+      {
+        "bullet": 2,
+        "focus_desc": "Vertical Temporal Alignment of Multiple Physiological Variables",
+        "scroll_pct": 0.75
+      }
+    ]
   },
   {
     "id": 27,
@@ -834,8 +1280,27 @@
     "right_badge": "COMPLETE 360\u00b0 AUDIT",
     "right_badge_col": "#0284c7",
     "right_html": "\n          <div style=\"margin-top:10px; background:#f0f9ff; border:1.5px solid #bae6fd; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#0369a1; font-family:monospace;\">8 SYNCHRONIZED MEASUREMENT LANES</div>\n            <div style=\"font-size:0.84rem; color:#075985; margin-top:6px; line-height:1.45;\">Glucose \u2022 eA1C \u2022 Core/Skin Temp \u2022 Sleep Hypnogram \u2022 Step Cadence \u2022 Heart Rate \u2022 Blood Pressure \u2022 SpO2</div>\n          </div>\n        ",
-    "tab_screenshot": "images/lcars_tab_reports.png",
-    "tab_title": "04-REPORTS CONSOLE \u2022 8 STACKED CONTINUOUS TELEMETRY LANES"
+    "tab_screenshot": "images/lcars_slide27_stacked_lanes.png",
+    "tab_title": "04-REPORTS CONSOLE \u2022 8 STACKED CONTINUOUS TELEMETRY LANES",
+    "tab_num": 4,
+    "image": "images/lcars_slide27_stacked_lanes.png",
+    "step_focus": [
+      {
+        "bullet": 0,
+        "focus_desc": "8 Stacked Measurement Lanes: Continuous Optical Glucose & Rolling eA1C",
+        "scroll_pct": 0.0
+      },
+      {
+        "bullet": 1,
+        "focus_desc": "Cardiovascular Bands: Dual-Band BP, Pulse Chronotropy & HRV SDNN",
+        "scroll_pct": 0.45
+      },
+      {
+        "bullet": 2,
+        "focus_desc": "Metabolic Baseline Lanes: Nocturnal SpO2, Dual-NTC Temp & Hourly Steps",
+        "scroll_pct": 0.85
+      }
+    ]
   },
   {
     "id": 28,
@@ -864,8 +1329,27 @@
     "right_badge": "13:30 CROSSHAIR",
     "right_badge_col": "#ca8a04",
     "right_html": "\n          <div style=\"margin-top:10px; background:#fefce8; border:1.5px solid #fef08a; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#854d0e; font-family:monospace;\">CROSSHAIR AT 13:30 (LUNCH PEAK: 232)</div>\n            <div style=\"font-size:0.84rem; color:#713f12; margin-top:6px; line-height:1.45;\">Scrubber cross-correlates 232 mg/dL excursion with 34g net carbs, 84 bpm cardiac load, and sedentary post-meal rest.</div>\n          </div>\n        ",
-    "tab_screenshot": "images/lcars_tab_reports.png",
-    "tab_title": "04-REPORTS CONSOLE \u2022 UNIFIED 24-HOUR TEMPORAL SCRUBBER"
+    "tab_screenshot": "images/lcars_slide28_scrubber_hud.png",
+    "tab_title": "04-REPORTS CONSOLE \u2022 UNIFIED 24-HOUR TEMPORAL SCRUBBER",
+    "tab_num": 4,
+    "image": "images/lcars_slide28_scrubber_hud.png",
+    "step_focus": [
+      {
+        "bullet": 0,
+        "focus_desc": "Interactive Vertical Timeline Scrubber & Drag Control",
+        "scroll_pct": 0.0
+      },
+      {
+        "bullet": 1,
+        "focus_desc": "Synchronized Multi-Parameter HUD Ribbon Readout at Timestamp",
+        "scroll_pct": 0.4
+      },
+      {
+        "bullet": 2,
+        "focus_desc": "Immediate Cross-Correlation of Meals, Exercise, and Glycemic Deflections",
+        "scroll_pct": 0.8
+      }
+    ]
   },
   {
     "id": 29,
@@ -894,8 +1378,27 @@
     "right_badge": "INSTANT MICRO-AUDIT",
     "right_badge_col": "#15803d",
     "right_html": "\n          <div style=\"margin-top:10px; background:#f0fdf4; border:1.5px solid #bbf7d0; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#14532d; font-family:monospace;\">POINT 10:00: 165 MG/DL (-27 MG/DL DROP)</div>\n            <div style=\"font-size:0.84rem; color:#166534; margin-top:6px; line-height:1.45;\">Pop-up micro-audit verifies 2,384 morning walk steps successfully lowered glucose from 192 to 165 mg/dL.</div>\n          </div>\n        ",
-    "tab_screenshot": "images/lcars_tab_reports.png",
-    "tab_title": "04-REPORTS CONSOLE \u2022 CLICK-TO-POP CLINICAL POINT CARDS"
+    "tab_screenshot": "images/lcars_slide29_point_cards.png",
+    "tab_title": "04-REPORTS CONSOLE \u2022 CLICK-TO-POP CLINICAL POINT CARDS",
+    "tab_num": 4,
+    "image": "images/lcars_slide29_point_cards.png",
+    "step_focus": [
+      {
+        "bullet": 0,
+        "focus_desc": "Click-to-Pop Clinical Point Card Modal Architecture",
+        "scroll_pct": 0.0
+      },
+      {
+        "bullet": 1,
+        "focus_desc": "Instant Micro-Audit: Exact Glucose, BP, SpO2, HR at 13:30 Lunch Peak",
+        "scroll_pct": 0.4
+      },
+      {
+        "bullet": 2,
+        "focus_desc": "Meal Macro Breakdown & Direct Delta Glycemic Evaluation",
+        "scroll_pct": 0.8
+      }
+    ]
   },
   {
     "id": 30,
@@ -924,8 +1427,27 @@
     "right_badge": "PROGRESS VS REGRESSION",
     "right_badge_col": "#7c3aed",
     "right_html": "\n          <div style=\"margin-top:10px; background:#f5f3ff; border:1.5px solid #ddd6fe; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#5b21b6; font-family:monospace;\">FLAG: \ud83d\udc8a MED CHANGE PINNED (NOV 14)</div>\n            <div style=\"font-size:0.84rem; color:#4c1d95; margin-top:6px; line-height:1.45;\">Metformin ER titrated to 1000mg. Longitudinal comparison confirms average glucose dropped by 12 mg/dL. Progress verified.</div>\n          </div>\n        ",
-    "tab_screenshot": "images/lcars_tab_reports.png",
-    "tab_title": "04-REPORTS CONSOLE \u2022 PINNED MED CHANGE CLINICAL MILESTONES"
+    "tab_screenshot": "images/lcars_slide30_med_milestones.png",
+    "tab_title": "04-REPORTS CONSOLE \u2022 PINNED MED CHANGE CLINICAL MILESTONES",
+    "tab_num": 4,
+    "image": "images/lcars_slide30_med_milestones.png",
+    "step_focus": [
+      {
+        "bullet": 0,
+        "focus_desc": "Pinning '\ud83d\udc8a MED CHANGE' Vertical Milestone Markers Across Timeline",
+        "scroll_pct": 0.0
+      },
+      {
+        "bullet": 1,
+        "focus_desc": "Auditing Therapeutic Titration Efficacy: Progress vs Regression",
+        "scroll_pct": 0.45
+      },
+      {
+        "bullet": 2,
+        "focus_desc": "Objective Multi-Variable Evidence for Outpatient Prescribing Decisions",
+        "scroll_pct": 0.85
+      }
+    ]
   },
   {
     "id": 31,
@@ -1351,7 +1873,24 @@
     "right_badge_col": "#7c3aed",
     "right_html": "\n          <div style=\"margin-top:10px; background:#f5f3ff; border:1.5px solid #ddd6fe; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#5b21b6; font-family:monospace;\">8 ACTIVE MEDICATIONS TRACKED</div>\n            <div style=\"font-size:0.84rem; color:#4c1d95; margin-top:6px; line-height:1.45;\">Comprehensive schedule with dosage, timing, clinical indications, and titration compliance records.</div>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_medication.png",
-    "tab_title": "11-MEDICATION CONSOLE \u2022 ACTIVE PHARMACOLOGICAL ROSTER"
+    "tab_title": "11-MEDICATION CONSOLE \u2022 ACTIVE PHARMACOLOGICAL ROSTER",
+    "step_focus": [
+      {
+        "bullet": 0,
+        "focus_desc": "Topic 1 Overview & Core Telemetry Target",
+        "scroll_pct": 0.0
+      },
+      {
+        "bullet": 1,
+        "focus_desc": "Topic 2 Ambulatory Evidence & Biometric Dynamics",
+        "scroll_pct": 0.4
+      },
+      {
+        "bullet": 2,
+        "focus_desc": "Topic 3 Clinical Translation & Patient Outcome",
+        "scroll_pct": 0.8
+      }
+    ]
   },
   {
     "id": 41,
@@ -1381,7 +1920,24 @@
     "right_badge_col": "#7c3aed",
     "right_html": "\n          <div style=\"margin-top:10px; background:#f5f3ff; border:1.5px solid #ddd6fe; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#5b21b6; font-family:monospace;\">INTAKE 1 (MORNING) \u2022 INTAKE 2 (EVENING)</div>\n            <div style=\"font-size:0.84rem; color:#4c1d95; margin-top:6px; line-height:1.45;\">Intake 1: Metformin, Glipizide, Empagliflozin, Lisinopril, Statins. Intake 2: Evening Metformin & Omega-3. Clean scrollable lists.</div>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_medication.png",
-    "tab_title": "11-MEDICATION CONSOLE \u2022 MORNING & EVENING DOSING SUITES"
+    "tab_title": "11-MEDICATION CONSOLE \u2022 MORNING & EVENING DOSING SUITES",
+    "step_focus": [
+      {
+        "bullet": 0,
+        "focus_desc": "Topic 1 Overview & Core Telemetry Target",
+        "scroll_pct": 0.0
+      },
+      {
+        "bullet": 1,
+        "focus_desc": "Topic 2 Ambulatory Evidence & Biometric Dynamics",
+        "scroll_pct": 0.4
+      },
+      {
+        "bullet": 2,
+        "focus_desc": "Topic 3 Clinical Translation & Patient Outcome",
+        "scroll_pct": 0.8
+      }
+    ]
   },
   {
     "id": 42,
@@ -1411,7 +1967,24 @@
     "right_badge_col": "#059669",
     "right_html": "\n          <div style=\"margin-top:10px; background:#ecfdf5; border:1.5px solid #a7f3d0; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#065f46; font-family:monospace;\">DOSE ADJUSTMENTS SYNCHRONIZED</div>\n            <div style=\"font-size:0.84rem; color:#047857; margin-top:6px; line-height:1.45;\">Adjusting doses triggers auto-pinning of medication milestones on longitudinal charts with 96.4% recorded adherence.</div>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_medication.png",
-    "tab_title": "11-MEDICATION CONSOLE \u2022 GRANULAR TITRATION & ADHERENCE"
+    "tab_title": "11-MEDICATION CONSOLE \u2022 GRANULAR TITRATION & ADHERENCE",
+    "step_focus": [
+      {
+        "bullet": 0,
+        "focus_desc": "Topic 1 Overview & Core Telemetry Target",
+        "scroll_pct": 0.0
+      },
+      {
+        "bullet": 1,
+        "focus_desc": "Topic 2 Ambulatory Evidence & Biometric Dynamics",
+        "scroll_pct": 0.4
+      },
+      {
+        "bullet": 2,
+        "focus_desc": "Topic 3 Clinical Translation & Patient Outcome",
+        "scroll_pct": 0.8
+      }
+    ]
   },
   {
     "id": 43,
@@ -1441,7 +2014,24 @@
     "right_badge_col": "#0891b2",
     "right_html": "\n          <div style=\"margin-top:10px; background:#ecfeff; border:1.5px solid #a5f3fc; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#155e75; font-family:monospace;\">6-STAGE SEQUENTIAL DIAGNOSTICS</div>\n            <div style=\"font-size:0.84rem; color:#164e63; margin-top:6px; line-height:1.45;\">Stage 1: HR -> Stage 2: BP -> Stage 3: Temp -> Stage 4: SpO2 -> Stage 5: ECG -> Stage 6: Glucose. Non-interfering flow.</div>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_fullscan.png",
-    "tab_title": "12-FULL SCAN CONSOLE \u2022 6-STAGE CLINICAL DIAGNOSTIC"
+    "tab_title": "12-FULL SCAN CONSOLE \u2022 6-STAGE CLINICAL DIAGNOSTIC",
+    "step_focus": [
+      {
+        "bullet": 0,
+        "focus_desc": "Topic 1 Overview & Core Telemetry Target",
+        "scroll_pct": 0.0
+      },
+      {
+        "bullet": 1,
+        "focus_desc": "Topic 2 Ambulatory Evidence & Biometric Dynamics",
+        "scroll_pct": 0.4
+      },
+      {
+        "bullet": 2,
+        "focus_desc": "Topic 3 Clinical Translation & Patient Outcome",
+        "scroll_pct": 0.8
+      }
+    ]
   },
   {
     "id": 44,
@@ -1471,7 +2061,24 @@
     "right_badge_col": "#059669",
     "right_html": "\n          <div style=\"margin-top:10px; background:#ecfdf5; border:1.5px solid #a7f3d0; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#065f46; font-family:monospace;\">HR: 68 \u2022 BP: 118/76 \u2022 TEMP: 97.2\u00b0 \u2022 SPO2: 98% \u2022 GLU: 182</div>\n            <div style=\"font-size:0.84rem; color:#047857; margin-top:6px; line-height:1.45;\">Comprehensive multi-sensor audit completing in 120 seconds with immediate verification. All sensors nominal.</div>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_fullscan.png",
-    "tab_title": "12-FULL SCAN CONSOLE \u2022 LIVE PROGRESSION & DATA DISPATCH"
+    "tab_title": "12-FULL SCAN CONSOLE \u2022 LIVE PROGRESSION & DATA DISPATCH",
+    "step_focus": [
+      {
+        "bullet": 0,
+        "focus_desc": "Topic 1 Overview & Core Telemetry Target",
+        "scroll_pct": 0.0
+      },
+      {
+        "bullet": 1,
+        "focus_desc": "Topic 2 Ambulatory Evidence & Biometric Dynamics",
+        "scroll_pct": 0.4
+      },
+      {
+        "bullet": 2,
+        "focus_desc": "Topic 3 Clinical Translation & Patient Outcome",
+        "scroll_pct": 0.8
+      }
+    ]
   },
   {
     "id": 45,
@@ -1501,7 +2108,24 @@
     "right_badge_col": "#ea580c",
     "right_html": "\n          <div style=\"margin-top:10px; background:#fff7ed; border:1.5px solid #fed7aa; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#9a3412; font-family:monospace;\">AIR-GAPPED SQLITE VS REMOTE CLOUD SILOS</div>\n            <table style=\"width:100%; border-collapse:collapse; margin-top:8px; font-size:0.76rem;\">\n              <tr style=\"border-bottom:1px solid #fed7aa;\">\n                <td style=\"padding:4px; font-weight:bold; color:#7c2d12;\">Standard H-Band App:</td>\n                <td style=\"padding:4px; color:#991b1b;\">Proprietary cloud servers, phone-only, fragmented tabs</td>\n              </tr>\n              <tr>\n                <td style=\"padding:4px; font-weight:bold; color:#7c2d12;\">LCARS 5010 Console:</td>\n                <td style=\"padding:4px; color:#166534; font-weight:bold;\">100% Local SQLite, air-gapped privacy, PC workstation</td>\n              </tr>\n            </table>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_operations.png",
-    "tab_title": "07-OPERATIONS CONSOLE \u2022 H-BAND VS LCARS ARCHITECTURE"
+    "tab_title": "07-OPERATIONS CONSOLE \u2022 H-BAND VS LCARS ARCHITECTURE",
+    "step_focus": [
+      {
+        "bullet": 0,
+        "focus_desc": "Topic 1 Overview & Core Telemetry Target",
+        "scroll_pct": 0.0
+      },
+      {
+        "bullet": 1,
+        "focus_desc": "Topic 2 Ambulatory Evidence & Biometric Dynamics",
+        "scroll_pct": 0.4
+      },
+      {
+        "bullet": 2,
+        "focus_desc": "Topic 3 Clinical Translation & Patient Outcome",
+        "scroll_pct": 0.8
+      }
+    ]
   },
   {
     "id": 46,
@@ -1529,9 +2153,26 @@
     "right_header": "H-BAND VS LCARS: PART 2",
     "right_badge": "CALIBRATION & TIMELINES",
     "right_badge_col": "#ea580c",
-    "right_html": "\n          <div style=\"margin-top:10px; background:#fff7ed; border:1.5px solid #fed7aa; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#9a3412; font-family:monospace;\">8.3% ANCHOR & GLUT4 KINETICS VS RAW TOTALS</div>\n            <table style=\"width:100%; border-collapse:collapse; margin-top:8px; font-size:0.76rem;\">\n              <tr style=\"border-bottom:1px solid #fed7aa;\">\n                <td style=\"padding:4px; font-weight:bold; color:#7c2d12;\">Standard H-Band App:</td>\n                <td style=\"padding:4px; color:#991b1b;\">Generic population offset, isolated screens, no GLUT4 math</td>\n              </tr>\n              <tr>\n                <td style=\"padding:4px; font-weight:bold; color:#7c2d12;\">LCARS 5010 Console:</td>\n                <td style=\"padding:4px; color:#166534; font-weight:bold;\">8.3% Lab Anchor, 8-Lane Tall Chart, Direct \u0394G Drops</td>\n              </tr>\n            </table>\n          </div>\n        ",
+    "right_html": "\n          <div style=\"margin-top:10px; background:#fff7ed; border:1.5px solid #fed7aa; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#9a3412; font-family:monospace;\">DOCTOR LAB ANCHOR & GLUT4 KINETICS VS RAW TOTALS</div>\n            <table style=\"width:100%; border-collapse:collapse; margin-top:8px; font-size:0.76rem;\">\n              <tr style=\"border-bottom:1px solid #fed7aa;\">\n                <td style=\"padding:4px; font-weight:bold; color:#7c2d12;\">Standard H-Band App:</td>\n                <td style=\"padding:4px; color:#991b1b;\">Generic population offset, isolated screens, no GLUT4 math</td>\n              </tr>\n              <tr>\n                <td style=\"padding:4px; font-weight:bold; color:#7c2d12;\">LCARS 5010 Console:</td>\n                <td style=\"padding:4px; color:#166534; font-weight:bold;\">Doctor Lab Anchor, 8-Lane Tall Chart, Direct \u0394G Drops</td>\n              </tr>\n            </table>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_metabolic.png",
-    "tab_title": "03-METABOLIC CONSOLE \u2022 H-BAND VS LCARS CLINICAL ENGINES"
+    "tab_title": "03-METABOLIC CONSOLE \u2022 H-BAND VS LCARS CLINICAL ENGINES",
+    "step_focus": [
+      {
+        "bullet": 0,
+        "focus_desc": "Topic 1 Overview & Core Telemetry Target",
+        "scroll_pct": 0.0
+      },
+      {
+        "bullet": 1,
+        "focus_desc": "Topic 2 Ambulatory Evidence & Biometric Dynamics",
+        "scroll_pct": 0.4
+      },
+      {
+        "bullet": 2,
+        "focus_desc": "Topic 3 Clinical Translation & Patient Outcome",
+        "scroll_pct": 0.8
+      }
+    ]
   },
   {
     "id": 47,
@@ -1561,7 +2202,24 @@
     "right_badge_col": "#ea580c",
     "right_html": "\n          <div style=\"margin-top:10px; background:#fff7ed; border:1.5px solid #fed7aa; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#9a3412; font-family:monospace;\">SOLID WHITE 21:1 CONTRAST VS PASTEL DISPLAYS</div>\n            <table style=\"width:100%; border-collapse:collapse; margin-top:8px; font-size:0.76rem;\">\n              <tr style=\"border-bottom:1px solid #fed7aa;\">\n                <td style=\"padding:4px; font-weight:bold; color:#7c2d12;\">Standard H-Band App:</td>\n                <td style=\"padding:4px; color:#991b1b;\">Muted grays, washed-out pastels, tiny phone font sizes</td>\n              </tr>\n              <tr>\n                <td style=\"padding:4px; font-weight:bold; color:#7c2d12;\">LCARS 5010 Console:</td>\n                <td style=\"padding:4px; color:#166534; font-weight:bold;\">Solid white cards, 21:1 navy text, bold saturated numbers</td>\n              </tr>\n            </table>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_reports.png",
-    "tab_title": "04-REPORTS CONSOLE \u2022 DOCTOR-PATIENT SHARED CONSULTATION"
+    "tab_title": "04-REPORTS CONSOLE \u2022 DOCTOR-PATIENT SHARED CONSULTATION",
+    "step_focus": [
+      {
+        "bullet": 0,
+        "focus_desc": "Topic 1 Overview & Core Telemetry Target",
+        "scroll_pct": 0.0
+      },
+      {
+        "bullet": 1,
+        "focus_desc": "Topic 2 Ambulatory Evidence & Biometric Dynamics",
+        "scroll_pct": 0.4
+      },
+      {
+        "bullet": 2,
+        "focus_desc": "Topic 3 Clinical Translation & Patient Outcome",
+        "scroll_pct": 0.8
+      }
+    ]
   },
   {
     "id": 48,
@@ -1596,7 +2254,24 @@
     "right_html": "\n          <div style=\"display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px; margin-top:6px;\">\n            <div style=\"background:#f0fdf4; border:1.5px solid #bbf7d0; border-radius:4px; padding:6px;\">\n              <div style=\"font-size:0.65rem; color:#15803d; font-weight:800;\">1. YTD RECORD</div>\n              <div style=\"font-size:0.92rem; font-weight:800; color:#14532d; font-family:monospace; margin-top:2px;\">eA1C 6.7%</div>\n              <div style=\"font-size:0.65rem; color:#166534; margin-top:2px;\">Long-term trend from 8.8% \u2022 TIR 78.4%</div>\n            </div>\n            <div style=\"background:#f0f9ff; border:1.5px solid #bae6fd; border-radius:4px; padding:6px;\">\n              <div style=\"font-size:0.65rem; color:#0284c7; font-weight:800;\">2. MONTH (30-D)</div>\n              <div style=\"font-size:0.92rem; font-weight:800; color:#0369a1; font-family:monospace; margin-top:2px;\">138 MG/DL</div>\n              <div style=\"font-size:0.65rem; color:#0c4a6e; margin-top:2px;\">Variance \u00b124 mg/dL \u2022 0 Hypo events</div>\n            </div>\n            <div style=\"background:#fdf4ff; border:1.5px solid #f5d0fe; border-radius:4px; padding:6px;\">\n              <div style=\"font-size:0.65rem; color:#a21caf; font-weight:800;\">3. DAILY (24-H)</div>\n              <div style=\"font-size:0.92rem; font-weight:800; color:#86198f; font-family:monospace; margin-top:2px;\">288 PTS</div>\n              <div style=\"font-size:0.65rem; color:#701a75; margin-top:2px;\">Meal spikes & GLUT4 post-walk dips</div>\n            </div>\n          </div>\n          <div style=\"margin-top:10px; background:#f8fafc; border:1px solid #cbd5e1; border-radius:4px; padding:8px;\">\n            <div style=\"font-size:0.72rem; color:#475569; font-weight:bold; text-transform:uppercase;\">Outpatient Consultation Synthesis</div>\n            <div style=\"font-size:0.78rem; color:#0f172a; margin-top:3px; line-height:1.4;\">\n              Enables the attending physician to correlate long-term medication efficacy (YTD) with recent habit shifts (Month) and immediate physiological responses (Daily).\n            </div>\n          </div>\n          <div style=\"margin-top:10px; background:#eff6ff; border:1.5px solid #bfdbfe; border-radius:6px; padding:10px; display:flex; justify-content:space-between; align-items:center;\">\n            <div>\n              <div style=\"font-weight:800; color:#1e40af; font-size:0.8rem;\">EPIC EHR PERMANENT INTEGRATION</div>\n              <div style=\"font-size:0.72rem; color:#1e3a8a; margin-top:2px;\">Transmits verified YTD, Month & Daily records into patient's chart.</div>\n            </div>\n            <button style=\"background:#0284c7; color:#ffffff; border:none; border-radius:4px; padding:6px 12px; font-weight:bold; font-size:0.75rem; cursor:pointer;\">PUSH TO EPIC</button>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_reports.png",
     "tab_title": "04-REPORTS CONSOLE \u2022 3-TIER YTD, MONTHLY & DAILY AUDIT",
-    "image": "images/lcars_chart_ytd.png"
+    "image": "images/lcars_chart_ytd.png",
+    "step_focus": [
+      {
+        "bullet": 0,
+        "focus_desc": "Topic 1 Overview & Core Telemetry Target",
+        "scroll_pct": 0.0
+      },
+      {
+        "bullet": 1,
+        "focus_desc": "Topic 2 Ambulatory Evidence & Biometric Dynamics",
+        "scroll_pct": 0.4
+      },
+      {
+        "bullet": 2,
+        "focus_desc": "Topic 3 Clinical Translation & Patient Outcome",
+        "scroll_pct": 0.8
+      }
+    ]
   },
   {
     "id": 49,
@@ -1626,7 +2301,24 @@
     "right_badge_col": "#15803d",
     "tab_screenshot": "images/lcars_tab_reports.png",
     "tab_title": "04-REPORTS CONSOLE \u2022 HISTORICAL DATA VAULT & RESEARCH DISPATCH",
-    "right_html": "\n          <!-- Open Loop vs Closed Loop Cybernetic Architecture -->\n          <div style=\"background: #0f172a; border: 1.5px solid #334155; border-radius: 6px; padding: 10px; margin-top: 4px; color: #ffffff;\">\n            <div style=\"display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1e293b; padding-bottom: 4px; margin-bottom: 8px;\">\n              <span style=\"font-family: monospace; font-size: 0.72rem; color: #38bdf8; font-weight: 800; letter-spacing: 0.05em;\">SYSTEM ARCHITECTURE: OPEN LOOP VS CLOSED LOOP</span>\n              <span style=\"background: #15803d; color: #fff; font-size: 0.60rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; font-family: monospace;\">CYBERNETIC BIOFEEDBACK</span>\n            </div>\n\n            <div style=\"display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-family: monospace; font-size: 0.68rem;\">\n              <!-- Open Loop (Conventional) -->\n              <div style=\"background: #1e1b2e; border: 1.5px solid #ef4444; border-radius: 4px; padding: 8px;\">\n                <div style=\"color: #f87171; font-weight: 800; font-size: 0.72rem; margin-bottom: 4px;\">CONVENTIONAL OPEN LOOP</div>\n                <div style=\"color: #cbd5e1; line-height: 1.35; font-size: 0.66rem;\">\n                  Food / Activity &rarr; Delayed Lab Draw (90 Days) &rarr; Reactive Guesswork.<br>\n                  <strong style=\"color: #ef4444;\">Result:</strong> Blind excursions, nocturnal hypoglycemia, high glycemic variability.\n                </div>\n              </div>\n\n              <!-- Closed Loop (LCARS) -->\n              <div style=\"background: #052e16; border: 1.5px solid #22c55e; border-radius: 4px; padding: 8px;\">\n                <div style=\"color: #4ade80; font-weight: 800; font-size: 0.72rem; margin-bottom: 4px;\">LCARS CLOSED LOOP BIOFEEDBACK</div>\n                <div style=\"color: #cbd5e1; line-height: 1.35; font-size: 0.66rem;\">\n                  Continuous 288&times;8 Telemetry &rarr; Real-Time Biofeedback &rarr; Active Lifestyle Modulation.<br>\n                  <strong style=\"color: #22c55e;\">Result:</strong> Rapid postprandial drops, dawn suppression, stable TIR &gt; 70%.\n                </div>\n              </div>\n            </div>\n          </div>\n\n          <!-- Google Diabetes Research Opportunity Sponsorship Box -->\n          <div style=\"margin-top: 8px; background: #eff6ff; border: 2px solid #3b82f6; border-radius: 6px; padding: 10px;\">\n            <div style=\"display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #bfdbfe; padding-bottom: 4px; margin-bottom: 6px;\">\n              <span style=\"font-weight: 900; color: #1d4ed8; font-size: 0.78rem; font-family: monospace;\">GOOGLE DIABETES RESEARCH SPONSORSHIP OPPORTUNITY</span>\n              <span style=\"background: #2563eb; color: #ffffff; font-size: 0.62rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; font-family: monospace;\">OPEN SCIENCE</span>\n            </div>\n            <div style=\"font-size: 0.73rem; color: #1e3a8a; line-height: 1.4;\">\n              <strong>Abstracted Historical Telemetry:</strong> Anonymized multi-modal physiological datasets (25,920 quarterly glucose points, PWTT hemodynamics, HRV autonomic stress, sleep hypnograms) forwarded with <strong>zero patient identifying information (Zero PHI)</strong>.<br>\n              <strong>Google Collaboration:</strong> An open invitation for Google Research, Google Health, and Google DeepMind to sponsor this global open-access diabetes research repository to train foundational metabolic foundation models and accelerate clinical breakthroughs.\n            </div>\n          </div>\n\n          <!-- Data Privacy & Regulatory Guard -->\n          <div style=\"margin-top: 8px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; padding: 6px 10px; font-family: monospace; font-size: 0.70rem; display: flex; justify-content: space-between; align-items: center;\">\n            <span style=\"color: #64748b;\">RESEARCH DATA GOVERNANCE:</span>\n            <span style=\"color: #15803d; font-weight: bold;\">100% DE-IDENTIFIED &bull; HIPAA & GDPR COMPLIANT &bull; OPT-IN ONLY</span>\n          </div>\n        "
+    "right_html": "\n          <!-- Open Loop vs Closed Loop Cybernetic Architecture -->\n          <div style=\"background: #0f172a; border: 1.5px solid #334155; border-radius: 6px; padding: 10px; margin-top: 4px; color: #ffffff;\">\n            <div style=\"display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1e293b; padding-bottom: 4px; margin-bottom: 8px;\">\n              <span style=\"font-family: monospace; font-size: 0.72rem; color: #38bdf8; font-weight: 800; letter-spacing: 0.05em;\">SYSTEM ARCHITECTURE: OPEN LOOP VS CLOSED LOOP</span>\n              <span style=\"background: #15803d; color: #fff; font-size: 0.60rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; font-family: monospace;\">CYBERNETIC BIOFEEDBACK</span>\n            </div>\n\n            <div style=\"display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-family: monospace; font-size: 0.68rem;\">\n              <!-- Open Loop (Conventional) -->\n              <div style=\"background: #1e1b2e; border: 1.5px solid #ef4444; border-radius: 4px; padding: 8px;\">\n                <div style=\"color: #f87171; font-weight: 800; font-size: 0.72rem; margin-bottom: 4px;\">CONVENTIONAL OPEN LOOP</div>\n                <div style=\"color: #cbd5e1; line-height: 1.35; font-size: 0.66rem;\">\n                  Food / Activity &rarr; Delayed Lab Draw (90 Days) &rarr; Reactive Guesswork.<br>\n                  <strong style=\"color: #ef4444;\">Result:</strong> Blind excursions, nocturnal hypoglycemia, high glycemic variability.\n                </div>\n              </div>\n\n              <!-- Closed Loop (LCARS) -->\n              <div style=\"background: #052e16; border: 1.5px solid #22c55e; border-radius: 4px; padding: 8px;\">\n                <div style=\"color: #4ade80; font-weight: 800; font-size: 0.72rem; margin-bottom: 4px;\">LCARS CLOSED LOOP BIOFEEDBACK</div>\n                <div style=\"color: #cbd5e1; line-height: 1.35; font-size: 0.66rem;\">\n                  Continuous 288&times;8 Telemetry &rarr; Real-Time Biofeedback &rarr; Active Lifestyle Modulation.<br>\n                  <strong style=\"color: #22c55e;\">Result:</strong> Rapid postprandial drops, dawn suppression, stable TIR &gt; 70%.\n                </div>\n              </div>\n            </div>\n          </div>\n\n          <!-- Google Diabetes Research Opportunity Sponsorship Box -->\n          <div style=\"margin-top: 8px; background: #eff6ff; border: 2px solid #3b82f6; border-radius: 6px; padding: 10px;\">\n            <div style=\"display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #bfdbfe; padding-bottom: 4px; margin-bottom: 6px;\">\n              <span style=\"font-weight: 900; color: #1d4ed8; font-size: 0.78rem; font-family: monospace;\">GOOGLE DIABETES RESEARCH SPONSORSHIP OPPORTUNITY</span>\n              <span style=\"background: #2563eb; color: #ffffff; font-size: 0.62rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; font-family: monospace;\">OPEN SCIENCE</span>\n            </div>\n            <div style=\"font-size: 0.73rem; color: #1e3a8a; line-height: 1.4;\">\n              <strong>Abstracted Historical Telemetry:</strong> Anonymized multi-modal physiological datasets (25,920 quarterly glucose points, PWTT hemodynamics, HRV autonomic stress, sleep hypnograms) forwarded with <strong>zero patient identifying information (Zero PHI)</strong>.<br>\n              <strong>Google Collaboration:</strong> An open invitation for Google Research, Google Health, and Google DeepMind to sponsor this global open-access diabetes research repository to train foundational metabolic foundation models and accelerate clinical breakthroughs.\n            </div>\n          </div>\n\n          <!-- Data Privacy & Regulatory Guard -->\n          <div style=\"margin-top: 8px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; padding: 6px 10px; font-family: monospace; font-size: 0.70rem; display: flex; justify-content: space-between; align-items: center;\">\n            <span style=\"color: #64748b;\">RESEARCH DATA GOVERNANCE:</span>\n            <span style=\"color: #15803d; font-weight: bold;\">100% DE-IDENTIFIED &bull; HIPAA & GDPR COMPLIANT &bull; OPT-IN ONLY</span>\n          </div>\n        ",
+    "step_focus": [
+      {
+        "bullet": 0,
+        "focus_desc": "Topic 1 Overview & Core Telemetry Target",
+        "scroll_pct": 0.0
+      },
+      {
+        "bullet": 1,
+        "focus_desc": "Topic 2 Ambulatory Evidence & Biometric Dynamics",
+        "scroll_pct": 0.4
+      },
+      {
+        "bullet": 2,
+        "focus_desc": "Topic 3 Clinical Translation & Patient Outcome",
+        "scroll_pct": 0.8
+      }
+    ]
   },
   {
     "id": 50,
@@ -1660,6 +2352,23 @@
     "right_badge_col": "#15803d",
     "right_html": "\n          <div style=\"display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:8px;\">\n            <a href=\"https://fitaos.com\" target=\"_blank\" style=\"text-decoration:none; color:inherit; background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:6px; padding:10px; display:block; transition:all 0.2s;\">\n              <div style=\"display:flex; align-items:center; gap:6px;\">\n                <span style=\"font-size:1.1rem;\">\ud83d\uded2</span>\n                <span style=\"font-weight:800; color:#0284c7; font-size:0.82rem;\">FITAOS OFFICIAL SALES SITE</span>\n              </div>\n              <div style=\"font-size:0.72rem; color:#475569; margin-top:4px; line-height:1.35;\">\n                Official store for FITAOS 5150 smartwatch. Compatible with many Veepoo models.\n              </div>\n              <div style=\"font-size:0.7rem; color:#0284c7; font-weight:bold; margin-top:6px; font-family:monospace;\">fitaos.com \u2197</div>\n            </a>\n\n            <a href=\"https://github.com/jbirdlebough1/JVEEPOO/tree/main/docs\" target=\"_blank\" style=\"text-decoration:none; color:inherit; background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:6px; padding:10px; display:block; transition:all 0.2s;\">\n              <div style=\"display:flex; align-items:center; gap:6px;\">\n                <span style=\"font-size:1.1rem;\">\ud83d\udcda</span>\n                <span style=\"font-weight:800; color:#15803d; font-size:0.82rem;\">GITHUB DOCS DIRECTORY</span>\n              </div>\n              <div style=\"font-size:0.72rem; color:#475569; margin-top:4px; line-height:1.35;\">\n                Clinical glucose trials, A1C validation models, bug audit logs & specifications.\n              </div>\n              <div style=\"font-size:0.7rem; color:#15803d; font-weight:bold; margin-top:6px; font-family:monospace;\">github.com/.../docs \u2197</div>\n            </a>\n\n            <a href=\"https://github.com/jbirdlebough1/JVEEPOO\" target=\"_blank\" style=\"text-decoration:none; color:inherit; background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:6px; padding:10px; display:block; transition:all 0.2s;\">\n              <div style=\"display:flex; align-items:center; gap:6px;\">\n                <span style=\"font-size:1.1rem;\">\ud83d\udcbb</span>\n                <span style=\"font-weight:800; color:#7c3aed; font-size:0.82rem;\">GITHUB REPOSITORY</span>\n              </div>\n              <div style=\"font-size:0.72rem; color:#475569; margin-top:4px; line-height:1.35;\">\n                Full GPL v3 copyleft source code, Python BLE daemons & HTML single-page app.\n              </div>\n              <div style=\"font-size:0.7rem; color:#7c3aed; font-weight:bold; margin-top:6px; font-family:monospace;\">github.com/jbirdlebough1/JVEEPOO \u2197</div>\n            </a>\n\n            <a href=\"https://github.com/HBandSDK/Android_Ble_SDK/issues/46\" target=\"_blank\" style=\"text-decoration:none; color:inherit; background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:6px; padding:10px; display:block; transition:all 0.2s;\">\n              <div style=\"display:flex; align-items:center; gap:6px;\">\n                <span style=\"font-size:1.1rem;\">\ud83c\udf10</span>\n                <span style=\"font-weight:800; color:#d97706; font-size:0.82rem;\">HBANDSDK COMMUNITY</span>\n              </div>\n              <div style=\"font-size:0.72rem; color:#475569; margin-top:4px; line-height:1.35;\">\n                Official open-source ecosystem showcase Issue #46 on HBandSDK organization.\n              </div>\n              <div style=\"font-size:0.7rem; color:#d97706; font-weight:bold; margin-top:6px; font-family:monospace;\">github.com/HBandSDK/Issue #46 \u2197</div>\n            </a>\n          </div>\n\n          <div style=\"margin-top:12px; background:#eff6ff; border:1.5px solid #bfdbfe; border-radius:6px; padding:10px; display:flex; align-items:center; gap:12px;\">\n            <div style=\"background:#2563eb; color:#ffffff; font-weight:900; font-size:1rem; border-radius:6px; padding:6px 10px; font-family:monospace; white-space:nowrap;\">\n              GEMINI PRO\n            </div>\n            <div style=\"font-size:0.78rem; color:#1e3a8a; line-height:1.4;\">\n              <strong>Powered by Google Gemini Pro:</strong> Developed using Google DeepMind's advanced AI reasoning agent based on open-source HBandSDK and Veepoo repositories, ensuring broad compatibility across Veepoo wearables.\n            </div>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_help.png",
-    "tab_title": "08-HELP & FAQ \u2022 OPEN SOURCE GPL V3 & CLINICAL STUDIES"
+    "tab_title": "08-HELP & FAQ \u2022 OPEN SOURCE GPL V3 & CLINICAL STUDIES",
+    "step_focus": [
+      {
+        "bullet": 0,
+        "focus_desc": "Topic 1 Overview & Core Telemetry Target",
+        "scroll_pct": 0.0
+      },
+      {
+        "bullet": 1,
+        "focus_desc": "Topic 2 Ambulatory Evidence & Biometric Dynamics",
+        "scroll_pct": 0.4
+      },
+      {
+        "bullet": 2,
+        "focus_desc": "Topic 3 Clinical Translation & Patient Outcome",
+        "scroll_pct": 0.8
+      }
+    ]
   }
 ]

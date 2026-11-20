@@ -202,5 +202,22 @@
     "created_at": "2026-11-19T22:01:16.943484",
     "updated_at": "2026-11-19T22:01:16.943484",
     "resolved_at": "2026-11-19T22:01:16.943484"
+  },
+  {
+    "id": 76,
+    "project_name": "JVEEPOO",
+    "bug_number": 46,
+    "bug_code": "CLE-046",
+    "build_number": "BUILD-2026.11.20-046",
+    "title": "Implement Plateau Scroll & Pause Timing Engine, remove artificial grey tab ribbon, highlight actual screen tab in bright glowing yellow, assign distinct focused screens for Slides 25-30, and purge 8.3% from Slide 46",
+    "status": "RESOLVED",
+    "component": "Presentation GUI & TTS Sync",
+    "affected_files": "all_slides_data.json, build_presentation.py, preview.html, w11_htm_app/index.html, images/lcars_slide*.png, slides/*.html, presentation/slides/*.html",
+    "bug_loc": "w11_htm_app/index.html:.lcars-pill.active, build_presentation.py:generate_left_panel, preview.html:calculatePlateauScroll, all_slides_data.json:Slide46",
+    "resolution": "Updated w11_htm_app/index.html to render .lcars-sidebar .lcars-pill.active with bright glowing yellow highlight box (background #ffeb3b, black text, 3px solid #ffd700 border, 24px glowing yellow box shadow). Removed the artificial grey tab ribbon from above the slide screenshot card. Captured 6 distinct high-res screenshots for Slides 25-30 focusing on Reports Overview, 360 Tall Chart Header, 8 Stacked Telemetry Lanes, Scrubber HUD Readout, Point Audit Micro-Card Modal, and Med Change Milestone Markers. Implemented Plateau Scroll & Pause Timing Engine in preview.html, immediately positioning on transition and pausing 75% of each topic duration so the viewer eye rests steadily without jumping. Purged all 8.3% references from Slide 46 in favor of Doctor Lab Anchor.",
+    "comments": "Verified distinct screenshots across Slides 25-30, bright yellow active tab highlight on actual LCARS sidebar, zero 8.3% on Slide 46, removal of artificial grey ribbon, and smooth plateau hold during narration playback.",
+    "created_at": "2026-11-19T22:28:49.804189",
+    "updated_at": "2026-11-19T22:28:49.804189",
+    "resolved_at": "2026-11-19T22:28:49.804189"
   }
 ]

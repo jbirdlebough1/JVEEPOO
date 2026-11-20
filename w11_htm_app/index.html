@@ -165,10 +165,14 @@
     }
 
     .lcars-pill.active {
-      background: #ffffff !important;
-      color: var(--lcars-black) !important;
-      font-weight: 900;
-      box-shadow: -4px 0 15px rgba(255, 255, 255, 0.4);
+      background: #ffeb3b !important;
+      color: #000000 !important;
+      font-weight: 900 !important;
+      border: 3px solid #ffd700 !important;
+      box-shadow: 0 0 24px rgba(255, 215, 0, 0.95), inset 0 0 10px #ffffff !important;
+      transform: scale(1.06) !important;
+      position: relative !important;
+      z-index: 10 !important;
     }
 
     .lcars-pill:disabled {
@@ -10673,6 +10677,10 @@ Notice: For Type 2 diabetes lifestyle management and metabolic tracking only. No
           targetEl.style.boxShadow = '0 0 16px rgba(255, 215, 0, 0.95)';
           targetEl.style.border = '2.5px solid #ffd700';
         }
+      }
+      const popPoint = urlParams.get('popPoint');
+      if (popPoint && typeof openTimelinePointCard === 'function') {
+        openTimelinePointCard(parseInt(popPoint) || 5);
       }
       // Seamless auto-link to known watch transponder
       await attemptAutoLink();

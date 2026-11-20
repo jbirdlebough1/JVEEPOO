@@ -106,45 +106,22 @@ def generate_left_panel(s):
 
     screenshot_html = ""
     if tab_img:
-        # Build 1-12 tab strip with prominent highlight yellow box on active tab
-        tab_pills_html = ""
-        for t_num, t_name, t_path in TAB_MAP:
-            if t_num == active_tab:
-                # HIGHLIGHT YELLOW BOX AROUND ACTIVE TAB
-                tab_pills_html += f"""
-                <span class="active-tab-box" style="border: 2.5px solid #ffd700; background: #ffeb3b; color: #000000; font-weight: 900; font-family: monospace; font-size: 0.62rem; padding: 2px 7px; border-radius: 4px; box-shadow: 0 0 12px rgba(255, 215, 0, 0.95); display: inline-flex; align-items: center; gap: 3px; transform: scale(1.05); z-index: 2; white-space: nowrap;">
-                  📍 {t_name}
-                </span>
-                """
-            else:
-                tab_pills_html += f"""
-                <span style="border: 1px solid #1e293b; background: #111e30; color: #64748b; font-family: monospace; font-size: 0.58rem; padding: 2px 5px; border-radius: 3px; white-space: nowrap;">
-                  {t_name}
-                </span>
-                """
-
         screenshot_html = f"""
-        <!-- Real LCARS Page Under Discussion Preview with Active Tab Yellow Box -->
+        <!-- Real LCARS Page Under Discussion Preview with Bright Yellow Active Screen Tab -->
         <div class="left-screenshot-card" style="margin-top: 6px; margin-bottom: 6px; border: 1.5px solid #cbd5e1; border-radius: 6px; overflow: hidden; background: #0f172a; box-shadow: 0 4px 12px rgba(0,0,0,0.18); display: flex; flex-direction: column; flex: 1; min-height: 290px;">
           
-          <!-- 1-12 Tab Strip Navigation Ribbon -->
-          <div style="display: flex; gap: 4px; background: #0b1320; padding: 4px 8px; border-bottom: 1.5px solid #1e293b; overflow-x: auto; flex-shrink: 0; align-items: center;">
-            <span style="font-size: 0.58rem; color: #475569; font-family: monospace; font-weight: bold; margin-right: 2px; white-space: nowrap;">LCARS TABS:</span>
-            {tab_pills_html}
-          </div>
-
-          <!-- Console Header Title Bar with Active Tab Callout -->
-          <div style="display: flex; justify-content: space-between; align-items: center; background: #1e293b; padding: 5px 8px; border-bottom: 1px solid #334155; flex-shrink: 0;">
-            <div style="display: flex; align-items: center; gap: 6px;">
-              <span style="border: 2px solid #ffd700; background: #ffeb3b; color: #000000; font-weight: 900; font-size: 0.62rem; padding: 1px 6px; border-radius: 3px; font-family: monospace; box-shadow: 0 0 8px rgba(255, 215, 0, 0.7); letter-spacing: 0.04em; white-space: nowrap;">
+          <!-- Console Header Title Bar with Active Tab Callout (Clean, no artificial grey ribbon) -->
+          <div style="display: flex; justify-content: space-between; align-items: center; background: #0f172a; padding: 6px 10px; border-bottom: 2px solid #334155; flex-shrink: 0;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="border: 2px solid #ffd700; background: #ffeb3b; color: #000000; font-weight: 900; font-size: 0.70rem; padding: 2px 8px; border-radius: 4px; font-family: monospace; box-shadow: 0 0 10px rgba(255, 215, 0, 0.85); letter-spacing: 0.04em; white-space: nowrap;">
                 TAB {active_tab:02d}: {active_tab_name}
               </span>
-              <span style="font-size: 0.68rem; color: #38bdf8; font-weight: 800; font-family: monospace; letter-spacing: 0.03em;">
+              <span style="font-size: 0.72rem; color: #38bdf8; font-weight: 800; font-family: monospace; letter-spacing: 0.03em;">
                 {tab_title}
               </span>
             </div>
             <div style="display: flex; align-items: center; gap: 6px;">
-              <span id="lblScreenshotZone" class="screenshot-zone-badge" style="background: #0284c7; color: #ffffff; font-size: 0.60rem; font-weight: 800; padding: 2px 7px; border-radius: 3px; font-family: monospace; letter-spacing: 0.03em; transition: all 0.25s ease;">
+              <span id="lblScreenshotZone" class="screenshot-zone-badge" style="background: #0284c7; color: #ffffff; font-size: 0.62rem; font-weight: 800; padding: 2px 8px; border-radius: 3px; font-family: monospace; letter-spacing: 0.03em; transition: all 0.25s ease;">
                 📍 FOCUS: TOPIC 1
               </span>
               <span style="background: #15803d; color: #ffffff; font-size: 0.58rem; font-weight: bold; padding: 2px 5px; border-radius: 3px; font-family: monospace;">
@@ -613,24 +590,40 @@ preview_html_content = f"""<!DOCTYPE html>
       document.getElementById('lblTranscriptTitle').innerText = `SLIDE ${{s.num}}: ${{s.title}}`;
       document.getElementById('txtTranscript').innerText = s.narration;
 
-      currentScrollLeft = 0;
-      targetScrollLeft = 0;
+      // Position IMMEDIATELY on transition to the specific initial screen area!
+      const initialPct = (s.step_focus && s.step_focus.length > 0) ? s.step_focus[0].scroll_pct : 0.0;
+      currentScrollLeft = initialPct * 1000;
+      targetScrollLeft = initialPct * 1000;
       currentScrollRight = 0;
       targetScrollRight = 0;
 
-      // Reset scroll on right and left panes and initialize sync
       try {{
         const iframe = document.getElementById('slideIframe');
         iframe.onload = () => {{
-          currentScrollLeft = 0;
-          targetScrollLeft = 0;
+          const doc = iframe.contentDocument;
+          if (doc) {{
+            const leftViewport = doc.querySelector('.left-screenshot-viewport');
+            if (leftViewport) {{
+              const maxLeftScroll = leftViewport.scrollHeight - leftViewport.clientHeight;
+              const initPos = (maxLeftScroll > 0) ? initialPct * maxLeftScroll : 0;
+              leftViewport.scrollTop = initPos;
+              currentScrollLeft = initPos;
+              targetScrollLeft = initPos;
+            }}
+          }}
           currentScrollRight = 0;
           targetScrollRight = 0;
           syncSlideContent(0.0);
         }};
         if (iframe && iframe.contentDocument) {{
-          currentScrollLeft = 0;
-          targetScrollLeft = 0;
+          const leftViewport = iframe.contentDocument.querySelector('.left-screenshot-viewport');
+          if (leftViewport) {{
+            const maxLeftScroll = leftViewport.scrollHeight - leftViewport.clientHeight;
+            const initPos = (maxLeftScroll > 0) ? initialPct * maxLeftScroll : 0;
+            leftViewport.scrollTop = initPos;
+            currentScrollLeft = initPos;
+            targetScrollLeft = initPos;
+          }}
           currentScrollRight = 0;
           targetScrollRight = 0;
           syncSlideContent(0.0);
@@ -722,9 +715,42 @@ preview_html_content = f"""<!DOCTYPE html>
         }}
 
         // Monotonic Top-to-Bottom Smooth Target: glides steadily without jumping up and down
+        // Plateau Scroll & Pause Timing Engine:
+        // Holds 100% steady during the topic talk, glides monotonically between topics, never jumps up
         if (leftViewport && leftViewport.scrollHeight > leftViewport.clientHeight) {{
           const maxLeftScroll = leftViewport.scrollHeight - leftViewport.clientHeight;
-          targetScrollLeft = norm * maxLeftScroll;
+          if (maxLeftScroll > 0) {{
+            const focusPoints = (s.step_focus && s.step_focus.length > 0) 
+              ? s.step_focus 
+              : [{{scroll_pct: 0.0}}, {{scroll_pct: 0.40}}, {{scroll_pct: 0.85}}];
+            
+            const n = focusPoints.length;
+            let targetPct = focusPoints[0].scroll_pct;
+            
+            for (let i = 0; i < n; i++) {{
+              const segStart = i / n;
+              const segEnd = (i + 1) / n;
+              // Hold/Pause steady during 75% of this topic duration!
+              const pauseUntil = segStart + (segEnd - segStart) * 0.75;
+              
+              if (norm < pauseUntil) {{
+                targetPct = focusPoints[i].scroll_pct;
+                break;
+              }} else if (norm < segEnd) {{
+                if (i < n - 1) {{
+                  const t = (norm - pauseUntil) / (segEnd - pauseUntil);
+                  const ease = 0.5 - 0.5 * Math.cos(t * Math.PI);
+                  targetPct = focusPoints[i].scroll_pct + (focusPoints[i+1].scroll_pct - focusPoints[i].scroll_pct) * ease;
+                }} else {{
+                  targetPct = focusPoints[i].scroll_pct;
+                }}
+                break;
+              }} else {{
+                targetPct = focusPoints[i].scroll_pct;
+              }}
+            }}
+            targetScrollLeft = targetPct * maxLeftScroll;
+          }}
         }}
 
         if (rightCard && rightCard.scrollHeight > rightCard.clientHeight) {{
