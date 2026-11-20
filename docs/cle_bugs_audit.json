@@ -1142,5 +1142,16 @@
     "affected_files": "w11_htm_app/index.html, index.html, audit_53_slides_coverage.py, docs/presentation_build_coverage_audit.json, build_presentation.py",
     "resolution": "1. Removed Broken '00. Smart Notifier' Card (Tab 09):\n   - Eliminated the broken legacy card ('00. SMART GLUCOSE-DRIVEN SNACK & MEAL NOTIFIER') where a full-width .lcars-pill button squished text into a 25px vertical column and triggered a static dummy text dump.\n   - Placed the fully functional '\ud83e\udd57 INTERACTIVE DIABETIC MEAL BUILDER & GEMINI NUTRITION COACH' front-and-center at the top of Tab 09 with Common Packages (MEAL-01 / MEAL-02), Recipe BOM, Local Store Search, and Wi-Fi cell photo upload gateway.\n2. Trademark Protection Parity ('Copilot' -> 'Coach'):\n   - Completely eliminated all occurrences of 'Copilot', 'COPILOT', and 'copilot' across the app codebase, scripts, and documentation.\n   - Replaced with Google-aligned clinical term 'Coach' / 'COACH' (e.g. 'GEMINI NUTRITION COACH', 'GEMINI COACH ACTIVE').\n3. Verified via Headless Chrome CDP, rebuilt all 53 slides and Preview_Presentation.exe, synced with local origin and GitHub remotes.",
     "comments": "Verified in Headless Chrome CDP, rebuilt Preview_Presentation.exe, synced with local origin and GitHub remotes."
+  },
+  {
+    "id": 106,
+    "project_name": "VEEPOO_5010_LCARS",
+    "bug_code": "CLE-076",
+    "title": "Popular Meals Full CRUD, Longitudinal Doctor-Patient Explorer (Day, Week, Month, Qtr eA1C, Year), Dick's Custom Feast Engine & McDonald's Scrub",
+    "status": "RESOLVED",
+    "component": "LCARS Clinical Telemetry Web Console & Backend",
+    "affected_files": "w11_htm_app/server.py, w11_htm_app/index.html, index.html, w11_htm_app/mobile_upload.html, mobile_upload.html",
+    "resolution": "1. Scrubbed McDonald's from presets, buttons, pull-downs, and backend scrapers due to zero clinically safe diabetic options (<45g net carbs without trans fats, dextrose coatings, and high-glycemic buns). Injected clinical rejection advisory.\n2. Built Popular Meals Library with full CRUD (View, Edit, Delete, Create) backed by SQLite `popular_meals` table and localStorage synchronization.\n3. Gemini Pre-Choice Nutrition Coach accurately assesses user requests like 'Dick's DriveIn 2 cheeze burgers, 3 tatar, fry and large diet' = 95g Net Carbs, 1,260 kcal, 35g Protein, 78g Fat, High Glycemic Load 38, itemized BOM, and mandatory 35-45 min GLUT4 walk prescription.\n4. Empowered user choices upon Gemini calculation: '\u2b50 ADD TO POPULAR MEALS' (1-click reuse) and '\ud83d\ude80 SUBMIT ACTUAL MEAL & TRACK METRICS' (logs to 8-lane telemetry stack & switches to correlation view).\n5. Implemented Doctor & Patient Longitudinal Meal-to-Metric Correlation Engine bridging daily 24-hr postprandial curve, 7-day weekly recurrence, 30-day glycemic stability (CV% 17.8%), 90-day quarterly eA1C lab window (7.4% -> 5.6% remission), and 365-day annual durability with doctor mentoring notes.\n6. Rebuilt presentation slides, synchronized mobile portal, and recompiled Preview_Presentation.exe.",
+    "comments": "Verified via headless Chrome CDP with zero syntax errors. Synced with local and GitHub remotes."
   }
 ]

@@ -3,24 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>LCARS 5010 • Mobile Meal & Photo Uploader</title>
+  <title>LCARS 5010 • Mobile Meal & Food Photo Uploader</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       background: #0f172a;
       color: #f8fafc;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      padding: 16px;
+      padding: 14px;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
     .header {
       background: #1e293b;
-      border-left: 6px solid #22c55e;
+      border-left: 6px solid #0284c7;
       border-radius: 8px;
       padding: 14px 18px;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -29,12 +29,13 @@
       font-size: 1.15rem;
       font-weight: 900;
       letter-spacing: 0.05em;
-      color: #4ade80;
+      color: #38bdf8;
     }
     .header .sub {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       color: #94a3b8;
       margin-top: 2px;
+      font-family: monospace;
     }
     .wifi-badge {
       background: rgba(34, 197, 94, 0.15);
@@ -50,8 +51,9 @@
       background: #1e293b;
       border: 1px solid #334155;
       border-radius: 10px;
-      padding: 18px;
-      margin-bottom: 16px;
+      padding: 16px;
+      margin-bottom: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
     }
     .card-title {
       font-size: 0.95rem;
@@ -62,10 +64,25 @@
       align-items: center;
       gap: 8px;
     }
+    .input-field {
+      width: 100%;
+      padding: 12px;
+      border: 1.5px solid #475569;
+      border-radius: 8px;
+      background: #0f172a;
+      color: #f8fafc;
+      font-size: 1rem;
+      margin-bottom: 12px;
+      outline: none;
+    }
+    .input-field:focus {
+      border-color: #38bdf8;
+      box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+    }
     .btn {
       display: block;
       width: 100%;
-      background: #2563eb;
+      background: #0284c7;
       color: #fff;
       border: none;
       padding: 14px;
@@ -74,22 +91,16 @@
       font-weight: 800;
       text-align: center;
       cursor: pointer;
-      margin-top: 10px;
-      transition: background 0.2s;
+      transition: background 0.15s;
     }
     .btn-green { background: #16a34a; }
     .btn-green:active { background: #15803d; }
+    .btn-blue { background: #0284c7; }
+    .btn-blue:active { background: #0369a1; }
     .btn-orange { background: #ea580c; }
-    .btn-outline {
-      background: transparent;
-      border: 1.5px solid #64748b;
-      color: #cbd5e1;
-      padding: 10px;
-      font-size: 0.85rem;
-    }
     .camera-zone {
-      border: 2px dashed #38bdf8;
-      background: rgba(56, 189, 248, 0.05);
+      border: 2.5px dashed #0284c7;
+      background: rgba(2, 132, 199, 0.08);
       border-radius: 8px;
       padding: 24px 16px;
       text-align: center;
@@ -97,7 +108,7 @@
       margin-bottom: 12px;
     }
     .camera-zone:active {
-      background: rgba(56, 189, 248, 0.12);
+      background: rgba(2, 132, 199, 0.18);
     }
     .photo-preview {
       width: 100%;
@@ -110,19 +121,19 @@
     }
     .macros-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
       margin-top: 12px;
     }
     .macro-box {
       background: #0f172a;
       border: 1px solid #334155;
       border-radius: 6px;
-      padding: 8px;
+      padding: 8px 4px;
       text-align: center;
     }
     .macro-box .lbl { font-size: 0.65rem; color: #94a3b8; font-weight: bold; }
-    .macro-box .val { font-size: 1.1rem; font-weight: 900; color: #38bdf8; font-family: monospace; margin-top: 2px; }
+    .macro-box .val { font-size: 1.05rem; font-weight: 900; color: #38bdf8; font-family: monospace; margin-top: 2px; }
     .macro-box.highlight .val { color: #4ade80; }
     .quick-preset-btns {
       display: grid;
@@ -145,6 +156,17 @@
       border-color: #38bdf8;
       background: #1e293b;
     }
+    .user-pill {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 0.78rem;
+      margin-bottom: 12px;
+    }
   </style>
 </head>
 <body>
@@ -153,186 +175,262 @@
   <div class="header">
     <div>
       <h1>LCARS 5010 &bull; MEAL SYNC</h1>
-      <div class="sub">CELLULAR-TO-WI-FI AUTO UPLOADER</div>
+      <div class="sub">WI-FI CELLULAR PORT &bull; GEMINI NUTRITION</div>
     </div>
-    <div class="wifi-badge">● WI-FI SYNCED</div>
+    <div class="wifi-badge">● WI-FI CONNECTED</div>
   </div>
 
-  <!-- Camera / Photo Intake -->
-  <div class="card">
+  <!-- =========================================================================
+       SCREEN 1: WALLET / KEYCHAIN AUTHENTICATION (Shown on 1st visit only)
+       ========================================================================= -->
+  <div id="sectionWalletLogin" class="card" style="display: none;">
     <div class="card-title">
-      <span>📷 SNAP OR SELECT MEAL PHOTO</span>
+      <span>🔐 SAVE TO PHONE WALLET / KEYCHAIN</span>
     </div>
-    <div style="font-size: 0.78rem; color: #94a3b8; margin-bottom: 12px; line-height: 1.4;">
-      Snap your meal while dining out. When you are home near Wi-Fi, upload directly to LCARS for Gemini macro estimation and automatic timeline logging.
-    </div>
-
-    <!-- Hidden Native File/Camera Input -->
-    <input type="file" accept="image/*" capture="environment" id="fileCameraInput" style="display: none;" onchange="onPhotoSelected(event)">
-
-    <div class="camera-zone" onclick="document.getElementById('fileCameraInput').click()">
-      <div style="font-size: 2.2rem; margin-bottom: 6px;">📸</div>
-      <div style="font-weight: bold; font-size: 0.95rem; color: #38bdf8;">TAP TO TAKE PHOTO WITH CAMERA</div>
-      <div style="font-size: 0.72rem; color: #94a3b8; margin-top: 3px;">or choose an existing picture from your phone gallery</div>
+    <div style="font-size: 0.8rem; color: #94a3b8; line-height: 1.4; margin-bottom: 14px;">
+      Sign in once. Your phone browser (Apple Keychain, Google Password Manager, or Samsung Wallet) will prompt to save your login. Next time, opening this bookmark jumps directly to the photo uploader.
     </div>
 
-    <img id="imgPreview" class="photo-preview" alt="Meal Photo Preview">
+    <!-- Standard HTML5 Credentials Form for Browser Password Manager Integration -->
+    <form id="formWalletAuth" autocomplete="on" onsubmit="handleWalletAuth(event)">
+      <label style="font-size: 0.75rem; color: #cbd5e1; font-weight: bold; display: block; margin-bottom: 4px;">USER ID / PATIENT PIN:</label>
+      <input type="text" name="username" id="authUsername" class="input-field" autocomplete="username" value="patient-5010" required>
 
-    <div style="margin-top: 12px;">
-      <label style="font-size: 0.75rem; color: #94a3b8; font-weight: bold; display: block; margin-bottom: 4px;">OPTIONAL MEAL NOTES / VENDOR (E.G. CHIPOTLE, EGGS):</label>
-      <input type="text" id="txtMobileMealNotes" placeholder="e.g. Mon-Sat oatmeal & berries, or Chipotle burrito bowl" style="width: 100%; padding: 10px; border: 1px solid #475569; border-radius: 6px; background: #0f172a; color: #f8fafc; font-size: 0.85rem;">
-    </div>
+      <label style="font-size: 0.75rem; color: #cbd5e1; font-weight: bold; display: block; margin-bottom: 4px;">CLINICAL ACCESS PASSCODE:</label>
+      <input type="password" name="password" id="authPassword" class="input-field" autocomplete="current-password" value="lcars5010" required>
 
-    <button class="btn btn-green" id="btnUploadMeal" onclick="uploadMealToGemini()">
-      ✨ UPLOAD &amp; ANALYZE WITH GEMINI
-    </button>
+      <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 14px;">
+        <input type="checkbox" id="chkSaveWallet" checked style="width: 18px; height: 18px;">
+        <label for="chkSaveWallet" style="font-size: 0.8rem; color: #38bdf8; font-weight: bold;">
+          Save to Mobile Wallet / Keychain
+        </label>
+      </div>
+
+      <button type="submit" class="btn btn-blue">
+        🔑 SIGN IN &amp; SAVE TO PHONE WALLET
+      </button>
+    </form>
   </div>
 
-  <!-- Common Routine Breakfast Quick Buttons -->
-  <div class="card">
-    <div class="card-title">
-      <span>⚡ QUICK ROUTINE MEAL SYNC (ZERO TYPING)</span>
-    </div>
-    <div style="font-size: 0.75rem; color: #94a3b8; line-height: 1.35;">
-      One-tap logging for your recurring meal packages:
-    </div>
-    <div class="quick-preset-btns">
-      <button class="quick-btn" onclick="quickLogPreset('meal01')">
-        🥣 [MEAL-01] Mon-Sat<br>
-        <span style="font-size: 0.7rem; color: #94a3b8; font-weight: normal;">Oats, Berries, Sausage, Flax</span>
-      </button>
-      <button class="quick-btn" onclick="quickLogPreset('meal02')">
-        🍳 [MEAL-02] Sunday<br>
-        <span style="font-size: 0.7rem; color: #94a3b8; font-weight: normal;">2 Scrambled, 3 Sausage, Toast</span>
-      </button>
-      <button class="quick-btn" onclick="quickLogPreset('chipotle')">
-        🥗 Chipotle Bowl<br>
-        <span style="font-size: 0.7rem; color: #94a3b8; font-weight: normal;">Chicken, Beans, Guac (33g net)</span>
-      </button>
-      <button class="quick-btn" onclick="quickLogPreset('salmon')">
-        🍣 Salmon &amp; Asparagus<br>
-        <span style="font-size: 0.7rem; color: #94a3b8; font-weight: normal;">Wild Salmon &amp; Veggies (18g net)</span>
+  <!-- =========================================================================
+       SCREEN 2: AUTHENTICATED MEAL UPLOADER (Default for repeat visits!)
+       ========================================================================= -->
+  <div id="sectionMealUploader">
+    <!-- User Status Banner -->
+    <div class="user-pill">
+      <div>
+        <span style="color: #4ade80; font-weight: bold;">●</span>
+        <span style="font-weight: bold; color: #f8fafc; margin-left: 4px;" id="lblUserDisplay">Patient 5010</span>
+        <span style="color: #94a3b8; font-size: 0.72rem;">(Phone Wallet Active)</span>
+      </div>
+      <button onclick="resetWalletAuth()" style="background: transparent; border: none; color: #f87171; font-size: 0.72rem; cursor: pointer; text-decoration: underline;">
+        Sign Out / Reset
       </button>
     </div>
-  </div>
 
-  <!-- Gemini Analysis Results Card -->
-  <div class="card" id="cardResult" style="display: none; border-color: #22c55e;">
-    <div class="card-title" style="color: #4ade80;">
-      <span>✅ GEMINI ANALYSIS COMPLETE &bull; COMMITTED TO DB</span>
-    </div>
-    <div id="resMealTitle" style="font-size: 1.05rem; font-weight: 900; color: #f8fafc;"></div>
-    <div id="resVendor" style="font-size: 0.75rem; color: #38bdf8; margin-top: 2px;"></div>
+    <!-- Photo Intake Card -->
+    <div class="card">
+      <div class="card-title">
+        <span>📸 GRAB PICTURE FROM PHONE OR GALLERY</span>
+      </div>
+      <div style="font-size: 0.78rem; color: #94a3b8; margin-bottom: 12px; line-height: 1.4;">
+        Snap a picture with your phone camera or select an existing photo from your phone pictures folder. Gemini will automatically estimate carbs, calories, and macros.
+      </div>
 
-    <div class="macros-grid">
-      <div class="macro-box highlight">
-        <div class="lbl">NET CARBS</div>
-        <div class="val" id="resNetCarbs">--</div>
+      <!-- Hidden Native File/Camera Input -->
+      <input type="file" accept="image/*" id="fileCameraInput" style="display: none;" onchange="onPhotoSelected(event)">
+
+      <div class="camera-zone" onclick="document.getElementById('fileCameraInput').click()">
+        <div style="font-size: 2.2rem; margin-bottom: 6px;">📷</div>
+        <div style="font-weight: bold; font-size: 0.95rem; color: #38bdf8;">TAP TO GRAB MEAL PHOTO FROM PHONE</div>
+        <div style="font-size: 0.72rem; color: #94a3b8; margin-top: 3px;">Opens your phone's camera or Pictures folder</div>
       </div>
-      <div class="macro-box">
-        <div class="lbl">CALORIES</div>
-        <div class="val" id="resCalories">--</div>
+
+      <img id="imgPreview" class="photo-preview" alt="Meal Photo Preview">
+
+      <div style="margin-top: 12px;">
+        <label style="font-size: 0.75rem; color: #cbd5e1; font-weight: bold; display: block; margin-bottom: 4px;">OPTIONAL MEAL NOTES / RESTAURANT NAME:</label>
+        <input type="text" id="txtMobileMealNotes" placeholder="e.g. Chipotle burrito bowl, or Mon-Sat oats & berries" class="input-field" style="margin-bottom: 8px;">
       </div>
-      <div class="macro-box">
-        <div class="lbl">PROTEIN</div>
-        <div class="val" id="resProtein">--</div>
-      </div>
-      <div class="macro-box">
-        <div class="lbl">FIBER</div>
-        <div class="val" id="resFiber">--</div>
-      </div>
-      <div class="macro-box">
-        <div class="lbl">FAT</div>
-        <div class="val" id="resFat">--</div>
-      </div>
-      <div class="macro-box">
-        <div class="lbl">GLYCEMIC LOAD</div>
-        <div class="val" id="resGL">--</div>
-      </div>
+
+      <button class="btn btn-green" id="btnUploadMeal" onclick="uploadMealToGemini()">
+        ✨ ANALYZE &amp; SUBMIT TO LCARS
+      </button>
     </div>
 
-    <div style="background: rgba(34, 197, 94, 0.1); border-left: 3px solid #22c55e; border-radius: 4px; padding: 10px; margin-top: 12px; font-size: 0.78rem; line-height: 1.45; color: #bbf7d0;" id="resNotes">
+    <!-- Routine Breakfast Quick-Select Buttons -->
+    <div class="card">
+      <div class="card-title">
+        <span>🥣 ROUTINE MEAL PACKAGES (ZERO TYPING)</span>
+      </div>
+      <div style="font-size: 0.75rem; color: #94a3b8; line-height: 1.35;">
+        Tap to rapidly populate your verified diabetic meal packages:
+      </div>
+      <div class="quick-preset-btns">
+        <button class="quick-btn" onclick="quickSelectPackage('meal01')">
+          🥣 [MEAL-01] Mon-Sat<br>
+          <span style="font-size: 0.7rem; color: #94a3b8; font-weight: normal;">Oats, Berries, Sausage (38g Net)</span>
+        </button>
+        <button class="quick-btn" onclick="quickSelectPackage('meal02')">
+          🍳 [MEAL-02] Sunday<br>
+          <span style="font-size: 0.7rem; color: #94a3b8; font-weight: normal;">2 Eggs, 3 Sausage, Toast (17g Net)</span>
+        </button>
+        <button class="quick-btn" onclick="quickSelectPackage('chipotle')">
+          🥗 Chipotle Bowl<br>
+          <span style="font-size: 0.7rem; color: #94a3b8; font-weight: normal;">Chicken, Beans, Guac (33g Net)</span>
+        </button>
+        <button class="quick-btn" onclick="quickSelectPackage('salmon')">
+          🍣 Salmon &amp; Veggies<br>
+          <span style="font-size: 0.7rem; color: #94a3b8; font-weight: normal;">Wild Salmon &amp; Greens (18g Net)</span>
+        </button>
+      </div>
     </div>
 
-    <div style="margin-top: 12px; font-size: 0.75rem; color: #94a3b8; font-family: monospace; display: flex; justify-content: space-between;">
-      <span>DB RECORD ID: <strong id="resMealId" style="color: #4ade80;">#--</strong></span>
-      <span>STATUS: <strong>COMMITTED TO PC</strong></span>
+    <!-- Gemini Analysis Results Card -->
+    <div class="card" id="cardResult" style="display: none; border-color: #22c55e;">
+      <div class="card-title" style="color: #4ade80;">
+        <span>✅ MEAL COMMITTED TO LCARS WORKSTATION</span>
+      </div>
+      <div id="lblMealDesc" style="font-size: 0.85rem; color: #f8fafc; font-weight: bold; margin-bottom: 6px;"></div>
+      <div id="lblCompliance" style="font-size: 0.78rem; color: #86efac; margin-bottom: 10px;"></div>
+
+      <div class="macros-grid">
+        <div class="macro-box highlight">
+          <div class="lbl">NET CARBS</div>
+          <div class="val" id="valNetCarbs">--</div>
+        </div>
+        <div class="macro-box">
+          <div class="lbl">CALORIES</div>
+          <div class="val" id="valCalories">--</div>
+        </div>
+        <div class="macro-box">
+          <div class="lbl">PROTEIN</div>
+          <div class="val" id="valProtein">--</div>
+        </div>
+        <div class="macro-box">
+          <div class="lbl">FIBER</div>
+          <div class="val" id="valFiber">--</div>
+        </div>
+      </div>
+
+      <div style="font-size: 0.72rem; color: #94a3b8; margin-top: 10px; font-family: monospace;">
+        ● Saved to PC SQLite database &bull; Reflected on 8-Lane Master Timeline
+      </div>
     </div>
   </div>
 
   <script>
-    let currentPhotoBase64 = "";
+    let selectedImageBase64 = null;
+
+    // Check Wallet Authentication on Page Load
+    window.addEventListener('DOMContentLoaded', () => {
+      const isAuth = localStorage.getItem('lcars_cell_wallet_auth');
+      if (isAuth === 'true') {
+        showUploaderScreen();
+      } else {
+        showLoginScreen();
+      }
+    });
+
+    function showLoginScreen() {
+      document.getElementById('sectionWalletLogin').style.display = 'block';
+      document.getElementById('sectionMealUploader').style.display = 'none';
+    }
+
+    function showUploaderScreen() {
+      document.getElementById('sectionWalletLogin').style.display = 'none';
+      document.getElementById('sectionMealUploader').style.display = 'block';
+      const u = localStorage.getItem('lcars_cell_username') || 'Patient 5010';
+      document.getElementById('lblUserDisplay').textContent = u;
+    }
+
+    function handleWalletAuth(e) {
+      e.preventDefault();
+      const u = document.getElementById('authUsername').value || 'Patient 5010';
+      localStorage.setItem('lcars_cell_wallet_auth', 'true');
+      localStorage.setItem('lcars_cell_username', u);
+      showUploaderScreen();
+    }
+
+    function resetWalletAuth() {
+      if (confirm("Reset local wallet session? You will be prompted to log in again.")) {
+        localStorage.removeItem('lcars_cell_wallet_auth');
+        showLoginScreen();
+      }
+    }
 
     function onPhotoSelected(e) {
       const file = e.target.files[0];
       if (!file) return;
+
       const reader = new FileReader();
       reader.onload = function(evt) {
-        currentPhotoBase64 = evt.target.result;
+        selectedImageBase64 = evt.target.result;
         const img = document.getElementById('imgPreview');
-        img.src = currentPhotoBase64;
+        img.src = selectedImageBase64;
         img.style.display = 'block';
       };
       reader.readAsDataURL(file);
     }
 
-    async function uploadMealToGemini() {
-      const notes = document.getElementById('txtMobileMealNotes').value;
-      const btn = document.getElementById('btnUploadMeal');
-      btn.textContent = "⏳ GEMINI ANALYZING PHOTO & SOURCING MACROS...";
-      btn.disabled = true;
-
-      try {
-        const payload = {
-          meal_name: notes ? notes : "Mobile Photo Meal",
-          source: "MOBILE_CELL_PHOTO_UPLOAD",
-          photo_data: currentPhotoBase64 ? "data:image/jpeg;base64..." : "",
-          notes: notes
-        };
-
-        const res = await fetch("/api/meal/upload", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload)
-        });
-
-        const data = await res.json();
-        displayResult(data);
-      } catch (err) {
-        alert("Upload error: " + err.message);
-      } finally {
-        btn.textContent = "✨ UPLOAD & ANALYZE WITH GEMINI";
-        btn.disabled = false;
+    function quickSelectPackage(pkgId) {
+      const notes = document.getElementById('txtMobileMealNotes');
+      if (pkgId === 'meal01') {
+        notes.value = "MEAL-01 (Mon-Sat): Steel cut oatmeal, cinnamon, flax seed, berries, 3 turkey sausage, oat milk";
+      } else if (pkgId === 'meal02') {
+        notes.value = "MEAL-02 (Sunday): 2 eggs scrambled, 3 turkey sausage, 1 slice whole wheat toast, berries";
+      } else if (pkgId === 'chipotle') {
+        notes.value = "Chipotle burrito bowl: chicken, black beans, fajita veggies, fresh tomato salsa, guacamole";
+      } else if (pkgId === 'salmon') {
+        notes.value = "Grilled wild salmon with asparagus, cauliflower mash, and fresh blackberries";
       }
     }
 
-    async function quickLogPreset(presetKey) {
-      let name = "Routine Meal";
-      if (presetKey === 'meal01') name = "meal01 Mon-Sat Oatmeal, Berries, Turkey Sausage, Flax";
-      else if (presetKey === 'meal02') name = "meal02 Sunday Scrambled Eggs, Turkey Sausage, Toast";
-      else if (presetKey === 'chipotle') name = "Chipotle Burrito Bowl Chicken Beans";
-      else if (presetKey === 'salmon') name = "Wild Salmon Asparagus Sweet Potato";
+    async function uploadMealToGemini() {
+      const btn = document.getElementById('btnUploadMeal');
+      const notes = document.getElementById('txtMobileMealNotes').value.trim();
 
-      document.getElementById('txtMobileMealNotes').value = name;
-      await uploadMealToGemini();
-    }
+      btn.disabled = true;
+      btn.textContent = "⏳ GEMINI ANALYZING MEAL...";
 
-    function displayResult(data) {
-      const card = document.getElementById('cardResult');
-      card.style.display = 'block';
+      try {
+        const payload = {
+          meal_type: "Meal",
+          description: notes || "Mobile dining photo",
+          image_base64: selectedImageBase64 || null
+        };
 
-      document.getElementById('resMealTitle').textContent = data.meal_name;
-      document.getElementById('resVendor').textContent = "Sourced from: " + (data.vendor_matched || "Verified Clinical Profile");
-      document.getElementById('resNetCarbs').textContent = data.net_carbs + " g";
-      document.getElementById('resCalories').textContent = data.calories + " kcal";
-      document.getElementById('resProtein').textContent = data.protein + " g";
-      document.getElementById('resFiber').textContent = data.fiber + " g";
-      document.getElementById('resFat').textContent = data.fat + " g";
-      document.getElementById('resGL').textContent = data.glycemic_load || "Low";
-      document.getElementById('resNotes').innerHTML = "<strong>Gemini Insight:</strong> " + data.gemini_notes;
-      document.getElementById('resMealId').textContent = "#" + (data.meal_id || "101");
+        const resp = await fetch('/api/meal/upload', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
 
-      card.scrollIntoView({ behavior: 'smooth' });
+        const data = await resp.json();
+        if (data.status === 'OK' && data.meal) {
+          const m = data.meal;
+          document.getElementById('lblMealDesc').textContent = m.description || "Meal logged";
+          document.getElementById('valNetCarbs').textContent = `${m.carbs}g`;
+          document.getElementById('valCalories').textContent = `${m.calories}`;
+          document.getElementById('valProtein').textContent = `${m.protein}g`;
+          document.getElementById('valFiber').textContent = `${m.fiber}g`;
+
+          const isCompliant = m.carbs <= 45;
+          document.getElementById('lblCompliance').textContent = isCompliant 
+            ? `✅ MEETS DIABETIC GOAL: ${m.carbs}g Net Carbs ≤ 45g Max` 
+            : `⚠️ EXCEEDS TARGET: ${m.carbs}g Net Carbs (Walk Recommended)`;
+
+          document.getElementById('cardResult').style.display = 'block';
+          window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        } else {
+          console.log("Meal submitted:", data);
+        }
+      } catch (err) {
+        console.error("Upload error:", err);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "✨ ANALYZE & SUBMIT TO LCARS";
+      }
     }
   </script>
 </body>
