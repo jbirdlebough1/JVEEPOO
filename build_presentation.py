@@ -62,19 +62,9 @@ def generate_left_panel(s):
     bullets_html = ""
     for title, text in s.get("bullets", []):
         bullets_html += f"""
-          <li style="margin-bottom: 8px; line-height: 1.45;">
+          <li style="margin-bottom: 6px; line-height: 1.4;">
             <strong style="color: #0369a1;">{title}:</strong> {text}
           </li>
-        """
-    
-    # If slide 3 (FITAOS 5150 / Veepoo 5010 watch hardware), include watch photo
-    watch_img_html = ""
-    if s["id"] == 3:
-        watch_img_html = """
-        <div style="text-align: center; margin-bottom: 12px; background: #050b14; border-radius: 6px; padding: 6px; border: 1.5px solid #cbd5e1;">
-          <img src="images/watch_fitaos5010.jpg" onerror="this.src='../images/watch_fitaos5010.jpg'" alt="FITAOS 5150 / Veepoo Model 5010 Smartwatch" style="max-height: 175px; max-width: 100%; object-fit: contain; border-radius: 4px;">
-          <div style="color: #94a3b8; font-size: 0.72rem; margin-top: 4px; font-family: monospace;">FITAOS 5150 (Veepoo Model 5010) Wearable Transponder Hardware</div>
-        </div>
         """
 
     card_title = s.get("card_title", "CLINICAL OBJECTIVE & ARCHITECTURE")
@@ -83,14 +73,13 @@ def generate_left_panel(s):
 
     return f"""
       <!-- High-Contrast Dynamic Content Card -->
-      <div class="content-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #0284c7; padding: 20px; border-radius: 8px; display: flex; flex-direction: column; overflow-y: auto;">
-        {watch_img_html}
-        <h3 style="color: #0284c7; font-size: 1.15rem; font-weight: 800; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 10px; text-transform: uppercase;">{card_title}</h3>
-        <p style="font-size: 0.95rem; color: #334155; margin-bottom: 12px; line-height: 1.5; font-weight: 500;">{desc}</p>
-        <ul style="padding-left: 20px; margin-bottom: 14px; color: #1e293b; font-size: 0.88rem;">
+      <div class="content-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #0284c7; padding: 18px 20px; border-radius: 8px; display: flex; flex-direction: column; overflow-y: auto;">
+        <h3 style="color: #0284c7; font-size: 1.12rem; font-weight: 800; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 8px; text-transform: uppercase;">{card_title}</h3>
+        <p style="font-size: 0.92rem; color: #334155; margin-bottom: 10px; line-height: 1.45; font-weight: 500;">{desc}</p>
+        <ul style="padding-left: 18px; margin-bottom: 10px; color: #1e293b; font-size: 0.85rem;">
           {bullets_html}
         </ul>
-        <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 10px 14px; border-radius: 4px; font-size: 0.85rem; color: #14532d; margin-top: auto;">
+        <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 8px 12px; border-radius: 4px; font-size: 0.82rem; color: #14532d; margin-top: auto;">
           <strong style="color: #15803d;">Key Takeaway:</strong> {takeaway}
         </div>
       </div>
@@ -103,10 +92,10 @@ def generate_right_panel(s):
     html_content = s.get("right_html", "")
 
     return f"""
-      <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid {badge_col}; padding: 20px; border-radius: 8px; display: flex; flex-direction: column; overflow-y: auto;">
-        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 12px;">
-          <span style="font-family: monospace; font-weight: 800; color: #0284c7; font-size: 0.92rem;">{header}</span>
-          <span style="background: #f8fafc; color: {badge_col}; font-weight: 800; font-size: 0.75rem; padding: 3px 10px; border-radius: 4px; border: 1.5px solid {badge_col};">{badge}</span>
+      <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid {badge_col}; padding: 18px 20px; border-radius: 8px; display: flex; flex-direction: column; overflow-y: auto;">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 10px;">
+          <span style="font-family: monospace; font-weight: 800; color: #0284c7; font-size: 0.88rem;">{header}</span>
+          <span style="background: #f8fafc; color: {badge_col}; font-weight: 800; font-size: 0.72rem; padding: 3px 8px; border-radius: 4px; border: 1.5px solid {badge_col};">{badge}</span>
         </div>
         <div style="flex: 1; display: flex; flex-direction: column;">
           {html_content}

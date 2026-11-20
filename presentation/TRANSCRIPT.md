@@ -25,11 +25,11 @@
 
 ---
 
-## Slide 03: The FITAOS 5150 / Veepoo Model 5010 Smartwatch & Biosensing Features
+## Slide 03: The FITAOS 5150 Smartwatch & 8 Biometric Measurements
 **Module:** Module 1: Introduction & Clinical Scope  
-**Description:** Hardware architecture, physical design, and 5-sensor biosensing array of the FITAOS 5150 (Veepoo Model 5010) smartwatch.  
+**Description:** The FITAOS 5150 wearable biosensing array continuously captures 8 distinct physiological channels over Bluetooth Low Energy directly to your PC.  
 
-> "On screen is the physical FITAOS 5150 smartwatch, powered by the Veepoo Model 5010 architecture. On the left is the watch hardware itself. It features a crisp 1.39-inch high-definition touch display with a tactile rotary crown, multi-wavelength optical sensors for non-invasive glucose tonometry, dual-contact thermistors for core and skin temperature, and dual ECG electrodes for blood pressure and cardiac rhythm. With a week of continuous battery life and magnetic charging, it captures clinical data 24 hours a day without interruptions."
+> "On the right is the physical FITAOS 5150 smartwatch, available directly on their official sales site at fitaos.com. Because our software was engineered by Google Gemini Pro using the open HBandSDK and Veepoo repositories, many different Veepoo watch models are naturally compatible. On the left are the eight continuous biometric channels it measures: blood glucose, dual core and skin temperature, ambulatory blood pressure, arterial oxygen saturation, continuous heart rate, autonomic HRV, physical step cadence, and multi-stage sleep architecture. All eight signals stream continuously over Bluetooth Low Energy directly into LCARS without any subscription paywalls."
 
 ---
 
@@ -323,9 +323,9 @@
 
 ## Slide 40: Open Source Copyleft, Documentation & Powered by Google Gemini Pro
 **Module:** Module 10: Clinical Summaries & Open Source Ecosystem  
-**Description:** LCARS 5010 is 100% free open-source copyleft software under GNU GPL v3, fully documented for clinical and engineering rigor, and powered by Google Gemini Pro.  
+**Description:** LCARS 5010 is 100% free open-source copyleft software under GNU GPL v3, fully documented in GitHub /docs/, and powered by Google Gemini Pro using HBandSDK and Veepoo standards.  
 
-> "In closing, LCARS 5010 is completely free, open-source copyleft software released under the GNU General Public License version 3. You have complete sovereignty over your health data with zero cloud subscriptions and zero proprietary lock-in. The platform is fully documented with extensive clinical studies and engineering specifications in our docs directory, and was architected and built with Google Gemini Pro. You can purchase the FITAOS and Veepoo 5010 hardware through the links on screen and explore the full source code and documentation on GitHub. Thank you for joining our clinical masterclass!"
+> "In closing, LCARS 5010 is completely free, open-source copyleft software released under the GNU General Public License version 3. You have complete sovereignty over your health data with zero cloud subscriptions and zero proprietary lock-in. The platform is fully documented with extensive clinical studies and engineering specifications in our GitHub docs directory, and was architected and built with Google Gemini Pro based on the open HBandSDK and Veepoo repositories. You can purchase the FITAOS 5150 watch directly on the official FITAOS sales site at fitaos.com, and explore our full source code on GitHub. Thank you for joining our clinical masterclass!"
 
 ---
 

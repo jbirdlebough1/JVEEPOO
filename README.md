@@ -3,7 +3,7 @@
 ### *Turnkey Windows 11 Physiological Workstation, Non-Invasive Optical Tonometry Glucose Profile, 8.3% HbA1c Calibration Engine & 8-Stream Biometric Synthesis*
 
 [![Platform: Windows 11](https://img.shields.io/badge/Platform-Windows%2011%20%7C%20x64-blue.svg)](https://github.com/jbirdlebough1/JVEEPOO)
-[![Hardware: Model 5010](https://img.shields.io/badge/Hardware-FITAOS%20%2F%20Veepoo%20Model%205010-orange.svg)](https://github.com/jbirdlebough1/JVEEPOO)
+[![Hardware: Model 5010](https://img.shields.io/badge/Hardware-FITAOS%205150%20%2F%20Veepoo-orange.svg)](https://fitaos.com)
 [![Architecture: LCARS / Starfleet Cybernetics](https://img.shields.io/badge/Architecture-LCARS%2024th%20Century-purple.svg)](https://github.com/jbirdlebough1/JVEEPOO)
 [![Consensus: ADA / ADAG Algorithm](https://img.shields.io/badge/Clinical-ADA%20%2F%20ADAG%20eA1C-green.svg)](docs/clinical_glucose_study_and_a1c_analysis.md)
 [![Ecosystem: HBandSDK](https://img.shields.io/badge/Ecosystem-HBandSDK%20%7C%20Veepoo-brightgreen.svg)](https://github.com/HBandSDK)
