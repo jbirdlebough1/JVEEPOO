@@ -133,18 +133,57 @@
         </div>
         <div class="visual-content" style="flex: 1; display: flex; flex-direction: column;">
           
-          <div style="display:flex; align-items:baseline; gap:8px; margin-top:8px;">
-            <div style="font-size:2.8rem; font-weight:900; color:#d97706; font-family:monospace; line-height:1;">118 / 76</div>
-            <div style="font-size:1rem; font-weight:800; color:#64748b;">MMHG</div>
+          <!-- Pulse Wave Transit Time (PWTT) & Hemodynamic Arterial Waveform -->
+          <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 10px; margin-top: 4px; color: #0f172a;">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 4px; margin-bottom: 6px;">
+              <span style="font-family: monospace; font-size: 0.72rem; color: #0284c7; font-weight: 800;">PWTT DUAL-SIGNAL HEMODYNAMIC SYNCHRONIZATION</span>
+              <span style="background: #d97706; color: #fff; font-size: 0.60rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; font-family: monospace;">ECG + PPG TIMING</span>
+            </div>
+
+            <!-- SVG Diagram: ECG R-Wave to Wrist PPG Transit Time & Waveform -->
+            <svg viewBox="0 0 420 170" style="width: 100%; height: auto; display: block; background: #ffffff; border-radius: 4px; border: 1px solid #e2e8f0;">
+              <!-- Signal 1: Central Cardiac ECG (Ventricular Ejection Start) -->
+              <text x="20" y="24" fill="#0284c7" font-size="8" font-family="monospace" font-weight="bold">1. CARDIAC ECG (AORTIC VALVE OPENS AT R-PEAK: t₀)</text>
+              <path d="M 20 45 L 80 45 L 88 48 L 95 18 L 102 52 L 108 45 L 140 45 Q 155 35, 170 45 L 400 45" fill="none" stroke="#0284c7" stroke-width="2"/>
+              <circle cx="95" cy="18" r="3" fill="#dc2626"/>
+              <text x="95" y="12" fill="#dc2626" font-size="7" font-family="monospace" text-anchor="middle" font-weight="bold">R-PEAK (t₀)</text>
+
+              <!-- Vertical Timing Markers showing PWTT -->
+              <line x1="95" y1="18" x2="95" y2="125" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="3,2"/>
+              <line x1="210" y1="75" x2="210" y2="125" stroke="#15803d" stroke-width="1.5" stroke-dasharray="3,2"/>
+
+              <!-- PWTT Delta Time Arrow -->
+              <line x1="95" y1="65" x2="210" y2="65" stroke="#d97706" stroke-width="2"/>
+              <rect x="120" y="56" width="65" height="16" fill="#fef3c7" rx="3" stroke="#f59e0b"/>
+              <text x="152" y="68" fill="#b45309" font-size="7" font-family="monospace" text-anchor="middle" font-weight="bold">PWTT = 215 ms</text>
+
+              <!-- Signal 2: Peripheral Wrist Optical PPG (Arterial Pulse Arrival) -->
+              <text x="20" y="85" fill="#15803d" font-size="8" font-family="monospace" font-weight="bold">2. WRIST OPTICAL PPG (PULSE ARRIVAL & DICROTIC NOTCH: t₁)</text>
+              <path d="M 20 120 L 170 120 C 185 120, 195 78, 210 78 C 225 78, 235 98, 245 94 C 255 90, 270 120, 310 120 L 400 120" fill="none" stroke="#15803d" stroke-width="2.5"/>
+              <circle cx="210" cy="78" r="3" fill="#15803d"/>
+              <text x="210" y="72" fill="#15803d" font-size="7" font-family="monospace" text-anchor="middle" font-weight="bold">SYSTOLIC PEAK</text>
+              <circle cx="245" cy="94" r="2.5" fill="#d97706"/>
+              <text x="245" y="88" fill="#d97706" font-size="6.5" font-family="monospace" text-anchor="middle">DICROTIC NOTCH</text>
+
+              <!-- PWV & BP Readout Card -->
+              <rect x="290" y="130" width="120" height="32" rx="4" fill="#f8fafc" stroke="#cbd5e1"/>
+              <text x="350" y="142" fill="#334155" font-size="7" font-family="monospace" text-anchor="middle">CALCULATED BP</text>
+              <text x="350" y="157" fill="#dc2626" font-size="11" font-family="monospace" text-anchor="middle" font-weight="bold">126 / 84 MMHG</text>
+            </svg>
+
+            <!-- Physical Law Callout -->
+            <div style="margin-top: 6px; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; font-family: monospace; font-size: 0.67rem;">
+              <div style="background: #fffbeb; border: 1px solid #fde68a; border-radius: 4px; padding: 5px;">
+                <div style="color: #92400e; font-weight: bold;">📐 MOENS-KORTEWEG PHYSICAL LAW</div>
+                <div style="color: #78350f; margin-top: 2px;">PWV = Distance / PWTT = √(E·h / 2rρ)<br>Stiffened hypertensive arteries accelerate pulse wave arrival.</div>
+              </div>
+              <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 4px; padding: 5px;">
+                <div style="color: #166534; font-weight: bold;">🌙 NOCTURNAL DIPPING CRITERION</div>
+                <div style="color: #14532d; margin-top: 2px;">Verifies healthy 10%–20% overnight blood pressure dip without disturbing sleep with an inflating cuff.</div>
+              </div>
+            </div>
           </div>
-          <div style="margin-top:10px; display:grid; grid-template-columns:1fr 1fr; gap:8px;">
-            <div style="background:#f8fafc; padding:6px 10px; border-radius:4px; border:1px solid #e2e8f0; font-size:0.8rem; font-weight:bold; color:#0f172a;">Mean Arterial: 90 mmHg</div>
-            <div style="background:#f8fafc; padding:6px 10px; border-radius:4px; border:1px solid #e2e8f0; font-size:0.8rem; font-weight:bold; color:#0f172a;">Status: Normative Dipping</div>
-          </div>
-          <div style="margin-top:10px; font-size:0.75rem; color:#64748b; font-family:monospace; border-top:1px solid #e2e8f0; padding-top:6px;">
-            Method: Pulse Wave Transit Time Oscillometry
-          </div>
-        
+
         </div>
         <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.78rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
           <strong style="color: #15803d;">Key Takeaway:</strong> Continuous cuffless blood pressure monitoring that captures 24-hour cardiovascular dipping.

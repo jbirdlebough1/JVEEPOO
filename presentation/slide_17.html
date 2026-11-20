@@ -133,18 +133,66 @@
         </div>
         <div class="visual-content" style="flex: 1; display: flex; flex-direction: column;">
           
-          <div style="display:flex; align-items:baseline; gap:8px; margin-top:8px;">
-            <div style="font-size:2.8rem; font-weight:900; color:#15803d; font-family:monospace; line-height:1;">98%</div>
-            <div style="font-size:1rem; font-weight:800; color:#64748b;">SATURATION</div>
+          <!-- Dual-Wavelength Spectrophotometry & OSAHS Hypoxia Diagram -->
+          <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 10px; margin-top: 4px; color: #0f172a;">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 4px; margin-bottom: 6px;">
+              <span style="font-family: monospace; font-size: 0.72rem; color: #0284c7; font-weight: 800;">DUAL-WAVELENGTH SPECTROPHOTOMETRY & OSAHS</span>
+              <span style="background: #15803d; color: #fff; font-size: 0.60rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; font-family: monospace;">660nm vs 940nm</span>
+            </div>
+
+            <!-- SVG Diagram: Absorption Curves & Overnight Apnea Desaturation Dip -->
+            <svg viewBox="0 0 420 170" style="width: 100%; height: auto; display: block; background: #ffffff; border-radius: 4px; border: 1px solid #e2e8f0;">
+              <!-- Left: Spectrophotometric Absorption Spectra (x: 10 to 200) -->
+              <rect x="15" y="10" width="185" height="145" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+              <text x="107" y="24" fill="#334155" font-size="8" font-family="monospace" text-anchor="middle" font-weight="bold">HEMOGLOBIN ABSORPTION SPECTRA</text>
+
+              <!-- 660nm Red Line (Hb absorbs more) -->
+              <line x1="60" y1="35" x2="60" y2="135" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="2,2"/>
+              <text x="60" y="145" fill="#dc2626" font-size="6.5" font-family="monospace" text-anchor="middle" font-weight="bold">660nm (Red)</text>
+
+              <!-- 940nm NIR Line (HbO2 absorbs more) -->
+              <line x1="150" y1="35" x2="150" y2="135" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="2,2"/>
+              <text x="150" y="145" fill="#0369a1" font-size="6.5" font-family="monospace" text-anchor="middle" font-weight="bold">940nm (IR)</text>
+
+              <!-- Deoxyhemoglobin (Hb) Curve: High at 660, low at 940 -->
+              <path d="M 30 45 Q 60 50, 100 90 T 180 120" fill="none" stroke="#dc2626" stroke-width="2"/>
+              <text x="35" y="42" fill="#dc2626" font-size="7" font-family="monospace" font-weight="bold">Hb (Deoxygenated)</text>
+
+              <!-- Oxyhemoglobin (HbO2) Curve: Low at 660, high at 940 -->
+              <path d="M 30 115 Q 60 110, 100 85 T 180 50" fill="none" stroke="#0284c7" stroke-width="2"/>
+              <text x="145" y="42" fill="#0369a1" font-size="7" font-family="monospace" font-weight="bold">HbO₂ (Oxygenated)</text>
+
+              <!-- Isosbestic Point -->
+              <circle cx="102" cy="87" r="3" fill="#15803d"/>
+              <text x="102" y="100" fill="#15803d" font-size="6" font-family="monospace" text-anchor="middle">Isosbestic 805nm</text>
+
+              <!-- Right: Overnight Sleep Apnea Hypoxia Dip (x: 215 to 410) -->
+              <rect x="215" y="10" width="190" height="145" rx="5" fill="#ffffff" stroke="#cbd5e1"/>
+              <text x="310" y="24" fill="#dc2626" font-size="8" font-family="monospace" text-anchor="middle" font-weight="bold">NOCTURNAL HYPOXEMIA DESATURATION</text>
+
+              <!-- Baseline 98% Line -->
+              <line x1="230" y1="45" x2="390" y2="45" stroke="#16a34a" stroke-width="1" stroke-dasharray="3,2"/>
+              <text x="228" y="48" fill="#16a34a" font-size="6.5" font-family="monospace" text-anchor="end">98%</text>
+
+              <!-- 90% Hypoxia Threshold -->
+              <line x1="230" y1="90" x2="390" y2="90" stroke="#dc2626" stroke-width="1" stroke-dasharray="3,2"/>
+              <text x="228" y="93" fill="#dc2626" font-size="6.5" font-family="monospace" text-anchor="end">90%</text>
+
+              <!-- Apnea Desaturation Waveform -->
+              <path d="M 235 45 L 270 45 C 280 45, 290 125, 305 125 C 315 125, 325 45, 340 45 L 390 45" fill="none" stroke="#dc2626" stroke-width="2.5"/>
+              <circle cx="305" cy="125" r="3.5" fill="#dc2626"/>
+              <text x="305" y="140" fill="#dc2626" font-size="7" font-family="monospace" text-anchor="middle" font-weight="bold">86% APNEA DESATURATION</text>
+
+              <!-- Callout -->
+              <text x="310" y="70" fill="#7f1d1d" font-size="6.5" font-family="monospace" text-anchor="middle">Airway Collapse Event</text>
+            </svg>
+
+            <!-- Clinical Impact Callout -->
+            <div style="margin-top: 6px; background: #fef2f2; border-left: 4px solid #ef4444; padding: 5px 8px; border-radius: 4px; font-size: 0.67rem; color: #991b1b; line-height: 1.35; font-family: monospace;">
+              <strong>DIABETES-APNEA CO-MORBIDITY:</strong> Nocturnal oxygen drops below 90% trigger catecholamine surges that spike morning fasting glucose and amplify insulin resistance. Continuous 940nm tracking detects silent apnea without sleep disruption.
+            </div>
           </div>
-          <div style="margin-top:10px; display:grid; grid-template-columns:1fr 1fr; gap:8px;">
-            <div style="background:#f8fafc; padding:6px 10px; border-radius:4px; border:1px solid #e2e8f0; font-size:0.8rem; font-weight:bold; color:#0f172a;">Respiration: 16 RPM</div>
-            <div style="background:#f8fafc; padding:6px 10px; border-radius:4px; border:1px solid #e2e8f0; font-size:0.8rem; font-weight:bold; color:#0f172a;">Apnea Index: Normal</div>
-          </div>
-          <div style="margin-top:10px; font-size:0.75rem; color:#64748b; font-family:monospace; border-top:1px solid #e2e8f0; padding-top:6px;">
-            Sensors: 660nm Red / 940nm Infrared Continuous Reflectance
-          </div>
-        
+
         </div>
         <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.78rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
           <strong style="color: #15803d;">Key Takeaway:</strong> Protects against silent overnight hypoxia that destabilizes insulin sensitivity.

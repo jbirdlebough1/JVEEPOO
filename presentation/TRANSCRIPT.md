@@ -117,7 +117,7 @@
 **Module:** Module 3: Core Biosensor Array Operations  
 **Description:** How continuous optical tonometry calculates dynamic blood glucose and projected eA1c.  
 
-> "In Module 3, we tour the core biosensing channels. In Tab 01 Vitals, our primary focus is non-invasive optical glucose tonometry. By tracking multi-wavelength light absorption across superficial capillary beds, LCARS measures glucose fluctuations in real time and calculates projected A1C using the standard ADAG consensus algorithm."
+> "In Module 3, we tour the core biosensing channels. In Tab 01 Vitals, our primary focus is non-invasive optical glucose tonometry. Displayed on the right is the physical sensor architecture and optical ray-tracing diagram. The FITAOS 5150 underside chassis emits multi-wavelength optical beams—including 525 nanometer green and 940 nanometer near-infrared—penetrating the epidermal and dermal interstitial fluid layers down to pulsatile capillary loops. By applying the Beer-Lambert transmittance equation shown below, the photodiode captures differential photon attenuation caused by circulating glucose molecules in real time. LCARS then applies the standard ADAG consensus algorithm across continuous daily epochs, eliminating quarterly snapshot error and providing actionable metabolic insight without painful fingersticks."
 
 ---
 
@@ -125,7 +125,7 @@
 **Module:** Module 3: Core Biosensor Array Operations  
 **Description:** How continuous dual thermistors differentiate core circadian temperature from cutaneous skin temperature.  
 
-> "Still in Tab 01 Vitals, the second key channel monitors dual-matrix body temperature. Instead of a single uncalibrated reading, the Model 5010 uses dual thermistors to separate deep core temperature from peripheral skin temperature, revealing your natural circadian nadir and daytime metabolic rhythm."
+> "Still in Tab 01 Vitals, our second sensor channel monitors the dual-matrix body temperature array. Illustrated on the right is our dual-thermistor heat-flux vector architecture alongside the 24-hour circadian thermal cycle. Rather than taking an uncalibrated surface snapshot, the sensor array couples an epidermal contact plate measuring wrist skin temperature with an internal insulated reference thermistor. By computing the heat-flux vector between them, the core algorithm accurately tracks deep arterial core temperature at 96.1 degrees. On the 24-hour curve, observe the physiological 4:30 AM circadian nadir reaching 96 degrees flat. This nocturnal temperature drop is a vital clinical biomarker of parasympathetic rest and restorative metabolic tone."
 
 ---
 
@@ -133,7 +133,7 @@
 **Module:** Module 3: Core Biosensor Array Operations  
 **Description:** Non-invasive ambulatory blood pressure estimation via arterial pulse wave velocity.  
 
-> "Moving to Tab 02 Cardio, the first cardiovascular channel tracks blood pressure using Pulse Wave Transit Time. By measuring how fast arterial pressure waves travel through your blood vessels, the system estimates systolic and diastolic trends throughout the day and verifies healthy nocturnal blood pressure dipping."
+> "Moving to Tab 02 Cardio, the first cardiovascular channel tracks blood pressure using Pulse Wave Transit Time, or PWTT. The diagram on your screen demonstrates the exact electro-optical timing synchronization. Signal 1 captures central cardiac ventricular ejection at the ECG R-peak, defining time zero. Signal 2 captures the arterial pulse wave arrival at the wrist optical PPG sensor. The measured transit delay—here 215 milliseconds—is governed by the Moens-Korteweg physical law, where pulse velocity directly reflects arterial stiffness and hemodynamic pressure. This enables continuous, cuffless ambulatory monitoring to verify healthy 10 to 20 percent nocturnal blood pressure dipping without waking the patient with an inflating arm cuff."
 
 ---
 
@@ -141,7 +141,7 @@
 **Module:** Module 3: Core Biosensor Array Operations  
 **Description:** Continuous nocturnal pulse oximetry detecting desaturations and obstructive sleep apnea risk.  
 
-> "Continuing in Tab 02 Cardio, the next channel provides dual-wavelength blood oxygen monitoring. Utilizing 660 nanometer red and 940 nanometer infrared sensors, it monitors arterial oxygen and sleep apnea desaturations. Because sleep apnea directly worsens insulin resistance, this safeguard is vital for diabetic health."
+> "Continuing in Tab 02 Cardio, the next channel provides dual-wavelength spectrophotometric oxygen monitoring. The diagram on your right details the absorption spectra of oxygenated versus deoxygenated hemoglobin. At 660 nanometers, red light is heavily absorbed by deoxygenated hemoglobin, whereas 940 nanometer infrared light is predominantly absorbed by oxygenated hemoglobin. The sensor computes the ratio of these pulsatile AC to DC signals to derive continuous arterial saturation. On the right half of the diagram, observe the nocturnal sleep apnea desaturation curve dipping to 86 percent. Because obstructive sleep apnea triggers catecholamine surges that exacerbate insulin resistance and spike morning blood sugar, this nocturnal safeguard is vital for diabetic care."
 
 ---
 
@@ -149,7 +149,7 @@
 **Module:** Module 3: Core Biosensor Array Operations  
 **Description:** Tracking Heart Rate Variability (HRV SDNN) to evaluate autonomic recovery and chronic stress load.  
 
-> "In the third channel of Tab 02 Cardio, LCARS assesses autonomic nervous system recovery via Heart Rate Variability. High HRV indicates robust vagal nerve tone and resilience, whereas suppressed HRV reflects systemic stress and sympathetic overdrive, which raises blood sugar by triggering cortisol release."
+> "In our third cardiovascular channel, LCARS assesses autonomic nervous system recovery via Heart Rate Variability. On screen, we illustrate the beat-to-beat R-R interval tachogram and the resulting Poincaré Lorenz scatter plot. Each heartbeat interval is mapped against the subsequent beat, forming an elliptical dispersion pattern. The minor axis, SD1, directly measures parasympathetic vagal tone and short-term recovery, while the major axis, SD2, reflects sympathetic autonomic drive. A healthy autonomic nervous system produces a wide, resilient comet-shaped scatter. Conversely, chronic diabetic distress or autonomic neuropathy collapses the ellipse into a narrow torpedo cluster, warning clinicians of sympathetic overdrive and stress-induced glucose spikes."
 
 ---
 

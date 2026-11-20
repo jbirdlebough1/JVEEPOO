@@ -922,5 +922,16 @@
     "resolution": "Audited all 53 slides and identified 29 narrations containing artificial \"Slide #\" announcements (e.g. \"Slide 7 establishes...\", \"In Slide 8...\", \"Slide thirty-one focuses on...\"), which caused numbering desynchronization and distracted from the clinical flow. Completely replaced all 29 instances with seamless, screen-focused physiological transitions (e.g. \"Our clinical safe harbor standardizes on...\", \"Displayed on screen is...\", \"Next, we examine...\"). Re-rendered all 29 MP3 audio files with Australian female voice (en-AU-NatashaNeural) and regenerated presentation player and W11 executable.",
     "created_at": "2026-11-20 10:53:18",
     "resolved_at": "2026-11-20 10:53:18"
+  },
+  {
+    "bug_code": "CLE-056",
+    "title": "Core Biosensor Array Visual Diagrams & Physiological Ray-Tracing (Slides 14-18)",
+    "status": "RESOLVED",
+    "build_number": "V0.16.16.0",
+    "component": "Presentation / Hardware Biosensing Architecture",
+    "affected_files": "all_slides_data.json, audio/slide_14-18.mp3, build_presentation.py, preview.html, slides/slide_14-18.html, TRANSCRIPT.md",
+    "resolution": "Embedded rich SVG vector diagrams into the right panel of Slides 14 through 18 to visually explain the physical biosensors: (1) Slide 14: Multi-wavelength (525nm/940nm) optical ray-tracing through epidermis, capillary bed, and Beer-Lambert glucose absorption; (2) Slide 15: Dual-thermistor heat-flux vector architecture and 24h circadian thermal curve with 4:30 AM nadir (96.0\u00b0F); (3) Slide 16: PWTT dual-channel electro-optical timing (ECG R-peak to wrist PPG arrival) and Moens-Korteweg arterial pressure wave; (4) Slide 17: Dual-wavelength (660nm red vs 940nm IR) hemoglobin absorption spectra and sleep apnea 86% desaturation waveform; (5) Slide 18: Beat-to-beat R-R tachogram and Poincar\u00e9 Lorenz scatter geometry (SD1 vagal tone vs SD2 sympathetic load). Re-rendered synchronized Australian female audio tracks matching diagrams directly.",
+    "created_at": "2026-11-20 10:57:03",
+    "resolved_at": "2026-11-20 10:57:03"
   }
 ]
