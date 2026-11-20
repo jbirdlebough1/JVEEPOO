@@ -1071,29 +1071,33 @@
     "id": 39,
     "num": "39",
     "module": "Module 10: Clinical Summaries & Achieving Diabetic Goals",
-    "title": "Outpatient Clinical Review: Reviewing Telemetry with Your Doctor",
-    "desc": "How to structure consultations, share Epic EHR records, and collaborate with your physician.",
-    "narration": "In Module 10, we tie everything together. Bringing LCARS into your doctor visits changes the conversation. Instead of recounting vague memories, you review objective 24-hour curves, push verified records directly into their Epic EHR system, and collaborate on precise medication adjustments.",
-    "card_title": "OUTPATIENT CONSULTATION & EPIC RECORD SUBMISSION",
+    "title": "Outpatient Clinical Review: YTD, Monthly & Daily Telemetry Records",
+    "desc": "Comprehensive doctor-patient consultation covering Year-to-Date trends, 30-day monthly retrospects, and 24-hour daily continuous curves into Epic EHR.",
+    "narration": "When you sit down with your doctor, LCARS 5010 provides a complete, 3-tier clinical picture. Tier 1 covers your Year-to-Date record, showing multi-month eA1C progress and long-term titration success. Tier 2 examines your monthly 30-day retrospect, analyzing glycemic variance and Time-in-Range. And Tier 3 inspects daily 24-hour telemetry curves, showing exact meal excursions, post-walk glucose drops, and overnight nadirs. With one click, this entire multi-scale history is pushed directly into their Epic EHR system, transforming your consultation into an objective, collaborative clinical strategy.",
+    "card_title": "3-TIER CLINICAL CONSULTATION REVIEW FRAMEWORK",
     "bullets": [
       [
-        "Structured Doctor Consultations",
-        "Review 14-day and 30-day glycemic trajectories alongside meal and activity logs."
+        "Year-to-Date (YTD) Macro Trend",
+        "Examines multi-quarter eA1c trajectory, seasonal glycemic stability, and cumulative medication titration progress."
       ],
       [
-        "Direct Epic EHR Integration",
-        "Push continuous telemetry straight into your doctor's official Epic chart with one click."
+        "Monthly (30-Day) Retrospect",
+        "Audits 30-day glycemic variance, postprandial spike averages, dawn surge frequency, and overall Time-in-Range."
       ],
       [
-        "Targeted Therapy Optimization",
-        "Make confident, evidence-based medication changes backed by real ambulatory data."
+        "Daily (24-Hour) High-Resolution Curve",
+        "Inspects continuous 288-point curves showing exact meal spikes, exercise GLUT4 drops, and overnight nadir safety."
+      ],
+      [
+        "Direct Epic EHR Multi-Scale Push",
+        "Transmits certified YTD, monthly, and daily records straight into the doctor's Epic MyChart chart with 1 click."
       ]
     ],
-    "takeaway": "Brings objective continuous clinical evidence directly into your outpatient medical consultations.",
-    "right_header": "DOCTOR CONSULTATION DASHBOARD",
-    "right_badge": "SHARED WORKBENCH",
-    "right_badge_col": "#15803d",
-    "right_html": "\n          <div style=\"margin-top:10px; background:#f0fdf4; border:1.5px solid #bbf7d0; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.15rem; font-weight:800; color:#14532d; font-family:monospace;\">QUARTERLY LONGITUDINAL EVALUATION</div>\n            <div style=\"font-size:0.84rem; color:#166534; margin-top:6px; line-height:1.45;\">Empowers patient and physician to review real continuous evidence, evaluate GLUT4 efficacy, and safely titrate medications directly inside Epic EHR.</div>\n          </div>\n          <div style=\"margin-top:10px; display:flex; justify-content:space-between; font-family:monospace; font-size:0.75rem; background:#f8fafc; padding:6px 10px; border-radius:4px;\">\n            <span>EPIC MYCHART PUSH:</span>\n            <span style=\"color:#0284c7; font-weight:bold;\">READY FOR SUBMISSION</span>\n          </div>\n        "
+    "takeaway": "Connecting YTD, monthly, and daily records gives your doctor the complete clinical picture for precise medical decisions.",
+    "right_header": "DOCTOR CONSULTATION DASHBOARD \u2022 3-TIER AUDIT",
+    "right_badge": "YTD \u2022 MONTH \u2022 DAILY",
+    "right_badge_col": "#0284c7",
+    "right_html": "\n          <div style=\"display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px; margin-top:6px;\">\n            <div style=\"background:#f0fdf4; border:1.5px solid #bbf7d0; border-radius:4px; padding:6px;\">\n              <div style=\"font-size:0.65rem; color:#15803d; font-weight:800;\">1. YTD RECORD</div>\n              <div style=\"font-size:0.92rem; font-weight:800; color:#14532d; font-family:monospace; margin-top:2px;\">eA1C 6.7%</div>\n              <div style=\"font-size:0.65rem; color:#166534; margin-top:2px;\">Long-term trend from 8.8% \u2022 TIR 78.4%</div>\n            </div>\n            <div style=\"background:#f0f9ff; border:1.5px solid #bae6fd; border-radius:4px; padding:6px;\">\n              <div style=\"font-size:0.65rem; color:#0284c7; font-weight:800;\">2. MONTH (30-D)</div>\n              <div style=\"font-size:0.92rem; font-weight:800; color:#0369a1; font-family:monospace; margin-top:2px;\">138 MG/DL</div>\n              <div style=\"font-size:0.65rem; color:#0c4a6e; margin-top:2px;\">Variance \u00b124 mg/dL \u2022 0 Hypo events</div>\n            </div>\n            <div style=\"background:#fdf4ff; border:1.5px solid #f5d0fe; border-radius:4px; padding:6px;\">\n              <div style=\"font-size:0.65rem; color:#a21caf; font-weight:800;\">3. DAILY (24-H)</div>\n              <div style=\"font-size:0.92rem; font-weight:800; color:#86198f; font-family:monospace; margin-top:2px;\">288 PTS</div>\n              <div style=\"font-size:0.65rem; color:#701a75; margin-top:2px;\">Meal spikes & GLUT4 post-walk dips</div>\n            </div>\n          </div>\n          <div style=\"margin-top:10px; background:#f8fafc; border:1px solid #cbd5e1; border-radius:4px; padding:8px;\">\n            <div style=\"font-size:0.72rem; color:#475569; font-weight:bold; text-transform:uppercase;\">Outpatient Consultation Synthesis</div>\n            <div style=\"font-size:0.78rem; color:#0f172a; margin-top:3px; line-height:1.4;\">\n              Enables the attending physician to correlate long-term medication efficacy (YTD) with recent habit shifts (Month) and immediate physiological responses (Daily).\n            </div>\n          </div>\n          <div style=\"margin-top:10px; background:#eff6ff; border:1.5px solid #bfdbfe; border-radius:6px; padding:10px; display:flex; justify-content:space-between; align-items:center;\">\n            <div>\n              <div style=\"font-weight:800; color:#1e40af; font-size:0.8rem;\">EPIC EHR PERMANENT INTEGRATION</div>\n              <div style=\"font-size:0.72rem; color:#1e3a8a; margin-top:2px;\">Transmits verified YTD, Month & Daily records into patient's chart.</div>\n            </div>\n            <button style=\"background:#0284c7; color:#ffffff; border:none; border-radius:4px; padding:6px 12px; font-weight:bold; font-size:0.75rem; cursor:pointer;\">PUSH TO EPIC</button>\n          </div>\n        "
   },
   {
     "id": 40,

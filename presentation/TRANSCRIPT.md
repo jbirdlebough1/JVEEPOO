@@ -313,11 +313,11 @@
 
 ---
 
-## Slide 39: Outpatient Clinical Review: Reviewing Telemetry with Your Doctor
+## Slide 39: Outpatient Clinical Review: YTD, Monthly & Daily Telemetry Records
 **Module:** Module 10: Clinical Summaries & Achieving Diabetic Goals  
-**Description:** How to structure consultations, share Epic EHR records, and collaborate with your physician.  
+**Description:** Comprehensive doctor-patient consultation covering Year-to-Date trends, 30-day monthly retrospects, and 24-hour daily continuous curves into Epic EHR.  
 
-> "In Module 10, we tie everything together. Bringing LCARS into your doctor visits changes the conversation. Instead of recounting vague memories, you review objective 24-hour curves, push verified records directly into their Epic EHR system, and collaborate on precise medication adjustments."
+> "When you sit down with your doctor, LCARS 5010 provides a complete, 3-tier clinical picture. Tier 1 covers your Year-to-Date record, showing multi-month eA1C progress and long-term titration success. Tier 2 examines your monthly 30-day retrospect, analyzing glycemic variance and Time-in-Range. And Tier 3 inspects daily 24-hour telemetry curves, showing exact meal excursions, post-walk glucose drops, and overnight nadirs. With one click, this entire multi-scale history is pushed directly into their Epic EHR system, transforming your consultation into an objective, collaborative clinical strategy."
 
 ---
 
