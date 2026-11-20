@@ -1,4 +1,4 @@
-# build_presentation.py - Master 40-Slide Clinical Audio-Visual Walkthrough
+# build_presentation.py - Master 53-Slide Clinical Audio-Visual Walkthrough
 import os
 import subprocess
 import json
@@ -39,45 +39,45 @@ print(f"Loaded {len(slides_data)} slides from {data_file}")
 # Write TRANSCRIPT.md
 transcript_path = os.path.join(pres_dir, "TRANSCRIPT.md")
 with open(transcript_path, "w", encoding="utf-8") as f:
-    f.write("# LCARS 5010 Clinical Ambulatory Telemetry Onboarding - Official Narration Transcript\n\n")
-    f.write("**Audio Track:** Australian Professional Technical Narration (Female - Edge TTS / en-AU-NatashaNeural)  \n")
-    f.write("**Hardware Platform:** FITAOS 5150 / Veepoo Model 5010 Biosensing Array  \n")
-    f.write("**Protocol:** Bluetooth Low Energy 5.0 Local-First Air-Gapped Telemetry  \n")
-    f.write("**License:** GNU General Public License v3 (Open Source Copyleft)  \n")
-    f.write("**Engineering:** Powered by Google Gemini Pro (Google DeepMind Agentic AI)  \n")
-    f.write("**Scope:** Complete End-to-End Clinical, Operational, and Architectural Walkthrough  \n\n---\n\n")
+    f.write("# LCARS 5010 Clinical Ambulatory Telemetry Onboarding - Complete Voice Transcript\n\n")
+    f.write("Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**\n\n")
+    f.write("---\n\n")
     for s in slides_data:
-        f.write(f"## Slide {s['num']}: {s['title']}\n")
+        f.write(f"### Slide {s['num']}: {s['title']}\n")
         f.write(f"**Module:** {s['module']}  \n")
-        f.write(f"**Description:** {s['desc']}  \n\n")
-        f.write(f"> \"{s['narration']}\"\n\n---\n\n")
+        f.write(f"**Card Title:** {s['card_title']}  \n\n")
+        f.write(f"> {s['narration']}\n\n")
+        if s.get("bullets"):
+            f.write("**Key Points:**\n")
+            for b in s["bullets"]:
+                f.write(f"- **{b[0]}:** {b[1]}\n")
+            f.write("\n")
+        f.write(f"**Key Takeaway:** {s.get('takeaway', '')}\n\n")
+        f.write("---\n\n")
 
-print(f"Created TRANSCRIPT.md with all {len(slides_data)} slides!")
+print("Created TRANSCRIPT.md with all 53 slides!")
 
 # -----------------------------------------------------------------------------
-# DYNAMIC PANEL GENERATORS
+# TAB MAP DEFINITIONS
 # -----------------------------------------------------------------------------
-
 TAB_MAP = [
     (1, "01-VITALS", "images/lcars_tab_vitals.png"),
     (2, "02-CARDIO", "images/lcars_tab_cardio.png"),
-    (3, "03-METABOLIC", "images/lcars_tab_metabolic.png"),
+    (3, "03-360° HEALTH", "images/lcars_tab_metabolic.png"),
     (4, "04-REPORTS", "images/lcars_tab_reports.png"),
-    (5, "05-CONFIG", "images/lcars_tab_setup.png"),
-    (6, "06-DIAG LOG", "images/lcars_tab_log.png"),
+    (5, "05-SETUP", "images/lcars_tab_setup.png"),
+    (6, "06-PACKET LOG", "images/lcars_tab_log.png"),
     (7, "07-OPERATIONS", "images/lcars_tab_operations.png"),
     (8, "08-HELP & FAQ", "images/lcars_tab_help.png"),
-    (9, "09-ADA TRADES", "images/lcars_tab_diettrades.png"),
+    (9, "09-DIET TRADES", "images/lcars_tab_diettrades.png"),
     (10, "10-WATCH FACES", "images/lcars_tab_watchfaces.png"),
     (11, "11-MEDICATION", "images/lcars_tab_medication.png"),
     (12, "12-FULL SCAN", "images/lcars_tab_fullscan.png")
 ]
 
 def get_active_tab_num(s, tab_img):
-    if s and s.get("tab_num"):
-        return int(s.get("tab_num"))
-    if not tab_img:
-        return 1
+    if s.get("tab_num"):
+        return s["tab_num"]
     base = os.path.basename(tab_img).lower()
     if "chart_" in base or "report" in base:
         return 4
@@ -87,41 +87,57 @@ def get_active_tab_num(s, tab_img):
     return 1
 
 def generate_left_panel(s):
+    is_steady = s.get("no_scroll", False) or s.get("num") in ["03", "04", "05", "3", "4", "5"]
+    
     bullets_html = ""
     for idx, (title, text) in enumerate(s.get("bullets", [])):
+        li_padding = "2px 6px;" if is_steady else "4px 8px;"
+        li_margin = "margin-bottom: 2px;" if is_steady else "margin-bottom: 5px;"
         bullets_html += f"""
-          <li id="bullet-item-{idx}" class="bullet-item" data-idx="{idx}" style="margin-bottom: 5px; line-height: 1.35; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: all 0.25s ease;">
+          <li id="bullet-item-{idx}" class="bullet-item" data-idx="{idx}" style="{li_margin} line-height: 1.25; padding: {li_padding} border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
             <strong style="color: #0369a1;">{title}:</strong> {text}
           </li>
         """
 
     card_title = s.get("card_title", "CLINICAL OBJECTIVE & ARCHITECTURE")
     desc = s.get("desc", "")
-    takeaway = s.get("takeaway", "Continuous telemetry ensures patient safety and clinical insight.")
-
     tab_img = s.get("tab_screenshot") or s.get("image") or ""
     tab_title = s.get("tab_title") or s.get("title") or "LCARS WORKSTATION CONSOLE"
-    active_tab = get_active_tab_num(s, tab_img)
-    active_tab_name = dict([(t[0], t[1]) for t in TAB_MAP]).get(active_tab, "01-VITALS")
 
     screenshot_html = ""
     if tab_img:
-        screenshot_html = f"""
-        <!-- Real LCARS Page Under Discussion (Pure Authentic Light Theme Screenshot) -->
-        <div class="left-screenshot-card" style="margin-top: 6px; margin-bottom: 6px; border: 2px solid #cbd5e1; border-radius: 8px; overflow: hidden; background: #ffffff; box-shadow: 0 4px 14px rgba(0,0,0,0.08); display: flex; flex-direction: column; flex: 1; min-height: 290px;">
-          <!-- Continuous Monotonic Scroll Viewport (Clean Light Background) -->
-          <div class="left-screenshot-viewport" style="text-align: center; background: #ffffff; overflow-y: auto; flex: 1; min-height: 250px; position: relative;">
-            <img src="{tab_img}" onerror="this.src='../{tab_img}'" alt="{tab_title}" style="width: 100%; height: auto; display: block; object-fit: cover; object-position: top center;">
-          </div>
-        </div>
-        """
+        if is_steady:
+            screenshot_html = f"""
+            <!-- Real LCARS Page Under Discussion (Steady Viewport) -->
+            <div class="left-screenshot-card" style="margin-top: 4px; margin-bottom: 2px; border: 1.5px solid #cbd5e1; border-radius: 6px; overflow: hidden; background: #ffffff; box-shadow: 0 2px 6px rgba(0,0,0,0.06); display: flex; flex-direction: column; flex: 1; min-height: 100px; max-height: 160px;">
+              <div class="left-screenshot-viewport" style="text-align: center; background: #ffffff; overflow: hidden; height: 100%; position: relative;">
+                <img src="{tab_img}" onerror="this.src='../{tab_img}'" alt="{tab_title}" style="width: 100%; height: 100%; object-fit: contain; object-position: center;">
+              </div>
+            </div>
+            """
+        else:
+            screenshot_html = f"""
+            <!-- Real LCARS Page Under Discussion (Pure Authentic Light Theme Screenshot) -->
+            <div class="left-screenshot-card" style="margin-top: 6px; margin-bottom: 6px; border: 2px solid #cbd5e1; border-radius: 8px; overflow: hidden; background: #ffffff; box-shadow: 0 4px 14px rgba(0,0,0,0.08); display: flex; flex-direction: column; flex: 1; min-height: 290px;">
+              <!-- Continuous Monotonic Scroll Viewport (Clean Light Background) -->
+              <div class="left-screenshot-viewport" style="text-align: center; background: #ffffff; overflow-y: auto; flex: 1; min-height: 250px; position: relative;">
+                <img src="{tab_img}" onerror="this.src='../{tab_img}'" alt="{tab_title}" style="width: 100%; height: auto; display: block; object-fit: cover; object-position: top center;">
+              </div>
+            </div>
+            """
+
+    card_overflow = "overflow: hidden;" if is_steady else "overflow-y: auto;"
+    card_padding = "padding: 8px 12px;" if is_steady else "padding: 10px 14px;"
+    h3_margin = "margin-bottom: 2px; font-size: 0.95rem;" if is_steady else "margin-bottom: 5px; font-size: 1.05rem;"
+    p_margin = "margin-bottom: 3px; font-size: 0.77rem; line-height: 1.25;" if is_steady else "margin-bottom: 5px; font-size: 0.85rem; line-height: 1.35;"
+    ul_size = "font-size: 0.72rem;" if is_steady else "font-size: 0.80rem;"
 
     return f"""
       <!-- High-Contrast Dynamic Content Card -->
-      <div class="content-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #0284c7; padding: 10px 14px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto;">
-        <h3 style="color: #0284c7; font-size: 1.05rem; font-weight: 800; border-bottom: 2px solid #e2e8f0; padding-bottom: 4px; margin-bottom: 5px; text-transform: uppercase;">{card_title}</h3>
-        <p style="font-size: 0.85rem; color: #334155; margin-bottom: 5px; line-height: 1.35; font-weight: 500;">{desc}</p>
-        <ul class="bullets-list" style="padding-left: 0; list-style-type: none; margin-bottom: 4px; color: #1e293b; font-size: 0.80rem;">
+      <div class="content-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #0284c7; {card_padding} border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; {card_overflow}">
+        <h3 style="color: #0284c7; font-weight: 800; border-bottom: 2px solid #e2e8f0; padding-bottom: 4px; {h3_margin} text-transform: uppercase;">{card_title}</h3>
+        <p style="color: #334155; font-weight: 500; {p_margin}">{desc}</p>
+        <ul class="bullets-list" style="padding-left: 0; list-style-type: none; margin-bottom: 3px; color: #1e293b; {ul_size}">
           {bullets_html}
         </ul>
         {screenshot_html}
@@ -129,14 +145,18 @@ def generate_left_panel(s):
     """
 
 def generate_right_panel(s):
+    is_steady = s.get("no_scroll", False) or s.get("num") in ["03", "04", "05", "3", "4", "5"]
     header = s.get("right_header", "LCARS 5010 • CLINICAL INTERFACE")
     badge = s.get("right_badge", "● ONLINE")
     badge_col = s.get("right_badge_col", "#15803d")
     html_content = s.get("right_html", "")
     takeaway = s.get("takeaway", "Continuous telemetry ensures patient safety and clinical insight.")
 
+    card_overflow = "overflow: hidden;" if is_steady else "overflow-y: auto;"
+    card_padding = "padding: 8px 12px;" if is_steady else "padding: 10px 14px;"
+
     return f"""
-      <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid {badge_col}; padding: 10px 14px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto; scroll-behavior: smooth;">
+      <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid {badge_col}; {card_padding} border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; {card_overflow}">
         <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 4px; margin-bottom: 6px; flex-shrink: 0;">
           <span style="font-family: monospace; font-weight: 800; color: #0284c7; font-size: 0.84rem;">{header}</span>
           <span style="background: #f8fafc; color: {badge_col}; font-weight: 800; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; border: 1.5px solid {badge_col};">{badge}</span>
@@ -144,7 +164,7 @@ def generate_right_panel(s):
         <div class="visual-content" style="flex: 1; display: flex; flex-direction: column;">
           {html_content}
         </div>
-        <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.78rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
+        <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.76rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
           <strong style="color: #15803d;">Key Takeaway:</strong> {takeaway}
         </div>
       </div>
@@ -246,55 +266,46 @@ slide_template = """<!DOCTYPE html>
         <div class="slide-module">{module}</div>
         <div class="slide-title">{title}</div>
       </div>
-      <div class="slide-badge">SLIDE {num} / {total}</div>
+      <div class="slide-badge">SLIDE {num} / 53</div>
     </div>
 
     <div class="slide-body">
-{left_panel}
-{right_panel}
+      {left_panel}
+      {right_panel}
     </div>
 
     <div class="slide-footer">
-      <span>VEEPOO 5010 CLINICAL AMBULATORY TELEMETRY ONBOARDING</span>
-      <span>SLIDE {num} OF {total}</span>
+      <div>LCARS 5010 CLINICAL AMBULATORY TELEMETRY ONBOARDING • LIGHT THEME</div>
+      <div>AUSTRALIAN FEMALE VOICE • 100% SCREEN SYNCHRONIZED</div>
     </div>
   </div>
 </body>
 </html>
 """
 
-# Build all slides dynamically
-total_slides_count = len(slides_data)
+# Render individual slides
 for s in slides_data:
-    left_html = generate_left_panel(s)
-    right_html = generate_right_panel(s)
-    
-    html = slide_template.format(
+    left_panel = generate_left_panel(s)
+    right_panel = generate_right_panel(s)
+    html_out = slide_template.format(
         num=s["num"],
         title=s["title"],
         module=s["module"],
-        total=total_slides_count,
-        left_panel=left_html,
-        right_panel=right_html
+        left_panel=left_panel,
+        right_panel=right_panel
     )
     
-    # Save to presentation/slides/slide_XX.html
-    slide_file_sub = os.path.join(slides_dir, f"slide_{s['num']}.html")
-    with open(slide_file_sub, "w", encoding="utf-8") as f:
-        f.write(html)
-        
-    # Also save to presentation/slide_XX.html for direct access
-    slide_file_root = os.path.join(pres_dir, f"slide_{s['num']}.html")
-    with open(slide_file_root, "w", encoding="utf-8") as f:
-        f.write(html)
+    # Save into presentation/slides/
+    with open(os.path.join(slides_dir, f"slide_{s['num']}.html"), "w", encoding="utf-8") as f:
+        f.write(html_out)
+    # Save into root slides/
+    with open(os.path.join(r"D:\veepoo\slides", f"slide_{s['num']}.html"), "w", encoding="utf-8") as f:
+        f.write(html_out)
+    # Also save into presentation/ for flat serving
+    with open(os.path.join(pres_dir, f"slide_{s['num']}.html"), "w", encoding="utf-8") as f:
+        f.write(html_out)
 
-    # Also save to D:\veepoo\slides\slide_XX.html for direct access
-    veepoo_slides_dir = r"D:\veepoo\slides"
-    os.makedirs(veepoo_slides_dir, exist_ok=True)
-    with open(os.path.join(veepoo_slides_dir, f"slide_{s['num']}.html"), "w", encoding="utf-8") as f:
-        f.write(html)
-
-print(f"Generated all {total_slides_count} synchronized slides in slides/, presentation/, and D:\\veepoo\\slides!")
+print("Generated all 53 synchronized slides in slides/, presentation/, and D:\\veepoo\\slides!")
 
 # -----------------------------------------------------------------------------
 # BUILD preview.html (MASTER TECHNICAL PLAYER WITH AUSTRALIAN FEMALE VOICE)
@@ -393,234 +404,113 @@ preview_html_content = f"""<!DOCTYPE html>
     .ctrl-btn.active {{
       background: #0284c7;
       color: #ffffff;
-      box-shadow: 0 0 8px rgba(2, 132, 199, 0.4);
+      border-color: #0284c7;
     }}
-    .progress-bar-container {{
+    .scrubber-container {{
       flex: 1;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }}
-    .scrubber {{
-      flex: 1;
-      height: 8px;
+      height: 6px;
       background: #e2e8f0;
-      border-radius: 4px;
+      border-radius: 3px;
       position: relative;
       cursor: pointer;
-      overflow: hidden;
     }}
     .scrubber-fill {{
       height: 100%;
-      background: linear-gradient(90deg, #0284c7, #38bdf8);
+      background: #0284c7;
+      border-radius: 3px;
       width: 0%;
       transition: width 0.1s linear;
     }}
     .transcript-drawer {{
       position: absolute;
-      bottom: 0;
+      bottom: 42px;
       left: 0;
       right: 0;
-      background: rgba(255, 255, 255, 0.98);
+      background: #ffffff;
       border-top: 2px solid #0284c7;
-      backdrop-filter: blur(8px);
-      padding: 16px 32px;
-      max-height: 140px;
-      display: none;
+      box-shadow: 0 -4px 12px rgba(0,0,0,0.08);
+      max-height: 180px;
       overflow-y: auto;
-      font-size: 14px;
-      line-height: 1.5;
-      color: #0f172a;
-      box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
+      padding: 12px 18px;
+      display: none;
+      z-index: 100;
+    }}
+    .transcript-drawer.open {{
+      display: block;
     }}
   </style>
 </head>
 <body>
+
+  <!-- Top Player Header -->
   <div class="player-header">
     <div class="player-title">
-      <span class="player-badge">LCARS 5010</span>
-      <span>CLINICAL AMBULATORY TELEMETRY ONBOARDING</span>
+      <span>LCARS 5010 CLINICAL AMBULATORY TELEMETRY ONBOARDING</span>
+      <span class="player-badge">WINDOWS 11 CONSOLE</span>
     </div>
-    <div style="display: flex; align-items: center; gap: 10px;">
-      <button class="ctrl-btn" onclick="toggleFullscreen()" style="padding: 3px 8px; font-size: 11px;">⛶ FULLSCREEN</button>
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <span id="lblScreenshotZone" style="font-family: monospace; font-size: 11px; background: #0284c7; color: #ffffff; padding: 2px 8px; border-radius: 3px; font-weight: bold;">📍 FOCUS: FULL OVERVIEW</span>
+      <span style="font-size: 12px; color: #64748b; font-weight: 600;">VOICE: <strong style="color: #0284c7;">AUSTRALIAN FEMALE</strong></span>
+      <span id="lblSlideCounter" style="font-family: monospace; font-size: 12px; font-weight: 800; color: #0f172a;">01 / 53</span>
     </div>
   </div>
 
+  <!-- Main Slide Iframe Viewport -->
   <div class="player-main">
     <iframe id="slideIframe" src="slides/slide_01.html"></iframe>
-    <div id="transcriptDrawer" class="transcript-drawer">
-      <strong style="color: #0284c7; display: block; margin-bottom: 4px;" id="lblTranscriptTitle">SLIDE 01 NARRATION:</strong>
-      <div id="txtTranscript">Loading narration...</div>
-    </div>
   </div>
 
+  <!-- Transcript Drawer -->
+  <div id="transcriptDrawer" class="transcript-drawer">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+      <strong id="lblTranscriptTitle" style="color: #0284c7; font-size: 13px;">SLIDE 01 TRANSCRIPT</strong>
+      <button onclick="toggleTranscript()" style="background: none; border: none; font-size: 14px; cursor: pointer; color: #64748b;">✕</button>
+    </div>
+    <p id="txtTranscript" style="font-size: 12.5px; line-height: 1.5; color: #334155; font-family: -apple-system, BlinkMacSystemFont, sans-serif;"></p>
+  </div>
+
+  <!-- Bottom Player Controls -->
   <div class="player-controls">
-    <div style="display: flex; gap: 8px;">
-      <button class="ctrl-btn" onclick="prevSlide()">⏮ PREV</button>
-      <button class="ctrl-btn" id="btnPlayPause" onclick="togglePlayPause()" style="background: #16a34a; color: #ffffff; border: 1.5px solid #15803d; font-weight: 800; min-width: 82px;">▶ RUN</button>
-      <button class="ctrl-btn" onclick="nextSlide()">NEXT ⏭</button>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <button class="ctrl-btn" onclick="prevSlide()" title="Previous Slide [Left Arrow]">⏮ PREV</button>
+      <button id="btnPlayPause" class="ctrl-btn active" onclick="togglePlayPause()" title="Play / Pause [Spacebar]">⏸ PAUSE</button>
+      <button class="ctrl-btn" onclick="nextSlide()" title="Next Slide [Right Arrow]">NEXT ⏭</button>
     </div>
 
-    <div class="progress-bar-container">
-      <span id="lblTime" style="font-family: monospace; font-size: 11px; color: #64748b; width: 45px;">00:00</span>
-      <div class="scrubber" onclick="onScrub(event)">
-        <div id="scrubberFill" class="scrubber-fill"></div>
-      </div>
-      <span id="lblSlideCounter" style="font-family: monospace; font-size: 11px; color: #0284c7; font-weight: 800; width: 65px; text-align: right;">01 / {len(slides_data)}</span>
+    <!-- Scrubber Progress Bar -->
+    <div class="scrubber-container" onclick="seekSlide(event)">
+      <div id="scrubberFill" class="scrubber-fill"></div>
     </div>
 
-    <div style="display: flex; gap: 8px; align-items: center;">
-      <select id="selSlide" onchange="jumpToSlide(parseInt(this.value))" style="background: #ffffff; color: #0f172a; border: 1.5px solid #cbd5e1; border-radius: 4px; padding: 4px 8px; font-size: 11.5px;">
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <button class="ctrl-btn" onclick="toggleTranscript()" title="Toggle Voice Script Drawer">📜 TRANSCRIPT</button>
+
+      <!-- Slide Selector Dropdown -->
+      <select id="selSlide" onchange="jumpToSlide(parseInt(this.value))" style="padding: 3px 8px; font-size: 11.5px; border-radius: 4px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #0f172a; font-weight: 600; cursor: pointer; outline: none;">
       </select>
-      <button class="ctrl-btn" id="btnToggleTranscript" onclick="toggleTranscript()">📜 SCRIPT</button>
-      <button class="ctrl-btn" id="btnSpeed" onclick="cycleSpeed()" style="width: 48px; justify-content: center;">1.0x</button>
+
+      <!-- Speed Control -->
+      <select id="selSpeed" onchange="setPlaybackSpeed(parseFloat(this.value))" style="padding: 3px 6px; font-size: 11.5px; border-radius: 4px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #0f172a; font-weight: 600; cursor: pointer; outline: none;">
+        <option value="1.0" selected>1.0x</option>
+        <option value="1.25">1.25x</option>
+        <option value="1.5">1.5x</option>
+      </select>
     </div>
   </div>
 
-  <!-- Audio Element with High-Fidelity Pre-Rendered Female MP3s -->
+  <!-- Audio Player for Real Voice Narration -->
   <audio id="audioPlayer" preload="auto"></audio>
 
   <script>
     const slides = {slides_json_str};
 
     let currentIndex = 0;
-    let isPlaying = false;
+    let isPlaying = true;
     let playbackSpeed = 1.0;
-    let auFemaleVoice = null;
-    let synth = window.speechSynthesis;
-    let currentUtterance = null;
     let slideTimer = null;
-    let audioUnlocked = false;
+    let synth = window.speechSynthesis;
 
-    function updatePlayPauseUI() {{
-      const btn = document.getElementById('btnPlayPause');
-      if (!btn) return;
-      if (isPlaying) {{
-        btn.innerText = "⏸ PAUSE";
-        btn.style.background = "#0284c7";
-        btn.style.borderColor = "#0369a1";
-        btn.style.color = "#ffffff";
-        btn.classList.add('active');
-      }} else {{
-        btn.innerText = "▶ RUN";
-        btn.style.background = "#16a34a";
-        btn.style.borderColor = "#15803d";
-        btn.style.color = "#ffffff";
-        btn.classList.remove('active');
-      }}
-    }}
-
-    // Populate Slide Selector
-    const sel = document.getElementById('selSlide');
-    slides.forEach((s, idx) => {{
-      const opt = document.createElement('option');
-      opt.value = idx;
-      opt.text = `${{s.num}}. ${{s.title}}`;
-      sel.appendChild(opt);
-    }});
-
-    // Initialize Web Speech Fallback Voices (Prefer Female Australian)
-    function initVoices() {{
-      if (!synth) return;
-      const voices = synth.getVoices();
-      auFemaleVoice = voices.find(v => (v.lang === 'en-AU' || v.lang.startsWith('en-AU')) && (v.name.includes('Natasha') || v.name.includes('Catherine') || v.name.includes('Female') || v.name.includes('Karen'))) ||
-                      voices.find(v => v.lang === 'en-AU' || v.lang.startsWith('en-AU')) ||
-                      voices.find(v => (v.lang === 'en-GB' || v.lang.startsWith('en-GB')) && (v.name.includes('Female') || v.name.includes('Sonia') || v.name.includes('Libby'))) ||
-                      voices.find(v => v.lang.startsWith('en'));
-    }}
-    if (synth) {{
-      synth.onvoiceschanged = initVoices;
-      initVoices();
-    }}
-
-    function showUnmuteBanner() {{
-      const banner = document.getElementById('unmuteNotice');
-      if (banner) banner.style.display = 'flex';
-    }}
-
-    function hideUnmuteBanner() {{
-      const banner = document.getElementById('unmuteNotice');
-      if (banner) banner.style.display = 'none';
-      audioUnlocked = true;
-    }}
-
-    function handleUserGesture() {{
-      hideUnmuteBanner();
-      const s = slides[currentIndex];
-      speakNarration(s.narration);
-    }}
-
-    // Global interaction listeners to guarantee audio un-mute on very first user interaction
-    ['click', 'pointerdown', 'keydown', 'touchstart'].forEach(evt => {{
-      window.addEventListener(evt, () => {{
-        if (!audioUnlocked) handleUserGesture();
-      }}, {{ passive: true }});
-      document.addEventListener(evt, () => {{
-        if (!audioUnlocked) handleUserGesture();
-      }}, {{ passive: true }});
-    }});
-
-    function loadSlide(index) {{
-      if (index < 0) index = 0;
-      if (index >= slides.length) index = slides.length - 1;
-      currentIndex = index;
-
-      const s = slides[currentIndex];
-      document.getElementById('slideIframe').src = `slides/slide_${{s.num}}.html`;
-      document.getElementById('lblSlideCounter').innerText = `${{s.num}} / ${{slides.length}}`;
-      document.getElementById('selSlide').value = currentIndex;
-      document.getElementById('scrubberFill').style.width = `${{((currentIndex + 1) / slides.length) * 100}}%`;
-      document.getElementById('lblTranscriptTitle').innerText = `SLIDE ${{s.num}}: ${{s.title}}`;
-      document.getElementById('txtTranscript').innerText = s.narration;
-
-      // Position IMMEDIATELY on transition to the specific initial screen area!
-      const initialPct = (s.step_focus && s.step_focus.length > 0) ? s.step_focus[0].scroll_pct : 0.0;
-      currentScrollLeft = initialPct * 1000;
-      targetScrollLeft = initialPct * 1000;
-      currentScrollRight = 0;
-      targetScrollRight = 0;
-
-      try {{
-        const iframe = document.getElementById('slideIframe');
-        iframe.onload = () => {{
-          const doc = iframe.contentDocument;
-          if (doc) {{
-            doc.addEventListener('keydown', handleGlobalKeyDown);
-            const leftViewport = doc.querySelector('.left-screenshot-viewport');
-            if (leftViewport) {{
-              const maxLeftScroll = leftViewport.scrollHeight - leftViewport.clientHeight;
-              const initPos = (maxLeftScroll > 0) ? initialPct * maxLeftScroll : 0;
-              leftViewport.scrollTop = initPos;
-              currentScrollLeft = initPos;
-              targetScrollLeft = initPos;
-            }}
-          }}
-          currentScrollRight = 0;
-          targetScrollRight = 0;
-          syncSlideContent(0.0);
-        }};
-        if (iframe && iframe.contentDocument) {{
-          iframe.contentDocument.addEventListener('keydown', handleGlobalKeyDown);
-          const leftViewport = iframe.contentDocument.querySelector('.left-screenshot-viewport');
-          if (leftViewport) {{
-            const maxLeftScroll = leftViewport.scrollHeight - leftViewport.clientHeight;
-            const initPos = (maxLeftScroll > 0) ? initialPct * maxLeftScroll : 0;
-            leftViewport.scrollTop = initPos;
-            currentScrollLeft = initPos;
-            targetScrollLeft = initPos;
-          }}
-          currentScrollRight = 0;
-          targetScrollRight = 0;
-          syncSlideContent(0.0);
-        }}
-      }} catch(e) {{}}
-
-      // Speak narration only if running
-      if (isPlaying) {{
-        speakNarration(s.narration);
-      }}
-    }}
-
+    // Viewport Scroll Interpolation State
     let currentScrollLeft = 0;
     let targetScrollLeft = 0;
     let currentScrollRight = 0;
@@ -637,16 +527,31 @@ preview_html_content = f"""<!DOCTYPE html>
       try {{
         const iframe = document.getElementById('slideIframe');
         if (iframe && iframe.contentDocument) {{
-          const leftViewport = iframe.contentDocument.querySelector('.left-screenshot-viewport');
-          if (leftViewport && leftViewport.scrollHeight > leftViewport.clientHeight) {{
-            // Smooth 60fps linear interpolation: glides 8% of distance each frame
-            currentScrollLeft += (targetScrollLeft - currentScrollLeft) * 0.08;
-            leftViewport.scrollTop = currentScrollLeft;
-          }}
-          const rightCard = iframe.contentDocument.querySelector('.visual-card');
-          if (rightCard && rightCard.scrollHeight > rightCard.clientHeight) {{
-            currentScrollRight += (targetScrollRight - currentScrollRight) * 0.08;
-            rightCard.scrollTop = currentScrollRight;
+          const s = slides[currentIndex];
+          const isSteady = s && (s.no_scroll === true || ['03', '04', '05', '3', '4', '5'].includes(s.num));
+
+          if (isSteady) {{
+            currentScrollLeft = 0;
+            targetScrollLeft = 0;
+            currentScrollRight = 0;
+            targetScrollRight = 0;
+            const leftViewport = iframe.contentDocument.querySelector('.left-screenshot-viewport');
+            if (leftViewport && leftViewport.scrollTop !== 0) leftViewport.scrollTop = 0;
+            const rightCard = iframe.contentDocument.querySelector('.visual-card');
+            if (rightCard && rightCard.scrollTop !== 0) rightCard.scrollTop = 0;
+            const contentCard = iframe.contentDocument.querySelector('.content-card');
+            if (contentCard && contentCard.scrollTop !== 0) contentCard.scrollTop = 0;
+          }} else {{
+            const leftViewport = iframe.contentDocument.querySelector('.left-screenshot-viewport');
+            if (leftViewport && leftViewport.scrollHeight > leftViewport.clientHeight) {{
+              currentScrollLeft += (targetScrollLeft - currentScrollLeft) * 0.08;
+              leftViewport.scrollTop = currentScrollLeft;
+            }}
+            const rightCard = iframe.contentDocument.querySelector('.visual-card');
+            if (rightCard && rightCard.scrollHeight > rightCard.clientHeight) {{
+              currentScrollRight += (targetScrollRight - currentScrollRight) * 0.08;
+              rightCard.scrollTop = currentScrollRight;
+            }}
           }}
         }}
       }} catch(e) {{}}
@@ -662,29 +567,26 @@ preview_html_content = f"""<!DOCTYPE html>
 
         const leftViewport = doc.querySelector('.left-screenshot-viewport');
         const rightCard = doc.querySelector('.visual-card');
-        const zoneBadge = doc.getElementById('lblScreenshotZone');
+        const zoneBadge = document.getElementById('lblScreenshotZone');
         const bullets = doc.querySelectorAll('.bullet-item');
         const s = slides[currentIndex];
+        const isSteady = s && (s.no_scroll === true || ['03', '04', '05', '3', '4', '5'].includes(s.num));
 
         const numBullets = (s.bullets && s.bullets.length > 0) ? s.bullets.length : 3;
         let activeIdx = Math.floor(norm * numBullets);
         if (activeIdx >= numBullets) activeIdx = numBullets - 1;
         if (activeIdx < 0) activeIdx = 0;
 
-        // Highlight active bullet item (sight & text sync)
+        // Highlight active bullet item without layout/reflow shifting
         bullets.forEach((b, idx) => {{
           if (idx === activeIdx) {{
             b.style.background = '#e0f2fe';
             b.style.borderLeft = '4px solid #0284c7';
             b.style.color = '#0369a1';
-            b.style.fontWeight = '700';
-            b.style.paddingLeft = '10px';
           }} else {{
             b.style.background = 'transparent';
             b.style.borderLeft = '4px solid transparent';
             b.style.color = '#1e293b';
-            b.style.fontWeight = 'normal';
-            b.style.paddingLeft = '8px';
           }}
         }});
 
@@ -701,9 +603,14 @@ preview_html_content = f"""<!DOCTYPE html>
           else zoneBadge.style.background = '#0f766e';
         }}
 
+        // If steady slide, lock scroll completely to zero
+        if (isSteady) {{
+          targetScrollLeft = 0;
+          targetScrollRight = 0;
+          return;
+        }}
+
         // Monotonic Top-to-Bottom Smooth Target: glides steadily without jumping up and down
-        // Plateau Scroll & Pause Timing Engine:
-        // Holds 100% steady during the topic talk, glides monotonically between topics, never jumps up
         if (leftViewport && leftViewport.scrollHeight > leftViewport.clientHeight) {{
           const maxLeftScroll = leftViewport.scrollHeight - leftViewport.clientHeight;
           if (maxLeftScroll > 0) {{
@@ -763,25 +670,118 @@ preview_html_content = f"""<!DOCTYPE html>
       const p = audioEl.play();
       if (p !== undefined) {{
         p.then(() => {{
-          audioEl.onended = () => {{
-            if (isPlaying) nextSlide();
-          }};
+          // Playing
         }}).catch((err) => {{
-          console.warn("Audio play error:", err);
+          console.warn("Audio file play error; falling back to SpeechSynthesis", err);
+          if (synth) {{
+            const utter = new SpeechSynthesisUtterance(text);
+            utter.rate = playbackSpeed;
+            utter.onend = () => {{
+              if (isPlaying) {{
+                slideTimer = setTimeout(() => {{
+                  nextSlide();
+                }}, 1500);
+              }}
+            }};
+            synth.speak(utter);
+          }}
         }});
+      }}
+
+      audioEl.onended = () => {{
+        if (isPlaying) {{
+          slideTimer = setTimeout(() => {{
+            nextSlide();
+          }}, 1200);
+        }}
+      }};
+    }}
+
+    function loadSlide(index) {{
+      if (index < 0) index = 0;
+      if (index >= slides.length) index = slides.length - 1;
+      currentIndex = index;
+
+      const s = slides[currentIndex];
+      const isSteady = s && (s.no_scroll === true || ['03', '04', '05', '3', '4', '5'].includes(s.num));
+
+      document.getElementById('slideIframe').src = `slides/slide_${{s.num}}.html`;
+      document.getElementById('lblSlideCounter').innerText = `${{s.num}} / ${{slides.length}}`;
+      document.getElementById('selSlide').value = currentIndex;
+      document.getElementById('scrubberFill').style.width = `${{((currentIndex + 1) / slides.length) * 100}}%`;
+      document.getElementById('lblTranscriptTitle').innerText = `SLIDE ${{s.num}}: ${{s.title}}`;
+      document.getElementById('txtTranscript').innerText = s.narration;
+
+      // Position immediately to initial target
+      const initialPct = isSteady ? 0.0 : ((s.step_focus && s.step_focus.length > 0) ? s.step_focus[0].scroll_pct : 0.0);
+      currentScrollLeft = isSteady ? 0 : initialPct * 1000;
+      targetScrollLeft = isSteady ? 0 : initialPct * 1000;
+      currentScrollRight = 0;
+      targetScrollRight = 0;
+
+      try {{
+        const iframe = document.getElementById('slideIframe');
+        iframe.onload = () => {{
+          const doc = iframe.contentDocument;
+          if (doc) {{
+            doc.addEventListener('keydown', handleGlobalKeyDown);
+            const leftViewport = doc.querySelector('.left-screenshot-viewport');
+            if (leftViewport) {{
+              const maxLeftScroll = leftViewport.scrollHeight - leftViewport.clientHeight;
+              const initPos = (!isSteady && maxLeftScroll > 0) ? initialPct * maxLeftScroll : 0;
+              leftViewport.scrollTop = initPos;
+              currentScrollLeft = initPos;
+              targetScrollLeft = initPos;
+            }}
+            const rightCard = doc.querySelector('.visual-card');
+            if (rightCard && isSteady) rightCard.scrollTop = 0;
+          }}
+          currentScrollRight = 0;
+          targetScrollRight = 0;
+          syncSlideContent(0.0);
+        }};
+        if (iframe && iframe.contentDocument) {{
+          iframe.contentDocument.addEventListener('keydown', handleGlobalKeyDown);
+          const leftViewport = iframe.contentDocument.querySelector('.left-screenshot-viewport');
+          if (leftViewport) {{
+            const maxLeftScroll = leftViewport.scrollHeight - leftViewport.clientHeight;
+            const initPos = (!isSteady && maxLeftScroll > 0) ? initialPct * maxLeftScroll : 0;
+            leftViewport.scrollTop = initPos;
+            currentScrollLeft = initPos;
+            targetScrollLeft = initPos;
+          }}
+          const rightCard = iframe.contentDocument.querySelector('.visual-card');
+          if (rightCard && isSteady) rightCard.scrollTop = 0;
+          currentScrollRight = 0;
+          targetScrollRight = 0;
+          syncSlideContent(0.0);
+        }}
+      }} catch(e) {{}}
+
+      // Speak narration only if running
+      if (isPlaying) {{
+        speakNarration(s.narration);
       }}
     }}
 
     function togglePlayPause() {{
       isPlaying = !isPlaying;
-      updatePlayPauseUI();
+      const btn = document.getElementById('btnPlayPause');
+      const audioEl = document.getElementById('audioPlayer');
+
       if (isPlaying) {{
-        const s = slides[currentIndex];
-        speakNarration(s.narration);
+        btn.innerHTML = '⏸ PAUSE';
+        btn.classList.add('active');
+        if (audioEl.src && audioEl.paused) {{
+          audioEl.play();
+        }} else {{
+          speakNarration(slides[currentIndex].narration);
+        }}
       }} else {{
-        if (synth) synth.cancel();
-        const audioEl = document.getElementById('audioPlayer');
+        btn.innerHTML = '▶ RUN';
+        btn.classList.remove('active');
         if (audioEl) audioEl.pause();
+        if (synth) synth.cancel();
         clearTimeout(slideTimer);
       }}
     }}
@@ -789,197 +789,108 @@ preview_html_content = f"""<!DOCTYPE html>
     function nextSlide() {{
       if (currentIndex < slides.length - 1) {{
         loadSlide(currentIndex + 1);
-        if (isPlaying) {{
-          const s = slides[currentIndex];
-          speakNarration(s.narration);
-        }}
       }} else {{
-        isPlaying = false;
-        updatePlayPauseUI();
+        togglePlayPause();
       }}
     }}
 
     function prevSlide() {{
       if (currentIndex > 0) {{
         loadSlide(currentIndex - 1);
-        if (isPlaying) {{
-          const s = slides[currentIndex];
-          speakNarration(s.narration);
-        }}
       }}
     }}
 
     function jumpToSlide(idx) {{
       loadSlide(idx);
-      if (isPlaying) {{
-        const s = slides[currentIndex];
-        speakNarration(s.narration);
-      }}
+    }}
+
+    function seekSlide(e) {{
+      const container = e.currentTarget;
+      const rect = container.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const pct = clickX / rect.width;
+      const targetIdx = Math.floor(pct * slides.length);
+      loadSlide(targetIdx);
+    }}
+
+    function setPlaybackSpeed(speed) {{
+      playbackSpeed = speed;
+      const audioEl = document.getElementById('audioPlayer');
+      if (audioEl) audioEl.playbackRate = speed;
     }}
 
     function toggleTranscript() {{
-      const d = document.getElementById('transcriptDrawer');
-      const btn = document.getElementById('btnToggleTranscript');
-      if (d.style.display === 'block') {{
-        d.style.display = 'none';
-        btn.classList.remove('active');
-      }} else {{
-        d.style.display = 'block';
-        btn.classList.add('active');
-      }}
-    }}
-
-    function cycleSpeed() {{
-      const speeds = [1.0, 1.25, 1.5, 0.8];
-      let curIdx = speeds.indexOf(playbackSpeed);
-      playbackSpeed = speeds[(curIdx + 1) % speeds.length];
-      document.getElementById('btnSpeed').innerText = `${{playbackSpeed}}x`;
-      if (isPlaying) {{
-        const s = slides[currentIndex];
-        speakNarration(s.narration);
-      }}
-    }}
-
-    function onScrub(e) {{
-      const rect = e.currentTarget.getBoundingClientRect();
-      const pct = (e.clientX - rect.left) / rect.width;
-      const targetIdx = Math.floor(pct * slides.length);
-      loadSlide(targetIdx);
-      if (isPlaying) {{
-        const s = slides[currentIndex];
-        speakNarration(s.narration);
-      }}
-    }}
-
-    function toggleFullscreen() {{
-      if (!document.fullscreenElement) {{
-        document.documentElement.requestFullscreen();
-      }} else {{
-        if (document.exitFullscreen) document.exitFullscreen();
-      }}
+      const drawer = document.getElementById('transcriptDrawer');
+      drawer.classList.toggle('open');
     }}
 
     function handleGlobalKeyDown(e) {{
-      if (e.code === 'Space' || e.key === ' ' || e.keyCode === 32) {{
+      if (e.code === 'Space') {{
         e.preventDefault();
         togglePlayPause();
-      }} else if (e.code === 'ArrowRight' || e.key === 'ArrowRight') {{
+      }} else if (e.code === 'ArrowRight') {{
+        e.preventDefault();
         nextSlide();
-      }} else if (e.code === 'ArrowLeft' || e.key === 'ArrowLeft') {{
+      }} else if (e.code === 'ArrowLeft') {{
+        e.preventDefault();
         prevSlide();
-      }} else if (e.key === 'f' || e.key === 'F') {{
-        toggleFullscreen();
       }}
     }}
 
-    window.addEventListener('keydown', handleGlobalKeyDown);
+    // Populate Slide Selector
+    const selSlide = document.getElementById('selSlide');
+    slides.forEach((s, idx) => {{
+      const opt = document.createElement('option');
+      opt.value = idx;
+      opt.text = `${{s.num}}: ${{s.title}}`;
+      selSlide.appendChild(opt);
+    }});
 
-    // Start on Slide 1 in RUN standby state, start render loop
-    window.onload = () => {{
-      loadSlide(0);
-      updatePlayPauseUI();
-      renderSmoothLoop();
-    }};
+    // Global Keybindings
+    document.addEventListener('keydown', handleGlobalKeyDown);
+
+    // Start 60fps render loop
+    animLoopId = requestAnimationFrame(renderSmoothLoop);
+
+    // Initial Load
+    loadSlide(0);
   </script>
 </body>
 </html>
 """
 
-preview_path = os.path.join(pres_dir, "preview.html")
-with open(preview_path, "w", encoding="utf-8") as f:
+# Save preview.html into presentation/ and root
+with open(os.path.join(pres_dir, "preview.html"), "w", encoding="utf-8") as f:
     f.write(preview_html_content)
-
-# Also copy preview.html to root D:\veepoo\preview.html
-root_preview_path = r"D:\veepoo\preview.html"
-with open(root_preview_path, "w", encoding="utf-8") as f:
+with open(os.path.join(r"D:\veepoo", "preview.html"), "w", encoding="utf-8") as f:
     f.write(preview_html_content)
 
 print("Generated preview.html in presentation/ and D:\\veepoo\\preview.html with Australian Female Voice!")
 
 # -----------------------------------------------------------------------------
-# COMPILE C# WINDOWS 11 LAUNCHER (Preview_Presentation.exe)
+# RECOMPILE SimpleLauncher.cs TO Preview_Presentation.exe
 # -----------------------------------------------------------------------------
-launcher_cs = r"""using System;
-using System.Diagnostics;
-using System.IO;
-
-class Program
-{
-    [STAThread]
-    static void Main()
-    {
-        string baseDir = AppDomain.CurrentDomain.BaseDirectory;
-        string localFile = Path.Combine(baseDir, "preview.html");
-        if (!File.Exists(localFile))
-        {
-            localFile = Path.Combine(baseDir, "presentation", "preview.html");
-        }
-
-        string target = File.Exists(localFile)
-            ? localFile
-            : "http://localhost:8899/presentation/preview.html";
-
-        string targetUri = new Uri(Path.GetFullPath(target)).AbsoluteUri;
-
-        // Paths to Edge and Chrome on Windows 11
-        string[] browserPaths = new string[]
-        {
-            @"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
-            @"C:\Program Files\Microsoft\Edge\Application\msedge.exe",
-            @"C:\Program Files\Google\Chrome\Application\chrome.exe",
-            @"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
-        };
-
-        foreach (string browserPath in browserPaths)
-        {
-            if (File.Exists(browserPath))
-            {
-                try
-                {
-                    // Launch with unmuted autoplay policy flag
-                    ProcessStartInfo psi = new ProcessStartInfo
-                    {
-                        FileName = browserPath,
-                        Arguments = "--autoplay-policy=no-user-gesture-required \"" + targetUri + "\"",
-                        UseShellExecute = false
-                    };
-                    Process.Start(psi);
-                    return;
-                }
-                catch {}
-            }
-        }
-
-        // Fallback to default system shell handler
-        try
-        {
-            Process.Start(new ProcessStartInfo(targetUri) { UseShellExecute = true });
-        }
-        catch
-        {
-            Process.Start("cmd.exe", "/c start \"\" \"" + targetUri + "\"");
-        }
-    }
-}
-"""
-
-cs_path = os.path.join(pres_dir, "SimpleLauncher.cs")
-with open(cs_path, "w", encoding="utf-8") as f:
-    f.write(launcher_cs)
-
 csc_path = r"C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe"
-exe_path_1 = os.path.join(pres_dir, "Preview_Presentation.exe")
-exe_path_2 = r"D:\veepoo\Preview_Presentation.exe"
+launcher_src = os.path.join(pres_dir, "SimpleLauncher.cs")
+launcher_out = os.path.join(pres_dir, "Preview_Presentation.exe")
 
-if os.path.exists(csc_path):
-    cmd = [csc_path, "/nologo", "/t:winexe", "/optimize+", f"/out:{exe_path_1}", cs_path]
-    print("Compiling Windows 11 executable launcher:", " ".join(cmd))
-    res = subprocess.run(cmd, capture_output=True, text=True)
-    print("Compilation Output Code:", res.returncode)
-    if os.path.exists(exe_path_1):
-        shutil.copy2(exe_path_1, exe_path_2)
+if os.path.exists(csc_path) and os.path.exists(launcher_src):
+    compile_cmd = [
+        csc_path,
+        "/nologo",
+        "/t:winexe",
+        "/optimize+",
+        f"/out:{launcher_out}",
+        launcher_src
+    ]
+    print(f"Compiling Windows 11 executable launcher: {' '.join(compile_cmd)}")
+    result = subprocess.run(compile_cmd, capture_output=True, text=True)
+    print(f"Compilation Output Code: {result.returncode}")
+    if result.returncode == 0:
+        root_exe = os.path.join(r"D:\veepoo", "Preview_Presentation.exe")
+        shutil.copy2(launcher_out, root_exe)
         print("Copied Preview_Presentation.exe to D:\\veepoo\\Preview_Presentation.exe successfully!")
-else:
-    print("Warning: csc.exe not found at standard path.")
+    else:
+        print("Compilation stderr:", result.stderr)
 
-print(f"All {total_slides_count} slides, female narration transcript, preview player, and W11 launcher built successfully!")
+print("All 53 slides, female narration transcript, preview player, and W11 launcher built successfully!")

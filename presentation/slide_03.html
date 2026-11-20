@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>LCARS 5010 - Slide 03: Mathematical Sampling Theory: Neye-quist Kinetics & Biological Aliasing</title>
+  <title>LCARS 5010 - Slide 03: Mathematical Sampling Theory: Nyquist Kinetics & Biological Aliasing</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
@@ -88,177 +88,165 @@
     <div class="slide-header">
       <div>
         <div class="slide-module">Module 1: Introduction & Clinical Scope</div>
-        <div class="slide-title">Mathematical Sampling Theory: Neye-quist Kinetics & Biological Aliasing</div>
+        <div class="slide-title">Mathematical Sampling Theory: Nyquist Kinetics & Biological Aliasing</div>
       </div>
       <div class="slide-badge">SLIDE 03 / 53</div>
     </div>
 
     <div class="slide-body">
-
+      
       <!-- High-Contrast Dynamic Content Card -->
-      <div class="content-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #0284c7; padding: 10px 14px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto;">
-        <h3 style="color: #0284c7; font-size: 1.05rem; font-weight: 800; border-bottom: 2px solid #e2e8f0; padding-bottom: 4px; margin-bottom: 5px; text-transform: uppercase;">BIOLOGICAL KINETICS & NEYE-QUIST FREQUENCY BOUNDS</h3>
-        <p style="font-size: 0.85rem; color: #334155; margin-bottom: 5px; line-height: 1.35; font-weight: 500;">Biological frequency bounds, glucose absorption half-life (15-30m), and why quarterly draws and fingersticks suffer severe frequency aliasing.</p>
-        <ul class="bullets-list" style="padding-left: 0; list-style-type: none; margin-bottom: 4px; color: #1e293b; font-size: 0.80rem;">
+      <div class="content-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #0284c7; padding: 8px 12px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow: hidden;">
+        <h3 style="color: #0284c7; font-weight: 800; border-bottom: 2px solid #e2e8f0; padding-bottom: 4px; margin-bottom: 2px; font-size: 0.95rem; text-transform: uppercase;">BIOLOGICAL KINETICS & NEYE-QUIST FREQUENCY BOUNDS</h3>
+        <p style="color: #334155; font-weight: 500; margin-bottom: 3px; font-size: 0.77rem; line-height: 1.25;">Biological frequency bounds, glucose absorption half-life (15-30m), and why quarterly draws and fingersticks suffer severe frequency aliasing.</p>
+        <ul class="bullets-list" style="padding-left: 0; list-style-type: none; margin-bottom: 3px; color: #1e293b; font-size: 0.72rem;">
           
-          <li id="bullet-item-0" class="bullet-item" data-idx="0" style="margin-bottom: 5px; line-height: 1.35; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: all 0.25s ease;">
-            <strong style="color: #0369a1;">The Shannon-Neye-quist Theorem (fs ≥ 2 fmax):</strong> To reconstruct any continuous physiological waveform without aliasing or information loss, the sampling rate fs must be at least twice the highest significant frequency fmax of the underlying biological system.
+          <li id="bullet-item-0" class="bullet-item" data-idx="0" style="margin-bottom: 2px; line-height: 1.25; padding: 2px 6px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
+            <strong style="color: #0369a1;">The Shannon-Nyquist Theorem (fs ≥ 2 fmax):</strong> To reconstruct any continuous physiological waveform without aliasing or information loss, the sampling rate fs must be at least twice the highest significant frequency fmax of the underlying biological system.
           </li>
         
-          <li id="bullet-item-1" class="bullet-item" data-idx="1" style="margin-bottom: 5px; line-height: 1.35; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: all 0.25s ease;">
+          <li id="bullet-item-1" class="bullet-item" data-idx="1" style="margin-bottom: 2px; line-height: 1.25; padding: 2px 6px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
             <strong style="color: #0369a1;">Biological Frequency of Glycemic Kinetics:</strong> Insulin secretion pulses occur every 4–6 minutes; postprandial glucose absorption has a half-life of 15–30 minutes (fmax ≈ 1.1 mHz). Mathematical fidelity requires sampling periods under 7.5 minutes (fs ≥ 2.2 mHz).
           </li>
         
-          <li id="bullet-item-2" class="bullet-item" data-idx="2" style="margin-bottom: 5px; line-height: 1.35; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: all 0.25s ease;">
+          <li id="bullet-item-2" class="bullet-item" data-idx="2" style="margin-bottom: 2px; line-height: 1.25; padding: 2px 6px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
             <strong style="color: #0369a1;">Catastrophic Aliasing of Quarterly & Spot Draws:</strong> Quarterly lab draws (fs = 6.4×10⁻⁸ Hz) are 8 orders of magnitude below biological bounds. Fingersticks (fs ≈ 4.6×10⁻⁵ Hz) leave 6-hour blind gaps. Both alias sharp glycemic waves into false static averages.
           </li>
         
-          <li id="bullet-item-3" class="bullet-item" data-idx="3" style="margin-bottom: 5px; line-height: 1.35; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: all 0.25s ease;">
+          <li id="bullet-item-3" class="bullet-item" data-idx="3" style="margin-bottom: 2px; line-height: 1.25; padding: 2px 6px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
             <strong style="color: #0369a1;">LCARS 5-Minute Telemetry (fs = 3.33 mHz):</strong> By sampling every 300 seconds, LCARS operates comfortably above the Nyquist threshold (3.33 mHz > 2.2 mHz), capturing true rise velocities, peak nadirs, and nocturnal recoveries with zero aliasing.
           </li>
         
         </ul>
         
-        <!-- Real LCARS Page Under Discussion (Pure Authentic Light Theme Screenshot) -->
-        <div class="left-screenshot-card" style="margin-top: 6px; margin-bottom: 6px; border: 2px solid #cbd5e1; border-radius: 8px; overflow: hidden; background: #ffffff; box-shadow: 0 4px 14px rgba(0,0,0,0.08); display: flex; flex-direction: column; flex: 1; min-height: 290px;">
-          <!-- Continuous Monotonic Scroll Viewport (Clean Light Background) -->
-          <div class="left-screenshot-viewport" style="text-align: center; background: #ffffff; overflow-y: auto; flex: 1; min-height: 250px; position: relative;">
-            <img src="images/lcars_chart_glucose.png" onerror="this.src='../images/lcars_chart_glucose.png'" alt="03-METABOLIC CONSOLE • 24-HOUR NYQUIST GLYCEMIC RECONSTRUCTION" style="width: 100%; height: auto; display: block; object-fit: cover; object-position: top center;">
-          </div>
-        </div>
-        
+            <!-- Real LCARS Page Under Discussion (Steady Viewport) -->
+            <div class="left-screenshot-card" style="margin-top: 4px; margin-bottom: 2px; border: 1.5px solid #cbd5e1; border-radius: 6px; overflow: hidden; background: #ffffff; box-shadow: 0 2px 6px rgba(0,0,0,0.06); display: flex; flex-direction: column; flex: 1; min-height: 100px; max-height: 160px;">
+              <div class="left-screenshot-viewport" style="text-align: center; background: #ffffff; overflow: hidden; height: 100%; position: relative;">
+                <img src="images/lcars_chart_glucose.png" onerror="this.src='../images/lcars_chart_glucose.png'" alt="03-METABOLIC CONSOLE • 24-HOUR NYQUIST GLYCEMIC RECONSTRUCTION" style="width: 100%; height: 100%; object-fit: contain; object-position: center;">
+              </div>
+            </div>
+            
       </div>
     
-
-      <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #15803d; padding: 10px 14px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto; scroll-behavior: smooth;">
+      
+      <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #15803d; padding: 8px 12px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow: hidden;">
         <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 4px; margin-bottom: 6px; flex-shrink: 0;">
           <span style="font-family: monospace; font-weight: 800; color: #0284c7; font-size: 0.84rem;">BIOLOGICAL FREQUENCY SPECTRUM & ALIASING</span>
           <span style="background: #f8fafc; color: #15803d; font-weight: 800; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; border: 1.5px solid #15803d;">fs = 3.33 mHz ≥ 2 fmax</span>
         </div>
         <div class="visual-content" style="flex: 1; display: flex; flex-direction: column;">
           
-          <!-- Biological Frequency Spectrum & Sampling Comparison -->
-          <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 10px; margin-top: 4px; color: #0f172a;">
-            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 4px; margin-bottom: 8px;">
-              <span style="font-family: monospace; font-size: 0.72rem; color: #0284c7; font-weight: 800; letter-spacing: 0.05em;">PHYSIOLOGICAL SAMPLING FREQUENCY SPECTRUM</span>
-              <span style="background: #15803d; color: #fff; font-size: 0.60rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; font-family: monospace;">NYQUIST COMPLIANT</span>
+          <!-- Biological Frequency Spectrum & Sampling Comparison (Compact Fit) -->
+          <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 6px 8px; color: #0f172a;">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 2px; margin-bottom: 5px;">
+              <span style="font-family: monospace; font-size: 0.68rem; color: #0284c7; font-weight: 800;">PHYSIOLOGICAL SAMPLING FREQUENCY SPECTRUM</span>
+              <span style="background: #15803d; color: #fff; font-size: 0.58rem; font-weight: bold; padding: 1px 5px; border-radius: 3px; font-family: monospace;">NYQUIST COMPLIANT</span>
             </div>
 
             <!-- Frequency Spectrum Comparison Scale -->
-            <div style="display: flex; flex-direction: column; gap: 7px; font-family: monospace; font-size: 0.68rem;">
-              <!-- Tier 1: Quarterly Lab (64 nHz) -->
+            <div style="display: flex; flex-direction: column; gap: 4px; font-family: monospace; font-size: 0.63rem;">
               <div>
-                <div style="display: flex; justify-content: space-between; color: #dc2626; font-weight: bold; margin-bottom: 2px;">
+                <div style="display: flex; justify-content: space-between; color: #dc2626; font-weight: bold;">
                   <span>QUARTERLY LAB A1C (1 DRAW / 90 DAYS)</span>
-                  <span>fs = 6.4 × 10⁻⁸ Hz (ALIASING FACTOR: 100%)</span>
+                  <span>fs = 6.4 × 10⁻⁸ Hz (100% ALIAS)</span>
                 </div>
-                <div style="height: 18px; background: #fee2e2; border-radius: 3px; border: 1px solid #ef4444; display: flex; align-items: center; padding: 0 8px; justify-content: space-between;">
-                  <span style="font-size: 0.60rem; color: #991b1b; font-weight: bold;">⛔ 8 ORDERS OF MAGNITUDE BELOW BIOLOGICAL KINETICS (FOLD-OVER VOID)</span>
-                  <span style="font-size: 0.60rem; color: #dc2626; font-weight: 800;">TOTAL ALIAS</span>
-                </div>
-              </div>
-
-              <!-- Tier 2: Fingersticks (46 µHz) -->
-              <div>
-                <div style="display: flex; justify-content: space-between; color: #d97706; font-weight: bold; margin-bottom: 2px;">
-                  <span>CONVENTIONAL FINGERSTICKS (4 SPOT-CHECKS / DAY)</span>
-                  <span>fs = 4.6 × 10⁻⁵ Hz (6-HOUR BLIND GAPS)</span>
-                </div>
-                <div style="height: 18px; background: #fef3c7; border-radius: 3px; border: 1px solid #f59e0b; display: flex; align-items: center; padding: 0 8px; justify-content: space-between;">
-                  <span style="font-size: 0.60rem; color: #b45309; font-weight: bold;">⚠️ SUB-NYQUIST: MISSES 30-MIN POSTPRANDIAL PEAKS & 3 AM HYPOGLYCEMIA</span>
-                  <span style="font-size: 0.60rem; color: #d97706; font-weight: 800;">&lt; 5% RECON</span>
+                <div style="height: 15px; background: #fee2e2; border-radius: 3px; border: 1px solid #ef4444; display: flex; align-items: center; padding: 0 6px; justify-content: space-between;">
+                  <span style="font-size: 0.55rem; color: #991b1b; font-weight: bold;">⛔ 8 ORDERS BELOW KINETICS (FOLD-OVER VOID)</span>
+                  <span style="font-size: 0.55rem; color: #dc2626; font-weight: 800;">TOTAL ALIAS</span>
                 </div>
               </div>
 
-              <!-- Tier 3: Biological Cutoff Bound (2.2 mHz) -->
               <div>
-                <div style="display: flex; justify-content: space-between; color: #0284c7; font-weight: bold; margin-bottom: 2px;">
-                  <span>BIOLOGICAL NYQUIST BOUND: 2 × fmax (t½ = 15-30 MIN)</span>
-                  <span>f_nyquist ≥ 2.22 × 10⁻³ Hz (7.5-MIN PERIOD)</span>
+                <div style="display: flex; justify-content: space-between; color: #d97706; font-weight: bold;">
+                  <span>CONVENTIONAL FINGERSTICKS (4 / DAY)</span>
+                  <span>fs = 4.6 × 10⁻⁵ Hz (6h BLIND GAPS)</span>
                 </div>
-                <div style="height: 18px; background: #e0f2fe; border-radius: 3px; border: 1px solid #0284c7; display: flex; align-items: center; padding: 0 8px; justify-content: space-between;">
-                  <span style="font-size: 0.60rem; color: #0369a1; font-weight: bold;">🎯 MINIMUM THEORETICAL SAMPLING THRESHOLD FOR ZERO KINETIC LOSS</span>
-                  <span style="font-size: 0.60rem; color: #0284c7; font-weight: 800;">THRESHOLD</span>
+                <div style="height: 15px; background: #fef3c7; border-radius: 3px; border: 1px solid #f59e0b; display: flex; align-items: center; padding: 0 6px; justify-content: space-between;">
+                  <span style="font-size: 0.55rem; color: #b45309; font-weight: bold;">⚠️ SUB-NYQUIST: MISSES 30-MIN PEAKS & 3 AM HYPO</span>
+                  <span style="font-size: 0.55rem; color: #d97706; font-weight: 800;">&lt; 5% RECON</span>
                 </div>
               </div>
 
-              <!-- Tier 4: LCARS 5010 (3.33 mHz) -->
               <div>
-                <div style="display: flex; justify-content: space-between; color: #15803d; font-weight: bold; margin-bottom: 2px;">
-                  <span>LCARS 5010 AUTOMATED TELEMETRY (288 SAMPLES / DAY)</span>
-                  <span>fs = 3.33 × 10⁻³ Hz (300-SEC PERIOD)</span>
+                <div style="display: flex; justify-content: space-between; color: #0284c7; font-weight: bold;">
+                  <span>BIOLOGICAL NYQUIST BOUND: 2 × fmax</span>
+                  <span>f_nyquist ≥ 2.22 × 10⁻³ Hz (7.5-MIN)</span>
                 </div>
-                <div style="height: 20px; background: linear-gradient(90deg, #15803d, #16a34a, #0284c7); border-radius: 3px; border: 1.5px solid #15803d; display: flex; align-items: center; padding: 0 8px; justify-content: space-between;">
-                  <span style="font-size: 0.62rem; color: #ffffff; font-weight: 800;">✅ SATISFIES NYQUIST CRITERION (3.33 mHz &gt; 2.22 mHz) • 100% WAVE RECONSTRUCTION</span>
-                  <span style="font-size: 0.62rem; color: #ffffff; font-weight: 800;">VERIFIED</span>
+                <div style="height: 15px; background: #e0f2fe; border-radius: 3px; border: 1px solid #0284c7; display: flex; align-items: center; padding: 0 6px; justify-content: space-between;">
+                  <span style="font-size: 0.55rem; color: #0369a1; font-weight: bold;">🎯 MINIMUM SAMPLING THRESHOLD FOR ZERO KINETIC LOSS</span>
+                  <span style="font-size: 0.55rem; color: #0284c7; font-weight: 800;">THRESHOLD</span>
+                </div>
+              </div>
+
+              <div>
+                <div style="display: flex; justify-content: space-between; color: #15803d; font-weight: bold;">
+                  <span>LCARS 5010 TELEMETRY (288 / DAY)</span>
+                  <span>fs = 3.33 × 10⁻³ Hz (300s PERIOD)</span>
+                </div>
+                <div style="height: 16px; background: linear-gradient(90deg, #15803d, #16a34a, #0284c7); border-radius: 3px; border: 1.5px solid #15803d; display: flex; align-items: center; padding: 0 6px; justify-content: space-between;">
+                  <span style="font-size: 0.56rem; color: #ffffff; font-weight: 800;">✅ SATISFIES NYQUIST CRITERION (3.33 mHz &gt; 2.22 mHz) • 100% RECONSTRUCTION</span>
+                  <span style="font-size: 0.56rem; color: #ffffff; font-weight: 800;">VERIFIED</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Sampling Fidelity & Aliasing Comparison Table -->
-          <div style="margin-top: 8px; border: 1.5px solid #cbd5e1; border-radius: 6px; overflow: hidden; background: #ffffff;">
-            <table style="width: 100%; border-collapse: collapse; font-size: 0.69rem; text-align: left;">
+          <!-- Sampling Comparison Table -->
+          <div style="margin-top: 5px; border: 1.5px solid #cbd5e1; border-radius: 5px; overflow: hidden; background: #ffffff;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.62rem; text-align: left; font-family: monospace;">
               <thead>
-                <tr style="background: #f1f5f9; color: #0f172a; border-bottom: 2px solid #cbd5e1; font-family: monospace;">
-                  <th style="padding: 4px 6px;">SAMPLING PARAMETER</th>
-                  <th style="padding: 4px 6px; color: #dc2626;">LAB A1C (N=2)</th>
-                  <th style="padding: 4px 6px; color: #d97706;">FINGERSTICKS (N≈180)</th>
-                  <th style="padding: 4px 6px; color: #15803d; background: #f0fdf4;">LCARS 5010 (N=25,920)</th>
+                <tr style="background: #f1f5f9; color: #0f172a; border-bottom: 1.5px solid #cbd5e1;">
+                  <th style="padding: 2px 4px;">SAMPLING METRIC</th>
+                  <th style="padding: 2px 4px; color: #dc2626;">LAB A1C (N=2)</th>
+                  <th style="padding: 2px 4px; color: #d97706;">FINGERSTICKS</th>
+                  <th style="padding: 2px 4px; color: #15803d; background: #f0fdf4;">LCARS (N=25,920)</th>
                 </tr>
               </thead>
               <tbody>
-                <tr style="border-bottom: 1px solid #e2e8f0;">
-                  <td style="padding: 3px 6px; font-weight: bold; color: #334155;">Sampling Period (Δt)</td>
-                  <td style="padding: 3px 6px; color: #dc2626; font-family: monospace;">90 Days (7.78M sec)</td>
-                  <td style="padding: 3px 6px; color: #d97706; font-family: monospace;">4 – 8 Hours (Sporadic)</td>
-                  <td style="padding: 3px 6px; color: #15803d; font-family: monospace; font-weight: bold; background: #f0fdf4;">300 Seconds (5.0 min)</td>
+                <tr style="border-bottom: 1px solid #f1f5f9;">
+                  <td style="padding: 2px 4px; font-weight: bold;">Period (Δt)</td>
+                  <td style="padding: 2px 4px; color: #dc2626;">90 Days</td>
+                  <td style="padding: 2px 4px; color: #d97706;">4–8 Hours</td>
+                  <td style="padding: 2px 4px; color: #15803d; font-weight: bold; background: #f0fdf4;">300 Seconds</td>
                 </tr>
-                <tr style="border-bottom: 1px solid #e2e8f0;">
-                  <td style="padding: 3px 6px; font-weight: bold; color: #334155;">Sampling Frequency (fs)</td>
-                  <td style="padding: 3px 6px; color: #dc2626; font-family: monospace;">0.000000064 Hz</td>
-                  <td style="padding: 3px 6px; color: #d97706; font-family: monospace;">0.000046 Hz</td>
-                  <td style="padding: 3px 6px; color: #15803d; font-family: monospace; font-weight: bold; background: #f0fdf4;">0.003333 Hz (3.33 mHz)</td>
+                <tr style="border-bottom: 1px solid #f1f5f9;">
+                  <td style="padding: 2px 4px; font-weight: bold;">Frequency (fs)</td>
+                  <td style="padding: 2px 4px; color: #dc2626;">0.000000064 Hz</td>
+                  <td style="padding: 2px 4px; color: #d97706;">0.000046 Hz</td>
+                  <td style="padding: 2px 4px; color: #15803d; font-weight: bold; background: #f0fdf4;">0.003333 Hz</td>
                 </tr>
-                <tr style="border-bottom: 1px solid #e2e8f0;">
-                  <td style="padding: 3px 6px; font-weight: bold; color: #334155;">Nyquist Ratio (fs / 2fmax)</td>
-                  <td style="padding: 3px 6px; color: #dc2626; font-family: monospace; font-weight: bold;">0.000029 (Severe Aliasing)</td>
-                  <td style="padding: 3px 6px; color: #d97706; font-family: monospace;">0.021 (Sub-Nyquist)</td>
-                  <td style="padding: 3px 6px; color: #15803d; font-family: monospace; font-weight: bold; background: #f0fdf4;">1.50 (Nyquist Compliant)</td>
-                </tr>
-                <tr style="border-bottom: 1px solid #e2e8f0;">
-                  <td style="padding: 3px 6px; font-weight: bold; color: #334155;">Kinetic Curve Recovery</td>
-                  <td style="padding: 3px 6px; color: #dc2626;">0% (Flatline extrapolation)</td>
-                  <td style="padding: 3px 6px; color: #d97706;">Point-to-point jagged chords</td>
-                  <td style="padding: 3px 6px; color: #15803d; font-weight: bold; background: #f0fdf4;">Smooth physiological spline</td>
+                <tr style="border-bottom: 1px solid #f1f5f9;">
+                  <td style="padding: 2px 4px; font-weight: bold;">Nyquist Ratio</td>
+                  <td style="padding: 2px 4px; color: #dc2626;">0.000029 (Severe)</td>
+                  <td style="padding: 2px 4px; color: #d97706;">0.021 (Sub-Nyquist)</td>
+                  <td style="padding: 2px 4px; color: #15803d; font-weight: bold; background: #f0fdf4;">1.50 (Compliant)</td>
                 </tr>
                 <tr>
-                  <td style="padding: 3px 6px; font-weight: bold; color: #334155;">Nocturnal Hypo Detection</td>
-                  <td style="padding: 3px 6px; color: #dc2626; font-weight: bold;">0% (Completely Invisible)</td>
-                  <td style="padding: 3px 6px; color: #d97706;">&lt; 5% (Patient asleep)</td>
-                  <td style="padding: 3px 6px; color: #15803d; font-weight: 800; background: #f0fdf4;">100% Continuous Catch Rate</td>
+                  <td style="padding: 2px 4px; font-weight: bold;">Hypo Detection</td>
+                  <td style="padding: 2px 4px; color: #dc2626;">0% Invisible</td>
+                  <td style="padding: 2px 4px; color: #d97706;">&lt; 5%</td>
+                  <td style="padding: 2px 4px; color: #15803d; font-weight: bold; background: #f0fdf4;">100% Continuous</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
-          <!-- Mathematical Insight Callout -->
-          <div style="margin-top: 6px; background: #eff6ff; border-left: 4px solid #0284c7; padding: 6px 10px; border-radius: 4px; font-size: 0.68rem; color: #1e3a8a; line-height: 1.35; font-family: monospace;">
-            <strong>THE WHITTAKER-SHANNON INTERPOLATION FORMULA:</strong><br>
-            x(t) = ∑ x[n] · sinc((t - nTs)/Ts) recovers the continuous signal exactly IF AND ONLY IF fs ≥ 2 fmax. LCARS satisfies this equation, turning discrete 5-min epochs into exact clinical physiological trajectories.
+          <!-- Whittaker-Shannon Callout -->
+          <div style="margin-top: 5px; background: #eff6ff; border-left: 3px solid #0284c7; padding: 4px 8px; border-radius: 4px; font-size: 0.62rem; color: #1e3a8a; line-height: 1.3; font-family: monospace;">
+            <strong>WHITTAKER-SHANNON RECONSTRUCTION:</strong> x(t) = ∑ x[n] · sinc((t - nTs)/Ts) recovers the continuous signal exactly IF AND ONLY IF fs ≥ 2 fmax. LCARS satisfies this equation, turning discrete 5-min epochs into exact clinical trajectories.
           </div>
-    
+
         </div>
-        <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.78rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
-          <strong style="color: #15803d;">Key Takeaway:</strong> The Shannon-Neye-quist theorem (fs ≥ 2 fmax) dictates that biological glucose kinetics (fmax ≈ 1.1 mHz) require sampling faster than every 7.5 minutes. Quarterly labs are 8 orders of magnitude too slow; LCARS 5-minute sampling (3.33 mHz) guarantees 100% kinetic reconstruction without aliasing.
+        <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.76rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
+          <strong style="color: #15803d;">Key Takeaway:</strong> The Shannon-Nyquist theorem (fs ≥ 2 fmax) dictates that biological glucose kinetics (fmax ≈ 1.1 mHz) require sampling faster than every 7.5 minutes. Quarterly labs are 8 orders of magnitude too slow; LCARS 5-minute sampling (3.33 mHz) guarantees 100% kinetic reconstruction without aliasing.
         </div>
       </div>
     
     </div>
 
     <div class="slide-footer">
-      <span>VEEPOO 5010 CLINICAL AMBULATORY TELEMETRY ONBOARDING</span>
-      <span>SLIDE 03 OF 53</span>
+      <div>LCARS 5010 CLINICAL AMBULATORY TELEMETRY ONBOARDING • LIGHT THEME</div>
+      <div>AUSTRALIAN FEMALE VOICE • 100% SCREEN SYNCHRONIZED</div>
     </div>
   </div>
 </body>

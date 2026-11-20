@@ -90,91 +90,101 @@
     .ctrl-btn.active {
       background: #0284c7;
       color: #ffffff;
-      box-shadow: 0 0 8px rgba(2, 132, 199, 0.4);
+      border-color: #0284c7;
     }
-    .progress-bar-container {
+    .scrubber-container {
       flex: 1;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .scrubber {
-      flex: 1;
-      height: 8px;
+      height: 6px;
       background: #e2e8f0;
-      border-radius: 4px;
+      border-radius: 3px;
       position: relative;
       cursor: pointer;
-      overflow: hidden;
     }
     .scrubber-fill {
       height: 100%;
-      background: linear-gradient(90deg, #0284c7, #38bdf8);
+      background: #0284c7;
+      border-radius: 3px;
       width: 0%;
       transition: width 0.1s linear;
     }
     .transcript-drawer {
       position: absolute;
-      bottom: 0;
+      bottom: 42px;
       left: 0;
       right: 0;
-      background: rgba(255, 255, 255, 0.98);
+      background: #ffffff;
       border-top: 2px solid #0284c7;
-      backdrop-filter: blur(8px);
-      padding: 16px 32px;
-      max-height: 140px;
-      display: none;
+      box-shadow: 0 -4px 12px rgba(0,0,0,0.08);
+      max-height: 180px;
       overflow-y: auto;
-      font-size: 14px;
-      line-height: 1.5;
-      color: #0f172a;
-      box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
+      padding: 12px 18px;
+      display: none;
+      z-index: 100;
+    }
+    .transcript-drawer.open {
+      display: block;
     }
   </style>
 </head>
 <body>
+
+  <!-- Top Player Header -->
   <div class="player-header">
     <div class="player-title">
-      <span class="player-badge">LCARS 5010</span>
-      <span>CLINICAL AMBULATORY TELEMETRY ONBOARDING</span>
+      <span>LCARS 5010 CLINICAL AMBULATORY TELEMETRY ONBOARDING</span>
+      <span class="player-badge">WINDOWS 11 CONSOLE</span>
     </div>
-    <div style="display: flex; align-items: center; gap: 10px;">
-      <button class="ctrl-btn" onclick="toggleFullscreen()" style="padding: 3px 8px; font-size: 11px;">⛶ FULLSCREEN</button>
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <span id="lblScreenshotZone" style="font-family: monospace; font-size: 11px; background: #0284c7; color: #ffffff; padding: 2px 8px; border-radius: 3px; font-weight: bold;">📍 FOCUS: FULL OVERVIEW</span>
+      <span style="font-size: 12px; color: #64748b; font-weight: 600;">VOICE: <strong style="color: #0284c7;">AUSTRALIAN FEMALE</strong></span>
+      <span id="lblSlideCounter" style="font-family: monospace; font-size: 12px; font-weight: 800; color: #0f172a;">01 / 53</span>
     </div>
   </div>
 
+  <!-- Main Slide Iframe Viewport -->
   <div class="player-main">
     <iframe id="slideIframe" src="slides/slide_01.html"></iframe>
-    <div id="transcriptDrawer" class="transcript-drawer">
-      <strong style="color: #0284c7; display: block; margin-bottom: 4px;" id="lblTranscriptTitle">SLIDE 01 NARRATION:</strong>
-      <div id="txtTranscript">Loading narration...</div>
-    </div>
   </div>
 
+  <!-- Transcript Drawer -->
+  <div id="transcriptDrawer" class="transcript-drawer">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+      <strong id="lblTranscriptTitle" style="color: #0284c7; font-size: 13px;">SLIDE 01 TRANSCRIPT</strong>
+      <button onclick="toggleTranscript()" style="background: none; border: none; font-size: 14px; cursor: pointer; color: #64748b;">✕</button>
+    </div>
+    <p id="txtTranscript" style="font-size: 12.5px; line-height: 1.5; color: #334155; font-family: -apple-system, BlinkMacSystemFont, sans-serif;"></p>
+  </div>
+
+  <!-- Bottom Player Controls -->
   <div class="player-controls">
-    <div style="display: flex; gap: 8px;">
-      <button class="ctrl-btn" onclick="prevSlide()">⏮ PREV</button>
-      <button class="ctrl-btn" id="btnPlayPause" onclick="togglePlayPause()" style="background: #16a34a; color: #ffffff; border: 1.5px solid #15803d; font-weight: 800; min-width: 82px;">▶ RUN</button>
-      <button class="ctrl-btn" onclick="nextSlide()">NEXT ⏭</button>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <button class="ctrl-btn" onclick="prevSlide()" title="Previous Slide [Left Arrow]">⏮ PREV</button>
+      <button id="btnPlayPause" class="ctrl-btn active" onclick="togglePlayPause()" title="Play / Pause [Spacebar]">⏸ PAUSE</button>
+      <button class="ctrl-btn" onclick="nextSlide()" title="Next Slide [Right Arrow]">NEXT ⏭</button>
     </div>
 
-    <div class="progress-bar-container">
-      <span id="lblTime" style="font-family: monospace; font-size: 11px; color: #64748b; width: 45px;">00:00</span>
-      <div class="scrubber" onclick="onScrub(event)">
-        <div id="scrubberFill" class="scrubber-fill"></div>
-      </div>
-      <span id="lblSlideCounter" style="font-family: monospace; font-size: 11px; color: #0284c7; font-weight: 800; width: 65px; text-align: right;">01 / 53</span>
+    <!-- Scrubber Progress Bar -->
+    <div class="scrubber-container" onclick="seekSlide(event)">
+      <div id="scrubberFill" class="scrubber-fill"></div>
     </div>
 
-    <div style="display: flex; gap: 8px; align-items: center;">
-      <select id="selSlide" onchange="jumpToSlide(parseInt(this.value))" style="background: #ffffff; color: #0f172a; border: 1.5px solid #cbd5e1; border-radius: 4px; padding: 4px 8px; font-size: 11.5px;">
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <button class="ctrl-btn" onclick="toggleTranscript()" title="Toggle Voice Script Drawer">📜 TRANSCRIPT</button>
+
+      <!-- Slide Selector Dropdown -->
+      <select id="selSlide" onchange="jumpToSlide(parseInt(this.value))" style="padding: 3px 8px; font-size: 11.5px; border-radius: 4px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #0f172a; font-weight: 600; cursor: pointer; outline: none;">
       </select>
-      <button class="ctrl-btn" id="btnToggleTranscript" onclick="toggleTranscript()">📜 SCRIPT</button>
-      <button class="ctrl-btn" id="btnSpeed" onclick="cycleSpeed()" style="width: 48px; justify-content: center;">1.0x</button>
+
+      <!-- Speed Control -->
+      <select id="selSpeed" onchange="setPlaybackSpeed(parseFloat(this.value))" style="padding: 3px 6px; font-size: 11.5px; border-radius: 4px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #0f172a; font-weight: 600; cursor: pointer; outline: none;">
+        <option value="1.0" selected>1.0x</option>
+        <option value="1.25">1.25x</option>
+        <option value="1.5">1.5x</option>
+      </select>
     </div>
   </div>
 
-  <!-- Audio Element with High-Fidelity Pre-Rendered Female MP3s -->
+  <!-- Audio Player for Real Voice Narration -->
   <audio id="audioPlayer" preload="auto"></audio>
 
   <script>
@@ -235,13 +245,13 @@
     "num": "02",
     "module": "Module 1: Introduction & Clinical Scope",
     "title": "The Snapshot Fallacy: Sampling Mathematics & Metrology",
-    "desc": "Why single, start-and-end quarterly draws, and random spot-checks fail: mathematical proof via Neye-quist criteria, error convergence, and the 5 dimensions of metrology.",
-    "narration": "Let's examine the snapshot fallacy through information theory and Neye-quist sampling. More samples directly yield higher resolution and superior measurement quality. When we compare a quarterly lab regimen\u2014which provides only two isolated samples at the start and end of ninety days\u2014against random sporadic fingersticks and automated continuous telemetry across the five fundamental dimensions of metrology: sensitivity, specificity, accuracy, precision, and repeatability, the mathematics is undeniable. A standard quarterly lab evaluation yields exactly two samples: one at day zero and one at day ninety. With N equal to two across seven point seven million seconds, the sampling frequency is sixty-four nanohertz, causing total Neye-quist aliasing. It is completely blind to nocturnal hypoglycemia and glycemic excursions. Random fingersticks increase N to approximately one hundred and eighty points, but remain sporadic and sub-Neye-quist. In stark contrast, El-CARS delivers automated continuous sampling, recording two hundred and eighty-eight epochs per day across eight channels. Over ninety days, that yields twenty-five thousand nine hundred and twenty glucose points, and over two hundred and seven thousand total measurements. Mathematically, the standard error of the mean scales as sigma divided by the square root of N, reducing error variance by ninety-nine point four percent. Operating with a five-minute period, El-CARS satisfies the Neye-quist criterion of sampling at twice the maximum biological kinetic frequency, transforming blind snapshots into clinical-grade physiological fidelity.",
+    "desc": "Why single, start-and-end quarterly draws, and random spot-checks fail: mathematical proof via Nyquist criteria, error convergence, and the 5 dimensions of metrology.",
+    "narration": "Let's examine the snapshot fallacy through information theory and Nyquist sampling. More samples directly yield higher resolution and superior measurement quality. When we compare a quarterly lab regimen\u2014which provides only two isolated samples at the start and end of ninety days\u2014against random sporadic fingersticks and automated continuous telemetry across the five fundamental dimensions of metrology: sensitivity, specificity, accuracy, precision, and repeatability, the mathematics is undeniable. A standard quarterly lab evaluation yields exactly two samples: one at day zero and one at day ninety. With N equal to two across seven point seven million seconds, the sampling frequency is sixty-four nanohertz, causing total Nyquist aliasing. It is completely blind to nocturnal hypoglycemia and glycemic excursions. Random fingersticks increase N to approximately one hundred and eighty points, but remain sporadic and sub-Nyquist. In stark contrast, El-CARS delivers automated continuous sampling, recording two hundred and eighty-eight epochs per day across eight channels. Over ninety days, that yields twenty-five thousand nine hundred and twenty glucose points, and over two hundred and seven thousand total measurements. Mathematically, the standard error of the mean scales as sigma divided by the square root of N, reducing error variance by ninety-nine point four percent. Operating with a five-minute period, El-CARS satisfies the Nyquist criterion of sampling at twice the maximum biological kinetic frequency, transforming blind snapshots into clinical-grade physiological fidelity.",
     "card_title": "SAMPLING MATHEMATICS & METROLOGY CRITERIA",
     "bullets": [
       [
         "Quarterly Lab: Two Samples (Day 0 & Day 90)",
-        "A quarterly lab test yields only N=2 samples\u2014one at the start (Day 0) and one at the end (Day 90). Between them lies a 90-day total blind interval of 7.78 million seconds, causing complete Neye-quist aliasing."
+        "A quarterly lab test yields only N=2 samples\u2014one at the start (Day 0) and one at the end (Day 90). Between them lies a 90-day total blind interval of 7.78 million seconds, causing complete Nyquist aliasing."
       ],
       [
         "Random Spot-Checks vs Automated Telemetry",
@@ -252,11 +262,11 @@
         "More samples yield higher resolution and quality: Sensitivity jumps from <15% to >98%; Specificity provides true baseline context; Accuracy is anchor-calibrated; Precision CI narrows by 1/\u221aN; Repeatability achieves continuous autocorrelation."
       ],
       [
-        "Neye-quist Theorem & Standard Error Math",
-        "Shannon-Neye-quist criterion mandates fs \u2265 2 fmax. Biological half-life (15-30m) requires 5-min epochs (fs = 3.33 mHz). High-density sampling (N=25,920) reduces standard error (SE = \u03c3/\u221aN) by 99.4% (161\u00d7 noise suppression)."
+        "Nyquist Theorem & Standard Error Math",
+        "Shannon-Nyquist criterion mandates fs \u2265 2 fmax. Biological half-life (15-30m) requires 5-min epochs (fs = 3.33 mHz). High-density sampling (N=25,920) reduces standard error (SE = \u03c3/\u221aN) by 99.4% (161\u00d7 noise suppression)."
       ]
     ],
-    "takeaway": "More samples yield higher resolution and measurement quality. A quarterly lab has only 2 samples (Day 0 & Day 90) with a 90-day blind interval. Automated continuous telemetry (N=25,920) satisfies the Neye-quist criterion (fs \u2265 2 fmax), reduces standard error by 99.4% (SE = \u03c3/\u221aN), and achieves superior sensitivity, specificity, accuracy, precision, and repeatability.",
+    "takeaway": "More samples yield higher resolution and measurement quality. A quarterly lab has only 2 samples (Day 0 & Day 90) with a 90-day blind interval. Automated continuous telemetry (N=25,920) satisfies the Nyquist criterion (fs \u2265 2 fmax), reduces standard error by 99.4% (SE = \u03c3/\u221aN), and achieves superior sensitivity, specificity, accuracy, precision, and repeatability.",
     "right_header": "MATHEMATICAL SAMPLING THEORY & METROLOGY",
     "right_badge": "fs \u2265 2 fmax \u2022 SE = \u03c3/\u221aN",
     "right_badge_col": "#0284c7",
@@ -285,13 +295,13 @@
     "id": 3,
     "num": "03",
     "module": "Module 1: Introduction & Clinical Scope",
-    "title": "Mathematical Sampling Theory: Neye-quist Kinetics & Biological Aliasing",
+    "title": "Mathematical Sampling Theory: Nyquist Kinetics & Biological Aliasing",
     "desc": "Biological frequency bounds, glucose absorption half-life (15-30m), and why quarterly draws and fingersticks suffer severe frequency aliasing.",
-    "narration": "Let's examine the mathematical physics of biological sampling and the Shannon-Neye-quist theorem. Any continuous physical or biological signal requires sampling at a frequency at least twice its highest kinetic component, formulated as f-sub-s greater than or equal to two f-sub-max. In human glucose homeostasis, endogenous insulin secretion bursts occur in four to six minute oscillations, and postprandial glucose absorption operates with a biological half-life of fifteen to thirty minutes. This establishes the maximum biological frequency of glucose kinetics at approximately one point one millihertz. Therefore, to reconstruct glycemic trajectory without distortion, sampling must occur at least every seven point five minutes. A quarterly lab draw has a sampling frequency of sixty-four nanohertz\u2014eight orders of magnitude too slow\u2014causing complete aliasing. Even four daily fingersticks leave a massive six-hour blind interval between measurements, completely missing peak postprandial excursions. El-CARS samples every five minutes, or three point three three millihertz, fully satisfying the Neye-quist criterion and guaranteeing lossless kinetic reconstruction.",
+    "narration": "Let's examine the mathematical physics of biological sampling and the Shannon-Nyquist theorem. Any continuous physical or biological signal requires sampling at a frequency at least twice its highest kinetic component, formulated as f-sub-s greater than or equal to two f-sub-max. In human glucose homeostasis, endogenous insulin secretion bursts occur in four to six minute oscillations, and postprandial glucose absorption operates with a biological half-life of fifteen to thirty minutes. This establishes the maximum biological frequency of glucose kinetics at approximately one point one millihertz. Therefore, to reconstruct glycemic trajectory without distortion, sampling must occur at least every seven point five minutes. A quarterly lab draw has a sampling frequency of sixty-four nanohertz\u2014eight orders of magnitude too slow\u2014causing complete aliasing. Even four daily fingersticks leave a massive six-hour blind interval between measurements, completely missing peak postprandial excursions. El-CARS samples every five minutes, or three point three three millihertz, fully satisfying the Nyquist criterion and guaranteeing lossless kinetic reconstruction.",
     "card_title": "BIOLOGICAL KINETICS & NEYE-QUIST FREQUENCY BOUNDS",
     "bullets": [
       [
-        "The Shannon-Neye-quist Theorem (fs \u2265 2 fmax)",
+        "The Shannon-Nyquist Theorem (fs \u2265 2 fmax)",
         "To reconstruct any continuous physiological waveform without aliasing or information loss, the sampling rate fs must be at least twice the highest significant frequency fmax of the underlying biological system."
       ],
       [
@@ -307,11 +317,11 @@
         "By sampling every 300 seconds, LCARS operates comfortably above the Nyquist threshold (3.33 mHz > 2.2 mHz), capturing true rise velocities, peak nadirs, and nocturnal recoveries with zero aliasing."
       ]
     ],
-    "takeaway": "The Shannon-Neye-quist theorem (fs \u2265 2 fmax) dictates that biological glucose kinetics (fmax \u2248 1.1 mHz) require sampling faster than every 7.5 minutes. Quarterly labs are 8 orders of magnitude too slow; LCARS 5-minute sampling (3.33 mHz) guarantees 100% kinetic reconstruction without aliasing.",
+    "takeaway": "The Shannon-Nyquist theorem (fs \u2265 2 fmax) dictates that biological glucose kinetics (fmax \u2248 1.1 mHz) require sampling faster than every 7.5 minutes. Quarterly labs are 8 orders of magnitude too slow; LCARS 5-minute sampling (3.33 mHz) guarantees 100% kinetic reconstruction without aliasing.",
     "right_header": "BIOLOGICAL FREQUENCY SPECTRUM & ALIASING",
     "right_badge": "fs = 3.33 mHz \u2265 2 fmax",
     "right_badge_col": "#15803d",
-    "right_html": "\n          <!-- Biological Frequency Spectrum & Sampling Comparison -->\n          <div style=\"background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 10px; margin-top: 4px; color: #0f172a;\">\n            <div style=\"display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 4px; margin-bottom: 8px;\">\n              <span style=\"font-family: monospace; font-size: 0.72rem; color: #0284c7; font-weight: 800; letter-spacing: 0.05em;\">PHYSIOLOGICAL SAMPLING FREQUENCY SPECTRUM</span>\n              <span style=\"background: #15803d; color: #fff; font-size: 0.60rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; font-family: monospace;\">NYQUIST COMPLIANT</span>\n            </div>\n\n            <!-- Frequency Spectrum Comparison Scale -->\n            <div style=\"display: flex; flex-direction: column; gap: 7px; font-family: monospace; font-size: 0.68rem;\">\n              <!-- Tier 1: Quarterly Lab (64 nHz) -->\n              <div>\n                <div style=\"display: flex; justify-content: space-between; color: #dc2626; font-weight: bold; margin-bottom: 2px;\">\n                  <span>QUARTERLY LAB A1C (1 DRAW / 90 DAYS)</span>\n                  <span>fs = 6.4 \u00d7 10\u207b\u2078 Hz (ALIASING FACTOR: 100%)</span>\n                </div>\n                <div style=\"height: 18px; background: #fee2e2; border-radius: 3px; border: 1px solid #ef4444; display: flex; align-items: center; padding: 0 8px; justify-content: space-between;\">\n                  <span style=\"font-size: 0.60rem; color: #991b1b; font-weight: bold;\">\u26d4 8 ORDERS OF MAGNITUDE BELOW BIOLOGICAL KINETICS (FOLD-OVER VOID)</span>\n                  <span style=\"font-size: 0.60rem; color: #dc2626; font-weight: 800;\">TOTAL ALIAS</span>\n                </div>\n              </div>\n\n              <!-- Tier 2: Fingersticks (46 \u00b5Hz) -->\n              <div>\n                <div style=\"display: flex; justify-content: space-between; color: #d97706; font-weight: bold; margin-bottom: 2px;\">\n                  <span>CONVENTIONAL FINGERSTICKS (4 SPOT-CHECKS / DAY)</span>\n                  <span>fs = 4.6 \u00d7 10\u207b\u2075 Hz (6-HOUR BLIND GAPS)</span>\n                </div>\n                <div style=\"height: 18px; background: #fef3c7; border-radius: 3px; border: 1px solid #f59e0b; display: flex; align-items: center; padding: 0 8px; justify-content: space-between;\">\n                  <span style=\"font-size: 0.60rem; color: #b45309; font-weight: bold;\">\u26a0\ufe0f SUB-NYQUIST: MISSES 30-MIN POSTPRANDIAL PEAKS & 3 AM HYPOGLYCEMIA</span>\n                  <span style=\"font-size: 0.60rem; color: #d97706; font-weight: 800;\">&lt; 5% RECON</span>\n                </div>\n              </div>\n\n              <!-- Tier 3: Biological Cutoff Bound (2.2 mHz) -->\n              <div>\n                <div style=\"display: flex; justify-content: space-between; color: #0284c7; font-weight: bold; margin-bottom: 2px;\">\n                  <span>BIOLOGICAL NYQUIST BOUND: 2 \u00d7 fmax (t\u00bd = 15-30 MIN)</span>\n                  <span>f_nyquist \u2265 2.22 \u00d7 10\u207b\u00b3 Hz (7.5-MIN PERIOD)</span>\n                </div>\n                <div style=\"height: 18px; background: #e0f2fe; border-radius: 3px; border: 1px solid #0284c7; display: flex; align-items: center; padding: 0 8px; justify-content: space-between;\">\n                  <span style=\"font-size: 0.60rem; color: #0369a1; font-weight: bold;\">\ud83c\udfaf MINIMUM THEORETICAL SAMPLING THRESHOLD FOR ZERO KINETIC LOSS</span>\n                  <span style=\"font-size: 0.60rem; color: #0284c7; font-weight: 800;\">THRESHOLD</span>\n                </div>\n              </div>\n\n              <!-- Tier 4: LCARS 5010 (3.33 mHz) -->\n              <div>\n                <div style=\"display: flex; justify-content: space-between; color: #15803d; font-weight: bold; margin-bottom: 2px;\">\n                  <span>LCARS 5010 AUTOMATED TELEMETRY (288 SAMPLES / DAY)</span>\n                  <span>fs = 3.33 \u00d7 10\u207b\u00b3 Hz (300-SEC PERIOD)</span>\n                </div>\n                <div style=\"height: 20px; background: linear-gradient(90deg, #15803d, #16a34a, #0284c7); border-radius: 3px; border: 1.5px solid #15803d; display: flex; align-items: center; padding: 0 8px; justify-content: space-between;\">\n                  <span style=\"font-size: 0.62rem; color: #ffffff; font-weight: 800;\">\u2705 SATISFIES NYQUIST CRITERION (3.33 mHz &gt; 2.22 mHz) \u2022 100% WAVE RECONSTRUCTION</span>\n                  <span style=\"font-size: 0.62rem; color: #ffffff; font-weight: 800;\">VERIFIED</span>\n                </div>\n              </div>\n            </div>\n          </div>\n\n          <!-- Sampling Fidelity & Aliasing Comparison Table -->\n          <div style=\"margin-top: 8px; border: 1.5px solid #cbd5e1; border-radius: 6px; overflow: hidden; background: #ffffff;\">\n            <table style=\"width: 100%; border-collapse: collapse; font-size: 0.69rem; text-align: left;\">\n              <thead>\n                <tr style=\"background: #f1f5f9; color: #0f172a; border-bottom: 2px solid #cbd5e1; font-family: monospace;\">\n                  <th style=\"padding: 4px 6px;\">SAMPLING PARAMETER</th>\n                  <th style=\"padding: 4px 6px; color: #dc2626;\">LAB A1C (N=2)</th>\n                  <th style=\"padding: 4px 6px; color: #d97706;\">FINGERSTICKS (N\u2248180)</th>\n                  <th style=\"padding: 4px 6px; color: #15803d; background: #f0fdf4;\">LCARS 5010 (N=25,920)</th>\n                </tr>\n              </thead>\n              <tbody>\n                <tr style=\"border-bottom: 1px solid #e2e8f0;\">\n                  <td style=\"padding: 3px 6px; font-weight: bold; color: #334155;\">Sampling Period (\u0394t)</td>\n                  <td style=\"padding: 3px 6px; color: #dc2626; font-family: monospace;\">90 Days (7.78M sec)</td>\n                  <td style=\"padding: 3px 6px; color: #d97706; font-family: monospace;\">4 \u2013 8 Hours (Sporadic)</td>\n                  <td style=\"padding: 3px 6px; color: #15803d; font-family: monospace; font-weight: bold; background: #f0fdf4;\">300 Seconds (5.0 min)</td>\n                </tr>\n                <tr style=\"border-bottom: 1px solid #e2e8f0;\">\n                  <td style=\"padding: 3px 6px; font-weight: bold; color: #334155;\">Sampling Frequency (fs)</td>\n                  <td style=\"padding: 3px 6px; color: #dc2626; font-family: monospace;\">0.000000064 Hz</td>\n                  <td style=\"padding: 3px 6px; color: #d97706; font-family: monospace;\">0.000046 Hz</td>\n                  <td style=\"padding: 3px 6px; color: #15803d; font-family: monospace; font-weight: bold; background: #f0fdf4;\">0.003333 Hz (3.33 mHz)</td>\n                </tr>\n                <tr style=\"border-bottom: 1px solid #e2e8f0;\">\n                  <td style=\"padding: 3px 6px; font-weight: bold; color: #334155;\">Nyquist Ratio (fs / 2fmax)</td>\n                  <td style=\"padding: 3px 6px; color: #dc2626; font-family: monospace; font-weight: bold;\">0.000029 (Severe Aliasing)</td>\n                  <td style=\"padding: 3px 6px; color: #d97706; font-family: monospace;\">0.021 (Sub-Nyquist)</td>\n                  <td style=\"padding: 3px 6px; color: #15803d; font-family: monospace; font-weight: bold; background: #f0fdf4;\">1.50 (Nyquist Compliant)</td>\n                </tr>\n                <tr style=\"border-bottom: 1px solid #e2e8f0;\">\n                  <td style=\"padding: 3px 6px; font-weight: bold; color: #334155;\">Kinetic Curve Recovery</td>\n                  <td style=\"padding: 3px 6px; color: #dc2626;\">0% (Flatline extrapolation)</td>\n                  <td style=\"padding: 3px 6px; color: #d97706;\">Point-to-point jagged chords</td>\n                  <td style=\"padding: 3px 6px; color: #15803d; font-weight: bold; background: #f0fdf4;\">Smooth physiological spline</td>\n                </tr>\n                <tr>\n                  <td style=\"padding: 3px 6px; font-weight: bold; color: #334155;\">Nocturnal Hypo Detection</td>\n                  <td style=\"padding: 3px 6px; color: #dc2626; font-weight: bold;\">0% (Completely Invisible)</td>\n                  <td style=\"padding: 3px 6px; color: #d97706;\">&lt; 5% (Patient asleep)</td>\n                  <td style=\"padding: 3px 6px; color: #15803d; font-weight: 800; background: #f0fdf4;\">100% Continuous Catch Rate</td>\n                </tr>\n              </tbody>\n            </table>\n          </div>\n\n          <!-- Mathematical Insight Callout -->\n          <div style=\"margin-top: 6px; background: #eff6ff; border-left: 4px solid #0284c7; padding: 6px 10px; border-radius: 4px; font-size: 0.68rem; color: #1e3a8a; line-height: 1.35; font-family: monospace;\">\n            <strong>THE WHITTAKER-SHANNON INTERPOLATION FORMULA:</strong><br>\n            x(t) = \u2211 x[n] \u00b7 sinc((t - nTs)/Ts) recovers the continuous signal exactly IF AND ONLY IF fs \u2265 2 fmax. LCARS satisfies this equation, turning discrete 5-min epochs into exact clinical physiological trajectories.\n          </div>\n    ",
+    "right_html": "\n          <!-- Biological Frequency Spectrum & Sampling Comparison (Compact Fit) -->\n          <div style=\"background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 6px 8px; color: #0f172a;\">\n            <div style=\"display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 2px; margin-bottom: 5px;\">\n              <span style=\"font-family: monospace; font-size: 0.68rem; color: #0284c7; font-weight: 800;\">PHYSIOLOGICAL SAMPLING FREQUENCY SPECTRUM</span>\n              <span style=\"background: #15803d; color: #fff; font-size: 0.58rem; font-weight: bold; padding: 1px 5px; border-radius: 3px; font-family: monospace;\">NYQUIST COMPLIANT</span>\n            </div>\n\n            <!-- Frequency Spectrum Comparison Scale -->\n            <div style=\"display: flex; flex-direction: column; gap: 4px; font-family: monospace; font-size: 0.63rem;\">\n              <div>\n                <div style=\"display: flex; justify-content: space-between; color: #dc2626; font-weight: bold;\">\n                  <span>QUARTERLY LAB A1C (1 DRAW / 90 DAYS)</span>\n                  <span>fs = 6.4 \u00d7 10\u207b\u2078 Hz (100% ALIAS)</span>\n                </div>\n                <div style=\"height: 15px; background: #fee2e2; border-radius: 3px; border: 1px solid #ef4444; display: flex; align-items: center; padding: 0 6px; justify-content: space-between;\">\n                  <span style=\"font-size: 0.55rem; color: #991b1b; font-weight: bold;\">\u26d4 8 ORDERS BELOW KINETICS (FOLD-OVER VOID)</span>\n                  <span style=\"font-size: 0.55rem; color: #dc2626; font-weight: 800;\">TOTAL ALIAS</span>\n                </div>\n              </div>\n\n              <div>\n                <div style=\"display: flex; justify-content: space-between; color: #d97706; font-weight: bold;\">\n                  <span>CONVENTIONAL FINGERSTICKS (4 / DAY)</span>\n                  <span>fs = 4.6 \u00d7 10\u207b\u2075 Hz (6h BLIND GAPS)</span>\n                </div>\n                <div style=\"height: 15px; background: #fef3c7; border-radius: 3px; border: 1px solid #f59e0b; display: flex; align-items: center; padding: 0 6px; justify-content: space-between;\">\n                  <span style=\"font-size: 0.55rem; color: #b45309; font-weight: bold;\">\u26a0\ufe0f SUB-NYQUIST: MISSES 30-MIN PEAKS & 3 AM HYPO</span>\n                  <span style=\"font-size: 0.55rem; color: #d97706; font-weight: 800;\">&lt; 5% RECON</span>\n                </div>\n              </div>\n\n              <div>\n                <div style=\"display: flex; justify-content: space-between; color: #0284c7; font-weight: bold;\">\n                  <span>BIOLOGICAL NYQUIST BOUND: 2 \u00d7 fmax</span>\n                  <span>f_nyquist \u2265 2.22 \u00d7 10\u207b\u00b3 Hz (7.5-MIN)</span>\n                </div>\n                <div style=\"height: 15px; background: #e0f2fe; border-radius: 3px; border: 1px solid #0284c7; display: flex; align-items: center; padding: 0 6px; justify-content: space-between;\">\n                  <span style=\"font-size: 0.55rem; color: #0369a1; font-weight: bold;\">\ud83c\udfaf MINIMUM SAMPLING THRESHOLD FOR ZERO KINETIC LOSS</span>\n                  <span style=\"font-size: 0.55rem; color: #0284c7; font-weight: 800;\">THRESHOLD</span>\n                </div>\n              </div>\n\n              <div>\n                <div style=\"display: flex; justify-content: space-between; color: #15803d; font-weight: bold;\">\n                  <span>LCARS 5010 TELEMETRY (288 / DAY)</span>\n                  <span>fs = 3.33 \u00d7 10\u207b\u00b3 Hz (300s PERIOD)</span>\n                </div>\n                <div style=\"height: 16px; background: linear-gradient(90deg, #15803d, #16a34a, #0284c7); border-radius: 3px; border: 1.5px solid #15803d; display: flex; align-items: center; padding: 0 6px; justify-content: space-between;\">\n                  <span style=\"font-size: 0.56rem; color: #ffffff; font-weight: 800;\">\u2705 SATISFIES NYQUIST CRITERION (3.33 mHz &gt; 2.22 mHz) \u2022 100% RECONSTRUCTION</span>\n                  <span style=\"font-size: 0.56rem; color: #ffffff; font-weight: 800;\">VERIFIED</span>\n                </div>\n              </div>\n            </div>\n          </div>\n\n          <!-- Sampling Comparison Table -->\n          <div style=\"margin-top: 5px; border: 1.5px solid #cbd5e1; border-radius: 5px; overflow: hidden; background: #ffffff;\">\n            <table style=\"width: 100%; border-collapse: collapse; font-size: 0.62rem; text-align: left; font-family: monospace;\">\n              <thead>\n                <tr style=\"background: #f1f5f9; color: #0f172a; border-bottom: 1.5px solid #cbd5e1;\">\n                  <th style=\"padding: 2px 4px;\">SAMPLING METRIC</th>\n                  <th style=\"padding: 2px 4px; color: #dc2626;\">LAB A1C (N=2)</th>\n                  <th style=\"padding: 2px 4px; color: #d97706;\">FINGERSTICKS</th>\n                  <th style=\"padding: 2px 4px; color: #15803d; background: #f0fdf4;\">LCARS (N=25,920)</th>\n                </tr>\n              </thead>\n              <tbody>\n                <tr style=\"border-bottom: 1px solid #f1f5f9;\">\n                  <td style=\"padding: 2px 4px; font-weight: bold;\">Period (\u0394t)</td>\n                  <td style=\"padding: 2px 4px; color: #dc2626;\">90 Days</td>\n                  <td style=\"padding: 2px 4px; color: #d97706;\">4\u20138 Hours</td>\n                  <td style=\"padding: 2px 4px; color: #15803d; font-weight: bold; background: #f0fdf4;\">300 Seconds</td>\n                </tr>\n                <tr style=\"border-bottom: 1px solid #f1f5f9;\">\n                  <td style=\"padding: 2px 4px; font-weight: bold;\">Frequency (fs)</td>\n                  <td style=\"padding: 2px 4px; color: #dc2626;\">0.000000064 Hz</td>\n                  <td style=\"padding: 2px 4px; color: #d97706;\">0.000046 Hz</td>\n                  <td style=\"padding: 2px 4px; color: #15803d; font-weight: bold; background: #f0fdf4;\">0.003333 Hz</td>\n                </tr>\n                <tr style=\"border-bottom: 1px solid #f1f5f9;\">\n                  <td style=\"padding: 2px 4px; font-weight: bold;\">Nyquist Ratio</td>\n                  <td style=\"padding: 2px 4px; color: #dc2626;\">0.000029 (Severe)</td>\n                  <td style=\"padding: 2px 4px; color: #d97706;\">0.021 (Sub-Nyquist)</td>\n                  <td style=\"padding: 2px 4px; color: #15803d; font-weight: bold; background: #f0fdf4;\">1.50 (Compliant)</td>\n                </tr>\n                <tr>\n                  <td style=\"padding: 2px 4px; font-weight: bold;\">Hypo Detection</td>\n                  <td style=\"padding: 2px 4px; color: #dc2626;\">0% Invisible</td>\n                  <td style=\"padding: 2px 4px; color: #d97706;\">&lt; 5%</td>\n                  <td style=\"padding: 2px 4px; color: #15803d; font-weight: bold; background: #f0fdf4;\">100% Continuous</td>\n                </tr>\n              </tbody>\n            </table>\n          </div>\n\n          <!-- Whittaker-Shannon Callout -->\n          <div style=\"margin-top: 5px; background: #eff6ff; border-left: 3px solid #0284c7; padding: 4px 8px; border-radius: 4px; font-size: 0.62rem; color: #1e3a8a; line-height: 1.3; font-family: monospace;\">\n            <strong>WHITTAKER-SHANNON RECONSTRUCTION:</strong> x(t) = \u2211 x[n] \u00b7 sinc((t - nTs)/Ts) recovers the continuous signal exactly IF AND ONLY IF fs \u2265 2 fmax. LCARS satisfies this equation, turning discrete 5-min epochs into exact clinical trajectories.\n          </div>\n",
     "tab_screenshot": "images/lcars_chart_glucose.png",
     "tab_title": "03-METABOLIC CONSOLE \u2022 24-HOUR NYQUIST GLYCEMIC RECONSTRUCTION",
     "step_focus": [
@@ -323,19 +333,20 @@
       {
         "bullet": 1,
         "focus_desc": "Biological Kinetics & 15-30m Glucose Half-Life",
-        "scroll_pct": 0.35
+        "scroll_pct": 0.0
       },
       {
         "bullet": 2,
         "focus_desc": "Catastrophic Aliasing of 90-Day Quarterly Snapshot",
-        "scroll_pct": 0.7
+        "scroll_pct": 0.0
       },
       {
         "bullet": 3,
         "focus_desc": "LCARS 5-Minute Telemetry & Lossless Reconstruction",
-        "scroll_pct": 1.0
+        "scroll_pct": 0.0
       }
-    ]
+    ],
+    "no_scroll": true
   },
   {
     "id": 4,
@@ -367,7 +378,7 @@
     "right_header": "ERROR CONVERGENCE & SNR SCALING",
     "right_badge": "SE = \u03c3/\u221aN \u2022 161\u00d7 NOISE SUPPRESSION",
     "right_badge_col": "#0284c7",
-    "right_html": "\n          <!-- Error Convergence & SNR Resolution Scale -->\n          <div style=\"background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 10px; margin-top: 4px; color: #0f172a;\">\n            <div style=\"display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 4px; margin-bottom: 8px;\">\n              <span style=\"font-family: monospace; font-size: 0.72rem; color: #0284c7; font-weight: 800; letter-spacing: 0.05em;\">STATISTICAL ERROR CONVERGENCE (SE = \u03c3 / \u221aN)</span>\n              <span style=\"background: #0284c7; color: #fff; font-size: 0.60rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; font-family: monospace;\">CENTRAL LIMIT THEOREM</span>\n            </div>\n\n            <!-- Quantitative Error Reduction Bars -->\n            <div style=\"display: flex; flex-direction: column; gap: 7px; font-family: monospace; font-size: 0.68rem;\">\n              <!-- Tier 1: Quarterly Lab (N=2) -->\n              <div>\n                <div style=\"display: flex; justify-content: space-between; color: #dc2626; font-weight: bold; margin-bottom: 2px;\">\n                  <span>QUARTERLY LAB (N=2 SAMPLES): SE = 0.707 \u03c3</span>\n                  <span>UNCERTAINTY: 70.7% (MASSIVE DISPERSION)</span>\n                </div>\n                <div style=\"height: 18px; background: #fee2e2; border-radius: 3px; border: 1px solid #ef4444; position: relative; overflow: hidden; display: flex; align-items: center;\">\n                  <div style=\"width: 70.7%; height: 100%; background: #ef4444; opacity: 0.7;\"></div>\n                  <span style=\"position: absolute; left: 8px; font-size: 0.60rem; color: #ffffff; font-weight: 800;\">CI: \u00b11.38 \u03c3 (EXTREME CLINICAL UNCERTAINTY)</span>\n                </div>\n              </div>\n\n              <!-- Tier 2: Fingersticks (N=180) -->\n              <div>\n                <div style=\"display: flex; justify-content: space-between; color: #d97706; font-weight: bold; margin-bottom: 2px;\">\n                  <span>CONVENTIONAL FINGERSTICKS (N\u2248180 POINTS): SE = 0.0745 \u03c3</span>\n                  <span>UNCERTAINTY: 7.45% (MODERATE DISPERSION)</span>\n                </div>\n                <div style=\"height: 18px; background: #fef3c7; border-radius: 3px; border: 1px solid #f59e0b; position: relative; overflow: hidden; display: flex; align-items: center;\">\n                  <div style=\"width: 7.45%; height: 100%; background: #f59e0b; opacity: 0.85;\"></div>\n                  <span style=\"position: absolute; left: 8px; font-size: 0.60rem; color: #78350f; font-weight: 800;\">CI: \u00b10.15 \u03c3 (13.4\u00d7 NOISE REDUCTION)</span>\n                </div>\n              </div>\n\n              <!-- Tier 3: LCARS 5010 Continuous (N=25,920) -->\n              <div>\n                <div style=\"display: flex; justify-content: space-between; color: #15803d; font-weight: bold; margin-bottom: 2px;\">\n                  <span>LCARS 5010 GLUCOSE (N=25,920 EPOCHS): SE = 0.0062 \u03c3</span>\n                  <span>UNCERTAINTY: 0.62% (99.4% ERROR SUPPRESSION)</span>\n                </div>\n                <div style=\"height: 20px; background: #dcfce7; border-radius: 3px; border: 1.5px solid #16a34a; position: relative; overflow: hidden; display: flex; align-items: center;\">\n                  <div style=\"width: 0.62%; min-width: 4px; height: 100%; background: #16a34a;\"></div>\n                  <span style=\"position: absolute; left: 8px; font-size: 0.62rem; color: #14532d; font-weight: 800;\">CI: \u00b10.012 \u03c3 \u2022 161\u00d7 NOISE SUPPRESSION \u2022 MAXIMUM RESOLUTION</span>\n                </div>\n              </div>\n            </div>\n          </div>\n\n          <!-- Mathematical Derivation Matrix -->\n          <div style=\"margin-top: 8px; border: 1.5px solid #cbd5e1; border-radius: 6px; overflow: hidden; background: #ffffff;\">\n            <table style=\"width: 100%; border-collapse: collapse; font-size: 0.69rem; text-align: left;\">\n              <thead>\n                <tr style=\"background: #f1f5f9; color: #0f172a; border-bottom: 2px solid #cbd5e1; font-family: monospace;\">\n                  <th style=\"padding: 4px 6px;\">STATISTICAL METRIC</th>\n                  <th style=\"padding: 4px 6px; color: #dc2626;\">LAB A1C (N=2)</th>\n                  <th style=\"padding: 4px 6px; color: #d97706;\">FINGERSTICKS (N\u2248180)</th>\n                  <th style=\"padding: 4px 6px; color: #15803d; background: #f0fdf4;\">LCARS 5010 (N=25,920)</th>\n                </tr>\n              </thead>\n              <tbody>\n                <tr style=\"border-bottom: 1px solid #e2e8f0;\">\n                  <td style=\"padding: 3px 6px; font-weight: bold; color: #334155;\">Standard Error (SE = \u03c3/\u221aN)</td>\n                  <td style=\"padding: 3px 6px; color: #dc2626; font-family: monospace;\">0.7071 \u03c3</td>\n                  <td style=\"padding: 3px 6px; color: #d97706; font-family: monospace;\">0.0745 \u03c3</td>\n                  <td style=\"padding: 3px 6px; color: #15803d; font-family: monospace; font-weight: bold; background: #f0fdf4;\">0.0062 \u03c3 (161\u00d7 Sharper)</td>\n                </tr>\n                <tr style=\"border-bottom: 1px solid #e2e8f0;\">\n                  <td style=\"padding: 3px 6px; font-weight: bold; color: #334155;\">Error Variance (Var = \u03c3\u00b2/N)</td>\n                  <td style=\"padding: 3px 6px; color: #dc2626; font-family: monospace;\">0.5000 \u03c3\u00b2</td>\n                  <td style=\"padding: 3px 6px; color: #d97706; font-family: monospace;\">0.0056 \u03c3\u00b2</td>\n                  <td style=\"padding: 3px 6px; color: #15803d; font-family: monospace; font-weight: bold; background: #f0fdf4;\">0.000038 \u03c3\u00b2 (99.4% Reduction)</td>\n                </tr>\n                <tr style=\"border-bottom: 1px solid #e2e8f0;\">\n                  <td style=\"padding: 3px 6px; font-weight: bold; color: #334155;\">95% Confidence Interval (CI)</td>\n                  <td style=\"padding: 3px 6px; color: #dc2626; font-family: monospace;\">x\u0304 \u00b1 1.385 \u03c3</td>\n                  <td style=\"padding: 3px 6px; color: #d97706; font-family: monospace;\">x\u0304 \u00b1 0.146 \u03c3</td>\n                  <td style=\"padding: 3px 6px; color: #15803d; font-family: monospace; font-weight: bold; background: #f0fdf4;\">x\u0304 \u00b1 0.012 \u03c3 (Extremely Narrow)</td>\n                </tr>\n                <tr style=\"border-bottom: 1px solid #e2e8f0;\">\n                  <td style=\"padding: 3px 6px; font-weight: bold; color: #334155;\">Noise Suppression (\u221aN)</td>\n                  <td style=\"padding: 3px 6px; color: #dc2626; font-family: monospace;\">1.41\u00d7 (3.0 dB)</td>\n                  <td style=\"padding: 3px 6px; color: #d97706; font-family: monospace;\">13.4\u00d7 (22.5 dB)</td>\n                  <td style=\"padding: 3px 6px; color: #15803d; font-family: monospace; font-weight: bold; background: #f0fdf4;\">161.0\u00d7 (44.1 dB SNR Gain)</td>\n                </tr>\n                <tr>\n                  <td style=\"padding: 3px 6px; font-weight: bold; color: #334155;\">Metrological Quality Rating</td>\n                  <td style=\"padding: 3px 6px; color: #dc2626; font-weight: bold;\">Unreliable Snapshot</td>\n                  <td style=\"padding: 3px 6px; color: #d97706;\">Moderate Coarse Trend</td>\n                  <td style=\"padding: 3px 6px; color: #15803d; font-weight: 800; background: #f0fdf4;\">Clinical Telemetry Benchmark</td>\n                </tr>\n              </tbody>\n            </table>\n          </div>\n\n          <!-- Mathematical Law Callout Cards -->\n          <div style=\"margin-top: 6px; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; font-family: monospace; font-size: 0.67rem;\">\n            <div style=\"background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 4px; padding: 6px;\">\n              <div style=\"color: #1e40af; font-weight: bold;\">\ud83d\udcca LAW OF LARGE NUMBERS (LLN)</div>\n              <div style=\"color: #1e3a8a; margin-top: 2px; line-height: 1.35;\">As N \u27f6 25,920, sample average x\u0304 converges almost surely to expected truth \u03bc: P(lim |x\u0304 - \u03bc| = 0) = 1.</div>\n            </div>\n            <div style=\"background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 4px; padding: 6px;\">\n              <div style=\"color: #166534; font-weight: bold;\">\ud83d\udd2c CENTRAL LIMIT THEOREM (CLT)</div>\n              <div style=\"color: #14532d; margin-top: 2px; line-height: 1.35;\">Sampling distribution of the mean approaches pure Gaussianity with variance \u03c3\u00b2/N, enabling rigorous hypothesis testing (p &lt; 0.0001).</div>\n            </div>\n          </div>\n    ",
+    "right_html": "\n          <!-- Error Convergence & SNR Resolution Scale (Compact Fit) -->\n          <div style=\"background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 6px 8px; color: #0f172a;\">\n            <div style=\"display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 2px; margin-bottom: 5px;\">\n              <span style=\"font-family: monospace; font-size: 0.68rem; color: #0284c7; font-weight: 800;\">STATISTICAL ERROR CONVERGENCE (SE = \u03c3 / \u221aN)</span>\n              <span style=\"background: #0284c7; color: #fff; font-size: 0.58rem; font-weight: bold; padding: 1px 5px; border-radius: 3px; font-family: monospace;\">CENTRAL LIMIT</span>\n            </div>\n\n            <div style=\"display: flex; flex-direction: column; gap: 4px; font-family: monospace; font-size: 0.63rem;\">\n              <div>\n                <div style=\"display: flex; justify-content: space-between; color: #dc2626; font-weight: bold;\">\n                  <span>QUARTERLY LAB (N=2 SAMPLES): SE = 0.707 \u03c3</span>\n                  <span>UNCERTAINTY: 70.7%</span>\n                </div>\n                <div style=\"height: 15px; background: #fee2e2; border-radius: 3px; border: 1px solid #ef4444; position: relative; overflow: hidden; display: flex; align-items: center;\">\n                  <div style=\"width: 70.7%; height: 100%; background: #ef4444; opacity: 0.7;\"></div>\n                  <span style=\"position: absolute; left: 6px; font-size: 0.55rem; color: #ffffff; font-weight: 800;\">CI: \u00b11.38 \u03c3 (EXTREME UNCERTAINTY)</span>\n                </div>\n              </div>\n\n              <div>\n                <div style=\"display: flex; justify-content: space-between; color: #d97706; font-weight: bold;\">\n                  <span>FINGERSTICKS (N=180 SAMPLES): SE = 0.075 \u03c3</span>\n                  <span>UNCERTAINTY: 7.5%</span>\n                </div>\n                <div style=\"height: 15px; background: #fef3c7; border-radius: 3px; border: 1px solid #f59e0b; position: relative; overflow: hidden; display: flex; align-items: center;\">\n                  <div style=\"width: 28%; height: 100%; background: #f59e0b; opacity: 0.7;\"></div>\n                  <span style=\"position: absolute; left: 6px; font-size: 0.55rem; color: #78350f; font-weight: 800;\">CI: \u00b10.15 \u03c3 (MODERATE VARIANCE)</span>\n                </div>\n              </div>\n\n              <div>\n                <div style=\"display: flex; justify-content: space-between; color: #15803d; font-weight: bold;\">\n                  <span>LCARS 5010 (N=25,920 SAMPLES): SE = 0.0062 \u03c3</span>\n                  <span>UNCERTAINTY: 0.62%</span>\n                </div>\n                <div style=\"height: 16px; background: linear-gradient(90deg, #15803d, #16a34a); border-radius: 3px; border: 1.5px solid #15803d; display: flex; align-items: center; padding: 0 6px;\">\n                  <span style=\"font-size: 0.56rem; color: #ffffff; font-weight: 800;\">CI: \u00b10.012 \u03c3 \u2022 161\u00d7 NOISE SUPPRESSION \u2022 NEAR-ZERO VARIANCE</span>\n                </div>\n              </div>\n            </div>\n          </div>\n\n          <!-- Statistical Comparison Table -->\n          <div style=\"margin-top: 5px; border: 1.5px solid #cbd5e1; border-radius: 5px; overflow: hidden; background: #ffffff;\">\n            <table style=\"width: 100%; border-collapse: collapse; font-size: 0.62rem; text-align: left; font-family: monospace;\">\n              <thead>\n                <tr style=\"background: #f1f5f9; color: #0f172a; border-bottom: 1.5px solid #cbd5e1;\">\n                  <th style=\"padding: 2px 4px;\">STATISTICAL METRIC</th>\n                  <th style=\"padding: 2px 4px; color: #dc2626;\">LAB A1C (N=2)</th>\n                  <th style=\"padding: 2px 4px; color: #d97706;\">FINGERSTICKS</th>\n                  <th style=\"padding: 2px 4px; color: #15803d; background: #f0fdf4;\">LCARS (N=25,920)</th>\n                </tr>\n              </thead>\n              <tbody>\n                <tr style=\"border-bottom: 1px solid #f1f5f9;\">\n                  <td style=\"padding: 2px 4px; font-weight: bold;\">Sample Size (N)</td>\n                  <td style=\"padding: 2px 4px; color: #dc2626;\">2 Points</td>\n                  <td style=\"padding: 2px 4px; color: #d97706;\">180 Points</td>\n                  <td style=\"padding: 2px 4px; color: #15803d; font-weight: bold; background: #f0fdf4;\">25,920 Points</td>\n                </tr>\n                <tr style=\"border-bottom: 1px solid #f1f5f9;\">\n                  <td style=\"padding: 2px 4px; font-weight: bold;\">Standard Error (SE)</td>\n                  <td style=\"padding: 2px 4px; color: #dc2626;\">0.7071 \u03c3</td>\n                  <td style=\"padding: 2px 4px; color: #d97706;\">0.0745 \u03c3</td>\n                  <td style=\"padding: 2px 4px; color: #15803d; font-weight: bold; background: #f0fdf4;\">0.0062 \u03c3 (114\u00d7 lower)</td>\n                </tr>\n                <tr style=\"border-bottom: 1px solid #f1f5f9;\">\n                  <td style=\"padding: 2px 4px; font-weight: bold;\">SNR Improvement (\u221aN)</td>\n                  <td style=\"padding: 2px 4px; color: #dc2626;\">1.41\u00d7 Baseline</td>\n                  <td style=\"padding: 2px 4px; color: #d97706;\">13.4\u00d7 (+9.5\u00d7)</td>\n                  <td style=\"padding: 2px 4px; color: #15803d; font-weight: bold; background: #f0fdf4;\">161.0\u00d7 (+161\u00d7 gain)</td>\n                </tr>\n                <tr>\n                  <td style=\"padding: 2px 4px; font-weight: bold;\">Confidence Interval</td>\n                  <td style=\"padding: 2px 4px; color: #dc2626;\">\u00b1138% Width</td>\n                  <td style=\"padding: 2px 4px; color: #d97706;\">\u00b114.6% Width</td>\n                  <td style=\"padding: 2px 4px; color: #15803d; font-weight: bold; background: #f0fdf4;\">\u00b11.2% (True Value)</td>\n                </tr>\n              </tbody>\n            </table>\n          </div>\n\n          <!-- Metrology Callout -->\n          <div style=\"margin-top: 5px; background: #f0fdf4; border-left: 3px solid #16a34a; padding: 4px 8px; border-radius: 4px; font-size: 0.62rem; color: #14532d; line-height: 1.3; font-family: monospace;\">\n            <strong>METROLOGICAL LAW:</strong> In stochastic signal processing, noise is zero-mean Gaussian. Averaging N independent measurements diminishes noise by 1/\u221aN. LCARS achieves 161\u00d7 higher precision than quarterly blood draws.\n          </div>\n",
     "tab_screenshot": "images/lcars_chart_ytd.png",
     "tab_title": "03-METABOLIC CONSOLE \u2022 90-DAY STATISTICAL REGRESSION & POWER",
     "step_focus": [
@@ -379,31 +390,32 @@
       {
         "bullet": 1,
         "focus_desc": "Error Variance Reduction (Var = \u03c3\u00b2/N)",
-        "scroll_pct": 0.35
+        "scroll_pct": 0.0
       },
       {
         "bullet": 2,
         "focus_desc": "161\u00d7 Signal-to-Noise Ratio (SNR \u221d \u221aN)",
-        "scroll_pct": 0.7
+        "scroll_pct": 0.0
       },
       {
         "bullet": 3,
         "focus_desc": "Autocorrelation & Temporal Repeatability",
-        "scroll_pct": 1.0
+        "scroll_pct": 0.0
       }
-    ]
+    ],
+    "no_scroll": true
   },
   {
     "id": 5,
     "num": "05",
     "module": "Module 1: Introduction & Clinical Scope",
     "title": "Peer-Reviewed References, Citations & Interactive Gemini Research Query",
-    "desc": "Grounding continuous telemetry in peer-reviewed science: Shannon, Neye-quist, Battelino (TIR), Beck (JAMA), Danne, ISO 15197, and live Gemini AI literature verification.",
-    "narration": "To ensure absolute scientific rigor, our continuous telemetry methodology is firmly anchored in peer-reviewed clinical science and classical information theory. Here, we cite six landmark publications that substantiate why continuous automated sampling supersedes isolated quarterly testing. Claude Shannon's foundational 1949 treatise on sampling in the presence of noise and Harry Neye-quist's transmission theorems establish the mathematical criteria for lossless signal recovery. In clinical medicine, Professor Tadej Battelino's international consensus published in Diabetes Care proves that continuous metrics, specifically Time in Range exceeding seventy percent, correlate with clinical outcomes far more accurately than quarterly HbA1c alone. Doctor Roy Beck's randomized clinical trials published in JAMA demonstrate that continuous telemetry drastically reduces glycemic variability and eliminates severe nocturnal hypoglycemia compared to intermittent fingersticks. Furthermore, our presentation is self-validating. Below the citations, viewers can interact directly with Google Gemini Pro to query PubMed, examine clinical trial endpoints, or request additional peer-reviewed papers in real time.",
+    "desc": "Grounding continuous telemetry in peer-reviewed science: Shannon, Nyquist, Battelino (TIR), Beck (JAMA), Danne, ISO 15197, and live Gemini AI literature verification.",
+    "narration": "To ensure absolute scientific rigor, our continuous telemetry methodology is firmly anchored in peer-reviewed clinical science and classical information theory. Here, we cite six landmark publications that substantiate why continuous automated sampling supersedes isolated quarterly testing. Claude Shannon's foundational 1949 treatise on sampling in the presence of noise and Harry Nyquist's transmission theorems establish the mathematical criteria for lossless signal recovery. In clinical medicine, Professor Tadej Battelino's international consensus published in Diabetes Care proves that continuous metrics, specifically Time in Range exceeding seventy percent, correlate with clinical outcomes far more accurately than quarterly HbA1c alone. Doctor Roy Beck's randomized clinical trials published in JAMA demonstrate that continuous telemetry drastically reduces glycemic variability and eliminates severe nocturnal hypoglycemia compared to intermittent fingersticks. Furthermore, our presentation is self-validating. Below the citations, viewers can interact directly with Google Gemini Pro to query PubMed, examine clinical trial endpoints, or request additional peer-reviewed papers in real time.",
     "card_title": "PEER-REVIEWED CITATIONS & AI SELF-VALIDATION",
     "bullets": [
       [
-        "Foundational Information Theory (Shannon & Neye-quist)",
+        "Foundational Information Theory (Shannon & Nyquist)",
         "Shannon CE (1949) 'Communication in the Presence of Noise' (Proc IRE) & Nyquist H (1928) 'Certain Topics in Telegraph Transmission Theory' (AIEE). Mathematically proving that biological signal reconstruction requires fs \u2265 2 fmax."
       ],
       [
@@ -419,11 +431,11 @@
         "This presentation is self-validating. Clinicians and engineers can click any citation link or submit live queries below to have Google Gemini Pro retrieve recent PubMed clinical literature and metrological standards."
       ]
     ],
-    "takeaway": "Firmly anchored in peer-reviewed science (Shannon, Neye-quist, Battelino, Beck, ISO 15197), continuous telemetry replaces static snapshots with validated time-series metrics. Clinicians and researchers can query Google Gemini Pro directly on this slide to retrieve additional clinical citations in real time.",
+    "takeaway": "Firmly anchored in peer-reviewed science (Shannon, Nyquist, Battelino, Beck, ISO 15197), continuous telemetry replaces static snapshots with validated time-series metrics. Clinicians and researchers can query Google Gemini Pro directly on this slide to retrieve additional clinical citations in real time.",
     "right_header": "PEER-REVIEWED REFERENCES & GEMINI RESEARCH QUERY",
     "right_badge": "PUBMED & DOI VERIFIED \u2022 GEMINI PRO",
     "right_badge_col": "#15803d",
-    "right_html": "\n          <!-- Curated Peer-Reviewed Literature List -->\n          <div style=\"background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 10px; margin-top: 4px; color: #0f172a;\">\n            <div style=\"display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 4px; margin-bottom: 8px;\">\n              <span style=\"font-family: monospace; font-size: 0.72rem; color: #0284c7; font-weight: 800; letter-spacing: 0.05em;\">KEY PEER-REVIEWED CITATIONS & RESEARCH PAPERS</span>\n              <span style=\"background: #15803d; color: #fff; font-size: 0.60rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; font-family: monospace;\">CLICKABLE LINKS</span>\n            </div>\n\n            <!-- Citation Cards List -->\n            <div style=\"display: flex; flex-direction: column; gap: 6px; font-size: 0.68rem;\">\n              <!-- Citation 1: Shannon 1949 -->\n              <a href=\"https://doi.org/10.1109/JRPROC.1949.232969\" target=\"_blank\" style=\"text-decoration: none; color: inherit; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 4px; padding: 5px 8px; display: block; transition: all 0.2s;\">\n                <div style=\"display: flex; justify-content: space-between; align-items: center;\">\n                  <span style=\"font-weight: 800; color: #0284c7; font-family: monospace;\">1. Shannon CE (1949) \u2022 Proc. IRE 37(1):10\u201321</span>\n                  <span style=\"background: #e0f2fe; color: #0369a1; font-size: 0.58rem; padding: 1px 5px; border-radius: 3px; font-weight: bold;\">DOI \u2197</span>\n                </div>\n                <div style=\"color: #334155; margin-top: 2px; line-height: 1.3;\">\n                  <em>\"Communication in the Presence of Noise\"</em> \u2014 Foundational mathematical proof of the sampling theorem (fs \u2265 2W).\n                </div>\n              </a>\n\n              <!-- Citation 2: Battelino et al. 2019 (Diabetes Care) -->\n              <a href=\"https://doi.org/10.2337/dci19-0028\" target=\"_blank\" style=\"text-decoration: none; color: inherit; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 4px; padding: 5px 8px; display: block; transition: all 0.2s;\">\n                <div style=\"display: flex; justify-content: space-between; align-items: center;\">\n                  <span style=\"font-weight: 800; color: #15803d; font-family: monospace;\">2. Battelino T, et al. (2019) \u2022 Diabetes Care 42:1593\u20131603</span>\n                  <span style=\"background: #dcfce7; color: #166534; font-size: 0.58rem; padding: 1px 5px; border-radius: 3px; font-weight: bold;\">PUBMED \u2197</span>\n                </div>\n                <div style=\"color: #334155; margin-top: 2px; line-height: 1.3;\">\n                  <em>\"Clinical Targets for Continuous Glucose Monitoring Data Interpretation: International Consensus on Time in Range\"</em> \u2014 Validates TIR &gt;70% vs A1C.\n                </div>\n              </a>\n\n              <!-- Citation 3: Beck et al. 2017 (JAMA) -->\n              <a href=\"https://doi.org/10.1001/jama.2016.19975\" target=\"_blank\" style=\"text-decoration: none; color: inherit; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 4px; padding: 5px 8px; display: block; transition: all 0.2s;\">\n                <div style=\"display: flex; justify-content: space-between; align-items: center;\">\n                  <span style=\"font-weight: 800; color: #0284c7; font-family: monospace;\">3. Beck RW, et al. (2017) \u2022 JAMA 317(4):371\u2013378</span>\n                  <span style=\"background: #e0f2fe; color: #0369a1; font-size: 0.58rem; padding: 1px 5px; border-radius: 3px; font-weight: bold;\">JAMA \u2197</span>\n                </div>\n                <div style=\"color: #334155; margin-top: 2px; line-height: 1.3;\">\n                  <em>\"Effect of Continuous Glucose Monitoring on Glycemic Control in Adults With T1D & T2D\"</em> \u2014 Proves telemetry suppresses glycemic variability and nocturnal hypoglycemia.\n                </div>\n              </a>\n\n              <!-- Citation 4: Danne et al. 2017 & ISO 15197 -->\n              <a href=\"https://doi.org/10.2337/dc17-1600\" target=\"_blank\" style=\"text-decoration: none; color: inherit; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 4px; padding: 5px 8px; display: block; transition: all 0.2s;\">\n                <div style=\"display: flex; justify-content: space-between; align-items: center;\">\n                  <span style=\"font-weight: 800; color: #b45309; font-family: monospace;\">4. Danne T, et al. (2017) \u2022 Diabetes Care 40:1631\u20131640</span>\n                  <span style=\"background: #fef3c7; color: #92400e; font-size: 0.58rem; padding: 1px 5px; border-radius: 3px; font-weight: bold;\">CONSENSUS \u2197</span>\n                </div>\n                <div style=\"color: #334155; margin-top: 2px; line-height: 1.3;\">\n                  <em>\"International Consensus on Use of Continuous Glucose Monitoring\"</em> \u2014 Establishes standardized 288-sample daily ambulatory profile.\n                </div>\n              </a>\n            </div>\n          </div>\n\n          <!-- Interactive Gemini Research Query Card -->\n          <div style=\"margin-top: 8px; background: #eff6ff; border: 1.5px solid #93c5fd; border-radius: 6px; padding: 10px; font-family: monospace;\">\n            <div style=\"display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #bfdbfe; padding-bottom: 4px; margin-bottom: 6px;\">\n              <span style=\"color: #1e40af; font-weight: 900; font-size: 0.72rem; display: flex; align-items: center; gap: 6px;\">\n                <span>\u2728 GOOGLE GEMINI PRO: LIVE RESEARCH VALIDATION</span>\n              </span>\n              <span style=\"background: #2563eb; color: #ffffff; font-size: 0.58rem; font-weight: bold; padding: 2px 6px; border-radius: 3px;\">\n                SELF-VALIDATING\n              </span>\n            </div>\n\n            <div style=\"font-size: 0.70rem; color: #1e3a8a; line-height: 1.35; margin-bottom: 6px;\">\n              <strong>Would you like me to find more via Gemini?</strong><br>\n              Click any verified literature query below or search custom medical keywords directly:\n            </div>\n\n            <!-- Quick Query Buttons -->\n            <div style=\"display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px;\">\n              <a href=\"https://scholar.google.com/scholar?q=continuous+glucose+monitoring+nyquist+sampling+kinetics\" target=\"_blank\" style=\"text-decoration: none; background: #ffffff; border: 1px solid #93c5fd; border-radius: 4px; padding: 3px 8px; font-size: 0.64rem; color: #1d4ed8; font-weight: bold;\">\n                \ud83d\udd0d Nyquist Sampling & CGM Kinetics \u2197\n              </a>\n              <a href=\"https://pubmed.ncbi.nlm.nih.gov/?term=continuous+glucose+monitoring+time+in+range+vs+a1c\" target=\"_blank\" style=\"text-decoration: none; background: #ffffff; border: 1px solid #93c5fd; border-radius: 4px; padding: 3px 8px; font-size: 0.64rem; color: #1d4ed8; font-weight: bold;\">\n                \ud83d\udd0d PubMed: TIR &gt;70% vs A1C Outcomes \u2197\n              </a>\n              <a href=\"https://scholar.google.com/scholar?q=ISO+15197+MARD+continuous+glucose+accuracy+precision\" target=\"_blank\" style=\"text-decoration: none; background: #ffffff; border: 1px solid #93c5fd; border-radius: 4px; padding: 3px 8px; font-size: 0.64rem; color: #1d4ed8; font-weight: bold;\">\n                \ud83d\udd0d ISO 15197 & MARD Metrology Limits \u2197\n              </a>\n            </div>\n\n            <!-- Interactive Search Input Bar -->\n            <form action=\"https://scholar.google.com/scholar\" method=\"get\" target=\"_blank\" style=\"display: flex; gap: 6px;\">\n              <input type=\"text\" name=\"q\" placeholder=\"Enter clinical topic or author (e.g. GLUT4 kinetics, nocturnal hypoglycemia)...\" style=\"flex: 1; padding: 5px 8px; font-size: 0.68rem; border: 1px solid #93c5fd; border-radius: 4px; outline: none; background: #ffffff; color: #0f172a;\" value=\"continuous glucose telemetry MARD precision repeatability\">\n              <button type=\"submit\" style=\"background: #2563eb; color: #ffffff; border: none; border-radius: 4px; padding: 5px 12px; font-size: 0.68rem; font-weight: bold; cursor: pointer; white-space: nowrap;\">\n                Query Gemini / Scholar \u2197\n              </button>\n            </form>\n          </div>\n    ",
+    "right_html": "\n          <!-- Curated Peer-Reviewed Literature List (Compact Fit) -->\n          <div style=\"background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 6px 8px; color: #0f172a;\">\n            <div style=\"display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 2px; margin-bottom: 5px;\">\n              <span style=\"font-family: monospace; font-size: 0.68rem; color: #0284c7; font-weight: 800;\">PEER-REVIEWED CITATIONS & RESEARCH</span>\n              <span style=\"background: #15803d; color: #fff; font-size: 0.58rem; font-weight: bold; padding: 1px 5px; border-radius: 3px; font-family: monospace;\">DOI VERIFIED</span>\n            </div>\n\n            <!-- Citation Cards List -->\n            <div style=\"display: flex; flex-direction: column; gap: 4px; font-size: 0.63rem;\">\n              <a href=\"https://doi.org/10.1109/JRPROC.1949.232969\" target=\"_blank\" style=\"text-decoration: none; color: inherit; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 3px; padding: 3px 6px; display: block;\">\n                <div style=\"display: flex; justify-content: space-between; align-items: center;\">\n                  <span style=\"font-weight: 800; color: #0284c7; font-family: monospace;\">1. Shannon CE (1949) \u2022 Proc. IRE 37(1):10\u201321</span>\n                  <span style=\"background: #e0f2fe; color: #0369a1; font-size: 0.55rem; padding: 1px 4px; border-radius: 2px; font-weight: bold;\">DOI \u2197</span>\n                </div>\n                <div style=\"color: #334155; line-height: 1.25;\"><em>\"Communication in the Presence of Noise\"</em> \u2014 Mathematical proof of sampling theorem (fs \u2265 2W).</div>\n              </a>\n\n              <a href=\"https://doi.org/10.2337/dci19-0028\" target=\"_blank\" style=\"text-decoration: none; color: inherit; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 3px; padding: 3px 6px; display: block;\">\n                <div style=\"display: flex; justify-content: space-between; align-items: center;\">\n                  <span style=\"font-weight: 800; color: #15803d; font-family: monospace;\">2. Battelino T, et al. (2019) \u2022 Diabetes Care 42:1593</span>\n                  <span style=\"background: #dcfce7; color: #166534; font-size: 0.55rem; padding: 1px 4px; border-radius: 2px; font-weight: bold;\">TIR &gt;70% \u2197</span>\n                </div>\n                <div style=\"color: #334155; line-height: 1.25;\"><em>\"Recommendations From International Consensus on Time in Range\"</em> \u2014 Validates TIR over A1C.</div>\n              </a>\n\n              <a href=\"https://doi.org/10.1001/jama.2016.19975\" target=\"_blank\" style=\"text-decoration: none; color: inherit; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 3px; padding: 3px 6px; display: block;\">\n                <div style=\"display: flex; justify-content: space-between; align-items: center;\">\n                  <span style=\"font-weight: 800; color: #7c3aed; font-family: monospace;\">3. Beck RW, et al. (2017) \u2022 JAMA 317(4):371\u2013378</span>\n                  <span style=\"background: #ede9fe; color: #5b21b6; font-size: 0.55rem; padding: 1px 4px; border-radius: 2px; font-weight: bold;\">JAMA \u2197</span>\n                </div>\n                <div style=\"color: #334155; line-height: 1.25;\"><em>\"Effect of Continuous Glucose Monitoring on Glycemic Control\"</em> \u2014 Proves hypoglycemia reduction.</div>\n              </a>\n\n              <a href=\"https://doi.org/10.2337/dc17-1600\" target=\"_blank\" style=\"text-decoration: none; color: inherit; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 3px; padding: 3px 6px; display: block;\">\n                <div style=\"display: flex; justify-content: space-between; align-items: center;\">\n                  <span style=\"font-weight: 800; color: #b45309; font-family: monospace;\">4. Danne T, et al. (2017) \u2022 Diabetes Care 40:1631</span>\n                  <span style=\"background: #fef3c7; color: #92400e; font-size: 0.55rem; padding: 1px 4px; border-radius: 2px; font-weight: bold;\">CONSENSUS \u2197</span>\n                </div>\n                <div style=\"color: #334155; line-height: 1.25;\"><em>\"International Consensus on CGM\"</em> \u2014 Establishes standardized 288-sample daily ambulatory profile.</div>\n              </a>\n            </div>\n          </div>\n\n          <!-- Interactive Gemini Research Query Card -->\n          <div style=\"margin-top: 5px; background: #eff6ff; border: 1.5px solid #93c5fd; border-radius: 5px; padding: 6px 8px; font-family: monospace;\">\n            <div style=\"display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #bfdbfe; padding-bottom: 2px; margin-bottom: 4px;\">\n              <span style=\"color: #1e40af; font-weight: 900; font-size: 0.68rem;\">\u2728 GOOGLE GEMINI PRO: LIVE RESEARCH VALIDATION</span>\n              <span style=\"background: #2563eb; color: #ffffff; font-size: 0.55rem; font-weight: bold; padding: 1px 5px; border-radius: 2px;\">SELF-VALIDATING</span>\n            </div>\n\n            <!-- Quick Query Buttons -->\n            <div style=\"display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 5px;\">\n              <a href=\"https://scholar.google.com/scholar?q=continuous+glucose+monitoring+nyquist+sampling+kinetics\" target=\"_blank\" style=\"text-decoration: none; background: #ffffff; border: 1px solid #93c5fd; border-radius: 3px; padding: 2px 6px; font-size: 0.60rem; color: #1d4ed8; font-weight: bold;\">\n                \ud83d\udd0d Nyquist Sampling & CGM Kinetics \u2197\n              </a>\n              <a href=\"https://pubmed.ncbi.nlm.nih.gov/?term=continuous+glucose+monitoring+time+in+range+vs+a1c\" target=\"_blank\" style=\"text-decoration: none; background: #ffffff; border: 1px solid #93c5fd; border-radius: 3px; padding: 2px 6px; font-size: 0.60rem; color: #1d4ed8; font-weight: bold;\">\n                \ud83d\udd0d PubMed: TIR &gt;70% vs A1C Outcomes \u2197\n              </a>\n            </div>\n\n            <!-- Search Form -->\n            <form action=\"https://scholar.google.com/scholar\" method=\"get\" target=\"_blank\" style=\"display: flex; gap: 4px;\">\n              <input type=\"text\" name=\"q\" placeholder=\"Enter clinical topic...\" style=\"flex: 1; padding: 3px 6px; font-size: 0.62rem; border: 1px solid #93c5fd; border-radius: 3px; background: #ffffff; color: #0f172a;\" value=\"continuous glucose telemetry Nyquist MARD\">\n              <button type=\"submit\" style=\"background: #2563eb; color: #ffffff; border: none; border-radius: 3px; padding: 3px 8px; font-size: 0.62rem; font-weight: bold; cursor: pointer;\">\n                Query Gemini \u2197\n              </button>\n            </form>\n          </div>\n",
     "tab_screenshot": "images/lcars_tab_help.png",
     "tab_title": "08-HELP & FAQ \u2022 CLINICAL CITATIONS & GEMINI PRO KNOWLEDGE BASE",
     "step_focus": [
@@ -435,19 +447,20 @@
       {
         "bullet": 1,
         "focus_desc": "International Consensus on Time in Range (Battelino 2019)",
-        "scroll_pct": 0.35
+        "scroll_pct": 0.0
       },
       {
         "bullet": 2,
         "focus_desc": "Clinical Telemetry Trial in JAMA (Beck 2017)",
-        "scroll_pct": 0.7
+        "scroll_pct": 0.0
       },
       {
         "bullet": 3,
         "focus_desc": "Interactive Self-Validation via Google Gemini Pro",
-        "scroll_pct": 1.0
+        "scroll_pct": 0.0
       }
-    ]
+    ],
+    "no_scroll": true
   },
   {
     "id": 6,
@@ -2793,143 +2806,12 @@
 ];
 
     let currentIndex = 0;
-    let isPlaying = false;
+    let isPlaying = true;
     let playbackSpeed = 1.0;
-    let auFemaleVoice = null;
-    let synth = window.speechSynthesis;
-    let currentUtterance = null;
     let slideTimer = null;
-    let audioUnlocked = false;
+    let synth = window.speechSynthesis;
 
-    function updatePlayPauseUI() {
-      const btn = document.getElementById('btnPlayPause');
-      if (!btn) return;
-      if (isPlaying) {
-        btn.innerText = "⏸ PAUSE";
-        btn.style.background = "#0284c7";
-        btn.style.borderColor = "#0369a1";
-        btn.style.color = "#ffffff";
-        btn.classList.add('active');
-      } else {
-        btn.innerText = "▶ RUN";
-        btn.style.background = "#16a34a";
-        btn.style.borderColor = "#15803d";
-        btn.style.color = "#ffffff";
-        btn.classList.remove('active');
-      }
-    }
-
-    // Populate Slide Selector
-    const sel = document.getElementById('selSlide');
-    slides.forEach((s, idx) => {
-      const opt = document.createElement('option');
-      opt.value = idx;
-      opt.text = `${s.num}. ${s.title}`;
-      sel.appendChild(opt);
-    });
-
-    // Initialize Web Speech Fallback Voices (Prefer Female Australian)
-    function initVoices() {
-      if (!synth) return;
-      const voices = synth.getVoices();
-      auFemaleVoice = voices.find(v => (v.lang === 'en-AU' || v.lang.startsWith('en-AU')) && (v.name.includes('Natasha') || v.name.includes('Catherine') || v.name.includes('Female') || v.name.includes('Karen'))) ||
-                      voices.find(v => v.lang === 'en-AU' || v.lang.startsWith('en-AU')) ||
-                      voices.find(v => (v.lang === 'en-GB' || v.lang.startsWith('en-GB')) && (v.name.includes('Female') || v.name.includes('Sonia') || v.name.includes('Libby'))) ||
-                      voices.find(v => v.lang.startsWith('en'));
-    }
-    if (synth) {
-      synth.onvoiceschanged = initVoices;
-      initVoices();
-    }
-
-    function showUnmuteBanner() {
-      const banner = document.getElementById('unmuteNotice');
-      if (banner) banner.style.display = 'flex';
-    }
-
-    function hideUnmuteBanner() {
-      const banner = document.getElementById('unmuteNotice');
-      if (banner) banner.style.display = 'none';
-      audioUnlocked = true;
-    }
-
-    function handleUserGesture() {
-      hideUnmuteBanner();
-      const s = slides[currentIndex];
-      speakNarration(s.narration);
-    }
-
-    // Global interaction listeners to guarantee audio un-mute on very first user interaction
-    ['click', 'pointerdown', 'keydown', 'touchstart'].forEach(evt => {
-      window.addEventListener(evt, () => {
-        if (!audioUnlocked) handleUserGesture();
-      }, { passive: true });
-      document.addEventListener(evt, () => {
-        if (!audioUnlocked) handleUserGesture();
-      }, { passive: true });
-    });
-
-    function loadSlide(index) {
-      if (index < 0) index = 0;
-      if (index >= slides.length) index = slides.length - 1;
-      currentIndex = index;
-
-      const s = slides[currentIndex];
-      document.getElementById('slideIframe').src = `slides/slide_${s.num}.html`;
-      document.getElementById('lblSlideCounter').innerText = `${s.num} / ${slides.length}`;
-      document.getElementById('selSlide').value = currentIndex;
-      document.getElementById('scrubberFill').style.width = `${((currentIndex + 1) / slides.length) * 100}%`;
-      document.getElementById('lblTranscriptTitle').innerText = `SLIDE ${s.num}: ${s.title}`;
-      document.getElementById('txtTranscript').innerText = s.narration;
-
-      // Position IMMEDIATELY on transition to the specific initial screen area!
-      const initialPct = (s.step_focus && s.step_focus.length > 0) ? s.step_focus[0].scroll_pct : 0.0;
-      currentScrollLeft = initialPct * 1000;
-      targetScrollLeft = initialPct * 1000;
-      currentScrollRight = 0;
-      targetScrollRight = 0;
-
-      try {
-        const iframe = document.getElementById('slideIframe');
-        iframe.onload = () => {
-          const doc = iframe.contentDocument;
-          if (doc) {
-            doc.addEventListener('keydown', handleGlobalKeyDown);
-            const leftViewport = doc.querySelector('.left-screenshot-viewport');
-            if (leftViewport) {
-              const maxLeftScroll = leftViewport.scrollHeight - leftViewport.clientHeight;
-              const initPos = (maxLeftScroll > 0) ? initialPct * maxLeftScroll : 0;
-              leftViewport.scrollTop = initPos;
-              currentScrollLeft = initPos;
-              targetScrollLeft = initPos;
-            }
-          }
-          currentScrollRight = 0;
-          targetScrollRight = 0;
-          syncSlideContent(0.0);
-        };
-        if (iframe && iframe.contentDocument) {
-          iframe.contentDocument.addEventListener('keydown', handleGlobalKeyDown);
-          const leftViewport = iframe.contentDocument.querySelector('.left-screenshot-viewport');
-          if (leftViewport) {
-            const maxLeftScroll = leftViewport.scrollHeight - leftViewport.clientHeight;
-            const initPos = (maxLeftScroll > 0) ? initialPct * maxLeftScroll : 0;
-            leftViewport.scrollTop = initPos;
-            currentScrollLeft = initPos;
-            targetScrollLeft = initPos;
-          }
-          currentScrollRight = 0;
-          targetScrollRight = 0;
-          syncSlideContent(0.0);
-        }
-      } catch(e) {}
-
-      // Speak narration only if running
-      if (isPlaying) {
-        speakNarration(s.narration);
-      }
-    }
-
+    // Viewport Scroll Interpolation State
     let currentScrollLeft = 0;
     let targetScrollLeft = 0;
     let currentScrollRight = 0;
@@ -2946,16 +2828,31 @@
       try {
         const iframe = document.getElementById('slideIframe');
         if (iframe && iframe.contentDocument) {
-          const leftViewport = iframe.contentDocument.querySelector('.left-screenshot-viewport');
-          if (leftViewport && leftViewport.scrollHeight > leftViewport.clientHeight) {
-            // Smooth 60fps linear interpolation: glides 8% of distance each frame
-            currentScrollLeft += (targetScrollLeft - currentScrollLeft) * 0.08;
-            leftViewport.scrollTop = currentScrollLeft;
-          }
-          const rightCard = iframe.contentDocument.querySelector('.visual-card');
-          if (rightCard && rightCard.scrollHeight > rightCard.clientHeight) {
-            currentScrollRight += (targetScrollRight - currentScrollRight) * 0.08;
-            rightCard.scrollTop = currentScrollRight;
+          const s = slides[currentIndex];
+          const isSteady = s && (s.no_scroll === true || ['03', '04', '05', '3', '4', '5'].includes(s.num));
+
+          if (isSteady) {
+            currentScrollLeft = 0;
+            targetScrollLeft = 0;
+            currentScrollRight = 0;
+            targetScrollRight = 0;
+            const leftViewport = iframe.contentDocument.querySelector('.left-screenshot-viewport');
+            if (leftViewport && leftViewport.scrollTop !== 0) leftViewport.scrollTop = 0;
+            const rightCard = iframe.contentDocument.querySelector('.visual-card');
+            if (rightCard && rightCard.scrollTop !== 0) rightCard.scrollTop = 0;
+            const contentCard = iframe.contentDocument.querySelector('.content-card');
+            if (contentCard && contentCard.scrollTop !== 0) contentCard.scrollTop = 0;
+          } else {
+            const leftViewport = iframe.contentDocument.querySelector('.left-screenshot-viewport');
+            if (leftViewport && leftViewport.scrollHeight > leftViewport.clientHeight) {
+              currentScrollLeft += (targetScrollLeft - currentScrollLeft) * 0.08;
+              leftViewport.scrollTop = currentScrollLeft;
+            }
+            const rightCard = iframe.contentDocument.querySelector('.visual-card');
+            if (rightCard && rightCard.scrollHeight > rightCard.clientHeight) {
+              currentScrollRight += (targetScrollRight - currentScrollRight) * 0.08;
+              rightCard.scrollTop = currentScrollRight;
+            }
           }
         }
       } catch(e) {}
@@ -2971,29 +2868,26 @@
 
         const leftViewport = doc.querySelector('.left-screenshot-viewport');
         const rightCard = doc.querySelector('.visual-card');
-        const zoneBadge = doc.getElementById('lblScreenshotZone');
+        const zoneBadge = document.getElementById('lblScreenshotZone');
         const bullets = doc.querySelectorAll('.bullet-item');
         const s = slides[currentIndex];
+        const isSteady = s && (s.no_scroll === true || ['03', '04', '05', '3', '4', '5'].includes(s.num));
 
         const numBullets = (s.bullets && s.bullets.length > 0) ? s.bullets.length : 3;
         let activeIdx = Math.floor(norm * numBullets);
         if (activeIdx >= numBullets) activeIdx = numBullets - 1;
         if (activeIdx < 0) activeIdx = 0;
 
-        // Highlight active bullet item (sight & text sync)
+        // Highlight active bullet item without layout/reflow shifting
         bullets.forEach((b, idx) => {
           if (idx === activeIdx) {
             b.style.background = '#e0f2fe';
             b.style.borderLeft = '4px solid #0284c7';
             b.style.color = '#0369a1';
-            b.style.fontWeight = '700';
-            b.style.paddingLeft = '10px';
           } else {
             b.style.background = 'transparent';
             b.style.borderLeft = '4px solid transparent';
             b.style.color = '#1e293b';
-            b.style.fontWeight = 'normal';
-            b.style.paddingLeft = '8px';
           }
         });
 
@@ -3010,9 +2904,14 @@
           else zoneBadge.style.background = '#0f766e';
         }
 
+        // If steady slide, lock scroll completely to zero
+        if (isSteady) {
+          targetScrollLeft = 0;
+          targetScrollRight = 0;
+          return;
+        }
+
         // Monotonic Top-to-Bottom Smooth Target: glides steadily without jumping up and down
-        // Plateau Scroll & Pause Timing Engine:
-        // Holds 100% steady during the topic talk, glides monotonically between topics, never jumps up
         if (leftViewport && leftViewport.scrollHeight > leftViewport.clientHeight) {
           const maxLeftScroll = leftViewport.scrollHeight - leftViewport.clientHeight;
           if (maxLeftScroll > 0) {
@@ -3072,25 +2971,118 @@
       const p = audioEl.play();
       if (p !== undefined) {
         p.then(() => {
-          audioEl.onended = () => {
-            if (isPlaying) nextSlide();
-          };
+          // Playing
         }).catch((err) => {
-          console.warn("Audio play error:", err);
+          console.warn("Audio file play error; falling back to SpeechSynthesis", err);
+          if (synth) {
+            const utter = new SpeechSynthesisUtterance(text);
+            utter.rate = playbackSpeed;
+            utter.onend = () => {
+              if (isPlaying) {
+                slideTimer = setTimeout(() => {
+                  nextSlide();
+                }, 1500);
+              }
+            };
+            synth.speak(utter);
+          }
         });
+      }
+
+      audioEl.onended = () => {
+        if (isPlaying) {
+          slideTimer = setTimeout(() => {
+            nextSlide();
+          }, 1200);
+        }
+      };
+    }
+
+    function loadSlide(index) {
+      if (index < 0) index = 0;
+      if (index >= slides.length) index = slides.length - 1;
+      currentIndex = index;
+
+      const s = slides[currentIndex];
+      const isSteady = s && (s.no_scroll === true || ['03', '04', '05', '3', '4', '5'].includes(s.num));
+
+      document.getElementById('slideIframe').src = `slides/slide_${s.num}.html`;
+      document.getElementById('lblSlideCounter').innerText = `${s.num} / ${slides.length}`;
+      document.getElementById('selSlide').value = currentIndex;
+      document.getElementById('scrubberFill').style.width = `${((currentIndex + 1) / slides.length) * 100}%`;
+      document.getElementById('lblTranscriptTitle').innerText = `SLIDE ${s.num}: ${s.title}`;
+      document.getElementById('txtTranscript').innerText = s.narration;
+
+      // Position immediately to initial target
+      const initialPct = isSteady ? 0.0 : ((s.step_focus && s.step_focus.length > 0) ? s.step_focus[0].scroll_pct : 0.0);
+      currentScrollLeft = isSteady ? 0 : initialPct * 1000;
+      targetScrollLeft = isSteady ? 0 : initialPct * 1000;
+      currentScrollRight = 0;
+      targetScrollRight = 0;
+
+      try {
+        const iframe = document.getElementById('slideIframe');
+        iframe.onload = () => {
+          const doc = iframe.contentDocument;
+          if (doc) {
+            doc.addEventListener('keydown', handleGlobalKeyDown);
+            const leftViewport = doc.querySelector('.left-screenshot-viewport');
+            if (leftViewport) {
+              const maxLeftScroll = leftViewport.scrollHeight - leftViewport.clientHeight;
+              const initPos = (!isSteady && maxLeftScroll > 0) ? initialPct * maxLeftScroll : 0;
+              leftViewport.scrollTop = initPos;
+              currentScrollLeft = initPos;
+              targetScrollLeft = initPos;
+            }
+            const rightCard = doc.querySelector('.visual-card');
+            if (rightCard && isSteady) rightCard.scrollTop = 0;
+          }
+          currentScrollRight = 0;
+          targetScrollRight = 0;
+          syncSlideContent(0.0);
+        };
+        if (iframe && iframe.contentDocument) {
+          iframe.contentDocument.addEventListener('keydown', handleGlobalKeyDown);
+          const leftViewport = iframe.contentDocument.querySelector('.left-screenshot-viewport');
+          if (leftViewport) {
+            const maxLeftScroll = leftViewport.scrollHeight - leftViewport.clientHeight;
+            const initPos = (!isSteady && maxLeftScroll > 0) ? initialPct * maxLeftScroll : 0;
+            leftViewport.scrollTop = initPos;
+            currentScrollLeft = initPos;
+            targetScrollLeft = initPos;
+          }
+          const rightCard = iframe.contentDocument.querySelector('.visual-card');
+          if (rightCard && isSteady) rightCard.scrollTop = 0;
+          currentScrollRight = 0;
+          targetScrollRight = 0;
+          syncSlideContent(0.0);
+        }
+      } catch(e) {}
+
+      // Speak narration only if running
+      if (isPlaying) {
+        speakNarration(s.narration);
       }
     }
 
     function togglePlayPause() {
       isPlaying = !isPlaying;
-      updatePlayPauseUI();
+      const btn = document.getElementById('btnPlayPause');
+      const audioEl = document.getElementById('audioPlayer');
+
       if (isPlaying) {
-        const s = slides[currentIndex];
-        speakNarration(s.narration);
+        btn.innerHTML = '⏸ PAUSE';
+        btn.classList.add('active');
+        if (audioEl.src && audioEl.paused) {
+          audioEl.play();
+        } else {
+          speakNarration(slides[currentIndex].narration);
+        }
       } else {
-        if (synth) synth.cancel();
-        const audioEl = document.getElementById('audioPlayer');
+        btn.innerHTML = '▶ RUN';
+        btn.classList.remove('active');
         if (audioEl) audioEl.pause();
+        if (synth) synth.cancel();
         clearTimeout(slideTimer);
       }
     }
@@ -3098,97 +3090,71 @@
     function nextSlide() {
       if (currentIndex < slides.length - 1) {
         loadSlide(currentIndex + 1);
-        if (isPlaying) {
-          const s = slides[currentIndex];
-          speakNarration(s.narration);
-        }
       } else {
-        isPlaying = false;
-        updatePlayPauseUI();
+        togglePlayPause();
       }
     }
 
     function prevSlide() {
       if (currentIndex > 0) {
         loadSlide(currentIndex - 1);
-        if (isPlaying) {
-          const s = slides[currentIndex];
-          speakNarration(s.narration);
-        }
       }
     }
 
     function jumpToSlide(idx) {
       loadSlide(idx);
-      if (isPlaying) {
-        const s = slides[currentIndex];
-        speakNarration(s.narration);
-      }
+    }
+
+    function seekSlide(e) {
+      const container = e.currentTarget;
+      const rect = container.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const pct = clickX / rect.width;
+      const targetIdx = Math.floor(pct * slides.length);
+      loadSlide(targetIdx);
+    }
+
+    function setPlaybackSpeed(speed) {
+      playbackSpeed = speed;
+      const audioEl = document.getElementById('audioPlayer');
+      if (audioEl) audioEl.playbackRate = speed;
     }
 
     function toggleTranscript() {
-      const d = document.getElementById('transcriptDrawer');
-      const btn = document.getElementById('btnToggleTranscript');
-      if (d.style.display === 'block') {
-        d.style.display = 'none';
-        btn.classList.remove('active');
-      } else {
-        d.style.display = 'block';
-        btn.classList.add('active');
-      }
-    }
-
-    function cycleSpeed() {
-      const speeds = [1.0, 1.25, 1.5, 0.8];
-      let curIdx = speeds.indexOf(playbackSpeed);
-      playbackSpeed = speeds[(curIdx + 1) % speeds.length];
-      document.getElementById('btnSpeed').innerText = `${playbackSpeed}x`;
-      if (isPlaying) {
-        const s = slides[currentIndex];
-        speakNarration(s.narration);
-      }
-    }
-
-    function onScrub(e) {
-      const rect = e.currentTarget.getBoundingClientRect();
-      const pct = (e.clientX - rect.left) / rect.width;
-      const targetIdx = Math.floor(pct * slides.length);
-      loadSlide(targetIdx);
-      if (isPlaying) {
-        const s = slides[currentIndex];
-        speakNarration(s.narration);
-      }
-    }
-
-    function toggleFullscreen() {
-      if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen();
-      } else {
-        if (document.exitFullscreen) document.exitFullscreen();
-      }
+      const drawer = document.getElementById('transcriptDrawer');
+      drawer.classList.toggle('open');
     }
 
     function handleGlobalKeyDown(e) {
-      if (e.code === 'Space' || e.key === ' ' || e.keyCode === 32) {
+      if (e.code === 'Space') {
         e.preventDefault();
         togglePlayPause();
-      } else if (e.code === 'ArrowRight' || e.key === 'ArrowRight') {
+      } else if (e.code === 'ArrowRight') {
+        e.preventDefault();
         nextSlide();
-      } else if (e.code === 'ArrowLeft' || e.key === 'ArrowLeft') {
+      } else if (e.code === 'ArrowLeft') {
+        e.preventDefault();
         prevSlide();
-      } else if (e.key === 'f' || e.key === 'F') {
-        toggleFullscreen();
       }
     }
 
-    window.addEventListener('keydown', handleGlobalKeyDown);
+    // Populate Slide Selector
+    const selSlide = document.getElementById('selSlide');
+    slides.forEach((s, idx) => {
+      const opt = document.createElement('option');
+      opt.value = idx;
+      opt.text = `${s.num}: ${s.title}`;
+      selSlide.appendChild(opt);
+    });
 
-    // Start on Slide 1 in RUN standby state, start render loop
-    window.onload = () => {
-      loadSlide(0);
-      updatePlayPauseUI();
-      renderSmoothLoop();
-    };
+    // Global Keybindings
+    document.addEventListener('keydown', handleGlobalKeyDown);
+
+    // Start 60fps render loop
+    animLoopId = requestAnimationFrame(renderSmoothLoop);
+
+    // Initial Load
+    loadSlide(0);
   </script>
 </body>
 </html>
