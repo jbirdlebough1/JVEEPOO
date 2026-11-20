@@ -39,7 +39,7 @@ print(f"Loaded {len(slides_data)} slides from {data_file}")
 # Write TRANSCRIPT.md
 transcript_path = os.path.join(pres_dir, "TRANSCRIPT.md")
 with open(transcript_path, "w", encoding="utf-8") as f:
-    f.write("# LCARS 5010 Clinical Telemetry Masterclass - Official Narration Transcript\n\n")
+    f.write("# LCARS 5010 Clinical Ambulatory Telemetry Onboarding - Official Narration Transcript\n\n")
     f.write("**Audio Track:** Australian Professional Technical Narration (Female - Edge TTS / en-AU-NatashaNeural)  \n")
     f.write("**Hardware Platform:** FITAOS 5150 / Veepoo Model 5010 Biosensing Array  \n")
     f.write("**Protocol:** Bluetooth Low Energy 5.0 Local-First Air-Gapped Telemetry  \n")
@@ -107,31 +107,10 @@ def generate_left_panel(s):
     screenshot_html = ""
     if tab_img:
         screenshot_html = f"""
-        <!-- Real LCARS Page Under Discussion Preview with Bright Yellow Active Screen Tab -->
-        <div class="left-screenshot-card" style="margin-top: 6px; margin-bottom: 6px; border: 1.5px solid #cbd5e1; border-radius: 6px; overflow: hidden; background: #0f172a; box-shadow: 0 4px 12px rgba(0,0,0,0.18); display: flex; flex-direction: column; flex: 1; min-height: 290px;">
-          
-          <!-- Console Header Title Bar with Active Tab Callout (Clean, no artificial grey ribbon) -->
-          <div style="display: flex; justify-content: space-between; align-items: center; background: #0f172a; padding: 6px 10px; border-bottom: 2px solid #334155; flex-shrink: 0;">
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <span style="border: 2px solid #ffd700; background: #ffeb3b; color: #000000; font-weight: 900; font-size: 0.70rem; padding: 2px 8px; border-radius: 4px; font-family: monospace; box-shadow: 0 0 10px rgba(255, 215, 0, 0.85); letter-spacing: 0.04em; white-space: nowrap;">
-                TAB {active_tab:02d}: {active_tab_name}
-              </span>
-              <span style="font-size: 0.72rem; color: #38bdf8; font-weight: 800; font-family: monospace; letter-spacing: 0.03em;">
-                {tab_title}
-              </span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 6px;">
-              <span id="lblScreenshotZone" class="screenshot-zone-badge" style="background: #0284c7; color: #ffffff; font-size: 0.62rem; font-weight: 800; padding: 2px 8px; border-radius: 3px; font-family: monospace; letter-spacing: 0.03em; transition: all 0.25s ease;">
-                📍 FOCUS: TOPIC 1
-              </span>
-              <span style="background: #15803d; color: #ffffff; font-size: 0.58rem; font-weight: bold; padding: 2px 5px; border-radius: 3px; font-family: monospace;">
-                LIVE CONSOLE
-              </span>
-            </div>
-          </div>
-
-          <!-- Continuous Monotonic Scroll Viewport (No Jerkiness) -->
-          <div class="left-screenshot-viewport" style="text-align: center; background: #000; overflow-y: auto; flex: 1; min-height: 250px; position: relative;">
+        <!-- Real LCARS Page Under Discussion (Pure Authentic Light Theme Screenshot) -->
+        <div class="left-screenshot-card" style="margin-top: 6px; margin-bottom: 6px; border: 2px solid #cbd5e1; border-radius: 8px; overflow: hidden; background: #ffffff; box-shadow: 0 4px 14px rgba(0,0,0,0.08); display: flex; flex-direction: column; flex: 1; min-height: 290px;">
+          <!-- Continuous Monotonic Scroll Viewport (Clean Light Background) -->
+          <div class="left-screenshot-viewport" style="text-align: center; background: #ffffff; overflow-y: auto; flex: 1; min-height: 250px; position: relative;">
             <img src="{tab_img}" onerror="this.src='../{tab_img}'" alt="{tab_title}" style="width: 100%; height: auto; display: block; object-fit: cover; object-position: top center;">
           </div>
         </div>
@@ -139,16 +118,13 @@ def generate_left_panel(s):
 
     return f"""
       <!-- High-Contrast Dynamic Content Card -->
-      <div class="content-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #0284c7; padding: 14px 18px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto;">
-        <h3 style="color: #0284c7; font-size: 1.08rem; font-weight: 800; border-bottom: 2px solid #e2e8f0; padding-bottom: 5px; margin-bottom: 6px; text-transform: uppercase;">{card_title}</h3>
-        <p style="font-size: 0.88rem; color: #334155; margin-bottom: 6px; line-height: 1.4; font-weight: 500;">{desc}</p>
-        <ul class="bullets-list" style="padding-left: 0; list-style-type: none; margin-bottom: 4px; color: #1e293b; font-size: 0.82rem;">
+      <div class="content-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #0284c7; padding: 10px 14px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto;">
+        <h3 style="color: #0284c7; font-size: 1.05rem; font-weight: 800; border-bottom: 2px solid #e2e8f0; padding-bottom: 4px; margin-bottom: 5px; text-transform: uppercase;">{card_title}</h3>
+        <p style="font-size: 0.85rem; color: #334155; margin-bottom: 5px; line-height: 1.35; font-weight: 500;">{desc}</p>
+        <ul class="bullets-list" style="padding-left: 0; list-style-type: none; margin-bottom: 4px; color: #1e293b; font-size: 0.80rem;">
           {bullets_html}
         </ul>
         {screenshot_html}
-        <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.80rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
-          <strong style="color: #15803d;">Key Takeaway:</strong> {takeaway}
-        </div>
       </div>
     """
 
@@ -157,15 +133,19 @@ def generate_right_panel(s):
     badge = s.get("right_badge", "● ONLINE")
     badge_col = s.get("right_badge_col", "#15803d")
     html_content = s.get("right_html", "")
+    takeaway = s.get("takeaway", "Continuous telemetry ensures patient safety and clinical insight.")
 
     return f"""
-      <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid {badge_col}; padding: 14px 18px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto; scroll-behavior: smooth;">
-        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 5px; margin-bottom: 8px; flex-shrink: 0;">
-          <span style="font-family: monospace; font-weight: 800; color: #0284c7; font-size: 0.86rem;">{header}</span>
-          <span style="background: #f8fafc; color: {badge_col}; font-weight: 800; font-size: 0.70rem; padding: 2px 7px; border-radius: 4px; border: 1.5px solid {badge_col};">{badge}</span>
+      <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid {badge_col}; padding: 10px 14px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto; scroll-behavior: smooth;">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 4px; margin-bottom: 6px; flex-shrink: 0;">
+          <span style="font-family: monospace; font-weight: 800; color: #0284c7; font-size: 0.84rem;">{header}</span>
+          <span style="background: #f8fafc; color: {badge_col}; font-weight: 800; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; border: 1.5px solid {badge_col};">{badge}</span>
         </div>
         <div class="visual-content" style="flex: 1; display: flex; flex-direction: column;">
           {html_content}
+        </div>
+        <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.78rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
+          <strong style="color: #15803d;">Key Takeaway:</strong> {takeaway}
         </div>
       </div>
     """
@@ -184,8 +164,8 @@ slide_template = """<!DOCTYPE html>
     html, body {{
       width: 100%;
       height: 100%;
-      background: #091424;
-      color: #ffffff;
+      background: #f1f5f9;
+      color: #0f172a;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       overflow: hidden;
       display: flex;
@@ -196,8 +176,8 @@ slide_template = """<!DOCTYPE html>
       height: 100vh;
       display: flex;
       flex-direction: column;
-      padding: 16px 24px;
-      gap: 10px;
+      padding: 8px 16px;
+      gap: 6px;
       box-sizing: border-box;
       min-height: 0;
     }}
@@ -205,22 +185,26 @@ slide_template = """<!DOCTYPE html>
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 3px solid #0284c7;
-      padding-bottom: 8px;
+      border-bottom: 2.5px solid #0284c7;
+      padding: 6px 14px;
+      background: #ffffff;
+      border-radius: 6px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+      border: 1px solid #e2e8f0;
       flex-shrink: 0;
     }}
     .slide-module {{
-      font-size: 0.82rem;
-      color: #38bdf8;
-      font-weight: 700;
+      font-size: 0.78rem;
+      color: #0284c7;
+      font-weight: 800;
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }}
     .slide-title {{
-      font-size: 1.50rem;
-      font-weight: 800;
-      color: #ffffff;
-      margin-top: 1px;
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: #0f172a;
+      margin-top: 0px;
       letter-spacing: -0.01em;
     }}
     .slide-badge {{
@@ -228,8 +212,8 @@ slide_template = """<!DOCTYPE html>
       color: #ffffff;
       font-family: monospace;
       font-weight: 800;
-      font-size: 0.82rem;
-      padding: 5px 12px;
+      font-size: 0.76rem;
+      padding: 3px 10px;
       border-radius: 4px;
       letter-spacing: 0.05em;
       flex-shrink: 0;
@@ -238,19 +222,19 @@ slide_template = """<!DOCTYPE html>
       flex: 1;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
+      gap: 12px;
       min-height: 0;
-      height: calc(100vh - 105px);
+      height: calc(100vh - 66px);
     }}
     .slide-footer {{
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 0.72rem;
+      font-size: 0.70rem;
       color: #64748b;
       font-family: monospace;
-      border-top: 1px solid #1e293b;
-      padding-top: 6px;
+      border-top: 1px solid #cbd5e1;
+      padding-top: 4px;
       flex-shrink: 0;
     }}
   </style>
@@ -271,8 +255,8 @@ slide_template = """<!DOCTYPE html>
     </div>
 
     <div class="slide-footer">
-      <span>VEEPOO 5010 CLINICAL AMBULATORY MASTERCLASS &bull; REVISION 3.0</span>
-      <span>SLIDE {num} OF {total} &bull; AUSTRALIAN FEMALE NARRATION ACTIVE</span>
+      <span>VEEPOO 5010 CLINICAL AMBULATORY TELEMETRY ONBOARDING</span>
+      <span>SLIDE {num} OF {total}</span>
     </div>
   </div>
 </body>
@@ -322,36 +306,38 @@ preview_html_content = f"""<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LCARS 5010 Clinical Telemetry Masterclass - Windows 11 Technical Player</title>
+  <title>LCARS 5010 Clinical Ambulatory Telemetry Onboarding - Windows 11 Technical Player</title>
   <style>
     * {{ box-sizing: border-box; margin: 0; padding: 0; }}
     html, body {{
       width: 100vw;
       height: 100vh;
       overflow: hidden;
-      background: #091424;
-      color: #ffffff;
+      background: #f1f5f9;
+      color: #0f172a;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       display: flex;
       flex-direction: column;
     }}
     .player-header {{
-      height: 48px;
-      background: #0c1b33;
-      border-bottom: 2px solid #0284c7;
+      height: 36px;
+      background: #ffffff;
+      border-bottom: 1.5px solid #cbd5e1;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 20px;
+      padding: 0 16px;
       user-select: none;
     }}
     .player-title {{
-      font-size: 15px;
+      font-size: 13px;
       font-weight: 800;
-      letter-spacing: 0.05em;
+      color: #0f172a;
+      letter-spacing: 0.04em;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }}
     .player-badge {{
       background: #0284c7;
@@ -362,24 +348,10 @@ preview_html_content = f"""<!DOCTYPE html>
       border-radius: 3px;
       font-weight: 800;
     }}
-    .unmute-banner {{
-      background: linear-gradient(90deg, #0284c7, #0369a1);
-      color: #ffffff;
-      padding: 8px 20px;
-      font-size: 13px;
-      font-weight: bold;
-      display: none;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 2px solid #38bdf8;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-      cursor: pointer;
-      z-index: 100;
-    }}
     .player-main {{
       flex: 1;
       position: relative;
-      background: #000000;
+      background: #f8fafc;
     }}
     iframe {{
       width: 100%;
@@ -388,23 +360,24 @@ preview_html_content = f"""<!DOCTYPE html>
       display: block;
     }}
     .player-controls {{
-      height: 64px;
-      background: #0c1b33;
-      border-top: 1px solid #1e3a5f;
+      height: 42px;
+      background: #ffffff;
+      border-top: 1.5px solid #cbd5e1;
+      box-shadow: 0 -1px 4px rgba(0,0,0,0.04);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 24px;
-      gap: 20px;
+      padding: 0 16px;
+      gap: 14px;
       user-select: none;
     }}
     .ctrl-btn {{
-      background: #1e3a5f;
-      color: #ffffff;
-      border: 1px solid #38bdf8;
+      background: #f8fafc;
+      color: #0f172a;
+      border: 1.5px solid #cbd5e1;
       border-radius: 4px;
-      padding: 6px 14px;
-      font-size: 12px;
+      padding: 4px 12px;
+      font-size: 11.5px;
       font-weight: 700;
       cursor: pointer;
       display: flex;
@@ -414,11 +387,13 @@ preview_html_content = f"""<!DOCTYPE html>
     }}
     .ctrl-btn:hover {{
       background: #0284c7;
-      border-color: #7dd3fc;
+      color: #ffffff;
+      border-color: #0284c7;
     }}
     .ctrl-btn.active {{
       background: #0284c7;
-      box-shadow: 0 0 8px #0284c7;
+      color: #ffffff;
+      box-shadow: 0 0 8px rgba(2, 132, 199, 0.4);
     }}
     .progress-bar-container {{
       flex: 1;
@@ -429,7 +404,7 @@ preview_html_content = f"""<!DOCTYPE html>
     .scrubber {{
       flex: 1;
       height: 8px;
-      background: #1e293b;
+      background: #e2e8f0;
       border-radius: 4px;
       position: relative;
       cursor: pointer;
@@ -446,8 +421,8 @@ preview_html_content = f"""<!DOCTYPE html>
       bottom: 0;
       left: 0;
       right: 0;
-      background: rgba(12, 27, 51, 0.95);
-      border-top: 2px solid #38bdf8;
+      background: rgba(255, 255, 255, 0.98);
+      border-top: 2px solid #0284c7;
       backdrop-filter: blur(8px);
       padding: 16px 32px;
       max-height: 140px;
@@ -455,8 +430,8 @@ preview_html_content = f"""<!DOCTYPE html>
       overflow-y: auto;
       font-size: 14px;
       line-height: 1.5;
-      color: #e2e8f0;
-      box-shadow: 0 -4px 15px rgba(0,0,0,0.4);
+      color: #0f172a;
+      box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
     }}
   </style>
 </head>
@@ -464,27 +439,17 @@ preview_html_content = f"""<!DOCTYPE html>
   <div class="player-header">
     <div class="player-title">
       <span class="player-badge">LCARS 5010</span>
-      <span>CLINICAL AMBULATORY TELEMETRY MASTERCLASS (40 SLIDES &bull; AUSTRALIAN FEMALE NARRATION)</span>
+      <span>CLINICAL AMBULATORY TELEMETRY ONBOARDING</span>
     </div>
-    <div style="display: flex; align-items: center; gap: 10px; font-size: 12px; color: #94a3b8;">
-      <span id="lblVoiceStatus">🇦🇺 Australian Female Narration: Active (en-AU-NatashaNeural)</span>
-      <button class="ctrl-btn" onclick="toggleFullscreen()" style="padding: 4px 10px; font-size: 11px;">⛶ FULLSCREEN</button>
-    </div>
-  </div>
-
-  <!-- Audio Unmute Notice Banner (Shown if browser policy blocks autoplay on opening) -->
-  <div id="unmuteNotice" class="unmute-banner" onclick="handleUserGesture()">
     <div style="display: flex; align-items: center; gap: 10px;">
-      <span style="font-size: 18px;">🔊</span>
-      <span>AUDIO READY: Click anywhere or press SPACE to activate synchronized Australian narration</span>
+      <button class="ctrl-btn" onclick="toggleFullscreen()" style="padding: 3px 8px; font-size: 11px;">⛶ FULLSCREEN</button>
     </div>
-    <button class="ctrl-btn" style="background: #ffffff; color: #0284c7; font-weight: 800; border: none; padding: 4px 12px; font-size: 11px;">START SOUND ▶</button>
   </div>
 
   <div class="player-main">
     <iframe id="slideIframe" src="slides/slide_01.html"></iframe>
     <div id="transcriptDrawer" class="transcript-drawer">
-      <strong style="color: #38bdf8; display: block; margin-bottom: 4px;" id="lblTranscriptTitle">SLIDE 01 NARRATION:</strong>
+      <strong style="color: #0284c7; display: block; margin-bottom: 4px;" id="lblTranscriptTitle">SLIDE 01 NARRATION:</strong>
       <div id="txtTranscript">Loading narration...</div>
     </div>
   </div>
@@ -492,23 +457,23 @@ preview_html_content = f"""<!DOCTYPE html>
   <div class="player-controls">
     <div style="display: flex; gap: 8px;">
       <button class="ctrl-btn" onclick="prevSlide()">⏮ PREV</button>
-      <button class="ctrl-btn active" id="btnPlayPause" onclick="togglePlayPause()">⏸ PAUSE</button>
+      <button class="ctrl-btn" id="btnPlayPause" onclick="togglePlayPause()" style="background: #16a34a; color: #ffffff; border: 1.5px solid #15803d; font-weight: 800; min-width: 82px;">▶ RUN</button>
       <button class="ctrl-btn" onclick="nextSlide()">NEXT ⏭</button>
     </div>
 
     <div class="progress-bar-container">
-      <span id="lblTime" style="font-family: monospace; font-size: 12px; color: #94a3b8; width: 45px;">00:00</span>
+      <span id="lblTime" style="font-family: monospace; font-size: 11px; color: #64748b; width: 45px;">00:00</span>
       <div class="scrubber" onclick="onScrub(event)">
         <div id="scrubberFill" class="scrubber-fill"></div>
       </div>
-      <span id="lblSlideCounter" style="font-family: monospace; font-size: 12px; color: #38bdf8; font-weight: bold; width: 65px; text-align: right;">01 / 40</span>
+      <span id="lblSlideCounter" style="font-family: monospace; font-size: 11px; color: #0284c7; font-weight: 800; width: 65px; text-align: right;">01 / 50</span>
     </div>
 
     <div style="display: flex; gap: 8px; align-items: center;">
-      <select id="selSlide" onchange="jumpToSlide(parseInt(this.value))" style="background: #1e3a5f; color: #ffffff; border: 1px solid #38bdf8; border-radius: 4px; padding: 5px 8px; font-size: 12px;">
+      <select id="selSlide" onchange="jumpToSlide(parseInt(this.value))" style="background: #ffffff; color: #0f172a; border: 1.5px solid #cbd5e1; border-radius: 4px; padding: 4px 8px; font-size: 11.5px;">
       </select>
       <button class="ctrl-btn" id="btnToggleTranscript" onclick="toggleTranscript()">📜 SCRIPT</button>
-      <button class="ctrl-btn" id="btnSpeed" onclick="cycleSpeed()" style="width: 52px; justify-content: center;">1.0x</button>
+      <button class="ctrl-btn" id="btnSpeed" onclick="cycleSpeed()" style="width: 48px; justify-content: center;">1.0x</button>
     </div>
   </div>
 
@@ -519,13 +484,31 @@ preview_html_content = f"""<!DOCTYPE html>
     const slides = {slides_json_str};
 
     let currentIndex = 0;
-    let isPlaying = true;
+    let isPlaying = false;
     let playbackSpeed = 1.0;
     let auFemaleVoice = null;
     let synth = window.speechSynthesis;
     let currentUtterance = null;
     let slideTimer = null;
     let audioUnlocked = false;
+
+    function updatePlayPauseUI() {{
+      const btn = document.getElementById('btnPlayPause');
+      if (!btn) return;
+      if (isPlaying) {{
+        btn.innerText = "⏸ PAUSE";
+        btn.style.background = "#0284c7";
+        btn.style.borderColor = "#0369a1";
+        btn.style.color = "#ffffff";
+        btn.classList.add('active');
+      }} else {{
+        btn.innerText = "▶ RUN";
+        btn.style.background = "#16a34a";
+        btn.style.borderColor = "#15803d";
+        btn.style.color = "#ffffff";
+        btn.classList.remove('active');
+      }}
+    }}
 
     // Populate Slide Selector
     const sel = document.getElementById('selSlide');
@@ -602,6 +585,7 @@ preview_html_content = f"""<!DOCTYPE html>
         iframe.onload = () => {{
           const doc = iframe.contentDocument;
           if (doc) {{
+            doc.addEventListener('keydown', handleGlobalKeyDown);
             const leftViewport = doc.querySelector('.left-screenshot-viewport');
             if (leftViewport) {{
               const maxLeftScroll = leftViewport.scrollHeight - leftViewport.clientHeight;
@@ -616,6 +600,7 @@ preview_html_content = f"""<!DOCTYPE html>
           syncSlideContent(0.0);
         }};
         if (iframe && iframe.contentDocument) {{
+          iframe.contentDocument.addEventListener('keydown', handleGlobalKeyDown);
           const leftViewport = iframe.contentDocument.querySelector('.left-screenshot-viewport');
           if (leftViewport) {{
             const maxLeftScroll = leftViewport.scrollHeight - leftViewport.clientHeight;
@@ -630,8 +615,10 @@ preview_html_content = f"""<!DOCTYPE html>
         }}
       }} catch(e) {{}}
 
-      // Speak narration immediately
-      speakNarration(s.narration);
+      // Speak narration only if running
+      if (isPlaying) {{
+        speakNarration(s.narration);
+      }}
     }}
 
     let currentScrollLeft = 0;
@@ -776,29 +763,22 @@ preview_html_content = f"""<!DOCTYPE html>
       const p = audioEl.play();
       if (p !== undefined) {{
         p.then(() => {{
-          // Playing successfully!
-          hideUnmuteBanner();
           audioEl.onended = () => {{
             if (isPlaying) nextSlide();
           }};
         }}).catch((err) => {{
-          console.warn("Autoplay deferred by browser policy until interaction:", err);
-          showUnmuteBanner();
+          console.warn("Audio play error:", err);
         }});
       }}
     }}
 
     function togglePlayPause() {{
       isPlaying = !isPlaying;
-      const btn = document.getElementById('btnPlayPause');
+      updatePlayPauseUI();
       if (isPlaying) {{
-        btn.innerText = "⏸ PAUSE";
-        btn.classList.add('active');
         const s = slides[currentIndex];
         speakNarration(s.narration);
       }} else {{
-        btn.innerText = "▶ PLAY";
-        btn.classList.remove('active');
         if (synth) synth.cancel();
         const audioEl = document.getElementById('audioPlayer');
         if (audioEl) audioEl.pause();
@@ -809,21 +789,32 @@ preview_html_content = f"""<!DOCTYPE html>
     function nextSlide() {{
       if (currentIndex < slides.length - 1) {{
         loadSlide(currentIndex + 1);
+        if (isPlaying) {{
+          const s = slides[currentIndex];
+          speakNarration(s.narration);
+        }}
       }} else {{
         isPlaying = false;
-        document.getElementById('btnPlayPause').innerText = "▶ REPLAY";
-        document.getElementById('btnPlayPause').classList.remove('active');
+        updatePlayPauseUI();
       }}
     }}
 
     function prevSlide() {{
       if (currentIndex > 0) {{
         loadSlide(currentIndex - 1);
+        if (isPlaying) {{
+          const s = slides[currentIndex];
+          speakNarration(s.narration);
+        }}
       }}
     }}
 
     function jumpToSlide(idx) {{
       loadSlide(idx);
+      if (isPlaying) {{
+        const s = slides[currentIndex];
+        speakNarration(s.narration);
+      }}
     }}
 
     function toggleTranscript() {{
@@ -843,8 +834,10 @@ preview_html_content = f"""<!DOCTYPE html>
       let curIdx = speeds.indexOf(playbackSpeed);
       playbackSpeed = speeds[(curIdx + 1) % speeds.length];
       document.getElementById('btnSpeed').innerText = `${{playbackSpeed}}x`;
-      const s = slides[currentIndex];
-      speakNarration(s.narration);
+      if (isPlaying) {{
+        const s = slides[currentIndex];
+        speakNarration(s.narration);
+      }}
     }}
 
     function onScrub(e) {{
@@ -852,6 +845,10 @@ preview_html_content = f"""<!DOCTYPE html>
       const pct = (e.clientX - rect.left) / rect.width;
       const targetIdx = Math.floor(pct * slides.length);
       loadSlide(targetIdx);
+      if (isPlaying) {{
+        const s = slides[currentIndex];
+        speakNarration(s.narration);
+      }}
     }}
 
     function toggleFullscreen() {{
@@ -862,23 +859,25 @@ preview_html_content = f"""<!DOCTYPE html>
       }}
     }}
 
-    // Keyboard Shortcuts
-    window.addEventListener('keydown', (e) => {{
-      if (e.code === 'Space') {{
+    function handleGlobalKeyDown(e) {{
+      if (e.code === 'Space' || e.key === ' ' || e.keyCode === 32) {{
         e.preventDefault();
         togglePlayPause();
-      }} else if (e.code === 'ArrowRight') {{
+      }} else if (e.code === 'ArrowRight' || e.key === 'ArrowRight') {{
         nextSlide();
-      }} else if (e.code === 'ArrowLeft') {{
+      }} else if (e.code === 'ArrowLeft' || e.key === 'ArrowLeft') {{
         prevSlide();
       }} else if (e.key === 'f' || e.key === 'F') {{
         toggleFullscreen();
       }}
-    }});
+    }}
 
-    // Start on Slide 1 and start 60fps liquid smooth render loop
+    window.addEventListener('keydown', handleGlobalKeyDown);
+
+    // Start on Slide 1 in RUN standby state, start render loop
     window.onload = () => {{
       loadSlide(0);
+      updatePlayPauseUI();
       renderSmoothLoop();
     }};
   </script>

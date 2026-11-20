@@ -1,4 +1,4 @@
-# LCARS 5010 Clinical Telemetry Masterclass - Official Narration Transcript
+# LCARS 5010 Clinical Ambulatory Telemetry Onboarding - Official Narration Transcript
 
 **Audio Track:** Australian Professional Technical Narration (Female - Edge TTS / en-AU-NatashaNeural)  
 **Hardware Platform:** FITAOS 5150 / Veepoo Model 5010 Biosensing Array  
@@ -13,7 +13,7 @@
 **Module:** Module 1: Introduction & Clinical Scope  
 **Description:** Created by a Type II diabetic to empower direct partnership with their care team—Diabetic Pharmacist, Primary Care Physician, Endocrinologist, and Diet Specialist—offered as an open-source tool 'That Others May Survive Successfully Diabetes.'  
 
-> "G'day mate! Welcome to the LCARS 5010 Clinical Telemetry Masterclass. Why was this toolset created? As a Type 2 diabetic, I needed an objective, continuous personal window into my own physiology to work effectively with my clinical care team: my Diabetic Pharmacist, Primary Care Physician, Endocrinologist, and Diabetic Diet Specialist. We offer this platform as experimental open-source software with the heartfelt hope that it helps others in their daily struggle with diabetes. We encourage doctors and engineers alike to contribute, so that others may survive successfully with diabetes, and we warmly welcome Google and other sponsors to assist in advancing this community project."
+> "G'day mate! Welcome to the LCARS 5010 Clinical Ambulatory Telemetry Onboarding presentation. Why was this toolset created? As a Type 2 diabetic, I needed an objective, continuous personal window into my own physiology to work effectively with my clinical care team: my Diabetic Pharmacist, Primary Care Physician, Endocrinologist, and Diabetic Diet Specialist. We offer this platform as experimental open-source software with the heartfelt hope that it helps others in their daily struggle with diabetes. We encourage doctors and engineers alike to contribute, so that others may survive successfully with diabetes, and we warmly welcome Google and other sponsors to assist in advancing this community project."
 
 ---
 
@@ -45,7 +45,7 @@
 **Module:** Module 1: Introduction & Clinical Scope  
 **Description:** The primary clinical objectives of the LCARS 5010 continuous monitoring protocol.  
 
-> "What gets measured gets managed. The clinical goal of this entire masterclass is simple: help Type 2 diabetic patients achieve an HbA1c below 6.8% and maintain Time-in-Range above 70%, all while strictly avoiding hypoglycemia below 60 mg/dL. LCARS 5010 provides the biofeedback engine to make that goal an everyday reality."
+> "What gets measured gets managed. The clinical goal of this entire onboarding presentation is simple: help Type 2 diabetic patients achieve an HbA1c below 6.8% and maintain Time-in-Range above 70%, all while strictly avoiding hypoglycemia below 60 mg/dL. LCARS 5010 provides the biofeedback engine to make that goal an everyday reality."
 
 ---
 
@@ -405,7 +405,7 @@
 **Module:** Module 10: Clinical Summaries & Open Source Ecosystem  
 **Description:** LCARS 5010 is 100% free open-source copyleft software under GNU GPL v3, fully documented in GitHub /docs/, and powered by Google Gemini Pro using HBandSDK and Veepoo standards.  
 
-> "In closing, LCARS 5010 is completely free, open-source copyleft software released under the GNU General Public License version 3. As an author managing Type 2 Diabetes alongside my care team, this toolset is dedicated to everyone fighting diabetes, so that others may survive successfully. The platform is fully documented on GitHub and was architected and built with Google Gemini Pro based on the open HBandSDK and Veepoo repositories. We invite doctors, engineers, and sponsors like Google to join us in advancing this community project. Thank you for joining our clinical masterclass!"
+> "In closing, LCARS 5010 is completely free, open-source copyleft software released under the GNU General Public License version 3. As an author managing Type 2 Diabetes alongside my care team, this toolset is dedicated to everyone fighting diabetes, so that others may survive successfully. The platform is fully documented on GitHub and was architected and built with Google Gemini Pro based on the open HBandSDK and Veepoo repositories. We invite doctors, engineers, and sponsors like Google to join us in advancing this community project. Thank you for joining our clinical onboarding presentation!"
 
 ---
 

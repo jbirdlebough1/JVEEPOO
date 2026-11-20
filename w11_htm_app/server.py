@@ -539,7 +539,7 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
             else:
                 self.send_json_response({"error": "Style 2 binary not found"}, 404)
 
-        elif self.path.startswith("/presentation/") or self.path.startswith("/slides/") or self.path.startswith("/preview.html") or self.path.startswith("/audio/"):
+        elif self.path.startswith("/presentation/") or self.path.startswith("/slides/") or self.path.startswith("/preview.html") or self.path.startswith("/audio/") or self.path.startswith("/images/"):
             # Serve presentation assets directly from D:\veepoo repository
             rel_path = self.path.split("?")[0].lstrip("/")
             veepoo_root = os.path.dirname(BASE_DIR)
