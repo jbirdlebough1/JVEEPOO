@@ -530,5 +530,15 @@
     "affected_files": "presentation/audio/slide_*.mp3, presentation/SimpleLauncher.cs, Preview_Presentation.exe, presentation/preview.html, all_slides_data.json",
     "created_at": "2026-11-20 03:48:11Z",
     "comments": "Pre-rendered all 40 slides with en-AU-WilliamNeural; updated SimpleLauncher.cs with --autoplay-policy=no-user-gesture-required for instant audio on launch; purged all duplicate colloquial greetings."
+  },
+  {
+    "bug_id": "CLE-035",
+    "title": "Re-render all 40 slides with Australian Female Voice (en-AU-NatashaNeural) for complete vocal consistency",
+    "description": "Pre-rendered complete 40-slide curriculum using Microsoft Natasha Online (Natural) English (Australia) female voice.",
+    "severity": "MEDIUM",
+    "status": "RESOLVED",
+    "affected_files": "presentation/audio/slide_*.mp3, build_presentation.py, presentation/preview.html, presentation/TRANSCRIPT.md",
+    "created_at": "2026-11-20 03:52:43Z",
+    "comments": "All 40 slides re-rendered with en-AU-NatashaNeural; updated preview.html voice badges and Web Speech fallback priorities."
   }
 ]
