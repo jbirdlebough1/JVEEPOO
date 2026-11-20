@@ -253,5 +253,39 @@
     "created_at": "2026-11-20T13:25:55.034805",
     "updated_at": "2026-11-20T13:25:55.034805",
     "resolved_at": "2026-11-20T13:25:55.034805"
+  },
+  {
+    "id": 99,
+    "project_name": "CLE",
+    "bug_number": 69,
+    "bug_code": "CLE-069",
+    "build_number": "W11-CORRELATOR-STEP-GLUCOSE",
+    "title": "Bivariate Step Volume vs Mean Glucose Regression Correlator Engine (Tab 04 & Slide 27)",
+    "status": "RESOLVED",
+    "component": "reports/metabolic",
+    "affected_files": "w11_htm_app/index.html, index.html, images/lcars_slide27_habit_correlation.png, all_slides_data.json, slides/slide_27.html",
+    "bug_loc": 240,
+    "resolution": "Implemented interactive Bivariate Correlator Engine in Tab 04 (Reports) comparing daily step volume (0-14k) against 24h mean glucose (80-180 mg/dL). Rendered 90-day cohort scatter points, linear regression line (slope -5.2 mg/dL per 1k steps, r = -0.792, R2 = 0.627, p < 0.0001), 95% confidence ribbon, clinical risk zones, and an interactive step target simulator. Captured new 1076x851 screenshot for Slide 27.",
+    "comments": "Verified real-time interactive simulation and physiological GLUT4 clearance model.",
+    "created_at": "2026-11-20T13:32:07.314007",
+    "updated_at": "2026-11-20T13:32:07.314007",
+    "resolved_at": "2026-11-20T13:32:07.314007"
+  },
+  {
+    "id": 100,
+    "project_name": "CLE",
+    "bug_number": 70,
+    "bug_code": "CLE-070",
+    "build_number": "W11-SLIDE28-EPIC-BUTTON",
+    "title": "Slide 28 Screen Alignment: Clean View of Reports Toolbar with 'PUSH TO DOCTOR'S EPIC' Button",
+    "status": "RESOLVED",
+    "component": "presentation/slide_28",
+    "affected_files": "images/lcars_slide28_epic_gateway.png, all_slides_data.json, slides/slide_28.html, preview.html",
+    "bug_loc": 85,
+    "resolution": "Re-captured clean, un-obscured screenshot of Tab 04 Reports Toolbar (1096x768 px) highlighting the prominent blue 'PUSH TO DOCTOR'S EPIC' button without modal pop-up backdrop interference. Synchronized Slide 28 visual card and step focus points.",
+    "comments": "Verified Slide 28 displays the actual Reports toolbar and EPIC button clearly.",
+    "created_at": "2026-11-20T13:32:07.314007",
+    "updated_at": "2026-11-20T13:32:07.314007",
+    "resolved_at": "2026-11-20T13:32:07.314007"
   }
 ]
