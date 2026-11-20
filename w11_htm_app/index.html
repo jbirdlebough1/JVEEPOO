@@ -733,7 +733,7 @@
 
     .stat-card-sub {
       font-size: 0.8rem;
-      color: var(--lcars-lilac);
+      color: #38b6ff;
       margin-top: 2px;
     }
 
@@ -1097,22 +1097,62 @@
     }
 
   
-    /* ACCESSIBILITY & CONTRAST: High-contrast Blue lettering on Pink/Lilac Backgrounds */
-    .pill-lilac, .btn-lilac, .btn-lilac span, .pill-lilac span {
+        /* ACCESSIBILITY & CONTRAST: High-contrast Blue lettering on all Pink/Lilac/Red Backgrounds */
+    .pill-lilac, .btn-lilac, .btn-lilac span, .pill-lilac span,
+    .btn-pink, .btn-pink span {
+      background: var(--lcars-lilac) !important;
       color: #061c3b !important;
       font-weight: 800 !important;
     }
-    [style*="background: var(--lcars-lilac)"],
-    [style*="background: #cc99cc"],
-    [style*="background:#cc99cc"] {
+    .btn-pink {
+      background: #ff70a6 !important;
       color: #061c3b !important;
       font-weight: 800 !important;
+    }
+    .btn-pink:hover {
+      background: #ff8fb8 !important;
+      color: #000f26 !important;
+    }
+    [style*="background: var(--lcars-lilac)"],
+    [style*="background: #cc99cc"],
+    [style*="background:#cc99cc"],
+    [style*="background: #ff70a6"],
+    [style*="background: #ff99bb"] {
+      color: #061c3b !important;
+      font-weight: 800 !important;
+    }
+    /* All Pink/Red/Warning Tinted Cards & Badges */
+    [style*="background: rgba(230, 57, 70"],
+    [style*="background: rgba(230,57,70"],
+    [style*="background:rgba(230, 57, 70"],
+    [style*="background:rgba(230,57,70"] {
+      border-color: #38b6ff !important;
+      border-left-color: #38b6ff !important;
+    }
+    [style*="background: rgba(230, 57, 70"] strong,
+    [style*="background: rgba(230,57,70"] strong,
+    [style*="background:rgba(230, 57, 70"] strong,
+    [style*="background:rgba(230,57,70"] strong,
+    [style*="background: rgba(230, 57, 70"] h2,
+    [style*="background: rgba(230, 57, 70"] h3,
+    [style*="background: rgba(230, 57, 70"] h4 {
+      color: #38b6ff !important;
+      font-weight: 800 !important;
+    }
+    [style*="background: rgba(230, 57, 70"] div,
+    [style*="background: rgba(230,57,70"] div,
+    [style*="background:rgba(230, 57, 70"] div,
+    [style*="background:rgba(230,57,70"] div,
+    [style*="background: rgba(230, 57, 70"] p,
+    [style*="background: rgba(230, 57, 70"] span {
+      color: #cce6ff !important;
     }
     [style*="background: rgba(204,153,255"],
     [style*="background: rgba(204, 153, 255"],
     [style*="background: rgba(204, 153, 204"],
     [style*="background:rgba(204,153,255"],
     [style*="background:rgba(204, 153, 204"],
+    [style*="background: rgba(204, 153, 204, 0.08)"],
     .badge-cal,
     .diet-macro-badge.badge-cal {
       background: rgba(56, 182, 255, 0.15) !important;
@@ -1123,11 +1163,16 @@
     [style*="background: rgba(204, 153, 255"] strong,
     [style*="background: rgba(204,153,255"] span,
     [style*="background: rgba(204, 153, 255"] span,
+    [style*="background: rgba(204, 153, 204"] strong,
+    [style*="background: rgba(204, 153, 204"] span,
     [style*="border-left-color: var(--lcars-lilac)"] .setup-section-title span,
-    [style*="border-left: 6px solid var(--lcars-lilac)"] .box-title {
+    [style*="border-left: 6px solid var(--lcars-lilac)"] .box-title,
+    [style*="border-left-color: var(--lcars-lilac)"] strong,
+    [style*="border-left: 5px solid var(--lcars-lilac)"] strong,
+    [style*="border-left: 4px solid var(--lcars-lilac)"] strong,
+    [style*="border-left: 1px solid var(--lcars-lilac)"] strong {
       color: #38b6ff !important;
     }
-
   </style>
 </head>
 <body>
@@ -1173,7 +1218,7 @@
       </button>
 
       <button id="navTabMetabolic" class="lcars-pill pill-peach" onclick="switchTab('metabolic')">
-        <span>03-360° HEALTH</span>
+        <span>03-METABOLIC</span>
       </button>
 
       <button id="navTabReports" class="lcars-pill pill-blue" onclick="switchTab('reports')">
@@ -1744,17 +1789,17 @@
         <div class="diet-container">
 
           <!-- CRITICAL CLINICAL SAFETY WARNING: NOT FOR TYPE 1 DIABETICS -->
-          <div style="background: rgba(230, 57, 70, 0.15); border: 2px solid #e63946; border-left: 8px solid #e63946; border-radius: 6px; padding: 14px 18px; margin-bottom: 8px;">
+          <div style="background: rgba(230, 57, 70, 0.15); border: 2px solid #38b6ff; border-left: 8px solid #38b6ff; border-radius: 6px; padding: 14px 18px; margin-bottom: 8px;">
             <div style="display: flex; align-items: flex-start; gap: 12px;">
               <span style="font-size: 1.8rem; line-height: 1; flex-shrink: 0;">⚠️</span>
               <div>
-                <strong style="color: #ff6b6b; font-size: 1.05rem; letter-spacing: 1px; font-family: var(--lcars-mono);">
+                <strong style="color: #38b6ff; font-size: 1.05rem; letter-spacing: 1px; font-family: var(--lcars-mono);">
                   CRITICAL CLINICAL NOTICE: STRICTLY FOR TYPE 2 DIABETES & METABOLIC LIFESTYLE TRACKING • NOT FOR TYPE 1 DIABETICS
                 </strong>
-                <div style="color: #ffd0d0; font-size: 0.85rem; line-height: 1.45; margin-top: 4px;">
+                <div style="color: #cce6ff; font-size: 0.85rem; line-height: 1.45; margin-top: 4px;">
                   This optical PPG biometric system provides non-invasive hemodynamic and lifestyle trend estimation for <strong>Type 2 diabetes management, dietary learning, and metabolic fitness only</strong>. It is <strong>NOT an FDA-cleared continuous glucose monitor (CGM)</strong> and does not directly measure interstitial or venous blood glucose.
                   <br><br>
-                  <strong style="color: #ff9999;">NEVER USE THIS SYSTEM TO CALCULATE INSULIN DOSAGES, TITRATE BOLUS INJECTIONS, OR MANAGE ACUTE HYPOGLYCEMIA / KETOACIDOSIS.</strong> Patients with Type 1 diabetes must rely exclusively on prescription capillary fingerstick glucometers, cleared CGMs (Dexcom/Freestyle Libre), and licensed endocrinology guidance.
+                  <strong style="color: #38b6ff;">NEVER USE THIS SYSTEM TO CALCULATE INSULIN DOSAGES, TITRATE BOLUS INJECTIONS, OR MANAGE ACUTE HYPOGLYCEMIA / KETOACIDOSIS.</strong> Patients with Type 1 diabetes must rely exclusively on prescription capillary fingerstick glucometers, cleared CGMs (Dexcom/Freestyle Libre), and licensed endocrinology guidance.
                 </div>
               </div>
             </div>
@@ -2106,10 +2151,10 @@
               </div>
 
               <!-- Insight 4: Sleep & Meds -->
-              <div style="background: rgba(204,153,255,0.06); border: 1px solid var(--lcars-lilac); border-radius: 6px; padding: 14px;">
+              <div style="background: rgba(204,153,255,0.06); border: 1px solid #38b6ff; border-radius: 6px; padding: 14px;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                  <strong style="color: var(--lcars-lilac); font-size: 0.95rem;">🌙 REST &amp; RECOVERY</strong>
-                  <span style="font-family: var(--lcars-mono); font-size: 0.8rem; color: var(--lcars-lilac); font-weight: bold;">FASTING CONTROL</span>
+                  <strong style="color: #38b6ff; font-size: 0.95rem;">🌙 REST &amp; RECOVERY</strong>
+                  <span style="font-family: var(--lcars-mono); font-size: 0.8rem; color: #38b6ff; font-weight: bold;">FASTING CONTROL</span>
                 </div>
                 <div style="font-size: 0.85rem; color: var(--lcars-text); line-height: 1.45;" id="insightSleepMeds">
                   Nights with <strong>SpO2 &gt;96% and 7+ hours of sleep</strong> correlate with <strong>14–18 mg/dL lower morning fasting glucose</strong>, suppressing sympathetic cortisol Dawn surges.
@@ -2143,14 +2188,14 @@
         <div class="reports-container">
 
           <!-- CRITICAL CLINICAL SAFETY WARNING: NOT FOR TYPE 1 DIABETICS (REPORTS) -->
-          <div style="background: rgba(230, 57, 70, 0.15); border: 2px solid #e63946; border-left: 8px solid #e63946; border-radius: 6px; padding: 12px 16px; margin-bottom: 12px;">
+          <div style="background: rgba(230, 57, 70, 0.15); border: 2px solid #38b6ff; border-left: 8px solid #38b6ff; border-radius: 6px; padding: 12px 16px; margin-bottom: 12px;">
             <div style="display: flex; align-items: center; gap: 10px;">
               <span style="font-size: 1.5rem;">⚠️</span>
               <div>
-                <strong style="color: #ff6b6b; font-size: 0.98rem; letter-spacing: 0.5px; font-family: var(--lcars-mono);">
+                <strong style="color: #38b6ff; font-size: 0.98rem; letter-spacing: 0.5px; font-family: var(--lcars-mono);">
                   CLINICAL CONTRAINDICATION: NOT FOR TYPE 1 DIABETICS OR INSULIN DOSE CALCULATION
                 </strong>
-                <div style="color: #ffd0d0; font-size: 0.82rem; line-height: 1.4; margin-top: 2px;">
+                <div style="color: #cce6ff; font-size: 0.82rem; line-height: 1.4; margin-top: 2px;">
                   Optical PPG microvascular telemetry is engineered for <strong>Type 2 diabetes lifestyle management and behavioral feedback only</strong>. Never use these reports to calculate insulin dosages or manage acute diabetic emergencies.
                 </div>
               </div>
@@ -4699,14 +4744,14 @@
         <div class="diet-container">
 
           <!-- CRITICAL CLINICAL SAFETY WARNING: NOT FOR TYPE 1 DIABETICS / INSULIN TITRATION -->
-          <div style="background: rgba(230, 57, 70, 0.15); border: 2px solid #e63946; border-left: 8px solid #e63946; border-radius: 6px; padding: 14px 18px; margin-bottom: 8px;">
+          <div style="background: rgba(230, 57, 70, 0.15); border: 2px solid #38b6ff; border-left: 8px solid #38b6ff; border-radius: 6px; padding: 14px 18px; margin-bottom: 8px;">
             <div style="display: flex; align-items: flex-start; gap: 12px;">
               <span style="font-size: 1.8rem; line-height: 1; flex-shrink: 0;">⚠️</span>
               <div>
-                <strong style="color: #ff6b6b; font-size: 1.05rem; letter-spacing: 1px; font-family: var(--lcars-mono);">
+                <strong style="color: #38b6ff; font-size: 1.05rem; letter-spacing: 1px; font-family: var(--lcars-mono);">
                   CRITICAL CLINICAL NOTICE: NOT FOR TYPE 1 DIABETICS OR INDEPENDENT INSULIN TITRATION
                 </strong>
-                <div style="color: #ffd0d0; font-size: 0.85rem; line-height: 1.45; margin-top: 4px;">
+                <div style="color: #cce6ff; font-size: 0.85rem; line-height: 1.45; margin-top: 4px;">
                   All pharmacological treatments, oral antidiabetics, and subcutaneous regimens (Metformin, SGLT2 inhibitors, GLP-1 receptor agonists, or basal insulin) must be prescribed and adjusted <strong>strictly by your licensed medical doctor or endocrinologist</strong>.
                   <br><br>
                   This system tracks medication adherence and correlates biometric trend response to help you and your physician determine <strong>progress or regression</strong>. <strong>NEVER INDEPENDENTLY TITRATE OR CALCULATE INSULIN DOSAGES BASED ON OPTICAL TELEMETRY.</strong>
@@ -4758,8 +4803,8 @@
                 <div>
                   <div style="display: flex; align-items: center; gap: 8px;">
                     <span style="font-size: 1.25rem;">🌙</span>
-                    <strong style="color: var(--lcars-lilac); font-size: 1.05rem; font-family: var(--lcars-mono); letter-spacing: 0.5px;">INTAKE 2: DINNER REGIMEN (WITH DINNER)</strong>
-                    <span class="badge" style="background: rgba(204,153,255,0.15); color: var(--lcars-lilac); border: 1px solid var(--lcars-lilac); font-size: 0.72rem;">06:30 PM SCHEDULE</span>
+                    <strong style="color: #38b6ff; font-size: 1.05rem; font-family: var(--lcars-mono); letter-spacing: 0.5px;">INTAKE 2: DINNER REGIMEN (WITH DINNER)</strong>
+                    <span class="badge" style="background: rgba(56,182,255,0.15); color: #38b6ff; border: 1px solid #38b6ff; font-size: 0.72rem;">06:30 PM SCHEDULE</span>
                   </div>
                   <div style="font-size: 0.8rem; color: var(--lcars-gray); margin-top: 2px;">
                     Evening split Metformin 1,000 mg dose taken with evening meal to sustain overnight hepatic glucose suppression.
@@ -4857,14 +4902,14 @@
         <div class="diet-container">
 
           <!-- CRITICAL CLINICAL SAFETY WARNING: NOT FOR TYPE 1 DIABETICS / EMERGENCY USE -->
-          <div style="background: rgba(230, 57, 70, 0.15); border: 2px solid #e63946; border-left: 8px solid #e63946; border-radius: 6px; padding: 14px 18px; margin-bottom: 8px;">
+          <div style="background: rgba(230, 57, 70, 0.15); border: 2px solid #38b6ff; border-left: 8px solid #38b6ff; border-radius: 6px; padding: 14px 18px; margin-bottom: 8px;">
             <div style="display: flex; align-items: flex-start; gap: 12px;">
               <span style="font-size: 1.8rem; line-height: 1; flex-shrink: 0;">⚠️</span>
               <div>
-                <strong style="color: #ff6b6b; font-size: 1.05rem; letter-spacing: 1px; font-family: var(--lcars-mono);">
+                <strong style="color: #38b6ff; font-size: 1.05rem; letter-spacing: 1px; font-family: var(--lcars-mono);">
                   CRITICAL CLINICAL NOTICE: NOT FOR TYPE 1 DIABETES OR EMERGENCY DIAGNOSTIC TRIAGE
                 </strong>
-                <div style="color: #ffd0d0; font-size: 0.85rem; line-height: 1.45; margin-top: 4px;">
+                <div style="color: #cce6ff; font-size: 0.85rem; line-height: 1.45; margin-top: 4px;">
                   This automated sequential scan operates optical photoplethysmography (PPG), hemodynamic pulse analysis, and infrared thermometry across watch hardware.
                   <br><br>
                   Measurements are intended for <strong>Type 2 diabetes lifestyle management, routine outpatient monitoring, and metabolic tracking only</strong>. Never rely on non-invasive wrist scans for acute diabetic emergencies, ketoacidosis, or independent insulin dosing adjustments.
