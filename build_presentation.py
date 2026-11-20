@@ -60,9 +60,9 @@ print("Created TRANSCRIPT.md with all 40 slides!")
 
 def generate_left_panel(s):
     bullets_html = ""
-    for title, text in s.get("bullets", []):
+    for idx, (title, text) in enumerate(s.get("bullets", [])):
         bullets_html += f"""
-          <li style="margin-bottom: 6px; line-height: 1.4;">
+          <li id="bullet-item-{idx}" class="bullet-item" data-idx="{idx}" style="margin-bottom: 5px; line-height: 1.35; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: all 0.25s ease;">
             <strong style="color: #0369a1;">{title}:</strong> {text}
           </li>
         """
@@ -77,16 +77,21 @@ def generate_left_panel(s):
     if tab_img:
         screenshot_html = f"""
         <!-- Real LCARS Page Under Discussion Preview -->
-        <div style="margin-top: 10px; margin-bottom: 10px; border: 1.5px solid #cbd5e1; border-radius: 6px; overflow: hidden; background: #0f172a; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
-          <div style="display: flex; justify-content: space-between; align-items: center; background: #1e293b; padding: 4px 8px; border-bottom: 1px solid #334155;">
+        <div class="left-screenshot-card" style="margin-top: 6px; margin-bottom: 6px; border: 1.5px solid #cbd5e1; border-radius: 6px; overflow: hidden; background: #0f172a; box-shadow: 0 4px 12px rgba(0,0,0,0.18); display: flex; flex-direction: column; flex: 1; min-height: 290px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; background: #1e293b; padding: 5px 8px; border-bottom: 1px solid #334155; flex-shrink: 0;">
             <span style="font-size: 0.68rem; color: #38bdf8; font-weight: 800; font-family: monospace; letter-spacing: 0.04em;">
               🖥️ PAGE UNDER DISCUSSION: {tab_title}
             </span>
-            <span style="background: #0284c7; color: #ffffff; font-size: 0.62rem; font-weight: bold; padding: 1px 5px; border-radius: 3px; font-family: monospace;">
-              LIVE CONSOLE
-            </span>
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <span id="lblScreenshotZone" class="screenshot-zone-badge" style="background: #0284c7; color: #ffffff; font-size: 0.60rem; font-weight: 800; padding: 2px 7px; border-radius: 3px; font-family: monospace; letter-spacing: 0.03em; transition: all 0.25s ease;">
+                📍 FOCUS: AREA 1 • CONTROLS & STATUS
+              </span>
+              <span style="background: #15803d; color: #ffffff; font-size: 0.58rem; font-weight: bold; padding: 2px 5px; border-radius: 3px; font-family: monospace;">
+                LIVE CONSOLE
+              </span>
+            </div>
           </div>
-          <div class="left-screenshot-viewport" style="text-align: center; background: #000; overflow-y: auto; height: 180px; position: relative; scroll-behavior: smooth;">
+          <div class="left-screenshot-viewport" style="text-align: center; background: #000; overflow-y: auto; flex: 1; min-height: 250px; position: relative; scroll-behavior: smooth;">
             <img src="{tab_img}" onerror="this.src='../{tab_img}'" alt="{tab_title}" style="width: 100%; height: auto; display: block; object-fit: cover; object-position: top center;">
           </div>
         </div>
@@ -94,14 +99,14 @@ def generate_left_panel(s):
 
     return f"""
       <!-- High-Contrast Dynamic Content Card -->
-      <div class="content-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #0284c7; padding: 18px 20px; border-radius: 8px; display: flex; flex-direction: column; overflow-y: auto;">
-        <h3 style="color: #0284c7; font-size: 1.12rem; font-weight: 800; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 8px; text-transform: uppercase;">{card_title}</h3>
-        <p style="font-size: 0.92rem; color: #334155; margin-bottom: 10px; line-height: 1.45; font-weight: 500;">{desc}</p>
-        <ul style="padding-left: 18px; margin-bottom: 6px; color: #1e293b; font-size: 0.85rem;">
+      <div class="content-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #0284c7; padding: 14px 18px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto;">
+        <h3 style="color: #0284c7; font-size: 1.08rem; font-weight: 800; border-bottom: 2px solid #e2e8f0; padding-bottom: 5px; margin-bottom: 6px; text-transform: uppercase;">{card_title}</h3>
+        <p style="font-size: 0.88rem; color: #334155; margin-bottom: 6px; line-height: 1.4; font-weight: 500;">{desc}</p>
+        <ul class="bullets-list" style="padding-left: 0; list-style-type: none; margin-bottom: 4px; color: #1e293b; font-size: 0.82rem;">
           {bullets_html}
         </ul>
         {screenshot_html}
-        <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 8px 12px; border-radius: 4px; font-size: 0.82rem; color: #14532d; margin-top: auto;">
+        <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.80rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
           <strong style="color: #15803d;">Key Takeaway:</strong> {takeaway}
         </div>
       </div>
@@ -114,12 +119,12 @@ def generate_right_panel(s):
     html_content = s.get("right_html", "")
 
     return f"""
-      <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid {badge_col}; padding: 18px 20px; border-radius: 8px; display: flex; flex-direction: column; overflow-y: auto;">
-        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 10px;">
-          <span style="font-family: monospace; font-weight: 800; color: #0284c7; font-size: 0.88rem;">{header}</span>
-          <span style="background: #f8fafc; color: {badge_col}; font-weight: 800; font-size: 0.72rem; padding: 3px 8px; border-radius: 4px; border: 1.5px solid {badge_col};">{badge}</span>
+      <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid {badge_col}; padding: 14px 18px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto; scroll-behavior: smooth;">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 5px; margin-bottom: 8px; flex-shrink: 0;">
+          <span style="font-family: monospace; font-weight: 800; color: #0284c7; font-size: 0.86rem;">{header}</span>
+          <span style="background: #f8fafc; color: {badge_col}; font-weight: 800; font-size: 0.70rem; padding: 2px 7px; border-radius: 4px; border: 1.5px solid {badge_col};">{badge}</span>
         </div>
-        <div style="flex: 1; display: flex; flex-direction: column;">
+        <div class="visual-content" style="flex: 1; display: flex; flex-direction: column;">
           {html_content}
         </div>
       </div>
@@ -148,30 +153,34 @@ slide_template = """<!DOCTYPE html>
     }}
     .slide-frame {{
       flex: 1;
+      height: 100vh;
       display: flex;
       flex-direction: column;
-      padding: 24px 32px;
-      gap: 16px;
+      padding: 16px 24px;
+      gap: 10px;
+      box-sizing: border-box;
+      min-height: 0;
     }}
     .slide-header {{
       display: flex;
       justify-content: space-between;
       align-items: center;
       border-bottom: 3px solid #0284c7;
-      padding-bottom: 12px;
+      padding-bottom: 8px;
+      flex-shrink: 0;
     }}
     .slide-module {{
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       color: #38bdf8;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }}
     .slide-title {{
-      font-size: 1.65rem;
+      font-size: 1.50rem;
       font-weight: 800;
       color: #ffffff;
-      margin-top: 2px;
+      margin-top: 1px;
       letter-spacing: -0.01em;
     }}
     .slide-badge {{
@@ -179,27 +188,30 @@ slide_template = """<!DOCTYPE html>
       color: #ffffff;
       font-family: monospace;
       font-weight: 800;
-      font-size: 0.85rem;
-      padding: 6px 14px;
+      font-size: 0.82rem;
+      padding: 5px 12px;
       border-radius: 4px;
       letter-spacing: 0.05em;
+      flex-shrink: 0;
     }}
     .slide-body {{
       flex: 1;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 24px;
+      gap: 16px;
       min-height: 0;
+      height: calc(100vh - 105px);
     }}
     .slide-footer {{
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       color: #64748b;
       font-family: monospace;
       border-top: 1px solid #1e293b;
-      padding-top: 8px;
+      padding-top: 6px;
+      flex-shrink: 0;
     }}
   </style>
 </head>
@@ -250,7 +262,13 @@ for s in slides_data:
     with open(slide_file_root, "w", encoding="utf-8") as f:
         f.write(html)
 
-print("Generated all 40 synchronized slides in slides/ and presentation/!")
+    # Also save to D:\veepoo\slides\slide_XX.html for direct access
+    veepoo_slides_dir = r"D:\veepoo\slides"
+    os.makedirs(veepoo_slides_dir, exist_ok=True)
+    with open(os.path.join(veepoo_slides_dir, f"slide_{s['num']}.html"), "w", encoding="utf-8") as f:
+        f.write(html)
+
+print("Generated all 40 synchronized slides in slides/, presentation/, and D:\\veepoo\\slides!")
 
 # -----------------------------------------------------------------------------
 # BUILD preview.html (MASTER TECHNICAL PLAYER WITH AUSTRALIAN FEMALE VOICE)
@@ -530,19 +548,110 @@ preview_html_content = f"""<!DOCTYPE html>
       document.getElementById('lblTranscriptTitle').innerText = `SLIDE ${{s.num}}: ${{s.title}}`;
       document.getElementById('txtTranscript').innerText = s.narration;
 
-      // Reset scroll on right and left panes
+      // Reset scroll on right and left panes and initialize sync
       try {{
         const iframe = document.getElementById('slideIframe');
+        iframe.onload = () => {{
+          syncSlideContent(0.0);
+        }};
         if (iframe && iframe.contentDocument) {{
-          const leftViewport = iframe.contentDocument.querySelector('.left-screenshot-viewport');
-          if (leftViewport) leftViewport.scrollTop = 0;
-          const rightCard = iframe.contentDocument.querySelector('.visual-card');
-          if (rightCard) rightCard.scrollTop = 0;
+          syncSlideContent(0.0);
         }}
       }} catch(e) {{}}
 
       // Speak narration immediately
       speakNarration(s.narration);
+    }}
+
+    function syncSlideContent(norm) {{
+      try {{
+        const iframe = document.getElementById('slideIframe');
+        if (!iframe || !iframe.contentDocument) return;
+        const doc = iframe.contentDocument;
+
+        const leftViewport = doc.querySelector('.left-screenshot-viewport');
+        const rightCard = doc.querySelector('.visual-card');
+        const zoneBadge = doc.getElementById('lblScreenshotZone');
+        const bullets = doc.querySelectorAll('.bullet-item');
+        const s = slides[currentIndex];
+
+        const numBullets = (s.bullets && s.bullets.length > 0) ? s.bullets.length : 3;
+        let activeIdx = Math.floor(norm * numBullets);
+        if (activeIdx >= numBullets) activeIdx = numBullets - 1;
+        if (activeIdx < 0) activeIdx = 0;
+
+        // Highlight active bullet item (sight & text sync)
+        bullets.forEach((b, idx) => {{
+          if (idx === activeIdx) {{
+            b.style.background = '#e0f2fe';
+            b.style.borderLeft = '4px solid #0284c7';
+            b.style.color = '#0369a1';
+            b.style.fontWeight = '700';
+            b.style.paddingLeft = '10px';
+          }} else {{
+            b.style.background = 'transparent';
+            b.style.borderLeft = '4px solid transparent';
+            b.style.color = '#1e293b';
+            b.style.fontWeight = 'normal';
+            b.style.paddingLeft = '8px';
+          }}
+        }});
+
+        // Dynamic Zone Badge Header
+        if (zoneBadge) {{
+          if (s.bullets && s.bullets[activeIdx]) {{
+            const bTitle = s.bullets[activeIdx][0].toUpperCase();
+            zoneBadge.innerText = `📍 FOCUS: ${{bTitle.length > 30 ? bTitle.substring(0, 28) + '...' : bTitle}}`;
+          }} else {{
+            zoneBadge.innerText = `📍 FOCUS: SECTION ${{activeIdx + 1}}`;
+          }}
+          if (activeIdx === 0) zoneBadge.style.background = '#0284c7';
+          else if (activeIdx === 1) zoneBadge.style.background = '#0369a1';
+          else zoneBadge.style.background = '#0f766e';
+        }}
+
+        // Stepped & Focused Left Viewport Scroll (skips to area, then scrolls when needed based on talk)
+        if (leftViewport && leftViewport.scrollHeight > leftViewport.clientHeight) {{
+          const maxLeftScroll = leftViewport.scrollHeight - leftViewport.clientHeight;
+          let targetLeft = 0;
+
+          if (numBullets <= 1) {{
+            targetLeft = 0;
+          }} else if (activeIdx === 0) {{
+            // Zone 1: Rock-solid focus on top (Header, Transponder, Controls)
+            targetLeft = 0;
+          }} else if (activeIdx === numBullets - 1) {{
+            // Last Zone: Rock-solid focus on bottom (Clinical Audit Tables, Reports, Action Buttons)
+            targetLeft = maxLeftScroll;
+          }} else {{
+            // Middle Zone(s): Focus on 8 Multi-Stream Telemetry Lanes & Continuous Waveforms
+            // Smoothly traverse the continuous lanes while being discussed
+            const slotDuration = 1.0 / numBullets;
+            const progressInSlot = (norm - (activeIdx * slotDuration)) / slotDuration;
+            const startRatio = 0.35 + ((activeIdx - 1) * 0.15);
+            const spanRatio = 0.25;
+            targetLeft = (startRatio + (spanRatio * progressInSlot)) * maxLeftScroll;
+          }}
+
+          leftViewport.scrollTop = targetLeft;
+        }}
+
+        // Synchronized Right Panel Scroll
+        if (rightCard && rightCard.scrollHeight > rightCard.clientHeight) {{
+          const maxScroll = rightCard.scrollHeight - rightCard.clientHeight;
+          let targetRight = 0;
+          if (activeIdx === 0) {{
+            targetRight = 0;
+          }} else if (activeIdx === numBullets - 1) {{
+            targetRight = maxScroll;
+          }} else {{
+            const slotDuration = 1.0 / numBullets;
+            const progressInSlot = (norm - (activeIdx * slotDuration)) / slotDuration;
+            targetRight = (0.25 + 0.50 * progressInSlot) * maxScroll;
+          }}
+          rightCard.scrollTop = targetRight;
+        }}
+      }} catch(e) {{}}
     }}
 
     function speakNarration(text) {{
@@ -569,23 +678,7 @@ preview_html_content = f"""<!DOCTYPE html>
           audioEl.ontimeupdate = () => {{
             if (audioEl.duration > 0) {{
               const norm = audioEl.currentTime / audioEl.duration;
-              try {{
-                const iframe = document.getElementById('slideIframe');
-                if (iframe && iframe.contentDocument) {{
-                  // Synchronized scroll of left LCARS console screenshot viewport
-                  const leftViewport = iframe.contentDocument.querySelector('.left-screenshot-viewport');
-                  if (leftViewport && leftViewport.scrollHeight > leftViewport.clientHeight) {{
-                    const maxLeftScroll = leftViewport.scrollHeight - leftViewport.clientHeight;
-                    leftViewport.scrollTop = norm * maxLeftScroll;
-                  }}
-                  // Synchronized scroll of right detailed metrics card
-                  const rightCard = iframe.contentDocument.querySelector('.visual-card');
-                  if (rightCard && rightCard.scrollHeight > rightCard.clientHeight) {{
-                    const maxScroll = rightCard.scrollHeight - rightCard.clientHeight;
-                    rightCard.scrollTop = norm * maxScroll;
-                  }}
-                }}
-              }} catch(e) {{}}
+              syncSlideContent(norm);
             }}
           }};
         }}).catch((err) => {{
@@ -696,7 +789,12 @@ preview_path = os.path.join(pres_dir, "preview.html")
 with open(preview_path, "w", encoding="utf-8") as f:
     f.write(preview_html_content)
 
-print("Generated preview.html Windows 11 player with Australian Female Voice!")
+# Also copy preview.html to root D:\veepoo\preview.html
+root_preview_path = r"D:\veepoo\preview.html"
+with open(root_preview_path, "w", encoding="utf-8") as f:
+    f.write(preview_html_content)
+
+print("Generated preview.html in presentation/ and D:\\veepoo\\preview.html with Australian Female Voice!")
 
 # -----------------------------------------------------------------------------
 # COMPILE C# WINDOWS 11 LAUNCHER (Preview_Presentation.exe)

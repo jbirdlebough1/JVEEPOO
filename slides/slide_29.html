@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LCARS 5010 - Slide 29: Click-to-Pop Clinical Point Cards: Instant Micro-Audits</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: #091424;
+      color: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .slide-frame {
+      flex: 1;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 16px 24px;
+      gap: 10px;
+      box-sizing: border-box;
+      min-height: 0;
+    }
+    .slide-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 3px solid #0284c7;
+      padding-bottom: 8px;
+      flex-shrink: 0;
+    }
+    .slide-module {
+      font-size: 0.82rem;
+      color: #38bdf8;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .slide-title {
+      font-size: 1.50rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-top: 1px;
+      letter-spacing: -0.01em;
+    }
+    .slide-badge {
+      background: #0284c7;
+      color: #ffffff;
+      font-family: monospace;
+      font-weight: 800;
+      font-size: 0.82rem;
+      padding: 5px 12px;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+      flex-shrink: 0;
+    }
+    .slide-body {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      min-height: 0;
+      height: calc(100vh - 105px);
+    }
+    .slide-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.72rem;
+      color: #64748b;
+      font-family: monospace;
+      border-top: 1px solid #1e293b;
+      padding-top: 6px;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="slide-frame">
+    <div class="slide-header">
+      <div>
+        <div class="slide-module">Module 6: Tab 04 Synchronized Tall Chart</div>
+        <div class="slide-title">Click-to-Pop Clinical Point Cards: Instant Micro-Audits</div>
+      </div>
+      <div class="slide-badge">SLIDE 29 / 40</div>
+    </div>
+
+    <div class="slide-body">
+
+      <!-- High-Contrast Dynamic Content Card -->
+      <div class="content-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #0284c7; padding: 14px 18px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto;">
+        <h3 style="color: #0284c7; font-size: 1.08rem; font-weight: 800; border-bottom: 2px solid #e2e8f0; padding-bottom: 5px; margin-bottom: 6px; text-transform: uppercase;">CLICK-TO-POP CLINICAL POINT MICRO-AUDITS</h3>
+        <p style="font-size: 0.88rem; color: #334155; margin-bottom: 6px; line-height: 1.4; font-weight: 500;">Clicking any timeline node displays exact values, diet logs, and medication context.</p>
+        <ul class="bullets-list" style="padding-left: 0; list-style-type: none; margin-bottom: 4px; color: #1e293b; font-size: 0.82rem;">
+          
+          <li id="bullet-item-0" class="bullet-item" data-idx="0" style="margin-bottom: 5px; line-height: 1.35; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: all 0.25s ease;">
+            <strong style="color: #0369a1;">Instant Point Inspection:</strong> Click any node on the curve to inspect verified measurements and timestamps.
+          </li>
+        
+          <li id="bullet-item-1" class="bullet-item" data-idx="1" style="margin-bottom: 5px; line-height: 1.35; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: all 0.25s ease;">
+            <strong style="color: #0369a1;">Comprehensive Micro-Audit:</strong> Displays immediate delta G changes, logged dietary carbs, and medication adherence.
+          </li>
+        
+          <li id="bullet-item-2" class="bullet-item" data-idx="2" style="margin-bottom: 5px; line-height: 1.35; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: all 0.25s ease;">
+            <strong style="color: #0369a1;">Consultation Efficiency:</strong> Allows your physician to quickly audit specific spikes without searching through paper logs.
+          </li>
+        
+        </ul>
+        
+        <!-- Real LCARS Page Under Discussion Preview -->
+        <div class="left-screenshot-card" style="margin-top: 6px; margin-bottom: 6px; border: 1.5px solid #cbd5e1; border-radius: 6px; overflow: hidden; background: #0f172a; box-shadow: 0 4px 12px rgba(0,0,0,0.18); display: flex; flex-direction: column; flex: 1; min-height: 290px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; background: #1e293b; padding: 5px 8px; border-bottom: 1px solid #334155; flex-shrink: 0;">
+            <span style="font-size: 0.68rem; color: #38bdf8; font-weight: 800; font-family: monospace; letter-spacing: 0.04em;">
+              🖥️ PAGE UNDER DISCUSSION: 04-REPORTS CONSOLE • CLICK-TO-POP CLINICAL POINT CARDS
+            </span>
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <span id="lblScreenshotZone" class="screenshot-zone-badge" style="background: #0284c7; color: #ffffff; font-size: 0.60rem; font-weight: 800; padding: 2px 7px; border-radius: 3px; font-family: monospace; letter-spacing: 0.03em; transition: all 0.25s ease;">
+                📍 FOCUS: AREA 1 • CONTROLS & STATUS
+              </span>
+              <span style="background: #15803d; color: #ffffff; font-size: 0.58rem; font-weight: bold; padding: 2px 5px; border-radius: 3px; font-family: monospace;">
+                LIVE CONSOLE
+              </span>
+            </div>
+          </div>
+          <div class="left-screenshot-viewport" style="text-align: center; background: #000; overflow-y: auto; flex: 1; min-height: 250px; position: relative; scroll-behavior: smooth;">
+            <img src="images/lcars_tab_reports.png" onerror="this.src='../images/lcars_tab_reports.png'" alt="04-REPORTS CONSOLE • CLICK-TO-POP CLINICAL POINT CARDS" style="width: 100%; height: auto; display: block; object-fit: cover; object-position: top center;">
+          </div>
+        </div>
+        
+        <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.80rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
+          <strong style="color: #15803d;">Key Takeaway:</strong> Instant deep-dive micro-audits at the touch of any data point on your clinical curve.
+        </div>
+      </div>
+    
+
+      <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #15803d; padding: 14px 18px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto; scroll-behavior: smooth;">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 5px; margin-bottom: 8px; flex-shrink: 0;">
+          <span style="font-family: monospace; font-weight: 800; color: #0284c7; font-size: 0.86rem;">CLINICAL POP-UP CARDS</span>
+          <span style="background: #f8fafc; color: #15803d; font-weight: 800; font-size: 0.70rem; padding: 2px 7px; border-radius: 4px; border: 1.5px solid #15803d;">INSTANT MICRO-AUDIT</span>
+        </div>
+        <div class="visual-content" style="flex: 1; display: flex; flex-direction: column;">
+          
+          <div style="margin-top:10px; background:#f0fdf4; border:1.5px solid #bbf7d0; border-radius:6px; padding:12px;">
+            <div style="font-size:1.1rem; font-weight:800; color:#14532d; font-family:monospace;">POINT 10:00: 165 MG/DL (-27 MG/DL DROP)</div>
+            <div style="font-size:0.84rem; color:#166534; margin-top:6px; line-height:1.45;">Pop-up micro-audit verifies 2,384 morning walk steps successfully lowered glucose from 192 to 165 mg/dL.</div>
+          </div>
+        
+        </div>
+      </div>
+    
+    </div>
+
+    <div class="slide-footer">
+      <span>VEEPOO 5010 CLINICAL AMBULATORY MASTERCLASS &bull; REVISION 3.0</span>
+      <span>SLIDE 29 OF 40 &bull; AUSTRALIAN FEMALE NARRATION ACTIVE</span>
+    </div>
+  </div>
+</body>
+</html>
