@@ -382,7 +382,7 @@
     "title": "Tab 11 Architecture: Active Pharmacological Regimen Management",
     "module": "Module 7: Tab 11 Medication Management",
     "features": [
-      "Interactive Diabetic Meal Builder & Gemini Nutrition Copilot (Macros, Goals Comparison, GLUT4 Prescription)"
+      "Interactive Diabetic Meal Builder & Gemini Nutrition Coach (Macros, Goals Comparison, GLUT4 Prescription)"
     ],
     "status": "100% COVERED IN BUILD"
   },
@@ -391,7 +391,7 @@
     "title": "Two Discrete Daily Intake Schedules: Morning Suite & Dinner Split",
     "module": "Module 7: Tab 11 Medication Management",
     "features": [
-      "Interactive Diabetic Meal Builder & Gemini Nutrition Copilot (Macros, Goals Comparison, GLUT4 Prescription)"
+      "Interactive Diabetic Meal Builder & Gemini Nutrition Coach (Macros, Goals Comparison, GLUT4 Prescription)"
     ],
     "status": "100% COVERED IN BUILD"
   },

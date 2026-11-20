@@ -4965,43 +4965,14 @@
             </div>
           </div>
 
-          <!-- Component 0: Closed-Loop Glucose Smart Snack Notifier & Safe Operating Area -->
-          <div class="setup-section" style="border-left-color: var(--lcars-green); margin-bottom: 22px; background: rgba(85,255,119,0.03);">
-            <div class="setup-section-title" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
-              <div>
-                <span style="color: var(--lcars-green);">00. SMART GLUCOSE-DRIVEN SNACK & MEAL NOTIFIER</span>
-                <span style="font-size: 0.8rem; color: var(--lcars-green); display: block; margin-top: 2px;">CLOSED-LOOP TELEMETRY TO DIETARY GUIDANCE</span>
-              </div>
-              <div style="display: flex; gap: 8px; align-items: center;">
-                <span style="font-size: 0.8rem; color: #80c890;">CURRENT GLUCOSE:</span>
-                <span id="notifierCurrentGlucose" style="font-family: var(--lcars-mono); font-size: 1.2rem; font-weight: bold; color: var(--lcars-banana);">106 mg/dL</span>
-              </div>
-            </div>
-
-            <!-- Dynamic Notification Card -->
-            <div id="smartGlucoseNotificationCard" style="background: #06110a; border: 1px solid #1a3822; padding: 12px 16px; border-radius: 6px; margin-top: 8px; display: flex; align-items: center; gap: 14px;">
-              <div id="trafficLightIndicator" style="width: 22px; height: 22px; border-radius: 50%; background: var(--lcars-green); box-shadow: 0 0 10px var(--lcars-green); flex-shrink: 0;"></div>
-              <div style="flex: 1;">
-                <strong id="notifierTitle" style="color: var(--lcars-green); font-size: 0.95rem;">SAFE OPERATING ZONE ACTIVE • TARGET GLYCEMIC BAND</strong>
-                <div id="notifierMessage" style="font-size: 0.85rem; color: #b0d0c0; margin-top: 2px; line-height: 1.4;">
-                  Your current reading is in the optimal target zone (106 mg/dL). Fuel your body with clean zero-sugar options like pastured hard-boiled eggs, celery with natural almond butter, or iced hibiscus tea.
-                </div>
-              </div>
-              <button class="lcars-pill pill-green" style="font-size: 0.75rem; padding: 5px 12px; height: auto;" onclick="refreshGlucoseRecommendation()">
-                <span>SYNC SUGGESTIONS</span>
-              </button>
-            </div>
-          </div>
-
-          
           <!-- =========================================================================
-               COMPONENT 01: INTERACTIVE DIABETIC MEAL BUILDER & GEMINI NUTRITION COPILOT
+               COMPONENT 01: INTERACTIVE DIABETIC MEAL BUILDER & GEMINI NUTRITION COACH
                ========================================================================= -->
           <div class="setup-section" style="border-left-color: #16a34a; margin-bottom: 22px; background: #ffffff; border: 1.5px solid #cbd5e1; border-left: 6px solid #16a34a; border-radius: 8px; padding: 18px;">
             <div class="setup-section-title" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 12px;">
               <div>
                 <span style="color: #15803d; font-size: 1.2rem; font-weight: 900; letter-spacing: 0.05em;">
-                  🥗 INTERACTIVE DIABETIC MEAL BUILDER &amp; GEMINI NUTRITION COPILOT
+                  🥗 INTERACTIVE DIABETIC MEAL BUILDER &amp; GEMINI NUTRITION COACH
                 </span>
                 <span style="font-size: 0.82rem; color: #475569; display: block; margin-top: 2px;">
                   ENTER YOUR MEAL REQUEST &bull; GEMINI PREDICTS GLYCEMIC RESPONSE &amp; ENSURES ADHERENCE TO CLINICAL GOALS
@@ -5009,7 +4980,7 @@
               </div>
               <div style="display: flex; gap: 8px; align-items: center;">
                 <span class="badge" style="background: #dcfce7; color: #15803d; border: 1.5px solid #16a34a; font-weight: 800; font-size: 0.78rem;">
-                  ✨ GEMINI COPILOT ACTIVE
+                  ✨ GEMINI COACH ACTIVE
                 </span>
                 <button class="lcars-btn btn-blue" style="font-size: 0.78rem; padding: 4px 12px;" onclick="switchTab('goals')">
                   VIEW ACTIVE DIABETIC GOALS (TAB 13)
@@ -10248,7 +10219,7 @@
     }
 
     // =========================================================================
-    // INTERACTIVE DIABETIC MEAL BUILDER & GEMINI NUTRITION COPILOT
+    // INTERACTIVE DIABETIC MEAL BUILDER & GEMINI NUTRITION COACH
     // =========================================================================
     const MEAL_BUILDER_PRESETS = {
       chipotle: {
