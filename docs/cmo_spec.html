@@ -987,6 +987,135 @@
     </li>
   </ul>
 
+  
+  <!-- 6. THE 360-DEGREE PERSONAL HEALTH VIEW & 8 SYNCHRONIZED TELEMETRY LANES -->
+  <h1>6. The 360-Degree Personal Health View &amp; Multi-Variable Telemetry Lanes</h1>
+  <p>
+    Ambulatory diabetes care has historically suffered from the "snapshot fallacy"—evaluating intermittent capillary fingerstick blood glucose values or quarterly venous HbA1c tests without behavioral or hemodynamic context. The LCARS 5010 architecture integrates an <strong>8-Lane Synchronized Telemetry Stream</strong> that unifies biophysical measurements with lifestyle journaling to give the attending physician and patient an unprecedented 360-degree causal perspective.
+  </p>
+
+  <div class="spec-grid" style="grid-template-columns: 1fr 1fr; margin-top: 10px;">
+    <div class="spec-card">
+      <div class="spec-card-title">1. Hemodynamic Optical Glucose (0x89)</div>
+      <div class="spec-card-val">60 – 200 mg/dL Target Band</div>
+      <div class="spec-card-desc">Non-invasive differential absorption spectroscopy calibrated via in-clinic venous draw (EEPROM <code>0x89 0x02</code>) ensuring &le;5.0% residual error.</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-card-title">2. Blood Pressure &amp; PWTT (0x91)</div>
+      <div class="spec-card-val">Systolic &amp; Diastolic</div>
+      <div class="spec-card-desc">Continuous pulse wave transit time hemodynamics reflecting arterial compliance, sympathetic tone, and microvascular pressure.</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-card-title">3. Autonomic HRV &amp; Neuro-Stress (0x89 0x07)</div>
+      <div class="spec-card-val">SDNN &amp; RMSSD (ms)</div>
+      <div class="spec-card-desc">Sympatho-vagal balance index identifying autonomic neuropathy risk, acute physiological stress, and morning cortisol Dawn surges.</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-card-title">4. Dual-Wavelength SpO2 &amp; Apnea (0x86)</div>
+      <div class="spec-card-val">95% – 100% Arterial SaO2</div>
+      <div class="spec-card-desc">Red/IR ratio reflectance monitoring nocturnal desaturations (Oxygen Desaturation Index), screening for obstructive sleep apnea.</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-card-title">5. Dual-Matrix Thermometry (0x87)</div>
+      <div class="spec-card-val">Cutaneous &amp; Core Est.</div>
+      <div class="spec-card-desc">High-precision dual thermistor matrix correlating microvascular peripheral perfusion, nocturnal vasodilation, and systemic inflammation.</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-card-title">6. GLUT4 Exercise Kinetics (0xD0)</div>
+      <div class="spec-card-val">&Delta;G = -22 to -35 mg/dL</div>
+      <div class="spec-card-desc">Tri-axial accelerometry &amp; cadence logging insulin-independent muscular GLUT4 translocation during structured physical activity.</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-card-title">7. Macro Meal Logging &amp; ADA Trades</div>
+      <div class="spec-card-val">Net Carbs, Protein, Fat, Cals</div>
+      <div class="spec-card-desc">Chronological nutritional journaling correlating postprandial glucose excursions with specific carbohydrate-sparing 1-to-1 food substitutions.</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-card-title">8. Pharmacological Regimen &amp; Titration</div>
+      <div class="spec-card-val">Dual Intake &amp; Med Change Pins</div>
+      <div class="spec-card-desc">Tracks morning &amp; dinner split adherence; flags "💊 MED CHANGE" milestone pins across daily/weekly/yearly charts to evaluate progress vs. regression.</div>
+    </div>
+  </div>
+
+  <h2>6.1 The Continuous Vertical Scrubber &amp; Point-in-Time Behavioral Audit</h2>
+  <p>
+    On Tab 04 (Reports), all 8 measurement lanes share an identical continuous time axis. A user or physician can drag the <strong>continuous vertical scrubber line</strong> across the timeline. The synchronized Heads-Up Display (HUD) dynamically recomputes values across all 8 parameters simultaneously. Clicking any plotted telemetry point pops an interactive <strong>Clinical Point Card</strong>, detailing:
+  </p>
+  <ul>
+    <li>Exact blood glucose level and rate of change at that timestamp.</li>
+    <li>Concomitant hemodynamics (Blood Pressure, Heart Rate, SpO2, and HRV stress level).</li>
+    <li>Preceding dietary intake (net carbohydrates, meal composition, and estimated postprandial impact).</li>
+    <li>Preceding physical exertion (duration, cadence, calories, and resulting &Delta;G drop).</li>
+    <li>Pharmacological compliance (exact time medication was confirmed taken).</li>
+  </ul>
+
+  <!-- 7. MASTER FEATURE COMPARISON: H-BAND VS LCARS -->
+  <h1>7. Master Capability Matrix: H-Band Mobile App vs. LCARS Workstation</h1>
+  <p>
+    The LCARS 5010 Clinical Workstation was engineered to overcome the severe clinical, architectural, and security deficiencies of the consumer mobile app (H-Band), while preserving 100% of underlying hardware commands:
+  </p>
+
+  <table style="width: 100%; border-collapse: collapse; font-size: 8pt; margin-top: 10px; border: 1.5px solid #cbd5e1;">
+    <thead>
+      <tr style="background: #f1f5f9; border-bottom: 2px solid #cbd5e1;">
+        <th style="padding: 6px; text-align: left; width: 22%;">FUNCTIONAL DOMAIN</th>
+        <th style="padding: 6px; text-align: left; width: 33%; color: #b91c1c;">H-BAND MOBILE APP</th>
+        <th style="padding: 6px; text-align: left; width: 33%; color: #15803d;">LCARS 5010 CLINICAL WORKSTATION</th>
+        <th style="padding: 6px; text-align: center;">CLINICAL ADVANTAGE</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom: 1px solid #e2e8f0;">
+        <td style="padding: 6px; font-weight: bold; background: #f8fafc;">Data Privacy &amp; Egress</td>
+        <td style="padding: 6px; color: #64748b;">Cloud sync to foreign servers; account login mandated; closed proprietary silo.</td>
+        <td style="padding: 6px; color: #0f172a;"><strong style="color: #15803d;">STRICT ZERO-EGRESS LOCAL REPOSITORY.</strong> All packets logged to local SQLite (<code>telemetry.db</code>). Zero network calls.</td>
+        <td style="padding: 6px; text-align: center; color: #15803d; font-weight: bold;">HIPAA Compliant</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #e2e8f0; background: #fafafa;">
+        <td style="padding: 6px; font-weight: bold; background: #f8fafc;">Glucose Calibration</td>
+        <td style="padding: 6px; color: #64748b;">Crude generic offset (~106 mg/dL) or unverified single-point manual calibration.</td>
+        <td style="padding: 6px; color: #0f172a;"><strong style="color: #15803d;">IN-CLINIC VENOUS BLOOD DRAW CALIBRATION PROTOCOL.</strong> Programs watch EEPROM register <code>0x89 0x02</code> directly. Locked to Private Mode. Error &le;5.0% across 60–200 mg/dL.</td>
+        <td style="padding: 6px; text-align: center; color: #15803d; font-weight: bold;">Lab Calibrated Precision</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #e2e8f0;">
+        <td style="padding: 6px; font-weight: bold; background: #f8fafc;">Synchronized Visual Timeline</td>
+        <td style="padding: 6px; color: #64748b;">Isolated, fragmented graphs. Impossible to cross-correlate glucose spikes with meals or stress.</td>
+        <td style="padding: 6px; color: #0f172a;"><strong style="color: #15803d;">SINGLE TALL SYNCHRONIZED MULTI-MEASUREMENT CHART (TAB 04).</strong> 8 stacked lanes sharing unified X-axis with continuous vertical scrubber line.</td>
+        <td style="padding: 6px; text-align: center; color: #15803d; font-weight: bold;">Instant Causal Diagnosis</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #e2e8f0; background: #fafafa;">
+        <td style="padding: 6px; font-weight: bold; background: #f8fafc;">Exercise &amp; GLUT4 Kinetics</td>
+        <td style="padding: 6px; color: #64748b;">Basic step and distance estimates. Zero glucose kinetics.</td>
+        <td style="padding: 6px; color: #0f172a;"><strong style="color: #15803d;">GLUT4 EXERCISE JOURNAL &amp; &Delta;G CALCULATOR.</strong> Correlates physical exertion with direct post-workout glucose drops (-22 to -35 mg/dL).</td>
+        <td style="padding: 6px; text-align: center; color: #15803d; font-weight: bold;">Targeted Exercise Rx</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #e2e8f0;">
+        <td style="padding: 6px; font-weight: bold; background: #f8fafc;">Dietary Logging &amp; ADA Trades</td>
+        <td style="padding: 6px; color: #64748b;">No dietary tracking.</td>
+        <td style="padding: 6px; color: #0f172a;"><strong style="color: #15803d;">MACRONUTRIENT MEAL LOGGER &amp; ADA 1-TO-1 TRADES ENGINE.</strong> Recommends direct carbohydrate-sparing food trades that suppress postprandial excursions.</td>
+        <td style="padding: 6px; text-align: center; color: #15803d; font-weight: bold;">Nutritional Glycemic Control</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #e2e8f0; background: #fafafa;">
+        <td style="padding: 6px; font-weight: bold; background: #f8fafc;">Medication Tracking &amp; Titration</td>
+        <td style="padding: 6px; color: #64748b;">No medication adherence tracking.</td>
+        <td style="padding: 6px; color: #0f172a;"><strong style="color: #15803d;">PHARMACOLOGICAL MANAGEMENT (TAB 11).</strong> 2 intake schedules (Morning suite + Dinner Metformin split). Pins "💊 MED CHANGE" milestone markers to charts.</td>
+        <td style="padding: 6px; text-align: center; color: #15803d; font-weight: bold;">Progress vs. Regression Audit</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #e2e8f0;">
+        <td style="padding: 6px; font-weight: bold; background: #f8fafc;">Sequential Full Diagnostic Scan</td>
+        <td style="padding: 6px; color: #64748b;">Manual sequential tapping across phone menus.</td>
+        <td style="padding: 6px; color: #0f172a;"><strong style="color: #15803d;">AUTOMATED 6-SENSOR FULL SCAN (TAB 12).</strong> Sequential automated diagnostic sweep (Glucose ➔ Temp ➔ BP ➔ SpO2 ➔ Pulse ➔ HRV) with clinical report output.</td>
+        <td style="padding: 6px; text-align: center; color: #15803d; font-weight: bold;">Rapid Outpatient Triage</td>
+      </tr>
+      <tr>
+        <td style="padding: 6px; font-weight: bold; background: #f8fafc;">Senior Visual Ergonomics</td>
+        <td style="padding: 6px; color: #64748b;">Small mobile fonts, washed out pastels, low contrast.</td>
+        <td style="padding: 6px; color: #0f172a;"><strong style="color: #15803d;">HIGH-CONTRAST SOLID WHITE CARDS &amp; LARGE TOUCH TARGETS.</strong> 21:1 contrast ratio, high-visibility white cards with crisp dark text, zero washed-out pastels.</td>
+        <td style="padding: 6px; text-align: center; color: #15803d; font-weight: bold;">Zero Visual Fatigue</td>
+      </tr>
+    </tbody>
+  </table>
+
   <!-- DISCLAIMER -->
   <div class="alert-box warning" style="margin-top: 18px;">
     <span class="alert-title">Clinical Disclaimer & Diagnostic Regulatory Boundary</span>

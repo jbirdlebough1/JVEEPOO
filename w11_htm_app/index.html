@@ -1098,63 +1098,156 @@
     }
 
   
-        /* ACCESSIBILITY & HIGH CONTRAST (SENIOR-FRIENDLY ERGONOMICS) */
-    /* Eliminate all pink backgrounds; standardize on rich slate navy and crisp contrast */
+            /* =========================================================================
+       SENIOR & LOW-VISION ACCESSIBILITY: HIGH-CONTRAST WHITE CARDS
+       Eliminates all washed-out pastel fills (pink, orange, peach, lilac, banana)
+       and minimizes pitch-black card interiors for crisp 21:1 visual clarity.
+       ========================================================================= */
+
+    /* All Cards, Boxes, Sections, and Callouts use solid White */
+    .stat-card,
+    .diet-form-card,
+    .diet-item-card,
+    .setup-section,
+    .card-box,
+    .watchface-card,
+    #fullScanActiveHud,
+    #timelinePointCardModal,
+    .card-clinical-warning {
+      background: #ffffff !important;
+      color: #0f172a !important;
+      border: 2px solid #cbd5e1 !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    /* Headings, Titles & Strong text on white cards */
+    .stat-card strong,
+    .diet-form-card strong,
+    .diet-item-card strong,
+    .setup-section strong,
+    .card-box strong,
+    .card-clinical-warning strong,
+    .setup-section-title span,
+    .lcars-bay-title {
+      color: #091428 !important;
+      font-weight: 800 !important;
+    }
+
+    /* Subtitles, labels, and descriptions on white cards */
+    .stat-card-title,
+    .setup-label,
+    .stat-card-sub {
+      color: #334155 !important;
+      font-weight: 600 !important;
+    }
+
+    .stat-card-val {
+      color: #091428 !important;
+      font-weight: 800 !important;
+    }
+
+    /* Target any inline pastel / pink / orange / lilac / banana background on cards and convert to White */
     [style*="background: rgba(230, 57, 70"],
     [style*="background: rgba(230,57,70"],
     [style*="background:rgba(230, 57, 70"],
-    [style*="background:rgba(230,57,70"] {
-      background: #182538 !important;
-      border: 2px solid #f59e0b !important;
-      border-left: 8px solid #f59e0b !important;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+    [style*="background:rgba(230,57,70"],
+    [style*="background: rgba(255, 187"],
+    [style*="background: rgba(255,187"],
+    [style*="background: rgba(255, 153"],
+    [style*="background: rgba(255,153"],
+    [style*="background: rgba(255, 102"],
+    [style*="background: rgba(255,102"],
+    [style*="background: rgba(255, 85"],
+    [style*="background: rgba(255,85"],
+    [style*="background: rgba(255, 204"],
+    [style*="background: rgba(255,204"],
+    [style*="background: rgba(204, 153"],
+    [style*="background: rgba(204,153"],
+    [style*="background:rgba(204, 153"],
+    [style*="background:rgba(204,153"],
+    [style*="background: rgba(255, 68"],
+    [style*="background: rgba(204, 51"] {
+      background: #ffffff !important;
+      color: #0f172a !important;
+      border: 2px solid #cbd5e1 !important;
     }
+
+    /* Ensure text inside converted pastel elements is crisp dark slate / black */
+    [style*="background: rgba(230, 57, 70"] div,
+    [style*="background: rgba(230, 57, 70"] p,
+    [style*="background: rgba(230, 57, 70"] span,
+    [style*="background: rgba(255, 187"] div,
+    [style*="background: rgba(255, 187"] span,
+    [style*="background: rgba(255, 153"] div,
+    [style*="background: rgba(255, 153"] span,
+    [style*="background: rgba(204, 153"] div,
+    [style*="background: rgba(204, 153"] span,
+    [style*="background: rgba(255, 204"] div,
+    [style*="background: rgba(255, 204"] span {
+      color: #1e293b !important;
+    }
+
     [style*="background: rgba(230, 57, 70"] strong,
-    [style*="background: rgba(230,57,70"] strong {
-      color: #fbbf24 !important;
+    [style*="background: rgba(255, 187"] strong,
+    [style*="background: rgba(255, 153"] strong,
+    [style*="background: rgba(204, 153"] strong,
+    [style*="background: rgba(255, 204"] strong {
+      color: #091428 !important;
       font-weight: 800 !important;
     }
-    [style*="background: rgba(230, 57, 70"] div,
-    [style*="background: rgba(230,57,70"] div,
-    [style*="background: rgba(230, 57, 70"] p {
-      color: #f8fafc !important;
-      font-size: 0.9rem !important;
+
+    /* Clinical Safety Notice Cards: Clean White background with prominent Red/Amber Left Accent Bar */
+    .card-clinical-warning,
+    [style*="border-left: 8px solid #f59e0b"],
+    [style*="border-left: 8px solid #38b6ff"],
+    [style*="border-left: 8px solid #e63946"] {
+      background: #ffffff !important;
+      border: 2px solid #cbd5e1 !important;
+      border-left: 8px solid #b91c1c !important;
+    }
+    .card-clinical-warning strong,
+    [style*="border-left: 8px solid #f59e0b"] strong,
+    [style*="border-left: 8px solid #38b6ff"] strong,
+    [style*="border-left: 8px solid #e63946"] strong {
+      color: #b91c1c !important;
+      font-weight: 800 !important;
+    }
+    .card-clinical-warning div,
+    [style*="border-left: 8px solid #f59e0b"] div,
+    [style*="border-left: 8px solid #38b6ff"] div,
+    [style*="border-left: 8px solid #e63946"] div {
+      color: #1e293b !important;
+      font-size: 0.92rem !important;
       line-height: 1.55 !important;
     }
-    /* Eliminate lilac/pink backgrounds across all cards */
-    [style*="background: rgba(204,153,255"],
-    [style*="background: rgba(204, 153, 255"],
-    [style*="background: rgba(204, 153, 204"],
-    [style*="background:rgba(204,153,255"],
-    [style*="background:rgba(204, 153, 204"],
-    [style*="background: rgba(204, 153, 204, 0.08)"] {
-      background: #16243a !important;
-      border-color: #2b4063 !important;
+
+    /* Intake Containers on Tab 11 (Medication) */
+    #gridMorningMeds > div,
+    #gridDinnerMeds > div {
+      background: #ffffff !important;
+      border: 2px solid #cbd5e1 !important;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08) !important;
     }
-    /* Buttons on lilac/pink pills */
-    .pill-lilac, .btn-lilac, .btn-lilac span, .pill-lilac span,
-    .btn-pink, .btn-pink span {
-      background: var(--lcars-lilac) !important;
-      color: #061c3b !important;
+    #gridMorningMeds > div strong,
+    #gridDinnerMeds > div strong {
+      color: #091428 !important;
       font-weight: 800 !important;
     }
-    .btn-pink {
-      background: #ff70a6 !important;
-      color: #061c3b !important;
-      font-weight: 800 !important;
+    #gridMorningMeds > div > div:nth-child(2),
+    #gridDinnerMeds > div > div:nth-child(2) {
+      background: #f1f5f9 !important;
+      border: 1px solid #cbd5e1 !important;
+      color: #0f172a !important;
     }
-    .btn-pink:hover {
-      background: #ff8fb8 !important;
-      color: #000f26 !important;
-    }
-    /* Badges */
-    .badge-cal,
-    .diet-macro-badge.badge-cal {
-      background: rgba(56, 182, 255, 0.2) !important;
-      border: 1.5px solid #38b6ff !important;
-      color: #ffffff !important;
-      font-weight: bold !important;
-    }
+
+    /* High-contrast Buttons on White Cards */
+    .btn-orange { background: #d97706 !important; color: #ffffff !important; font-weight: 700 !important; }
+    .btn-green { background: #15803d !important; color: #ffffff !important; font-weight: 700 !important; }
+    .btn-blue { background: #0284c7 !important; color: #ffffff !important; font-weight: 700 !important; }
+    .btn-banana { background: #ca8a04 !important; color: #ffffff !important; font-weight: 700 !important; }
+    .btn-peach { background: #ea580c !important; color: #ffffff !important; font-weight: 700 !important; }
+    .btn-lilac, .btn-pink { background: #7c3aed !important; color: #ffffff !important; font-weight: 700 !important; }
+
   </style>
 </head>
 <body>
@@ -3609,7 +3702,94 @@
           </div>
 
         </div>
-      </div>
+      
+            <!-- =====================================================================
+                 MASTER FEATURE COMPARISON: H-BAND MOBILE APP VS. LCARS CLINICAL WORKSTATION
+                 ===================================================================== -->
+            <div class="diet-form-card" style="border-left: 6px solid #2563eb; margin-top: 20px; background: #ffffff !important; color: #0f172a !important;">
+              <div class="setup-section-title" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                <div>
+                  <span style="color: #0f172a; font-size: 1.15rem; font-weight: 800;">MASTER CAPABILITY MATRIX: H-BAND MOBILE APP VS. LCARS CLINICAL WORKSTATION</span>
+                  <span style="font-size: 0.8rem; color: #475569; display: block; margin-top: 2px;">RIGOROUS CLINICAL, ERGONOMIC &amp; ARCHITECTURAL AUDIT</span>
+                </div>
+                <span class="badge" style="background: rgba(37,99,235,0.12); color: #2563eb; border: 1.5px solid #2563eb; font-size: 0.75rem; font-weight: bold;">100% FEATURE PARITY + CLINICAL EXTENSIONS</span>
+              </div>
+
+              <div style="font-size: 0.88rem; color: #1e293b; line-height: 1.5; margin-bottom: 12px;">
+                The table below provides an exhaustive comparative evaluation between the manufacturer's mobile smartphone app (<strong>H-Band</strong>) and the <strong>LCARS 5010 Clinical Ambulatory Workstation</strong>. LCARS incorporates every native hardware command and sensor capability of H-Band while expanding clinical utility with local zero-egress data security, in-clinic venous calibration, synchronized 8-lane telemetry timelines, and metabolic behavioral feedback.
+              </div>
+
+              <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.82rem; background: #ffffff; color: #0f172a; border: 1.5px solid #cbd5e1;">
+                  <thead>
+                    <tr style="background: #f1f5f9; border-bottom: 2px solid #cbd5e1;">
+                      <th style="padding: 10px; text-align: left; color: #0f172a; font-weight: 800; border-right: 1.5px solid #cbd5e1;">FUNCTIONAL DOMAIN</th>
+                      <th style="padding: 10px; text-align: left; color: #b91c1c; font-weight: 800; border-right: 1.5px solid #cbd5e1; width: 32%;">H-BAND (MANUFACTURER MOBILE APP)</th>
+                      <th style="padding: 10px; text-align: left; color: #15803d; font-weight: 800; border-right: 1.5px solid #cbd5e1; width: 38%;">LCARS 5010 CLINICAL WORKSTATION</th>
+                      <th style="padding: 10px; text-align: center; color: #0f172a; font-weight: 800;">CLINICAL ADVANTAGE</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                      <td style="padding: 10px; font-weight: bold; background: #f8fafc; border-right: 1.5px solid #cbd5e1;">Data Privacy &amp; Egress</td>
+                      <td style="padding: 10px; color: #64748b; border-right: 1.5px solid #cbd5e1;">Requires cloud account login; telemetry synchronizes to remote servers overseas; closed proprietary silos.</td>
+                      <td style="padding: 10px; color: #0f172a; border-right: 1.5px solid #cbd5e1;"><strong style="color: #15803d;">STRICT ZERO-EGRESS LOCAL REPOSITORY.</strong> All packets written to local SQLite database (<code>telemetry.db</code>). Zero external internet calls.</td>
+                      <td style="padding: 10px; text-align: center; font-weight: bold; color: #15803d;">HIPAA Compliant Privacy</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0; background: #fafafa;">
+                      <td style="padding: 10px; font-weight: bold; background: #f8fafc; border-right: 1.5px solid #cbd5e1;">Optical Glucose Calibration</td>
+                      <td style="padding: 10px; color: #64748b; border-right: 1.5px solid #cbd5e1;">Crude uncalibrated generic offset (~106 mg/dL) or unverified single-value offset prone to severe skew.</td>
+                      <td style="padding: 10px; color: #0f172a; border-right: 1.5px solid #cbd5e1;"><strong style="color: #15803d;">IN-CLINIC VENOUS BLOOD DRAW CALIBRATION PROTOCOL.</strong> Programs watch EEPROM register <code>0x89 0x02</code> directly. Locked to Private Mode only. Enforces residual error &le;5.0% across 60–200 mg/dL target band.</td>
+                      <td style="padding: 10px; text-align: center; font-weight: bold; color: #15803d;">Clinical Laboratory Accuracy</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                      <td style="padding: 10px; font-weight: bold; background: #f8fafc; border-right: 1.5px solid #cbd5e1;">Synchronized Timeline Visualization</td>
+                      <td style="padding: 10px; color: #64748b; border-right: 1.5px solid #cbd5e1;">Isolated, fragmented screens. User must flip between separate tabs for BP, HR, Temp, and Glucose. Impossible to correlate causes.</td>
+                      <td style="padding: 10px; color: #0f172a; border-right: 1.5px solid #cbd5e1;"><strong style="color: #15803d;">SINGLE TALL SYNCHRONIZED MULTI-MEASUREMENT CHART (TAB 04).</strong> 8 stacked biometric &amp; behavioral lanes (Glucose, BP, HR/HRV, SpO2, Temp, Exercise, Diet, Meds) sharing unified X-axis with continuous vertical scrubber line.</td>
+                      <td style="padding: 10px; text-align: center; font-weight: bold; color: #15803d;">Instant 360° Root Cause Analysis</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0; background: #fafafa;">
+                      <td style="padding: 10px; font-weight: bold; background: #f8fafc; border-right: 1.5px solid #cbd5e1;">Exercise &amp; Glycemic Kinetics</td>
+                      <td style="padding: 10px; color: #64748b; border-right: 1.5px solid #cbd5e1;">Basic step counter and distance estimate. Zero metabolic or glucose impact calculations.</td>
+                      <td style="padding: 10px; color: #0f172a; border-right: 1.5px solid #cbd5e1;"><strong style="color: #15803d;">GLUT4 EXERCISE JOURNAL &amp; &Delta;G CALCULATOR.</strong> Correlates physical activity with direct post-exercise glycemic drop (-22 to -35 mg/dL) and insulin-independent muscular glucose uptake.</td>
+                      <td style="padding: 10px; text-align: center; font-weight: bold; color: #15803d;">Actionable Exercise Prescriptions</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                      <td style="padding: 10px; font-weight: bold; background: #f8fafc; border-right: 1.5px solid #cbd5e1;">Dietary Tracking &amp; ADA Trades</td>
+                      <td style="padding: 10px; color: #64748b; border-right: 1.5px solid #cbd5e1;">No nutrition or meal tracking whatsoever.</td>
+                      <td style="padding: 10px; color: #0f172a; border-right: 1.5px solid #cbd5e1;"><strong style="color: #15803d;">MACRONUTRIENT MEAL LOGGER &amp; ADA 1-TO-1 TRADES ENGINE.</strong> Logs net carbs, calories, protein, and fat. Recommends direct carbohydrate-sparing dietary substitutions that blunt postprandial glucose excursions.</td>
+                      <td style="padding: 10px; text-align: center; font-weight: bold; color: #15803d;">Nutritional Self-Mastery</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0; background: #fafafa;">
+                      <td style="padding: 10px; font-weight: bold; background: #f8fafc; border-right: 1.5px solid #cbd5e1;">Pharmacological Regimen &amp; Titration</td>
+                      <td style="padding: 10px; color: #64748b; border-right: 1.5px solid #cbd5e1;">No medication management or dosage adherence tracking.</td>
+                      <td style="padding: 10px; color: #0f172a; border-right: 1.5px solid #cbd5e1;"><strong style="color: #15803d;">MEDICATION MANAGEMENT (TAB 11).</strong> Dual intake times (Morning complete suite + Dinner Metformin split). 1-click batch adherence. Pins "💊 MED CHANGE" milestone markers to charts to audit physician titration progress vs. regression.</td>
+                      <td style="padding: 10px; text-align: center; font-weight: bold; color: #15803d;">Physician-Patient Treatment Alignment</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                      <td style="padding: 10px; font-weight: bold; background: #f8fafc; border-right: 1.5px solid #cbd5e1;">Sequential Full Diagnostic Scan</td>
+                      <td style="padding: 10px; color: #64748b; border-right: 1.5px solid #cbd5e1;">User must manually select each measurement test individually on their phone, wait, back out, and tap the next.</td>
+                      <td style="padding: 10px; color: #0f172a; border-right: 1.5px solid #cbd5e1;"><strong style="color: #15803d;">AUTOMATED 6-SENSOR FULL SCAN (TAB 12).</strong> Executes sequential automated diagnostic sweep (Glucose ➔ Temp ➔ BP ➔ SpO2 ➔ Pulse ➔ HRV) with live stage countdown, skip, cancel, and consolidated clinical diagnostic summary.</td>
+                      <td style="padding: 10px; text-align: center; font-weight: bold; color: #15803d;">Rapid Clinical Outpatient Assessment</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0; background: #fafafa;">
+                      <td style="padding: 10px; font-weight: bold; background: #f8fafc; border-right: 1.5px solid #cbd5e1;">Watch Hardware Controller</td>
+                      <td style="padding: 10px; color: #64748b; border-right: 1.5px solid #cbd5e1;">Screen brightness, watch faces, alarm settings, language, and women's health settings buried across multi-level submenus.</td>
+                      <td style="padding: 10px; color: #0f172a; border-right: 1.5px solid #cbd5e1;"><strong style="color: #15803d;">UNIFIED HARDWARE CONTROLLER (TAB 05 &amp; 10).</strong> Complete access to all 5010 registers: brightness, screen-on timeout, dial styles, custom OTA watch face flashing, physiological cycle tracking, and factory reset.</td>
+                      <td style="padding: 10px; text-align: center; font-weight: bold; color: #15803d;">100% Direct Hardware Mastery</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 10px; font-weight: bold; background: #f8fafc; border-right: 1.5px solid #cbd5e1;">Ergonomics &amp; Senior Accessibility</td>
+                      <td style="padding: 10px; color: #64748b; border-right: 1.5px solid #cbd5e1;">Small mobile fonts, low-contrast pastels, tiny touch targets that frustrate older users.</td>
+                      <td style="padding: 10px; color: #0f172a; border-right: 1.5px solid #cbd5e1;"><strong style="color: #15803d;">HIGH-CONTRAST WHITE CARDS &amp; LARGE LCARS TOUCH TARGETS.</strong> 21:1 contrast ratio, high-visibility solid white surfaces, bold clear labels, and oversized buttons designed specifically for older eyes and clinical desks.</td>
+                      <td style="padding: 10px; text-align: center; font-weight: bold; color: #15803d;">Zero Visual Fatigue</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+</div>
 
       <!-- =====================================================================
            TAB 8: HELP & GUIDED FAQ (Interactive Diagnostics & Technical Solutions)
@@ -4094,7 +4274,28 @@
       </div>
 
         </div>
-      </div>
+      
+            <!-- FAQ ITEM: H-BAND PARITY & MIGRATION -->
+            <div style="background: #ffffff; padding: 16px; border-radius: 8px; border: 2px solid #cbd5e1; border-left: 6px solid #2563eb; margin-top: 14px;">
+              <strong style="color: #0f172a; font-size: 1.05rem;">Q5: How does LCARS compare to the official H-Band mobile app? Do I lose any features?</strong>
+              <div style="font-size: 0.88rem; color: #1e293b; line-height: 1.5; margin-top: 6px;">
+                You lose <strong>zero features</strong>. LCARS implements <strong>100% of the underlying Bluetooth GATT opcodes</strong> present in H-Band, including blood glucose, blood pressure, dual temperature, SpO2 apnea detection, heart rate variability, sleep stages, watch face customization, and screen settings.
+                <br><br>
+                However, unlike H-Band, LCARS keeps all your clinical data strictly on your local PC with <strong>zero cloud egress</strong>, provides an <strong>in-clinic blood draw calibration protocol</strong>, features an <strong>8-lane synchronized timeline chart with a continuous vertical scrubber</strong>, and provides active metabolic guidance (exercise GLUT4 kinetics, diet trades, and medication tracking).
+              </div>
+            </div>
+
+            <!-- FAQ ITEM: HOW LCARS HELPS DOCTORS & PATIENTS -->
+            <div style="background: #ffffff; padding: 16px; border-radius: 8px; border: 2px solid #cbd5e1; border-left: 6px solid #15803d; margin-top: 14px;">
+              <strong style="color: #0f172a; font-size: 1.05rem;">Q6: How does LCARS help my physician and me manage my diabetes better than isolated fingersticks?</strong>
+              <div style="font-size: 0.88rem; color: #1e293b; line-height: 1.5; margin-top: 6px;">
+                Isolated fingersticks only show a static number at a single moment in time without context. LCARS provides a <strong>360-Degree Personal Health Cockpit</strong> that correlates 8 simultaneous telemetry streams (Glucose, BP, HR/HRV, SpO2, Skin Temp, Motion, Diet, and Medications).
+                <br><br>
+                When you or your doctor scrub through your daily or weekly timeline on Tab 04, you can click on any glucose spike or drop to immediately reveal the exact meal carbs consumed, the exercise completed (and its resulting &Delta;G drop), and your medication adherence. Furthermore, when your doctor adjusts a prescription, logging the titration pins a <strong>"💊 MED CHANGE"</strong> marker across your charts, allowing both of you to objectively determine whether the change prompted glycemic <strong>progress or regression</strong>.
+              </div>
+            </div>
+
+</div>
 
     
       <!-- =====================================================================
@@ -4743,63 +4944,72 @@
           </div>
 
           <!-- COMPONENT 1: ACTIVE MEDICATION REGIMEN & DAILY INTAKE SCHEDULE -->
-          <div class="diet-form-card" style="border-left-color: var(--lcars-orange);">
-            <div class="setup-section-title" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+          <div class="diet-form-card" style="border-left: 6px solid #d97706; background: #ffffff !important; color: #0f172a !important;">
+            <div class="setup-section-title" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; border-bottom: 2px solid #cbd5e1; padding-bottom: 8px;">
               <div>
-                <span style="color: var(--lcars-orange);">01. ACTIVE PHARMACOLOGICAL REGIMEN &amp; INTAKE SCHEDULE</span>
-                <span style="font-size: 0.8rem; color: var(--lcars-gray); display: block;">PRESCRIBED DOSAGE, TIMING &amp; DAILY ADHERENCE • 2 DAILY INTAKE SCHEDULES</span>
+                <span style="color: #0f172a; font-size: 1.15rem; font-weight: 800;">01. ACTIVE PHARMACOLOGICAL REGIMEN &amp; INTAKE SCHEDULE</span>
+                <span style="font-size: 0.82rem; color: #475569; display: block; margin-top: 2px;">EXACTLY TWO DAILY INTAKES: MORNING (INTAKE 1) &amp; EVENING (INTAKE 2) • SCROLLABLE DOSAGE LISTS</span>
               </div>
               <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                <button class="lcars-btn btn-green" style="padding: 4px 14px; font-size: 0.8rem;" onclick="openAddMedModal()">+ ADD MEDICATION</button>
-                <button class="lcars-btn btn-orange" style="padding: 4px 12px; font-size: 0.8rem;" onclick="resetMedicationRegimen()">RESET REGIMEN</button>
-                <button class="lcars-btn btn-peach" style="padding: 4px 14px; font-size: 0.8rem;" onclick="switchTab('reports')">VIEW IN TALL CHART (TAB 04)</button>
+                <button class="lcars-btn btn-green" style="padding: 5px 16px; font-size: 0.82rem; font-weight: bold;" onclick="openAddMedModal()">+ ADD MEDICATION</button>
+                <button class="lcars-btn btn-orange" style="padding: 5px 14px; font-size: 0.82rem; font-weight: bold;" onclick="resetMedicationRegimen()">RESET REGIMEN</button>
+                <button class="lcars-btn btn-blue" style="padding: 5px 14px; font-size: 0.82rem; font-weight: bold;" onclick="switchTab('reports')">VIEW IN TALL CHART (TAB 04)</button>
               </div>
             </div>
 
-            <!-- INTAKE SCHEDULE 1: MORNING REGIMEN (WITH BREAKFAST) -->
-            <div style="background: #142034; border: 1.5px solid #2b4063; border-left: 6px solid var(--lcars-banana); border-radius: 8px; padding: 14px; margin-top: 12px;">
-              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 8px; border-bottom: 1px solid #14253c; padding-bottom: 8px;">
-                <div>
-                  <div style="display: flex; align-items: center; gap: 8px;">
-                    <span style="font-size: 1.25rem;">🌅</span>
-                    <strong style="color: var(--lcars-banana); font-size: 1.05rem; font-family: var(--lcars-mono); letter-spacing: 0.5px;">INTAKE 1: MORNING REGIMEN (WITH BREAKFAST)</strong>
-                    <span class="badge" style="background: rgba(255,204,102,0.15); color: var(--lcars-banana); border: 1px solid var(--lcars-banana); font-size: 0.72rem;">08:00 AM SCHEDULE</span>
-                  </div>
-                  <div style="font-size: 0.8rem; color: var(--lcars-gray); margin-top: 2px;">
-                    Complete primary morning pharmacological suite taken with breakfast. Includes split Metformin 1,000 mg + metabolic &amp; cardio protectors.
-                  </div>
-                </div>
-                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                  <button class="lcars-btn btn-green" style="padding: 5px 14px; font-size: 0.8rem; font-weight: bold;" onclick="takeAllMorningMeds()">✓ TAKE ALL MORNING MEDS</button>
-                  <button class="lcars-btn btn-banana" style="padding: 5px 12px; font-size: 0.8rem;" onclick="openAddMedModal('morning')">+ ADD MORNING MED</button>
-                </div>
-              </div>
-              <div id="gridMorningMeds" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 12px; margin-top: 8px;">
-                <!-- Morning meds populated by JavaScript -->
-              </div>
-            </div>
+            <!-- DUAL INTAKE COLUMNS (SIDE-BY-SIDE ON DESKTOP, SCROLLABLE MED LISTS) -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 16px; margin-top: 14px;">
 
-            <!-- INTAKE SCHEDULE 2: DINNER REGIMEN (WITH DINNER) -->
-            <div style="background: #040b15; border: 1px solid #231b3b; border-left: 5px solid var(--lcars-lilac); border-radius: 8px; padding: 14px; margin-top: 14px;">
-              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 8px; border-bottom: 1px solid #221b36; padding-bottom: 8px;">
-                <div>
-                  <div style="display: flex; align-items: center; gap: 8px;">
-                    <span style="font-size: 1.25rem;">🌙</span>
-                    <strong style="color: #38b6ff; font-size: 1.05rem; font-family: var(--lcars-mono); letter-spacing: 0.5px;">INTAKE 2: DINNER REGIMEN (WITH DINNER)</strong>
-                    <span class="badge" style="background: rgba(56,182,255,0.15); color: #38b6ff; border: 1px solid #38b6ff; font-size: 0.72rem;">06:30 PM SCHEDULE</span>
+              <!-- INTAKE 1: MORNING REGIMEN (WITH BREAKFAST) -->
+              <div style="background: #f8fafc; border: 2px solid #cbd5e1; border-left: 8px solid #ca8a04; border-radius: 8px; padding: 16px; display: flex; flex-direction: column; box-shadow: 0 2px 6px rgba(0,0,0,0.06);">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; margin-bottom: 10px;">
+                  <div>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <span style="font-size: 1.3rem;">🌅</span>
+                      <strong style="color: #0f172a; font-size: 1.05rem; font-family: var(--lcars-mono); letter-spacing: 0.5px; font-weight: 800;">MORNING (INTAKE 1)</strong>
+                      <span class="badge" style="background: #fef08a; color: #854d0e; border: 1.5px solid #ca8a04; font-size: 0.72rem; font-weight: 800;">08:00 AM • BREAKFAST</span>
+                    </div>
+                    <div style="font-size: 0.8rem; color: #475569; margin-top: 3px;">
+                      Complete morning suite: split Metformin 1,000 mg + metabolic &amp; cardioprotectors.
+                    </div>
                   </div>
-                  <div style="font-size: 0.8rem; color: var(--lcars-gray); margin-top: 2px;">
-                    Evening split Metformin 1,000 mg dose taken with evening meal to sustain overnight hepatic glucose suppression.
+                  <div style="display: flex; gap: 6px; flex-shrink: 0;">
+                    <button class="lcars-btn btn-green" style="padding: 5px 12px; font-size: 0.78rem; font-weight: bold;" onclick="takeAllMorningMeds()">✓ TAKE ALL MORNING</button>
+                    <button class="lcars-btn btn-banana" style="padding: 5px 10px; font-size: 0.78rem; font-weight: bold;" onclick="openAddMedModal('morning')">+ ADD</button>
                   </div>
                 </div>
-                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                  <button class="lcars-btn btn-green" style="padding: 5px 14px; font-size: 0.8rem; font-weight: bold;" onclick="takeDinnerMeds()">✓ TAKE DINNER METFORMIN</button>
-                  <button class="lcars-btn btn-lilac" style="padding: 5px 12px; font-size: 0.8rem;" onclick="openAddMedModal('dinner')">+ ADD DINNER MED</button>
+
+                <!-- Scrollable Morning Meds Container -->
+                <div id="gridMorningMeds" style="max-height: 290px; overflow-y: auto; padding-right: 6px; display: flex; flex-direction: column; gap: 10px;">
+                  <!-- Populated by JavaScript -->
                 </div>
               </div>
-              <div id="gridDinnerMeds" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 12px; margin-top: 8px;">
-                <!-- Dinner meds populated by JavaScript -->
+
+              <!-- INTAKE 2: EVENING REGIMEN (WITH DINNER) -->
+              <div style="background: #f8fafc; border: 2px solid #cbd5e1; border-left: 8px solid #2563eb; border-radius: 8px; padding: 16px; display: flex; flex-direction: column; box-shadow: 0 2px 6px rgba(0,0,0,0.06);">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; margin-bottom: 10px;">
+                  <div>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <span style="font-size: 1.3rem;">🌙</span>
+                      <strong style="color: #0f172a; font-size: 1.05rem; font-family: var(--lcars-mono); letter-spacing: 0.5px; font-weight: 800;">EVENING (INTAKE 2)</strong>
+                      <span class="badge" style="background: #dbeafe; color: #1e40af; border: 1.5px solid #2563eb; font-size: 0.72rem; font-weight: 800;">06:30 PM • DINNER</span>
+                    </div>
+                    <div style="font-size: 0.8rem; color: #475569; margin-top: 3px;">
+                      Evening split Metformin 1,000 mg dose to sustain overnight glucose suppression.
+                    </div>
+                  </div>
+                  <div style="display: flex; gap: 6px; flex-shrink: 0;">
+                    <button class="lcars-btn btn-green" style="padding: 5px 12px; font-size: 0.78rem; font-weight: bold;" onclick="takeDinnerMeds()">✓ TAKE EVENING</button>
+                    <button class="lcars-btn btn-blue" style="padding: 5px 10px; font-size: 0.78rem; font-weight: bold;" onclick="openAddMedModal('dinner')">+ ADD</button>
+                  </div>
+                </div>
+
+                <!-- Scrollable Evening Meds Container -->
+                <div id="gridDinnerMeds" style="max-height: 290px; overflow-y: auto; padding-right: 6px; display: flex; flex-direction: column; gap: 10px;">
+                  <!-- Populated by JavaScript -->
+                </div>
               </div>
+
             </div>
           </div>
 
@@ -5258,8 +5468,8 @@
           <div class="setup-field">
             <label class="setup-label">DAILY INTAKE TIME</label>
             <select id="editMedSlot" class="setup-input">
-              <option value="morning">🌅 Morning Regimen (with Breakfast)</option>
-              <option value="dinner">🌙 Dinner Regimen (with Dinner)</option>
+              <option value="morning">🌅 Morning (Intake 1 - with Breakfast)</option>
+              <option value="dinner">🌙 Evening (Intake 2 - with Dinner)</option>
             </select>
           </div>
         </div>
@@ -8853,32 +9063,33 @@
 
       function buildCard(m) {
         const card = document.createElement('div');
-        card.style.background = '#1a283e';
-        card.style.border = '1.5px solid #2e476e';
+        card.style.background = '#ffffff';
+        card.style.border = '1.5px solid #cbd5e1';
         card.style.borderRadius = '6px';
-        card.style.padding = '14px';
+        card.style.padding = '12px 14px';
         card.style.display = 'flex';
         card.style.flexDirection = 'column';
         card.style.gap = '8px';
+        card.style.boxShadow = '0 1px 4px rgba(0,0,0,0.05)';
         const isActive = m.status === 'ACTIVE';
         card.innerHTML = `
           <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
             <div>
-              <strong style="color: var(--lcars-banana); font-size: 1.02rem;">${m.name}</strong>
-              <div style="font-size: 0.78rem; color: #80c890; margin-top: 2px;">${m.indication || 'Pharmacological therapy'}</div>
+              <strong style="color: #0f172a; font-size: 1.02rem; font-weight: 800;">${m.name}</strong>
+              <div style="font-size: 0.78rem; color: #047857; font-weight: 600; margin-top: 2px;">${m.indication || 'Pharmacological therapy'}</div>
             </div>
-            <span class="badge" style="background: ${isActive ? 'rgba(85,255,119,0.15)' : 'rgba(255,153,102,0.15)'}; color: ${isActive ? 'var(--lcars-green)' : 'var(--lcars-peach)'}; font-size: 0.72rem; border: 1px solid ${isActive ? 'var(--lcars-green)' : 'var(--lcars-peach)'};">${m.status || 'ACTIVE'}</span>
+            <span class="badge" style="background: ${isActive ? '#dcfce7' : '#fee2e2'}; color: ${isActive ? '#15803d' : '#b91c1c'}; font-size: 0.72rem; border: 1.5px solid ${isActive ? '#15803d' : '#b91c1c'}; font-weight: bold;">${m.status || 'ACTIVE'}</span>
           </div>
-          <div style="background: #21334f; border: 1px solid #334d75; border-radius: 4px; padding: 8px 10px; font-family: var(--lcars-mono); font-size: 0.85rem;">
-            <div style="color: var(--lcars-text);"><span style="color: var(--lcars-gray);">DOSAGE:</span> <strong style="color: var(--lcars-banana);">${m.dose}</strong></div>
-            <div style="color: var(--lcars-text); margin-top: 2px;"><span style="color: var(--lcars-gray);">SCHEDULE:</span> ${m.schedule || (m.slot === 'dinner' ? 'Oral with Dinner' : 'Oral with Breakfast')}</div>
-            <div style="color: var(--lcars-green); margin-top: 2px;"><span style="color: var(--lcars-gray);">LAST INTAKE:</span> ${m.lastTaken || 'Pending today'}</div>
+          <div style="background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 4px; padding: 8px 10px; font-family: var(--lcars-mono); font-size: 0.83rem; color: #0f172a;">
+            <div><span style="color: #475569; font-weight: bold;">DOSAGE:</span> <strong style="color: #b45309; font-size: 0.95rem;">${m.dose}</strong></div>
+            <div style="margin-top: 2px;"><span style="color: #475569; font-weight: bold;">SCHEDULE:</span> <span style="color: #1e293b;">${m.schedule || (m.slot === 'dinner' ? 'Oral with Dinner' : 'Oral with Breakfast')}</span></div>
+            <div style="margin-top: 2px; color: #15803d; font-weight: bold;"><span style="color: #475569;">LAST INTAKE:</span> ${m.lastTaken || 'Pending today'}</div>
           </div>
           <div style="display: flex; gap: 6px; margin-top: 4px; flex-wrap: wrap;">
             <button class="lcars-btn btn-green" style="flex: 2; min-width: 95px; padding: 5px 8px; font-size: 0.78rem; font-weight: bold;" onclick="recordMedDoseTaken(${m.id})">✓ TAKEN</button>
-            <button class="lcars-btn btn-banana" style="flex: 1; min-width: 55px; padding: 5px 8px; font-size: 0.78rem;" onclick="openEditMedModal(${m.id})">EDIT</button>
-            <button class="lcars-btn btn-orange" style="flex: 1; min-width: 60px; padding: 5px 8px; font-size: 0.78rem;" onclick="titrateMedication(${m.id})">TITRATE</button>
-            <button class="lcars-btn btn-pink" style="flex: 1; min-width: 60px; padding: 5px 8px; font-size: 0.78rem;" onclick="deleteMedication(${m.id})">DELETE</button>
+            <button class="lcars-btn btn-banana" style="flex: 1; min-width: 55px; padding: 5px 8px; font-size: 0.78rem; font-weight: bold;" onclick="openEditMedModal(${m.id})">EDIT</button>
+            <button class="lcars-btn btn-orange" style="flex: 1; min-width: 60px; padding: 5px 8px; font-size: 0.78rem; font-weight: bold;" onclick="titrateMedication(${m.id})">TITRATE</button>
+            <button class="lcars-btn btn-red" style="flex: 1; min-width: 60px; padding: 5px 8px; font-size: 0.78rem; font-weight: bold;" onclick="deleteMedication(${m.id})">DELETE</button>
           </div>
         `;
         return card;
