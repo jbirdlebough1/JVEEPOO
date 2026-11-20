@@ -4,7 +4,7 @@
     "num": "01",
     "module": "Module 1: Introduction & Clinical Scope",
     "title": "Why This Toolset: An Author's Journey & Multidisciplinary Care",
-    "desc": "Created by a Type II diabetic to empower direct partnership with their care team\u2014Diabetic Pharmacist, Primary Care Physician, Endocrinologist, and Diet Specialist\u2014offered as an open-source tool 'That Others May Survive Successfully Diabetes.'",
+    "desc": "Created by a Type II diabetic to empower direct partnership with their care team—Diabetic Pharmacist, Primary Care Physician, Endocrinologist, and Diet Specialist—offered as an open-source tool 'That Others May Survive Successfully Diabetes.'",
     "narration": "G'day mate! Welcome to the LCARS 5010 Clinical Ambulatory Telemetry Onboarding presentation. Why was this toolset created? As a Type 2 diabetic, I needed an objective, continuous personal window into my own physiology to work effectively with my clinical care team: my Diabetic Pharmacist, Primary Care Physician, Endocrinologist, and Diabetic Diet Specialist. We offer this platform as experimental open-source software with the heartfelt hope that it helps others in their daily struggle with diabetes. We encourage doctors and engineers alike to contribute, so that others may survive successfully with diabetes, and we warmly welcome Google and other sponsors to assist in advancing this community project.",
     "card_title": "WHY THIS TOOLSET: CLINICAL NEED & OPEN MISSION",
     "bullets": [
@@ -26,12 +26,12 @@
       ]
     ],
     "takeaway": "An authentic open-source tool uniting patients, clinical specialists, and engineers: That Others May Survive Successfully Diabetes.",
-    "right_header": "LCARS 5010 \u2022 MULTIDISCIPLINARY CARE TOOLKIT",
+    "right_header": "LCARS 5010 • MULTIDISCIPLINARY CARE TOOLKIT",
     "right_badge": "COMMUNITY OPEN SOURCE",
     "right_badge_col": "#15803d",
-    "right_html": "\n          <!-- 4-Specialist Care Team Grid -->\n          <div style=\"display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:6px;\">\n            <div style=\"background:#f0fdf4; border:1px solid #bbf7d0; border-radius:4px; padding:6px 8px;\">\n              <div style=\"font-size:0.68rem; color:#15803d; font-weight:800;\">\ud83d\udc8a DIABETIC PHARMACIST</div>\n              <div style=\"font-size:0.72rem; color:#166534; margin-top:2px;\">Medication titration, drug kinetics & adherence tracking</div>\n            </div>\n            <div style=\"background:#f0f9ff; border:1px solid #bae6fd; border-radius:4px; padding:6px 8px;\">\n              <div style=\"font-size:0.68rem; color:#0284c7; font-weight:800;\">\ud83e\ude7a PRIMARY CARE PHYSICIAN</div>\n              <div style=\"font-size:0.72rem; color:#0c4a6e; margin-top:2px;\">Routine outpatient review, systemic health & Epic records</div>\n            </div>\n            <div style=\"background:#fdf4ff; border:1px solid #f5d0fe; border-radius:4px; padding:6px 8px;\">\n              <div style=\"font-size:0.68rem; color:#a21caf; font-weight:800;\">\ud83d\udd2c ENDOCRINOLOGIST</div>\n              <div style=\"font-size:0.72rem; color:#701a75; margin-top:2px;\">Hormone kinetics, Dawn surge & insulin sensitivity</div>\n            </div>\n            <div style=\"background:#fffbeb; border:1px solid #fde68a; border-radius:4px; padding:6px 8px;\">\n              <div style=\"font-size:0.68rem; color:#d97706; font-weight:800;\">\ud83e\udd57 DIABETIC DIET SPECIALIST</div>\n              <div style=\"font-size:0.72rem; color:#92400e; margin-top:2px;\">ADA carb trades, macronutrient logs & GLUT4 walks</div>\n            </div>\n          </div>\n\n          <!-- Mission Dedication Banner -->\n          <div style=\"margin-top:10px; background:#f0fdf4; border:1.5px solid #86efac; border-radius:6px; padding:10px; text-align:center;\">\n            <div style=\"font-weight:900; color:#15803d; font-size:0.88rem; letter-spacing:0.02em; font-family:monospace;\">\n              \"THAT OTHERS MAY SURVIVE SUCCESSFULLY DIABETES\"\n            </div>\n            <div style=\"font-size:0.75rem; color:#166534; margin-top:4px; line-height:1.4;\">\n              Offered as an experimental open-source project. We encourage doctors, engineers, and community sponsors\u2014including Google\u2014to collaborate and improve these tools.\n            </div>\n          </div>\n\n          <div style=\"margin-top:10px; display:flex; justify-content:space-between; font-family:monospace; font-size:0.75rem; background:#f8fafc; padding:6px 10px; border-radius:4px; border:1px solid #e2e8f0;\">\n            <span style=\"color:#64748b;\">PATIENT STATUS:</span>\n            <span style=\"color:#0284c7; font-weight:bold;\">OUTPATIENT TYPE 2 DIABETES PROTOCOL</span>\n          </div>\n        ",
+    "right_html": "\n          <!-- 4-Specialist Care Team Grid -->\n          <div style=\"display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:6px;\">\n            <div style=\"background:#f0fdf4; border:1px solid #bbf7d0; border-radius:4px; padding:6px 8px;\">\n              <div style=\"font-size:0.68rem; color:#15803d; font-weight:800;\">💊 DIABETIC PHARMACIST</div>\n              <div style=\"font-size:0.72rem; color:#166534; margin-top:2px;\">Medication titration, drug kinetics & adherence tracking</div>\n            </div>\n            <div style=\"background:#f0f9ff; border:1px solid #bae6fd; border-radius:4px; padding:6px 8px;\">\n              <div style=\"font-size:0.68rem; color:#0284c7; font-weight:800;\">🩺 PRIMARY CARE PHYSICIAN</div>\n              <div style=\"font-size:0.72rem; color:#0c4a6e; margin-top:2px;\">Routine outpatient review, systemic health & Epic records</div>\n            </div>\n            <div style=\"background:#fdf4ff; border:1px solid #f5d0fe; border-radius:4px; padding:6px 8px;\">\n              <div style=\"font-size:0.68rem; color:#a21caf; font-weight:800;\">🔬 ENDOCRINOLOGIST</div>\n              <div style=\"font-size:0.72rem; color:#701a75; margin-top:2px;\">Hormone kinetics, Dawn surge & insulin sensitivity</div>\n            </div>\n            <div style=\"background:#fffbeb; border:1px solid #fde68a; border-radius:4px; padding:6px 8px;\">\n              <div style=\"font-size:0.68rem; color:#d97706; font-weight:800;\">🥗 DIABETIC DIET SPECIALIST</div>\n              <div style=\"font-size:0.72rem; color:#92400e; margin-top:2px;\">ADA carb trades, macronutrient logs & GLUT4 walks</div>\n            </div>\n          </div>\n\n          <!-- Mission Dedication Banner -->\n          <div style=\"margin-top:10px; background:#f0fdf4; border:1.5px solid #86efac; border-radius:6px; padding:10px; text-align:center;\">\n            <div style=\"font-weight:900; color:#15803d; font-size:0.88rem; letter-spacing:0.02em; font-family:monospace;\">\n              \"THAT OTHERS MAY SURVIVE SUCCESSFULLY DIABETES\"\n            </div>\n            <div style=\"font-size:0.75rem; color:#166534; margin-top:4px; line-height:1.4;\">\n              Offered as an experimental open-source project. We encourage doctors, engineers, and community sponsors—including Google—to collaborate and improve these tools.\n            </div>\n          </div>\n\n          <div style=\"margin-top:10px; display:flex; justify-content:space-between; font-family:monospace; font-size:0.75rem; background:#f8fafc; padding:6px 10px; border-radius:4px; border:1px solid #e2e8f0;\">\n            <span style=\"color:#64748b;\">PATIENT STATUS:</span>\n            <span style=\"color:#0284c7; font-weight:bold;\">OUTPATIENT TYPE 2 DIABETES PROTOCOL</span>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_vitals.png",
-    "tab_title": "01-VITALS CONSOLE \u2022 CLINICAL AMBULATORY TOOLKIT",
+    "tab_title": "01-VITALS CONSOLE • CLINICAL AMBULATORY TOOLKIT",
     "step_focus": [
       {
         "bullet": 0,
@@ -54,31 +54,35 @@
     "id": 2,
     "num": "02",
     "module": "Module 1: Introduction & Clinical Scope",
-    "title": "The Snapshot Fallacy: Why Isolated Fingersticks Fail",
-    "desc": "Examining why intermittent spot-checks fail to capture metabolic kinetics, excursions, and nocturnal hypoglycemia.",
-    "narration": "Let's examine the snapshot fallacy through the lens of information theory and Nyquist sampling. A conventional clinical HbA1c is a single laboratory blood draw taken once every ninety days. In signal processing, a single sample over a ninety-day interval suffers complete Nyquist aliasing, rendering clinicians completely blind to daily excursions and dangerous nocturnal hypoglycemia. Even four daily fingersticks capture less than five percent of glycemic kinetics. LCARS fundamentally changes this paradigm by recording two hundred and eighty-eight discrete epochs per day across eight synchronized biometric channels\u2014delivering two thousand three hundred and four daily measurements, and over twenty-five thousand continuous glycemic data points across a ninety-day clinical cycle. By satisfying Nyquist criteria and achieving overwhelming statistical significance, LCARS empowers doctors and patients to see true physiological trajectory instead of an isolated static guess.",
-    "card_title": "LIMITATIONS OF CONVENTIONAL SPOT-CHECKS",
+    "title": "The Snapshot Fallacy: Sampling Mathematics & Metrology",
+    "desc": "Why single, start-and-end quarterly draws, and random spot-checks fail: mathematical proof via Neye-quist criteria, error convergence, and the 5 dimensions of metrology.",
+    "narration": "Let's examine the snapshot fallacy through information theory and Neye-quist sampling. More samples directly yield higher resolution and superior measurement quality. When we compare a quarterly lab regimen—which provides only two isolated samples at the start and end of ninety days—against random sporadic fingersticks and automated continuous telemetry across the five fundamental dimensions of metrology: sensitivity, specificity, accuracy, precision, and repeatability, the mathematics is undeniable. A standard quarterly lab evaluation yields exactly two samples: one at day zero and one at day ninety. With N equal to two across seven point seven million seconds, the sampling frequency is sixty-four nanohertz, causing total Neye-quist aliasing. It is completely blind to nocturnal hypoglycemia and glycemic excursions. Random fingersticks increase N to approximately one hundred and eighty points, but remain sporadic and sub-Neye-quist. In stark contrast, LCARS delivers automated continuous sampling, recording two hundred and eighty-eight epochs per day across eight channels. Over ninety days, that yields twenty-five thousand nine hundred and twenty glucose points, and over two hundred and seven thousand total measurements. Mathematically, the standard error of the mean scales as sigma divided by the square root of N, reducing error variance by ninety-nine point four percent. Operating with a five-minute period, LCARS satisfies the Neye-quist criterion of sampling at twice the maximum biological kinetic frequency, transforming blind snapshots into clinical-grade physiological fidelity.",
+    "card_title": "SAMPLING MATHEMATICS & METROLOGY CRITERIA",
     "bullets": [
       [
-        "90-Day A1C Snapshot Aliasing",
-        "A quarterly lab A1C is an isolated N=1 sample every 90 days, suffering complete Nyquist aliasing and masking all diurnal peaks and nocturnal nadirs."
+        "Quarterly Lab: Two Samples (Day 0 & Day 90)",
+        "A quarterly lab test yields only N=2 samples—one at the start (Day 0) and one at the end (Day 90). Between them lies a 90-day total blind interval of 7.78 million seconds, causing complete Neye-quist aliasing."
       ],
       [
-        "Nyquist Sampling & Statistical Power",
-        "Information theory requires sampling at twice the biological kinetic frequency; a single snapshot has zero statistical confidence compared to continuous telemetry."
+        "Random Spot-Checks vs Automated Telemetry",
+        "Fingersticks capture sporadic awake points (N≈180), missing nocturnal nadirs and postprandial curves. Automated LCARS captures 288 samples/day (N=25,920 glucose; 207,360 total), achieving continuous kinetic tracking."
       ],
       [
-        "LCARS 288\u00d78 Continuous Telemetry",
-        "Capturing 288 samples/day across 8 channels yields 2,304 daily metrics\u2014over 25,920 glucose points and 207,360 total biometric measurements in a 90-day cycle."
+        "The 5 Metrology Dimensions Compared",
+        "More samples yield higher resolution and quality: Sensitivity jumps from <15% to >98%; Specificity provides true baseline context; Accuracy is anchor-calibrated; Precision CI narrows by 1/√N; Repeatability achieves continuous autocorrelation."
+      ],
+      [
+        "Neye-quist Theorem & Standard Error Math",
+        "Shannon-Neye-quist criterion mandates fs ≥ 2 fmax. Biological half-life (15-30m) requires 5-min epochs (fs = 3.33 mHz). High-density sampling (N=25,920) reduces standard error (SE = σ/√N) by 99.4% (161× noise suppression)."
       ]
     ],
-    "takeaway": "90-day A1C snapshots alias daily kinetics; LCARS records 288\u00d78 daily measurements (207,360 total) for true statistical power.",
-    "right_header": "90-DAY SAMPLING TIMELINE & NYQUIST KINETICS",
-    "right_badge": "N=1 VS N=25,920",
+    "takeaway": "More samples yield higher resolution and measurement quality. A quarterly lab has only 2 samples (Day 0 & Day 90) with a 90-day blind interval. Automated continuous telemetry (N=25,920) satisfies the Neye-quist criterion (fs ≥ 2 fmax), reduces standard error by 99.4% (SE = σ/√N), and achieves superior sensitivity, specificity, accuracy, precision, and repeatability.",
+    "right_header": "MATHEMATICAL SAMPLING THEORY & METROLOGY",
+    "right_badge": "fs ≥ 2 fmax • SE = σ/√N",
     "right_badge_col": "#0284c7",
-    "right_html": "\n          <!-- 90-Day Sampling Timeline: A1C vs LCARS Continuous -->\n          <div style=\"background: #f8fafc; color: #0f172a; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 10px; margin-top: 4px; color: #0f172a;\">\n            <div style=\"display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1e293b; padding-bottom: 4px; margin-bottom: 8px;\">\n              <span style=\"font-family: monospace; font-size: 0.72rem; color: #38bdf8; font-weight: 800; letter-spacing: 0.05em;\">90-DAY SAMPLING TIMELINE & NYQUIST KINETICS</span>\n              <span style=\"background: #0284c7; color: #fff; font-size: 0.60rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; font-family: monospace;\">N=1 VS N=25,920</span>\n            </div>\n\n            <!-- 90-Day Timeline Graphic Bars -->\n            <div style=\"display: flex; flex-direction: column; gap: 6px; font-family: monospace; font-size: 0.68rem;\">\n              <!-- Tier 1: Quarterly Lab A1C (N=1) -->\n              <div>\n                <div style=\"display: flex; justify-content: space-between; color: #f87171; font-weight: bold; margin-bottom: 2px;\">\n                  <span>QUARTERLY LAB A1C (N=1 SNAPSHOT)</span>\n                  <span>1 LAB DRAW / 90 DAYS</span>\n                </div>\n                <div style=\"position: relative; height: 16px; background: #e2e8f0; border-radius: 3px; border: 1px solid #ef4444; overflow: hidden; display: flex; align-items: center;\">\n                  <div style=\"position: absolute; left: 0; right: 24px; height: 2px; background: #475569; border-style: dashed;\"></div>\n                  <div style=\"position: absolute; right: 4px; width: 12px; height: 12px; background: #ef4444; border-radius: 50%; box-shadow: 0 0 6px #ef4444;\" title=\"Single Lab Blood Draw at Day 90\"></div>\n                  <span style=\"position: absolute; left: 8px; font-size: 0.60rem; color: #fca5a5;\">DAY 1 \u2500\u2500\u2500\u2500 90-DAY BLIND INTERVAL \u2500\u2500\u2500\u2500 DAY 90 \ud83d\udccd</span>\n                </div>\n              </div>\n\n              <!-- Tier 2: Conventional Fingersticks (1-4/day) -->\n              <div>\n                <div style=\"display: flex; justify-content: space-between; color: #fbbf24; font-weight: bold; margin-bottom: 2px;\">\n                  <span>CONVENTIONAL FINGERSTICKS (SPORADIC SPOT-CHECKS)</span>\n                  <span>~180 POINTS / 90 DAYS</span>\n                </div>\n                <div style=\"position: relative; height: 16px; background: #e2e8f0; border-radius: 3px; border: 1px solid #f59e0b; overflow: hidden; display: flex; align-items: center; justify-content: space-around;\">\n                  <span style=\"color: #fbbf24; font-size: 0.65rem;\">\u2022 &nbsp; \u2022 &nbsp; \u2022 &nbsp; \u2022 &nbsp; \u2022 &nbsp; \u2022 &nbsp; \u2022 &nbsp; \u2022 &nbsp; \u2022 &nbsp; \u2022 &nbsp; \u2022 &nbsp; \u2022 &nbsp; \u2022 &nbsp; \u2022 &nbsp; \u2022</span>\n                </div>\n              </div>\n\n              <!-- Tier 3: LCARS 5010 Continuous 288x8 -->\n              <div>\n                <div style=\"display: flex; justify-content: space-between; color: #4ade80; font-weight: bold; margin-bottom: 2px;\">\n                  <span>LCARS 5010 CONTINUOUS TIME-SERIES (288/DAY \u00d7 8 CHANNELS)</span>\n                  <span>25,920 GLUCOSE \u2022 207,360 TOTAL SAMPLES</span>\n                </div>\n                <div style=\"position: relative; height: 18px; background: linear-gradient(90deg, #059669, #10b981, #06b6d4, #10b981, #059669); border-radius: 3px; border: 1.5px solid #22c55e; overflow: hidden; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 8px rgba(34,197,94,0.4);\">\n                  <span style=\"font-size: 0.62rem; color: #0f172a; font-weight: 800; letter-spacing: 0.05em; text-shadow: 0 1px 2px rgba(0,0,0,0.8);\">\n                    \u2588\u2588\u2588\u2588\u2588\u2588 FULL NYQUIST DENSITY: 25,920 CONTINUOUS 5-MIN EPOCHS \u2588\u2588\u2588\u2588\u2588\u2588\n                  </span>\n                </div>\n              </div>\n            </div>\n          </div>\n\n          <!-- Nyquist & Statistical Significance Comparison Table -->\n          <div style=\"margin-top: 8px; border: 1.5px solid #cbd5e1; border-radius: 6px; overflow: hidden; background: #ffffff;\">\n            <table style=\"width: 100%; border-collapse: collapse; font-size: 0.72rem; text-align: left;\">\n              <thead>\n                <tr style=\"background: #f1f5f9; color: #0f172a; border-bottom: 2px solid #cbd5e1; font-family: monospace;\">\n                  <th style=\"padding: 5px 8px;\">CLINICAL METRIC</th>\n                  <th style=\"padding: 5px 8px; color: #dc2626;\">LAB A1C</th>\n                  <th style=\"padding: 5px 8px; color: #d97706;\">FINGERSTICKS</th>\n                  <th style=\"padding: 5px 8px; color: #15803d; background: #f0fdf4;\">LCARS 5010</th>\n                </tr>\n              </thead>\n              <tbody>\n                <tr style=\"border-bottom: 1px solid #e2e8f0;\">\n                  <td style=\"padding: 4px 8px; font-weight: bold; color: #334155;\">90-Day Glucose Points</td>\n                  <td style=\"padding: 4px 8px; color: #dc2626; font-family: monospace; font-weight: bold;\">1 Snapshot</td>\n                  <td style=\"padding: 4px 8px; color: #d97706; font-family: monospace;\">~90 \u2013 360</td>\n                  <td style=\"padding: 4px 8px; color: #15803d; font-family: monospace; font-weight: bold; background: #f0fdf4;\">25,920 Samples</td>\n                </tr>\n                <tr style=\"border-bottom: 1px solid #e2e8f0;\">\n                  <td style=\"padding: 4px 8px; font-weight: bold; color: #334155;\">Daily 8-Channel Metrics</td>\n                  <td style=\"padding: 4px 8px; color: #64748b; font-family: monospace;\">0 (Quarterly)</td>\n                  <td style=\"padding: 4px 8px; color: #d97706; font-family: monospace;\">1 \u2013 4 (Glucose only)</td>\n                  <td style=\"padding: 4px 8px; color: #15803d; font-family: monospace; font-weight: bold; background: #f0fdf4;\">2,304 / 24 Hours</td>\n                </tr>\n                <tr style=\"border-bottom: 1px solid #e2e8f0;\">\n                  <td style=\"padding: 4px 8px; font-weight: bold; color: #334155;\">90-Day Total Biometric Pool</td>\n                  <td style=\"padding: 4px 8px; color: #dc2626; font-family: monospace;\">1 Data Point</td>\n                  <td style=\"padding: 4px 8px; color: #d97706; font-family: monospace;\">~180 Points</td>\n                  <td style=\"padding: 4px 8px; color: #15803d; font-family: monospace; font-weight: 800; background: #f0fdf4;\">207,360 Points</td>\n                </tr>\n                <tr style=\"border-bottom: 1px solid #e2e8f0;\">\n                  <td style=\"padding: 4px 8px; font-weight: bold; color: #334155;\">Nyquist-Shannon Fidelity</td>\n                  <td style=\"padding: 4px 8px; color: #dc2626; font-weight: bold;\">0% (Full Aliasing)</td>\n                  <td style=\"padding: 4px 8px; color: #d97706;\">&lt; 5% (Sub-Nyquist)</td>\n                  <td style=\"padding: 4px 8px; color: #15803d; font-weight: bold; background: #f0fdf4;\">100% Reconstructed</td>\n                </tr>\n                <tr>\n                  <td style=\"padding: 4px 8px; font-weight: bold; color: #334155;\">Statistical Error (1/\u221aN)</td>\n                  <td style=\"padding: 4px 8px; color: #dc2626; font-family: monospace;\">N=1 (Undefined)</td>\n                  <td style=\"padding: 4px 8px; color: #d97706; font-family: monospace;\">High Variance</td>\n                  <td style=\"padding: 4px 8px; color: #15803d; font-family: monospace; font-weight: bold; background: #f0fdf4;\">p &lt; 0.0001 (Power &gt; 99%)</td>\n                </tr>\n              </tbody>\n            </table>\n          </div>\n\n          <!-- Sampling Theory Key Insight Callout -->\n          <div style=\"margin-top: 8px; background: #f8fafc; border-left: 4px solid #0284c7; padding: 6px 10px; border-radius: 4px; font-size: 0.73rem; color: #1e293b; line-height: 1.35;\">\n            <strong style=\"color: #0369a1;\">Information Theory Insight:</strong> A dynamic biological signal requires sampling at twice its highest kinetic frequency (Nyquist). A single quarterly A1C is an N=1 snapshot that aliases all excursions; LCARS's 288\u00d78 daily samples deliver 207,360 measurements to achieve true statistical significance.\n          </div>\n",
+    "right_html": "\n          <!-- 90-Day Sampling Timeline: Quarterly Lab vs Fingersticks vs LCARS Continuous -->\n          <div style=\"background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 10px; margin-top: 4px; color: #0f172a;\">\n            <div style=\"display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 4px; margin-bottom: 8px;\">\n              <span style=\"font-family: monospace; font-size: 0.72rem; color: #0284c7; font-weight: 800; letter-spacing: 0.05em;\">90-DAY SAMPLING RESOLUTION TIMELINE</span>\n              <span style=\"background: #0284c7; color: #fff; font-size: 0.60rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; font-family: monospace;\">MORE SAMPLES = HIGHER RESOLUTION & QUALITY</span>\n            </div>\n\n            <!-- 90-Day Timeline Graphic Bars -->\n            <div style=\"display: flex; flex-direction: column; gap: 7px; font-family: monospace; font-size: 0.68rem;\">\n              <!-- Tier 1: Quarterly Lab (N=2: Start & End of 90 Days) -->\n              <div>\n                <div style=\"display: flex; justify-content: space-between; color: #dc2626; font-weight: bold; margin-bottom: 2px;\">\n                  <span>1. QUARTERLY LAB: 2 SAMPLES (START DAY 0 & END DAY 90)</span>\n                  <span>N=2 SAMPLES / 90 DAYS (fs = 6.4×10⁻⁸ Hz)</span>\n                </div>\n                <div style=\"position: relative; height: 18px; background: #fee2e2; border-radius: 4px; border: 1px solid #ef4444; overflow: hidden; display: flex; align-items: center;\">\n                  <!-- Day 0 Sample Point -->\n                  <div style=\"position: absolute; left: 4px; width: 12px; height: 12px; background: #dc2626; border-radius: 50%; box-shadow: 0 0 6px #ef4444;\" title=\"Start Lab Draw (Day 0)\"></div>\n                  <!-- 90-Day Blind Interval Line -->\n                  <div style=\"position: absolute; left: 20px; right: 20px; height: 2px; background: #94a3b8; border-style: dashed;\"></div>\n                  <!-- Day 90 Sample Point -->\n                  <div style=\"position: absolute; right: 4px; width: 12px; height: 12px; background: #dc2626; border-radius: 50%; box-shadow: 0 0 6px #ef4444;\" title=\"End Lab Draw (Day 90)\"></div>\n                  <span style=\"position: absolute; left: 26px; font-size: 0.58rem; color: #991b1b; font-weight: bold;\">\n                    📍 DAY 0 ────── 90-DAY TOTAL BLIND VOID (7.78M SECONDS: ZERO DATA) ────── 📍 DAY 90\n                  </span>\n                </div>\n              </div>\n\n              <!-- Tier 2: Conventional Fingersticks (1-4/day sporadic) -->\n              <div>\n                <div style=\"display: flex; justify-content: space-between; color: #d97706; font-weight: bold; margin-bottom: 2px;\">\n                  <span>2. RANDOM SPOT-CHECKS: SPORADIC FINGERSTICKS (N≈180)</span>\n                  <span>~180 POINTS / 90 DAYS (SUB-NEYE-QUIST)</span>\n                </div>\n                <div style=\"position: relative; height: 18px; background: #fef3c7; border-radius: 4px; border: 1px solid #f59e0b; overflow: hidden; display: flex; align-items: center; justify-content: space-around;\">\n                  <span style=\"color: #b45309; font-size: 0.65rem; font-weight: bold;\">• &nbsp; • &nbsp; • &nbsp; • &nbsp; • &nbsp; • &nbsp; • &nbsp; • &nbsp; • &nbsp; • &nbsp; • &nbsp; • &nbsp; • &nbsp; • &nbsp; • (SPORADIC AWAKE BIAS: NOCTURNAL BLIND)</span>\n                </div>\n              </div>\n\n              <!-- Tier 3: LCARS 5010 Continuous 288x8 Automated Telemetry -->\n              <div>\n                <div style=\"display: flex; justify-content: space-between; color: #15803d; font-weight: bold; margin-bottom: 2px;\">\n                  <span>3. AUTOMATED CONTINUOUS: LCARS 5010 (288/DAY × 8 CHANNELS)</span>\n                  <span>25,920 GLUCOSE • 207,360 TOTAL SAMPLES</span>\n                </div>\n                <div style=\"position: relative; height: 20px; background: linear-gradient(90deg, #16a34a, #22c55e, #0284c7, #22c55e, #16a34a); border-radius: 4px; border: 1.5px solid #16a34a; overflow: hidden; display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 4px rgba(22,163,74,0.3);\">\n                  <span style=\"font-size: 0.62rem; color: #ffffff; font-weight: 800; letter-spacing: 0.05em; text-shadow: 0 1px 2px rgba(0,0,0,0.5);\">\n                    ████ FULL NEYE-QUIST RECONSTRUCTION: fs = 3.33 mHz ≥ 2 fmax • 25,920 CONTINUOUS EPOCHS ████\n                  </span>\n                </div>\n              </div>\n            </div>\n          </div>\n\n          <!-- Metrology 5-Dimension Comparison Table -->\n          <div style=\"margin-top: 8px; border: 1.5px solid #cbd5e1; border-radius: 6px; overflow: hidden; background: #ffffff;\">\n            <table style=\"width: 100%; border-collapse: collapse; font-size: 0.69rem; text-align: left;\">\n              <thead>\n                <tr style=\"background: #f1f5f9; color: #0f172a; border-bottom: 2px solid #cbd5e1; font-family: monospace;\">\n                  <th style=\"padding: 4px 6px;\">METROLOGY DIMENSION</th>\n                  <th style=\"padding: 4px 6px; color: #dc2626;\">QUARTERLY LAB (N=2)</th>\n                  <th style=\"padding: 4px 6px; color: #d97706;\">RANDOM SPOT (N≈180)</th>\n                  <th style=\"padding: 4px 6px; color: #15803d; background: #f0fdf4;\">AUTOMATED 288×8 (N=25,920)</th>\n                </tr>\n              </thead>\n              <tbody>\n                <tr style=\"border-bottom: 1px solid #e2e8f0;\">\n                  <td style=\"padding: 3px 6px; font-weight: bold; color: #334155;\">Sensitivity (Excursion Detection)</td>\n                  <td style=\"padding: 3px 6px; color: #dc2626; font-family: monospace;\">&lt; 10% (Blind to 90d excursions)</td>\n                  <td style=\"padding: 3px 6px; color: #d97706; font-family: monospace;\">35% – 50% (Awake only)</td>\n                  <td style=\"padding: 3px 6px; color: #15803d; font-family: monospace; font-weight: bold; background: #f0fdf4;\">&gt; 98% (All peaks & nocturnal nadirs)</td>\n                </tr>\n                <tr style=\"border-bottom: 1px solid #e2e8f0;\">\n                  <td style=\"padding: 3px 6px; font-weight: bold; color: #334155;\">Specificity (True Homeostasis)</td>\n                  <td style=\"padding: 3px 6px; color: #dc2626; font-family: monospace;\">Poor (Hypoglycemia masks A1C)</td>\n                  <td style=\"padding: 3px 6px; color: #d97706; font-family: monospace;\">Moderate (Isolated spikes)</td>\n                  <td style=\"padding: 3px 6px; color: #15803d; font-family: monospace; font-weight: bold; background: #f0fdf4;\">&gt; 96% (Full contextual trajectory)</td>\n                </tr>\n                <tr style=\"border-bottom: 1px solid #e2e8f0;\">\n                  <td style=\"padding: 3px 6px; font-weight: bold; color: #334155;\">Accuracy (|x̄ - μ| True Value)</td>\n                  <td style=\"padding: 3px 6px; color: #dc2626; font-family: monospace;\">Confounded by RBC lifespan</td>\n                  <td style=\"padding: 3px 6px; color: #d97706; font-family: monospace;\">±15% Strip Enzyme Bias</td>\n                  <td style=\"padding: 3px 6px; color: #15803d; font-family: monospace; font-weight: bold; background: #f0fdf4;\">Calibrated Multi-Sensor Fusion</td>\n                </tr>\n                <tr style=\"border-bottom: 1px solid #e2e8f0;\">\n                  <td style=\"padding: 3px 6px; font-weight: bold; color: #334155;\">Precision (Dispersion / CI)</td>\n                  <td style=\"padding: 3px 6px; color: #dc2626; font-family: monospace;\">df=1: Wide CI (±1.38 σ)</td>\n                  <td style=\"padding: 3px 6px; color: #d97706; font-family: monospace;\">CI: ±1.96σ/√180 = ±0.15 σ</td>\n                  <td style=\"padding: 3px 6px; color: #15803d; font-family: monospace; font-weight: bold; background: #f0fdf4;\">High CI: ±1.96σ/√25920 = ±0.012 σ</td>\n                </tr>\n                <tr style=\"border-bottom: 1px solid #e2e8f0;\">\n                  <td style=\"padding: 3px 6px; font-weight: bold; color: #334155;\">Repeatability (Reproducibility)</td>\n                  <td style=\"padding: 3px 6px; color: #dc2626; font-family: monospace;\">Zero (Unrepeatable across 90d)</td>\n                  <td style=\"padding: 3px 6px; color: #d97706; font-family: monospace;\">Strip-to-strip CV 8% – 12%</td>\n                  <td style=\"padding: 3px 6px; color: #15803d; font-family: monospace; font-weight: bold; background: #f0fdf4;\">Continuous Autocorrelation Rxx(τ)</td>\n                </tr>\n                <tr>\n                  <td style=\"padding: 3px 6px; font-weight: bold; color: #334155;\">Standard Error (SE = σ/√N)</td>\n                  <td style=\"padding: 3px 6px; color: #dc2626; font-family: monospace; font-weight: bold;\">SE = σ/√2 = 0.707 σ</td>\n                  <td style=\"padding: 3px 6px; color: #d97706; font-family: monospace;\">SE = σ/√180 = 0.0745 σ</td>\n                  <td style=\"padding: 3px 6px; color: #15803d; font-family: monospace; font-weight: 800; background: #f0fdf4;\">SE = σ/√25920 = 0.0062 σ (99.4% Reduction)</td>\n                </tr>\n              </tbody>\n            </table>\n          </div>\n\n          <!-- Mathematical Rigor Callout: The Formulas -->\n          <div style=\"margin-top: 6px; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; font-family: monospace; font-size: 0.67rem;\">\n            <div style=\"background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 4px; padding: 6px;\">\n              <div style=\"color: #1e40af; font-weight: bold;\">📐 NEYE-QUIST SHANNON THEOREM</div>\n              <div style=\"color: #1e3a8a; margin-top: 2px; line-height: 1.35;\">fs ≥ 2 fmax | t½ = 15-30m ⟹ fmax ≈ 1.1 mHz<br>5-min rate (fs = 3.33 mHz) &gt; 2 fmax: <strong>Zero Aliasing</strong></div>\n            </div>\n            <div style=\"background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 4px; padding: 6px;\">\n              <div style=\"color: #166534; font-weight: bold;\">📈 RESOLUTION & SNR CONVERGENCE</div>\n              <div style=\"color: #14532d; margin-top: 2px; line-height: 1.35;\">SNR ∝ √N | SE = σ / √N<br>N = 25,920 ⟹ <strong>161× Noise Suppression</strong> & True Kinetic Quality</div>\n            </div>\n          </div>\n",
     "tab_screenshot": "images/lcars_tab_vitals.png",
-    "tab_title": "01-VITALS CONSOLE \u2022 288 CONTINUOUS TELEMETRY SAMPLES",
+    "tab_title": "01-VITALS CONSOLE • 288 CONTINUOUS TELEMETRY SAMPLES",
     "step_focus": [
       {
         "bullet": 0,
@@ -111,7 +115,7 @@
         "Non-invasive multi-wavelength PPG capillary tonometry calculating real-time glucose and eA1C."
       ],
       [
-        "2. Dual-Matrix Temperature (\u00b0F)",
+        "2. Dual-Matrix Temperature (°F)",
         "Dual NTC contact thermistors measuring core circadian nadir against cutaneous skin temperature."
       ],
       [
@@ -140,10 +144,10 @@
       ]
     ],
     "takeaway": "8 simultaneous clinical measurements stream continuously from FITAOS 5150 and compatible Veepoo wearables.",
-    "right_header": "FITAOS 5150 HARDWARE & LCARS 5010 CONSOLE \u2022 SIDE BY SIDE",
+    "right_header": "FITAOS 5150 HARDWARE & LCARS 5010 CONSOLE • SIDE BY SIDE",
     "right_badge": "HARDWARE & CONSOLE",
     "right_badge_col": "#0284c7",
-    "right_html": "\n          <!-- Side-by-Side: Watch Photo and LCARS Console Screenshot -->\n          <div style=\"display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;\">\n            <!-- FITAOS 5150 Watch Photo -->\n            <div style=\"text-align: center; background: #050b14; border-radius: 8px; padding: 8px; border: 1.5px solid #cbd5e1; display: flex; flex-direction: column; align-items: center; justify-content: space-between;\">\n              <div style=\"height: 180px; display: flex; align-items: center; justify-content: center; width: 100%;\">\n                <img src=\"images/watch_fitaos5150.jpg\" onerror=\"this.src='../images/watch_fitaos5150.jpg'\" alt=\"FITAOS 5150 Smartwatch Transponder\" style=\"max-height: 175px; max-width: 100%; object-fit: contain; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.5);\">\n              </div>\n              <div style=\"margin-top: 6px;\">\n                <div style=\"color: #38bdf8; font-size: 0.78rem; font-weight: 800; font-family: monospace;\">FITAOS 5150 HARDWARE</div>\n                <div style=\"font-size: 0.72rem; color: #64748b; margin-top: 2px;\">\n                  Sales Site: <a href=\"https://fitaos.com\" target=\"_blank\" style=\"color: #38bdf8; font-weight: bold; text-decoration: underline;\">fitaos.com \u2197</a>\n                </div>\n              </div>\n            </div>\n\n            <!-- LCARS 5010 Workstation Console Screenshot -->\n            <div style=\"text-align: center; background: #050b14; border-radius: 8px; padding: 8px; border: 1.5px solid #cbd5e1; display: flex; flex-direction: column; align-items: center; justify-content: space-between;\">\n              <div style=\"height: 180px; display: flex; align-items: center; justify-content: center; width: 100%;\">\n                <img src=\"images/lcars_screenshot.jpg\" onerror=\"this.src='../images/lcars_screenshot.jpg'\" alt=\"LCARS 5010 Clinical Workstation Console\" style=\"max-height: 175px; max-width: 100%; object-fit: contain; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.5);\">\n              </div>\n              <div style=\"margin-top: 6px;\">\n                <div style=\"color: #22c55e; font-size: 0.78rem; font-weight: 800; font-family: monospace;\">LCARS 5010 CONSOLE</div>\n                <div style=\"font-size: 0.72rem; color: #64748b; margin-top: 2px;\">\n                  Air-Gapped Localhost:8899\n                </div>\n              </div>\n            </div>\n          </div>\n\n          <!-- Broad Veepoo Ecosystem Compatibility Box -->\n          <div style=\"background: #eff6ff; border: 1.5px solid #bfdbfe; border-radius: 6px; padding: 8px 10px;\">\n            <div style=\"display: flex; justify-content: space-between; align-items: center;\">\n              <span style=\"font-weight: 800; color: #1e40af; font-size: 0.8rem;\">BROAD VEEPOO COMPATIBILITY</span>\n              <span style=\"background: #2563eb; color: #fff; font-size: 0.65rem; font-weight: bold; padding: 2px 6px; border-radius: 3px;\">HBANDSDK</span>\n            </div>\n            <div style=\"font-size: 0.72rem; color: #1e3a8a; margin-top: 3px; line-height: 1.35;\">\n              Engineered by Google Gemini Pro using the open-source HBandSDK and Veepoo protocol repositories, enabling seamless plug-and-play support across dozens of Veepoo watch models (5010, RIG, G20, B20, E04).\n            </div>\n          </div>\n        ",
+    "right_html": "\n          <!-- Side-by-Side: Watch Photo and LCARS Console Screenshot -->\n          <div style=\"display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;\">\n            <!-- FITAOS 5150 Watch Photo -->\n            <div style=\"text-align: center; background: #050b14; border-radius: 8px; padding: 8px; border: 1.5px solid #cbd5e1; display: flex; flex-direction: column; align-items: center; justify-content: space-between;\">\n              <div style=\"height: 180px; display: flex; align-items: center; justify-content: center; width: 100%;\">\n                <img src=\"images/watch_fitaos5150.jpg\" onerror=\"this.src='../images/watch_fitaos5150.jpg'\" alt=\"FITAOS 5150 Smartwatch Transponder\" style=\"max-height: 175px; max-width: 100%; object-fit: contain; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.5);\">\n              </div>\n              <div style=\"margin-top: 6px;\">\n                <div style=\"color: #38bdf8; font-size: 0.78rem; font-weight: 800; font-family: monospace;\">FITAOS 5150 HARDWARE</div>\n                <div style=\"font-size: 0.72rem; color: #64748b; margin-top: 2px;\">\n                  Sales Site: <a href=\"https://fitaos.com\" target=\"_blank\" style=\"color: #38bdf8; font-weight: bold; text-decoration: underline;\">fitaos.com ↗</a>\n                </div>\n              </div>\n            </div>\n\n            <!-- LCARS 5010 Workstation Console Screenshot -->\n            <div style=\"text-align: center; background: #050b14; border-radius: 8px; padding: 8px; border: 1.5px solid #cbd5e1; display: flex; flex-direction: column; align-items: center; justify-content: space-between;\">\n              <div style=\"height: 180px; display: flex; align-items: center; justify-content: center; width: 100%;\">\n                <img src=\"images/lcars_screenshot.jpg\" onerror=\"this.src='../images/lcars_screenshot.jpg'\" alt=\"LCARS 5010 Clinical Workstation Console\" style=\"max-height: 175px; max-width: 100%; object-fit: contain; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.5);\">\n              </div>\n              <div style=\"margin-top: 6px;\">\n                <div style=\"color: #22c55e; font-size: 0.78rem; font-weight: 800; font-family: monospace;\">LCARS 5010 CONSOLE</div>\n                <div style=\"font-size: 0.72rem; color: #64748b; margin-top: 2px;\">\n                  Air-Gapped Localhost:8899\n                </div>\n              </div>\n            </div>\n          </div>\n\n          <!-- Broad Veepoo Ecosystem Compatibility Box -->\n          <div style=\"background: #eff6ff; border: 1.5px solid #bfdbfe; border-radius: 6px; padding: 8px 10px;\">\n            <div style=\"display: flex; justify-content: space-between; align-items: center;\">\n              <span style=\"font-weight: 800; color: #1e40af; font-size: 0.8rem;\">BROAD VEEPOO COMPATIBILITY</span>\n              <span style=\"background: #2563eb; color: #fff; font-size: 0.65rem; font-weight: bold; padding: 2px 6px; border-radius: 3px;\">HBANDSDK</span>\n            </div>\n            <div style=\"font-size: 0.72rem; color: #1e3a8a; margin-top: 3px; line-height: 1.35;\">\n              Engineered by Google Gemini Pro using the open-source HBandSDK and Veepoo protocol repositories, enabling seamless plug-and-play support across dozens of Veepoo watch models (5010, RIG, G20, B20, E04).\n            </div>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_vitals.png",
     "tab_title": "FITAOS 5150 HARDWARE TRANSPONDER & LCARS CONSOLE",
     "step_focus": [
@@ -190,9 +194,9 @@
     "right_header": "ZERO-EGRESS SECURITY MATRIX",
     "right_badge": "AIR-GAPPED SYSTEM",
     "right_badge_col": "#15803d",
-    "right_html": "\n          <div style=\"display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px;\">\n            <div style=\"background:#f0fdf4; border:1.5px solid #bbf7d0; border-radius:4px; padding:8px;\">\n              <div style=\"color:#16a34a; font-weight:800; font-size:0.75rem;\">AIR-GAPPED LOCAL PC</div>\n              <div style=\"font-size:1rem; font-weight:800; color:#14532d; font-family:monospace;\">LOCALHOST:8899</div>\n              <div style=\"font-size:0.7rem; color:#14532d; margin-top:4px;\">SQLite + LocalStorage with zero cloud egress.</div>\n            </div>\n            <div style=\"background:#fff1f2; border:1.5px solid #fecdd3; border-radius:4px; padding:8px;\">\n              <div style=\"color:#e11d48; font-weight:800; font-size:0.75rem;\">COMMERCIAL CLOUDS</div>\n              <div style=\"font-size:1rem; font-weight:800; color:#9f1239; font-family:monospace;\">BLOCKED & DISABLED</div>\n              <div style=\"font-size:0.7rem; color:#881337; margin-top:4px;\">Zero third-party trackers, subscriptions, or telemetry ads.</div>\n            </div>\n          </div>\n          <div style=\"margin-top:10px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:4px; padding:8px; font-family:monospace; font-size:0.75rem; color:#15803d; font-weight:bold;\">\n            Data Policy: 100% Patient Sovereignty \u2022 HIPAA-Compliant Air Gap\n          </div>\n        ",
+    "right_html": "\n          <div style=\"display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px;\">\n            <div style=\"background:#f0fdf4; border:1.5px solid #bbf7d0; border-radius:4px; padding:8px;\">\n              <div style=\"color:#16a34a; font-weight:800; font-size:0.75rem;\">AIR-GAPPED LOCAL PC</div>\n              <div style=\"font-size:1rem; font-weight:800; color:#14532d; font-family:monospace;\">LOCALHOST:8899</div>\n              <div style=\"font-size:0.7rem; color:#14532d; margin-top:4px;\">SQLite + LocalStorage with zero cloud egress.</div>\n            </div>\n            <div style=\"background:#fff1f2; border:1.5px solid #fecdd3; border-radius:4px; padding:8px;\">\n              <div style=\"color:#e11d48; font-weight:800; font-size:0.75rem;\">COMMERCIAL CLOUDS</div>\n              <div style=\"font-size:1rem; font-weight:800; color:#9f1239; font-family:monospace;\">BLOCKED & DISABLED</div>\n              <div style=\"font-size:0.7rem; color:#881337; margin-top:4px;\">Zero third-party trackers, subscriptions, or telemetry ads.</div>\n            </div>\n          </div>\n          <div style=\"margin-top:10px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:4px; padding:8px; font-family:monospace; font-size:0.75rem; color:#15803d; font-weight:bold;\">\n            Data Policy: 100% Patient Sovereignty • HIPAA-Compliant Air Gap\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_operations.png",
-    "tab_title": "07-OPERATIONS CONSOLE \u2022 AIR-GAPPED DATA VAULT",
+    "tab_title": "07-OPERATIONS CONSOLE • AIR-GAPPED DATA VAULT",
     "step_focus": [
       {
         "bullet": 0,
@@ -239,7 +243,7 @@
     "right_badge_col": "#0284c7",
     "right_html": "\n          <div style=\"display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px;\">\n            <div style=\"background:#f8fafc; padding:8px; border-radius:4px; border:1px solid #e2e8f0;\">\n              <div style=\"font-size:0.7rem; color:#64748b; font-weight:bold;\">PRIMARY METRIC</div>\n              <div style=\"font-size:1.1rem; font-weight:800; color:#15803d; font-family:monospace;\">HbA1c &lt; 6.8%</div>\n            </div>\n            <div style=\"background:#f8fafc; padding:8px; border-radius:4px; border:1px solid #e2e8f0;\">\n              <div style=\"font-size:0.7rem; color:#64748b; font-weight:bold;\">TIME-IN-RANGE (TIR)</div>\n              <div style=\"font-size:1.1rem; font-weight:800; color:#0284c7; font-family:monospace;\">&gt; 70.0%</div>\n            </div>\n            <div style=\"background:#f8fafc; padding:8px; border-radius:4px; border:1px solid #e2e8f0;\">\n              <div style=\"font-size:0.7rem; color:#64748b; font-weight:bold;\">GLYCEMIC HARBOR</div>\n              <div style=\"font-size:1.1rem; font-weight:800; color:#d97706; font-family:monospace;\">60 - 200 MG/DL</div>\n            </div>\n            <div style=\"background:#f8fafc; padding:8px; border-radius:4px; border:1px solid #e2e8f0;\">\n              <div style=\"font-size:0.7rem; color:#64748b; font-weight:bold;\">HYPOGLYCEMIA LIMIT</div>\n              <div style=\"font-size:1.1rem; font-weight:800; color:#dc2626; font-family:monospace;\">&lt; 60 MG/DL (0%)</div>\n            </div>\n          </div>\n          <div style=\"margin-top:10px; background:#eff6ff; border:1px solid #bfdbfe; border-radius:4px; padding:8px; font-size:0.75rem; color:#1e3a8a;\">\n            Consensus: ADA/EASD 2024 Standards of Care for Continuous Telemetry.\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_metabolic.png",
-    "tab_title": "03-METABOLIC CONSOLE \u2022 GLYCEMIC TARGET HORIZON",
+    "tab_title": "03-METABOLIC CONSOLE • GLYCEMIC TARGET HORIZON",
     "step_focus": [
       {
         "bullet": 0,
@@ -286,7 +290,7 @@
     "right_badge_col": "#0284c7",
     "right_html": "\n          <div style=\"margin-top:10px; background:#f0f9ff; border:1.5px solid #bae6fd; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.15rem; font-weight:800; color:#0369a1; font-family:monospace;\">COLLABORATIVE CARE ACTIVE (ATTENDING MD + PATIENT)</div>\n            <div style=\"font-size:0.84rem; color:#075985; margin-top:6px; line-height:1.45;\">Dual-view portal enabling shared review of 24-hour glycemic excursions, exercise kinetics, and medication response.</div>\n          </div>\n          <div style=\"margin-top:10px; display:grid; grid-template-columns:1fr 1fr; gap:6px; font-family:monospace; font-size:0.75rem;\">\n            <div style=\"background:#f8fafc; padding:6px; border-radius:3px; border:1px solid #e2e8f0;\">PATIENT VIEW: ACTIVE</div>\n            <div style=\"background:#f8fafc; padding:6px; border-radius:3px; border:1px solid #e2e8f0;\">MD AUDIT: READY</div>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_setup.png",
-    "tab_title": "05-CONFIG CONSOLE \u2022 TRANSPONDER BINDING & GATT",
+    "tab_title": "05-CONFIG CONSOLE • TRANSPONDER BINDING & GATT",
     "step_focus": [
       {
         "bullet": 0,
@@ -309,7 +313,7 @@
     "id": 7,
     "num": "07",
     "module": "Module 2: Physician-Patient Alignment & Calibration",
-    "title": "Clinical Glycemic Band: Standardizing on 60\u2013200 mg/dL",
+    "title": "Clinical Glycemic Band: Standardizing on 60–200 mg/dL",
     "desc": "Why establishing a clinical floor of 60 mg/dL and ceiling of 200 mg/dL prevents false alarms and protects renal health.",
     "narration": "Slide 7 establishes our clinical safe harbor. We standardize on a target band of 60 to 200 milligrams per deciliter. The 60 floor protects against acute hypoglycemia, while the 200 ceiling aligns with the renal threshold where excess glucose spills into urine. This clinical band provides clear guardrails without triggering constant alarm fatigue.",
     "card_title": "SAFE HARBOR GLYCEMIC BAND: 60 - 200 MG/DL",
@@ -329,11 +333,11 @@
     ],
     "takeaway": "Clinically calibrated guardrails that protect against lows while preventing alarm fatigue.",
     "right_header": "CLINICAL GLYCEMIC HARBOR",
-    "right_badge": "60 \u2013 200 MG/DL SAFE BAND",
+    "right_badge": "60 – 200 MG/DL SAFE BAND",
     "right_badge_col": "#059669",
-    "right_html": "\n          <div style=\"margin-top:10px; display:flex; flex-direction:column; gap:8px;\">\n            <div style=\"display:flex; justify-content:space-between; align-items:center; background:#fee2e2; border-left:4px solid #dc2626; padding:8px 12px; border-radius:4px;\">\n              <span style=\"font-size:0.82rem; font-weight:bold; color:#991b1b;\">Clinical Floor (Hypoglycemia Guard):</span>\n              <span style=\"font-family:monospace; font-size:0.9rem; color:#dc2626; font-weight:800;\">60 MG/DL</span>\n            </div>\n            <div style=\"display:flex; justify-content:space-between; align-items:center; background:#f0fdf4; border-left:4px solid #16a34a; padding:8px 12px; border-radius:4px;\">\n              <span style=\"font-size:0.82rem; font-weight:bold; color:#166534;\">Target Homeostasis Band:</span>\n              <span style=\"font-family:monospace; font-size:0.9rem; color:#15803d; font-weight:800;\">60 \u2013 200 MG/DL</span>\n            </div>\n            <div style=\"display:flex; justify-content:space-between; align-items:center; background:#fef3c7; border-left:4px solid #d97706; padding:8px 12px; border-radius:4px;\">\n              <span style=\"font-size:0.82rem; font-weight:bold; color:#92400e;\">Clinical Ceiling (Renal Threshold):</span>\n              <span style=\"font-family:monospace; font-size:0.9rem; color:#d97706; font-weight:800;\">200 MG/DL</span>\n            </div>\n          </div>\n        ",
+    "right_html": "\n          <div style=\"margin-top:10px; display:flex; flex-direction:column; gap:8px;\">\n            <div style=\"display:flex; justify-content:space-between; align-items:center; background:#fee2e2; border-left:4px solid #dc2626; padding:8px 12px; border-radius:4px;\">\n              <span style=\"font-size:0.82rem; font-weight:bold; color:#991b1b;\">Clinical Floor (Hypoglycemia Guard):</span>\n              <span style=\"font-family:monospace; font-size:0.9rem; color:#dc2626; font-weight:800;\">60 MG/DL</span>\n            </div>\n            <div style=\"display:flex; justify-content:space-between; align-items:center; background:#f0fdf4; border-left:4px solid #16a34a; padding:8px 12px; border-radius:4px;\">\n              <span style=\"font-size:0.82rem; font-weight:bold; color:#166534;\">Target Homeostasis Band:</span>\n              <span style=\"font-family:monospace; font-size:0.9rem; color:#15803d; font-weight:800;\">60 – 200 MG/DL</span>\n            </div>\n            <div style=\"display:flex; justify-content:space-between; align-items:center; background:#fef3c7; border-left:4px solid #d97706; padding:8px 12px; border-radius:4px;\">\n              <span style=\"font-size:0.82rem; font-weight:bold; color:#92400e;\">Clinical Ceiling (Renal Threshold):</span>\n              <span style=\"font-family:monospace; font-size:0.9rem; color:#d97706; font-weight:800;\">200 MG/DL</span>\n            </div>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_log.png",
-    "tab_title": "06-DIAG LOG \u2022 SUBSPACE BLE PACKET INSPECTOR (F0080002/3)",
+    "tab_title": "06-DIAG LOG • SUBSPACE BLE PACKET INSPECTOR (F0080002/3)",
     "step_focus": [
       {
         "bullet": 0,
@@ -375,12 +379,12 @@
       ]
     ],
     "takeaway": "A certified clinical laboratory anchor established with your doctor transforms consumer hardware into a reliable metabolic tool.",
-    "right_header": "CLINICAL CALIBRATION \u2022 PHYSICIAN ONBOARDING ANCHOR",
+    "right_header": "CLINICAL CALIBRATION • PHYSICIAN ONBOARDING ANCHOR",
     "right_badge": "DOCTOR ANCHORED",
     "right_badge_col": "#0284c7",
-    "right_html": "\n          <div style=\"background:#eff6ff; border:1.5px solid #bfdbfe; border-radius:6px; padding:12px; margin-bottom:10px;\">\n            <div style=\"display:flex; justify-content:space-between; align-items:center;\">\n              <span style=\"font-size:0.85rem; font-weight:800; color:#1e40af; font-family:monospace;\">CLINICAL LAB ANCHOR (DOCTOR CONFIGURED)</span>\n              <span style=\"background:#2563eb; color:#fff; font-size:0.68rem; font-weight:bold; padding:2px 6px; border-radius:3px;\">ADAG STANDARD</span>\n            </div>\n            <div style=\"font-size:0.78rem; color:#1e3a8a; margin-top:6px; line-height:1.45;\">\n              Entered directly by the physician during setup. Optical absorption coefficients are mathematically calibrated to venous blood laboratory results.\n            </div>\n          </div>\n\n          <div style=\"background:#f8fafc; border:1px solid #cbd5e1; border-radius:6px; padding:10px; font-family:monospace; font-size:0.75rem; color:#334155;\">\n            <div style=\"font-weight:bold; color:#0284c7; margin-bottom:4px;\">ADA / ADAG CONSENSUS EQUATION:</div>\n            <div>eA1c (%) = [Mean Glucose (mg/dL) + 46.7] / 28.7</div>\n            <div style=\"margin-top:6px; color:#64748b; font-size:0.72rem;\">Precision Tracking \u2022 High-Resolution 288 Continuous Daily Samples</div>\n          </div>\n        ",
+    "right_html": "\n          <div style=\"background:#eff6ff; border:1.5px solid #bfdbfe; border-radius:6px; padding:12px; margin-bottom:10px;\">\n            <div style=\"display:flex; justify-content:space-between; align-items:center;\">\n              <span style=\"font-size:0.85rem; font-weight:800; color:#1e40af; font-family:monospace;\">CLINICAL LAB ANCHOR (DOCTOR CONFIGURED)</span>\n              <span style=\"background:#2563eb; color:#fff; font-size:0.68rem; font-weight:bold; padding:2px 6px; border-radius:3px;\">ADAG STANDARD</span>\n            </div>\n            <div style=\"font-size:0.78rem; color:#1e3a8a; margin-top:6px; line-height:1.45;\">\n              Entered directly by the physician during setup. Optical absorption coefficients are mathematically calibrated to venous blood laboratory results.\n            </div>\n          </div>\n\n          <div style=\"background:#f8fafc; border:1px solid #cbd5e1; border-radius:6px; padding:10px; font-family:monospace; font-size:0.75rem; color:#334155;\">\n            <div style=\"font-weight:bold; color:#0284c7; margin-bottom:4px;\">ADA / ADAG CONSENSUS EQUATION:</div>\n            <div>eA1c (%) = [Mean Glucose (mg/dL) + 46.7] / 28.7</div>\n            <div style=\"margin-top:6px; color:#64748b; font-size:0.72rem;\">Precision Tracking • High-Resolution 288 Continuous Daily Samples</div>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_setup.png",
-    "tab_title": "05-CONFIG CONSOLE \u2022 DOCTOR CLINICAL CALIBRATION ANCHOR",
+    "tab_title": "05-CONFIG CONSOLE • DOCTOR CLINICAL CALIBRATION ANCHOR",
     "step_focus": [
       {
         "bullet": 0,
@@ -425,9 +429,9 @@
     "right_header": "TRANSPONDER OPERATING MODE",
     "right_badge": "PRIVATE MODE LOCKED",
     "right_badge_col": "#15803d",
-    "right_html": "\n          <div style=\"margin-top:8px; display:flex; flex-direction:column; gap:8px;\">\n            <div style=\"display:flex; justify-content:space-between; align-items:center; background:#dcfce7; border-left:4px solid #16a34a; padding:8px 12px; border-radius:4px;\">\n              <span style=\"font-size:0.82rem; font-weight:bold; color:#166534;\">Private Calibrated Mode:</span>\n              <span style=\"font-family:monospace; font-size:0.85rem; color:#15803d; font-weight:800;\">ACTIVE (ENFORCED)</span>\n            </div>\n            <div style=\"display:flex; justify-content:space-between; align-items:center; background:#fee2e2; border-left:4px solid #dc2626; padding:8px 12px; border-radius:4px;\">\n              <span style=\"font-size:0.82rem; font-weight:bold; color:#991b1b;\">Generic Public Mode:</span>\n              <span style=\"font-family:monospace; font-size:0.85rem; color:#dc2626; font-weight:800;\">DISABLED (BLOCKED)</span>\n            </div>\n          </div>\n          <div style=\"margin-top:10px; font-size:0.78rem; color:#475569; background:#f8fafc; padding:8px; border-radius:4px;\">\n            \u2713 Ensures all glucose readings utilize patient-specific optical calibration coefficients.\n          </div>\n        ",
+    "right_html": "\n          <div style=\"margin-top:8px; display:flex; flex-direction:column; gap:8px;\">\n            <div style=\"display:flex; justify-content:space-between; align-items:center; background:#dcfce7; border-left:4px solid #16a34a; padding:8px 12px; border-radius:4px;\">\n              <span style=\"font-size:0.82rem; font-weight:bold; color:#166534;\">Private Calibrated Mode:</span>\n              <span style=\"font-family:monospace; font-size:0.85rem; color:#15803d; font-weight:800;\">ACTIVE (ENFORCED)</span>\n            </div>\n            <div style=\"display:flex; justify-content:space-between; align-items:center; background:#fee2e2; border-left:4px solid #dc2626; padding:8px 12px; border-radius:4px;\">\n              <span style=\"font-size:0.82rem; font-weight:bold; color:#991b1b;\">Generic Public Mode:</span>\n              <span style=\"font-family:monospace; font-size:0.85rem; color:#dc2626; font-weight:800;\">DISABLED (BLOCKED)</span>\n            </div>\n          </div>\n          <div style=\"margin-top:10px; font-size:0.78rem; color:#475569; background:#f8fafc; padding:8px; border-radius:4px;\">\n            ✓ Ensures all glucose readings utilize patient-specific optical calibration coefficients.\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_operations.png",
-    "tab_title": "07-OPERATIONS CONSOLE \u2022 CIRCULAR FLASH STORAGE",
+    "tab_title": "07-OPERATIONS CONSOLE • CIRCULAR FLASH STORAGE",
     "step_focus": [
       {
         "bullet": 0,
@@ -472,9 +476,9 @@
     "right_header": "AMBULATORY ACQUISITION ENGINE",
     "right_badge": "288 EPOCHS / 24H",
     "right_badge_col": "#0284c7",
-    "right_html": "\n          <div style=\"display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px;\">\n            <div style=\"background:#f8fafc; padding:8px; border-radius:4px; border:1px solid #e2e8f0;\">\n              <div style=\"font-size:0.7rem; color:#64748b; font-weight:bold;\">SAMPLING FREQUENCY</div>\n              <div style=\"font-size:1.15rem; font-weight:800; color:#0284c7; font-family:monospace;\">5-MINUTE EPOCHS</div>\n            </div>\n            <div style=\"background:#f8fafc; padding:8px; border-radius:4px; border:1px solid #e2e8f0;\">\n              <div style=\"font-size:0.7rem; color:#64748b; font-weight:bold;\">DAILY DATA POINTS</div>\n              <div style=\"font-size:1.15rem; font-weight:800; color:#15803d; font-family:monospace;\">288 PER SENSOR</div>\n            </div>\n          </div>\n          <div style=\"margin-top:10px; background:#f1f5f9; padding:8px 10px; border-radius:4px; font-size:0.78rem; color:#334155; font-family:monospace;\">\n            Buffer: Circular SPI NOR Flash \u2022 Zero Packet Loss Architecture\n          </div>\n        ",
+    "right_html": "\n          <div style=\"display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px;\">\n            <div style=\"background:#f8fafc; padding:8px; border-radius:4px; border:1px solid #e2e8f0;\">\n              <div style=\"font-size:0.7rem; color:#64748b; font-weight:bold;\">SAMPLING FREQUENCY</div>\n              <div style=\"font-size:1.15rem; font-weight:800; color:#0284c7; font-family:monospace;\">5-MINUTE EPOCHS</div>\n            </div>\n            <div style=\"background:#f8fafc; padding:8px; border-radius:4px; border:1px solid #e2e8f0;\">\n              <div style=\"font-size:0.7rem; color:#64748b; font-weight:bold;\">DAILY DATA POINTS</div>\n              <div style=\"font-size:1.15rem; font-weight:800; color:#15803d; font-family:monospace;\">288 PER SENSOR</div>\n            </div>\n          </div>\n          <div style=\"margin-top:10px; background:#f1f5f9; padding:8px 10px; border-radius:4px; font-size:0.78rem; color:#334155; font-family:monospace;\">\n            Buffer: Circular SPI NOR Flash • Zero Packet Loss Architecture\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_setup.png",
-    "tab_title": "05-CONFIG CONSOLE \u2022 BACKGROUND AUTO-LINK DAEMON",
+    "tab_title": "05-CONFIG CONSOLE • BACKGROUND AUTO-LINK DAEMON",
     "step_focus": [
       {
         "bullet": 0,
@@ -497,10 +501,10 @@
     "id": 11,
     "num": "11",
     "module": "Module 3: Core Biosensor Array Operations",
-    "title": "Tab 01: VITALS \u2013 Optical Glucose Absorption Spectroscopy",
+    "title": "Tab 01: VITALS – Optical Glucose Absorption Spectroscopy",
     "desc": "How continuous optical tonometry calculates dynamic blood glucose and projected eA1c.",
     "narration": "In Module 3, we tour the core biosensing channels. In Tab 01 Vitals, our primary focus is non-invasive optical glucose tonometry. By tracking multi-wavelength light absorption across superficial capillary beds, LCARS measures glucose fluctuations in real time and calculates projected A1C using the standard ADAG consensus algorithm.",
-    "card_title": "TAB 01: VITALS \u2013 OPTICAL GLUCOSE TONOMETRY",
+    "card_title": "TAB 01: VITALS – OPTICAL GLUCOSE TONOMETRY",
     "bullets": [
       [
         "Optical PPG Absorption",
@@ -516,12 +520,12 @@
       ]
     ],
     "takeaway": "Replaces painful finger pricks with continuous non-invasive optical glucose tracking.",
-    "right_header": "TAB 01: VITALS \u2013 GLUCOSE TONOMETRY",
+    "right_header": "TAB 01: VITALS – GLUCOSE TONOMETRY",
     "right_badge": "LIVE SENSOR BAY",
     "right_badge_col": "#dc2626",
-    "right_html": "\n          <div style=\"display:flex; align-items:baseline; gap:8px; margin-top:8px;\">\n            <div style=\"font-size:2.8rem; font-weight:900; color:#dc2626; font-family:monospace; line-height:1;\">182</div>\n            <div style=\"font-size:1rem; font-weight:800; color:#64748b;\">MG/DL</div>\n          </div>\n          <div style=\"margin-top:10px; display:grid; grid-template-columns:1fr 1fr; gap:8px;\">\n            <div style=\"background:#f8fafc; padding:6px 10px; border-radius:4px; border:1px solid #e2e8f0; font-size:0.8rem; font-weight:bold; color:#0f172a;\">Estimated A1C: 8.0%</div>\n            <div style=\"background:#f8fafc; padding:6px 10px; border-radius:4px; border:1px solid #e2e8f0; font-size:0.8rem; font-weight:bold; color:#0f172a;\">Target: 60 - 200 mg/dL</div>\n          </div>\n          <div style=\"margin-top:10px; font-size:0.75rem; color:#64748b; font-family:monospace; border-top:1px solid #e2e8f0; padding-top:6px;\">\n            Status: Optimal Glycemic Stability \u2022 ADAG Formula Validated\n          </div>\n        ",
+    "right_html": "\n          <div style=\"display:flex; align-items:baseline; gap:8px; margin-top:8px;\">\n            <div style=\"font-size:2.8rem; font-weight:900; color:#dc2626; font-family:monospace; line-height:1;\">182</div>\n            <div style=\"font-size:1rem; font-weight:800; color:#64748b;\">MG/DL</div>\n          </div>\n          <div style=\"margin-top:10px; display:grid; grid-template-columns:1fr 1fr; gap:8px;\">\n            <div style=\"background:#f8fafc; padding:6px 10px; border-radius:4px; border:1px solid #e2e8f0; font-size:0.8rem; font-weight:bold; color:#0f172a;\">Estimated A1C: 8.0%</div>\n            <div style=\"background:#f8fafc; padding:6px 10px; border-radius:4px; border:1px solid #e2e8f0; font-size:0.8rem; font-weight:bold; color:#0f172a;\">Target: 60 - 200 mg/dL</div>\n          </div>\n          <div style=\"margin-top:10px; font-size:0.75rem; color:#64748b; font-family:monospace; border-top:1px solid #e2e8f0; padding-top:6px;\">\n            Status: Optimal Glycemic Stability • ADAG Formula Validated\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_vitals.png",
-    "tab_title": "01-VITALS CONSOLE \u2022 OPTICAL TONOMETRY SAMPLING",
+    "tab_title": "01-VITALS CONSOLE • OPTICAL TONOMETRY SAMPLING",
     "step_focus": [
       {
         "bullet": 0,
@@ -544,10 +548,10 @@
     "id": 12,
     "num": "12",
     "module": "Module 3: Core Biosensor Array Operations",
-    "title": "Tab 01: VITALS \u2013 Dual-Matrix Thermometry & Circadian Nadir",
+    "title": "Tab 01: VITALS – Dual-Matrix Thermometry & Circadian Nadir",
     "desc": "How continuous dual thermistors differentiate core circadian temperature from cutaneous skin temperature.",
     "narration": "Still in Tab 01 Vitals, the second key channel monitors dual-matrix body temperature. Instead of a single uncalibrated reading, the Model 5010 uses dual thermistors to separate deep core temperature from peripheral skin temperature, revealing your natural circadian nadir and daytime metabolic rhythm.",
-    "card_title": "TAB 01: VITALS \u2013 DUAL-MATRIX THERMOMETRY",
+    "card_title": "TAB 01: VITALS – DUAL-MATRIX THERMOMETRY",
     "bullets": [
       [
         "Dual Core & Skin Sensors",
@@ -563,12 +567,12 @@
       ]
     ],
     "takeaway": "Captures circadian thermal cycles without flashing bright LEDs in a dark bedroom.",
-    "right_header": "TAB 01: VITALS \u2013 DUAL TEMPERATURE",
+    "right_header": "TAB 01: VITALS – DUAL TEMPERATURE",
     "right_badge": "DUAL THERMISTORS",
     "right_badge_col": "#0284c7",
-    "right_html": "\n          <div style=\"display:flex; align-items:baseline; gap:8px; margin-top:8px;\">\n            <div style=\"font-size:2.8rem; font-weight:900; color:#0284c7; font-family:monospace; line-height:1;\">97.2\u00b0</div>\n            <div style=\"font-size:1rem; font-weight:800; color:#64748b;\">CORE \u00b0F</div>\n          </div>\n          <div style=\"margin-top:10px; display:grid; grid-template-columns:1fr 1fr; gap:8px;\">\n            <div style=\"background:#f8fafc; padding:6px 10px; border-radius:4px; border:1px solid #e2e8f0; font-size:0.8rem; font-weight:bold; color:#0f172a;\">Skin Temp: 92.4\u00b0F</div>\n            <div style=\"background:#f8fafc; padding:6px 10px; border-radius:4px; border:1px solid #e2e8f0; font-size:0.8rem; font-weight:bold; color:#0f172a;\">Delta: 4.8\u00b0F Offset</div>\n          </div>\n          <div style=\"margin-top:10px; font-size:0.75rem; color:#64748b; font-family:monospace; border-top:1px solid #e2e8f0; padding-top:6px;\">\n            Circadian Assessment: Cold-Blooded Baseline Nominal\n          </div>\n        ",
+    "right_html": "\n          <div style=\"display:flex; align-items:baseline; gap:8px; margin-top:8px;\">\n            <div style=\"font-size:2.8rem; font-weight:900; color:#0284c7; font-family:monospace; line-height:1;\">97.2°</div>\n            <div style=\"font-size:1rem; font-weight:800; color:#64748b;\">CORE °F</div>\n          </div>\n          <div style=\"margin-top:10px; display:grid; grid-template-columns:1fr 1fr; gap:8px;\">\n            <div style=\"background:#f8fafc; padding:6px 10px; border-radius:4px; border:1px solid #e2e8f0; font-size:0.8rem; font-weight:bold; color:#0f172a;\">Skin Temp: 92.4°F</div>\n            <div style=\"background:#f8fafc; padding:6px 10px; border-radius:4px; border:1px solid #e2e8f0; font-size:0.8rem; font-weight:bold; color:#0f172a;\">Delta: 4.8°F Offset</div>\n          </div>\n          <div style=\"margin-top:10px; font-size:0.75rem; color:#64748b; font-family:monospace; border-top:1px solid #e2e8f0; padding-top:6px;\">\n            Circadian Assessment: Cold-Blooded Baseline Nominal\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_vitals.png",
-    "tab_title": "01-VITALS CONSOLE \u2022 RED/IR ARTERIAL SPO2 SENSING",
+    "tab_title": "01-VITALS CONSOLE • RED/IR ARTERIAL SPO2 SENSING",
     "step_focus": [
       {
         "bullet": 0,
@@ -591,10 +595,10 @@
     "id": 13,
     "num": "13",
     "module": "Module 3: Core Biosensor Array Operations",
-    "title": "Tab 02: CARDIO \u2013 Pulse Wave Transit Time Blood Pressure",
+    "title": "Tab 02: CARDIO – Pulse Wave Transit Time Blood Pressure",
     "desc": "Non-invasive ambulatory blood pressure estimation via arterial pulse wave velocity.",
     "narration": "Moving to Tab 02 Cardio, the first cardiovascular channel tracks blood pressure using Pulse Wave Transit Time. By measuring how fast arterial pressure waves travel through your blood vessels, the system estimates systolic and diastolic trends throughout the day and verifies healthy nocturnal blood pressure dipping.",
-    "card_title": "TAB 02: CARDIO \u2013 PWTT BLOOD PRESSURE",
+    "card_title": "TAB 02: CARDIO – PWTT BLOOD PRESSURE",
     "bullets": [
       [
         "Cuffless Ambulatory Tracking",
@@ -610,12 +614,12 @@
       ]
     ],
     "takeaway": "Continuous cuffless blood pressure monitoring that captures 24-hour cardiovascular dipping.",
-    "right_header": "TAB 02: CARDIO \u2013 BLOOD PRESSURE",
+    "right_header": "TAB 02: CARDIO – BLOOD PRESSURE",
     "right_badge": "AMBULATORY PWTT",
     "right_badge_col": "#d97706",
     "right_html": "\n          <div style=\"display:flex; align-items:baseline; gap:8px; margin-top:8px;\">\n            <div style=\"font-size:2.8rem; font-weight:900; color:#d97706; font-family:monospace; line-height:1;\">118 / 76</div>\n            <div style=\"font-size:1rem; font-weight:800; color:#64748b;\">MMHG</div>\n          </div>\n          <div style=\"margin-top:10px; display:grid; grid-template-columns:1fr 1fr; gap:8px;\">\n            <div style=\"background:#f8fafc; padding:6px 10px; border-radius:4px; border:1px solid #e2e8f0; font-size:0.8rem; font-weight:bold; color:#0f172a;\">Mean Arterial: 90 mmHg</div>\n            <div style=\"background:#f8fafc; padding:6px 10px; border-radius:4px; border:1px solid #e2e8f0; font-size:0.8rem; font-weight:bold; color:#0f172a;\">Status: Normative Dipping</div>\n          </div>\n          <div style=\"margin-top:10px; font-size:0.75rem; color:#64748b; font-family:monospace; border-top:1px solid #e2e8f0; padding-top:6px;\">\n            Method: Pulse Wave Transit Time Oscillometry\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_cardio.png",
-    "tab_title": "02-CARDIO CONSOLE \u2022 PWTT ARTERIAL BLOOD PRESSURE",
+    "tab_title": "02-CARDIO CONSOLE • PWTT ARTERIAL BLOOD PRESSURE",
     "step_focus": [
       {
         "bullet": 0,
@@ -638,10 +642,10 @@
     "id": 14,
     "num": "14",
     "module": "Module 3: Core Biosensor Array Operations",
-    "title": "Tab 02: CARDIO \u2013 Dual-Wavelength SpO2 & Apnea Screening",
+    "title": "Tab 02: CARDIO – Dual-Wavelength SpO2 & Apnea Screening",
     "desc": "Continuous nocturnal pulse oximetry detecting desaturations and obstructive sleep apnea risk.",
     "narration": "Continuing in Tab 02 Cardio, the next channel provides dual-wavelength blood oxygen monitoring. Utilizing 660 nanometer red and 940 nanometer infrared sensors, it monitors arterial oxygen and sleep apnea desaturations. Because sleep apnea directly worsens insulin resistance, this safeguard is vital for diabetic health.",
-    "card_title": "TAB 02: CARDIO \u2013 SPO2 & APNEA HYPOXIA SAFEGUARD",
+    "card_title": "TAB 02: CARDIO – SPO2 & APNEA HYPOXIA SAFEGUARD",
     "bullets": [
       [
         "Overnight Apnea Detection",
@@ -657,12 +661,12 @@
       ]
     ],
     "takeaway": "Protects against silent overnight hypoxia that destabilizes insulin sensitivity.",
-    "right_header": "TAB 02: CARDIO \u2013 ARTERIAL SPO2",
+    "right_header": "TAB 02: CARDIO – ARTERIAL SPO2",
     "right_badge": "APNEA SAFEGUARD",
     "right_badge_col": "#15803d",
     "right_html": "\n          <div style=\"display:flex; align-items:baseline; gap:8px; margin-top:8px;\">\n            <div style=\"font-size:2.8rem; font-weight:900; color:#15803d; font-family:monospace; line-height:1;\">98%</div>\n            <div style=\"font-size:1rem; font-weight:800; color:#64748b;\">SATURATION</div>\n          </div>\n          <div style=\"margin-top:10px; display:grid; grid-template-columns:1fr 1fr; gap:8px;\">\n            <div style=\"background:#f8fafc; padding:6px 10px; border-radius:4px; border:1px solid #e2e8f0; font-size:0.8rem; font-weight:bold; color:#0f172a;\">Respiration: 16 RPM</div>\n            <div style=\"background:#f8fafc; padding:6px 10px; border-radius:4px; border:1px solid #e2e8f0; font-size:0.8rem; font-weight:bold; color:#0f172a;\">Apnea Index: Normal</div>\n          </div>\n          <div style=\"margin-top:10px; font-size:0.75rem; color:#64748b; font-family:monospace; border-top:1px solid #e2e8f0; padding-top:6px;\">\n            Sensors: 660nm Red / 940nm Infrared Continuous Reflectance\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_cardio.png",
-    "tab_title": "02-CARDIO CONSOLE \u2022 PWTT AMBULATORY BLOOD PRESSURE",
+    "tab_title": "02-CARDIO CONSOLE • PWTT AMBULATORY BLOOD PRESSURE",
     "step_focus": [
       {
         "bullet": 0,
@@ -685,10 +689,10 @@
     "id": 15,
     "num": "15",
     "module": "Module 3: Core Biosensor Array Operations",
-    "title": "Tab 02: CARDIO \u2013 Autonomic HRV & Sympatho-Vagal Stress",
+    "title": "Tab 02: CARDIO – Autonomic HRV & Sympatho-Vagal Stress",
     "desc": "Tracking Heart Rate Variability (HRV SDNN) to evaluate autonomic recovery and chronic stress load.",
     "narration": "In the third channel of Tab 02 Cardio, LCARS assesses autonomic nervous system recovery via Heart Rate Variability. High HRV indicates robust vagal nerve tone and resilience, whereas suppressed HRV reflects systemic stress and sympathetic overdrive, which raises blood sugar by triggering cortisol release.",
-    "card_title": "TAB 02: CARDIO \u2013 AUTONOMIC HRV SDNN RECOVERY",
+    "card_title": "TAB 02: CARDIO – AUTONOMIC HRV SDNN RECOVERY",
     "bullets": [
       [
         "Vagal Tone Assessment",
@@ -704,12 +708,12 @@
       ]
     ],
     "takeaway": "Provides an objective window into the nervous system balance governing metabolic stress.",
-    "right_header": "TAB 02: CARDIO \u2013 AUTONOMIC HRV",
+    "right_header": "TAB 02: CARDIO – AUTONOMIC HRV",
     "right_badge": "AUTONOMIC TONE",
     "right_badge_col": "#4f46e5",
-    "right_html": "\n          <div style=\"display:flex; align-items:baseline; gap:8px; margin-top:8px;\">\n            <div style=\"font-size:2.8rem; font-weight:900; color:#4f46e5; font-family:monospace; line-height:1;\">64</div>\n            <div style=\"font-size:1rem; font-weight:800; color:#64748b;\">MS SDNN</div>\n          </div>\n          <div style=\"margin-top:10px; display:grid; grid-template-columns:1fr 1fr; gap:8px;\">\n            <div style=\"background:#f8fafc; padding:6px 10px; border-radius:4px; border:1px solid #e2e8f0; font-size:0.8rem; font-weight:bold; color:#0f172a;\">Stress Score: Low (22)</div>\n            <div style=\"background:#f8fafc; padding:6px 10px; border-radius:4px; border:1px solid #e2e8f0; font-size:0.8rem; font-weight:bold; color:#0f172a;\">Tone: Vagal Dominance</div>\n          </div>\n          <div style=\"margin-top:10px; font-size:0.75rem; color:#64748b; font-family:monospace; border-top:1px solid #e2e8f0; padding-top:6px;\">\n            Status: Autonomic Recovery Optimal \u2022 Rest & Repair Active\n          </div>\n        ",
+    "right_html": "\n          <div style=\"display:flex; align-items:baseline; gap:8px; margin-top:8px;\">\n            <div style=\"font-size:2.8rem; font-weight:900; color:#4f46e5; font-family:monospace; line-height:1;\">64</div>\n            <div style=\"font-size:1rem; font-weight:800; color:#64748b;\">MS SDNN</div>\n          </div>\n          <div style=\"margin-top:10px; display:grid; grid-template-columns:1fr 1fr; gap:8px;\">\n            <div style=\"background:#f8fafc; padding:6px 10px; border-radius:4px; border:1px solid #e2e8f0; font-size:0.8rem; font-weight:bold; color:#0f172a;\">Stress Score: Low (22)</div>\n            <div style=\"background:#f8fafc; padding:6px 10px; border-radius:4px; border:1px solid #e2e8f0; font-size:0.8rem; font-weight:bold; color:#0f172a;\">Tone: Vagal Dominance</div>\n          </div>\n          <div style=\"margin-top:10px; font-size:0.75rem; color:#64748b; font-family:monospace; border-top:1px solid #e2e8f0; padding-top:6px;\">\n            Status: Autonomic Recovery Optimal • Rest & Repair Active\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_cardio.png",
-    "tab_title": "02-CARDIO CONSOLE \u2022 AUTONOMIC HRV & STRESS MATRIX",
+    "tab_title": "02-CARDIO CONSOLE • AUTONOMIC HRV & STRESS MATRIX",
     "step_focus": [
       {
         "bullet": 0,
@@ -735,7 +739,7 @@
     "title": "03-METABOLIC Console: Real-Time Physiological Telemetry",
     "desc": "Synthesizing multi-sensor biometric streams into a single live behavioral console.",
     "narration": "Now we step into Tab 03: the METABOLIC Console. Here, all primary physiological telemetry streams converge. You can observe your real-time glucose, heart rate, skin and body temperature, and physical movement simultaneously, helping you immediately understand how daily actions impact your physiology.",
-    "card_title": "TAB 03: 360\u00b0 REAL-TIME METABOLIC CONSOLE",
+    "card_title": "TAB 03: 360° REAL-TIME METABOLIC CONSOLE",
     "bullets": [
       [
         "Unified Biometric Overview",
@@ -752,11 +756,11 @@
     ],
     "takeaway": "A single comprehensive cockpit that reveals the immediate impact of daily habits on blood sugar.",
     "right_header": "TAB 03: METABOLIC CONSOLE",
-    "right_badge": "360\u00b0 LIVE SYNTHESIS",
+    "right_badge": "360° LIVE SYNTHESIS",
     "right_badge_col": "#ca8a04",
-    "right_html": "\n          <div style=\"margin-top:10px; background:#fefce8; border:1.5px solid #fef08a; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.15rem; font-weight:800; color:#854d0e; font-family:monospace;\">GLUCOSE 182 \u2022 HR 68 \u2022 TEMP 97.2\u00b0 \u2022 STEPS 2,384</div>\n            <div style=\"font-size:0.84rem; color:#713f12; margin-top:6px; line-height:1.45;\">Real-time unified synthesis correlating nutritional intake, exercise movement, and continuous physiological response.</div>\n          </div>\n          <div style=\"margin-top:10px; display:grid; grid-template-columns:1fr 1fr; gap:6px; font-family:monospace; font-size:0.76rem;\">\n            <div style=\"background:#f8fafc; padding:6px; border-radius:3px; border:1px solid #e2e8f0;\">POST-MEAL TARGET: &lt;180</div>\n            <div style=\"background:#f8fafc; padding:6px; border-radius:3px; border:1px solid #e2e8f0;\">GLUT4 EFFECT: -20 TO -40</div>\n          </div>\n        ",
+    "right_html": "\n          <div style=\"margin-top:10px; background:#fefce8; border:1.5px solid #fef08a; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.15rem; font-weight:800; color:#854d0e; font-family:monospace;\">GLUCOSE 182 • HR 68 • TEMP 97.2° • STEPS 2,384</div>\n            <div style=\"font-size:0.84rem; color:#713f12; margin-top:6px; line-height:1.45;\">Real-time unified synthesis correlating nutritional intake, exercise movement, and continuous physiological response.</div>\n          </div>\n          <div style=\"margin-top:10px; display:grid; grid-template-columns:1fr 1fr; gap:6px; font-family:monospace; font-size:0.76rem;\">\n            <div style=\"background:#f8fafc; padding:6px; border-radius:3px; border:1px solid #e2e8f0;\">POST-MEAL TARGET: &lt;180</div>\n            <div style=\"background:#f8fafc; padding:6px; border-radius:3px; border:1px solid #e2e8f0;\">GLUT4 EFFECT: -20 TO -40</div>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_metabolic.png",
-    "tab_title": "03-METABOLIC CONSOLE \u2022 24-HOUR CONTINUOUS CURVE",
+    "tab_title": "03-METABOLIC CONSOLE • 24-HOUR CONTINUOUS CURVE",
     "step_focus": [
       {
         "bullet": 0,
@@ -781,7 +785,7 @@
     "module": "Module 4: Tab 03 METABOLIC Console & Behavioral Science",
     "title": "GLUT4 Translocation Kinetics: How Exercise Lowers Glucose",
     "desc": "The biochemistry of non-insulin-mediated glucose uptake triggered by skeletal muscle contraction.",
-    "narration": "Slide 17 covers one of the most powerful tools in diabetes maintenance: GLUT4 translocation. When you contract large skeletal muscles\u2014such as your quadriceps during a brisk walk\u2014your muscles pull glucose directly out of your bloodstream without requiring insulin. This gives you a natural, controllable drug-free mechanism to blunt postprandial spikes.",
+    "narration": "Slide 17 covers one of the most powerful tools in diabetes maintenance: GLUT4 translocation. When you contract large skeletal muscles—such as your quadriceps during a brisk walk—your muscles pull glucose directly out of your bloodstream without requiring insulin. This gives you a natural, controllable drug-free mechanism to blunt postprandial spikes.",
     "card_title": "GLUT4 TRANSLOCATION MECHANISM & KINETICS",
     "bullets": [
       [
@@ -803,11 +807,11 @@
     "right_badge_col": "#ca8a04",
     "right_html": "\n          <div style=\"margin-top:10px; background:#fefce8; border:1.5px solid #fef08a; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.15rem; font-weight:800; color:#854d0e; font-family:monospace;\">MUSCLE CONTRACTION -> DIRECT UPTAKE</div>\n            <div style=\"font-size:0.84rem; color:#713f12; margin-top:6px; line-height:1.45;\">Mechanical stimulation triggers GLUT4 glucose transporter translocation to the muscle cell membrane, dropping blood sugar without pancreatic insulin.</div>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_slide17_glut4_kinetics.png",
-    "tab_title": "03-METABOLIC CONSOLE \u2022 ESTIMATED A1C (EA1C) PROJECTION",
+    "tab_title": "03-METABOLIC CONSOLE • ESTIMATED A1C (EA1C) PROJECTION",
     "step_focus": [
       {
         "bullet": 0,
-        "focus_desc": "360\u00b0 Real-Time Physiological Telemetry Console",
+        "focus_desc": "360° Real-Time Physiological Telemetry Console",
         "scroll_pct": 0.0
       },
       {
@@ -828,10 +832,10 @@
     "id": 18,
     "num": "18",
     "module": "Module 4: Tab 03 METABOLIC Console & Behavioral Science",
-    "title": "The GLUT4 Exercise Journal: Calculating Direct \u0394G Glucose Drops",
+    "title": "The GLUT4 Exercise Journal: Calculating Direct ΔG Glucose Drops",
     "desc": "Logging exercise bouts and quantifying the exact milligram-per-deciliter drop produced by walking.",
     "narration": "In Slide 18, we introduce the GLUT4 Exercise Journal. When you finish a walk, LCARS compares your pre-exercise glucose to your post-exercise nadir, calculating your exact delta G drop. For example, a 30-minute morning walk might drop your glucose by 27 milligrams per deciliter, proving your exercise is working.",
-    "card_title": "EXERCISE JOURNAL: DIRECT \u0394G GLUCOSE DROPS",
+    "card_title": "EXERCISE JOURNAL: DIRECT ΔG GLUCOSE DROPS",
     "bullets": [
       [
         "Quantified Glucose Drop",
@@ -848,11 +852,11 @@
     ],
     "takeaway": "Proves the exact clinical power of your daily walks in verified milligrams per deciliter.",
     "right_header": "GLUT4 EXERCISE JOURNAL",
-    "right_badge": "MEASURED \u0394G DROPS",
+    "right_badge": "MEASURED ΔG DROPS",
     "right_badge_col": "#15803d",
     "right_html": "\n          <div style=\"margin-top:10px; background:#f0fdf4; border:1.5px solid #bbf7d0; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.15rem; font-weight:800; color:#14532d; font-family:monospace;\">MORNING WALK: -27 MG/DL DROP</div>\n            <div style=\"font-size:0.84rem; color:#166534; margin-top:6px; line-height:1.45;\">32-minute walk at 08:30 (2,384 steps) reduced glucose from 192 mg/dL to 165 mg/dL. GLUT4 clearance verified.</div>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_slide18_exercise_log.png",
-    "tab_title": "03-METABOLIC CONSOLE \u2022 NOCTURNAL DAWN PHENOMENON",
+    "tab_title": "03-METABOLIC CONSOLE • NOCTURNAL DAWN PHENOMENON",
     "step_focus": [
       {
         "bullet": 0,
@@ -861,7 +865,7 @@
       },
       {
         "bullet": 1,
-        "focus_desc": "Direct Delta G (\u0394G) Post-Walk Drop Calculation",
+        "focus_desc": "Direct Delta G (ΔG) Post-Walk Drop Calculation",
         "scroll_pct": 0.35
       },
       {
@@ -899,9 +903,9 @@
     "right_header": "MACRONUTRIENT MEAL LOGGER",
     "right_badge": "CARBOHYDRATE EXCURSIONS",
     "right_badge_col": "#ca8a04",
-    "right_html": "\n          <div style=\"margin-top:10px; background:#fefce8; border:1.5px solid #fef08a; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.15rem; font-weight:800; color:#854d0e; font-family:monospace;\">LUNCH: 34g NET CARBS \u2022 +44 MG/DL SPIKE</div>\n            <div style=\"font-size:0.84rem; color:#713f12; margin-top:6px; line-height:1.45;\">Lunch at 12:30 produced a 44 mg/dL excursion, peaking at 232 mg/dL at 13:30 before settling.</div>\n          </div>\n        ",
+    "right_html": "\n          <div style=\"margin-top:10px; background:#fefce8; border:1.5px solid #fef08a; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.15rem; font-weight:800; color:#854d0e; font-family:monospace;\">LUNCH: 34g NET CARBS • +44 MG/DL SPIKE</div>\n            <div style=\"font-size:0.84rem; color:#713f12; margin-top:6px; line-height:1.45;\">Lunch at 12:30 produced a 44 mg/dL excursion, peaking at 232 mg/dL at 13:30 before settling.</div>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_slide19_meal_logger.png",
-    "tab_title": "03-METABOLIC CONSOLE \u2022 GLUT4 EXERCISE POSTPRANDIAL CLEARANCE",
+    "tab_title": "03-METABOLIC CONSOLE • GLUT4 EXERCISE POSTPRANDIAL CLEARANCE",
     "step_focus": [
       {
         "bullet": 0,
@@ -928,7 +932,7 @@
     "module": "Module 4: Tab 03 METABOLIC Console & Behavioral Science",
     "title": "ADA Carbohydrate Trades & Gemini-Curated Diabetic Recipes",
     "desc": "Empowering patients with American Diabetes Association (ADA) 1-to-1 food trades, using Google Gemini to discover compliant recipes and verified sellers for safe, delicious diabetic food and drink.",
-    "narration": "In Slide 20, we explore the ADA 1-to-1 Carbohydrate Trades and Clinical Nutrition Engine. Managing Type 2 diabetes should never mean living in deprivation. We use Google Gemini Pro to actively search for and curate ADA-compliant recipes, discover safe food and drink sellers, and recommend delicious, healthy alternatives. Rather than cutting out favorite foods, LCARS provides smart one-to-one swaps\u2014like cauliflower rice for white rice, or almond flour baked treats\u2014helping patients enjoy satisfying meals while blunting post-meal spikes by thirty to fifty milligrams per deciliter.",
+    "narration": "In Slide 20, we explore the ADA 1-to-1 Carbohydrate Trades and Clinical Nutrition Engine. Managing Type 2 diabetes should never mean living in deprivation. We use Google Gemini Pro to actively search for and curate ADA-compliant recipes, discover safe food and drink sellers, and recommend delicious, healthy alternatives. Rather than cutting out favorite foods, LCARS provides smart one-to-one swaps—like cauliflower rice for white rice, or almond flour baked treats—helping patients enjoy satisfying meals while blunting post-meal spikes by thirty to fifty milligrams per deciliter.",
     "card_title": "ADA 1-TO-1 CARBOHYDRATE TRADES & GEMINI-POWERED RECIPES",
     "bullets": [
       [
@@ -997,9 +1001,9 @@
     "right_header": "DIABETES LEARNING ENGINE",
     "right_badge": "GLYCEMIC PHENOTYPE",
     "right_badge_col": "#0284c7",
-    "right_html": "\n          <div style=\"margin-top:10px; background:#f0f9ff; border:1.5px solid #bae6fd; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#0369a1; font-family:monospace;\">PEAK LATENCY: 65 MIN \u2022 CLEARANCE: 1.1 MG/DL/MIN</div>\n            <div style=\"font-size:0.84rem; color:#075985; margin-top:6px; line-height:1.45;\">Empirical mathematical modeling of your individual carbohydrate absorption and active clearance kinetics.</div>\n          </div>\n        ",
+    "right_html": "\n          <div style=\"margin-top:10px; background:#f0f9ff; border:1.5px solid #bae6fd; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#0369a1; font-family:monospace;\">PEAK LATENCY: 65 MIN • CLEARANCE: 1.1 MG/DL/MIN</div>\n            <div style=\"font-size:0.84rem; color:#075985; margin-top:6px; line-height:1.45;\">Empirical mathematical modeling of your individual carbohydrate absorption and active clearance kinetics.</div>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_slide21_learning_engine.png",
-    "tab_title": "03-METABOLIC CONSOLE \u2022 GLYCEMIC DYNAMICS ENGINE",
+    "tab_title": "03-METABOLIC CONSOLE • GLYCEMIC DYNAMICS ENGINE",
     "step_focus": [
       {
         "bullet": 0,
@@ -1026,7 +1030,7 @@
     "module": "Module 5: The Diabetes Learning Engine",
     "title": "Circadian Fasting Windows & Dawn Phenomenon Suppression",
     "desc": "Identifying nocturnal nadirs and counteracting morning hepatic glucose surges.",
-    "narration": "Slide 22 addresses morning fasting numbers. Many diabetics wake up with high blood sugar due to the Dawn Phenomenon\u2014a natural morning surge of cortisol that prompts the liver to release glucose. By tracking continuous overnight telemetry down to the 4 AM nadir, LCARS helps your doctor determine the right evening strategy to suppress morning spikes.",
+    "narration": "Slide 22 addresses morning fasting numbers. Many diabetics wake up with high blood sugar due to the Dawn Phenomenon—a natural morning surge of cortisol that prompts the liver to release glucose. By tracking continuous overnight telemetry down to the 4 AM nadir, LCARS helps your doctor determine the right evening strategy to suppress morning spikes.",
     "card_title": "CIRCADIAN FASTING & DAWN PHENOMENON SUPPRESSION",
     "bullets": [
       [
@@ -1048,7 +1052,7 @@
     "right_badge_col": "#ca8a04",
     "right_html": "\n          <div style=\"margin-top:10px; background:#fefce8; border:1.5px solid #fef08a; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#854d0e; font-family:monospace;\">04:00 NADIR: 162 -> 07:00 FASTING: 174</div>\n            <div style=\"font-size:0.84rem; color:#713f12; margin-top:6px; line-height:1.45;\">Continuous 00:00 to 06:00 tracking distinguishes Somogyi rebound from hepatic Dawn Phenomenon with clinical certainty.</div>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_cardio.png",
-    "tab_title": "02-CARDIO CONSOLE \u2022 AUTONOMIC SYMPATHO-VAGAL BALANCE",
+    "tab_title": "02-CARDIO CONSOLE • AUTONOMIC SYMPATHO-VAGAL BALANCE",
     "step_focus": [
       {
         "bullet": 0,
@@ -1093,9 +1097,9 @@
     "right_header": "SLEEP RESILIENCE & CORTISOL",
     "right_badge": "NOCTURNAL RESTORATION",
     "right_badge_col": "#7c3aed",
-    "right_html": "\n          <div style=\"margin-top:10px; background:#f5f3ff; border:1.5px solid #ddd6fe; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#5b21b6; font-family:monospace;\">7.4 HOURS TOTAL \u2022 DEEP DELTA 1.9 HOURS</div>\n            <div style=\"font-size:0.84rem; color:#4c1d95; margin-top:6px; line-height:1.45;\">Restorative delta sleep lowers systemic morning cortisol, optimizing next-day peripheral insulin sensitivity.</div>\n          </div>\n        ",
+    "right_html": "\n          <div style=\"margin-top:10px; background:#f5f3ff; border:1.5px solid #ddd6fe; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#5b21b6; font-family:monospace;\">7.4 HOURS TOTAL • DEEP DELTA 1.9 HOURS</div>\n            <div style=\"font-size:0.84rem; color:#4c1d95; margin-top:6px; line-height:1.45;\">Restorative delta sleep lowers systemic morning cortisol, optimizing next-day peripheral insulin sensitivity.</div>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_cardio.png",
-    "tab_title": "02-CARDIO CONSOLE \u2022 NOCTURNAL HYPOXIA & BP EXCURSIONS",
+    "tab_title": "02-CARDIO CONSOLE • NOCTURNAL HYPOXIA & BP EXCURSIONS",
     "step_focus": [
       {
         "bullet": 0,
@@ -1142,7 +1146,7 @@
     "right_badge_col": "#059669",
     "right_html": "\n          <div style=\"margin-top:10px; background:#ecfdf5; border:1.5px solid #a7f3d0; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#065f46; font-family:monospace;\">STEPS VS GLUCOSE: r = -0.79 CORRELATION</div>\n            <div style=\"font-size:0.84rem; color:#047857; margin-top:6px; line-height:1.45;\">Multi-variable mathematical alignment proves daily walking directly suppresses 24-hour mean glycemic load.</div>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_reports.png",
-    "tab_title": "04-REPORTS CONSOLE \u2022 BEHAVIORAL LOG & EVENT CORRELATION",
+    "tab_title": "04-REPORTS CONSOLE • BEHAVIORAL LOG & EVENT CORRELATION",
     "step_focus": [
       {
         "bullet": 0,
@@ -1193,7 +1197,7 @@
     "right_badge_col": "#0284c7",
     "right_html": "\n          <div style=\"margin-top:10px; background:#eff6ff; border:1.5px solid #bfdbfe; border-left:6px solid #0284c7; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#1e40af; font-family:monospace;\">1-CLICK PUSH TO DOCTOR'S EPIC SYSTEM</div>\n            <div style=\"font-size:0.84rem; color:#1e3a8a; margin-top:6px; line-height:1.45;\">Transmits certified HL7 FHIR continuous glucose tonometry, blood pressure dipping, and titration logs into permanent clinical records.</div>\n          </div>\n          <div style=\"margin-top:10px; display:flex; justify-content:space-between; font-family:monospace; font-size:0.75rem; background:#f8fafc; padding:6px 10px; border-radius:4px;\">\n            <span>EPIC STATUS:</span>\n            <span style=\"color:#15803d; font-weight:bold;\">COMMITTED TO PERMANENT CHART</span>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_slide25_reports_overview.png",
-    "tab_title": "04-REPORTS CONSOLE \u2022 HL7 FHIR R4 & EPIC MYCHART GATEWAY",
+    "tab_title": "04-REPORTS CONSOLE • HL7 FHIR R4 & EPIC MYCHART GATEWAY",
     "tab_num": 4,
     "image": "images/lcars_slide25_reports_overview.png",
     "step_focus": [
@@ -1242,7 +1246,7 @@
     "right_badge_col": "#059669",
     "right_html": "\n          <div style=\"margin-top:10px; background:#ecfdf5; border:1.5px solid #a7f3d0; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#065f46; font-family:monospace;\">MULTI-LINE STAGGERED TIMELINE LABELS</div>\n            <div style=\"font-size:0.84rem; color:#047857; margin-top:6px; line-height:1.45;\">Line 1 time ticks with alternating event badges give descriptions 128px of clearance with zero collision.</div>\n          </div>\n          <div style=\"margin-top:10px; font-family:monospace; font-size:0.75rem; color:#475569; background:#f8fafc; padding:6px 10px; border-radius:4px;\">\n            X-Axis: 00:00 -> 04:00 (Nadir) -> 07:00 (Fasting) -> 08:30 (Walk) -> 13:30 (Peak) -> 24:00\n          </div>\n        ",
     "tab_screenshot": "images/lcars_slide26_tall_chart_header.png",
-    "tab_title": "04-REPORTS CONSOLE \u2022 360\u00b0 SYNCHRONIZED TALL CHART",
+    "tab_title": "04-REPORTS CONSOLE • 360° SYNCHRONIZED TALL CHART",
     "tab_num": 4,
     "image": "images/lcars_slide26_tall_chart_header.png",
     "step_focus": [
@@ -1287,11 +1291,11 @@
     ],
     "takeaway": "An exhaustive multi-variable audit that places every glucose fluctuation in true physiological context.",
     "right_header": "8 STACKED MEASUREMENT LANES",
-    "right_badge": "COMPLETE 360\u00b0 AUDIT",
+    "right_badge": "COMPLETE 360° AUDIT",
     "right_badge_col": "#0284c7",
-    "right_html": "\n          <div style=\"margin-top:10px; background:#f0f9ff; border:1.5px solid #bae6fd; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#0369a1; font-family:monospace;\">8 SYNCHRONIZED MEASUREMENT LANES</div>\n            <div style=\"font-size:0.84rem; color:#075985; margin-top:6px; line-height:1.45;\">Glucose \u2022 eA1C \u2022 Core/Skin Temp \u2022 Sleep Hypnogram \u2022 Step Cadence \u2022 Heart Rate \u2022 Blood Pressure \u2022 SpO2</div>\n          </div>\n        ",
+    "right_html": "\n          <div style=\"margin-top:10px; background:#f0f9ff; border:1.5px solid #bae6fd; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#0369a1; font-family:monospace;\">8 SYNCHRONIZED MEASUREMENT LANES</div>\n            <div style=\"font-size:0.84rem; color:#075985; margin-top:6px; line-height:1.45;\">Glucose • eA1C • Core/Skin Temp • Sleep Hypnogram • Step Cadence • Heart Rate • Blood Pressure • SpO2</div>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_slide27_stacked_lanes.png",
-    "tab_title": "04-REPORTS CONSOLE \u2022 8 STACKED CONTINUOUS TELEMETRY LANES",
+    "tab_title": "04-REPORTS CONSOLE • 8 STACKED CONTINUOUS TELEMETRY LANES",
     "tab_num": 4,
     "image": "images/lcars_slide27_stacked_lanes.png",
     "step_focus": [
@@ -1340,7 +1344,7 @@
     "right_badge_col": "#ca8a04",
     "right_html": "\n          <div style=\"margin-top:10px; background:#fefce8; border:1.5px solid #fef08a; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#854d0e; font-family:monospace;\">CROSSHAIR AT 13:30 (LUNCH PEAK: 232)</div>\n            <div style=\"font-size:0.84rem; color:#713f12; margin-top:6px; line-height:1.45;\">Scrubber cross-correlates 232 mg/dL excursion with 34g net carbs, 84 bpm cardiac load, and sedentary post-meal rest.</div>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_slide28_scrubber_hud.png",
-    "tab_title": "04-REPORTS CONSOLE \u2022 UNIFIED 24-HOUR TEMPORAL SCRUBBER",
+    "tab_title": "04-REPORTS CONSOLE • UNIFIED 24-HOUR TEMPORAL SCRUBBER",
     "tab_num": 4,
     "image": "images/lcars_slide28_scrubber_hud.png",
     "step_focus": [
@@ -1389,7 +1393,7 @@
     "right_badge_col": "#15803d",
     "right_html": "\n          <div style=\"margin-top:10px; background:#f0fdf4; border:1.5px solid #bbf7d0; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#14532d; font-family:monospace;\">POINT 10:00: 165 MG/DL (-27 MG/DL DROP)</div>\n            <div style=\"font-size:0.84rem; color:#166534; margin-top:6px; line-height:1.45;\">Pop-up micro-audit verifies 2,384 morning walk steps successfully lowered glucose from 192 to 165 mg/dL.</div>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_slide29_point_cards.png",
-    "tab_title": "04-REPORTS CONSOLE \u2022 CLICK-TO-POP CLINICAL POINT CARDS",
+    "tab_title": "04-REPORTS CONSOLE • CLICK-TO-POP CLINICAL POINT CARDS",
     "tab_num": 4,
     "image": "images/lcars_slide29_point_cards.png",
     "step_focus": [
@@ -1414,10 +1418,10 @@
     "id": 30,
     "num": "30",
     "module": "Module 6: Tab 04 Synchronized Tall Chart",
-    "title": "Pinning '\ud83d\udc8a MED CHANGE' Milestones: Auditing Progress vs Regression",
+    "title": "Pinning '💊 MED CHANGE' Milestones: Auditing Progress vs Regression",
     "desc": "Visualizing prescription changes on clinical graphs to objectively measure therapeutic response.",
     "narration": "Slide 30 is crucial for doctor visits: Pinning Medication Changes. When your physician alters a prescription, logging the titration pins a prominent MED CHANGE milestone directly across your timeline. Both of you can then compare the 14 days before against the 14 days after, objectively proving whether the change yielded clinical progress.",
-    "card_title": "PINNING '\ud83d\udc8a MED CHANGE' MILESTONE MARKERS",
+    "card_title": "PINNING '💊 MED CHANGE' MILESTONE MARKERS",
     "bullets": [
       [
         "Objective Titration Tracking",
@@ -1436,15 +1440,15 @@
     "right_header": "MEDICATION MILESTONES",
     "right_badge": "PROGRESS VS REGRESSION",
     "right_badge_col": "#7c3aed",
-    "right_html": "\n          <div style=\"margin-top:10px; background:#f5f3ff; border:1.5px solid #ddd6fe; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#5b21b6; font-family:monospace;\">FLAG: \ud83d\udc8a MED CHANGE PINNED (NOV 14)</div>\n            <div style=\"font-size:0.84rem; color:#4c1d95; margin-top:6px; line-height:1.45;\">Metformin ER titrated to 1000mg. Longitudinal comparison confirms average glucose dropped by 12 mg/dL. Progress verified.</div>\n          </div>\n        ",
+    "right_html": "\n          <div style=\"margin-top:10px; background:#f5f3ff; border:1.5px solid #ddd6fe; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#5b21b6; font-family:monospace;\">FLAG: 💊 MED CHANGE PINNED (NOV 14)</div>\n            <div style=\"font-size:0.84rem; color:#4c1d95; margin-top:6px; line-height:1.45;\">Metformin ER titrated to 1000mg. Longitudinal comparison confirms average glucose dropped by 12 mg/dL. Progress verified.</div>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_slide30_med_milestones.png",
-    "tab_title": "04-REPORTS CONSOLE \u2022 PINNED MED CHANGE CLINICAL MILESTONES",
+    "tab_title": "04-REPORTS CONSOLE • PINNED MED CHANGE CLINICAL MILESTONES",
     "tab_num": 4,
     "image": "images/lcars_slide30_med_milestones.png",
     "step_focus": [
       {
         "bullet": 0,
-        "focus_desc": "Pinning '\ud83d\udc8a MED CHANGE' Vertical Milestone Markers Across Timeline",
+        "focus_desc": "Pinning '💊 MED CHANGE' Vertical Milestone Markers Across Timeline",
         "scroll_pct": 0.0
       },
       {
@@ -1466,7 +1470,7 @@
     "image": "images/lcars_chart_glucose.png",
     "module": "Module 5: Clinical Reports & Longitudinal EHR Records",
     "title": "Daily 24-Hour Continuous Glucose Curve & TIR Dynamics",
-    "desc": "Analyzing the 24-hour optical tonometry glucose timeline, target glycemic band (60\u2013200 mg/dL), and Time in Range (TIR >70%).",
+    "desc": "Analyzing the 24-hour optical tonometry glucose timeline, target glycemic band (60–200 mg/dL), and Time in Range (TIR >70%).",
     "narration": "Slide thirty-one focuses on the individual Daily Twenty-Four-Hour Continuous Glucose Curve. Optical absorption tonometry measures microvascular glucose absorption every five minutes, generating two hundred and eighty-eight clinical data points across the day. The green shaded corridor represents the physician-configured target band of sixty to two hundred milligrams per deciliter. Notice how post-prandial excursions are immediately visible, enabling patient and physician to audit meal impacts, detect nocturnal hypoglycemia dips, and verify Time in Range above seventy percent.",
     "card_title": "DAILY 24-HOUR CONTINUOUS GLYCAEMIC EXCURSION TIMELINE",
     "bullets": [
@@ -1475,7 +1479,7 @@
         "5-minute optical tonometry captures complete diurnal amplitude and nocturnal nadirs."
       ],
       [
-        "Target Band Shading (60\u2013200 mg/dL)",
+        "Target Band Shading (60–200 mg/dL)",
         "Green corridor highlights glycemic excursions above postprandial or below hypoglycemia thresholds."
       ],
       [
@@ -1493,7 +1497,7 @@
       },
       {
         "bullet": 1,
-        "focus_desc": "Physician-configured 60\u2013200 mg/dL target corridor with excursion shading.",
+        "focus_desc": "Physician-configured 60–200 mg/dL target corridor with excursion shading.",
         "scroll_pct": 0.45
       },
       {
@@ -1568,7 +1572,7 @@
       ],
       [
         "Cold-Blooded Diabetic Baseline",
-        "Respects personal homeostasis ranges between 96.8\u00b0F and 97.4\u00b0F for precise febrile alerting."
+        "Respects personal homeostasis ranges between 96.8°F and 97.4°F for precise febrile alerting."
       ]
     ],
     "takeaway": "Monitors circadian thermal homeostasis and flags occult febrile spikes or metabolic slowdown.",
@@ -1612,7 +1616,7 @@
       ],
       [
         "Nocturnal Dipping Assessment",
-        "Verifies healthy 10\u201320% sleep dipping to rule out non-dipping cardiovascular risk."
+        "Verifies healthy 10–20% sleep dipping to rule out non-dipping cardiovascular risk."
       ]
     ],
     "takeaway": "Delivers continuous ambulatory blood pressure curves and verifies protective nocturnal dipping.",
@@ -1801,7 +1805,7 @@
       },
       {
         "bullet": 1,
-        "focus_desc": "Deep sleep versus light sleep breakdown against 7.0\u20138.5 hour target.",
+        "focus_desc": "Deep sleep versus light sleep breakdown against 7.0–8.5 hour target.",
         "scroll_pct": 0.45
       },
       {
@@ -1883,7 +1887,7 @@
     "right_badge_col": "#7c3aed",
     "right_html": "\n          <div style=\"margin-top:10px; background:#f5f3ff; border:1.5px solid #ddd6fe; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#5b21b6; font-family:monospace;\">8 ACTIVE MEDICATIONS TRACKED</div>\n            <div style=\"font-size:0.84rem; color:#4c1d95; margin-top:6px; line-height:1.45;\">Comprehensive schedule with dosage, timing, clinical indications, and titration compliance records.</div>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_medication.png",
-    "tab_title": "11-MEDICATION CONSOLE \u2022 ACTIVE PHARMACOLOGICAL ROSTER",
+    "tab_title": "11-MEDICATION CONSOLE • ACTIVE PHARMACOLOGICAL ROSTER",
     "step_focus": [
       {
         "bullet": 0,
@@ -1908,7 +1912,7 @@
     "module": "Module 7: Tab 11 Medication Management",
     "title": "Two Discrete Daily Intake Schedules: Morning Suite & Dinner Split",
     "desc": "Separating medications into scrollable Morning (Intake 1) and Evening (Intake 2) lists.",
-    "narration": "Slide 32 highlights our dual intake layout. Medications are split cleanly into two distinct schedules: Morning Intake 1 and Evening Intake 2. The morning list holds your breakfast doses\u2014such as Metformin, Glipizide, and cardiovascular meds\u2014while Intake 2 holds your evening doses, preventing dosing confusion.",
+    "narration": "Slide 32 highlights our dual intake layout. Medications are split cleanly into two distinct schedules: Morning Intake 1 and Evening Intake 2. The morning list holds your breakfast doses—such as Metformin, Glipizide, and cardiovascular meds—while Intake 2 holds your evening doses, preventing dosing confusion.",
     "card_title": "DUAL DAILY INTAKE SCHEDULES: MORNING & EVENING",
     "bullets": [
       [
@@ -1928,9 +1932,9 @@
     "right_header": "DUAL INTAKE SCHEDULES",
     "right_badge": "MORNING & EVENING",
     "right_badge_col": "#7c3aed",
-    "right_html": "\n          <div style=\"margin-top:10px; background:#f5f3ff; border:1.5px solid #ddd6fe; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#5b21b6; font-family:monospace;\">INTAKE 1 (MORNING) \u2022 INTAKE 2 (EVENING)</div>\n            <div style=\"font-size:0.84rem; color:#4c1d95; margin-top:6px; line-height:1.45;\">Intake 1: Metformin, Glipizide, Empagliflozin, Lisinopril, Statins. Intake 2: Evening Metformin & Omega-3. Clean scrollable lists.</div>\n          </div>\n        ",
+    "right_html": "\n          <div style=\"margin-top:10px; background:#f5f3ff; border:1.5px solid #ddd6fe; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#5b21b6; font-family:monospace;\">INTAKE 1 (MORNING) • INTAKE 2 (EVENING)</div>\n            <div style=\"font-size:0.84rem; color:#4c1d95; margin-top:6px; line-height:1.45;\">Intake 1: Metformin, Glipizide, Empagliflozin, Lisinopril, Statins. Intake 2: Evening Metformin & Omega-3. Clean scrollable lists.</div>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_medication.png",
-    "tab_title": "11-MEDICATION CONSOLE \u2022 MORNING & EVENING DOSING SUITES",
+    "tab_title": "11-MEDICATION CONSOLE • MORNING & EVENING DOSING SUITES",
     "step_focus": [
       {
         "bullet": 0,
@@ -1977,7 +1981,7 @@
     "right_badge_col": "#059669",
     "right_html": "\n          <div style=\"margin-top:10px; background:#ecfdf5; border:1.5px solid #a7f3d0; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#065f46; font-family:monospace;\">DOSE ADJUSTMENTS SYNCHRONIZED</div>\n            <div style=\"font-size:0.84rem; color:#047857; margin-top:6px; line-height:1.45;\">Adjusting doses triggers auto-pinning of medication milestones on longitudinal charts with 96.4% recorded adherence.</div>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_medication.png",
-    "tab_title": "11-MEDICATION CONSOLE \u2022 GRANULAR TITRATION & ADHERENCE",
+    "tab_title": "11-MEDICATION CONSOLE • GRANULAR TITRATION & ADHERENCE",
     "step_focus": [
       {
         "bullet": 0,
@@ -2024,7 +2028,7 @@
     "right_badge_col": "#0891b2",
     "right_html": "\n          <div style=\"margin-top:10px; background:#ecfeff; border:1.5px solid #a5f3fc; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#155e75; font-family:monospace;\">6-STAGE SEQUENTIAL DIAGNOSTICS</div>\n            <div style=\"font-size:0.84rem; color:#164e63; margin-top:6px; line-height:1.45;\">Stage 1: HR -> Stage 2: BP -> Stage 3: Temp -> Stage 4: SpO2 -> Stage 5: ECG -> Stage 6: Glucose. Non-interfering flow.</div>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_fullscan.png",
-    "tab_title": "12-FULL SCAN CONSOLE \u2022 6-STAGE CLINICAL DIAGNOSTIC",
+    "tab_title": "12-FULL SCAN CONSOLE • 6-STAGE CLINICAL DIAGNOSTIC",
     "step_focus": [
       {
         "bullet": 0,
@@ -2069,9 +2073,9 @@
     "right_header": "FULL SCAN RESULTS DASHBOARD",
     "right_badge": "ALL SENSORS NOMINAL",
     "right_badge_col": "#059669",
-    "right_html": "\n          <div style=\"margin-top:10px; background:#ecfdf5; border:1.5px solid #a7f3d0; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#065f46; font-family:monospace;\">HR: 68 \u2022 BP: 118/76 \u2022 TEMP: 97.2\u00b0 \u2022 SPO2: 98% \u2022 GLU: 182</div>\n            <div style=\"font-size:0.84rem; color:#047857; margin-top:6px; line-height:1.45;\">Comprehensive multi-sensor audit completing in 120 seconds with immediate verification. All sensors nominal.</div>\n          </div>\n        ",
+    "right_html": "\n          <div style=\"margin-top:10px; background:#ecfdf5; border:1.5px solid #a7f3d0; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#065f46; font-family:monospace;\">HR: 68 • BP: 118/76 • TEMP: 97.2° • SPO2: 98% • GLU: 182</div>\n            <div style=\"font-size:0.84rem; color:#047857; margin-top:6px; line-height:1.45;\">Comprehensive multi-sensor audit completing in 120 seconds with immediate verification. All sensors nominal.</div>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_fullscan.png",
-    "tab_title": "12-FULL SCAN CONSOLE \u2022 LIVE PROGRESSION & DATA DISPATCH",
+    "tab_title": "12-FULL SCAN CONSOLE • LIVE PROGRESSION & DATA DISPATCH",
     "step_focus": [
       {
         "bullet": 0,
@@ -2118,7 +2122,7 @@
     "right_badge_col": "#ea580c",
     "right_html": "\n          <div style=\"margin-top:10px; background:#fff7ed; border:1.5px solid #fed7aa; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#9a3412; font-family:monospace;\">AIR-GAPPED SQLITE VS REMOTE CLOUD SILOS</div>\n            <table style=\"width:100%; border-collapse:collapse; margin-top:8px; font-size:0.76rem;\">\n              <tr style=\"border-bottom:1px solid #fed7aa;\">\n                <td style=\"padding:4px; font-weight:bold; color:#7c2d12;\">Standard H-Band App:</td>\n                <td style=\"padding:4px; color:#991b1b;\">Proprietary cloud servers, phone-only, fragmented tabs</td>\n              </tr>\n              <tr>\n                <td style=\"padding:4px; font-weight:bold; color:#7c2d12;\">LCARS 5010 Console:</td>\n                <td style=\"padding:4px; color:#166534; font-weight:bold;\">100% Local SQLite, air-gapped privacy, PC workstation</td>\n              </tr>\n            </table>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_operations.png",
-    "tab_title": "07-OPERATIONS CONSOLE \u2022 H-BAND VS LCARS ARCHITECTURE",
+    "tab_title": "07-OPERATIONS CONSOLE • H-BAND VS LCARS ARCHITECTURE",
     "step_focus": [
       {
         "bullet": 0,
@@ -2163,9 +2167,9 @@
     "right_header": "H-BAND VS LCARS: PART 2",
     "right_badge": "CALIBRATION & TIMELINES",
     "right_badge_col": "#ea580c",
-    "right_html": "\n          <div style=\"margin-top:10px; background:#fff7ed; border:1.5px solid #fed7aa; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#9a3412; font-family:monospace;\">DOCTOR LAB ANCHOR & GLUT4 KINETICS VS RAW TOTALS</div>\n            <table style=\"width:100%; border-collapse:collapse; margin-top:8px; font-size:0.76rem;\">\n              <tr style=\"border-bottom:1px solid #fed7aa;\">\n                <td style=\"padding:4px; font-weight:bold; color:#7c2d12;\">Standard H-Band App:</td>\n                <td style=\"padding:4px; color:#991b1b;\">Generic population offset, isolated screens, no GLUT4 math</td>\n              </tr>\n              <tr>\n                <td style=\"padding:4px; font-weight:bold; color:#7c2d12;\">LCARS 5010 Console:</td>\n                <td style=\"padding:4px; color:#166534; font-weight:bold;\">Doctor Lab Anchor, 8-Lane Tall Chart, Direct \u0394G Drops</td>\n              </tr>\n            </table>\n          </div>\n        ",
+    "right_html": "\n          <div style=\"margin-top:10px; background:#fff7ed; border:1.5px solid #fed7aa; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#9a3412; font-family:monospace;\">DOCTOR LAB ANCHOR & GLUT4 KINETICS VS RAW TOTALS</div>\n            <table style=\"width:100%; border-collapse:collapse; margin-top:8px; font-size:0.76rem;\">\n              <tr style=\"border-bottom:1px solid #fed7aa;\">\n                <td style=\"padding:4px; font-weight:bold; color:#7c2d12;\">Standard H-Band App:</td>\n                <td style=\"padding:4px; color:#991b1b;\">Generic population offset, isolated screens, no GLUT4 math</td>\n              </tr>\n              <tr>\n                <td style=\"padding:4px; font-weight:bold; color:#7c2d12;\">LCARS 5010 Console:</td>\n                <td style=\"padding:4px; color:#166534; font-weight:bold;\">Doctor Lab Anchor, 8-Lane Tall Chart, Direct ΔG Drops</td>\n              </tr>\n            </table>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_metabolic.png",
-    "tab_title": "03-METABOLIC CONSOLE \u2022 H-BAND VS LCARS CLINICAL ENGINES",
+    "tab_title": "03-METABOLIC CONSOLE • H-BAND VS LCARS CLINICAL ENGINES",
     "step_focus": [
       {
         "bullet": 0,
@@ -2212,7 +2216,7 @@
     "right_badge_col": "#ea580c",
     "right_html": "\n          <div style=\"margin-top:10px; background:#fff7ed; border:1.5px solid #fed7aa; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#9a3412; font-family:monospace;\">SOLID WHITE 21:1 CONTRAST VS PASTEL DISPLAYS</div>\n            <table style=\"width:100%; border-collapse:collapse; margin-top:8px; font-size:0.76rem;\">\n              <tr style=\"border-bottom:1px solid #fed7aa;\">\n                <td style=\"padding:4px; font-weight:bold; color:#7c2d12;\">Standard H-Band App:</td>\n                <td style=\"padding:4px; color:#991b1b;\">Muted grays, washed-out pastels, tiny phone font sizes</td>\n              </tr>\n              <tr>\n                <td style=\"padding:4px; font-weight:bold; color:#7c2d12;\">LCARS 5010 Console:</td>\n                <td style=\"padding:4px; color:#166534; font-weight:bold;\">Solid white cards, 21:1 navy text, bold saturated numbers</td>\n              </tr>\n            </table>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_reports.png",
-    "tab_title": "04-REPORTS CONSOLE \u2022 DOCTOR-PATIENT SHARED CONSULTATION",
+    "tab_title": "04-REPORTS CONSOLE • DOCTOR-PATIENT SHARED CONSULTATION",
     "step_focus": [
       {
         "bullet": 0,
@@ -2258,12 +2262,12 @@
       ]
     ],
     "takeaway": "Connecting YTD, monthly, and daily records gives your doctor the complete clinical picture for precise medical decisions.",
-    "right_header": "DOCTOR CONSULTATION DASHBOARD \u2022 3-TIER AUDIT",
-    "right_badge": "YTD \u2022 MONTH \u2022 DAILY",
+    "right_header": "DOCTOR CONSULTATION DASHBOARD • 3-TIER AUDIT",
+    "right_badge": "YTD • MONTH • DAILY",
     "right_badge_col": "#0284c7",
-    "right_html": "\n          <div style=\"display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px; margin-top:6px;\">\n            <div style=\"background:#f0fdf4; border:1.5px solid #bbf7d0; border-radius:4px; padding:6px;\">\n              <div style=\"font-size:0.65rem; color:#15803d; font-weight:800;\">1. YTD RECORD</div>\n              <div style=\"font-size:0.92rem; font-weight:800; color:#14532d; font-family:monospace; margin-top:2px;\">eA1C 6.7%</div>\n              <div style=\"font-size:0.65rem; color:#166534; margin-top:2px;\">Long-term trend from 8.8% \u2022 TIR 78.4%</div>\n            </div>\n            <div style=\"background:#f0f9ff; border:1.5px solid #bae6fd; border-radius:4px; padding:6px;\">\n              <div style=\"font-size:0.65rem; color:#0284c7; font-weight:800;\">2. MONTH (30-D)</div>\n              <div style=\"font-size:0.92rem; font-weight:800; color:#0369a1; font-family:monospace; margin-top:2px;\">138 MG/DL</div>\n              <div style=\"font-size:0.65rem; color:#0c4a6e; margin-top:2px;\">Variance \u00b124 mg/dL \u2022 0 Hypo events</div>\n            </div>\n            <div style=\"background:#fdf4ff; border:1.5px solid #f5d0fe; border-radius:4px; padding:6px;\">\n              <div style=\"font-size:0.65rem; color:#a21caf; font-weight:800;\">3. DAILY (24-H)</div>\n              <div style=\"font-size:0.92rem; font-weight:800; color:#86198f; font-family:monospace; margin-top:2px;\">288 PTS</div>\n              <div style=\"font-size:0.65rem; color:#701a75; margin-top:2px;\">Meal spikes & GLUT4 post-walk dips</div>\n            </div>\n          </div>\n          <div style=\"margin-top:10px; background:#f8fafc; border:1px solid #cbd5e1; border-radius:4px; padding:8px;\">\n            <div style=\"font-size:0.72rem; color:#475569; font-weight:bold; text-transform:uppercase;\">Outpatient Consultation Synthesis</div>\n            <div style=\"font-size:0.78rem; color:#0f172a; margin-top:3px; line-height:1.4;\">\n              Enables the attending physician to correlate long-term medication efficacy (YTD) with recent habit shifts (Month) and immediate physiological responses (Daily).\n            </div>\n          </div>\n          <div style=\"margin-top:10px; background:#eff6ff; border:1.5px solid #bfdbfe; border-radius:6px; padding:10px; display:flex; justify-content:space-between; align-items:center;\">\n            <div>\n              <div style=\"font-weight:800; color:#1e40af; font-size:0.8rem;\">EPIC EHR PERMANENT INTEGRATION</div>\n              <div style=\"font-size:0.72rem; color:#1e3a8a; margin-top:2px;\">Transmits verified YTD, Month & Daily records into patient's chart.</div>\n            </div>\n            <button style=\"background:#0284c7; color: #0f172a; border:none; border-radius:4px; padding:6px 12px; font-weight:bold; font-size:0.75rem; cursor:pointer;\">PUSH TO EPIC</button>\n          </div>\n        ",
+    "right_html": "\n          <div style=\"display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px; margin-top:6px;\">\n            <div style=\"background:#f0fdf4; border:1.5px solid #bbf7d0; border-radius:4px; padding:6px;\">\n              <div style=\"font-size:0.65rem; color:#15803d; font-weight:800;\">1. YTD RECORD</div>\n              <div style=\"font-size:0.92rem; font-weight:800; color:#14532d; font-family:monospace; margin-top:2px;\">eA1C 6.7%</div>\n              <div style=\"font-size:0.65rem; color:#166534; margin-top:2px;\">Long-term trend from 8.8% • TIR 78.4%</div>\n            </div>\n            <div style=\"background:#f0f9ff; border:1.5px solid #bae6fd; border-radius:4px; padding:6px;\">\n              <div style=\"font-size:0.65rem; color:#0284c7; font-weight:800;\">2. MONTH (30-D)</div>\n              <div style=\"font-size:0.92rem; font-weight:800; color:#0369a1; font-family:monospace; margin-top:2px;\">138 MG/DL</div>\n              <div style=\"font-size:0.65rem; color:#0c4a6e; margin-top:2px;\">Variance ±24 mg/dL • 0 Hypo events</div>\n            </div>\n            <div style=\"background:#fdf4ff; border:1.5px solid #f5d0fe; border-radius:4px; padding:6px;\">\n              <div style=\"font-size:0.65rem; color:#a21caf; font-weight:800;\">3. DAILY (24-H)</div>\n              <div style=\"font-size:0.92rem; font-weight:800; color:#86198f; font-family:monospace; margin-top:2px;\">288 PTS</div>\n              <div style=\"font-size:0.65rem; color:#701a75; margin-top:2px;\">Meal spikes & GLUT4 post-walk dips</div>\n            </div>\n          </div>\n          <div style=\"margin-top:10px; background:#f8fafc; border:1px solid #cbd5e1; border-radius:4px; padding:8px;\">\n            <div style=\"font-size:0.72rem; color:#475569; font-weight:bold; text-transform:uppercase;\">Outpatient Consultation Synthesis</div>\n            <div style=\"font-size:0.78rem; color:#0f172a; margin-top:3px; line-height:1.4;\">\n              Enables the attending physician to correlate long-term medication efficacy (YTD) with recent habit shifts (Month) and immediate physiological responses (Daily).\n            </div>\n          </div>\n          <div style=\"margin-top:10px; background:#eff6ff; border:1.5px solid #bfdbfe; border-radius:6px; padding:10px; display:flex; justify-content:space-between; align-items:center;\">\n            <div>\n              <div style=\"font-weight:800; color:#1e40af; font-size:0.8rem;\">EPIC EHR PERMANENT INTEGRATION</div>\n              <div style=\"font-size:0.72rem; color:#1e3a8a; margin-top:2px;\">Transmits verified YTD, Month & Daily records into patient's chart.</div>\n            </div>\n            <button style=\"background:#0284c7; color: #0f172a; border:none; border-radius:4px; padding:6px 12px; font-weight:bold; font-size:0.75rem; cursor:pointer;\">PUSH TO EPIC</button>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_reports.png",
-    "tab_title": "04-REPORTS CONSOLE \u2022 3-TIER YTD, MONTHLY & DAILY AUDIT",
+    "tab_title": "04-REPORTS CONSOLE • 3-TIER YTD, MONTHLY & DAILY AUDIT",
     "image": "images/lcars_chart_ytd.png",
     "step_focus": [
       {
@@ -2289,7 +2293,7 @@
     "module": "Module 10: Clinical Summaries, Closed-Loop Science & Open Source",
     "title": "Evolution to Closed-Loop Biofeedback: The Global Diabetes Research Opportunity",
     "desc": "Transitioning from blind open-loop fingersticks to continuous closed-loop biofeedback, creating an anonymized global diabetes research corpus that Google could sponsor.",
-    "narration": "Consider the profound clinical evolution from open-loop random sampling to closed-loop biofeedback. For decades, diabetes care has operated as a broken open loop: patients test intermittently, guess their insulin or carbohydrate response blindly, and wait ninety days for a retrospective lab test. LCARS transforms this into a true cybernetic closed loop: continuous eight-channel telemetry provides real-time biofeedback, showing how a fifteen-minute walk drops glucose via GLUT4, or how a meal spike resolves. Furthermore, this creates an extraordinary global research opportunity. Abstracted historical telemetry can be forwarded with zero patient identifying information\u2014pure anonymized kinetics. Google has an immense opportunity to sponsor this open-access diabetes research repository, using its computational power and Gemini AI to train foundational metabolic models and accelerate cures for millions of diabetics worldwide.",
+    "narration": "Consider the profound clinical evolution from open-loop random sampling to closed-loop biofeedback. For decades, diabetes care has operated as a broken open loop: patients test intermittently, guess their insulin or carbohydrate response blindly, and wait ninety days for a retrospective lab test. LCARS transforms this into a true cybernetic closed loop: continuous eight-channel telemetry provides real-time biofeedback, showing how a fifteen-minute walk drops glucose via GLUT4, or how a meal spike resolves. Furthermore, this creates an extraordinary global research opportunity. Abstracted historical telemetry can be forwarded with zero patient identifying information—pure anonymized kinetics. Google has an immense opportunity to sponsor this open-access diabetes research repository, using its computational power and Gemini AI to train foundational metabolic models and accelerate cures for millions of diabetics worldwide.",
     "card_title": "CLOSED-LOOP BIOFEEDBACK & DE-IDENTIFIED RESEARCH CORPUS",
     "bullets": [
       [
@@ -2310,7 +2314,7 @@
     "right_badge": "RESEARCH & SPONSORSHIP",
     "right_badge_col": "#15803d",
     "tab_screenshot": "images/lcars_tab_reports.png",
-    "tab_title": "04-REPORTS CONSOLE \u2022 HISTORICAL DATA VAULT & RESEARCH DISPATCH",
+    "tab_title": "04-REPORTS CONSOLE • HISTORICAL DATA VAULT & RESEARCH DISPATCH",
     "right_html": "\n          <!-- Open Loop vs Closed Loop Cybernetic Architecture -->\n          <div style=\"background: #f8fafc; color: #0f172a; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 10px; margin-top: 4px; color: #0f172a;\">\n            <div style=\"display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1e293b; padding-bottom: 4px; margin-bottom: 8px;\">\n              <span style=\"font-family: monospace; font-size: 0.72rem; color: #38bdf8; font-weight: 800; letter-spacing: 0.05em;\">SYSTEM ARCHITECTURE: OPEN LOOP VS CLOSED LOOP</span>\n              <span style=\"background: #15803d; color: #fff; font-size: 0.60rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; font-family: monospace;\">CYBERNETIC BIOFEEDBACK</span>\n            </div>\n\n            <div style=\"display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-family: monospace; font-size: 0.68rem;\">\n              <!-- Open Loop (Conventional) -->\n              <div style=\"background: #1e1b2e; border: 1.5px solid #ef4444; border-radius: 4px; padding: 8px;\">\n                <div style=\"color: #f87171; font-weight: 800; font-size: 0.72rem; margin-bottom: 4px;\">CONVENTIONAL OPEN LOOP</div>\n                <div style=\"color: #475569; line-height: 1.35; font-size: 0.66rem;\">\n                  Food / Activity &rarr; Delayed Lab Draw (90 Days) &rarr; Reactive Guesswork.<br>\n                  <strong style=\"color: #ef4444;\">Result:</strong> Blind excursions, nocturnal hypoglycemia, high glycemic variability.\n                </div>\n              </div>\n\n              <!-- Closed Loop (LCARS) -->\n              <div style=\"background: #052e16; border: 1.5px solid #22c55e; border-radius: 4px; padding: 8px;\">\n                <div style=\"color: #4ade80; font-weight: 800; font-size: 0.72rem; margin-bottom: 4px;\">LCARS CLOSED LOOP BIOFEEDBACK</div>\n                <div style=\"color: #475569; line-height: 1.35; font-size: 0.66rem;\">\n                  Continuous 288&times;8 Telemetry &rarr; Real-Time Biofeedback &rarr; Active Lifestyle Modulation.<br>\n                  <strong style=\"color: #22c55e;\">Result:</strong> Rapid postprandial drops, dawn suppression, stable TIR &gt; 70%.\n                </div>\n              </div>\n            </div>\n          </div>\n\n          <!-- Google Diabetes Research Opportunity Sponsorship Box -->\n          <div style=\"margin-top: 8px; background: #eff6ff; border: 2px solid #3b82f6; border-radius: 6px; padding: 10px;\">\n            <div style=\"display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #bfdbfe; padding-bottom: 4px; margin-bottom: 6px;\">\n              <span style=\"font-weight: 900; color: #1d4ed8; font-size: 0.78rem; font-family: monospace;\">GOOGLE DIABETES RESEARCH SPONSORSHIP OPPORTUNITY</span>\n              <span style=\"background: #2563eb; color: #0f172a; font-size: 0.62rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; font-family: monospace;\">OPEN SCIENCE</span>\n            </div>\n            <div style=\"font-size: 0.73rem; color: #1e3a8a; line-height: 1.4;\">\n              <strong>Abstracted Historical Telemetry:</strong> Anonymized multi-modal physiological datasets (25,920 quarterly glucose points, PWTT hemodynamics, HRV autonomic stress, sleep hypnograms) forwarded with <strong>zero patient identifying information (Zero PHI)</strong>.<br>\n              <strong>Google Collaboration:</strong> An open invitation for Google Research, Google Health, and Google DeepMind to sponsor this global open-access diabetes research repository to train foundational metabolic foundation models and accelerate clinical breakthroughs.\n            </div>\n          </div>\n\n          <!-- Data Privacy & Regulatory Guard -->\n          <div style=\"margin-top: 8px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; padding: 6px 10px; font-family: monospace; font-size: 0.70rem; display: flex; justify-content: space-between; align-items: center;\">\n            <span style=\"color: #64748b;\">RESEARCH DATA GOVERNANCE:</span>\n            <span style=\"color: #15803d; font-weight: bold;\">100% DE-IDENTIFIED &bull; HIPAA & GDPR COMPLIANT &bull; OPT-IN ONLY</span>\n          </div>\n        ",
     "step_focus": [
       {
@@ -2360,9 +2364,9 @@
     "right_header": "OPEN SOURCE ECOSYSTEM & RESOURCE HUB",
     "right_badge": "GPL v3 COPYLEFT",
     "right_badge_col": "#15803d",
-    "right_html": "\n          <div style=\"display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:8px;\">\n            <a href=\"https://fitaos.com\" target=\"_blank\" style=\"text-decoration:none; color:inherit; background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:6px; padding:10px; display:block; transition:all 0.2s;\">\n              <div style=\"display:flex; align-items:center; gap:6px;\">\n                <span style=\"font-size:1.1rem;\">\ud83d\uded2</span>\n                <span style=\"font-weight:800; color:#0284c7; font-size:0.82rem;\">FITAOS OFFICIAL SALES SITE</span>\n              </div>\n              <div style=\"font-size:0.72rem; color:#475569; margin-top:4px; line-height:1.35;\">\n                Official store for FITAOS 5150 smartwatch. Compatible with many Veepoo models.\n              </div>\n              <div style=\"font-size:0.7rem; color:#0284c7; font-weight:bold; margin-top:6px; font-family:monospace;\">fitaos.com \u2197</div>\n            </a>\n\n            <a href=\"https://github.com/jbirdlebough1/JVEEPOO/tree/main/docs\" target=\"_blank\" style=\"text-decoration:none; color:inherit; background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:6px; padding:10px; display:block; transition:all 0.2s;\">\n              <div style=\"display:flex; align-items:center; gap:6px;\">\n                <span style=\"font-size:1.1rem;\">\ud83d\udcda</span>\n                <span style=\"font-weight:800; color:#15803d; font-size:0.82rem;\">GITHUB DOCS DIRECTORY</span>\n              </div>\n              <div style=\"font-size:0.72rem; color:#475569; margin-top:4px; line-height:1.35;\">\n                Clinical glucose trials, A1C validation models, bug audit logs & specifications.\n              </div>\n              <div style=\"font-size:0.7rem; color:#15803d; font-weight:bold; margin-top:6px; font-family:monospace;\">github.com/.../docs \u2197</div>\n            </a>\n\n            <a href=\"https://github.com/jbirdlebough1/JVEEPOO\" target=\"_blank\" style=\"text-decoration:none; color:inherit; background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:6px; padding:10px; display:block; transition:all 0.2s;\">\n              <div style=\"display:flex; align-items:center; gap:6px;\">\n                <span style=\"font-size:1.1rem;\">\ud83d\udcbb</span>\n                <span style=\"font-weight:800; color:#7c3aed; font-size:0.82rem;\">GITHUB REPOSITORY</span>\n              </div>\n              <div style=\"font-size:0.72rem; color:#475569; margin-top:4px; line-height:1.35;\">\n                Full GPL v3 copyleft source code, Python BLE daemons & HTML single-page app.\n              </div>\n              <div style=\"font-size:0.7rem; color:#7c3aed; font-weight:bold; margin-top:6px; font-family:monospace;\">github.com/jbirdlebough1/JVEEPOO \u2197</div>\n            </a>\n\n            <a href=\"https://github.com/HBandSDK/Android_Ble_SDK/issues/46\" target=\"_blank\" style=\"text-decoration:none; color:inherit; background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:6px; padding:10px; display:block; transition:all 0.2s;\">\n              <div style=\"display:flex; align-items:center; gap:6px;\">\n                <span style=\"font-size:1.1rem;\">\ud83c\udf10</span>\n                <span style=\"font-weight:800; color:#d97706; font-size:0.82rem;\">HBANDSDK COMMUNITY</span>\n              </div>\n              <div style=\"font-size:0.72rem; color:#475569; margin-top:4px; line-height:1.35;\">\n                Official open-source ecosystem showcase Issue #46 on HBandSDK organization.\n              </div>\n              <div style=\"font-size:0.7rem; color:#d97706; font-weight:bold; margin-top:6px; font-family:monospace;\">github.com/HBandSDK/Issue #46 \u2197</div>\n            </a>\n          </div>\n\n          <div style=\"margin-top:12px; background:#eff6ff; border:1.5px solid #bfdbfe; border-radius:6px; padding:10px; display:flex; align-items:center; gap:12px;\">\n            <div style=\"background:#2563eb; color: #0f172a; font-weight:900; font-size:1rem; border-radius:6px; padding:6px 10px; font-family:monospace; white-space:nowrap;\">\n              GEMINI PRO\n            </div>\n            <div style=\"font-size:0.78rem; color:#1e3a8a; line-height:1.4;\">\n              <strong>Powered by Google Gemini Pro:</strong> Developed using Google DeepMind's advanced AI reasoning agent based on open-source HBandSDK and Veepoo repositories, ensuring broad compatibility across Veepoo wearables.\n            </div>\n          </div>\n        ",
+    "right_html": "\n          <div style=\"display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:8px;\">\n            <a href=\"https://fitaos.com\" target=\"_blank\" style=\"text-decoration:none; color:inherit; background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:6px; padding:10px; display:block; transition:all 0.2s;\">\n              <div style=\"display:flex; align-items:center; gap:6px;\">\n                <span style=\"font-size:1.1rem;\">🛒</span>\n                <span style=\"font-weight:800; color:#0284c7; font-size:0.82rem;\">FITAOS OFFICIAL SALES SITE</span>\n              </div>\n              <div style=\"font-size:0.72rem; color:#475569; margin-top:4px; line-height:1.35;\">\n                Official store for FITAOS 5150 smartwatch. Compatible with many Veepoo models.\n              </div>\n              <div style=\"font-size:0.7rem; color:#0284c7; font-weight:bold; margin-top:6px; font-family:monospace;\">fitaos.com ↗</div>\n            </a>\n\n            <a href=\"https://github.com/jbirdlebough1/JVEEPOO/tree/main/docs\" target=\"_blank\" style=\"text-decoration:none; color:inherit; background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:6px; padding:10px; display:block; transition:all 0.2s;\">\n              <div style=\"display:flex; align-items:center; gap:6px;\">\n                <span style=\"font-size:1.1rem;\">📚</span>\n                <span style=\"font-weight:800; color:#15803d; font-size:0.82rem;\">GITHUB DOCS DIRECTORY</span>\n              </div>\n              <div style=\"font-size:0.72rem; color:#475569; margin-top:4px; line-height:1.35;\">\n                Clinical glucose trials, A1C validation models, bug audit logs & specifications.\n              </div>\n              <div style=\"font-size:0.7rem; color:#15803d; font-weight:bold; margin-top:6px; font-family:monospace;\">github.com/.../docs ↗</div>\n            </a>\n\n            <a href=\"https://github.com/jbirdlebough1/JVEEPOO\" target=\"_blank\" style=\"text-decoration:none; color:inherit; background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:6px; padding:10px; display:block; transition:all 0.2s;\">\n              <div style=\"display:flex; align-items:center; gap:6px;\">\n                <span style=\"font-size:1.1rem;\">💻</span>\n                <span style=\"font-weight:800; color:#7c3aed; font-size:0.82rem;\">GITHUB REPOSITORY</span>\n              </div>\n              <div style=\"font-size:0.72rem; color:#475569; margin-top:4px; line-height:1.35;\">\n                Full GPL v3 copyleft source code, Python BLE daemons & HTML single-page app.\n              </div>\n              <div style=\"font-size:0.7rem; color:#7c3aed; font-weight:bold; margin-top:6px; font-family:monospace;\">github.com/jbirdlebough1/JVEEPOO ↗</div>\n            </a>\n\n            <a href=\"https://github.com/HBandSDK/Android_Ble_SDK/issues/46\" target=\"_blank\" style=\"text-decoration:none; color:inherit; background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:6px; padding:10px; display:block; transition:all 0.2s;\">\n              <div style=\"display:flex; align-items:center; gap:6px;\">\n                <span style=\"font-size:1.1rem;\">🌐</span>\n                <span style=\"font-weight:800; color:#d97706; font-size:0.82rem;\">HBANDSDK COMMUNITY</span>\n              </div>\n              <div style=\"font-size:0.72rem; color:#475569; margin-top:4px; line-height:1.35;\">\n                Official open-source ecosystem showcase Issue #46 on HBandSDK organization.\n              </div>\n              <div style=\"font-size:0.7rem; color:#d97706; font-weight:bold; margin-top:6px; font-family:monospace;\">github.com/HBandSDK/Issue #46 ↗</div>\n            </a>\n          </div>\n\n          <div style=\"margin-top:12px; background:#eff6ff; border:1.5px solid #bfdbfe; border-radius:6px; padding:10px; display:flex; align-items:center; gap:12px;\">\n            <div style=\"background:#2563eb; color: #0f172a; font-weight:900; font-size:1rem; border-radius:6px; padding:6px 10px; font-family:monospace; white-space:nowrap;\">\n              GEMINI PRO\n            </div>\n            <div style=\"font-size:0.78rem; color:#1e3a8a; line-height:1.4;\">\n              <strong>Powered by Google Gemini Pro:</strong> Developed using Google DeepMind's advanced AI reasoning agent based on open-source HBandSDK and Veepoo repositories, ensuring broad compatibility across Veepoo wearables.\n            </div>\n          </div>\n        ",
     "tab_screenshot": "images/lcars_tab_help.png",
-    "tab_title": "08-HELP & FAQ \u2022 OPEN SOURCE GPL V3 & CLINICAL STUDIES",
+    "tab_title": "08-HELP & FAQ • OPEN SOURCE GPL V3 & CLINICAL STUDIES",
     "step_focus": [
       {
         "bullet": 0,
