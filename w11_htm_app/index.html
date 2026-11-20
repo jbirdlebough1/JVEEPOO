@@ -2515,7 +2515,7 @@
           </div>
 
           <!-- SINGLE TALL SYNCHRONIZED MULTI-MEASUREMENT TIMELINE CHART -->
-          <div class="chart-box" id="boxSynchronizedTallChart" style="margin-bottom: 18px; border-left: 6px solid var(--lcars-banana);">
+          <div class="chart-box" id="boxSynchronizedTallChart" style="margin-bottom: 18px; border-left: 6px solid var(--lcars-banana); position: relative;">
             <div class="chart-title" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
               <div>
                 <span style="color: var(--lcars-banana); font-size: 1.15rem; font-weight: bold; letter-spacing: 0.05em;">
@@ -2595,7 +2595,7 @@
             </div>
 
             <!-- Interactive Click Point Pop-Up Card Modal -->
-            <div id="timelinePointCardModal" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999; background: #080f1a; border: 2px solid var(--lcars-banana); border-radius: 8px; box-shadow: 0 0 35px rgba(0,0,0,0.85); width: 90%; max-width: 580px; padding: 18px; font-family: var(--lcars-font);">
+            <div id="timelinePointCardModal" style="display: none; position: absolute; top: 210px; left: 50%; transform: translateX(-50%); z-index: 9999; background: #ffffff; color: #0f172a; border: 2.5px solid #0284c7; border-radius: 8px; box-shadow: 0 12px 40px rgba(0,0,0,0.28); width: 92%; max-width: 620px; padding: 18px; font-family: var(--lcars-font);">
               <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1a2f4a; padding-bottom: 10px; margin-bottom: 12px;">
                 <div style="display: flex; align-items: center; gap: 8px;">
                   <span style="font-size: 1.3rem;">📊</span>
@@ -8308,7 +8308,471 @@
       container.innerHTML = svgHtml;
     }
 
-    function renderReportsView() {
+
+    // =========================================================================
+    // HBAND PROTOCOL SPECIFICATION: 2D LORENZ (POINCARÉ) SCATTER ENGINE
+    // =========================================================================
+    let currentLorenzMorphology = 'comet';
+
+    function setLorenzMorphology(morph) {
+      currentLorenzMorphology = morph;
+
+      const btns = ['btnLorenzComet', 'btnLorenzTorpedo', 'btnLorenzClub', 'btnLorenzFork', 'btnLorenzComplex'];
+      btns.forEach(id => {
+        const b = document.getElementById(id);
+        if (b) {
+          b.style.background = '#f8fafc';
+          b.style.borderColor = '#cbd5e1';
+          b.style.color = '#334155';
+        }
+      });
+
+      const configMap = {
+        'comet': { btnId: 'btnLorenzComet', bg: '#dcfce7', border: '#16a34a', color: '#15803d' },
+        'torpedo': { btnId: 'btnLorenzTorpedo', bg: '#fee2e2', border: '#dc2626', color: '#991b1b' },
+        'club': { btnId: 'btnLorenzClub', bg: '#fef3c7', border: '#d97706', color: '#92400e' },
+        'fork': { btnId: 'btnLorenzFork', bg: '#fae8ff', border: '#a855f7', color: '#6b21a8' },
+        'complex': { btnId: 'btnLorenzComplex', bg: '#fee2e2', border: '#ef4444', color: '#b91c1c' }
+      };
+
+      const cfg = configMap[morph];
+      if (cfg) {
+        const ab = document.getElementById(cfg.btnId);
+        if (ab) {
+          ab.style.background = cfg.bg;
+          ab.style.borderColor = cfg.border;
+          ab.style.color = cfg.color;
+        }
+      }
+
+      renderLorenzScatterPlot(morph);
+    }
+
+    function viewLorenzScatterFromCardio() {
+      switchTab('reports');
+      setTimeout(() => {
+        const el = document.getElementById('hbandLorenzScatterContainer');
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 250);
+    }
+
+    function renderLorenzScatterPlot(morphology = 'comet') {
+      const svg = document.getElementById('svgLorenzScatter');
+      if (!svg) return;
+
+      const n = 1200;
+      let points = [];
+      let seed = 42;
+      function rnd() {
+        seed = (seed * 9301 + 49297) % 233280;
+        return seed / 233280;
+      }
+      function gauss(mean, stdev) {
+        let u = 0, v = 0;
+        while (u === 0) u = rnd();
+        while (v === 0) v = rnd();
+        return mean + stdev * Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+      }
+
+      let badgeText = "COMET SHAPE (NORMAL VAGAL TONE)";
+      let badgeBg = "#15803d";
+      let healthScore = "88 / 100 • RESILIENT";
+      let healthBg = "#eff6ff";
+      let healthCol = "#1d4ed8";
+      let healthBorder = "#3b82f6";
+      let diagColor = "#15803d";
+      let diagBorder = "#86efac";
+      let diagBg = "#f0fdf4";
+      let diagText = "Classic <strong>Comet Shape</strong> indicates robust parasympathetic vagal recovery during nocturnal rest. R-R dispersion demonstrates strong cardioprotective autonomic reserve with zero premature ventricular or atrial ectopy detected.";
+
+      if (morphology === 'comet') {
+        for (let i = 0; i < n; i++) {
+          let u = gauss(850, 95);
+          u = Math.max(560, Math.min(1250, u));
+          let t = (u - 560) / (1250 - 560);
+          let perp_sigma = 12 + 42 * Math.pow(t, 1.3);
+          let perp = gauss(0, perp_sigma);
+          let x = u - perp * 0.7071;
+          let y = u + perp * 0.7071;
+          points.push({ x: Math.round(x * 10) / 10, y: Math.round(y * 10) / 10 });
+        }
+      } else if (morphology === 'torpedo') {
+        badgeText = "TORPEDO SHAPE (AUTONOMIC FATIGUE / CAN)";
+        badgeBg = "#dc2626";
+        healthScore = "42 / 100 • COMPROMISED";
+        healthBg = "#fef2f2";
+        healthCol = "#dc2626";
+        healthBorder = "#f87171";
+        diagColor = "#dc2626";
+        diagBorder = "#fca5a5";
+        diagBg = "#fef2f2";
+        diagText = "Narrow <strong>Torpedo Shape</strong> indicates severe parasympathetic vagal withdrawal and sympathetic dominance. Frequently observed in diabetic cardiac autonomic neuropathy (CAN), high chronic distress, or post-exertional exhaustion.";
+        for (let i = 0; i < n; i++) {
+          let u = gauss(780, 85);
+          u = Math.max(620, Math.min(1080, u));
+          let perp = gauss(0, 9);
+          let x = u - perp * 0.7071;
+          let y = u + perp * 0.7071;
+          points.push({ x: Math.round(x * 10) / 10, y: Math.round(y * 10) / 10 });
+        }
+      } else if (morphology === 'club') {
+        badgeText = "CLUB SHAPE (LOW VARIABILITY / RIGID)";
+        badgeBg = "#d97706";
+        healthScore = "55 / 100 • REDUCED";
+        healthBg = "#fffbeb";
+        healthCol = "#b45309";
+        healthBorder = "#fcd34d";
+        diagColor = "#d97706";
+        diagBorder = "#fde68a";
+        diagBg = "#fffbeb";
+        diagText = "Compact <strong>Club Shape</strong> reflects marked reduction in overall heart rate variability and autonomic plasticity. Characterizes sinus tachycardia or early arterial stiffening with diminished dynamic reserve.";
+        for (let i = 0; i < n; i++) {
+          let x = gauss(680, 26);
+          let y = gauss(680, 26);
+          points.push({ x: Math.round(x * 10) / 10, y: Math.round(y * 10) / 10 });
+        }
+      } else if (morphology === 'fork') {
+        badgeText = "FORK SHAPE (BIFURCATED / PVC BIGEMINY)";
+        badgeBg = "#7c3aed";
+        healthScore = "58 / 100 • ECTOPIC DETECTED";
+        healthBg = "#faf5ff";
+        healthCol = "#6b21a8";
+        healthBorder = "#d8b4fe";
+        diagColor = "#7c3aed";
+        diagBorder = "#e9d5ff";
+        diagBg = "#faf5ff";
+        diagText = "Bifurcated <strong>Fork Shape</strong> indicates alternating premature ventricular contractions (PVCs) or bigeminy with compensatory pauses. High RMSSD is artifactually driven by ectopic cycle transitions.";
+        for (let i = 0; i < n; i++) {
+          let r = rnd();
+          let x, y;
+          if (r < 0.60) {
+            let u = gauss(820, 70);
+            let perp = gauss(0, 25);
+            x = u - perp * 0.7071;
+            y = u + perp * 0.7071;
+          } else if (r < 0.80) {
+            x = gauss(620, 25);
+            y = gauss(1040, 30);
+          } else {
+            x = gauss(1040, 30);
+            y = gauss(620, 25);
+          }
+          points.push({ x: Math.round(x * 10) / 10, y: Math.round(y * 10) / 10 });
+        }
+      } else if (morphology === 'complex') {
+        badgeText = "COMPLEX SHAPE (CHAOTIC / AFIB ARRHYTHMIA)";
+        badgeBg = "#b91c1c";
+        healthScore = "35 / 100 • ARRHYTHMIC";
+        healthBg = "#fef2f2";
+        healthCol = "#991b1b";
+        healthBorder = "#ef4444";
+        diagColor = "#b91c1c";
+        diagBorder = "#f87171";
+        diagBg = "#fef2f2";
+        diagText = "Chaotic <strong>Complex Multi-Cluster Shape</strong> demonstrates complete loss of respiratory sinus rhythm organization, consistent with atrial fibrillation (AFib) or frequent multi-focal ectopic bursts.";
+        const centers = [[650, 720], [740, 640], [880, 920], [950, 780], [620, 980], [980, 620]];
+        for (let i = 0; i < n; i++) {
+          let c = centers[Math.floor(rnd() * centers.length)];
+          let x = gauss(c[0], 42);
+          let y = gauss(c[1], 42);
+          points.push({ x: Math.round(x * 10) / 10, y: Math.round(y * 10) / 10 });
+        }
+      }
+
+      // Compute statistics
+      const xs = points.map(p => p.x);
+      const ys = points.map(p => p.y);
+      const meanX = xs.reduce((a, b) => a + b, 0) / n;
+      const meanY = ys.reduce((a, b) => a + b, 0) / n;
+      const meanRR = (meanX + meanY) / 2.0;
+      const bpm = Math.round(60000.0 / meanRR);
+
+      const varianceX = xs.reduce((acc, v) => acc + Math.pow(v - meanX, 2), 0) / (n - 1);
+      const sdnn = Math.sqrt(varianceX);
+
+      const diffs = points.map(p => p.y - p.x);
+      const rmssd = Math.sqrt(diffs.reduce((acc, d) => acc + d * d, 0) / (n - 1));
+
+      const sd1 = rmssd / Math.SQRT2;
+      const val2 = 2.0 * Math.pow(sdnn, 2) - 0.5 * Math.pow(rmssd, 2);
+      const sd2 = Math.sqrt(Math.max(1.0, val2));
+      const ratio = sd1 / sd2;
+
+      // Update UI elements
+      const badgeEl = document.getElementById('lorenzShapeBadge');
+      if (badgeEl) {
+        badgeEl.textContent = badgeText;
+        badgeEl.style.background = badgeBg;
+      }
+      const healthEl = document.getElementById('lorenzHealthScore');
+      if (healthEl) {
+        healthEl.textContent = healthScore;
+        healthEl.style.background = healthBg;
+        healthEl.style.color = healthCol;
+        healthEl.style.borderColor = healthBorder;
+      }
+      const cardEl = document.getElementById('lorenzDiagCard');
+      if (cardEl) {
+        cardEl.style.background = diagBg;
+        cardEl.style.borderColor = diagBorder;
+        cardEl.style.color = diagColor;
+      }
+      const diagTextEl = document.getElementById('lorenzDiagText');
+      if (diagTextEl) diagTextEl.innerHTML = diagText;
+
+      const elMean = document.getElementById('mMeanRR');
+      if (elMean) elMean.textContent = `${Math.round(meanRR)} ms (${bpm} BPM)`;
+      const elSDNN = document.getElementById('mSDNN');
+      if (elSDNN) elSDNN.textContent = `${sdnn.toFixed(1)} ms`;
+      const elRMSSD = document.getElementById('mRMSSD');
+      if (elRMSSD) elRMSSD.textContent = `${rmssd.toFixed(1)} ms`;
+      const elSD1 = document.getElementById('mSD1');
+      if (elSD1) elSD1.textContent = `${sd1.toFixed(1)} ms`;
+      const elSD2 = document.getElementById('mSD2');
+      if (elSD2) elSD2.textContent = `${sd2.toFixed(1)} ms`;
+      const elRatio = document.getElementById('mRatio');
+      if (elRatio) elRatio.textContent = `${ratio.toFixed(3)} (Target: 0.30 - 0.50)`;
+
+      // Render SVG Canvas
+      const padLeft = 55;
+      const padRight = 20;
+      const padTop = 20;
+      const padBottom = 45;
+      const plotW = 460 - padLeft - padRight;
+      const plotH = 360 - padTop - padBottom;
+
+      const minRR = 400.0;
+      const maxRR = 1400.0;
+      const rangeRR = maxRR - minRR;
+
+      function mapX(val) {
+        return padLeft + ((val - minRR) / rangeRR) * plotW;
+      }
+      function mapY(val) {
+        return padTop + plotH - ((val - minRR) / rangeRR) * plotH;
+      }
+
+      let svgHtml = '';
+
+      for (let grid = 400; grid <= 1400; grid += 200) {
+        const gx = mapX(grid);
+        const gy = mapY(grid);
+        svgHtml += `<line x1="${gx.toFixed(1)}" y1="${padTop}" x2="${gx.toFixed(1)}" y2="${padTop + plotH}" stroke="#e2e8f0" stroke-width="1" />`;
+        svgHtml += `<text x="${gx.toFixed(1)}" y="${padTop + plotH + 16}" font-size="9" font-family="monospace" fill="#64748b" text-anchor="middle">${grid}</text>`;
+        svgHtml += `<line x1="${padLeft}" y1="${gy.toFixed(1)}" x2="${padLeft + plotW}" y2="${gy.toFixed(1)}" stroke="#e2e8f0" stroke-width="1" />`;
+        svgHtml += `<text x="${padLeft - 8}" y="${gy.toFixed(1) + 3}" font-size="9" font-family="monospace" fill="#64748b" text-anchor="end">${grid}</text>`;
+      }
+
+      svgHtml += `<rect x="${padLeft}" y="${padTop}" width="${plotW}" height="${plotH}" fill="none" stroke="#cbd5e1" stroke-width="1.5" />`;
+
+      const x1Id = mapX(400);
+      const y1Id = mapY(400);
+      const x2Id = mapX(1400);
+      const y2Id = mapY(1400);
+      svgHtml += `<line x1="${x1Id.toFixed(1)}" y1="${y1Id.toFixed(1)}" x2="${x2Id.toFixed(1)}" y2="${y2Id.toFixed(1)}" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.85" />`;
+      svgHtml += `<text x="${x2Id - 10}" y="${y2Id + 16}" font-size="8.5" font-family="monospace" fill="#64748b" font-weight="bold" text-anchor="end">IDENTITY: RR(n+1)=RR(n)</text>`;
+
+      const cx = mapX(meanRR);
+      const cy = mapY(meanRR);
+      const rx = (sd2 / rangeRR) * plotW * 0.95;
+      const ry = (sd1 / rangeRR) * plotH * 0.95;
+      svgHtml += `<ellipse cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" rx="${rx.toFixed(1)}" ry="${ry.toFixed(1)}" transform="rotate(-45 ${cx.toFixed(1)} ${cy.toFixed(1)})" fill="#ede9fe" fill-opacity="0.38" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="3 3" />`;
+
+      svgHtml += `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="3" fill="#0f172a" />`;
+
+      const sd2Len = (sd2 / rangeRR) * plotW * 0.65;
+      const sd2X = cx + sd2Len * 0.7071;
+      const sd2Y = cy - sd2Len * 0.7071;
+      svgHtml += `<line x1="${cx.toFixed(1)}" y1="${cy.toFixed(1)}" x2="${sd2X.toFixed(1)}" y2="${sd2Y.toFixed(1)}" stroke="#2563eb" stroke-width="2" />`;
+      svgHtml += `<circle cx="${sd2X.toFixed(1)}" cy="${sd2Y.toFixed(1)}" r="2.5" fill="#2563eb" />`;
+      svgHtml += `<text x="${sd2X + 6}" y="${sd2Y - 4}" font-size="8" font-family="monospace" fill="#1d4ed8" font-weight="bold">SD2 (SYMP)</text>`;
+
+      const sd1Len = (sd1 / rangeRR) * plotH * 0.95;
+      const sd1X = cx - sd1Len * 0.7071;
+      const sd1Y = cy - sd1Len * 0.7071;
+      svgHtml += `<line x1="${cx.toFixed(1)}" y1="${cy.toFixed(1)}" x2="${sd1X.toFixed(1)}" y2="${sd1Y.toFixed(1)}" stroke="#15803d" stroke-width="2" />`;
+      svgHtml += `<circle cx="${sd1X.toFixed(1)}" cy="${sd1Y.toFixed(1)}" r="2.5" fill="#15803d" />`;
+      svgHtml += `<text x="${sd1X - 6}" y="${sd1Y - 4}" font-size="8" font-family="monospace" fill="#15803d" font-weight="bold" text-anchor="end">SD1 (VAGAL)</text>`;
+
+      let ptColor = '#4f46e5';
+      if (morphology === 'torpedo') ptColor = '#dc2626';
+      else if (morphology === 'club') ptColor = '#d97706';
+      else if (morphology === 'fork') ptColor = '#7c3aed';
+      else if (morphology === 'complex') ptColor = '#b91c1c';
+
+      points.forEach(p => {
+        if (p.x >= minRR && p.x <= maxRR && p.y >= minRR && p.y <= maxRR) {
+          const px = mapX(p.x);
+          const py = mapY(p.y);
+          svgHtml += `<circle cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="1.8" fill="${ptColor}" opacity="0.45" />`;
+        }
+      });
+
+      svgHtml += `<text x="${padLeft + plotW / 2}" y="${360 - 8}" font-size="10" font-family="monospace" fill="#334155" font-weight="bold" text-anchor="middle">RR_n INTERVAL (CURRENT BEAT) — MS</text>`;
+      svgHtml += `<text x="14" y="${padTop + plotH / 2}" font-size="10" font-family="monospace" fill="#334155" font-weight="bold" text-anchor="middle" transform="rotate(-90 14 ${padTop + plotH / 2})">RR_{n+1} INTERVAL (NEXT BEAT) — MS</text>`;
+
+      svg.innerHTML = svgHtml;
+    }
+
+    // =========================================================================
+    // STEP VOLUME VS. 24-HOUR MEAN GLUCOSE BIVARIATE CORRELATOR ENGINE
+    // =========================================================================
+    let correlatorPoints = [];
+    let currentStepSimulationTarget = 7500;
+
+    function initStepGlucoseCorrelatorData() {
+      if (correlatorPoints.length > 0) return;
+      let seed = 101;
+      function rnd() {
+        seed = (seed * 9301 + 49297) % 233280;
+        return seed / 233280;
+      }
+      function gauss(mean, stdev) {
+        let u = 0, v = 0;
+        while (u === 0) u = rnd();
+        while (v === 0) v = rnd();
+        return mean + stdev * Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+      }
+
+      for (let i = 0; i < 90; i++) {
+        let steps = Math.round(2000 + rnd() * 10000);
+        if (i % 7 === 0 || i % 7 === 6) {
+          steps = Math.min(13200, steps + 1500);
+        }
+        let expG = 163.5 - 0.0052 * steps;
+        let noise = gauss(0, 6.2);
+        let g = Math.max(88, Math.min(178, expG + noise));
+        let tir = Math.round(62 + ((steps - 1500) / 11500) * 28 + (rnd() * 6 - 3));
+        tir = Math.max(55, Math.min(96, tir));
+        correlatorPoints.push({
+          day: i + 1,
+          steps: steps,
+          glucose: Math.round(g * 10) / 10,
+          tir: tir
+        });
+      }
+    }
+
+    function onStepTargetSliderChanged(val) {
+      currentStepSimulationTarget = parseInt(val, 10);
+      const lbl = document.getElementById('lblStepTargetVal');
+      if (lbl) lbl.textContent = `${currentStepSimulationTarget.toLocaleString()} STEPS`;
+
+      const predG = Math.max(85, Math.min(175, 163.5 - 0.0052 * currentStepSimulationTarget));
+      const predA1c = (predG + 46.7) / 28.7;
+      const blunting = Math.round(-15 - (currentStepSimulationTarget / 10000.0) * 35);
+
+      const elG = document.getElementById('projGlucose');
+      if (elG) elG.textContent = `${predG.toFixed(1)} mg/dL`;
+      const elA1c = document.getElementById('projA1c');
+      if (elA1c) elA1c.textContent = `${predA1c.toFixed(2)}%`;
+      const elSpike = document.getElementById('projSpike');
+      if (elSpike) elSpike.textContent = `${blunting} mg/dL`;
+
+      renderStepGlucoseCorrelator();
+    }
+
+    function renderStepGlucoseCorrelator() {
+      initStepGlucoseCorrelatorData();
+      const svg = document.getElementById('svgStepGlucoseCorrelator');
+      if (!svg) return;
+
+      const padLeft = 52;
+      const padRight = 20;
+      const padTop = 20;
+      const padBottom = 45;
+      const plotW = 500 - padLeft - padRight;
+      const plotH = 340 - padTop - padBottom;
+
+      const minX = 0;
+      const maxX = 14000;
+      const minY = 80;
+      const maxY = 180;
+
+      function mapX(s) {
+        return padLeft + ((s - minX) / (maxX - minX)) * plotW;
+      }
+      function mapY(g) {
+        return padTop + plotH - ((g - minY) / (maxY - minY)) * plotH;
+      }
+
+      let svgHtml = '';
+
+      const xSedStart = mapX(0);
+      const xSedEnd = mapX(3000);
+      svgHtml += `<rect x="${xSedStart}" y="${padTop}" width="${xSedEnd - xSedStart}" height="${plotH}" fill="#fee2e2" fill-opacity="0.45" />`;
+      svgHtml += `<text x="${(xSedStart + xSedEnd)/2}" y="${padTop + 14}" font-size="8" font-family="monospace" fill="#b91c1c" font-weight="bold" text-anchor="middle">SEDENTARY RISK (&lt;3K)</text>`;
+
+      const xModEnd = mapX(7000);
+      svgHtml += `<rect x="${xSedEnd}" y="${padTop}" width="${xModEnd - xSedEnd}" height="${plotH}" fill="#fef3c7" fill-opacity="0.35" />`;
+      svgHtml += `<text x="${(xSedEnd + xModEnd)/2}" y="${padTop + 14}" font-size="8" font-family="monospace" fill="#b45309" font-weight="bold" text-anchor="middle">TRANSITION (3K-7K)</text>`;
+
+      const xOptEnd = mapX(14000);
+      svgHtml += `<rect x="${xModEnd}" y="${padTop}" width="${xOptEnd - xModEnd}" height="${plotH}" fill="#dcfce7" fill-opacity="0.45" />`;
+      svgHtml += `<text x="${(xModEnd + xOptEnd)/2}" y="${padTop + 14}" font-size="8" font-family="monospace" fill="#15803d" font-weight="bold" text-anchor="middle">OPTIMAL GLUT4 ZONE (≥7K)</text>`;
+
+      const yTarget = mapY(120);
+      svgHtml += `<line x1="${padLeft}" y1="${yTarget}" x2="${padLeft + plotW}" y2="${yTarget}" stroke="#15803d" stroke-dasharray="4 4" stroke-width="1.2" opacity="0.8" />`;
+      svgHtml += `<text x="${padLeft + plotW - 6}" y="${yTarget - 4}" font-size="8" font-family="monospace" fill="#15803d" font-weight="bold" text-anchor="end">CLINICAL HOMEOSTASIS: 120 MG/DL</text>`;
+
+      for (let s = 0; s <= 14000; s += 2000) {
+        const gx = mapX(s);
+        svgHtml += `<line x1="${gx.toFixed(1)}" y1="${padTop}" x2="${gx.toFixed(1)}" y2="${padTop + plotH}" stroke="#e2e8f0" stroke-width="1" />`;
+        const label = s === 0 ? '0' : `${s / 1000}k`;
+        svgHtml += `<text x="${gx.toFixed(1)}" y="${padTop + plotH + 16}" font-size="9" font-family="monospace" fill="#64748b" text-anchor="middle">${label}</text>`;
+      }
+
+      for (let g = 80; g <= 180; g += 20) {
+        const gy = mapY(g);
+        svgHtml += `<line x1="${padLeft}" y1="${gy.toFixed(1)}" x2="${padLeft + plotW}" y2="${gy.toFixed(1)}" stroke="#e2e8f0" stroke-width="1" />`;
+        svgHtml += `<text x="${padLeft - 8}" y="${gy.toFixed(1) + 3}" font-size="9" font-family="monospace" fill="#64748b" text-anchor="end">${g}</text>`;
+      }
+
+      svgHtml += `<rect x="${padLeft}" y="${padTop}" width="${plotW}" height="${plotH}" fill="none" stroke="#cbd5e1" stroke-width="1.5" />`;
+
+      const x0 = mapX(500);
+      const y0Top = mapY(163.5 - 0.0052 * 500 + 7.5);
+      const y0Bot = mapY(163.5 - 0.0052 * 500 - 7.5);
+      const x1 = mapX(13500);
+      const y1Top = mapY(163.5 - 0.0052 * 13500 + 8.5);
+      const y1Bot = mapY(163.5 - 0.0052 * 13500 - 8.5);
+
+      const ribbonPoints = `${x0.toFixed(1)},${y0Top.toFixed(1)} ${x1.toFixed(1)},${y1Top.toFixed(1)} ${x1.toFixed(1)},${y1Bot.toFixed(1)} ${x0.toFixed(1)},${y0Bot.toFixed(1)}`;
+      svgHtml += `<polygon points="${ribbonPoints}" fill="#bfdbfe" fill-opacity="0.45" />`;
+
+      const yLine0 = mapY(163.5 - 0.0052 * 500);
+      const yLine1 = mapY(163.5 - 0.0052 * 13500);
+      svgHtml += `<line x1="${x0.toFixed(1)}" y1="${yLine0.toFixed(1)}" x2="${x1.toFixed(1)}" y2="${yLine1.toFixed(1)}" stroke="#2563eb" stroke-width="2.5" />`;
+      svgHtml += `<text x="${x1.toFixed(1) - 6}" y="${yLine1 - 6}" font-size="8.5" font-family="monospace" fill="#1d4ed8" font-weight="bold" text-anchor="end">SLOPE: -5.2 MG/DL / 1,000 STEPS (r = -0.79)</text>`;
+
+      correlatorPoints.forEach((p, idx) => {
+        const cx = mapX(p.steps);
+        const cy = mapY(p.glucose);
+        let fillCol = '#0284c7';
+        if (p.steps >= 7000 && p.glucose <= 125) fillCol = '#16a34a';
+        else if (p.steps < 3000 || p.glucose >= 150) fillCol = '#dc2626';
+
+        svgHtml += `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="3" fill="${fillCol}" stroke="#ffffff" stroke-width="0.8" opacity="0.82">
+          <title>Day ${p.day}: ${p.steps.toLocaleString()} steps • Mean Glucose: ${p.glucose} mg/dL • TIR: ${p.tir}%</title>
+        </circle>`;
+      });
+
+      const simX = mapX(currentStepSimulationTarget);
+      const simExpG = Math.max(85, Math.min(175, 163.5 - 0.0052 * currentStepSimulationTarget));
+      const simY = mapY(simExpG);
+
+      svgHtml += `<line x1="${simX.toFixed(1)}" y1="${padTop}" x2="${simX.toFixed(1)}" y2="${padTop + plotH}" stroke="#0284c7" stroke-width="2" stroke-dasharray="3 3" />`;
+      svgHtml += `<circle cx="${simX.toFixed(1)}" cy="${simY.toFixed(1)}" r="6" fill="#0284c7" stroke="#ffffff" stroke-width="2" />`;
+      svgHtml += `<circle cx="${simX.toFixed(1)}" cy="${simY.toFixed(1)}" r="10" fill="none" stroke="#0284c7" stroke-width="1.5" opacity="0.6" />`;
+      svgHtml += `<text x="${simX + 10}" y="${simY - 10}" font-size="9" font-family="monospace" fill="#0369a1" font-weight="800">TARGET: ${simExpG.toFixed(1)} MG/DL</text>`;
+
+      svgHtml += `<text x="${padLeft + plotW / 2}" y="${340 - 8}" font-size="10" font-family="monospace" fill="#334155" font-weight="bold" text-anchor="middle">AMBULATORY DAILY STEP VOLUME</text>`;
+      svgHtml += `<text x="14" y="${padTop + plotH / 2}" font-size="10" font-family="monospace" fill="#334155" font-weight="bold" text-anchor="middle" transform="rotate(-90 14 ${padTop + plotH / 2})">24-HOUR MEAN BLOOD GLUCOSE (MG/DL)</text>`;
+
+      svg.innerHTML = svgHtml;
+    }
+
+        function renderReportsView() {
       const isDaily = currentReportTimeframe === 'daily';
       const isWeekly = currentReportTimeframe === 'weekly';
       const isMonthly = currentReportTimeframe === 'monthly';
@@ -10264,6 +10728,11 @@
 
       const modal = document.getElementById('timelinePointCardModal');
       if (!modal) return;
+      modal.style.position = 'absolute';
+      modal.style.top = '210px';
+      modal.style.left = '50%';
+      modal.style.transform = 'translateX(-50%)';
+      modal.style.zIndex = '9999';
 
       const title = document.getElementById('cardModalTitle');
       if (title) title.textContent = `POINT AUDIT: ${pt.time} (${pt.notes || 'Clinical Telemetry'})`;

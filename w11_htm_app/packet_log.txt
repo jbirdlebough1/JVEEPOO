@@ -72970,3 +72970,28 @@ c 64 01 2a 01 00 00 00 00 00 00 00 00 00 00 00
 [13:32:09] [RX] RX [0000fea1]: 01 f6 07 00
 [13:32:10] [RX] RX [0000fea1]: 01 f6 07 00
 [13:32:11] [RX] RX [0000fea1]: 01 f6 07 00
+[13:32:12] [RX] RX [0000fea1]: 01 f6 07 00
+[13:32:13] [RX] RX [0000fea1]: 01 f6 07 00
+[13:32:14] [RX] RX [0000fea1]: 01 f6 07 00
+[13:32:15] [RX] RX [0000fea1]: 01 f6 07 00
+[13:32:16] [RX] RX [0000fea1]: 01 f6 07 00
+[13:32:17] [RX] RX [0000fea1]: 01 f6 07 00
+[13:32:18] [RX] RX [0000fea1]: 01 f6 07 00
+[13:32:19] [RX] RX [f0080002]: a0 00 00 00 49 01 49 01 00 00 00 00 00 00 00 00 00 00 00 00
+[13:32:19] [RX] RX [0000fea1]: 01 f6 07 00
+[13:32:20] [RX] RX [0000fea1]: 01 f6 07 00
+[13:32:21] [RX] RX [0000fea1]: 01 f6 07 00
+[13:41:23] [TX] [*] Populating Setup parameters from active profile...
+[13:41:23] [SYS] [+] Using initialized baseline parameters for Model 5010.
+[13:42:18] [TX] [*] Populating Setup parameters from active profile...
+[13:42:18] [SYS] [+] Using initialized baseline parameters for Model 5010.
+[13:42:35] [TX] [*] Populating Setup parameters from active profile...
+[13:42:35] [SYS] [+] Using initialized baseline parameters for Model 5010.
+[13:42:47] [TX] [*] Populating Setup parameters from active profile...
+[13:42:47] [SYS] [+] Using initialized baseline parameters for Model 5010.
+[13:44:42] [TX] [*] Populating Setup parameters from active profile...
+[13:44:42] [SYS] [+] Using initialized baseline parameters for Model 5010.
+[13:44:42] [SYS] Watch transponder ready. Auto-connecting in background whenever in range.
+[13:44:55] [TX] [*] Populating Setup parameters from active profile...
+[13:44:55] [SYS] [+] Using initialized baseline parameters for Model 5010.
+[13:44:55] [SYS] Watch transponder ready. Auto-connecting in background whenever in range.

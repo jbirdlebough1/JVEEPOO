@@ -490,15 +490,15 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 **Module:** Module 6: Tab 04 Synchronized Tall Chart  
 **Card Title:** CLICK-TO-POP CLINICAL POINT MICRO-AUDITS  
 
-> Displayed on your screen is our Click-to-Pop Clinical Point Card modal, captured directly in Tab 04 Reports Console. Touching or clicking any data point on the continuous timeline instantly surfaces this detailed clinical audit window. As shown in the modal, every point captures the exact verified glucose reading of 188 milligrams per deciliter, accompanied by normotensive blood pressure of 119 over 76, 98 percent oxygenation, and an 84 beat per minute pulse. Directly below, the modal details the patient's nutritional intake: a grilled chicken salad with eighteen grams of net carbs, paired with a twenty-minute post-meal GLUT4 walk that suppressed glucose by 34 milligrams per deciliter. Finally, the clinical correlation box explains that non-insulin skeletal muscle uptake safely maintained time-in-range. This gives physicians an instantaneous micro-audit during clinical consultations without searching through paper logs.
+> Slide thirty-two demonstrates our interactive click-to-pop inspection directly over top of the eight-lane chart. As the clinician or patient drags the vertical scrubber line across the timeline, the multi-parameter HUD updates in real time, tracking glucose rising from the one hundred and fifty-eight milligram pre-meal baseline to the one hundred and eighty-eight postprandial peak. Clicking that node immediately surfaces the Clinical Point Audit Card floating right over the eight-lane chart. At a glance, the modal reveals the complete multi-system matrix: one hundred and eighty-eight milligrams glucose, one hundred and nineteen over seventy-six blood pressure, ninety-eight percent oxygenation, and an eighty-four beat pulse. Directly below, it breaks down the exact meal data: an eighteen-gram net carb grilled chicken salad, paired with a twenty-minute post-meal GLUT4 walk that blunted the glycemic peak by thirty-four milligrams per deciliter. This delivers instantaneous, objective clinical proof during consultations without digging through manual logs.
 
 **Key Points:**
-- **Instant Click-to-Pop Inspection:** Clicking any timeline node instantly surfaces a comprehensive modal displaying all verified metrics at that timestamp.
-- **Granular Multi-System Matrix:** Displays exact numeric glucose (188 mg/dL), blood pressure (119/76), oxygenation (98%), pulse (84 BPM), and HRV (56 ms).
-- **Nutritional & Kinetic Correlates:** Details meal carbohydrates (18g net carbs), caloric intake (520 kcal), and post-meal GLUT4 walk step suppression (-34 mg/dL).
-- **Physician-Patient Consultation Proof:** Provides an authoritative clinical explanation, verifying that lifestyle compliance actively protected beta-cell reserve.
+- **Selecting the Scrubber: 158 to 188 mg/dL:** Dragging the vertical scrubber line across the timeline captures the rise from 158 mg/dL pre-lunch baseline to the 188 mg/dL postprandial peak.
+- **Popup Modal Over 8-Lane Chart:** Clicking the 188 mg/dL node displays the Clinical Point Card modal directly over top of the 8-lane chart with all biometrics synchronized.
+- **Granular Nutritional & GLUT4 Correlates:** Presents detailed meal data (grilled chicken salad, 18g net carbs, 520 kcal) paired with a 20-min post-meal GLUT4 walk (-34 mg/dL suppression).
+- **Physician Consultation Proof:** Provides instant empirical verification for clinicians that lifestyle compliance and non-insulin muscle clearance safely maintained Time-in-Range.
 
-**Key Takeaway:** Clicking any point on the clinical curve opens an instant micro-audit modal. At 13:30, it validates 188 mg/dL glucose, 18g meal carbs, and a 20-min GLUT4 walk (-34 mg/dL), providing physicians with complete consultation proof.
+**Key Takeaway:** Selecting the vertical line reveals the 158 to 188 mg/dL excursion, then pops up the exact meal and GLUT4 walk audit directly over the 8-lane chart.
 
 ---
 

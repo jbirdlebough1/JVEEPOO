@@ -287,5 +287,22 @@
     "created_at": "2026-11-20T13:32:07.314007",
     "updated_at": "2026-11-20T13:32:07.314007",
     "resolved_at": "2026-11-20T13:32:07.314007"
+  },
+  {
+    "id": 101,
+    "project_name": "CLE",
+    "bug_number": 71,
+    "bug_code": "CLE-071",
+    "build_number": "W11-SLIDE32-POPUP-OVERLAY",
+    "title": "Slide 32 Alignment: Vertical Scrubber Selection (158 -> 188 mg/dL) & Meal Audit Popup Overlaying 8-Lane Chart",
+    "status": "RESOLVED",
+    "component": "reports/tall_chart/slide_32",
+    "affected_files": "w11_htm_app/index.html, index.html, all_slides_data.json, slides/slide_32.html, images/lcars_slide32_point_card_modal.png, preview.html",
+    "bug_loc": 185,
+    "resolution": "Updated timelinePointCardModal to float directly on top of the 8-lane chart (position: absolute; top: 220px; left: 50%) rather than covering the whole screen with a fixed modal backdrop. Simulated vertical scrubber selection moving from 158 mg/dL (12:30 pre-lunch) to 188 mg/dL (13:30 postprandial peak). Captured 1076x1249 CDP screenshot showing the 8-lane chart extending beneath the meal/GLUT4 audit popup. Re-rendered Australian female audio and recompiled launcher.",
+    "comments": "Verified popup modal overlays the 8-lane chart with vertical scrubber positioned at 188 mg/dL peak.",
+    "created_at": "2026-11-20T13:46:06.704698",
+    "updated_at": "2026-11-20T13:46:06.704698",
+    "resolved_at": "2026-11-20T13:46:06.704698"
   }
 ]
