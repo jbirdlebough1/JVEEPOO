@@ -1887,6 +1887,7 @@
               <div class="bay-controls" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 12px; padding-bottom: 6px;">
                 <button id="btnStartHRV" class="lcars-btn btn-lilac" style="min-height: 38px;" onclick="startHRVDetection()">SCAN HRV</button>
                 <button id="btnStopHRV" class="lcars-btn btn-orange" style="min-height: 38px;" onclick="stopHRVDetection()">CANCEL</button>
+                <button id="btnViewLorenz" class="lcars-btn btn-blue" style="min-height: 38px;" onclick="viewLorenzScatterFromCardio()">📊 2D LORENZ SCATTER (HBAND)</button>
               </div>
             </div>
           </div>
@@ -2878,7 +2879,92 @@
               <span id="repChartHRVTitle">AUTONOMIC HRV & LORENZ CARDIAC SCATTER DYNAMICS (MS)</span>
               <span style="font-family: var(--lcars-mono); color: var(--lcars-lilac);">SYMPATHO-VAGAL BALANCE • AUTONOMIC FATIGUE / STRESS RECOVERY</span>
             </div>
+            <!-- 24-Hour Continuous HRV Timeline -->
             <div class="svg-timeline-container" id="curveTimelineHRV"></div>
+
+            <!-- HBAND PROTOCOL SPECIFICATION: 2D LORENZ (POINCARÉ) CARDIAC SCATTER PLOT -->
+            <div id="hbandLorenzScatterContainer" style="margin-top: 14px; border: 1.5px solid #cbd5e1; border-radius: 8px; padding: 14px; background: #ffffff; color: #0f172a; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+              <!-- Top Header Bar with Badges -->
+              <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 12px; gap: 8px;">
+                <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                  <span style="font-size: 1.02rem; font-weight: 800; color: #5b21b6; letter-spacing: 0.03em;">HBAND PROTOCOL: 2D LORENZ (POINCARÉ) SCATTER PLOT</span>
+                  <span id="lorenzShapeBadge" style="background: #15803d; color: #ffffff; font-family: monospace; font-size: 0.72rem; font-weight: 800; padding: 3px 8px; border-radius: 4px;">COMET SHAPE (NORMAL VAGAL TONE)</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span style="font-family: monospace; font-size: 0.72rem; color: #475569; font-weight: 700;">AUTONOMIC HEALTH:</span>
+                  <span id="lorenzHealthScore" style="background: #eff6ff; color: #1d4ed8; border: 1.5px solid #3b82f6; font-family: monospace; font-size: 0.76rem; font-weight: 800; padding: 2px 8px; border-radius: 4px;">88 / 100 • RESILIENT</span>
+                </div>
+              </div>
+
+              <!-- H-Band Standard Morphologies Control Bar -->
+              <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; align-items: center;">
+                <span style="font-size: 0.72rem; font-weight: 800; color: #334155; margin-right: 4px;">HBAND MORPHOLOGY MODES:</span>
+                <button type="button" class="lorenz-btn" id="btnLorenzComet" onclick="setLorenzMorphology('comet')" style="cursor: pointer; padding: 4px 10px; font-size: 0.72rem; font-weight: 700; border-radius: 4px; border: 1.5px solid #16a34a; background: #dcfce7; color: #15803d; transition: all 0.15s ease;">✨ COMET (PATIENT BASELINE)</button>
+                <button type="button" class="lorenz-btn" id="btnLorenzTorpedo" onclick="setLorenzMorphology('torpedo')" style="cursor: pointer; padding: 4px 10px; font-size: 0.72rem; font-weight: 700; border-radius: 4px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #334155; transition: all 0.15s ease;">⚡ TORPEDO (FATIGUE / NEUROPATHY)</button>
+                <button type="button" class="lorenz-btn" id="btnLorenzClub" onclick="setLorenzMorphology('club')" style="cursor: pointer; padding: 4px 10px; font-size: 0.72rem; font-weight: 700; border-radius: 4px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #334155; transition: all 0.15s ease;">⚪ CLUB (LOW VARIABILITY)</button>
+                <button type="button" class="lorenz-btn" id="btnLorenzFork" onclick="setLorenzMorphology('fork')" style="cursor: pointer; padding: 4px 10px; font-size: 0.72rem; font-weight: 700; border-radius: 4px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #334155; transition: all 0.15s ease;">🔱 FORK (BIFURCATED / PVC)</button>
+                <button type="button" class="lorenz-btn" id="btnLorenzComplex" onclick="setLorenzMorphology('complex')" style="cursor: pointer; padding: 4px 10px; font-size: 0.72rem; font-weight: 700; border-radius: 4px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #334155; transition: all 0.15s ease;">🌐 COMPLEX (ARRHYTHMIA / AFIB)</button>
+              </div>
+
+              <!-- Two-Column Main Layout: SVG Canvas + Metrics Strip -->
+              <div style="display: grid; grid-template-columns: minmax(380px, 1.25fr) 1fr; gap: 14px; align-items: start;">
+                <!-- Left: 2D Lorenz Poincaré Canvas -->
+                <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 10px; position: relative;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; font-size: 0.68rem; font-family: monospace; color: #64748b;">
+                    <span>AXIS: RR(n+1) vs RR(n) [400 - 1400 MS]</span>
+                    <span style="color: #7c3aed; font-weight: bold;">N = 1,200 CARDIAC EPOCHS</span>
+                  </div>
+                  <svg id="svgLorenzScatter" viewBox="0 0 460 360" style="width: 100%; height: auto; display: block; background: #fafafa; border-radius: 4px; border: 1px solid #e2e8f0;"></svg>
+                </div>
+
+                <!-- Right: Quantitative Metrics Grid & Clinical Interpretation -->
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                  <!-- 6 Quantitative Metric Chips -->
+                  <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; font-family: monospace;">
+                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; padding: 6px 8px;">
+                      <div style="font-size: 0.60rem; color: #64748b; font-weight: bold;">MEAN R-R INTERVAL</div>
+                      <div id="mMeanRR" style="font-size: 0.90rem; font-weight: 800; color: #0284c7;">852 ms (70 BPM)</div>
+                    </div>
+                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; padding: 6px 8px;">
+                      <div style="font-size: 0.60rem; color: #64748b; font-weight: bold;">SDNN (TOTAL POWER)</div>
+                      <div id="mSDNN" style="font-size: 0.90rem; font-weight: 800; color: #7c3aed;">64.2 ms</div>
+                    </div>
+                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; padding: 6px 8px;">
+                      <div style="font-size: 0.60rem; color: #64748b; font-weight: bold;">RMSSD (VAGAL TONE)</div>
+                      <div id="mRMSSD" style="font-size: 0.90rem; font-weight: 800; color: #16a34a;">41.8 ms</div>
+                    </div>
+                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; padding: 6px 8px;">
+                      <div style="font-size: 0.60rem; color: #64748b; font-weight: bold;">SD1 (TRANSVERSE AXIS)</div>
+                      <div id="mSD1" style="font-size: 0.90rem; font-weight: 800; color: #15803d;">29.6 ms</div>
+                    </div>
+                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; padding: 6px 8px;">
+                      <div style="font-size: 0.60rem; color: #64748b; font-weight: bold;">SD2 (LONGITUDINAL AXIS)</div>
+                      <div id="mSD2" style="font-size: 0.90rem; font-weight: 800; color: #2563eb;">85.9 ms</div>
+                    </div>
+                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; padding: 6px 8px;">
+                      <div style="font-size: 0.60rem; color: #64748b; font-weight: bold;">SD1 / SD2 BALANCE RATIO</div>
+                      <div id="mRatio" style="font-size: 0.90rem; font-weight: 800; color: #d97706;">0.344 (Normal 0.3-0.5)</div>
+                    </div>
+                  </div>
+
+                  <!-- Diagnostic Clinical Impression Card -->
+                  <div id="lorenzDiagCard" style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 5px; padding: 8px 10px; font-size: 0.73rem; color: #14532d; line-height: 1.35;">
+                    <strong style="color: #15803d;">HBAND CLINICAL IMPRESSION:</strong>
+                    <div id="lorenzDiagText" style="margin-top: 3px;">
+                      Classic <strong>Comet Shape</strong> indicates robust parasympathetic vagal recovery during nocturnal rest. R-R dispersion demonstrates strong cardioprotective autonomic reserve with zero premature ventricular or atrial ectopy detected.
+                    </div>
+                  </div>
+
+                  <!-- Diabetic Telemetry Utility Card -->
+                  <div style="background: #eff6ff; border: 1.5px solid #bfdbfe; border-radius: 5px; padding: 8px 10px; font-size: 0.72rem; color: #1e3a8a; line-height: 1.35;">
+                    <strong style="color: #1d4ed8;">DIABETIC TELEMETRY UTILITY:</strong>
+                    <div style="margin-top: 3px;">
+                      Continuous Lorenz scatter analysis provides an early warning screen for <strong>Diabetic Cardiac Autonomic Neuropathy (CAN)</strong> long before clinical symptoms emerge. Narrowing of the transverse SD1 vector signals autonomic exhaustion and nocturnal cortisol surges driving fasting glucose spikes.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           <!-- NOCTURNAL SLEEP DURATION & ARCHITECTURE CHART -->
@@ -8553,6 +8639,9 @@
           { val: 30, label: "AUTONOMIC STRESS: <30 ms", color: "var(--lcars-rust)" }
         ]
       });
+
+      // HBAND Parity 2D Lorenz Poincaré Scatter Plot
+      renderLorenzScatterPlot('comet');
 
       // 8. Sleep Duration & Hypnogram Curve
       renderSvgCurveChart('curveTimelineSleep', sleepData, {

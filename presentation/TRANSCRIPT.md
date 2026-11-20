@@ -610,16 +610,16 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ### Slide 40: Autonomic HRV & Lorenz Cardiac Scatter Dynamics
 **Module:** Module 5: Clinical Reports & Longitudinal EHR Records  
-**Card Title:** AUTONOMIC HRV SDNN & SYMPATHO-VAGAL EQUILIBRIUM  
+**Card Title:** AUTONOMIC HRV & HBAND 2D LORENZ SCATTER PARITY  
 
-> Here, we examine Autonomic Heart Rate Variability and Lorenz Cardiac Scatter Dynamics. By measuring millisecond-level variation between consecutive R-wave peaks, the system computes the S D N N metric. Higher HRV values indicate robust parasympathetic tone and physiological resilience, while suppressed HRV flags autonomic neuropathy, chronic fatigue, or excessive neuro-metabolic stress. The accompanying Lorenz scatter plot allows the physician to visually inspect cardiac autonomic rhythm stability at a glance.
+> Slide forty presents our third cardiovascular channel: Autonomic Heart Rate Variability and two-dimensional Lorenz Scatter Dynamics, engineered to full H-Band protocol specification. On screen, the upper panel traces continuous diurnal and nocturnal HRV in milliseconds, while the lower console renders the two-dimensional Lorenz Poincaré scatter plot. By mapping each beat-to-beat interval against the next across twelve hundred cardiac epochs, the scatter geometry reveals autonomic tone at a glance. In the right pane, we formulate the underlying mathematics. The transverse axis, S-D-one, equals R-M-S-S-D divided by the square root of two, directly quantifying parasympathetic vagal reserve. The longitudinal axis, S-D-two, captures sympathetic drive. A healthy cardiovascular system produces the classic wide comet shape. Conversely, diabetic cardiac autonomic neuropathy or severe neuro-metabolic exhaustion collapses the plot into a narrow torpedo cluster, warning clinicians of autonomic fatigue and nocturnal cortisol surges long before daytime symptoms appear.
 
 **Key Points:**
-- **Millisecond R-R Interval Variation:** Calculates SDNN standard deviation to quantify autonomic nervous system resilience.
-- **Sympatho-Vagal Balance Assessment:** Distinguishes between restorative parasympathetic tone and sympathetic fight-or-flight stress.
-- **Lorenz Scatter Diagnostic Dynamics:** Provides a 2D geometric scatter visual of cardiac rhythm stability and autonomic fatigue.
+- **H-Band 2D Lorenz Scatter Parity:** Plots beat-to-beat R-R intervals (RR_n vs RR_n+1) across 1,200 nocturnal epochs to audit autonomic stability.
+- **5 Morphological Diagnostic Patterns:** Distinguishes healthy Comet dispersion from Torpedo fatigue, Club rigidity, Fork PVCs, and Complex AFib.
+- **Diabetic Autonomic Screening:** Transverse SD1 compression flags parasympathetic vagal withdrawal and early diabetic cardiac autonomic neuropathy.
 
-**Key Takeaway:** Quantifies autonomic nervous system reserve, screening for diabetic neuropathy and chronic stress.
+**Key Takeaway:** 2D Lorenz scatter plots screen for diabetic cardiac autonomic neuropathy and stress-induced glucose surges.
 
 ---
 

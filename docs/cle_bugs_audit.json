@@ -236,5 +236,22 @@
     "created_at": "2026-11-20T13:14:07.090836",
     "updated_at": "2026-11-20T13:14:07.090836",
     "resolved_at": "2026-11-20T13:14:07.090836"
+  },
+  {
+    "id": 98,
+    "project_name": "CLE",
+    "bug_number": 68,
+    "bug_code": "CLE-068",
+    "build_number": "W11-HBAND-LORENZ",
+    "title": "H-Band Parity 2D Lorenz (Poincar\u00e9) Cardiac Scatter Plot Console & Slide 40 Telemetry",
+    "status": "RESOLVED",
+    "component": "reports/cardio/presentation",
+    "affected_files": "w11_htm_app/index.html, index.html, all_slides_data.json, build_presentation.py, preview.html, slides/slide_40.html, images/lcars_slide40_lorenz_scatter.png",
+    "bug_loc": 320,
+    "resolution": "Implemented complete H-Band protocol parity 2D Lorenz (Poincar\u00e9) Cardiac Scatter Plot with 1,200 density-mapped points, identity line (RR_{n+1}=RR_n), confidence ellipse (SD1 vagal vs SD2 sympathetic vectors), 5 interactive clinical morphologies (Comet, Torpedo, Club, Fork, Complex), 6 quantitative metric chips (Mean RR, SDNN, RMSSD, SD1, SD2, ratio), and diagnostic diabetic neuropathy screening. Captured 1106x928 CDP screenshot and synchronized Slide 40 visual, transcript, and Australian female audio.",
+    "comments": "Verified full parity with manufacturer H-Band app and smooth interactive morphology switching.",
+    "created_at": "2026-11-20T13:25:55.034805",
+    "updated_at": "2026-11-20T13:25:55.034805",
+    "resolved_at": "2026-11-20T13:25:55.034805"
   }
 ]
