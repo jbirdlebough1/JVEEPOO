@@ -21,10 +21,10 @@
       --lcars-rust: #d9534f;
       --lcars-green: #55ff77;
       --lcars-black: #000000;
-      --lcars-dark-panel: #0c0e14;
-      --lcars-darker: #050608;
+      --lcars-dark-panel: #141f32;
+      --lcars-darker: #0e1624;
       --lcars-gray: #4f5b66;
-      --lcars-border: #1a2332;
+      --lcars-border: #2c4266;
       --lcars-text: #ffffff;
       --lcars-font: 'Antonio', 'Arial Narrow', sans-serif;
       --lcars-mono: 'Share Tech Mono', Consolas, monospace;
@@ -38,7 +38,7 @@
     }
 
     body {
-      background-color: var(--lcars-black);
+      background-color: #0b111b;
       color: var(--lcars-text);
       font-family: var(--lcars-font);
       font-size: 16px;
@@ -285,8 +285,8 @@
     }
 
     .lcars-bay {
-      background: var(--lcars-dark-panel);
-      border: 1px solid var(--lcars-border);
+      background: #131e30;
+      border: 1.5px solid #273b5c;
       border-radius: 0 16px 16px 0;
       display: flex;
       flex-direction: column;
@@ -299,7 +299,7 @@
     .lcars-bay-header {
       display: flex;
       align-items: center;
-      background: #141a24;
+      background: #1c2b42;
       padding: 8px 14px;
       border-bottom: 2px solid var(--lcars-orange);
     }
@@ -619,8 +619,8 @@
 
     /* Setup Page Form Styling */
     .setup-section {
-      background: #10151f;
-      border: 1px solid #1c2636;
+      background: #152236;
+      border: 1.5px solid #2b4063;
       border-left: 6px solid var(--lcars-banana);
       border-radius: 8px;
       padding: 16px;
@@ -710,8 +710,9 @@
     }
 
     .stat-card {
-      background: #10151f;
-      border-left: 4px solid var(--lcars-blue);
+      background: #16243a;
+      border: 1.5px solid #2b4063;
+      border-left: 5px solid var(--lcars-blue);
       border-radius: 6px;
       padding: 12px;
       display: flex;
@@ -842,9 +843,9 @@
     }
 
     .diet-form-card {
-      background: #10151f;
-      border: 1px solid #1d2738;
-      border-left: 6px solid var(--lcars-lilac);
+      background: #152236;
+      border: 1.5px solid #2b4063;
+      border-left: 6px solid var(--lcars-orange);
       border-radius: 8px;
       padding: 16px;
       display: flex;
@@ -866,8 +867,8 @@
     }
 
     .diet-item-card {
-      background: #0a0d14;
-      border: 1px solid #1a2433;
+      background: #1b2c45;
+      border: 1.5px solid #334d77;
       border-radius: 8px;
       padding: 12px 16px;
       display: flex;
@@ -1097,7 +1098,40 @@
     }
 
   
-        /* ACCESSIBILITY & CONTRAST: High-contrast Blue lettering on all Pink/Lilac/Red Backgrounds */
+        /* ACCESSIBILITY & HIGH CONTRAST (SENIOR-FRIENDLY ERGONOMICS) */
+    /* Eliminate all pink backgrounds; standardize on rich slate navy and crisp contrast */
+    [style*="background: rgba(230, 57, 70"],
+    [style*="background: rgba(230,57,70"],
+    [style*="background:rgba(230, 57, 70"],
+    [style*="background:rgba(230,57,70"] {
+      background: #182538 !important;
+      border: 2px solid #f59e0b !important;
+      border-left: 8px solid #f59e0b !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+    }
+    [style*="background: rgba(230, 57, 70"] strong,
+    [style*="background: rgba(230,57,70"] strong {
+      color: #fbbf24 !important;
+      font-weight: 800 !important;
+    }
+    [style*="background: rgba(230, 57, 70"] div,
+    [style*="background: rgba(230,57,70"] div,
+    [style*="background: rgba(230, 57, 70"] p {
+      color: #f8fafc !important;
+      font-size: 0.9rem !important;
+      line-height: 1.55 !important;
+    }
+    /* Eliminate lilac/pink backgrounds across all cards */
+    [style*="background: rgba(204,153,255"],
+    [style*="background: rgba(204, 153, 255"],
+    [style*="background: rgba(204, 153, 204"],
+    [style*="background:rgba(204,153,255"],
+    [style*="background:rgba(204, 153, 204"],
+    [style*="background: rgba(204, 153, 204, 0.08)"] {
+      background: #16243a !important;
+      border-color: #2b4063 !important;
+    }
+    /* Buttons on lilac/pink pills */
     .pill-lilac, .btn-lilac, .btn-lilac span, .pill-lilac span,
     .btn-pink, .btn-pink span {
       background: var(--lcars-lilac) !important;
@@ -1113,65 +1147,13 @@
       background: #ff8fb8 !important;
       color: #000f26 !important;
     }
-    [style*="background: var(--lcars-lilac)"],
-    [style*="background: #cc99cc"],
-    [style*="background:#cc99cc"],
-    [style*="background: #ff70a6"],
-    [style*="background: #ff99bb"] {
-      color: #061c3b !important;
-      font-weight: 800 !important;
-    }
-    /* All Pink/Red/Warning Tinted Cards & Badges */
-    [style*="background: rgba(230, 57, 70"],
-    [style*="background: rgba(230,57,70"],
-    [style*="background:rgba(230, 57, 70"],
-    [style*="background:rgba(230,57,70"] {
-      border-color: #38b6ff !important;
-      border-left-color: #38b6ff !important;
-    }
-    [style*="background: rgba(230, 57, 70"] strong,
-    [style*="background: rgba(230,57,70"] strong,
-    [style*="background:rgba(230, 57, 70"] strong,
-    [style*="background:rgba(230,57,70"] strong,
-    [style*="background: rgba(230, 57, 70"] h2,
-    [style*="background: rgba(230, 57, 70"] h3,
-    [style*="background: rgba(230, 57, 70"] h4 {
-      color: #38b6ff !important;
-      font-weight: 800 !important;
-    }
-    [style*="background: rgba(230, 57, 70"] div,
-    [style*="background: rgba(230,57,70"] div,
-    [style*="background:rgba(230, 57, 70"] div,
-    [style*="background:rgba(230,57,70"] div,
-    [style*="background: rgba(230, 57, 70"] p,
-    [style*="background: rgba(230, 57, 70"] span {
-      color: #cce6ff !important;
-    }
-    [style*="background: rgba(204,153,255"],
-    [style*="background: rgba(204, 153, 255"],
-    [style*="background: rgba(204, 153, 204"],
-    [style*="background:rgba(204,153,255"],
-    [style*="background:rgba(204, 153, 204"],
-    [style*="background: rgba(204, 153, 204, 0.08)"],
+    /* Badges */
     .badge-cal,
     .diet-macro-badge.badge-cal {
-      background: rgba(56, 182, 255, 0.15) !important;
-      border: 1px solid #38b6ff !important;
-      color: #38b6ff !important;
-    }
-    [style*="background: rgba(204,153,255"] strong,
-    [style*="background: rgba(204, 153, 255"] strong,
-    [style*="background: rgba(204,153,255"] span,
-    [style*="background: rgba(204, 153, 255"] span,
-    [style*="background: rgba(204, 153, 204"] strong,
-    [style*="background: rgba(204, 153, 204"] span,
-    [style*="border-left-color: var(--lcars-lilac)"] .setup-section-title span,
-    [style*="border-left: 6px solid var(--lcars-lilac)"] .box-title,
-    [style*="border-left-color: var(--lcars-lilac)"] strong,
-    [style*="border-left: 5px solid var(--lcars-lilac)"] strong,
-    [style*="border-left: 4px solid var(--lcars-lilac)"] strong,
-    [style*="border-left: 1px solid var(--lcars-lilac)"] strong {
-      color: #38b6ff !important;
+      background: rgba(56, 182, 255, 0.2) !important;
+      border: 1.5px solid #38b6ff !important;
+      color: #ffffff !important;
+      font-weight: bold !important;
     }
   </style>
 </head>
@@ -1789,11 +1771,11 @@
         <div class="diet-container">
 
           <!-- CRITICAL CLINICAL SAFETY WARNING: NOT FOR TYPE 1 DIABETICS -->
-          <div style="background: rgba(230, 57, 70, 0.15); border: 2px solid #38b6ff; border-left: 8px solid #38b6ff; border-radius: 6px; padding: 14px 18px; margin-bottom: 8px;">
+          <div style="background: #182538; border: 2px solid #f59e0b; border-left: 8px solid #f59e0b; border-radius: 6px; padding: 14px 18px; margin-bottom: 8px;">
             <div style="display: flex; align-items: flex-start; gap: 12px;">
               <span style="font-size: 1.8rem; line-height: 1; flex-shrink: 0;">⚠️</span>
               <div>
-                <strong style="color: #38b6ff; font-size: 1.05rem; letter-spacing: 1px; font-family: var(--lcars-mono);">
+                <strong style="color: #fbbf24; font-weight: 800; font-size: 1.05rem; letter-spacing: 1px; font-family: var(--lcars-mono);">
                   CRITICAL CLINICAL NOTICE: STRICTLY FOR TYPE 2 DIABETES & METABOLIC LIFESTYLE TRACKING • NOT FOR TYPE 1 DIABETICS
                 </strong>
                 <div style="color: #cce6ff; font-size: 0.85rem; line-height: 1.45; margin-top: 4px;">
@@ -2151,7 +2133,7 @@
               </div>
 
               <!-- Insight 4: Sleep & Meds -->
-              <div style="background: rgba(204,153,255,0.06); border: 1px solid #38b6ff; border-radius: 6px; padding: 14px;">
+              <div style="background: #18263e; border: 1.5px solid #3b82f6; border-radius: 6px; padding: 14px;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
                   <strong style="color: #38b6ff; font-size: 0.95rem;">🌙 REST &amp; RECOVERY</strong>
                   <span style="font-family: var(--lcars-mono); font-size: 0.8rem; color: #38b6ff; font-weight: bold;">FASTING CONTROL</span>
@@ -2188,7 +2170,7 @@
         <div class="reports-container">
 
           <!-- CRITICAL CLINICAL SAFETY WARNING: NOT FOR TYPE 1 DIABETICS (REPORTS) -->
-          <div style="background: rgba(230, 57, 70, 0.15); border: 2px solid #38b6ff; border-left: 8px solid #38b6ff; border-radius: 6px; padding: 12px 16px; margin-bottom: 12px;">
+          <div style="background: #182538; border: 2px solid #f59e0b; border-left: 8px solid #f59e0b; border-radius: 6px; padding: 12px 16px; margin-bottom: 12px;">
             <div style="display: flex; align-items: center; gap: 10px;">
               <span style="font-size: 1.5rem;">⚠️</span>
               <div>
@@ -4744,14 +4726,14 @@
         <div class="diet-container">
 
           <!-- CRITICAL CLINICAL SAFETY WARNING: NOT FOR TYPE 1 DIABETICS / INSULIN TITRATION -->
-          <div style="background: rgba(230, 57, 70, 0.15); border: 2px solid #38b6ff; border-left: 8px solid #38b6ff; border-radius: 6px; padding: 14px 18px; margin-bottom: 8px;">
+          <div style="background: #182538; border: 2px solid #f59e0b; border-left: 8px solid #f59e0b; border-radius: 6px; padding: 14px 18px; margin-bottom: 8px;">
             <div style="display: flex; align-items: flex-start; gap: 12px;">
               <span style="font-size: 1.8rem; line-height: 1; flex-shrink: 0;">⚠️</span>
               <div>
-                <strong style="color: #38b6ff; font-size: 1.05rem; letter-spacing: 1px; font-family: var(--lcars-mono);">
+                <strong style="color: #fbbf24; font-weight: 800; font-size: 1.05rem; letter-spacing: 1px; font-family: var(--lcars-mono);">
                   CRITICAL CLINICAL NOTICE: NOT FOR TYPE 1 DIABETICS OR INDEPENDENT INSULIN TITRATION
                 </strong>
-                <div style="color: #cce6ff; font-size: 0.85rem; line-height: 1.45; margin-top: 4px;">
+                <div style="color: #f8fafc; font-size: 0.9rem; line-height: 1.55; font-size: 0.85rem; line-height: 1.45; margin-top: 4px;">
                   All pharmacological treatments, oral antidiabetics, and subcutaneous regimens (Metformin, SGLT2 inhibitors, GLP-1 receptor agonists, or basal insulin) must be prescribed and adjusted <strong>strictly by your licensed medical doctor or endocrinologist</strong>.
                   <br><br>
                   This system tracks medication adherence and correlates biometric trend response to help you and your physician determine <strong>progress or regression</strong>. <strong>NEVER INDEPENDENTLY TITRATE OR CALCULATE INSULIN DOSAGES BASED ON OPTICAL TELEMETRY.</strong>
@@ -4775,7 +4757,7 @@
             </div>
 
             <!-- INTAKE SCHEDULE 1: MORNING REGIMEN (WITH BREAKFAST) -->
-            <div style="background: #040b15; border: 1px solid #1a3250; border-left: 5px solid var(--lcars-banana); border-radius: 8px; padding: 14px; margin-top: 12px;">
+            <div style="background: #142034; border: 1.5px solid #2b4063; border-left: 6px solid var(--lcars-banana); border-radius: 8px; padding: 14px; margin-top: 12px;">
               <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 8px; border-bottom: 1px solid #14253c; padding-bottom: 8px;">
                 <div>
                   <div style="display: flex; align-items: center; gap: 8px;">
@@ -4902,14 +4884,14 @@
         <div class="diet-container">
 
           <!-- CRITICAL CLINICAL SAFETY WARNING: NOT FOR TYPE 1 DIABETICS / EMERGENCY USE -->
-          <div style="background: rgba(230, 57, 70, 0.15); border: 2px solid #38b6ff; border-left: 8px solid #38b6ff; border-radius: 6px; padding: 14px 18px; margin-bottom: 8px;">
+          <div style="background: #182538; border: 2px solid #f59e0b; border-left: 8px solid #f59e0b; border-radius: 6px; padding: 14px 18px; margin-bottom: 8px;">
             <div style="display: flex; align-items: flex-start; gap: 12px;">
               <span style="font-size: 1.8rem; line-height: 1; flex-shrink: 0;">⚠️</span>
               <div>
-                <strong style="color: #38b6ff; font-size: 1.05rem; letter-spacing: 1px; font-family: var(--lcars-mono);">
+                <strong style="color: #fbbf24; font-weight: 800; font-size: 1.05rem; letter-spacing: 1px; font-family: var(--lcars-mono);">
                   CRITICAL CLINICAL NOTICE: NOT FOR TYPE 1 DIABETES OR EMERGENCY DIAGNOSTIC TRIAGE
                 </strong>
-                <div style="color: #cce6ff; font-size: 0.85rem; line-height: 1.45; margin-top: 4px;">
+                <div style="color: #f8fafc; font-size: 0.9rem; line-height: 1.55; font-size: 0.85rem; line-height: 1.45; margin-top: 4px;">
                   This automated sequential scan operates optical photoplethysmography (PPG), hemodynamic pulse analysis, and infrared thermometry across watch hardware.
                   <br><br>
                   Measurements are intended for <strong>Type 2 diabetes lifestyle management, routine outpatient monitoring, and metabolic tracking only</strong>. Never rely on non-invasive wrist scans for acute diabetic emergencies, ketoacidosis, or independent insulin dosing adjustments.
@@ -8871,8 +8853,8 @@
 
       function buildCard(m) {
         const card = document.createElement('div');
-        card.style.background = '#06101c';
-        card.style.border = '1px solid #1a2f4a';
+        card.style.background = '#1a283e';
+        card.style.border = '1.5px solid #2e476e';
         card.style.borderRadius = '6px';
         card.style.padding = '14px';
         card.style.display = 'flex';
@@ -8887,7 +8869,7 @@
             </div>
             <span class="badge" style="background: ${isActive ? 'rgba(85,255,119,0.15)' : 'rgba(255,153,102,0.15)'}; color: ${isActive ? 'var(--lcars-green)' : 'var(--lcars-peach)'}; font-size: 0.72rem; border: 1px solid ${isActive ? 'var(--lcars-green)' : 'var(--lcars-peach)'};">${m.status || 'ACTIVE'}</span>
           </div>
-          <div style="background: #091728; border-radius: 4px; padding: 8px 10px; font-family: var(--lcars-mono); font-size: 0.83rem;">
+          <div style="background: #21334f; border: 1px solid #334d75; border-radius: 4px; padding: 8px 10px; font-family: var(--lcars-mono); font-size: 0.85rem;">
             <div style="color: var(--lcars-text);"><span style="color: var(--lcars-gray);">DOSAGE:</span> <strong style="color: var(--lcars-banana);">${m.dose}</strong></div>
             <div style="color: var(--lcars-text); margin-top: 2px;"><span style="color: var(--lcars-gray);">SCHEDULE:</span> ${m.schedule || (m.slot === 'dinner' ? 'Oral with Dinner' : 'Oral with Breakfast')}</div>
             <div style="color: var(--lcars-green); margin-top: 2px;"><span style="color: var(--lcars-gray);">LAST INTAKE:</span> ${m.lastTaken || 'Pending today'}</div>
