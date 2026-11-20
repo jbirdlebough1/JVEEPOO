@@ -45,7 +45,7 @@
 **Module:** Module 1: Introduction & Clinical Scope  
 **Description:** Grounding continuous telemetry in peer-reviewed science: Shannon, Neye-quist, Battelino (TIR), Beck (JAMA), Danne, ISO 15197, and live Gemini AI literature verification.  
 
-> "To ensure absolute scientific rigor, our continuous telemetry methodology is firmly anchored in peer-reviewed clinical science and classical information theory. On this slide, we cite six landmark publications that substantiate why continuous automated sampling supersedes isolated quarterly testing. Claude Shannon's foundational 1949 treatise on sampling in the presence of noise and Harry Neye-quist's transmission theorems establish the mathematical criteria for lossless signal recovery. In clinical medicine, Professor Tadej Battelino's international consensus published in Diabetes Care proves that continuous metrics, specifically Time in Range exceeding seventy percent, correlate with clinical outcomes far more accurately than quarterly HbA1c alone. Doctor Roy Beck's randomized clinical trials published in JAMA demonstrate that continuous telemetry drastically reduces glycemic variability and eliminates severe nocturnal hypoglycemia compared to intermittent fingersticks. Furthermore, our presentation is self-validating. Below the citations, viewers can interact directly with Google Gemini Pro to query PubMed, examine clinical trial endpoints, or request additional peer-reviewed papers in real time."
+> "To ensure absolute scientific rigor, our continuous telemetry methodology is firmly anchored in peer-reviewed clinical science and classical information theory. Here, we cite six landmark publications that substantiate why continuous automated sampling supersedes isolated quarterly testing. Claude Shannon's foundational 1949 treatise on sampling in the presence of noise and Harry Neye-quist's transmission theorems establish the mathematical criteria for lossless signal recovery. In clinical medicine, Professor Tadej Battelino's international consensus published in Diabetes Care proves that continuous metrics, specifically Time in Range exceeding seventy percent, correlate with clinical outcomes far more accurately than quarterly HbA1c alone. Doctor Roy Beck's randomized clinical trials published in JAMA demonstrate that continuous telemetry drastically reduces glycemic variability and eliminates severe nocturnal hypoglycemia compared to intermittent fingersticks. Furthermore, our presentation is self-validating. Below the citations, viewers can interact directly with Google Gemini Pro to query PubMed, examine clinical trial endpoints, or request additional peer-reviewed papers in real time."
 
 ---
 
@@ -85,7 +85,7 @@
 **Module:** Module 2: Physician-Patient Alignment & Calibration  
 **Description:** Why establishing a clinical floor of 60 mg/dL and ceiling of 200 mg/dL prevents false alarms and protects renal health.  
 
-> "Slide 7 establishes our clinical safe harbor. We standardize on a target band of 60 to 200 milligrams per deciliter. The 60 floor protects against acute hypoglycemia, while the 200 ceiling aligns with the renal threshold where excess glucose spills into urine. This clinical band provides clear guardrails without triggering constant alarm fatigue."
+> "Our clinical safe harbor standardizes on 60 to 200 milligrams per deciliter. We standardize on a target band of 60 to 200 milligrams per deciliter. The 60 floor protects against acute hypoglycemia, while the 200 ceiling aligns with the renal threshold where excess glucose spills into urine. This clinical band provides clear guardrails without triggering constant alarm fatigue."
 
 ---
 
@@ -93,7 +93,7 @@
 **Module:** Module 2: Physician-Patient Alignment & Calibration  
 **Description:** Anchoring optical tonometry readings to the certified clinical laboratory blood draw established by your doctor during configuration.  
 
-> "In Slide 8, we examine clinical calibration. Optical tonometry requires an accurate clinical reference anchor. During onboarding, your doctor configures your laboratory venous blood draw baseline directly into LCARS. From this clinical anchor, our mathematical model projects accurate real-time glucose and estimated A1c curves without arbitrary factory guessing."
+> "Next, we examine clinical calibration and baseline anchoring. Optical tonometry requires an accurate clinical reference anchor. During onboarding, your doctor configures your laboratory venous blood draw baseline directly into LCARS. From this clinical anchor, our mathematical model projects accurate real-time glucose and estimated A1c curves without arbitrary factory guessing."
 
 ---
 
@@ -101,7 +101,7 @@
 **Module:** Module 2: Physician-Patient Alignment & Calibration  
 **Description:** Why generic uncalibrated public mode fails and how private mode unlocks personalized physiological accuracy.  
 
-> "In Slide 9, we enforce Private Mode. The watch firmware has two modes: a generic public mode that uses default population assumptions, and Private Mode, which applies your personalized calibration curve. For diabetic maintenance, public mode is strictly avoided. LCARS locks the watch into Private Mode so all glucose curves reflect your individual physiology."
+> "Here, we enforce strict Private Mode telemetry. The watch firmware has two modes: a generic public mode that uses default population assumptions, and Private Mode, which applies your personalized calibration curve. For diabetic maintenance, public mode is strictly avoided. LCARS locks the watch into Private Mode so all glucose curves reflect your individual physiology."
 
 ---
 
@@ -109,7 +109,7 @@
 **Module:** Module 2: Physician-Patient Alignment & Calibration  
 **Description:** How 288 daily epochs stream seamlessly in the background without requiring user intervention.  
 
-> "Slide 10 details background acquisition. The Model 5010 samples vitals automatically every five minutes, yielding 288 epochs every 24 hours. When you're near your PC, it streams in real-time. When you're away or asleep, the watch stores readings in internal flash and uploads them automatically upon reconnection. No manual logging required."
+> "Continuous background telemetry operates around the clock. The Model 5010 samples vitals automatically every five minutes, yielding 288 epochs every 24 hours. When you're near your PC, it streams in real-time. When you're away or asleep, the watch stores readings in internal flash and uploads them automatically upon reconnection. No manual logging required."
 
 ---
 
@@ -165,7 +165,7 @@
 **Module:** Module 4: Tab 03 METABOLIC Console & Behavioral Science  
 **Description:** The biochemistry of non-insulin-mediated glucose uptake triggered by skeletal muscle contraction.  
 
-> "Slide 17 covers one of the most powerful tools in diabetes maintenance: GLUT4 translocation. When you contract large skeletal muscles—such as your quadriceps during a brisk walk—your muscles pull glucose directly out of your bloodstream without requiring insulin. This gives you a natural, controllable drug-free mechanism to blunt postprandial spikes."
+> "Here, we focus on one of the most powerful tools in diabetes maintenance: GLUT4 translocation. When you contract large skeletal muscles—such as your quadriceps during a brisk walk—your muscles pull glucose directly out of your bloodstream without requiring insulin. This gives you a natural, controllable drug-free mechanism to blunt postprandial spikes."
 
 ---
 
@@ -173,7 +173,7 @@
 **Module:** Module 4: Tab 03 METABOLIC Console & Behavioral Science  
 **Description:** Logging exercise bouts and quantifying the exact milligram-per-deciliter drop produced by walking.  
 
-> "In Slide 18, we introduce the GLUT4 Exercise Journal. When you finish a walk, LCARS compares your pre-exercise glucose to your post-exercise nadir, calculating your exact delta G drop. For example, a 30-minute morning walk might drop your glucose by 27 milligrams per deciliter, proving your exercise is working."
+> "Now we examine the GLUT4 Exercise Journal. When you finish a walk, LCARS compares your pre-exercise glucose to your post-exercise nadir, calculating your exact delta G drop. For example, a 30-minute morning walk might drop your glucose by 27 milligrams per deciliter, proving your exercise is working."
 
 ---
 
@@ -181,7 +181,7 @@
 **Module:** Module 4: Tab 03 METABOLIC Console & Behavioral Science  
 **Description:** Tracking nutritional intake and correlating specific meals to postprandial glycemic excursions.  
 
-> "Slide 19 covers the Macronutrient Meal Logger. Logging meals allows LCARS to overlay dietary carbohydrates, protein, and fat directly on your glucose timeline. You can see precisely how different foods affect your peak height and latency, teaching you which meals spike your sugar and which keep you stable."
+> "Next, we review the Macronutrient Meal Logger. Logging meals allows LCARS to overlay dietary carbohydrates, protein, and fat directly on your glucose timeline. You can see precisely how different foods affect your peak height and latency, teaching you which meals spike your sugar and which keep you stable."
 
 ---
 
@@ -189,7 +189,7 @@
 **Module:** Module 4: Tab 03 METABOLIC Console & Behavioral Science  
 **Description:** Empowering patients with American Diabetes Association (ADA) 1-to-1 food trades, using Google Gemini to discover compliant recipes and verified sellers for safe, delicious diabetic food and drink.  
 
-> "In Slide 20, we explore the ADA 1-to-1 Carbohydrate Trades and Clinical Nutrition Engine. Managing Type 2 diabetes should never mean living in deprivation. We use Google Gemini Pro to actively search for and curate ADA-compliant recipes, discover safe food and drink sellers, and recommend delicious, healthy alternatives. Rather than cutting out favorite foods, LCARS provides smart one-to-one swaps—like cauliflower rice for white rice, or almond flour baked treats—helping patients enjoy satisfying meals while blunting post-meal spikes by thirty to fifty milligrams per deciliter."
+> "Here, we explore the ADA 1-to-1 Carbohydrate Trades and Clinical Nutrition Engine. Managing Type 2 diabetes should never mean living in deprivation. We use Google Gemini Pro to actively search for and curate ADA-compliant recipes, discover safe food and drink sellers, and recommend delicious, healthy alternatives. Rather than cutting out favorite foods, LCARS provides smart one-to-one swaps—like cauliflower rice for white rice, or almond flour baked treats—helping patients enjoy satisfying meals while blunting post-meal spikes by thirty to fifty milligrams per deciliter."
 
 ---
 
@@ -205,7 +205,7 @@
 **Module:** Module 5: The Diabetes Learning Engine  
 **Description:** Identifying nocturnal nadirs and counteracting morning hepatic glucose surges.  
 
-> "Slide 22 addresses morning fasting numbers. Many diabetics wake up with high blood sugar due to the Dawn Phenomenon—a natural morning surge of cortisol that prompts the liver to release glucose. By tracking continuous overnight telemetry down to the 4 AM nadir, LCARS helps your doctor determine the right evening strategy to suppress morning spikes."
+> "Here, we address morning fasting numbers and the dawn surge. Many diabetics wake up with high blood sugar due to the Dawn Phenomenon—a natural morning surge of cortisol that prompts the liver to release glucose. By tracking continuous overnight telemetry down to the 4 AM nadir, LCARS helps your doctor determine the right evening strategy to suppress morning spikes."
 
 ---
 
@@ -213,7 +213,7 @@
 **Module:** Module 5: The Diabetes Learning Engine  
 **Description:** How deep delta sleep and stable arterial oxygen reduce nocturnal cortisol and insulin resistance.  
 
-> "Slide 23 connects sleep quality directly to diabetes. During deep delta sleep, your body repairs tissue and suppresses cortisol. If your sleep is fragmented by hypoxia or frequent awakenings, morning cortisol spikes, worsening insulin resistance. Tracking nocturnal oxygen stability ensures your sleep actively aids your glycemic goals."
+> "Next, we connect sleep architecture directly to metabolic regulation. During deep delta sleep, your body repairs tissue and suppresses cortisol. If your sleep is fragmented by hypoxia or frequent awakenings, morning cortisol spikes, worsening insulin resistance. Tracking nocturnal oxygen stability ensures your sleep actively aids your glycemic goals."
 
 ---
 
@@ -221,7 +221,7 @@
 **Module:** Module 5: The Diabetes Learning Engine  
 **Description:** Cross-analyzing diet, physical activity, and sleep against objective physiological biomarkers.  
 
-> "Slide 24 highlights habit correlation. Diabetes is managed through daily habits. LCARS continuously correlates your steps, your meals, and your sleep architecture against your glucose curves. This gives you and your doctor undeniable evidence of what works best for your body."
+> "Here, we examine multi-parameter habit correlation. Diabetes is managed through daily habits. LCARS continuously correlates your steps, your meals, and your sleep architecture against your glucose curves. This gives you and your doctor undeniable evidence of what works best for your body."
 
 ---
 
@@ -229,7 +229,7 @@
 **Module:** Module 5: The Diabetes Learning Engine  
 **Description:** How 1-click export pushes continuous telemetry directly into your doctor's Epic Electronic Health Record.  
 
-> "Slide 25 features our flagship clinical bridge: direct Epic Electronic Health Record integration. With a single click in LCARS, your 24-hour glucose curves, Time-in-Range percentages, blood pressure dipping, and medication adherence are formatted into standard HL7 FHIR records and pushed directly into your doctor's Epic MyChart chart, becoming a permanent part of your clinical medical record."
+> "Displayed on screen is our flagship clinical bridge: direct Epic Electronic Health Record integration. With a single click in LCARS, your 24-hour glucose curves, Time-in-Range percentages, blood pressure dipping, and medication adherence are formatted into standard HL7 FHIR records and pushed directly into your doctor's Epic MyChart chart, becoming a permanent part of your clinical medical record."
 
 ---
 
@@ -245,7 +245,7 @@
 **Module:** Module 6: Tab 04 Synchronized Tall Chart  
 **Description:** Examining the 8 synchronized lanes: Glucose, eA1c, Temperature, Sleep, Steps, Heart Rate, BP, and SpO2.  
 
-> "Slide 27 details the 8 stacked lanes. Lane 1 is continuous glucose. Lane 2 is projected A1C. Lane 3 is dual core and skin temperature. Lane 4 is sleep hypnograms. Lane 5 is step activity. Lane 6 is heart rate. Lane 7 is blood pressure. And Lane 8 is pulse oximetry. It's a complete 360-degree audit of your day."
+> "Displayed on screen are the eight stacked clinical telemetry lanes. Lane 1 is continuous glucose. Lane 2 is projected A1C. Lane 3 is dual core and skin temperature. Lane 4 is sleep hypnograms. Lane 5 is step activity. Lane 6 is heart rate. Lane 7 is blood pressure. And Lane 8 is pulse oximetry. It's a complete 360-degree audit of your day."
 
 ---
 
@@ -253,7 +253,7 @@
 **Module:** Module 6: Tab 04 Synchronized Tall Chart  
 **Description:** How dragging the vertical scrubber aligns all 8 channels to reveal exact causes behind glucose spikes.  
 
-> "Slide 28 introduces the vertical scrubber line. As you drag your cursor across the chart, a vertical guideline cross-sects all 8 lanes at that exact timestamp. When you stop at 1:30 PM, you see your peak glucose of 232 milligrams per deciliter aligning with 34 grams of lunch carbs, an elevated heart rate, and post-meal rest."
+> "Here, we introduce the synchronized vertical scrubber HUD. As you drag your cursor across the chart, a vertical guideline cross-sects all 8 lanes at that exact timestamp. When you stop at 1:30 PM, you see your peak glucose of 232 milligrams per deciliter aligning with 34 grams of lunch carbs, an elevated heart rate, and post-meal rest."
 
 ---
 
@@ -261,7 +261,7 @@
 **Module:** Module 6: Tab 04 Synchronized Tall Chart  
 **Description:** Clicking any timeline node displays exact values, diet logs, and medication context.  
 
-> "Slide 29 highlights Click-to-Pop Clinical Cards. Whenever you click any data point on the timeline, a detailed pop-up card appears. It reveals the exact numeric glucose, the delta G drop from prior readings, logged meals, exercise steps, and whether medications were taken on time."
+> "Next, we examine Click-to-Pop Clinical Audit Cards. Whenever you click any data point on the timeline, a detailed pop-up card appears. It reveals the exact numeric glucose, the delta G drop from prior readings, logged meals, exercise steps, and whether medications were taken on time."
 
 ---
 
@@ -269,7 +269,7 @@
 **Module:** Module 6: Tab 04 Synchronized Tall Chart  
 **Description:** Visualizing prescription changes on clinical graphs to objectively measure therapeutic response.  
 
-> "Slide 30 is crucial for doctor visits: Pinning Medication Changes. When your physician alters a prescription, logging the titration pins a prominent MED CHANGE milestone directly across your timeline. Both of you can then compare the 14 days before against the 14 days after, objectively proving whether the change yielded clinical progress."
+> "Pinning medication change milestones is crucial for clinical consultations. When your physician alters a prescription, logging the titration pins a prominent MED CHANGE milestone directly across your timeline. Both of you can then compare the 14 days before against the 14 days after, objectively proving whether the change yielded clinical progress."
 
 ---
 
@@ -277,7 +277,7 @@
 **Module:** Module 5: Clinical Reports & Longitudinal EHR Records  
 **Description:** Analyzing the 24-hour optical tonometry glucose timeline, target glycemic band (60–200 mg/dL), and Time in Range (TIR >70%).  
 
-> "Slide thirty-one focuses on the individual Daily Twenty-Four-Hour Continuous Glucose Curve. Optical absorption tonometry measures microvascular glucose absorption every five minutes, generating two hundred and eighty-eight clinical data points across the day. The green shaded corridor represents the physician-configured target band of sixty to two hundred milligrams per deciliter. Notice how post-prandial excursions are immediately visible, enabling patient and physician to audit meal impacts, detect nocturnal hypoglycemia dips, and verify Time in Range above seventy percent."
+> "Displayed on screen is the individual Daily Twenty-Four-Hour Continuous Glucose Curve. Optical absorption tonometry measures microvascular glucose absorption every five minutes, generating two hundred and eighty-eight clinical data points across the day. The green shaded corridor represents the physician-configured target band of sixty to two hundred milligrams per deciliter. Notice how post-prandial excursions are immediately visible, enabling patient and physician to audit meal impacts, detect nocturnal hypoglycemia dips, and verify Time in Range above seventy percent."
 
 ---
 
@@ -285,7 +285,7 @@
 **Module:** Module 5: Clinical Reports & Longitudinal EHR Records  
 **Description:** Translating continuous glucose telemetry into rolling estimated A1C projections via the ADAG consensus algorithm.  
 
-> "Slide thirty-two examines the Daily Twenty-Four-Hour Estimated A1C Projection Curve. Using the international A D A G consensus algorithm, estimated A1C equals mean glucose plus forty-six point seven divided by twenty-eight point seven. This mathematical transform tracks rolling glycemic exposure continuously, giving patient and doctor a real-time trajectory rather than waiting ninety days for a venous blood draw. Any therapeutic change or dietary discipline is reflected in the slope of the curve within days."
+> "Here, we examine the Daily Twenty-Four-Hour Estimated A1C Projection Curve. Using the international A D A G consensus algorithm, estimated A1C equals mean glucose plus forty-six point seven divided by twenty-eight point seven. This mathematical transform tracks rolling glycemic exposure continuously, giving patient and doctor a real-time trajectory rather than waiting ninety days for a venous blood draw. Any therapeutic change or dietary discipline is reflected in the slope of the curve within days."
 
 ---
 
@@ -293,7 +293,7 @@
 **Module:** Module 5: Clinical Reports & Longitudinal EHR Records  
 **Description:** Continuous dual-matrix thermometry tracking core metabolic equilibrium and epidermal thermal dissipation.  
 
-> "Slide thirty-three presents the Twenty-Four-Hour Body Temperature Matrix, contrasting calculated core body temperature against wrist epidermal contact temperature. The Dual-NTC sensor array tracks circadian thermal homeostasis, identifying the early morning circadian nadir and post-exercise thermal dissipation. For diabetic patients with cold-blooded basal ranges of ninety-six point eight to ninety-seven point four degrees, this baseline provides early screening for metabolic slowdown or occult subclinical infection."
+> "Displayed on screen is the Twenty-Four-Hour Body Temperature Matrix, contrasting calculated core body temperature against wrist epidermal contact temperature. The Dual-NTC sensor array tracks circadian thermal homeostasis, identifying the early morning circadian nadir and post-exercise thermal dissipation. For diabetic patients with cold-blooded basal ranges of ninety-six point eight to ninety-seven point four degrees, this baseline provides early screening for metabolic slowdown or occult subclinical infection."
 
 ---
 
@@ -301,7 +301,7 @@
 **Module:** Module 5: Clinical Reports & Longitudinal EHR Records  
 **Description:** Ambulatory pulse wave transit time hemodynamics tracking systolic and diastolic pressures across 24 hours.  
 
-> "Slide thirty-four covers the Twenty-Four-Hour Ambulatory Blood Pressure Dual-Band Chart. Arterial stiffness and microvascular compliance are evaluated continuously via optical pulse wave transit time tonometry. Systolic and diastolic trends are tracked against clinical targets of under one hundred and twenty over eighty millimeters of mercury. Crucially, the chart audits nocturnal dipping: a healthy ten to twenty percent pressure drop during sleep confirms normal autonomic cardiovascular protection."
+> "Next, we examine the Twenty-Four-Hour Ambulatory Blood Pressure Dual-Band Chart. Arterial stiffness and microvascular compliance are evaluated continuously via optical pulse wave transit time tonometry. Systolic and diastolic trends are tracked against clinical targets of under one hundred and twenty over eighty millimeters of mercury. Crucially, the chart audits nocturnal dipping: a healthy ten to twenty percent pressure drop during sleep confirms normal autonomic cardiovascular protection."
 
 ---
 
@@ -309,7 +309,7 @@
 **Module:** Module 5: Clinical Reports & Longitudinal EHR Records  
 **Description:** High-frequency dual-wavelength pulse oximetry auditing nocturnal oxygen saturation and obstructive sleep apnea events.  
 
-> "Slide thirty-five inspects the Nocturnal SpO2 and Obstructive Sleep Apnea Hypoxia Dips Matrix. The watch's red and infrared optical sensors measure arterial oxygen saturation with one percent resolution. The clinical report automatically calculates the Oxygen Desaturation Index, auditing hypoxic drops greater than four percent below baseline. Because severe nocturnal apnea triggers massive cortisol and epinephrine release that spikes morning glucose, this chart provides vital cardiopulmonary insight for the attending physician."
+> "Here, we inspect the Nocturnal SpO2 and Obstructive Sleep Apnea Hypoxia Dips Matrix. The watch's red and infrared optical sensors measure arterial oxygen saturation with one percent resolution. The clinical report automatically calculates the Oxygen Desaturation Index, auditing hypoxic drops greater than four percent below baseline. Because severe nocturnal apnea triggers massive cortisol and epinephrine release that spikes morning glucose, this chart provides vital cardiopulmonary insight for the attending physician."
 
 ---
 
@@ -317,7 +317,7 @@
 **Module:** Module 5: Clinical Reports & Longitudinal EHR Records  
 **Description:** Diurnal cardiac chronotropy categorizing heart rate across five physiologic cardiovascular workload zones.  
 
-> "Slide thirty-six details the Twenty-Four-Hour Heart Rate and Five-Zone Cardiac Load Chart. Heart rate is mapped from nocturnal basal resting levels up to peak exercise exertion. The chart color-codes five discrete physiological zones: Warm Up, Fat Burn, Aerobic, Anaerobic, and Peak. For diabetic patients, maintaining exercise in the Fat Burn and Aerobic zones promotes maximum muscular glucose uptake while avoiding excessive sympathetic cardiac strain."
+> "Displayed on screen is the Twenty-Four-Hour Heart Rate and Five-Zone Cardiac Load Chart. Heart rate is mapped from nocturnal basal resting levels up to peak exercise exertion. The chart color-codes five discrete physiological zones: Warm Up, Fat Burn, Aerobic, Anaerobic, and Peak. For diabetic patients, maintaining exercise in the Fat Burn and Aerobic zones promotes maximum muscular glucose uptake while avoiding excessive sympathetic cardiac strain."
 
 ---
 
@@ -325,7 +325,7 @@
 **Module:** Module 5: Clinical Reports & Longitudinal EHR Records  
 **Description:** Heart rate variability analysis using SDNN and Lorenz scatter plots to audit sympatho-vagal autonomic balance.  
 
-> "Slide thirty-seven examines Autonomic Heart Rate Variability and Lorenz Cardiac Scatter Dynamics. By measuring millisecond-level variation between consecutive R-wave peaks, the system computes the S D N N metric. Higher HRV values indicate robust parasympathetic tone and physiological resilience, while suppressed HRV flags autonomic neuropathy, chronic fatigue, or excessive neuro-metabolic stress. The accompanying Lorenz scatter plot allows the physician to visually inspect cardiac autonomic rhythm stability at a glance."
+> "Here, we examine Autonomic Heart Rate Variability and Lorenz Cardiac Scatter Dynamics. By measuring millisecond-level variation between consecutive R-wave peaks, the system computes the S D N N metric. Higher HRV values indicate robust parasympathetic tone and physiological resilience, while suppressed HRV flags autonomic neuropathy, chronic fatigue, or excessive neuro-metabolic stress. The accompanying Lorenz scatter plot allows the physician to visually inspect cardiac autonomic rhythm stability at a glance."
 
 ---
 
@@ -333,7 +333,7 @@
 **Module:** Module 5: Clinical Reports & Longitudinal EHR Records  
 **Description:** Polysomnographic sleep architecture tracking total sleep duration, deep sleep, light sleep, and REM cycles.  
 
-> "Slide thirty-eight presents the Nocturnal Sleep Duration and Circadian Hypnogram. The watch combines tri-axial actigraphy, optical PPG heart rate slowing, and skin temperature to reconstruct the nightly sleep hypnogram. Patients can audit their total duration against the seven-to-eight-and-a-half-hour clinical target, reviewing deep sleep restorative phases versus light sleep. Adequate slow-wave deep sleep is crucial for suppressing nocturnal hepatic gluconeogenesis and blunting dawn cortisol surges."
+> "Next, we examine the Nocturnal Sleep Duration and Circadian Hypnogram. The watch combines tri-axial actigraphy, optical PPG heart rate slowing, and skin temperature to reconstruct the nightly sleep hypnogram. Patients can audit their total duration against the seven-to-eight-and-a-half-hour clinical target, reviewing deep sleep restorative phases versus light sleep. Adequate slow-wave deep sleep is crucial for suppressing nocturnal hepatic gluconeogenesis and blunting dawn cortisol surges."
 
 ---
 
@@ -341,7 +341,7 @@
 **Module:** Module 5: Clinical Reports & Longitudinal EHR Records  
 **Description:** Hourly step distribution, brisk walk velocity, and direct exercise-induced glucose clearance kinetics.  
 
-> "Slide thirty-nine completes the individual chart suite with Ambulatory Physical Activity and Step Density. Hourly bar charts capture step accumulation throughout the day, highlighting dedicated exercise sessions such as a morning brisk walk. Reaching the two-thousand-step daily goal, equivalent to approximately one and a half miles, triggers active skeletal muscle contraction that pulls glucose from the bloodstream via insulin-independent GLUT4 pathways, visibly blunting subsequent glycemic spikes."
+> "Completing our individual chart suite is Ambulatory Physical Activity and Step Density. Hourly bar charts capture step accumulation throughout the day, highlighting dedicated exercise sessions such as a morning brisk walk. Reaching the two-thousand-step daily goal, equivalent to approximately one and a half miles, triggers active skeletal muscle contraction that pulls glucose from the bloodstream via insulin-independent GLUT4 pathways, visibly blunting subsequent glycemic spikes."
 
 ---
 
@@ -357,7 +357,7 @@
 **Module:** Module 7: Tab 11 Medication Management  
 **Description:** Separating medications into scrollable Morning (Intake 1) and Evening (Intake 2) lists.  
 
-> "Slide 32 highlights our dual intake layout. Medications are split cleanly into two distinct schedules: Morning Intake 1 and Evening Intake 2. The morning list holds your breakfast doses—such as Metformin, Glipizide, and cardiovascular meds—while Intake 2 holds your evening doses, preventing dosing confusion."
+> "Displayed on screen is our dual medication intake layout. Medications are split cleanly into two distinct schedules: Morning Intake 1 and Evening Intake 2. The morning list holds your breakfast doses—such as Metformin, Glipizide, and cardiovascular meds—while Intake 2 holds your evening doses, preventing dosing confusion."
 
 ---
 
@@ -365,7 +365,7 @@
 **Module:** Module 7: Tab 11 Medication Management  
 **Description:** Updating dosages, logging adherence, and automatically updating clinical milestones.  
 
-> "Slide 33 details medication editing. Whenever your doctor titrates a dose or discontinues a medication, you can edit it immediately in Tab 11. Changing a dose automatically updates your active intake list and records a titration milestone on your clinical reports."
+> "Here, we detail medication editing and dosage adjustment. Whenever your doctor titrates a dose or discontinues a medication, you can edit it immediately in Tab 11. Changing a dose automatically updates your active intake list and records a titration milestone on your clinical reports."
 
 ---
 
@@ -381,7 +381,7 @@
 **Module:** Module 8: Tab 12 Sequential Full Scan  
 **Description:** Real-time visual progress through the 6 stages and generation of verified scan reports.  
 
-> "Slide 35 displays the Full Scan results dashboard. Live progress bars track each stage in real time. When complete, LCARS delivers an immediate clinical report summarizing all six biomarkers, verifying that your watch transponders are nominal and ready for monitoring."
+> "Displayed on screen is the Full Scan diagnostic telemetry dashboard. Live progress bars track each stage in real time. When complete, LCARS delivers an immediate clinical report summarizing all six biomarkers, verifying that your watch transponders are nominal and ready for monitoring."
 
 ---
 

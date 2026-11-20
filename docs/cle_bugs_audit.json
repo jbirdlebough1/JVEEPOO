@@ -911,5 +911,16 @@
     "resolution": "Identified that audio player was loading legacy pre-rendered MP3s that contained outdated \"Masterclass\" and \"Workbench\" terminology. Re-rendered all 53 audio files asynchronously using edge_tts with en-AU-NatashaNeural. Updated Slide 1 narration to focus explicitly on the screen-displayed topic (01-VITALS light theme console, BIO-01 glucose 156 mg/dL, BIO-02 dual thermal 96.1\u00b0F, BIO-03 blood pressure 126/84 mmHg, BIO-04 SpO2 98%, status ribbon, and multidisciplinary care team grid). Recompiled Preview_Presentation.exe and pushed to local git and GitHub.",
     "created_at": "2026-11-20 10:41:39",
     "resolved_at": "2026-11-20 10:41:39"
+  },
+  {
+    "bug_code": "CLE-055",
+    "title": "Purge Artificial \"Slide #\" Numbering Comments from Voice Narration Across Deck",
+    "status": "RESOLVED",
+    "build_number": "V0.16.16.0",
+    "component": "Audio Subsystem / Narration Script",
+    "affected_files": "all_slides_data.json, audio/*.mp3, presentation/audio/*.mp3, build_presentation.py, preview.html, TRANSCRIPT.md",
+    "resolution": "Audited all 53 slides and identified 29 narrations containing artificial \"Slide #\" announcements (e.g. \"Slide 7 establishes...\", \"In Slide 8...\", \"Slide thirty-one focuses on...\"), which caused numbering desynchronization and distracted from the clinical flow. Completely replaced all 29 instances with seamless, screen-focused physiological transitions (e.g. \"Our clinical safe harbor standardizes on...\", \"Displayed on screen is...\", \"Next, we examine...\"). Re-rendered all 29 MP3 audio files with Australian female voice (en-AU-NatashaNeural) and regenerated presentation player and W11 executable.",
+    "created_at": "2026-11-20 10:53:18",
+    "resolved_at": "2026-11-20 10:53:18"
   }
 ]
