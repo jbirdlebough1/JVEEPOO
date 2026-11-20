@@ -494,5 +494,21 @@
     "comments": "Issue verified live at https://github.com/HBandSDK/Android_Ble_SDK/issues/46 under jbirdlebough1.",
     "created_at": "2026-11-19T18:56:03.577384",
     "resolved_at": "2026-11-19T18:56:03.577384"
+  },
+  {
+    "id": 63,
+    "project_name": "VEEPOO_5010",
+    "bug_number": 32,
+    "bug_code": "CLE-032",
+    "build_number": "v2.8.6",
+    "title": "Dynamic Right-Panel Visualization Overhaul Across 40 Presentation Slides",
+    "status": "RESOLVED",
+    "component": "Presentation Engine & Visual Design",
+    "affected_files": "build_presentation.py, presentation/slides/*, Preview_Presentation.exe",
+    "bug_loc": 380,
+    "resolution": "Replaced static hardcoded visual card with dynamic per-slide right-panel generator get_right_panel_html(sid). Each slide now displays the authentic LCARS page, biometric bay, timeline chart, medication schedule, or comparison table as if just opened, synchronized with Australian voiceover narration.",
+    "comments": "Verified all 40 slide HTML templates and recompiled Preview_Presentation.exe launcher.",
+    "created_at": "2026-11-19T19:13:37.099833",
+    "resolved_at": "2026-11-19T19:13:37.099833"
   }
 ]

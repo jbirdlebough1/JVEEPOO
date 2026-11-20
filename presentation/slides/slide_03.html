@@ -171,39 +171,35 @@
         </div>
       </div>
 
-      <!-- Telemetry Visual / Console Card -->
-      <div class="visual-card">
-        <div class="visual-header">
-          <span>LCARS TELEMETRY MONITOR</span>
-          <span>STATUS: ACTIVE ONLINE</span>
-        </div>
 
-        <div class="metric-grid">
-          <div class="metric-box">
-            <div class="metric-lbl">Target Range</div>
-            <div class="metric-val" style="color: #4ade80;">60–200 <span style="font-size: 0.8rem;">mg/dL</span></div>
+        <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #d97706;">
+          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #e2e8f0; padding-bottom:8px;">
+            <span style="font-family:monospace; font-weight:800; color:#d97706; font-size:0.88rem;">MODEL 5010 HARDWARE TRANSPONDER</span>
+            <span style="background:#fef3c7; color:#92400e; font-weight:800; font-size:0.75rem; padding:2px 8px; border-radius:3px;">4 SENSOR ARRAYS</span>
           </div>
-          <div class="metric-box">
-            <div class="metric-lbl">Time In Range</div>
-            <div class="metric-val" style="color: #38bdf8;">88.4%</div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px;">
+            <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:4px; padding:8px;">
+              <div style="color:#0284c7; font-weight:800; font-size:0.78rem;">1. OPTICAL PPG</div>
+              <div style="font-size:0.72rem; color:#475569; margin-top:2px;">525nm Green + 660nm Red + 940nm IR Non-invasive Glucose & SpO2</div>
+            </div>
+            <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:4px; padding:8px;">
+              <div style="color:#dc2626; font-weight:800; font-size:0.78rem;">2. DUAL THERMISTORS</div>
+              <div style="font-size:0.72rem; color:#475569; margin-top:2px;">High-precision Core vs Cutaneous Skin Temp Differential (°F)</div>
+            </div>
+            <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:4px; padding:8px;">
+              <div style="color:#15803d; font-weight:800; font-size:0.78rem;">3. PWTT HEMODYNAMICS</div>
+              <div style="font-size:0.72rem; color:#475569; margin-top:2px;">Pulse Wave Transit Time Oscillometry for Ambulatory BP</div>
+            </div>
+            <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:4px; padding:8px;">
+              <div style="color:#7c3aed; font-weight:800; font-size:0.78rem;">4. 32-BIT ACCEL</div>
+              <div style="font-size:0.72rem; color:#475569; margin-top:2px;">Tri-axial kinetic accelerometer for step cadence & exercise</div>
+            </div>
           </div>
-          <div class="metric-box">
-            <div class="metric-lbl">Est. HbA1c</div>
-            <div class="metric-val" style="color: #fbbf24;">6.1%</div>
-          </div>
-          <div class="metric-box">
-            <div class="metric-lbl">Data Protocol</div>
-            <div class="metric-val" style="color: #a78bfa; font-size: 1.1rem;">ZERO-EGRESS</div>
+          <div style="margin-top:10px; background:#f1f5f9; padding:6px 10px; border-radius:4px; font-size:0.75rem; color:#334155; font-family:monospace;">
+            MCU: Nordic nRF52832 BLE 5.0 • Flash: 128MB SPI NOR Circular Buffer
           </div>
         </div>
-
-        <div style="background: #142742; border: 1px solid #234573; border-radius: 6px; padding: 12px; margin-top: auto;">
-          <div style="font-size: 0.75rem; color: #94a3b8; font-weight: bold; margin-bottom: 4px;">KEY CLINICAL TAKEAWAY:</div>
-          <div style="font-size: 0.85rem; color: #f8fafc; line-height: 1.45;">
-            On screen is the Veepoo Model 5010 hardware architecture. It's packed with dual-wavelength optical photoplethysmography for blood glucose and oxygen saturation,...
-          </div>
-        </div>
-      </div>
+        
     </div>
 
     <div class="slide-footer">

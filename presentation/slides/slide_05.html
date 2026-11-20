@@ -171,39 +171,36 @@
         </div>
       </div>
 
-      <!-- Telemetry Visual / Console Card -->
-      <div class="visual-card">
-        <div class="visual-header">
-          <span>LCARS TELEMETRY MONITOR</span>
-          <span>STATUS: ACTIVE ONLINE</span>
-        </div>
 
-        <div class="metric-grid">
-          <div class="metric-box">
-            <div class="metric-lbl">Target Range</div>
-            <div class="metric-val" style="color: #4ade80;">60–200 <span style="font-size: 0.8rem;">mg/dL</span></div>
+        <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #7c3aed;">
+          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #e2e8f0; padding-bottom:8px;">
+            <span style="font-family:monospace; font-weight:800; color:#7c3aed; font-size:0.88rem;">ADA CLINICAL TARGET BENCHMARKS</span>
+            <span style="background:#ede9fe; color:#6d28d9; font-weight:800; font-size:0.75rem; padding:2px 8px; border-radius:3px;">CONSENSUS STANDARDS</span>
           </div>
-          <div class="metric-box">
-            <div class="metric-lbl">Time In Range</div>
-            <div class="metric-val" style="color: #38bdf8;">88.4%</div>
-          </div>
-          <div class="metric-box">
-            <div class="metric-lbl">Est. HbA1c</div>
-            <div class="metric-val" style="color: #fbbf24;">6.1%</div>
-          </div>
-          <div class="metric-box">
-            <div class="metric-lbl">Data Protocol</div>
-            <div class="metric-val" style="color: #a78bfa; font-size: 1.1rem;">ZERO-EGRESS</div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px;">
+            <div style="background:#f8fafc; padding:8px; border-radius:4px; border:1px solid #cbd5e1;">
+              <div style="font-size:0.7rem; color:#64748b; font-weight:bold;">TIME IN RANGE (60-200)</div>
+              <div style="font-size:1.35rem; font-weight:800; color:#15803d; font-family:monospace;">88.4%</div>
+              <div style="font-size:0.7rem; color:#16a34a; font-weight:bold;">Goal: &gt;70% (PASSED)</div>
+            </div>
+            <div style="background:#f8fafc; padding:8px; border-radius:4px; border:1px solid #cbd5e1;">
+              <div style="font-size:0.7rem; color:#64748b; font-weight:bold;">ESTIMATED HbA1c</div>
+              <div style="font-size:1.35rem; font-weight:800; color:#0284c7; font-family:monospace;">8.02%</div>
+              <div style="font-size:0.7rem; color:#0369a1; font-weight:bold;">Target: &lt;8.3% Anchor</div>
+            </div>
+            <div style="background:#f8fafc; padding:8px; border-radius:4px; border:1px solid #cbd5e1;">
+              <div style="font-size:0.7rem; color:#64748b; font-weight:bold;">TIME BELOW RANGE (&lt;60)</div>
+              <div style="font-size:1.35rem; font-weight:800; color:#d97706; font-family:monospace;">1.2%</div>
+              <div style="font-size:0.7rem; color:#d97706; font-weight:bold;">Safety Cap: &lt;4%</div>
+            </div>
+            <div style="background:#f8fafc; padding:8px; border-radius:4px; border:1px solid #cbd5e1;">
+              <div style="font-size:0.7rem; color:#64748b; font-weight:bold;">GLYCEMIC VARIABILITY</div>
+              <div style="font-size:1.35rem; font-weight:800; color:#7c3aed; font-family:monospace;">28.6% CV</div>
+              <div style="font-size:0.7rem; color:#7c3aed; font-weight:bold;">Target: &le;36% CV</div>
+            </div>
           </div>
         </div>
-
-        <div style="background: #142742; border: 1px solid #234573; border-radius: 6px; padding: 12px; margin-top: auto;">
-          <div style="font-size: 0.75rem; color: #94a3b8; font-weight: bold; margin-bottom: 4px;">KEY CLINICAL TAKEAWAY:</div>
-          <div style="font-size: 0.85rem; color: #f8fafc; line-height: 1.45;">
-            Our entire engineering philosophy aligns directly with the American Diabetes Association standards of care. We are aiming for a Time-in-Range greater than 70 pe...
-          </div>
-        </div>
-      </div>
+        
     </div>
 
     <div class="slide-footer">

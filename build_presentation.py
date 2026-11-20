@@ -307,6 +307,393 @@ with open(transcript_path, "w", encoding="utf-8") as f:
 print("Created TRANSCRIPT.md with all 40 slides!")
 
 # Build individual slide HTML files (slide_01.html through slide_40.html)
+# Generator for all 40 unique slide right panels
+
+def get_right_panel_html(sid):
+    # Base styling helper
+    # sid is 1..40
+    if sid == 1:
+        # Welcome & System Status Transponder
+        return """
+        <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #0284c7;">
+          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #e2e8f0; padding-bottom:8px;">
+            <span style="font-family:monospace; font-weight:800; color:#0284c7; font-size:0.9rem;">LCARS 5010 • SYSTEM GATEWAY</span>
+            <span style="background:#dcfce7; color:#15803d; font-weight:800; font-size:0.75rem; padding:2px 8px; border-radius:3px; border:1px solid #86efac;">● LINKED & ONLINE</span>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px;">
+            <div style="background:#f8fafc; padding:8px; border-radius:4px; border:1px solid #e2e8f0;">
+              <div style="font-size:0.7rem; color:#64748b; font-weight:bold;">WATCH TRANSPONDER</div>
+              <div style="font-size:1.1rem; font-weight:800; color:#0f172a; font-family:monospace;">VEE (8B:DE:40...)</div>
+            </div>
+            <div style="background:#f8fafc; padding:8px; border-radius:4px; border:1px solid #e2e8f0;">
+              <div style="font-size:0.7rem; color:#64748b; font-weight:bold;">FIRMWARE REVISION</div>
+              <div style="font-size:1.1rem; font-weight:800; color:#0284c7; font-family:monospace;">MODEL 5010 / V0.16</div>
+            </div>
+            <div style="background:#f8fafc; padding:8px; border-radius:4px; border:1px solid #e2e8f0;">
+              <div style="font-size:0.7rem; color:#64748b; font-weight:bold;">CALIBRATION ANCHOR</div>
+              <div style="font-size:1.1rem; font-weight:800; color:#d97706; font-family:monospace;">8.3% HbA1c (191.5)</div>
+            </div>
+            <div style="background:#f8fafc; padding:8px; border-radius:4px; border:1px solid #e2e8f0;">
+              <div style="font-size:0.7rem; color:#64748b; font-weight:bold;">LOCAL VAULT SYNC</div>
+              <div style="font-size:1.1rem; font-weight:800; color:#15803d; font-family:monospace;">SYNC NOMINAL</div>
+            </div>
+          </div>
+          <div style="margin-top:10px; background:#eff6ff; border:1.5px solid #bfdbfe; border-radius:6px; padding:10px;">
+            <div style="font-weight:800; color:#1e40af; font-size:0.85rem;">PATIENT MONITORING PROFILE</div>
+            <div style="font-size:0.8rem; color:#1e3a8a; margin-top:4px;">Age: 68 • Protocol: Outpatient T2D Maintenance • Port: 8899 Local Air-Gapped</div>
+          </div>
+        </div>
+        """
+
+    elif sid == 2:
+        # Snapshot Fallacy: Fingersticks vs Continuous
+        return """
+        <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #dc2626;">
+          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #e2e8f0; padding-bottom:8px;">
+            <span style="font-family:monospace; font-weight:800; color:#dc2626; font-size:0.88rem;">THE SNAPSHOT FALLACY AUDIT</span>
+            <span style="background:#fee2e2; color:#b91c1c; font-weight:800; font-size:0.75rem; padding:2px 8px; border-radius:3px;">4 DOTS VS CONTINUOUS</span>
+          </div>
+          <div style="margin-top:8px; font-size:0.82rem; color:#334155; line-height:1.4;">
+            <div style="background:#fef2f2; border-left:4px solid #ef4444; padding:8px; border-radius:4px; margin-bottom:8px;">
+              <strong style="color:#991b1b;">Intermittent Spot-Checks (4 Fingersticks):</strong>
+              <div style="font-family:monospace; font-size:0.78rem; margin-top:3px; color:#7f1d1d;">07:00: 104 • 12:00: 108 • 18:00: 122 • 22:00: 108</div>
+              <div style="color:#b91c1c; font-size:0.72rem; margin-top:2px;">⚠️ Misses postprandial spike (232 mg/dL) and nocturnal nadir (162 mg/dL)!</div>
+            </div>
+            <div style="background:#f0fdf4; border-left:4px solid #22c55e; padding:8px; border-radius:4px;">
+              <strong style="color:#166534;">LCARS Continuous Optical Profile:</strong>
+              <div style="font-family:monospace; font-size:0.78rem; margin-top:3px; color:#14532d;">288 Continuous Telemetry Epochs / 24 Hours</div>
+              <div style="color:#15803d; font-size:0.72rem; margin-top:2px;">✓ Captures complete +70 mg/dL meal spikes & Dawn Phenomenon surges</div>
+            </div>
+          </div>
+          <div style="margin-top:10px; display:flex; justify-content:space-between; background:#f8fafc; padding:8px 12px; border-radius:4px; border:1px solid #e2e8f0; font-family:monospace; font-size:0.82rem; font-weight:bold;">
+            <span>UNSEEN EXCURSION CAPTURED:</span>
+            <span style="color:#dc2626;">+78 MG/DL SPIKE</span>
+          </div>
+        </div>
+        """
+
+    elif sid == 3:
+        # Hardware & Biosensing Array
+        return """
+        <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #d97706;">
+          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #e2e8f0; padding-bottom:8px;">
+            <span style="font-family:monospace; font-weight:800; color:#d97706; font-size:0.88rem;">MODEL 5010 HARDWARE TRANSPONDER</span>
+            <span style="background:#fef3c7; color:#92400e; font-weight:800; font-size:0.75rem; padding:2px 8px; border-radius:3px;">4 SENSOR ARRAYS</span>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px;">
+            <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:4px; padding:8px;">
+              <div style="color:#0284c7; font-weight:800; font-size:0.78rem;">1. OPTICAL PPG</div>
+              <div style="font-size:0.72rem; color:#475569; margin-top:2px;">525nm Green + 660nm Red + 940nm IR Non-invasive Glucose & SpO2</div>
+            </div>
+            <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:4px; padding:8px;">
+              <div style="color:#dc2626; font-weight:800; font-size:0.78rem;">2. DUAL THERMISTORS</div>
+              <div style="font-size:0.72rem; color:#475569; margin-top:2px;">High-precision Core vs Cutaneous Skin Temp Differential (°F)</div>
+            </div>
+            <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:4px; padding:8px;">
+              <div style="color:#15803d; font-weight:800; font-size:0.78rem;">3. PWTT HEMODYNAMICS</div>
+              <div style="font-size:0.72rem; color:#475569; margin-top:2px;">Pulse Wave Transit Time Oscillometry for Ambulatory BP</div>
+            </div>
+            <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:4px; padding:8px;">
+              <div style="color:#7c3aed; font-weight:800; font-size:0.78rem;">4. 32-BIT ACCEL</div>
+              <div style="font-size:0.72rem; color:#475569; margin-top:2px;">Tri-axial kinetic accelerometer for step cadence & exercise</div>
+            </div>
+          </div>
+          <div style="margin-top:10px; background:#f1f5f9; padding:6px 10px; border-radius:4px; font-size:0.75rem; color:#334155; font-family:monospace;">
+            MCU: Nordic nRF52832 BLE 5.0 • Flash: 128MB SPI NOR Circular Buffer
+          </div>
+        </div>
+        """
+
+    elif sid == 4:
+        # Zero-Egress Local Telemetry vs Cloud
+        return """
+        <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #15803d;">
+          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #e2e8f0; padding-bottom:8px;">
+            <span style="font-family:monospace; font-weight:800; color:#15803d; font-size:0.88rem;">ZERO-EGRESS SECURITY MATRIX</span>
+            <span style="background:#dcfce7; color:#15803d; font-weight:800; font-size:0.75rem; padding:2px 8px; border-radius:3px;">AIR-GAPPED SOVEREIGNTY</span>
+          </div>
+          <div style="margin-top:8px; display:flex; flex-direction:column; gap:8px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; background:#f8fafc; padding:8px 12px; border-radius:4px; border:1px solid #e2e8f0;">
+              <span style="font-size:0.82rem; font-weight:bold; color:#0f172a;">Local Host Web Server:</span>
+              <span style="font-family:monospace; font-size:0.85rem; color:#0284c7; font-weight:800;">http://localhost:8899</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; background:#f8fafc; padding:8px 12px; border-radius:4px; border:1px solid #e2e8f0;">
+              <span style="font-size:0.82rem; font-weight:bold; color:#0f172a;">Local SQLite Database:</span>
+              <span style="font-family:monospace; font-size:0.82rem; color:#15803d; font-weight:800;">D:\veepoo\telemetry.db</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; background:#fee2e2; padding:8px 12px; border-radius:4px; border:1px solid #fca5a5;">
+              <span style="font-size:0.82rem; font-weight:bold; color:#991b1b;">Outbound Internet Egress:</span>
+              <span style="font-family:monospace; font-size:0.85rem; color:#dc2626; font-weight:800;">0 BYTES (BLOCKED)</span>
+            </div>
+          </div>
+          <div style="margin-top:10px; font-size:0.78rem; color:#475569; background:#f8fafc; padding:8px; border-radius:4px;">
+            🔒 Complete HIPAA/GDPR alignment: zero telemetry transmitted to third-party or overseas servers.
+          </div>
+        </div>
+        """
+
+    elif sid == 5:
+        # Core Clinical Targets: TIR > 70%, eA1c < 6.8%
+        return """
+        <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #7c3aed;">
+          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #e2e8f0; padding-bottom:8px;">
+            <span style="font-family:monospace; font-weight:800; color:#7c3aed; font-size:0.88rem;">ADA CLINICAL TARGET BENCHMARKS</span>
+            <span style="background:#ede9fe; color:#6d28d9; font-weight:800; font-size:0.75rem; padding:2px 8px; border-radius:3px;">CONSENSUS STANDARDS</span>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px;">
+            <div style="background:#f8fafc; padding:8px; border-radius:4px; border:1px solid #cbd5e1;">
+              <div style="font-size:0.7rem; color:#64748b; font-weight:bold;">TIME IN RANGE (60-200)</div>
+              <div style="font-size:1.35rem; font-weight:800; color:#15803d; font-family:monospace;">88.4%</div>
+              <div style="font-size:0.7rem; color:#16a34a; font-weight:bold;">Goal: &gt;70% (PASSED)</div>
+            </div>
+            <div style="background:#f8fafc; padding:8px; border-radius:4px; border:1px solid #cbd5e1;">
+              <div style="font-size:0.7rem; color:#64748b; font-weight:bold;">ESTIMATED HbA1c</div>
+              <div style="font-size:1.35rem; font-weight:800; color:#0284c7; font-family:monospace;">8.02%</div>
+              <div style="font-size:0.7rem; color:#0369a1; font-weight:bold;">Target: &lt;8.3% Anchor</div>
+            </div>
+            <div style="background:#f8fafc; padding:8px; border-radius:4px; border:1px solid #cbd5e1;">
+              <div style="font-size:0.7rem; color:#64748b; font-weight:bold;">TIME BELOW RANGE (&lt;60)</div>
+              <div style="font-size:1.35rem; font-weight:800; color:#d97706; font-family:monospace;">1.2%</div>
+              <div style="font-size:0.7rem; color:#d97706; font-weight:bold;">Safety Cap: &lt;4%</div>
+            </div>
+            <div style="background:#f8fafc; padding:8px; border-radius:4px; border:1px solid #cbd5e1;">
+              <div style="font-size:0.7rem; color:#64748b; font-weight:bold;">GLYCEMIC VARIABILITY</div>
+              <div style="font-size:1.35rem; font-weight:800; color:#7c3aed; font-family:monospace;">28.6% CV</div>
+              <div style="font-size:0.7rem; color:#7c3aed; font-weight:bold;">Target: &le;36% CV</div>
+            </div>
+          </div>
+        </div>
+        """
+
+    elif sid in [6, 7, 8, 9, 10]:
+        # Module 2: Physician Alignment, Safe Harbor, Venous Calibration, Private Mode
+        labels = {
+            6: ("PHYSICIAN CO-PILOT PORTAL", "SHARED CLINICAL INTERFACE", "Active Telemetry Collaboration", "Patient + Attending MD review synchronized longitudinal curves during consultations to evaluate medication titration."),
+            7: ("CLINICAL GLYCEMIC HARBOR", "60 – 200 MG/DL SAFE BAND", "Clinical Floor: 60 mg/dL", "Clinical Ceiling: 200 mg/dL. Standardizes safe ambulatory range preventing hypoglycemia while capturing renal spillage."),
+            8: ("VENOUS BLOOD DRAW CALIBRATION", "OPCODE 0x89 0x02 SYNC", "Lab Baseline: 8.3% HbA1c", "Venous Draw: 191.5 mg/dL. Calibrates raw optical reflectance against certified clinical lab anchors with zero guess-work."),
+            9: ("PRIVATE MODE STANDARDIZATION", "PATIENT-SPECIFIC PROFILE", "Private Mode: 0x01 (ACTIVE)", "Public Generic Mode: 0x00 (DISABLED). Applies individualized vascular optical tonometry model for accurate diabetic tracking."),
+            10: ("CONTINUOUS BACKGROUND ENGINE", "288 EPOCHS / 24 HOURS", "5-Minute Sampling Interval", "Model 5010 runs 24/7 background acquisition including overnight nadirs without requiring manual app interaction.")
+        }
+        title, badge, kpi1, desc_txt = labels[sid]
+        return f"""
+        <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #0284c7;">
+          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #e2e8f0; padding-bottom:8px;">
+            <span style="font-family:monospace; font-weight:800; color:#0284c7; font-size:0.88rem;">{title}</span>
+            <span style="background:#e0f2fe; color:#0369a1; font-weight:800; font-size:0.75rem; padding:2px 8px; border-radius:3px;">{badge}</span>
+          </div>
+          <div style="margin-top:10px; background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:6px; padding:12px;">
+            <div style="font-size:1.15rem; font-weight:800; color:#0f172a; font-family:monospace;">{kpi1}</div>
+            <div style="font-size:0.84rem; color:#334155; margin-top:6px; line-height:1.45;">{desc_txt}</div>
+          </div>
+          <div style="margin-top:10px; display:flex; gap:6px; font-family:monospace; font-size:0.75rem;">
+            <span style="background:#f1f5f9; padding:4px 8px; border-radius:3px; color:#475569;">STATUS: VALIDATED</span>
+            <span style="background:#f1f5f9; padding:4px 8px; border-radius:3px; color:#475569;">FIRMWARE: V0.16.16.0</span>
+          </div>
+        </div>
+        """
+
+    elif sid in [11, 12, 13, 14, 15]:
+        # Module 3: Vitals & Cardio Bays
+        vitals = {
+            11: ("BAY BIO-01: GLUCOSE TONOMETRY", "182", "MG/DL", "#dc2626", "Estimated A1C: 8.0%", "Target: 60 - 200 mg/dL", "Continuous Optical Tonometry (Opcode 0x89)"),
+            12: ("BAY THERMO-02: DUAL TEMPERATURE", "97.2°", "CORE °F", "#0284c7", "Skin Temp: 92.4°F", "Delta: 4.8°F Circadian Offset", "Cold-Blooded Circadian Baseline (Normal)"),
+            13: ("BAY CARDIO-01: BLOOD PRESSURE", "118 / 76", "MMHG", "#d97706", "Mean Arterial: 90 mmHg", "Pulse Wave Transit Time (PWTT)", "Ambulatory Blood Pressure Dipping Nominal"),
+            14: ("BAY PULMO-02: ARTERIAL SPO2", "98%", "SATURATION", "#15803d", "Respiration: 16 RPM", "Apnea Index: Normal (<5/hr)", "Dual Red 660nm / IR 940nm Continuous Pulse Oximetry"),
+            15: ("BAY NEURO-02: AUTONOMIC HRV", "64", "MS SDNN", "#4f46e5", "Stress Score: Low (22)", "Sympatho-Vagal Balance: Optimal", "Nocturnal Autonomic Recovery Dynamic")
+        }
+        b_name, b_val, b_unit, b_col, sub1, sub2, footer = vitals[sid]
+        return f"""
+        <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid {b_col};">
+          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #e2e8f0; padding-bottom:8px;">
+            <span style="font-family:monospace; font-weight:800; color:{b_col}; font-size:0.88rem;">{b_name}</span>
+            <span style="background:#f1f5f9; color:#475569; font-weight:800; font-size:0.75rem; padding:2px 8px; border-radius:3px;">LIVE BAY</span>
+          </div>
+          <div style="display:flex; align-items:baseline; gap:8px; margin-top:12px;">
+            <div style="font-size:2.8rem; font-weight:900; color:{b_col}; font-family:monospace; line-height:1;">{b_val}</div>
+            <div style="font-size:1rem; font-weight:800; color:#64748b;">{b_unit}</div>
+          </div>
+          <div style="margin-top:10px; display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+            <div style="background:#f8fafc; padding:6px 10px; border-radius:4px; border:1px solid #e2e8f0; font-size:0.8rem; font-weight:bold; color:#0f172a;">{sub1}</div>
+            <div style="background:#f8fafc; padding:6px 10px; border-radius:4px; border:1px solid #e2e8f0; font-size:0.8rem; font-weight:bold; color:#0f172a;">{sub2}</div>
+          </div>
+          <div style="margin-top:10px; font-size:0.75rem; color:#64748b; font-family:monospace; border-top:1px solid #e2e8f0; padding-top:6px;">
+            Transponder Protocol: {footer}
+          </div>
+        </div>
+        """
+
+    elif sid in [16, 17, 18, 19, 20]:
+        # Module 4: Tab 03 METABOLIC Console & Behavioral Science
+        met = {
+            16: ("TAB 03: METABOLIC CONSOLE", "360° LIVE METABOLIC SYNTHESIS", "Glucose 182 • HR 68 • Temp 97.2° • Steps 2,384", "Real-time correlation between dietary intake, physical exercise, and glycemic response."),
+            17: ("GLUT4 TRANSLOCATION ENGINE", "NON-INSULIN GLUCOSE UPTAKE", "Muscle Contraction -> GLUT4 Activation", "Light postprandial walking activates mechanical GLUT4 translocation, dropping glucose without pancreatic insulin."),
+            18: ("GLUT4 EXERCISE JOURNAL", "MEASURED ΔG GLUCOSE DROPS", "Morning Walk: -27 mg/dL Drop", "32-minute walk at 08:30 (2,384 steps) reduced glucose from 192 mg/dL to 165 mg/dL."),
+            19: ("MACRONUTRIENT MEAL LOGGER", "CARBOHYDRATE EXCURSIONS", "Lunch: 34g Net Carbs • +44 mg/dL Spike", "Correlating nutritional grams directly with postprandial peak height and latency."),
+            20: ("ADA CARBOHYDRATE TRADES", "1-TO-1 DIETARY EXCHANGES", "White Bread -> Rolled Oats (-15g Net)", "Replacing high-glycemic starches with high-fiber complex alternatives suppresses spikes by 35 mg/dL.")
+        }
+        m_title, m_badge, m_main, m_desc = met[sid]
+        return f"""
+        <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #eab308;">
+          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #e2e8f0; padding-bottom:8px;">
+            <span style="font-family:monospace; font-weight:800; color:#ca8a04; font-size:0.88rem;">{m_title}</span>
+            <span style="background:#fef9c3; color:#854d0e; font-weight:800; font-size:0.75rem; padding:2px 8px; border-radius:3px;">{m_badge}</span>
+          </div>
+          <div style="margin-top:10px; background:#fefce8; border:1.5px solid #fef08a; border-radius:6px; padding:12px;">
+            <div style="font-size:1.15rem; font-weight:800; color:#854d0e; font-family:monospace;">{m_main}</div>
+            <div style="font-size:0.84rem; color:#713f12; margin-top:6px; line-height:1.45;">{m_desc}</div>
+          </div>
+          <div style="margin-top:10px; display:grid; grid-template-columns:1fr 1fr; gap:6px; font-family:monospace; font-size:0.76rem;">
+            <div style="background:#f8fafc; padding:6px; border-radius:3px; border:1px solid #e2e8f0;">POST-MEAL TARGET: &lt;180</div>
+            <div style="background:#f8fafc; padding:6px; border-radius:3px; border:1px solid #e2e8f0;">GLUT4 EFFECT: -20 TO -40</div>
+          </div>
+        </div>
+        """
+
+    elif sid in [21, 22, 23, 24, 25]:
+        # Module 5: Diabetes Learning Engine
+        learn = {
+            21: ("DIABETES LEARNING ENGINE", "GLYMIC PHENOTYPE MAPPING", "Peak Latency: 65 Min • Clearance: 1.1 mg/dL/min", "Determines individual patient absorption and clearance curves from empirical continuous data."),
+            22: ("DAWN PHENOMENON SUPPRESSION", "CIRCADIAN NADIR & SURGE", "04:00 Nadir: 162 -> 07:00 Fasting: 174", "Distinguishes Somogyi rebound from hepatic Dawn Phenomenon through continuous 00:00-06:00 monitoring."),
+            23: ("SLEEP RESILIENCE & CORTISOL", "NOCTURNAL RESTORATION", "7.4 Hours Sleep • Deep Delta 1.9 Hours", "Restorative delta sleep lowers systemic morning cortisol, improving next-day peripheral insulin sensitivity."),
+            24: ("SENSOR-HABIT CORRELATION", "MULTIVARIATE EVIDENCE", "Steps vs Glucose: r = -0.79", "Correlates diet, sleep, and physical movement with hard telemetric biomarkers."),
+            25: ("ACTIONABLE CLINICAL REPORTS", "PHYSICIAN AUDIT SUMMARY", "Rolling 14-Day TIR: 78.2% • Mean: 186", "Exportable PDF/CSV reports formatted specifically for physician quarterly consultations.")
+        }
+        l_title, l_badge, l_main, l_desc = learn[sid]
+        return f"""
+        <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #0284c7;">
+          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #e2e8f0; padding-bottom:8px;">
+            <span style="font-family:monospace; font-weight:800; color:#0284c7; font-size:0.88rem;">{l_title}</span>
+            <span style="background:#e0f2fe; color:#0369a1; font-weight:800; font-size:0.75rem; padding:2px 8px; border-radius:3px;">{l_badge}</span>
+          </div>
+          <div style="margin-top:10px; background:#f0f9ff; border:1.5px solid #bae6fd; border-radius:6px; padding:12px;">
+            <div style="font-size:1.15rem; font-weight:800; color:#0369a1; font-family:monospace;">{l_main}</div>
+            <div style="font-size:0.84rem; color:#075985; margin-top:6px; line-height:1.45;">{l_desc}</div>
+          </div>
+        </div>
+        """
+
+    elif sid in [26, 27, 28, 29, 30]:
+        # Module 6: Tab 04 Synchronized Tall Chart
+        c_title, c_badge, c_main, c_desc = {
+            26: ("TAB 04: 24-HR GLUCOSE TIMELINE", "MULTI-LINE ZERO-OVERLAP X-AXIS", "Clean Time Ticks + Staggered Events", "Eliminates label collision: Line 1 (00:00, 04:00, 08:30) with alternating Event Rows (Nadir, Morn Walk, GLUT4 Clear)."),
+            27: ("8 STACKED MEASUREMENT LANES", "SYNCHRONIZED MULTI-VARIABLE AUDIT", "Glucose • eA1C • Temp • Sleep • Steps • HR • BP • SpO2", "Complete 24-hour vertical timeline alignment across all 8 physiological transponders."),
+            28: ("VERTICAL SCRUBBER LINE", "CROSS-CORRELATING CAUSES", "Crosshair at 13:30 (Lunch Peak: 232)", "Dragging cursor vertically aligns the 232 mg/dL peak with 34g lunch carbs, 84 bpm heart rate, and step count."),
+            29: ("CLICK-TO-POP CLINICAL CARDS", "INSTANT MICRO-AUDITS", "Point 10:00: 165 mg/dL (-27 mg/dL)", "Clicking any timeline node displays exact instant telemetry, meals logged, and medication taken."),
+            30: ("PINNING '💊 MED CHANGE'", "AUDITING PROGRESS VS REGRESSION", "Flag: Nov 14 (Metformin Titration to 1000mg)", "Pins prescription milestones across charts to objectively measure therapeutic response.")
+        }[sid]
+        return f"""
+        <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #10b981;">
+          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #e2e8f0; padding-bottom:8px;">
+            <span style="font-family:monospace; font-weight:800; color:#059669; font-size:0.88rem;">{c_title}</span>
+            <span style="background:#d1fae5; color:#065f46; font-weight:800; font-size:0.75rem; padding:2px 8px; border-radius:3px;">{c_badge}</span>
+          </div>
+          <div style="margin-top:10px; background:#ecfdf5; border:1.5px solid #a7f3d0; border-radius:6px; padding:12px;">
+            <div style="font-size:1.15rem; font-weight:800; color:#065f46; font-family:monospace;">{c_main}</div>
+            <div style="font-size:0.84rem; color:#047857; margin-top:6px; line-height:1.45;">{c_desc}</div>
+          </div>
+          <div style="margin-top:10px; font-family:monospace; font-size:0.75rem; color:#475569; background:#f8fafc; padding:6px 10px; border-radius:4px;">
+            X-Axis: 00:00 -> 04:00 (Nadir) -> 07:00 (Fasting) -> 08:30 (Walk) -> 13:30 (Peak) -> 24:00
+          </div>
+        </div>
+        """
+
+    elif sid in [31, 32, 33]:
+        # Module 7: Tab 11 Medication Management
+        med_title, med_badge, med_main, med_desc = {
+            31: ("TAB 11: MEDICATION MANAGEMENT", "PHARMACOLOGICAL REGIMEN", "8 Active Outpatient Medications Tracked", "Comprehensive schedule with dosage, timing, indications, and titration compliance."),
+            32: ("DUAL DAILY INTAKE SCHEDULES", "MORNING & EVENING SPLIT", "Intake 1 (Morning) • Intake 2 (Evening)", "Intake 1: Metformin, Glipizide, Empagliflozin, Lisinopril, Statins. Intake 2: Evening Metformin & Omega-3."),
+            33: ("GRANULAR TITRATION AUDITING", "TITRATION ADHERENCE 96.4%", "Dose Adjustments Automatically Synced", "Adjusting doses triggers auto-pinning of '💊 MED CHANGE' milestones on longitudinal charts.")
+        }[sid]
+        return f"""
+        <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #8b5cf6;">
+          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #e2e8f0; padding-bottom:8px;">
+            <span style="font-family:monospace; font-weight:800; color:#7c3aed; font-size:0.88rem;">{med_title}</span>
+            <span style="background:#ede9fe; color:#5b21b6; font-weight:800; font-size:0.75rem; padding:2px 8px; border-radius:3px;">{med_badge}</span>
+          </div>
+          <div style="margin-top:10px; background:#f5f3ff; border:1.5px solid #ddd6fe; border-radius:6px; padding:12px;">
+            <div style="font-size:1.15rem; font-weight:800; color:#5b21b6; font-family:monospace;">{med_main}</div>
+            <div style="font-size:0.84rem; color:#4c1d95; margin-top:6px; line-height:1.45;">{med_desc}</div>
+          </div>
+          <div style="margin-top:10px; font-family:monospace; font-size:0.75rem; color:#334155; background:#f8fafc; padding:6px 10px; border-radius:4px;">
+            Adherence: 96.4% • Zero Contraindications • Verified by Attending Physician
+          </div>
+        </div>
+        """
+
+    elif sid in [34, 35]:
+        # Module 8: Tab 12 Full Scan
+        scan_title, scan_badge, scan_main, scan_desc = {
+            34: ("TAB 12: SEQUENTIAL FULL SCAN", "120s 6-SENSOR DIAGNOSTIC PIPELINE", "Sequential Non-Interfering Diagnostics", "Stage 1: HR -> Stage 2: BP -> Stage 3: Temp -> Stage 4: SpO2 -> Stage 5: ECG -> Stage 6: Glucose."),
+            35: ("FULL SCAN RESULTS DASHBOARD", "ALL SENSORS NOMINAL", "HR: 68 • BP: 118/76 • Temp: 97.2° • SpO2: 98% • Glucose: 182", "Comprehensive multi-sensor audit completing in 120 seconds with immediate verification.")
+        }[sid]
+        return f"""
+        <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #06b6d4;">
+          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #e2e8f0; padding-bottom:8px;">
+            <span style="font-family:monospace; font-weight:800; color:#0891b2; font-size:0.88rem;">{scan_title}</span>
+            <span style="background:#cffafe; color:#155e75; font-weight:800; font-size:0.75rem; padding:2px 8px; border-radius:3px;">{scan_badge}</span>
+          </div>
+          <div style="margin-top:10px; background:#ecfeff; border:1.5px solid #a5f3fc; border-radius:6px; padding:12px;">
+            <div style="font-size:1.15rem; font-weight:800; color:#155e75; font-family:monospace;">{scan_main}</div>
+            <div style="font-size:0.84rem; color:#164e63; margin-top:6px; line-height:1.45;">{scan_desc}</div>
+          </div>
+        </div>
+        """
+
+    elif sid in [36, 37, 38]:
+        # Module 9: H-Band vs LCARS Comparison Matrix
+        cmp_title, cmp_badge, cmp_part = {
+            36: ("H-BAND VS LCARS: PART 1", "ARCHITECTURE & DATA PRIVACY", "Local Air-Gapped SQLite vs Remote Cloud Silos"),
+            37: ("H-BAND VS LCARS: PART 2", "CALIBRATION & METABOLIC ENGINE", "8.3% HbA1c Anchor & GLUT4 Kinetics vs Raw Totals"),
+            38: ("H-BAND VS LCARS: PART 3", "SENIOR ERGONOMICS & ACCESSIBILITY", "Solid White 21:1 Contrast vs Pastel Muted Displays")
+        }[sid]
+        return f"""
+        <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #f97316;">
+          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #e2e8f0; padding-bottom:8px;">
+            <span style="font-family:monospace; font-weight:800; color:#ea580c; font-size:0.88rem;">{cmp_title}</span>
+            <span style="background:#ffedd5; color:#9a3412; font-weight:800; font-size:0.75rem; padding:2px 8px; border-radius:3px;">{cmp_badge}</span>
+          </div>
+          <div style="margin-top:10px; background:#fff7ed; border:1.5px solid #fed7aa; border-radius:6px; padding:12px;">
+            <div style="font-size:1.1rem; font-weight:800; color:#9a3412; font-family:monospace;">{cmp_part}</div>
+            <table style="width:100%; border-collapse:collapse; margin-top:8px; font-size:0.76rem;">
+              <tr style="border-bottom:1px solid #fed7aa;">
+                <td style="padding:4px; font-weight:bold; color:#7c2d12;">Standard H-Band App:</td>
+                <td style="padding:4px; color:#991b1b;">Proprietary cloud servers, static offsets, fragmented views</td>
+              </tr>
+              <tr>
+                <td style="padding:4px; font-weight:bold; color:#7c2d12;">LCARS 5010 Console:</td>
+                <td style="padding:4px; color:#166534; font-weight:bold;">100% Local SQLite, 8.3% Anchor, 21:1 contrast</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        """
+
+    else:
+        # Module 10: Clinical Summaries & Achieving Diabetic Goals (39, 40)
+        fin_title, fin_badge, fin_main, fin_desc = {
+            39: ("PHYSICIAN CONSULTATION REVIEW", "DOCTOR-PATIENT SHARED WORKBENCH", "Quarterly Longitudinal Evaluation", "Empowers patient and physician to review real continuous evidence, evaluate GLUT4 efficacy, and safely titrate medications."),
+            40: ("MASTERING TYPE 2 DIABETES", "THE LCARS 5010 ROADMAP", "24/7 Monitoring • GLUT4 Walks • Titration", "Achieving HbA1c <6.8% and TIR >70% with continuous multi-sensor biofeedback and patient sovereignty.")
+        }[sid]
+        return f"""
+        <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #16a34a;">
+          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #e2e8f0; padding-bottom:8px;">
+            <span style="font-family:monospace; font-weight:800; color:#15803d; font-size:0.88rem;">{fin_title}</span>
+            <span style="background:#dcfce7; color:#14532d; font-weight:800; font-size:0.75rem; padding:2px 8px; border-radius:3px;">{fin_badge}</span>
+          </div>
+          <div style="margin-top:10px; background:#f0fdf4; border:1.5px solid #bbf7d0; border-radius:6px; padding:12px;">
+            <div style="font-size:1.15rem; font-weight:800; color:#14532d; font-family:monospace;">{fin_main}</div>
+            <div style="font-size:0.84rem; color:#166534; margin-top:6px; line-height:1.45;">{fin_desc}</div>
+          </div>
+          <div style="margin-top:10px; display:flex; justify-content:space-between; font-family:monospace; font-size:0.78rem; font-weight:bold; color:#15803d;">
+            <span>CLINICAL MISSION STATUS:</span>
+            <span>GOALS ACHIEVED WITH LCARS</span>
+          </div>
+        </div>
+        """
+
+print("Defined get_right_panel_html(sid)!")
+
+
 slide_template = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -480,39 +867,7 @@ slide_template = """<!DOCTYPE html>
         </div>
       </div>
 
-      <!-- Telemetry Visual / Console Card -->
-      <div class="visual-card">
-        <div class="visual-header">
-          <span>LCARS TELEMETRY MONITOR</span>
-          <span>STATUS: ACTIVE ONLINE</span>
-        </div>
-
-        <div class="metric-grid">
-          <div class="metric-box">
-            <div class="metric-lbl">Target Range</div>
-            <div class="metric-val" style="color: #4ade80;">60–200 <span style="font-size: 0.8rem;">mg/dL</span></div>
-          </div>
-          <div class="metric-box">
-            <div class="metric-lbl">Time In Range</div>
-            <div class="metric-val" style="color: #38bdf8;">88.4%</div>
-          </div>
-          <div class="metric-box">
-            <div class="metric-lbl">Est. HbA1c</div>
-            <div class="metric-val" style="color: #fbbf24;">6.1%</div>
-          </div>
-          <div class="metric-box">
-            <div class="metric-lbl">Data Protocol</div>
-            <div class="metric-val" style="color: #a78bfa; font-size: 1.1rem;">ZERO-EGRESS</div>
-          </div>
-        </div>
-
-        <div style="background: #142742; border: 1px solid #234573; border-radius: 6px; padding: 12px; margin-top: auto;">
-          <div style="font-size: 0.75rem; color: #94a3b8; font-weight: bold; margin-bottom: 4px;">KEY CLINICAL TAKEAWAY:</div>
-          <div style="font-size: 0.85rem; color: #f8fafc; line-height: 1.45;">
-            {takeaway}
-          </div>
-        </div>
-      </div>
+{right_panel}
     </div>
 
     <div class="slide-footer">
@@ -531,7 +886,8 @@ for s in slides_data:
         title=s["title"],
         module=s["module"],
         desc=s["desc"],
-        takeaway=takeaway
+        takeaway=takeaway,
+        right_panel=get_right_panel_html(s["id"])
     )
     slide_file = os.path.join(slides_dir, f"slide_{s['num']}.html")
     with open(slide_file, "w", encoding="utf-8") as f:

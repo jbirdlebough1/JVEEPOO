@@ -171,39 +171,30 @@
         </div>
       </div>
 
-      <!-- Telemetry Visual / Console Card -->
-      <div class="visual-card">
-        <div class="visual-header">
-          <span>LCARS TELEMETRY MONITOR</span>
-          <span>STATUS: ACTIVE ONLINE</span>
-        </div>
 
-        <div class="metric-grid">
-          <div class="metric-box">
-            <div class="metric-lbl">Target Range</div>
-            <div class="metric-val" style="color: #4ade80;">60–200 <span style="font-size: 0.8rem;">mg/dL</span></div>
+        <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #dc2626;">
+          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #e2e8f0; padding-bottom:8px;">
+            <span style="font-family:monospace; font-weight:800; color:#dc2626; font-size:0.88rem;">THE SNAPSHOT FALLACY AUDIT</span>
+            <span style="background:#fee2e2; color:#b91c1c; font-weight:800; font-size:0.75rem; padding:2px 8px; border-radius:3px;">4 DOTS VS CONTINUOUS</span>
           </div>
-          <div class="metric-box">
-            <div class="metric-lbl">Time In Range</div>
-            <div class="metric-val" style="color: #38bdf8;">88.4%</div>
+          <div style="margin-top:8px; font-size:0.82rem; color:#334155; line-height:1.4;">
+            <div style="background:#fef2f2; border-left:4px solid #ef4444; padding:8px; border-radius:4px; margin-bottom:8px;">
+              <strong style="color:#991b1b;">Intermittent Spot-Checks (4 Fingersticks):</strong>
+              <div style="font-family:monospace; font-size:0.78rem; margin-top:3px; color:#7f1d1d;">07:00: 104 • 12:00: 108 • 18:00: 122 • 22:00: 108</div>
+              <div style="color:#b91c1c; font-size:0.72rem; margin-top:2px;">⚠️ Misses postprandial spike (232 mg/dL) and nocturnal nadir (162 mg/dL)!</div>
+            </div>
+            <div style="background:#f0fdf4; border-left:4px solid #22c55e; padding:8px; border-radius:4px;">
+              <strong style="color:#166534;">LCARS Continuous Optical Profile:</strong>
+              <div style="font-family:monospace; font-size:0.78rem; margin-top:3px; color:#14532d;">288 Continuous Telemetry Epochs / 24 Hours</div>
+              <div style="color:#15803d; font-size:0.72rem; margin-top:2px;">✓ Captures complete +70 mg/dL meal spikes & Dawn Phenomenon surges</div>
+            </div>
           </div>
-          <div class="metric-box">
-            <div class="metric-lbl">Est. HbA1c</div>
-            <div class="metric-val" style="color: #fbbf24;">6.1%</div>
-          </div>
-          <div class="metric-box">
-            <div class="metric-lbl">Data Protocol</div>
-            <div class="metric-val" style="color: #a78bfa; font-size: 1.1rem;">ZERO-EGRESS</div>
-          </div>
-        </div>
-
-        <div style="background: #142742; border: 1px solid #234573; border-radius: 6px; padding: 12px; margin-top: auto;">
-          <div style="font-size: 0.75rem; color: #94a3b8; font-weight: bold; margin-bottom: 4px;">KEY CLINICAL TAKEAWAY:</div>
-          <div style="font-size: 0.85rem; color: #f8fafc; line-height: 1.45;">
-            Let's talk about the snapshot fallacy. For decades, diabetes management has relied on intermittent fingersticks and quarterly HbA1c lab draws. But taking four f...
+          <div style="margin-top:10px; display:flex; justify-content:space-between; background:#f8fafc; padding:8px 12px; border-radius:4px; border:1px solid #e2e8f0; font-family:monospace; font-size:0.82rem; font-weight:bold;">
+            <span>UNSEEN EXCURSION CAPTURED:</span>
+            <span style="color:#dc2626;">+78 MG/DL SPIKE</span>
           </div>
         </div>
-      </div>
+        
     </div>
 
     <div class="slide-footer">
