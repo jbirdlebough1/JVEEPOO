@@ -539,6 +539,33 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
             else:
                 self.send_json_response({"error": "Style 2 binary not found"}, 404)
 
+        elif self.path.startswith("/presentation/") or self.path.startswith("/slides/") or self.path.startswith("/preview.html") or self.path.startswith("/audio/"):
+            # Serve presentation assets directly from D:\veepoo repository
+            rel_path = self.path.split("?")[0].lstrip("/")
+            veepoo_root = os.path.dirname(BASE_DIR)
+            file_path = os.path.join(veepoo_root, rel_path.replace("/", os.sep))
+            if not os.path.exists(file_path):
+                # Check under presentation directory
+                file_path = os.path.join(veepoo_root, "presentation", rel_path.replace("/", os.sep))
+            if os.path.exists(file_path) and os.path.isfile(file_path):
+                content_type = "text/html"
+                if file_path.endswith(".js"): content_type = "application/javascript"
+                elif file_path.endswith(".css"): content_type = "text/css"
+                elif file_path.endswith(".png"): content_type = "image/png"
+                elif file_path.endswith(".jpg") or file_path.endswith(".jpeg"): content_type = "image/jpeg"
+                elif file_path.endswith(".mp3"): content_type = "audio/mpeg"
+                elif file_path.endswith(".json"): content_type = "application/json"
+                
+                with open(file_path, "rb") as f:
+                    content = f.read()
+                self.send_response(200)
+                self.send_header("Content-Type", content_type)
+                self.send_header("Content-Length", str(len(content)))
+                self.send_header("Access-Control-Allow-Origin", "*")
+                self.end_headers()
+                self.wfile.write(content)
+                return
+
         else:
             # Default static file server
             super().do_GET()
