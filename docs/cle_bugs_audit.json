@@ -520,5 +520,15 @@
     "affected_files": "build_presentation.py, all_slides_data.json, presentation/preview.html, presentation/slides/*.html, Preview_Presentation.exe",
     "created_at": "2026-11-20 03:33:15Z",
     "comments": "Verified across all 40 slides in both slides/ and presentation/ directories, preview.html player, and Preview_Presentation.exe."
+  },
+  {
+    "bug_id": "CLE-034",
+    "title": "Pre-render 40 Australian MP3s, configure unmuted autoplay flags, restrict G'day mate greeting to Slide 1 only",
+    "description": "All 40 slides pre-rendered as MP3s; launcher passes unmuted autoplay policy flag; G'day mate restricted exclusively to Slide 1 opening.",
+    "severity": "HIGH",
+    "status": "RESOLVED",
+    "affected_files": "presentation/audio/slide_*.mp3, presentation/SimpleLauncher.cs, Preview_Presentation.exe, presentation/preview.html, all_slides_data.json",
+    "created_at": "2026-11-20 03:48:11Z",
+    "comments": "Pre-rendered all 40 slides with en-AU-WilliamNeural; updated SimpleLauncher.cs with --autoplay-policy=no-user-gesture-required for instant audio on launch; purged all duplicate colloquial greetings."
   }
 ]
