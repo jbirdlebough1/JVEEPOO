@@ -185,5 +185,22 @@
     "created_at": "2026-11-19T21:48:06.755059",
     "updated_at": "2026-11-19T21:48:06.755059",
     "resolved_at": "2026-11-19T21:48:06.755059"
+  },
+  {
+    "id": 75,
+    "project_name": "JVEEPOO",
+    "bug_number": 45,
+    "bug_code": "CLE-045",
+    "build_number": "BUILD-2026.11.20-045",
+    "title": "Expand curriculum to 50 slides with dedicated individual report charts, high-res GUI captures, and 60fps focus-and-scroll sync",
+    "status": "RESOLVED",
+    "component": "Presentation Curriculum & Report Visuals",
+    "affected_files": "all_slides_data.json, build_presentation.py, preview.html, w11_htm_app/index.html, images/lcars_chart_*.png, presentation/audio/slide_*.mp3",
+    "bug_loc": "w11_htm_app/index.html, build_presentation.py:generate_left_panel, all_slides_data.json",
+    "resolution": "Captured high-res element screenshots for all individual report charts in Tab 04 (boxChartGlucose, boxChartA1C, boxChartTemp, boxChartBP, boxChartSpO2, boxChartHR, boxChartHRV, boxChartSleep, boxChartExercise, boxYtdSummary). Added 9 dedicated curriculum slides (Slides 31-39) with Australian female narration (en-AU-NatashaNeural) explaining each chart clinical meaning, target bands, and physician interpretation. Maintained Tab 04 yellow highlight box anchor across chart transitions, renumbered curriculum to 50 slides total, rebuilt all slide assets, updated preview player with 60fps lerp glide, and compiled native Preview_Presentation.exe.",
+    "comments": "Verified all 50 slides, HTTP 200 routing on port 8899, liquid-smooth 60fps scrolling, active tab highlighting, and native Windows 11 executable build.",
+    "created_at": "2026-11-19T22:01:16.943484",
+    "updated_at": "2026-11-19T22:01:16.943484",
+    "resolved_at": "2026-11-19T22:01:16.943484"
   }
 ]

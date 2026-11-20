@@ -249,7 +249,79 @@
 
 ---
 
-## Slide 31: Tab 11 Architecture: Active Pharmacological Regimen Management
+## Slide 31: Daily 24-Hour Continuous Glucose Curve & TIR Dynamics
+**Module:** Module 5: Clinical Reports & Longitudinal EHR Records  
+**Description:** Analyzing the 24-hour optical tonometry glucose timeline, target glycemic band (60–200 mg/dL), and Time in Range (TIR >70%).  
+
+> "Slide thirty-one focuses on the individual Daily Twenty-Four-Hour Continuous Glucose Curve. Optical absorption tonometry measures microvascular glucose absorption every five minutes, generating two hundred and eighty-eight clinical data points across the day. The green shaded corridor represents the physician-configured target band of sixty to two hundred milligrams per deciliter. Notice how post-prandial excursions are immediately visible, enabling patient and physician to audit meal impacts, detect nocturnal hypoglycemia dips, and verify Time in Range above seventy percent."
+
+---
+
+## Slide 32: Daily 24-Hour Estimated A1C (eA1C) Projection Curve
+**Module:** Module 5: Clinical Reports & Longitudinal EHR Records  
+**Description:** Translating continuous glucose telemetry into rolling estimated A1C projections via the ADAG consensus algorithm.  
+
+> "Slide thirty-two examines the Daily Twenty-Four-Hour Estimated A1C Projection Curve. Using the international A D A G consensus algorithm, estimated A1C equals mean glucose plus forty-six point seven divided by twenty-eight point seven. This mathematical transform tracks rolling glycemic exposure continuously, giving patient and doctor a real-time trajectory rather than waiting ninety days for a venous blood draw. Any therapeutic change or dietary discipline is reflected in the slope of the curve within days."
+
+---
+
+## Slide 33: Daily 24-Hour Body Temperature Matrix: Core vs Epidermal Wrist
+**Module:** Module 5: Clinical Reports & Longitudinal EHR Records  
+**Description:** Continuous dual-matrix thermometry tracking core metabolic equilibrium and epidermal thermal dissipation.  
+
+> "Slide thirty-three presents the Twenty-Four-Hour Body Temperature Matrix, contrasting calculated core body temperature against wrist epidermal contact temperature. The Dual-NTC sensor array tracks circadian thermal homeostasis, identifying the early morning circadian nadir and post-exercise thermal dissipation. For diabetic patients with cold-blooded basal ranges of ninety-six point eight to ninety-seven point four degrees, this baseline provides early screening for metabolic slowdown or occult subclinical infection."
+
+---
+
+## Slide 34: 24-Hour Ambulatory Blood Pressure Dual-Band (PWTT Systolic/Diastolic)
+**Module:** Module 5: Clinical Reports & Longitudinal EHR Records  
+**Description:** Ambulatory pulse wave transit time hemodynamics tracking systolic and diastolic pressures across 24 hours.  
+
+> "Slide thirty-four covers the Twenty-Four-Hour Ambulatory Blood Pressure Dual-Band Chart. Arterial stiffness and microvascular compliance are evaluated continuously via optical pulse wave transit time tonometry. Systolic and diastolic trends are tracked against clinical targets of under one hundred and twenty over eighty millimeters of mercury. Crucially, the chart audits nocturnal dipping: a healthy ten to twenty percent pressure drop during sleep confirms normal autonomic cardiovascular protection."
+
+---
+
+## Slide 35: Nocturnal SpO2 & OSAHS Apnea Hypoxia Dips Matrix
+**Module:** Module 5: Clinical Reports & Longitudinal EHR Records  
+**Description:** High-frequency dual-wavelength pulse oximetry auditing nocturnal oxygen saturation and obstructive sleep apnea events.  
+
+> "Slide thirty-five inspects the Nocturnal SpO2 and Obstructive Sleep Apnea Hypoxia Dips Matrix. The watch's red and infrared optical sensors measure arterial oxygen saturation with one percent resolution. The clinical report automatically calculates the Oxygen Desaturation Index, auditing hypoxic drops greater than four percent below baseline. Because severe nocturnal apnea triggers massive cortisol and epinephrine release that spikes morning glucose, this chart provides vital cardiopulmonary insight for the attending physician."
+
+---
+
+## Slide 36: 24-Hour Heart Rate & 5-Zone Cardiac Load
+**Module:** Module 5: Clinical Reports & Longitudinal EHR Records  
+**Description:** Diurnal cardiac chronotropy categorizing heart rate across five physiologic cardiovascular workload zones.  
+
+> "Slide thirty-six details the Twenty-Four-Hour Heart Rate and Five-Zone Cardiac Load Chart. Heart rate is mapped from nocturnal basal resting levels up to peak exercise exertion. The chart color-codes five discrete physiological zones: Warm Up, Fat Burn, Aerobic, Anaerobic, and Peak. For diabetic patients, maintaining exercise in the Fat Burn and Aerobic zones promotes maximum muscular glucose uptake while avoiding excessive sympathetic cardiac strain."
+
+---
+
+## Slide 37: Autonomic HRV & Lorenz Cardiac Scatter Dynamics
+**Module:** Module 5: Clinical Reports & Longitudinal EHR Records  
+**Description:** Heart rate variability analysis using SDNN and Lorenz scatter plots to audit sympatho-vagal autonomic balance.  
+
+> "Slide thirty-seven examines Autonomic Heart Rate Variability and Lorenz Cardiac Scatter Dynamics. By measuring millisecond-level variation between consecutive R-wave peaks, the system computes the S D N N metric. Higher HRV values indicate robust parasympathetic tone and physiological resilience, while suppressed HRV flags autonomic neuropathy, chronic fatigue, or excessive neuro-metabolic stress. The accompanying Lorenz scatter plot allows the physician to visually inspect cardiac autonomic rhythm stability at a glance."
+
+---
+
+## Slide 38: Nocturnal Sleep Duration & Circadian Hypnogram Architecture
+**Module:** Module 5: Clinical Reports & Longitudinal EHR Records  
+**Description:** Polysomnographic sleep architecture tracking total sleep duration, deep sleep, light sleep, and REM cycles.  
+
+> "Slide thirty-eight presents the Nocturnal Sleep Duration and Circadian Hypnogram. The watch combines tri-axial actigraphy, optical PPG heart rate slowing, and skin temperature to reconstruct the nightly sleep hypnogram. Patients can audit their total duration against the seven-to-eight-and-a-half-hour clinical target, reviewing deep sleep restorative phases versus light sleep. Adequate slow-wave deep sleep is crucial for suppressing nocturnal hepatic gluconeogenesis and blunting dawn cortisol surges."
+
+---
+
+## Slide 39: Ambulatory Physical Activity, Step Density & GLUT4 Clearance
+**Module:** Module 5: Clinical Reports & Longitudinal EHR Records  
+**Description:** Hourly step distribution, brisk walk velocity, and direct exercise-induced glucose clearance kinetics.  
+
+> "Slide thirty-nine completes the individual chart suite with Ambulatory Physical Activity and Step Density. Hourly bar charts capture step accumulation throughout the day, highlighting dedicated exercise sessions such as a morning brisk walk. Reaching the two-thousand-step daily goal, equivalent to approximately one and a half miles, triggers active skeletal muscle contraction that pulls glucose from the bloodstream via insulin-independent GLUT4 pathways, visibly blunting subsequent glycemic spikes."
+
+---
+
+## Slide 40: Tab 11 Architecture: Active Pharmacological Regimen Management
 **Module:** Module 7: Tab 11 Medication Management  
 **Description:** Tracking your complete outpatient pharmacological regimen with dosage, indication, and timing.  
 
@@ -257,7 +329,7 @@
 
 ---
 
-## Slide 32: Two Discrete Daily Intake Schedules: Morning Suite & Dinner Split
+## Slide 41: Two Discrete Daily Intake Schedules: Morning Suite & Dinner Split
 **Module:** Module 7: Tab 11 Medication Management  
 **Description:** Separating medications into scrollable Morning (Intake 1) and Evening (Intake 2) lists.  
 
@@ -265,7 +337,7 @@
 
 ---
 
-## Slide 33: Granular Medication Editing, Deletion & Titration Adherence
+## Slide 42: Granular Medication Editing, Deletion & Titration Adherence
 **Module:** Module 7: Tab 11 Medication Management  
 **Description:** Updating dosages, logging adherence, and automatically updating clinical milestones.  
 
@@ -273,7 +345,7 @@
 
 ---
 
-## Slide 34: Tab 12 Full Scan: Automated Sequential 6-Sensor Diagnostic Pipeline
+## Slide 43: Tab 12 Full Scan: Automated Sequential 6-Sensor Diagnostic Pipeline
 **Module:** Module 8: Tab 12 Sequential Full Scan  
 **Description:** The 120-second automated diagnostic sequence testing all 6 biometric transponders.  
 
@@ -281,7 +353,7 @@
 
 ---
 
-## Slide 35: Live Stage Progression, Non-Interfering Scan Flow & Clinical Report
+## Slide 44: Live Stage Progression, Non-Interfering Scan Flow & Clinical Report
 **Module:** Module 8: Tab 12 Sequential Full Scan  
 **Description:** Real-time visual progress through the 6 stages and generation of verified scan reports.  
 
@@ -289,7 +361,7 @@
 
 ---
 
-## Slide 36: H-Band vs LCARS Matrix Part 1: Hardware Parity & Zero-Cloud Privacy
+## Slide 45: H-Band vs LCARS Matrix Part 1: Hardware Parity & Zero-Cloud Privacy
 **Module:** Module 9: Master Capability Matrix: H-Band vs LCARS  
 **Description:** Comparing mobile app cloud telemetry against local air-gapped PC architecture.  
 
@@ -297,7 +369,7 @@
 
 ---
 
-## Slide 37: H-Band vs LCARS Matrix Part 2: Calibration, Timelines & Metabolic Engine
+## Slide 46: H-Band vs LCARS Matrix Part 2: Calibration, Timelines & Metabolic Engine
 **Module:** Module 9: Master Capability Matrix: H-Band vs LCARS  
 **Description:** Comparing calibration capabilities, multi-lane timelines, and exercise kinetics.  
 
@@ -305,7 +377,7 @@
 
 ---
 
-## Slide 38: H-Band vs LCARS Matrix Part 3: Senior-Friendly Ergonomics & 21:1 Contrast
+## Slide 47: H-Band vs LCARS Matrix Part 3: Senior-Friendly Ergonomics & 21:1 Contrast
 **Module:** Module 9: Master Capability Matrix: H-Band vs LCARS  
 **Description:** Examining senior accessibility, 21:1 solid white contrast, and high-luminance typography.  
 
@@ -313,7 +385,7 @@
 
 ---
 
-## Slide 39: Outpatient Clinical Review: YTD, Monthly & Daily Telemetry Records
+## Slide 48: Outpatient Clinical Review: YTD, Monthly & Daily Telemetry Records
 **Module:** Module 10: Clinical Summaries & Achieving Diabetic Goals  
 **Description:** Comprehensive doctor-patient consultation covering Year-to-Date trends, 30-day monthly retrospects, and 24-hour daily continuous curves into Epic EHR.  
 
@@ -321,7 +393,7 @@
 
 ---
 
-## Slide 40: Evolution to Closed-Loop Biofeedback: The Global Diabetes Research Opportunity
+## Slide 49: Evolution to Closed-Loop Biofeedback: The Global Diabetes Research Opportunity
 **Module:** Module 10: Clinical Summaries, Closed-Loop Science & Open Source  
 **Description:** Transitioning from blind open-loop fingersticks to continuous closed-loop biofeedback, creating an anonymized global diabetes research corpus that Google could sponsor.  
 
@@ -329,7 +401,7 @@
 
 ---
 
-## Slide 41: Open Source Copyleft, Documentation & Powered by Google Gemini Pro
+## Slide 50: Open Source Copyleft, Documentation & Powered by Google Gemini Pro
 **Module:** Module 10: Clinical Summaries & Open Source Ecosystem  
 **Description:** LCARS 5010 is 100% free open-source copyleft software under GNU GPL v3, fully documented in GitHub /docs/, and powered by Google Gemini Pro using HBandSDK and Veepoo standards.  
 

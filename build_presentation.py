@@ -73,12 +73,16 @@ TAB_MAP = [
     (12, "12-FULL SCAN", "images/lcars_tab_fullscan.png")
 ]
 
-def get_active_tab_num(tab_img):
+def get_active_tab_num(s, tab_img):
+    if s and s.get("tab_num"):
+        return int(s.get("tab_num"))
     if not tab_img:
         return 1
-    base = os.path.basename(tab_img)
+    base = os.path.basename(tab_img).lower()
+    if "chart_" in base or "report" in base:
+        return 4
     for t_num, t_name, t_path in TAB_MAP:
-        if os.path.basename(t_path) == base:
+        if os.path.basename(t_path).lower() in base or base in os.path.basename(t_path).lower():
             return t_num
     return 1
 
@@ -95,9 +99,9 @@ def generate_left_panel(s):
     desc = s.get("desc", "")
     takeaway = s.get("takeaway", "Continuous telemetry ensures patient safety and clinical insight.")
 
-    tab_img = s.get("tab_screenshot", "")
-    tab_title = s.get("tab_title", "LCARS WORKSTATION CONSOLE")
-    active_tab = get_active_tab_num(tab_img)
+    tab_img = s.get("tab_screenshot") or s.get("image") or ""
+    tab_title = s.get("tab_title") or s.get("title") or "LCARS WORKSTATION CONSOLE"
+    active_tab = get_active_tab_num(s, tab_img)
     active_tab_name = dict([(t[0], t[1]) for t in TAB_MAP]).get(active_tab, "01-VITALS")
 
     screenshot_html = ""

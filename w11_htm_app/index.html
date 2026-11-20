@@ -2816,7 +2816,7 @@
             </div>
           </div>
 
-          <div class="chart-box">
+          <div class="chart-box" id="boxChartGlucose">
             <div class="chart-title" style="display: flex; flex-direction: column; gap: 6px; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; margin-bottom: 12px;">
               <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px;">
                 <span id="repChartGlucoseTitle" style="font-weight: 800; font-size: 1.15rem; color: #091428;">DAILY 24-HOUR GLUCOSE TIMELINE (MG/DL)</span>
@@ -2829,7 +2829,7 @@
             <div class="svg-timeline-container" id="curveTimelineGlucose"></div>
           </div>
 
-          <div class="chart-box">
+          <div class="chart-box" id="boxChartA1C">
             <div class="chart-title" style="display: flex; flex-direction: column; gap: 6px; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; margin-bottom: 12px;">
               <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px;">
                 <span id="repChartA1CTitle" style="font-weight: 800; font-size: 1.15rem; color: #091428;">DAILY 24-HOUR ESTIMATED A1C (eA1C) PROJECTION CURVE (%)</span>
@@ -2842,7 +2842,7 @@
             <div class="svg-timeline-container" id="curveTimelineA1C"></div>
           </div>
 
-          <div class="chart-box">
+          <div class="chart-box" id="boxChartTemp">
             <div class="chart-title">
               <span id="repChartTempTitle">DAILY 24-HOUR BODY TEMPERATURE MATRIX (CORE °F VS SKIN °F)</span>
               <span style="font-family: var(--lcars-mono); color: var(--lcars-blue);">NORMAL: 95.0°F - 98.6°F • COLD-BLOODED BASELINE: 96.8°F - 97.4°F</span>
@@ -2851,7 +2851,7 @@
           </div>
 
           <!-- 24-HOUR HEART RATE 5-ZONE CARDIAC LOAD CHART (HBAND PARITY) -->
-          <div class="chart-box">
+          <div class="chart-box" id="boxChartHR">
             <div class="chart-title">
               <span id="repChartHRTitle">24-HOUR HEART RATE & 5-ZONE CARDIAC LOAD (HBAND SPEC)</span>
               <span style="font-family: var(--lcars-mono); color: #ff5566;">5 ZONES: WARM UP • FAT BURN • AEROBIC • ANAEROBIC • PEAK</span>
@@ -2860,7 +2860,7 @@
           </div>
 
           <!-- 24-HOUR AMBULATORY BLOOD PRESSURE MATRIX (HBAND PARITY) -->
-          <div class="chart-box">
+          <div class="chart-box" id="boxChartBP">
             <div class="chart-title">
               <span id="repChartBPTitle">24-HOUR AMBULATORY BLOOD PRESSURE DUAL-BAND (SYSTOLIC / DIASTOLIC MMHG)</span>
               <span style="font-family: var(--lcars-mono); color: var(--lcars-peach);">CLINICAL TARGET: &lt;120 / &lt;80 MMHG • NOCTURNAL DIP: 10–20%</span>
@@ -2869,7 +2869,7 @@
           </div>
 
           <!-- NOCTURNAL SPO2 & OSAHS APNEA HYPOXIA DIPS MATRIX (HBAND PARITY) -->
-          <div class="chart-box">
+          <div class="chart-box" id="boxChartSpO2">
             <div class="chart-title">
               <span id="repChartSpO2Title">NOCTURNAL SPO2 & OSAHS APNEA HYPOXIA DIPS MATRIX (%)</span>
               <span style="font-family: var(--lcars-mono); color: var(--lcars-green);">TARGET: &ge;95% • ODI &lt;5.0 EV/HR • CARDIOPULMONARY STABILITY</span>
@@ -2878,7 +2878,7 @@
           </div>
 
           <!-- AUTONOMIC HRV & LORENZ SCATTER DYNAMICS (HBAND PARITY) -->
-          <div class="chart-box">
+          <div class="chart-box" id="boxChartHRV">
             <div class="chart-title">
               <span id="repChartHRVTitle">AUTONOMIC HRV & LORENZ CARDIAC SCATTER DYNAMICS (MS)</span>
               <span style="font-family: var(--lcars-mono); color: var(--lcars-lilac);">SYMPATHO-VAGAL BALANCE • AUTONOMIC FATIGUE / STRESS RECOVERY</span>
@@ -2887,7 +2887,7 @@
           </div>
 
           <!-- NOCTURNAL SLEEP DURATION & ARCHITECTURE CHART -->
-          <div class="chart-box">
+          <div class="chart-box" id="boxChartSleep">
             <div class="chart-title">
               <span id="repChartSleepTitle">NOCTURNAL SLEEP DURATION & CIRCADIAN ARCHITECTURE (HOURS)</span>
               <span style="font-family: var(--lcars-mono); color: var(--lcars-blue);">TARGET: 7.0 - 8.5 HOURS • DEEP / LIGHT DISTRIBUTION</span>
@@ -2896,7 +2896,7 @@
           </div>
 
           <!-- AMBULATORY PHYSICAL ACTIVITY & DAILY STEPS CHART -->
-          <div class="chart-box">
+          <div class="chart-box" id="boxChartExercise">
             <div class="chart-title">
               <span id="repChartExerciseTitle">AMBULATORY PHYSICAL ACTIVITY & DAILY STEPS</span>
               <span style="font-family: var(--lcars-mono); color: var(--lcars-banana);">CLINICAL GOAL: 2,000 STEPS (1.5 MILES)</span>
@@ -10664,6 +10664,15 @@ Notice: For Type 2 diabetes lifestyle management and metabolic tracking only. No
       const initTab = urlParams.get('tab');
       if (initTab) {
         switchTab(initTab);
+      }
+      const focusTarget = urlParams.get('focus');
+      if (focusTarget) {
+        const targetEl = document.getElementById(focusTarget);
+        if (targetEl) {
+          targetEl.scrollIntoView({ behavior: 'instant', block: 'start' });
+          targetEl.style.boxShadow = '0 0 16px rgba(255, 215, 0, 0.95)';
+          targetEl.style.border = '2.5px solid #ffd700';
+        }
       }
       // Seamless auto-link to known watch transponder
       await attemptAutoLink();
