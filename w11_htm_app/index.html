@@ -1668,18 +1668,15 @@
                 <span style="color: var(--lcars-gray);">RAW PPG: <span id="lblRawGlucoseVal" style="color: var(--lcars-banana); font-weight: bold;">--</span> mg/dL</span>
               </div>
 
-              <!-- Critical T1D Contraindication Banner -->
-              <div style="margin: 6px 0; padding: 6px 10px; background: rgba(255, 68, 68, 0.12); border: 1px solid #ff4444; border-left: 4px solid #ff4444; border-radius: 4px; font-size: 0.73rem; color: #ffaaaa; font-family: var(--lcars-mono); line-height: 1.35;">
-                <strong style="color: #ff6666;">⚠️ CLINICAL WARNING: NOT FOR TYPE 1 DIABETICS / INSULIN DOSING.</strong> Designed strictly for Type 2 lifestyle management, dietary feedback, and metabolic fitness. Never calculate insulin doses with optical PPG.
-              </div>
 
-              <div class="bay-controls" style="display: flex; flex-wrap: wrap; gap: 8px;">
-                <button id="btnStartGlucose" class="lcars-btn btn-banana" onclick="startGlucoseDetection()">SCAN</button>
-                <button id="btnStopGlucose" class="lcars-btn btn-orange" onclick="stopGlucoseDetection()">CANCEL</button>
-                <button id="btnCalibrate" class="lcars-btn btn-ice" onclick="calibrateGlucosePrompt()">CALIBRATE</button>
-                <button id="btnReadCal" class="lcars-btn btn-blue" onclick="readWatchGlucoseCalibration()">READ CAL</button>
+
+              <div class="bay-controls" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 12px; padding-bottom: 4px;">
+                <button id="btnStartGlucose" class="lcars-btn btn-banana" style="min-height: 36px; font-weight: 800;" onclick="startGlucoseDetection()">SCAN</button>
+                <button id="btnStopGlucose" class="lcars-btn btn-orange" style="min-height: 36px; font-weight: 800;" onclick="stopGlucoseDetection()">CANCEL</button>
+                <button id="btnCalibrate" class="lcars-btn btn-ice" style="min-height: 36px; font-weight: 800;" onclick="calibrateGlucosePrompt()">CALIBRATE</button>
+                <button id="btnReadCal" class="lcars-btn btn-blue" style="min-height: 36px; font-weight: 800;" onclick="readWatchGlucoseCalibration()">READ CAL</button>
               </div>
-              <div id="lblGlucoseCalInfo" style="font-size: 0.75rem; color: var(--lcars-banana); margin-top: 6px; font-family: var(--lcars-mono); letter-spacing: 0.05em;">
+              <div id="lblGlucoseCalInfo" style="font-size: 0.75rem; color: #b45309; font-weight: 700; margin-top: 6px; font-family: var(--lcars-mono); letter-spacing: 0.04em;">
                 TEMPORARY CLINICAL CALIBRATION ACTIVE: 8.3% HbA1c ANCHOR (+41.5 MG/DL OFFSET | eAG 191.5 MG/DL) • TARGET RANGE: 60 - 200 MG/DL
               </div>
             </div>
@@ -1816,9 +1813,11 @@
            TAB 2: CARDIOVASCULAR, HRV, STRESS & SLEEP
            ===================================================================== -->
       <div id="pageCardio" class="tab-page">
-        <div class="lcars-bays-grid">
+        <div style="display: flex; flex-direction: column; gap: 20px; max-height: calc(100vh - 160px); overflow-y: auto; padding-right: 6px;">
 
-          <!-- Heart Rate Dynamics -->
+          <!-- Top Row: Dual Cardio & HRV Bays (2 Columns) -->
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
+<!-- Heart Rate Dynamics -->
           <div class="lcars-bay" style="min-height: 310px;">
             <div class="lcars-bay-header" style="border-bottom: 3px solid #dc2626; background: #f8fafc;">
               <span class="lcars-bay-tag" style="background: #dc2626; color: white; font-weight: 800;">CARDIO-01</span>
@@ -1896,9 +1895,11 @@
               </div>
             </div>
           </div>
+          </div>
 
-          <!-- Sleep Architecture Bay -->
-          <div class="lcars-bay" style="grid-column: span 2; margin-top: 14px;">
+          <!-- Bay 3: Full-Width Sleep Architecture Bay (No Overlap) -->
+<!-- Sleep Architecture Bay -->
+          <div class="lcars-bay" style="margin-bottom: 20px; box-shadow: 0 4px 14px rgba(0,0,0,0.08);">
             <div class="lcars-bay-header" style="border-bottom: 3px solid #0284c7; background: #f8fafc;">
               <span class="lcars-bay-tag" style="background: #0284c7; color: white; font-weight: 800;">SOMNO-03</span>
               <span class="lcars-bay-title" style="color: #091428; font-weight: 800;">CIRCADIAN SLEEP ARCHITECTURE</span>
@@ -1939,8 +1940,9 @@
             </div>
           </div>
 
-          <!-- BAY 4: Ambulatory Exercise & Workout Dynamics (HBand Protocol Specification) -->
-          <div class="lcars-bay" style="grid-column: span 2; border-left: 6px solid var(--lcars-banana);">
+          <!-- Bay 4: Full-Width Ambulatory Exercise & Workout Dynamics (No Overlap) -->
+<!-- BAY 4: Ambulatory Exercise & Workout Dynamics (HBand Protocol Specification) -->
+          <div class="lcars-bay" style="margin-bottom: 24px; border-left: 6px solid #d97706; box-shadow: 0 4px 14px rgba(0,0,0,0.08);">
             <div class="lcars-bay-header" style="border-bottom-color: var(--lcars-banana); display: flex; justify-content: space-between; align-items: center;">
               <div style="display: flex; align-items: center; gap: 8px;">
                 <span class="lcars-bay-tag" style="background: var(--lcars-banana); color: black;">SPORT-04</span>
@@ -2814,17 +2816,27 @@
           </div>
 
           <div class="chart-box">
-            <div class="chart-title">
-              <span id="repChartGlucoseTitle">DAILY 24-HOUR GLUCOSE TIMELINE (MG/DL)</span>
-              <span style="font-family: var(--lcars-mono); color: var(--lcars-green);">TARGET RANGE: 60 - 200 MG/DL</span>
+            <div class="chart-title" style="display: flex; flex-direction: column; gap: 6px; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; margin-bottom: 12px;">
+              <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px;">
+                <span id="repChartGlucoseTitle" style="font-weight: 800; font-size: 1.15rem; color: #091428;">DAILY 24-HOUR GLUCOSE TIMELINE (MG/DL)</span>
+                <span style="font-family: var(--lcars-mono); font-weight: 800; color: #15803d; font-size: 0.92rem; background: #dcfce7; padding: 3px 10px; border-radius: 4px; border: 1.5px solid #86efac;">TARGET RANGE: 60 - 200 MG/DL</span>
+              </div>
+              <div style="font-size: 0.82rem; color: #475569; font-family: var(--lcars-mono); font-weight: 600;">
+                CONTINUOUS OPTICAL TONOMETRY PROFILE • 8.3% HbA1c CALIBRATION ANCHOR (191.5 MG/DL)
+              </div>
             </div>
             <div class="svg-timeline-container" id="curveTimelineGlucose"></div>
           </div>
 
           <div class="chart-box">
-            <div class="chart-title">
-              <span id="repChartA1CTitle">ESTIMATED A1C (eA1C) PROJECTED TREND CURVE (%)</span>
-              <span style="font-family: var(--lcars-mono); color: var(--lcars-lilac);">eA1C = (GLUCOSE + 46.7) / 28.7 • ADA NORMAL: &lt;5.7%</span>
+            <div class="chart-title" style="display: flex; flex-direction: column; gap: 6px; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; margin-bottom: 12px;">
+              <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px;">
+                <span id="repChartA1CTitle" style="font-weight: 800; font-size: 1.15rem; color: #091428;">DAILY 24-HOUR ESTIMATED A1C (eA1C) PROJECTION CURVE (%)</span>
+                <span style="font-family: var(--lcars-mono); font-weight: 800; color: #4f46e5; font-size: 0.92rem; background: #ede9fe; padding: 3px 10px; border-radius: 4px; border: 1.5px solid #c4b5fd;">ADA NORMAL: &lt;5.7%</span>
+              </div>
+              <div style="font-size: 0.82rem; color: #475569; font-family: var(--lcars-mono); font-weight: 600;">
+                MATHEMATICAL FORMULATION: eA1C = (GLUCOSE + 46.7) / 28.7 • ADAG CONSENSUS ALGORITHM
+              </div>
             </div>
             <div class="svg-timeline-container" id="curveTimelineA1C"></div>
           </div>
@@ -5219,7 +5231,7 @@
                 </div>
 
                 <!-- Scrollable Morning Meds Container -->
-                <div id="gridMorningMeds" style="max-height: 290px; overflow-y: auto; padding-right: 6px; display: flex; flex-direction: column; gap: 10px;">
+                <div id="gridMorningMeds" style="min-height: auto; max-height: none; padding-right: 6px; display: flex; flex-direction: column; gap: 10px;">
                   <!-- Populated by JavaScript -->
                 </div>
               </div>
@@ -5244,7 +5256,7 @@
                 </div>
 
                 <!-- Scrollable Evening Meds Container -->
-                <div id="gridDinnerMeds" style="max-height: 290px; overflow-y: auto; padding-right: 6px; display: flex; flex-direction: column; gap: 10px;">
+                <div id="gridDinnerMeds" style="min-height: auto; max-height: none; padding-right: 6px; display: flex; flex-direction: column; gap: 10px;">
                   <!-- Populated by JavaScript -->
                 </div>
               </div>
@@ -7861,14 +7873,18 @@
 
       let refLinesHtml = "";
       if (options.referenceLines) {
-        options.referenceLines.forEach(ref => {
+        options.referenceLines.forEach((ref, rIdx) => {
           if (ref.val >= minY && ref.val <= maxY) {
             const refY = padTop + plotH - ((ref.val - minY) / rangeY) * plotH;
+            // Stagger labels so two close reference lines never overlap: alternate start / end positioning
+            const isAlternate = (rIdx % 2 === 1);
+            const anchor = isAlternate ? "start" : "end";
+            const textX = isAlternate ? (padLeft + 8) : (padLeft + plotW - 8);
             refLinesHtml += `
               <line x1="${padLeft}" y1="${refY.toFixed(1)}" x2="${padLeft + plotW}" y2="${refY.toFixed(1)}" 
-                    stroke="${ref.color || '#4f5b66'}" stroke-dasharray="4 4" stroke-width="1.2" opacity="0.75"/>
-              <text x="${padLeft + plotW - 4}" y="${(refY - 4).toFixed(1)}" text-anchor="end" 
-                    fill="${ref.color || '#4f5b66'}" font-family="var(--lcars-mono)" font-size="10">${ref.label}</text>
+                    stroke="${ref.color || '#4f5b66'}" stroke-dasharray="4 4" stroke-width="1.4" opacity="0.8"/>
+              <text x="${textX}" y="${(refY - 5).toFixed(1)}" text-anchor="${anchor}" 
+                    fill="${ref.color || '#334155'}" font-family="var(--lcars-mono)" font-size="10.5" font-weight="bold">${ref.label}</text>
             `;
           }
         });
@@ -7948,14 +7964,18 @@
 
       let refLinesHtml = "";
       if (options.referenceLines) {
-        options.referenceLines.forEach(ref => {
+        options.referenceLines.forEach((ref, rIdx) => {
           if (ref.val >= minY && ref.val <= maxY) {
             const refY = padTop + plotH - ((ref.val - minY) / rangeY) * plotH;
+            // Stagger labels so two close reference lines never overlap: alternate start / end positioning
+            const isAlternate = (rIdx % 2 === 1);
+            const anchor = isAlternate ? "start" : "end";
+            const textX = isAlternate ? (padLeft + 8) : (padLeft + plotW - 8);
             refLinesHtml += `
               <line x1="${padLeft}" y1="${refY.toFixed(1)}" x2="${padLeft + plotW}" y2="${refY.toFixed(1)}" 
-                    stroke="${ref.color || '#4f5b66'}" stroke-dasharray="4 4" stroke-width="1.2" opacity="0.75"/>
-              <text x="${padLeft + plotW - 4}" y="${(refY - 4).toFixed(1)}" text-anchor="end" 
-                    fill="${ref.color || '#4f5b66'}" font-family="var(--lcars-mono)" font-size="10">${ref.label}</text>
+                    stroke="${ref.color || '#4f5b66'}" stroke-dasharray="4 4" stroke-width="1.4" opacity="0.8"/>
+              <text x="${textX}" y="${(refY - 5).toFixed(1)}" text-anchor="${anchor}" 
+                    fill="${ref.color || '#334155'}" font-family="var(--lcars-mono)" font-size="10.5" font-weight="bold">${ref.label}</text>
             `;
           }
         });
@@ -8491,14 +8511,18 @@
 
       let refLinesHtml = "";
       if (options.referenceLines) {
-        options.referenceLines.forEach(ref => {
+        options.referenceLines.forEach((ref, rIdx) => {
           if (ref.val >= minY && ref.val <= maxY) {
             const refY = padTop + plotH - ((ref.val - minY) / rangeY) * plotH;
+            // Stagger labels so two close reference lines never overlap: alternate start / end positioning
+            const isAlternate = (rIdx % 2 === 1);
+            const anchor = isAlternate ? "start" : "end";
+            const textX = isAlternate ? (padLeft + 8) : (padLeft + plotW - 8);
             refLinesHtml += `
               <line x1="${padLeft}" y1="${refY.toFixed(1)}" x2="${padLeft + plotW}" y2="${refY.toFixed(1)}" 
-                    stroke="${ref.color || '#4f5b66'}" stroke-dasharray="4 4" stroke-width="1.2" opacity="0.75"/>
-              <text x="${padLeft + plotW - 4}" y="${(refY - 4).toFixed(1)}" text-anchor="end" 
-                    fill="${ref.color || '#4f5b66'}" font-family="var(--lcars-mono)" font-size="10">${ref.label}</text>
+                    stroke="${ref.color || '#4f5b66'}" stroke-dasharray="4 4" stroke-width="1.4" opacity="0.8"/>
+              <text x="${textX}" y="${(refY - 5).toFixed(1)}" text-anchor="${anchor}" 
+                    fill="${ref.color || '#334155'}" font-family="var(--lcars-mono)" font-size="10.5" font-weight="bold">${ref.label}</text>
             `;
           }
         });
@@ -8929,6 +8953,56 @@
         },
         {
           id: 4,
+          name: "Atorvastatin (Lipitor)",
+          dose: "20 mg",
+          slot: "morning",
+          schedule: "Oral Daily • Morning with Breakfast",
+          indication: "HMG-CoA Reductase Inhibitor • Vascular Endothelial & Lipid Homeostasis",
+          status: "ACTIVE",
+          lastTaken: "Today 08:15 AM (Breakfast)"
+        },
+        {
+          id: 5,
+          name: "Coenzyme Q10 (Ubiquinol)",
+          dose: "100 mg",
+          slot: "morning",
+          schedule: "Oral Daily • Morning with Breakfast",
+          indication: "Mitochondrial Support • Statin Co-Therapy & Cellular Energy",
+          status: "ACTIVE",
+          lastTaken: "Today 08:15 AM (Breakfast)"
+        },
+        {
+          id: 6,
+          name: "Vitamin D3 (Cholecalciferol)",
+          dose: "2,000 IU",
+          slot: "morning",
+          schedule: "Oral Daily • Morning with Breakfast",
+          indication: "Immune Homeostasis & Insulin Receptor Sensitivity Support",
+          status: "ACTIVE",
+          lastTaken: "Today 08:15 AM (Breakfast)"
+        },
+        {
+          id: 7,
+          name: "Vitamin B12 (Methylcobalamin)",
+          dose: "1,000 mcg",
+          slot: "morning",
+          schedule: "Oral Daily • Morning with Breakfast",
+          indication: "Neuro-Support • Metformin-Associated B12 Clearance Maintenance",
+          status: "ACTIVE",
+          lastTaken: "Today 08:15 AM (Breakfast)"
+        },
+        {
+          id: 8,
+          name: "Omega-3 Triglycerides (EPA/DHA)",
+          dose: "1,000 mg",
+          slot: "morning",
+          schedule: "Oral Daily • Morning with Breakfast",
+          indication: "Cardiovascular Endothelial Stabilization & Triglyceride Management",
+          status: "ACTIVE",
+          lastTaken: "Today 08:15 AM (Breakfast)"
+        },
+        {
+          id: 9,
           name: "Metformin Extended-Release (Glucophage XR)",
           dose: "1,000 mg",
           slot: "dinner",
@@ -8941,7 +9015,7 @@
     }
 
     function normalizeMedicationList(list) {
-      if (!list || !Array.isArray(list) || list.length === 0) {
+      if (!list || !Array.isArray(list) || list.length < 5) {
         return getDefaultMedicationList();
       }
       let hasDinner = false;
