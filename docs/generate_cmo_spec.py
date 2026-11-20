@@ -1125,6 +1125,101 @@ html_content = """<!DOCTYPE html>
     The Veepoo Model 5010 and the clinical ambulatory telemetry monitor provide longitudinal physiological trend data intended to support clinical decision-making, lifestyle intervention, and therapy evaluation. Wearable optical measurements do not replace certified diagnostic venous draws, continuous intra-arterial pressure lines, or in-laboratory polysomnography. Clinical treatment adjustments (e.g., pharmacotherapy, insulin titrations) should be validated with formal clinical laboratory diagnostic standards.
   </div>
 
+  <!-- =====================================================================
+       SECTION 6: EPIC SYSTEMS EHR INTEROPERABILITY & HL7 FHIR R4 CLINICAL STANDARD
+       ===================================================================== -->
+  <div class="page-break"></div>
+  <div class="sec-hdr">SECTION 6: EPIC SYSTEMS EHR INTEROPERABILITY &amp; HL7 FHIR R4 STANDARD</div>
+
+  <div class="sec-desc">
+    Technical and clinical specification for interfacing continuous ambulatory telemetry from the FITAOS 5150 / Veepoo Model 5010 into Epic Systems Electronic Health Record (EHR) environments via standard HL7 FHIR R4 APIs and MyChart Patient-Generated Health Data (PGHD) portals.
+  </div>
+
+  <div class="callout warning">
+    <div class="callout-title">⚠️ CLINICAL VALIDATION &amp; LIVE ACCESS DISCLOSURE</div>
+    Direct real-time API write-back to enterprise hospital Epic instances has <strong>not yet been clinically validated</strong> in a production health system environment. Live institutional connectivity requires registered client credentials through the <strong>Epic App Market</strong> (<code>fhir.epic.com</code>), Business Associate Agreements (BAAs), and institutional firewall whitelisting. In the current release, telemetry is structured into certified <strong>HL7 FHIR Release 4 (R4) Observation Bundles</strong> using standardized LOINC codes, formatted for staging, patient-mediated MyChart upload, or clinical import.
+  </div>
+
+  <div class="sub-sec-hdr">6.1 Standard LOINC Clinical Semantic Code Mapping</div>
+  <table class="spec-tbl">
+    <thead>
+      <tr>
+        <th style="width: 22%;">Biometric Channel</th>
+        <th style="width: 18%;">LOINC Code</th>
+        <th style="width: 25%;">FHIR Resource Type</th>
+        <th style="width: 35%;">Clinical LOINC Component Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Continuous Blood Glucose</strong></td>
+        <td><code>2339-0</code> / <code>14745-4</code></td>
+        <td><code>Observation.valueQuantity</code></td>
+        <td>Glucose [Mass/volume] in Blood (mg/dL)</td>
+      </tr>
+      <tr>
+        <td><strong>Estimated HbA1c (eA1C)</strong></td>
+        <td><code>4548-4</code></td>
+        <td><code>Observation.valueQuantity</code></td>
+        <td>Hemoglobin A1c/Hemoglobin.total in Blood (%) [ADAG Algorithm]</td>
+      </tr>
+      <tr>
+        <td><strong>Body Temperature (Dual)</strong></td>
+        <td><code>8310-5</code></td>
+        <td><code>Observation.component</code></td>
+        <td>Body temperature (Core Circadian Nadir &amp; Cutaneous Skin, °F)</td>
+      </tr>
+      <tr>
+        <td><strong>Blood Pressure (PWTT)</strong></td>
+        <td><code>85354-9</code></td>
+        <td><code>Observation.component</code></td>
+        <td>Blood pressure panel with Systolic (<code>8480-6</code>) and Diastolic (<code>8462-4</code>)</td>
+      </tr>
+      <tr>
+        <td><strong>Arterial Oxygenation (SpO2)</strong></td>
+        <td><code>59408-5</code></td>
+        <td><code>Observation.valueQuantity</code></td>
+        <td>Oxygen saturation in Arterial blood by Pulse oximetry (%)</td>
+      </tr>
+      <tr>
+        <td><strong>Continuous Heart Rate</strong></td>
+        <td><code>8867-4</code></td>
+        <td><code>Observation.valueQuantity</code></td>
+        <td>Heart rate [Beats/minute] in Arterial system</td>
+      </tr>
+      <tr>
+        <td><strong>Autonomic HRV (SDNN)</strong></td>
+        <td><code>80404-7</code></td>
+        <td><code>Observation.valueQuantity</code></td>
+        <td>R-R interval.standard deviation (ms) [Sympatho-vagal stress index]</td>
+      </tr>
+      <tr>
+        <td><strong>Physical Activity (Steps)</strong></td>
+        <td><code>41950-7</code> / <code>55423-8</code></td>
+        <td><code>Observation.valueQuantity</code></td>
+        <td>Number of steps in 24 Hours / Exercise duration [GLUT4 Activity]</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="sub-sec-hdr">6.2 Epic Ingestion Pathways for Attending Physicians</div>
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 10px;">
+    <div style="background: #f7fafc; border: 1px solid #cbd5e0; border-radius: 4px; padding: 10px;">
+      <strong style="color: #2b6cb0;">Pathway 1: Patient-Mediated MyChart PGHD</strong>
+      <p style="font-size: 8pt; color: #4a5568; margin-top: 4px; line-height: 1.4;">
+        Patients download the certified 24-hour HL7 FHIR JSON bundle or print-ready PDF from <strong>04-REPORTS</strong> and upload it directly into their provider's MyChart portal under <em>"Track My Health / Patient-Generated Data"</em>, populating the clinician's Flowsheet rows.
+      </p>
+    </div>
+    <div style="background: #f7fafc; border: 1px solid #cbd5e0; border-radius: 4px; padding: 10px;">
+      <strong style="color: #2b6cb0;">Pathway 2: Epic Bridges HL7 / FHIR Staging</strong>
+      <p style="font-size: 8pt; color: #4a5568; margin-top: 4px; line-height: 1.4;">
+        Health systems partnering in clinical trials ingest the standard JSON payload via Epic Bridges interface engine into the staging database (Chronicles), where physician-approved observations merge into permanent outpatient records.
+      </p>
+    </div>
+  </div>
+
+
+
   <div style="text-align: center; margin-top: 24px; font-size: 7.5pt; color: #718096; border-top: 1px solid #e2e8f0; padding-top: 6px;">
     VEEPOO MODEL 5010 CLINICAL ENGINEERING SPECIFICATION & AMBULATORY REPORTING GUIDE &bull; REVISION 3.0.0
   </div>
