@@ -126,13 +126,53 @@
       </div>
     
 
-      <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #15803d; padding: 10px 14px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto; scroll-behavior: smooth;">
+      <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #7c3aed; padding: 10px 14px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto; scroll-behavior: smooth;">
         <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 4px; margin-bottom: 6px; flex-shrink: 0;">
-          <span style="font-family: monospace; font-weight: 800; color: #0284c7; font-size: 0.84rem;">AUTONOMIC HRV & LORENZ</span>
-          <span style="background: #f8fafc; color: #15803d; font-weight: 800; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; border: 1.5px solid #15803d;">● ONLINE</span>
+          <span style="font-family: monospace; font-weight: 800; color: #0284c7; font-size: 0.84rem;">AUTONOMIC HRV & LORENZ SCATTER MATHEMATICS</span>
+          <span style="background: #f8fafc; color: #7c3aed; font-weight: 800; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; border: 1.5px solid #7c3aed;">POINCARÉ GEOMETRY (SD1 / SD2)</span>
         </div>
         <div class="visual-content" style="flex: 1; display: flex; flex-direction: column;">
           
+          <!-- Autonomic HRV & Poincaré Lorenz Geometry Card -->
+          <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 10px; margin-top: 4px; color: #0f172a; font-family: monospace; font-size: 0.67rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 4px; margin-bottom: 8px;">
+              <span style="font-size: 0.72rem; color: #7c3aed; font-weight: 800;">HRV TIME-DOMAIN & POINCARÉ GEOMETRY</span>
+              <span style="background: #7c3aed; color: #fff; font-size: 0.60rem; font-weight: bold; padding: 2px 6px; border-radius: 3px;">AUTONOMIC TONE</span>
+            </div>
+
+            <!-- Time-Domain Formulas -->
+            <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 4px; padding: 6px; margin-bottom: 6px;">
+              <div style="color: #1e40af; font-weight: bold;">1. TIME-DOMAIN STANDARD METRICS:</div>
+              <div style="color: #1e3a8a; margin-top: 3px;">
+                • <strong>Inter-Beat Interval:</strong> RR_i = t_i - t_{i-1} (ms)<br>
+                • <strong>Total Autonomic Power:</strong> SDNN = √[ 1/(N-1) ∑ (RR_i - Mean_RR)² ]<br>
+                • <strong>Parasympathetic Vagal Tone:</strong> RMSSD = √[ 1/(N-1) ∑ (RR_{i+1} - RR_i)² ]
+              </div>
+            </div>
+
+            <!-- Poincaré Lorenz Scatter Geometry -->
+            <div style="background: #f5f3ff; border: 1.5px solid #ddd6fe; border-radius: 4px; padding: 6px; margin-bottom: 6px;">
+              <div style="color: #5b21b6; font-weight: bold;">2. LORENZ 2D SCATTER ELLIPSE EQUATIONS (RR_i vs RR_{i+1}):</div>
+              <div style="color: #4c1d95; margin-top: 3px;">
+                • <strong>Transverse Axis (Instantaneous Vagal):</strong><br>
+                &nbsp;&nbsp;SD1 = √[ 1/2 Var(RR_{i+1} - RR_i) ] = <strong>RMSSD / √2</strong><br>
+                • <strong>Longitudinal Axis (Total / Sympathetic):</strong><br>
+                &nbsp;&nbsp;SD2 = √[ 2·SDNN² - 1/2·RMSSD² ]<br>
+                • <strong>Sympatho-Vagal Balance Ratio:</strong><br>
+                &nbsp;&nbsp;Ratio = <strong>SD1 / SD2</strong> (Normal resting ratio: 0.45 – 0.55)
+              </div>
+            </div>
+
+            <!-- Clinical Diagnostic Table -->
+            <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 4px; padding: 6px; font-size: 0.65rem;">
+              <div style="font-weight: bold; color: #334155; margin-bottom: 3px;">CLINICAL MORPHOLOGY DIAGNOSTIC:</div>
+              <div style="color: #15803d; font-weight: bold;">• Comet Shape (Normal):</div>
+              <div style="color: #14532d; margin-bottom: 3px;">Wide dispersion, robust parasympathetic vagal recovery (SD1 &gt; 25 ms).</div>
+              <div style="color: #dc2626; font-weight: bold;">• Constricted Torpedo (Diabetic Neuropathy):</div>
+              <div style="color: #7f1d1d;">Narrow scatter along identity line (SD1 &lt; 12 ms), indicating autonomic exhaustion and cardiovascular vulnerability.</div>
+            </div>
+          </div>
+    
         </div>
         <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.78rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
           <strong style="color: #15803d;">Key Takeaway:</strong> Quantifies autonomic nervous system reserve, screening for diabetic neuropathy and chronic stress.

@@ -988,5 +988,49 @@
     "resolution": "Captured tall cropped screenshots for Slide 31 (vertical scrubber line cross-secting all 8 lanes at 13:30 with HUD ribbon), Slide 32 (Click-to-Pop Point Card modal in context displaying 188 mg/dL, BP, SpO2, and GLUT4 drop), and Slide 33 (focused on the red dashed line and '💊 MED CHANGE' milestone marker with 30-day pre/post -24 mg/dL therapeutic proof). Re-rendered slide_31.mp3, slide_32.mp3, and slide_33.mp3 with Australian Female Voice.",
     "created_at": "2026-11-20T11:23:17.486201",
     "resolved_at": "2026-11-20T11:23:17.486201"
+  },
+  {
+    "bug_code": "CLE-062",
+    "title": "Slides 35, 37, 38, 40, 41: Mathematical Consensus & Detailed Clinical Discussions",
+    "status": "RESOLVED",
+    "build_number": "v2.8.5",
+    "component": "Presentation / Clinical Metrology",
+    "affected_files": "all_slides_data.json, slides/slide_35.html, slides/slide_37.html, slides/slide_38.html, slides/slide_40.html, slides/slide_41.html",
+    "resolution": "Added Nathan et al. ADAG consensus formula (eA1C = (MeanG + 46.7)/28.7) and sensitivity derivative to Slide 35; added Bramwell-Hill PWTT tonometry and nocturnal dipping stratification to Slide 37; added dual-wavelength 660/940nm ratio-of-ratios and apnea-cortisol glycemic surge to Slide 38; added SDNN, RMSSD, and Poincaré SD1/SD2 geometry to Slide 40; added polysomnographic multi-sensor hypnogram staging to Slide 41.",
+    "created_at": "2026-11-20T11:51:05.193502",
+    "resolved_at": "2026-11-20T11:51:05.193502"
+  },
+  {
+    "bug_code": "CLE-063",
+    "title": "Tab 11 Medication Deck Alignment & Progressive Viewport Scrolling (Slides 43, 44, 45)",
+    "status": "RESOLVED",
+    "build_number": "v2.8.5",
+    "component": "Presentation & Tab 11 Medication",
+    "affected_files": "all_slides_data.json, images/lcars_slide43_medication_tall.png, images/lcars_slide44_medication_schedules.png, images/lcars_slide45_titration_screen.png, audio/slide_43.mp3, audio/slide_44.mp3, audio/slide_45.mp3",
+    "resolution": "Captured 1144x3277 tall crop of Tab 11 for Slide 43 with monotonic top-to-bottom scroll progression; captured 1106x1921 focused crop for Slide 44 with targeted scrolling to Morning Suite and Evening Split cards; captured 1106x477 titration logger console for Slide 45. Re-rendered audio with El-CARS phonetic pronunciation.",
+    "created_at": "2026-11-20T11:51:05.193502",
+    "resolved_at": "2026-11-20T11:51:05.193502"
+  },
+  {
+    "bug_code": "CLE-064",
+    "title": "Tab 12 Sequential Full Scan 6-Stage Pipeline Flow Chart & Visual Animation (Slide 46)",
+    "status": "RESOLVED",
+    "build_number": "v2.8.5",
+    "component": "Presentation & Tab 12 Full Scan",
+    "affected_files": "all_slides_data.json, images/lcars_slide46_fullscan_active.png, audio/slide_46.mp3, slides/slide_46.html",
+    "resolution": "Captured active 6-stage full scan sequence screenshot; built a comprehensive SVG flowchart in the right pane detailing the 120-second non-interfering diagnostic sequence (Glucose -> Temp -> BP -> SpO2 -> Pulse -> HRV -> Complete Audit Report). Re-rendered slide_46.mp3.",
+    "created_at": "2026-11-20T11:51:05.193502",
+    "resolved_at": "2026-11-20T11:51:05.193502"
+  },
+  {
+    "bug_code": "CLE-065",
+    "title": "Multidisciplinary Spoke-and-Wheel Collaboration Diagram, Doctor Consultation Scroll & Math (Slides 49, 51, 53)",
+    "status": "RESOLVED",
+    "build_number": "v2.8.5",
+    "component": "Presentation & Open Source / Collaboration",
+    "affected_files": "all_slides_data.json, images/lcars_slide51_doctor_consultation_view.png, audio/slide_51.mp3, audio/slide_53.mp3, slides/slide_49.html, slides/slide_51.html, slides/slide_53.html",
+    "resolution": "Added in-clinic lab venous calibration offset and GLUT4 kinetics to Slide 49; captured 1129x5706 tall doctor consultation review view for Slide 51 with smooth scroll to YTD summary and Epic push; embedded full multidisciplinary spoke-and-wheel collaboration diagram below resources on Slide 53 (Patient in center, 4 specialist doctors, 5010 watch, consolidated information sharing); standardized El-CARS pronunciation across all audio tracks.",
+    "created_at": "2026-11-20T11:51:05.193502",
+    "resolved_at": "2026-11-20T11:51:05.193502"
   }
 ]

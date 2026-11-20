@@ -13,7 +13,7 @@
 **Module:** Module 1: Introduction & Clinical Scope  
 **Description:** Created by a Type II diabetic to empower direct partnership with their care team—Diabetic Pharmacist, Primary Care Physician, Endocrinologist, and Diet Specialist—offered as an open-source tool 'That Others May Survive Successfully Diabetes.'  
 
-> "G'day mate! Welcome to the LCARS 5010 Clinical Ambulatory Telemetry Onboarding presentation. As a Type 2 diabetic, I created this open-source multidisciplinary toolkit to provide an objective, real-time window into human physiology. Displayed on your screen is our live 01-VITALS console running in pure light theme. In the telemetry matrix, you can see our four primary hemodynamic channels: BIO-01 optical glucose showing 156 milligrams per deciliter, BIO-02 dual thermal sensors tracking core and epidermal temperature at 96.1 degrees, BIO-03 arterial pressure acquiring 126 over 84 millimeters of mercury, and BIO-04 pulse oximetry at 98 percent oxygen saturation. Across the top ribbon, our secure transponder link and database vault remain strictly synchronized. On the right, this telemetry unites four vital care specialists: the Diabetic Pharmacist, Primary Care Physician, Endocrinologist, and Diet Specialist. Offered under GPL v3 copyleft, our heartfelt mission is 'That Others May Survive Successfully Diabetes,' and we warmly welcome clinicians, engineers, and community sponsors—including Google—to collaborate with us."
+> "G'day mate! Welcome to the El-CARS 5010 Clinical Ambulatory Telemetry Onboarding presentation. As a Type 2 diabetic, I created this open-source multidisciplinary toolkit to provide an objective, real-time window into human physiology. Displayed on your screen is our live 01-VITALS console running in pure light theme. In the telemetry matrix, you can see our four primary hemodynamic channels: BIO-01 optical glucose showing 156 milligrams per deciliter, BIO-02 dual thermal sensors tracking core and epidermal temperature at 96.1 degrees, BIO-03 arterial pressure acquiring 126 over 84 millimeters of mercury, and BIO-04 pulse oximetry at 98 percent oxygen saturation. Across the top ribbon, our secure transponder link and database vault remain strictly synchronized. On the right, this telemetry unites four vital care specialists: the Diabetic Pharmacist, Primary Care Physician, Endocrinologist, and Diet Specialist. Offered under GPL v3 copyleft, our heartfelt mission is 'That Others May Survive Successfully Diabetes,' and we warmly welcome clinicians, engineers, and community sponsors—including Google—to collaborate with us."
 
 ---
 
@@ -21,7 +21,7 @@
 **Module:** Module 1: Introduction & Clinical Scope  
 **Description:** Why single, start-and-end quarterly draws, and random spot-checks fail: mathematical proof via Neye-quist criteria, error convergence, and the 5 dimensions of metrology.  
 
-> "Let's examine the snapshot fallacy through information theory and Neye-quist sampling. More samples directly yield higher resolution and superior measurement quality. When we compare a quarterly lab regimen—which provides only two isolated samples at the start and end of ninety days—against random sporadic fingersticks and automated continuous telemetry across the five fundamental dimensions of metrology: sensitivity, specificity, accuracy, precision, and repeatability, the mathematics is undeniable. A standard quarterly lab evaluation yields exactly two samples: one at day zero and one at day ninety. With N equal to two across seven point seven million seconds, the sampling frequency is sixty-four nanohertz, causing total Neye-quist aliasing. It is completely blind to nocturnal hypoglycemia and glycemic excursions. Random fingersticks increase N to approximately one hundred and eighty points, but remain sporadic and sub-Neye-quist. In stark contrast, LCARS delivers automated continuous sampling, recording two hundred and eighty-eight epochs per day across eight channels. Over ninety days, that yields twenty-five thousand nine hundred and twenty glucose points, and over two hundred and seven thousand total measurements. Mathematically, the standard error of the mean scales as sigma divided by the square root of N, reducing error variance by ninety-nine point four percent. Operating with a five-minute period, LCARS satisfies the Neye-quist criterion of sampling at twice the maximum biological kinetic frequency, transforming blind snapshots into clinical-grade physiological fidelity."
+> "Let's examine the snapshot fallacy through information theory and Neye-quist sampling. More samples directly yield higher resolution and superior measurement quality. When we compare a quarterly lab regimen—which provides only two isolated samples at the start and end of ninety days—against random sporadic fingersticks and automated continuous telemetry across the five fundamental dimensions of metrology: sensitivity, specificity, accuracy, precision, and repeatability, the mathematics is undeniable. A standard quarterly lab evaluation yields exactly two samples: one at day zero and one at day ninety. With N equal to two across seven point seven million seconds, the sampling frequency is sixty-four nanohertz, causing total Neye-quist aliasing. It is completely blind to nocturnal hypoglycemia and glycemic excursions. Random fingersticks increase N to approximately one hundred and eighty points, but remain sporadic and sub-Neye-quist. In stark contrast, El-CARS delivers automated continuous sampling, recording two hundred and eighty-eight epochs per day across eight channels. Over ninety days, that yields twenty-five thousand nine hundred and twenty glucose points, and over two hundred and seven thousand total measurements. Mathematically, the standard error of the mean scales as sigma divided by the square root of N, reducing error variance by ninety-nine point four percent. Operating with a five-minute period, El-CARS satisfies the Neye-quist criterion of sampling at twice the maximum biological kinetic frequency, transforming blind snapshots into clinical-grade physiological fidelity."
 
 ---
 
@@ -29,7 +29,7 @@
 **Module:** Module 1: Introduction & Clinical Scope  
 **Description:** Biological frequency bounds, glucose absorption half-life (15-30m), and why quarterly draws and fingersticks suffer severe frequency aliasing.  
 
-> "Let's examine the mathematical physics of biological sampling and the Shannon-Neye-quist theorem. Any continuous physical or biological signal requires sampling at a frequency at least twice its highest kinetic component, formulated as f-sub-s greater than or equal to two f-sub-max. In human glucose homeostasis, endogenous insulin secretion bursts occur in four to six minute oscillations, and postprandial glucose absorption operates with a biological half-life of fifteen to thirty minutes. This establishes the maximum biological frequency of glucose kinetics at approximately one point one millihertz. Therefore, to reconstruct glycemic trajectory without distortion, sampling must occur at least every seven point five minutes. A quarterly lab draw has a sampling frequency of sixty-four nanohertz—eight orders of magnitude too slow—causing complete aliasing. Even four daily fingersticks leave a massive six-hour blind interval between measurements, completely missing peak postprandial excursions. LCARS samples every five minutes, or three point three three millihertz, fully satisfying the Neye-quist criterion and guaranteeing lossless kinetic reconstruction."
+> "Let's examine the mathematical physics of biological sampling and the Shannon-Neye-quist theorem. Any continuous physical or biological signal requires sampling at a frequency at least twice its highest kinetic component, formulated as f-sub-s greater than or equal to two f-sub-max. In human glucose homeostasis, endogenous insulin secretion bursts occur in four to six minute oscillations, and postprandial glucose absorption operates with a biological half-life of fifteen to thirty minutes. This establishes the maximum biological frequency of glucose kinetics at approximately one point one millihertz. Therefore, to reconstruct glycemic trajectory without distortion, sampling must occur at least every seven point five minutes. A quarterly lab draw has a sampling frequency of sixty-four nanohertz—eight orders of magnitude too slow—causing complete aliasing. Even four daily fingersticks leave a massive six-hour blind interval between measurements, completely missing peak postprandial excursions. El-CARS samples every five minutes, or three point three three millihertz, fully satisfying the Neye-quist criterion and guaranteeing lossless kinetic reconstruction."
 
 ---
 
@@ -37,7 +37,7 @@
 **Module:** Module 1: Introduction & Clinical Scope  
 **Description:** How sample size scales resolution and measurement quality: mathematical proof of SE = σ/√N, Central Limit Theorem, and 161× SNR noise suppression.  
 
-> "Let's explore the fundamental mathematical principle that more samples yield higher resolution and superior measurement quality. By the Central Limit Theorem, the standard error of the mean converges as sigma divided by the square root of N. When an isolated quarterly lab draw provides only two samples at the start and end of ninety days, the standard error of the mean equals zero point seven zero seven sigma, and the ninety-five percent confidence interval spans a massive plus or minus one point three eight sigma. Clinical decision-making under such uncertainty is essentially guesswork. Random fingersticks at N equals one hundred and eighty improve standard error to zero point zero seven five sigma. However, with LCARS recording two hundred and eighty-eight epochs per day, N reaches twenty-five thousand nine hundred and twenty glucose points, and over two hundred and seven thousand total measurements across eight channels. Mathematically, the standard error plummets to zero point zero zero six two sigma—an astonishing ninety-nine point four percent reduction in error variance. This produces a one-hundred-and-sixty-one-fold suppression of biological and sensor noise. Furthermore, continuous temporal autocorrelation enables algorithms to separate transient motion artifacts from true hemodynamic shifts, delivering clinical-grade precision and unmatched repeatability."
+> "Let's explore the fundamental mathematical principle that more samples yield higher resolution and superior measurement quality. By the Central Limit Theorem, the standard error of the mean converges as sigma divided by the square root of N. When an isolated quarterly lab draw provides only two samples at the start and end of ninety days, the standard error of the mean equals zero point seven zero seven sigma, and the ninety-five percent confidence interval spans a massive plus or minus one point three eight sigma. Clinical decision-making under such uncertainty is essentially guesswork. Random fingersticks at N equals one hundred and eighty improve standard error to zero point zero seven five sigma. However, with El-CARS recording two hundred and eighty-eight epochs per day, N reaches twenty-five thousand nine hundred and twenty glucose points, and over two hundred and seven thousand total measurements across eight channels. Mathematically, the standard error plummets to zero point zero zero six two sigma—an astonishing ninety-nine point four percent reduction in error variance. This produces a one-hundred-and-sixty-one-fold suppression of biological and sensor noise. Furthermore, continuous temporal autocorrelation enables algorithms to separate transient motion artifacts from true hemodynamic shifts, delivering clinical-grade precision and unmatched repeatability."
 
 ---
 
@@ -53,7 +53,7 @@
 **Module:** Module 1: Introduction & Clinical Scope  
 **Description:** The FITAOS 5150 wearable biosensing array continuously captures 8 distinct physiological channels over Bluetooth Low Energy directly to your PC.  
 
-> "On the right is the physical FITAOS 5150 smartwatch, available directly on their official sales site at fitaos.com. Because our software was engineered by Google Gemini Pro using the open HBandSDK and Veepoo repositories, many different Veepoo watch models are naturally compatible. On the left are the eight continuous biometric channels it measures: blood glucose, dual core and skin temperature, ambulatory blood pressure, arterial oxygen saturation, continuous heart rate, autonomic HRV, physical step cadence, and multi-stage sleep architecture. All eight signals stream continuously over Bluetooth Low Energy directly into LCARS without any subscription paywalls."
+> "On the right is the physical FITAOS 5150 smartwatch, available directly on their official sales site at fitaos.com. Because our software was engineered by Google Gemini Pro using the open HBandSDK and Veepoo repositories, many different Veepoo watch models are naturally compatible. On the left are the eight continuous biometric channels it measures: blood glucose, dual core and skin temperature, ambulatory blood pressure, arterial oxygen saturation, continuous heart rate, autonomic HRV, physical step cadence, and multi-stage sleep architecture. All eight signals stream continuously over Bluetooth Low Energy directly into El-CARS without any subscription paywalls."
 
 ---
 
@@ -61,7 +61,7 @@
 **Module:** Module 1: Introduction & Clinical Scope  
 **Description:** Understanding why patient data sovereignty requires an air-gapped, local-first PC architecture.  
 
-> "Data privacy is a non-negotiable medical right. Most consumer wearables force your health metrics through overseas cloud servers, where your data is commoditized or held hostage behind monthly subscriptions. LCARS 5010 is completely air-gapped. Your raw vitals travel directly from the watch into your local PC's browser sandbox and SQLite database. Zero bytes leave your machine without your explicit authorization."
+> "Data privacy is a non-negotiable medical right. Most consumer wearables force your health metrics through overseas cloud servers, where your data is commoditized or held hostage behind monthly subscriptions. El-CARS 5010 is completely air-gapped. Your raw vitals travel directly from the watch into your local PC's browser sandbox and SQLite database. Zero bytes leave your machine without your explicit authorization."
 
 ---
 
@@ -69,7 +69,7 @@
 **Module:** Module 1: Introduction & Clinical Scope  
 **Description:** The primary clinical objectives of the LCARS 5010 continuous monitoring protocol.  
 
-> "What gets measured gets managed. The clinical goal of this entire onboarding presentation is simple: help Type 2 diabetic patients achieve an HbA1c below 6.8% and maintain Time-in-Range above 70%, all while strictly avoiding hypoglycemia below 60 mg/dL. LCARS 5010 provides the biofeedback engine to make that goal an everyday reality."
+> "What gets measured gets managed. The clinical goal of this entire onboarding presentation is simple: help Type 2 diabetic patients achieve an HbA1c below 6.8% and maintain Time-in-Range above 70%, all while strictly avoiding hypoglycemia below 60 mg/dL. El-CARS 5010 provides the biofeedback engine to make that goal an everyday reality."
 
 ---
 
@@ -77,7 +77,7 @@
 **Module:** Module 2: Physician-Patient Alignment & Calibration  
 **Description:** Structuring the LCARS console as a shared clinical interface between the attending physician and patient.  
 
-> "Module 2 focuses on collaboration. LCARS is not just a patient gadget; it is a shared clinical interface designed for you and your physician. Instead of guessing how your lifestyle affects your diabetes, your doctor can review hard ambulatory data, evaluate medication response, and collaboratively adjust your therapy during clinical visits."
+> "Module 2 focuses on collaboration. El-CARS is not just a patient gadget; it is a shared clinical interface designed for you and your physician. Instead of guessing how your lifestyle affects your diabetes, your doctor can review hard ambulatory data, evaluate medication response, and collaboratively adjust your therapy during clinical visits."
 
 ---
 
@@ -93,7 +93,7 @@
 **Module:** Module 2: Physician-Patient Alignment & Calibration  
 **Description:** Anchoring optical tonometry readings to the certified clinical laboratory blood draw established by your doctor during configuration.  
 
-> "Next, we examine clinical calibration and baseline anchoring. Optical tonometry requires an accurate clinical reference anchor. During onboarding, your doctor configures your laboratory venous blood draw baseline directly into LCARS. From this clinical anchor, our mathematical model projects accurate real-time glucose and estimated A1c curves without arbitrary factory guessing."
+> "Next, we examine clinical calibration and baseline anchoring. Optical tonometry requires an accurate clinical reference anchor. During onboarding, your doctor configures your laboratory venous blood draw baseline directly into El-CARS. From this clinical anchor, our mathematical model projects accurate real-time glucose and estimated A1c curves without arbitrary factory guessing."
 
 ---
 
@@ -101,7 +101,7 @@
 **Module:** Module 2: Physician-Patient Alignment & Calibration  
 **Description:** Why generic uncalibrated public mode fails and how private mode unlocks personalized physiological accuracy.  
 
-> "Here, we enforce strict Private Mode telemetry. The watch firmware has two modes: a generic public mode that uses default population assumptions, and Private Mode, which applies your personalized calibration curve. For diabetic maintenance, public mode is strictly avoided. LCARS locks the watch into Private Mode so all glucose curves reflect your individual physiology."
+> "Here, we enforce strict Private Mode telemetry. The watch firmware has two modes: a generic public mode that uses default population assumptions, and Private Mode, which applies your personalized calibration curve. For diabetic maintenance, public mode is strictly avoided. El-CARS locks the watch into Private Mode so all glucose curves reflect your individual physiology."
 
 ---
 
@@ -117,7 +117,7 @@
 **Module:** Module 3: Core Biosensor Array Operations  
 **Description:** How continuous optical tonometry calculates dynamic blood glucose and projected eA1c.  
 
-> "In Module 3, we tour the core biosensing channels. In Tab 01 Vitals, our primary focus is non-invasive optical glucose tonometry. Displayed on the right is the physical sensor architecture and optical ray-tracing diagram. The FITAOS 5150 underside chassis emits multi-wavelength optical beams—including 525 nanometer green and 940 nanometer near-infrared—penetrating the epidermal and dermal interstitial fluid layers down to pulsatile capillary loops. By applying the Beer-Lambert transmittance equation shown below, the photodiode captures differential photon attenuation caused by circulating glucose molecules in real time. LCARS then applies the standard ADAG consensus algorithm across continuous daily epochs, eliminating quarterly snapshot error and providing actionable metabolic insight without painful fingersticks."
+> "In Module 3, we tour the core biosensing channels. In Tab 01 Vitals, our primary focus is non-invasive optical glucose tonometry. Displayed on the right is the physical sensor architecture and optical ray-tracing diagram. The FITAOS 5150 underside chassis emits multi-wavelength optical beams—including 525 nanometer green and 940 nanometer near-infrared—penetrating the epidermal and dermal interstitial fluid layers down to pulsatile capillary loops. By applying the Beer-Lambert transmittance equation shown below, the photodiode captures differential photon attenuation caused by circulating glucose molecules in real time. El-CARS then applies the standard ADAG consensus algorithm across continuous daily epochs, eliminating quarterly snapshot error and providing actionable metabolic insight without painful fingersticks."
 
 ---
 
@@ -149,7 +149,7 @@
 **Module:** Module 3: Core Biosensor Array Operations  
 **Description:** Tracking Heart Rate Variability (HRV SDNN) to evaluate autonomic recovery and chronic stress load.  
 
-> "In our third cardiovascular channel, LCARS assesses autonomic nervous system recovery via Heart Rate Variability. On screen, we illustrate the beat-to-beat R-R interval tachogram and the resulting Poincaré Lorenz scatter plot. Each heartbeat interval is mapped against the subsequent beat, forming an elliptical dispersion pattern. The minor axis, SD1, directly measures parasympathetic vagal tone and short-term recovery, while the major axis, SD2, reflects sympathetic autonomic drive. A healthy autonomic nervous system produces a wide, resilient comet-shaped scatter. Conversely, chronic diabetic distress or autonomic neuropathy collapses the ellipse into a narrow torpedo cluster, warning clinicians of sympathetic overdrive and stress-induced glucose spikes."
+> "In our third cardiovascular channel, El-CARS assesses autonomic nervous system recovery via Heart Rate Variability. On screen, we illustrate the beat-to-beat R-R interval tachogram and the resulting Poincaré Lorenz scatter plot. Each heartbeat interval is mapped against the subsequent beat, forming an elliptical dispersion pattern. The minor axis, SD1, directly measures parasympathetic vagal tone and short-term recovery, while the major axis, SD2, reflects sympathetic autonomic drive. A healthy autonomic nervous system produces a wide, resilient comet-shaped scatter. Conversely, chronic diabetic distress or autonomic neuropathy collapses the ellipse into a narrow torpedo cluster, warning clinicians of sympathetic overdrive and stress-induced glucose spikes."
 
 ---
 
@@ -173,7 +173,7 @@
 **Module:** Module 4: Tab 03 METABOLIC Console & Behavioral Science  
 **Description:** Logging exercise bouts and quantifying the exact milligram-per-deciliter drop produced by walking.  
 
-> "Now we examine the GLUT4 Exercise Journal. When you finish a walk, LCARS compares your pre-exercise glucose to your post-exercise nadir, calculating your exact delta G drop. For example, a 30-minute morning walk might drop your glucose by 27 milligrams per deciliter, proving your exercise is working."
+> "Now we examine the GLUT4 Exercise Journal. When you finish a walk, El-CARS compares your pre-exercise glucose to your post-exercise nadir, calculating your exact delta G drop. For example, a 30-minute morning walk might drop your glucose by 27 milligrams per deciliter, proving your exercise is working."
 
 ---
 
@@ -181,7 +181,7 @@
 **Module:** Module 4: Tab 03 METABOLIC Console & Behavioral Science  
 **Description:** Tracking nutritional intake and correlating specific meals to postprandial glycemic excursions.  
 
-> "Next, we review the Macronutrient Meal Logger. Logging meals allows LCARS to overlay dietary carbohydrates, protein, and fat directly on your glucose timeline. You can see precisely how different foods affect your peak height and latency, teaching you which meals spike your sugar and which keep you stable."
+> "Next, we review the Macronutrient Meal Logger. Logging meals allows El-CARS to overlay dietary carbohydrates, protein, and fat directly on your glucose timeline. You can see precisely how different foods affect your peak height and latency, teaching you which meals spike your sugar and which keep you stable."
 
 ---
 
@@ -189,7 +189,7 @@
 **Module:** Module 4: Tab 03 METABOLIC Console & Behavioral Science  
 **Description:** Empowering patients with American Diabetes Association (ADA) 1-to-1 food trades, using Google Gemini to discover compliant recipes and verified sellers for safe, delicious diabetic food and drink.  
 
-> "Here, we explore the ADA 1-to-1 Carbohydrate Trades and Clinical Nutrition Engine. Managing Type 2 diabetes should never mean living in deprivation. We use Google Gemini Pro to actively search for and curate ADA-compliant recipes, discover safe food and drink sellers, and recommend delicious, healthy alternatives. Rather than cutting out favorite foods, LCARS provides smart one-to-one swaps—like cauliflower rice for white rice, or almond flour baked treats—helping patients enjoy satisfying meals while blunting post-meal spikes by thirty to fifty milligrams per deciliter."
+> "Here, we explore the ADA 1-to-1 Carbohydrate Trades and Clinical Nutrition Engine. Managing Type 2 diabetes should never mean living in deprivation. We use Google Gemini Pro to actively search for and curate ADA-compliant recipes, discover safe food and drink sellers, and recommend delicious, healthy alternatives. Rather than cutting out favorite foods, El-CARS provides smart one-to-one swaps—like cauliflower rice for white rice, or almond flour baked treats—helping patients enjoy satisfying meals while blunting post-meal spikes by thirty to fifty milligrams per deciliter."
 
 ---
 
@@ -197,7 +197,7 @@
 **Module:** Module 5: The Diabetes Learning Engine  
 **Description:** How longitudinal telemetry builds a personalized metabolic map of carbohydrate sensitivity and clearance.  
 
-> "Module 5 introduces the Diabetes Learning Engine. Every individual with diabetes absorbs and clears glucose differently. By analyzing weeks of continuous biofeedback, LCARS phenotypes your specific peak latency and clearance velocity, creating a personalized roadmap for you and your physician."
+> "Module 5 introduces the Diabetes Learning Engine. Every individual with diabetes absorbs and clears glucose differently. By analyzing weeks of continuous biofeedback, El-CARS phenotypes your specific peak latency and clearance velocity, creating a personalized roadmap for you and your physician."
 
 ---
 
@@ -205,7 +205,7 @@
 **Module:** Module 5: The Diabetes Learning Engine  
 **Description:** Identifying nocturnal nadirs and counteracting morning hepatic glucose surges.  
 
-> "Displayed on your screen is our continuous 24-hour glucose curve from Tab 03 Metabolic Console, focusing on circadian fasting windows and the nocturnal nadir. In physiological telemetry, the nadir is defined as the lowest trough or baseline minimum reached by a biological parameter during a cycle. In diabetes management, the overnight glycemic nadir occurs between 3:00 and 4:30 AM, when digestion is complete and hepatic glucose production rests. Illustrated on the right panel is the vital clinical distinction between the Dawn Phenomenon and the Somogyi Effect. Many diabetics wake up with elevated fasting numbers. If continuous telemetry reveals a normal 4:00 AM nadir near 100 milligrams per deciliter followed by a 7:00 AM climb to 174, this is the true Dawn Phenomenon, driven by morning surges of cortisol and growth hormone. However, if the nadir plunges into a nocturnal hypoglycemic crash below 60, the morning spike is an emergency Somogyi rebound. Because an isolated morning fingerstick only captures the elevated waking number and is completely blind to the nadir, it risks dangerous medication overtreatment. LCARS gives your care team the continuous overnight trajectory needed for absolute clinical certainty."
+> "Displayed on your screen is our continuous 24-hour glucose curve from Tab 03 Metabolic Console, focusing on circadian fasting windows and the nocturnal nadir. In physiological telemetry, the nadir is defined as the lowest trough or baseline minimum reached by a biological parameter during a cycle. In diabetes management, the overnight glycemic nadir occurs between 3:00 and 4:30 AM, when digestion is complete and hepatic glucose production rests. Illustrated on the right panel is the vital clinical distinction between the Dawn Phenomenon and the Somogyi Effect. Many diabetics wake up with elevated fasting numbers. If continuous telemetry reveals a normal 4:00 AM nadir near 100 milligrams per deciliter followed by a 7:00 AM climb to 174, this is the true Dawn Phenomenon, driven by morning surges of cortisol and growth hormone. However, if the nadir plunges into a nocturnal hypoglycemic crash below 60, the morning spike is an emergency Somogyi rebound. Because an isolated morning fingerstick only captures the elevated waking number and is completely blind to the nadir, it risks dangerous medication overtreatment. El-CARS gives your care team the continuous overnight trajectory needed for absolute clinical certainty."
 
 ---
 
@@ -213,7 +213,7 @@
 **Module:** Module 5: The Diabetes Learning Engine  
 **Description:** How deep delta sleep and stable arterial oxygen reduce nocturnal cortisol and insulin resistance.  
 
-> "Displayed on your screen is our SOMNO-03 Sleep Architecture and Circadian Hypnogram chart. Sleep quality is one of the most powerful and overlooked determinants of diabetic glycemic control. As shown in the hypnogram, the sleep array segments rest into Deep Delta sleep, Light sleep, REM dreaming, and wake epochs. During Stage N3 deep delta sleep, the endocrine system suppresses cortisol secretion and releases growth hormone, which restores hepatic insulin sensitivity for the upcoming day. Conversely, if sleep is fragmented by nocturnal hypoxia, frequent arousals, or apnea dips, the sympathetic nervous system stays active, surging nocturnal cortisol and epinephrine. This unsuppressed cortisol directly triggers hepatic glucose output, causing stubborn morning fasting spikes. By continuously monitoring sleep efficiency and deep sleep percentage, LCARS empowers you and your care team to verify that nocturnal rest is actively protecting your glycemic resilience."
+> "Displayed on your screen is our SOMNO-03 Sleep Architecture and Circadian Hypnogram chart. Sleep quality is one of the most powerful and overlooked determinants of diabetic glycemic control. As shown in the hypnogram, the sleep array segments rest into Deep Delta sleep, Light sleep, REM dreaming, and wake epochs. During Stage N3 deep delta sleep, the endocrine system suppresses cortisol secretion and releases growth hormone, which restores hepatic insulin sensitivity for the upcoming day. Conversely, if sleep is fragmented by nocturnal hypoxia, frequent arousals, or apnea dips, the sympathetic nervous system stays active, surging nocturnal cortisol and epinephrine. This unsuppressed cortisol directly triggers hepatic glucose output, causing stubborn morning fasting spikes. By continuously monitoring sleep efficiency and deep sleep percentage, El-CARS empowers you and your care team to verify that nocturnal rest is actively protecting your glycemic resilience."
 
 ---
 
@@ -221,7 +221,7 @@
 **Module:** Module 5: The Diabetes Learning Engine  
 **Description:** Cross-analyzing diet, physical activity, and sleep against objective physiological biomarkers.  
 
-> "Displayed on your screen is our Exercise and Metabolic Clearance Correlation engine from Tab 04 Reports Console. Diabetes management succeeds through daily habits, and here LCARS correlates your physical movement and meals directly against objective glycemic outcomes. As shown on screen, active workout days with at least 7,000 steps achieve an optimal mean glucose of 118 milligrams per deciliter and a Time-in-Range of 86.4 percent, with post-meal walks blunting glucose spikes by an average of 42 milligrams per deciliter. Conversely, sedentary days reflect wider glycemic variability and depressed time in range. On the right panel, our multi-variable regression reveals a strong inverse correlation coefficient of r equals minus 0.79 between daily step volume and mean glucose, providing patients and physicians with undeniable proof of what works best for your body."
+> "Displayed on your screen is our Exercise and Metabolic Clearance Correlation engine from Tab 04 Reports Console. Diabetes management succeeds through daily habits, and here El-CARS correlates your physical movement and meals directly against objective glycemic outcomes. As shown on screen, active workout days with at least 7,000 steps achieve an optimal mean glucose of 118 milligrams per deciliter and a Time-in-Range of 86.4 percent, with post-meal walks blunting glucose spikes by an average of 42 milligrams per deciliter. Conversely, sedentary days reflect wider glycemic variability and depressed time in range. On the right panel, our multi-variable regression reveals a strong inverse correlation coefficient of r equals minus 0.79 between daily step volume and mean glucose, providing patients and physicians with undeniable proof of what works best for your body."
 
 ---
 
@@ -229,7 +229,7 @@
 **Module:** Module 5: The Diabetes Learning Engine  
 **Description:** How 1-click export pushes continuous telemetry directly into your doctor's Epic Electronic Health Record.  
 
-> "Displayed on your screen is the Reports Toolbar in Tab 04, highlighting our prominent blue button: Push Data to Doctor's Epic. Epic Systems is the world's leading Electronic Health Record software, used by over three hundred and five million patients and more than seventy-eight percent of hospital beds and primary care clinics across the globe. Why is direct Epic integration so critical? Traditionally, a massive clinical telemetry gap exists between a patient's everyday life and their fifteen-minute doctor appointment. Patients struggle to remember blood sugar trends, and doctors cannot inspect consumer smartphone apps. With a single click of our Epic upload button, LCARS securely packages your entire ninety-day continuous dataset—including twenty-five thousand glucose points, nocturnal nadirs, and blood pressure dipping—into standardized HL7 FHIR R4 clinical observation bundles. This data flows directly into your physician's Epic Hyperspace flowsheet and InBasket. This closes the loop between patient and doctor, enabling immediate medication titration and qualifying your care team for remote patient monitoring reimbursement."
+> "Displayed on your screen is the Reports Toolbar in Tab 04, highlighting our prominent blue button: Push Data to Doctor's Epic. Epic Systems is the world's leading Electronic Health Record software, used by over three hundred and five million patients and more than seventy-eight percent of hospital beds and primary care clinics across the globe. Why is direct Epic integration so critical? Traditionally, a massive clinical telemetry gap exists between a patient's everyday life and their fifteen-minute doctor appointment. Patients struggle to remember blood sugar trends, and doctors cannot inspect consumer smartphone apps. With a single click of our Epic upload button, El-CARS securely packages your entire ninety-day continuous dataset—including twenty-five thousand glucose points, nocturnal nadirs, and blood pressure dipping—into standardized HL7 FHIR R4 clinical observation bundles. This data flows directly into your physician's Epic Hyperspace flowsheet and InBasket. This closes the loop between patient and doctor, enabling immediate medication titration and qualifying your care team for remote patient monitoring reimbursement."
 
 ---
 
@@ -237,7 +237,7 @@
 **Module:** Module 6: Tab 04 Synchronized Tall Chart  
 **Description:** How a unified vertical timeline aligns 8 physiological metrics on a shared horizontal time axis.  
 
-> "Displayed on your screen is our 360-degree Synchronized Composite Timeline from Tab 04 Reports Console. Instead of fragmenting physiological data across disconnected mobile screens, LCARS stacks all eight biometric channels on one shared twenty-four-hour horizontal clock. As your view scrolls down the screen, observe how continuous glucose, blood pressure, heart rate, oxygenation, and temperature align seamlessly above kinetic exercise, nutrition, and medications. Critically, notice the pinned food and medication markers integrated directly onto the time axis. The green salad marker logs dietary carbohydrate intake, while prominent medication markers pinpoint exact doses. By pinning these behavioral and clinical events onto the timeline, patients and physicians can immediately track how specific meals and medication changes directly govern every subsequent physiological deflection."
+> "Displayed on your screen is our 360-degree Synchronized Composite Timeline from Tab 04 Reports Console. Instead of fragmenting physiological data across disconnected mobile screens, El-CARS stacks all eight biometric channels on one shared twenty-four-hour horizontal clock. As your view scrolls down the screen, observe how continuous glucose, blood pressure, heart rate, oxygenation, and temperature align seamlessly above kinetic exercise, nutrition, and medications. Critically, notice the pinned food and medication markers integrated directly onto the time axis. The green salad marker logs dietary carbohydrate intake, while prominent medication markers pinpoint exact doses. By pinning these behavioral and clinical events onto the timeline, patients and physicians can immediately track how specific meals and medication changes directly govern every subsequent physiological deflection."
 
 ---
 
@@ -253,7 +253,7 @@
 **Module:** Module 6: Tab 04 Synchronized Tall Chart  
 **Description:** How dragging the vertical scrubber aligns all 8 channels to reveal exact causes behind glucose spikes.  
 
-> "Displayed on your screen is our automated Vertical Scrubber Line gliding across all eight telemetry channels. As the dashed yellow vertical crosshair tracks across the timeline, it intersects every physiological variable at that exact instant in time. Notice at 13:30, the post-lunch peak, the scrubber aligns a glucose peak of 188 milligrams per deciliter with an 18-gram low-carb salad, an 84 beat per minute pulse, and an immediate post-meal brisk walk. Above the chart, the real-time HUD ribbon instantly updates with exact synchronized values for glucose, blood pressure, SpO2, and medication status. By automating this vertical crosshair, LCARS uncovers the hidden physiological cause behind every glycemic peak and valley, allowing users to click any point to open a granular clinical pop-up audit."
+> "Displayed on your screen is our automated Vertical Scrubber Line gliding across all eight telemetry channels. As the dashed yellow vertical crosshair tracks across the timeline, it intersects every physiological variable at that exact instant in time. Notice at 13:30, the post-lunch peak, the scrubber aligns a glucose peak of 188 milligrams per deciliter with an 18-gram low-carb salad, an 84 beat per minute pulse, and an immediate post-meal brisk walk. Above the chart, the real-time HUD ribbon instantly updates with exact synchronized values for glucose, blood pressure, SpO2, and medication status. By automating this vertical crosshair, El-CARS uncovers the hidden physiological cause behind every glycemic peak and valley, allowing users to click any point to open a granular clinical pop-up audit."
 
 ---
 
@@ -269,7 +269,7 @@
 **Module:** Module 6: Tab 04 Synchronized Tall Chart  
 **Description:** Visualizing prescription changes on clinical graphs to objectively measure therapeutic response.  
 
-> "Displayed on your screen is our longitudinal timeline with a pinned 'MED CHANGE' milestone marker. When an endocrinologist titrates an outpatient prescription—such as increasing Metformin or initiating an SGLT-2 inhibitor—LCARS pins a vertical milestone line cutting across all eight physiological channels on that exact calendar date. As shown on screen, this divides the timeline into an empirical before-and-after therapeutic comparison. In the thirty days prior to titration, mean glucose averaged 178 milligrams per deciliter with wide glycemic volatility. Following the medication change, mean glucose systematically dropped by 24 milligrams per deciliter, Time-in-Range expanded to 88 percent, and blood pressure stabilized. By visually pinning medication changes to objective ambulatory telemetry, patients and physicians obtain irrefutable proof of therapeutic progress, eliminating guesswork from diabetes management."
+> "Displayed on your screen is our longitudinal timeline with a pinned 'MED CHANGE' milestone marker. When an endocrinologist titrates an outpatient prescription—such as increasing Metformin or initiating an SGLT-2 inhibitor—El-CARS pins a vertical milestone line cutting across all eight physiological channels on that exact calendar date. As shown on screen, this divides the timeline into an empirical before-and-after therapeutic comparison. In the thirty days prior to titration, mean glucose averaged 178 milligrams per deciliter with wide glycemic volatility. Following the medication change, mean glucose systematically dropped by 24 milligrams per deciliter, Time-in-Range expanded to 88 percent, and blood pressure stabilized. By visually pinning medication changes to objective ambulatory telemetry, patients and physicians obtain irrefutable proof of therapeutic progress, eliminating guesswork from diabetes management."
 
 ---
 
@@ -349,7 +349,7 @@
 **Module:** Module 7: Tab 11 Medication Management  
 **Description:** Tracking your complete outpatient pharmacological regimen with dosage, indication, and timing.  
 
-> "In Module 7, we examine Tab 11: Medication Management. Managing multiple outpatient medications requires diligence. LCARS maintains your complete active drug list with exact dosage, timing, and clinical indications, ensuring zero missed doses and full compliance tracking."
+> "Displayed on your screen is Tab 11 Medication Management Console. Diabetes care relies on strict pharmacological adherence, and as this screen scrolls downward, notice how El-CARS organizes your prescribed medications into a clear, unified architecture. At the top, our critical clinical notice emphasizes that all drug titrations must be directed by your licensed physician. Directly below in Component 1, your active regimen is split into two discrete intake schedules: the Morning Breakfast Suite and the Evening Dinner Split. Further down in Component 2, you can log prescription changes or dosage titrations, which automatically pins a prominent MED CHANGE milestone marker across your timeline charts. This vertical layout ensures that every dose, titration, and adherence confirmation is immediately coupled with your physiological ambulatory telemetry."
 
 ---
 
@@ -357,7 +357,7 @@
 **Module:** Module 7: Tab 11 Medication Management  
 **Description:** Separating medications into scrollable Morning (Intake 1) and Evening (Intake 2) lists.  
 
-> "Displayed on screen is our dual medication intake layout. Medications are split cleanly into two distinct schedules: Morning Intake 1 and Evening Intake 2. The morning list holds your breakfast doses—such as Metformin, Glipizide, and cardiovascular meds—while Intake 2 holds your evening doses, preventing dosing confusion."
+> "Displayed on your screen is Component 1 of Tab 11: our Dual Intake Medication Schedules. To maximize clinical compliance, El-CARS structures outpatient regimens into exactly two discrete daily events. As the screen scrolls to the Morning Intake card at eight AM, notice your breakfast medications: your first Metformin one thousand milligram dose, Jardiance ten milligrams, and cardioprotective agents. Scrolling down to the Evening Intake card at six-thirty PM, your second split Metformin dose is logged with dinner, ensuring sustained nocturnal hepatic gluconeogenesis suppression. With one tap of 'TAKE ALL', you verify complete adherence, immediately updating your daily compliance timeline."
 
 ---
 
@@ -365,7 +365,7 @@
 **Module:** Module 7: Tab 11 Medication Management  
 **Description:** Updating dosages, logging adherence, and automatically updating clinical milestones.  
 
-> "Here, we detail medication editing and dosage adjustment. Whenever your doctor titrates a dose or discontinues a medication, you can edit it immediately in Tab 11. Changing a dose automatically updates your active intake list and records a titration milestone on your clinical reports."
+> "Displayed on your screen is Component 2 of Tab 11: our Medication Titration and Change Logging engine. Whenever your endocrinologist adjusts a dosage, switches drug classes, or prescribes a new agent, you enter the titration details directly on this screen. As shown, you select the change classification—such as dosage increase or tapering down—input the previous and new dosages, record the prescribing physician, and log the clinical rationale. Once committed, El-CARS pins a permanent red dashed milestone line across all timeline charts on that exact date. This allows both you and your doctor to compare biometrics before and after, empirically validating whether the titration delivered genuine progress."
 
 ---
 
@@ -373,7 +373,7 @@
 **Module:** Module 8: Tab 12 Sequential Full Scan  
 **Description:** The 120-second automated diagnostic sequence testing all 6 biometric transponders.  
 
-> "Module 8 showcases Tab 12: Sequential Full Scan. When you want a complete diagnostic check, you trigger Full Scan. Over 120 seconds, LCARS activates all six transponders sequentially: heart rate, blood pressure, temperature, oxygen saturation, ECG, and optical glucose."
+> "Displayed on your screen is Tab 12: our Sequential Comprehensive Biometric Full Scan in active execution. Observe the animated scanning sequence on the left, demonstrating how El-CARS coordinates all six onboard sensors. Rather than triggering multiple sensors simultaneously—which causes optical cross-talk and battery voltage dips—El-CARS executes a choreographed one-hundred-and-twenty-second diagnostic pipeline. On the right pane, our diagnostic flow chart outlines the exact sequence: Stage 1 measures optical glucose absorption, Stage 2 captures infrared temperature, Stage 3 evaluates blood pressure tonometry, Stage 4 assesses dual-wavelength SpO2, Stage 5 records pulse frequency, and Stage 6 conducts Poincaré HRV analysis. Once complete, the orchestrator compiles a comprehensive clinical audit report ready for permanent EHR upload."
 
 ---
 
@@ -381,7 +381,7 @@
 **Module:** Module 8: Tab 12 Sequential Full Scan  
 **Description:** Real-time visual progress through the 6 stages and generation of verified scan reports.  
 
-> "Displayed on screen is the Full Scan diagnostic telemetry dashboard. Live progress bars track each stage in real time. When complete, LCARS delivers an immediate clinical report summarizing all six biomarkers, verifying that your watch transponders are nominal and ready for monitoring."
+> "Displayed on screen is the Full Scan diagnostic telemetry dashboard. Live progress bars track each stage in real time. When complete, El-CARS delivers an immediate clinical report summarizing all six biomarkers, verifying that your watch transponders are nominal and ready for monitoring."
 
 ---
 
@@ -389,7 +389,7 @@
 **Module:** Module 9: Master Capability Matrix: H-Band vs LCARS  
 **Description:** Comparing mobile app cloud telemetry against local air-gapped PC architecture.  
 
-> "Module 9 compares the stock H-Band mobile app against LCARS. Part 1 covers architecture and privacy. While the mobile app sends private medical data to remote cloud servers, LCARS runs entirely on your local PC via port 8899 and SQLite, delivering 100 percent air-gapped data sovereignty."
+> "Module 9 compares the stock H-Band mobile app against El-CARS. Part 1 covers architecture and privacy. While the mobile app sends private medical data to remote cloud servers, El-CARS runs entirely on your local PC via port 8899 and SQLite, delivering 100 percent air-gapped data sovereignty."
 
 ---
 
@@ -397,7 +397,7 @@
 **Module:** Module 9: Master Capability Matrix: H-Band vs LCARS  
 **Description:** Comparing calibration capabilities, multi-lane timelines, and exercise kinetics.  
 
-> "Part 2 contrasts clinical analytics. The mobile app uses static linear approximations and fragmented graphs. LCARS provides continuous twenty-four-hour glucose kinetics anchored to certified doctor-configured laboratory blood draws, complete daily eA1c projections, and automated nocturnal dawn surge detection."
+> "Part 2 contrasts clinical analytics. The mobile app uses static linear approximations and fragmented graphs. El-CARS provides continuous twenty-four-hour glucose kinetics anchored to certified doctor-configured laboratory blood draws, complete daily eA1c projections, and automated nocturnal dawn surge detection."
 
 ---
 
@@ -405,7 +405,7 @@
 **Module:** Module 9: Master Capability Matrix: H-Band vs LCARS  
 **Description:** Examining senior accessibility, 21:1 solid white contrast, and high-luminance typography.  
 
-> "Part 3 addresses visual ergonomics. The mobile app relies on tiny gray text and washed-out pastels that are difficult for seniors to read. LCARS standardizes on solid white cards with deep navy typography, delivering maximum 21:1 contrast, bold colored numerals, and night-vision themes."
+> "Part 3 addresses visual ergonomics. The mobile app relies on tiny gray text and washed-out pastels that are difficult for seniors to read. El-CARS standardizes on solid white cards with deep navy typography, delivering maximum 21:1 contrast, bold colored numerals, and night-vision themes."
 
 ---
 
@@ -413,7 +413,7 @@
 **Module:** Module 10: Clinical Summaries & Achieving Diabetic Goals  
 **Description:** Comprehensive doctor-patient consultation covering Year-to-Date trends, 30-day monthly retrospects, and 24-hour daily continuous curves into Epic EHR.  
 
-> "When you sit down with your doctor, LCARS 5010 provides a complete, 3-tier clinical picture. Tier 1 covers your Year-to-Date record, showing multi-month eA1C progress and long-term titration success. Tier 2 examines your monthly 30-day retrospect, analyzing glycemic variance and Time-in-Range. And Tier 3 inspects daily 24-hour telemetry curves, showing exact meal excursions, post-walk glucose drops, and overnight nadirs. With one click, this entire multi-scale history is pushed directly into their Epic EHR system, transforming your consultation into an objective, collaborative clinical strategy."
+> "When you sit down with your doctor, El-CARS 5010 provides an objective, three-tier clinical consultation dashboard. As your view scrolls down the screen, observe how multi-scale telemetry is synthesized for your clinical team. Tier 1 presents your Year-to-Date macro record, showing long-term eA1C progress and cumulative titration success. Tier 2 examines your monthly thirty-day retrospect, analyzing glycemic variance, Time-in-Range, and blood pressure dipping. And Tier 3 inspects daily continuous twenty-four-hour curves, showing exact meal excursions and postprandial exercise clearance. Consolidated information sharing is a key tool for diabetic management. With one click of 'PUSH TO DOCTOR'S EPIC', your verified ambulatory record is transmitted straight into your hospital's EHR, empowering your entire multidisciplinary care team to act on certified empirical proof."
 
 ---
 
@@ -421,7 +421,7 @@
 **Module:** Module 10: Clinical Summaries, Closed-Loop Science & Open Source  
 **Description:** Transitioning from blind open-loop fingersticks to continuous closed-loop biofeedback, creating an anonymized global diabetes research corpus that Google could sponsor.  
 
-> "Consider the profound clinical evolution from open-loop random sampling to closed-loop biofeedback. For decades, diabetes care has operated as a broken open loop: patients test intermittently, guess their insulin or carbohydrate response blindly, and wait ninety days for a retrospective lab test. LCARS transforms this into a true cybernetic closed loop: continuous eight-channel telemetry provides real-time biofeedback, showing how a fifteen-minute walk drops glucose via GLUT4, or how a meal spike resolves. Furthermore, this creates an extraordinary global research opportunity. Abstracted historical telemetry can be forwarded with zero patient identifying information—pure anonymized kinetics. Google has an immense opportunity to sponsor this open-access diabetes research repository, using its computational power and Gemini AI to train foundational metabolic models and accelerate cures for millions of diabetics worldwide."
+> "Consider the profound clinical evolution from open-loop random sampling to closed-loop biofeedback. For decades, diabetes care has operated as a broken open loop: patients test intermittently, guess their insulin or carbohydrate response blindly, and wait ninety days for a retrospective lab test. El-CARS transforms this into a true cybernetic closed loop: continuous eight-channel telemetry provides real-time biofeedback, showing how a fifteen-minute walk drops glucose via GLUT4, or how a meal spike resolves. Furthermore, this creates an extraordinary global research opportunity. Abstracted historical telemetry can be forwarded with zero patient identifying information—pure anonymized kinetics. Google has an immense opportunity to sponsor this open-access diabetes research repository, using its computational power and Gemini AI to train foundational metabolic models and accelerate cures for millions of diabetics worldwide."
 
 ---
 
@@ -429,7 +429,7 @@
 **Module:** Module 10: Clinical Summaries & Open Source Ecosystem  
 **Description:** LCARS 5010 is 100% free open-source copyleft software under GNU GPL v3, fully documented in GitHub /docs/, and powered by Google Gemini Pro using HBandSDK and Veepoo standards.  
 
-> "In closing, LCARS 5010 is completely free, open-source copyleft software released under the GNU General Public License version 3. As an author managing Type 2 Diabetes alongside my care team, this toolset is dedicated to everyone fighting diabetes, so that others may survive successfully. The platform is fully documented on GitHub and was architected and built with Google Gemini Pro based on the open HBandSDK and Veepoo repositories. We invite doctors, engineers, and sponsors like Google to join us in advancing this community project. Thank you for joining our clinical onboarding presentation!"
+> "In closing, El-CARS 5010 is completely free, open-source copyleft software released under the GNU General Public License version 3. As an author managing Type 2 Diabetes alongside my care team, this toolset is dedicated to everyone fighting diabetes, so that others may survive successfully. On the right panel below our open resources, our multidisciplinary collaboration diagram illustrates the patient at the very center of care, connected through the 5010 telemetry watch to four specialist physicians: the Endocrinologist, Primary Care Doctor, Cardiologist, and Nephrologist or Diabetes Educator. Consolidated information sharing across this entire circle is the definitive key to successful diabetes management, eliminating clinical silos. We invite doctors, engineers, and sponsors like Google to join us in advancing this open community project. Thank you for joining our clinical onboarding presentation!"
 
 ---
 

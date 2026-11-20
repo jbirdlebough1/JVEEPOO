@@ -126,13 +126,51 @@
       </div>
     
 
-      <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #15803d; padding: 10px 14px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto; scroll-behavior: smooth;">
+      <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #dc2626; padding: 10px 14px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto; scroll-behavior: smooth;">
         <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 4px; margin-bottom: 6px; flex-shrink: 0;">
-          <span style="font-family: monospace; font-weight: 800; color: #0284c7; font-size: 0.84rem;">NOCTURNAL SPO2 & APNEA AUDIT</span>
-          <span style="background: #f8fafc; color: #15803d; font-weight: 800; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; border: 1.5px solid #15803d;">● ONLINE</span>
+          <span style="font-family: monospace; font-weight: 800; color: #0284c7; font-size: 0.84rem;">PULSE OXIMETRY & APNEA-CORTISOL GLYCEMIC AXIS</span>
+          <span style="background: #f8fafc; color: #dc2626; font-weight: 800; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; border: 1.5px solid #dc2626;">ODI-4% HYPOXIA MATRIX</span>
         </div>
         <div class="visual-content" style="flex: 1; display: flex; flex-direction: column;">
           
+          <!-- Dual-Wavelength SpO2 & Apnea-Cortisol Detail Card -->
+          <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 10px; margin-top: 4px; color: #0f172a; font-family: monospace; font-size: 0.67rem; line-height: 1.4;">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 4px; margin-bottom: 8px;">
+              <span style="font-size: 0.72rem; color: #dc2626; font-weight: 800;">DUAL-WAVELENGTH OXIMETRY & APNEA</span>
+              <span style="background: #dc2626; color: #fff; font-size: 0.60rem; font-weight: bold; padding: 2px 6px; border-radius: 3px;">RATIO-OF-RATIOS</span>
+            </div>
+
+            <!-- Optical Physics Ratio-of-Ratios -->
+            <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 4px; padding: 6px; margin-bottom: 6px;">
+              <strong style="color: #1e40af; font-size: 0.70rem;">1. DUAL-WAVELENGTH OPTICAL RATIO (R):</strong>
+              <div style="color: #1e3a8a; margin-top: 2px;">
+                R = [AC(660nm) / DC(660nm)] / [AC(940nm) / DC(940nm)]. Deoxygenated hemoglobin preferentially absorbs 660nm red light, while oxygenated HbO2 absorbs 940nm infrared. LCARS samples arterial pulse absorption continuously at 1% saturation resolution.
+              </div>
+            </div>
+
+            <!-- ODI Criteria -->
+            <div style="background: #fffbeb; border: 1px solid #fde68a; border-radius: 4px; padding: 6px; margin-bottom: 6px;">
+              <strong style="color: #92400e; font-size: 0.70rem;">2. OXYGEN DESATURATION INDEX (ODI-4%):</strong>
+              <div style="color: #78350f; margin-top: 2px;">
+                Quantifies nocturnal dips ≥4% below baseline lasting ≥10 seconds.<br>
+                • Normal: &lt;5 dips/hour • Mild OSA: 5–14 • Moderate: 15–29 • Severe: ≥30.<br>
+                Sustained baseline below 95% indicates obstructive hypoventilation.
+              </div>
+            </div>
+
+            <!-- Endocrine Cortisol Surge Mechanism -->
+            <div style="background: #fef2f2; border: 1.5px solid #fecaca; border-radius: 4px; padding: 6px; margin-bottom: 6px;">
+              <strong style="color: #dc2626; font-size: 0.70rem;">3. THE APNEA-CORTISOL GLYCEMIC SURGE:</strong>
+              <div style="color: #7f1d1d; margin-top: 2px;">
+                Nocturnal airway collapse triggers carotid chemoreceptors, spiking sympathetic catecholamines and cortisol. Unsuppressed cortisol stimulates hepatic glycogenolysis, driving refractory morning fasting spikes (&gt;180 mg/dL) that resist standard evening medication.
+              </div>
+            </div>
+
+            <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 3px; padding: 5px 8px; font-size: 0.65rem; color: #166534;">
+              <strong>CLINICAL INTERVENTION:</strong> Telemetry screens for occult sleep apnea, justifying home sleep studies, CPAP compliance, and bedtime airway optimization to stabilize morning glycemia.
+            </div>
+          </div>
+    
         </div>
         <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.78rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
           <strong style="color: #15803d;">Key Takeaway:</strong> Screens for nocturnal obstructive sleep apnea dips that cause dawn cortisol spikes and glycemic instability.
