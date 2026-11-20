@@ -1,6 +1,6 @@
 # LCARS 5010 Clinical Telemetry Masterclass - Official Narration Transcript
 
-**Audio Track:** Australian Professional Technical Narration (Pre-rendered Edge TTS / en-AU-WilliamNeural)  
+**Audio Track:** Australian Professional Technical Narration (Female - Edge TTS / en-AU-NatashaNeural)  
 **Hardware Platform:** FITAOS 5150 / Veepoo Model 5010 Biosensing Array  
 **Protocol:** Bluetooth Low Energy 5.0 Local-First Air-Gapped Telemetry  
 **License:** GNU General Public License v3 (Open Source Copyleft)  

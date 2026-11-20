@@ -145,10 +145,10 @@
   <div class="player-header">
     <div class="player-title">
       <span class="player-badge">LCARS 5010</span>
-      <span>CLINICAL AMBULATORY TELEMETRY MASTERCLASS (40 SLIDES &bull; AUSSIE VOICE NARRATION)</span>
+      <span>CLINICAL AMBULATORY TELEMETRY MASTERCLASS (40 SLIDES &bull; AUSTRALIAN FEMALE NARRATION)</span>
     </div>
     <div style="display: flex; align-items: center; gap: 10px; font-size: 12px; color: #94a3b8;">
-      <span id="lblVoiceStatus">🇦🇺 Australian Narration: Active (en-AU-WilliamNeural)</span>
+      <span id="lblVoiceStatus">🇦🇺 Australian Female Narration: Active (en-AU-NatashaNeural)</span>
       <button class="ctrl-btn" onclick="toggleFullscreen()" style="padding: 4px 10px; font-size: 11px;">⛶ FULLSCREEN</button>
     </div>
   </div>
@@ -193,7 +193,7 @@
     </div>
   </div>
 
-  <!-- Audio Element with High-Fidelity Pre-Rendered MP3s -->
+  <!-- Audio Element with High-Fidelity Pre-Rendered Female MP3s -->
   <audio id="audioPlayer" preload="auto"></audio>
 
   <script>
@@ -1327,7 +1327,7 @@
     let currentIndex = 0;
     let isPlaying = true;
     let playbackSpeed = 1.0;
-    let auVoice = null;
+    let auFemaleVoice = null;
     let synth = window.speechSynthesis;
     let currentUtterance = null;
     let slideTimer = null;
@@ -1342,13 +1342,14 @@
       sel.appendChild(opt);
     });
 
-    // Initialize Web Speech Fallback Voices
+    // Initialize Web Speech Fallback Voices (Prefer Female Australian)
     function initVoices() {
       if (!synth) return;
       const voices = synth.getVoices();
-      auVoice = voices.find(v => v.lang === 'en-AU' || v.lang.startsWith('en-AU') || v.name.includes('Australia') || v.name.includes('AU')) ||
-                voices.find(v => v.lang === 'en-GB' || v.lang.startsWith('en-GB')) ||
-                voices.find(v => v.lang.startsWith('en'));
+      auFemaleVoice = voices.find(v => (v.lang === 'en-AU' || v.lang.startsWith('en-AU')) && (v.name.includes('Natasha') || v.name.includes('Catherine') || v.name.includes('Female') || v.name.includes('Karen'))) ||
+                      voices.find(v => v.lang === 'en-AU' || v.lang.startsWith('en-AU')) ||
+                      voices.find(v => (v.lang === 'en-GB' || v.lang.startsWith('en-GB')) && (v.name.includes('Female') || v.name.includes('Sonia') || v.name.includes('Libby'))) ||
+                      voices.find(v => v.lang.startsWith('en'));
     }
     if (synth) {
       synth.onvoiceschanged = initVoices;

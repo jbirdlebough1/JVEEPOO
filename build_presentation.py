@@ -40,7 +40,7 @@ print(f"Loaded {len(slides_data)} slides from {data_file}")
 transcript_path = os.path.join(pres_dir, "TRANSCRIPT.md")
 with open(transcript_path, "w", encoding="utf-8") as f:
     f.write("# LCARS 5010 Clinical Telemetry Masterclass - Official Narration Transcript\n\n")
-    f.write("**Audio Track:** Australian Professional Technical Narration (Pre-rendered Edge TTS / en-AU-WilliamNeural)  \n")
+    f.write("**Audio Track:** Australian Professional Technical Narration (Female - Edge TTS / en-AU-NatashaNeural)  \n")
     f.write("**Hardware Platform:** FITAOS 5150 / Veepoo Model 5010 Biosensing Array  \n")
     f.write("**Protocol:** Bluetooth Low Energy 5.0 Local-First Air-Gapped Telemetry  \n")
     f.write("**License:** GNU General Public License v3 (Open Source Copyleft)  \n")
@@ -209,7 +209,7 @@ slide_template = """<!DOCTYPE html>
 
     <div class="slide-footer">
       <span>VEEPOO 5010 CLINICAL AMBULATORY MASTERCLASS &bull; REVISION 3.0</span>
-      <span>SLIDE {num} OF 40 &bull; AUSTRALIAN NARRATION ACTIVE</span>
+      <span>SLIDE {num} OF 40 &bull; AUSTRALIAN FEMALE NARRATION ACTIVE</span>
     </div>
   </div>
 </body>
@@ -242,7 +242,7 @@ for s in slides_data:
 print("Generated all 40 synchronized slides in slides/ and presentation/!")
 
 # -----------------------------------------------------------------------------
-# BUILD preview.html (MASTER TECHNICAL PLAYER WITH INSTANT AUTO-UNMUTE)
+# BUILD preview.html (MASTER TECHNICAL PLAYER WITH AUSTRALIAN FEMALE VOICE)
 # -----------------------------------------------------------------------------
 slides_json_str = json.dumps(slides_data, indent=2)
 
@@ -393,10 +393,10 @@ preview_html_content = f"""<!DOCTYPE html>
   <div class="player-header">
     <div class="player-title">
       <span class="player-badge">LCARS 5010</span>
-      <span>CLINICAL AMBULATORY TELEMETRY MASTERCLASS (40 SLIDES &bull; AUSSIE VOICE NARRATION)</span>
+      <span>CLINICAL AMBULATORY TELEMETRY MASTERCLASS (40 SLIDES &bull; AUSTRALIAN FEMALE NARRATION)</span>
     </div>
     <div style="display: flex; align-items: center; gap: 10px; font-size: 12px; color: #94a3b8;">
-      <span id="lblVoiceStatus">🇦🇺 Australian Narration: Active (en-AU-WilliamNeural)</span>
+      <span id="lblVoiceStatus">🇦🇺 Australian Female Narration: Active (en-AU-NatashaNeural)</span>
       <button class="ctrl-btn" onclick="toggleFullscreen()" style="padding: 4px 10px; font-size: 11px;">⛶ FULLSCREEN</button>
     </div>
   </div>
@@ -441,7 +441,7 @@ preview_html_content = f"""<!DOCTYPE html>
     </div>
   </div>
 
-  <!-- Audio Element with High-Fidelity Pre-Rendered MP3s -->
+  <!-- Audio Element with High-Fidelity Pre-Rendered Female MP3s -->
   <audio id="audioPlayer" preload="auto"></audio>
 
   <script>
@@ -450,7 +450,7 @@ preview_html_content = f"""<!DOCTYPE html>
     let currentIndex = 0;
     let isPlaying = true;
     let playbackSpeed = 1.0;
-    let auVoice = null;
+    let auFemaleVoice = null;
     let synth = window.speechSynthesis;
     let currentUtterance = null;
     let slideTimer = null;
@@ -465,13 +465,14 @@ preview_html_content = f"""<!DOCTYPE html>
       sel.appendChild(opt);
     }});
 
-    // Initialize Web Speech Fallback Voices
+    // Initialize Web Speech Fallback Voices (Prefer Female Australian)
     function initVoices() {{
       if (!synth) return;
       const voices = synth.getVoices();
-      auVoice = voices.find(v => v.lang === 'en-AU' || v.lang.startsWith('en-AU') || v.name.includes('Australia') || v.name.includes('AU')) ||
-                voices.find(v => v.lang === 'en-GB' || v.lang.startsWith('en-GB')) ||
-                voices.find(v => v.lang.startsWith('en'));
+      auFemaleVoice = voices.find(v => (v.lang === 'en-AU' || v.lang.startsWith('en-AU')) && (v.name.includes('Natasha') || v.name.includes('Catherine') || v.name.includes('Female') || v.name.includes('Karen'))) ||
+                      voices.find(v => v.lang === 'en-AU' || v.lang.startsWith('en-AU')) ||
+                      voices.find(v => (v.lang === 'en-GB' || v.lang.startsWith('en-GB')) && (v.name.includes('Female') || v.name.includes('Sonia') || v.name.includes('Libby'))) ||
+                      voices.find(v => v.lang.startsWith('en'));
     }}
     if (synth) {{
       synth.onvoiceschanged = initVoices;
@@ -651,7 +652,7 @@ preview_path = os.path.join(pres_dir, "preview.html")
 with open(preview_path, "w", encoding="utf-8") as f:
     f.write(preview_html_content)
 
-print("Generated preview.html Windows 11 player!")
+print("Generated preview.html Windows 11 player with Australian Female Voice!")
 
 # -----------------------------------------------------------------------------
 # COMPILE C# WINDOWS 11 LAUNCHER (Preview_Presentation.exe)
@@ -739,4 +740,4 @@ if os.path.exists(csc_path):
 else:
     print("Warning: csc.exe not found at standard path.")
 
-print("All 40 slides, narration transcript, preview player, and W11 launcher built successfully!")
+print("All 40 slides, female narration transcript, preview player, and W11 launcher built successfully!")
