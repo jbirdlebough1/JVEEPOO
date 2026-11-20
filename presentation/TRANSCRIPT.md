@@ -1,7 +1,6 @@
 # LCARS 5010 Clinical Telemetry Masterclass - Official Narration Transcript
 
-**Audio Track:** Australian Professional Technical Narration  
-**Engine:** Edge TTS / Web Speech API (en-AU-WilliamNeural / en-AU Natural)  
+**Audio Track:** Australian Professional Technical Narration (Pre-rendered Edge TTS / en-AU-WilliamNeural)  
 **Hardware Platform:** FITAOS 5150 / Veepoo Model 5010 Biosensing Array  
 **Protocol:** Bluetooth Low Energy 5.0 Local-First Air-Gapped Telemetry  
 **License:** GNU General Public License v3 (Open Source Copyleft)  
@@ -30,7 +29,7 @@
 **Module:** Module 1: Introduction & Clinical Scope  
 **Description:** Hardware architecture, physical design, and 5-sensor biosensing array of the FITAOS 5150 (Veepoo Model 5010) smartwatch.  
 
-> "G'day mate! On screen is the physical FITAOS 5150 smartwatch, powered by the Veepoo Model 5010 architecture. On the left is the watch hardware itself. It features a crisp 1.39-inch high-definition touch display with a tactile rotary crown, multi-wavelength optical sensors for non-invasive glucose tonometry, dual-contact thermistors for core and skin temperature, and dual ECG electrodes for blood pressure and cardiac rhythm. With a week of continuous battery life and magnetic charging, it captures clinical data 24 hours a day without interruptions."
+> "On screen is the physical FITAOS 5150 smartwatch, powered by the Veepoo Model 5010 architecture. On the left is the watch hardware itself. It features a crisp 1.39-inch high-definition touch display with a tactile rotary crown, multi-wavelength optical sensors for non-invasive glucose tonometry, dual-contact thermistors for core and skin temperature, and dual ECG electrodes for blood pressure and cardiac rhythm. With a week of continuous battery life and magnetic charging, it captures clinical data 24 hours a day without interruptions."
 
 ---
 

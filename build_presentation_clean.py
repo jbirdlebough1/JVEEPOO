@@ -81,7 +81,7 @@ curriculum = [
         "module": "Module 1: Introduction & Clinical Scope",
         "title": "The FITAOS 5150 / Veepoo Model 5010 Smartwatch & Biosensing Features",
         "desc": "Hardware architecture, physical design, and 5-sensor biosensing array of the FITAOS 5150 (Veepoo Model 5010) smartwatch.",
-        "narration": "G'day mate! On screen is the physical FITAOS 5150 smartwatch, powered by the Veepoo Model 5010 architecture. On the left is the watch hardware itself. It features a crisp 1.39-inch high-definition touch display with a tactile rotary crown, multi-wavelength optical sensors for non-invasive glucose tonometry, dual-contact thermistors for core and skin temperature, and dual ECG electrodes for blood pressure and cardiac rhythm. With a week of continuous battery life and magnetic charging, it captures clinical data 24 hours a day without interruptions.",
+        "narration": "On screen is the physical FITAOS 5150 smartwatch, powered by the Veepoo Model 5010 architecture. On the left is the watch hardware itself. It features a crisp 1.39-inch high-definition touch display with a tactile rotary crown, multi-wavelength optical sensors for non-invasive glucose tonometry, dual-contact thermistors for core and skin temperature, and dual ECG electrodes for blood pressure and cardiac rhythm. With a week of continuous battery life and magnetic charging, it captures clinical data 24 hours a day without interruptions.",
         "card_title": "FITAOS 5150 / MODEL 5010 SMARTWATCH HARDWARE",
         "bullets": [
             ("1.39-inch HD Display & Alloy Chassis", "Vibrant, high-contrast touch screen with physical rotary crown for senior-friendly tactile navigation."),

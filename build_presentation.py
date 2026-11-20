@@ -27,14 +27,20 @@ data_file = r"D:\veepoo\all_slides_data.json"
 with open(data_file, "r", encoding="utf-8") as f:
     slides_data = json.load(f)
 
+# Ensure "G'day mate!" is used ONLY ONCE across the entire curriculum (on Slide 1 only)
+for s in slides_data:
+    if s["id"] != 1:
+        if s["narration"].startswith("G'day mate! "):
+            s["narration"] = s["narration"][len("G'day mate! "):]
+        s["narration"] = s["narration"].replace("G'day mate!", "Welcome!")
+
 print(f"Loaded {len(slides_data)} slides from {data_file}")
 
 # Write TRANSCRIPT.md
 transcript_path = os.path.join(pres_dir, "TRANSCRIPT.md")
 with open(transcript_path, "w", encoding="utf-8") as f:
     f.write("# LCARS 5010 Clinical Telemetry Masterclass - Official Narration Transcript\n\n")
-    f.write("**Audio Track:** Australian Professional Technical Narration  \n")
-    f.write("**Engine:** Edge TTS / Web Speech API (en-AU-WilliamNeural / en-AU Natural)  \n")
+    f.write("**Audio Track:** Australian Professional Technical Narration (Pre-rendered Edge TTS / en-AU-WilliamNeural)  \n")
     f.write("**Hardware Platform:** FITAOS 5150 / Veepoo Model 5010 Biosensing Array  \n")
     f.write("**Protocol:** Bluetooth Low Energy 5.0 Local-First Air-Gapped Telemetry  \n")
     f.write("**License:** GNU General Public License v3 (Open Source Copyleft)  \n")
@@ -53,7 +59,6 @@ print("Created TRANSCRIPT.md with all 40 slides!")
 # -----------------------------------------------------------------------------
 
 def generate_left_panel(s):
-    # s is a slide dict
     bullets_html = ""
     for title, text in s.get("bullets", []):
         bullets_html += f"""
@@ -237,7 +242,7 @@ for s in slides_data:
 print("Generated all 40 synchronized slides in slides/ and presentation/!")
 
 # -----------------------------------------------------------------------------
-# BUILD preview.html (MASTER TECHNICAL PLAYER)
+# BUILD preview.html (MASTER TECHNICAL PLAYER WITH INSTANT AUTO-UNMUTE)
 # -----------------------------------------------------------------------------
 slides_json_str = json.dumps(slides_data, indent=2)
 
@@ -285,6 +290,20 @@ preview_html_content = f"""<!DOCTYPE html>
       padding: 2px 8px;
       border-radius: 3px;
       font-weight: 800;
+    }}
+    .unmute-banner {{
+      background: linear-gradient(90deg, #0284c7, #0369a1);
+      color: #ffffff;
+      padding: 8px 20px;
+      font-size: 13px;
+      font-weight: bold;
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid #38bdf8;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      cursor: pointer;
+      z-index: 100;
     }}
     .player-main {{
       flex: 1;
@@ -377,9 +396,18 @@ preview_html_content = f"""<!DOCTYPE html>
       <span>CLINICAL AMBULATORY TELEMETRY MASTERCLASS (40 SLIDES &bull; AUSSIE VOICE NARRATION)</span>
     </div>
     <div style="display: flex; align-items: center; gap: 10px; font-size: 12px; color: #94a3b8;">
-      <span id="lblVoiceStatus">🇦🇺 Australian Voice Engine: Active</span>
+      <span id="lblVoiceStatus">🇦🇺 Australian Narration: Active (en-AU-WilliamNeural)</span>
       <button class="ctrl-btn" onclick="toggleFullscreen()" style="padding: 4px 10px; font-size: 11px;">⛶ FULLSCREEN</button>
     </div>
+  </div>
+
+  <!-- Audio Unmute Notice Banner (Shown if browser policy blocks autoplay on opening) -->
+  <div id="unmuteNotice" class="unmute-banner" onclick="handleUserGesture()">
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <span style="font-size: 18px;">🔊</span>
+      <span>AUDIO READY: Click anywhere or press SPACE to activate synchronized Australian narration</span>
+    </div>
+    <button class="ctrl-btn" style="background: #ffffff; color: #0284c7; font-weight: 800; border: none; padding: 4px 12px; font-size: 11px;">START SOUND ▶</button>
   </div>
 
   <div class="player-main">
@@ -413,8 +441,8 @@ preview_html_content = f"""<!DOCTYPE html>
     </div>
   </div>
 
-  <!-- Audio Element (for pre-rendered MP3s if present) -->
-  <audio id="audioPlayer"></audio>
+  <!-- Audio Element with High-Fidelity Pre-Rendered MP3s -->
+  <audio id="audioPlayer" preload="auto"></audio>
 
   <script>
     const slides = {slides_json_str};
@@ -426,6 +454,7 @@ preview_html_content = f"""<!DOCTYPE html>
     let synth = window.speechSynthesis;
     let currentUtterance = null;
     let slideTimer = null;
+    let audioUnlocked = false;
 
     // Populate Slide Selector
     const sel = document.getElementById('selSlide');
@@ -436,23 +465,45 @@ preview_html_content = f"""<!DOCTYPE html>
       sel.appendChild(opt);
     }});
 
-    // Initialize Aussie Voice Engine
+    // Initialize Web Speech Fallback Voices
     function initVoices() {{
       if (!synth) return;
       const voices = synth.getVoices();
       auVoice = voices.find(v => v.lang === 'en-AU' || v.lang.startsWith('en-AU') || v.name.includes('Australia') || v.name.includes('AU')) ||
                 voices.find(v => v.lang === 'en-GB' || v.lang.startsWith('en-GB')) ||
                 voices.find(v => v.lang.startsWith('en'));
-      
-      const lbl = document.getElementById('lblVoiceStatus');
-      if (lbl && auVoice) {{
-        lbl.innerText = `🇦🇺 Voice: ${{auVoice.name}}`;
-      }}
     }}
     if (synth) {{
       synth.onvoiceschanged = initVoices;
       initVoices();
     }}
+
+    function showUnmuteBanner() {{
+      const banner = document.getElementById('unmuteNotice');
+      if (banner) banner.style.display = 'flex';
+    }}
+
+    function hideUnmuteBanner() {{
+      const banner = document.getElementById('unmuteNotice');
+      if (banner) banner.style.display = 'none';
+      audioUnlocked = true;
+    }}
+
+    function handleUserGesture() {{
+      hideUnmuteBanner();
+      const s = slides[currentIndex];
+      speakNarration(s.narration);
+    }}
+
+    // Global interaction listeners to guarantee audio un-mute on very first user interaction
+    ['click', 'pointerdown', 'keydown', 'touchstart'].forEach(evt => {{
+      window.addEventListener(evt, () => {{
+        if (!audioUnlocked) handleUserGesture();
+      }}, {{ passive: true }});
+      document.addEventListener(evt, () => {{
+        if (!audioUnlocked) handleUserGesture();
+      }}, {{ passive: true }});
+    }});
 
     function loadSlide(index) {{
       if (index < 0) index = 0;
@@ -467,7 +518,7 @@ preview_html_content = f"""<!DOCTYPE html>
       document.getElementById('lblTranscriptTitle').innerText = `SLIDE ${{s.num}}: ${{s.title}}`;
       document.getElementById('txtTranscript').innerText = s.narration;
 
-      // Speak narration
+      // Speak narration immediately
       speakNarration(s.narration);
     }}
 
@@ -477,43 +528,26 @@ preview_html_content = f"""<!DOCTYPE html>
 
       if (!isPlaying) return;
 
-      // Check if pre-rendered MP3 exists
       const s = slides[currentIndex];
       const audioEl = document.getElementById('audioPlayer');
       audioEl.src = `audio/slide_${{s.num}}.mp3`;
       audioEl.playbackRate = playbackSpeed;
+      audioEl.volume = 1.0;
+      audioEl.muted = false;
 
-      audioEl.play().then(() => {{
-        // MP3 is playing!
-        audioEl.onended = () => {{
-          if (isPlaying) nextSlide();
-        }};
-      }}).catch(() => {{
-        // Fallback to native Web Speech API with Australian voice
-        if (!synth) return;
-        currentUtterance = new SpeechSynthesisUtterance(text);
-        if (auVoice) currentUtterance.voice = auVoice;
-        currentUtterance.rate = playbackSpeed;
-        currentUtterance.pitch = 1.0;
-
-        currentUtterance.onend = () => {{
-          if (isPlaying) {{
-            slideTimer = setTimeout(() => {{
-              nextSlide();
-            }}, 1200);
-          }}
-        }};
-
-        currentUtterance.onerror = () => {{
-          if (isPlaying) {{
-            slideTimer = setTimeout(() => {{
-              nextSlide();
-            }}, 2000);
-          }}
-        }};
-
-        synth.speak(currentUtterance);
-      }});
+      const p = audioEl.play();
+      if (p !== undefined) {{
+        p.then(() => {{
+          // Playing successfully!
+          hideUnmuteBanner();
+          audioEl.onended = () => {{
+            if (isPlaying) nextSlide();
+          }};
+        }}).catch((err) => {{
+          console.warn("Autoplay deferred by browser policy until interaction:", err);
+          showUnmuteBanner();
+        }});
+      }}
     }}
 
     function togglePlayPause() {{
@@ -642,13 +676,45 @@ class Program
             ? localFile
             : "http://localhost:8899/presentation/preview.html";
 
+        string targetUri = new Uri(Path.GetFullPath(target)).AbsoluteUri;
+
+        // Paths to Edge and Chrome on Windows 11
+        string[] browserPaths = new string[]
+        {
+            @"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
+            @"C:\Program Files\Microsoft\Edge\Application\msedge.exe",
+            @"C:\Program Files\Google\Chrome\Application\chrome.exe",
+            @"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
+        };
+
+        foreach (string browserPath in browserPaths)
+        {
+            if (File.Exists(browserPath))
+            {
+                try
+                {
+                    // Launch with unmuted autoplay policy flag
+                    ProcessStartInfo psi = new ProcessStartInfo
+                    {
+                        FileName = browserPath,
+                        Arguments = "--autoplay-policy=no-user-gesture-required \"" + targetUri + "\"",
+                        UseShellExecute = false
+                    };
+                    Process.Start(psi);
+                    return;
+                }
+                catch {}
+            }
+        }
+
+        // Fallback to default system shell handler
         try
         {
-            Process.Start(new ProcessStartInfo(target) { UseShellExecute = true });
+            Process.Start(new ProcessStartInfo(targetUri) { UseShellExecute = true });
         }
         catch
         {
-            Process.Start("cmd.exe", "/c start \"\" \"" + target + "\"");
+            Process.Start("cmd.exe", "/c start \"\" \"" + targetUri + "\"");
         }
     }
 }
