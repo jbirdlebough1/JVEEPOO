@@ -89,43 +89,43 @@
 
 ---
 
-## Slide 11: 01-VITALS Bay 1: Optical Glucose Absorption Spectroscopy
+## Slide 11: Tab 01: VITALS – Optical Glucose Absorption Spectroscopy
 **Module:** Module 3: Core Biosensor Array Operations  
 **Description:** How continuous optical tonometry calculates dynamic blood glucose and projected eA1c.  
 
-> "In Module 3, we tour the individual biometric bays. Bay BIO-01 is optical glucose tonometry. By tracking multi-wavelength light absorption across superficial capillary beds, LCARS measures glucose fluctuations in real time and calculates projected A1C using the standard ADAG consensus algorithm."
+> "In Module 3, we tour the core biosensing channels. In Tab 01 Vitals, our primary focus is non-invasive optical glucose tonometry. By tracking multi-wavelength light absorption across superficial capillary beds, LCARS measures glucose fluctuations in real time and calculates projected A1C using the standard ADAG consensus algorithm."
 
 ---
 
-## Slide 12: 01-VITALS Bay 2: Dual-Matrix Thermometry
+## Slide 12: Tab 01: VITALS – Dual-Matrix Thermometry & Circadian Nadir
 **Module:** Module 3: Core Biosensor Array Operations  
 **Description:** How continuous dual thermistors differentiate core circadian temperature from cutaneous skin temperature.  
 
-> "Bay THERMO-02 monitors dual-matrix body temperature. Instead of a single uncalibrated reading, the Model 5010 uses dual thermistors to separate deep core temperature from peripheral skin temperature, revealing your natural circadian nadir and daytime metabolic rhythm."
+> "Still in Tab 01 Vitals, the second key channel monitors dual-matrix body temperature. Instead of a single uncalibrated reading, the Model 5010 uses dual thermistors to separate deep core temperature from peripheral skin temperature, revealing your natural circadian nadir and daytime metabolic rhythm."
 
 ---
 
-## Slide 13: 02-CARDIO Bay 3: Pulse Wave Transit Time Blood Pressure
+## Slide 13: Tab 02: CARDIO – Pulse Wave Transit Time Blood Pressure
 **Module:** Module 3: Core Biosensor Array Operations  
 **Description:** Non-invasive ambulatory blood pressure estimation via arterial pulse wave velocity.  
 
-> "Bay CARDIO-01 tracks blood pressure using Pulse Wave Transit Time. By measuring how fast arterial pressure waves travel through your blood vessels, the system estimates systolic and diastolic trends throughout the day and verifies healthy nocturnal blood pressure dipping."
+> "Moving to Tab 02 Cardio, the first cardiovascular channel tracks blood pressure using Pulse Wave Transit Time. By measuring how fast arterial pressure waves travel through your blood vessels, the system estimates systolic and diastolic trends throughout the day and verifies healthy nocturnal blood pressure dipping."
 
 ---
 
-## Slide 14: 02-CARDIO Bay 4: Dual-Wavelength SpO2 & Apnea Screening
+## Slide 14: Tab 02: CARDIO – Dual-Wavelength SpO2 & Apnea Screening
 **Module:** Module 3: Core Biosensor Array Operations  
 **Description:** Continuous nocturnal pulse oximetry detecting desaturations and obstructive sleep apnea risk.  
 
-> "Bay PULMO-02 provides dual-wavelength blood oxygen monitoring. Utilizing 660 nanometer red and 940 nanometer infrared sensors, it monitors arterial oxygen and sleep apnea desaturations. Because sleep apnea directly worsens insulin resistance, this safeguard is vital for diabetic health."
+> "Continuing in Tab 02 Cardio, the next channel provides dual-wavelength blood oxygen monitoring. Utilizing 660 nanometer red and 940 nanometer infrared sensors, it monitors arterial oxygen and sleep apnea desaturations. Because sleep apnea directly worsens insulin resistance, this safeguard is vital for diabetic health."
 
 ---
 
-## Slide 15: 02-CARDIO Bay 5: Autonomic HRV & Sympatho-Vagal Stress
+## Slide 15: Tab 02: CARDIO – Autonomic HRV & Sympatho-Vagal Stress
 **Module:** Module 3: Core Biosensor Array Operations  
 **Description:** Tracking Heart Rate Variability (HRV SDNN) to evaluate autonomic recovery and chronic stress load.  
 
-> "Bay NEURO-02 assesses autonomic nervous system recovery via Heart Rate Variability. High HRV indicates robust vagal nerve tone and resilience, whereas suppressed HRV reflects systemic stress and sympathetic overdrive, which raises blood sugar by triggering cortisol release."
+> "In the third channel of Tab 02 Cardio, LCARS assesses autonomic nervous system recovery via Heart Rate Variability. High HRV indicates robust vagal nerve tone and resilience, whereas suppressed HRV reflects systemic stress and sympathetic overdrive, which raises blood sugar by triggering cortisol release."
 
 ---
 
@@ -321,7 +321,15 @@
 
 ---
 
-## Slide 40: Open Source Copyleft, Documentation & Powered by Google Gemini Pro
+## Slide 40: Evolution to Closed-Loop Biofeedback: The Global Diabetes Research Opportunity
+**Module:** Module 10: Clinical Summaries, Closed-Loop Science & Open Source  
+**Description:** Transitioning from blind open-loop fingersticks to continuous closed-loop biofeedback, creating an anonymized global diabetes research corpus that Google could sponsor.  
+
+> "Consider the profound clinical evolution from open-loop random sampling to closed-loop biofeedback. For decades, diabetes care has operated as a broken open loop: patients test intermittently, guess their insulin or carbohydrate response blindly, and wait ninety days for a retrospective lab test. LCARS transforms this into a true cybernetic closed loop: continuous eight-channel telemetry provides real-time biofeedback, showing how a fifteen-minute walk drops glucose via GLUT4, or how a meal spike resolves. Furthermore, this creates an extraordinary global research opportunity. Abstracted historical telemetry can be forwarded with zero patient identifying information—pure anonymized kinetics. Google has an immense opportunity to sponsor this open-access diabetes research repository, using its computational power and Gemini AI to train foundational metabolic models and accelerate cures for millions of diabetics worldwide."
+
+---
+
+## Slide 41: Open Source Copyleft, Documentation & Powered by Google Gemini Pro
 **Module:** Module 10: Clinical Summaries & Open Source Ecosystem  
 **Description:** LCARS 5010 is 100% free open-source copyleft software under GNU GPL v3, fully documented in GitHub /docs/, and powered by Google Gemini Pro using HBandSDK and Veepoo standards.  
 

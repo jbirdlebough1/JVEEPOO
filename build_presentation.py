@@ -52,11 +52,35 @@ with open(transcript_path, "w", encoding="utf-8") as f:
         f.write(f"**Description:** {s['desc']}  \n\n")
         f.write(f"> \"{s['narration']}\"\n\n---\n\n")
 
-print("Created TRANSCRIPT.md with all 40 slides!")
+print(f"Created TRANSCRIPT.md with all {len(slides_data)} slides!")
 
 # -----------------------------------------------------------------------------
 # DYNAMIC PANEL GENERATORS
 # -----------------------------------------------------------------------------
+
+TAB_MAP = [
+    (1, "01-VITALS", "images/lcars_tab_vitals.png"),
+    (2, "02-CARDIO", "images/lcars_tab_cardio.png"),
+    (3, "03-METABOLIC", "images/lcars_tab_metabolic.png"),
+    (4, "04-REPORTS", "images/lcars_tab_reports.png"),
+    (5, "05-CONFIG", "images/lcars_tab_setup.png"),
+    (6, "06-DIAG LOG", "images/lcars_tab_log.png"),
+    (7, "07-OPERATIONS", "images/lcars_tab_operations.png"),
+    (8, "08-HELP & FAQ", "images/lcars_tab_help.png"),
+    (9, "09-ADA TRADES", "images/lcars_tab_diettrades.png"),
+    (10, "10-WATCH FACES", "images/lcars_tab_watchfaces.png"),
+    (11, "11-MEDICATION", "images/lcars_tab_medication.png"),
+    (12, "12-FULL SCAN", "images/lcars_tab_fullscan.png")
+]
+
+def get_active_tab_num(tab_img):
+    if not tab_img:
+        return 1
+    base = os.path.basename(tab_img)
+    for t_num, t_name, t_path in TAB_MAP:
+        if os.path.basename(t_path) == base:
+            return t_num
+    return 1
 
 def generate_left_panel(s):
     bullets_html = ""
@@ -73,25 +97,60 @@ def generate_left_panel(s):
 
     tab_img = s.get("tab_screenshot", "")
     tab_title = s.get("tab_title", "LCARS WORKSTATION CONSOLE")
+    active_tab = get_active_tab_num(tab_img)
+    active_tab_name = dict([(t[0], t[1]) for t in TAB_MAP]).get(active_tab, "01-VITALS")
+
     screenshot_html = ""
     if tab_img:
+        # Build 1-12 tab strip with prominent highlight yellow box on active tab
+        tab_pills_html = ""
+        for t_num, t_name, t_path in TAB_MAP:
+            if t_num == active_tab:
+                # HIGHLIGHT YELLOW BOX AROUND ACTIVE TAB
+                tab_pills_html += f"""
+                <span class="active-tab-box" style="border: 2.5px solid #ffd700; background: #ffeb3b; color: #000000; font-weight: 900; font-family: monospace; font-size: 0.62rem; padding: 2px 7px; border-radius: 4px; box-shadow: 0 0 12px rgba(255, 215, 0, 0.95); display: inline-flex; align-items: center; gap: 3px; transform: scale(1.05); z-index: 2; white-space: nowrap;">
+                  📍 {t_name}
+                </span>
+                """
+            else:
+                tab_pills_html += f"""
+                <span style="border: 1px solid #1e293b; background: #111e30; color: #64748b; font-family: monospace; font-size: 0.58rem; padding: 2px 5px; border-radius: 3px; white-space: nowrap;">
+                  {t_name}
+                </span>
+                """
+
         screenshot_html = f"""
-        <!-- Real LCARS Page Under Discussion Preview -->
+        <!-- Real LCARS Page Under Discussion Preview with Active Tab Yellow Box -->
         <div class="left-screenshot-card" style="margin-top: 6px; margin-bottom: 6px; border: 1.5px solid #cbd5e1; border-radius: 6px; overflow: hidden; background: #0f172a; box-shadow: 0 4px 12px rgba(0,0,0,0.18); display: flex; flex-direction: column; flex: 1; min-height: 290px;">
+          
+          <!-- 1-12 Tab Strip Navigation Ribbon -->
+          <div style="display: flex; gap: 4px; background: #0b1320; padding: 4px 8px; border-bottom: 1.5px solid #1e293b; overflow-x: auto; flex-shrink: 0; align-items: center;">
+            <span style="font-size: 0.58rem; color: #475569; font-family: monospace; font-weight: bold; margin-right: 2px; white-space: nowrap;">LCARS TABS:</span>
+            {tab_pills_html}
+          </div>
+
+          <!-- Console Header Title Bar with Active Tab Callout -->
           <div style="display: flex; justify-content: space-between; align-items: center; background: #1e293b; padding: 5px 8px; border-bottom: 1px solid #334155; flex-shrink: 0;">
-            <span style="font-size: 0.68rem; color: #38bdf8; font-weight: 800; font-family: monospace; letter-spacing: 0.04em;">
-              🖥️ PAGE UNDER DISCUSSION: {tab_title}
-            </span>
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <span style="border: 2px solid #ffd700; background: #ffeb3b; color: #000000; font-weight: 900; font-size: 0.62rem; padding: 1px 6px; border-radius: 3px; font-family: monospace; box-shadow: 0 0 8px rgba(255, 215, 0, 0.7); letter-spacing: 0.04em; white-space: nowrap;">
+                TAB {active_tab:02d}: {active_tab_name}
+              </span>
+              <span style="font-size: 0.68rem; color: #38bdf8; font-weight: 800; font-family: monospace; letter-spacing: 0.03em;">
+                {tab_title}
+              </span>
+            </div>
             <div style="display: flex; align-items: center; gap: 6px;">
               <span id="lblScreenshotZone" class="screenshot-zone-badge" style="background: #0284c7; color: #ffffff; font-size: 0.60rem; font-weight: 800; padding: 2px 7px; border-radius: 3px; font-family: monospace; letter-spacing: 0.03em; transition: all 0.25s ease;">
-                📍 FOCUS: AREA 1 • CONTROLS & STATUS
+                📍 FOCUS: TOPIC 1
               </span>
               <span style="background: #15803d; color: #ffffff; font-size: 0.58rem; font-weight: bold; padding: 2px 5px; border-radius: 3px; font-family: monospace;">
                 LIVE CONSOLE
               </span>
             </div>
           </div>
-          <div class="left-screenshot-viewport" style="text-align: center; background: #000; overflow-y: auto; flex: 1; min-height: 250px; position: relative; scroll-behavior: smooth;">
+
+          <!-- Continuous Monotonic Scroll Viewport (No Jerkiness) -->
+          <div class="left-screenshot-viewport" style="text-align: center; background: #000; overflow-y: auto; flex: 1; min-height: 250px; position: relative;">
             <img src="{tab_img}" onerror="this.src='../{tab_img}'" alt="{tab_title}" style="width: 100%; height: auto; display: block; object-fit: cover; object-position: top center;">
           </div>
         </div>
@@ -222,7 +281,7 @@ slide_template = """<!DOCTYPE html>
         <div class="slide-module">{module}</div>
         <div class="slide-title">{title}</div>
       </div>
-      <div class="slide-badge">SLIDE {num} / 40</div>
+      <div class="slide-badge">SLIDE {num} / {total}</div>
     </div>
 
     <div class="slide-body">
@@ -232,14 +291,15 @@ slide_template = """<!DOCTYPE html>
 
     <div class="slide-footer">
       <span>VEEPOO 5010 CLINICAL AMBULATORY MASTERCLASS &bull; REVISION 3.0</span>
-      <span>SLIDE {num} OF 40 &bull; AUSTRALIAN FEMALE NARRATION ACTIVE</span>
+      <span>SLIDE {num} OF {total} &bull; AUSTRALIAN FEMALE NARRATION ACTIVE</span>
     </div>
   </div>
 </body>
 </html>
 """
 
-# Build all 40 slides
+# Build all slides dynamically
+total_slides_count = len(slides_data)
 for s in slides_data:
     left_html = generate_left_panel(s)
     right_html = generate_right_panel(s)
@@ -248,6 +308,7 @@ for s in slides_data:
         num=s["num"],
         title=s["title"],
         module=s["module"],
+        total=total_slides_count,
         left_panel=left_html,
         right_panel=right_html
     )
@@ -268,7 +329,7 @@ for s in slides_data:
     with open(os.path.join(veepoo_slides_dir, f"slide_{s['num']}.html"), "w", encoding="utf-8") as f:
         f.write(html)
 
-print("Generated all 40 synchronized slides in slides/, presentation/, and D:\\veepoo\\slides!")
+print(f"Generated all {total_slides_count} synchronized slides in slides/, presentation/, and D:\\veepoo\\slides!")
 
 # -----------------------------------------------------------------------------
 # BUILD preview.html (MASTER TECHNICAL PLAYER WITH AUSTRALIAN FEMALE VOICE)
@@ -548,19 +609,65 @@ preview_html_content = f"""<!DOCTYPE html>
       document.getElementById('lblTranscriptTitle').innerText = `SLIDE ${{s.num}}: ${{s.title}}`;
       document.getElementById('txtTranscript').innerText = s.narration;
 
+      currentScrollLeft = 0;
+      targetScrollLeft = 0;
+      currentScrollRight = 0;
+      targetScrollRight = 0;
+
       // Reset scroll on right and left panes and initialize sync
       try {{
         const iframe = document.getElementById('slideIframe');
         iframe.onload = () => {{
+          currentScrollLeft = 0;
+          targetScrollLeft = 0;
+          currentScrollRight = 0;
+          targetScrollRight = 0;
           syncSlideContent(0.0);
         }};
         if (iframe && iframe.contentDocument) {{
+          currentScrollLeft = 0;
+          targetScrollLeft = 0;
+          currentScrollRight = 0;
+          targetScrollRight = 0;
           syncSlideContent(0.0);
         }}
       }} catch(e) {{}}
 
       // Speak narration immediately
       speakNarration(s.narration);
+    }}
+
+    let currentScrollLeft = 0;
+    let targetScrollLeft = 0;
+    let currentScrollRight = 0;
+    let targetScrollRight = 0;
+    let animLoopId = null;
+
+    function renderSmoothLoop() {{
+      const audioEl = document.getElementById('audioPlayer');
+      if (isPlaying && audioEl && audioEl.duration > 0 && !audioEl.paused) {{
+        const norm = audioEl.currentTime / audioEl.duration;
+        syncSlideContent(norm);
+      }}
+
+      try {{
+        const iframe = document.getElementById('slideIframe');
+        if (iframe && iframe.contentDocument) {{
+          const leftViewport = iframe.contentDocument.querySelector('.left-screenshot-viewport');
+          if (leftViewport && leftViewport.scrollHeight > leftViewport.clientHeight) {{
+            // Smooth 60fps linear interpolation: glides 8% of distance each frame
+            currentScrollLeft += (targetScrollLeft - currentScrollLeft) * 0.08;
+            leftViewport.scrollTop = currentScrollLeft;
+          }}
+          const rightCard = iframe.contentDocument.querySelector('.visual-card');
+          if (rightCard && rightCard.scrollHeight > rightCard.clientHeight) {{
+            currentScrollRight += (targetScrollRight - currentScrollRight) * 0.08;
+            rightCard.scrollTop = currentScrollRight;
+          }}
+        }}
+      }} catch(e) {{}}
+
+      animLoopId = requestAnimationFrame(renderSmoothLoop);
     }}
 
     function syncSlideContent(norm) {{
@@ -601,7 +708,7 @@ preview_html_content = f"""<!DOCTYPE html>
         if (zoneBadge) {{
           if (s.bullets && s.bullets[activeIdx]) {{
             const bTitle = s.bullets[activeIdx][0].toUpperCase();
-            zoneBadge.innerText = `📍 FOCUS: ${{bTitle.length > 30 ? bTitle.substring(0, 28) + '...' : bTitle}}`;
+            zoneBadge.innerText = `📍 FOCUS: ${{bTitle.length > 28 ? bTitle.substring(0, 26) + '...' : bTitle}}`;
           }} else {{
             zoneBadge.innerText = `📍 FOCUS: SECTION ${{activeIdx + 1}}`;
           }}
@@ -610,46 +717,15 @@ preview_html_content = f"""<!DOCTYPE html>
           else zoneBadge.style.background = '#0f766e';
         }}
 
-        // Stepped & Focused Left Viewport Scroll (skips to area, then scrolls when needed based on talk)
+        // Monotonic Top-to-Bottom Smooth Target: glides steadily without jumping up and down
         if (leftViewport && leftViewport.scrollHeight > leftViewport.clientHeight) {{
           const maxLeftScroll = leftViewport.scrollHeight - leftViewport.clientHeight;
-          let targetLeft = 0;
-
-          if (numBullets <= 1) {{
-            targetLeft = 0;
-          }} else if (activeIdx === 0) {{
-            // Zone 1: Rock-solid focus on top (Header, Transponder, Controls)
-            targetLeft = 0;
-          }} else if (activeIdx === numBullets - 1) {{
-            // Last Zone: Rock-solid focus on bottom (Clinical Audit Tables, Reports, Action Buttons)
-            targetLeft = maxLeftScroll;
-          }} else {{
-            // Middle Zone(s): Focus on 8 Multi-Stream Telemetry Lanes & Continuous Waveforms
-            // Smoothly traverse the continuous lanes while being discussed
-            const slotDuration = 1.0 / numBullets;
-            const progressInSlot = (norm - (activeIdx * slotDuration)) / slotDuration;
-            const startRatio = 0.35 + ((activeIdx - 1) * 0.15);
-            const spanRatio = 0.25;
-            targetLeft = (startRatio + (spanRatio * progressInSlot)) * maxLeftScroll;
-          }}
-
-          leftViewport.scrollTop = targetLeft;
+          targetScrollLeft = norm * maxLeftScroll;
         }}
 
-        // Synchronized Right Panel Scroll
         if (rightCard && rightCard.scrollHeight > rightCard.clientHeight) {{
           const maxScroll = rightCard.scrollHeight - rightCard.clientHeight;
-          let targetRight = 0;
-          if (activeIdx === 0) {{
-            targetRight = 0;
-          }} else if (activeIdx === numBullets - 1) {{
-            targetRight = maxScroll;
-          }} else {{
-            const slotDuration = 1.0 / numBullets;
-            const progressInSlot = (norm - (activeIdx * slotDuration)) / slotDuration;
-            targetRight = (0.25 + 0.50 * progressInSlot) * maxScroll;
-          }}
-          rightCard.scrollTop = targetRight;
+          targetScrollRight = norm * maxScroll;
         }}
       }} catch(e) {{}}
     }}
@@ -674,12 +750,6 @@ preview_html_content = f"""<!DOCTYPE html>
           hideUnmuteBanner();
           audioEl.onended = () => {{
             if (isPlaying) nextSlide();
-          }};
-          audioEl.ontimeupdate = () => {{
-            if (audioEl.duration > 0) {{
-              const norm = audioEl.currentTime / audioEl.duration;
-              syncSlideContent(norm);
-            }}
           }};
         }}).catch((err) => {{
           console.warn("Autoplay deferred by browser policy until interaction:", err);
@@ -776,9 +846,10 @@ preview_html_content = f"""<!DOCTYPE html>
       }}
     }});
 
-    // Start on Slide 1
+    // Start on Slide 1 and start 60fps liquid smooth render loop
     window.onload = () => {{
       loadSlide(0);
+      renderSmoothLoop();
     }};
   </script>
 </body>
@@ -882,4 +953,4 @@ if os.path.exists(csc_path):
 else:
     print("Warning: csc.exe not found at standard path.")
 
-print("All 40 slides, female narration transcript, preview player, and W11 launcher built successfully!")
+print(f"All {total_slides_count} slides, female narration transcript, preview player, and W11 launcher built successfully!")
