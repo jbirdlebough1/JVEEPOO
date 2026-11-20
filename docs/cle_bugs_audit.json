@@ -556,7 +556,7 @@
     "build_number": "2.4.0",
     "component": "360_HEALTH_AND_LONGITUDINAL_CHARTS",
     "affected_files": "w11_htm_app/index.html",
-    "resolution": "Integrated 360-Degree Personal Health View (03-360\u00b0 HEALTH) with real-time biometric cockpit, GLUT4 exercise journal, macro meal logger, 1-to-1 ADA trades comparator, and What Works For You diabetes learning engine. Implemented Single Tall Synchronized Chart (Daily/Weekly/Yearly) with continuous top-to-bottom vertical scrubber line and interactive click pop-up audit card. Added 11-MEDICATION tab tracking active intake schedule, titrations, and progress/regression milestones. Prominently embedded Type 1 Diabetes Clinical Contraindication Warning across workstation.",
+    "resolution": "Integrated 360-Degree Personal Health View (03-360° HEALTH) with real-time biometric cockpit, GLUT4 exercise journal, macro meal logger, 1-to-1 ADA trades comparator, and What Works For You diabetes learning engine. Implemented Single Tall Synchronized Chart (Daily/Weekly/Yearly) with continuous top-to-bottom vertical scrubber line and interactive click pop-up audit card. Added 11-MEDICATION tab tracking active intake schedule, titrations, and progress/regression milestones. Prominently embedded Type 1 Diabetes Clinical Contraindication Warning across workstation.",
     "created_at": "2026-11-19 13:55:19",
     "resolved_at": "2026-11-19 13:55:19"
   },
@@ -589,7 +589,7 @@
     "build_number": "v1.0.24",
     "component": "UI Ergonomics & Contrast / Tab 03 METABOLIC",
     "affected_files": "w11_htm_app/index.html",
-    "resolution": "Relabeled sidebar navigation Tab 03 from 03-360\u00b0 HEALTH to 03-METABOLIC. Replaced all dim pink titles (#ff6b6b), dim pink descriptions (#ffd0d0), and bold accents (#ff9999) on all cards, warning banners, and intake modules with crisp, high-visibility LCARS blue (#38b6ff) and ice blue (#cce6ff). Updated .stat-card-sub and comprehensive CSS contrast rules for all pink/lilac/red-tinted backgrounds.",
+    "resolution": "Relabeled sidebar navigation Tab 03 from 03-360° HEALTH to 03-METABOLIC. Replaced all dim pink titles (#ff6b6b), dim pink descriptions (#ffd0d0), and bold accents (#ff9999) on all cards, warning banners, and intake modules with crisp, high-visibility LCARS blue (#38b6ff) and ice blue (#cce6ff). Updated .stat-card-sub and comprehensive CSS contrast rules for all pink/lilac/red-tinted backgrounds.",
     "created_at": "2026-11-19T16:12:41.496876",
     "resolved_at": "2026-11-19T16:12:41.496876"
   },
@@ -886,18 +886,18 @@
     "build_number": "V0.16.16.0",
     "component": "Presentation / Sampling Metrology",
     "affected_files": "all_slides_data.json, build_presentation.py, preview.html, slides/slide_02.html",
-    "resolution": "Updated Slide 02 to feature authentic phonetic pronunciation (\"Neye-quist\") for Australian female TTS. Expanded 90-day timeline to explicitly contrast quarterly lab 2-sample protocol (Day 0 & Day 90 with 7.78M sec blind void) against sporadic fingersticks (N\u2248180) and continuous telemetry (N=25,920). Added comprehensive 5-dimension metrology comparison table evaluating Sensitivity, Specificity, Accuracy, Precision, and Repeatability.",
+    "resolution": "Updated Slide 02 to feature authentic phonetic pronunciation (\"Neye-quist\") for Australian female TTS. Expanded 90-day timeline to explicitly contrast quarterly lab 2-sample protocol (Day 0 & Day 90 with 7.78M sec blind void) against sporadic fingersticks (N≈180) and continuous telemetry (N=25,920). Added comprehensive 5-dimension metrology comparison table evaluating Sensitivity, Specificity, Accuracy, Precision, and Repeatability.",
     "created_at": "2026-11-20 10:41:39",
     "resolved_at": "2026-11-20 10:41:39"
   },
   {
     "bug_code": "CLE-053",
-    "title": "Expand Sampling Methodology Topic: Biological frequency kinetics, statistical error convergence (SE = \u03c3/\u221aN), and peer-reviewed citations with interactive Gemini research query",
+    "title": "Expand Sampling Methodology Topic: Biological frequency kinetics, statistical error convergence (SE = σ/√N), and peer-reviewed citations with interactive Gemini research query",
     "status": "RESOLVED",
     "build_number": "V0.16.16.0",
     "component": "Presentation / Academic Validation",
     "affected_files": "all_slides_data.json, build_presentation.py, preview.html, slides/slide_03.html, slides/slide_04.html, slides/slide_05.html",
-    "resolution": "Expanded sampling methodology into a self-validating 4-part master sequence (Slides 02-05). Added Slide 03 on Shannon-Neye-quist frequency bounds (glucose half-life 15-30m requires fs \u2265 2.2 mHz, proving quarterly tests are 8 orders of magnitude too slow). Added Slide 04 proving statistical error convergence (SE = \u03c3/\u221aN, reducing error variance by 99.4% and suppressing noise by 161\u00d7). Added Slide 05 with peer-reviewed citations (Shannon 1949, Nyquist 1928, Battelino 2019, Beck 2017 JAMA) and an interactive \"Would you like me to find more via Gemini?\" research query widget allowing live literature exploration.",
+    "resolution": "Expanded sampling methodology into a self-validating 4-part master sequence (Slides 02-05). Added Slide 03 on Shannon-Neye-quist frequency bounds (glucose half-life 15-30m requires fs ≥ 2.2 mHz, proving quarterly tests are 8 orders of magnitude too slow). Added Slide 04 proving statistical error convergence (SE = σ/√N, reducing error variance by 99.4% and suppressing noise by 161×). Added Slide 05 with peer-reviewed citations (Shannon 1949, Nyquist 1928, Battelino 2019, Beck 2017 JAMA) and an interactive \"Would you like me to find more via Gemini?\" research query widget allowing live literature exploration.",
     "created_at": "2026-11-20 10:41:39",
     "resolved_at": "2026-11-20 10:41:39"
   },
@@ -908,7 +908,7 @@
     "build_number": "V0.16.16.0",
     "component": "Audio Subsystem / Narration",
     "affected_files": "audio/*.mp3, presentation/audio/*.mp3, all_slides_data.json, build_presentation.py, preview.html, presentation/TRANSCRIPT.md",
-    "resolution": "Identified that audio player was loading legacy pre-rendered MP3s that contained outdated \"Masterclass\" and \"Workbench\" terminology. Re-rendered all 53 audio files asynchronously using edge_tts with en-AU-NatashaNeural. Updated Slide 1 narration to focus explicitly on the screen-displayed topic (01-VITALS light theme console, BIO-01 glucose 156 mg/dL, BIO-02 dual thermal 96.1\u00b0F, BIO-03 blood pressure 126/84 mmHg, BIO-04 SpO2 98%, status ribbon, and multidisciplinary care team grid). Recompiled Preview_Presentation.exe and pushed to local git and GitHub.",
+    "resolution": "Identified that audio player was loading legacy pre-rendered MP3s that contained outdated \"Masterclass\" and \"Workbench\" terminology. Re-rendered all 53 audio files asynchronously using edge_tts with en-AU-NatashaNeural. Updated Slide 1 narration to focus explicitly on the screen-displayed topic (01-VITALS light theme console, BIO-01 glucose 156 mg/dL, BIO-02 dual thermal 96.1°F, BIO-03 blood pressure 126/84 mmHg, BIO-04 SpO2 98%, status ribbon, and multidisciplinary care team grid). Recompiled Preview_Presentation.exe and pushed to local git and GitHub.",
     "created_at": "2026-11-20 10:41:39",
     "resolved_at": "2026-11-20 10:41:39"
   },
@@ -930,8 +930,63 @@
     "build_number": "V0.16.16.0",
     "component": "Presentation / Hardware Biosensing Architecture",
     "affected_files": "all_slides_data.json, audio/slide_14-18.mp3, build_presentation.py, preview.html, slides/slide_14-18.html, TRANSCRIPT.md",
-    "resolution": "Embedded rich SVG vector diagrams into the right panel of Slides 14 through 18 to visually explain the physical biosensors: (1) Slide 14: Multi-wavelength (525nm/940nm) optical ray-tracing through epidermis, capillary bed, and Beer-Lambert glucose absorption; (2) Slide 15: Dual-thermistor heat-flux vector architecture and 24h circadian thermal curve with 4:30 AM nadir (96.0\u00b0F); (3) Slide 16: PWTT dual-channel electro-optical timing (ECG R-peak to wrist PPG arrival) and Moens-Korteweg arterial pressure wave; (4) Slide 17: Dual-wavelength (660nm red vs 940nm IR) hemoglobin absorption spectra and sleep apnea 86% desaturation waveform; (5) Slide 18: Beat-to-beat R-R tachogram and Poincar\u00e9 Lorenz scatter geometry (SD1 vagal tone vs SD2 sympathetic load). Re-rendered synchronized Australian female audio tracks matching diagrams directly.",
+    "resolution": "Embedded rich SVG vector diagrams into the right panel of Slides 14 through 18 to visually explain the physical biosensors: (1) Slide 14: Multi-wavelength (525nm/940nm) optical ray-tracing through epidermis, capillary bed, and Beer-Lambert glucose absorption; (2) Slide 15: Dual-thermistor heat-flux vector architecture and 24h circadian thermal curve with 4:30 AM nadir (96.0°F); (3) Slide 16: PWTT dual-channel electro-optical timing (ECG R-peak to wrist PPG arrival) and Moens-Korteweg arterial pressure wave; (4) Slide 17: Dual-wavelength (660nm red vs 940nm IR) hemoglobin absorption spectra and sleep apnea 86% desaturation waveform; (5) Slide 18: Beat-to-beat R-R tachogram and Poincaré Lorenz scatter geometry (SD1 vagal tone vs SD2 sympathetic load). Re-rendered synchronized Australian female audio tracks matching diagrams directly.",
     "created_at": "2026-11-20 10:57:03",
     "resolved_at": "2026-11-20 10:57:03"
+  },
+  {
+    "bug_code": "CLE-057",
+    "title": "Slide 25 Visual Alignment & Physiological Nadir Architecture: 24h Glucose Curve and Dawn vs Somogyi Analysis",
+    "status": "RESOLVED",
+    "build_number": "V0.16.16.0",
+    "component": "Presentation / Metabolic Telemetry",
+    "affected_files": "all_slides_data.json, audio/slide_25.mp3, build_presentation.py, preview.html, slides/slide_25.html, TRANSCRIPT.md",
+    "resolution": "Corrected Slide 25 screenshot from erroneous Cardio console to authentic 24-hour continuous glucose curve (images/lcars_chart_glucose.png). Designed and embedded comprehensive right-panel SVG trajectory diagram and clinical educational callout defining the physiological Nadir (lowest metabolic trough, 03:00-04:30 AM). Detailed the vital clinical distinction between true Dawn Phenomenon (normal nadir + morning cortisol surge) and Somogyi rebound (nocturnal crash <60 mg/dL + emergency adrenaline dump), showing why single morning fingersticks risk lethal overtreatment. Re-rendered slide_25.mp3 with Australian female voice.",
+    "created_at": "2026-11-20 11:02:48",
+    "resolved_at": "2026-11-20 11:02:48"
+  },
+  {
+    "bug_code": "CLE-058",
+    "title": "Slide 26 Visual Alignment & SOMNO-03 Hypnogram: Delta Sleep vs Cortisol Suppression",
+    "status": "RESOLVED",
+    "build_number": "v2.8.4",
+    "component": "Presentation & Telemetry / Sleep Hypnogram",
+    "affected_files": "all_slides_data.json, audio/slide_26.mp3, images/lcars_chart_sleep.png",
+    "resolution": "Replaced incorrect screenshot on Slide 26 with authentic SOMNO-03 sleep hypnogram (lcars_chart_sleep.png). Configured right panel with SVG sleep architecture diagram contrasting Deep Delta sleep cortisol suppression against fragmented hypoxia and morning fasting surges. Re-rendered slide_26.mp3 with Australian Female Voice.",
+    "created_at": "2026-11-20T11:23:17.486201",
+    "resolved_at": "2026-11-20T11:23:17.486201"
+  },
+  {
+    "bug_code": "CLE-059",
+    "title": "Slide 27 Habit Correlation Scrolled View & Slide 28 Epic EHR Integration",
+    "status": "RESOLVED",
+    "build_number": "v2.8.4",
+    "component": "Presentation & Tab 04 Reports / Epic Bridge",
+    "affected_files": "w11_htm_app/index.html, index.html, all_slides_data.json, audio/slide_27.mp3, audio/slide_28.mp3, images/lcars_slide27_habit_correlation.png, images/lcars_slide28_epic_gateway.png",
+    "resolution": "Restored accidentally truncated 230KB script section in index.html. Captured tall crop lcars_slide27_habit_correlation.png (1129x1641) enabling smooth viewport scrolling to reveal #boxExerciseMetabolicCorrelation (r = -0.79 inverse correlation, -42 mg/dL post-meal drop). Updated Slide 28 with lcars_slide28_epic_gateway.png highlighting toolbar 'PUSH TO DOCTOR\\'S EPIC' button and HL7 FHIR R4 clinical rationale. Re-rendered audio for Slides 27 and 28.",
+    "created_at": "2026-11-20T11:23:17.486201",
+    "resolved_at": "2026-11-20T11:23:17.486201"
+  },
+  {
+    "bug_code": "CLE-060",
+    "title": "Slides 29 & 30: 360° Synchronized Tall Chart, 8 Stacked Lanes & Pinned Med/Food Markers",
+    "status": "RESOLVED",
+    "build_number": "v2.8.4",
+    "component": "Presentation & Tab 04 Reports / Tall Chart",
+    "affected_files": "all_slides_data.json, audio/slide_29.mp3, audio/slide_30.mp3, images/lcars_slide29_tall_chart_stack.png",
+    "resolution": "Captured 1076x1232 tall cropped screenshot of the 360° synchronized tall chart. Configured Slide 29 and Slide 30 with monotonic scroll progression synchronized to Australian Female Voice. Explicitly discussed pinned '🥗 FOOD / MEAL' carb markers and '💊 MED CHANGE' milestones on Slide 29, and conducted a thorough top-to-bottom clinical audit of all 8 stacked lanes on Slide 30. Re-rendered slide_29.mp3 and slide_30.mp3.",
+    "created_at": "2026-11-20T11:23:17.486201",
+    "resolved_at": "2026-11-20T11:23:17.486201"
+  },
+  {
+    "bug_code": "CLE-061",
+    "title": "Slides 31, 32 & 33: Vertical Scrubber HUD, Click-to-Pop Point Cards & Pinned Med Milestones",
+    "status": "RESOLVED",
+    "build_number": "v2.8.4",
+    "component": "Presentation & Tab 04 Reports / Interactive Audits",
+    "affected_files": "all_slides_data.json, audio/slide_31.mp3, audio/slide_32.mp3, audio/slide_33.mp3, images/lcars_slide31_scrubber_hud.png, images/lcars_slide32_point_card_modal.png, images/lcars_slide33_med_change_milestone.png",
+    "resolution": "Captured tall cropped screenshots for Slide 31 (vertical scrubber line cross-secting all 8 lanes at 13:30 with HUD ribbon), Slide 32 (Click-to-Pop Point Card modal in context displaying 188 mg/dL, BP, SpO2, and GLUT4 drop), and Slide 33 (focused on the red dashed line and '💊 MED CHANGE' milestone marker with 30-day pre/post -24 mg/dL therapeutic proof). Re-rendered slide_31.mp3, slide_32.mp3, and slide_33.mp3 with Australian Female Voice.",
+    "created_at": "2026-11-20T11:23:17.486201",
+    "resolved_at": "2026-11-20T11:23:17.486201"
   }
 ]

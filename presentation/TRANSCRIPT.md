@@ -205,7 +205,7 @@
 **Module:** Module 5: The Diabetes Learning Engine  
 **Description:** Identifying nocturnal nadirs and counteracting morning hepatic glucose surges.  
 
-> "Here, we address morning fasting numbers and the dawn surge. Many diabetics wake up with high blood sugar due to the Dawn Phenomenon—a natural morning surge of cortisol that prompts the liver to release glucose. By tracking continuous overnight telemetry down to the 4 AM nadir, LCARS helps your doctor determine the right evening strategy to suppress morning spikes."
+> "Displayed on your screen is our continuous 24-hour glucose curve from Tab 03 Metabolic Console, focusing on circadian fasting windows and the nocturnal nadir. In physiological telemetry, the nadir is defined as the lowest trough or baseline minimum reached by a biological parameter during a cycle. In diabetes management, the overnight glycemic nadir occurs between 3:00 and 4:30 AM, when digestion is complete and hepatic glucose production rests. Illustrated on the right panel is the vital clinical distinction between the Dawn Phenomenon and the Somogyi Effect. Many diabetics wake up with elevated fasting numbers. If continuous telemetry reveals a normal 4:00 AM nadir near 100 milligrams per deciliter followed by a 7:00 AM climb to 174, this is the true Dawn Phenomenon, driven by morning surges of cortisol and growth hormone. However, if the nadir plunges into a nocturnal hypoglycemic crash below 60, the morning spike is an emergency Somogyi rebound. Because an isolated morning fingerstick only captures the elevated waking number and is completely blind to the nadir, it risks dangerous medication overtreatment. LCARS gives your care team the continuous overnight trajectory needed for absolute clinical certainty."
 
 ---
 
@@ -213,7 +213,7 @@
 **Module:** Module 5: The Diabetes Learning Engine  
 **Description:** How deep delta sleep and stable arterial oxygen reduce nocturnal cortisol and insulin resistance.  
 
-> "Next, we connect sleep architecture directly to metabolic regulation. During deep delta sleep, your body repairs tissue and suppresses cortisol. If your sleep is fragmented by hypoxia or frequent awakenings, morning cortisol spikes, worsening insulin resistance. Tracking nocturnal oxygen stability ensures your sleep actively aids your glycemic goals."
+> "Displayed on your screen is our SOMNO-03 Sleep Architecture and Circadian Hypnogram chart. Sleep quality is one of the most powerful and overlooked determinants of diabetic glycemic control. As shown in the hypnogram, the sleep array segments rest into Deep Delta sleep, Light sleep, REM dreaming, and wake epochs. During Stage N3 deep delta sleep, the endocrine system suppresses cortisol secretion and releases growth hormone, which restores hepatic insulin sensitivity for the upcoming day. Conversely, if sleep is fragmented by nocturnal hypoxia, frequent arousals, or apnea dips, the sympathetic nervous system stays active, surging nocturnal cortisol and epinephrine. This unsuppressed cortisol directly triggers hepatic glucose output, causing stubborn morning fasting spikes. By continuously monitoring sleep efficiency and deep sleep percentage, LCARS empowers you and your care team to verify that nocturnal rest is actively protecting your glycemic resilience."
 
 ---
 
@@ -221,7 +221,7 @@
 **Module:** Module 5: The Diabetes Learning Engine  
 **Description:** Cross-analyzing diet, physical activity, and sleep against objective physiological biomarkers.  
 
-> "Here, we examine multi-parameter habit correlation. Diabetes is managed through daily habits. LCARS continuously correlates your steps, your meals, and your sleep architecture against your glucose curves. This gives you and your doctor undeniable evidence of what works best for your body."
+> "Displayed on your screen is our Exercise and Metabolic Clearance Correlation engine from Tab 04 Reports Console. Diabetes management succeeds through daily habits, and here LCARS correlates your physical movement and meals directly against objective glycemic outcomes. As shown on screen, active workout days with at least 7,000 steps achieve an optimal mean glucose of 118 milligrams per deciliter and a Time-in-Range of 86.4 percent, with post-meal walks blunting glucose spikes by an average of 42 milligrams per deciliter. Conversely, sedentary days reflect wider glycemic variability and depressed time in range. On the right panel, our multi-variable regression reveals a strong inverse correlation coefficient of r equals minus 0.79 between daily step volume and mean glucose, providing patients and physicians with undeniable proof of what works best for your body."
 
 ---
 
@@ -229,7 +229,7 @@
 **Module:** Module 5: The Diabetes Learning Engine  
 **Description:** How 1-click export pushes continuous telemetry directly into your doctor's Epic Electronic Health Record.  
 
-> "Displayed on screen is our flagship clinical bridge: direct Epic Electronic Health Record integration. With a single click in LCARS, your 24-hour glucose curves, Time-in-Range percentages, blood pressure dipping, and medication adherence are formatted into standard HL7 FHIR records and pushed directly into your doctor's Epic MyChart chart, becoming a permanent part of your clinical medical record."
+> "Displayed on your screen is the Reports Toolbar in Tab 04, highlighting our prominent blue button: Push Data to Doctor's Epic. Epic Systems is the world's leading Electronic Health Record software, used by over three hundred and five million patients and more than seventy-eight percent of hospital beds and primary care clinics across the globe. Why is direct Epic integration so critical? Traditionally, a massive clinical telemetry gap exists between a patient's everyday life and their fifteen-minute doctor appointment. Patients struggle to remember blood sugar trends, and doctors cannot inspect consumer smartphone apps. With a single click of our Epic upload button, LCARS securely packages your entire ninety-day continuous dataset—including twenty-five thousand glucose points, nocturnal nadirs, and blood pressure dipping—into standardized HL7 FHIR R4 clinical observation bundles. This data flows directly into your physician's Epic Hyperspace flowsheet and InBasket. This closes the loop between patient and doctor, enabling immediate medication titration and qualifying your care team for remote patient monitoring reimbursement."
 
 ---
 
@@ -237,7 +237,7 @@
 **Module:** Module 6: Tab 04 Synchronized Tall Chart  
 **Description:** How a unified vertical timeline aligns 8 physiological metrics on a shared horizontal time axis.  
 
-> "In Module 6, we explore Tab 04: the Synchronized Tall Chart. Instead of jumping across disconnected mobile screens, LCARS stacks all 8 biometric streams on one shared 24-hour time axis with zero label overlap. You can scan vertically from midnight to midnight and instantly see how everything connects."
+> "Displayed on your screen is our 360-degree Synchronized Composite Timeline from Tab 04 Reports Console. Instead of fragmenting physiological data across disconnected mobile screens, LCARS stacks all eight biometric channels on one shared twenty-four-hour horizontal clock. As your view scrolls down the screen, observe how continuous glucose, blood pressure, heart rate, oxygenation, and temperature align seamlessly above kinetic exercise, nutrition, and medications. Critically, notice the pinned food and medication markers integrated directly onto the time axis. The green salad marker logs dietary carbohydrate intake, while prominent medication markers pinpoint exact doses. By pinning these behavioral and clinical events onto the timeline, patients and physicians can immediately track how specific meals and medication changes directly govern every subsequent physiological deflection."
 
 ---
 
@@ -245,7 +245,7 @@
 **Module:** Module 6: Tab 04 Synchronized Tall Chart  
 **Description:** Examining the 8 synchronized lanes: Glucose, eA1c, Temperature, Sleep, Steps, Heart Rate, BP, and SpO2.  
 
-> "Displayed on screen are the eight stacked clinical telemetry lanes. Lane 1 is continuous glucose. Lane 2 is projected A1C. Lane 3 is dual core and skin temperature. Lane 4 is sleep hypnograms. Lane 5 is step activity. Lane 6 is heart rate. Lane 7 is blood pressure. And Lane 8 is pulse oximetry. It's a complete 360-degree audit of your day."
+> "Displayed on your screen is our comprehensive eight-lane stacked clinical telemetry array. As the chart scrolls downward, we examine each physiological measurement in clinical sequence. Lane 1 displays continuous glucose, shaded with a green target band representing sixty to two hundred milligrams per deciliter. Lane 2 tracks arterial blood pressure, contrasting systolic and diastolic curves against normal thresholds. Lane 3 charts heart rate and heart rate variability, capturing autonomic sympathetic tone. Lane 4 monitors pulse oximetry, alerting to nocturnal desaturations below ninety-five percent. Lane 5 traces core and skin temperature, mapping the circadian metabolic nadir. Lane 6 details kinetic exercise steps and post-meal non-insulin GLUT4 clearance. Lane 7 captures dietary nutrition with pinned meal carb markers, and Lane 8 records active medications and titration milestones. This vertical stack gives clinicians an unprecedented panoramic view of whole-body metabolic regulation."
 
 ---
 
@@ -253,7 +253,7 @@
 **Module:** Module 6: Tab 04 Synchronized Tall Chart  
 **Description:** How dragging the vertical scrubber aligns all 8 channels to reveal exact causes behind glucose spikes.  
 
-> "Here, we introduce the synchronized vertical scrubber HUD. As you drag your cursor across the chart, a vertical guideline cross-sects all 8 lanes at that exact timestamp. When you stop at 1:30 PM, you see your peak glucose of 232 milligrams per deciliter aligning with 34 grams of lunch carbs, an elevated heart rate, and post-meal rest."
+> "Displayed on your screen is our automated Vertical Scrubber Line gliding across all eight telemetry channels. As the dashed yellow vertical crosshair tracks across the timeline, it intersects every physiological variable at that exact instant in time. Notice at 13:30, the post-lunch peak, the scrubber aligns a glucose peak of 188 milligrams per deciliter with an 18-gram low-carb salad, an 84 beat per minute pulse, and an immediate post-meal brisk walk. Above the chart, the real-time HUD ribbon instantly updates with exact synchronized values for glucose, blood pressure, SpO2, and medication status. By automating this vertical crosshair, LCARS uncovers the hidden physiological cause behind every glycemic peak and valley, allowing users to click any point to open a granular clinical pop-up audit."
 
 ---
 
@@ -261,7 +261,7 @@
 **Module:** Module 6: Tab 04 Synchronized Tall Chart  
 **Description:** Clicking any timeline node displays exact values, diet logs, and medication context.  
 
-> "Next, we examine Click-to-Pop Clinical Audit Cards. Whenever you click any data point on the timeline, a detailed pop-up card appears. It reveals the exact numeric glucose, the delta G drop from prior readings, logged meals, exercise steps, and whether medications were taken on time."
+> "Displayed on your screen is our Click-to-Pop Clinical Point Card modal, captured directly in Tab 04 Reports Console. Touching or clicking any data point on the continuous timeline instantly surfaces this detailed clinical audit window. As shown in the modal, every point captures the exact verified glucose reading of 188 milligrams per deciliter, accompanied by normotensive blood pressure of 119 over 76, 98 percent oxygenation, and an 84 beat per minute pulse. Directly below, the modal details the patient's nutritional intake: a grilled chicken salad with eighteen grams of net carbs, paired with a twenty-minute post-meal GLUT4 walk that suppressed glucose by 34 milligrams per deciliter. Finally, the clinical correlation box explains that non-insulin skeletal muscle uptake safely maintained time-in-range. This gives physicians an instantaneous micro-audit during clinical consultations without searching through paper logs."
 
 ---
 
@@ -269,7 +269,7 @@
 **Module:** Module 6: Tab 04 Synchronized Tall Chart  
 **Description:** Visualizing prescription changes on clinical graphs to objectively measure therapeutic response.  
 
-> "Pinning medication change milestones is crucial for clinical consultations. When your physician alters a prescription, logging the titration pins a prominent MED CHANGE milestone directly across your timeline. Both of you can then compare the 14 days before against the 14 days after, objectively proving whether the change yielded clinical progress."
+> "Displayed on your screen is our longitudinal timeline with a pinned 'MED CHANGE' milestone marker. When an endocrinologist titrates an outpatient prescription—such as increasing Metformin or initiating an SGLT-2 inhibitor—LCARS pins a vertical milestone line cutting across all eight physiological channels on that exact calendar date. As shown on screen, this divides the timeline into an empirical before-and-after therapeutic comparison. In the thirty days prior to titration, mean glucose averaged 178 milligrams per deciliter with wide glycemic volatility. Following the medication change, mean glucose systematically dropped by 24 milligrams per deciliter, Time-in-Range expanded to 88 percent, and blood pressure stabilized. By visually pinning medication changes to objective ambulatory telemetry, patients and physicians obtain irrefutable proof of therapeutic progress, eliminating guesswork from diabetes management."
 
 ---
 

@@ -102,15 +102,19 @@
         <ul class="bullets-list" style="padding-left: 0; list-style-type: none; margin-bottom: 4px; color: #1e293b; font-size: 0.80rem;">
           
           <li id="bullet-item-0" class="bullet-item" data-idx="0" style="margin-bottom: 5px; line-height: 1.35; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: all 0.25s ease;">
-            <strong style="color: #0369a1;">Instant Point Inspection:</strong> Click any node on the curve to inspect verified measurements and timestamps.
+            <strong style="color: #0369a1;">Instant Click-to-Pop Inspection:</strong> Clicking any timeline node instantly surfaces a comprehensive modal displaying all verified metrics at that timestamp.
           </li>
         
           <li id="bullet-item-1" class="bullet-item" data-idx="1" style="margin-bottom: 5px; line-height: 1.35; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: all 0.25s ease;">
-            <strong style="color: #0369a1;">Comprehensive Micro-Audit:</strong> Displays immediate delta G changes, logged dietary carbs, and medication adherence.
+            <strong style="color: #0369a1;">Granular Multi-System Matrix:</strong> Displays exact numeric glucose (188 mg/dL), blood pressure (119/76), oxygenation (98%), pulse (84 BPM), and HRV (56 ms).
           </li>
         
           <li id="bullet-item-2" class="bullet-item" data-idx="2" style="margin-bottom: 5px; line-height: 1.35; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: all 0.25s ease;">
-            <strong style="color: #0369a1;">Consultation Efficiency:</strong> Allows your physician to quickly audit specific spikes without searching through paper logs.
+            <strong style="color: #0369a1;">Nutritional & Kinetic Correlates:</strong> Details meal carbohydrates (18g net carbs), caloric intake (520 kcal), and post-meal GLUT4 walk step suppression (-34 mg/dL).
+          </li>
+        
+          <li id="bullet-item-3" class="bullet-item" data-idx="3" style="margin-bottom: 5px; line-height: 1.35; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: all 0.25s ease;">
+            <strong style="color: #0369a1;">Physician-Patient Consultation Proof:</strong> Provides an authoritative clinical explanation, verifying that lifestyle compliance actively protected beta-cell reserve.
           </li>
         
         </ul>
@@ -119,7 +123,7 @@
         <div class="left-screenshot-card" style="margin-top: 6px; margin-bottom: 6px; border: 2px solid #cbd5e1; border-radius: 8px; overflow: hidden; background: #ffffff; box-shadow: 0 4px 14px rgba(0,0,0,0.08); display: flex; flex-direction: column; flex: 1; min-height: 290px;">
           <!-- Continuous Monotonic Scroll Viewport (Clean Light Background) -->
           <div class="left-screenshot-viewport" style="text-align: center; background: #ffffff; overflow-y: auto; flex: 1; min-height: 250px; position: relative;">
-            <img src="images/lcars_slide29_point_cards.png" onerror="this.src='../images/lcars_slide29_point_cards.png'" alt="04-REPORTS CONSOLE • CLICK-TO-POP CLINICAL POINT CARDS" style="width: 100%; height: auto; display: block; object-fit: cover; object-position: top center;">
+            <img src="images/lcars_slide32_point_card_modal.png" onerror="this.src='../images/lcars_slide32_point_card_modal.png'" alt="04-REPORTS CONSOLE • CLICK-TO-POP POINT AUDIT CARD" style="width: 100%; height: auto; display: block; object-fit: cover; object-position: top center;">
           </div>
         </div>
         
@@ -128,19 +132,42 @@
 
       <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #15803d; padding: 10px 14px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto; scroll-behavior: smooth;">
         <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 4px; margin-bottom: 6px; flex-shrink: 0;">
-          <span style="font-family: monospace; font-weight: 800; color: #0284c7; font-size: 0.84rem;">CLINICAL POP-UP CARDS</span>
-          <span style="background: #f8fafc; color: #15803d; font-weight: 800; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; border: 1.5px solid #15803d;">INSTANT MICRO-AUDIT</span>
+          <span style="font-family: monospace; font-weight: 800; color: #0284c7; font-size: 0.84rem;">CLINICAL POINT MICRO-AUDIT</span>
+          <span style="background: #f8fafc; color: #15803d; font-weight: 800; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; border: 1.5px solid #15803d;">POP-UP MODAL</span>
         </div>
         <div class="visual-content" style="flex: 1; display: flex; flex-direction: column;">
           
-          <div style="margin-top:10px; background:#f0fdf4; border:1.5px solid #bbf7d0; border-radius:6px; padding:12px;">
-            <div style="font-size:1.1rem; font-weight:800; color:#14532d; font-family:monospace;">POINT 10:00: 165 MG/DL (-27 MG/DL DROP)</div>
-            <div style="font-size:0.84rem; color:#166534; margin-top:6px; line-height:1.45;">Pop-up micro-audit verifies 2,384 morning walk steps successfully lowered glucose from 192 to 165 mg/dL.</div>
+          <!-- Clinical Point Card Educational Structure -->
+          <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 10px; margin-top: 4px; color: #0f172a;">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 4px; margin-bottom: 8px;">
+              <span style="font-family: monospace; font-size: 0.72rem; color: #15803d; font-weight: 800;">POINT CARD ARCHITECTURE (13:30)</span>
+              <span style="background: #15803d; color: #fff; font-size: 0.60rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; font-family: monospace;">INSTANT AUDIT</span>
+            </div>
+
+            <!-- Modal Content Breakdown -->
+            <div style="display: flex; flex-direction: column; gap: 5px; font-family: monospace; font-size: 0.66rem;">
+              <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 3px; padding: 5px;">
+                <strong style="color: #166534;">1. Biometric Triad:</strong>
+                <span style="color: #14532d;"> 188 mg/dL Glucose • 119/76 mmHg BP • 98% SpO2 / 84 BPM.</span>
+              </div>
+              <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 3px; padding: 5px;">
+                <strong style="color: #0284c7;">2. Nutritional Macro Profile:</strong>
+                <span style="color: #1e3a8a;"> Grilled chicken salad • 18g net carbs • 520 kcal • Low GI.</span>
+              </div>
+              <div style="background: #fff7ed; border: 1px solid #fed7aa; border-radius: 3px; padding: 5px;">
+                <strong style="color: #ea580c;">3. GLUT4 Exercise Clearance:</strong>
+                <span style="color: #9a3412;"> 780 steps • 20-min walk • -34 mg/dL postprandial drop.</span>
+              </div>
+              <div style="background: #f5f3ff; border: 1px solid #ddd6fe; border-radius: 3px; padding: 5px;">
+                <strong style="color: #7c3aed;">4. Active Prescription Status:</strong>
+                <span style="color: #5b21b6;"> Metformin 1,000mg BID + Empagliflozin 10mg taken with breakfast.</span>
+              </div>
+            </div>
           </div>
-        
+    
         </div>
         <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.78rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
-          <strong style="color: #15803d;">Key Takeaway:</strong> Instant deep-dive micro-audits at the touch of any data point on your clinical curve.
+          <strong style="color: #15803d;">Key Takeaway:</strong> Clicking any point on the clinical curve opens an instant micro-audit modal. At 13:30, it validates 188 mg/dL glucose, 18g meal carbs, and a 20-min GLUT4 walk (-34 mg/dL), providing physicians with complete consultation proof.
         </div>
       </div>
     

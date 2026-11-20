@@ -1378,29 +1378,33 @@
     "module": "Module 5: The Diabetes Learning Engine",
     "title": "Circadian Fasting Windows & Dawn Phenomenon Suppression",
     "desc": "Identifying nocturnal nadirs and counteracting morning hepatic glucose surges.",
-    "narration": "Here, we address morning fasting numbers and the dawn surge. Many diabetics wake up with high blood sugar due to the Dawn Phenomenon\u2014a natural morning surge of cortisol that prompts the liver to release glucose. By tracking continuous overnight telemetry down to the 4 AM nadir, LCARS helps your doctor determine the right evening strategy to suppress morning spikes.",
+    "narration": "Displayed on your screen is our continuous 24-hour glucose curve from Tab 03 Metabolic Console, focusing on circadian fasting windows and the nocturnal nadir. In physiological telemetry, the nadir is defined as the lowest trough or baseline minimum reached by a biological parameter during a cycle. In diabetes management, the overnight glycemic nadir occurs between 3:00 and 4:30 AM, when digestion is complete and hepatic glucose production rests. Illustrated on the right panel is the vital clinical distinction between the Dawn Phenomenon and the Somogyi Effect. Many diabetics wake up with elevated fasting numbers. If continuous telemetry reveals a normal 4:00 AM nadir near 100 milligrams per deciliter followed by a 7:00 AM climb to 174, this is the true Dawn Phenomenon, driven by morning surges of cortisol and growth hormone. However, if the nadir plunges into a nocturnal hypoglycemic crash below 60, the morning spike is an emergency Somogyi rebound. Because an isolated morning fingerstick only captures the elevated waking number and is completely blind to the nadir, it risks dangerous medication overtreatment. LCARS gives your care team the continuous overnight trajectory needed for absolute clinical certainty.",
     "card_title": "CIRCADIAN FASTING & DAWN PHENOMENON SUPPRESSION",
     "bullets": [
       [
-        "Nocturnal Nadir Identification",
-        "Confirms blood sugar steadily drops to its lowest healthy baseline at 4:00 AM."
+        "What is the Nocturnal Nadir?",
+        "The nadir is the lowest physiological trough reached during a 24-hour cycle (typically occurring between 3:00 AM and 4:30 AM), establishing the true baseline metabolic floor before waking."
       ],
       [
-        "Dawn Phenomenon Detection",
-        "Differentiates hepatic morning surges from overnight Somogyi hypoglycemic rebound."
+        "Dawn Phenomenon vs Somogyi Rebound",
+        "A high waking number preceded by a normal nadir is hepatic Dawn Phenomenon (cortisol surge); preceded by a hypoglycemic crash (<60 mg/dL), it is Somogyi rebound requiring medication reduction."
       ],
       [
-        "Targeted Morning Routine",
-        "A brief morning stroll quickly clears dawn surges via immediate muscle contraction."
+        "The Snapshot Blindness Hazard",
+        "A single waking fingerstick cannot see the overnight nadir. Increasing evening medication for a presumed dawn surge can prove fatal if the true culprit was an unrecognized Somogyi crash."
+      ],
+      [
+        "Targeted Clinical Countermeasures",
+        "Continuous nadir telemetry empowers doctors to prescribe targeted bedtime protein-fat buffers or a brisk morning walk to immediately clear hepatic glucose via GLUT4 translocation."
       ]
     ],
-    "takeaway": "Unmasks overnight blood sugar mysteries to deliver healthy, predictable morning fasting numbers.",
-    "right_header": "DAWN PHENOMENON SUPPRESSION",
-    "right_badge": "CIRCADIAN NADIR & SURGE",
-    "right_badge_col": "#ca8a04",
-    "right_html": "\n          <div style=\"margin-top:10px; background:#fefce8; border:1.5px solid #fef08a; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#854d0e; font-family:monospace;\">04:00 NADIR: 162 -> 07:00 FASTING: 174</div>\n            <div style=\"font-size:0.84rem; color:#713f12; margin-top:6px; line-height:1.45;\">Continuous 00:00 to 06:00 tracking distinguishes Somogyi rebound from hepatic Dawn Phenomenon with clinical certainty.</div>\n          </div>\n        ",
-    "tab_screenshot": "images/lcars_tab_cardio.png",
-    "tab_title": "02-CARDIO CONSOLE \u2022 AUTONOMIC SYMPATHO-VAGAL BALANCE",
+    "takeaway": "The nadir is the lowest physiological trough during a continuous cycle. Continuous overnight telemetry captures the 4:00 AM nadir, enabling clinicians to definitively distinguish a benign Dawn Phenomenon from a dangerous Somogyi hypoglycemic crash\u2014a vital clinical distinction that isolated morning fingersticks completely miss.",
+    "right_header": "CIRCADIAN FASTING & CLINICAL NADIR DYNAMICS",
+    "right_badge": "PHYSIOLOGICAL TROUGH ANALYSIS",
+    "right_badge_col": "#d97706",
+    "right_html": "\n          <!-- What is a Nadir & Dawn Phenomenon Architecture -->\n          <div style=\"background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 10px; margin-top: 4px; color: #0f172a;\">\n            <div style=\"display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 4px; margin-bottom: 8px;\">\n              <span style=\"font-family: monospace; font-size: 0.72rem; color: #0284c7; font-weight: 800;\">CLINICAL METABOLIC NADIR (00:00 TO 08:00 TRAJECTORY)</span>\n              <span style=\"background: #d97706; color: #fff; font-size: 0.60rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; font-family: monospace;\">TROUGH VS ZENITH</span>\n            </div>\n\n            <!-- SVG Diagram: Nocturnal Nadir & Dawn Phenomenon vs Somogyi Effect -->\n            <svg viewBox=\"0 0 420 175\" style=\"width: 100%; height: auto; display: block; background: #ffffff; border-radius: 4px; border: 1px solid #e2e8f0;\">\n              <!-- Grid Background & Y-Axis Reference Lines -->\n              <line x1=\"45\" y1=\"25\" x2=\"400\" y2=\"25\" stroke=\"#fee2e2\" stroke-width=\"1\"/>\n              <text x=\"40\" y=\"28\" fill=\"#dc2626\" font-size=\"6.5\" font-family=\"monospace\" text-anchor=\"end\">180</text>\n\n              <line x1=\"45\" y1=\"65\" x2=\"400\" y2=\"65\" stroke=\"#f1f5f9\" stroke-width=\"1\"/>\n              <text x=\"40\" y=\"68\" fill=\"#64748b\" font-size=\"6.5\" font-family=\"monospace\" text-anchor=\"end\">140</text>\n\n              <line x1=\"45\" y1=\"105\" x2=\"400\" y2=\"105\" stroke=\"#dcfce7\" stroke-width=\"1\"/>\n              <text x=\"40\" y=\"108\" fill=\"#16a34a\" font-size=\"6.5\" font-family=\"monospace\" text-anchor=\"end\">100</text>\n\n              <line x1=\"45\" y1=\"145\" x2=\"400\" y2=\"145\" stroke=\"#fef2f2\" stroke-width=\"1.5\" stroke-dasharray=\"3,2\"/>\n              <text x=\"40\" y=\"148\" fill=\"#991b1b\" font-size=\"6.5\" font-family=\"monospace\" text-anchor=\"end\" font-weight=\"bold\">60 (HYPO)</text>\n\n              <!-- Nighttime Window Shading (00:00 to 06:00) -->\n              <rect x=\"50\" y=\"15\" width=\"220\" height=\"140\" fill=\"#f8fafc\" opacity=\"0.8\"/>\n              <text x=\"160\" y=\"22\" fill=\"#64748b\" font-size=\"7\" font-family=\"monospace\" text-anchor=\"middle\">OVERNIGHT SLEEP & FASTING (00:00 - 06:00)</text>\n\n              <!-- Curve A: True Dawn Phenomenon (Green/Orange Line) -->\n              <path d=\"M 50 65 C 100 70, 140 100, 180 102 C 220 102, 270 50, 360 30 L 395 30\" fill=\"none\" stroke=\"#d97706\" stroke-width=\"2.5\"/>\n              \n              <!-- Point 1: 04:00 True Nadir -->\n              <circle cx=\"180\" cy=\"102\" r=\"4\" fill=\"#15803d\"/>\n              <rect x=\"125\" y=\"112\" width=\"110\" height=\"15\" rx=\"3\" fill=\"#f0fdf4\" stroke=\"#86efac\"/>\n              <text x=\"180\" y=\"122\" fill=\"#166534\" font-size=\"6.5\" font-family=\"monospace\" text-anchor=\"middle\" font-weight=\"bold\">04:00 TRUE NADIR: 102 mg/dL</text>\n\n              <!-- Point 2: 07:00 Fasting Dawn Surge -->\n              <circle cx=\"360\" cy=\"30\" r=\"4\" fill=\"#dc2626\"/>\n              <rect x=\"305\" y=\"40\" width=\"100\" height=\"15\" rx=\"3\" fill=\"#fef2f2\" stroke=\"#fca5a5\"/>\n              <text x=\"355\" y=\"50\" fill=\"#991b1b\" font-size=\"6.5\" font-family=\"monospace\" text-anchor=\"middle\" font-weight=\"bold\">07:00 WAKING: 174 mg/dL</text>\n\n              <!-- Curve B: Somogyi Rebound Crash (Red Dashed Line) -->\n              <path d=\"M 50 65 C 100 80, 140 152, 180 152 C 220 152, 270 45, 360 30\" fill=\"none\" stroke=\"#dc2626\" stroke-width=\"2\" stroke-dasharray=\"4,3\"/>\n              <circle cx=\"180\" cy=\"152\" r=\"3.5\" fill=\"#dc2626\"/>\n              <text x=\"180\" y=\"165\" fill=\"#991b1b\" font-size=\"6\" font-family=\"monospace\" text-anchor=\"middle\" font-weight=\"bold\">\u26a0\ufe0f SOMOGYI CRASH: 52 mg/dL</text>\n\n              <!-- Time Labels on X-Axis -->\n              <text x=\"50\" y=\"168\" fill=\"#64748b\" font-size=\"6.5\" font-family=\"monospace\">00:00</text>\n              <text x=\"115\" y=\"168\" fill=\"#64748b\" font-size=\"6.5\" font-family=\"monospace\">02:00</text>\n              <text x=\"180\" y=\"168\" fill=\"#0284c7\" font-size=\"7\" font-family=\"monospace\" font-weight=\"bold\">04:00 (NADIR)</text>\n              <text x=\"270\" y=\"168\" fill=\"#64748b\" font-size=\"6.5\" font-family=\"monospace\">06:00</text>\n              <text x=\"360\" y=\"168\" fill=\"#dc2626\" font-size=\"7\" font-family=\"monospace\" font-weight=\"bold\">07:00 (WAKE)</text>\n            </svg>\n\n            <!-- Detailed Medical Callout: What is a Nadir? -->\n            <div style=\"margin-top: 8px; background: #fffbeb; border: 1.5px solid #fde68a; border-radius: 5px; padding: 8px; font-family: monospace; font-size: 0.68rem; line-height: 1.35;\">\n              <div style=\"color: #92400e; font-weight: 900; font-size: 0.74rem; display: flex; align-items: center; gap: 6px;\">\n                <span>\ud83d\udd2c WHAT IS A PHYSIOLOGICAL NADIR?</span>\n              </div>\n              <div style=\"color: #78350f; margin-top: 4px;\">\n                <strong>Definition:</strong> In medical science, the <em>nadir</em> (derived from Arabic <em>na\u1e93\u012br</em>, meaning counterpart to zenith) is the lowest concentration, trough, or minimum level reached by a physiological biomarker during a cycle.\n              </div>\n              <div style=\"color: #78350f; margin-top: 4px;\">\n                <strong>The Nocturnal Glycemic Nadir:</strong> Occurs between 03:00 and 04:30 AM when insulin sensitivity is elevated and food digestion is absent. It reveals the patient's true baseline metabolic floor.\n              </div>\n            </div>\n\n            <!-- Clinical Diagnostic Matrix: Dawn vs Somogyi -->\n            <div style=\"margin-top: 6px; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; font-family: monospace; font-size: 0.67rem;\">\n              <div style=\"background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 4px; padding: 6px;\">\n                <div style=\"color: #166534; font-weight: bold;\">\ud83c\udf05 1. TRUE DAWN PHENOMENON</div>\n                <div style=\"color: #14532d; margin-top: 2px;\">\n                  \u2022 04:00 Nadir: Normal (95\u2013110 mg/dL)<br>\n                  \u2022 Cause: Morning cortisol & glucagon surge<br>\n                  \u2022 Clinical Action: Evening protein buffer or titrated basal insulin.\n                </div>\n              </div>\n              <div style=\"background: #fef2f2; border: 1px solid #fecaca; border-radius: 4px; padding: 6px;\">\n                <div style=\"color: #991b1b; font-weight: bold;\">\u26a0\ufe0f 2. SOMOGYI REBOUND EFFECT</div>\n                <div style=\"color: #7f1d1d; margin-top: 2px;\">\n                  \u2022 04:00 Nadir: Hypoglycemic (&lt;60 mg/dL)<br>\n                  \u2022 Cause: Adrenaline rescue dump after crash<br>\n                  \u2022 Clinical Action: REDUCE evening medication (increasing it is dangerous!).\n                </div>\n              </div>\n            </div>\n          </div>\n",
+    "tab_screenshot": "images/lcars_chart_glucose.png",
+    "tab_title": "03-METABOLIC CONSOLE \u2022 24-HOUR FASTING & NOCTURNAL GLYCEMIC NADIR",
     "step_focus": [
       {
         "bullet": 0,
@@ -1425,29 +1429,33 @@
     "module": "Module 5: The Diabetes Learning Engine",
     "title": "Sleep Architecture & Glycemic Resilience: SpO2, REM & Cortisol",
     "desc": "How deep delta sleep and stable arterial oxygen reduce nocturnal cortisol and insulin resistance.",
-    "narration": "Next, we connect sleep architecture directly to metabolic regulation. During deep delta sleep, your body repairs tissue and suppresses cortisol. If your sleep is fragmented by hypoxia or frequent awakenings, morning cortisol spikes, worsening insulin resistance. Tracking nocturnal oxygen stability ensures your sleep actively aids your glycemic goals.",
+    "narration": "Displayed on your screen is our SOMNO-03 Sleep Architecture and Circadian Hypnogram chart. Sleep quality is one of the most powerful and overlooked determinants of diabetic glycemic control. As shown in the hypnogram, the sleep array segments rest into Deep Delta sleep, Light sleep, REM dreaming, and wake epochs. During Stage N3 deep delta sleep, the endocrine system suppresses cortisol secretion and releases growth hormone, which restores hepatic insulin sensitivity for the upcoming day. Conversely, if sleep is fragmented by nocturnal hypoxia, frequent arousals, or apnea dips, the sympathetic nervous system stays active, surging nocturnal cortisol and epinephrine. This unsuppressed cortisol directly triggers hepatic glucose output, causing stubborn morning fasting spikes. By continuously monitoring sleep efficiency and deep sleep percentage, LCARS empowers you and your care team to verify that nocturnal rest is actively protecting your glycemic resilience.",
     "card_title": "SLEEP ARCHITECTURE, DEEP DELTA & CORTISOL",
     "bullets": [
       [
-        "Restorative Deep Delta Sleep",
-        "Rebuilds insulin sensitivity and suppresses morning stress hormones."
+        "SOMNO-03 Hypnogram Segmentation",
+        "Continuously segments nocturnal sleep into Deep Delta (N3), Light (N1/N2), REM, and micro-awakenings to quantify restorative rest."
       ],
       [
-        "Nocturnal Oxygen Stability",
-        "Verifies uninterrupted arterial SpO2 throughout the night without hypoxic dips."
+        "Endocrine Cortisol Suppression",
+        "Deep sleep actively blunts nocturnal cortisol release. Achieving healthy deep sleep (1.5\u20132.0h) restores hepatic insulin sensitivity."
       ],
       [
-        "Sleep-to-Sugar Connection",
-        "Poor sleep directly increases next-day glycemic variability and insulin resistance."
+        "Hypoxic Fragmentation & Morning Surges",
+        "Sleep apnea and frequent arousals trigger nocturnal catecholamine surges, driving excessive morning glycogenolysis and fasting spikes."
+      ],
+      [
+        "Actionable Lifestyle Intervention",
+        "Guides evening sleep hygiene, CPAP compliance, and bedtime timing to maximize deep restorative sleep and stabilize next-day glucose."
       ]
     ],
-    "takeaway": "Restorative, uninterrupted sleep is a foundational pillar of diabetic metabolic control.",
-    "right_header": "SLEEP RESILIENCE & CORTISOL",
-    "right_badge": "NOCTURNAL RESTORATION",
-    "right_badge_col": "#7c3aed",
-    "right_html": "\n          <div style=\"margin-top:10px; background:#f5f3ff; border:1.5px solid #ddd6fe; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#5b21b6; font-family:monospace;\">7.4 HOURS TOTAL \u2022 DEEP DELTA 1.9 HOURS</div>\n            <div style=\"font-size:0.84rem; color:#4c1d95; margin-top:6px; line-height:1.45;\">Restorative delta sleep lowers systemic morning cortisol, optimizing next-day peripheral insulin sensitivity.</div>\n          </div>\n        ",
-    "tab_screenshot": "images/lcars_tab_cardio.png",
-    "tab_title": "02-CARDIO CONSOLE \u2022 NOCTURNAL HYPOXIA & BP EXCURSIONS",
+    "takeaway": "Sleep architecture directly governs metabolic health. Deep delta sleep suppresses nocturnal cortisol and restores insulin sensitivity, whereas fragmented sleep triggers adrenaline surges that drive stubborn morning fasting spikes. LCARS's SOMNO-03 telemetry tracks deep sleep and nocturnal stability to optimize glycemic resilience.",
+    "right_header": "SLEEP ARCHITECTURE & GLYCEMIC REGULATION",
+    "right_badge": "SOMNO-03 HYPNOGRAM",
+    "right_badge_col": "#0284c7",
+    "right_html": "\n          <!-- Sleep Architecture & Endocrine Glycemic Regulation Diagram -->\n          <div style=\"background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 10px; margin-top: 4px; color: #0f172a;\">\n            <div style=\"display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 4px; margin-bottom: 8px;\">\n              <span style=\"font-family: monospace; font-size: 0.72rem; color: #0284c7; font-weight: 800;\">SOMNO-03 SLEEP STAGES & ENDOCRINE FEEDBACK</span>\n              <span style=\"background: #0284c7; color: #fff; font-size: 0.60rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; font-family: monospace;\">DELTA SLEEP vs CORTISOL</span>\n            </div>\n\n            <!-- SVG Diagram: Hypnogram Stages & Cortisol Curve -->\n            <svg viewBox=\"0 0 420 170\" style=\"width: 100%; height: auto; display: block; background: #ffffff; border-radius: 4px; border: 1px solid #e2e8f0;\">\n              <!-- Left: Sleep Stages & Hypnogram (x: 10 to 220) -->\n              <rect x=\"15\" y=\"10\" width=\"205\" height=\"145\" rx=\"5\" fill=\"#f8fafc\" stroke=\"#cbd5e1\"/>\n              <text x=\"117\" y=\"24\" fill=\"#334155\" font-size=\"8\" font-family=\"monospace\" text-anchor=\"middle\" font-weight=\"bold\">SOMNO-03 HYPNOGRAM PROFILE</text>\n\n              <!-- Stage Grid Lines -->\n              <text x=\"45\" y=\"42\" fill=\"#dc2626\" font-size=\"6\" font-family=\"monospace\" text-anchor=\"end\">WAKE</text>\n              <line x1=\"50\" y1=\"40\" x2=\"210\" y2=\"40\" stroke=\"#f1f5f9\" stroke-width=\"1\"/>\n\n              <text x=\"45\" y=\"67\" fill=\"#6366f1\" font-size=\"6\" font-family=\"monospace\" text-anchor=\"end\">REM</text>\n              <line x1=\"50\" y1=\"65\" x2=\"210\" y2=\"65\" stroke=\"#f1f5f9\" stroke-width=\"1\"/>\n\n              <text x=\"45\" y=\"92\" fill=\"#0284c7\" font-size=\"6\" font-family=\"monospace\" text-anchor=\"end\">LIGHT</text>\n              <line x1=\"50\" y1=\"90\" x2=\"210\" y2=\"90\" stroke=\"#f1f5f9\" stroke-width=\"1\"/>\n\n              <text x=\"45\" y=\"122\" fill=\"#15803d\" font-size=\"6\" font-family=\"monospace\" text-anchor=\"end\" font-weight=\"bold\">DEEP</text>\n              <line x1=\"50\" y1=\"120\" x2=\"210\" y2=\"120\" stroke=\"#bbf7d0\" stroke-width=\"1.5\"/>\n\n              <!-- Hypnogram Stepped Curve -->\n              <path d=\"M 50 40 L 60 40 L 65 90 L 80 90 L 85 120 L 120 120 L 125 90 L 135 65 L 145 65 L 150 120 L 175 120 L 180 90 L 195 65 L 205 40\" fill=\"none\" stroke=\"#15803d\" stroke-width=\"2.5\"/>\n\n              <!-- Deep Sleep Highlight Blocks -->\n              <rect x=\"85\" y=\"105\" width=\"35\" height=\"15\" fill=\"#dcfce7\" opacity=\"0.8\" rx=\"2\"/>\n              <rect x=\"150\" y=\"105\" width=\"25\" height=\"15\" fill=\"#dcfce7\" opacity=\"0.8\" rx=\"2\"/>\n              <text x=\"117\" y=\"142\" fill=\"#166534\" font-size=\"7\" font-family=\"monospace\" text-anchor=\"middle\" font-weight=\"bold\">DEEP SLEEP: 1.9h (25.7%)</text>\n\n              <!-- Right: Endocrine Mechanism (Cortisol & Insulin Sensitivity) -->\n              <rect x=\"230\" y=\"10\" width=\"175\" height=\"145\" rx=\"5\" fill=\"#ffffff\" stroke=\"#cbd5e1\"/>\n              <text x=\"317\" y=\"24\" fill=\"#0284c7\" font-size=\"8\" font-family=\"monospace\" text-anchor=\"middle\" font-weight=\"bold\">METABOLIC PATHWAY IMPACT</text>\n\n              <!-- Pathway A: Restorative Deep Sleep -->\n              <rect x=\"238\" y=\"34\" width=\"158\" height=\"48\" rx=\"4\" fill=\"#f0fdf4\" stroke=\"#86efac\"/>\n              <text x=\"245\" y=\"47\" fill=\"#15803d\" font-size=\"7\" font-family=\"monospace\" font-weight=\"bold\">\u2705 HIGH DEEP SLEEP (&gt;20%)</text>\n              <text x=\"245\" y=\"60\" fill=\"#166534\" font-size=\"6.5\" font-family=\"monospace\">\u2022 Suppresses nocturnal cortisol</text>\n              <text x=\"245\" y=\"72\" fill=\"#166534\" font-size=\"6.5\" font-family=\"monospace\">\u2022 Restores GLUT4 insulin sensitivity</text>\n\n              <!-- Pathway B: Fragmented Hypoxic Sleep -->\n              <rect x=\"238\" y=\"90\" width=\"158\" height=\"56\" rx=\"4\" fill=\"#fef2f2\" stroke=\"#fecaca\"/>\n              <text x=\"245\" y=\"103\" fill=\"#dc2626\" font-size=\"7\" font-family=\"monospace\" font-weight=\"bold\">\u26a0\ufe0f FRAGMENTED / HYPOXIC</text>\n              <text x=\"245\" y=\"116\" fill=\"#991b1b\" font-size=\"6.5\" font-family=\"monospace\">\u2022 Surges nighttime cortisol & adrenaline</text>\n              <text x=\"245\" y=\"128\" fill=\"#991b1b\" font-size=\"6.5\" font-family=\"monospace\">\u2022 Drives excessive morning glycogenolysis</text>\n              <text x=\"245\" y=\"140\" fill=\"#991b1b\" font-size=\"6.5\" font-family=\"monospace\">\u2022 Spikes morning fasting sugar (170+)</text>\n            </svg>\n\n            <!-- Clinical Key Insight Callout -->\n            <div style=\"margin-top: 6px; background: #eff6ff; border-left: 4px solid #0284c7; padding: 5px 8px; border-radius: 4px; font-size: 0.67rem; color: #1e3a8a; line-height: 1.35; font-family: monospace;\">\n              <strong>CLINICAL SLEEP-GLYCEMIA CONNECTION:</strong> Patients with under 15% deep sleep exhibit a 23% reduction in whole-body insulin sensitivity. Tracking SOMNO-03 hypnogram architecture ensures lifestyle interventions directly support glycemic resilience.\n            </div>\n          </div>\n",
+    "tab_screenshot": "images/lcars_chart_sleep.png",
+    "tab_title": "04-REPORTS CONSOLE \u2022 SOMNO-03 SLEEP ARCHITECTURE & HYPNOGRAM",
     "step_focus": [
       {
         "bullet": 0,
@@ -1472,29 +1480,33 @@
     "module": "Module 5: The Diabetes Learning Engine",
     "title": "Correlating Behavioral Habits with Direct Sensor Evidence",
     "desc": "Cross-analyzing diet, physical activity, and sleep against objective physiological biomarkers.",
-    "narration": "Here, we examine multi-parameter habit correlation. Diabetes is managed through daily habits. LCARS continuously correlates your steps, your meals, and your sleep architecture against your glucose curves. This gives you and your doctor undeniable evidence of what works best for your body.",
+    "narration": "Displayed on your screen is our Exercise and Metabolic Clearance Correlation engine from Tab 04 Reports Console. Diabetes management succeeds through daily habits, and here LCARS correlates your physical movement and meals directly against objective glycemic outcomes. As shown on screen, active workout days with at least 7,000 steps achieve an optimal mean glucose of 118 milligrams per deciliter and a Time-in-Range of 86.4 percent, with post-meal walks blunting glucose spikes by an average of 42 milligrams per deciliter. Conversely, sedentary days reflect wider glycemic variability and depressed time in range. On the right panel, our multi-variable regression reveals a strong inverse correlation coefficient of r equals minus 0.79 between daily step volume and mean glucose, providing patients and physicians with undeniable proof of what works best for your body.",
     "card_title": "CORRELATING HABITS WITH DIRECT SENSOR EVIDENCE",
     "bullets": [
       [
-        "Dietary Correlation",
-        "Correlates carbohydrate volume directly with excursion height and duration."
+        "Active Days vs Sedentary Days",
+        "Directly quantifies that active days (\u22657,000 steps) achieve 86.4% Time-in-Range and a tight mean glucose of 118 mg/dL (SD \u00b118.2)."
       ],
       [
-        "Step Volume Correlation",
-        "Demonstrates the direct inverse relationship between daily steps and average glucose."
+        "Post-Meal Spike Blunting (-42 mg/dL)",
+        "Proves that post-prandial walking immediately blunts glycemic spikes by an average of 42 mg/dL via non-insulin GLUT4 clearance."
       ],
       [
-        "Holistic Behavioral Loop",
-        "Provides objective positive reinforcement for healthy lifestyle decisions."
+        "Mathematical Correlation (r = -0.79)",
+        "Strong inverse correlation proves that physical step density systematically lowers 24-hour mean glycemic load."
+      ],
+      [
+        "Continuous Behavioral Reinforcement",
+        "Replaces vague lifestyle advice with real-time empirical validation, empowering patients to sustain healthy daily routines."
       ]
     ],
-    "takeaway": "Replaces guesswork with undeniable, objective evidence of your daily lifestyle progress.",
-    "right_header": "SENSOR-HABIT CORRELATION",
-    "right_badge": "MULTIVARIATE EVIDENCE",
-    "right_badge_col": "#059669",
-    "right_html": "\n          <div style=\"margin-top:10px; background:#ecfdf5; border:1.5px solid #a7f3d0; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#065f46; font-family:monospace;\">STEPS VS GLUCOSE: r = -0.79 CORRELATION</div>\n            <div style=\"font-size:0.84rem; color:#047857; margin-top:6px; line-height:1.45;\">Multi-variable mathematical alignment proves daily walking directly suppresses 24-hour mean glycemic load.</div>\n          </div>\n        ",
-    "tab_screenshot": "images/lcars_tab_reports.png",
-    "tab_title": "04-REPORTS CONSOLE \u2022 BEHAVIORAL LOG & EVENT CORRELATION",
+    "takeaway": "Daily habits govern glycemic control. Continuous telemetry proves that active days achieve 86.4% Time-in-Range and that post-meal walks blunt spikes by 42 mg/dL (r = -0.79), replacing guesswork with empirical behavioral correlation.",
+    "right_header": "BEHAVIORAL HABIT CORRELATION & CLEARANCE",
+    "right_badge": "r = -0.79 CORRELATION",
+    "right_badge_col": "#15803d",
+    "right_html": "\n          <!-- Habit Correlation & Regression Diagram -->\n          <div style=\"background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 10px; margin-top: 4px; color: #0f172a;\">\n            <div style=\"display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 4px; margin-bottom: 8px;\">\n              <span style=\"font-family: monospace; font-size: 0.72rem; color: #0284c7; font-weight: 800;\">STEP VOLUME VS 24-HOUR MEAN GLUCOSE</span>\n              <span style=\"background: #15803d; color: #fff; font-size: 0.60rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; font-family: monospace;\">r = -0.79 INVERSE</span>\n            </div>\n\n            <!-- SVG Diagram: Steps vs Glucose Correlation Scatter -->\n            <svg viewBox=\"0 0 420 165\" style=\"width: 100%; height: auto; display: block; background: #ffffff; border-radius: 4px; border: 1px solid #e2e8f0;\">\n              <!-- Grid Lines -->\n              <line x1=\"45\" y1=\"20\" x2=\"400\" y2=\"20\" stroke=\"#fee2e2\" stroke-width=\"1\"/>\n              <text x=\"40\" y=\"24\" fill=\"#dc2626\" font-size=\"6.5\" font-family=\"monospace\" text-anchor=\"end\">180</text>\n\n              <line x1=\"45\" y1=\"65\" x2=\"400\" y2=\"65\" stroke=\"#f1f5f9\" stroke-width=\"1\"/>\n              <text x=\"40\" y=\"69\" fill=\"#64748b\" font-size=\"6.5\" font-family=\"monospace\" text-anchor=\"end\">140</text>\n\n              <line x1=\"45\" y1=\"110\" x2=\"400\" y2=\"110\" stroke=\"#dcfce7\" stroke-width=\"1\"/>\n              <text x=\"40\" y=\"114\" fill=\"#16a34a\" font-size=\"6.5\" font-family=\"monospace\" text-anchor=\"end\">100</text>\n\n              <!-- Axes -->\n              <line x1=\"45\" y1=\"140\" x2=\"400\" y2=\"140\" stroke=\"#94a3b8\" stroke-width=\"1.5\"/>\n              <text x=\"70\" y=\"153\" fill=\"#64748b\" font-size=\"6.5\" font-family=\"monospace\">2,000</text>\n              <text x=\"160\" y=\"153\" fill=\"#64748b\" font-size=\"6.5\" font-family=\"monospace\">5,000</text>\n              <text x=\"260\" y=\"153\" fill=\"#15803d\" font-size=\"7\" font-family=\"monospace\" font-weight=\"bold\">8,000 STEPS</text>\n              <text x=\"360\" y=\"153\" fill=\"#15803d\" font-size=\"7\" font-family=\"monospace\" font-weight=\"bold\">12,000+ STEPS</text>\n\n              <!-- Negative Correlation Trendline (r = -0.79) -->\n              <line x1=\"60\" y1=\"35\" x2=\"380\" y2=\"125\" stroke=\"#15803d\" stroke-width=\"2.5\" stroke-dasharray=\"4,2\"/>\n\n              <!-- Sedentary Cluster (High Glucose) -->\n              <circle cx=\"70\" cy=\"30\" r=\"3.5\" fill=\"#dc2626\" opacity=\"0.8\"/>\n              <circle cx=\"85\" cy=\"45\" r=\"3.5\" fill=\"#dc2626\" opacity=\"0.8\"/>\n              <circle cx=\"100\" cy=\"38\" r=\"3.5\" fill=\"#dc2626\" opacity=\"0.8\"/>\n              <rect x=\"60\" y=\"55\" width=\"85\" height=\"15\" rx=\"3\" fill=\"#fef2f2\" stroke=\"#fecaca\"/>\n              <text x=\"102\" y=\"65\" fill=\"#991b1b\" font-size=\"6.5\" font-family=\"monospace\" text-anchor=\"middle\" font-weight=\"bold\">SEDENTARY: 168 mg/dL</text>\n\n              <!-- Moderate Active Cluster -->\n              <circle cx=\"180\" cy=\"75\" r=\"3.5\" fill=\"#d97706\" opacity=\"0.8\"/>\n              <circle cx=\"210\" cy=\"82\" r=\"3.5\" fill=\"#d97706\" opacity=\"0.8\"/>\n\n              <!-- Highly Active Cluster (Low Glucose) -->\n              <circle cx=\"290\" cy=\"105\" r=\"3.5\" fill=\"#16a34a\" opacity=\"0.8\"/>\n              <circle cx=\"330\" cy=\"112\" r=\"3.5\" fill=\"#16a34a\" opacity=\"0.8\"/>\n              <circle cx=\"360\" cy=\"118\" r=\"3.5\" fill=\"#16a34a\" opacity=\"0.8\"/>\n              <rect x=\"290\" y=\"85\" width=\"95\" height=\"15\" rx=\"3\" fill=\"#f0fdf4\" stroke=\"#86efac\"/>\n              <text x=\"337\" y=\"95\" fill=\"#166534\" font-size=\"6.5\" font-family=\"monospace\" text-anchor=\"middle\" font-weight=\"bold\">ACTIVE: 118 mg/dL</text>\n            </svg>\n\n            <!-- Metrics Summary Cards -->\n            <div style=\"margin-top: 6px; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; font-family: monospace; font-size: 0.67rem;\">\n              <div style=\"background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 4px; padding: 6px;\">\n                <div style=\"color: #166534; font-weight: bold;\">\ud83d\udeb6 ACTIVE DAYS (\u22657,000 STEPS)</div>\n                <div style=\"color: #14532d; margin-top: 2px;\">\n                  \u2022 Mean: <strong>118 mg/dL</strong> (SD \u00b118.2)<br>\n                  \u2022 Time-in-Range: <strong>86.4%</strong><br>\n                  \u2022 Post-Meal Drop: <strong>-42 mg/dL</strong>\n                </div>\n              </div>\n              <div style=\"background: #fef2f2; border: 1px solid #fecaca; border-radius: 4px; padding: 6px;\">\n                <div style=\"color: #991b1b; font-weight: bold;\">\ud83d\udecb\ufe0f SEDENTARY DAYS (&lt;3,000 STEPS)</div>\n                <div style=\"color: #7f1d1d; margin-top: 2px;\">\n                  \u2022 Mean: <strong>164 mg/dL</strong> (SD \u00b134.6)<br>\n                  \u2022 Time-in-Range: <strong>62.1%</strong><br>\n                  \u2022 Sustained Postprandial Spikes\n                </div>\n              </div>\n            </div>\n          </div>\n",
+    "tab_screenshot": "images/lcars_slide27_habit_correlation.png",
+    "tab_title": "04-REPORTS CONSOLE \u2022 MULTI-VARIABLE HABIT CORRELATION",
     "step_focus": [
       {
         "bullet": 0,
@@ -1519,32 +1531,32 @@
     "module": "Module 5: The Diabetes Learning Engine",
     "title": "Actionable Clinical Reports & Epic EHR Integration",
     "desc": "How 1-click export pushes continuous telemetry directly into your doctor's Epic Electronic Health Record.",
-    "narration": "Displayed on screen is our flagship clinical bridge: direct Epic Electronic Health Record integration. With a single click in LCARS, your 24-hour glucose curves, Time-in-Range percentages, blood pressure dipping, and medication adherence are formatted into standard HL7 FHIR records and pushed directly into your doctor's Epic MyChart chart, becoming a permanent part of your clinical medical record.",
+    "narration": "Displayed on your screen is the Reports Toolbar in Tab 04, highlighting our prominent blue button: Push Data to Doctor's Epic. Epic Systems is the world's leading Electronic Health Record software, used by over three hundred and five million patients and more than seventy-eight percent of hospital beds and primary care clinics across the globe. Why is direct Epic integration so critical? Traditionally, a massive clinical telemetry gap exists between a patient's everyday life and their fifteen-minute doctor appointment. Patients struggle to remember blood sugar trends, and doctors cannot inspect consumer smartphone apps. With a single click of our Epic upload button, LCARS securely packages your entire ninety-day continuous dataset\u2014including twenty-five thousand glucose points, nocturnal nadirs, and blood pressure dipping\u2014into standardized HL7 FHIR R4 clinical observation bundles. This data flows directly into your physician's Epic Hyperspace flowsheet and InBasket. This closes the loop between patient and doctor, enabling immediate medication titration and qualifying your care team for remote patient monitoring reimbursement.",
     "card_title": "EPIC EHR INTEGRATION & ACTIONABLE DOCTOR REPORTS",
     "bullets": [
       [
-        "Direct Epic EHR Upload Gateway",
-        "Pre-packages 24-hour continuous telemetry into certified HL7 FHIR Release 4 JSON observation bundles."
+        "What is Epic Systems?",
+        "Epic is the global benchmark Electronic Health Record (EHR) powering >78% of healthcare systems (Mayo, Hopkins, Kaiser) and 305M patient records."
       ],
       [
-        "Standard LOINC Clinical Semantics",
-        "Maps glucose (LOINC 2339-0), eA1C (4548-4), BP (85354-9), and SpO2 (59408-5) for seamless chart ingestion."
+        "The '\ud83d\udce4 PUSH TO DOCTOR'S EPIC' Button",
+        "Directly visible on the top toolbar: bundles 90 days of continuous telemetry into standardized HL7 FHIR R4 clinical observations."
       ],
       [
-        "Clinical Staging & MyChart PGHD",
-        "Staged for hospital Epic App Market integration or patient-mediated MyChart upload into permanent medical charts."
+        "Closing the 15-Minute Clinical Gap",
+        "Replaces subjective patient recall with verified time-series data delivered straight to your physician's Epic Hyperspace flowsheet."
       ],
       [
-        "Live Hospital Validation Notice",
-        "Direct hospital API write-back is currently pre-validation; requires institutional firewall and Epic client approval."
+        "Actionable Titration & RPM Reimbursement",
+        "Enables instant medication adjustments (insulin, GLP-1s, metformin) and qualifies care teams for CPT 99453/99454/99457 remote telemetry billing."
       ]
     ],
-    "takeaway": "Generates certified HL7 FHIR R4 bundles ready for clinical review and Epic EHR staging.",
-    "right_header": "EPIC EHR MYCHART GATEWAY",
-    "right_badge": "DIRECT EHR UPLOAD",
+    "takeaway": "Epic is the world's leading EHR, serving 305M patients. With one click of '\ud83d\udce4 PUSH TO DOCTOR'S EPIC', LCARS transmits 90 days of verified HL7 FHIR telemetry straight into your doctor's official clinical flowsheet, closing the communication gap and transforming patient care.",
+    "right_header": "EPIC EHR INTEGRATION & FHIR R4 TELEMETRY",
+    "right_badge": "SMART-ON-FHIR R4 \u2022 305M PATIENTS",
     "right_badge_col": "#0284c7",
-    "right_html": "\n          <div style=\"margin-top:10px; background:#eff6ff; border:1.5px solid #bfdbfe; border-left:6px solid #0284c7; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#1e40af; font-family:monospace;\">1-CLICK PUSH TO DOCTOR'S EPIC SYSTEM</div>\n            <div style=\"font-size:0.84rem; color:#1e3a8a; margin-top:6px; line-height:1.45;\">Transmits certified HL7 FHIR continuous glucose tonometry, blood pressure dipping, and titration logs into permanent clinical records.</div>\n          </div>\n          <div style=\"margin-top:10px; display:flex; justify-content:space-between; font-family:monospace; font-size:0.75rem; background:#f8fafc; padding:6px 10px; border-radius:4px;\">\n            <span>EPIC STATUS:</span>\n            <span style=\"color:#15803d; font-weight:bold;\">COMMITTED TO PERMANENT CHART</span>\n          </div>\n        ",
-    "tab_screenshot": "images/lcars_slide25_reports_overview.png",
+    "right_html": "\n          <!-- What is Epic & Why Direct Integration is Critical -->\n          <div style=\"background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 10px; margin-top: 4px; color: #0f172a;\">\n            <div style=\"display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 4px; margin-bottom: 8px;\">\n              <span style=\"font-family: monospace; font-size: 0.72rem; color: #0284c7; font-weight: 800;\">EPIC ELECTRONIC HEALTH RECORD (EHR) BRIDGE</span>\n              <span style=\"background: #0284c7; color: #fff; font-size: 0.60rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; font-family: monospace;\">SMART-ON-FHIR R4</span>\n            </div>\n\n            <!-- What is Epic Educational Card -->\n            <div style=\"background: #eff6ff; border: 1.5px solid #bfdbfe; border-radius: 5px; padding: 8px; font-family: monospace; font-size: 0.68rem; line-height: 1.35;\">\n              <div style=\"color: #1e40af; font-weight: 900; font-size: 0.74rem;\">\n                \ud83c\udfe5 WHAT IS EPIC SYSTEMS?\n              </div>\n              <div style=\"color: #1e3a8a; margin-top: 4px;\">\n                <strong>Global Healthcare Standard:</strong> Epic is the gold-standard hospital and outpatient Electronic Health Record (EHR) platform managing records for over <strong>305 million patients worldwide</strong> (&gt;78% of US hospital capacity, including Mayo Clinic, Johns Hopkins, Kaiser Permanente, and Cleveland Clinic).\n              </div>\n            </div>\n\n            <!-- The Toolbar Upload Button Highlight -->\n            <div style=\"margin-top: 6px; background: #ffffff; border: 1.5px solid #0284c7; border-radius: 5px; padding: 8px; display: flex; align-items: center; justify-content: space-between;\">\n              <div>\n                <div style=\"font-size: 0.65rem; color: #64748b; font-family: monospace;\">TOOLBAR ACTION TRIGGER (TAB 04)</div>\n                <div style=\"font-size: 0.85rem; font-weight: 900; color: #0284c7; font-family: monospace;\">\ud83d\udce4 PUSH TO DOCTOR'S EPIC</div>\n              </div>\n              <div style=\"background: #0284c7; color: #ffffff; font-size: 0.60rem; font-weight: bold; padding: 3px 8px; border-radius: 4px; font-family: monospace;\">\n                1-CLICK COMMIT\n              </div>\n            </div>\n\n            <!-- Why This Integration is Essential (3 Core Pillars) -->\n            <div style=\"margin-top: 6px; display: flex; flex-direction: column; gap: 5px; font-family: monospace; font-size: 0.67rem;\">\n              <div style=\"background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 4px; padding: 6px;\">\n                <strong style=\"color: #166534;\">1. Closes the 15-Minute Visit Gap:</strong>\n                <span style=\"color: #14532d;\"> Eliminates oral recall guesswork. Doctors receive pre-correlated 90-day time-series directly inside their official clinical encounter charting.</span>\n              </div>\n              <div style=\"background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 4px; padding: 6px;\">\n                <strong style=\"color: #0284c7;\">2. Objective Drug Titration:</strong>\n                <span style=\"color: #0c4a6e;\"> Pharmacists and endocrinologists immediately adjust basal insulin, metformin, or GLP-1s based on verified nocturnal nadirs and post-meal spikes.</span>\n              </div>\n              <div style=\"background: #fffbeb; border: 1px solid #fde68a; border-radius: 4px; padding: 6px;\">\n                <strong style=\"color: #d97706;\">3. Remote Patient Monitoring (RPM):</strong>\n                <span style=\"color: #92400e;\"> Directly qualifies clinical practices for Medicare/private insurance RPM billing codes (CPT 99453, 99454, 99457).</span>\n              </div>\n            </div>\n          </div>\n",
+    "tab_screenshot": "images/lcars_slide28_epic_gateway.png",
     "tab_title": "04-REPORTS CONSOLE \u2022 HL7 FHIR R4 & EPIC MYCHART GATEWAY",
     "tab_num": 4,
     "image": "images/lcars_slide25_reports_overview.png",
@@ -1572,46 +1584,55 @@
     "module": "Module 6: Tab 04 Synchronized Tall Chart",
     "title": "Tab 04 Architecture: Single Tall Synchronized Multi-Measurement Chart",
     "desc": "How a unified vertical timeline aligns 8 physiological metrics on a shared horizontal time axis.",
-    "narration": "In Module 6, we explore Tab 04: the Synchronized Tall Chart. Instead of jumping across disconnected mobile screens, LCARS stacks all 8 biometric streams on one shared 24-hour time axis with zero label overlap. You can scan vertically from midnight to midnight and instantly see how everything connects.",
+    "narration": "Displayed on your screen is our 360-degree Synchronized Composite Timeline from Tab 04 Reports Console. Instead of fragmenting physiological data across disconnected mobile screens, LCARS stacks all eight biometric channels on one shared twenty-four-hour horizontal clock. As your view scrolls down the screen, observe how continuous glucose, blood pressure, heart rate, oxygenation, and temperature align seamlessly above kinetic exercise, nutrition, and medications. Critically, notice the pinned food and medication markers integrated directly onto the time axis. The green salad marker logs dietary carbohydrate intake, while prominent medication markers pinpoint exact doses. By pinning these behavioral and clinical events onto the timeline, patients and physicians can immediately track how specific meals and medication changes directly govern every subsequent physiological deflection.",
     "card_title": "TAB 04: SYNCHRONIZED TALL CHART ARCHITECTURE",
     "bullets": [
       [
-        "Unified 24-Hour Timeline",
-        "Aligns all physiological telemetry on a shared midnight-to-midnight horizontal axis."
+        "Single Synchronized Timeline",
+        "Stacks all 8 biometric telemetry channels on a single shared 24-hour horizontal time axis with zero temporal misalignment."
       ],
       [
-        "Multi-Line Zero-Overlap Labels",
-        "Clean time ticks on Line 1 with staggered event badges on Lines 2 and 3."
+        "Pinned '\ud83e\udd57 FOOD / MEAL' Markers",
+        "Visual meal badges capture carbohydrate density, caloric load, and exact timing directly above glycemic response curves."
       ],
       [
-        "Senior-Friendly High Contrast",
-        "Solid white cards with 4px reference line halos ensuring total readability."
+        "Pinned '\ud83d\udc8a MED CHANGE' Milestones",
+        "Prominently flags prescription adjustments and dosages, establishing irrefutable before-and-after therapeutic causality."
+      ],
+      [
+        "Continuous Multi-Variable Context",
+        "Replaces isolated glucose numbers with full physiological context, tracking sleep, stress, and kinetic clearance in real time."
       ]
     ],
-    "takeaway": "Eliminates fragmented mobile screens in favor of one unified, beautifully readable clinical timeline.",
-    "right_header": "TAB 04: 24-HR TIMELINE",
-    "right_badge": "ZERO-OVERLAP X-AXIS",
-    "right_badge_col": "#059669",
-    "right_html": "\n          <div style=\"margin-top:10px; background:#ecfdf5; border:1.5px solid #a7f3d0; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#065f46; font-family:monospace;\">MULTI-LINE STAGGERED TIMELINE LABELS</div>\n            <div style=\"font-size:0.84rem; color:#047857; margin-top:6px; line-height:1.45;\">Line 1 time ticks with alternating event badges give descriptions 128px of clearance with zero collision.</div>\n          </div>\n          <div style=\"margin-top:10px; font-family:monospace; font-size:0.75rem; color:#475569; background:#f8fafc; padding:6px 10px; border-radius:4px;\">\n            X-Axis: 00:00 -> 04:00 (Nadir) -> 07:00 (Fasting) -> 08:30 (Walk) -> 13:30 (Peak) -> 24:00\n          </div>\n        ",
-    "tab_screenshot": "images/lcars_slide26_tall_chart_header.png",
-    "tab_title": "04-REPORTS CONSOLE \u2022 360\u00b0 SYNCHRONIZED TALL CHART",
+    "takeaway": "LCARS stacks all 8 telemetry channels on one synchronized timeline. Pinned '\ud83e\udd57 FOOD' and '\ud83d\udc8a MED CHANGE' markers directly connect daily habits and prescriptions to objective physiological deflections, eliminating guesswork.",
+    "right_header": "SYNCHRONIZED TIMELINE ARCHITECTURE",
+    "right_badge": "8-CHANNEL SYNCHRONIZATION",
+    "right_badge_col": "#eab308",
+    "right_html": "\n          <!-- 360 Synchronized Architecture & Event Markers Card -->\n          <div style=\"background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 10px; margin-top: 4px; color: #0f172a;\">\n            <div style=\"display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 4px; margin-bottom: 8px;\">\n              <span style=\"font-family: monospace; font-size: 0.72rem; color: #0284c7; font-weight: 800;\">360\u00b0 SYNCHRONIZED COMPOSITE TIMELINE</span>\n              <span style=\"background: #eab308; color: #000; font-size: 0.60rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; font-family: monospace;\">8 STACKED LANES</span>\n            </div>\n\n            <!-- Event Marker Callouts -->\n            <div style=\"display: flex; flex-direction: column; gap: 6px; font-family: monospace; font-size: 0.67rem;\">\n              <div style=\"background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 4px; padding: 6px;\">\n                <div style=\"display: flex; justify-content: space-between;\">\n                  <strong style=\"color: #15803d;\">\ud83e\udd57 FOOD / MEAL MARKERS</strong>\n                  <span style=\"color: #166534; font-weight: bold;\">NUTRITIONAL TRACE</span>\n                </div>\n                <div style=\"color: #14532d; margin-top: 2px;\">\n                  Pins exact carbohydrate load (e.g. 18g lunch) directly to the timeline, illuminating postprandial glucose curves and GLUT4 recovery.\n                </div>\n              </div>\n\n              <div style=\"background: #fef2f2; border: 1.5px solid #fecaca; border-radius: 4px; padding: 6px;\">\n                <div style=\"display: flex; justify-content: space-between;\">\n                  <strong style=\"color: #dc2626;\">\ud83d\udc8a MED CHANGE MILESTONES</strong>\n                  <span style=\"color: #991b1b; font-weight: bold;\">PRESCRIPTION TRACKING</span>\n                </div>\n                <div style=\"color: #7f1d1d; margin-top: 2px;\">\n                  Cuts vertically across all 8 channels whenever dosage changes occur, allowing 14-day pre/post therapeutic comparison.\n                </div>\n              </div>\n\n              <div style=\"background: #eff6ff; border: 1.5px solid #bfdbfe; border-radius: 4px; padding: 6px;\">\n                <div style=\"display: flex; justify-content: space-between;\">\n                  <strong style=\"color: #0284c7;\">\u2194 CONTINUOUS TIME COUPLING</strong>\n                  <span style=\"color: #1e40af; font-weight: bold;\">ZERO OVERLAP</span>\n                </div>\n                <div style=\"color: #1e3a8a; margin-top: 2px;\">\n                  All 8 biometrics (Glucose, BP, HR/HRV, SpO2, Temp, Steps, Diet, Meds) share one unified clock, eliminating disconnected data silos.\n                </div>\n              </div>\n            </div>\n          </div>\n    ",
+    "tab_screenshot": "images/lcars_slide29_tall_chart_stack.png",
+    "tab_title": "04-REPORTS CONSOLE \u2022 360\u00b0 SYNCHRONIZED COMPOSITE TIMELINE",
     "tab_num": 4,
     "image": "images/lcars_slide26_tall_chart_header.png",
     "step_focus": [
       {
         "bullet": 0,
-        "focus_desc": "Single Tall Synchronized Multi-Measurement Canvas Architecture",
+        "focus_desc": "360\u00b0 Synchronized Architecture: 8 Stacked Physiological Telemetry Lanes",
         "scroll_pct": 0.0
       },
       {
         "bullet": 1,
-        "focus_desc": "Timeframe Selector Controls: Daily 24-hr, Weekly 7-day, Yearly 12-mo",
+        "focus_desc": "Pinned '\ud83e\udd57 FOOD / MEAL' Markers: Connecting Carbs to Postprandial Excursions",
         "scroll_pct": 0.35
       },
       {
         "bullet": 2,
-        "focus_desc": "Vertical Temporal Alignment of Multiple Physiological Variables",
-        "scroll_pct": 0.75
+        "focus_desc": "Pinned '\ud83d\udc8a MED CHANGE' Milestones: Auditing Prescription Efficacy",
+        "scroll_pct": 0.7
+      },
+      {
+        "bullet": 3,
+        "focus_desc": "Continuous Multi-Variable Coupling: Eliminating Isolated Health Silos",
+        "scroll_pct": 1.0
       }
     ]
   },
@@ -1621,46 +1642,55 @@
     "module": "Module 6: Tab 04 Synchronized Tall Chart",
     "title": "The 8 Stacked Measurement Lanes: Complete Multi-Variable Audit",
     "desc": "Examining the 8 synchronized lanes: Glucose, eA1c, Temperature, Sleep, Steps, Heart Rate, BP, and SpO2.",
-    "narration": "Displayed on screen are the eight stacked clinical telemetry lanes. Lane 1 is continuous glucose. Lane 2 is projected A1C. Lane 3 is dual core and skin temperature. Lane 4 is sleep hypnograms. Lane 5 is step activity. Lane 6 is heart rate. Lane 7 is blood pressure. And Lane 8 is pulse oximetry. It's a complete 360-degree audit of your day.",
+    "narration": "Displayed on your screen is our comprehensive eight-lane stacked clinical telemetry array. As the chart scrolls downward, we examine each physiological measurement in clinical sequence. Lane 1 displays continuous glucose, shaded with a green target band representing sixty to two hundred milligrams per deciliter. Lane 2 tracks arterial blood pressure, contrasting systolic and diastolic curves against normal thresholds. Lane 3 charts heart rate and heart rate variability, capturing autonomic sympathetic tone. Lane 4 monitors pulse oximetry, alerting to nocturnal desaturations below ninety-five percent. Lane 5 traces core and skin temperature, mapping the circadian metabolic nadir. Lane 6 details kinetic exercise steps and post-meal non-insulin GLUT4 clearance. Lane 7 captures dietary nutrition with pinned meal carb markers, and Lane 8 records active medications and titration milestones. This vertical stack gives clinicians an unprecedented panoramic view of whole-body metabolic regulation.",
     "card_title": "8 STACKED 24-HOUR MEASUREMENT LANES",
     "bullets": [
       [
-        "Complete 360-Degree Coverage",
-        "Eight simultaneous physiological lanes provide an exhaustive clinical overview."
+        "Lanes 1 & 2: Glycemic & Hemodynamic Core",
+        "Lane 1 maps continuous glucose with 60\u2013200 mg/dL TIR shading; Lane 2 tracks systolic and diastolic BP trends."
       ],
       [
-        "Synchronized Time Tracking",
-        "Every lane moves in lockstep across morning, afternoon, evening, and night."
+        "Lanes 3, 4 & 5: Autonomic, Respiratory & Thermal",
+        "Lane 3 tracks pulse & HRV stress response; Lane 4 watches SpO2 hypoxia thresholds (95%); Lane 5 traces circadian nadir."
       ],
       [
-        "Holistic Physiological Context",
-        "Never view glucose in isolation; see it alongside heart rate, temperature, and steps."
+        "Lane 6: Kinetic Exercise & GLUT4 Clearance",
+        "Bar graphs quantify step density and highlight active postprandial walks that accelerate glucose disposal."
+      ],
+      [
+        "Lanes 7 & 8: Nutrition & Medication Regimen",
+        "Lane 7 pins carb intake and meal events; Lane 8 logs active prescriptions and titration milestones."
       ]
     ],
-    "takeaway": "An exhaustive multi-variable audit that places every glucose fluctuation in true physiological context.",
-    "right_header": "8 STACKED MEASUREMENT LANES",
-    "right_badge": "COMPLETE 360\u00b0 AUDIT",
+    "takeaway": "Eight stacked telemetry lanes provide a 360\u00b0 panoramic audit of metabolic health, correlating glucose, hemodynamics, autonomic stress, and temperature directly against exercise, meals, and medication changes.",
+    "right_header": "8-LANE TELEMETRY MATRIX",
+    "right_badge": "PHYSIOLOGICAL CHANNELS",
     "right_badge_col": "#0284c7",
-    "right_html": "\n          <div style=\"margin-top:10px; background:#f0f9ff; border:1.5px solid #bae6fd; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#0369a1; font-family:monospace;\">8 SYNCHRONIZED MEASUREMENT LANES</div>\n            <div style=\"font-size:0.84rem; color:#075985; margin-top:6px; line-height:1.45;\">Glucose \u2022 eA1C \u2022 Core/Skin Temp \u2022 Sleep Hypnogram \u2022 Step Cadence \u2022 Heart Rate \u2022 Blood Pressure \u2022 SpO2</div>\n          </div>\n        ",
-    "tab_screenshot": "images/lcars_slide27_stacked_lanes.png",
-    "tab_title": "04-REPORTS CONSOLE \u2022 8 STACKED CONTINUOUS TELEMETRY LANES",
+    "right_html": "\n          <!-- 8 Stacked Lanes Clinical Breakdown Table -->\n          <div style=\"background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 10px; margin-top: 4px; color: #0f172a;\">\n            <div style=\"display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 4px; margin-bottom: 8px;\">\n              <span style=\"font-family: monospace; font-size: 0.72rem; color: #0284c7; font-weight: 800;\">8-CHANNEL STACKED ARCHITECTURE</span>\n              <span style=\"background: #0284c7; color: #fff; font-size: 0.60rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; font-family: monospace;\">CLINICAL LANES</span>\n            </div>\n\n            <div style=\"display: flex; flex-direction: column; gap: 4px; font-family: monospace; font-size: 0.65rem;\">\n              <div style=\"display: flex; justify-content: space-between; padding: 3px 6px; background: #fff; border: 1px solid #e2e8f0; border-radius: 3px;\">\n                <span style=\"color: #eab308; font-weight: bold;\">LANE 1: GLUCOSE</span>\n                <span style=\"color: #64748b;\">60\u2013200 mg/dL TIR Shading \u2022 Dawn Nadir</span>\n              </div>\n              <div style=\"display: flex; justify-content: space-between; padding: 3px 6px; background: #fff; border: 1px solid #e2e8f0; border-radius: 3px;\">\n                <span style=\"color: #ff9944; font-weight: bold;\">LANE 2: BLOOD PRESSURE</span>\n                <span style=\"color: #64748b;\">Systolic/Diastolic \u2022 120/80 Reference</span>\n              </div>\n              <div style=\"display: flex; justify-content: space-between; padding: 3px 6px; background: #fff; border: 1px solid #e2e8f0; border-radius: 3px;\">\n                <span style=\"color: #ff5566; font-weight: bold;\">LANE 3: PULSE & HRV</span>\n                <span style=\"color: #64748b;\">BPM & RMSSD Autonomic Stress Response</span>\n              </div>\n              <div style=\"display: flex; justify-content: space-between; padding: 3px 6px; background: #fff; border: 1px solid #e2e8f0; border-radius: 3px;\">\n                <span style=\"color: #15803d; font-weight: bold;\">LANE 4: OXYGEN SPO2</span>\n                <span style=\"color: #64748b;\">95% Nocturnal Hypoxia Alert Threshold</span>\n              </div>\n              <div style=\"display: flex; justify-content: space-between; padding: 3px 6px; background: #fff; border: 1px solid #e2e8f0; border-radius: 3px;\">\n                <span style=\"color: #0284c7; font-weight: bold;\">LANE 5: TEMPERATURE</span>\n                <span style=\"color: #64748b;\">Dual Sensor Core/Skin Circadian Curve</span>\n              </div>\n              <div style=\"display: flex; justify-content: space-between; padding: 3px 6px; background: #fff; border: 1px solid #e2e8f0; border-radius: 3px;\">\n                <span style=\"color: #ea580c; font-weight: bold;\">LANE 6: EXERCISE & STEPS</span>\n                <span style=\"color: #64748b;\">Hourly Step Density & Post-Meal GLUT4</span>\n              </div>\n              <div style=\"display: flex; justify-content: space-between; padding: 3px 6px; background: #fff; border: 1px solid #e2e8f0; border-radius: 3px;\">\n                <span style=\"color: #9333ea; font-weight: bold;\">LANE 7: DIETARY INTAKE</span>\n                <span style=\"color: #64748b;\">Pinned Carbs, Calories & Meal Badges</span>\n              </div>\n              <div style=\"display: flex; justify-content: space-between; padding: 3px 6px; background: #fff; border: 1px solid #e2e8f0; border-radius: 3px;\">\n                <span style=\"color: #b45309; font-weight: bold;\">LANE 8: MEDICATIONS</span>\n                <span style=\"color: #64748b;\">Prescription Doses & '\ud83d\udc8a MED CHANGE' Tags</span>\n              </div>\n            </div>\n          </div>\n    ",
+    "tab_screenshot": "images/lcars_slide29_tall_chart_stack.png",
+    "tab_title": "04-REPORTS CONSOLE \u2022 8 STACKED PHYSIOLOGICAL TELEMETRY LANES",
     "tab_num": 4,
     "image": "images/lcars_slide27_stacked_lanes.png",
     "step_focus": [
       {
         "bullet": 0,
-        "focus_desc": "8 Stacked Measurement Lanes: Continuous Optical Glucose & Rolling eA1C",
+        "focus_desc": "Lanes 1 & 2: Glycemic Target Shading (60-200 mg/dL) & Blood Pressure Hemodynamics",
         "scroll_pct": 0.0
       },
       {
         "bullet": 1,
-        "focus_desc": "Cardiovascular Bands: Dual-Band BP, Pulse Chronotropy & HRV SDNN",
-        "scroll_pct": 0.45
+        "focus_desc": "Lanes 3, 4 & 5: Autonomic HRV, Nocturnal SpO2 (95% Threshold) & Circadian Nadir",
+        "scroll_pct": 0.35
       },
       {
         "bullet": 2,
-        "focus_desc": "Metabolic Baseline Lanes: Nocturnal SpO2, Dual-NTC Temp & Hourly Steps",
-        "scroll_pct": 0.85
+        "focus_desc": "Lane 6: Kinetic Exercise Steps & Non-Insulin GLUT4 Postprandial Clearance",
+        "scroll_pct": 0.7
+      },
+      {
+        "bullet": 3,
+        "focus_desc": "Lanes 7 & 8: Nutrition Carb Badges & Pinned Medication Milestones",
+        "scroll_pct": 1.0
       }
     ]
   },
@@ -1670,46 +1700,50 @@
     "module": "Module 6: Tab 04 Synchronized Tall Chart",
     "title": "The Continuous Vertical Scrubber Line: Cross-Correlating Causes",
     "desc": "How dragging the vertical scrubber aligns all 8 channels to reveal exact causes behind glucose spikes.",
-    "narration": "Here, we introduce the synchronized vertical scrubber HUD. As you drag your cursor across the chart, a vertical guideline cross-sects all 8 lanes at that exact timestamp. When you stop at 1:30 PM, you see your peak glucose of 232 milligrams per deciliter aligning with 34 grams of lunch carbs, an elevated heart rate, and post-meal rest.",
+    "narration": "Displayed on your screen is our automated Vertical Scrubber Line gliding across all eight telemetry channels. As the dashed yellow vertical crosshair tracks across the timeline, it intersects every physiological variable at that exact instant in time. Notice at 13:30, the post-lunch peak, the scrubber aligns a glucose peak of 188 milligrams per deciliter with an 18-gram low-carb salad, an 84 beat per minute pulse, and an immediate post-meal brisk walk. Above the chart, the real-time HUD ribbon instantly updates with exact synchronized values for glucose, blood pressure, SpO2, and medication status. By automating this vertical crosshair, LCARS uncovers the hidden physiological cause behind every glycemic peak and valley, allowing users to click any point to open a granular clinical pop-up audit.",
     "card_title": "CONTINUOUS VERTICAL SCRUBBER LINE AT 13:30",
     "bullets": [
       [
-        "Cross-Cutting Temporal Analysis",
-        "A single vertical guideline intersects all 8 measurement channels simultaneously."
+        "Cross-Cutting Vertical Guideline",
+        "A single synchronized vertical crosshair cuts through all 8 channels simultaneously to align cause and effect."
       ],
       [
-        "Pinpoint Cause-and-Effect",
-        "Aligns peak excursions directly with meal times, medication ingestion, and activity."
+        "Automated Real-Time HUD Readout",
+        "Top dashboard ribbon displays exact numeric metrics for glucose, BP, pulse, SpO2, and diet at the cursor timestamp."
       ],
       [
-        "Interactive Desktop Exploration",
-        "Fluid cursor scrubbing makes investigating daily trends intuitive and informative."
+        "Instant Excursion Correlation",
+        "Aligns the 13:30 lunch peak (188 mg/dL) directly with 18g salad intake and subsequent 20-min GLUT4 walk."
+      ],
+      [
+        "Click-to-Inspect Interaction",
+        "Clicking any point along the vertical line opens the comprehensive Clinical Point Card modal for deeper audit."
       ]
     ],
-    "takeaway": "Instant cause-and-effect correlation across all 8 physiological channels at any moment in time.",
-    "right_header": "VERTICAL SCRUBBER LINE",
-    "right_badge": "13:30 CROSSHAIR",
+    "takeaway": "The continuous vertical scrubber line cross-sects all 8 telemetry channels simultaneously. At 13:30, it instantly connects a 188 mg/dL peak with meal carbs and GLUT4 walking, updating the HUD ribbon in real time.",
+    "right_header": "VERTICAL SCRUBBER LINE & HUD",
+    "right_badge": "13:30 LUNCH PEAK",
     "right_badge_col": "#ca8a04",
-    "right_html": "\n          <div style=\"margin-top:10px; background:#fefce8; border:1.5px solid #fef08a; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#854d0e; font-family:monospace;\">CROSSHAIR AT 13:30 (LUNCH PEAK: 232)</div>\n            <div style=\"font-size:0.84rem; color:#713f12; margin-top:6px; line-height:1.45;\">Scrubber cross-correlates 232 mg/dL excursion with 34g net carbs, 84 bpm cardiac load, and sedentary post-meal rest.</div>\n          </div>\n        ",
-    "tab_screenshot": "images/lcars_slide28_scrubber_hud.png",
-    "tab_title": "04-REPORTS CONSOLE \u2022 UNIFIED 24-HOUR TEMPORAL SCRUBBER",
+    "right_html": "\n          <!-- Vertical Scrubber HUD Correlation Diagram -->\n          <div style=\"background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 10px; margin-top: 4px; color: #0f172a;\">\n            <div style=\"display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 4px; margin-bottom: 8px;\">\n              <span style=\"font-family: monospace; font-size: 0.72rem; color: #ca8a04; font-weight: 800;\">CROSS-CUTTING TEMPORAL SCRUBBER (13:30)</span>\n              <span style=\"background: #ca8a04; color: #000; font-size: 0.60rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; font-family: monospace;\">REAL-TIME HUD</span>\n            </div>\n\n            <!-- Real-Time HUD Values Grid -->\n            <div style=\"display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; font-family: monospace; font-size: 0.67rem;\">\n              <div style=\"background: #fffbeb; border: 1px solid #fde68a; border-radius: 3px; padding: 5px;\">\n                <div style=\"color: #92400e; font-size: 0.60rem;\">GLUCOSE (TIR SAFE)</div>\n                <strong style=\"color: #b45309; font-size: 0.85rem;\">188 mg/dL</strong>\n              </div>\n              <div style=\"background: #fff7ed; border: 1px solid #fed7aa; border-radius: 3px; padding: 5px;\">\n                <div style=\"color: #9a3412; font-size: 0.60rem;\">BLOOD PRESSURE</div>\n                <strong style=\"color: #ea580c; font-size: 0.85rem;\">119/76 mmHg</strong>\n              </div>\n              <div style=\"background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 3px; padding: 5px;\">\n                <div style=\"color: #166534; font-size: 0.60rem;\">OXYGEN SPO2 / PULSE</div>\n                <strong style=\"color: #15803d; font-size: 0.85rem;\">98% / 84 BPM</strong>\n              </div>\n              <div style=\"background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 3px; padding: 5px;\">\n                <div style=\"color: #075985; font-size: 0.60rem;\">TEMPERATURE / HRV</div>\n                <strong style=\"color: #0284c7; font-size: 0.85rem;\">97.3\u00b0F / 56 ms</strong>\n              </div>\n            </div>\n\n            <!-- Causal Alignment Card -->\n            <div style=\"margin-top: 6px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 4px; padding: 6px; font-family: monospace; font-size: 0.66rem; line-height: 1.35; color: #1e3a8a;\">\n              <strong>CAUSAL CORRELATION:</strong> 18g grilled chicken lunch triggered an initial rise, but an immediate 20-min GLUT4 brisk walk blunted the peak to 188 mg/dL, safely below the 200 mg/dL target threshold.\n            </div>\n          </div>\n    ",
+    "tab_screenshot": "images/lcars_slide31_scrubber_hud.png",
+    "tab_title": "04-REPORTS CONSOLE \u2022 SYNCHRONIZED VERTICAL SCRUBBER HUD",
     "tab_num": 4,
     "image": "images/lcars_slide28_scrubber_hud.png",
     "step_focus": [
       {
         "bullet": 0,
-        "focus_desc": "Interactive Vertical Timeline Scrubber & Drag Control",
+        "focus_desc": "Continuous Vertical Scrubber Line Cutting Across All 8 Physiological Lanes",
         "scroll_pct": 0.0
       },
       {
         "bullet": 1,
-        "focus_desc": "Synchronized Multi-Parameter HUD Ribbon Readout at Timestamp",
+        "focus_desc": "Synchronized HUD Ribbon Readout: Real-Time Multi-Parameter Metrics",
         "scroll_pct": 0.4
       },
       {
         "bullet": 2,
-        "focus_desc": "Immediate Cross-Correlation of Meals, Exercise, and Glycemic Deflections",
-        "scroll_pct": 0.8
+        "focus_desc": "Cause-and-Effect Alignment: Linking Lunch Meal Carbs to GLUT4 Walk Disposal",
+        "scroll_pct": 0.85
       }
     ]
   },
@@ -1719,46 +1753,50 @@
     "module": "Module 6: Tab 04 Synchronized Tall Chart",
     "title": "Click-to-Pop Clinical Point Cards: Instant Micro-Audits",
     "desc": "Clicking any timeline node displays exact values, diet logs, and medication context.",
-    "narration": "Next, we examine Click-to-Pop Clinical Audit Cards. Whenever you click any data point on the timeline, a detailed pop-up card appears. It reveals the exact numeric glucose, the delta G drop from prior readings, logged meals, exercise steps, and whether medications were taken on time.",
+    "narration": "Displayed on your screen is our Click-to-Pop Clinical Point Card modal, captured directly in Tab 04 Reports Console. Touching or clicking any data point on the continuous timeline instantly surfaces this detailed clinical audit window. As shown in the modal, every point captures the exact verified glucose reading of 188 milligrams per deciliter, accompanied by normotensive blood pressure of 119 over 76, 98 percent oxygenation, and an 84 beat per minute pulse. Directly below, the modal details the patient's nutritional intake: a grilled chicken salad with eighteen grams of net carbs, paired with a twenty-minute post-meal GLUT4 walk that suppressed glucose by 34 milligrams per deciliter. Finally, the clinical correlation box explains that non-insulin skeletal muscle uptake safely maintained time-in-range. This gives physicians an instantaneous micro-audit during clinical consultations without searching through paper logs.",
     "card_title": "CLICK-TO-POP CLINICAL POINT MICRO-AUDITS",
     "bullets": [
       [
-        "Instant Point Inspection",
-        "Click any node on the curve to inspect verified measurements and timestamps."
+        "Instant Click-to-Pop Inspection",
+        "Clicking any timeline node instantly surfaces a comprehensive modal displaying all verified metrics at that timestamp."
       ],
       [
-        "Comprehensive Micro-Audit",
-        "Displays immediate delta G changes, logged dietary carbs, and medication adherence."
+        "Granular Multi-System Matrix",
+        "Displays exact numeric glucose (188 mg/dL), blood pressure (119/76), oxygenation (98%), pulse (84 BPM), and HRV (56 ms)."
       ],
       [
-        "Consultation Efficiency",
-        "Allows your physician to quickly audit specific spikes without searching through paper logs."
+        "Nutritional & Kinetic Correlates",
+        "Details meal carbohydrates (18g net carbs), caloric intake (520 kcal), and post-meal GLUT4 walk step suppression (-34 mg/dL)."
+      ],
+      [
+        "Physician-Patient Consultation Proof",
+        "Provides an authoritative clinical explanation, verifying that lifestyle compliance actively protected beta-cell reserve."
       ]
     ],
-    "takeaway": "Instant deep-dive micro-audits at the touch of any data point on your clinical curve.",
-    "right_header": "CLINICAL POP-UP CARDS",
-    "right_badge": "INSTANT MICRO-AUDIT",
+    "takeaway": "Clicking any point on the clinical curve opens an instant micro-audit modal. At 13:30, it validates 188 mg/dL glucose, 18g meal carbs, and a 20-min GLUT4 walk (-34 mg/dL), providing physicians with complete consultation proof.",
+    "right_header": "CLINICAL POINT MICRO-AUDIT",
+    "right_badge": "POP-UP MODAL",
     "right_badge_col": "#15803d",
-    "right_html": "\n          <div style=\"margin-top:10px; background:#f0fdf4; border:1.5px solid #bbf7d0; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#14532d; font-family:monospace;\">POINT 10:00: 165 MG/DL (-27 MG/DL DROP)</div>\n            <div style=\"font-size:0.84rem; color:#166534; margin-top:6px; line-height:1.45;\">Pop-up micro-audit verifies 2,384 morning walk steps successfully lowered glucose from 192 to 165 mg/dL.</div>\n          </div>\n        ",
-    "tab_screenshot": "images/lcars_slide29_point_cards.png",
-    "tab_title": "04-REPORTS CONSOLE \u2022 CLICK-TO-POP CLINICAL POINT CARDS",
+    "right_html": "\n          <!-- Clinical Point Card Educational Structure -->\n          <div style=\"background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 10px; margin-top: 4px; color: #0f172a;\">\n            <div style=\"display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 4px; margin-bottom: 8px;\">\n              <span style=\"font-family: monospace; font-size: 0.72rem; color: #15803d; font-weight: 800;\">POINT CARD ARCHITECTURE (13:30)</span>\n              <span style=\"background: #15803d; color: #fff; font-size: 0.60rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; font-family: monospace;\">INSTANT AUDIT</span>\n            </div>\n\n            <!-- Modal Content Breakdown -->\n            <div style=\"display: flex; flex-direction: column; gap: 5px; font-family: monospace; font-size: 0.66rem;\">\n              <div style=\"background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 3px; padding: 5px;\">\n                <strong style=\"color: #166534;\">1. Biometric Triad:</strong>\n                <span style=\"color: #14532d;\"> 188 mg/dL Glucose \u2022 119/76 mmHg BP \u2022 98% SpO2 / 84 BPM.</span>\n              </div>\n              <div style=\"background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 3px; padding: 5px;\">\n                <strong style=\"color: #0284c7;\">2. Nutritional Macro Profile:</strong>\n                <span style=\"color: #1e3a8a;\"> Grilled chicken salad \u2022 18g net carbs \u2022 520 kcal \u2022 Low GI.</span>\n              </div>\n              <div style=\"background: #fff7ed; border: 1px solid #fed7aa; border-radius: 3px; padding: 5px;\">\n                <strong style=\"color: #ea580c;\">3. GLUT4 Exercise Clearance:</strong>\n                <span style=\"color: #9a3412;\"> 780 steps \u2022 20-min walk \u2022 -34 mg/dL postprandial drop.</span>\n              </div>\n              <div style=\"background: #f5f3ff; border: 1px solid #ddd6fe; border-radius: 3px; padding: 5px;\">\n                <strong style=\"color: #7c3aed;\">4. Active Prescription Status:</strong>\n                <span style=\"color: #5b21b6;\"> Metformin 1,000mg BID + Empagliflozin 10mg taken with breakfast.</span>\n              </div>\n            </div>\n          </div>\n    ",
+    "tab_screenshot": "images/lcars_slide32_point_card_modal.png",
+    "tab_title": "04-REPORTS CONSOLE \u2022 CLICK-TO-POP POINT AUDIT CARD",
     "tab_num": 4,
     "image": "images/lcars_slide29_point_cards.png",
     "step_focus": [
       {
         "bullet": 0,
-        "focus_desc": "Click-to-Pop Clinical Point Card Modal Architecture",
+        "focus_desc": "Click-to-Pop Clinical Point Card Modal Architecture & Trigger",
         "scroll_pct": 0.0
       },
       {
         "bullet": 1,
-        "focus_desc": "Instant Micro-Audit: Exact Glucose, BP, SpO2, HR at 13:30 Lunch Peak",
+        "focus_desc": "Verified Multi-Parameter Matrix: Glucose, Blood Pressure, SpO2 & Heart Rate",
         "scroll_pct": 0.4
       },
       {
         "bullet": 2,
-        "focus_desc": "Meal Macro Breakdown & Direct Delta Glycemic Evaluation",
-        "scroll_pct": 0.8
+        "focus_desc": "Nutritional Intake & GLUT4 Kinetic Exercise Clearance Evaluation",
+        "scroll_pct": 0.85
       }
     ]
   },
@@ -1768,45 +1806,49 @@
     "module": "Module 6: Tab 04 Synchronized Tall Chart",
     "title": "Pinning '\ud83d\udc8a MED CHANGE' Milestones: Auditing Progress vs Regression",
     "desc": "Visualizing prescription changes on clinical graphs to objectively measure therapeutic response.",
-    "narration": "Pinning medication change milestones is crucial for clinical consultations. When your physician alters a prescription, logging the titration pins a prominent MED CHANGE milestone directly across your timeline. Both of you can then compare the 14 days before against the 14 days after, objectively proving whether the change yielded clinical progress.",
+    "narration": "Displayed on your screen is our longitudinal timeline with a pinned 'MED CHANGE' milestone marker. When an endocrinologist titrates an outpatient prescription\u2014such as increasing Metformin or initiating an SGLT-2 inhibitor\u2014LCARS pins a vertical milestone line cutting across all eight physiological channels on that exact calendar date. As shown on screen, this divides the timeline into an empirical before-and-after therapeutic comparison. In the thirty days prior to titration, mean glucose averaged 178 milligrams per deciliter with wide glycemic volatility. Following the medication change, mean glucose systematically dropped by 24 milligrams per deciliter, Time-in-Range expanded to 88 percent, and blood pressure stabilized. By visually pinning medication changes to objective ambulatory telemetry, patients and physicians obtain irrefutable proof of therapeutic progress, eliminating guesswork from diabetes management.",
     "card_title": "PINNING '\ud83d\udc8a MED CHANGE' MILESTONE MARKERS",
     "bullets": [
       [
-        "Objective Titration Tracking",
-        "Visually pins prescription adjustments directly onto longitudinal glucose graphs."
+        "Prominent '\ud83d\udc8a MED CHANGE' Milestones",
+        "Cuts vertically across all 8 physiological channels, permanently anchoring the date of prescription titration."
       ],
       [
-        "Before-and-After Analysis",
-        "Directly compares average blood sugar and Time-in-Range before vs after dosage changes."
+        "Empirical Before-and-After Comparison",
+        "Directly contrasts 30-day glycemic trajectories, Time-in-Range, and blood pressure before vs after dosage shifts."
       ],
       [
-        "Definitive Therapeutic Proof",
-        "Objectively determines whether a new medication is delivering genuine clinical progress."
+        "Definitive Therapeutic Validation",
+        "Confirms mean glucose dropped by 24 mg/dL (178 -> 154 mg/dL) and TIR expanded to 88%, proving genuine progress."
+      ],
+      [
+        "Objective Drug Titration Auditing",
+        "Empowers care teams to confidently adjust or discontinue medications based on continuous physiological evidence."
       ]
     ],
-    "takeaway": "Visually proves whether a prescription change delivered genuine clinical improvement.",
-    "right_header": "MEDICATION MILESTONES",
+    "takeaway": "Pinning '\ud83d\udc8a MED CHANGE' milestones provides definitive proof of drug efficacy. Comparing before vs after trajectories confirms a 24 mg/dL glucose drop and 88% Time-in-Range, replacing subjective recall with empirical pharmacological validation.",
+    "right_header": "MEDICATION TITRATION AUDIT",
     "right_badge": "PROGRESS VS REGRESSION",
-    "right_badge_col": "#7c3aed",
-    "right_html": "\n          <div style=\"margin-top:10px; background:#f5f3ff; border:1.5px solid #ddd6fe; border-radius:6px; padding:12px;\">\n            <div style=\"font-size:1.1rem; font-weight:800; color:#5b21b6; font-family:monospace;\">FLAG: \ud83d\udc8a MED CHANGE PINNED (NOV 14)</div>\n            <div style=\"font-size:0.84rem; color:#4c1d95; margin-top:6px; line-height:1.45;\">Metformin ER titrated to 1000mg. Longitudinal comparison confirms average glucose dropped by 12 mg/dL. Progress verified.</div>\n          </div>\n        ",
-    "tab_screenshot": "images/lcars_slide30_med_milestones.png",
+    "right_badge_col": "#dc2626",
+    "right_html": "\n          <!-- Med Change Milestone Before/After Audit Matrix -->\n          <div style=\"background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 10px; margin-top: 4px; color: #0f172a;\">\n            <div style=\"display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 4px; margin-bottom: 8px;\">\n              <span style=\"font-family: monospace; font-size: 0.72rem; color: #dc2626; font-weight: 800;\">TITRATION MILESTONE: METFORMIN + SGLT2</span>\n              <span style=\"background: #dc2626; color: #fff; font-size: 0.60rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; font-family: monospace;\">OCT 28 ANCHOR</span>\n            </div>\n\n            <!-- Before vs After Comparison Grid -->\n            <div style=\"display: grid; grid-template-columns: 1fr 1fr; gap: 6px; font-family: monospace; font-size: 0.66rem;\">\n              <!-- Before Column -->\n              <div style=\"background: #fef2f2; border: 1px solid #fecaca; border-radius: 4px; padding: 6px;\">\n                <div style=\"color: #991b1b; font-weight: bold; border-bottom: 1px solid #fecaca; padding-bottom: 2px; margin-bottom: 4px;\">\n                  \u23ea BEFORE TITRATION (30D)\n                </div>\n                <div style=\"color: #7f1d1d;\">\u2022 Mean Glucose: <strong>178 mg/dL</strong></div>\n                <div style=\"color: #7f1d1d;\">\u2022 Time-in-Range: <strong>72.4%</strong></div>\n                <div style=\"color: #7f1d1d;\">\u2022 Fasting Nadir: <strong>162 mg/dL</strong></div>\n                <div style=\"color: #7f1d1d;\">\u2022 Glycemic SD: <strong>\u00b134 mg/dL</strong></div>\n              </div>\n\n              <!-- After Column -->\n              <div style=\"background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 4px; padding: 6px;\">\n                <div style=\"color: #166534; font-weight: bold; border-bottom: 1px solid #bbf7d0; padding-bottom: 2px; margin-bottom: 4px;\">\n                  \u23e9 AFTER TITRATION (30D)\n                </div>\n                <div style=\"color: #14532d;\">\u2022 Mean Glucose: <strong>154 mg/dL (-24)</strong></div>\n                <div style=\"color: #14532d;\">\u2022 Time-in-Range: <strong>88.1% (+15.7%)</strong></div>\n                <div style=\"color: #14532d;\">\u2022 Fasting Nadir: <strong>138 mg/dL</strong></div>\n                <div style=\"color: #14532d;\">\u2022 Glycemic SD: <strong>\u00b119 mg/dL</strong></div>\n              </div>\n            </div>\n\n            <!-- Clinical Verdict Banner -->\n            <div style=\"margin-top: 6px; background: #ecfdf5; border: 1.5px solid #6ee7b7; border-radius: 4px; padding: 6px; font-family: monospace; font-size: 0.67rem; color: #065f46; display: flex; align-items: center; justify-content: space-between;\">\n              <span>\u2705 <strong>CLINICAL OUTCOME:</strong> THERAPEUTIC PROGRESS CONFIRMED</span>\n              <span style=\"background: #059669; color: #fff; padding: 2px 6px; border-radius: 3px; font-weight: bold;\">-24 mg/dL</span>\n            </div>\n          </div>\n    ",
+    "tab_screenshot": "images/lcars_slide33_med_change_milestone.png",
     "tab_title": "04-REPORTS CONSOLE \u2022 PINNED MED CHANGE CLINICAL MILESTONES",
     "tab_num": 4,
     "image": "images/lcars_slide30_med_milestones.png",
     "step_focus": [
       {
         "bullet": 0,
-        "focus_desc": "Pinning '\ud83d\udc8a MED CHANGE' Vertical Milestone Markers Across Timeline",
+        "focus_desc": "Pinning '\ud83d\udc8a MED CHANGE' Vertical Milestone Markers Across Longitudinal Timeline",
         "scroll_pct": 0.0
       },
       {
         "bullet": 1,
-        "focus_desc": "Auditing Therapeutic Titration Efficacy: Progress vs Regression",
+        "focus_desc": "Empirical Before-and-After Analysis: 30-Day Pre vs Post Titration Comparison",
         "scroll_pct": 0.45
       },
       {
         "bullet": 2,
-        "focus_desc": "Objective Multi-Variable Evidence for Outpatient Prescribing Decisions",
+        "focus_desc": "Definitive Therapeutic Progress Proof: Sustained -24 mg/dL Glycemic Drop",
         "scroll_pct": 0.85
       }
     ]
