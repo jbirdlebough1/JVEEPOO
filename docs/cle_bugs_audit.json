@@ -570,5 +570,15 @@
     "affected_files": "all_slides_data.json, README.md, docs/GOOGLE_LEADERSHIP_PRIMER.md, presentation/slides/slide_01.html, presentation/slides/slide_40.html, presentation/audio/slide_01.mp3, presentation/audio/slide_40.mp3",
     "created_at": "2026-11-20 04:11:39Z",
     "comments": "Re-rendered Slide 01 and 40 audio with Natasha voice, regenerated slides, rebuilt W11 launcher, and updated README and primer."
+  },
+  {
+    "bug_id": "CLE-040",
+    "title": "Integrate LCARS page screenshots under slide bullets, synchronized right-pane scrolling, Gemini ADA food/drink curation, and physician calibration anchor",
+    "description": "Captured high-res screenshots of all 12 LCARS console tabs; embedded live console preview under bullets on left panel; enabled audio-synchronized right pane smooth auto-scrolling; updated Slide 20 with Gemini ADA recipe & seller curation; removed hardcoded 8.3% anchor in favor of physician setup.",
+    "severity": "MEDIUM",
+    "status": "RESOLVED",
+    "affected_files": "all_slides_data.json, build_presentation.py, w11_htm_app/index.html, presentation/preview.html, presentation/slides/*.html, presentation/images/lcars_tab_*.png, presentation/audio/slide_08.mp3, presentation/audio/slide_20.mp3, presentation/audio/slide_37.mp3",
+    "created_at": "2026-11-20 04:35:53Z",
+    "comments": "Re-rendered narration audio for slides 8, 20, 37 with Natasha voice, regenerated all 40 slides, rebuilt preview player and W11 launcher."
   }
 ]

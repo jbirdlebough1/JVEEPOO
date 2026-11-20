@@ -65,11 +65,11 @@
 
 ---
 
-## Slide 08: In-Clinic Venous Blood Draw Calibration
+## Slide 08: In-Clinic Venous Blood Draw Calibration & Baseline Anchor
 **Module:** Module 2: Physician-Patient Alignment & Calibration  
-**Description:** How physician laboratory blood draws anchor continuous optical tonometry to verified clinical chemistry.  
+**Description:** Anchoring optical tonometry readings to the certified clinical laboratory blood draw established by your doctor during configuration.  
 
-> "Slide 8 details in-clinic calibration. Non-invasive optical sensors must be anchored to clinical truth. Whenever you have a certified lab blood draw, your doctor enters that exact lab value into LCARS. The system calculates the optical offset and writes the calibration directly to the watch hardware, ensuring future readings remain grounded in clinical reality."
+> "In Slide 8, we examine clinical calibration. Optical tonometry requires an accurate clinical reference anchor. During onboarding, your doctor configures your laboratory venous blood draw baseline directly into LCARS. From this clinical anchor, our mathematical model projects accurate real-time glucose and estimated A1c curves without arbitrary factory guessing."
 
 ---
 
@@ -161,11 +161,11 @@
 
 ---
 
-## Slide 20: ADA 1-to-1 Carbohydrate Trades Engine
+## Slide 20: ADA Carbohydrate Trades & Gemini-Curated Diabetic Recipes
 **Module:** Module 4: Tab 03 METABOLIC Console & Behavioral Science  
-**Description:** Empowering patients with clinically endorsed dietary substitutions to blunt post-meal spikes.  
+**Description:** Empowering patients with American Diabetes Association (ADA) 1-to-1 food trades, using Google Gemini to discover compliant recipes and verified sellers for safe, delicious diabetic food and drink.  
 
-> "In Slide 20, we examine the ADA 1-to-1 Carbohydrate Trades Engine. Rather than imposing restrictive diets, LCARS recommends smart one-to-one swaps—like substituting rolled oats for refined white bread, or cauliflower for potatoes. These trades cut spike velocity while maintaining enjoyable meals."
+> "In Slide 20, we explore the ADA 1-to-1 Carbohydrate Trades and Clinical Nutrition Engine. Managing Type 2 diabetes should never mean living in deprivation. We use Google Gemini Pro to actively search for and curate ADA-compliant recipes, discover safe food and drink sellers, and recommend delicious, healthy alternatives. Rather than cutting out favorite foods, LCARS provides smart one-to-one swaps—like cauliflower rice for white rice, or almond flour baked treats—helping patients enjoy satisfying meals while blunting post-meal spikes by thirty to fifty milligrams per deciliter."
 
 ---
 
@@ -301,7 +301,7 @@
 **Module:** Module 9: Master Capability Matrix: H-Band vs LCARS  
 **Description:** Comparing calibration capabilities, multi-lane timelines, and exercise kinetics.  
 
-> "Part 2 contrasts clinical analytics. The mobile app uses static linear approximations and fragmented graphs. LCARS provides certified 8.3% lab anchor calibration, 8 synchronized timeline lanes with zero overlap, and empirical GLUT4 exercise drop tracking."
+> "Part 2 contrasts clinical analytics. The mobile app uses static linear approximations and fragmented graphs. LCARS provides continuous twenty-four-hour glucose kinetics anchored to certified doctor-configured laboratory blood draws, complete daily eA1c projections, and automated nocturnal dawn surge detection."
 
 ---
 

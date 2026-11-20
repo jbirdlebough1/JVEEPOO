@@ -5964,6 +5964,7 @@
     }
 
     async function attemptAutoLink() {
+      if (new URLSearchParams(window.location.search).get('headless')) return;
       const known = await checkKnownDevice();
       if (known) {
         logLCARS(`Preconfigured watch recognized: ${known.name || 'VEE'} [${known.id}]. Auto-linking...`, 'rx');
@@ -10658,6 +10659,11 @@ Notice: For Type 2 diabetes lifestyle management and metabolic tracking only. No
       renderMedicationView();
       renderReportsView();
       if (typeof renderTallSynchronizedChart === 'function') renderTallSynchronizedChart('daily');
+      const urlParams = new URLSearchParams(window.location.search);
+      const initTab = urlParams.get('tab');
+      if (initTab) {
+        switchTab(initTab);
+      }
       // Seamless auto-link to known watch transponder
       await attemptAutoLink();
     });

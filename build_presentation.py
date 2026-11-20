@@ -71,14 +71,36 @@ def generate_left_panel(s):
     desc = s.get("desc", "")
     takeaway = s.get("takeaway", "Continuous telemetry ensures patient safety and clinical insight.")
 
+    tab_img = s.get("tab_screenshot", "")
+    tab_title = s.get("tab_title", "LCARS WORKSTATION CONSOLE")
+    screenshot_html = ""
+    if tab_img:
+        screenshot_html = f"""
+        <!-- Real LCARS Page Under Discussion Preview -->
+        <div style="margin-top: 10px; margin-bottom: 10px; border: 1.5px solid #cbd5e1; border-radius: 6px; overflow: hidden; background: #0f172a; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+          <div style="display: flex; justify-content: space-between; align-items: center; background: #1e293b; padding: 4px 8px; border-bottom: 1px solid #334155;">
+            <span style="font-size: 0.68rem; color: #38bdf8; font-weight: 800; font-family: monospace; letter-spacing: 0.04em;">
+              🖥️ PAGE UNDER DISCUSSION: {tab_title}
+            </span>
+            <span style="background: #0284c7; color: #ffffff; font-size: 0.62rem; font-weight: bold; padding: 1px 5px; border-radius: 3px; font-family: monospace;">
+              LIVE CONSOLE
+            </span>
+          </div>
+          <div style="text-align: center; background: #000; overflow: hidden; height: 135px; display: flex; align-items: flex-start; justify-content: center;">
+            <img src="{tab_img}" onerror="this.src='../{tab_img}'" alt="{tab_title}" style="width: 100%; height: auto; display: block; object-fit: cover; object-position: top center;">
+          </div>
+        </div>
+        """
+
     return f"""
       <!-- High-Contrast Dynamic Content Card -->
       <div class="content-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #0284c7; padding: 18px 20px; border-radius: 8px; display: flex; flex-direction: column; overflow-y: auto;">
         <h3 style="color: #0284c7; font-size: 1.12rem; font-weight: 800; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 8px; text-transform: uppercase;">{card_title}</h3>
         <p style="font-size: 0.92rem; color: #334155; margin-bottom: 10px; line-height: 1.45; font-weight: 500;">{desc}</p>
-        <ul style="padding-left: 18px; margin-bottom: 10px; color: #1e293b; font-size: 0.85rem;">
+        <ul style="padding-left: 18px; margin-bottom: 6px; color: #1e293b; font-size: 0.85rem;">
           {bullets_html}
         </ul>
+        {screenshot_html}
         <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 8px 12px; border-radius: 4px; font-size: 0.82rem; color: #14532d; margin-top: auto;">
           <strong style="color: #15803d;">Key Takeaway:</strong> {takeaway}
         </div>
@@ -508,6 +530,15 @@ preview_html_content = f"""<!DOCTYPE html>
       document.getElementById('lblTranscriptTitle').innerText = `SLIDE ${{s.num}}: ${{s.title}}`;
       document.getElementById('txtTranscript').innerText = s.narration;
 
+      // Reset scroll on right pane
+      try {{
+        const iframe = document.getElementById('slideIframe');
+        if (iframe && iframe.contentDocument) {{
+          const rightCard = iframe.contentDocument.querySelector('.visual-card');
+          if (rightCard) rightCard.scrollTop = 0;
+        }}
+      }} catch(e) {{}}
+
       // Speak narration immediately
       speakNarration(s.narration);
     }}
@@ -532,6 +563,21 @@ preview_html_content = f"""<!DOCTYPE html>
           hideUnmuteBanner();
           audioEl.onended = () => {{
             if (isPlaying) nextSlide();
+          }};
+          audioEl.ontimeupdate = () => {{
+            if (audioEl.duration > 0) {{
+              const norm = audioEl.currentTime / audioEl.duration;
+              try {{
+                const iframe = document.getElementById('slideIframe');
+                if (iframe && iframe.contentDocument) {{
+                  const rightCard = iframe.contentDocument.querySelector('.visual-card');
+                  if (rightCard && rightCard.scrollHeight > rightCard.clientHeight) {{
+                    const maxScroll = rightCard.scrollHeight - rightCard.clientHeight;
+                    rightCard.scrollTop = norm * maxScroll;
+                  }}
+                }}
+              }} catch(e) {{}}
+            }}
           }};
         }}).catch((err) => {{
           console.warn("Autoplay deferred by browser policy until interaction:", err);

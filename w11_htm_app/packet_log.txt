@@ -55404,3 +55404,7 @@ ivate Mode: ACTIVE
 [20:05:56] [RX] RX [0000fea1]: 01 e1 0c 00
 [20:05:57] [RX] RX [0000fea1]: 01 e1 0c 00
 [20:05:58] [RX] RX [0000fea1]: 01 e1 0c 00
+[20:35:36] [TX] Connecting to GATT server on VEE (Attempt 2/3)...
+[20:35:45] [TX] Connecting to GATT server on VEE (Attempt 3/3)...
+[20:35:53] [ERR] Connection Failed: Connection Error: Connection attempt failed.. Ensure watch screen is lit & awake.
+[20:35:53] [ERR] Error: Could not connect to watch. Ensure watch screen is awake.
