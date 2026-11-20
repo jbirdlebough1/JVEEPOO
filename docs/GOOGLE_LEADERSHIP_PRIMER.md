@@ -4,6 +4,10 @@
 
 ---
 
+### The Author's Provenance & Care Team Origin
+Built directly by an author living with **Type II Diabetes**, this toolset originated from a personal necessity: providing continuous objective biofeedback to partner with a multidisciplinary care team comprising a **Diabetic Pharmacist**, **Primary Care Physician**, **Endocrinologist**, and **Diabetic Diet Specialist**. It is offered as experimental open-source software under the guiding mission: ***"That Others May Survive Successfully Diabetes."*** We invite Google to join as an institutional sponsor and community host for this public benefit effort.
+
+---
 ### 1. The Core Challenge & Public Health Gap
 Over **38 million Americans** and **537 million people worldwide** live with Diabetes Mellitus. Effective outpatient management requires continuous physiological feedback to prevent severe vascular, renal, and neurological complications. 
 

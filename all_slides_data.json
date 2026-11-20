@@ -3,29 +3,33 @@
     "id": 1,
     "num": "01",
     "module": "Module 1: Introduction & Clinical Scope",
-    "title": "Welcome to LCARS 5010 Clinical Ambulatory Telemetry",
-    "desc": "Overview of the LCARS 5010 Clinical Telemetry Console for the Veepoo Model 5010 biosensing array.",
-    "narration": "G'day mate! Welcome to the LCARS 5010 Clinical Telemetry Masterclass. Today, we're taking you inside the complete engineering and physiological suite behind the Veepoo Model 5010 biosensing array. We built this platform to give doctors and patients a continuous, reliable window into outpatient metabolic health, completely eliminating proprietary cloud silos and delivering clinical-grade telemetry right on your local PC.",
-    "card_title": "SYSTEM OVERVIEW & TRANSPONDER STATUS",
+    "title": "Why This Toolset: An Author's Journey & Multidisciplinary Care",
+    "desc": "Created by a Type II diabetic to empower direct partnership with their care team\u2014Diabetic Pharmacist, Primary Care Physician, Endocrinologist, and Diet Specialist\u2014offered as an open-source tool 'That Others May Survive Successfully Diabetes.'",
+    "narration": "G'day mate! Welcome to the LCARS 5010 Clinical Telemetry Masterclass. Why was this toolset created? As a Type 2 diabetic, I needed an objective, continuous personal window into my own physiology to work effectively with my clinical care team: my Diabetic Pharmacist, Primary Care Physician, Endocrinologist, and Diabetic Diet Specialist. We offer this platform as experimental open-source software with the heartfelt hope that it helps others in their daily struggle with diabetes. We encourage doctors and engineers alike to contribute, so that others may survive successfully with diabetes, and we warmly welcome Google and other sponsors to assist in advancing this community project.",
+    "card_title": "WHY THIS TOOLSET: CLINICAL NEED & OPEN MISSION",
     "bullets": [
       [
-        "Continuous Ambulatory Telemetry",
-        "Streams 8 simultaneous physiological signals over low-energy radio directly to your PC."
+        "An Author's Personal Struggle",
+        "Built directly by a Type II diabetic navigating daily insulin sensitivity, glucose variability, and lifestyle adherence."
       ],
       [
-        "Zero Cloud Dependencies",
-        "Processes every reading locally on your computer with total patient privacy."
+        "Multidisciplinary Clinical Care Team",
+        "Unites four vital specialists: Diabetic Pharmacist, Primary Care Physician, Endocrinologist, and Diabetic Diet Specialist."
       ],
       [
-        "Doctor-Patient Partnership",
-        "Designed specifically as a shared clinical tool to review during consultations."
+        "Experimental Open Source",
+        "Free and unencumbered under GPL v3 copyleft, offered with the hope of aiding others facing the chronic burdens of diabetes."
+      ],
+      [
+        "'That Others May Survive Successfully Diabetes'",
+        "An open invitation for clinicians, software engineers, Google, and sponsors to contribute and elevate community care."
       ]
     ],
-    "takeaway": "Empowers doctors and patients with 24/7 objective data to safely achieve glycemic goals.",
-    "right_header": "LCARS 5010 \u2022 SYSTEM GATEWAY",
-    "right_badge": "\u25cf LINKED & ONLINE",
+    "takeaway": "An authentic open-source tool uniting patients, clinical specialists, and engineers: That Others May Survive Successfully Diabetes.",
+    "right_header": "LCARS 5010 \u2022 MULTIDISCIPLINARY CARE WORKBENCH",
+    "right_badge": "COMMUNITY OPEN SOURCE",
     "right_badge_col": "#15803d",
-    "right_html": "\n          <div style=\"display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px;\">\n            <div style=\"background:#f8fafc; padding:8px; border-radius:4px; border:1px solid #e2e8f0;\">\n              <div style=\"font-size:0.7rem; color:#64748b; font-weight:bold;\">WATCH TRANSPONDER</div>\n              <div style=\"font-size:1.1rem; font-weight:800; color:#0f172a; font-family:monospace;\">MODEL 5010 ACTIVE</div>\n            </div>\n            <div style=\"background:#f8fafc; padding:8px; border-radius:4px; border:1px solid #e2e8f0;\">\n              <div style=\"font-size:0.7rem; color:#64748b; font-weight:bold;\">COMMUNICATION</div>\n              <div style=\"font-size:1.1rem; font-weight:800; color:#0284c7; font-family:monospace;\">BLUETOOTH 5.0 LE</div>\n            </div>\n            <div style=\"background:#f8fafc; padding:8px; border-radius:4px; border:1px solid #e2e8f0;\">\n              <div style=\"font-size:0.7rem; color:#64748b; font-weight:bold;\">CALIBRATION ANCHOR</div>\n              <div style=\"font-size:1.1rem; font-weight:800; color:#d97706; font-family:monospace;\">8.3% HbA1c (191.5)</div>\n            </div>\n            <div style=\"background:#f8fafc; padding:8px; border-radius:4px; border:1px solid #e2e8f0;\">\n              <div style=\"font-size:0.7rem; color:#64748b; font-weight:bold;\">LOCAL VAULT SYNC</div>\n              <div style=\"font-size:1.1rem; font-weight:800; color:#15803d; font-family:monospace;\">SYNC NOMINAL</div>\n            </div>\n          </div>\n          <div style=\"margin-top:10px; background:#eff6ff; border:1.5px solid #bfdbfe; border-radius:6px; padding:10px;\">\n            <div style=\"font-weight:800; color:#1e40af; font-size:0.85rem;\">PATIENT MONITORING PROFILE</div>\n            <div style=\"font-size:0.8rem; color:#1e3a8a; margin-top:4px;\">Age: 68 \u2022 Protocol: Outpatient T2D Maintenance \u2022 Port: 8899 Local Air-Gapped</div>\n          </div>\n        "
+    "right_html": "\n          <!-- 4-Specialist Care Team Grid -->\n          <div style=\"display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:6px;\">\n            <div style=\"background:#f0fdf4; border:1px solid #bbf7d0; border-radius:4px; padding:6px 8px;\">\n              <div style=\"font-size:0.68rem; color:#15803d; font-weight:800;\">\ud83d\udc8a DIABETIC PHARMACIST</div>\n              <div style=\"font-size:0.72rem; color:#166534; margin-top:2px;\">Medication titration, drug kinetics & adherence tracking</div>\n            </div>\n            <div style=\"background:#f0f9ff; border:1px solid #bae6fd; border-radius:4px; padding:6px 8px;\">\n              <div style=\"font-size:0.68rem; color:#0284c7; font-weight:800;\">\ud83e\ude7a PRIMARY CARE PHYSICIAN</div>\n              <div style=\"font-size:0.72rem; color:#0c4a6e; margin-top:2px;\">Routine outpatient review, systemic health & Epic records</div>\n            </div>\n            <div style=\"background:#fdf4ff; border:1px solid #f5d0fe; border-radius:4px; padding:6px 8px;\">\n              <div style=\"font-size:0.68rem; color:#a21caf; font-weight:800;\">\ud83d\udd2c ENDOCRINOLOGIST</div>\n              <div style=\"font-size:0.72rem; color:#701a75; margin-top:2px;\">Hormone kinetics, Dawn surge & insulin sensitivity</div>\n            </div>\n            <div style=\"background:#fffbeb; border:1px solid #fde68a; border-radius:4px; padding:6px 8px;\">\n              <div style=\"font-size:0.68rem; color:#d97706; font-weight:800;\">\ud83e\udd57 DIABETIC DIET SPECIALIST</div>\n              <div style=\"font-size:0.72rem; color:#92400e; margin-top:2px;\">ADA carb trades, macronutrient logs & GLUT4 walks</div>\n            </div>\n          </div>\n\n          <!-- Mission Dedication Banner -->\n          <div style=\"margin-top:10px; background:#f0fdf4; border:1.5px solid #86efac; border-radius:6px; padding:10px; text-align:center;\">\n            <div style=\"font-weight:900; color:#15803d; font-size:0.88rem; letter-spacing:0.02em; font-family:monospace;\">\n              \"THAT OTHERS MAY SURVIVE SUCCESSFULLY DIABETES\"\n            </div>\n            <div style=\"font-size:0.75rem; color:#166534; margin-top:4px; line-height:1.4;\">\n              Offered as an experimental open-source project. We encourage doctors, engineers, and community sponsors\u2014including Google\u2014to collaborate and improve these tools.\n            </div>\n          </div>\n\n          <div style=\"margin-top:10px; display:flex; justify-content:space-between; font-family:monospace; font-size:0.75rem; background:#f8fafc; padding:6px 10px; border-radius:4px; border:1px solid #e2e8f0;\">\n            <span style=\"color:#64748b;\">PATIENT STATUS:</span>\n            <span style=\"color:#0284c7; font-weight:bold;\">OUTPATIENT TYPE 2 DIABETES PROTOCOL</span>\n          </div>\n        "
   },
   {
     "id": 2,
@@ -1125,7 +1129,7 @@
     "module": "Module 10: Clinical Summaries & Open Source Ecosystem",
     "title": "Open Source Copyleft, Documentation & Powered by Google Gemini Pro",
     "desc": "LCARS 5010 is 100% free open-source copyleft software under GNU GPL v3, fully documented in GitHub /docs/, and powered by Google Gemini Pro using HBandSDK and Veepoo standards.",
-    "narration": "In closing, LCARS 5010 is completely free, open-source copyleft software released under the GNU General Public License version 3. You have complete sovereignty over your health data with zero cloud subscriptions and zero proprietary lock-in. The platform is fully documented with extensive clinical studies and engineering specifications in our GitHub docs directory, and was architected and built with Google Gemini Pro based on the open HBandSDK and Veepoo repositories. You can purchase the FITAOS 5150 watch directly on the official FITAOS sales site at fitaos.com, and explore our full source code on GitHub. Thank you for joining our clinical masterclass!",
+    "narration": "In closing, LCARS 5010 is completely free, open-source copyleft software released under the GNU General Public License version 3. As an author managing Type 2 Diabetes alongside my care team, this toolset is dedicated to everyone fighting diabetes, so that others may survive successfully. The platform is fully documented on GitHub and was architected and built with Google Gemini Pro based on the open HBandSDK and Veepoo repositories. We invite doctors, engineers, and sponsors like Google to join us in advancing this community project. Thank you for joining our clinical masterclass!",
     "card_title": "OPEN SOURCE COPYLEFT & ARCHITECTURAL FOUNDATION",
     "bullets": [
       [
@@ -1141,8 +1145,8 @@
         "Transparent, peer-audited clinical studies, ADA/ADAG A1C mathematical models, and protocol specifications hosted on GitHub docs."
       ],
       [
-        "Powered by Google Gemini Pro",
-        "Architected, engineered, and verified using Google DeepMind's flagship Gemini Pro AI, uniting advanced signal processing with senior-friendly human factors."
+        "Powered by Google Gemini Pro & Community Invitation",
+        "Architected with Gemini Pro. We welcome doctors, software engineers, and sponsors like Google to join our mission: That Others May Survive Successfully Diabetes."
       ]
     ],
     "takeaway": "An open-source, fully documented clinical workstation empowering patients and physicians together.",

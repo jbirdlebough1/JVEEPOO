@@ -9,11 +9,11 @@
 
 ---
 
-## Slide 01: Welcome to LCARS 5010 Clinical Ambulatory Telemetry
+## Slide 01: Why This Toolset: An Author's Journey & Multidisciplinary Care
 **Module:** Module 1: Introduction & Clinical Scope  
-**Description:** Overview of the LCARS 5010 Clinical Telemetry Console for the Veepoo Model 5010 biosensing array.  
+**Description:** Created by a Type II diabetic to empower direct partnership with their care team—Diabetic Pharmacist, Primary Care Physician, Endocrinologist, and Diet Specialist—offered as an open-source tool 'That Others May Survive Successfully Diabetes.'  
 
-> "G'day mate! Welcome to the LCARS 5010 Clinical Telemetry Masterclass. Today, we're taking you inside the complete engineering and physiological suite behind the Veepoo Model 5010 biosensing array. We built this platform to give doctors and patients a continuous, reliable window into outpatient metabolic health, completely eliminating proprietary cloud silos and delivering clinical-grade telemetry right on your local PC."
+> "G'day mate! Welcome to the LCARS 5010 Clinical Telemetry Masterclass. Why was this toolset created? As a Type 2 diabetic, I needed an objective, continuous personal window into my own physiology to work effectively with my clinical care team: my Diabetic Pharmacist, Primary Care Physician, Endocrinologist, and Diabetic Diet Specialist. We offer this platform as experimental open-source software with the heartfelt hope that it helps others in their daily struggle with diabetes. We encourage doctors and engineers alike to contribute, so that others may survive successfully with diabetes, and we warmly welcome Google and other sponsors to assist in advancing this community project."
 
 ---
 
@@ -325,7 +325,7 @@
 **Module:** Module 10: Clinical Summaries & Open Source Ecosystem  
 **Description:** LCARS 5010 is 100% free open-source copyleft software under GNU GPL v3, fully documented in GitHub /docs/, and powered by Google Gemini Pro using HBandSDK and Veepoo standards.  
 
-> "In closing, LCARS 5010 is completely free, open-source copyleft software released under the GNU General Public License version 3. You have complete sovereignty over your health data with zero cloud subscriptions and zero proprietary lock-in. The platform is fully documented with extensive clinical studies and engineering specifications in our GitHub docs directory, and was architected and built with Google Gemini Pro based on the open HBandSDK and Veepoo repositories. You can purchase the FITAOS 5150 watch directly on the official FITAOS sales site at fitaos.com, and explore our full source code on GitHub. Thank you for joining our clinical masterclass!"
+> "In closing, LCARS 5010 is completely free, open-source copyleft software released under the GNU General Public License version 3. As an author managing Type 2 Diabetes alongside my care team, this toolset is dedicated to everyone fighting diabetes, so that others may survive successfully. The platform is fully documented on GitHub and was architected and built with Google Gemini Pro based on the open HBandSDK and Veepoo repositories. We invite doctors, engineers, and sponsors like Google to join us in advancing this community project. Thank you for joining our clinical masterclass!"
 
 ---
 

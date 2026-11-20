@@ -11,6 +11,20 @@
 
 ---
 
+---
+
+## 🩺 Author's Dedication: Why This Toolset Was Built
+
+> *"That Others May Survive Successfully Diabetes"*
+
+The author is a **Type II diabetic** who needed an objective, personal, continuous telemetry tool to collaborate directly with their multidisciplinary care team:
+* 💊 **Diabetic Pharmacist** — Managing medication kinetics, intake schedules, and titration adherence.
+* 🩺 **Primary Care Physician (PCP)** — Longitudinal ambulatory reviews and permanent clinical record keeping.
+* 🔬 **Endocrinologist** — Analyzing insulin sensitivity, glucose variability, and Dawn Phenomenon kinetics.
+* 🥗 **Diabetic Diet Specialist** — Correlating meal macronutrients, ADA carbohydrate trades, and post-meal GLUT4 exercise recovery.
+
+Offered as **experimental open-source software (GPL v3)** with the sincere hope that it empowers others in their daily struggle with diabetes. We invite doctors, clinical specialists, and software engineers to contribute to this mission. We also warmly welcome **Google** and community sponsors to partner with us in expanding this open-access tool.
+
 ## 🎬 Interactive Technical Presentation (40-Slide Audio-Visual Walkthrough)
 
 > [!NOTE]

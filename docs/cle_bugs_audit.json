@@ -560,5 +560,15 @@
     "affected_files": "docs/cmo_spec.html, docs/generate_cmo_spec.py, docs/GOOGLE_LEADERSHIP_PRIMER.md, presentation/slides/slide_25.html, presentation/slides/slide_39.html",
     "created_at": "2026-11-20 04:06:12Z",
     "comments": "Added Section 6 Epic Interoperability & LOINC mappings to CMO spec; updated Slides 25 & 39 with pre-validation disclosure; authored Google Leadership 1-Page Primer."
+  },
+  {
+    "bug_id": "CLE-039",
+    "title": "Integrate Author Type II diabetic provenance, care team dedication, and Google leadership executive primer",
+    "description": "Added author Type II diabetes provenance and multidisciplinary care team dedication (Pharmacist, PCP, Endocrinologist, Diet Specialist) to Slide 1, Slide 40, README.md, and GOOGLE_LEADERSHIP_PRIMER.md under motto \"That Others May Survive Successfully Diabetes\". Prepared Google leadership transmission primer.",
+    "severity": "MEDIUM",
+    "status": "RESOLVED",
+    "affected_files": "all_slides_data.json, README.md, docs/GOOGLE_LEADERSHIP_PRIMER.md, presentation/slides/slide_01.html, presentation/slides/slide_40.html, presentation/audio/slide_01.mp3, presentation/audio/slide_40.mp3",
+    "created_at": "2026-11-20 04:11:39Z",
+    "comments": "Re-rendered Slide 01 and 40 audio with Natasha voice, regenerated slides, rebuilt W11 launcher, and updated README and primer."
   }
 ]
