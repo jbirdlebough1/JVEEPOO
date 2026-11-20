@@ -6,6 +6,7 @@
 [![Hardware: Model 5010](https://img.shields.io/badge/Hardware-FITAOS%20%2F%20Veepoo%20Model%205010-orange.svg)](https://github.com/jbirdlebough1/JVEEPOO)
 [![Architecture: LCARS / Starfleet Cybernetics](https://img.shields.io/badge/Architecture-LCARS%2024th%20Century-purple.svg)](https://github.com/jbirdlebough1/JVEEPOO)
 [![Consensus: ADA / ADAG Algorithm](https://img.shields.io/badge/Clinical-ADA%20%2F%20ADAG%20eA1C-green.svg)](docs/clinical_glucose_study_and_a1c_analysis.md)
+[![Ecosystem: HBandSDK](https://img.shields.io/badge/Ecosystem-HBandSDK%20%7C%20Veepoo-brightgreen.svg)](https://github.com/HBandSDK)
 [![License: GPL v3 / Open Source](https://img.shields.io/badge/License-GPL%20v3%20%2F%20Open%20Source-green.svg)](LICENSE)
 
 ---
@@ -90,6 +91,28 @@ Correlates 8 simultaneous biometric streams into a unified Starfleet LCARS visua
 | **Offline Privacy & Security** | Cloud server synchronization | **100% Local SQLite & Bluetooth LE (Zero Cloud Dependency)** |
 
 ---
+
+---
+
+## 🌐 HBandSDK Ecosystem & Smartwatch Applications Repository
+
+**JVEEPOO** serves as an open-source desktop application extending the official [HBandSDK GitHub Ecosystem](https://github.com/HBandSDK) to Windows 11, asynchronous Python telemetry daemons, and clinical visual workstations:
+
+* 🏢 **Official HBandSDK GitHub Organization**: [https://github.com/HBandSDK](https://github.com/HBandSDK)
+* 📱 **Official Android BLE SDK**: [`HBandSDK/Android_Ble_SDK`](https://github.com/HBandSDK/Android_Ble_SDK) — Native Android BLE protocol library (`com.veepoo.protocol`).
+* 🍏 **Official iOS BLE SDK**: [`HBandSDK/iOS_Ble_SDK`](https://github.com/HBandSDK/iOS_Ble_SDK) — Native iOS Objective-C BLE protocol.
+* 💬 **Official WeChat Mini Program SDK**: [`HBandSDK/WeChat_Mini_Program_Ble_SDK`](https://github.com/HBandSDK/WeChat_Mini_Program_Ble_SDK) — TypeScript BLE connectivity.
+* 🌐 **Official HarmonyOS SDK**: [`HBandSDK/HarmonyOS_BLE_SDK`](https://github.com/HBandSDK/HarmonyOS_BLE_SDK) — HarmonyOS wearable integration.
+* 🖥️ **Windows 11 / Python Clinical Workstation**: [`jbirdlebough1/JVEEPOO`](https://github.com/jbirdlebough1/JVEEPOO) — Production Windows 11 single-page application, 24-hour optical tonometry glucose engine, 8.3% HbA1c calibration anchor, and 8-stream biometric synthesis.
+
+### Protocol Compatibility Matrix:
+| Protocol Opcode | Description | HBandSDK Native Class | JVEEPOO Python BLE Driver |
+| :---: | :--- | :--- | :--- |
+| `0x89` | Optical Blood Glucose Tonometry | `VPOperateManager.startBloodGlucose()` | `watch_monitor.py: start_glucose_private()` |
+| `0x80` | Nocturnal SpO2 & Apnea Detection | `VPOperateManager.startSpo2()` | `watch_monitor.py: start_spo2()` |
+| `0xD0` | Continuous 24h Optical Heart Rate | `VPOperateManager.startHeartRate()` | `watch_monitor.py: start_heart_rate()` |
+| `0xA0` | Battery & Charge Subsystem | `VPBatteryManager` | `watch_monitor.py: BATTERY` |
+| `0xA8` | 32-Bit Step & Exercise Accelerometer | `VPStepManager` | `watch_monitor.py: PEDOMETER` |
 
 ## 🗃️ Repository Structure
 
