@@ -550,5 +550,15 @@
     "affected_files": "presentation/slides/slide_39.html, presentation/audio/slide_39.mp3, presentation/preview.html, all_slides_data.json, presentation/TRANSCRIPT.md",
     "created_at": "2026-11-20 03:59:16Z",
     "comments": "Updated Slide 39 left panel bullets, right dashboard, audio narration, and transcript to feature the 3-tier clinical review: Year-to-Date (YTD), Month (30-day), and Daily (24-hour)."
+  },
+  {
+    "bug_id": "CLE-038",
+    "title": "Add Section 6 Epic HL7 FHIR standard to doctor guide, clarify Epic pre-validation status, and publish Google Leadership 1-Page Primer",
+    "description": "Documented Epic on FHIR LOINC mapping, clarified pre-validation institutional requirements, and created Google executive briefing.",
+    "severity": "MEDIUM",
+    "status": "RESOLVED",
+    "affected_files": "docs/cmo_spec.html, docs/generate_cmo_spec.py, docs/GOOGLE_LEADERSHIP_PRIMER.md, presentation/slides/slide_25.html, presentation/slides/slide_39.html",
+    "created_at": "2026-11-20 04:06:12Z",
+    "comments": "Added Section 6 Epic Interoperability & LOINC mappings to CMO spec; updated Slides 25 & 39 with pre-validation disclosure; authored Google Leadership 1-Page Primer."
   }
 ]
