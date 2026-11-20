@@ -1,5 +1,5 @@
 """
-Veepoo / H Band Model 5010 Clinical Telemetry Monitor & BLE Daemon
+Veepoo Model 5010 Clinical Telemetry Monitor & BLE Daemon
 Multi-Metric Protocol Decoders, Interactive CLI Transponder, & SQLite/JSONL Persistence
 """
 

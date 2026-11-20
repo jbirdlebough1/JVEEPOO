@@ -88,7 +88,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 **Module:** Module 1: Introduction & Clinical Scope  
 **Card Title:** FITAOS 5150: 8 CONTINUOUS BIOMETRIC MEASUREMENTS  
 
-> On the right is the physical FITAOS 5150 smartwatch, available directly on their official sales site at fitaos.com. Because our software was engineered by Google Gemini Pro using the open HBandSDK and Veepoo repositories, many different Veepoo watch models are naturally compatible. On the left are the eight continuous biometric channels it measures: blood glucose, dual core and skin temperature, ambulatory blood pressure, arterial oxygen saturation, continuous heart rate, autonomic HRV, physical step cadence, and multi-stage sleep architecture. All eight signals stream continuously over Bluetooth Low Energy directly into El-CARS without any subscription paywalls.
+> On the right is the physical FITAOS 5150 smartwatch, available directly on their official sales site at fitaos.com. Because our software was engineered by Google Gemini Pro using the open Veepoo Protocol and Veepoo repositories, many different Veepoo watch models are naturally compatible. On the left are the eight continuous biometric channels it measures: blood glucose, dual core and skin temperature, ambulatory blood pressure, arterial oxygen saturation, continuous heart rate, autonomic HRV, physical step cadence, and multi-stage sleep architecture. All eight signals stream continuously over Bluetooth Low Energy directly into El-CARS without any subscription paywalls.
 
 **Key Points:**
 - **1. Optical Blood Glucose (mg/dL):** Non-invasive multi-wavelength PPG capillary tonometry calculating real-time glucose and eA1C.
@@ -610,12 +610,12 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ### Slide 40: Autonomic HRV & Lorenz Cardiac Scatter Dynamics
 **Module:** Module 5: Clinical Reports & Longitudinal EHR Records  
-**Card Title:** AUTONOMIC HRV & HBAND 2D LORENZ SCATTER PARITY  
+**Card Title:** AUTONOMIC HRV & 2D LORENZ SCATTER PARITY  
 
-> Slide forty presents our third cardiovascular channel: Autonomic Heart Rate Variability and two-dimensional Lorenz Scatter Dynamics, engineered to full H-Band protocol specification. On screen, the upper panel traces continuous diurnal and nocturnal HRV in milliseconds, while the lower console renders the two-dimensional Lorenz Poincaré scatter plot. By mapping each beat-to-beat interval against the next across twelve hundred cardiac epochs, the scatter geometry reveals autonomic tone at a glance. In the right pane, we formulate the underlying mathematics. The transverse axis, S-D-one, equals R-M-S-S-D divided by the square root of two, directly quantifying parasympathetic vagal reserve. The longitudinal axis, S-D-two, captures sympathetic drive. A healthy cardiovascular system produces the classic wide comet shape. Conversely, diabetic cardiac autonomic neuropathy or severe neuro-metabolic exhaustion collapses the plot into a narrow torpedo cluster, warning clinicians of autonomic fatigue and nocturnal cortisol surges long before daytime symptoms appear.
+> Slide forty presents our third cardiovascular channel: Autonomic Heart Rate Variability and two-dimensional Lorenz Scatter Dynamics, engineered to full OEM App protocol specification. On screen, the upper panel traces continuous diurnal and nocturnal HRV in milliseconds, while the lower console renders the two-dimensional Lorenz Poincaré scatter plot. By mapping each beat-to-beat interval against the next across twelve hundred cardiac epochs, the scatter geometry reveals autonomic tone at a glance. In the right pane, we formulate the underlying mathematics. The transverse axis, S-D-one, equals R-M-S-S-D divided by the square root of two, directly quantifying parasympathetic vagal reserve. The longitudinal axis, S-D-two, captures sympathetic drive. A healthy cardiovascular system produces the classic wide comet shape. Conversely, diabetic cardiac autonomic neuropathy or severe neuro-metabolic exhaustion collapses the plot into a narrow torpedo cluster, warning clinicians of autonomic fatigue and nocturnal cortisol surges long before daytime symptoms appear.
 
 **Key Points:**
-- **H-Band 2D Lorenz Scatter Parity:** Plots beat-to-beat R-R intervals (RR_n vs RR_n+1) across 1,200 nocturnal epochs to audit autonomic stability.
+- **2D Lorenz Scatter Parity:** Plots beat-to-beat R-R intervals (RR_n vs RR_n+1) across 1,200 nocturnal epochs to audit autonomic stability.
 - **5 Morphological Diagnostic Patterns:** Distinguishes healthy Comet dispersion from Torpedo fatigue, Club rigidity, Fork PVCs, and Complex AFib.
 - **Diabetic Autonomic Screening:** Transverse SD1 compression flags parasympathetic vagal withdrawal and early diabetic cardiac autonomic neuropathy.
 
@@ -728,11 +728,11 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 48: H-Band vs LCARS Matrix Part 1: Hardware Parity & Zero-Cloud Privacy
-**Module:** Module 9: Master Capability Matrix: H-Band vs LCARS  
-**Card Title:** H-BAND VS LCARS: ARCHITECTURE & PRIVACY  
+### Slide 48: OEM App vs LCARS Matrix Part 1: Hardware Parity & Zero-Cloud Privacy
+**Module:** Module 9: Master Capability Matrix: OEM App vs LCARS  
+**Card Title:** OEM APP VS LCARS: ARCHITECTURE & PRIVACY  
 
-> Module 9 compares the stock H-Band mobile app against El-CARS. Part 1 covers architecture and privacy. While the mobile app sends private medical data to remote cloud servers, El-CARS runs entirely on your local PC via port 8899 and SQLite, delivering 100 percent air-gapped data sovereignty.
+> Module 9 compares the stock OEM mobile app against El-CARS. Part 1 covers architecture and privacy. While the mobile app sends private medical data to remote cloud servers, El-CARS runs entirely on your local PC via port 8899 and SQLite, delivering 100 percent air-gapped data sovereignty.
 
 **Key Points:**
 - **Platform Architecture:** Mobile app restricted to small phone screens vs Full Windows 11 desktop workstation.
@@ -743,9 +743,9 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 49: H-Band vs LCARS Matrix Part 2: Calibration, Timelines & Metabolic Engine
-**Module:** Module 9: Master Capability Matrix: H-Band vs LCARS  
-**Card Title:** H-BAND VS LCARS: CALIBRATION & TIMELINES  
+### Slide 49: OEM App vs LCARS Matrix Part 2: Calibration, Timelines & Metabolic Engine
+**Module:** Module 9: Master Capability Matrix: OEM App vs LCARS  
+**Card Title:** OEM APP VS LCARS: CALIBRATION & TIMELINES  
 
 > Part 2 contrasts clinical analytics. The mobile app uses static linear approximations and fragmented graphs. El-CARS provides continuous twenty-four-hour glucose kinetics anchored to certified doctor-configured laboratory blood draws, complete daily eA1c projections, and automated nocturnal dawn surge detection.
 
@@ -758,9 +758,9 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 50: H-Band vs LCARS Matrix Part 3: Senior-Friendly Ergonomics & 21:1 Contrast
-**Module:** Module 9: Master Capability Matrix: H-Band vs LCARS  
-**Card Title:** H-BAND VS LCARS: SENIOR ERGONOMICS & 21:1 CONTRAST  
+### Slide 50: OEM App vs LCARS Matrix Part 3: Senior-Friendly Ergonomics & 21:1 Contrast
+**Module:** Module 9: Master Capability Matrix: OEM App vs LCARS  
+**Card Title:** OEM APP VS LCARS: SENIOR ERGONOMICS & 21:1 CONTRAST  
 
 > Part 3 addresses visual ergonomics. The mobile app relies on tiny gray text and washed-out pastels that are difficult for seniors to read. El-CARS standardizes on solid white cards with deep navy typography, delivering maximum 21:1 contrast, bold colored numerals, and night-vision themes.
 
@@ -812,7 +812,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 **Key Points:**
 - **GNU GPL v3 Copyleft License:** Ensures absolute patient data sovereignty with zero recurring subscription fees and zero vendor lock-in. You own 100% of your telemetry.
-- **FITAOS Sales Site & Broad Veepoo Compatibility:** Purchase directly at fitaos.com. Because Gemini Pro built this on HBandSDK and Veepoo repositories, many Veepoo smartwatches are compatible.
+- **FITAOS Sales Site & Broad Veepoo Compatibility:** Purchase directly at fitaos.com. Because Gemini Pro built this on Veepoo Protocol and Veepoo repositories, many Veepoo smartwatches are compatible.
 - **Fully Documented in GitHub /docs/:** Transparent, peer-audited clinical studies, ADA/ADAG A1C mathematical models, and protocol specifications hosted on GitHub docs.
 - **Powered by Google Gemini Pro & Community Invitation:** Architected with Gemini Pro. We welcome doctors, software engineers, and sponsors like Google to join our mission: That Others May Survive Successfully Diabetes.
 

@@ -424,8 +424,8 @@
   },
   {
     "slide_num": "48",
-    "title": "H-Band vs LCARS Matrix Part 1: Hardware Parity & Zero-Cloud Privacy",
-    "module": "Module 9: Master Capability Matrix: H-Band vs LCARS",
+    "title": "OEM App vs LCARS Matrix Part 1: Hardware Parity & Zero-Cloud Privacy",
+    "module": "Module 9: Master Capability Matrix: OEM App vs LCARS",
     "features": [
       "Medication Scheduling & Adherence Tracker (#pageMedication), Pill Logging"
     ],
@@ -433,8 +433,8 @@
   },
   {
     "slide_num": "49",
-    "title": "H-Band vs LCARS Matrix Part 2: Calibration, Timelines & Metabolic Engine",
-    "module": "Module 9: Master Capability Matrix: H-Band vs LCARS",
+    "title": "OEM App vs LCARS Matrix Part 2: Calibration, Timelines & Metabolic Engine",
+    "module": "Module 9: Master Capability Matrix: OEM App vs LCARS",
     "features": [
       "Sequential Automated Biometric Full Scan (#pageFullScan, 6 Sensors in 90 Seconds)"
     ],
@@ -442,8 +442,8 @@
   },
   {
     "slide_num": "50",
-    "title": "H-Band vs LCARS Matrix Part 3: Senior-Friendly Ergonomics & 21:1 Contrast",
-    "module": "Module 9: Master Capability Matrix: H-Band vs LCARS",
+    "title": "OEM App vs LCARS Matrix Part 3: Senior-Friendly Ergonomics & 21:1 Contrast",
+    "module": "Module 9: Master Capability Matrix: OEM App vs LCARS",
     "features": [
       "Sequential Automated Biometric Full Scan (#pageFullScan, 6 Sensors in 90 Seconds)"
     ],

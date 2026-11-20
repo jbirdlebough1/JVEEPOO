@@ -1615,7 +1615,7 @@
             <div style="color: var(--lcars-banana); font-weight: 700; font-size: 1.1rem; letter-spacing: 1px;">WATCH SYNC OVERDUE — DATA LOSS RISK (<span id="lblHoursOverdue">24+</span> HRS AGO)</div>
             <div style="color: var(--lcars-text); font-size: 0.88rem; margin-top: 2px;">
               Watch internal flash memory will overwrite older records. 
-              <strong>Instructions:</strong> (1) Sit within 10 ft of PC. (2) Ensure HBand is closed on your phone/tablet. (3) Click sync below.
+              <strong>Instructions:</strong> (1) Sit within 10 ft of PC. (2) Ensure the mobile app is closed on your phone/tablet. (3) Click sync below.
             </div>
           </div>
         </div>
@@ -1912,7 +1912,7 @@
               <div class="bay-controls" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 12px; padding-bottom: 6px;">
                 <button id="btnStartHRV" class="lcars-btn btn-lilac" style="min-height: 38px;" onclick="startHRVDetection()">SCAN HRV</button>
                 <button id="btnStopHRV" class="lcars-btn btn-orange" style="min-height: 38px;" onclick="stopHRVDetection()">CANCEL</button>
-                <button id="btnViewLorenz" class="lcars-btn btn-blue" style="min-height: 38px;" onclick="viewLorenzScatterFromCardio()">📊 2D LORENZ SCATTER (HBAND)</button>
+                <button id="btnViewLorenz" class="lcars-btn btn-blue" style="min-height: 38px;" onclick="viewLorenzScatterFromCardio()">📊 2D LORENZ SCATTER (POINCARÉ)</button>
               </div>
             </div>
           </div>
@@ -1962,12 +1962,12 @@
           </div>
 
           <!-- Bay 4: Full-Width Ambulatory Exercise & Workout Dynamics (No Overlap) -->
-<!-- BAY 4: Ambulatory Exercise & Workout Dynamics (HBand Protocol Specification) -->
+<!-- BAY 4: Ambulatory Exercise & Workout Dynamics (Clinical Protocol Specification) -->
           <div class="lcars-bay" style="margin-bottom: 24px; border-left: 6px solid #d97706; box-shadow: 0 4px 14px rgba(0,0,0,0.08);">
             <div class="lcars-bay-header" style="border-bottom-color: var(--lcars-banana); display: flex; justify-content: space-between; align-items: center;">
               <div style="display: flex; align-items: center; gap: 8px;">
                 <span class="lcars-bay-tag" style="background: var(--lcars-banana); color: black;">SPORT-04</span>
-                <span class="lcars-bay-title" style="color: var(--lcars-banana);">AMBULATORY WORKOUT & EXERCISE DYNAMICS (HBAND SPEC)</span>
+                <span class="lcars-bay-title" style="color: var(--lcars-banana);">AMBULATORY WORKOUT & EXERCISE DYNAMICS (CLINICAL SPEC)</span>
               </div>
               <span class="badge" style="background: rgba(255,204,51,0.15); color: var(--lcars-banana); border: 1px solid var(--lcars-banana); font-size: 0.72rem;">
                 5-ZONE CARDIAC LOAD • 48 HALF-HOUR CADENCE BINS
@@ -2035,10 +2035,10 @@
                 </div>
               </div>
 
-              <!-- HBand 5-Zone Cardiac Effort Distribution Bar -->
+              <!-- 5-Zone Cardiac Effort Distribution Bar -->
               <div style="background: rgba(0,0,0,0.25); border: 1px solid #1a2c3a; padding: 12px 14px; border-radius: 6px;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                  <strong style="color: var(--lcars-banana); font-size: 0.9rem;">HBAND 5-ZONE EXERCISE CARDIAC LOAD DISTRIBUTION</strong>
+                  <strong style="color: var(--lcars-banana); font-size: 0.9rem;">5-ZONE EXERCISE CARDIAC LOAD DISTRIBUTION</strong>
                   <span style="font-size: 0.78rem; color: #80a8c0;">HRMAX FORMULA: 220 - AGE (EST. 175 BPM)</span>
                 </div>
 
@@ -2061,11 +2061,11 @@
                 </div>
               </div>
 
-              <!-- HBand 24-Hour 48-Slot Step & Cadence Timeline Chart -->
+              <!-- 24-Hour 48-Slot Step & Cadence Timeline Chart -->
               <div style="background: rgba(0,0,0,0.25); border: 1px solid #1a2c3a; padding: 12px 14px; border-radius: 6px;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
                   <div>
-                    <strong style="color: var(--lcars-blue); font-size: 0.9rem;">HBAND 24-HOUR HALF-HOUR ACTIVITY BINS (48 SLOTS)</strong>
+                    <strong style="color: var(--lcars-blue); font-size: 0.9rem;">24-HOUR HALF-HOUR ACTIVITY BINS (48 SLOTS)</strong>
                     <div style="font-size: 0.75rem; color: #80a8c0;">STEP VOLUME & EXERCISE INTERVALS CORRELATED WITH MEAL TIMES</div>
                   </div>
                   <div style="font-family: var(--lcars-mono); font-size: 0.8rem; color: var(--lcars-green);" id="lblActiveDailySteps">
@@ -3112,7 +3112,7 @@
               </div>
               <div style="display: flex; gap: 6px;">
                 <button class="lcars-btn btn-orange" style="font-size: 0.75rem; padding: 3px 10px;" onclick="jumpToSubReport('boxChartHRV')">
-                  📊 VIEW 2D LORENZ SCATTER (HBAND)
+                  📊 VIEW 2D LORENZ SCATTER (POINCARÉ)
                 </button>
               </div>
             </div>
@@ -3402,16 +3402,16 @@
             <div class="svg-timeline-container" id="curveTimelineTemp"></div>
           </div>
 
-          <!-- 24-HOUR HEART RATE 5-ZONE CARDIAC LOAD CHART (HBAND PARITY) -->
+          <!-- 24-HOUR HEART RATE 5-ZONE CARDIAC LOAD CHART (CLINICAL SPEC) -->
           <div class="chart-box" id="boxChartHR">
             <div class="chart-title">
-              <span id="repChartHRTitle">24-HOUR HEART RATE & 5-ZONE CARDIAC LOAD (HBAND SPEC)</span>
+              <span id="repChartHRTitle">24-HOUR HEART RATE & 5-ZONE CARDIAC LOAD (CLINICAL SPEC)</span>
               <span style="font-family: var(--lcars-mono); color: #ff5566;">5 ZONES: WARM UP • FAT BURN • AEROBIC • ANAEROBIC • PEAK</span>
             </div>
             <div class="svg-timeline-container" id="curveTimelineHeartRate"></div>
           </div>
 
-          <!-- 24-HOUR AMBULATORY BLOOD PRESSURE MATRIX (HBAND PARITY) -->
+          <!-- 24-HOUR AMBULATORY BLOOD PRESSURE MATRIX (CLINICAL SPEC) -->
           <div class="chart-box" id="boxChartBP">
             <div class="chart-title">
               <span id="repChartBPTitle">24-HOUR AMBULATORY BLOOD PRESSURE DUAL-BAND (SYSTOLIC / DIASTOLIC MMHG)</span>
@@ -3420,7 +3420,7 @@
             <div class="svg-timeline-container" id="curveTimelineBP"></div>
           </div>
 
-          <!-- NOCTURNAL SPO2 & OSAHS APNEA HYPOXIA DIPS MATRIX (HBAND PARITY) -->
+          <!-- NOCTURNAL SPO2 & OSAHS APNEA HYPOXIA DIPS MATRIX (CLINICAL SPEC) -->
           <div class="chart-box" id="boxChartSpO2">
             <div class="chart-title">
               <span id="repChartSpO2Title">NOCTURNAL SPO2 & OSAHS APNEA HYPOXIA DIPS MATRIX (%)</span>
@@ -3429,7 +3429,7 @@
             <div class="svg-timeline-container" id="curveTimelineSpO2"></div>
           </div>
 
-          <!-- AUTONOMIC HRV & LORENZ SCATTER DYNAMICS (HBAND PARITY) -->
+          <!-- AUTONOMIC HRV & LORENZ SCATTER DYNAMICS (CLINICAL SPEC) -->
           <div class="chart-box" id="boxChartHRV">
             <div class="chart-title">
               <span id="repChartHRVTitle">AUTONOMIC HRV & LORENZ CARDIAC SCATTER DYNAMICS (MS)</span>
@@ -3438,12 +3438,12 @@
             <!-- 24-Hour Continuous HRV Timeline -->
             <div class="svg-timeline-container" id="curveTimelineHRV"></div>
 
-            <!-- HBAND PROTOCOL SPECIFICATION: 2D LORENZ (POINCARÉ) CARDIAC SCATTER PLOT -->
+            <!-- CLINICAL PROTOCOL SPECIFICATION: 2D LORENZ (POINCARÉ) CARDIAC SCATTER PLOT -->
             <div id="hbandLorenzScatterContainer" style="margin-top: 14px; border: 1.5px solid #cbd5e1; border-radius: 8px; padding: 14px; background: #ffffff; color: #0f172a; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
               <!-- Top Header Bar with Badges -->
               <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 12px; gap: 8px;">
                 <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-                  <span style="font-size: 1.02rem; font-weight: 800; color: #5b21b6; letter-spacing: 0.03em;">HBAND PROTOCOL: 2D LORENZ (POINCARÉ) SCATTER PLOT</span>
+                  <span style="font-size: 1.02rem; font-weight: 800; color: #5b21b6; letter-spacing: 0.03em;">CLINICAL PROTOCOL: 2D LORENZ (POINCARÉ) SCATTER PLOT</span>
                   <span id="lorenzShapeBadge" style="background: #15803d; color: #ffffff; font-family: monospace; font-size: 0.72rem; font-weight: 800; padding: 3px 8px; border-radius: 4px;">COMET SHAPE (NORMAL VAGAL TONE)</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 8px;">
@@ -3452,9 +3452,9 @@
                 </div>
               </div>
 
-              <!-- H-Band Standard Morphologies Control Bar -->
+              <!-- Standard Morphologies Control Bar -->
               <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; align-items: center;">
-                <span style="font-size: 0.72rem; font-weight: 800; color: #334155; margin-right: 4px;">HBAND MORPHOLOGY MODES:</span>
+                <span style="font-size: 0.72rem; font-weight: 800; color: #334155; margin-right: 4px;">CARDIAC MORPHOLOGY MODES:</span>
                 <button type="button" class="lorenz-btn" id="btnLorenzComet" onclick="setLorenzMorphology('comet')" style="cursor: pointer; padding: 4px 10px; font-size: 0.72rem; font-weight: 700; border-radius: 4px; border: 1.5px solid #16a34a; background: #dcfce7; color: #15803d; transition: all 0.15s ease;">✨ COMET (PATIENT BASELINE)</button>
                 <button type="button" class="lorenz-btn" id="btnLorenzTorpedo" onclick="setLorenzMorphology('torpedo')" style="cursor: pointer; padding: 4px 10px; font-size: 0.72rem; font-weight: 700; border-radius: 4px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #334155; transition: all 0.15s ease;">⚡ TORPEDO (FATIGUE / NEUROPATHY)</button>
                 <button type="button" class="lorenz-btn" id="btnLorenzClub" onclick="setLorenzMorphology('club')" style="cursor: pointer; padding: 4px 10px; font-size: 0.72rem; font-weight: 700; border-radius: 4px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #334155; transition: all 0.15s ease;">⚪ CLUB (LOW VARIABILITY)</button>
@@ -3505,7 +3505,7 @@
 
                   <!-- Diagnostic Clinical Impression Card -->
                   <div id="lorenzDiagCard" style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 5px; padding: 8px 10px; font-size: 0.73rem; color: #14532d; line-height: 1.35;">
-                    <strong style="color: #15803d;">HBAND CLINICAL IMPRESSION:</strong>
+                    <strong style="color: #15803d;">CARDIAC CLINICAL IMPRESSION:</strong>
                     <div id="lorenzDiagText" style="margin-top: 3px;">
                       Classic <strong>Comet Shape</strong> indicates robust parasympathetic vagal recovery during nocturnal rest. R-R dispersion demonstrates strong cardioprotective autonomic reserve with zero premature ventricular or atrial ectopy detected.
                     </div>
@@ -3672,24 +3672,45 @@
             </table>
           </div>
 
-          <div class="chart-box">
-            <div class="chart-title">
-              <span>RAW SENSOR TELEMETRY LOG ENTRIES</span>
-              <span id="repRecordCount" style="font-family: var(--lcars-mono); color: var(--lcars-lilac);">0 SAMPLES RECORDED</span>
+          <div class="chart-box" id="boxRawTelemetryLog" style="background: #ffffff; border-left: 6px solid #7c3aed; margin-bottom: 20px;">
+            <div class="chart-title" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+              <div>
+                <span style="color: #6b21a8; font-weight: 900; font-size: 1.05rem;">📋 RAW SENSOR TELEMETRY AUDIT LOGS</span>
+                <span style="font-size: 0.78rem; color: #64748b; display: block; font-family: var(--lcars-mono); margin-top: 2px;">
+                  BOUNDED SCROLL VIEWPORT &bull; ZERO FOR UNRECORDED DATA &bull; CHARGING GAPS PRESERVED (1+ HR OFF-WRIST)
+                </span>
+              </div>
+              <!-- Timeframe Selector to keep viewport size down -->
+              <div style="display: flex; gap: 6px; align-items: center; flex-wrap: wrap;">
+                <span style="font-size: 0.75rem; color: #475569; font-weight: 800; margin-right: 4px;">AUDIT RANGE:</span>
+                <button id="btnRawDaily" class="lcars-btn btn-banana" style="padding: 4px 10px; font-size: 0.75rem; font-weight: bold;" onclick="setRawDataTimeframe('daily')">DAILY (24H)</button>
+                <button id="btnRawWeekly" class="lcars-btn btn-blue" style="padding: 4px 10px; font-size: 0.75rem; font-weight: bold;" onclick="setRawDataTimeframe('weekly')">WEEKLY (7D)</button>
+                <button id="btnRawMonthly" class="lcars-btn btn-blue" style="padding: 4px 10px; font-size: 0.75rem; font-weight: bold;" onclick="setRawDataTimeframe('monthly')">MONTHLY (30D)</button>
+                <button id="btnRawYearly" class="lcars-btn btn-blue" style="padding: 4px 10px; font-size: 0.75rem; font-weight: bold;" onclick="setRawDataTimeframe('yearly')">YEARLY (12M)</button>
+                <span id="repRecordCount" style="font-family: var(--lcars-mono); color: #7c3aed; font-weight: 800; font-size: 0.8rem; margin-left: 6px; background: #f3e8ff; padding: 3px 8px; border-radius: 4px; border: 1px solid #d8b4fe;">14 HOURLY SAMPLES AUDITED</span>
+              </div>
             </div>
-            <table class="telemetry-table">
-              <thead>
-                <tr>
-                  <th>TIMESTAMP</th>
-                  <th>OPTICAL GLUCOSE</th>
-                  <th>CORE BODY TEMP</th>
-                  <th>SKIN THERMISTOR</th>
-                  <th>METABOLIC STATUS</th>
-                  <th>CYCLE PROGRESS</th>
-                </tr>
-              </thead>
-              <tbody id="telemetryTableBody"></tbody>
-            </table>
+
+            <!-- Scrollable Window with Sticky Header to keep viewport size down -->
+            <div id="rawTelemetryScrollContainer" style="max-height: 320px; overflow-y: auto; overflow-x: auto; border: 1.5px solid #cbd5e1; border-radius: 6px; background: #ffffff; box-shadow: inset 0 1px 3px rgba(0,0,0,0.04);">
+              <table class="telemetry-table" style="width: 100%; border-collapse: collapse; margin: 0; font-family: var(--lcars-mono); font-size: 0.82rem;">
+                <thead style="position: sticky; top: 0; z-index: 5; background: #f8fafc; border-bottom: 2px solid #cbd5e1;">
+                  <tr>
+                    <th style="padding: 8px 10px; text-align: left; background: #f1f5f9; color: #0f172a; font-weight: 800; border-bottom: 1.5px solid #cbd5e1;">TIMESTAMP / PERIOD</th>
+                    <th style="padding: 8px 10px; text-align: left; background: #f1f5f9; color: #b45309; font-weight: 800; border-bottom: 1.5px solid #cbd5e1;">GLUCOSE (MG/DL)</th>
+                    <th style="padding: 8px 10px; text-align: left; background: #f1f5f9; color: #1d4ed8; font-weight: 800; border-bottom: 1.5px solid #cbd5e1;">CORE / SKIN TEMP</th>
+                    <th style="padding: 8px 10px; text-align: left; background: #f1f5f9; color: #c2410c; font-weight: 800; border-bottom: 1.5px solid #cbd5e1;">STEPS / ACTIVITY</th>
+                    <th style="padding: 8px 10px; text-align: left; background: #f1f5f9; color: #0f766e; font-weight: 800; border-bottom: 1.5px solid #cbd5e1;">METABOLIC STATUS / CHARGING</th>
+                    <th style="padding: 8px 10px; text-align: left; background: #f1f5f9; color: #7c3aed; font-weight: 800; border-bottom: 1.5px solid #cbd5e1;">CYCLE / EHR STATUS</th>
+                  </tr>
+                </thead>
+                <tbody id="telemetryTableBody"></tbody>
+              </table>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px; font-size: 0.74rem; color: #64748b; font-family: var(--lcars-mono); flex-wrap: wrap; gap: 6px;">
+              <span>⚡ Note: Gaps indicate off-wrist watch charging (~1.2h). Unrecorded intervals display 0.</span>
+              <span style="font-weight: bold; color: #0369a1;">↕ SCROLLABLE VIEWPORT ACTIVE &bull; 320PX COMPACT BOUNDS</span>
+            </div>
           </div>
 
         </div>
@@ -4164,10 +4185,10 @@
             </div>
           </div>
 
-          <!-- SECTION 09: SYSTEM, ALERTS, PERIPHERALS & HBAND NOTIFICATIONS -->
+          <!-- SECTION 09: SYSTEM, ALERTS, PERIPHERALS & HARDWARE NOTIFICATIONS -->
           <div class="setup-section" style="border-left-color: var(--lcars-banana);">
             <div class="setup-section-title">
-              <span style="color: var(--lcars-banana);">09. SYSTEM, ALERTS, PERIPHERALS & HBAND NOTIFICATIONS</span>
+              <span style="color: var(--lcars-banana);">09. SYSTEM, ALERTS, PERIPHERALS & HARDWARE NOTIFICATIONS</span>
               <span style="font-size: 0.8rem; color: var(--lcars-banana);">CMD 0xB8 / 0xA1 / 0x07 / 0xAB</span>
             </div>
             <div class="setup-grid">
@@ -4255,7 +4276,7 @@
           <div class="setup-section" style="border-left-color: var(--lcars-lilac);">
             <div class="setup-section-title">
               <span style="color: var(--lcars-lilac);">10. PHYSIOLOGICAL CYCLE & WOMEN'S HEALTH</span>
-              <span style="font-size: 0.8rem; color: var(--lcars-lilac);">CMD WomenSetting / H-BAND</span>
+              <span style="font-size: 0.8rem; color: var(--lcars-lilac);">CMD WomenSetting / HARDWARE</span>
             </div>
             <div class="setup-grid">
               <div class="setup-field">
@@ -4709,19 +4730,19 @@
         </div>
       
             <!-- =====================================================================
-                 MASTER FEATURE COMPARISON: H-BAND MOBILE APP VS. LCARS CLINICAL WORKSTATION
+                 MASTER FEATURE COMPARISON: OEM MOBILE APP VS. LCARS CLINICAL WORKSTATION
                  ===================================================================== -->
             <div class="diet-form-card" style="border-left: 6px solid #2563eb; margin-top: 20px; background: #ffffff !important; color: #0f172a !important;">
               <div class="setup-section-title" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
                 <div>
-                  <span style="color: #0f172a; font-size: 1.15rem; font-weight: 800;">MASTER CAPABILITY MATRIX: H-BAND MOBILE APP VS. LCARS CLINICAL WORKSTATION</span>
+                  <span style="color: #0f172a; font-size: 1.15rem; font-weight: 800;">MASTER CAPABILITY MATRIX: OEM MOBILE APP VS. LCARS CLINICAL WORKSTATION</span>
                   <span style="font-size: 0.8rem; color: #475569; display: block; margin-top: 2px;">RIGOROUS CLINICAL, ERGONOMIC &amp; ARCHITECTURAL AUDIT</span>
                 </div>
                 <span class="badge" style="background: rgba(37,99,235,0.12); color: #2563eb; border: 1.5px solid #2563eb; font-size: 0.75rem; font-weight: bold;">100% FEATURE PARITY + CLINICAL EXTENSIONS</span>
               </div>
 
               <div style="font-size: 0.88rem; color: #1e293b; line-height: 1.5; margin-bottom: 12px;">
-                The table below provides an exhaustive comparative evaluation between the manufacturer's mobile smartphone app (<strong>H-Band</strong>) and the <strong>LCARS 5010 Clinical Ambulatory Workstation</strong>. LCARS incorporates every native hardware command and sensor capability of H-Band while expanding clinical utility with local zero-egress data security, in-clinic venous calibration, synchronized 8-lane telemetry timelines, and metabolic behavioral feedback.
+                The table below provides an exhaustive comparative evaluation between the manufacturer's stock mobile smartphone app and the <strong>LCARS 5010 Clinical Ambulatory Workstation</strong>. LCARS incorporates every native hardware command and sensor capability of the stock firmware while expanding clinical utility with local zero-egress data security, in-clinic venous calibration, synchronized 8-lane telemetry timelines, and metabolic behavioral feedback.
               </div>
 
               <div style="overflow-x: auto;">
@@ -4729,7 +4750,7 @@
                   <thead>
                     <tr style="background: #f1f5f9; border-bottom: 2px solid #cbd5e1;">
                       <th style="padding: 10px; text-align: left; color: #0f172a; font-weight: 800; border-right: 1.5px solid #cbd5e1;">FUNCTIONAL DOMAIN</th>
-                      <th style="padding: 10px; text-align: left; color: #b91c1c; font-weight: 800; border-right: 1.5px solid #cbd5e1; width: 32%;">H-BAND (MANUFACTURER MOBILE APP)</th>
+                      <th style="padding: 10px; text-align: left; color: #b91c1c; font-weight: 800; border-right: 1.5px solid #cbd5e1; width: 32%;">OEM MOBILE APP (STOCK MANUFACTURER)</th>
                       <th style="padding: 10px; text-align: left; color: #15803d; font-weight: 800; border-right: 1.5px solid #cbd5e1; width: 38%;">LCARS 5010 CLINICAL WORKSTATION</th>
                       <th style="padding: 10px; text-align: center; color: #0f172a; font-weight: 800;">CLINICAL ADVANTAGE</th>
                     </tr>
@@ -5564,13 +5585,13 @@
 
         </div>
       
-            <!-- FAQ ITEM: H-BAND PARITY & MIGRATION -->
+            <!-- FAQ ITEM: OEM APP PARITY & MIGRATION -->
             <div style="background: #ffffff; padding: 16px; border-radius: 8px; border: 2px solid #cbd5e1; border-left: 6px solid #2563eb; margin-top: 14px;">
-              <strong style="color: #0f172a; font-size: 1.05rem;">Q5: How does LCARS compare to the official H-Band mobile app? Do I lose any features?</strong>
+              <strong style="color: #0f172a; font-size: 1.05rem;">Q5: How does LCARS compare to the official manufacturer mobile app? Do I lose any features?</strong>
               <div style="font-size: 0.88rem; color: #1e293b; line-height: 1.5; margin-top: 6px;">
-                You lose <strong>zero features</strong>. LCARS implements <strong>100% of the underlying Bluetooth GATT opcodes</strong> present in H-Band, including blood glucose, blood pressure, dual temperature, SpO2 apnea detection, heart rate variability, sleep stages, watch face customization, and screen settings.
+                You lose <strong>zero features</strong>. LCARS implements <strong>100% of the underlying Bluetooth GATT opcodes</strong> present in the manufacturer firmware, including blood glucose, blood pressure, dual temperature, SpO2 apnea detection, heart rate variability, sleep stages, watch face customization, and screen settings.
                 <br><br>
-                However, unlike H-Band, LCARS keeps all your clinical data strictly on your local PC with <strong>zero cloud egress</strong>, provides an <strong>in-clinic blood draw calibration protocol</strong>, features an <strong>8-lane synchronized timeline chart with a continuous vertical scrubber</strong>, and provides active metabolic guidance (exercise GLUT4 kinetics, diet trades, and medication tracking).
+                However, unlike stock mobile apps, LCARS keeps all your clinical data strictly on your local PC with <strong>zero cloud egress</strong>, provides an <strong>in-clinic blood draw calibration protocol</strong>, features an <strong>8-lane synchronized timeline chart with a continuous vertical scrubber</strong>, and provides active metabolic guidance (exercise GLUT4 kinetics, diet trades, and medication tracking).
               </div>
             </div>
 
@@ -6104,7 +6125,7 @@
               <div>
                 <span class="box-title" style="color: var(--lcars-green);">OFFICIAL VEEPOO CLOUD DIAL MARKET (659 FREE DOWNLOADABLE WATCH FACES)</span>
                 <div style="font-size: 0.85rem; color: var(--lcars-text); margin-top: 2px;">
-                  Sourced from Veepoo Cloud CDN (<code>vphband.com</code>) • Direct .bin Flash Payloads &amp; Full Color Previews
+                  Sourced from Veepoo Cloud Dial CDN (<code>cloud-dial</code>) • Direct .bin Flash Payloads &amp; Full Color Previews
                 </div>
               </div>
               <div style="display: flex; gap: 8px; align-items: center;">
@@ -8479,7 +8500,7 @@
       }
 
       if (iAll > 0 && iAll < 1440) {
-        // Veepoo HBand Protocol: values > 24 are raw minutes; <= 24 are 5-min epoch blocks
+        // Veepoo Protocol: values > 24 are raw minutes; <= 24 are 5-min epoch blocks
         const totalMin = iAll <= 24 ? iAll * 5 : iAll;
         let deepMin = (iDeep > 0 && iDeep <= 24) ? iDeep * 5 : (iDeep > 24 ? iDeep : 114);
         let lightMin = (iLight > 0 && iLight <= 24) ? iLight * 5 : (iLight > 24 ? iLight : 246);
@@ -9166,9 +9187,42 @@
         return { x, y, label: d.label, val: d.val };
       });
 
-      const polyPoints = points.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" ");
-      const lastX = points.length > 0 ? points[points.length - 1].x : padLeft;
-      const areaPoints = `${padLeft},${padTop + plotH} ` + polyPoints + ` ${lastX.toFixed(1)},${padTop + plotH}`;
+      // Segment builder: breaks curve across gaps (isGap === true or val === null or val === 0)
+      let curvePaths = "";
+      let areaPaths = "";
+      let gapRectsHtml = "";
+      let currentSegment = [];
+
+      function flushCurveSegment() {
+        if (currentSegment.length > 0) {
+          const first = currentSegment[0];
+          const last = currentSegment[currentSegment.length - 1];
+          const segPoints = currentSegment.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" ");
+          curvePaths += `<polyline points="${segPoints}" fill="none" stroke="${strokeColor}" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));"/>`;
+          const segArea = `${first.x.toFixed(1)},${padTop + plotH} ` + segPoints + ` ${last.x.toFixed(1)},${padTop + plotH}`;
+          areaPaths += `<polygon points="${segArea}" fill="url(#${gradId})"/>`;
+          currentSegment = [];
+        }
+      }
+
+      points.forEach((p, idx) => {
+        if (p.isGap || p.val === null || (p.val === 0 && !options.allowZeroValue)) {
+          flushCurveSegment();
+          // Draw charging gap indicator
+          const prevX = idx > 0 ? points[idx - 1].x : padLeft;
+          const nextX = idx < points.length - 1 ? points[idx + 1].x : padLeft + plotW;
+          const gStart = (p.x + prevX) / 2;
+          const gEnd = (p.x + nextX) / 2;
+          const gW = Math.max(30, gEnd - gStart);
+          gapRectsHtml += `
+            <rect x="${gStart.toFixed(1)}" y="${padTop + 4}" width="${gW.toFixed(1)}" height="${plotH - 8}" fill="rgba(241, 245, 249, 0.75)" stroke="#cbd5e1" stroke-dasharray="3 3" rx="4"/>
+            <text x="${p.x.toFixed(1)}" y="${padTop + 16}" text-anchor="middle" fill="#64748b" font-family="var(--lcars-mono)" font-size="8.5" font-weight="900">⚡ CHARGING GAP (0 DATA)</text>
+          `;
+        } else {
+          currentSegment.push(p);
+        }
+      });
+      flushCurveSegment();
 
       let refLinesHtml = "";
       if (options.referenceLines) {
@@ -9222,13 +9276,20 @@
 
         pointsHtml += `
           <g>
-            <circle class="plot-point" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="4.5" 
-                    fill="${strokeColor}" stroke="#ffffff" stroke-width="2">
-              <title>${p.label}: ${p.val} ${unit}</title>
-            </circle>
-            <text x="${p.x.toFixed(1)}" y="${valY.toFixed(1)}" text-anchor="middle" 
-                  fill="${strokeColor}" font-family="var(--lcars-mono)" font-size="11" font-weight="900"
-                  style="paint-order: stroke fill; stroke: #ffffff; stroke-width: 3.5px; stroke-linejoin: round;">${p.val}${options.valSuffix || ''}</text>
+            ${p.isGap || p.val === null ? `
+              <circle cx="${p.x.toFixed(1)}" cy="${padTop + plotH - 6}" r="3.5" fill="#94a3b8" stroke="#ffffff" stroke-width="1.5">
+                <title>${p.label}: ⚡ Watch Charging (0 ${unit})</title>
+              </circle>
+              <text x="${p.x.toFixed(1)}" y="${padTop + plotH - 12}" text-anchor="middle" fill="#94a3b8" font-family="var(--lcars-mono)" font-size="9" font-weight="bold">0 (Gap)</text>
+            ` : `
+              <circle class="plot-point" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="4.5" 
+                      fill="${strokeColor}" stroke="#ffffff" stroke-width="2">
+                <title>${p.label}: ${p.val} ${unit}</title>
+              </circle>
+              <text x="${p.x.toFixed(1)}" y="${valY.toFixed(1)}" text-anchor="middle" 
+                    fill="${strokeColor}" font-family="var(--lcars-mono)" font-size="11" font-weight="900"
+                    style="paint-order: stroke fill; stroke: #ffffff; stroke-width: 3.5px; stroke-linejoin: round;">${p.val}${options.valSuffix || ''}</text>
+            `}
             ${labelHtml}
           </g>
         `;
@@ -9244,12 +9305,12 @@
           </defs>
           <line x1="${padLeft}" y1="${padTop + plotH}" x2="${padLeft + plotW}" y2="${padTop + plotH}" stroke="#cbd5e1" stroke-width="1.5"/>
           ${refLinesHtml}
-          <!-- Trend Fill -->
-          <polygon points="${areaPoints}" fill="url(#${gradId})"/>
-          <!-- Active Trend Curve -->
-          <polyline class="plot-curve" points="${polyPoints}" fill="none" stroke="${strokeColor}" 
-                    stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"
-                    style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));"/>
+          <!-- Gap Indicator Blocks -->
+          ${gapRectsHtml}
+          <!-- Trend Fills (Discontinuous) -->
+          ${areaPaths}
+          <!-- Active Trend Curves (Discontinuous across Charging Gaps) -->
+          ${curvePaths}
           <!-- Data Points and Multi-Line Labels -->
           ${pointsHtml}
         </svg>
@@ -9420,7 +9481,7 @@
 
 
     // =========================================================================
-    // HBAND PROTOCOL SPECIFICATION: 2D LORENZ (POINCARÉ) SCATTER ENGINE
+    // CLINICAL PROTOCOL SPECIFICATION: 2D LORENZ (POINCARÉ) SCATTER ENGINE
     // =========================================================================
     let currentLorenzMorphology = 'comet';
 
@@ -10770,7 +10831,7 @@ function renderReportsView() {
         tempData = [
           { label: '00:00', core: 97.0, skin: 90.2 }, { label: '04:00', core: 96.6, skin: 88.6 },
           { label: '07:00', core: 97.0, skin: 91.2 }, { label: '08:30', core: 97.3, skin: 92.8 },
-          { label: '10:00', core: 97.4, skin: 93.2 }, { label: '12:30', core: 97.2, skin: 92.4 },
+          { label: '10:00', core: 97.4, skin: 93.2 }, { label: '11:00', core: null, skin: null, isGap: true }, { label: '12:30', core: 97.2, skin: 92.4 },
           { label: '13:30', core: 97.3, skin: 92.6 }, { label: '15:30', core: 97.4, skin: 93.0 },
           { label: '18:30', core: 97.5, skin: 93.4 }, { label: '20:00', core: 97.2, skin: 92.2 },
           { label: '22:00', core: 97.1, skin: 91.4 }, { label: '24:00', core: 97.0, skin: 90.6 }
@@ -10989,7 +11050,7 @@ function renderReportsView() {
       if (recCount) recCount.textContent = `${glucoseData.length} CLINICAL DATA POINTS AUDITED`;
 
       // ---------------------------------------------------------------------
-      // RENDER ALL 10 CLINICAL SVG CHARTS (HBAND PARITY ENGINE)
+      // RENDER ALL 10 CLINICAL SVG CHARTS (TELEMETRY ENGINE)
       // ---------------------------------------------------------------------
 
       // 1. Glucose Curve (Configured for 60 - 200 mg/dL Range)
@@ -11087,7 +11148,7 @@ function renderReportsView() {
         ]
       });
 
-      // HBAND Parity 2D Lorenz Poincaré Scatter Plot
+      // 2D Lorenz Poincaré Scatter Plot
       renderLorenzScatterPlot('comet');
 
       // Step Volume vs Mean Glucose Bivariate Correlator
@@ -11120,34 +11181,161 @@ function renderReportsView() {
         ]
       });
 
-      // 10. Populate Raw Telemetry Table
-      const tbody = document.getElementById('telemetryTableBody');
-      if (tbody) {
-        tbody.innerHTML = "";
-        const logsToShow = sessionTelemetryLogs && sessionTelemetryLogs.length > 0 ? sessionTelemetryLogs : [
-          { date: new Date().toISOString().slice(0, 10), ts: "08:30:15", glucose: currentGlucose, bodyF: 97.3, skinF: 92.6, context: "Morning Walk (0xA8)", progress: 100 },
-          { date: new Date().toISOString().slice(0, 10), ts: "08:15:00", glucose: 118, bodyF: 97.2, skinF: 92.4, context: "Breakfast Postprandial", progress: 100 },
-          { date: new Date().toISOString().slice(0, 10), ts: "07:00:22", glucose: 104, bodyF: 97.0, skinF: 91.2, context: "Waking Fasting", progress: 100 },
-          { date: new Date().toISOString().slice(0, 10), ts: "04:00:10", glucose: 98, bodyF: 96.6, skinF: 88.6, context: "Nocturnal Nadir", progress: 100 }
-        ];
-
-        logsToShow.slice(0, 50).forEach(log => {
-          const tr = document.createElement('tr');
-          tr.innerHTML = `
-            <td style="color: var(--lcars-gray);">${log.date || ''} ${log.ts || ''}</td>
-            <td style="color: var(--lcars-banana); font-weight: bold;">${log.glucose ? log.glucose + ' mg/dL' : '--'}</td>
-            <td style="color: var(--lcars-blue); font-weight: bold;">${log.bodyF ? log.bodyF.toFixed(1) + '°F' : '--.-'}</td>
-            <td style="color: var(--lcars-lilac);">${log.skinF ? log.skinF.toFixed(1) + '°F' : '--.-'}</td>
-            <td style="color: var(--lcars-green);">${log.context || 'Clinical Sync'}</td>
-            <td style="color: var(--lcars-peach);">${log.progress ? log.progress + '%' : '100% Complete'}</td>
-          `;
-          tbody.appendChild(tr);
-        });
-      }
+      // 10. Populate Raw Telemetry Table with Bounded Scroll Window
+      renderRawTelemetryTable();
     }
 
     
     // =========================================================================
+    
+    // =========================================================================
+    // RAW SENSOR TELEMETRY AUDIT LOG ENGINE (BOUNDED SCROLL WINDOW)
+    // Supports Daily (24h), Weekly (7d), Monthly (30d), and Yearly (12m)
+    // Keeps viewport size down with 320px scroll window; displays 0 for missing data
+    // =========================================================================
+    let currentRawDataTimeframe = 'daily';
+
+    function setRawDataTimeframe(tf) {
+      soundButtonPress();
+      currentRawDataTimeframe = tf;
+
+      ['btnRawDaily', 'btnRawWeekly', 'btnRawMonthly', 'btnRawYearly'].forEach(id => {
+        const b = document.getElementById(id);
+        if (b) b.className = 'lcars-btn btn-blue';
+      });
+
+      const activeBtnId = tf === 'daily' ? 'btnRawDaily' : (tf === 'weekly' ? 'btnRawWeekly' : (tf === 'monthly' ? 'btnRawMonthly' : 'btnRawYearly'));
+      const activeBtn = document.getElementById(activeBtnId);
+      if (activeBtn) activeBtn.className = 'lcars-btn btn-banana';
+
+      renderRawTelemetryTable();
+    }
+
+    function renderRawTelemetryTable() {
+      const tbody = document.getElementById('telemetryTableBody');
+      const recCount = document.getElementById('repRecordCount');
+      if (!tbody) return;
+
+      tbody.innerHTML = "";
+      const tf = currentRawDataTimeframe || 'daily';
+      let rows = [];
+
+      const todayStr = new Date().toISOString().slice(0, 10);
+
+      if (tf === 'daily') {
+        rows = [
+          { period: `${todayStr} 00:00:15`, g: 168, core: 97.0, skin: 90.2, steps: 0, status: "Nocturnal Baseline", progress: "100% Synced" },
+          { period: `${todayStr} 04:00:22`, g: 162, core: 96.6, skin: 88.6, steps: 0, status: "Metabolic Nadir", progress: "100% Synced" },
+          { period: `${todayStr} 07:00:05`, g: 174, core: 97.0, skin: 91.2, steps: 120, status: "Dawn Awakening", progress: "100% Synced" },
+          { period: `${todayStr} 08:15:00`, g: 165, core: 97.2, skin: 92.4, steps: 340, status: "Breakfast (Eggs/Toast)", progress: "100% Synced" },
+          { period: `${todayStr} 08:45:30`, g: 148, core: 97.4, skin: 92.8, steps: 2384, status: "Post-Meal GLUT4 Walk", progress: "100% Synced" },
+          { period: `${todayStr} 10:00:12`, g: 142, core: 97.4, skin: 93.2, steps: 2650, status: "Optimal TIR Sustained", progress: "100% Synced" },
+          // Watch Charging Gap (10:30 - 12:00)
+          { period: `${todayStr} 11:00:00`, g: 0, core: null, skin: null, steps: 0, status: "⚡ WATCH CHARGING (OFF-WRIST)", progress: "0% (Charging Gap)", isCharging: true },
+          { period: `${todayStr} 12:30:18`, g: 158, core: 97.2, skin: 92.4, steps: 3200, status: "Watch Donned • Pre-Lunch", progress: "100% Synced" },
+          { period: `${todayStr} 13:15:45`, g: 188, core: 97.3, skin: 92.6, steps: 3980, status: "Post-Lunch GLUT4 Walk", progress: "100% Synced" },
+          { period: `${todayStr} 15:30:00`, g: 152, core: 97.4, skin: 93.0, steps: 4420, status: "ADA Trade Snack (Almonds)", progress: "100% Synced" },
+          { period: `${todayStr} 18:30:10`, g: 178, core: 97.5, skin: 93.4, steps: 5100, status: "Dinner (Salmon / Greens)", progress: "100% Synced" },
+          { period: `${todayStr} 20:00:30`, g: 146, core: 97.2, skin: 92.2, steps: 6180, status: "Evening GLUT4 Stroll", progress: "100% Synced" },
+          { period: `${todayStr} 22:00:00`, g: 140, core: 97.1, skin: 91.4, steps: 6380, status: "Pre-Bedtime Normal", progress: "100% Synced" },
+          { period: `${todayStr} 24:00:00`, g: 138, core: 97.0, skin: 90.6, steps: 6380, status: "24h Cycle Complete", progress: "100% Synced" }
+        ];
+        if (recCount) recCount.textContent = "14 HOURLY SAMPLES AUDITED";
+      } else if (tf === 'weekly') {
+        const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday (Today)', 'Friday', 'Saturday', 'Sunday'];
+        const dates = ['Nov 17', 'Nov 18', 'Nov 19', 'Nov 20', 'Nov 21', 'Nov 22', 'Nov 23'];
+        const glucoses = [174, 168, 172, 160, 162, 158, 164];
+        const stepVols = [6450, 7120, 5800, 6384, 6800, 7500, 6200];
+        const chgNotes = ["Charged 1.1h @ 11:00", "Charged 1.3h @ 10:45", "Charged 1.0h @ 11:15", "Charged 1.2h @ 11:00", "Projected", "Projected", "Projected"];
+
+        rows = days.map((d, i) => ({
+          period: `${dates[i]} (${d})`,
+          g: glucoses[i],
+          core: 97.2,
+          skin: 92.4,
+          steps: stepVols[i],
+          status: `TIR ${Math.round(82 + i * 1.2)}% • ${chgNotes[i]}`,
+          progress: i <= 3 ? "100% Verified" : "Scheduled"
+        }));
+        if (recCount) recCount.textContent = "7 DAILY AUDITS (WEEKLY)";
+      } else if (tf === 'monthly') {
+        // 30 days of telemetry audits in a clean scrollable table
+        rows = [];
+        for (let day = 1; day <= 30; day++) {
+          const isRecent = day <= 20;
+          const gVal = isRecent ? Math.round(185 - (day * 1.2)) : 0; // 0 for unrecorded future days
+          const stepVal = isRecent ? Math.round(5200 + (day * 65)) : 0;
+          rows.push({
+            period: `2026-11-${day.toString().padStart(2, '0')}`,
+            g: gVal,
+            core: isRecent ? 97.2 : null,
+            skin: isRecent ? 92.3 : null,
+            steps: stepVal,
+            status: isRecent ? (day % 4 === 0 ? "⚡ Charged 1.2h • 88% TIR" : "Full Compliance • 86% TIR") : "0 Telemetry (Unrecorded)",
+            progress: isRecent ? "Audited (EHR)" : "Pending (0)"
+          });
+        }
+        if (recCount) recCount.textContent = "30 DAILY AUDITS (MONTHLY)";
+      } else {
+        // Yearly 12 months longitudinal
+        const months = ['Jan 2026', 'Feb 2026', 'Mar 2026', 'Apr 2026', 'May 2026', 'Jun 2026', 'Jul 2026', 'Aug 2026', 'Sep 2026', 'Oct 2026', 'Nov 2026 (Cur)', 'Dec 2026 (Goal)'];
+        const a1cVals = [198, 194, 188, 182, 178, 174, 170, 168, 165, 162, 154, 148];
+        const monthSteps = [3200, 3600, 4200, 4800, 5400, 6000, 6200, 6400, 6500, 6600, 6700, 7000];
+        const clinicalNotes = [
+          "Pre-LCARS Baseline • HbA1c 8.5%",
+          "Initial Metformin Titration",
+          "Cauliflower Rice ADA Trades Initiated",
+          "Post-Lunch GLUT4 Walking Habit",
+          "Vegetable Preloading Regimen",
+          "Time-in-Range Reached 78%",
+          "Zero Added Sugar Compliance",
+          "Blood Pressure Normalized (117/75)",
+          "Daily 6,500 Steps Milestone",
+          "💊 MED CHANGE: Metformin 1,000mg BID + Jardiance 10mg",
+          "PROGRESS: Mean Glucose -28 mg/dL; TIR 88%",
+          "Target HbA1c < 6.8% Projected"
+        ];
+
+        rows = months.map((m, idx) => ({
+          period: m,
+          g: a1cVals[idx],
+          core: 97.2,
+          skin: 92.4,
+          steps: monthSteps[idx],
+          status: clinicalNotes[idx],
+          progress: idx <= 10 ? "Committed" : "Target"
+        }));
+        if (recCount) recCount.textContent = "12 MONTHLY AUDITS (YEARLY)";
+      }
+
+      rows.forEach((r, idx) => {
+        const tr = document.createElement('tr');
+        tr.style.borderBottom = "1px solid #e2e8f0";
+        if (r.isCharging) {
+          tr.style.background = "#fffbeb";
+        } else if (idx % 2 === 1) {
+          tr.style.background = "#f8fafc";
+        } else {
+          tr.style.background = "#ffffff";
+        }
+
+        const gDisplay = r.g > 0 ? `${r.g} mg/dL` : (r.isCharging ? `<span style="color: #ea580c; font-weight: bold;">0 (Charging)</span>` : `<span style="color: #94a3b8;">0</span>`);
+        const tempDisplay = r.core ? `${r.core.toFixed(1)}° / ${r.skin.toFixed(1)}°` : (r.isCharging ? `<span style="color: #ea580c;">-- / --</span>` : `<span style="color: #94a3b8;">--</span>`);
+        const stepsDisplay = r.steps > 0 ? `${r.steps.toLocaleString()}` : `<span style="color: #94a3b8;">0</span>`;
+        const statusColor = r.isCharging ? "#c2410c" : (r.status.includes("MED CHANGE") ? "#dc2626" : "#0f766e");
+
+        tr.innerHTML = `
+          <td style="padding: 7px 10px; color: #334155; font-weight: 600;">${r.period}</td>
+          <td style="padding: 7px 10px; color: #b45309; font-weight: 800;">${gDisplay}</td>
+          <td style="padding: 7px 10px; color: #1d4ed8; font-weight: bold;">${tempDisplay}</td>
+          <td style="padding: 7px 10px; color: #c2410c; font-weight: bold;">${stepsDisplay}</td>
+          <td style="padding: 7px 10px; color: ${statusColor}; font-weight: bold;">${r.status}</td>
+          <td style="padding: 7px 10px; color: #7c3aed; font-weight: 600;">${r.progress}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
     // EPIC EHR DIRECT INTEGRATION & FHIR TELEMETRY TRANSMISSION ENGINE
     // =========================================================================
     function openEpicUploadModal() {
@@ -12255,7 +12443,8 @@ function renderReportsView() {
           { time: '08:15', g: 165, sys: 118, dia: 74, hr: 68, hrv: 60, spo2: 98.5, temp: 97.2, steps: 340, meal: { type: "Breakfast", carbs: 14, cal: 380, desc: "Poached eggs, avocado, keto toast" }, ex: null, med: { name: "Metformin 1,000mg + Jardiance 10mg", taken: true }, notes: "Low-carb meal paired with morning oral regimen" },
           { time: '08:45', g: 148, sys: 122, dia: 78, hr: 94, hrv: 54, spo2: 99.0, temp: 97.4, steps: 2384, meal: null, ex: { type: "Post-Meal Walk", dur: 15, delta: -34, desc: "15-min neighborhood walk" }, med: null, notes: "Non-insulin GLUT4 skeletal muscle uptake blunted breakfast spike" },
           { time: '10:00', g: 142, sys: 116, dia: 74, hr: 68, hrv: 64, spo2: 99.0, temp: 97.4, steps: 2650, meal: null, ex: null, med: null, notes: "Optimal sustained Time-in-Range (TIR 60–200)" },
-          { time: '12:30', g: 158, sys: 115, dia: 73, hr: 70, hrv: 60, spo2: 98.0, temp: 97.2, steps: 3200, meal: null, ex: null, med: null, notes: "Pre-lunch euvolemic resting state" },
+          { time: '11:00', g: null, sys: null, dia: null, hr: null, hrv: null, spo2: null, temp: null, steps: 0, isChargingGap: true, meal: null, ex: null, med: null, notes: "⚡ Watch Charging on Dock (Off-Wrist • 0 Telemetry • Gaps Expected)" },
+          { time: '12:30', g: 158, sys: 115, dia: 73, hr: 70, hrv: 60, spo2: 98.0, temp: 97.2, steps: 3200, meal: null, ex: null, med: null, notes: "Pre-lunch euvolemic resting state (Watch donned post-charge)" },
           { time: '13:15', g: 188, sys: 119, dia: 76, hr: 84, hrv: 56, spo2: 98.0, temp: 97.3, steps: 3980, meal: { type: "Lunch", carbs: 18, cal: 520, desc: "Grilled chicken breast salad, walnuts" }, ex: { type: "GLUT4 Walk", dur: 20, delta: -42, desc: "20-min post-lunch walk" }, med: null, notes: "Postprandial peak held safely under 200 mg/dL target threshold" },
           { time: '15:30', g: 152, sys: 114, dia: 72, hr: 68, hrv: 62, spo2: 98.0, temp: 97.4, steps: 4420, meal: { type: "Snack", carbs: 4, cal: 160, desc: "Celery sticks with natural almond butter" }, ex: null, med: null, notes: "ADA trade snack produced flat glycemic trajectory" },
           { time: '18:30', g: 178, sys: 118, dia: 75, hr: 74, hrv: 58, spo2: 98.0, temp: 97.5, steps: 5100, meal: { type: "Dinner", carbs: 22, cal: 610, desc: "Baked salmon, riced cauliflower, greens" }, ex: null, med: { name: "Metformin 1,000mg Dose 2", taken: true }, notes: "Evening dinner with cauliflower rice substitution" },
@@ -12389,49 +12578,136 @@ function renderReportsView() {
       // Compute Point Coordinates across all lanes
       const xCoords = data.map((d, i) => padLeft + (n > 1 ? (i / (n - 1)) * plotW : plotW / 2));
 
-      // Lane 1: Glucose Curve & Shading
+      // Identify Charging Gaps across the timeline
+      const gapIndices = [];
+      data.forEach((d, i) => {
+        if (d.isChargingGap || d.g === null) gapIndices.push(i);
+      });
+
+      // Render Visual Charging Gap Column Spanning all 8 Lanes
+      gapIndices.forEach(idx => {
+        const prevX = idx > 0 ? xCoords[idx - 1] : padLeft;
+        const nextX = idx < n - 1 ? xCoords[idx + 1] : padLeft + plotW;
+        const gapXStart = (xCoords[idx] + prevX) / 2;
+        const gapXEnd = (xCoords[idx] + nextX) / 2;
+        const gapWidth = Math.max(30, gapXEnd - gapXStart);
+
+        svg += `
+          <!-- Full-Stack Watch Charging Gap Column -->
+          <rect x="${gapXStart.toFixed(1)}" y="20" width="${gapWidth.toFixed(1)}" height="${H - 55}" fill="rgba(241, 245, 249, 0.75)" stroke="#94a3b8" stroke-dasharray="4 4" rx="4"/>
+          <g>
+            <rect x="${(xCoords[idx] - 75).toFixed(1)}" y="26" width="150" height="20" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" rx="4" style="filter: drop-shadow(0 1px 3px rgba(0,0,0,0.08));"/>
+            <text x="${xCoords[idx].toFixed(1)}" y="40" text-anchor="middle" fill="#475569" font-size="9" font-weight="900">⚡ WATCH CHARGING (0 DATA)</text>
+          </g>
+        `;
+      });
+
+      // Helper to generate discontinuous SVG path segments respecting charging gaps
+      function buildSegmentedPath(pts, laneObj) {
+        let pathD = "";
+        let areaD = "";
+        let currentSeg = [];
+
+        function flushSegment() {
+          if (currentSeg.length > 0) {
+            const first = currentSeg[0];
+            const last = currentSeg[currentSeg.length - 1];
+            pathD += ` M ${first.x.toFixed(1)} ${first.y.toFixed(1)}`;
+            let segArea = ` M ${first.x.toFixed(1)} ${(laneObj.y + laneObj.h).toFixed(1)} L ${first.x.toFixed(1)} ${first.y.toFixed(1)}`;
+            for (let k = 1; k < currentSeg.length; k++) {
+              pathD += ` L ${currentSeg[k].x.toFixed(1)} ${currentSeg[k].y.toFixed(1)}`;
+              segArea += ` L ${currentSeg[k].x.toFixed(1)} ${currentSeg[k].y.toFixed(1)}`;
+            }
+            segArea += ` L ${last.x.toFixed(1)} ${(laneObj.y + laneObj.h).toFixed(1)} Z`;
+            areaD += segArea;
+            currentSeg = [];
+          }
+        }
+
+        pts.forEach(p => {
+          if (p.val === null || p.val === undefined || p.isGap) {
+            flushSegment();
+          } else {
+            currentSeg.push(p);
+          }
+        });
+        flushSegment();
+        return { pathD, areaD };
+      }
+
+      // Lane 1: Glucose Curve (Discontinuous across Charging Gap)
       const gLane = lanes[0];
       const gPts = data.map((d, i) => {
-        const y = gLane.y + gLane.h - ((d.g - gLane.minY) / (gLane.maxY - gLane.minY)) * gLane.h;
-        return { x: xCoords[i], y: y, val: d.g, label: d.time };
+        const val = (d.isChargingGap || d.g === null) ? null : d.g;
+        const y = val !== null ? gLane.y + gLane.h - ((val - gLane.minY) / (gLane.maxY - gLane.minY)) * gLane.h : (gLane.y + gLane.h);
+        return { x: xCoords[i], y: y, val: val, label: d.time, isGap: d.isChargingGap };
       });
-      const gPoly = gPts.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" ");
-      const gArea = `${padLeft},${gLane.y + gLane.h} ` + gPoly + ` ${padLeft + plotW},${gLane.y + gLane.h}`;
+      const gSegments = buildSegmentedPath(gPts, gLane);
       svg += `
-        <polygon points="${gArea}" fill="url(#gradTallGlucose)"/>
-        <polyline points="${gPoly}" fill="none" stroke="var(--lcars-banana)" stroke-width="2.5"/>
+        <path d="${gSegments.areaD}" fill="url(#gradTallGlucose)"/>
+        <path d="${gSegments.pathD}" fill="none" stroke="var(--lcars-banana)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
       `;
 
-      // Lane 2: Blood Pressure Dual Curves (Sys / Dia)
+      // Lane 2: Blood Pressure Dual Curves (Sys / Dia) Discontinuous across gaps
       const bpLane = lanes[1];
-      const sysPts = data.map((d, i) => `${xCoords[i].toFixed(1)},${(bpLane.y + bpLane.h - ((d.sys - bpLane.minY) / (bpLane.maxY - bpLane.minY)) * bpLane.h).toFixed(1)}`).join(" ");
-      const diaPts = data.map((d, i) => `${xCoords[i].toFixed(1)},${(bpLane.y + bpLane.h - ((d.dia - bpLane.minY) / (bpLane.maxY - bpLane.minY)) * bpLane.h).toFixed(1)}`).join(" ");
+      const sysPtsList = data.map((d, i) => ({
+        x: xCoords[i],
+        y: d.sys !== null ? bpLane.y + bpLane.h - ((d.sys - bpLane.minY) / (bpLane.maxY - bpLane.minY)) * bpLane.h : bpLane.y + bpLane.h,
+        val: d.sys, isGap: d.isChargingGap
+      }));
+      const diaPtsList = data.map((d, i) => ({
+        x: xCoords[i],
+        y: d.dia !== null ? bpLane.y + bpLane.h - ((d.dia - bpLane.minY) / (bpLane.maxY - bpLane.minY)) * bpLane.h : bpLane.y + bpLane.h,
+        val: d.dia, isGap: d.isChargingGap
+      }));
+      const sysSeg = buildSegmentedPath(sysPtsList, bpLane);
+      const diaSeg = buildSegmentedPath(diaPtsList, bpLane);
       svg += `
-        <polyline points="${sysPts}" fill="none" stroke="#ff9944" stroke-width="2"/>
-        <polyline points="${diaPts}" fill="none" stroke="#38b6ff" stroke-width="2"/>
+        <path d="${sysSeg.pathD}" fill="none" stroke="#ff9944" stroke-width="2" stroke-linecap="round"/>
+        <path d="${diaSeg.pathD}" fill="none" stroke="#38b6ff" stroke-width="2" stroke-linecap="round"/>
       `;
 
-      // Lane 3: Heart Rate & HRV
+      // Lane 3: Heart Rate & HRV Discontinuous across gaps
       const hrLane = lanes[2];
-      const hrPts = data.map((d, i) => `${xCoords[i].toFixed(1)},${(hrLane.y + hrLane.h - ((d.hr - hrLane.minY) / (hrLane.maxY - hrLane.minY)) * hrLane.h).toFixed(1)}`).join(" ");
-      const hrvPts = data.map((d, i) => `${xCoords[i].toFixed(1)},${(hrLane.y + hrLane.h - ((d.hrv - hrLane.minY) / (hrLane.maxY - hrLane.minY)) * hrLane.h).toFixed(1)}`).join(" ");
+      const hrPtsList = data.map((d, i) => ({
+        x: xCoords[i],
+        y: d.hr !== null ? hrLane.y + hrLane.h - ((d.hr - hrLane.minY) / (hrLane.maxY - hrLane.minY)) * hrLane.h : hrLane.y + hrLane.h,
+        val: d.hr, isGap: d.isChargingGap
+      }));
+      const hrvPtsList = data.map((d, i) => ({
+        x: xCoords[i],
+        y: d.hrv !== null ? hrLane.y + hrLane.h - ((d.hrv - hrLane.minY) / (hrLane.maxY - hrLane.minY)) * hrLane.h : hrLane.y + hrLane.h,
+        val: d.hrv, isGap: d.isChargingGap
+      }));
+      const hrSeg = buildSegmentedPath(hrPtsList, hrLane);
+      const hrvSeg = buildSegmentedPath(hrvPtsList, hrLane);
       svg += `
-        <polyline points="${hrPts}" fill="none" stroke="#ff5566" stroke-width="2"/>
-        <polyline points="${hrvPts}" fill="none" stroke="var(--lcars-lilac)" stroke-width="1.8" stroke-dasharray="3 2"/>
+        <path d="${hrSeg.pathD}" fill="none" stroke="#ff5566" stroke-width="2" stroke-linecap="round"/>
+        <path d="${hrvSeg.pathD}" fill="none" stroke="var(--lcars-lilac)" stroke-width="1.8" stroke-dasharray="3 2" stroke-linecap="round"/>
       `;
 
-      // Lane 4: SpO2 Curve
+      // Lane 4: SpO2 Curve Discontinuous across gaps
       const spLane = lanes[3];
-      const spPts = data.map((d, i) => `${xCoords[i].toFixed(1)},${(spLane.y + spLane.h - ((d.spo2 - spLane.minY) / (spLane.maxY - spLane.minY)) * spLane.h).toFixed(1)}`).join(" ");
+      const spPtsList = data.map((d, i) => ({
+        x: xCoords[i],
+        y: d.spo2 !== null ? spLane.y + spLane.h - ((d.spo2 - spLane.minY) / (spLane.maxY - spLane.minY)) * spLane.h : spLane.y + spLane.h,
+        val: d.spo2, isGap: d.isChargingGap
+      }));
+      const spSeg = buildSegmentedPath(spPtsList, spLane);
       svg += `
-        <polyline points="${spPts}" fill="none" stroke="var(--lcars-green)" stroke-width="2"/>
+        <path d="${spSeg.pathD}" fill="none" stroke="var(--lcars-green)" stroke-width="2" stroke-linecap="round"/>
       `;
 
-      // Lane 5: Temperature Curve
+      // Lane 5: Temperature Curve Discontinuous across gaps
       const tLane = lanes[4];
-      const tPts = data.map((d, i) => `${xCoords[i].toFixed(1)},${(tLane.y + tLane.h - ((d.temp - tLane.minY) / (tLane.maxY - tLane.minY)) * tLane.h).toFixed(1)}`).join(" ");
+      const tPtsList = data.map((d, i) => ({
+        x: xCoords[i],
+        y: d.temp !== null ? tLane.y + tLane.h - ((d.temp - tLane.minY) / (tLane.maxY - tLane.minY)) * tLane.h : tLane.y + tLane.h,
+        val: d.temp, isGap: d.isChargingGap
+      }));
+      const tSeg = buildSegmentedPath(tPtsList, tLane);
       svg += `
-        <polyline points="${tPts}" fill="none" stroke="var(--lcars-blue)" stroke-width="2"/>
+        <path d="${tSeg.pathD}" fill="none" stroke="var(--lcars-blue)" stroke-width="2" stroke-linecap="round"/>
       `;
 
       // Lane 6: Kinetic Steps / Exercise Bars & Badges
@@ -12495,16 +12771,27 @@ function renderReportsView() {
         }
       });
 
-      // Interactive Clickable Points on Glucose Curve
+      // Interactive Clickable Points on Glucose Curve (Skip charging gaps)
       gPts.forEach((p, i) => {
-        svg += `
-          <g style="cursor: pointer;" onclick="openTimelinePointCard(${i})">
-            <circle class="plot-point" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="5.5" fill="var(--lcars-banana)" stroke="#000000" stroke-width="2">
-              <title>${p.label}: ${p.val} mg/dL</title>
-            </circle>
-            <text x="${p.x.toFixed(1)}" y="${(p.y - 8).toFixed(1)}" text-anchor="middle" fill="var(--lcars-banana)" font-size="10.5" font-weight="bold">${p.val}</text>
-          </g>
-        `;
+        if (p.val === null || p.isGap) {
+          svg += `
+            <g style="cursor: pointer;" onclick="openTimelinePointCard(${i})">
+              <circle cx="${p.x.toFixed(1)}" cy="${(gLane.y + gLane.h - 10).toFixed(1)}" r="4" fill="#94a3b8" stroke="#ffffff" stroke-width="1.5">
+                <title>${p.label}: ⚡ Watch Charging (0 mg/dL)</title>
+              </circle>
+              <text x="${p.x.toFixed(1)}" y="${(gLane.y + gLane.h - 18).toFixed(1)}" text-anchor="middle" fill="#94a3b8" font-size="9" font-weight="bold">0 (Gap)</text>
+            </g>
+          `;
+        } else {
+          svg += `
+            <g style="cursor: pointer;" onclick="openTimelinePointCard(${i})">
+              <circle class="plot-point" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="5.5" fill="var(--lcars-banana)" stroke="#000000" stroke-width="2">
+                <title>${p.label}: ${p.val} mg/dL</title>
+              </circle>
+              <text x="${p.x.toFixed(1)}" y="${(p.y - 8).toFixed(1)}" text-anchor="middle" fill="var(--lcars-banana)" font-size="10.5" font-weight="bold">${p.val}</text>
+            </g>
+          `;
+        }
       });
 
       // Bottom Shared Time Axis Labels
@@ -12558,29 +12845,33 @@ function renderReportsView() {
       const idx = Math.min(n - 1, Math.max(0, Math.round(pNorm * (n - 1))));
       const pt = data[idx];
 
-      // Update Header Time Badge
+      // Handle Watch Charging Gap in Scrubber HUD
       const timeBadge = document.getElementById('tallScrubberTimeBadge');
-      if (timeBadge) timeBadge.textContent = `TIMESTAMP: ${pt.time} (${pt.meal ? pt.meal.type : (pt.ex ? pt.ex.type : 'Diurnal State')})`;
-
-      // Update HUD Ribbon
       const hG = document.getElementById('hudGlucose');
-      if (hG) hG.textContent = `${pt.g} mg/dL`;
-
       const hBp = document.getElementById('hudBp');
-      if (hBp) hBp.textContent = `${pt.sys}/${pt.dia} mmHg`;
-
       const hHr = document.getElementById('hudHrHrv');
-      if (hHr) hHr.textContent = `${pt.hr} BPM / ${pt.hrv} ms`;
-
       const hSp = document.getElementById('hudSpo2');
-      if (hSp) hSp.textContent = `${pt.spo2}%`;
-
       const hT = document.getElementById('hudTemp');
-      if (hT) hT.textContent = `${pt.temp.toFixed(1)}°F`;
-
       const hEx = document.getElementById('hudExercise');
-      if (hEx) {
-        hEx.textContent = pt.ex ? `${pt.steps} steps • ${pt.ex.type} (${pt.ex.delta <= 0 ? pt.ex.delta : '+' + pt.ex.delta} mg/dL)` : `${pt.steps} steps • Resting Homeostasis`;
+
+      if (pt.isChargingGap || pt.g === null) {
+        if (timeBadge) timeBadge.textContent = `TIMESTAMP: ${pt.time} (⚡ WATCH CHARGING ON DOCK • 0 TELEMETRY)`;
+        if (hG) hG.textContent = `0 mg/dL (Charging)`;
+        if (hBp) hBp.textContent = `-- / -- (Off-Wrist)`;
+        if (hHr) hHr.textContent = `0 BPM / 0 ms`;
+        if (hSp) hSp.textContent = `-- %`;
+        if (hT) hT.textContent = `--.- °F`;
+        if (hEx) hEx.textContent = `0 steps • Watch on Charger (~1.2h)`;
+      } else {
+        if (timeBadge) timeBadge.textContent = `TIMESTAMP: ${pt.time} (${pt.meal ? pt.meal.type : (pt.ex ? pt.ex.type : 'Diurnal State')})`;
+        if (hG) hG.textContent = `${pt.g} mg/dL`;
+        if (hBp) hBp.textContent = `${pt.sys}/${pt.dia} mmHg`;
+        if (hHr) hHr.textContent = `${pt.hr} BPM / ${pt.hrv} ms`;
+        if (hSp) hSp.textContent = `${pt.spo2}%`;
+        if (hT) hT.textContent = `${pt.temp ? pt.temp.toFixed(1) : '--.-'}°F`;
+        if (hEx) {
+          hEx.textContent = pt.ex ? `${pt.steps} steps • ${pt.ex.type} (${pt.ex.delta <= 0 ? pt.ex.delta : '+' + pt.ex.delta} mg/dL)` : `${pt.steps} steps • Resting Homeostasis`;
+        }
       }
 
       const hD = document.getElementById('hudDiet');
@@ -13950,7 +14241,7 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
               ribbonSync.textContent = "⏳ AUTO-SYNCING...";
               ribbonSync.style.color = "var(--lcars-banana)";
             } else if (data.contention_warning) {
-              ribbonSync.textContent = "⚠️ PHONE CONTENTION (CLOSE HBAND)";
+              ribbonSync.textContent = "⚠️ PHONE CONTENTION (CLOSE MOBILE APP)";
               ribbonSync.style.color = "var(--lcars-orange)";
             } else {
               const timeStr = hoursAgo < 1 ? "<1h ago" : `${hoursAgo.toFixed(1)}h ago`;
@@ -14546,7 +14837,7 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
 
 
     // =========================================================================
-    // HBAND EXERCISE & WORKOUT ENGINE (CARDIO-04)
+    // EXERCISE & WORKOUT ENGINE (CARDIO-04)
     // =========================================================================
     let workoutActive = false;
     let workoutTimer = null;
@@ -14556,17 +14847,19 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
     let workoutCurrentDist = 0;
     let workoutMET = 3.5; // Default brisk walk
 
-    // 48 Half-Hour Slots for Daily Activity Bins (HBand Spec)
+    // 48 Half-Hour Slots for Daily Activity Bins (Activity Spec)
     let hbandDaily48Slots = new Array(48).fill(0);
 
     // Initialize realistic diurnal activity curve if empty
     function initHBand48Slots() {
-      // Base activity with this morning's recorded walk (2,384 steps total)
+      // Activity bins: only show data we have, slots with no data are explicitly 0.
+      // Watch charging gap from 10:30 to 12:00 (slots 21, 22, 23) has 0 steps.
       hbandDaily48Slots.fill(0);
       hbandDaily48Slots[16] = 320;   // 08:00 AM (Warm up)
       hbandDaily48Slots[17] = 1120;  // 08:30 AM (Brisk walk / GLUT4)
       hbandDaily48Slots[18] = 840;   // 09:00 AM (Aerobic recovery)
       hbandDaily48Slots[19] = 104;   // 09:30 AM (Cooldown)
+      // Slots 21-23 remain exactly 0 steps (Watch Charging)
       renderHBand48Chart();
     }
 
@@ -14613,7 +14906,7 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
       startHRDetection();
 
       workoutTimer = setInterval(updateWorkoutTick, 1000);
-      logLCARS("Ambulatory Workout Session COMMENCED (HBand Protocol)", "tx");
+      logLCARS("Ambulatory Workout Session COMMENCED (Telemetry Protocol)", "tx");
     }
 
     function stopWorkoutSession() {
@@ -14741,15 +15034,32 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
         const x = startX + (i * (900 / 48));
         const y = baseY - barHeight;
 
-        // Color coding: Blue for normal activity, Green for GLUT4 exercise sessions (>300 steps/slot)
+        // Slots 21-23 (10:30 - 12:00) represent the 1.5h Watch Charging Window (0 Steps)
+        const isChargingSlot = (i >= 21 && i <= 23);
         const isExercise = val >= 300;
-        const fillColor = isExercise ? 'var(--lcars-green)' : (val > 100 ? 'var(--lcars-blue)' : '#2a4055');
+        const fillColor = isChargingSlot ? '#f59e0b' : (isExercise ? 'var(--lcars-green)' : (val > 100 ? 'var(--lcars-blue)' : '#cbd5e1'));
 
-        barsSvg += `
-          <rect x="${x}" y="${y}" width="${slotWidth - 2}" height="${barHeight}" fill="${fillColor}" rx="1" opacity="0.9">
-            <title>Time: ${Math.floor(i/2).toString().padStart(2,'0')}:${(i%2===0?'00':'30')} • Steps: ${val}</title>
-          </rect>
-        `;
+        if (isChargingSlot) {
+          barsSvg += `
+            <rect x="${x}" y="${baseY - 14}" width="${slotWidth - 2}" height="14" fill="rgba(245, 158, 11, 0.25)" stroke="#f59e0b" stroke-dasharray="2 2" rx="1">
+              <title>Time: ${Math.floor(i/2).toString().padStart(2,'0')}:${(i%2===0?'00':'30')} • ⚡ Watch Charging on Dock (0 Steps)</title>
+            </rect>
+            <text x="${x + (slotWidth - 2)/2}" y="${baseY - 3}" text-anchor="middle" fill="#d97706" font-size="9" font-weight="bold">⚡</text>
+          `;
+        } else if (val > 0) {
+          barsSvg += `
+            <rect x="${x}" y="${y}" width="${slotWidth - 2}" height="${barHeight}" fill="${fillColor}" rx="1" opacity="0.9">
+              <title>Time: ${Math.floor(i/2).toString().padStart(2,'0')}:${(i%2===0?'00':'30')} • Steps: ${val}</title>
+            </rect>
+          `;
+        } else {
+          // Zero data slot: small baseline tick
+          barsSvg += `
+            <rect x="${x}" y="${baseY - 2}" width="${slotWidth - 2}" height="2" fill="#e2e8f0" rx="1">
+              <title>Time: ${Math.floor(i/2).toString().padStart(2,'0')}:${(i%2===0?'00':'30')} • 0 Steps (No Telemetry)</title>
+            </rect>
+          `;
+        }
       }
 
       g.innerHTML = barsSvg;
