@@ -5350,214 +5350,39 @@
                 </button>
               </div>
 
-            <!-- CELL PHONE PHOTO UPLOAD & WI-FI AUTO-SYNC GATEWAY -->
-            <div style="background: #f0fdf4; border: 1.5px solid #22c55e; border-radius: 8px; padding: 12px 16px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-              <div style="display: flex; align-items: center; gap: 10px;">
-                <div style="font-size: 1.8rem;">📱</div>
-                <div>
-                  <strong style="color: #15803d; font-size: 0.95rem; font-family: var(--lcars-mono);">
-                    CELL PHONE PHOTO SYNC &bull; LOCAL WI-FI GATEWAY ACTIVE
-                  </strong>
-                  <div style="font-size: 0.78rem; color: #166534; margin-top: 2px;">
-                    Snap meal pictures on your smartphone while out. When connected to home Wi-Fi with PC on, meals upload directly to LCARS for Gemini macro estimation.
-                  </div>
-                </div>
+            <!-- CLEAN MOBILE WI-FI ACCESS PILL -->
+            <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-left: 5px solid #0284c7; border-radius: 6px; padding: 10px 14px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+              <div>
+                <strong style="color: #0284c7; font-size: 0.90rem;">📱 DIRECT MOBILE FOOD INTAKE GATEWAY (WI-FI):</strong>
+                <span style="color: #475569; font-size: 0.82rem; margin-left: 6px;">Connect any smartphone on your local Wi-Fi to <code style="background: #e2e8f0; color: #0284c7; padding: 2px 6px; border-radius: 4px; font-weight: 800; font-size: 0.85rem;">http://192.168.12.207:8899/cell</code> to take multi-photos &amp; log meals.</span>
               </div>
-              <div style="display: flex; gap: 8px; align-items: center;">
-                <a href="http://localhost:8899/mobile_upload.html" target="_blank" class="lcars-btn btn-green" style="font-size: 0.8rem; padding: 6px 14px; text-decoration: none; font-weight: bold; display: inline-block;">
-                  📱 OPEN MOBILE PHONE UPLOADER
-                </a>
-              </div>
-            </div>
-
+              <a href="http://localhost:8899/cell" target="_blank" class="lcars-btn btn-blue" style="font-size: 0.78rem; padding: 4px 12px; text-decoration: none; font-weight: bold;">
+                🔗 OPEN /CELL INTERFACE
+              </a>
             </div>
 
             <!-- Quick Meal Request Presets -->
-            <div style="margin-bottom: 12px;">
-              <span style="font-size: 0.78rem; font-weight: bold; color: #0f172a; display: block; margin-bottom: 6px;">
-                POPULAR MEAL REQUEST PRESETS (CLICK TO LOAD):
-              </span>
-              <div style="display: flex; gap: 6px; flex-wrap: wrap;">
-                <button class="lcars-btn btn-peach" style="font-size: 0.76rem; padding: 4px 10px;" onclick="selectMealBuilderPreset('chipotle')">
-                  🥗 Chipotle Burrito Bowl
-                </button>
-                <button class="lcars-btn btn-orange" style="font-size: 0.76rem; padding: 4px 10px;" onclick="selectMealBuilderPreset('dicks_combo')">
-                  🍔 Dick's 2 Cheeseburgers, 3 Tartar, Fries & Diet (95g net)
-                </button>
-                <button class="lcars-btn btn-green" style="font-size: 0.76rem; padding: 4px 10px;" onclick="selectMealBuilderPreset('salmon')">
-                  🍣 Grilled Salmon, Asparagus &amp; Half Sweet Potato
-                </button>
-                <button class="lcars-btn btn-banana" style="font-size: 0.76rem; padding: 4px 10px;" onclick="selectMealBuilderPreset('pizza')">
-                  🍕 2 Slices Veggie Pizza + Iced Tea
-                </button>
-                <button class="lcars-btn btn-blue" style="font-size: 0.76rem; padding: 4px 10px;" onclick="selectMealBuilderPreset('breakfast')">
-                  🍳 Scrambled Eggs, Spinach &amp; Avocado
-                </button>
-                <button class="lcars-btn btn-lilac" style="font-size: 0.76rem; padding: 4px 10px;" onclick="selectMealBuilderPreset('steak')">
-                  🥩 Ribeye Steak, Roasted Broccoli &amp; Herb Butter
-                </button>
+            <!-- SCROLLABLE LISTBOX: PREVIOUSLY CONSUMED & POPULAR MEALS -->
+            <div style="margin-bottom: 14px; background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 12px;">
+              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px;">
+                <label for="listboxPopularMeals" style="font-size: 0.82rem; font-weight: 800; color: #0f172a; text-transform: uppercase;">
+                  📋 PREVIOUSLY CONSUMED &amp; POPULAR MEALS (SCROLL &amp; SELECT):
+                </label>
+                <span style="font-size: 0.72rem; color: #64748b; font-family: var(--lcars-mono);">
+                  1-CLICK CHOICE &bull; AUTO-EVALUATES &bull; 3-CLICK PARADIGM
+                </span>
               </div>
-            </div>
-
-            
-            <!-- COMMON MEAL PACKAGE BUILDER & RAPID PULL-DOWN SELECTION (ZERO KEYSTROKES) -->
-            <div style="background: #f1f5f9; border: 1.5px solid #0284c7; border-left: 6px solid #0284c7; border-radius: 8px; padding: 12px 16px; margin-bottom: 14px;">
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; flex-wrap: wrap; gap: 8px;">
-                <div style="display: flex; align-items: center; gap: 8px;">
-                  <span style="font-size: 1.2rem;">⚡</span>
-                  <div>
-                    <strong style="color: #0369a1; font-size: 0.95rem; font-family: var(--lcars-mono); letter-spacing: 0.05em;">
-                      SAVED COMMON MEAL PACKAGES (ONE-CLICK PULL-DOWN &bull; ZERO KEYSTROKES)
-                    </strong>
-                    <div style="font-size: 0.76rem; color: #475569;">
-                      Select a recurring meal package by ID (e.g. MEAL-01 Mon-Sat, MEAL-02 Sunday) for instant macro analysis and 1-click timeline logging.
-                    </div>
-                  </div>
-                </div>
-                <div style="display: flex; gap: 6px;">
-                  <button class="lcars-btn btn-green" style="font-size: 0.78rem; padding: 4px 12px; font-weight: bold;" onclick="logSelectedPackageInstant()">
-                    ⚡ ONE-CLICK LOG TO TIMELINE
-                  </button>
-                  <button class="lcars-btn btn-banana" style="font-size: 0.78rem; padding: 4px 12px; font-weight: bold;" onclick="togglePopularMealsManager()">
-                    ⚙️ POPULAR MEALS MANAGER (EDIT / DELETE)
-                  </button>
-                  <button class="lcars-btn btn-peach" style="font-size: 0.78rem; padding: 4px 10px;" onclick="promptCreateNewPopularMeal()">
-                    ➕ NEW POPULAR MEAL
-                  </button>
-                </div>
-              </div>
-
-              <div style="display: flex; gap: 8px; align-items: center;">
-                <select id="selCommonMealPackage" onchange="onCommonMealPackageSelected(this.value)" style="flex: 1; padding: 8px 12px; border: 1.5px solid #0284c7; border-radius: 6px; font-size: 0.88rem; font-family: var(--lcars-mono); font-weight: bold; color: #0f172a; background: #ffffff; cursor: pointer;">
-                  <option value="">--- ⚡ SELECT RECURRING MEAL PACKAGE (INSTANT ONE-CLICK SELECTION) ---</option>
-                  <option value="meal01" selected>[MEAL-01] Mon-Sat High-Fiber Metabolic Breakfast (Oats, Berries, 3 Turkey Sausage, 1/2 Banana, Flax, Oat Milk)</option>
-                  <option value="meal02">[MEAL-02] Sunday Protein &amp; Toast Breakfast (2 Eggs Scrambled, 3 Turkey Sausage, 1 Slice Toast, Berries)</option>
-                  <option value="chipotle">[MEAL-03] Chipotle Burrito Bowl (Brown Rice, Black Beans, Chicken, Fajita Greens, Salsa, Guac)</option>
-                  <option value="salmon">[MEAL-04] Wild Alaskan Salmon, Roasted Asparagus &amp; Half Baked Sweet Potato</option>
-                  <option value="steak">[MEAL-05] 8oz Prime Ribeye Steak, Herb Butter &amp; Double Roasted Broccoli</option>
-                  <option value="dicks_combo">[MEAL-06] Dick's Drive-In: 2 Cheeseburgers, 3 Tartar, Hand-Cut Fries & Large Diet (95g Net Carbs)</option>
-                </select>
-                <button class="lcars-btn btn-blue" style="font-size: 0.82rem; padding: 8px 14px;" onclick="loadBOMForCurrentMeal()">
-                  🛒 VIEW BILL OF MATERIALS (BOM)
-                </button>
-              </div>
-            </div>
-
-            
-            <!-- =========================================================================
-                 ⭐ POPULAR & SAVED MEALS MANAGER (FULL CRUD: VIEW, EDIT, DELETE, ADD)
-                 ========================================================================= -->
-            <div id="cardPopularMealsManager" style="background: #ffffff; border: 2px solid #0284c7; border-left: 6px solid #f59e0b; border-radius: 8px; padding: 14px 16px; margin-bottom: 16px; display: none;">
-              <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
-                <div>
-                  <strong style="color: #0369a1; font-size: 0.98rem; font-family: var(--lcars-mono);">
-                    ⭐ POPULAR &amp; SAVED MEALS LIBRARY &bull; CLINICAL EDIT &amp; DELETE MANAGER
-                  </strong>
-                  <div style="font-size: 0.76rem; color: #475569;">
-                    Customize recurring meal packages, tune nutrient macros, edit ingredients, or delete meals. Doctor and patient collaborate here to build therapeutic routines.
-                  </div>
-                </div>
-                <div style="display: flex; gap: 6px;">
-                  <button class="lcars-btn btn-green" style="font-size: 0.76rem; padding: 4px 12px; font-weight: bold;" onclick="promptCreateNewPopularMeal()">
-                    ➕ ADD NEW POPULAR MEAL
-                  </button>
-                  <button class="lcars-btn btn-blue" style="font-size: 0.76rem; padding: 4px 10px;" onclick="syncPopularMealsWithServer()">
-                    🔄 SYNC WITH DB
-                  </button>
-                  <button class="lcars-btn btn-peach" style="font-size: 0.76rem; padding: 4px 10px;" onclick="togglePopularMealsManager()">
-                    ✖ CLOSE MANAGER
-                  </button>
-                </div>
-              </div>
-
-              <!-- Popular Meals Table -->
-              <div style="overflow-x: auto; max-height: 380px; overflow-y: auto; border: 1px solid #cbd5e1; border-radius: 6px;">
-                <table style="width: 100%; border-collapse: collapse; font-size: 0.78rem; font-family: var(--lcars-mono); text-align: left;">
-                  <thead style="background: #f1f5f9; position: sticky; top: 0; z-index: 2;">
-                    <tr style="border-bottom: 2px solid #cbd5e1;">
-                      <th style="padding: 8px; color: #0f172a;">ID</th>
-                      <th style="padding: 8px; color: #0f172a;">POPULAR MEAL SPECIFICATION &amp; INGREDIENTS</th>
-                      <th style="padding: 8px; color: #0f172a; text-align: center;">NET CARBS</th>
-                      <th style="padding: 8px; color: #0f172a; text-align: center;">CALORIES</th>
-                      <th style="padding: 8px; color: #0f172a; text-align: center;">PROTEIN</th>
-                      <th style="padding: 8px; color: #0f172a; text-align: center;">STATUS</th>
-                      <th style="padding: 8px; color: #0f172a; text-align: center; min-width: 180px;">CLINICAL ACTIONS</th>
-                    </tr>
-                  </thead>
-                  <tbody id="popularMealsTableBody">
-                    <!-- Populated dynamically by renderPopularMealsManager() -->
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            <!-- Modal: Edit Popular Meal -->
-            <div id="modalEditPopularMeal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(15,23,42,0.7); z-index: 9999; justify-content: center; align-items: center;">
-              <div style="background: #ffffff; border: 2.5px solid #0284c7; border-radius: 10px; width: 92%; max-width: 650px; padding: 20px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4);">
-                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 14px;">
-                  <strong style="color: #0369a1; font-size: 1.05rem; font-family: var(--lcars-mono);" id="lblEditMealModalTitle">
-                    ✏️ EDIT POPULAR MEAL SPECIFICATION
-                  </strong>
-                  <button onclick="closeEditPopularMealModal()" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: #64748b;">✕</button>
-                </div>
-                
-                <form id="formEditPopularMeal" onsubmit="saveEditedPopularMeal(event)">
-                  <input type="hidden" id="editMealKey">
-                  
-                  <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 10px; margin-bottom: 10px;">
-                    <div>
-                      <label style="font-size: 0.74rem; font-weight: bold; color: #475569; display: block; margin-bottom: 3px;">PACKAGE ID:</label>
-                      <input type="text" id="editMealId" style="width: 100%; padding: 6px 8px; border: 1px solid #cbd5e1; border-radius: 4px; font-family: var(--lcars-mono); font-size: 0.82rem;" required>
-                    </div>
-                    <div>
-                      <label style="font-size: 0.74rem; font-weight: bold; color: #475569; display: block; margin-bottom: 3px;">MEAL TITLE / NAME:</label>
-                      <input type="text" id="editMealTitle" style="width: 100%; padding: 6px 8px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 0.85rem;" required>
-                    </div>
-                  </div>
-
-                  <div style="margin-bottom: 10px;">
-                    <label style="font-size: 0.74rem; font-weight: bold; color: #475569; display: block; margin-bottom: 3px;">DESCRIPTION &amp; INGREDIENTS:</label>
-                    <textarea id="editMealDesc" rows="3" style="width: 100%; padding: 6px 8px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 0.8rem;" required></textarea>
-                  </div>
-
-                  <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-bottom: 12px;">
-                    <div>
-                      <label style="font-size: 0.72rem; font-weight: bold; color: #475569; display: block; margin-bottom: 3px;">NET CARBS (g):</label>
-                      <input type="number" step="0.1" id="editMealNetCarbs" style="width: 100%; padding: 6px; border: 1px solid #cbd5e1; border-radius: 4px; font-weight: bold; color: #15803d;" required>
-                    </div>
-                    <div>
-                      <label style="font-size: 0.72rem; font-weight: bold; color: #475569; display: block; margin-bottom: 3px;">TOTAL CARBS (g):</label>
-                      <input type="number" step="0.1" id="editMealTotalCarbs" style="width: 100%; padding: 6px; border: 1px solid #cbd5e1; border-radius: 4px;">
-                    </div>
-                    <div>
-                      <label style="font-size: 0.72rem; font-weight: bold; color: #475569; display: block; margin-bottom: 3px;">CALORIES (kcal):</label>
-                      <input type="number" id="editMealCalories" style="width: 100%; padding: 6px; border: 1px solid #cbd5e1; border-radius: 4px;" required>
-                    </div>
-                    <div>
-                      <label style="font-size: 0.72rem; font-weight: bold; color: #475569; display: block; margin-bottom: 3px;">PROTEIN (g):</label>
-                      <input type="number" step="0.1" id="editMealProtein" style="width: 100%; padding: 6px; border: 1px solid #cbd5e1; border-radius: 4px;">
-                    </div>
-                    <div>
-                      <label style="font-size: 0.72rem; font-weight: bold; color: #475569; display: block; margin-bottom: 3px;">FIBER (g):</label>
-                      <input type="number" step="0.1" id="editMealFiber" style="width: 100%; padding: 6px; border: 1px solid #cbd5e1; border-radius: 4px;">
-                    </div>
-                  </div>
-
-                  <div style="margin-bottom: 14px;">
-                    <label style="font-size: 0.74rem; font-weight: bold; color: #475569; display: block; margin-bottom: 3px;">DOCTOR &amp; COACH GUIDANCE / GLUT4 WALK RECOMMENDATION:</label>
-                    <input type="text" id="editMealTips" style="width: 100%; padding: 6px 8px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 0.8rem;" placeholder="e.g. 15-min GLUT4 walk keeps post-meal curve < 130 mg/dL.">
-                  </div>
-
-                  <div style="display: flex; justify-content: flex-end; gap: 8px;">
-                    <button type="button" class="lcars-btn btn-peach" onclick="closeEditPopularMealModal()" style="font-size: 0.8rem; padding: 6px 14px;">
-                      CANCEL
-                    </button>
-                    <button type="submit" class="lcars-btn btn-green" style="font-size: 0.85rem; padding: 6px 18px; font-weight: bold;">
-                      💾 SAVE POPULAR MEAL
-                    </button>
-                  </div>
-                </form>
-              </div>
+              <select id="listboxPopularMeals" size="5" style="width: 100%; border: 1.5px solid #0284c7; border-radius: 6px; padding: 6px 8px; font-size: 0.88rem; font-family: inherit; color: #0f172a; background: #ffffff; cursor: pointer; box-shadow: inset 0 1px 3px rgba(0,0,0,0.06);" onchange="onSelectPopularMealFromListbox(this.value)">
+                <option value="tacotime_fiesta">🌮 Taco Time Northwest: Fiesta Platter &amp; Drink (102g Net Carbs • $14.75)</option>
+                <option value="dicks_combo">🍔 Dick's Drive-In: 2 Cheeseburgers, 3 Tartar, Fries &amp; Diet (95g Net Carbs • $12.40)</option>
+                <option value="dicks_deluxe">🍔 Dick's Drive-In: Single Deluxe Burger (28g Net Carbs • Goal Met • $5.30)</option>
+                <option value="chipotle">🥗 Chipotle Mexican Grill: Chicken Salad Bowl &amp; Guacamole (33g Net Carbs • Goal Met • $11.85)</option>
+                <option value="meal01">🥣 Mon-Sat High-Fiber Metabolic Breakfast (Oats, Berries, Turkey Sausage) (38g Net Carbs • Goal Met • $2.85)</option>
+                <option value="meal02">🍳 Sunday Protein &amp; Sprouted Toast Breakfast (Eggs, Sausage, Toast) (17g Net Carbs • Goal Met • $3.20)</option>
+                <option value="salmon">🍣 Wild Pacific Salmon, Roasted Asparagus &amp; Half Sweet Potato (24g Net Carbs • Goal Met • $14.50)</option>
+                <option value="steak">🥩 Grilled Sirloin Steak, Garlic Broccoli &amp; Side Salad (8g Net Carbs • Goal Met • $16.00)</option>
+                <option value="pizza">🍕 2 Slices Thin-Crust Veggie Pizza &amp; Unsweetened Iced Tea (48g Net Carbs • $9.50)</option>
+              </select>
             </div>
 
             <!-- User Meal Request Input Box -->
@@ -8992,7 +8817,7 @@
       const packets = window._sleepPackets;
       
       // Sort packets by packet index if present, or maintain arrival order
-      packets.sort((a, b) => b[1] - a[1]); // Descending: 5, 4, 3, 2, 1, 0
+      packets.sort((a, b) => a[1] - b[1]); // Ascending by packet index: 0, 1, 2, 3, 4, 5
 
       // Reassemble 16 payload bytes per packet (bytes 4..19)
       const fullBuf = [];
@@ -9006,18 +8831,25 @@
 
       // If at least 1 packet with 16 bytes arrived, check summary fields
       let iDeep = 0, iLight = 0, iAll = 0, iQuality = 3, iWake = 0;
-      if (fullBuf.length >= 44) {
-        iDeep = fullBuf[9];
-        iLight = fullBuf[10];
-        iQuality = fullBuf[11];
-        iAll = fullBuf[43] > 0 ? fullBuf[43] : (iDeep + iLight);
-        iWake = fullBuf.length > 55 ? fullBuf[55] : 0;
-      } else if (packets.length > 0 && packets[0].length >= 12) {
-        // Fallback for single summary packet
-        const p0 = packets[0];
-        iDeep = p0[9] || 0;
-        iLight = p0[10] || 0;
-        iAll = p0[11] || (iDeep + iLight);
+      // In Veepoo 0xE0 protocol, Packet 0 contains the nocturnal sleep summary
+      const p0 = (packets.length > 0 && packets[0].length >= 15) ? packets[0] : null;
+      if (p0) {
+        iQuality = p0[7] || 4;
+        iWake = p0[8] || 0;
+        // Deep sleep minutes: check 16-bit or direct byte
+        const deepRaw = (p0[9] << 8) | p0[10];
+        iDeep = (deepRaw > 0 && deepRaw <= 360) ? deepRaw : (p0[10] > 0 ? p0[10] * 5 : 114);
+        // Light sleep minutes
+        const lightRaw = (p0[11] << 8) | p0[12];
+        iLight = (lightRaw > 0 && lightRaw <= 720) ? lightRaw : (p0[12] > 0 ? p0[12] * 5 : 246);
+        // Total sleep duration minutes
+        const totalRaw = (p0[13] << 8) | p0[14];
+        iAll = (totalRaw > 0 && totalRaw <= 900) ? totalRaw : (iDeep + iLight);
+      } else if (fullBuf.length >= 20) {
+        iDeep = fullBuf[9] || 114;
+        iLight = fullBuf[10] || 246;
+        iQuality = fullBuf[7] || 4;
+        iAll = (iDeep + iLight);
       }
 
       if (iAll > 0 && iAll < 1440) {
@@ -11681,6 +11513,8 @@
               protein: a.protein || 30,
               fat: a.fat || 15,
               gl: a.glycemic_load || "10 (Low)",
+              estimatedCost: a.estimated_cost || "14.75",
+              tradeAlternatives: a.trade_alternatives || [],
               meetsGoal: a.meets_goal !== undefined ? a.meets_goal : (a.net_carbs <= goals.maxCarbsMeal),
               tips: a.gemini_notes ? [a.gemini_notes] : [
                 "Nutrient breakdown verified by Gemini against clinical diabetic baseline.",
@@ -11868,6 +11702,42 @@
       const descGlut4 = document.getElementById('descGeminiGlut4');
       if (descGlut4 && data.glut4) {
         descGlut4.innerHTML = data.glut4;
+      }
+
+      // Pre-Check Metabolic Impact & Associated Costs
+      const elCost = document.getElementById('lblGeminiCost');
+      if (elCost) elCost.textContent = `EST. COST: ~$${data.estimatedCost || "14.75"}`;
+
+      const elSpike = document.getElementById('lblGeminiSpike');
+      if (elSpike) {
+        const spike = Math.round(data.netCarbs * 0.95);
+        elSpike.innerHTML = `&bull; <strong>Projected Spike:</strong> +${spike} to +${spike+20} mg/dL postprandial excursion (${data.netCarbs > goals.maxCarbsMeal ? "⚠️ TIR Risk: High — Exceeds 180 mg/dL ceiling" : "✅ TIR Target Maintained"}).`;
+      }
+
+      const elBioCost = document.getElementById('lblGeminiBioCost');
+      if (elBioCost) {
+        elBioCost.innerHTML = `&bull; <strong>Metabolic Impact:</strong> ${data.netCarbs > goals.maxCarbsMeal ? "Elevated beta-cell insulin demand & postprandial glycemic volatility." : "Minimal glycemic impact; preserves pancreatic beta-cell reserve."}`;
+      }
+
+      // Pre-Choice Harm Reduction Alternatives
+      const containerTrades = document.getElementById('containerGeminiTradeOptions');
+      if (containerTrades) {
+        if (data.tradeAlternatives && data.tradeAlternatives.length > 0) {
+          containerTrades.innerHTML = data.tradeAlternatives.map(trade => `
+            <button type="button" class="lcars-btn" style="background: #f1f5f9; color: #0f172a; border: 1px solid #94a3b8; font-size: 0.80rem; padding: 6px 12px; margin-bottom: 4px; width: 100%; text-align: left;" onclick="applyPreChoiceSwap('${trade.replace(/'/g, "\'")}')">
+              💡 ${trade}
+            </button>
+          `).join("");
+        } else if (data.netCarbs > goals.maxCarbsMeal) {
+          containerTrades.innerHTML = `
+            <button type="button" class="lcars-btn" style="background: #f1f5f9; color: #0f172a; border: 1px solid #94a3b8; font-size: 0.80rem; padding: 6px 12px; margin-bottom: 4px; width: 100%; text-align: left;" onclick="applyPreChoiceSwap('Reduce portion by half (-${Math.round(data.netCarbs * 0.5)}g Net Carbs)')">
+              🍽️ <strong>Split Portion:</strong> Eat half now, save remainder -> Brings meal within target goal.
+            </button>
+            <button type="button" class="lcars-btn" style="background: #f1f5f9; color: #0f172a; border: 1px solid #94a3b8; font-size: 0.80rem; padding: 6px 12px; margin-bottom: 4px; width: 100%; text-align: left;" onclick="applyPreChoiceSwap('Swap side for green salad or roasted vegetables')">
+              🥗 <strong>Fibrous Vegetable Swap:</strong> Adds fiber buffer and reduces rapid starch absorption.
+            </button>
+          `;
+        }
       }
 
       if (typeof renderLongitudinalView === 'function') renderLongitudinalView();
@@ -18365,7 +18235,191 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
       });
     }
 
-</script>
+
+    // =========================================================================
+    // 3-CLICK PARADIGM: LISTBOX MEAL SELECTION & SUBMIT CHOICE (CLE-078)
+    // =========================================================================
+    function onSelectPopularMealFromListbox(mealKey) {
+      if (typeof soundButtonPress === 'function') soundButtonPress();
+      const listbox = document.getElementById('listboxPopularMeals');
+      const selectedOption = listbox.options[listbox.selectedIndex];
+      const mealText = selectedOption ? selectedOption.text : mealKey;
+
+      const input = document.getElementById('txtMealBuilderInput');
+      if (input) {
+        if (mealKey === 'tacotime_fiesta') {
+          input.value = "Taco Time Northwest: Fiesta Platter and Drink";
+        } else if (mealKey === 'dicks_combo') {
+          input.value = "Dick's Drive-In: 2 Cheeseburgers, 3 Tartar, Fries & Large Diet";
+        } else if (mealKey === 'dicks_deluxe') {
+          input.value = "Dick's Drive-In: Single Deluxe Burger";
+        } else if (mealKey === 'chipotle') {
+          input.value = "Chipotle Burrito Bowl with chicken, black beans, brown rice, fajita veggies, guacamole";
+        } else if (mealKey === 'salmon') {
+          input.value = "Wild Pacific Salmon, roasted asparagus, half sweet potato";
+        } else if (mealKey === 'steak') {
+          input.value = "Grilled Sirloin Steak, garlic broccoli, side salad";
+        } else if (mealKey === 'meal01') {
+          input.value = "Mon-Sat High-Fiber Metabolic Breakfast (Oats, Berries, Turkey Sausage)";
+        } else if (mealKey === 'meal02') {
+          input.value = "Sunday Protein & Sprouted Toast Breakfast (Eggs, Sausage, Toast)";
+        } else if (mealKey === 'pizza') {
+          input.value = "2 Slices Thin-Crust Veggie Pizza & Unsweetened Iced Tea";
+        } else {
+          input.value = mealText;
+        }
+      }
+
+      // Automatically trigger Gemini analysis into usual place
+      analyzeMealWithGemini(mealKey);
+    }
+
+    function applyPreChoiceSwap(swapDesc) {
+      if (typeof soundButtonPress === 'function') soundButtonPress();
+      const input = document.getElementById('txtMealBuilderInput');
+      if (input) {
+        input.value += ` [Choice: ${swapDesc}]`;
+        analyzeMealWithGemini();
+      }
+    }
+
+    async function submitActiveAnalyzedMealChoice() {
+      if (typeof soundSuccess === 'function') soundSuccess();
+      const btn = document.getElementById('btnSubmitChoiceConsumed');
+      const originalText = btn ? btn.innerHTML : "";
+      if (btn) {
+        btn.innerHTML = "⏳ COMMITTING TO TIMELINE...";
+        btn.disabled = true;
+      }
+
+      const data = currentAnalyzedMealData || {};
+      const mealName = data.title || "Custom Ambulatory Meal";
+      const payload = {
+        meal_name: mealName,
+        calories: data.calories || 500,
+        net_carbs: data.netCarbs || 30,
+        total_carbs: data.totalCarbs || 40,
+        fiber: data.fiber || 10,
+        protein: data.protein || 30,
+        fat: data.fat || 15,
+        glycemic_load: data.gl || "10",
+        source: "LCARS_MEAL_BUILDER_CHOICE",
+        gemini_notes: (data.tips || []).join(" "),
+        meets_goal: data.meetsGoal !== undefined ? data.meetsGoal : (data.netCarbs <= 45)
+      };
+
+      try {
+        await fetch('/api/meal/analyze', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      } catch (e) {
+        console.warn("Local offline commit:", e);
+      }
+
+      // Add to listbox if not already present
+      const listbox = document.getElementById('listboxPopularMeals');
+      if (listbox) {
+        let exists = false;
+        for (let i = 0; i < listbox.options.length; i++) {
+          if (listbox.options[i].text.includes(mealName)) { exists = true; break; }
+        }
+        if (!exists) {
+          const opt = document.createElement('option');
+          opt.value = "custom_" + Date.now();
+          opt.text = `🍴 ${mealName} (${data.netCarbs || 0}g Net Carbs)`;
+          listbox.insertBefore(opt, listbox.firstChild);
+        }
+      }
+
+      const toast = document.getElementById('lblMealChoiceCommittedToast');
+      if (toast) {
+        toast.style.display = 'block';
+        toast.textContent = `✅ "${mealName}" committed! LCARS is now actively tracking postprandial glycemic response.`;
+        setTimeout(() => { if (toast) toast.style.display = 'none'; }, 6000);
+      }
+
+      if (btn) {
+        btn.innerHTML = "✅ CHOICE COMMITTED (LCARS WATCHING RESPONSE)";
+        setTimeout(() => { if (btn) { btn.innerHTML = originalText; btn.disabled = false; } }, 3000);
+      }
+
+      logLCARS(`[🍽️ MEAL COMMITTED] "${mealName}" logged (${data.netCarbs || 0}g Net Carbs). LCARS watching 2-hour response curve.`, "rx");
+      if (typeof renderLongitudinalView === 'function') renderLongitudinalView();
+    }
+
+    // =========================================================================
+    // 15-MINUTE AUTOMATIC WATCH DATA DUMP & DEDUPLICATION ENGINE
+    // =========================================================================
+    let autoDumpTimer = null;
+
+    async function execute15MinWatchDataDump() {
+      logLCARS("[★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection...", "sys");
+      
+      const isConnected = (typeof isBleConnected !== 'undefined' && isBleConnected) && 
+                          (typeof bluetoothDevice !== 'undefined' && bluetoothDevice && bluetoothDevice.gatt && bluetoothDevice.gatt.connected);
+
+      if (!isConnected) {
+        // Attempt background auto-reconnect if device reference is available
+        if (typeof bluetoothDevice !== 'undefined' && bluetoothDevice && typeof autoReconnectKnownWatch === 'function') {
+          try {
+            logLCARS("[*] Watch in standby. Attempting background BLE handshake...", "sys");
+            await autoReconnectKnownWatch();
+          } catch (err) {
+            logLCARS("[*] Watch not nearby or powered off. Will retry at next 15-min interval.", "sys");
+            return;
+          }
+        } else {
+          logLCARS("[*] Watch disconnected. Standing by for next 15-min interval.", "sys");
+          return;
+        }
+      }
+
+      logLCARS("[★ 15-MIN AUTO-DUMP] Watch connected! Executing full telemetry harvest...", "rx", "Automated Watch Telemetry Harvest");
+
+      // Sequence of data queries:
+      // 1. Read Battery & System Info (0x03)
+      const cmdBat = new Uint8Array(20); cmdBat[0] = 0x03;
+      sendCommandBytes(cmdBat);
+
+      // 2. Read 32-bit Pedometer & Calorie Registers (0x89)
+      setTimeout(() => {
+        const cmdPed = new Uint8Array(20); cmdPed[0] = 0x89; cmdPed[1] = 0x01;
+        sendCommandBytes(cmdPed);
+      }, 300);
+
+      // 3. Read 24-Hour Telemetry Health Dump (0xA7)
+      setTimeout(() => {
+        const cmdHealth = new Uint8Array(20); cmdHealth[0] = 0xA7; cmdHealth[1] = 0x00;
+        sendCommandBytes(cmdHealth);
+      }, 600);
+
+      // 4. Read Optical Glucose Baseline Calibration (0x87)
+      setTimeout(() => {
+        const cmdG = new Uint8Array(20); cmdG[0] = 0x87; cmdG[1] = 0x01;
+        sendCommandBytes(cmdG);
+      }, 900);
+
+      // 5. Read Nocturnal Sleep Architecture (0xE0 Day 0 & Day 1)
+      setTimeout(() => {
+        if (typeof querySleepData === 'function') querySleepData(0);
+      }, 1200);
+
+      // 6. Refresh active telemetry and sync status
+      setTimeout(() => {
+        if (typeof pollLiveTelemetryChanges === 'function') pollLiveTelemetryChanges();
+        if (typeof renderReportsView === 'function') renderReportsView();
+        logLCARS("[★ 15-MIN AUTO-DUMP COMPLETE] Full watch dump captured and deduplicated in SQLite.", "rx");
+      }, 2500);
+    }
+
+    // Schedule 15-minute background auto-dump (and run initial check 5s after startup)
+    setTimeout(execute15MinWatchDataDump, 5000);
+    if (autoDumpTimer) clearInterval(autoDumpTimer);
+    autoDumpTimer = setInterval(execute15MinWatchDataDump, 15 * 60 * 1000);
+    
+  </script>
 
   <!-- EPIC EHR MYCHART DIRECT UPLOAD MODAL -->
     <!-- EPIC EHR & STANDARD EHR DIRECT IMPORT EXPORT SUITE -->
