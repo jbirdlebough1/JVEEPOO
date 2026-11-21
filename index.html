@@ -1962,6 +1962,7 @@
            TAB 1: CORE VITALS (Optical Glucose, Dual Temp, Blood Pressure, SpO2)
            ===================================================================== -->
       <!-- Telemetry DOM Bridge (Maintains backward compatibility for sensor IDs without duplicate UI screens) -->
+      <!-- TELEMETRY DOM BRIDGE (Preserves GATT/UI Element Bindings for Clean De-Duplicated Architecture) -->
       <div id="vitalsDomBridge" style="display: none;">
         <span id="valGlucose">--</span>
         <span id="badgeGlucose">IDLE</span>
@@ -1975,8 +1976,17 @@
         <span id="valSpO2">--</span>
         <span id="badgeSpO2">IDLE</span>
         <span id="unitSpO2">%</span>
+        <span id="valHeartRate">--</span>
+        <span id="badgeHR">IDLE</span>
+        <span id="barHR"></span>
+        <span id="badgeStress">IDLE</span>
+        <span id="txtHRV">--</span>
+        <span id="barStress"></span>
         <span id="txtTempCore">Core: --.-°F</span>
         <span id="txtTempSkin">Skin: --.-°F</span>
+        <span id="barTempCore"></span>
+        <span id="barTempSkin"></span>
+        <span id="txtMAP">MAP: -- mmHg</span>
         <span id="barGlucose"></span>
         <span id="barTemp"></span>
         <span id="barBP"></span>
@@ -1986,6 +1996,22 @@
         <span id="txtBPStatus">STANDBY</span>
         <span id="lblGlucoseCalStatus">PRIVATE MODE ACTIVE</span>
         <span id="lblRawGlucoseVal">--</span>
+        <!-- Bridge for Epic Export & Meal Edit Modals -->
+        <span id="epicStatusLine"></span>
+        <div id="epicStatusBox"></div>
+        <div id="epicProgressBar"><div id="epicProgressFill"></div></div>
+        <button id="btnTransmitEpic"></button>
+        <input id="editMealKey" type="hidden">
+        <input id="editMealId" type="hidden">
+        <input id="editMealTitle" type="hidden">
+        <input id="editMealDesc" type="hidden">
+        <input id="editMealNetCarbs" type="hidden">
+        <input id="editMealTotalCarbs" type="hidden">
+        <input id="editMealCalories" type="hidden">
+        <input id="editMealProtein" type="hidden">
+        <input id="editMealFiber" type="hidden">
+        <input id="editMealTips" type="hidden">
+        <span id="lblEditMealModalTitle"></span>
       </div>
 
 
@@ -8231,7 +8257,7 @@
           if (progress < 100) {
             badge.textContent = `ACQUIRING (${progress}%)`;
             badge.className = "state-badge scanning";
-            document.getElementById("barTempCore").classList.remove("complete");
+            const bCore = document.getElementById("barTempCore"); if (bCore) bCore.classList.remove("complete");
           } else {
             badge.textContent = "COMPLETE (100%)";
             badge.className = "state-badge complete";
@@ -8829,9 +8855,8 @@
       const cmd = new Uint8Array(20);
       cmd[0] = 0x87; cmd[1] = 0x01; cmd[2] = 0x01;
       sendCommandBytes(cmd);
-      document.getElementById("badgeTemp").textContent = "ACQUIRING (0%)";
-      document.getElementById("badgeTemp").className = "state-badge scanning";
-      document.getElementById("barTempCore").classList.remove("complete");
+      const bTemp = document.getElementById("badgeTemp"); if (bTemp) { bTemp.textContent = "ACQUIRING (0%)"; bTemp.className = "state-badge scanning"; }
+      const bCore = document.getElementById("barTempCore"); if (bCore) bCore.classList.remove("complete");
     }
 
     function stopTempDetection() {
@@ -8840,8 +8865,7 @@
       const cmd = new Uint8Array(20);
       cmd[0] = 0x87; cmd[1] = 0x01; cmd[2] = 0x02;
       sendCommandBytes(cmd);
-      document.getElementById("badgeTemp").textContent = "OPTIMAL";
-      document.getElementById("badgeTemp").className = "state-badge normal";
+      const bTemp = document.getElementById("badgeTemp"); if (bTemp) { bTemp.textContent = "OPTIMAL"; bTemp.className = "state-badge normal"; }
     }
 
     function startBPDetection() {
@@ -8850,8 +8874,7 @@
       const cmd = new Uint8Array(20);
       cmd[0] = 0x90; cmd[1] = 0x01; cmd[2] = 0x00; // 0x90 0x01 0x00: Start BP
       sendCommandBytes(cmd);
-      document.getElementById("badgeBP").textContent = "MEASURING (0%)";
-      document.getElementById("badgeBP").className = "state-badge scanning";
+      const bBP = document.getElementById("badgeBP"); if (bBP) { bBP.textContent = "MEASURING (0%)"; bBP.className = "state-badge scanning"; }
     }
 
     function stopBPDetection() {
@@ -8860,8 +8883,7 @@
       const cmd = new Uint8Array(20);
       cmd[0] = 0x90; cmd[1] = 0x00; cmd[2] = 0x00; // 0x90 0x00 0x00: Stop BP
       sendCommandBytes(cmd);
-      document.getElementById("badgeBP").textContent = "NORMO-TENSIVE";
-      document.getElementById("badgeBP").className = "state-badge normal";
+      const bBP = document.getElementById("badgeBP"); if (bBP) { bBP.textContent = "NORMO-TENSIVE"; bBP.className = "state-badge normal"; }
     }
 
     function startHRDetection() {
@@ -8891,9 +8913,7 @@
       const cmd = new Uint8Array(20);
       cmd[0] = 0x80; cmd[1] = 0x01; cmd[2] = 0x02; // 0x80 0x01 0x02: Start SpO2
       sendCommandBytes(cmd);
-      document.getElementById("badgeSpO2").textContent = "MEASURING (0%)";
-      document.getElementById("badgeSpO2").className = "state-badge scanning";
-      document.getElementById("barSpO2").classList.remove("complete");
+      const bSpO2 = document.getElementById("badgeSpO2"); if (bSpO2) { bSpO2.textContent = "MEASURING (0%)"; bSpO2.className = "state-badge scanning"; } const barSpO2 = document.getElementById("barSpO2"); if (barSpO2) barSpO2.classList.remove("complete");
     }
 
     function stopSpO2Detection() {
@@ -8902,8 +8922,7 @@
       const cmd = new Uint8Array(20);
       cmd[0] = 0x80; cmd[1] = 0x02; cmd[2] = 0x02; // 0x80 0x02 0x02: Stop SpO2
       sendCommandBytes(cmd);
-      document.getElementById("badgeSpO2").textContent = "OXYGENATED";
-      document.getElementById("badgeSpO2").className = "state-badge normal";
+      const bSpO2 = document.getElementById("badgeSpO2"); if (bSpO2) { bSpO2.textContent = "OXYGENATED"; bSpO2.className = "state-badge normal"; }
     }
 
     let _hrvInterval = null;
@@ -15542,7 +15561,13 @@ Patient
         card.style.opacity = '1';
         card.style.boxShadow = '0 0 12px rgba(255, 187, 0, 0.4)';
         card.style.borderColor = 'var(--lcars-banana)';
-        status.innerHTML = `<span style="color: var(--lcars-banana); font-weight: bold;">● SCANNING (${message || 'In Progress'})</span>`;
+        let displayMsg = '● SCANNING...';
+        if (message && message !== 'Scanning' && message !== 'In Progress' && message !== 'Measuring' && message !== 'Analyzing' && message !== 'Inflating') {
+          displayMsg = `● ACQUIRING: ${message}`;
+        } else if (message) {
+          displayMsg = `● ${message.toUpperCase()}...`;
+        }
+        status.innerHTML = `<span style="color: var(--lcars-banana); font-weight: bold;">${displayMsg}</span>`;
         if (pctEl) {
           const p = (pct !== undefined) ? pct : 50;
           pctEl.textContent = `${p}%`;
@@ -15682,7 +15707,7 @@ Patient
     function executeScanStage2_Temp() {
       if (!isFullScanRunning) return;
       fullScanCurrentStage = 2;
-      setStageCardState(2, 'active', 'Scanning');
+      setStageCardState(2, 'active', 'Scanning', 5);
       updateOverallProgressBar(24);
 
       const stageLbl = document.getElementById('lblActiveScanStage');
@@ -15690,7 +15715,11 @@ Patient
       const stageDesc = document.getElementById('lblActiveScanDetails');
       if (stageDesc) stageDesc.textContent = "Acquiring dual core thermometric compensator and direct wrist skin thermistor...";
 
-      startTempDetection();
+      try {
+        startTempDetection();
+      } catch (err) {
+        console.warn("startTempDetection error:", err);
+      }
 
       fullScanCountdown = 12;
       const cDown = document.getElementById('lblFullScanCountdown');
@@ -15704,7 +15733,8 @@ Patient
 
         const curT = (typeof lastBodyF !== 'undefined' && lastBodyF > 0) ? `${lastBodyF.toFixed(1)}°F` : "98.4°F";
         if (liveVal) liveVal.textContent = curT;
-        setStageCardState(2, 'active', curT);
+        const tPct = Math.min(99, Math.max(1, Math.round(((12 - fullScanCountdown) / 12) * 100)));
+        setStageCardState(2, 'active', curT, tPct);
 
         if (fullScanCountdown <= 0) {
           clearInterval(fullScanStageTimer);
@@ -15738,7 +15768,7 @@ Patient
     function executeScanStage3_BP() {
       if (!isFullScanRunning) return;
       fullScanCurrentStage = 3;
-      setStageCardState(3, 'active', 'Inflating');
+      setStageCardState(3, 'active', 'Inflating', 5);
       updateOverallProgressBar(42);
 
       const stageLbl = document.getElementById('lblActiveScanStage');
@@ -15746,7 +15776,11 @@ Patient
       const stageDesc = document.getElementById('lblActiveScanDetails');
       if (stageDesc) stageDesc.textContent = "Measuring arterial pulse wave velocity and systolic/diastolic pressure...";
 
-      startBPDetection();
+      try {
+        startBPDetection();
+      } catch (err) {
+        console.warn("startBPDetection error:", err);
+      }
 
       fullScanCountdown = 22;
       const cDown = document.getElementById('lblFullScanCountdown');
@@ -15761,7 +15795,8 @@ Patient
         const curSys = (typeof lastSystolic !== 'undefined' && lastSystolic > 0) ? lastSystolic : 118;
         const curDia = (typeof lastDiastolic !== 'undefined' && lastDiastolic > 0) ? lastDiastolic : 76;
         if (liveVal) liveVal.textContent = `${curSys}/${curDia} mmHg`;
-        setStageCardState(3, 'active', `${curSys}/${curDia}`);
+        const bpPct = Math.min(99, Math.max(1, Math.round(((22 - fullScanCountdown) / 22) * 100)));
+        setStageCardState(3, 'active', `${curSys}/${curDia} mmHg`, bpPct);
 
         if (fullScanCountdown <= 0) {
           clearInterval(fullScanStageTimer);
@@ -15794,7 +15829,7 @@ Patient
     function executeScanStage4_SpO2() {
       if (!isFullScanRunning) return;
       fullScanCurrentStage = 4;
-      setStageCardState(4, 'active', 'Scanning');
+      setStageCardState(4, 'active', 'Scanning', 5);
       updateOverallProgressBar(60);
 
       const stageLbl = document.getElementById('lblActiveScanStage');
@@ -15802,7 +15837,11 @@ Patient
       const stageDesc = document.getElementById('lblActiveScanDetails');
       if (stageDesc) stageDesc.textContent = "Sampling red/infrared reflectance ratio for peripheral arterial oxygen saturation...";
 
-      startSpO2Detection();
+      try {
+        startSpO2Detection();
+      } catch (err) {
+        console.warn("startSpO2Detection error:", err);
+      }
 
       fullScanCountdown = 15;
       const cDown = document.getElementById('lblFullScanCountdown');
@@ -15816,7 +15855,8 @@ Patient
 
         const curSp = (typeof lastSpO2 !== 'undefined' && lastSpO2 > 0) ? lastSpO2 : 98;
         if (liveVal) liveVal.textContent = `${curSp}%`;
-        const o2Pct = Math.min(99, Math.max(1, Math.round(((15 - fullScanCountdown) / 15) * 100))); setStageCardState(4, 'active', `${curSp}%`, o2Pct);
+        const o2Pct = Math.min(99, Math.max(1, Math.round(((15 - fullScanCountdown) / 15) * 100)));
+        setStageCardState(4, 'active', `${curSp}%`, o2Pct);
 
         if (fullScanCountdown <= 0) {
           clearInterval(fullScanStageTimer);
