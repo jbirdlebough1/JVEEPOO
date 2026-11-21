@@ -610,9 +610,25 @@
 
     .log-line {
       display: flex;
-      gap: 10px;
+      justify-content: space-between;
+      align-items: baseline;
+      width: 100%;
+      gap: 12px;
       word-break: break-all;
-      padding: 2px 0;
+      padding: 3px 0;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.06);
+    }
+
+    .log-desc {
+      flex-shrink: 0;
+      margin-left: auto;
+      text-align: right;
+      font-weight: 700;
+      font-size: 0.82rem;
+      font-family: var(--lcars-font);
+      letter-spacing: 0.02em;
+      padding-left: 14px;
+      white-space: nowrap;
     }
 
     .log-ts { color: var(--lcars-gray); flex-shrink: 0; }
@@ -990,6 +1006,7 @@
     body.theme-light .report-card,
     body.theme-light .lcars-bays-grid > div,
     body.theme-light .setup-container,
+    body.theme-light .log-page-container,
     body.theme-light .diet-container {
       background: #ffffff !important;
       background-color: #ffffff !important;
@@ -1512,7 +1529,96 @@
       border-color: #cbd5e1 !important;
     }
 
-</style>
+
+    /* Data Log White Background Theme Consistency */
+    body.theme-light .log-page-container {
+      background: #ffffff !important;
+      background-color: #ffffff !important;
+      border: 1.5px solid #cbd5e1 !important;
+      border-radius: 8px !important;
+      color: #0f172a !important;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06) !important;
+    }
+
+    body.theme-light .log-page-header {
+      background: #f8fafc !important;
+      border-bottom: 2px solid #0284c7 !important;
+      border-radius: 8px 8px 0 0 !important;
+      padding: 12px 18px !important;
+    }
+
+    body.theme-light .log-page-title {
+      color: #0369a1 !important;
+      font-weight: 800 !important;
+    }
+
+    body.theme-light .log-filter-bar {
+      background: #f8fafc !important;
+      border: 1px solid #cbd5e1 !important;
+      border-radius: 6px !important;
+      padding: 8px 14px !important;
+      color: #475569 !important;
+    }
+
+    body.theme-light .log-filter-btn {
+      background: #ffffff !important;
+      border: 1px solid #cbd5e1 !important;
+      color: #334155 !important;
+      font-weight: 600 !important;
+    }
+
+    body.theme-light .log-filter-btn.active {
+      background: #0284c7 !important;
+      border-color: #0284c7 !important;
+      color: #ffffff !important;
+      font-weight: 800 !important;
+    }
+
+    body.theme-light #rxByteCounter {
+      color: #0369a1 !important;
+      font-weight: 800 !important;
+    }
+
+    body.theme-light .full-diag-log {
+      background: #ffffff !important;
+      background-color: #ffffff !important;
+      border: 1.5px solid #cbd5e1 !important;
+      border-top: none !important;
+      border-radius: 0 0 8px 8px !important;
+      color: #0f172a !important;
+    }
+
+    body.theme-light .log-line {
+      border-bottom: 1px dashed #e2e8f0 !important;
+      padding: 4px 0 !important;
+    }
+
+    body.theme-light .log-ts {
+      color: #64748b !important;
+      font-weight: 600 !important;
+    }
+
+    body.theme-light .log-rx {
+      color: #15803d !important;
+      font-weight: 600 !important;
+    }
+
+    body.theme-light .log-tx {
+      color: #b45309 !important;
+      font-weight: 600 !important;
+    }
+
+    body.theme-light .log-sys {
+      color: #0369a1 !important;
+      font-weight: 600 !important;
+    }
+
+    body.theme-light .log-err {
+      color: #dc2626 !important;
+      font-weight: 700 !important;
+    }
+
+  </style>
 </head>
 <body class="theme-light">
 
@@ -1637,7 +1743,7 @@
       <!-- =====================================================================
            TAB 1: CORE VITALS (Optical Glucose, Dual Temp, Blood Pressure, SpO2)
            ===================================================================== -->
-      <div id="pageVitals" class="tab-page active-page">
+      <div id="pageVitals" class="tab-page">
         <div class="lcars-bays-grid">
 
           <!-- BAY 1: Non-Invasive Hemodynamic Blood Glucose -->
@@ -2497,8 +2603,10 @@
             </div>
 
           </div>
+        </div>
+      </div>
 
-                <!-- =====================================================================
+      <!-- =====================================================================
            TAB 06: DIABETES LEARNING ENGINE & ADAPTIVE METABOLIC INTELLIGENCE
            ===================================================================== -->
       <div id="pageLearning" class="tab-page">
@@ -2672,8 +2780,7 @@
             </div>
           </div>
 
-        </div>
-      </div>
+        
 
 
       <!-- Section 3: Patient Quick 3-Step Guide -->
@@ -4604,53 +4711,12 @@
 
           </div>
 
-      </div>
-      </div>
-
-
-      <!-- =====================================================================
-           TAB 6: SUBSPACE BLE LOG & DIRECT HARDWARE PROTOCOL COMMANDS
-           ===================================================================== -->
-      <div id="pageLog" class="tab-page">
-        <div class="log-page-container">
-          <div class="log-page-header">
-            <div>
-              <span class="log-page-title">SUBSPACE BLE PROTOCOL PACKET LOG • CHANNEL F0080002/3</span>
-              <div style="font-size: 0.8rem; color: var(--lcars-blue); margin-top: 2px;">REAL-TIME RAW GATT PACKET STREAM & HARDWARE TELEMETRY INSPECTOR</div>
-            </div>
-            <!-- Hardware commands relocated here for clean ergonomics -->
-            <div style="display: flex; gap: 8px; align-items: center;">
-              <button class="lcars-btn btn-blue" style="padding: 4px 12px; font-size: 0.8rem;" onclick="syncWatchTime()">SYNC CHRONO (0xA1)</button>
-              <button class="lcars-btn btn-lilac" style="padding: 4px 12px; font-size: 0.8rem;" onclick="readDeviceInfo()">SYS INFO (0x03)</button>
-              <button class="lcars-btn btn-orange" style="padding: 4px 12px; font-size: 0.8rem;" onclick="clearDiagLog()">PURGE BUFFER</button>
-              <button class="lcars-btn btn-banana" style="padding: 4px 12px; font-size: 0.8rem;" onclick="exportPacketLog()">EXPORT LOG</button>
-            </div>
-          </div>
-
-          <!-- Log Filter Bar -->
-          <div class="log-filter-bar">
-            <span style="font-size: 0.8rem; color: var(--lcars-gray);">FILTER STREAM:</span>
-            <button class="log-filter-btn active" id="fltAll" onclick="setLogFilter('all')">ALL PACKETS</button>
-            <button class="log-filter-btn" id="fltRx" onclick="setLogFilter('rx')">RX TELEMETRY (WATCH -> HOST)</button>
-            <button class="log-filter-btn" id="fltTx" onclick="setLogFilter('tx')">TX COMMANDS (HOST -> WATCH)</button>
-            <button class="log-filter-btn" id="fltErr" onclick="setLogFilter('err')">ERRORS / TIMEOUTS</button>
-            <span id="rxByteCounter" style="margin-left: auto; font-family: var(--lcars-mono); font-size: 0.85rem; color: var(--lcars-banana);">0 BYTES PROCESSED</span>
-          </div>
-
-          <!-- Full Screen Log Stream -->
-          <div class="full-diag-log" id="diagLog">
-            <div class="log-line">
-              <span class="log-ts">[INIT]</span>
-              <span class="log-sys">LCARS 5010 Subspace Telemetry Stream Online. Channel f0080003 pinned for TX write.</span>
-            </div>
-          </div>
-        
-          <!-- SECTION 07: PATIENT EHR SETUP (EPIC / CERNER / MYCHART) -->
+          <!-- SECTION 11: PATIENT EHR SETUP (EPIC / CERNER / MYCHART) -->
           <div class="setup-section" style="border-left-color: #0284c7; margin-top: 18px; background: #ffffff; border: 1.5px solid #cbd5e1; border-left: 6px solid #0284c7; border-radius: 8px; padding: 16px;">
             <div class="setup-section-title" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 12px;">
               <div>
                 <span style="color: #0284c7; font-size: 1.15rem; font-weight: 800;">
-                  07. PATIENT EHR SETUP (EPIC &bull; CERNER &bull; MYCHART)
+                  11. PATIENT EHR SETUP (EPIC &bull; CERNER &bull; MYCHART)
                 </span>
                 <span style="font-size: 0.78rem; color: #64748b; display: block; margin-top: 2px;">
                   CONFIGURE YOUR HEALTHCARE PROVIDER &amp; MEDICAL RECORD NUMBER FOR 1-CLICK EHR EXPORT
@@ -4702,6 +4768,64 @@
               </button>
             </div>
           </div>
+
+      </div>
+      </div>
+
+
+      <!-- =====================================================================
+           TAB 6: SUBSPACE BLE LOG & DIRECT HARDWARE PROTOCOL COMMANDS
+           ===================================================================== -->
+      <div id="pageLog" class="tab-page">
+        <div class="log-page-container">
+          <div class="log-page-header">
+            <div>
+              <span class="log-page-title">SUBSPACE BLE PROTOCOL PACKET LOG • CHANNEL F0080002/3</span>
+              <div style="font-size: 0.8rem; color: #64748b; margin-top: 2px;">REAL-TIME RAW GATT PACKET STREAM & HARDWARE TELEMETRY INSPECTOR</div>
+            </div>
+            <!-- Hardware commands relocated here for clean ergonomics -->
+            <div style="display: flex; gap: 8px; align-items: center;">
+              <button class="lcars-btn btn-blue" style="padding: 4px 12px; font-size: 0.8rem;" onclick="syncWatchTime()">SYNC WATCH</button>
+              <button class="lcars-btn btn-lilac" style="padding: 4px 12px; font-size: 0.8rem;" onclick="readDeviceInfo()">SYS INFO</button>
+              <button class="lcars-btn btn-orange" style="padding: 4px 12px; font-size: 0.8rem;" onclick="clearDiagLog()">PURGE BUFFER</button>
+              <button class="lcars-btn btn-banana" style="padding: 4px 12px; font-size: 0.8rem;" onclick="exportPacketLog()">EXPORT LOG</button>
+            </div>
+          </div>
+
+          <!-- Log Filter Bar -->
+          <div class="log-filter-bar">
+            <span style="font-size: 0.8rem; color: var(--lcars-gray);">FILTER STREAM:</span>
+            <button class="log-filter-btn active" id="fltAll" onclick="setLogFilter('all')">ALL PACKETS</button>
+            <button class="log-filter-btn" id="fltRx" onclick="setLogFilter('rx')">RX TELEMETRY (WATCH -> HOST)</button>
+            <button class="log-filter-btn" id="fltTx" onclick="setLogFilter('tx')">TX COMMANDS (HOST -> WATCH)</button>
+            <button class="log-filter-btn" id="fltErr" onclick="setLogFilter('err')">ERRORS / TIMEOUTS</button>
+            <span id="rxByteCounter" style="margin-left: auto; font-family: var(--lcars-mono); font-size: 0.85rem; color: var(--lcars-banana);">0 BYTES PROCESSED</span>
+          </div>
+
+          <!-- Full Screen Log Stream -->
+          <!-- Column Header Bar for 2-column layout: Left Raw Stream, Right English Interpretation -->
+          <div style="display: flex; justify-content: space-between; align-items: center; background: #f8fafc; border: 1.5px solid #cbd5e1; border-bottom: 2px solid #0284c7; border-radius: 6px 6px 0 0; padding: 8px 16px; font-family: var(--lcars-mono); font-size: 0.78rem; font-weight: 800; color: #475569; text-transform: uppercase; letter-spacing: 0.05em;">
+            <div style="display: flex; gap: 16px; align-items: center;">
+              <span style="color: #64748b;">[TIME]</span>
+              <span style="color: #0f172a;">RAW GATT PACKET / BUS TELEMETRY STREAM</span>
+            </div>
+            <div style="color: #0369a1; text-align: right; font-family: var(--lcars-font); font-weight: 900; letter-spacing: 0.05em;">
+              ENGLISH DATA INTERPRETATION &bull; SENSOR METRIC
+            </div>
+          </div>
+          <div class="full-diag-log" id="diagLog" style="background: #ffffff; border: 1.5px solid #cbd5e1; border-top: none; border-radius: 0 0 6px 6px;">
+            <div class="log-line" style="display: flex; justify-content: space-between; align-items: baseline; width: 100%; gap: 12px; padding: 3px 0; border-bottom: 1px dashed rgba(255,255,255,0.06);">
+              <div style="display: flex; gap: 8px; align-items: baseline; flex: 1; min-width: 0;">
+                <span class="log-ts">[INIT]</span>
+                <span class="log-sys">LCARS 5010 Subspace Telemetry Stream Online. Channel f0080003 pinned for TX write.</span>
+              </div>
+              <div class="log-desc" style="flex-shrink: 0; margin-left: auto; text-align: right; font-weight: 700; font-size: 0.82rem; color: #38bdf8; font-family: var(--lcars-font); letter-spacing: 0.02em; padding-left: 12px; white-space: nowrap;">
+                Subspace Diagnostic Bus Online
+              </div>
+            </div>
+          </div>
+        
+          
 
         </div>
       </div>
@@ -6769,7 +6893,7 @@
           <!-- =====================================================================
            TAB 12: SEQUENTIAL COMPREHENSIVE BIOMETRIC FULL SCAN
            ===================================================================== -->
-      <div id="pageFullScan" class="tab-page">
+      <div id="pageFullScan" class="tab-page active-page">
         <div class="diet-container">
 
           
@@ -6975,7 +7099,8 @@
           </div>
 
         </div>
-      
+      </div>
+
     <!-- =====================================================================
          TAB 13: CLINICAL DIABETIC GOALS & PERSONALIZED AMBULATORY CARE PROTOCOL
          ===================================================================== -->
@@ -7204,7 +7329,7 @@
       </div>
     </div>
 
-</div>
+
 
     </main>
 
@@ -7716,6 +7841,15 @@
       if (txCharacteristic) {
         logLCARS('[★] Watch GATT channels ready and verified online!', 'rx');
         populateSetupFromDevice();
+        // FULL AUTOMATIC DOWNLOAD & DEDUPLICATION ON CONNECTION
+        setTimeout(() => {
+          logLCARS('[*] Executing full watch telemetry download and SQLite deduplication...', 'tx');
+          if (typeof syncStepData === 'function') syncStepData();
+          setTimeout(() => { if (typeof readWatchGlucoseCalibration === 'function') readWatchGlucoseCalibration(); }, 400);
+          setTimeout(() => { if (typeof querySleepData === 'function') querySleepData(); }, 800);
+          setTimeout(() => { if (typeof readDeviceInfo === 'function') readDeviceInfo(); }, 1200);
+          setTimeout(() => { if (typeof syncWatchTime === 'function') syncWatchTime(); }, 1600);
+        }, 600);
       } else {
         logLCARS('[!] GATT connected but command channel not ready. Retrying...', 'err');
       }
@@ -9042,7 +9176,178 @@
       });
     }
 
-    function logLCARS(msg, type = "sys") {
+    function interpretPacketEnglish(msg, type = "sys") {
+      if (!msg) return "";
+      const upper = msg.toUpperCase();
+
+      // Clinical events and connection state
+      if (upper.includes("GATT SUBSPACE CONNECTION ESTABLISHED") || (upper.includes("GATT") && upper.includes("ESTABLISHED"))) {
+        return "BLE Subspace Link Connected";
+      }
+      if (upper.includes("CHANNELS READY")) {
+        return "GATT Command & RX Channels Ready";
+      }
+      if (upper.includes("WATCH LINK SEVERED") || upper.includes("ASLEEP")) {
+        return "Watch Standby / Out of Range";
+      }
+      if (upper.includes("WATCH LINK AUTOMATICALLY RESTORED") || upper.includes("LINK RESTORED")) {
+        return "Watch Link Automatically Restored";
+      }
+      if (upper.includes("FULL WATCH TELEMETRY DOWNLOAD") || upper.includes("AUTO-SYNC")) {
+        return "Full Sensor Download & Deduplication";
+      }
+      if (upper.includes("SENSORS AUTHENTICATED")) {
+        return "Hardware Model & Firmware Verified";
+      }
+      if (upper.includes("GLUCOSE CALIBRATION")) {
+        return "Blood Glucose Optical Baseline Calibration";
+      }
+      if (upper.includes("PULSE OXIMETRY") || upper.includes("SPO2")) {
+        return "Pulse Oximetry (SpO2) Oxygen Saturation";
+      }
+      if (upper.includes("HARDWARE WATCH FACE ACK")) {
+        return "Watch Face Dial Slot Switch Confirmed";
+      }
+      if (upper.includes("INSTALLED WATCH FACE IDS")) {
+        return "Watch Face Flash Partition Inventory";
+      }
+      if (upper.includes("FLASH PARTITION AUDIT")) {
+        return "Firmware Flash Memory Partition Check";
+      }
+      if (upper.includes("TELEMETRY BUFFER PURGED")) {
+        return "Diagnostic Log Buffer Purged";
+      }
+      if (upper.includes("SYNC CHRONO") || upper.includes("HANDSHAKE")) {
+        return "Host-Watch Chronometer Synchronization";
+      }
+      if (upper.includes("SYS INFO")) {
+        return "Hardware System Configuration Query";
+      }
+      if (upper.includes("PAIRING") || upper.includes("AUTHORIZATION")) {
+        return "BLE Security Pairing & Authorization";
+      }
+      if (upper.includes("PRECONFIGURED WATCH RECOGNIZED")) {
+        return "Known Smartwatch Discovered via BLE";
+      }
+      if (upper.includes("SCANNING")) {
+        return "Active BLE Subspace Device Discovery";
+      }
+      if (upper.includes("AUDIO TACTILE")) {
+        return "LCARS Tactile Sound Synthesizer";
+      }
+
+      // Raw RX / TX hex analysis
+      const m = msg.match(/(?:RX|TX)\s*\[([a-f0-9]+)\]\s*:\s*([0-9a-f\s]+)/i);
+      if (m) {
+        const channel = m[1].toLowerCase();
+        const hexBytes = m[2].trim().split(/\s+/).map(h => parseInt(h, 16)).filter(n => !isNaN(n));
+        if (hexBytes.length > 0) {
+          const h0 = hexBytes[0];
+          if (channel.includes("fea1")) {
+            return "Watch Heartbeat & Bluetooth Link Ping";
+          }
+          if (h0 === 0xA0) {
+            const batt = hexBytes.length > 4 ? hexBytes[4] : null;
+            return batt !== null ? `Watch Power Status • ${batt}% Battery` : "Watch Power Status & Battery Telemetry";
+          }
+          if (h0 === 0xA1) {
+            if (hexBytes.length >= 10 && type === "rx") {
+              const devNum = (hexBytes[4] << 8) | hexBytes[5];
+              const ver = `${hexBytes[6]}.${hexBytes[7]}.${hexBytes[8]}.${hexBytes[9]}`;
+              return `Device Authentication • Model ${devNum} v${ver}`;
+            }
+            return "Host-to-Watch Time Sync Handshake (0xA1)";
+          }
+          if (h0 === 0x51) {
+            if (hexBytes.length >= 8) {
+              const steps = (hexBytes[4] << 16) | (hexBytes[5] << 8) | hexBytes[6];
+              return `Pedometry • ${steps.toLocaleString()} Steps Recorded`;
+            }
+            return "Pedometry & Caloric Burn Telemetry (0x51)";
+          }
+          if (h0 === 0x52) {
+            if (hexBytes.length >= 3 && hexBytes[2] > 0) {
+              return `Cardiovascular Pulse • ${hexBytes[2]} BPM`;
+            }
+            return "Photoplethysmography (PPG) Heart Rate (0x52)";
+          }
+          if (h0 === 0x53) {
+            if (hexBytes.length >= 3 && hexBytes[2] > 0) {
+              return `Pulse Oximetry • ${hexBytes[2]}% SpO2`;
+            }
+            return "Blood Oxygen Saturation (SpO2) (0x53)";
+          }
+          if (h0 === 0x54) {
+            if (hexBytes.length >= 4 && hexBytes[2] > 0) {
+              return `Blood Pressure • ${hexBytes[2]}/${hexBytes[3]} mmHg`;
+            }
+            return "Hemodynamic Blood Pressure Telemetry (0x54)";
+          }
+          if (h0 === 0x55) {
+            if (hexBytes.length >= 4) {
+              const tempF = ((hexBytes[2] + hexBytes[3]/100) * 9/5 + 32).toFixed(1);
+              return `Dual-Sensor Skin Temperature • ${tempF}°F`;
+            }
+            return "Dual Thermistor Telemetry (0x55)";
+          }
+          if (h0 === 0x56 || h0 === 0x9D) {
+            if (hexBytes.length >= 4) {
+              const mg = (hexBytes[2] << 8) | hexBytes[3];
+              if (mg >= 40 && mg <= 500) {
+                return `Blood Glucose Reading • ${mg} mg/dL`;
+              }
+            }
+            return "Blood Glucose Optical Telemetry (0x9D)";
+          }
+          if (h0 === 0x57 || h0 === 0x71) {
+            return "Somnography Sleep Stages (REM / Deep / Light)";
+          }
+          if (h0 === 0x61) {
+            return "User Biometric Profile & Physical Targets (0x61)";
+          }
+          if (h0 === 0x91) {
+            return "Cardiovascular & Blood Pressure Calibration (0x91)";
+          }
+          if (h0 === 0x92) {
+            return "Dual Temperature Sensor Calibration Matrix (0x92)";
+          }
+          if (h0 === 0x93) {
+            return "SpO2 Hypoxia Safeguard Thresholds (0x93)";
+          }
+          if (h0 === 0x94) {
+            return "Sedentary & Inactivity Ergonomic Matrix (0x94)";
+          }
+          if (h0 === 0x95) {
+            return "Display Gestures & Dial Brightness (0x95)";
+          }
+          if (h0 === 0x96) {
+            return "System Notifications & Peripherals (0x96)";
+          }
+          if (h0 === 0x97) {
+            return "Physiological Cycle Matrix (0x97)";
+          }
+          if (h0 === 0xC7) {
+            return "Watch Face Hardware ACK & Slot Validation (0xC7)";
+          }
+          if (h0 === 0xC8 || h0 === 0xCA) {
+            return "Watch Face Flash Memory Block Transfer";
+          }
+          if (h0 === 0x03) {
+            return "Hardware System Information & Battery Query (0x03)";
+          }
+          if (h0 === 0x08) {
+            return "Haptic Vibration Motor Transducer Test (0x08)";
+          }
+        }
+      }
+
+      if (type === "err") return "Subspace Telemetry Bus Warning / Error";
+      if (type === "tx") return "Host Command Transmission to Watch";
+      if (type === "rx") return "Watch Sensor Telemetry Broadcast";
+      return "LCARS System Telemetry Event";
+    }
+
+    function logLCARS(msg, type = "sys", customDesc = null) {
       const logBox = document.getElementById("diagLog");
       if (!logBox) return;
       const entry = document.createElement("div");
@@ -9054,7 +9359,24 @@
       if (type === "tx") cls = "log-tx";
       if (type === "err") cls = "log-err";
 
-      entry.innerHTML = `<span class="log-ts">[${ts}]</span> <span class="${cls}">${msg}</span>`;
+      const englishDesc = customDesc || interpretPacketEnglish(msg, type);
+
+      // Distinct, high-contrast clinical color coding for English interpretation on white background
+      let descColor = "#0284c7"; // deep ocean blue
+      if (type === "rx") descColor = "#15803d"; // clinical emerald green
+      else if (type === "tx") descColor = "#b45309"; // rich amber
+      else if (type === "err") descColor = "#dc2626"; // clear red
+      else if (englishDesc.includes("Battery") || englishDesc.includes("Power")) descColor = "#c2410c"; // vibrant orange
+
+      entry.innerHTML = `
+        <div style="display: flex; gap: 8px; align-items: baseline; flex: 1; min-width: 0;">
+          <span class="log-ts" style="flex-shrink: 0;">[${ts}]</span>
+          <span class="${cls}" style="word-break: break-all;">${msg}</span>
+        </div>
+        <div class="log-desc" style="flex-shrink: 0; margin-left: auto; text-align: right; font-weight: 700; font-size: 0.82rem; color: ${descColor}; font-family: var(--lcars-font); letter-spacing: 0.02em; padding-left: 14px; white-space: nowrap;">
+          ${englishDesc}
+        </div>
+      `;
       logBox.appendChild(entry);
 
       if (currentLogFilter !== 'all') {
@@ -9069,19 +9391,24 @@
       fetch("/api/log", {
         method: "POST",
         headers: { "Content-Type": "text/plain" },
-        body: `[${ts}] [${type.toUpperCase()}] ${msg}`
+        body: `[${ts}] [${type.toUpperCase()}] ${msg} | ${englishDesc}`
       }).catch(() => {});
     }
 
     function clearDiagLog() {
       soundButtonPress();
       document.getElementById("diagLog").innerHTML = "";
-      logLCARS("Telemetry buffer purged by clinical operator.", "sys");
+      logLCARS("Telemetry buffer purged by clinical operator.", "sys", "Diagnostic Log Buffer Purged");
     }
 
     function exportPacketLog() {
       soundButtonPress();
-      const text = Array.from(document.querySelectorAll('#diagLog .log-line')).map(e => e.innerText).join('\n');
+      const text = Array.from(document.querySelectorAll('#diagLog .log-line')).map(e => {
+        const ts = e.querySelector('.log-ts') ? e.querySelector('.log-ts').innerText : '';
+        const raw = e.querySelector('.log-rx, .log-tx, .log-err, .log-sys') ? e.querySelector('.log-rx, .log-tx, .log-err, .log-sys').innerText : '';
+        const desc = e.querySelector('.log-desc') ? e.querySelector('.log-desc').innerText : '';
+        return `${ts} ${raw.padEnd(65, ' ')} | ${desc}`;
+      }).join('\n');
       const blob = new Blob([text], { type: 'text/plain' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -11729,6 +12056,7 @@
     // Call initPopularMeals on window load
     window.addEventListener('DOMContentLoaded', () => {
       initPopularMeals();
+      switchTab('fullscan');
     });
 
     

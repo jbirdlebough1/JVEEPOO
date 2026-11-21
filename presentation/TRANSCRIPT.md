@@ -820,3 +820,49 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
+### Slide 54: Tab 08 Learning Engine: Multi-Timeframe Metabolic Intelligence
+**Module:** Module 5: The Diabetes Learning Engine  
+**Card Title:** TAB 08: THE DIABETES LEARNING ENGINE  
+
+> Displayed on your screen is Tab 08: the Diabetes Learning Engine in full live execution. One of the greatest challenges in diabetes care has been understanding which meal causes what glycemic response over time. The Learning Engine resolves this by giving the patient and doctor an interactive multi-timeframe discovery explorer. With one click, you can audit your glycemic phenotype across the last seven days, thirty days, ninety days, or year-to-date. Notice our four dynamic phenotyping cards: Movement Correlation reveals that a brisk fifteen-minute walk blunts glucose spikes by thirty-eight milligrams per deciliter; Carb Threshold discovery highlights your exact personal carbohydrate tolerance; Macro Sequencing demonstrates how fiber and protein pre-loads flatten spike velocity; and Circadian Recovery tracks sleep duration against morning fasting glucose. Directly below, our longitudinal tracker compares your pre-meal Gemini guidance against the watch's actual postprandial delta, while the Doctor-Patient Mentorship contract aligns clinical strategy with personal behavioral commitments.
+
+**Key Points:**
+- **Multi-Timeframe Discovery (7D • 30D • 90D • 365D):** Allows doctor and patient to analyze meal response, glycemic velocity, and stability across full quarters and years.
+- **Personalized Glycemic Phenotyping:** Four adaptive cards calculate verified delta-G walking blunting, carb limits, and circadian dawn suppression.
+- **Pre-Choice Guidance vs. Post-Meal Metrics:** Tracks Gemini's pre-meal predictions directly against the watch's measured two-hour peak excursion.
+- **Clinical Mentorship & Behavioral Contract:** Synchronizes physician observations with patient commitments, persisted safely to local storage.
+
+**Key Takeaway:** Empowering physician and patient to explore exact cause-and-effect relationships over weeks, quarters, and years.
+
+---
+
+### Slide 55: Tab 11 Clinical Goals: Collaborative Care Protocol & Targets
+**Module:** Module 10: Clinical Summaries & Achieving Diabetic Goals  
+**Card Title:** TAB 11: CLINICAL DIABETIC GOALS & PROTOCOL  
+
+> Displayed on your screen is Tab 11: Clinical Diabetic Goals and Ambulatory Care Protocol. Achieving durable remission and optimal glycemic stability requires clear, consensus-driven targets established between the patient and physician. As the screen scrolls, notice our Four-Pillar Clinical Target Architecture: Pillar 1 establishes the primary HbA1c benchmark below six point eight percent; Pillar 2 locks in Time-in-Range above seventy percent within the verified sixty to two hundred milligram per deciliter safe operating band; Pillar 3 sets the postprandial glucose spike ceiling below one hundred and forty milligrams per deciliter; and Pillar 4 tracks active pharmacological compliance. This dedicated console bridges outpatient telemetry with formal clinical targets, providing transparent audit markers across every office visit.
+
+**Key Points:**
+- **The 4-Pillar Clinical Targets:** Locks in HbA1c <6.8%, TIR >70%, peak postprandial <140 mg/dL, and active pharmacological adherence.
+- **Physician-Patient Collaborative Agreement:** Both patient and attending doctor set realistic glycemic boundaries tailored to personal renal and cardiac factors.
+- **Closed-Loop Multi-Lane Telemetry Audit:** Automatically audits continuous watch data against active goals, highlighting successful compliance milestones.
+
+**Key Takeaway:** A structured, consensus-driven clinical goals protocol ensuring patient and doctor work toward identical milestones.
+
+---
+
+### Slide 56: 48-Hour Continuous Metrology & Charging Dock Transparency
+**Module:** Module 6: Tab 04 Synchronized Tall Chart  
+**Card Title:** METROLOGICAL HONESTY: 48-HOUR DOCKING BANDS  
+
+> A critical tenet of clinical engineering is absolute metrological transparency. Consumer fitness wearables frequently mask missing sensor periods with synthetic spline interpolation, inventing fake heart rates or glucose values when the watch is sitting on a charging dock. El-CARS strictly rejects artificial interpolation. As shown on your screen in Tab 07 Reports, our continuous forty-eight-hour timeline plots ninety-six discrete thirty-minute slots across yesterday and today. When the watch is removed and placed on its magnetic dock, El-CARS renders an honest, distinct light-blue band labeled 'Watch Charging on Dock • No Samples'. The left side of the chart reflects actual sensor history from the start of the day with zero random fill, while future slots show clean standby status. This metrological honesty guarantees treating clinicians can distinguish between physiological quiescence and hardware docking with total diagnostic certainty.
+
+**Key Points:**
+- **Zero Synthetic Data Interpolation:** Eliminates consumer app 'smooth splining' that invents fake readings during unmonitored periods.
+- **48-Hour Continuous Two-Day Timeline:** Presents 96 continuous 30-minute intervals covering complete diurnal and nocturnal cycles across Yesterday and Today.
+- **Distinct Blue Charging Dock Indicators:** Clearly flags physical docking on the nightstand (⚡ NO SAMPLES), reassuring physicians that gaps represent charging, not device failure.
+
+**Key Takeaway:** Clinical honesty: physicians receive authentic biophysical telemetry and clear hardware status, never invented numbers.
+
+---
+

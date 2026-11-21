@@ -1,4 +1,4 @@
-# build_presentation.py - Master 53-Slide Clinical Audio-Visual Walkthrough
+# build_presentation.py - Master {len(slides)}-Slide Clinical Audio-Visual Walkthrough
 import os
 import subprocess
 import json
@@ -55,7 +55,7 @@ with open(transcript_path, "w", encoding="utf-8") as f:
         f.write(f"**Key Takeaway:** {s.get('takeaway', '')}\n\n")
         f.write("---\n\n")
 
-print("Created TRANSCRIPT.md with all 53 slides!")
+print(f"Created TRANSCRIPT.md with all {len(slides_data)} slides!")
 
 # -----------------------------------------------------------------------------
 # TAB MAP DEFINITIONS
@@ -266,7 +266,7 @@ slide_template = """<!DOCTYPE html>
         <div class="slide-module">{module}</div>
         <div class="slide-title">{title}</div>
       </div>
-      <div class="slide-badge">SLIDE {num} / 53</div>
+      <div class="slide-badge">SLIDE {num} / {total_slides}</div>
     </div>
 
     <div class="slide-body">
@@ -292,7 +292,8 @@ for s in slides_data:
         title=s["title"],
         module=s["module"],
         left_panel=left_panel,
-        right_panel=right_panel
+        right_panel=right_panel,
+        total_slides=len(slides_data)
     )
     
     # Save into presentation/slides/
@@ -305,7 +306,7 @@ for s in slides_data:
     with open(os.path.join(pres_dir, f"slide_{s['num']}.html"), "w", encoding="utf-8") as f:
         f.write(html_out)
 
-print("Generated all 53 synchronized slides in slides/, presentation/, and D:\\veepoo\\slides!")
+print(f"Generated all {len(slides_data)} synchronized slides in slides/, presentation/, and D:\\veepoo\\slides!")
 
 # -----------------------------------------------------------------------------
 # BUILD preview.html (MASTER TECHNICAL PLAYER WITH AUSTRALIAN FEMALE VOICE)
@@ -451,7 +452,7 @@ preview_html_content = f"""<!DOCTYPE html>
     <div style="display: flex; align-items: center; gap: 12px;">
       <span id="lblScreenshotZone" style="font-family: monospace; font-size: 11px; background: #0284c7; color: #ffffff; padding: 2px 8px; border-radius: 3px; font-weight: bold;">📍 FOCUS: FULL OVERVIEW</span>
       <span style="font-size: 12px; color: #64748b; font-weight: 600;">VOICE: <strong style="color: #0284c7;">AUSTRALIAN FEMALE</strong></span>
-      <span id="lblSlideCounter" style="font-family: monospace; font-size: 12px; font-weight: 800; color: #0f172a;">01 / 53</span>
+      <span id="lblSlideCounter" style="font-family: monospace; font-size: 12px; font-weight: 800; color: #0f172a;">01 / {len(slides_data):02d}</span>
     </div>
   </div>
 
@@ -893,4 +894,4 @@ if os.path.exists(csc_path) and os.path.exists(launcher_src):
     else:
         print("Compilation stderr:", result.stderr)
 
-print("All 53 slides, female narration transcript, preview player, and W11 launcher built successfully!")
+print(f"All {len(slides_data)} slides, female narration transcript, preview player, and W11 launcher built successfully!")
