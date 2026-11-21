@@ -323,6 +323,21 @@
   <p>
     This technical manual provides attending physicians, endocrinologists, cardiologists, and clinical systems engineers with complete transparency into the physical sensing mechanisms, mathematical models, Bluetooth Low Energy (BLE) Generic Attribute Profile (GATT) packet structures, and longitudinal ambulatory report outputs of the <strong>Veepoo Model 5010</strong> biometric transponder.
   </p>
+    <div class="alert-box warning" style="background: #fff5f5; border-left: 5px solid #e53e3e; padding: 12px 14px; margin: 12px 0;">
+    <span class="alert-title" style="color: #c53030; font-size: 10pt; font-weight: 800; display: block; margin-bottom: 4px;">
+      ⚠️ CRITICAL CLINICAL SAFETY WARNING &amp; REGULATORY CONTRAINDICATIONS
+    </span>
+    <p style="margin: 0 0 6px 0; color: #742a2a; font-size: 8.8pt; line-height: 1.45;">
+      <strong>1. Strictly for Type 2 Diabetes &amp; Metabolic Lifestyle Tracking:</strong> This optical photoplethysmography (PPG) system is engineered for non-invasive ambulatory monitoring, dietary feedback, and lifestyle management in non-insulin dependent Type 2 diabetes. It is <strong>NOT an FDA-cleared continuous glucose monitor (CGM)</strong> and does not directly sample interstitial fluid or venous blood glucose.
+    </p>
+    <p style="margin: 0 0 6px 0; color: #742a2a; font-size: 8.8pt; line-height: 1.45;">
+      <strong>2. Absolute Contraindication for Type 1 Diabetes &amp; Insulin Titration:</strong> <strong>NEVER calculate rapid-acting insulin bolus dosages, titrate basal infusion pump rates, or manage acute medical crises (e.g., diabetic ketoacidosis, severe nocturnal hypoglycemia) using this system.</strong> Patients with Type 1 diabetes must rely exclusively on prescription capillary fingerstick glucometers, cleared CGMs (Dexcom/Freestyle Libre), and endocrinologist supervision.
+    </p>
+    <p style="margin: 0; color: #742a2a; font-size: 8.8pt; line-height: 1.45;">
+      <strong>3. Outpatient Clinical Governance:</strong> All therapeutic changes, prescription titration, and dietary exercise prescriptions must be directed by the patient's attending physician.
+    </p>
+  </div>
+
   <div class="alert-box clinical">
     <span class="alert-title">Clinical Quality Commitment: 100% Real-Time Non-Interpolated Telemetry</span>
     All graphs, timeline curves, and exported records in this system represent authentic biophysical measurements acquired directly from the patient's hardware transponder over GATT notification streams. No synthetic, demo, or artificial interpolation is utilized. All registers start in pure clinical Standby (<code>--</code>) until valid sensor packets arrive.

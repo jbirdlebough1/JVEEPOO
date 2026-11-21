@@ -519,7 +519,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 ---
 
 ### Slide 34: Daily 24-Hour Continuous Glucose Curve & TIR Dynamics
-**Module:** Module 5: Clinical Reports & Longitudinal EHR Records  
+**Module:** Module 5: Clinical Reports & Longitudinal Analytics  
 **Card Title:** DAILY 24-HOUR CONTINUOUS GLYCAEMIC EXCURSION TIMELINE  
 
 > Displayed on screen is the individual Daily Twenty-Four-Hour Continuous Glucose Curve. Optical absorption tonometry measures microvascular glucose absorption every five minutes, generating two hundred and eighty-eight clinical data points across the day. The green shaded corridor represents the physician-configured target band of sixty to two hundred milligrams per deciliter. Notice how post-prandial excursions are immediately visible, enabling patient and physician to audit meal impacts, detect nocturnal hypoglycemia dips, and verify Time in Range above seventy percent.
@@ -534,7 +534,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 ---
 
 ### Slide 35: Daily 24-Hour Estimated A1C (eA1C) Projection Curve
-**Module:** Module 5: Clinical Reports & Longitudinal EHR Records  
+**Module:** Module 5: Clinical Reports & Longitudinal Analytics  
 **Card Title:** ADAG MATHEMATICAL ESTIMATED A1C PROJECTION ENGINE  
 
 > Here, we examine the Daily Twenty-Four-Hour Estimated A1C Projection Curve. Using the international A D A G consensus algorithm, estimated A1C equals mean glucose plus forty-six point seven divided by twenty-eight point seven. This mathematical transform tracks rolling glycemic exposure continuously, giving patient and doctor a real-time trajectory rather than waiting ninety days for a venous blood draw. Any therapeutic change or dietary discipline is reflected in the slope of the curve within days.
@@ -549,7 +549,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 ---
 
 ### Slide 36: Daily 24-Hour Body Temperature Matrix: Core vs Epidermal Wrist
-**Module:** Module 5: Clinical Reports & Longitudinal EHR Records  
+**Module:** Module 5: Clinical Reports & Longitudinal Analytics  
 **Card Title:** DUAL-MATRIX CIRCADIAN THERMOMETRY & HOMEOSTASIS  
 
 > Displayed on screen is the Twenty-Four-Hour Body Temperature Matrix, contrasting calculated core body temperature against wrist epidermal contact temperature. The Dual-NTC sensor array tracks circadian thermal homeostasis, identifying the early morning circadian nadir and post-exercise thermal dissipation. For diabetic patients with cold-blooded basal ranges of ninety-six point eight to ninety-seven point four degrees, this baseline provides early screening for metabolic slowdown or occult subclinical infection.
@@ -564,7 +564,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 ---
 
 ### Slide 37: 24-Hour Ambulatory Blood Pressure Dual-Band (PWTT Systolic/Diastolic)
-**Module:** Module 5: Clinical Reports & Longitudinal EHR Records  
+**Module:** Module 5: Clinical Reports & Longitudinal Analytics  
 **Card Title:** AMBULATORY HEMODYNAMIC PULSE WAVE TRANSIT TIME  
 
 > Next, we examine the Twenty-Four-Hour Ambulatory Blood Pressure Dual-Band Chart. Arterial stiffness and microvascular compliance are evaluated continuously via optical pulse wave transit time tonometry. Systolic and diastolic trends are tracked against clinical targets of under one hundred and twenty over eighty millimeters of mercury. Crucially, the chart audits nocturnal dipping: a healthy ten to twenty percent pressure drop during sleep confirms normal autonomic cardiovascular protection.
@@ -579,7 +579,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 ---
 
 ### Slide 38: Nocturnal SpO2 & OSAHS Apnea Hypoxia Dips Matrix
-**Module:** Module 5: Clinical Reports & Longitudinal EHR Records  
+**Module:** Module 5: Clinical Reports & Longitudinal Analytics  
 **Card Title:** NOCTURNAL OXIMETRY & APNEA HYPOXIA DESATURATION  
 
 > Here, we inspect the Nocturnal SpO2 and Obstructive Sleep Apnea Hypoxia Dips Matrix. The watch's red and infrared optical sensors measure arterial oxygen saturation with one percent resolution. The clinical report automatically calculates the Oxygen Desaturation Index, auditing hypoxic drops greater than four percent below baseline. Because severe nocturnal apnea triggers massive cortisol and epinephrine release that spikes morning glucose, this chart provides vital cardiopulmonary insight for the attending physician.
@@ -594,7 +594,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 ---
 
 ### Slide 39: 24-Hour Heart Rate & 5-Zone Cardiac Load
-**Module:** Module 5: Clinical Reports & Longitudinal EHR Records  
+**Module:** Module 5: Clinical Reports & Longitudinal Analytics  
 **Card Title:** 24-HOUR CARDIAC LOAD & 5-ZONE METABOLIC TRAINING  
 
 > Displayed on screen is the Twenty-Four-Hour Heart Rate and Five-Zone Cardiac Load Chart. Heart rate is mapped from nocturnal basal resting levels up to peak exercise exertion. The chart color-codes five discrete physiological zones: Warm Up, Fat Burn, Aerobic, Anaerobic, and Peak. For diabetic patients, maintaining exercise in the Fat Burn and Aerobic zones promotes maximum muscular glucose uptake while avoiding excessive sympathetic cardiac strain.
@@ -609,7 +609,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 ---
 
 ### Slide 40: Autonomic HRV & Lorenz Cardiac Scatter Dynamics
-**Module:** Module 5: Clinical Reports & Longitudinal EHR Records  
+**Module:** Module 5: Clinical Reports & Longitudinal Analytics  
 **Card Title:** AUTONOMIC HRV & 2D LORENZ SCATTER PARITY  
 
 > Slide forty presents our third cardiovascular channel: Autonomic Heart Rate Variability and two-dimensional Lorenz Scatter Dynamics, engineered to full OEM App protocol specification. On screen, the upper panel traces continuous diurnal and nocturnal HRV in milliseconds, while the lower console renders the two-dimensional Lorenz Poincaré scatter plot. By mapping each beat-to-beat interval against the next across twelve hundred cardiac epochs, the scatter geometry reveals autonomic tone at a glance. In the right pane, we formulate the underlying mathematics. The transverse axis, S-D-one, equals R-M-S-S-D divided by the square root of two, directly quantifying parasympathetic vagal reserve. The longitudinal axis, S-D-two, captures sympathetic drive. A healthy cardiovascular system produces the classic wide comet shape. Conversely, diabetic cardiac autonomic neuropathy or severe neuro-metabolic exhaustion collapses the plot into a narrow torpedo cluster, warning clinicians of autonomic fatigue and nocturnal cortisol surges long before daytime symptoms appear.
@@ -624,7 +624,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 ---
 
 ### Slide 41: Nocturnal Sleep Duration & Circadian Hypnogram Architecture
-**Module:** Module 5: Clinical Reports & Longitudinal EHR Records  
+**Module:** Module 5: Clinical Reports & Longitudinal Analytics  
 **Card Title:** CIRCADIAN SLEEP HYPNOGRAM & METABOLIC RESTORATION  
 
 > Next, we examine the Nocturnal Sleep Duration and Circadian Hypnogram. The watch combines tri-axial actigraphy, optical PPG heart rate slowing, and skin temperature to reconstruct the nightly sleep hypnogram. Patients can audit their total duration against the seven-to-eight-and-a-half-hour clinical target, reviewing deep sleep restorative phases versus light sleep. Adequate slow-wave deep sleep is crucial for suppressing nocturnal hepatic gluconeogenesis and blunting dawn cortisol surges.
@@ -639,7 +639,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 ---
 
 ### Slide 42: Ambulatory Physical Activity, Step Density & GLUT4 Clearance
-**Module:** Module 5: Clinical Reports & Longitudinal EHR Records  
+**Module:** Module 5: Clinical Reports & Longitudinal Analytics  
 **Card Title:** AMBULATORY STEP DENSITY & SKELETAL GLUCOSE CLEARANCE  
 
 > Completing our individual chart suite is Ambulatory Physical Activity and Step Density. Hourly bar charts capture step accumulation throughout the day, highlighting dedicated exercise sessions such as a morning brisk walk. Reaching the two-thousand-step daily goal, equivalent to approximately one and a half miles, triggers active skeletal muscle contraction that pulls glucose from the bloodstream via insulin-independent GLUT4 pathways, visibly blunting subsequent glycemic spikes.
@@ -702,7 +702,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 **Module:** Module 8: Tab 12 Sequential Full Scan  
 **Card Title:** TAB 12: SEQUENTIAL 6-SENSOR FULL SCAN PIPELINE  
 
-> Displayed on your screen is Tab 12: our Sequential Comprehensive Biometric Full Scan in active execution. Observe the animated scanning sequence on the left, demonstrating how El-CARS coordinates all six onboard sensors. Rather than triggering multiple sensors simultaneously—which causes optical cross-talk and battery voltage dips—El-CARS executes a choreographed one-hundred-and-twenty-second diagnostic pipeline. On the right pane, our diagnostic flow chart outlines the exact sequence: Stage 1 measures optical glucose absorption, Stage 2 captures infrared temperature, Stage 3 evaluates blood pressure tonometry, Stage 4 assesses dual-wavelength SpO2, Stage 5 records pulse frequency, and Stage 6 conducts Poincaré HRV analysis. Once complete, the orchestrator compiles a comprehensive clinical audit report ready for permanent EHR upload.
+> Displayed on your screen is Tab 12: our Sequential Comprehensive Biometric Full Scan in active execution. Observe the animated scanning sequence on the left, demonstrating how El-CARS coordinates all six onboard sensors. Rather than triggering multiple sensors simultaneously—which causes optical cross-talk and battery voltage dips—El-CARS executes a choreographed one-hundred-and-twenty-second diagnostic pipeline. On the right pane, our diagnostic flow chart outlines the exact sequence: Stage 1 measures optical glucose absorption, Stage 2 captures infrared temperature, Stage 3 evaluates blood pressure tonometry, Stage 4 assesses dual-wavelength SpO2, Stage 5 records pulse frequency, and Stage 6 conducts Poincaré HRV analysis. Once complete, the orchestrator compiles a comprehensive clinical audit report ready for clinical review.
 
 **Key Points:**
 - **Automated 120-Second Pipeline:** Runs a complete, non-interfering diagnostic sequence across all watch sensors.
@@ -777,7 +777,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 **Module:** Module 10: Clinical Summaries & Achieving Diabetic Goals  
 **Card Title:** 3-TIER CLINICAL CONSULTATION REVIEW FRAMEWORK  
 
-> When you sit down with your doctor, El-CARS 5010 provides an objective, three-tier clinical consultation dashboard. As your view scrolls down the screen, observe how multi-scale telemetry is synthesized for your clinical team. Tier 1 presents your Year-to-Date macro record, showing long-term eA1C progress and cumulative titration success. Tier 2 examines your monthly thirty-day retrospect, analyzing glycemic variance, Time-in-Range, and blood pressure dipping. And Tier 3 inspects daily continuous twenty-four-hour curves, showing exact meal excursions and postprandial exercise clearance. Consolidated information sharing is a key tool for diabetic management. With one click of 'PUSH TO DOCTOR'S EPIC', your verified ambulatory record is transmitted straight into your hospital's EHR, empowering your entire multidisciplinary care team to act on certified empirical proof.
+> When you sit down with your doctor, El-CARS 5010 provides an objective, three-tier clinical consultation dashboard. As your view scrolls down the screen, observe how multi-scale telemetry is synthesized for your clinical team. Tier 1 presents your Year-to-Date macro record, showing long-term eA1C progress and cumulative titration success. Tier 2 examines your monthly thirty-day retrospect, analyzing glycemic variance, Time-in-Range, and blood pressure dipping. And Tier 3 inspects daily continuous twenty-four-hour curves, showing exact meal excursions and postprandial exercise clearance. Consolidated information sharing is a key tool for diabetic management, delivering verified ambulatory records for physician review and empowering your entire multidisciplinary care team to act on certified empirical proof.
 
 **Key Points:**
 - **Year-to-Date (YTD) Macro Trend:** Examines multi-quarter eA1c trajectory, seasonal glycemic stability, and cumulative medication titration progress.
