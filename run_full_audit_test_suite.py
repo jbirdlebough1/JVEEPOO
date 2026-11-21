@@ -260,13 +260,13 @@ run_test("TC-26", "Data Honesty", "Zero-Synthetic Biometric Display (Honest '--'
 print("\n[GROUP 11: CLEBUGGER DATABASE INTEGRITY]")
 cle_conn = sqlite3.connect(CLE_DB)
 cle_cursor = cle_conn.cursor()
-cle_cursor.execute("SELECT bug_code, status FROM bugs WHERE bug_code IN ('CLE-078', 'CLE-079', 'CLE-080', 'CLE-081', 'CLE-082', 'CLE-083', 'CLE-084')")
+cle_cursor.execute("SELECT bug_code, status FROM bugs WHERE bug_code IN ('CLE-078', 'CLE-079', 'CLE-080', 'CLE-081', 'CLE-082', 'CLE-083', 'CLE-084', 'CLE-085')")
 recent_cle_rows = dict(cle_cursor.fetchall())
 cle_conn.close()
 
-all_resolved = all(recent_cle_rows.get(f"CLE-0{i}") == "RESOLVED" for i in range(78, 85))
-run_test("TC-27", "CLEBUGGER", "Recent Bugs (CLE-078 to CLE-084) Status in bugs.db", all_resolved,
-         f"CLE-078..084 all marked RESOLVED: {recent_cle_rows}")
+all_resolved = all(recent_cle_rows.get(f"CLE-0{i}") == "RESOLVED" for i in range(78, 86))
+run_test("TC-27", "CLEBUGGER", "Recent Bugs (CLE-078 to CLE-085) Status in bugs.db", all_resolved,
+         f"CLE-078..085 all marked RESOLVED: {recent_cle_rows}")
 
 # -----------------------------------------------------------------------------
 # AUDIT GROUP 12: H8/VEE HARDWARE ADAPTER & ON-CONNECT FULL HARVEST (CLE-083)
@@ -318,6 +318,49 @@ dom_cleaned = ('id="tile360Motion" style="color: var(--lcars-lilac);">0 <span' i
                "updateWorkoutWithSteps(2384)" not in idx_content)
 run_test("TC-35", "Data Scrub", "Hardcoded 2,384 Steps Scrubbed from Active DOM & Startup Execution", dom_cleaned,
          "tile360Motion initialized to 0, startup workout sets 0 steps, hband slots initialized empty")
+
+# -----------------------------------------------------------------------------
+# AUDIT GROUP 14: VOICE INTAKE, MEAL PANTRY, RESTORED FULL SCAN & UNIFIED VAULT SYNC (CLE-085)
+# -----------------------------------------------------------------------------
+print("\n[GROUP 14: VOICE INTAKE, MEAL PANTRY, RESTORED FULL SCAN & UNIFIED VAULT SYNC]")
+
+with open(r"D:\veepoo\w11_htm_app\cell.html", "r", encoding="utf-8") as f:
+    cell_content = f.read()
+
+# TC-36: Cell Web Portal Voice Dictation & Audio Memo Recording
+has_voice_recorder = ("btnRecordVoice" in cell_content and 
+                      "toggleVoiceRecording" in cell_content and 
+                      "SpeechRecognition" in cell_content and 
+                      "MediaRecorder" in cell_content and
+                      "audio_memo" in cell_content)
+run_test("TC-36", "Voice Mobile Intake", "Cell Web Portal Voice Recording & Speech Recognition Dictation (/cell)", has_voice_recorder,
+         "Integrated Web Speech API dictation and MediaRecorder audio memo capture in cell.html")
+
+# TC-37: Meal Pantry Labeling & Instant Re-hydration of Diet History and Goals Report
+has_meal_pantry = ("MEAL PANTRY" in idx_content and
+                   "PREVIOUSLY CONSUMED" in idx_content and
+                   "if (typeof renderDietHistory === 'function') renderDietHistory();" in idx_content and
+                   "if (typeof loadGoalsComplianceReport === 'function') loadGoalsComplianceReport();" in idx_content)
+run_test("TC-37", "Meal Pantry UI", "Meal Pantry Prominent Labeling & Instant Live UI Refresh", has_meal_pantry,
+         "Labeled MEAL PANTRY, instant renderDietHistory and loadGoalsComplianceReport on submit and poll")
+
+# TC-38: Full Scan Unrestricted Startup Hydration
+has_unrestricted_scan = ("latestScanTimestamp" in idx_content and 
+                         "RECORDED BIO-SCAN AUDIT" in idx_content and
+                         "(nowMs - tMs) < 86400000" not in idx_content)
+run_test("TC-38", "Full Scan", "Unrestricted Full Scan Startup Hydration from SQLite Telemetry", has_unrestricted_scan,
+         "Hydrates latest recorded bio-scan audit on startup with timestamp without 24-hr wipeout")
+
+# TC-39: Redundant Sync Buttons Removed & Unified Vault Sync Strip Preserved
+redundant_removed = ("id=\"btnReadSleep\"" not in idx_content and
+                     "id=\"btnSyncWorkoutData\"" not in idx_content and
+                     ">SYNC WATCH STEPS</button>" not in idx_content and
+                     ">PING & TIME SYNC (0xA1)</button>" not in idx_content and
+                     "id=\"btnHeaderSyncNow\"" not in idx_content and
+                     "id=\"ribbonSyncItem\"" in idx_content and
+                     "triggerWatchSyncNow()" in idx_content)
+run_test("TC-39", "Unified Vault Sync", "Elimination of Redundant Sync Buttons & Unified Vault Sync Strip", redundant_removed,
+         "All scattered sync buttons removed; header ribbon Vault Sync Strip unified to trigger full watch dataset harvest")
 
 # -----------------------------------------------------------------------------
 # SUMMARY & VERDICT

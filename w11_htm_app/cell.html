@@ -318,6 +318,25 @@
     <!-- Photo Thumbnail Preview Strip -->
     <div id="previewStrip" class="preview-strip" style="display: none;"></div>
 
+    <!-- Voice Recording & Spoken Order Interface -->
+    <div style="background: #f8fafc; border: 1.5px solid #0284c7; border-radius: 6px; padding: 10px; margin-bottom: 12px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+        <span style="font-size: 0.75rem; font-weight: 800; color: #0284c7; text-transform: uppercase;">
+          🎙️ VOICE MEAL RECORDER / DICTATION:
+        </span>
+        <span id="lblVoiceStatus" style="font-size: 0.72rem; color: #64748b; font-family: monospace;">TAP TO RECORD</span>
+      </div>
+      <button type="button" id="btnRecordVoice" class="btn" style="background: #0284c7; color: #ffffff; padding: 10px; margin-bottom: 6px; font-size: 0.88rem;" onclick="toggleVoiceRecording()">
+        <span id="iconRecordVoice">🎙️</span> <span id="txtRecordVoice">START VOICE RECORDING (SPOKEN ORDER)</span>
+      </button>
+      <div id="voiceFeedbackBox" style="display: none; background: #e0f2fe; border: 1px dashed #0284c7; border-radius: 4px; padding: 6px 10px; font-size: 0.80rem; color: #0369a1;">
+        <span style="font-weight: bold;">Listening:</span> Speak your meal (e.g. <em>"Dick's drivein 2 cheeze burgers, tarter, fry and diet 24oz"</em>)...
+      </div>
+      <div id="audioMemoPlayerBox" style="display: none; margin-top: 6px;">
+        <audio id="audioMemoPlayer" controls style="width: 100%; height: 32px;"></audio>
+      </div>
+    </div>
+
     <!-- Meal Description / Left Field Input -->
     <label style="font-size: 0.75rem; font-weight: 800; color: #475569; display: block; margin-bottom: 4px; text-transform: uppercase;">
       MEAL NAME / ITEMS / DRINK NOTES:
@@ -445,6 +464,132 @@
     let currentAnalysis = null;
     let selectedMealType = 'Snack';
     let isConnectedToHost = false;
+
+    // Voice Recording Engine (SpeechRecognition & MediaRecorder)
+    let isRecordingVoice = false;
+    let speechRecognizer = null;
+    let mediaRecorderInstance = null;
+    let audioChunks = [];
+    let recordedAudioBase64 = "";
+
+    function initSpeechEngine() {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (SpeechRecognition) {
+        speechRecognizer = new SpeechRecognition();
+        speechRecognizer.continuous = true;
+        speechRecognizer.interimResults = true;
+        speechRecognizer.lang = 'en-US';
+
+        speechRecognizer.onresult = function(event) {
+          let finalTranscript = '';
+          for (let i = event.resultIndex; i < event.results.length; ++i) {
+            if (event.results[i].isFinal) {
+              finalTranscript += event.results[i][0].transcript;
+            }
+          }
+          if (finalTranscript) {
+            const input = document.getElementById('txtMealInput');
+            if (input) {
+              const prev = input.value.trim();
+              if (prev && prev !== 'Clove and cinnamon tea') {
+                input.value = prev + ' ' + finalTranscript.trim();
+              } else {
+                input.value = finalTranscript.trim();
+              }
+            }
+          }
+        };
+
+        speechRecognizer.onerror = function(event) {
+          console.warn('Speech recognition notice:', event.error);
+        };
+
+        speechRecognizer.onend = function() {
+          if (isRecordingVoice) {
+            stopVoiceRecording();
+          }
+        };
+      }
+    }
+
+    async function toggleVoiceRecording() {
+      if (isRecordingVoice) {
+        stopVoiceRecording();
+      } else {
+        await startVoiceRecording();
+      }
+    }
+
+    async function startVoiceRecording() {
+      isRecordingVoice = true;
+      audioChunks = [];
+      const btn = document.getElementById('btnRecordVoice');
+      const icon = document.getElementById('iconRecordVoice');
+      const txt = document.getElementById('txtRecordVoice');
+      const status = document.getElementById('lblVoiceStatus');
+      const feedback = document.getElementById('voiceFeedbackBox');
+
+      if (btn) btn.style.background = '#ef4444';
+      if (icon) icon.textContent = '⏹️';
+      if (txt) txt.textContent = 'STOP RECORDING & TRANSCRIBE';
+      if (status) { status.textContent = '● RECORDING...'; status.style.color = '#ef4444'; }
+      if (feedback) feedback.style.display = 'block';
+
+      if (!speechRecognizer) initSpeechEngine();
+      if (speechRecognizer) {
+        try { speechRecognizer.start(); } catch (e) {}
+      }
+
+      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          mediaRecorderInstance = new MediaRecorder(stream);
+          mediaRecorderInstance.ondataavailable = e => {
+            if (e.data.size > 0) audioChunks.push(e.data);
+          };
+          mediaRecorderInstance.onstop = () => {
+            const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+            const reader = new FileReader();
+            reader.onloadend = () => {
+              recordedAudioBase64 = reader.result;
+              const player = document.getElementById('audioMemoPlayer');
+              const box = document.getElementById('audioMemoPlayerBox');
+              if (player && box) {
+                player.src = recordedAudioBase64;
+                box.style.display = 'block';
+              }
+            };
+            reader.readAsDataURL(audioBlob);
+            stream.getTracks().forEach(track => track.stop());
+          };
+          mediaRecorderInstance.start();
+        } catch (err) {
+          console.warn('Audio capture optional:', err);
+        }
+      }
+    }
+
+    function stopVoiceRecording() {
+      isRecordingVoice = false;
+      const btn = document.getElementById('btnRecordVoice');
+      const icon = document.getElementById('iconRecordVoice');
+      const txt = document.getElementById('txtRecordVoice');
+      const status = document.getElementById('lblVoiceStatus');
+      const feedback = document.getElementById('voiceFeedbackBox');
+
+      if (btn) btn.style.background = '#0284c7';
+      if (icon) icon.textContent = '🎙️';
+      if (txt) txt.textContent = 'START VOICE RECORDING (SPOKEN ORDER)';
+      if (status) { status.textContent = 'RECORDED'; status.style.color = '#16a34a'; }
+      if (feedback) feedback.style.display = 'none';
+
+      if (speechRecognizer) {
+        try { speechRecognizer.stop(); } catch (e) {}
+      }
+      if (mediaRecorderInstance && mediaRecorderInstance.state !== 'inactive') {
+        try { mediaRecorderInstance.stop(); } catch (e) {}
+      }
+    }
 
     // Detect meal type based on local time of day
     function initMealTypeByTime() {
@@ -819,6 +964,7 @@
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         photo_count: uploadedPhotos.length,
         photos: [...uploadedPhotos],
+        audio_memo: recordedAudioBase64,
         analysis: currentAnalysis
       };
 
@@ -828,6 +974,9 @@
 
       // Reset form for next meal/snack
       uploadedPhotos = [];
+      recordedAudioBase64 = "";
+      const memoBox = document.getElementById('audioMemoPlayerBox');
+      if (memoBox) memoBox.style.display = 'none';
       renderPreviewStrip();
       document.getElementById('txtMealInput').value = "";
       document.getElementById('cardAnalysis').style.display = 'none';
@@ -895,6 +1044,7 @@
             source: "MOBILE_OFFLINE_SYNC",
             photo_data: item.photos.length > 0 ? item.photos[0] : "",
             photo_count: item.photo_count,
+            audio_memo: item.audio_memo || "",
             commit: true
           };
 
@@ -936,6 +1086,7 @@
           source: "MOBILE_WI-FI_GATEWAY",
           photo_data: uploadedPhotos.length > 0 ? uploadedPhotos[0] : "",
           photo_count: uploadedPhotos.length,
+          audio_memo: recordedAudioBase64 || "",
           commit: true
         };
 
@@ -950,6 +1101,9 @@
           document.getElementById('lblSubmitSuccess').innerHTML = `✅ <strong>${selectedMealType} (${payload.meal_name})</strong> committed to PC database!`;
           btn.innerHTML = "<span>✅ COMMITTED TO PC</span>";
           uploadedPhotos = [];
+          recordedAudioBase64 = "";
+          const memoBox2 = document.getElementById('audioMemoPlayerBox');
+          if (memoBox2) memoBox2.style.display = 'none';
           renderPreviewStrip();
           document.getElementById('txtMealInput').value = "";
           setTimeout(() => { btn.innerHTML = "<span>🚀 SUBMIT TO PC NOW</span>"; btn.disabled = false; }, 2500);

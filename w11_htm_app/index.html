@@ -1641,9 +1641,7 @@
           <span id="headerSyncPill" class="lcars-pill pill-green" style="padding: 4px 10px; font-size: 0.72rem; height: auto;" title="Vault Telemetry Sync Status">
             ● SYNC: OK (&lt;1h)
           </span>
-          <button id="btnHeaderSyncNow" class="lcars-pill pill-orange" style="padding: 4px 10px; font-size: 0.72rem; height: auto; cursor: pointer;" onclick="triggerWatchSyncNow()" title="Trigger Immediate On-Demand Watch Sync">
-            <span>⚡ SYNC NOW</span>
-          </button>
+
           <button id="btnHeaderThemeToggle" class="lcars-pill pill-banana" style="padding: 4px 10px; font-size: 0.72rem; height: auto;" onclick="toggleTheme()">
             <span id="lblHeaderTheme">THEME: LIGHT</span>
           </button>
@@ -2052,7 +2050,7 @@
               </div>
 
               <div class="bay-controls" style="margin-top: 10px;">
-                <button id="btnReadSleep" class="lcars-btn btn-blue" onclick="querySleepData(0)">SYNC SLEEP (0xE0)</button>
+
                 <button id="btnReadSleepYest" class="lcars-btn btn-lilac" onclick="querySleepData(1)">PREVIOUS NIGHT</button>
               </div>
             </div>
@@ -2092,9 +2090,7 @@
                   <button id="btnStartWorkout" class="lcars-pill pill-banana" style="font-size: 0.8rem; padding: 6px 14px; height: auto;" onclick="toggleWorkoutSession()">
                     <span id="lblWorkoutAction">▶ START WORKOUT</span>
                   </button>
-                  <button id="btnSyncWorkoutData" class="lcars-pill pill-ice" style="font-size: 0.8rem; padding: 6px 12px; height: auto;" onclick="syncStepData()">
-                    <span>SYNC WATCH PEDOMETER</span>
-                  </button>
+
                 </div>
               </div>
 
@@ -2285,7 +2281,7 @@
                 <span style="font-size: 0.8rem; color: var(--lcars-green); display: block;">NON-INSULIN SKELETAL MUSCLE GLUCOSE TRANSPORTER 4 (GLUT4) ACTIVATION</span>
               </div>
               <div style="display: flex; gap: 8px;">
-                <button class="lcars-btn btn-banana" style="flex: none; padding: 4px 14px; font-size: 0.8rem;" onclick="syncStepData()">SYNC WATCH STEPS</button>
+
               </div>
             </div>
 
@@ -4894,7 +4890,7 @@
             </div>
             <!-- Hardware commands relocated here for clean ergonomics -->
             <div style="display: flex; gap: 8px; align-items: center;">
-              <button class="lcars-btn btn-blue" style="padding: 4px 12px; font-size: 0.8rem;" onclick="syncWatchTime()">SYNC WATCH</button>
+
               <button class="lcars-btn btn-lilac" style="padding: 4px 12px; font-size: 0.8rem;" onclick="readDeviceInfo()">SYS INFO</button>
               <button class="lcars-btn btn-orange" style="padding: 4px 12px; font-size: 0.8rem;" onclick="clearDiagLog()">PURGE BUFFER</button>
               <button class="lcars-btn btn-banana" style="padding: 4px 12px; font-size: 0.8rem;" onclick="exportPacketLog()">EXPORT LOG</button>
@@ -5303,7 +5299,7 @@
               </div>
             </div>
             <div style="display: flex; gap: 8px;">
-              <button class="lcars-btn btn-blue" onclick="syncWatchTime()">PING & TIME SYNC (0xA1)</button>
+
               <button class="lcars-btn btn-lilac" onclick="readDeviceInfo()">SYS AUDIT (0x03)</button>
             </div>
           </div>
@@ -5475,10 +5471,10 @@
             <div style="margin-bottom: 14px; background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 12px;">
               <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px;">
                 <label for="listboxPopularMeals" style="font-size: 0.82rem; font-weight: 800; color: #0f172a; text-transform: uppercase;">
-                  📋 PREVIOUSLY CONSUMED &amp; POPULAR MEALS (SCROLL &amp; SELECT):
+                  📋 MEAL PANTRY (PREVIOUSLY CONSUMED &amp; SAVED MEALS — SCROLL &amp; SELECT):
                 </label>
                 <span style="font-size: 0.72rem; color: #64748b; font-family: var(--lcars-mono);">
-                  1-CLICK CHOICE &bull; AUTO-EVALUATES &bull; 3-CLICK PARADIGM
+                  MEAL PANTRY &bull; 1-CLICK SELECT &bull; GEMINI EVALUATION &bull; SUBMIT TO DB
                 </span>
               </div>
               <select id="listboxPopularMeals" size="5" style="width: 100%; border: 1.5px solid #0284c7; border-radius: 6px; padding: 6px 8px; font-size: 0.88rem; font-family: inherit; color: #0f172a; background: #ffffff; cursor: pointer; box-shadow: inset 0 1px 3px rgba(0,0,0,0.06);" onchange="onSelectPopularMealFromListbox(this.value)">
@@ -7957,6 +7953,7 @@
         if (typeof render360HealthView === 'function') render360HealthView();
         if (typeof renderDietHistory === 'function') renderDietHistory();
         if (typeof loadGoalsComplianceReport === 'function') loadGoalsComplianceReport();
+        if (typeof updateWorkoutWithSteps === 'function') updateWorkoutWithSteps(lastSteps || 0);
 
         // Step 10: State Sync Complete in Vault Sync Status Field (100% Current)
         lastFullSyncTime = new Date();
@@ -11705,6 +11702,8 @@
       }
 
       renderLongitudinalView();
+      if (typeof renderDietHistory === 'function') renderDietHistory();
+      if (typeof loadGoalsComplianceReport === 'function') loadGoalsComplianceReport();
 
       const scrollTarget = document.getElementById('cardDoctorPatientLongitudinal');
       if (scrollTarget) {
@@ -11989,6 +11988,37 @@
           data = POPULAR_MEALS.steak || DEFAULT_POPULAR_MEALS.steak;
         } else if (text.includes("oat") || text.includes("meal01")) {
           data = POPULAR_MEALS.meal01 || DEFAULT_POPULAR_MEALS.meal01;
+        } else if (text.includes("clove") || text.includes("cinnamon") || text.includes("tea") || text.includes("infusion") || text.includes("tisane") || text.includes("coffee") || text.includes("seltzer") || text.includes("diet")) {
+          const isCoffee = text.includes("coffee") || text.includes("espresso") || text.includes("americano");
+          const isCloveCinn = text.includes("clove") || text.includes("cinnamon");
+          const cals = isCoffee ? 4 : (isCloveCinn ? 2 : 0);
+          const carbs = isCloveCinn ? 0.5 : 0;
+          const bevName = (text.includes("clove") && text.includes("cinnamon")) ? "Clove & Cinnamon Herbal Infusion Tea" : (
+            text.includes("clove") ? "Clove Herbal Tea" : (
+              text.includes("cinnamon") ? "Cinnamon Herbal Tea" : (
+                text.includes("tea") ? "Herbal / Unsweetened Tea" : (isCoffee ? "Black Coffee / Americano" : "Zero-Calorie Beverage / Water")
+              )
+            )
+          );
+          data = {
+            title: rawText || bevName,
+            desc: rawText,
+            calories: cals,
+            netCarbs: carbs,
+            totalCarbs: carbs,
+            fiber: 0,
+            protein: 0,
+            fat: 0,
+            gl: "0 (Zero Glycemic Impact)",
+            estimatedCost: "0.45",
+            meetsGoal: true,
+            tips: [
+              "✨ CLINICAL POLYPHENOL PROFILE: Clove (eugenol) and cinnamon (cinnamaldehyde) provide bioactive antioxidant polyphenols that enhance cellular insulin sensitivity with zero caloric or glycemic load.",
+              "Zero protein, zero fat, and zero glycemic excursion."
+            ],
+            glut4: "No postprandial GLUT4 walk required. Glycemic trajectory will remain completely flat in target safe zone.",
+            glut4Peak: "PREDICTED PEAK: FLATLINE (< 2 MG/DL EXCURSION)"
+          };
         } else {
           let estCarbs = 28;
           let estCals = 450;
@@ -15204,16 +15234,8 @@ Patient
       const spo2Obj = vitals.BLOOD_OXYGEN || vitals.SPO2;
       const hrvObj = vitals.HRV_STRESS || vitals.HRV;
 
-      const nowMs = Date.now();
       function isRecentAndPositive(v) {
-        if (!v || !(v.value1 > 0)) return false;
-        if (!v.timestamp) return true;
-        try {
-          const cleanTs = v.timestamp.replace(' ', 'T');
-          const tMs = new Date(cleanTs).getTime();
-          if (isNaN(tMs)) return true;
-          return (nowMs - tMs) < 86400000; // strictly within 24 hours
-        } catch(e) { return true; }
+        return !!(v && (v.value1 > 0 || (v.systolic > 0)));
       }
 
       const hasPositiveVitals = (
@@ -15224,6 +15246,11 @@ Patient
         isRecentAndPositive(vitals.TEMPERATURE) ||
         isRecentAndPositive(hrvObj)
       );
+
+      let latestScanTimestamp = "";
+      [vitals.GLUCOSE, vitals.BLOOD_PRESSURE, vitals.HEART_RATE, spo2Obj, vitals.TEMPERATURE, hrvObj].forEach(v => {
+        if (v && v.timestamp && v.timestamp > latestScanTimestamp) latestScanTimestamp = v.timestamp;
+      });
 
       if (!hasPositiveVitals) {
         if (hud) hud.textContent = "READY: SMARTWATCH LINKED (STANDBY) • PRESS [START FULL SCAN SEQUENCE]";
@@ -15274,7 +15301,9 @@ Patient
 
       if (hud) hud.textContent = "★ RECENT COMPREHENSIVE SCAN AUDIT ONLINE • READY FOR RE-SCAN";
       if (hudDesc) hudDesc.textContent = "Biometric audit loaded from SQLite telemetry database. Press [START FULL SCAN SEQUENCE] for live re-scan.";
-      if (repMeta) repMeta.textContent = "★ RECENT COMPREHENSIVE SCAN AUDIT ONLINE • READY FOR RE-SCAN";
+      if (repMeta) {
+        repMeta.textContent = latestScanTimestamp ? `★ RECORDED BIO-SCAN AUDIT: ${latestScanTimestamp} • READY FOR RE-SCAN` : "★ RECENT COMPREHENSIVE SCAN AUDIT ONLINE • READY FOR RE-SCAN";
+      }
       updateOverallProgressBar(100);
 
       // Stage 1: Glucose
@@ -16916,6 +16945,8 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
         // Check if new records arrived
         if (dbVer !== lastKnownDbVersion) {
           lastKnownDbVersion = dbVer;
+          if (typeof renderDietHistory === 'function') renderDietHistory();
+          if (typeof loadGoalsComplianceReport === 'function') loadGoalsComplianceReport();
 
           // 1. Update Glucose if present
           if (vitals.GLUCOSE && vitals.GLUCOSE.timestamp !== lastKnownGlucoseTs) {
@@ -19327,6 +19358,8 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
 
       logLCARS(`[🍽️ MEAL COMMITTED] "${mealName}" logged (${data.netCarbs || 0}g Net Carbs). LCARS watching 2-hour response curve.`, "rx");
       if (typeof renderLongitudinalView === 'function') renderLongitudinalView();
+      if (typeof renderDietHistory === 'function') renderDietHistory();
+      if (typeof loadGoalsComplianceReport === 'function') loadGoalsComplianceReport();
     }
 
     // =========================================================================
