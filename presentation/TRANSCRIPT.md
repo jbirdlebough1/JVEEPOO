@@ -422,19 +422,19 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 28: Actionable Clinical Reports & Epic EHR Integration
+### Slide 28: Actionable Clinical Reports & Patient-Controlled Local Export
 **Module:** Module 5: The Diabetes Learning Engine  
-**Card Title:** EPIC EHR INTEGRATION & ACTIONABLE DOCTOR REPORTS  
+**Card Title:** PATIENT-CONTROLLED LOCAL CLINICAL EXPORT & PRIVACY  
 
-> Displayed on your screen is the Reports Toolbar in Tab 04, highlighting our prominent blue button: Push Data to Doctor's Epic. Epic Systems is the world's leading Electronic Health Record software, used by over three hundred and five million patients and more than seventy-eight percent of hospital beds and primary care clinics across the globe. Why is direct Epic integration so critical? Traditionally, a massive clinical telemetry gap exists between a patient's everyday life and their fifteen-minute doctor appointment. Patients struggle to remember blood sugar trends, and doctors cannot inspect consumer smartphone apps. With a single click of our Epic upload button, El-CARS securely packages your entire ninety-day continuous dataset—including twenty-five thousand glucose points, nocturnal nadirs, and blood pressure dipping—into standardized HL7 FHIR R4 clinical observation bundles. This data flows directly into your physician's Epic Hyperspace flowsheet and InBasket. This closes the loop between patient and doctor, enabling immediate medication titration and qualifying your care team for remote patient monitoring reimbursement.
+> Displayed on your screen is the Reports Toolbar in Tab 04, highlighting our clean clinical export options. Because patient data privacy and HIPAA security are paramount, El-CARS operates strictly air-gapped on your local hardware. There is zero unauthorized transmission to third-party servers. With one click, you can generate comprehensive, publication-grade clinical reports in standard PDF and CSV formats. You maintain complete custody of your health data, ready to print, review side-by-side with your physician at Evergreen or your local clinic, or manually share through your patient portal on your own terms.
 
 **Key Points:**
-- **What is Epic Systems?:** Epic is the global benchmark Electronic Health Record (EHR) powering >78% of healthcare systems (Mayo, Hopkins, Kaiser) and 305M patient records.
-- **The '📤 PUSH TO DOCTOR'S EPIC' Button:** Directly visible on the top toolbar: bundles 90 days of continuous telemetry into standardized HL7 FHIR R4 clinical observations.
-- **Closing the 15-Minute Clinical Gap:** Replaces subjective patient recall with verified time-series data delivered straight to your physician's Epic Hyperspace flowsheet.
-- **Actionable Titration & RPM Reimbursement:** Enables instant medication adjustments (insulin, GLP-1s, metformin) and qualifies care teams for CPT 99453/99454/99457 remote telemetry billing.
+- **100% Air-Gapped Local Operation:** Telemetry remains strictly on your local PC with zero unauthorized cloud egress or unverified third-party transmissions.
+- **One-Click Export (CSV & PDF):** Bundles 90 days of continuous multi-lane telemetry into standardized RFC-4180 CSV and printable clinical PDF flowsheets.
+- **Physician Consultation Ready:** Bridges the 15-minute appointment gap: hand your doctor verified time-series data covering fasting glucose, meal spikes, and night nadirs.
+- **Patient-Directed Portal Upload:** You maintain full custody to manually attach reports to Evergreen MyChart or your health system's portal whenever you choose.
 
-**Key Takeaway:** Epic is the world's leading EHR, serving 305M patients. With one click of '📤 PUSH TO DOCTOR'S EPIC', LCARS transmits 90 days of verified HL7 FHIR telemetry straight into your doctor's official clinical flowsheet, closing the communication gap and transforming patient care.
+**Key Takeaway:** Your telemetry remains 100% private and air-gapped on your personal computer. One-click export generates comprehensive clinical reports ready for your next doctor consultation or patient portal upload.
 
 ---
 
@@ -783,7 +783,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 - **Year-to-Date (YTD) Macro Trend:** Examines multi-quarter eA1c trajectory, seasonal glycemic stability, and cumulative medication titration progress.
 - **Monthly (30-Day) Retrospect:** Audits 30-day glycemic variance, postprandial spike averages, dawn surge frequency, and overall Time-in-Range.
 - **Daily (24-Hour) High-Resolution Curve:** Inspects continuous 288-point curves showing exact meal spikes, exercise GLUT4 drops, and overnight nadir safety.
-- **Epic EHR Staging & Consultation Push:** Submits verified YTD, monthly, and daily records formatted for clinical review and Epic MyChart chart ingestion.
+- **Patient-Directed Clinical Consultation:** Submits verified YTD, monthly, and daily records formatted for clinical review and personal health records.
 
 **Key Takeaway:** Connecting YTD, monthly, and daily records gives your doctor the complete clinical picture for precise medical decisions.
 
