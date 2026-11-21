@@ -479,6 +479,44 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
     """
     text = (meal_name + " " + custom_notes).lower()
 
+    # 0. Teas, Herbal Infusions, Spices (Clove, Cinnamon, etc.), Black Coffee, and Zero/Low-Calorie Beverages
+    is_tea = any(w in text for w in ["tea", "chai", "infusion", "tisane", "matcha", "peppermint", "chamomile", "earl grey", "green tea", "black tea", "hibiscus", "rooibos", "clove", "cinnamon"])
+    is_coffee = any(w in text for w in ["coffee", "espresso", "americano", "cold brew"])
+    is_zero_drink = any(w in text for w in ["water", "seltzer", "sparkling water", "club soda", "diet soda", "diet coke", "coke zero", "zero sugar"])
+
+    if (is_tea or is_coffee or is_zero_drink) and not any(w in text for w in ["latte", "frappuccino", "mocha", "boba", "sugar", "syrup", "sweetened", "honey", "juice", "platter", "burger", "pizza", "fries", "burrito", "sandwich", "taco", "fiesta", "mexi"]):
+        tea_cals = 4 if is_coffee else (2 if ("clove" in text or "cinnamon" in text) else 0)
+        tea_carbs = 0.5 if ("cinnamon" in text or "clove" in text) else 0.0
+        bev_name = "Clove & Cinnamon Herbal Infusion Tea" if ("clove" in text and "cinnamon" in text) else (
+            ("Clove Herbal Tea" if "clove" in text else ("Cinnamon Herbal Tea" if "cinnamon" in text else "Herbal / Unsweetened Tea")) if is_tea else (
+                "Black Coffee / Americano" if is_coffee else "Zero-Calorie Beverage / Water"
+            )
+        )
+        return {
+            "meal_name": meal_name.strip() if meal_name.strip() else bev_name,
+            "vendor_matched": "Clinical Dietary Database (Beverages & Herbal Infusions)",
+            "photo_filename": "beverage_tea_infusion.jpg",
+            "calories": tea_cals,
+            "net_carbs": tea_carbs,
+            "total_carbs": tea_carbs,
+            "fiber": 0.0,
+            "protein": 0.0,
+            "fat": 0.0,
+            "glycemic_load": "0 (Zero Glycemic Impact)",
+            "estimated_cost": "0.45",
+            "meets_goal": True,
+            "identified_items": [
+                {"name": bev_name, "portion": "1 cup (8-12 oz)", "net_carbs": tea_carbs, "fiber": 0, "protein": 0, "fat": 0, "calories": tea_cals}
+            ],
+            "projected_spike": "+0 to +2 mg/dL (Ideal Flatline)",
+            "gemini_notes": "✨ CLINICAL POLYPHENOL PROFILE: Clove (eugenol) and cinnamon (cinnamaldehyde) provide bioactive antioxidant polyphenols that enhance cellular insulin sensitivity with zero caloric or glycemic load. Zero protein and zero glycemic excursion.",
+            "trade_alternatives": [
+                "Enjoy freely anytime without postprandial glucose penalty.",
+                "Ensure no cane sugar or honey is added to preserve zero glycemic impact."
+            ],
+            "glut4_recommendation": "No postprandial GLUT4 walk required. Glycemic trajectory will remain completely flat in target zone."
+        }
+
     # 1. Taco Time Northwest (Fiesta Platter & Items)
     if "taco time" in text or "tacotime" in text or "fiesta platter" in text or "fiesta" in text or "crisp burrito" in text or "mexi-fries" in text or "mexifries" in text:
         has_drink = ("drink" in text or "diet" in text or "soda" in text or "coke" in text or "tea" in text or "pepsi" in text)
@@ -710,6 +748,18 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
             est_carbs = 68.0; est_cals = 650; est_fiber = 3.0; est_protein = 24.0; est_fat = 16.0; est_cost = "14.00"
         elif any(w in text for w in ["taco", "burrito", "enchilada", "quesadilla", "nacho", "fajita"]):
             est_carbs = 62.0; est_cals = 720; est_fiber = 8.0; est_protein = 28.0; est_fat = 34.0; est_cost = "12.50"
+        elif any(w in text for w in ["nut", "almond", "walnut", "pecan", "pistachio", "seed"]):
+            est_carbs = 4.0; est_cals = 175; est_fiber = 3.0; est_protein = 6.0; est_fat = 15.0; est_cost = "2.50"
+        elif any(w in text for w in ["snack", "cheese", "string cheese"]):
+            est_carbs = 1.0; est_cals = 110; est_fiber = 0.0; est_protein = 7.0; est_fat = 9.0; est_cost = "1.25"
+        elif any(w in text for w in ["berry", "berries", "strawberry", "blueberry", "raspberry", "blackberry"]):
+            est_carbs = 8.0; est_cals = 50; est_fiber = 4.0; est_protein = 1.0; est_fat = 0.5; est_cost = "2.00"
+        elif any(w in text for w in ["apple", "banana", "orange", "fruit"]):
+            est_carbs = 19.0; est_cals = 85; est_fiber = 3.0; est_protein = 0.5; est_fat = 0.2; est_cost = "1.00"
+        elif any(w in text for w in ["soup", "broth"]):
+            est_carbs = 4.0; est_cals = 65; est_fiber = 1.0; est_protein = 5.0; est_fat = 2.0; est_cost = "3.50"
+        elif any(w in text for w in ["egg", "eggs", "omelet"]):
+            est_carbs = 1.0; est_cals = 140; est_fiber = 0.0; est_protein = 12.0; est_fat = 10.0; est_cost = "1.50"
         elif any(w in text for w in ["salad", "greens", "keto", "cauliflower", "broccoli", "spinach"]):
             est_carbs = 12.0; est_cals = 380; est_fiber = 9.0; est_protein = 34.0; est_fat = 20.0; est_cost = "11.00"
         elif any(w in text for w in ["steak", "beef", "ribeye", "sirloin", "roast", "pork"]):
@@ -1561,7 +1611,7 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
         elif self.path.startswith("/api/meal/recent"):
             meals = get_recent_meals(100)
             self.send_json_response({"status": "OK", "meals": meals})
-        elif self.path.startswith("/api/goals/compliance-report"):
+        elif self.path.startswith("/api/goals/compliance-report") or self.path.startswith("/api/goals/compliance"):
             # Parse query params: timeframe=week|month|qtr|ytd
             tf = "month"
             if "?" in self.path:
@@ -1569,6 +1619,13 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                 tf = params.get("timeframe", ["month"])[0]
             report = get_goals_compliance_report(tf)
             self.send_json_response(report)
+        elif self.path.startswith("/api/watchface/cloud_dials"):
+            inv_path = os.path.join(os.path.dirname(BASE_DIR), "stock_dials", "shape4_240x280", "inventory.json")
+            if os.path.exists(inv_path):
+                with open(inv_path, "r", encoding="utf-8") as f:
+                    self.send_json_response(json.load(f))
+            else:
+                self.send_json_response({"error": "Inventory not found"}, 404)
         else:
             # Default static file server
             super().do_GET()
@@ -1659,28 +1716,32 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                 # Analyze meal with Gemini multimodal logic
                 analysis = analyze_meal_with_gemini_backend(meal_name, notes, photo_data)
 
-                # Commit to SQLite DB
-                meal_id, ts = insert_meal_entry(
-                    meal_name=analysis["meal_name"],
-                    source=source,
-                    photo_filename=analysis.get("photo_filename", "meal_cell_photo.jpg"),
-                    calories=analysis["calories"],
-                    net_carbs=analysis["net_carbs"],
-                    total_carbs=analysis["total_carbs"],
-                    fiber=analysis["fiber"],
-                    protein=analysis["protein"],
-                    fat=analysis["fat"],
-                    glycemic_load=analysis["glycemic_load"],
-                    vendor_matched=analysis.get("vendor_matched", "Home Recipe"),
-                    gemini_notes=analysis["gemini_notes"],
-                    meets_goal=1 if analysis["meets_goal"] else 0,
-                    raw_json=json.dumps(analysis)
-                )
+                # Commit to SQLite DB if not analyze_only
+                analyze_only = payload.get("analyze_only", False) or (self.path == "/api/meal/analyze" and payload.get("commit") is False)
+                if not analyze_only:
+                    meal_id, ts = insert_meal_entry(
+                        meal_name=analysis["meal_name"],
+                        source=source,
+                        photo_filename=analysis.get("photo_filename", "meal_cell_photo.jpg"),
+                        calories=analysis["calories"],
+                        net_carbs=analysis["net_carbs"],
+                        total_carbs=analysis["total_carbs"],
+                        fiber=analysis["fiber"],
+                        protein=analysis["protein"],
+                        fat=analysis["fat"],
+                        glycemic_load=analysis["glycemic_load"],
+                        vendor_matched=analysis.get("vendor_matched", "Home Recipe"),
+                        gemini_notes=analysis["gemini_notes"],
+                        meets_goal=1 if analysis["meets_goal"] else 0,
+                        raw_json=json.dumps(analysis)
+                    )
+                    analysis["meal_id"] = meal_id
+                    analysis["timestamp"] = ts
+                    analysis["status"] = "COMMITTED_TO_DB"
+                    print(f"[✔] Gemini Meal Analyzed & Committed to SQLite: ID #{meal_id} - '{analysis['meal_name']}' ({analysis['net_carbs']}g net carbs)")
+                else:
+                    analysis["status"] = "ANALYSIS_PREVIEW"
 
-                analysis["meal_id"] = meal_id
-                analysis["timestamp"] = ts
-                analysis["status"] = "COMMITTED_TO_DB"
-                print(f"[✔] Gemini Meal Analyzed & Committed to SQLite: ID #{meal_id} - '{analysis['meal_name']}' ({analysis['net_carbs']}g net carbs)")
                 self.send_json_response({"status": "SUCCESS", "analysis": analysis, **analysis})
             except Exception as e:
                 self.send_json_response({"status": "ERROR", "error": str(e)}, 400)

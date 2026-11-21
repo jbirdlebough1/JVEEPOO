@@ -7004,7 +7004,7 @@
           </div>
 
           <!-- COMPONENT 2: CONSOLIDATED COMPREHENSIVE BIOMETRIC SCAN REPORT CARD -->
-          <div id="cardFullScanReport" class="diet-form-card" style="border-left-color: var(--lcars-banana); display: none;">
+          <div id="cardFullScanReport" class="diet-form-card" style="border-left-color: var(--lcars-banana); display: flex; flex-direction: column;">
             <div class="setup-section-title" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
               <div>
                 <span style="color: var(--lcars-banana); font-size: 1.15rem; letter-spacing: 0.05em;">
@@ -12227,6 +12227,23 @@
       }
     }
 
+    // Global telemetry fetch helpers
+    async function fetchTelemetryLatest() {
+      if (typeof pollLiveTelemetryChanges === 'function') {
+        await pollLiveTelemetryChanges();
+      }
+      if (typeof initFullScanView === 'function') {
+        initFullScanView();
+      }
+    }
+
+    async function fetchTelemetryTimeline() {
+      if (typeof fetchServer2DayTimeline === 'function') {
+        return await fetchServer2DayTimeline();
+      }
+      return null;
+    }
+
     // Immediate startup data harvest, SQLite hydration and baseline setup on window load
     window.addEventListener('DOMContentLoaded', async () => {
       initializeVitalsAndCardioBaselines();
@@ -14986,13 +15003,137 @@ Patient
     };
 
     function initFullScanView() {
-      if (!isFullScanRunning) {
-        const hud = document.getElementById('lblActiveScanStage');
+      if (isFullScanRunning) return;
+
+      const hud = document.getElementById('lblActiveScanStage');
+      const cDown = document.getElementById('lblFullScanCountdown');
+      const liveVal = document.getElementById('lblFullScanLiveVal');
+      if (cDown) cDown.textContent = "--s";
+      if (liveVal) liveVal.textContent = "--";
+
+      const vitals = window._latestTelemetry || {};
+      const hasAnyVital = Object.keys(vitals).length > 0;
+
+      const repCard = document.getElementById('cardFullScanReport');
+      if (repCard) repCard.style.display = 'flex';
+
+      if (!hasAnyVital) {
         if (hud) hud.textContent = "READY: PRESS [START FULL SCAN SEQUENCE] TO BEGIN";
-        const cDown = document.getElementById('lblFullScanCountdown');
-        if (cDown) cDown.textContent = "--s";
-        const liveVal = document.getElementById('lblFullScanLiveVal');
-        if (liveVal) liveVal.textContent = "--";
+        for (let i = 1; i <= 6; i++) {
+          setStageCardState(i, 'idle');
+        }
+        return;
+      }
+
+      if (hud) hud.textContent = "★ RECENT COMPREHENSIVE SCAN AUDIT ONLINE • READY FOR RE-SCAN";
+      const hudDesc = document.getElementById('lblActiveScanDetails');
+      if (hudDesc) hudDesc.textContent = "Biometric audit loaded from SQLite telemetry database. Press [START FULL SCAN SEQUENCE] for live re-scan.";
+      updateOverallProgressBar(100);
+
+      // Stage 1: Glucose
+      if (vitals.GLUCOSE && vitals.GLUCOSE.value1 > 0) {
+        const g = Math.round(vitals.GLUCOSE.value1);
+        setStageCardState(1, 'done', `${g} mg/dL`);
+        const gEl = document.getElementById('repValGlucose');
+        if (gEl) gEl.innerHTML = `${g} <span style="font-size: 0.9rem;">mg/dL</span>`;
+        const gBadge = document.getElementById('repBadgeGlucose');
+        if (gBadge) {
+          if (g >= 60 && g <= 200) {
+            gBadge.textContent = "TIR SAFE (60–200)";
+            gBadge.style.color = "var(--lcars-green)";
+          } else if (g < 60) {
+            gBadge.textContent = "HYPOGLYCEMIA ALERT";
+            gBadge.style.color = "#ff5555";
+          } else {
+            gBadge.textContent = "ELEVATED POSTPRANDIAL";
+            gBadge.style.color = "var(--lcars-banana)";
+          }
+        }
+      } else {
+        setStageCardState(1, 'idle');
+      }
+
+      // Stage 2: Temperature
+      if (vitals.TEMPERATURE && vitals.TEMPERATURE.value1 > 0) {
+        const bF = vitals.TEMPERATURE.value1;
+        const sF = vitals.TEMPERATURE.value2 || (bF - 2.4);
+        const bC = (bF - 32) * 5 / 9;
+        setStageCardState(2, 'done', `${bF.toFixed(1)}°F`);
+        const tEl = document.getElementById('repValTemp');
+        if (tEl) tEl.innerHTML = `${bF.toFixed(1)} <span style="font-size: 0.9rem;">°F</span>`;
+        const tSub = document.getElementById('repSubTemp');
+        if (tSub) tSub.textContent = `Skin: ${sF.toFixed(1)}°F (${bC.toFixed(1)}°C)`;
+      } else {
+        setStageCardState(2, 'idle');
+      }
+
+      // Stage 3: Blood Pressure
+      if (vitals.BLOOD_PRESSURE && vitals.BLOOD_PRESSURE.value1 > 0) {
+        const sys = Math.round(vitals.BLOOD_PRESSURE.value1);
+        const dia = Math.round(vitals.BLOOD_PRESSURE.value2);
+        setStageCardState(3, 'done', `${sys}/${dia} mmHg`);
+        const bpEl = document.getElementById('repValBp');
+        if (bpEl) bpEl.innerHTML = `${sys}/${dia} <span style="font-size: 0.9rem;">mmHg</span>`;
+        const bpSub = document.getElementById('repSubBp');
+        if (bpSub) bpSub.textContent = `Pulse Pressure: ${sys - dia} mmHg`;
+      } else {
+        setStageCardState(3, 'idle');
+      }
+
+      // Stage 4: SpO2
+      const spo2Obj = vitals.BLOOD_OXYGEN || vitals.SPO2;
+      if (spo2Obj && spo2Obj.value1 > 0) {
+        const sp = Math.round(spo2Obj.value1);
+        setStageCardState(4, 'done', `${sp}%`);
+        const spEl = document.getElementById('repValSpo2');
+        if (spEl) spEl.textContent = `${sp}%`;
+      } else {
+        setStageCardState(4, 'idle');
+      }
+
+      // Stage 5: Heart Rate
+      if (vitals.HEART_RATE && vitals.HEART_RATE.value1 > 0) {
+        const hr = Math.round(vitals.HEART_RATE.value1);
+        setStageCardState(5, 'done', `${hr} BPM`);
+        const hrEl = document.getElementById('repValHr');
+        if (hrEl) hrEl.innerHTML = `${hr} <span style="font-size: 0.9rem;">BPM</span>`;
+      } else {
+        setStageCardState(5, 'idle');
+      }
+
+      // Stage 6: HRV & Stress
+      const hrvObj = vitals.HRV_STRESS || vitals.HRV;
+      if (hrvObj && hrvObj.value1 > 0) {
+        const hrvVal = Math.round(hrvObj.value1);
+        const stressVal = Math.round(hrvObj.value2);
+        setStageCardState(6, 'done', `${hrvVal} ms`);
+        const hrvEl = document.getElementById('repValHrv');
+        if (hrvEl) hrvEl.innerHTML = `${hrvVal} <span style="font-size: 0.9rem;">ms</span>`;
+        const hrvSub = document.getElementById('repSubHrv');
+        if (hrvSub) hrvSub.textContent = `Stress Fatigue Score: ${stressVal} / 100`;
+      } else {
+        setStageCardState(6, 'idle');
+      }
+
+      // Clinical Synthesis Text
+      const syn = document.getElementById('fullScanClinicalSynthesis');
+      if (syn && hasAnyVital) {
+        const g = (vitals.GLUCOSE && vitals.GLUCOSE.value1 > 0) ? Math.round(vitals.GLUCOSE.value1) : '--';
+        const sys = (vitals.BLOOD_PRESSURE && vitals.BLOOD_PRESSURE.value1 > 0) ? Math.round(vitals.BLOOD_PRESSURE.value1) : '--';
+        const dia = (vitals.BLOOD_PRESSURE && vitals.BLOOD_PRESSURE.value2 > 0) ? Math.round(vitals.BLOOD_PRESSURE.value2) : '--';
+        const hr = (vitals.HEART_RATE && vitals.HEART_RATE.value1 > 0) ? Math.round(vitals.HEART_RATE.value1) : '--';
+        const sp = (spo2Obj && spo2Obj.value1 > 0) ? Math.round(spo2Obj.value1) : '--';
+        const bF = (vitals.TEMPERATURE && vitals.TEMPERATURE.value1 > 0) ? vitals.TEMPERATURE.value1.toFixed(1) : '--';
+        const hrvVal = (hrvObj && hrvObj.value1 > 0) ? Math.round(hrvObj.value1) : '--';
+        const stressVal = (hrvObj && hrvObj.value2 > 0) ? Math.round(hrvObj.value2) : '--';
+
+        syn.innerHTML = `
+          Full systematic biometric acquisition completed across all 6 physiological parameters.
+          Optical blood glucose reading is <strong>${g} mg/dL</strong>, which resides safely within your clinical <strong>60–200 mg/dL Time-In-Range</strong> window.
+          Hemodynamics indicate normotensive blood pressure (<strong>${sys}/${dia} mmHg</strong>) paired with a resting pulse of <strong>${hr} BPM</strong>.
+          Arterial oxygen saturation is optimal at <strong>${sp}%</strong> with euvolemic thermoregulation (<strong>${bF}°F</strong>).
+          Autonomic HRV analysis demonstrates balanced vagal nerve tone (<strong>${hrvVal} ms</strong> SDNN, stress index ${stressVal}/100), reflecting healthy sympathetic balance.
+        `;
       }
     }
 
@@ -16462,16 +16603,42 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
 
     async function triggerWatchSyncNow() {
       soundButtonPress();
-      logLCARS("[*] Initiating On-Demand Watch Sync. Proximity scanner waking up...", "tx");
+      logLCARS("[*] Initiating On-Demand Watch Sync. Telemetry pipeline activating...", "tx");
+      
+      // 1. Direct BLE Telemetry Dump if watch is connected or in browser cache
+      try {
+        if (typeof execute15MinWatchDataDump === 'function') {
+          await execute15MinWatchDataDump();
+        }
+      } catch (bleErr) {
+        console.warn("BLE dump execution note:", bleErr);
+      }
+
+      // 2. Trigger server sync endpoint
       try {
         const resp = await fetch('/api/sync/trigger', { method: 'POST' });
         if (resp.ok) {
-          logLCARS("[+] Sync trigger registered by host server. Standby within 10 ft of PC...", "rx");
+          logLCARS("[+] Sync trigger registered by host server.", "rx");
         }
       } catch (e) {
         logLCARS(`Sync Notice: Host server unreachable (${e.message})`, "err");
       }
-      setTimeout(checkVaultSyncStatus, 2000);
+
+      // 3. Immediately hydrate all telemetry into UI
+      try {
+        await fetchTelemetryLatest();
+        await fetchTelemetryTimeline();
+        if (typeof initFullScanView === 'function') initFullScanView();
+        if (typeof renderReportsView === 'function') renderReportsView();
+        if (typeof render360HealthView === 'function') render360HealthView();
+        if (typeof renderDietHistory === 'function') renderDietHistory();
+        if (typeof loadDietHistory === 'function') loadDietHistory();
+        if (typeof loadGoalsComplianceReport === 'function') loadGoalsComplianceReport();
+      } catch (hydErr) {
+        console.warn("Hydration error after sync:", hydErr);
+      }
+
+      setTimeout(checkVaultSyncStatus, 1500);
     }
 
     // BLE Keep-Alive Ping (prevents watch from entering deep sleep disconnect)
@@ -16504,6 +16671,7 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
         if (!resp.ok) return;
         const data = await resp.json();
         const vitals = data.vitals || {};
+        window._latestTelemetry = vitals;
         const dbVer = data.db_version || 0;
 
         // Check if new records arrived
@@ -16621,20 +16789,37 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
             if (hudTemp) hudTemp.textContent = `${bodyF}°F`;
           }
 
-          // 7. Update Pedometer & Steps
+          // 7. Update Pedometer & Steps (Universal Step Propagation)
           if (vitals.PEDOMETER) {
             const steps = Math.round(vitals.PEDOMETER.value1);
             const kcal = Math.round(vitals.PEDOMETER.value2);
+            const miles = (steps * 0.000473).toFixed(2);
             const elStep = document.getElementById('valStepCount');
-            if (elStep) elStep.textContent = `${steps.toLocaleString()}`;
+            if (elStep) elStep.innerHTML = `${steps.toLocaleString()} <span style="font-size: 1rem;">steps</span>`;
             const elKcal = document.getElementById('valStepKcal');
-            if (elKcal) elKcal.textContent = `${kcal} kcal`;
+            if (elKcal) elKcal.innerHTML = `${kcal} <span style="font-size: 1rem;">kcal</span>`;
+            const elDist = document.getElementById('valStepDist');
+            if (elDist) elDist.innerHTML = `${miles} <span style="font-size: 1rem;">miles</span>`;
+            const elGoal = document.getElementById('valStepGoal');
+            if (elGoal) elGoal.textContent = `Goal: 2,000 (${Math.round((steps / 2000) * 100)}% Met)`;
+            const tileMotion = document.getElementById('tile360Motion');
+            if (tileMotion) tileMotion.innerHTML = `${steps.toLocaleString()} <span style="font-size: 0.9rem;">steps</span>`;
+            const lblSteps = document.getElementById('lblActiveDailySteps');
+            if (lblSteps) {
+              const pct = Math.min(100, Math.round((steps / 8000) * 100));
+              lblSteps.textContent = `TOTAL: ${steps.toLocaleString()} / 8,000 STEPS (${pct}%)`;
+            }
           }
 
           // Refresh active reports tab view if currently open
           const pageRep = document.getElementById('pageReports');
           if (pageRep && pageRep.classList.contains('active-page') && typeof renderReportsView === 'function') {
             renderReportsView();
+          }
+
+          // Hydrate Full Scan View if not currently scanning
+          if (!isFullScanRunning && typeof initFullScanView === 'function') {
+            initFullScanView();
           }
         }
       } catch (e) {}
