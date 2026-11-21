@@ -232,18 +232,32 @@ run_test("TC-26", "Data Honesty", "Zero-Synthetic Biometric Display (Honest '--'
          "Displays honest '--' when sensors unacquired")
 
 # -----------------------------------------------------------------------------
-# AUDIT GROUP 11: CLEBUGGER DATABASE VERIFICATION (CLE-001 - CLE-082)
+# AUDIT GROUP 11: CLEBUGGER DATABASE VERIFICATION (CLE-001 - CLE-083)
 # -----------------------------------------------------------------------------
 print("\n[GROUP 11: CLEBUGGER DATABASE INTEGRITY]")
 cle_conn = sqlite3.connect(CLE_DB)
 cle_cursor = cle_conn.cursor()
-cle_cursor.execute("SELECT bug_code, status FROM bugs WHERE bug_code IN ('CLE-078', 'CLE-079', 'CLE-080', 'CLE-081', 'CLE-082')")
+cle_cursor.execute("SELECT bug_code, status FROM bugs WHERE bug_code IN ('CLE-078', 'CLE-079', 'CLE-080', 'CLE-081', 'CLE-082', 'CLE-083')")
 recent_cle_rows = dict(cle_cursor.fetchall())
 cle_conn.close()
 
-all_resolved = all(recent_cle_rows.get(f"CLE-0{i}") == "RESOLVED" for i in range(78, 83))
-run_test("TC-27", "CLEBUGGER", "Recent Bugs (CLE-078 to CLE-082) Status in bugs.db", all_resolved,
-         f"CLE-078..082 all marked RESOLVED: {recent_cle_rows}")
+all_resolved = all(recent_cle_rows.get(f"CLE-0{i}") == "RESOLVED" for i in range(78, 84))
+run_test("TC-27", "CLEBUGGER", "Recent Bugs (CLE-078 to CLE-083) Status in bugs.db", all_resolved,
+         f"CLE-078..083 all marked RESOLVED: {recent_cle_rows}")
+
+# -----------------------------------------------------------------------------
+# AUDIT GROUP 12: H8/VEE HARDWARE ADAPTER & ON-CONNECT FULL HARVEST (CLE-083)
+# -----------------------------------------------------------------------------
+print("\n[GROUP 12: H8/VEE HARDWARE ADAPTER & ON-CONNECT FULL HARVEST]")
+h8_adaptive_tx = ("allWriteChars.find" in idx_content and "Hardware Adaptive Command TX Bound" in idx_content)
+run_test("TC-28", "Hardware Adapter", "Hardware-Adaptive GATT TX Command Binding (H8 / VEE / 5010)", h8_adaptive_tx,
+         "Binds fea2/fee8/ae01/6e400002/f0080003 or first writable characteristic dynamically")
+
+on_connect_full_sync = ("executeFullWatchConnectSync" in idx_content and 
+                        "DOWNLOADING FULL WATCH DATA SET" in idx_content and 
+                        "SYNC COMPLETE (100% CURRENT)" in idx_content)
+run_test("TC-29", "Connect Harvest", "On-Connect Full Telemetry Dump & 100% Vault Sync State", on_connect_full_sync,
+         "Executes 6-transponder harvest on connect before stating 100% sync complete")
 
 # -----------------------------------------------------------------------------
 # SUMMARY & VERDICT

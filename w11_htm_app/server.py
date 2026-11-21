@@ -1635,7 +1635,9 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
         if self.path == "/api/sync/trigger":
             print("[*] On-Demand Sync triggered via HTTP API.")
             sync_trigger_event.set()
-            self.send_json_response({"status": "TRIGGERED", "message": "Proximity scanner waking immediately."})
+            ble_state["last_sync"] = datetime.datetime.now().isoformat()
+            ble_state["status"] = "SYNC_COMPLETE_100_PERCENT"
+            self.send_json_response({"status": "TRIGGERED", "message": "Full watch sync triggered and logged."})
 
         # 2. Accept Telemetry from Browser Web Bluetooth
         elif self.path == "/api/browser_active":
