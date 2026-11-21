@@ -938,21 +938,29 @@ def get_recent_meals(limit=100):
         conn = sqlite3.connect(DB_PATH)
         cur = conn.cursor()
         cur.execute("""
-            SELECT id, timestamp, meal_name, source, photo_filename, calories, net_carbs, total_carbs, fiber, protein, fat, glycemic_load, vendor_matched, gemini_notes, meets_goal
+            SELECT id, timestamp, meal_name, source, photo_filename, calories, net_carbs, total_carbs, fiber, protein, fat, glycemic_load, vendor_matched, gemini_notes, meets_goal, raw_json
             FROM meal_entries
             ORDER BY timestamp DESC, id DESC LIMIT ?
         """, (limit,))
         rows = cur.fetchall()
         conn.close()
-        return [
-            {
+        res = []
+        for r in rows:
+            raw_obj = {}
+            if r[15]:
+                try:
+                    raw_obj = json.loads(r[15])
+                except Exception:
+                    pass
+            res.append({
                 "id": r[0], "timestamp": r[1], "meal_name": r[2], "source": r[3],
                 "photo_filename": r[4], "calories": r[5], "net_carbs": r[6], "total_carbs": r[7],
                 "fiber": r[8], "protein": r[9], "fat": r[10], "glycemic_load": r[11],
-                "vendor_matched": r[12], "gemini_notes": r[13], "meets_goal": bool(r[14])
-            }
-            for r in rows
-        ]
+                "vendor_matched": r[12], "gemini_notes": r[13], "meets_goal": bool(r[14]),
+                "raw_json": r[15],
+                "identified_items": raw_obj.get("identified_items", [])
+            })
+        return res
 
 def insert_vital_record(metric, value1, value2, unit, progress, status, mode, raw_hex, custom_ts=None):
     ts = custom_ts or datetime.datetime.now().isoformat()
@@ -1593,6 +1601,21 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                 "last_backup_summary": backup_config.get("last_backup_summary")
             })
 
+        elif self.path.startswith("/api/meal/delete"):
+            from urllib.parse import parse_qs, urlparse
+            params = parse_qs(urlparse(self.path).query)
+            meal_id = params.get("id", [None])[0]
+            if meal_id:
+                with db_lock:
+                    conn = get_db()
+                    cur = conn.cursor()
+                    cur.execute("DELETE FROM meal_entries WHERE id = ?", (meal_id,))
+                    conn.commit()
+                    conn.close()
+                self.send_json_response({"status": "DELETED", "id": meal_id})
+            else:
+                self.send_json_response({"status": "ERROR", "error": "Missing meal id"}, 400)
+
         elif self.path.startswith("/api/meal/daily_summary"):
             # Generates comprehensive Daily Intake Summary of all consumed
             query_date = datetime.datetime.now().strftime("%Y-%m-%d")
@@ -1606,7 +1629,7 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                 conn = get_db()
                 cur = conn.cursor()
                 cur.execute("""
-                    SELECT id, timestamp, meal_name, source, photo_filename, calories, net_carbs, total_carbs, fiber, protein, fat, glycemic_load, vendor_matched, gemini_notes, meets_goal
+                    SELECT id, timestamp, meal_name, source, photo_filename, calories, net_carbs, total_carbs, fiber, protein, fat, glycemic_load, vendor_matched, gemini_notes, meets_goal, raw_json
                     FROM meal_entries
                     WHERE timestamp LIKE ?
                     ORDER BY timestamp DESC, id DESC
@@ -1614,22 +1637,29 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                 rows = cur.fetchall()
                 conn.close()
 
-                items = [
-                    {
+                items = []
+                for r in rows:
+                    raw_obj = {}
+                    if r[15]:
+                        try:
+                            raw_obj = json.loads(r[15])
+                        except Exception:
+                            pass
+                    items.append({
                         "id": r[0], "timestamp": r[1], "meal_name": r[2], "source": r[3],
                         "photo_filename": r[4], "calories": r[5], "net_carbs": r[6], "total_carbs": r[7],
                         "fiber": r[8], "protein": r[9], "fat": r[10], "glycemic_load": r[11],
-                        "vendor_matched": r[12], "gemini_notes": r[13], "meets_goal": bool(r[14])
-                    }
-                    for r in rows
-                ]
+                        "vendor_matched": r[12], "gemini_notes": r[13], "meets_goal": bool(r[14]),
+                        "raw_json": r[15],
+                        "identified_items": raw_obj.get("identified_items", [])
+                    })
 
                 # Categorize into Breakfast, Lunch, Dinner, Snack
                 by_type = {
-                    "Breakfast": {"count": 0, "calories": 0, "net_carbs": 0.0, "protein": 0.0, "items": []},
-                    "Lunch": {"count": 0, "calories": 0, "net_carbs": 0.0, "protein": 0.0, "items": []},
-                    "Dinner": {"count": 0, "calories": 0, "net_carbs": 0.0, "protein": 0.0, "items": []},
-                    "Snack": {"count": 0, "calories": 0, "net_carbs": 0.0, "protein": 0.0, "items": []}
+                    "Breakfast": {"count": 0, "calories": 0, "net_carbs": 0.0, "protein": 0.0, "items": [], "food_components": []},
+                    "Lunch": {"count": 0, "calories": 0, "net_carbs": 0.0, "protein": 0.0, "items": [], "food_components": []},
+                    "Dinner": {"count": 0, "calories": 0, "net_carbs": 0.0, "protein": 0.0, "items": [], "food_components": []},
+                    "Snack": {"count": 0, "calories": 0, "net_carbs": 0.0, "protein": 0.0, "items": [], "food_components": []}
                 }
 
                 tot_cal = 0
@@ -1654,13 +1684,22 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                     tot_pro += pr
                     tot_fat += ft
 
-                    # Infer meal type from name or notes if not explicit
-                    name_lower = (it["meal_name"] + " " + it["source"] + " " + it["gemini_notes"]).lower()
-                    if "breakfast" in name_lower or "morning" in name_lower or "omelet" in name_lower or "egg" in name_lower or "coffee" in name_lower:
+                    # Infer meal type from name and hour
+                    name_lower = it["meal_name"].lower()
+                    hour = 12
+                    if " " in it["timestamp"]:
+                        try:
+                            hour = int(it["timestamp"].split(" ")[1].split(":")[0])
+                        except Exception:
+                            pass
+
+                    if "[snack]" in name_lower or "snack" in name_lower or "infusion" in name_lower or " tea" in name_lower or "tea " in name_lower:
+                        m_type = "Snack"
+                    elif "breakfast" in name_lower or "[breakfast]" in name_lower or hour < 11:
                         m_type = "Breakfast"
-                    elif "lunch" in name_lower or "sandwich" in name_lower or "burger" in name_lower or "wrap" in name_lower or "salad" in name_lower:
+                    elif "lunch" in name_lower or "[lunch]" in name_lower or (11 <= hour < 16):
                         m_type = "Lunch"
-                    elif "dinner" in name_lower or "supper" in name_lower or "steak" in name_lower or "salmon" in name_lower or "taco" in name_lower:
+                    elif "dinner" in name_lower or "[dinner]" in name_lower or hour >= 16:
                         m_type = "Dinner"
                     else:
                         m_type = "Snack"
@@ -1670,6 +1709,8 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                     by_type[m_type]["net_carbs"] += nc
                     by_type[m_type]["protein"] += pr
                     by_type[m_type]["items"].append(it["meal_name"])
+                    for comp in it.get("identified_items", []):
+                        by_type[m_type]["food_components"].append(comp)
 
                 daily_summary = {
                     "date": query_date,
@@ -1770,101 +1811,6 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
         # 3. Diagnostic Packet Logging
         
         # 4. Gemini Multimodal Meal Photo Upload & Analysis Endpoint
-        elif self.path.startswith("/api/meal/daily_summary"):
-            # Generates comprehensive Daily Intake Summary of all consumed
-            query_date = datetime.datetime.now().strftime("%Y-%m-%d")
-            if "?" in self.path:
-                from urllib.parse import parse_qs, urlparse
-                params = parse_qs(urlparse(self.path).query)
-                if "date" in params:
-                    query_date = params["date"][0].strip()
-
-            with db_lock:
-                conn = get_db()
-                cur = conn.cursor()
-                cur.execute("""
-                    SELECT id, timestamp, meal_name, source, photo_filename, calories, net_carbs, total_carbs, fiber, protein, fat, glycemic_load, vendor_matched, gemini_notes, meets_goal
-                    FROM meal_entries
-                    WHERE timestamp LIKE ?
-                    ORDER BY timestamp DESC, id DESC
-                """, (f"{query_date}%",))
-                rows = cur.fetchall()
-                conn.close()
-
-                items = [
-                    {
-                        "id": r[0], "timestamp": r[1], "meal_name": r[2], "source": r[3],
-                        "photo_filename": r[4], "calories": r[5], "net_carbs": r[6], "total_carbs": r[7],
-                        "fiber": r[8], "protein": r[9], "fat": r[10], "glycemic_load": r[11],
-                        "vendor_matched": r[12], "gemini_notes": r[13], "meets_goal": bool(r[14])
-                    }
-                    for r in rows
-                ]
-
-                # Categorize into Breakfast, Lunch, Dinner, Snack
-                by_type = {
-                    "Breakfast": {"count": 0, "calories": 0, "net_carbs": 0.0, "protein": 0.0, "items": []},
-                    "Lunch": {"count": 0, "calories": 0, "net_carbs": 0.0, "protein": 0.0, "items": []},
-                    "Dinner": {"count": 0, "calories": 0, "net_carbs": 0.0, "protein": 0.0, "items": []},
-                    "Snack": {"count": 0, "calories": 0, "net_carbs": 0.0, "protein": 0.0, "items": []}
-                }
-
-                tot_cal = 0
-                tot_net = 0.0
-                tot_tot = 0.0
-                tot_fib = 0.0
-                tot_pro = 0.0
-                tot_fat = 0.0
-
-                for it in items:
-                    c = it["calories"] or 0
-                    nc = it["net_carbs"] or 0.0
-                    tc = it["total_carbs"] or 0.0
-                    fb = it["fiber"] or 0.0
-                    pr = it["protein"] or 0.0
-                    ft = it["fat"] or 0.0
-
-                    tot_cal += c
-                    tot_net += nc
-                    tot_tot += tc
-                    tot_fib += fb
-                    tot_pro += pr
-                    tot_fat += ft
-
-                    # Infer meal type from name or notes if not explicit
-                    name_lower = (it["meal_name"] + " " + it["source"] + " " + it["gemini_notes"]).lower()
-                    if "breakfast" in name_lower or "morning" in name_lower or "omelet" in name_lower or "egg" in name_lower or "coffee" in name_lower:
-                        m_type = "Breakfast"
-                    elif "lunch" in name_lower or "sandwich" in name_lower or "burger" in name_lower or "wrap" in name_lower or "salad" in name_lower:
-                        m_type = "Lunch"
-                    elif "dinner" in name_lower or "supper" in name_lower or "steak" in name_lower or "salmon" in name_lower or "taco" in name_lower:
-                        m_type = "Dinner"
-                    else:
-                        m_type = "Snack"
-
-                    by_type[m_type]["count"] += 1
-                    by_type[m_type]["calories"] += c
-                    by_type[m_type]["net_carbs"] += nc
-                    by_type[m_type]["protein"] += pr
-                    by_type[m_type]["items"].append(it["meal_name"])
-
-                daily_summary = {
-                    "date": query_date,
-                    "total_consumed_count": len(items),
-                    "total_calories": tot_cal,
-                    "total_net_carbs": round(tot_net, 1),
-                    "total_carbs": round(tot_tot, 1),
-                    "total_fiber": round(tot_fib, 1),
-                    "total_protein": round(tot_pro, 1),
-                    "total_fat": round(tot_fat, 1),
-                    "calories_goal": 2000,
-                    "net_carbs_goal": 135.0,
-                    "protein_goal": 75.0,
-                    "by_type": by_type,
-                    "items": items
-                }
-                self.send_json_response(daily_summary)
-
         elif self.path == "/api/meals/popular":
             content_length = int(self.headers.get("Content-Length", 0))
             body = self.rfile.read(content_length).decode("utf-8", errors="ignore")

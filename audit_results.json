@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-11-21T13:56:49.744145",
-  "total": 40,
-  "passed": 40,
+  "timestamp": "2026-11-21T15:03:01.227227",
+  "total": 45,
+  "passed": 45,
   "failed": 0,
   "success_rate": "100.0%",
   "results": [
@@ -10,7 +10,7 @@
       "category": "Integrity",
       "name": "Dual-File Byte-for-Byte Equality",
       "passed": true,
-      "details": "Root: 1107199 bytes == App: 1107199 bytes"
+      "details": "Root: 1129657 bytes == App: 1129657 bytes"
     },
     {
       "id": "TC-00",
@@ -143,7 +143,7 @@
       "category": "Goals Report",
       "name": "Goals Compliance Report Endpoint (/api/goals/compliance-report)",
       "passed": true,
-      "details": "14 events, 85.7% compliance"
+      "details": "11 events, 100.0% compliance"
     },
     {
       "id": "TC-20",
@@ -284,6 +284,41 @@
       "name": "Elimination of Redundant Sync Buttons & Unified Vault Sync Strip",
       "passed": true,
       "details": "All scattered sync buttons removed; header ribbon Vault Sync Strip unified to trigger full watch dataset harvest"
+    },
+    {
+      "id": "TC-40",
+      "category": "Full Scan UI",
+      "name": "Zero Hex Codes in Measurement Cards & Colored % Numbers Present",
+      "passed": true,
+      "details": "Stage cards display STAGE 01..06 with dedicated #stagePct1..6 elements (0 hex opcodes)"
+    },
+    {
+      "id": "TC-41",
+      "category": "Sleep Data",
+      "name": "Nocturnal Sleep Telemetry Restoration & SQLite Ingestion",
+      "passed": true,
+      "details": "Sleep metric queried in snapshot, assembled stream posted to /api/telemetry and hydrated in DOM"
+    },
+    {
+      "id": "TC-42",
+      "category": "LCARS Clean UI",
+      "name": "Complete Removal of Mobile Food Intake Gateway Pill from LCARS Screen",
+      "passed": true,
+      "details": "Obsolete mobile gateway card scrubbed from desktop console (8899/cell remains independent)"
+    },
+    {
+      "id": "TC-43",
+      "category": "Meal Ingestion",
+      "name": "Cell Uploads Upsert to Meal Pantry & Strict Latest-to-Oldest Sorting",
+      "passed": true,
+      "details": "Cell meals/snacks auto-upsert to popular_meals; recent meals strictly sort DESC (most current at top)"
+    },
+    {
+      "id": "TC-44",
+      "category": "Daily Intake",
+      "name": "Comprehensive Daily Intake Summary of All Consumed Dashboard",
+      "passed": true,
+      "details": "Dedicated #cardDailyIntakeSummary with 4-bay occasion breakdown (Breakfast/Lunch/Dinner/Snack) and macro totals"
     }
   ]
 }
