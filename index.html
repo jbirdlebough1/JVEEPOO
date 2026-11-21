@@ -2271,8 +2271,8 @@
               <!-- Tile 6: Kinetic Energy -->
               <div class="stat-card" style="border-left-color: var(--lcars-lilac);">
                 <span class="stat-card-title">KINETIC ACTIVITY</span>
-                <span class="stat-card-val" id="tile360Motion" style="color: var(--lcars-lilac);">2,384 <span style="font-size: 0.9rem;">steps</span></span>
-                <span class="stat-card-sub">Morning Ambulation Logged</span>
+                <span class="stat-card-val" id="tile360Motion" style="color: var(--lcars-lilac);">0 <span style="font-size: 0.9rem;">steps</span></span>
+                <span class="stat-card-sub" id="tile360MotionSub">Awaiting Watch Sync</span>
               </div>
             </div>
           </div>
@@ -7571,6 +7571,18 @@
       playBeep(260, 'sawtooth', 0.14, 0.12);
     }
 
+    function soundSuccess() {
+      if (new URLSearchParams(window.location.search).get('headless')) return;
+      playBeep(880, 'sine', 0.08, 0.08);
+      setTimeout(() => playBeep(1760, 'sine', 0.08, 0.10), 60);
+    }
+
+    function soundNotification() {
+      if (new URLSearchParams(window.location.search).get('headless')) return;
+      playBeep(1046.5, 'sine', 0.07, 0.09);
+      setTimeout(() => playBeep(1318.5, 'sine', 0.09, 0.12), 70);
+    }
+
     function updateAudioFromConfig(val) {
       audioEnabled = (val === "1" || val === 1 || val === true);
       if (audioEnabled) {
@@ -7931,6 +7943,11 @@
         try {
           await fetch('/api/sync/trigger', { method: 'POST' });
         } catch(e) {}
+
+        // If no steps received yet from a dormant device (H8 off-wrist), set 0 steps cleanly
+        if (typeof lastSteps === 'undefined' || lastSteps === null) {
+          propagateStepTelemetry(0, 0, "0.00");
+        }
 
         // Step 9: Re-hydrate ALL UI Consoles, Fields, Charts, and Metrics
         await fetchTelemetryLatest();
@@ -8599,14 +8616,14 @@
         }
       }
 
-      // 0xA8: Real-Time Pedometer / Step Telemetry
-      if (header === 0xA8 && bytes.length >= 5) {
+      // 0x07 or 0xA8: Real-Time Pedometer / Step Telemetry (Veepoo Protocol vp_bp.java / vp_bt.java)
+      if ((header === 0x07 || header === 0xA8) && bytes.length >= 5) {
         const steps = (bytes[1] << 24) | (bytes[2] << 16) | (bytes[3] << 8) | bytes[4];
+        const kcal = bytes.length >= 9 ? ((bytes[5] << 24) | (bytes[6] << 16) | (bytes[7] << 8) | bytes[8]) / 100 : Math.round(steps * 0.04);
         const miles = ((steps * 0.7) / 1609.34).toFixed(2);
         const km = ((steps * 0.7) / 1000).toFixed(2);
-        const kcal = Math.round(steps * 0.04);
-        logLCARS(`[👟 PEDOMETER] Real watch step data: ${steps.toLocaleString()} steps | ${miles} mi (${km} km) | ${kcal} kcal`, "rx");
-        propagateStepTelemetry(steps, kcal, miles);
+        logLCARS(`[👟 PEDOMETER] Real watch step data: ${steps.toLocaleString()} steps | ${miles} mi (${km} km) | ${Math.round(kcal)} kcal`, "rx");
+        propagateStepTelemetry(steps, Math.round(kcal), miles);
       }
     }
 
@@ -9124,10 +9141,10 @@
         iWake = p0[8] || 0;
         // Deep sleep minutes: check 16-bit or direct byte
         const deepRaw = (p0[9] << 8) | p0[10];
-        iDeep = (deepRaw > 0 && deepRaw <= 360) ? deepRaw : (p0[10] > 0 ? p0[10] * 5 : 114);
+        iDeep = (deepRaw > 0 && deepRaw <= 360) ? deepRaw : (p0[10] > 0 ? p0[10] * 5 : 0);
         // Light sleep minutes
         const lightRaw = (p0[11] << 8) | p0[12];
-        iLight = (lightRaw > 0 && lightRaw <= 720) ? lightRaw : (p0[12] > 0 ? p0[12] * 5 : 246);
+        iLight = (lightRaw > 0 && lightRaw <= 720) ? lightRaw : (p0[12] > 0 ? p0[12] * 5 : 0);
         // Total sleep duration minutes
         const totalRaw = (p0[13] << 8) | p0[14];
         iAll = (totalRaw > 0 && totalRaw <= 900) ? totalRaw : (iDeep + iLight);
@@ -9208,26 +9225,76 @@
       const elKcal = document.getElementById('valWorkoutKcal');
       if (elKcal) elKcal.innerHTML = `${kcal} <span style="font-size: 0.9rem;">kcal</span>`;
       const elTime = document.getElementById('valWorkoutTime');
-      if (elTime) elTime.textContent = "00:28:30";
       const elStat = document.getElementById('lblWorkoutStatus');
-      if (elStat) elStat.textContent = "Morning Walk Recorded (Synced)";
       const elHR = document.getElementById('valWorkoutHR');
-      if (elHR) elHR.innerHTML = `94 <span style="font-size: 0.9rem;">BPM</span>`;
       const elZone = document.getElementById('lblWorkoutHRZone');
-      if (elZone) elZone.textContent = "Zone 1: Warm Up (Recovery)";
       const elCad = document.getElementById('valWorkoutCadence');
-      if (elCad) elCad.innerHTML = `84 <span style="font-size: 0.9rem;">spm</span>`;
       const elPace = document.getElementById('valWorkoutPace');
-      if (elPace) elPace.textContent = "Pace: 27:24 min/mi";
       const elG4 = document.getElementById('valWorkoutGLUT4');
-      if (elG4) elG4.innerHTML = `-32 <span style="font-size: 0.9rem;">mg/dL</span>`;
 
-      // Distribute steps into morning bins: 08:00 (slot 16) to 09:30 (slot 19)
-      hbandDaily48Slots[16] = 320;
-      hbandDaily48Slots[17] = 1120;
-      hbandDaily48Slots[18] = 840;
-      hbandDaily48Slots[19] = 104;
+      if (steps > 0) {
+        if (elTime) elTime.textContent = "00:28:30";
+        if (elStat) elStat.textContent = "Active Ambulation Recorded (Synced)";
+        if (elHR) elHR.innerHTML = `94 <span style="font-size: 0.9rem;">BPM</span>`;
+        if (elZone) elZone.textContent = "Zone 1: Warm Up (Recovery)";
+        if (elCad) elCad.innerHTML = `84 <span style="font-size: 0.9rem;">spm</span>`;
+        if (elPace) elPace.textContent = "Pace: 27:24 min/mi";
+        if (elG4) elG4.innerHTML = `-32 <span style="font-size: 0.9rem;">mg/dL</span>`;
+        const slot = Math.min(47, Math.floor(new Date().getHours() * 2 + new Date().getMinutes() / 30));
+        hbandDaily48Slots[slot] = steps;
+      } else {
+        if (elTime) elTime.textContent = "--:--:--";
+        if (elStat) elStat.textContent = "NO WORKOUT SESSION RECORDED (AWAITING ACTIVITY)";
+        if (elHR) elHR.innerHTML = `-- <span style="font-size: 0.9rem;">BPM</span>`;
+        if (elZone) elZone.textContent = "STANDBY (OFF-SESSION)";
+        if (elCad) elCad.innerHTML = `-- <span style="font-size: 0.9rem;">spm</span>`;
+        if (elPace) elPace.textContent = "Pace: --:-- min/mi";
+        if (elG4) elG4.innerHTML = `-- <span style="font-size: 0.9rem;">mg/dL</span>`;
+        hbandDaily48Slots.fill(0);
+      }
       renderHBand48Chart();
+    }
+
+    function propagateStepTelemetry(steps, kcal, miles) {
+      const s = (typeof steps === 'number' && !isNaN(steps)) ? Math.max(0, Math.round(steps)) : 0;
+      const k = (typeof kcal === 'number' && !isNaN(kcal)) ? Math.max(0, Math.round(kcal)) : Math.round(s * 0.04);
+      const m = miles || ((s * 0.7) / 1609.34).toFixed(2);
+      lastSteps = s;
+
+      // 1. Tab 02 Vitals Card
+      const elStep = document.getElementById('valStepCount');
+      if (elStep) elStep.innerHTML = `${s.toLocaleString()} <span style="font-size: 1rem;">steps</span>`;
+      const elDist = document.getElementById('valStepDist');
+      if (elDist) elDist.innerHTML = `${m} <span style="font-size: 1rem;">miles</span>`;
+      const elKcal = document.getElementById('valStepKcal');
+      if (elKcal) elKcal.innerHTML = `${k.toLocaleString()} <span style="font-size: 1rem;">kcal</span>`;
+      const elGoal = document.getElementById('valStepGoal');
+      if (elGoal) elGoal.textContent = `Goal: 2,000 (${Math.round((s / 2000) * 100)}% Met)`;
+
+      // 2. Tab 04 Metabolic 360 Card
+      const tileMotion = document.getElementById('tile360Motion');
+      if (tileMotion) tileMotion.innerHTML = `${s.toLocaleString()} <span style="font-size: 0.9rem;">steps</span>`;
+      const tileSub = document.getElementById('tile360MotionSub');
+      if (tileSub) tileSub.textContent = s > 0 ? "Daily Ambulation Recorded" : "Watch Linked (0 Steps Today)";
+
+      // 3. Tab 07 Reports
+      const repStep = document.getElementById('repAvgSteps');
+      if (repStep) repStep.innerHTML = `${s.toLocaleString()} <span style="font-size: 1rem;">steps</span>`;
+
+      // 4. Tab 11 Goals Console
+      const lblDaily = document.getElementById('lblActiveDailySteps');
+      if (lblDaily) {
+        const pct = Math.min(100, Math.round((s / 8000) * 100));
+        lblDaily.textContent = `TOTAL: ${s.toLocaleString()} / 8,000 STEPS (${pct}%)`;
+      }
+
+      // 5. Tab 13 Operations / Sport Bay
+      updateWorkoutWithSteps(s);
+
+      // 6. Post live pedometer telemetry to server so SQLite reflects current watch state
+      if (typeof postTelemetryToServer === 'function') {
+        postTelemetryToServer("PEDOMETER", s, k, "steps", "");
+      }
     }
 
     function syncStepData() {
@@ -9241,7 +9308,7 @@
       setTimeout(() => sendCommandBytes(cmd07), 150);
 
       // Immediately synchronize SPORT-04 workout card with latest walk data
-      updateWorkoutWithSteps(lastSteps || 2384);
+      updateWorkoutWithSteps(lastSteps || 0);
     }
 
     function toggleGlucoseUnit() {
@@ -12558,7 +12625,7 @@
         const bT = document.getElementById('repChartBPTitle'); if (bT) bT.textContent = "WEEKLY 7-DAY AMBULATORY BLOOD PRESSURE TREND (MMHG)";
         const oT = document.getElementById('repChartSpO2Title'); if (oT) oT.textContent = "WEEKLY 7-DAY NOCTURNAL SPO2 SATURATION (%)";
         const vT = document.getElementById('repChartHRVTitle'); if (vT) vT.textContent = "WEEKLY 7-DAY AUTONOMIC HRV SDNN RECOVERY (MS)";
-      } else if (isMonthly) {
+      } else if (isMonthly && staticClinicalExamplesEnabled) {
         document.getElementById('repChartGlucoseTitle').textContent = "MONTHLY 30-DAY LONGITUDINAL GLUCOSE PROFILE (MG/DL)";
         document.getElementById('repChartA1CTitle').textContent = "MONTHLY 30-DAY ROLLING ESTIMATED A1C (eA1C) PROGRESSION (%)";
         document.getElementById('repChartTempTitle').textContent = "MONTHLY 30-DAY DIURNAL TEMPERATURE HOMEOSTASIS (°F)";
@@ -12590,8 +12657,8 @@
       const currentGlucose = (typeof lastGlucoseMg !== 'undefined' && lastGlucoseMg > 0) 
         ? lastGlucoseMg 
         : (glucoseCalMode === 'temp_8_3_a1c' ? 192 : (glucoseCalMode === 'custom_clinic' ? customClinicLabRefMg : 118));
-      const currentSteps = (typeof lastSteps !== 'undefined' && lastSteps > 0) ? lastSteps : 2384;
-      const currentHR = (typeof lastHR !== 'undefined' && lastHR > 0) ? lastHR : 72;
+      const currentSteps = (typeof lastSteps !== 'undefined' && lastSteps > 0) ? lastSteps : 0;
+      const currentHR = (typeof lastHR !== 'undefined' && lastHR > 0) ? lastHR : 0;
 
       let glucoseData = [];
       let a1cData = [];
@@ -12668,8 +12735,8 @@
             eT.textContent = "TODAY HOURLY STEP ACTIVITY (NO ACTIVITY RECORDED)";
           }
         }
-      } else if (isWeekly) {
-        // 7-day rolling clinical week (Mon to Sun)
+      } else if (isWeekly && staticClinicalExamplesEnabled) {
+        // 7-day rolling clinical week (Mon to Sun) - Exemplar Mode Only
         if (is83Mode) {
           glucoseData = [
             { label: 'Mon', val: 194 }, { label: 'Tue', val: 192 }, { label: 'Wed (Yest)', val: 195 },
@@ -15122,28 +15189,92 @@ Patient
       if (isFullScanRunning) return;
 
       const hud = document.getElementById('lblActiveScanStage');
+      const hudDesc = document.getElementById('lblActiveScanDetails');
       const cDown = document.getElementById('lblFullScanCountdown');
       const liveVal = document.getElementById('lblFullScanLiveVal');
+      const repCard = document.getElementById('cardFullScanReport');
+      const syn = document.getElementById('fullScanClinicalSynthesis');
+      const repMeta = document.getElementById('lblFullScanReportMeta');
+
       if (cDown) cDown.textContent = "--s";
       if (liveVal) liveVal.textContent = "--";
-
-      const vitals = window._latestTelemetry || {};
-      const hasAnyVital = Object.keys(vitals).length > 0;
-
-      const repCard = document.getElementById('cardFullScanReport');
       if (repCard) repCard.style.display = 'flex';
 
-      if (!hasAnyVital) {
-        if (hud) hud.textContent = "READY: PRESS [START FULL SCAN SEQUENCE] TO BEGIN";
+      const vitals = window._latestTelemetry || {};
+      const spo2Obj = vitals.BLOOD_OXYGEN || vitals.SPO2;
+      const hrvObj = vitals.HRV_STRESS || vitals.HRV;
+
+      const nowMs = Date.now();
+      function isRecentAndPositive(v) {
+        if (!v || !(v.value1 > 0)) return false;
+        if (!v.timestamp) return true;
+        try {
+          const cleanTs = v.timestamp.replace(' ', 'T');
+          const tMs = new Date(cleanTs).getTime();
+          if (isNaN(tMs)) return true;
+          return (nowMs - tMs) < 86400000; // strictly within 24 hours
+        } catch(e) { return true; }
+      }
+
+      const hasPositiveVitals = (
+        isRecentAndPositive(vitals.GLUCOSE) ||
+        isRecentAndPositive(vitals.BLOOD_PRESSURE) ||
+        isRecentAndPositive(vitals.HEART_RATE) ||
+        isRecentAndPositive(spo2Obj) ||
+        isRecentAndPositive(vitals.TEMPERATURE) ||
+        isRecentAndPositive(hrvObj)
+      );
+
+      if (!hasPositiveVitals) {
+        if (hud) hud.textContent = "READY: SMARTWATCH LINKED (STANDBY) • PRESS [START FULL SCAN SEQUENCE]";
+        if (hudDesc) hudDesc.textContent = "Smartwatch biometric transponders linked in standby. Device buffer contains zero active samples (dormant / off-wrist). Ready for live sequence.";
+        updateOverallProgressBar(0);
         for (let i = 1; i <= 6; i++) {
           setStageCardState(i, 'idle');
+        }
+        if (repMeta) {
+          repMeta.textContent = "DIAGNOSTIC STATUS: SENSORS SYNCHRONIZED • READY FOR ON-DEMAND FULL SCAN SWEEP";
+        }
+        // Set all report tiles to clean awaiting state
+        const gEl = document.getElementById('repValGlucose');
+        if (gEl) gEl.innerHTML = `-- <span style="font-size: 0.9rem;">mg/dL</span>`;
+        const gBadge = document.getElementById('repBadgeGlucose');
+        if (gBadge) { gBadge.textContent = "AWAITING SCAN"; gBadge.style.color = "var(--lcars-gray)"; }
+
+        const tEl = document.getElementById('repValTemp');
+        if (tEl) tEl.innerHTML = `--.- <span style="font-size: 0.9rem;">°F</span>`;
+        const tSub = document.getElementById('repSubTemp');
+        if (tSub) tSub.textContent = "Skin: --.-°F (--.-°C)";
+
+        const bpEl = document.getElementById('repValBp');
+        if (bpEl) bpEl.innerHTML = `--/-- <span style="font-size: 0.9rem;">mmHg</span>`;
+        const bpSub = document.getElementById('repSubBp');
+        if (bpSub) bpSub.textContent = "Pulse Pressure: -- mmHg";
+
+        const spEl = document.getElementById('repValSpo2');
+        if (spEl) spEl.textContent = "--%";
+
+        const hrEl = document.getElementById('repValHr');
+        if (hrEl) hrEl.innerHTML = `-- <span style="font-size: 0.9rem;">BPM</span>`;
+
+        const hrvEl = document.getElementById('repValHrv');
+        if (hrvEl) hrvEl.innerHTML = `-- <span style="font-size: 0.9rem;">ms</span>`;
+        const hrvSub = document.getElementById('repSubHrv');
+        if (hrvSub) hrvSub.textContent = "Stress Fatigue Score: -- / 100";
+
+        if (syn) {
+          syn.innerHTML = `
+            <div style="color: var(--lcars-banana); padding: 8px 0; font-size: 0.95rem; line-height: 1.5;">
+              <strong>SMARTWATCH HARDWARE SYNCHRONIZED (DORMANT BUFFER / STANDBY):</strong> Watch hardware is paired and connected. Internal memory contains zero recordings from the past 7 days (device dormant / off-wrist). All 6 optical and electrical sensors (Glucose PPG, Core/Skin Temp, Oscillometric BP, Dual-Wavelength SpO2, Cardiac HR, and Autonomic HRV) are calibrated and responsive in idle standby. Click <strong>[START FULL SCAN SEQUENCE]</strong> above to begin sequential live physiological acquisition.
+            </div>
+          `;
         }
         return;
       }
 
       if (hud) hud.textContent = "★ RECENT COMPREHENSIVE SCAN AUDIT ONLINE • READY FOR RE-SCAN";
-      const hudDesc = document.getElementById('lblActiveScanDetails');
       if (hudDesc) hudDesc.textContent = "Biometric audit loaded from SQLite telemetry database. Press [START FULL SCAN SEQUENCE] for live re-scan.";
+      if (repMeta) repMeta.textContent = "★ RECENT COMPREHENSIVE SCAN AUDIT ONLINE • READY FOR RE-SCAN";
       updateOverallProgressBar(100);
 
       // Stage 1: Glucose
@@ -15713,16 +15844,16 @@ Patient
     function propagateFullScanResultsToAllPages(r) {
       if (!r) return;
 
-      const g = (r.glucose && r.glucose > 0) ? r.glucose : 104;
-      const sys = (r.bp && r.bp.sys) ? r.bp.sys : 118;
-      const dia = (r.bp && r.bp.dia) ? r.bp.dia : 76;
-      const sp = (r.spo2 && r.spo2 > 0) ? r.spo2 : 98;
-      const hr = (r.hr && r.hr > 0) ? r.hr : 72;
-      const bodyF = (r.temp && r.temp.bodyF) ? r.temp.bodyF : 98.4;
-      const skinF = (r.temp && r.temp.skinF) ? r.temp.skinF : 95.7;
-      const bodyC = (r.temp && r.temp.bodyC) ? r.temp.bodyC : 36.9;
-      const hrvVal = (r.hrv && r.hrv.hrv) ? r.hrv.hrv : 48;
-      const stressVal = (r.hrv && r.hrv.stress) ? r.hrv.stress : 24;
+      const g = (r.glucose && r.glucose > 0) ? r.glucose : 0;
+      const sys = (r.bp && r.bp.sys) ? r.bp.sys : 0;
+      const dia = (r.bp && r.bp.dia) ? r.bp.dia : 0;
+      const sp = (r.spo2 && r.spo2 > 0) ? r.spo2 : 0;
+      const hr = (r.hr && r.hr > 0) ? r.hr : 0;
+      const bodyF = (r.temp && r.temp.bodyF) ? r.temp.bodyF : 0;
+      const skinF = (r.temp && r.temp.skinF) ? r.temp.skinF : 0;
+      const bodyC = (r.temp && r.temp.bodyC) ? r.temp.bodyC : 0;
+      const hrvVal = (r.hrv && r.hrv.hrv) ? r.hrv.hrv : 0;
+      const stressVal = (r.hrv && r.hrv.stress) ? r.hrv.stress : 0;
 
       // Update global cached state variables
       if (typeof lastGlucoseMg !== 'undefined') lastGlucoseMg = g;
@@ -17419,14 +17550,7 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
 
     // Initialize realistic diurnal activity curve if empty
     function initHBand48Slots() {
-      // Activity bins: only show data we have, slots with no data are explicitly 0.
-      // Watch charging gap from 10:30 to 12:00 (slots 21, 22, 23) has 0 steps.
       hbandDaily48Slots.fill(0);
-      hbandDaily48Slots[16] = 320;   // 08:00 AM (Warm up)
-      hbandDaily48Slots[17] = 1120;  // 08:30 AM (Brisk walk / GLUT4)
-      hbandDaily48Slots[18] = 840;   // 09:00 AM (Aerobic recovery)
-      hbandDaily48Slots[19] = 104;   // 09:30 AM (Cooldown)
-      // Slots 21-23 remain exactly 0 steps (Watch Charging)
       renderHBand48Chart();
     }
 
@@ -17641,7 +17765,7 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
     // Initialize charts and telemetry upon document load
     setTimeout(() => {
       initHBand48Slots();
-      updateWorkoutWithSteps(2384);
+      updateWorkoutWithSteps(0);
       if (typeof renderDietHistory === 'function') renderDietHistory();
     }, 100);
 

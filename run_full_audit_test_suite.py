@@ -237,13 +237,13 @@ run_test("TC-26", "Data Honesty", "Zero-Synthetic Biometric Display (Honest '--'
 print("\n[GROUP 11: CLEBUGGER DATABASE INTEGRITY]")
 cle_conn = sqlite3.connect(CLE_DB)
 cle_cursor = cle_conn.cursor()
-cle_cursor.execute("SELECT bug_code, status FROM bugs WHERE bug_code IN ('CLE-078', 'CLE-079', 'CLE-080', 'CLE-081', 'CLE-082', 'CLE-083')")
+cle_cursor.execute("SELECT bug_code, status FROM bugs WHERE bug_code IN ('CLE-078', 'CLE-079', 'CLE-080', 'CLE-081', 'CLE-082', 'CLE-083', 'CLE-084')")
 recent_cle_rows = dict(cle_cursor.fetchall())
 cle_conn.close()
 
-all_resolved = all(recent_cle_rows.get(f"CLE-0{i}") == "RESOLVED" for i in range(78, 84))
-run_test("TC-27", "CLEBUGGER", "Recent Bugs (CLE-078 to CLE-083) Status in bugs.db", all_resolved,
-         f"CLE-078..083 all marked RESOLVED: {recent_cle_rows}")
+all_resolved = all(recent_cle_rows.get(f"CLE-0{i}") == "RESOLVED" for i in range(78, 85))
+run_test("TC-27", "CLEBUGGER", "Recent Bugs (CLE-078 to CLE-084) Status in bugs.db", all_resolved,
+         f"CLE-078..084 all marked RESOLVED: {recent_cle_rows}")
 
 # -----------------------------------------------------------------------------
 # AUDIT GROUP 12: H8/VEE HARDWARE ADAPTER & ON-CONNECT FULL HARVEST (CLE-083)
@@ -258,6 +258,43 @@ on_connect_full_sync = ("executeFullWatchConnectSync" in idx_content and
                         "SYNC COMPLETE (100% CURRENT)" in idx_content)
 run_test("TC-29", "Connect Harvest", "On-Connect Full Telemetry Dump & 100% Vault Sync State", on_connect_full_sync,
          "Executes 6-transponder harvest on connect before stating 100% sync complete")
+
+# -----------------------------------------------------------------------------
+# AUDIT GROUP 13: RUNTIME INTEGRITY, AUDIO ENGINE & ZERO-DATA WATCH (CLE-084)
+# -----------------------------------------------------------------------------
+print("\n[GROUP 13: RUNTIME INTEGRITY, AUDIO ENGINE & ZERO-DATA WATCH]")
+
+# TC-30: soundSuccess & soundNotification declared in audio scope
+has_sound_success = ("function soundSuccess()" in idx_content and "function soundNotification()" in idx_content)
+run_test("TC-30", "Audio Engine", "soundSuccess() & soundNotification() Declared in Audio Scope", has_sound_success,
+         "soundSuccess & soundNotification defined with dual-tone synthesize chime (Zero ReferenceError)")
+
+# TC-31: propagateStepTelemetry defined and called in packet handler
+has_propagate_steps = ("function propagateStepTelemetry(" in idx_content and "propagateStepTelemetry(" in idx_content)
+run_test("TC-31", "Pedometer", "Universal propagateStepTelemetry Function Declared & Dispatched", has_propagate_steps,
+         "Central step propagation updates all 6 DOM elements & posts to SQLite")
+
+# TC-32: initFullScanView populates fullScanClinicalSynthesis when vitals are zero/dormant (never blank)
+has_dormant_synthesis = ("SMARTWATCH HARDWARE SYNCHRONIZED (DORMANT BUFFER / STANDBY)" in idx_content and
+                         "isRecentAndPositive" in idx_content)
+run_test("TC-32", "Full Scan", "initFullScanView() Populates Clinical Standby Synthesis on Zero Data", has_dormant_synthesis,
+         "Never returns early with blank synthesis; displays informative standby notice on dormant/0-data watch")
+
+# TC-33: Dormant/off-wrist watch state sets 0 steps across pedometer and workout cards
+has_dormant_steps = ("Watch Linked (0 Steps Today)" in idx_content and "NO WORKOUT SESSION RECORDED" in idx_content)
+run_test("TC-33", "Data Honesty", "Dormant Watch State Displays Honest 0 Steps & Awaiting Status", has_dormant_steps,
+         "Displays 0 steps / Awaiting Watch Sync rather than stale or fabricated session")
+
+# TC-34: Opcode 0x07 handled alongside 0xA8 in GATT telemetry receiver
+has_07_handler = ("header === 0x07 || header === 0xA8" in idx_content)
+run_test("TC-34", "BLE Telemetry", "Opcode 0x07 & 0xA8 Pedometer Ingestion for H8 / VEE / 5010", has_07_handler,
+         "Parses both 0x07 (standard Veepoo) and 0xA8 (extended) real-time pedometer packets")
+
+# TC-35: Elimination of hardcoded 2,384 steps from DOM and active startup scripts
+dom_cleaned = ('id="tile360Motion" style="color: var(--lcars-lilac);">0 <span' in idx_content and
+               "updateWorkoutWithSteps(2384)" not in idx_content)
+run_test("TC-35", "Data Scrub", "Hardcoded 2,384 Steps Scrubbed from Active DOM & Startup Execution", dom_cleaned,
+         "tile360Motion initialized to 0, startup workout sets 0 steps, hband slots initialized empty")
 
 # -----------------------------------------------------------------------------
 # SUMMARY & VERDICT

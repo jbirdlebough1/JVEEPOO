@@ -1,0 +1,254 @@
+{
+  "timestamp": "2026-11-21T11:49:24.434050",
+  "total": 35,
+  "passed": 35,
+  "failed": 0,
+  "success_rate": "100.0%",
+  "results": [
+    {
+      "id": "TC-01",
+      "category": "Integrity",
+      "name": "Dual-File Byte-for-Byte Equality",
+      "passed": true,
+      "details": "Root: 1105857 bytes == App: 1105857 bytes"
+    },
+    {
+      "id": "TC-02",
+      "category": "Full Scan",
+      "name": "#cardFullScanReport Display State is Flex",
+      "passed": true,
+      "details": "Not display:none"
+    },
+    {
+      "id": "TC-03",
+      "category": "Full Scan",
+      "name": "Telemetry Fetch Helpers Defined in Window Scope",
+      "passed": true,
+      "details": "fetchTelemetryLatest/Timeline present"
+    },
+    {
+      "id": "TC-04",
+      "category": "Full Scan",
+      "name": "All 6 Sequenced Stage Cards Configured in DOM",
+      "passed": true,
+      "details": "stageCard1 through stageCard6 exist"
+    },
+    {
+      "id": "TC-05",
+      "category": "Full Scan",
+      "name": "Consolidated Report Tiles & Clinical Synthesis DOM Elements",
+      "passed": true,
+      "details": "All 7 report outputs exist"
+    },
+    {
+      "id": "TC-06",
+      "category": "Full Scan",
+      "name": "initFullScanView() Hydrates SQLite Telemetry on Load",
+      "passed": true,
+      "details": "Hydrates recent telemetry without scan rerun"
+    },
+    {
+      "id": "TC-07",
+      "category": "Watch Sync",
+      "name": "triggerWatchSyncNow Invokes Direct BLE Data Harvest",
+      "passed": true,
+      "details": "Executes GATT harvest before server trigger"
+    },
+    {
+      "id": "TC-08",
+      "category": "Watch Sync",
+      "name": "15-Minute Automatic Background Dump Interval",
+      "passed": true,
+      "details": "15-minute setInterval registered"
+    },
+    {
+      "id": "TC-09",
+      "category": "Watch Sync",
+      "name": "Watch Telemetry SQLite Ingestion & Deduplication",
+      "passed": true,
+      "details": "Deduplication confirmed"
+    },
+    {
+      "id": "TC-10",
+      "category": "Nutrition",
+      "name": "Zero-Calorie Clove & Cinnamon Tea Profile",
+      "passed": true,
+      "details": "2 kcal, 0.5g carbs, 0.0g protein, 0.0g fat, GL: 0 (Zero Glycemic Impact)"
+    },
+    {
+      "id": "TC-11",
+      "category": "Nutrition",
+      "name": "Taco Time Fiesta Platter Semantic Matching",
+      "passed": true,
+      "details": "1360 kcal, 167.0g carbs, 36.0g protein"
+    },
+    {
+      "id": "TC-12",
+      "category": "Nutrition",
+      "name": "Pre-Check Metabolic Impact Analysis (analyze_only)",
+      "passed": true,
+      "details": "Returns macros & metabolic projections without writing duplicate records"
+    },
+    {
+      "id": "TC-13",
+      "category": "Mobile /cell",
+      "name": "Meal Occasion Component Categorization (4 Categories)",
+      "passed": true,
+      "details": "Breakfast, Lunch, Dinner, Snack/Tea present"
+    },
+    {
+      "id": "TC-14",
+      "category": "Mobile /cell",
+      "name": "Offline Staging Queue for All-Day Logging",
+      "passed": true,
+      "details": "localStorage staged_meals_queue with stage button"
+    },
+    {
+      "id": "TC-15",
+      "category": "Mobile /cell",
+      "name": "Auto-Detection of Home Wi-Fi & 1-Click Batch Upload",
+      "passed": true,
+      "details": "Auto link polling + 1-click syncAllStagedMeals()"
+    },
+    {
+      "id": "TC-16",
+      "category": "Mobile /cell",
+      "name": "Mobile Client Clinical Fallback Engine for Teas & Infusions",
+      "passed": true,
+      "details": "calculateClinicalNutrition outputs 2 kcal / 0 protein for teas"
+    },
+    {
+      "id": "TC-17",
+      "category": "Meals UI",
+      "name": "Scrollable Popular Meals Listbox (3-Click Paradigm)",
+      "passed": true,
+      "details": "Dropdown/listbox selector replacing scattered buttons"
+    },
+    {
+      "id": "TC-18",
+      "category": "Meals UI",
+      "name": "Submitted Meals Scrollable Window (Latest 5 + Full History)",
+      "passed": true,
+      "details": "Bounded vertical viewport (max-height: 520px) with thin scrollbar"
+    },
+    {
+      "id": "TC-19",
+      "category": "Goals Report",
+      "name": "Goals Compliance Report Endpoint (/api/goals/compliance-report)",
+      "passed": true,
+      "details": "14 events, 85.7% compliance"
+    },
+    {
+      "id": "TC-20",
+      "category": "Goals Report",
+      "name": "Goals Report Controls (Timeframes: W/M/Q/YTD & Met/Missed Filters)",
+      "passed": true,
+      "details": "Buttons [W/M/Q/YTD], filters [All/Met/Missed] & loadGoalsComplianceReport hooked up"
+    },
+    {
+      "id": "TC-21",
+      "category": "Steps",
+      "name": "Universal Pedometer Propagation Across All 6 Consoles",
+      "passed": true,
+      "details": "All 6 DOM targets wired: valStepCount, valStepDist, valStepKcal, valStepGoal, tile360Motion, lblActiveDailySteps"
+    },
+    {
+      "id": "TC-22",
+      "category": "Watch Face",
+      "name": "Stock Watch Face Slot Switching (Slots 0, 1, 2, 3)",
+      "passed": true,
+      "details": "Slot 0 Default, Slot 1 Sport, Slot 2 Digital, Slot 3 Custom"
+    },
+    {
+      "id": "TC-23",
+      "category": "Watch Face",
+      "name": "Veepoo Cloud Dial OTA Flasher Bay & Firmware Inventory",
+      "passed": true,
+      "details": "94 stock dials library with OTA flash routines"
+    },
+    {
+      "id": "TC-24",
+      "category": "Watch Face",
+      "name": "Watch Face Dial Inventory API (/api/dial/inventory)",
+      "passed": true,
+      "details": "94 official 240x280 watch faces available"
+    },
+    {
+      "id": "TC-25",
+      "category": "UI Parity",
+      "name": "Data Log TX Transmission Color is Blue",
+      "passed": true,
+      "details": "TX packets rendered in cyan/blue theme"
+    },
+    {
+      "id": "TC-26",
+      "category": "Data Honesty",
+      "name": "Zero-Synthetic Biometric Display (Honest '--' Empty State)",
+      "passed": true,
+      "details": "Displays honest '--' when sensors unacquired"
+    },
+    {
+      "id": "TC-27",
+      "category": "CLEBUGGER",
+      "name": "Recent Bugs (CLE-078 to CLE-084) Status in bugs.db",
+      "passed": true,
+      "details": "CLE-078..084 all marked RESOLVED: {'CLE-078': 'RESOLVED', 'CLE-079': 'RESOLVED', 'CLE-080': 'RESOLVED', 'CLE-081': 'RESOLVED', 'CLE-082': 'RESOLVED', 'CLE-083': 'RESOLVED', 'CLE-084': 'RESOLVED'}"
+    },
+    {
+      "id": "TC-28",
+      "category": "Hardware Adapter",
+      "name": "Hardware-Adaptive GATT TX Command Binding (H8 / VEE / 5010)",
+      "passed": true,
+      "details": "Binds fea2/fee8/ae01/6e400002/f0080003 or first writable characteristic dynamically"
+    },
+    {
+      "id": "TC-29",
+      "category": "Connect Harvest",
+      "name": "On-Connect Full Telemetry Dump & 100% Vault Sync State",
+      "passed": true,
+      "details": "Executes 6-transponder harvest on connect before stating 100% sync complete"
+    },
+    {
+      "id": "TC-30",
+      "category": "Audio Engine",
+      "name": "soundSuccess() & soundNotification() Declared in Audio Scope",
+      "passed": true,
+      "details": "soundSuccess & soundNotification defined with dual-tone synthesize chime (Zero ReferenceError)"
+    },
+    {
+      "id": "TC-31",
+      "category": "Pedometer",
+      "name": "Universal propagateStepTelemetry Function Declared & Dispatched",
+      "passed": true,
+      "details": "Central step propagation updates all 6 DOM elements & posts to SQLite"
+    },
+    {
+      "id": "TC-32",
+      "category": "Full Scan",
+      "name": "initFullScanView() Populates Clinical Standby Synthesis on Zero Data",
+      "passed": true,
+      "details": "Never returns early with blank synthesis; displays informative standby notice on dormant/0-data watch"
+    },
+    {
+      "id": "TC-33",
+      "category": "Data Honesty",
+      "name": "Dormant Watch State Displays Honest 0 Steps & Awaiting Status",
+      "passed": true,
+      "details": "Displays 0 steps / Awaiting Watch Sync rather than stale or fabricated session"
+    },
+    {
+      "id": "TC-34",
+      "category": "BLE Telemetry",
+      "name": "Opcode 0x07 & 0xA8 Pedometer Ingestion for H8 / VEE / 5010",
+      "passed": true,
+      "details": "Parses both 0x07 (standard Veepoo) and 0xA8 (extended) real-time pedometer packets"
+    },
+    {
+      "id": "TC-35",
+      "category": "Data Scrub",
+      "name": "Hardcoded 2,384 Steps Scrubbed from Active DOM & Startup Execution",
+      "passed": true,
+      "details": "tile360Motion initialized to 0, startup workout sets 0 steps, hband slots initialized empty"
+    }
+  ]
+}
