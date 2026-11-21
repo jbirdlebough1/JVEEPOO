@@ -1353,35 +1353,35 @@
     "id": 28,
     "num": "28",
     "module": "Module 5: The Diabetes Learning Engine",
-    "title": "Actionable Clinical Reports & Patient-Controlled Local Export",
-    "desc": "One-click local export of continuous telemetry into verified clinical PDF and CSV reports for doctor consultations.",
-    "narration": "Displayed on your screen is the Reports Toolbar in Tab 04, highlighting our clean clinical export options. Because patient data privacy and HIPAA security are paramount, El-CARS operates strictly air-gapped on your local hardware. There is zero unauthorized transmission to third-party servers. With one click, you can generate comprehensive, publication-grade clinical reports in standard PDF and CSV formats. You maintain complete custody of your health data, ready to print, review side-by-side with your physician at Evergreen or your local clinic, or manually share through your patient portal on your own terms.",
-    "card_title": "PATIENT-CONTROLLED LOCAL CLINICAL EXPORT & PRIVACY",
+    "title": "EHR Direct Import Export: Standard HL7 FHIR R4 & Clinical CSV",
+    "desc": "Universal interoperability that Epic, Cerner, and other EHR systems import directly without conversion; patient can email or portal-send to their doctor.",
+    "narration": "Displayed on your screen is our EHR Direct Import Export Suite in Tab 05 Reports Console. You can package your continuous ambulatory telemetry into universal standard formats that Epic, Cerner, and other electronic health records import directly with zero file conversion. With one click, generate an official HL7 FHIR Release 4 JSON bundle mapped with LOINC codes for glucose, blood pressure, and steps, or a standard clinical CSV. You can attach these files inside your Evergreen MyChart portal or use our one-click email drafter to send them straight to your physician, who can import them directly into your chart.",
+    "card_title": "UNIVERSAL EHR INTEROPERABILITY & DIRECT DOCTOR IMPORT",
     "bullets": [
       [
-        "100% Air-Gapped Local Operation",
-        "Telemetry remains strictly on your local PC with zero unauthorized cloud egress or unverified third-party transmissions."
+        "Universal HL7 FHIR Release 4 Standard",
+        "Generates official JSON collection bundles with certified LOINC codes (2339-0 Glucose, 4548-4 eA1C, 8480-6 BP) and UCUM units."
       ],
       [
-        "One-Click Export (CSV & PDF)",
-        "Bundles 90 days of continuous multi-lane telemetry into standardized RFC-4180 CSV and printable clinical PDF flowsheets."
+        "Zero Conversion Required by Clinic",
+        "Modern EHRs like Epic Hyperspace and Cerner Millennium import standard FHIR R4 and RFC-4180 CSV files directly into flowsheet records."
       ],
       [
-        "Physician Consultation Ready",
-        "Bridges the 15-minute appointment gap: hand your doctor verified time-series data covering fasting glucose, meal spikes, and night nadirs."
+        "Patient-Directed Delivery",
+        "Patient downloads the files and emails them to their doctor or attaches them inside MyChart with complete air-gapped privacy."
       ],
       [
-        "Patient-Directed Portal Upload",
-        "You maintain full custody to manually attach reports to Evergreen MyChart or your health system's portal whenever you choose."
+        "1-Click Email Drafter with Import Guide",
+        "Pre-fills a clinical email to your physician with your MRN and clear instructions for medical records staff on importing the data."
       ]
     ],
-    "takeaway": "Your telemetry remains 100% private and air-gapped on your personal computer. One-click export generates comprehensive clinical reports ready for your next doctor consultation or patient portal upload.",
+    "takeaway": "Standard HL7 FHIR R4 and CSV formats ensure your doctor's office can import your continuous telemetry directly into Epic or Cerner without conversion, keeping you in complete control.",
     "right_header": "AIR-GAPPED CLINICAL REPORT EXPORT",
     "right_badge": "SMART-ON-FHIR R4 \u2022 305M PATIENTS",
     "right_badge_col": "#0284c7",
     "right_html": "\n          <!-- What is Epic & Why Direct Integration is Critical -->\n          <div style=\"background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 10px; margin-top: 4px; color: #0f172a;\">\n            <div style=\"display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 4px; margin-bottom: 8px;\">\n              <span style=\"font-family: monospace; font-size: 0.72rem; color: #0284c7; font-weight: 800;\">EPIC ELECTRONIC HEALTH RECORD (EHR) BRIDGE</span>\n              <span style=\"background: #0284c7; color: #fff; font-size: 0.60rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; font-family: monospace;\">SMART-ON-FHIR R4</span>\n            </div>\n\n            <!-- What is Epic Educational Card -->\n            <div style=\"background: #eff6ff; border: 1.5px solid #bfdbfe; border-radius: 5px; padding: 8px; font-family: monospace; font-size: 0.68rem; line-height: 1.35;\">\n              <div style=\"color: #1e40af; font-weight: 900; font-size: 0.74rem;\">\n                \ud83c\udfe5 WHAT IS EPIC SYSTEMS?\n              </div>\n              <div style=\"color: #1e3a8a; margin-top: 4px;\">\n                <strong>Global Healthcare Standard:</strong> Epic is the gold-standard hospital and outpatient Electronic Health Record (EHR) platform managing records for over <strong>305 million patients worldwide</strong> (&gt;78% of US hospital capacity, including Mayo Clinic, Johns Hopkins, Kaiser Permanente, and Cleveland Clinic).\n              </div>\n            </div>\n\n            <!-- The Toolbar Upload Button Highlight -->\n            <div style=\"margin-top: 6px; background: #ffffff; border: 1.5px solid #0284c7; border-radius: 5px; padding: 8px; display: flex; align-items: center; justify-content: space-between;\">\n              <div>\n                <div style=\"font-size: 0.65rem; color: #64748b; font-family: monospace;\">TOOLBAR ACTION TRIGGER (TAB 04)</div>\n                <div style=\"font-size: 0.85rem; font-weight: 900; color: #0284c7; font-family: monospace;\">\ud83d\udce4 PUSH TO DOCTOR'S EPIC</div>\n              </div>\n              <div style=\"background: #0284c7; color: #ffffff; font-size: 0.60rem; font-weight: bold; padding: 3px 8px; border-radius: 4px; font-family: monospace;\">\n                1-CLICK COMMIT\n              </div>\n            </div>\n\n            <!-- Why This Integration is Essential (3 Core Pillars) -->\n            <div style=\"margin-top: 6px; display: flex; flex-direction: column; gap: 5px; font-family: monospace; font-size: 0.67rem;\">\n              <div style=\"background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 4px; padding: 6px;\">\n                <strong style=\"color: #166534;\">1. Closes the 15-Minute Visit Gap:</strong>\n                <span style=\"color: #14532d;\"> Eliminates oral recall guesswork. Doctors receive pre-correlated 90-day time-series directly inside their official clinical encounter charting.</span>\n              </div>\n              <div style=\"background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 4px; padding: 6px;\">\n                <strong style=\"color: #0284c7;\">2. Objective Drug Titration:</strong>\n                <span style=\"color: #0c4a6e;\"> Pharmacists and endocrinologists immediately adjust basal insulin, metformin, or GLP-1s based on verified nocturnal nadirs and post-meal spikes.</span>\n              </div>\n              <div style=\"background: #fffbeb; border: 1px solid #fde68a; border-radius: 4px; padding: 6px;\">\n                <strong style=\"color: #d97706;\">3. Remote Patient Monitoring (RPM):</strong>\n                <span style=\"color: #92400e;\"> Directly qualifies clinical practices for Medicare/private insurance RPM billing codes (CPT 99453, 99454, 99457).</span>\n              </div>\n            </div>\n          </div>\n",
     "tab_screenshot": "images/lcars_slide28_epic_gateway.png",
-    "tab_title": "04-REPORTS CONSOLE \u2022 LOCAL CLINICAL EXPORT & PATIENT PRIVACY",
+    "tab_title": "05-REPORTS CONSOLE \u2022 HL7 FHIR R4 & EHR DIRECT IMPORT EXPORT",
     "tab_num": 4,
     "image": "images/lcars_slide28_epic_gateway.png",
     "step_focus": [

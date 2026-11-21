@@ -422,19 +422,19 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 28: Actionable Clinical Reports & Patient-Controlled Local Export
+### Slide 28: EHR Direct Import Export: Standard HL7 FHIR R4 & Clinical CSV
 **Module:** Module 5: The Diabetes Learning Engine  
-**Card Title:** PATIENT-CONTROLLED LOCAL CLINICAL EXPORT & PRIVACY  
+**Card Title:** UNIVERSAL EHR INTEROPERABILITY & DIRECT DOCTOR IMPORT  
 
-> Displayed on your screen is the Reports Toolbar in Tab 04, highlighting our clean clinical export options. Because patient data privacy and HIPAA security are paramount, El-CARS operates strictly air-gapped on your local hardware. There is zero unauthorized transmission to third-party servers. With one click, you can generate comprehensive, publication-grade clinical reports in standard PDF and CSV formats. You maintain complete custody of your health data, ready to print, review side-by-side with your physician at Evergreen or your local clinic, or manually share through your patient portal on your own terms.
+> Displayed on your screen is our EHR Direct Import Export Suite in Tab 05 Reports Console. You can package your continuous ambulatory telemetry into universal standard formats that Epic, Cerner, and other electronic health records import directly with zero file conversion. With one click, generate an official HL7 FHIR Release 4 JSON bundle mapped with LOINC codes for glucose, blood pressure, and steps, or a standard clinical CSV. You can attach these files inside your Evergreen MyChart portal or use our one-click email drafter to send them straight to your physician, who can import them directly into your chart.
 
 **Key Points:**
-- **100% Air-Gapped Local Operation:** Telemetry remains strictly on your local PC with zero unauthorized cloud egress or unverified third-party transmissions.
-- **One-Click Export (CSV & PDF):** Bundles 90 days of continuous multi-lane telemetry into standardized RFC-4180 CSV and printable clinical PDF flowsheets.
-- **Physician Consultation Ready:** Bridges the 15-minute appointment gap: hand your doctor verified time-series data covering fasting glucose, meal spikes, and night nadirs.
-- **Patient-Directed Portal Upload:** You maintain full custody to manually attach reports to Evergreen MyChart or your health system's portal whenever you choose.
+- **Universal HL7 FHIR Release 4 Standard:** Generates official JSON collection bundles with certified LOINC codes (2339-0 Glucose, 4548-4 eA1C, 8480-6 BP) and UCUM units.
+- **Zero Conversion Required by Clinic:** Modern EHRs like Epic Hyperspace and Cerner Millennium import standard FHIR R4 and RFC-4180 CSV files directly into flowsheet records.
+- **Patient-Directed Delivery:** Patient downloads the files and emails them to their doctor or attaches them inside MyChart with complete air-gapped privacy.
+- **1-Click Email Drafter with Import Guide:** Pre-fills a clinical email to your physician with your MRN and clear instructions for medical records staff on importing the data.
 
-**Key Takeaway:** Your telemetry remains 100% private and air-gapped on your personal computer. One-click export generates comprehensive clinical reports ready for your next doctor consultation or patient portal upload.
+**Key Takeaway:** Standard HL7 FHIR R4 and CSV formats ensure your doctor's office can import your continuous telemetry directly into Epic or Cerner without conversion, keeping you in complete control.
 
 ---
 

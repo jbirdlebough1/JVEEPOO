@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>LCARS 5010 - Slide 28: Actionable Clinical Reports & Patient-Controlled Local Export</title>
+  <title>LCARS 5010 - Slide 28: EHR Direct Import Export: Standard HL7 FHIR R4 & Clinical CSV</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
@@ -88,7 +88,7 @@
     <div class="slide-header">
       <div>
         <div class="slide-module">Module 5: The Diabetes Learning Engine</div>
-        <div class="slide-title">Actionable Clinical Reports & Patient-Controlled Local Export</div>
+        <div class="slide-title">EHR Direct Import Export: Standard HL7 FHIR R4 & Clinical CSV</div>
       </div>
       <div class="slide-badge">SLIDE 28 / 53</div>
     </div>
@@ -97,24 +97,24 @@
       
       <!-- High-Contrast Dynamic Content Card -->
       <div class="content-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #0284c7; padding: 10px 14px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto;">
-        <h3 style="color: #0284c7; font-weight: 800; border-bottom: 2px solid #e2e8f0; padding-bottom: 4px; margin-bottom: 5px; font-size: 1.05rem; text-transform: uppercase;">PATIENT-CONTROLLED LOCAL CLINICAL EXPORT & PRIVACY</h3>
-        <p style="color: #334155; font-weight: 500; margin-bottom: 5px; font-size: 0.85rem; line-height: 1.35;">One-click local export of continuous telemetry into verified clinical PDF and CSV reports for doctor consultations.</p>
+        <h3 style="color: #0284c7; font-weight: 800; border-bottom: 2px solid #e2e8f0; padding-bottom: 4px; margin-bottom: 5px; font-size: 1.05rem; text-transform: uppercase;">UNIVERSAL EHR INTEROPERABILITY & DIRECT DOCTOR IMPORT</h3>
+        <p style="color: #334155; font-weight: 500; margin-bottom: 5px; font-size: 0.85rem; line-height: 1.35;">Universal interoperability that Epic, Cerner, and other EHR systems import directly without conversion; patient can email or portal-send to their doctor.</p>
         <ul class="bullets-list" style="padding-left: 0; list-style-type: none; margin-bottom: 3px; color: #1e293b; font-size: 0.80rem;">
           
           <li id="bullet-item-0" class="bullet-item" data-idx="0" style="margin-bottom: 5px; line-height: 1.25; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">100% Air-Gapped Local Operation:</strong> Telemetry remains strictly on your local PC with zero unauthorized cloud egress or unverified third-party transmissions.
+            <strong style="color: #0369a1;">Universal HL7 FHIR Release 4 Standard:</strong> Generates official JSON collection bundles with certified LOINC codes (2339-0 Glucose, 4548-4 eA1C, 8480-6 BP) and UCUM units.
           </li>
         
           <li id="bullet-item-1" class="bullet-item" data-idx="1" style="margin-bottom: 5px; line-height: 1.25; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">One-Click Export (CSV & PDF):</strong> Bundles 90 days of continuous multi-lane telemetry into standardized RFC-4180 CSV and printable clinical PDF flowsheets.
+            <strong style="color: #0369a1;">Zero Conversion Required by Clinic:</strong> Modern EHRs like Epic Hyperspace and Cerner Millennium import standard FHIR R4 and RFC-4180 CSV files directly into flowsheet records.
           </li>
         
           <li id="bullet-item-2" class="bullet-item" data-idx="2" style="margin-bottom: 5px; line-height: 1.25; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">Physician Consultation Ready:</strong> Bridges the 15-minute appointment gap: hand your doctor verified time-series data covering fasting glucose, meal spikes, and night nadirs.
+            <strong style="color: #0369a1;">Patient-Directed Delivery:</strong> Patient downloads the files and emails them to their doctor or attaches them inside MyChart with complete air-gapped privacy.
           </li>
         
           <li id="bullet-item-3" class="bullet-item" data-idx="3" style="margin-bottom: 5px; line-height: 1.25; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">Patient-Directed Portal Upload:</strong> You maintain full custody to manually attach reports to Evergreen MyChart or your health system's portal whenever you choose.
+            <strong style="color: #0369a1;">1-Click Email Drafter with Import Guide:</strong> Pre-fills a clinical email to your physician with your MRN and clear instructions for medical records staff on importing the data.
           </li>
         
         </ul>
@@ -123,7 +123,7 @@
             <div class="left-screenshot-card" style="margin-top: 6px; margin-bottom: 6px; border: 2px solid #cbd5e1; border-radius: 8px; overflow: hidden; background: #ffffff; box-shadow: 0 4px 14px rgba(0,0,0,0.08); display: flex; flex-direction: column; flex: 1; min-height: 290px;">
               <!-- Continuous Monotonic Scroll Viewport (Clean Light Background) -->
               <div class="left-screenshot-viewport" style="text-align: center; background: #ffffff; overflow-y: auto; flex: 1; min-height: 250px; position: relative;">
-                <img src="images/lcars_slide28_epic_gateway.png" onerror="this.src='../images/lcars_slide28_epic_gateway.png'" alt="04-REPORTS CONSOLE • LOCAL CLINICAL EXPORT & PATIENT PRIVACY" style="width: 100%; height: auto; display: block; object-fit: cover; object-position: top center;">
+                <img src="images/lcars_slide28_epic_gateway.png" onerror="this.src='../images/lcars_slide28_epic_gateway.png'" alt="05-REPORTS CONSOLE • HL7 FHIR R4 & EHR DIRECT IMPORT EXPORT" style="width: 100%; height: auto; display: block; object-fit: cover; object-position: top center;">
               </div>
             </div>
             
@@ -184,7 +184,7 @@
 
         </div>
         <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.76rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
-          <strong style="color: #15803d;">Key Takeaway:</strong> Your telemetry remains 100% private and air-gapped on your personal computer. One-click export generates comprehensive clinical reports ready for your next doctor consultation or patient portal upload.
+          <strong style="color: #15803d;">Key Takeaway:</strong> Standard HL7 FHIR R4 and CSV formats ensure your doctor's office can import your continuous telemetry directly into Epic or Cerner without conversion, keeping you in complete control.
         </div>
       </div>
     
