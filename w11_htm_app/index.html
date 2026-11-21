@@ -1655,47 +1655,44 @@
       <button id="navTabFullScan" class="lcars-pill pill-blue active" onclick="switchTab('fullscan')">
         <span class="tab-label">01-FULL SCAN</span>
       </button>
-      <button id="navTabVitals" class="lcars-pill pill-banana" onclick="switchTab('vitals')">
-        <span class="tab-label">02-VITALS</span>
-      </button>
       <button id="navTabCardio" class="lcars-pill pill-orange" onclick="switchTab('cardio')">
-        <span class="tab-label">03-CARDIO</span>
+        <span class="tab-label">02-CARDIO</span>
       </button>
       <button id="navTabMetabolic" class="lcars-pill pill-peach" onclick="switchTab('metabolic')">
-        <span class="tab-label">04-METABOLIC</span>
+        <span class="tab-label">03-METABOLIC</span>
       </button>
       <button id="navTabExport" class="lcars-pill pill-lilac" onclick="switchTab('export')" style="border-left: 5px solid #38bdf8;">
-        <span class="tab-label">05-EXPORT</span>
+        <span class="tab-label">04-EXPORT</span>
       </button>
       <button id="navTabDietTrades" class="lcars-pill pill-green" onclick="switchTab('diettrades')">
-        <span class="tab-label">06-ADA TRADES</span>
+        <span class="tab-label">05-ADA TRADES</span>
       </button>
       <button id="navTabReports" class="lcars-pill pill-blue" onclick="switchTab('reports')">
-        <span class="tab-label">07-REPORTS</span>
+        <span class="tab-label">06-REPORTS</span>
       </button>
       <button id="navTabLearning" class="lcars-pill pill-ice" onclick="switchTab('learning')" style="border-left: 5px solid #0284c7;">
-        <span class="tab-label">08-LEARNING</span>
+        <span class="tab-label">07-LEARNING</span>
       </button>
       <button id="navTabHelp" class="lcars-pill pill-banana" onclick="switchTab('help')">
-        <span class="tab-label">09-HELP &amp; FAQ</span>
+        <span class="tab-label">08-HELP &amp; FAQ</span>
       </button>
       <button id="navTabMedication" class="lcars-pill pill-orange" onclick="switchTab('medication')">
-        <span class="tab-label">10-MEDICATION</span>
+        <span class="tab-label">09-MEDICATION</span>
       </button>
       <button id="navTabGoals" class="lcars-pill pill-green" onclick="switchTab('goals')">
-        <span class="tab-label">11-CLINICAL GOALS</span>
+        <span class="tab-label">10-CLINICAL GOALS</span>
       </button>
       <button id="navTabSetup" class="lcars-pill pill-lilac" onclick="switchTab('setup')">
-        <span class="tab-label">12-CONFIG</span>
+        <span class="tab-label">11-CONFIG</span>
       </button>
       <button id="navTabOperations" class="lcars-pill pill-peach" onclick="switchTab('operations')">
-        <span class="tab-label">13-OPERATIONS</span>
+        <span class="tab-label">12-OPERATIONS</span>
       </button>
       <button id="navTabLog" class="lcars-pill pill-blue" onclick="switchTab('log')">
-        <span class="tab-label">14-DATA LOG</span>
+        <span class="tab-label">13-DATA LOG</span>
       </button>
       <button id="navTabWatchFaces" class="lcars-pill pill-banana" onclick="switchTab('watchfaces')">
-        <span class="tab-label">15-WATCH FACES</span>
+        <span class="tab-label">14-WATCH FACES</span>
       </button>
     </nav>
 
@@ -1765,9 +1762,6 @@
               </button>
               <button id="btnCancelFullScan" class="lcars-btn btn-orange" style="flex: 1; min-height: 44px; font-size: 0.95rem;" onclick="cancelFullScanSequence()" disabled>
                 ✕ CANCEL SEQUENCE
-              </button>
-              <button id="btnSkipFullScan" class="lcars-btn btn-blue" style="flex: 1; min-height: 44px; font-size: 0.95rem;" onclick="skipCurrentFullScanStep()" disabled>
-                ⏭ SKIP TO NEXT
               </button>
             </div>
 
@@ -1958,9 +1952,6 @@
               <div style="font-size: 0.8rem; color: var(--lcars-gray); font-family: var(--lcars-mono);">
                 All 6 sensors disengaged successfully. Watch hardware returned to idle display.
               </div>
-              <button class="lcars-btn btn-banana" style="flex: none; padding: 6px 16px; font-weight: bold;" onclick="startFullScanSequence()">
-                ↻ RUN ANOTHER FULL SCAN
-              </button>
             </div>
           </div>
 
@@ -1970,187 +1961,34 @@
       <!-- =====================================================================
            TAB 1: CORE VITALS (Optical Glucose, Dual Temp, Blood Pressure, SpO2)
            ===================================================================== -->
-      <div id="pageVitals" class="tab-page">
-        <div class="lcars-bays-grid">
-
-          <!-- BAY 1: Non-Invasive Hemodynamic Blood Glucose -->
-          <div class="lcars-bay">
-            <div class="lcars-bay-header" style="border-bottom: 3px solid #ca8a04; background: #f8fafc;">
-              <span class="lcars-bay-tag" style="background: #ca8a04; color: white; font-weight: 800;">BIO-01</span>
-              <span class="lcars-bay-title" style="color: #091428; font-weight: 800;">HEMODYNAMIC OPTICAL GLUCOSE</span>
-            </div>
-            <div class="lcars-bay-body">
-              <div class="telemetry-display">
-                <div class="telemetry-huge" id="valGlucose">--</div>
-                <div class="telemetry-unit" id="unitGlucose">mg/dL</div>
-                <div class="telemetry-state">
-                  <span class="state-badge normal" id="badgeGlucose">IDLE</span>
-                  <div style="font-size: 0.75rem; color: var(--lcars-gray); margin-top: 4px;">CALIBRATED OPTICAL PPG</div>
-                </div>
-              </div>
-
-              <div class="sub-telemetry-row">
-                <div class="row-meta">
-                  <span class="label">OPTICAL SCAN PROGRESS</span>
-                  <span id="txtGlucoseProgress" style="font-family: var(--lcars-mono);">0%</span>
-                </div>
-                <div class="lcars-bar-track">
-                  <div class="lcars-bar-fill" id="barGlucose" style="width: 0%;"></div>
-                </div>
-              </div>
-
-              <div class="sub-telemetry-row">
-                <div class="row-meta">
-                  <span class="label">METABOLIC HOMEOSTASIS INDEX</span>
-                  <span id="txtGlucoseRisk" style="font-family: var(--lcars-mono); color: var(--lcars-green);">NORMAL HOMEOSTASIS (60–200 MG/DL)</span>
-                </div>
-              </div>
-
-              <!-- Active Glycemic Calibration Status Ribbon -->
-              <div id="bayGlucoseCalBadge" style="margin: 8px 0; padding: 6px 10px; background: rgba(255, 187, 0, 0.12); border: 1px solid var(--lcars-banana); border-left: 4px solid var(--lcars-banana); border-radius: 4px; display: flex; justify-content: space-between; align-items: center; font-family: var(--lcars-mono); font-size: 0.75rem;">
-                <span><strong style="color: var(--lcars-banana);">CALIBRATION:</strong> <span id="lblGlucoseCalStatus" style="color: var(--lcars-text);">PRIVATE MODE ACTIVE (CALIBRATED)</span></span>
-                <span style="color: var(--lcars-gray);">RAW PPG: <span id="lblRawGlucoseVal" style="color: var(--lcars-banana); font-weight: bold;">--</span> mg/dL</span>
-              </div>
-
-
-
-              <div class="bay-controls" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 12px; padding-bottom: 4px;">
-                <button id="btnStartGlucose" class="lcars-btn btn-banana" style="min-height: 36px; font-weight: 800;" onclick="startGlucoseDetection()">SCAN</button>
-                <button id="btnStopGlucose" class="lcars-btn btn-orange" style="min-height: 36px; font-weight: 800;" onclick="stopGlucoseDetection()">CANCEL</button>
-                <button id="btnCalibrate" class="lcars-btn btn-ice" style="min-height: 36px; font-weight: 800;" onclick="calibrateGlucosePrompt()">CALIBRATE</button>
-                <button id="btnReadCal" class="lcars-btn btn-blue" style="min-height: 36px; font-weight: 800;" onclick="readWatchGlucoseCalibration()">READ CAL</button>
-              </div>
-              <div id="lblGlucoseCalInfo" style="font-size: 0.75rem; color: #b45309; font-weight: 700; margin-top: 6px; font-family: var(--lcars-mono); letter-spacing: 0.04em;">
-                TEMPORARY CLINICAL CALIBRATION ACTIVE: 8.3% HbA1c ANCHOR (+41.5 MG/DL OFFSET | eAG 191.5 MG/DL) • TARGET RANGE: 60 - 200 MG/DL
-              </div>
-            </div>
-          </div>
-
-          <!-- BAY 2: Dual-Sensor Body Temperature Matrix -->
-          <div class="lcars-bay">
-            <div class="lcars-bay-header" style="border-bottom: 3px solid #0284c7; background: #f8fafc;">
-              <span class="lcars-bay-tag" style="background: #0284c7; color: white; font-weight: 800;">BIO-02</span>
-              <span class="lcars-bay-title" style="color: #091428; font-weight: 800;">DUAL-SENSOR THERMAL MATRIX</span>
-            </div>
-            <div class="lcars-bay-body">
-              <div class="telemetry-display">
-                <div class="telemetry-huge temp" id="valTemp">--.-</div>
-                <div class="telemetry-unit" id="unitTemp">°F</div>
-                <div class="telemetry-state">
-                  <span class="state-badge normal" id="badgeTemp">STANDBY</span>
-                  <div style="font-size: 0.75rem; color: var(--lcars-blue); margin-top: 4px;">NORMAL: 95.0°F - 98.6°F • BASELINE: 96.8°F - 97.4°F</div>
-                </div>
-              </div>
-
-              <div class="sub-telemetry-row">
-                <div class="row-meta">
-                  <span class="label">CORE ALGORITHM TEMPERATURE</span>
-                  <span id="txtTempCore" style="font-family: var(--lcars-mono);">--.-°F (STANDBY)</span>
-                </div>
-                <div class="lcars-bar-track">
-                  <div class="lcars-bar-fill temp-core" id="barTempCore" style="width: 0%;"></div>
-                </div>
-              </div>
-
-              <div class="sub-telemetry-row">
-                <div class="row-meta">
-                  <span class="label">EPIDERMAL CONTACT THERMISTOR</span>
-                  <span id="txtTempSkin" style="font-family: var(--lcars-mono);">--.-°F</span>
-                </div>
-                <div class="lcars-bar-track">
-                  <div class="lcars-bar-fill temp-skin" id="barTempSkin" style="width: 0%;"></div>
-                </div>
-              </div>
-
-              <div class="bay-controls" style="display: flex; gap: 8px;">
-                <button id="btnStartTemp" class="lcars-btn btn-blue" onclick="startTempDetection()">SCAN TEMP</button>
-                <button id="btnStopTemp" class="lcars-btn btn-orange" onclick="stopTempDetection()">CANCEL</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- BAY 3: Blood Pressure Matrix -->
-          <div class="lcars-bay">
-            <div class="lcars-bay-header" style="border-bottom: 3px solid #d97706; background: #f8fafc;">
-              <span class="lcars-bay-tag" style="background: #d97706; color: white; font-weight: 800;">BIO-03</span>
-              <span class="lcars-bay-title" style="color: #091428; font-weight: 800;">HEMODYNAMIC ARTERIAL PRESSURE (BP)</span>
-            </div>
-            <div class="lcars-bay-body">
-              <div class="telemetry-display">
-                <div class="telemetry-huge bp" id="valBP">-- / --</div>
-                <div class="telemetry-unit">mmHg</div>
-                <div class="telemetry-state">
-                  <span class="state-badge normal" id="badgeBP">STANDBY</span>
-                  <div style="font-size: 0.75rem; color: var(--lcars-gray); margin-top: 4px;">CALIBRATED OSCILLOMETRIC</div>
-                </div>
-              </div>
-
-              <div class="sub-telemetry-row">
-                <div class="row-meta">
-                  <span class="label">MEAN ARTERIAL PRESSURE (MAP)</span>
-                  <span id="txtMAP" style="font-family: var(--lcars-mono);">STANDBY (MAP: -- mmHg)</span>
-                </div>
-                <div class="lcars-bar-track">
-                  <div class="lcars-bar-fill" style="width: 0%; background: linear-gradient(90deg, #cc7722, #ffaa55);"></div>
-                </div>
-              </div>
-
-              <div class="sub-telemetry-row">
-                <div class="row-meta">
-                  <span class="label">CALIBRATION OFFSET</span>
-                  <span style="font-family: var(--lcars-mono); color: var(--lcars-green);">PRIVATE MODE ZEROED</span>
-                </div>
-              </div>
-
-              <div class="bay-controls" style="display: flex; gap: 8px;">
-                <button id="btnStartBP" class="lcars-btn btn-orange" onclick="startBPDetection()">TAKE BP</button>
-                <button id="btnStopBP" class="lcars-btn btn-lilac" onclick="stopBPDetection()">CANCEL</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- BAY 4: Hemoglobin Oxygen Saturation (SpO2) -->
-          <div class="lcars-bay">
-            <div class="lcars-bay-header" style="border-bottom: 3px solid #15803d; background: #f8fafc;">
-              <span class="lcars-bay-tag" style="background: #15803d; color: white; font-weight: 800;">BIO-04</span>
-              <span class="lcars-bay-title" style="color: #091428; font-weight: 800;">HEMOGLOBIN OXYGEN SATURATION (SpO2)</span>
-            </div>
-            <div class="lcars-bay-body">
-              <div class="telemetry-display">
-                <div class="telemetry-huge spo2" id="valSpO2">--</div>
-                <div class="telemetry-unit">%</div>
-                <div class="telemetry-state">
-                  <span class="state-badge normal" id="badgeSpO2">STANDBY</span>
-                  <div style="font-size: 0.75rem; color: var(--lcars-gray); margin-top: 4px;">HYPOXEMIA INDEX: 0.0</div>
-                </div>
-              </div>
-
-              <div class="sub-telemetry-row">
-                <div class="row-meta">
-                  <span class="label">RESPIRATION RATE</span>
-                  <span id="txtRespRate" style="font-family: var(--lcars-mono); color: var(--lcars-banana);">-- BREATHS / MIN</span>
-                </div>
-                <div class="lcars-bar-track">
-                  <div class="lcars-bar-fill spo2-bar" id="barSpO2" style="width: 0%;"></div>
-                </div>
-              </div>
-
-              <div class="sub-telemetry-row">
-                <div class="row-meta">
-                  <span class="label">OSAHS SLEEP APNEA PROFILE</span>
-                  <span style="font-family: var(--lcars-mono); color: var(--lcars-green);">NORMAL AIRWAY PATENCY</span>
-                </div>
-              </div>
-
-              <div class="bay-controls" style="display: flex; gap: 8px;">
-                <button id="btnStartSpO2" class="lcars-btn btn-green" onclick="startSpO2Detection()">SCAN O2</button>
-                <button id="btnStopSpO2" class="lcars-btn btn-orange" onclick="stopSpO2Detection()">CANCEL</button>
-              </div>
-            </div>
-          </div>
-
-        </div>
+      <!-- Telemetry DOM Bridge (Maintains backward compatibility for sensor IDs without duplicate UI screens) -->
+      <div id="vitalsDomBridge" style="display: none;">
+        <span id="valGlucose">--</span>
+        <span id="badgeGlucose">IDLE</span>
+        <span id="unitGlucose">mg/dL</span>
+        <span id="valBP">-- / --</span>
+        <span id="badgeBP">IDLE</span>
+        <span id="unitBP">mmHg</span>
+        <span id="valTemp">--.-</span>
+        <span id="badgeTemp">IDLE</span>
+        <span id="unitTemp">°F</span>
+        <span id="valSpO2">--</span>
+        <span id="badgeSpO2">IDLE</span>
+        <span id="unitSpO2">%</span>
+        <span id="txtTempCore">Core: --.-°F</span>
+        <span id="txtTempSkin">Skin: --.-°F</span>
+        <span id="barGlucose"></span>
+        <span id="barTemp"></span>
+        <span id="barBP"></span>
+        <span id="barSpO2"></span>
+        <span id="txtGlucoseProgress">0%</span>
+        <span id="txtGlucoseRisk">NORMAL HOMEOSTASIS (60–200 MG/DL)</span>
+        <span id="txtBPStatus">STANDBY</span>
+        <span id="lblGlucoseCalStatus">PRIVATE MODE ACTIVE</span>
+        <span id="lblRawGlucoseVal">--</span>
       </div>
+
+
 
 
       <!-- =====================================================================
@@ -7725,8 +7563,8 @@
       document.querySelectorAll('.tab-page').forEach(page => page.classList.remove('active-page'));
 
       if (tabId === 'vitals') {
-        document.getElementById('navTabVitals').classList.add('active');
-        document.getElementById('pageVitals').classList.add('active-page');
+        switchTab('fullscan');
+        return;
       } else if (tabId === 'cardio') {
         document.getElementById('navTabCardio').classList.add('active');
         document.getElementById('pageCardio').classList.add('active-page');
@@ -15776,7 +15614,7 @@ Patient
       // Buttons
       document.getElementById('btnStartFullScan').disabled = true;
       document.getElementById('btnCancelFullScan').disabled = false;
-      document.getElementById('btnSkipFullScan').disabled = false;
+      const bSkip = document.getElementById('btnSkipFullScan'); if (bSkip) bSkip.disabled = false;
 
       updateOverallProgressBar(5);
       logLCARS("[★ FULL SCAN] Initiating automated 6-sensor sequential diagnostic pipeline...", "tx");
@@ -16153,7 +15991,7 @@ Patient
 
       document.getElementById('btnStartFullScan').disabled = false;
       document.getElementById('btnCancelFullScan').disabled = true;
-      document.getElementById('btnSkipFullScan').disabled = true;
+      const bSkip = document.getElementById('btnSkipFullScan'); if (bSkip) bSkip.disabled = true;
 
       const stageLbl = document.getElementById('lblActiveScanStage');
       if (stageLbl) stageLbl.textContent = "FULL SCAN SEQUENCE CANCELLED BY OPERATOR";
@@ -16363,7 +16201,7 @@ Patient
 
       document.getElementById('btnStartFullScan').disabled = false;
       document.getElementById('btnCancelFullScan').disabled = true;
-      document.getElementById('btnSkipFullScan').disabled = true;
+      const bSkip = document.getElementById('btnSkipFullScan'); if (bSkip) bSkip.disabled = true;
 
       updateOverallProgressBar(100);
 
