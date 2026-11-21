@@ -1465,6 +1465,25 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
             else:
                 self.send_json_response({"error": f"Dial binary {dial_name} not found"}, 404)
 
+        # 5b. Dial Thumbnail Preview API
+        elif self.path.startswith("/api/dial/preview/"):
+            prev_raw = self.path.split("/api/dial/preview/")[1].strip().replace(".png", "")
+            stock_dir = os.path.join(os.path.dirname(BASE_DIR), "stock_dials", "shape4_240x280")
+            candidate1 = os.path.join(stock_dir, f"{prev_raw}_preview.png")
+            candidate2 = os.path.join(stock_dir, f"{prev_raw}.png")
+            prev_path = candidate1 if os.path.exists(candidate1) else (candidate2 if os.path.exists(candidate2) else None)
+            if prev_path and os.path.exists(prev_path):
+                with open(prev_path, "rb") as f:
+                    data = f.read()
+                self.send_response(200)
+                self.send_header("Content-Type", "image/png")
+                self.send_header("Content-Length", str(len(data)))
+                self.send_header("Access-Control-Allow-Origin", "*")
+                self.end_headers()
+                self.wfile.write(data)
+            else:
+                self.send_json_response({"error": f"Dial preview {prev_raw} not found"}, 404)
+
         # 6. Style 2 Binary API for Slot 2 -> Slot 3 Overwrite Experiment (CLE-009)
         elif self.path.startswith("/api/dial/style2"):
             dial_path = os.path.join(os.path.dirname(BASE_DIR), "stock_dials", "shape4_240x280", "C006.bin")

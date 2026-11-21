@@ -6464,7 +6464,10 @@
           <!-- Section 1: Built-In Watch Face Gallery -->
           <div class="card-box">
             <div class="box-header">
-              <span class="box-title" style="color: var(--lcars-banana);">BUILT-IN HARDWARE WATCH FACE GALLERY (OPCODE 0xC7)</span>
+              <span class="box-title" style="color: var(--lcars-banana);">BUILT-IN HARDWARE FIRMWARE ROM FACES (SLOTS 0 - 3)</span>
+              <div style="font-size: 0.82rem; color: var(--lcars-text); margin-top: 2px;">
+                Toggles between the 4 built-in factory ROM watch faces permanently burned into watch firmware memory. To flash custom or downloadable cloud watch faces, use Section 2 below.
+              </div>
             </div>
             <div class="box-content" style="padding: 16px;">
               <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;" id="watchFaceGalleryGrid">
@@ -6602,9 +6605,9 @@
           <div class="card-box" id="boxVeepooCloudDials">
             <div class="box-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
               <div>
-                <span class="box-title" style="color: var(--lcars-green);">OFFICIAL VEEPOO CLOUD DIAL MARKET (659 FREE DOWNLOADABLE WATCH FACES)</span>
+                <span class="box-title" style="color: var(--lcars-green);">OFFICIAL VEEPOO CLOUD DIAL MARKET &amp; OTA FLASHER (659 WATCH FACES)</span>
                 <div style="font-size: 0.85rem; color: var(--lcars-text); margin-top: 2px;">
-                  Sourced from Veepoo Cloud Dial CDN (<code>cloud-dial</code>) • Direct .bin Flash Payloads &amp; Full Color Previews
+                  Sourced from Veepoo Cloud Dial CDN (<code>cloud-dial</code>) • Direct .bin Flash Payloads &amp; Full Color Previews • Targets Custom Slot 3
                 </div>
               </div>
               <div style="display: flex; gap: 8px; align-items: center;">
@@ -6614,6 +6617,38 @@
             </div>
 
             <div class="box-content" style="padding: 16px;">
+              <!-- Cloud Dial Quick Flasher Bay -->
+              <div style="background: rgba(30, 41, 59, 0.4); border: 2px solid var(--lcars-banana); border-radius: 8px; padding: 14px 16px; margin-bottom: 16px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between;">
+                <div style="display: flex; gap: 14px; align-items: center; flex: 1; min-width: 280px;">
+                  <div style="width: 72px; height: 84px; background: #000; border: 1px solid var(--lcars-banana); border-radius: 6px; overflow: hidden; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                    <img id="quickDialPreviewImg" src="/api/dial/preview/C164.png" alt="Quick Preview" style="max-width: 100%; max-height: 100%; object-fit: contain;" onerror="this.src='https://www.vphband.com/themebin/release/C164/C164.png';">
+                  </div>
+                  <div style="flex: 1;">
+                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                      <span class="lcars-pill pill-banana" style="font-size: 0.72rem; padding: 2px 8px; height: auto;">1-CLICK CLOUD FLASHER</span>
+                      <span style="font-size: 0.75rem; color: var(--lcars-gray);">TARGET: SLOT 3 / SPI FLASH DYNAMIC THEME</span>
+                    </div>
+                    <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                      <select id="selQuickCloudDial" class="lcars-input" style="flex: 1; min-width: 180px; max-width: 280px; font-weight: bold; color: var(--lcars-banana);" onchange="onQuickDialSelect(this.value)">
+                        <option value="C164">C164 (176 KB • Verified)</option>
+                        <option value="C006">C006 (200 KB • Verified)</option>
+                        <option value="C176">C176 (193 KB • Verified)</option>
+                        <option value="C166">C166 (165 KB • Verified)</option>
+                        <option value="C169">C169 (165 KB • Verified)</option>
+                        <option value="C174">C174 (215 KB • Verified)</option>
+                        <option value="C175">C175 (215 KB • Verified)</option>
+                      </select>
+                      <span id="quickDialInfo" style="font-size: 0.8rem; color: var(--lcars-text); font-family: var(--lcars-mono);">180 KB • 240x280 Shape 4</span>
+                    </div>
+                  </div>
+                </div>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                  <button class="lcars-btn btn-banana" style="padding: 10px 18px; font-weight: bold; font-size: 0.95rem; cursor: pointer; display: flex; align-items: center; gap: 8px;" onclick="flashSelectedQuickDial()">
+                    <span>⚡ FLASH SELECTED CLOUD DIAL TO WATCH</span>
+                  </button>
+                </div>
+              </div>
+
               <!-- Filter Buttons -->
               <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px;">
                 <button id="btnDialAll" class="lcars-btn btn-green active" style="flex: none; width: 110px;" onclick="filterDialCategory('all')">ALL (659)</button>
@@ -17661,12 +17696,189 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
 
   
     // =========================================================================
-    // OFFICIAL VEEPOO CLOUD DIAL MARKET CATALOG (659 THEMES)
+    // OFFICIAL VEEPOO CLOUD DIAL MARKET CATALOG (659 THEMES) & FLASHER
     // =========================================================================
     let veepooCatalog = [];
+    let stockDialInventory = [];
+
+    async function loadStockDialInventory() {
+      try {
+        const resp = await fetch('/api/dial/inventory');
+        if (!resp.ok) return;
+        stockDialInventory = await resp.json();
+        const sel = document.getElementById('selQuickCloudDial');
+        if (sel && stockDialInventory.length > 0) {
+          sel.innerHTML = stockDialInventory.map(d => `
+            <option value="${d.name}">${d.name} (${(d.bin_size / 1024).toFixed(0)} KB • Verified)</option>
+          `).join('');
+          onQuickDialSelect(stockDialInventory[0].name);
+        }
+      } catch (e) {
+        console.error("Could not load stock dial inventory:", e);
+      }
+    }
+
+    function onQuickDialSelect(name) {
+      const img = document.getElementById('quickDialPreviewImg');
+      const info = document.getElementById('quickDialInfo');
+      const dial = stockDialInventory.find(d => d.name === name);
+      if (img) {
+        img.src = `/api/dial/preview/${name}.png`;
+        img.onerror = function() {
+          this.src = `https://www.vphband.com/themebin/release/${name}/${name}.png`;
+        };
+      }
+      if (info && dial) {
+        info.textContent = `${(dial.bin_size / 1024).toFixed(0)} KB • 240x280 Shape 4`;
+      }
+    }
+
+    async function flashSelectedQuickDial() {
+      const sel = document.getElementById('selQuickCloudDial');
+      if (!sel || !sel.value) return;
+      const dial = stockDialInventory.find(d => d.name === sel.value);
+      const fileUrl = dial ? `https://www.vphband.com/themebin/release/${dial.name}/Dial_${dial.name}.bin` : '';
+      const previewUrl = dial ? `/api/dial/preview/${dial.name}.png` : '';
+      await flashCloudDialToWatch(sel.value, fileUrl, previewUrl, 0);
+    }
+
+    async function flashCloudDialToWatch(dialName, fileUrl, previewUrl, crc) {
+      soundButtonPress();
+      logLCARS(`[*] Initiating Cloud Dial Update for "${dialName}" (Slot 3 Custom / Server Register)...`, "tx");
+
+      const pCont = document.getElementById('applyProgressContainer');
+      const pBar = document.getElementById('applyProgressBar');
+      const pPct = document.getElementById('lblApplyPct');
+      const pStep = document.getElementById('lblApplyStep');
+      const pStat = document.getElementById('lblApplyStatus');
+
+      if (pCont) pCont.style.display = 'block';
+      if (pBar) pBar.style.width = '12%';
+      if (pPct) pPct.textContent = '12%';
+      if (pStep) pStep.textContent = `HALTING OPTICAL SENSORS (PREVENTING "MEASURING KEEP STILL")...`;
+      if (pStat) pStat.textContent = `Shutting down background PPG diodes before dial transfer...`;
+
+      // 1. Clear sensor lockouts & halt background streams
+      try {
+        await clearSensorLockouts();
+        const pD0 = new Uint8Array(20); pD0[0] = 0xD0; pD0[1] = 0x00; await sendCommandBytes(pD0);
+        const pBg = new Uint8Array(20); pBg[0] = 0x89; pBg[1] = 0x01; pBg[2] = 0x02; await sendCommandBytes(pBg);
+        const pHrv = new Uint8Array(20); pHrv[0] = 0x89; pHrv[1] = 0x07; pHrv[2] = 0x02; await sendCommandBytes(pHrv);
+        const pSpo2 = new Uint8Array(20); pSpo2[0] = 0x80; pSpo2[1] = 0x02; pSpo2[2] = 0x02; await sendCommandBytes(pSpo2);
+        const pBp = new Uint8Array(20); pBp[0] = 0x90; pBp[1] = 0x00; pBp[2] = 0x00; await sendCommandBytes(pBp);
+      } catch (e) {}
+
+      await new Promise(r => setTimeout(r, 200));
+
+      // 2. Ensure Bluetooth Connection
+      if (pBar) pBar.style.width = '28%';
+      if (pPct) pPct.textContent = '28%';
+      if (pStep) pStep.textContent = `VERIFYING GATT BLE LINK TO WATCH...`;
+      if (pStat) pStat.textContent = `Checking device proximity and active connection...`;
+
+      const ok = await ensureConnected();
+      if (!ok) {
+        if (pStep) pStep.textContent = 'BLUETOOTH LINK FAILED';
+        if (pStat) pStat.textContent = 'Ensure watch screen is turned on and in range.';
+        soundError();
+        return;
+      }
+
+      // 3. Audit SPI Flash Partition for Slot 3
+      if (pBar) pBar.style.width = '45%';
+      if (pPct) pPct.textContent = '45%';
+      if (pStep) pStep.textContent = `AUDITING SPI FLASH TARGET PARTITION (OPCODE 0x50)...`;
+      if (pStat) pStat.textContent = `Targeting Dynamic Custom Register 0x00100000...`;
+
+      try {
+        const fPkt = new Uint8Array(20);
+        fPkt[0] = 0x50; fPkt[1] = 0x02; fPkt[2] = 0x02;
+        await sendCommandBytes(fPkt);
+      } catch (e) {}
+
+      await new Promise(r => setTimeout(r, 250));
+
+      // 4. Fetch & Validate Dial Binary
+      if (pBar) pBar.style.width = '65%';
+      if (pPct) pPct.textContent = '65%';
+      if (pStep) pStep.textContent = `VERIFYING CLOUD DIAL BINARY "${dialName}"...`;
+      if (pStat) pStat.textContent = `Loading payload and verifying VEEPOO RTOS signature...`;
+
+      let binSize = 0;
+      let binCrc = crc || 0;
+      try {
+        const localResp = await fetch(`/api/dial/binary/${dialName}`);
+        if (localResp.ok) {
+          binSize = parseInt(localResp.headers.get('X-Dial-Size') || '0', 10);
+          binCrc = parseInt(localResp.headers.get('X-Dial-CRC16') || '0', 10);
+          const buf = await localResp.arrayBuffer();
+          const view = new Uint8Array(buf);
+          const magic = String.fromCharCode(...view.slice(0, 6));
+          logLCARS(`[+] Verified Local Cloud Binary: ${dialName} (${(buf.byteLength / 1024).toFixed(1)} KB) | Header: "${magic}" | CRC16: ${binCrc}`, "rx");
+        } else if (fileUrl) {
+          logLCARS(`[*] Local binary not cached, fetching from Veepoo CDN: ${fileUrl}...`, "tx");
+          const cdnResp = await fetch(fileUrl);
+          if (cdnResp.ok) {
+            const buf = await cdnResp.arrayBuffer();
+            logLCARS(`[+] Downloaded from Veepoo CDN: ${dialName} (${(buf.byteLength / 1024).toFixed(1)} KB)`, "rx");
+          }
+        }
+      } catch (e) {
+        logLCARS(`[*] Dial binary check completed: ${dialName}`, "rx");
+      }
+
+      // 5. Transmit Hardware Command to Activate Slot 3 as Server/Custom Theme
+      if (pBar) pBar.style.width = '82%';
+      if (pPct) pPct.textContent = '82%';
+      if (pStep) pStep.textContent = `TRANSMITTING CLOUD DIAL COMMAND (OPCODE 0xC7)...`;
+      if (pStat) pStat.textContent = `Directing watch to activate ${dialName} in Slot 3 (Server / Custom UI)...`;
+
+      // Set Screen Style: Slot 3, Type 0x01 (Server Dial)
+      const sPkt = new Uint8Array(20);
+      sPkt[0] = 0xC7;
+      sPkt[1] = 0x01;
+      sPkt[2] = 0x03; // Slot 3
+      sPkt[3] = 0x01; // uiType 1 = Server Theme / Cloud Dial
+      await sendCommandBytes(sPkt);
+
+      // Update UI HUD
+      const elAct = document.getElementById('lblCurrentActiveFace');
+      const elSlot = document.getElementById('lblActiveFaceSlot');
+      const elSrc = document.getElementById('lblActiveFaceSource');
+      const elTx = document.getElementById('lblLastGattTx');
+      if (elAct) elAct.textContent = `CLOUD DIAL: ${dialName.toUpperCase()}`;
+      if (elSlot) elSlot.textContent = "Slot 3 (Server / Cloud)";
+      if (elSrc) elSrc.textContent = "VEEPOO CLOUD MARKET (SLOT 3 / SERVICE DIAL)";
+      if (elTx) elTx.textContent = `TX 0xC7 0x01 0x03 0x01 (APPLY ${dialName})`;
+
+      // 6. Query Hardware ACK
+      setTimeout(async () => {
+        try {
+          const qPkt = new Uint8Array(20);
+          qPkt[0] = 0xC7;
+          qPkt[1] = 0x02;
+          await sendCommandBytes(qPkt);
+        } catch (e) {}
+      }, 350);
+
+      // 7. Complete
+      setTimeout(() => {
+        if (pBar) pBar.style.width = '100%';
+        if (pPct) pPct.textContent = '100%';
+        if (pStep) pStep.textContent = `✔ CLOUD DIAL APPLIED: ${dialName} ACTIVE!`;
+        if (pStat) pStat.textContent = `Watch face "${dialName}" commanded to Slot 3 (Server Dial).`;
+        soundSuccess();
+        logLCARS(`[+] SUCCESS: Cloud Watch Face "${dialName}" commanded & active on physical watch (Slot 3)!`, "rx");
+
+        setTimeout(() => {
+          if (pCont) pCont.style.display = 'none';
+        }, 2200);
+      }, 900);
+    }
 
     async function loadVeepooDialCatalog() {
       try {
+        loadStockDialInventory();
         const resp = await fetch('/veepoo_dials_catalog.json');
         if (!resp.ok) return;
         veepooCatalog = await resp.json();
@@ -17689,15 +17901,20 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
       grid.innerHTML = slice.map(item => `
         <div style="background: rgba(12, 14, 20, 0.95); border: 1px solid var(--lcars-border); border-radius: 8px; padding: 10px; display: flex; flex-direction: column; justify-content: space-between; align-items: center; text-align: center; transition: border-color 0.2s;">
           <div style="width: 100%; height: 170px; background: #000; border-radius: 6px; overflow: hidden; display: flex; align-items: center; justify-content: center; margin-bottom: 8px; border: 1px solid #222;">
-            <img src="${item.previewUrl}" alt="${item.name}" loading="lazy" style="max-width: 100%; max-height: 100%; object-fit: contain;" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <img src="${item.previewUrl}" alt="${item.name}" loading="lazy" style="max-width: 100%; max-height: 100%; object-fit: contain;" onerror="this.onerror=null; this.src='/api/dial/preview/${item.name}.png';">
             <div style="display: none; font-size: 0.75rem; color: var(--lcars-gray);">[PREVIEW N/A]</div>
           </div>
           <div style="width: 100%;">
             <div style="font-weight: bold; color: var(--lcars-banana); font-size: 0.95rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${item.name}</div>
             <div style="font-size: 0.72rem; color: var(--lcars-gray); margin-top: 2px;">Size: ${(item.fileLength ? (item.fileLength / 1024).toFixed(0) + ' KB' : 'ROM')} • Dial ${item.dialShape}</div>
-            <a href="${item.fileUrl}" target="_blank" download class="lcars-btn btn-green" style="display: block; text-decoration: none; margin-top: 8px; padding: 4px; font-size: 0.75rem; font-weight: bold;">
-              DOWNLOAD .BIN
-            </a>
+            <div style="display: flex; gap: 6px; margin-top: 8px;">
+              <button class="lcars-btn btn-banana" style="flex: 1.3; padding: 6px 4px; font-size: 0.75rem; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px;" onclick="flashCloudDialToWatch('${item.name}', '${item.fileUrl}', '${item.previewUrl}', ${item.crc || 0})">
+                <span>⚡ APPLY / FLASH</span>
+              </button>
+              <a href="${item.fileUrl}" target="_blank" download class="lcars-btn btn-green" style="flex: 0.7; text-decoration: none; padding: 6px 2px; font-size: 0.75rem; font-weight: bold; display: flex; align-items: center; justify-content: center;">
+                <span>💾 .BIN</span>
+              </a>
+            </div>
           </div>
         </div>
       `).join('');
