@@ -7648,16 +7648,9 @@
       soundButtonPress();
       initAudio();
       try {
-        logLCARS('Opening Bluetooth selection array for VEE / FITAOS...', 'tx');
+        logLCARS('Scanning for all visible Bluetooth smartwatch devices...', 'tx');
         bluetoothDevice = await navigator.bluetooth.requestDevice({
-          filters: [
-            { name: 'VEE' },
-            { namePrefix: 'VEE' },
-            { namePrefix: 'vee' },
-            { name: 'FITAOS' },
-            { namePrefix: 'FITAOS' },
-            { namePrefix: 'fit' }
-          ],
+          acceptAllDevices: true,
           optionalServices: [
             '0000fee7-0000-1000-8000-00805f9b34fb',
             '0000fee8-0000-1000-8000-00805f9b34fb',
