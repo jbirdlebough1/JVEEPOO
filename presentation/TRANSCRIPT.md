@@ -209,11 +209,11 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 14: Tab 01: VITALS – Optical Glucose Absorption Spectroscopy
+### Slide 14: Tab 02: VITALS – Optical Glucose Absorption Spectroscopy
 **Module:** Module 3: Core Biosensor Array Operations  
 **Card Title:** TAB 01: VITALS – OPTICAL GLUCOSE TONOMETRY  
 
-> In Module 3, we tour the core biosensing channels. In Tab 01 Vitals, our primary focus is non-invasive optical glucose tonometry. Displayed on the right is the physical sensor architecture and optical ray-tracing diagram. The FITAOS 5150 underside chassis emits multi-wavelength optical beams—including 525 nanometer green and 940 nanometer near-infrared—penetrating the epidermal and dermal interstitial fluid layers down to pulsatile capillary loops. By applying the Beer-Lambert transmittance equation shown below, the photodiode captures differential photon attenuation caused by circulating glucose molecules in real time. El-CARS then applies the standard ADAG consensus algorithm across continuous daily epochs, eliminating quarterly snapshot error and providing actionable metabolic insight without painful fingersticks.
+> In Module 3, we tour the core biosensing channels. In Tab 02 Vitals, our primary focus is non-invasive optical glucose tonometry. Displayed on the right is the physical sensor architecture and optical ray-tracing diagram. The FITAOS 5150 underside chassis emits multi-wavelength optical beams—including 525 nanometer green and 940 nanometer near-infrared—penetrating the epidermal and dermal interstitial fluid layers down to pulsatile capillary loops. By applying the Beer-Lambert transmittance equation shown below, the photodiode captures differential photon attenuation caused by circulating glucose molecules in real time. El-CARS then applies the standard ADAG consensus algorithm across continuous daily epochs, eliminating quarterly snapshot error and providing actionable metabolic insight without painful fingersticks.
 
 **Key Points:**
 - **Optical PPG Absorption:** Tracks changes in tissue light absorption correlated with circulating blood sugar.
@@ -224,11 +224,11 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 15: Tab 01: VITALS – Dual-Matrix Thermometry & Circadian Nadir
+### Slide 15: Tab 02: VITALS – Dual-Matrix Thermometry & Circadian Nadir
 **Module:** Module 3: Core Biosensor Array Operations  
 **Card Title:** TAB 01: VITALS – DUAL-MATRIX THERMOMETRY  
 
-> Still in Tab 01 Vitals, our second sensor channel monitors the dual-matrix body temperature array. Illustrated on the right is our dual-thermistor heat-flux vector architecture alongside the 24-hour circadian thermal cycle. Rather than taking an uncalibrated surface snapshot, the sensor array couples an epidermal contact plate measuring wrist skin temperature with an internal insulated reference thermistor. By computing the heat-flux vector between them, the core algorithm accurately tracks deep arterial core temperature at 96.1 degrees. On the 24-hour curve, observe the physiological 4:30 AM circadian nadir reaching 96 degrees flat. This nocturnal temperature drop is a vital clinical biomarker of parasympathetic rest and restorative metabolic tone.
+> Still in Tab 02 Vitals, our second sensor channel monitors the dual-matrix body temperature array. Illustrated on the right is our dual-thermistor heat-flux vector architecture alongside the 24-hour circadian thermal cycle. Rather than taking an uncalibrated surface snapshot, the sensor array couples an epidermal contact plate measuring wrist skin temperature with an internal insulated reference thermistor. By computing the heat-flux vector between them, the core algorithm accurately tracks deep arterial core temperature at 96.1 degrees. On the 24-hour curve, observe the physiological 4:30 AM circadian nadir reaching 96 degrees flat. This nocturnal temperature drop is a vital clinical biomarker of parasympathetic rest and restorative metabolic tone.
 
 **Key Points:**
 - **Dual Core & Skin Sensors:** Simultaneously measures internal core temperature and cutaneous skin temperature.
@@ -239,11 +239,11 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 16: Tab 02: CARDIO – Pulse Wave Transit Time Blood Pressure
+### Slide 16: Tab 03: CARDIO – Pulse Wave Transit Time Blood Pressure
 **Module:** Module 3: Core Biosensor Array Operations  
 **Card Title:** TAB 02: CARDIO – PWTT BLOOD PRESSURE  
 
-> Moving to Tab 02 Cardio, the first cardiovascular channel tracks blood pressure using Pulse Wave Transit Time, or PWTT. The diagram on your screen demonstrates the exact electro-optical timing synchronization. Signal 1 captures central cardiac ventricular ejection at the ECG R-peak, defining time zero. Signal 2 captures the arterial pulse wave arrival at the wrist optical PPG sensor. The measured transit delay—here 215 milliseconds—is governed by the Moens-Korteweg physical law, where pulse velocity directly reflects arterial stiffness and hemodynamic pressure. This enables continuous, cuffless ambulatory monitoring to verify healthy 10 to 20 percent nocturnal blood pressure dipping without waking the patient with an inflating arm cuff.
+> Moving to Tab 03 Cardio, the first cardiovascular channel tracks blood pressure using Pulse Wave Transit Time, or PWTT. The diagram on your screen demonstrates the exact electro-optical timing synchronization. Signal 1 captures central cardiac ventricular ejection at the ECG R-peak, defining time zero. Signal 2 captures the arterial pulse wave arrival at the wrist optical PPG sensor. The measured transit delay—here 215 milliseconds—is governed by the Moens-Korteweg physical law, where pulse velocity directly reflects arterial stiffness and hemodynamic pressure. This enables continuous, cuffless ambulatory monitoring to verify healthy 10 to 20 percent nocturnal blood pressure dipping without waking the patient with an inflating arm cuff.
 
 **Key Points:**
 - **Cuffless Ambulatory Tracking:** Estimates blood pressure from arterial pulse wave velocity without uncomfortable cuff inflation.
@@ -254,11 +254,11 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 17: Tab 02: CARDIO – Dual-Wavelength SpO2 & Apnea Screening
+### Slide 17: Tab 03: CARDIO – Dual-Wavelength SpO2 & Apnea Screening
 **Module:** Module 3: Core Biosensor Array Operations  
 **Card Title:** TAB 02: CARDIO – SPO2 & APNEA HYPOXIA SAFEGUARD  
 
-> Continuing in Tab 02 Cardio, the next channel provides dual-wavelength spectrophotometric oxygen monitoring. The diagram on your right details the absorption spectra of oxygenated versus deoxygenated hemoglobin. At 660 nanometers, red light is heavily absorbed by deoxygenated hemoglobin, whereas 940 nanometer infrared light is predominantly absorbed by oxygenated hemoglobin. The sensor computes the ratio of these pulsatile AC to DC signals to derive continuous arterial saturation. On the right half of the diagram, observe the nocturnal sleep apnea desaturation curve dipping to 86 percent. Because obstructive sleep apnea triggers catecholamine surges that exacerbate insulin resistance and spike morning blood sugar, this nocturnal safeguard is vital for diabetic care.
+> Continuing in Tab 03 Cardio, the next channel provides dual-wavelength spectrophotometric oxygen monitoring. The diagram on your right details the absorption spectra of oxygenated versus deoxygenated hemoglobin. At 660 nanometers, red light is heavily absorbed by deoxygenated hemoglobin, whereas 940 nanometer infrared light is predominantly absorbed by oxygenated hemoglobin. The sensor computes the ratio of these pulsatile AC to DC signals to derive continuous arterial saturation. On the right half of the diagram, observe the nocturnal sleep apnea desaturation curve dipping to 86 percent. Because obstructive sleep apnea triggers catecholamine surges that exacerbate insulin resistance and spike morning blood sugar, this nocturnal safeguard is vital for diabetic care.
 
 **Key Points:**
 - **Overnight Apnea Detection:** Detects oxygen drops below 90% and 85% to screen for obstructive sleep apnea.
@@ -269,7 +269,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 18: Tab 02: CARDIO – Autonomic HRV & Sympatho-Vagal Stress
+### Slide 18: Tab 03: CARDIO – Autonomic HRV & Sympatho-Vagal Stress
 **Module:** Module 3: Core Biosensor Array Operations  
 **Card Title:** TAB 02: CARDIO – AUTONOMIC HRV SDNN RECOVERY  
 
@@ -284,11 +284,11 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 19: 03-METABOLIC Console: Real-Time Physiological Telemetry
+### Slide 19: Tab 04: METABOLIC – Real-Time Physiological Telemetry Console
 **Module:** Module 4: Tab 03 METABOLIC Console & Behavioral Science  
 **Card Title:** TAB 03: 360° REAL-TIME METABOLIC CONSOLE  
 
-> Now we step into Tab 03: the METABOLIC Console. Here, all primary physiological telemetry streams converge. You can observe your real-time glucose, heart rate, skin and body temperature, and physical movement simultaneously, helping you immediately understand how daily actions impact your physiology.
+> Now we step into Tab 04: the METABOLIC Console. Here, all primary physiological telemetry streams converge. You can observe your real-time glucose, heart rate, skin and body temperature, and physical movement simultaneously, helping you immediately understand how daily actions impact your physiology.
 
 **Key Points:**
 - **Unified Biometric Overview:** Simultaneously displays glucose, heart rate, dual temperatures, and step activity.
@@ -344,7 +344,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 23: ADA Carbohydrate Trades & Gemini-Curated Diabetic Recipes
+### Slide 23: Tab 06: ADA Carbohydrate Trades & Gemini-Curated Diabetic Recipes
 **Module:** Module 4: Tab 03 METABOLIC Console & Behavioral Science  
 **Card Title:** ADA 1-TO-1 CARBOHYDRATE TRADES & GEMINI-POWERED RECIPES  
 
@@ -422,11 +422,11 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 28: EHR Direct Import Export: Standard HL7 FHIR R4 & Clinical CSV
+### Slide 28: Tab 05: EHR Direct Import Export – Standard HL7 FHIR R4 & Clinical CSV
 **Module:** Module 5: The Diabetes Learning Engine  
 **Card Title:** UNIVERSAL EHR INTEROPERABILITY & DIRECT DOCTOR IMPORT  
 
-> Displayed on your screen is our EHR Direct Import Export Suite in Tab 05 Reports Console. You can package your continuous ambulatory telemetry into universal standard formats that Epic, Cerner, and other electronic health records import directly with zero file conversion. With one click, generate an official HL7 FHIR Release 4 JSON bundle mapped with LOINC codes for glucose, blood pressure, and steps, or a standard clinical CSV. You can attach these files inside your Evergreen MyChart portal or use our one-click email drafter to send them straight to your physician, who can import them directly into your chart.
+> Displayed on your screen is our EHR Direct Import Export Suite in Tab 05 Export Console. You can package your continuous ambulatory telemetry into universal standard formats that Epic, Cerner, and other electronic health records import directly with zero file conversion. With one click, generate an official HL7 FHIR Release 4 JSON bundle mapped with LOINC codes for glucose, blood pressure, and steps, or a standard clinical CSV. You can attach these files inside your Evergreen MyChart portal or use our one-click email drafter to send them straight to your physician, who can import them directly into your chart.
 
 **Key Points:**
 - **Universal HL7 FHIR Release 4 Standard:** Generates official JSON collection bundles with certified LOINC codes (2339-0 Glucose, 4548-4 eA1C, 8480-6 BP) and UCUM units.
@@ -438,11 +438,11 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 29: Tab 04 Architecture: Single Tall Synchronized Multi-Measurement Chart
+### Slide 29: Tab 07: Single Tall Synchronized Multi-Measurement Chart Architecture
 **Module:** Module 6: Tab 04 Synchronized Tall Chart  
 **Card Title:** TAB 04: SYNCHRONIZED TALL CHART ARCHITECTURE  
 
-> Displayed on your screen is our 360-degree Synchronized Composite Timeline from Tab 04 Reports Console. Instead of fragmenting physiological data across disconnected mobile screens, El-CARS stacks all eight biometric channels on one shared twenty-four-hour horizontal clock. As your view scrolls down the screen, observe how continuous glucose, blood pressure, heart rate, oxygenation, and temperature align seamlessly above kinetic exercise, nutrition, and medications. Critically, notice the pinned food and medication markers integrated directly onto the time axis. The green salad marker logs dietary carbohydrate intake, while prominent medication markers pinpoint exact doses. By pinning these behavioral and clinical events onto the timeline, patients and physicians can immediately track how specific meals and medication changes directly govern every subsequent physiological deflection.
+> Displayed on your screen is our 360-degree Synchronized Composite Timeline from Tab 07 Reports Console. Instead of fragmenting physiological data across disconnected mobile screens, El-CARS stacks all eight biometric channels on one shared twenty-four-hour horizontal clock. As your view scrolls down the screen, observe how continuous glucose, blood pressure, heart rate, oxygenation, and temperature align seamlessly above kinetic exercise, nutrition, and medications. Critically, notice the pinned food and medication markers integrated directly onto the time axis. The green salad marker logs dietary carbohydrate intake, while prominent medication markers pinpoint exact doses. By pinning these behavioral and clinical events onto the timeline, patients and physicians can immediately track how specific meals and medication changes directly govern every subsequent physiological deflection.
 
 **Key Points:**
 - **Single Synchronized Timeline:** Stacks all 8 biometric telemetry channels on a single shared 24-hour horizontal time axis with zero temporal misalignment.
@@ -653,11 +653,11 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 43: Tab 11 Architecture: Active Pharmacological Regimen Management
+### Slide 43: Tab 10 Architecture: Active Pharmacological Regimen Management
 **Module:** Module 7: Tab 11 Medication Management  
 **Card Title:** TAB 11: ACTIVE PHARMACOLOGICAL MANAGEMENT  
 
-> Displayed on your screen is Tab 11 Medication Management Console. Diabetes care relies on strict pharmacological adherence, and as this screen scrolls downward, notice how El-CARS organizes your prescribed medications into a clear, unified architecture. At the top, our critical clinical notice emphasizes that all drug titrations must be directed by your licensed physician. Directly below in Component 1, your active regimen is split into two discrete intake schedules: the Morning Breakfast Suite and the Evening Dinner Split. Further down in Component 2, you can log prescription changes or dosage titrations, which automatically pins a prominent MED CHANGE milestone marker across your timeline charts. This vertical layout ensures that every dose, titration, and adherence confirmation is immediately coupled with your physiological ambulatory telemetry.
+> Displayed on your screen is Tab 10 Medication Management Console. Diabetes care relies on strict pharmacological adherence, and as this screen scrolls downward, notice how El-CARS organizes your prescribed medications into a clear, unified architecture. At the top, our critical clinical notice emphasizes that all drug titrations must be directed by your licensed physician. Directly below in Component 1, your active regimen is split into two discrete intake schedules: the Morning Breakfast Suite and the Evening Dinner Split. Further down in Component 2, you can log prescription changes or dosage titrations, which automatically pins a prominent MED CHANGE milestone marker across your timeline charts. This vertical layout ensures that every dose, titration, and adherence confirmation is immediately coupled with your physiological ambulatory telemetry.
 
 **Key Points:**
 - **Full Outpatient Regimen:** Tracks your complete active prescription suite with dosages, timing, and indications.
@@ -672,7 +672,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 **Module:** Module 7: Tab 11 Medication Management  
 **Card Title:** DUAL DAILY INTAKE SCHEDULES: MORNING & EVENING  
 
-> Displayed on your screen is Component 1 of Tab 11: our Dual Intake Medication Schedules. To maximize clinical compliance, El-CARS structures outpatient regimens into exactly two discrete daily events. As the screen scrolls to the Morning Intake card at eight AM, notice your breakfast medications: your first Metformin one thousand milligram dose, Jardiance ten milligrams, and cardioprotective agents. Scrolling down to the Evening Intake card at six-thirty PM, your second split Metformin dose is logged with dinner, ensuring sustained nocturnal hepatic gluconeogenesis suppression. With one tap of 'TAKE ALL', you verify complete adherence, immediately updating your daily compliance timeline.
+> Displayed on your screen is Component 1 of Tab 10: our Dual Intake Medication Schedules. To maximize clinical compliance, El-CARS structures outpatient regimens into exactly two discrete daily events. As the screen scrolls to the Morning Intake card at eight AM, notice your breakfast medications: your first Metformin one thousand milligram dose, Jardiance ten milligrams, and cardioprotective agents. Scrolling down to the Evening Intake card at six-thirty PM, your second split Metformin dose is logged with dinner, ensuring sustained nocturnal hepatic gluconeogenesis suppression. With one tap of 'TAKE ALL', you verify complete adherence, immediately updating your daily compliance timeline.
 
 **Key Points:**
 - **Morning Suite (Intake 1):** Full scrollable list for breakfast doses including Metformin, Glipizide, and Lisinopril.
@@ -687,7 +687,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 **Module:** Module 7: Tab 11 Medication Management  
 **Card Title:** GRANULAR MEDICATION EDITING & TITRATION ADHERENCE  
 
-> Displayed on your screen is Component 2 of Tab 11: our Medication Titration and Change Logging engine. Whenever your endocrinologist adjusts a dosage, switches drug classes, or prescribes a new agent, you enter the titration details directly on this screen. As shown, you select the change classification—such as dosage increase or tapering down—input the previous and new dosages, record the prescribing physician, and log the clinical rationale. Once committed, El-CARS pins a permanent red dashed milestone line across all timeline charts on that exact date. This allows both you and your doctor to compare biometrics before and after, empirically validating whether the titration delivered genuine progress.
+> Displayed on your screen is Component 2 of Tab 10: our Medication Titration and Change Logging engine. Whenever your endocrinologist adjusts a dosage, switches drug classes, or prescribes a new agent, you enter the titration details directly on this screen. As shown, you select the change classification—such as dosage increase or tapering down—input the previous and new dosages, record the prescribing physician, and log the clinical rationale. Once committed, El-CARS pins a permanent red dashed milestone line across all timeline charts on that exact date. This allows both you and your doctor to compare biometrics before and after, empirically validating whether the titration delivered genuine progress.
 
 **Key Points:**
 - **Instant Dose Adjustments:** Quickly update milligrams, timing, or indications when prescriptions change.
@@ -698,11 +698,11 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 46: Tab 12 Full Scan: Automated Sequential 6-Sensor Diagnostic Pipeline
+### Slide 46: Tab 01 Full Scan: Automated Sequential 6-Sensor Diagnostic Pipeline
 **Module:** Module 8: Tab 12 Sequential Full Scan  
 **Card Title:** TAB 12: SEQUENTIAL 6-SENSOR FULL SCAN PIPELINE  
 
-> Displayed on your screen is Tab 12: our Sequential Comprehensive Biometric Full Scan in active execution. Observe the animated scanning sequence on the left, demonstrating how El-CARS coordinates all six onboard sensors. Rather than triggering multiple sensors simultaneously—which causes optical cross-talk and battery voltage dips—El-CARS executes a choreographed one-hundred-and-twenty-second diagnostic pipeline. On the right pane, our diagnostic flow chart outlines the exact sequence: Stage 1 measures optical glucose absorption, Stage 2 captures infrared temperature, Stage 3 evaluates blood pressure tonometry, Stage 4 assesses dual-wavelength SpO2, Stage 5 records pulse frequency, and Stage 6 conducts Poincaré HRV analysis. Once complete, the orchestrator compiles a comprehensive clinical audit report ready for clinical review.
+> Displayed on your screen is Tab 01: our Sequential Comprehensive Biometric Full Scan in active execution. Observe the animated scanning sequence on the left, demonstrating how El-CARS coordinates all six onboard sensors. Rather than triggering multiple sensors simultaneously—which causes optical cross-talk and battery voltage dips—El-CARS executes a choreographed one-hundred-and-twenty-second diagnostic pipeline. On the right pane, our diagnostic flow chart outlines the exact sequence: Stage 1 measures optical glucose absorption, Stage 2 captures infrared temperature, Stage 3 evaluates blood pressure tonometry, Stage 4 assesses dual-wavelength SpO2, Stage 5 records pulse frequency, and Stage 6 conducts Poincaré HRV analysis. Once complete, the orchestrator compiles a comprehensive clinical audit report ready for clinical review.
 
 **Key Points:**
 - **Automated 120-Second Pipeline:** Runs a complete, non-interfering diagnostic sequence across all watch sensors.
@@ -713,7 +713,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 47: Live Stage Progression, Non-Interfering Scan Flow & Clinical Report
+### Slide 47: Tab 01 Full Scan: Live Stage Progression & Consolidated Clinical Report
 **Module:** Module 8: Tab 12 Sequential Full Scan  
 **Card Title:** LIVE STAGE PROGRESSION & FULL SCAN REPORT  
 
@@ -851,7 +851,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 56: 48-Hour Continuous Metrology & Charging Dock Transparency
+### Slide 56: Tab 07 Reports: 48-Hour Continuous Metrology & Charging Dock Transparency
 **Module:** Module 6: Tab 04 Synchronized Tall Chart  
 **Card Title:** METROLOGICAL HONESTY: 48-HOUR DOCKING BANDS  
 

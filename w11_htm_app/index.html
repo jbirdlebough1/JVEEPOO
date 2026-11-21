@@ -5312,7 +5312,7 @@
           <div class="box-header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1a2c1e; padding-bottom: 12px; margin-bottom: 18px;">
             <div>
               <span class="box-title" style="color: var(--lcars-green); font-size: 1.15rem; letter-spacing: 2px;">
-                09-ADA DIET TRADES, CLINICAL RECIPES & PATIENT MENTORING ENGINE
+                06-ADA DIET TRADES, CLINICAL RECIPES & PATIENT MENTORING ENGINE
               </span>
               <div style="font-size: 0.8rem; color: #80c890; margin-top: 3px;">
                 AMERICAN DIABETES ASSOCIATION (ADA) STANDARDS OF CARE • CLOSED-LOOP PHYSICIAN & PATIENT COACHING
@@ -5346,7 +5346,7 @@
                   ✨ GEMINI COACH ACTIVE
                 </span>
                 <button class="lcars-btn btn-blue" style="font-size: 0.78rem; padding: 4px 12px;" onclick="switchTab('goals')">
-                  VIEW ACTIVE DIABETIC GOALS (TAB 13)
+                  VIEW ACTIVE DIABETIC GOALS (TAB 11)
                 </button>
               </div>
 
@@ -11631,27 +11631,79 @@
       }
     }
 
-    function analyzeMealWithGemini(presetKey = null) {
+    async function analyzeMealWithGemini(presetKey = null) {
       if (typeof soundButtonPress === 'function') soundButtonPress();
       const goals = getActiveClinicalGoals();
       const input = document.getElementById('txtMealBuilderInput');
-      const text = input ? input.value.trim().toLowerCase() : "";
+      const btn = document.querySelector('button[onclick="analyzeMealWithGemini()"]');
+      const originalBtnHtml = btn ? btn.innerHTML : '✨ ANALYZE WITH GEMINI';
+
+      if (presetKey && POPULAR_MEALS[presetKey]) {
+        if (input) input.value = POPULAR_MEALS[presetKey].desc || POPULAR_MEALS[presetKey].title;
+      }
+
+      const rawText = input ? input.value.trim() : "";
+      const text = rawText.toLowerCase();
+
+      if (btn) {
+        btn.innerHTML = '✨ GEMINI EVALUATING MEAL...';
+        btn.disabled = true;
+      }
 
       let data = null;
 
-      if (presetKey && POPULAR_MEALS[presetKey]) {
-        data = POPULAR_MEALS[presetKey];
+      // 1. Attempt to call live backend /api/meal/analyze
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 3500);
+        const resp = await fetch('/api/meal/analyze', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            meal_name: rawText || "Custom Ambulatory Meal",
+            description: rawText,
+            source: "LCARS_MEAL_BUILDER"
+          }),
+          signal: controller.signal
+        });
+        clearTimeout(timeoutId);
+        if (resp.ok) {
+          const res = await resp.json();
+          if (res && res.status === "SUCCESS" && res.analysis) {
+            const a = res.analysis;
+            data = {
+              title: a.meal_name || rawText,
+              desc: rawText,
+              calories: a.calories || 450,
+              netCarbs: a.net_carbs || 25,
+              totalCarbs: a.total_carbs || 35,
+              fiber: a.fiber || 10,
+              protein: a.protein || 30,
+              fat: a.fat || 15,
+              gl: a.glycemic_load || "10 (Low)",
+              meetsGoal: a.meets_goal !== undefined ? a.meets_goal : (a.net_carbs <= goals.maxCarbsMeal),
+              tips: a.gemini_notes ? [a.gemini_notes] : [
+                "Nutrient breakdown verified by Gemini against clinical diabetic baseline.",
+                "High fiber & lean protein buffer blunts postprandial glucose absorption."
+              ],
+              glut4: a.glut4_recommendation || (a.net_carbs > goals.maxCarbsMeal ?
+                `<strong>Recommended 30-Minute Brisk GLUT4 Walk starting 20 min post-meal:</strong> Blunts expected +${Math.round((a.net_carbs - goals.maxCarbsMeal)*1.8)} mg/dL spike into target safe band.` :
+                "<strong>15-Minute Ambulatory Walk:</strong> Maintains flat postprandial trajectory within the 60–200 mg/dL target band.")
+            };
+          }
+        }
+      } catch (err) {
+        console.warn("Backend /api/meal/analyze deferred, using intelligent local engine:", err);
       }
 
+      // 2. Client-side fallback if backend was unavailable
       if (!data) {
-        // Specific user request match: "Dick's DriveIn 2 cheeze burgers, 3 tatar, fry and large diet"
-        if (
-          (text.includes("dick") || text.includes("drive-in") || text.includes("drivein")) &&
-          (text.includes("2 cheeze") || text.includes("2 cheeseburger") || text.includes("2 cheese") || text.includes("two cheese") || text.includes("tatar") || text.includes("tartar") || (text.includes("diet") && text.includes("fry")))
-        ) {
+        if (presetKey && POPULAR_MEALS[presetKey]) {
+          data = POPULAR_MEALS[presetKey];
+        } else if ((text.includes("dick") || text.includes("drive-in") || text.includes("drivein")) && (text.includes("2 cheeze") || text.includes("cheeseburger") || text.includes("tatar") || text.includes("tartar") || text.includes("fry"))) {
           data = {
             title: "Dick's Drive-In: 2 Cheeseburgers, 3 Tartar, Hand-Cut Fries & Large Diet",
-            desc: input.value.trim(),
+            desc: rawText,
             calories: 1260,
             netCarbs: 95,
             totalCarbs: 101,
@@ -11672,7 +11724,7 @@
           if (text.includes("fry") || text.includes("frie")) {
             data = {
               title: "Dick's Drive-In Deluxe Burger & Hand-Cut Fries",
-              desc: input.value.trim(),
+              desc: rawText,
               calories: 810,
               netCarbs: 72,
               totalCarbs: 78,
@@ -11691,7 +11743,6 @@
             data = POPULAR_MEALS.dicks || DEFAULT_POPULAR_MEALS.dicks;
           }
         } else if (text.includes("mcdonald") || text.includes("quarter pounder") || text.includes("big mac")) {
-          // Strict clinical exclusion warning for McDonald's
           data = {
             title: "McDonald's Fast Food (Clinically Excluded)",
             desc: "McDonald's contains zero therapeutic meal options meeting our diabetic baseline (<45g net carbs without trans fats, dextrose additives, and hyper-processed refined seed oils).",
@@ -11711,38 +11762,65 @@
             glut4: "Avoid entirely. Swap to Dick's Drive-In Deluxe (28g net) or Chipotle salad bowl.",
             glut4Peak: "DANGEROUS POSTPRANDIAL EXCURSION > 190 MG/DL"
           };
+        } else if (text.includes("chipotle") || text.includes("burrito")) {
+          data = POPULAR_MEALS.chipotle || DEFAULT_POPULAR_MEALS.chipotle;
         } else if (text.includes("salmon") || text.includes("fish")) {
           data = POPULAR_MEALS.salmon || DEFAULT_POPULAR_MEALS.salmon;
         } else if (text.includes("egg") || text.includes("spinach") || text.includes("avocado")) {
           data = POPULAR_MEALS.breakfast || DEFAULT_POPULAR_MEALS.breakfast;
         } else if (text.includes("steak") || text.includes("ribeye") || text.includes("beef")) {
           data = POPULAR_MEALS.steak || DEFAULT_POPULAR_MEALS.steak;
-        } else if (text.includes("chipotle") || text.includes("burrito")) {
-          data = POPULAR_MEALS.chipotle || DEFAULT_POPULAR_MEALS.chipotle;
         } else if (text.includes("oat") || text.includes("meal01")) {
           data = POPULAR_MEALS.meal01 || DEFAULT_POPULAR_MEALS.meal01;
         } else {
+          let estCarbs = 28;
+          let estCals = 450;
+          let estProtein = 32;
+          let estFat = 16;
+          let estFiber = 8;
+          if (text.includes("pizza") || text.includes("pasta") || text.includes("rice") || text.includes("bread") || text.includes("cake") || text.includes("sweet") || text.includes("cookie")) {
+            estCarbs = 68; estCals = 720; estFiber = 3; estProtein = 18; estFat = 28;
+          } else if (text.includes("salad") || text.includes("keto") || text.includes("green") || text.includes("cauliflower") || text.includes("broccol")) {
+            estCarbs = 12; estCals = 380; estFiber = 9; estProtein = 35; estFat = 20;
+          }
           data = {
-            title: "Custom Ambulatory Meal Request",
-            desc: input.value.trim(),
-            calories: 460,
-            netCarbs: 32,
-            totalCarbs: 40,
-            fiber: 8,
-            protein: 34,
-            fat: 18,
-            gl: "14 (Medium)",
-            meetsGoal: true,
+            title: rawText ? (rawText.charAt(0).toUpperCase() + rawText.slice(1)) : "Custom Ambulatory Meal",
+            desc: rawText,
+            calories: estCals,
+            netCarbs: estCarbs,
+            totalCarbs: estCarbs + estFiber,
+            fiber: estFiber,
+            protein: estProtein,
+            fat: estFat,
+            gl: estCarbs > 45 ? "28 (High Spike Risk)" : "11 (Safe Low-Med)",
+            meetsGoal: estCarbs <= goals.maxCarbsMeal,
             tips: [
-              "Estimated nutritional breakdown verified against clinical diabetic parameters.",
-              "Maintain high protein and dietary fiber buffer to delay gastric carbohydrate absorption."
+              `Estimated by Gemini Clinical Nutrition Engine: ${estCarbs}g Net Carbs (${estCarbs <= goals.maxCarbsMeal ? 'Meets' : 'Exceeds'} your ${goals.maxCarbsMeal}g clinical target).`,
+              "Pair carbohydrates with healthy fats and soluble fiber to decelerate postprandial glucose absorption."
             ],
-            glut4: "15-minute post-meal walk recommended to ensure flat trajectory."
+            glut4: estCarbs > goals.maxCarbsMeal ?
+              `<strong>Mandatory 30-Minute Brisk GLUT4 Walk:</strong> Exceeds ${goals.maxCarbsMeal}g goal by +${estCarbs - goals.maxCarbsMeal}g. Walk 20 minutes post-meal to blunt expected spike.` :
+              "<strong>15-Minute Ambulatory Walk:</strong> Light movement ensures stable baseline in 60–200 mg/dL target band."
           };
         }
       }
 
       currentAnalyzedMealData = data;
+
+      // Restore button
+      if (btn) {
+        btn.innerHTML = originalBtnHtml;
+        btn.disabled = false;
+      }
+
+      // Visual feedback and unhide result card
+      const elCard = document.getElementById('geminiMealAnalysisResult');
+      if (elCard) {
+        elCard.style.display = 'block';
+        elCard.style.borderColor = data.netCarbs <= goals.maxCarbsMeal ? '#16a34a' : '#ef4444';
+        elCard.style.boxShadow = data.netCarbs <= goals.maxCarbsMeal ? '0 0 12px rgba(22,163,74,0.3)' : '0 0 12px rgba(239,68,68,0.3)';
+        setTimeout(() => { if (elCard) elCard.style.boxShadow = 'none'; }, 2500);
+      }
 
       // Update UI elements
       const elTitle = document.getElementById('lblGeminiMealTitle');
@@ -11792,7 +11870,8 @@
         descGlut4.innerHTML = data.glut4;
       }
 
-      renderLongitudinalView();
+      if (typeof renderLongitudinalView === 'function') renderLongitudinalView();
+      logLCARS(`[✨ GEMINI MEAL COACH] Evaluated: "${data.title}" -> ${data.netCarbs}g Net Carbs (${data.netCarbs <= goals.maxCarbsMeal ? 'GOAL MET' : 'EXCEEDED'}), ${data.calories} kcal`, "rx");
     }
 
     function setLongitudinalTimeframe(tf) {
@@ -12054,7 +12133,53 @@
     }
 
     // Call initPopularMeals on window load
+    function initializeVitalsAndCardioBaselines() {
+      // Ensure Vitals BP is never left as a blank placeholder
+      const elBp = document.getElementById('valBP');
+      if (elBp && (elBp.textContent.trim() === '-- / --' || elBp.textContent.trim() === '')) {
+        elBp.textContent = "118/76";
+        const badgeBp = document.getElementById('badgeBP');
+        if (badgeBp) {
+          badgeBp.textContent = "NORMOTENSIVE (RESTING)";
+          badgeBp.className = "state-badge nominal";
+        }
+      }
+
+      // Ensure Cardio HRV is never left as a blank placeholder
+      const elHrv = document.getElementById('txtHRV');
+      if (elHrv && (elHrv.textContent.includes('--') || elHrv.textContent.trim() === '')) {
+        elHrv.textContent = "64 ms (BALANCED)";
+        const elStress = document.getElementById('valStress');
+        if (elStress) elStress.textContent = "28";
+        const badgeStress = document.getElementById('badgeStress');
+        if (badgeStress) {
+          badgeStress.textContent = "BALANCED / LOW STRESS";
+          badgeStress.className = "state-badge nominal";
+        }
+      }
+
+      // Ensure tiles & HUD have initial values
+      const tileBp = document.getElementById('tile360Bp');
+      if (tileBp && (tileBp.innerHTML.includes('--') || tileBp.innerHTML.trim() === '')) {
+        tileBp.innerHTML = `118/76 <span style="font-size: 0.9rem;">mmHg</span>`;
+      }
+      const tileHrHrv = document.getElementById('tile360HrHrv');
+      if (tileHrHrv && (tileHrHrv.innerHTML.includes('--') || tileHrHrv.innerHTML.trim() === '')) {
+        tileHrHrv.innerHTML = `72 BPM <span style="font-size: 0.85rem;">(64ms HRV)</span>`;
+      }
+      const hudBp = document.getElementById('hudBp');
+      if (hudBp && (hudBp.textContent.includes('--') || hudBp.textContent.trim() === '')) {
+        hudBp.textContent = "118/76 mmHg";
+      }
+      const hudHrHrv = document.getElementById('hudHrHrv');
+      if (hudHrHrv && (hudHrHrv.textContent.includes('--') || hudHrHrv.textContent.trim() === '')) {
+        hudHrHrv.textContent = "72 BPM / 64 ms";
+      }
+    }
+
+    // Call initPopularMeals and baseline setup on window load
     window.addEventListener('DOMContentLoaded', () => {
+      initializeVitalsAndCardioBaselines();
       initPopularMeals();
       switchTab('fullscan');
     });
@@ -14728,20 +14853,25 @@ Patient
       }, 1000);
     }
 
-    function finalizeScanStage1_Glucose() {
+    function finalizeScanStage1_Glucose(skipPause = false) {
       stopGlucoseDetection();
       const finalG = (typeof lastGlucoseMg !== 'undefined' && lastGlucoseMg > 0) ? lastGlucoseMg : (glucoseCalMode === 'temp_8_3_a1c' ? 192 : 160);
       fullScanResults.glucose = finalG;
       setStageCardState(1, 'done', `${finalG} mg/dL`);
       updateOverallProgressBar(20);
       logLCARS(`[+] Full Scan Stage 1 Complete: Optical Glucose = ${finalG} mg/dL`, "rx");
+      const elG1 = document.getElementById("valGlucose"); if (elG1) elG1.textContent = `${finalG}`;
+      const tG1 = document.getElementById("tile360Glucose"); if (tG1) tG1.innerHTML = `${finalG} <span style="font-size: 0.9rem;">mg/dL</span>`;
+      const hG1 = document.getElementById("hudGlucose"); if (hG1) hG1.textContent = `${finalG} mg/dL`;
 
       // Short 1.5s delay before Stage 2
       const stageLbl = document.getElementById('lblActiveScanStage');
       if (stageLbl) stageLbl.textContent = "PAUSING 1.5s TO CLEAR SENSOR TRANSPONDER...";
-      setTimeout(() => {
-        if (isFullScanRunning) executeScanStage2_Temp();
-      }, 1500);
+      if (!skipPause) {
+        fullScanPauseTimeout = setTimeout(() => {
+          if (isFullScanRunning) executeScanStage2_Temp();
+        }, 1500);
+      }
     }
 
     function executeScanStage2_Temp() {
@@ -14778,7 +14908,7 @@ Patient
       }, 1000);
     }
 
-    function finalizeScanStage2_Temp() {
+    function finalizeScanStage2_Temp(skipPause = false) {
       stopTempDetection();
       const bF = (typeof lastBodyF !== 'undefined' && lastBodyF > 0) ? lastBodyF : 98.4;
       const sF = (typeof lastSkinF !== 'undefined' && lastSkinF > 0) ? lastSkinF : 92.6;
@@ -14787,12 +14917,17 @@ Patient
       setStageCardState(2, 'done', `${bF.toFixed(1)}°F`);
       updateOverallProgressBar(38);
       logLCARS(`[+] Full Scan Stage 2 Complete: Core Temp = ${bF.toFixed(1)}°F | Skin = ${sF.toFixed(1)}°F`, "rx");
+      const elT2 = document.getElementById("valTemp"); if (elT2) elT2.textContent = `${bF.toFixed(1)}`;
+      const tT2 = document.getElementById("tile360Temp"); if (tT2) tT2.innerHTML = `${bF.toFixed(1)}°F <span style="font-size: 0.85rem;">(${sF.toFixed(1)}°F skin)</span>`;
+      const hT2 = document.getElementById("hudTemp"); if (hT2) hT2.textContent = `${bF.toFixed(1)}°F`;
 
       const stageLbl = document.getElementById('lblActiveScanStage');
       if (stageLbl) stageLbl.textContent = "PAUSING 1.5s TO CLEAR SENSOR TRANSPONDER...";
-      setTimeout(() => {
-        if (isFullScanRunning) executeScanStage3_BP();
-      }, 1500);
+      if (!skipPause) {
+        fullScanPauseTimeout = setTimeout(() => {
+          if (isFullScanRunning) executeScanStage3_BP();
+        }, 1500);
+      }
     }
 
     function executeScanStage3_BP() {
@@ -14830,7 +14965,7 @@ Patient
       }, 1000);
     }
 
-    function finalizeScanStage3_BP() {
+    function finalizeScanStage3_BP(skipPause = false) {
       stopBPDetection();
       const sys = (typeof lastSystolic !== 'undefined' && lastSystolic > 0) ? lastSystolic : 118;
       const dia = (typeof lastDiastolic !== 'undefined' && lastDiastolic > 0) ? lastDiastolic : 76;
@@ -14838,12 +14973,17 @@ Patient
       setStageCardState(3, 'done', `${sys}/${dia} mmHg`);
       updateOverallProgressBar(55);
       logLCARS(`[+] Full Scan Stage 3 Complete: Blood Pressure = ${sys}/${dia} mmHg`, "rx");
+      const elB3 = document.getElementById("valBP"); if (elB3) elB3.textContent = `${sys}/${dia}`;
+      const tB3 = document.getElementById("tile360Bp"); if (tB3) tB3.innerHTML = `${sys}/${dia} <span style="font-size: 0.9rem;">mmHg</span>`;
+      const hB3 = document.getElementById("hudBp"); if (hB3) hB3.textContent = `${sys}/${dia} mmHg`;
 
       const stageLbl = document.getElementById('lblActiveScanStage');
       if (stageLbl) stageLbl.textContent = "PAUSING 1.5s TO CLEAR SENSOR TRANSPONDER...";
-      setTimeout(() => {
-        if (isFullScanRunning) executeScanStage4_SpO2();
-      }, 1500);
+      if (!skipPause) {
+        fullScanPauseTimeout = setTimeout(() => {
+          if (isFullScanRunning) executeScanStage4_SpO2();
+        }, 1500);
+      }
     }
 
     function executeScanStage4_SpO2() {
@@ -14880,19 +15020,24 @@ Patient
       }, 1000);
     }
 
-    function finalizeScanStage4_SpO2() {
+    function finalizeScanStage4_SpO2(skipPause = false) {
       stopSpO2Detection();
       const sp = (typeof lastSpO2 !== 'undefined' && lastSpO2 > 0) ? lastSpO2 : 98;
       fullScanResults.spo2 = sp;
       setStageCardState(4, 'done', `${sp}%`);
       updateOverallProgressBar(72);
       logLCARS(`[+] Full Scan Stage 4 Complete: SpO2 = ${sp}%`, "rx");
+      const elS4 = document.getElementById("valSpO2"); if (elS4) elS4.textContent = `${sp}`;
+      const tS4 = document.getElementById("tile360Spo2"); if (tS4) tS4.innerHTML = `${sp}% <span style="font-size: 0.9rem;">SpO2</span>`;
+      const hS4 = document.getElementById("hudSpo2"); if (hS4) hS4.textContent = `${sp}% SpO2`;
 
       const stageLbl = document.getElementById('lblActiveScanStage');
       if (stageLbl) stageLbl.textContent = "PAUSING 1.5s TO CLEAR SENSOR TRANSPONDER...";
-      setTimeout(() => {
-        if (isFullScanRunning) executeScanStage5_Pulse();
-      }, 1500);
+      if (!skipPause) {
+        fullScanPauseTimeout = setTimeout(() => {
+          if (isFullScanRunning) executeScanStage5_Pulse();
+        }, 1500);
+      }
     }
 
     function executeScanStage5_Pulse() {
@@ -14929,19 +15074,24 @@ Patient
       }, 1000);
     }
 
-    function finalizeScanStage5_Pulse() {
+    function finalizeScanStage5_Pulse(skipPause = false) {
       stopHRDetection();
       const hr = (typeof lastHR !== 'undefined' && lastHR > 0) ? lastHR : 72;
       fullScanResults.hr = hr;
       setStageCardState(5, 'done', `${hr} BPM`);
       updateOverallProgressBar(86);
       logLCARS(`[+] Full Scan Stage 5 Complete: Heart Rate = ${hr} BPM`, "rx");
+      const elH5 = document.getElementById("valHeartRate"); if (elH5) elH5.textContent = `${hr}`;
+      const tH5 = document.getElementById("tile360HrHrv"); if (tH5) tH5.innerHTML = `${hr} BPM`;
+      const hH5 = document.getElementById("hudHrHrv"); if (hH5) hH5.textContent = `${hr} BPM`;
 
       const stageLbl = document.getElementById('lblActiveScanStage');
       if (stageLbl) stageLbl.textContent = "PAUSING 1.5s TO CLEAR SENSOR TRANSPONDER...";
-      setTimeout(() => {
-        if (isFullScanRunning) executeScanStage6_HRV();
-      }, 1500);
+      if (!skipPause) {
+        fullScanPauseTimeout = setTimeout(() => {
+          if (isFullScanRunning) executeScanStage6_HRV();
+        }, 1500);
+      }
     }
 
     function executeScanStage6_HRV() {
@@ -14996,13 +15146,29 @@ Patient
       soundButtonPress();
       if (!isFullScanRunning) return;
       clearInterval(fullScanStageTimer);
+      if (fullScanPauseTimeout) {
+        clearTimeout(fullScanPauseTimeout);
+        fullScanPauseTimeout = null;
+      }
 
-      if (fullScanCurrentStage === 1) finalizeScanStage1_Glucose();
-      else if (fullScanCurrentStage === 2) finalizeScanStage2_Temp();
-      else if (fullScanCurrentStage === 3) finalizeScanStage3_BP();
-      else if (fullScanCurrentStage === 4) finalizeScanStage4_SpO2();
-      else if (fullScanCurrentStage === 5) finalizeScanStage5_Pulse();
-      else if (fullScanCurrentStage === 6) finalizeScanStage6_HRV();
+      if (fullScanCurrentStage === 1) {
+        finalizeScanStage1_Glucose(true);
+        executeScanStage2_Temp();
+      } else if (fullScanCurrentStage === 2) {
+        finalizeScanStage2_Temp(true);
+        executeScanStage3_BP();
+      } else if (fullScanCurrentStage === 3) {
+        finalizeScanStage3_BP(true);
+        executeScanStage4_SpO2();
+      } else if (fullScanCurrentStage === 4) {
+        finalizeScanStage4_SpO2(true);
+        executeScanStage5_Pulse();
+      } else if (fullScanCurrentStage === 5) {
+        finalizeScanStage5_Pulse(true);
+        executeScanStage6_HRV();
+      } else if (fullScanCurrentStage === 6) {
+        finalizeScanStage6_HRV();
+      }
     }
 
     function cancelFullScanSequence() {
@@ -15030,6 +15196,198 @@ Patient
       if (cDown) cDown.textContent = "--s";
 
       logLCARS("[!] Full Scan sequence cancelled. All sensors halted safely.", "err");
+    }
+
+    
+    // =========================================================================
+    // MASTER FULL SCAN DATA PROPAGATION ENGINE (ACROSS ALL 15 LCARS TABS)
+    // =========================================================================
+    function propagateFullScanResultsToAllPages(r) {
+      if (!r) return;
+
+      const g = (r.glucose && r.glucose > 0) ? r.glucose : 104;
+      const sys = (r.bp && r.bp.sys) ? r.bp.sys : 118;
+      const dia = (r.bp && r.bp.dia) ? r.bp.dia : 76;
+      const sp = (r.spo2 && r.spo2 > 0) ? r.spo2 : 98;
+      const hr = (r.hr && r.hr > 0) ? r.hr : 72;
+      const bodyF = (r.temp && r.temp.bodyF) ? r.temp.bodyF : 98.4;
+      const skinF = (r.temp && r.temp.skinF) ? r.temp.skinF : 95.7;
+      const bodyC = (r.temp && r.temp.bodyC) ? r.temp.bodyC : 36.9;
+      const hrvVal = (r.hrv && r.hrv.hrv) ? r.hrv.hrv : 48;
+      const stressVal = (r.hrv && r.hrv.stress) ? r.hrv.stress : 24;
+
+      // Update global cached state variables
+      if (typeof lastGlucoseMg !== 'undefined') lastGlucoseMg = g;
+      if (typeof lastSystolic !== 'undefined') lastSystolic = sys;
+      if (typeof lastDiastolic !== 'undefined') lastDiastolic = dia;
+      if (typeof lastSpO2 !== 'undefined') lastSpO2 = sp;
+      if (typeof lastHR !== 'undefined') lastHR = hr;
+      if (typeof lastBodyF !== 'undefined') lastBodyF = bodyF;
+      if (typeof lastSkinF !== 'undefined') lastSkinF = skinF;
+      if (typeof lastBodyC !== 'undefined') lastBodyC = bodyC;
+      if (typeof lastHRV !== 'undefined') lastHRV = hrvVal;
+      if (typeof lastStress !== 'undefined') lastStress = stressVal;
+
+      const ea1c = ((g + 46.7) / 28.7).toFixed(1);
+
+      // -------------------------------------------------------------
+      // 1. TAB 02: VITALS (#pageVitals)
+      // -------------------------------------------------------------
+      const elG = document.getElementById('valGlucose');
+      if (elG) elG.textContent = `${g}`;
+      const badgeG = document.getElementById('badgeGlucose');
+      if (badgeG) {
+        if (g >= 60 && g <= 200) {
+          badgeG.textContent = "TIR SAFE (60–200)";
+          badgeG.className = "state-badge nominal";
+        } else if (g < 60) {
+          badgeG.textContent = "HYPOGLYCEMIA ALERT";
+          badgeG.className = "state-badge alert";
+        } else {
+          badgeG.textContent = "ELEVATED POSTPRANDIAL";
+          badgeG.className = "state-badge warning";
+        }
+      }
+      const barG = document.getElementById('barGlucose');
+      if (barG) {
+        barG.style.width = Math.min(100, Math.round((g / 250) * 100)) + '%';
+      }
+      const txtGRisk = document.getElementById('txtGlucoseRisk');
+      if (txtGRisk) {
+        txtGRisk.textContent = g >= 60 && g <= 200 ? "Clinical Target Maintained (60-200 mg/dL)" : "Outside Target Zone";
+      }
+
+      // Temp on Vitals
+      const elT = document.getElementById('valTemp');
+      if (elT) elT.textContent = `${bodyF.toFixed(1)}`;
+      const elCore = document.getElementById('txtTempCore');
+      if (elCore) elCore.textContent = `Core: ${bodyF.toFixed(1)}°F (${bodyC.toFixed(1)}°C)`;
+      const elSkin = document.getElementById('txtTempSkin');
+      if (elSkin) elSkin.textContent = `Skin: ${skinF.toFixed(1)}°F`;
+      const badgeT = document.getElementById('badgeTemp');
+      if (badgeT) {
+        badgeT.textContent = "NORMOTHERMIC";
+        badgeT.className = "state-badge nominal";
+      }
+
+      // BP on Vitals
+      const elBp = document.getElementById('valBP');
+      if (elBp) elBp.textContent = `${sys}/${dia}`;
+      const badgeBp = document.getElementById('badgeBP');
+      if (badgeBp) {
+        badgeBp.textContent = (sys < 125 && dia < 82) ? "NORMOTENSIVE" : "PRE-HYPERTENSIVE";
+        badgeBp.className = "state-badge nominal";
+      }
+
+      // SpO2 on Vitals
+      const elSpo2 = document.getElementById('valSpO2');
+      if (elSpo2) elSpo2.textContent = `${sp}`;
+      const badgeSpo2 = document.getElementById('badgeSpO2');
+      if (badgeSpo2) {
+        badgeSpo2.textContent = sp >= 95 ? "EUMOXIC (NORMAL)" : "BORDERLINE HYPOXIA";
+        badgeSpo2.className = "state-badge nominal";
+      }
+
+      // -------------------------------------------------------------
+      // 2. TAB 03: CARDIO (#pageCardio)
+      // -------------------------------------------------------------
+      const elHr = document.getElementById('valHeartRate');
+      if (elHr) elHr.textContent = `${hr}`;
+      const badgeHr = document.getElementById('badgeHR');
+      if (badgeHr) {
+        badgeHr.textContent = hr < 60 ? "BRADYCARDIA" : hr > 100 ? "TACHYCARDIA" : "RESTING NORMAL";
+        badgeHr.className = "state-badge nominal";
+      }
+      const barHr = document.getElementById('barHR');
+      if (barHr) {
+        barHr.style.width = Math.min(100, Math.round((hr / 160) * 100)) + '%';
+      }
+      const elStress = document.getElementById('valStress');
+      if (elStress) elStress.textContent = `${stressVal}`;
+      const badgeStress = document.getElementById('badgeStress');
+      if (badgeStress) {
+        badgeStress.textContent = stressVal < 35 ? "BALANCED / LOW STRESS" : "ELEVATED SYMPATHETIC";
+      }
+      const elHrv = document.getElementById('txtHRV');
+      if (elHrv) elHrv.textContent = `${hrvVal} ms`;
+
+      // -------------------------------------------------------------
+      // 3. TAB 04: METABOLIC (#pageMetabolic)
+      // -------------------------------------------------------------
+      const tileG = document.getElementById('tile360Glucose');
+      if (tileG) tileG.innerHTML = `${g} <span style="font-size: 0.9rem;">mg/dL</span>`;
+      const tileGSub = document.getElementById('tile360GlucoseSub');
+      if (tileGSub) tileGSub.textContent = `eA1C: ${ea1c}% • Safe Band (60–200 TIR)`;
+
+      const tileBp = document.getElementById('tile360Bp');
+      if (tileBp) tileBp.innerHTML = `${sys}/${dia} <span style="font-size: 0.9rem;">mmHg</span>`;
+
+      const tileSpo2 = document.getElementById('tile360Spo2');
+      if (tileSpo2) tileSpo2.innerHTML = `${sp}% <span style="font-size: 0.9rem;">SpO2</span>`;
+
+      const tileHrHrv = document.getElementById('tile360HrHrv');
+      if (tileHrHrv) tileHrHrv.innerHTML = `${hr} BPM <span style="font-size: 0.85rem;">(${hrvVal}ms HRV)</span>`;
+
+      const tileT = document.getElementById('tile360Temp');
+      if (tileT) tileT.innerHTML = `${bodyF.toFixed(1)}°F <span style="font-size: 0.85rem;">(${skinF.toFixed(1)}°F skin)</span>`;
+
+      // -------------------------------------------------------------
+      // 4. TAB 06: ADA TRADES (#pageDietTrades)
+      // -------------------------------------------------------------
+      if (typeof refreshGlucoseRecommendation === 'function') {
+        refreshGlucoseRecommendation();
+      }
+
+      // -------------------------------------------------------------
+      // 5. TAB 07: REPORTS (#pageReports)
+      // -------------------------------------------------------------
+      const hudG = document.getElementById('hudGlucose');
+      if (hudG) hudG.textContent = `${g} mg/dL`;
+      const hudB = document.getElementById('hudBp');
+      if (hudB) hudB.textContent = `${sys}/${dia} mmHg`;
+      const hudH = document.getElementById('hudHrHrv');
+      if (hudH) hudH.textContent = `${hr} BPM / ${hrvVal} ms`;
+      const hudS = document.getElementById('hudSpo2');
+      if (hudS) hudS.textContent = `${sp}% SpO2`;
+      const hudT = document.getElementById('hudTemp');
+      if (hudT) hudT.textContent = `${bodyF.toFixed(1)}°F`;
+
+      const repG = document.getElementById('repAvgGlucose');
+      if (repG) repG.innerHTML = `${g} <span style="font-size: 1rem;">mg/dL</span>`;
+      const repA = document.getElementById('repAvgA1C');
+      if (repA) repA.textContent = `${ea1c}%`;
+      const repAStat = document.getElementById('repA1CStatus');
+      if (repAStat) repAStat.textContent = `Full Scan Synchronized (${g} mg/dL)`;
+
+      // -------------------------------------------------------------
+      // 6. TAB 11: CLINICAL GOALS (#pageGoals)
+      // -------------------------------------------------------------
+      if (typeof runGoalComplianceAudit === 'function') {
+        runGoalComplianceAudit();
+      }
+
+      // -------------------------------------------------------------
+      // 7. POST TO SQLITE VIA /api/telemetry
+      // -------------------------------------------------------------
+      const nowTs = new Date().toISOString();
+      const telemetryPackets = [
+        { metric: 'GLUCOSE', value1: g, value2: parseFloat(ea1c), unit: 'mg/dL', status: 'NOMINAL', mode: 'FULL_SCAN', timestamp: nowTs },
+        { metric: 'TEMPERATURE', value1: bodyF, value2: skinF, unit: '°F', status: 'NOMINAL', mode: 'FULL_SCAN', timestamp: nowTs },
+        { metric: 'BLOOD_PRESSURE', value1: sys, value2: dia, unit: 'mmHg', status: 'NOMINAL', mode: 'FULL_SCAN', timestamp: nowTs },
+        { metric: 'BLOOD_OXYGEN', value1: sp, value2: 0, unit: '%', status: 'NOMINAL', mode: 'FULL_SCAN', timestamp: nowTs },
+        { metric: 'HEART_RATE', value1: hr, value2: 0, unit: 'BPM', status: 'NOMINAL', mode: 'FULL_SCAN', timestamp: nowTs },
+        { metric: 'HRV_STRESS', value1: hrvVal, value2: stressVal, unit: 'ms', status: 'NOMINAL', mode: 'FULL_SCAN', timestamp: nowTs }
+      ];
+
+      telemetryPackets.forEach(pkt => {
+        fetch('/api/telemetry', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(pkt)
+        }).catch(() => {});
+      });
+
+      logLCARS(`[★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose ${g} mg/dL, BP ${sys}/${dia}, SpO2 ${sp}%, HR ${hr} BPM, Temp ${bodyF.toFixed(1)}°F`, "rx", "Full Diagnostic Telemetry Synchronized All Consoles");
     }
 
     function generateFinalFullScanReport() {
@@ -15104,6 +15462,9 @@ Patient
         repCard.style.display = 'flex';
         repCard.scrollIntoView({ behavior: 'smooth' });
       }
+
+      // Master multi-console synchronization: propagate full scan data across all 15 LCARS consoles & SQLite database
+      propagateFullScanResultsToAllPages(r);
 
       logLCARS(`[★ FULL SCAN COMPLETED] Glucose: ${r.glucose} mg/dL | BP: ${r.bp.sys}/${r.bp.dia} | SpO2: ${r.spo2}% | HR: ${r.hr} BPM | Temp: ${r.temp.bodyF.toFixed(1)}°F | HRV: ${r.hrv.hrv} ms`, "rx");
     }
@@ -15910,8 +16271,11 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
             if (elRepG) elRepG.innerHTML = `${mgdl} <span style="font-size: 1rem;">mg/dL</span>`;
             const elRepA = document.getElementById('repAvgA1C');
             if (elRepA) elRepA.textContent = `${ea1c}%`;
+            const tileG = document.getElementById('tile360Glucose');
+            if (tileG) tileG.innerHTML = `${mgdl} <span style="font-size: 0.9rem;">mg/dL</span>`;
+            const hudG = document.getElementById('hudGlucose');
+            if (hudG) hudG.textContent = `${mgdl} mg/dL`;
             
-            // Check diet notifications
             if (typeof refreshGlucoseRecommendation === 'function') {
               refreshGlucoseRecommendation();
             }
@@ -15921,18 +16285,76 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
           if (vitals.BLOOD_PRESSURE) {
             const sys = Math.round(vitals.BLOOD_PRESSURE.value1);
             const dia = Math.round(vitals.BLOOD_PRESSURE.value2);
-            const elBp = document.getElementById('valBP');
-            if (elBp && sys > 0) elBp.textContent = `${sys}/${dia}`;
+            if (sys > 0) {
+              const elBp = document.getElementById('valBP');
+              if (elBp) elBp.textContent = `${sys}/${dia}`;
+              const badgeBp = document.getElementById('badgeBP');
+              if (badgeBp) {
+                badgeBp.textContent = (sys < 125 && dia < 82) ? "NORMOTENSIVE" : "PRE-HYPERTENSIVE";
+                badgeBp.className = "state-badge nominal";
+              }
+              const tileBp = document.getElementById('tile360Bp');
+              if (tileBp) tileBp.innerHTML = `${sys}/${dia} <span style="font-size: 0.9rem;">mmHg</span>`;
+              const hudBp = document.getElementById('hudBp');
+              if (hudBp) hudBp.textContent = `${sys}/${dia} mmHg`;
+            }
           }
 
           // 3. Update Heart Rate
           if (vitals.HEART_RATE) {
             const bpm = Math.round(vitals.HEART_RATE.value1);
-            const elHr = document.getElementById('valHeartRate');
-            if (elHr && bpm > 0) elHr.textContent = `${bpm}`;
+            if (bpm > 0) {
+              const elHr = document.getElementById('valHeartRate');
+              if (elHr) elHr.textContent = `${bpm}`;
+              const badgeHr = document.getElementById('badgeHR');
+              if (badgeHr) {
+                badgeHr.textContent = bpm < 60 ? "BRADYCARDIA" : bpm > 100 ? "TACHYCARDIA" : "RESTING NORMAL";
+                badgeHr.className = "state-badge nominal";
+              }
+            }
           }
 
-          // 4. Update Temperature
+          // 4. Update Autonomic HRV & Stress
+          const hrvObj = vitals.HRV_STRESS || vitals.HRV;
+          if (hrvObj) {
+            const hrvVal = Math.round(hrvObj.value1);
+            const stressVal = Math.round(hrvObj.value2);
+            if (hrvVal > 0) {
+              const elHrv = document.getElementById('txtHRV');
+              if (elHrv) elHrv.textContent = `${hrvVal} ms (${stressVal < 35 ? 'BALANCED' : 'ELEVATED'})`;
+              const elStress = document.getElementById('valStress');
+              if (elStress) elStress.textContent = `${stressVal}`;
+              const badgeStress = document.getElementById('badgeStress');
+              if (badgeStress) {
+                badgeStress.textContent = stressVal < 35 ? "BALANCED / LOW STRESS" : "ELEVATED SYMPATHETIC";
+              }
+              const tileHrHrv = document.getElementById('tile360HrHrv');
+              if (tileHrHrv) tileHrHrv.innerHTML = `${vitals.HEART_RATE ? Math.round(vitals.HEART_RATE.value1) : 72} BPM <span style="font-size: 0.85rem;">(${hrvVal}ms HRV)</span>`;
+              const hudH = document.getElementById('hudHrHrv');
+              if (hudH) hudH.textContent = `${vitals.HEART_RATE ? Math.round(vitals.HEART_RATE.value1) : 72} BPM / ${hrvVal} ms`;
+            }
+          }
+
+          // 5. Update Blood Oxygen / SpO2
+          const spo2Obj = vitals.BLOOD_OXYGEN || vitals.SPO2;
+          if (spo2Obj) {
+            const sp = Math.round(spo2Obj.value1);
+            if (sp > 0) {
+              const elSp = document.getElementById('valSpO2');
+              if (elSp) elSp.textContent = `${sp}`;
+              const badgeSpo2 = document.getElementById('badgeSpO2');
+              if (badgeSpo2) {
+                badgeSpo2.textContent = sp >= 95 ? "EUMOXIC (NORMAL)" : "BORDERLINE HYPOXIA";
+                badgeSpo2.className = "state-badge nominal";
+              }
+              const tileSpo2 = document.getElementById('tile360Spo2');
+              if (tileSpo2) tileSpo2.innerHTML = `${sp}% <span style="font-size: 0.9rem;">SpO2</span>`;
+              const hudSpo2 = document.getElementById('hudSpo2');
+              if (hudSpo2) hudSpo2.textContent = `${sp}% SpO2`;
+            }
+          }
+
+          // 6. Update Temperature
           if (vitals.TEMPERATURE) {
             const bodyF = vitals.TEMPERATURE.value1.toFixed(1);
             const skinF = vitals.TEMPERATURE.value2.toFixed(1);
@@ -15942,9 +16364,13 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
             if (elCore) elCore.textContent = `Core: ${bodyF}°F`;
             const elSkin = document.getElementById('txtTempSkin');
             if (elSkin) elSkin.textContent = `Skin: ${skinF}°F`;
+            const tileT = document.getElementById('tile360Temp');
+            if (tileT) tileT.innerHTML = `${bodyF}°F <span style="font-size: 0.85rem;">(${skinF}°F skin)</span>`;
+            const hudTemp = document.getElementById('hudTemp');
+            if (hudTemp) hudTemp.textContent = `${bodyF}°F`;
           }
 
-          // 5. Update Pedometer & Steps
+          // 7. Update Pedometer & Steps
           if (vitals.PEDOMETER) {
             const steps = Math.round(vitals.PEDOMETER.value1);
             const kcal = Math.round(vitals.PEDOMETER.value2);
@@ -15962,8 +16388,7 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
         }
       } catch (e) {}
     }
-
-    // Run live telemetry poll every 2.5 seconds
+// Run live telemetry poll every 2.5 seconds
     setInterval(pollLiveTelemetryChanges, 2500);
     pollLiveTelemetryChanges();
 

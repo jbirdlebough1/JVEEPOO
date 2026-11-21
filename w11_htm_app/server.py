@@ -1530,7 +1530,7 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
         with db_lock:
             conn = get_db()
             cur = conn.cursor()
-            metrics = ["GLUCOSE", "BLOOD_PRESSURE", "HEART_RATE", "SPO2", "TEMPERATURE", "PEDOMETER", "BATTERY"]
+            metrics = ["GLUCOSE", "BLOOD_PRESSURE", "HEART_RATE", "SPO2", "BLOOD_OXYGEN", "TEMPERATURE", "PEDOMETER", "BATTERY", "HRV_STRESS", "HRV"]
             for m in metrics:
                 cur.execute("""
                     SELECT timestamp, value1, value2, unit, status, mode 
