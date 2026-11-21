@@ -633,7 +633,7 @@
 
     .log-ts { color: var(--lcars-gray); flex-shrink: 0; }
     .log-rx { color: var(--lcars-green); }
-    .log-tx { color: var(--lcars-banana); }
+    .log-tx { color: #38bdf8; }
     .log-err { color: #ff5566; }
     .log-sys { color: var(--lcars-lilac); }
 
@@ -1604,7 +1604,7 @@
     }
 
     body.theme-light .log-tx {
-      color: #b45309 !important;
+      color: #0284c7 !important;
       font-weight: 600 !important;
     }
 
@@ -6089,6 +6089,43 @@
             </div>
           </div>
 
+          <!-- FITAOS WATCH FACE ARCHITECTURE & COMPATIBILITY SPECIFICATION (CLE-079) -->
+          <div class="card-box" id="boxFitaosDialArchitecture" style="border: 2px solid #0284c7; background: #ffffff; box-shadow: 0 4px 14px rgba(0,0,0,0.08); margin-bottom: 16px;">
+            <div class="box-header" style="display: flex; justify-content: space-between; align-items: center; background: #f0f9ff; border-bottom: 2px solid #0284c7; padding: 10px 16px;">
+              <div>
+                <span class="box-title" style="color: #0369a1; font-size: 1.1rem; font-weight: 800;">★ FITAOS WATCH FACE COMPATIBILITY &amp; BINARY ARCHITECTURE</span>
+                <div style="font-size: 0.8rem; color: #475569; margin-top: 2px;">
+                  Official Technical Specifications for Shenzhen Veepoo RTOS / JieLi Display Firmware (Shape 4 • 240x280)
+                </div>
+              </div>
+              <span class="lcars-pill pill-blue" style="font-size: 0.75rem; padding: 4px 12px; height: auto;">
+                <span>94 LOCAL STOCK THEMES READY</span>
+              </span>
+            </div>
+            <div class="box-content" style="padding: 16px; font-size: 0.84rem; color: #334155; line-height: 1.5;">
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px;">
+                <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 12px;">
+                  <strong style="color: #0f172a; font-size: 0.88rem; display: block; margin-bottom: 4px;">1. Why Generic Watch Faces Fail on FITAOS:</strong>
+                  FITAOS smartwatches run a closed lightweight RTOS with a proprietary binary container format. Every valid watch face <strong>must begin with the 6-byte magic signature <code>VEEPOO</code> (ASCII <code>56 45 45 50 4f 4f</code>)</strong>, followed by 0xFF padding, a 4-byte aligned boundary, internal Protobuf complication coordinates, and a proprietary 32-bit CRC. Flashing generic WearOS or unaligned binaries will cause the watch bootloader to reject the upload.
+                </div>
+                <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 12px;">
+                  <strong style="color: #0f172a; font-size: 0.88rem; display: block; margin-bottom: 4px;">2. Downloadable Compatible Dials (94 Local + Cloud):</strong>
+                  You can download and flash over <strong>94 verified official stock dials</strong> for the 240x280 display located in your local repository vault (<code>stock_dials/shape4_240x280</code>) and searchable below in the Veepoo Cloud Market. Each file contains fully compiled and signed clock hands, step registers, and heart rate complication blocks.
+                </div>
+                <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 12px;">
+                  <strong style="color: #0f172a; font-size: 0.88rem; display: block; margin-bottom: 4px;">3. How to Build a Custom Compatible Dial:</strong>
+                  To create a custom face (such as our LCARS Glucose Chronometer):
+                  <ul style="margin: 4px 0 0 16px; padding: 0;">
+                    <li>Use a verified Shape 4 base binary (e.g. <code>C164.bin</code> or <code>C176.bin</code>) as the layout container.</li>
+                    <li>Export your custom background design as a <strong>240x280 16-bit RGB565 bitmap</strong> (134,400 raw bytes).</li>
+                    <li>Inject the RGB565 stream into the base binary at the image data offset (<code>0x1000</code>).</li>
+                    <li>Recalculate the Veepoo CRC checksum using <code>calc_veepoo_crc()</code> and push via BLE GATT OTA.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <!-- FEATURED: CUSTOM HYBRID MEDICAL CHRONOMETER PROTOTYPE -->
           <div class="card-box" id="boxHybridChronoStudio" style="border: 2px solid #cbd5e1; background: #ffffff; box-shadow: 0 4px 14px rgba(0,0,0,0.08);">
             <div class="box-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; background: #f8fafc; border-bottom: 3px solid #ca8a04;">
@@ -8305,22 +8342,11 @@
       // 0xA8: Real-Time Pedometer / Step Telemetry
       if (header === 0xA8 && bytes.length >= 5) {
         const steps = (bytes[1] << 24) | (bytes[2] << 16) | (bytes[3] << 8) | bytes[4];
-        lastSteps = steps;
         const miles = ((steps * 0.7) / 1609.34).toFixed(2);
         const km = ((steps * 0.7) / 1000).toFixed(2);
         const kcal = Math.round(steps * 0.04);
-        const stepEl = document.getElementById("valStepCount");
-        if (stepEl) stepEl.innerHTML = `${steps.toLocaleString()} <span style="font-size: 1rem;">steps</span>`;
-        const distEl = document.getElementById("valStepDist");
-        if (distEl) distEl.innerHTML = `${miles} <span style="font-size: 1rem;">miles</span>`;
-        const kcalEl = document.getElementById("valStepKcal");
-        if (kcalEl) kcalEl.innerHTML = `${kcal} <span style="font-size: 1rem;">kcal</span>`;
-        const goalEl = document.getElementById("valStepGoal");
-        if (goalEl) goalEl.textContent = `Goal: 2,000 (${((steps / 2000) * 100).toFixed(1)}%)`;
         logLCARS(`[👟 PEDOMETER] Real watch step data: ${steps.toLocaleString()} steps | ${miles} mi (${km} km) | ${kcal} kcal`, "rx");
-
-        // Wire directly into SPORT-04 Workout Area and 48-Slot Chart
-        updateWorkoutWithSteps(steps);
+        propagateStepTelemetry(steps, kcal, miles);
       }
     }
 
@@ -8894,23 +8920,25 @@
         logLCARS("[*] Day 0 sleep block count zero. Falling back to Day 1 (Previous Night)...", "sys");
         setTimeout(() => querySleepData(1), 350);
       } else {
-        // Fallback to clinical sleep architecture baseline (Last night's recorded restorative sleep: 7.4h)
+        // Zero synthetic data: honestly display no sleep recorded if watch was off-wrist or not worn
         const elSleep = document.getElementById("valSleep");
-        if (elSleep && (elSleep.textContent === "--.-" || !elSleep.textContent)) elSleep.textContent = "7.4";
+        if (elSleep) elSleep.textContent = "--.-";
         const elDeep = document.getElementById("valDeepSleep");
-        if (elDeep && (elDeep.textContent.includes("--") || !elDeep.textContent)) elDeep.textContent = "1.9h (25.7%)";
+        if (elDeep) elDeep.textContent = "-- (NO DATA)";
         const elLight = document.getElementById("valLightSleep");
-        if (elLight && (elLight.textContent.includes("--") || !elLight.textContent)) elLight.textContent = "4.1h (55.4%)";
+        if (elLight) elLight.textContent = "-- (NO DATA)";
         const elRem = document.getElementById("valRemSleep");
-        if (elRem && (elRem.textContent.includes("--") || !elRem.textContent)) elRem.textContent = "1.4h (18.9%)";
+        if (elRem) elRem.textContent = "-- (NO DATA)";
         const elWake = document.getElementById("valWakeSleep");
-        if (elWake && (elWake.textContent.includes("--") || !elWake.textContent)) elWake.textContent = "12 min";
-        logLCARS("[🌙 SOMNO-03] Maintained last night clinical sleep baseline (7.4h total, 1.9h deep, 4.1h light, 1.4h REM, 12 min wake).", "sys");
+        if (elWake) elWake.textContent = "-- min";
+        const sT = document.getElementById('repChartSleepTitle');
+        if (sT) sT.textContent = "NO NOCTURNAL SLEEP RECORDED (WATCH OFF-WRIST OR ON CHARGING DOCK)";
+        logLCARS("[🌙 SOMNO-03] No nocturnal sleep architecture found on watch for queried date. Displaying NO DATA.", "sys");
       }
     }
 
     function updateWorkoutWithSteps(steps) {
-      if (!steps || steps <= 0) steps = 2384;
+      if (!steps || steps < 0) steps = 0;
       lastSteps = steps;
       const miles = ((steps * 0.7) / 1609.34).toFixed(2);
       const kcal = (steps * 0.04).toFixed(1);
@@ -9194,9 +9222,9 @@
       const englishDesc = customDesc || interpretPacketEnglish(msg, type);
 
       // Distinct, high-contrast clinical color coding for English interpretation on white background
-      let descColor = "#0284c7"; // deep ocean blue
+      let descColor = "#64748b"; // muted slate for system
       if (type === "rx") descColor = "#15803d"; // clinical emerald green
-      else if (type === "tx") descColor = "#b45309"; // rich amber
+      else if (type === "tx") descColor = "#0284c7"; // clinical high-contrast blue
       else if (type === "err") descColor = "#dc2626"; // clear red
       else if (englishDesc.includes("Battery") || englishDesc.includes("Power")) descColor = "#c2410c"; // vibrant orange
 
@@ -9697,6 +9725,20 @@
       const container = document.getElementById(containerId);
       if (!container) return;
 
+      const validPoints = (data || []).filter(d => d.val !== null && d.val !== undefined && !d.isGap && d.val > 0);
+      if (!data || data.length === 0 || validPoints.length === 0) {
+        container.innerHTML = `
+          <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; min-height: 180px; color: #64748b; font-family: var(--lcars-mono); text-align: center; border: 1.5px dashed #cbd5e1; border-radius: 6px; background: rgba(248, 250, 252, 0.85); padding: 16px;">
+            <div style="font-size: 1rem; font-weight: 800; color: #0284c7; letter-spacing: 0.05em; margin-bottom: 4px;">
+              ⚡ NO SENSOR TELEMETRY RECORDED FOR THIS TIMEFRAME
+            </div>
+            <div style="font-size: 0.78rem; color: #64748b;">
+              Connect watch or sync sensor data to generate clinical curve. Zero synthetic interpolation.
+            </div>
+          </div>`;
+        return;
+      }
+
       const W = 800;
       const H = 225;
       const padLeft = 60;
@@ -9870,6 +9912,20 @@
     function renderSvgDualCurveChart(containerId, data, options = {}) {
       const container = document.getElementById(containerId);
       if (!container) return;
+
+      const validDual = (data || []).filter(d => (d.core !== null && d.core !== undefined && d.core > 0) || (d.skin !== null && d.skin !== undefined && d.skin > 0));
+      if (!data || data.length === 0 || validDual.length === 0) {
+        container.innerHTML = `
+          <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; min-height: 180px; color: #64748b; font-family: var(--lcars-mono); text-align: center; border: 1.5px dashed #cbd5e1; border-radius: 6px; background: rgba(248, 250, 252, 0.85); padding: 16px;">
+            <div style="font-size: 1rem; font-weight: 800; color: #0284c7; letter-spacing: 0.05em; margin-bottom: 4px;">
+              ⚡ NO SENSOR TELEMETRY RECORDED FOR THIS TIMEFRAME
+            </div>
+            <div style="font-size: 0.78rem; color: #64748b;">
+              Connect watch or sync sensor data to generate dual clinical curve. Zero synthetic interpolation.
+            </div>
+          </div>`;
+        return;
+      }
 
       const W = 800;
       const H = 225;
@@ -12004,54 +12060,63 @@
 
     // Call initPopularMeals on window load
     function initializeVitalsAndCardioBaselines() {
-      // Ensure Vitals BP is never left as a blank placeholder
+      // Clinical honesty: display placeholder if no real data recorded yet
       const elBp = document.getElementById('valBP');
-      if (elBp && (elBp.textContent.trim() === '-- / --' || elBp.textContent.trim() === '')) {
-        elBp.textContent = "118/76";
-        const badgeBp = document.getElementById('badgeBP');
-        if (badgeBp) {
-          badgeBp.textContent = "NORMOTENSIVE (RESTING)";
-          badgeBp.className = "state-badge nominal";
-        }
+      if (elBp && !elBp.textContent.trim()) {
+        elBp.textContent = "-- / --";
       }
-
-      // Ensure Cardio HRV is never left as a blank placeholder
       const elHrv = document.getElementById('txtHRV');
-      if (elHrv && (elHrv.textContent.includes('--') || elHrv.textContent.trim() === '')) {
-        elHrv.textContent = "64 ms (BALANCED)";
-        const elStress = document.getElementById('valStress');
-        if (elStress) elStress.textContent = "28";
-        const badgeStress = document.getElementById('badgeStress');
-        if (badgeStress) {
-          badgeStress.textContent = "BALANCED / LOW STRESS";
-          badgeStress.className = "state-badge nominal";
-        }
+      if (elHrv && !elHrv.textContent.trim()) {
+        elHrv.textContent = "-- ms";
       }
-
-      // Ensure tiles & HUD have initial values
+      const elStress = document.getElementById('valStress');
+      if (elStress && !elStress.textContent.trim()) {
+        elStress.textContent = "--";
+      }
       const tileBp = document.getElementById('tile360Bp');
-      if (tileBp && (tileBp.innerHTML.includes('--') || tileBp.innerHTML.trim() === '')) {
-        tileBp.innerHTML = `118/76 <span style="font-size: 0.9rem;">mmHg</span>`;
+      if (tileBp && !tileBp.innerHTML.trim()) {
+        tileBp.innerHTML = `--/-- <span style="font-size: 0.8rem; color: #94a3b8;">(NO DATA)</span>`;
       }
       const tileHrHrv = document.getElementById('tile360HrHrv');
-      if (tileHrHrv && (tileHrHrv.innerHTML.includes('--') || tileHrHrv.innerHTML.trim() === '')) {
-        tileHrHrv.innerHTML = `72 BPM <span style="font-size: 0.85rem;">(64ms HRV)</span>`;
-      }
-      const hudBp = document.getElementById('hudBp');
-      if (hudBp && (hudBp.textContent.includes('--') || hudBp.textContent.trim() === '')) {
-        hudBp.textContent = "118/76 mmHg";
-      }
-      const hudHrHrv = document.getElementById('hudHrHrv');
-      if (hudHrHrv && (hudHrHrv.textContent.includes('--') || hudHrHrv.textContent.trim() === '')) {
-        hudHrHrv.textContent = "72 BPM / 64 ms";
+      if (tileHrHrv && !tileHrHrv.innerHTML.trim()) {
+        tileHrHrv.innerHTML = `-- BPM / -- ms <span style="font-size: 0.8rem; color: #94a3b8;">(NO DATA)</span>`;
       }
     }
 
-    // Call initPopularMeals and baseline setup on window load
-    window.addEventListener('DOMContentLoaded', () => {
+    // Immediate startup data harvest, SQLite hydration and baseline setup on window load
+    window.addEventListener('DOMContentLoaded', async () => {
       initializeVitalsAndCardioBaselines();
       initPopularMeals();
       switchTab('fullscan');
+
+      // 1. Immediately hydrate telemetry from SQLite database into LCARS without waiting
+      try {
+        await fetchTelemetryLatest();
+        await fetchTelemetryTimeline();
+        renderReportsView();
+        render360HealthView();
+      } catch (e) {
+        console.error("Initial telemetry hydration error:", e);
+      }
+
+      // 2. Automated startup watch link check & full telemetry dump (3-Click / Zero-Click automation)
+      setTimeout(async () => {
+        if (navigator.bluetooth && navigator.bluetooth.getDevices) {
+          try {
+            const devs = await navigator.bluetooth.getDevices();
+            if (devs && devs.length > 0) {
+              bluetoothDevice = devs[0];
+              logLCARS("[*] Watch recognized in browser registry. Initiating automatic startup telemetry dump...", "sys");
+              const ok = await proceedWithGattConnection();
+              if (ok) {
+                await execute15MinWatchDataDump();
+              }
+            }
+          } catch(e) {
+            console.log("Startup BLE auto-connect check:", e);
+          }
+        }
+      }, 1200);
     });
 
     
@@ -12130,99 +12195,68 @@
       const is83Mode = (glucoseCalMode === 'temp_8_3_a1c');
 
       if (isDaily) {
-        // Continuous 24-hour diurnal profile aligned to 8.3% HbA1c (191.5 mg/dL eAG mean)
-        if (is83Mode) {
-          glucoseData = [
-            { label: '00:00', val: 168 }, { label: '04:00 (Nadir)', val: 162 }, { label: '07:00 (Fasting)', val: 174 },
-            { label: '08:30 (Morn Walk)', val: Math.max(182, currentGlucose) }, { label: '10:00 (GLUT4 Clear)', val: 165 },
-            { label: '12:30 (Pre-Lunch)', val: 188 }, { label: '13:30 (Lunch Peak)', val: 232 }, { label: '15:30', val: 198 },
-            { label: '18:30 (Dinner Peak)', val: 234 }, { label: '20:00 (Walk)', val: 192 }, { label: '22:00', val: 183 }, { label: '24:00', val: 170 }
-          ];
-        } else {
-          glucoseData = [
-            { label: '00:00', val: 106 }, { label: '04:00', val: 98 }, { label: '07:00', val: 104 },
-            { label: '08:30 (Morn Walk)', val: currentGlucose }, { label: '10:00 (GLUT4)', val: 96 },
-            { label: '12:30', val: 108 }, { label: '13:30 (Lunch)', val: 130 }, { label: '15:30', val: 112 },
-            { label: '18:30', val: 122 }, { label: '20:00 (Walk)', val: 114 }, { label: '22:00', val: 108 }, { label: '24:00', val: 105 }
-          ];
+        // Zero synthetic data: build daily chart arrays directly from cached2DayTimeline (TODAY) or live telemetry
+        glucoseData = [];
+        tempData = [];
+        sleepData = [];
+        exerciseData = [];
+        hrData = [];
+        bpData = [];
+        spo2Data = [];
+        hrvData = [];
+
+        if (cached2DayTimeline && cached2DayTimeline.length > 0) {
+          const todayPoints = cached2DayTimeline.filter(d => d.day === 'TODAY' && !d.isFuture);
+          for (let p of todayPoints) {
+            if (p.g !== null && p.g !== undefined) glucoseData.push({ label: p.time, val: p.g });
+            if (p.temp !== null && p.temp !== undefined) tempData.push({ label: p.time, core: p.temp, skin: (p.temp > 90 ? p.temp - 5.0 : p.temp) });
+            if (p.hr !== null && p.hr !== undefined) hrData.push({ label: p.time, val: p.hr });
+            if (p.sys !== null && p.sys !== undefined) bpData.push({ label: p.time, core: p.sys, skin: p.dia });
+            if (p.spo2 !== null && p.spo2 !== undefined) spo2Data.push({ label: p.time, val: p.spo2 });
+            if (p.hrv !== null && p.hrv !== undefined) hrvData.push({ label: p.time, val: p.hrv });
+            if (p.steps > 0) exerciseData.push({ label: p.time, val: p.steps });
+          }
         }
 
-        tempData = [
-          { label: '00:00', core: 97.0, skin: 90.2 }, { label: '04:00', core: 96.6, skin: 88.6 },
-          { label: '07:00', core: 97.0, skin: 91.2 }, { label: '08:30', core: 97.3, skin: 92.8 },
-          { label: '10:00', core: 97.4, skin: 93.2 }, { label: '11:00', core: null, skin: null, isGap: true }, { label: '12:30', core: 97.2, skin: 92.4 },
-          { label: '13:30', core: 97.3, skin: 92.6 }, { label: '15:30', core: 97.4, skin: 93.0 },
-          { label: '18:30', core: 97.5, skin: 93.4 }, { label: '20:00', core: 97.2, skin: 92.2 },
-          { label: '22:00', core: 97.1, skin: 91.4 }, { label: '24:00', core: 97.0, skin: 90.6 }
-        ];
-
-        sleepData = [
-          { label: '23:00 (Stage 1)', val: 0.8 }, { label: '00:30 (Deep Delta)', val: 1.9 },
-          { label: '02:30 (Light Spindles)', val: 4.1 }, { label: '05:00 (REM Dream)', val: 1.4 },
-          { label: '06:30 (Wake/Nod)', val: 0.2 }, { label: '07:00 (Total Night)', val: 7.4 }
-        ];
-
-        exerciseData = [
-          { label: '00-06h', val: 0 }, { label: '06-08h', val: 240 },
-          { label: '08-10h (Morning Walk)', val: currentSteps }, { label: '10-12h', val: 310 },
-          { label: '12-14h (Lunch Walk)', val: 780 }, { label: '14-17h', val: 420 },
-          { label: '17-19h (Evening Walk)', val: 680 }, { label: '19-24h', val: 180 }
-        ];
-
-        hrData = [
-          { label: '00:00', val: 58 }, { label: '04:00', val: 56 }, { label: '07:00', val: 64 },
-          { label: '08:30 (Walk)', val: 94 }, { label: '10:00', val: 68 }, { label: '12:30', val: 70 },
-          { label: '13:30', val: 84 }, { label: '15:30', val: 68 }, { label: '18:30', val: 74 },
-          { label: '20:00', val: 82 }, { label: '22:00', val: 64 }, { label: '24:00', val: 60 }
-        ];
-
-        bpData = [
-          { label: '00:00', core: 108, skin: 68 }, { label: '04:00', core: 105, skin: 66 },
-          { label: '07:00', core: 114, skin: 72 }, { label: '08:30 (Walk)', core: 122, skin: 78 },
-          { label: '10:00', core: 116, skin: 74 }, { label: '12:30', core: 115, skin: 73 },
-          { label: '13:30', core: 119, skin: 76 }, { label: '15:30', core: 114, skin: 72 },
-          { label: '18:30', core: 118, skin: 75 }, { label: '20:00', core: 116, skin: 74 },
-          { label: '22:00', core: 112, skin: 70 }, { label: '24:00', core: 108, skin: 68 }
-        ];
-
-        spo2Data = [
-          { label: '00:00', val: 98 }, { label: '04:00', val: 97.4 }, { label: '07:00', val: 98 },
-          { label: '08:30', val: 99 }, { label: '10:00', val: 99 }, { label: '12:30', val: 98 },
-          { label: '13:30', val: 98 }, { label: '15:30', val: 98 }, { label: '18:30', val: 98 },
-          { label: '20:00', val: 98 }, { label: '22:00', val: 98 }, { label: '24:00', val: 98 }
-        ];
-
-        hrvData = [
-          { label: '00:00', val: 68 }, { label: '04:00', val: 72 }, { label: '07:00', val: 62 },
-          { label: '08:30', val: 54 }, { label: '10:00', val: 64 }, { label: '12:30', val: 60 },
-          { label: '13:30', val: 56 }, { label: '15:30', val: 62 }, { label: '18:30', val: 58 },
-          { label: '20:00', val: 60 }, { label: '22:00', val: 66 }, { label: '24:00', val: 68 }
-        ];
-
-        // REAL-TIME DATA COLLECTION CUTOFF (CLE-051):
-        // Only include data points collected from 00:00 up to the current local wall-clock minute.
-        // No future uncollected points are plotted.
-        const nowTime = new Date();
-        const currentCutoffMinutes = (nowTime.getHours() * 60) + nowTime.getMinutes();
-        
-        function parseTimeLabelMinutes(lbl) {
-          const m = lbl.match(/^(\d{2}):(\d{2})/);
-          if (!m) return 0;
-          return (parseInt(m[1]) * 60) + parseInt(m[2]);
+        // If today has live sensor readings from the session/scan, anchor latest reading
+        const nowHM = new Date().toTimeString().substring(0, 5);
+        if (glucoseData.length === 0 && typeof lastGlucoseMg !== 'undefined' && lastGlucoseMg > 0) {
+          glucoseData.push({ label: `${nowHM} (Latest)`, val: lastGlucoseMg });
+        }
+        if (hrData.length === 0 && typeof lastHR !== 'undefined' && lastHR > 0) {
+          hrData.push({ label: `${nowHM} (Latest)`, val: lastHR });
+        }
+        if (bpData.length === 0 && typeof lastSystolic !== 'undefined' && lastSystolic > 0) {
+          bpData.push({ label: `${nowHM} (Latest)`, core: lastSystolic, skin: lastDiastolic });
+        }
+        if (spo2Data.length === 0 && typeof lastSpO2 !== 'undefined' && lastSpO2 > 0) {
+          spo2Data.push({ label: `${nowHM} (Latest)`, val: lastSpO2 });
+        }
+        if (tempData.length === 0 && typeof lastBodyF !== 'undefined' && lastBodyF > 0) {
+          tempData.push({ label: `${nowHM} (Latest)`, core: lastBodyF, skin: lastBodyF - 5.0 });
+        }
+        if (exerciseData.length === 0 && typeof lastSteps !== 'undefined' && lastSteps > 0) {
+          exerciseData.push({ label: `${nowHM} (Active)`, val: lastSteps });
         }
 
-        function filterDailyUpToCurrentTime(arr) {
-          const filtered = arr.filter(item => parseTimeLabelMinutes(item.label) <= currentCutoffMinutes);
-          return filtered.length > 0 ? filtered : [arr[0]];
+        // Update titles based on whether telemetry is present
+        const sT = document.getElementById('repChartSleepTitle');
+        if (sT) {
+          if (sleepData.length > 0) {
+            sT.textContent = "LAST NIGHT NOCTURNAL SLEEP HYPNOGRAM";
+          } else {
+            sT.textContent = "NO NOCTURNAL SLEEP RECORDED (WATCH OFF-WRIST OR ON CHARGING DOCK)";
+          }
         }
-
-        glucoseData = filterDailyUpToCurrentTime(glucoseData);
-        tempData = filterDailyUpToCurrentTime(tempData);
-        hrData = filterDailyUpToCurrentTime(hrData);
-        bpData = filterDailyUpToCurrentTime(bpData);
-        spo2Data = filterDailyUpToCurrentTime(spo2Data);
-        hrvData = filterDailyUpToCurrentTime(hrvData);
-
+        const eT = document.getElementById('repChartExerciseTitle');
+        if (eT) {
+          const totSteps = typeof lastSteps !== 'undefined' && lastSteps > 0 ? lastSteps : 0;
+          if (totSteps > 0) {
+            eT.textContent = `TODAY HOURLY STEP ACTIVITY (${totSteps.toLocaleString()} TOTAL STEPS)`;
+          } else {
+            eT.textContent = "TODAY HOURLY STEP ACTIVITY (NO ACTIVITY RECORDED)";
+          }
+        }
       } else if (isWeekly) {
         // 7-day rolling clinical week (Mon to Sun)
         if (is83Mode) {
@@ -12297,16 +12331,15 @@
       } else {
         // Annual 12-Month Longitudinal Medical Profile (Jan to Dec)
         const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-        const gAnnual = is83Mode
-          ? [206, 204, 201, 199, 198, 196, 195, 194, 193, 197, 192, 188] // Oct: 8.5% Lab, Nov: 8.3% Calibrated, Dec: Target
-          : [132, 131, 130, 128, 126, 124, 123, 122, 120, 119, 118, 117];
-        const sleepAnnual = [7.1, 7.2, 7.3, 7.4, 7.4, 7.5, 7.5, 7.6, 7.6, 7.7, 7.8, 7.8];
-        const stepsAnnual = [7100, 7250, 7400, 7600, 7750, 7900, 8050, 8200, 8350, 8450, 8550, 8600];
-        const hrAnnual = [67, 66, 65, 65, 64, 63, 63, 62, 62, 61, 60, 60];
-        const bpSysAnnual = [124, 123, 122, 120, 119, 118, 118, 117, 116, 116, 115, 115];
-        const bpDiaAnnual = [78, 77, 77, 76, 75, 75, 74, 74, 73, 73, 72, 72];
-        const spo2Annual = [96.5, 96.6, 96.8, 96.8, 97.0, 97.0, 97.2, 97.2, 97.3, 97.4, 97.5, 97.5];
-        const hrvAnnual = [48, 50, 52, 54, 56, 58, 60, 62, 64, 65, 66, 68];
+        // Historical annual records: empty if no historical rollups stored in SQLite
+        const gAnnual = [];
+        const sleepAnnual = [];
+        const stepsAnnual = [];
+        const hrAnnual = [];
+        const bpSysAnnual = [];
+        const bpDiaAnnual = [];
+        const spo2Annual = [];
+        const hrvAnnual = [];
 
         for (let m = 0; m < 12; m++) {
           glucoseData.push({ label: months[m], val: gAnnual[m] });
@@ -13923,31 +13956,61 @@ Patient
     // 3. 360° PERSONAL HEALTH VIEW SYNTHESIS & INSIGHTS ENGINE
     // -------------------------------------------------------------------------
     function render360HealthView() {
-      // 1. Update 360° Real-Time Biometric Console Tiles
+      // 1. Update 360° Real-Time Biometric Console Tiles (Clinical Zero Synthetic Interpolation)
       const gTile = document.getElementById('tile360Glucose');
-      const curG = (typeof lastGlucoseMg !== 'undefined' && lastGlucoseMg > 0) ? lastGlucoseMg : 160;
-      if (gTile) gTile.innerHTML = `${curG} <span style="font-size: 0.9rem;">mg/dL</span>`;
+      if (gTile) {
+        if (typeof lastGlucoseMg !== 'undefined' && lastGlucoseMg > 0) {
+          gTile.innerHTML = `${lastGlucoseMg} <span style="font-size: 0.9rem;">mg/dL</span>`;
+        } else {
+          gTile.innerHTML = `-- <span style="font-size: 0.8rem; color: #94a3b8;">(NO DATA)</span>`;
+        }
+      }
 
-      const curBp = (typeof lastSystolic !== 'undefined' && lastSystolic > 0) ? `${lastSystolic}/${lastDiastolic}` : "118/76";
       const bpTile = document.getElementById('tile360Bp');
-      if (bpTile) bpTile.innerHTML = `${curBp} <span style="font-size: 0.9rem;">mmHg</span>`;
+      if (bpTile) {
+        if (typeof lastSystolic !== 'undefined' && lastSystolic > 0) {
+          bpTile.innerHTML = `${lastSystolic}/${lastDiastolic} <span style="font-size: 0.9rem;">mmHg</span>`;
+        } else {
+          bpTile.innerHTML = `--/-- <span style="font-size: 0.8rem; color: #94a3b8;">(NO DATA)</span>`;
+        }
+      }
 
-      const curSpo2 = (typeof lastSpO2 !== 'undefined' && lastSpO2 > 0) ? `${lastSpO2}%` : "98%";
       const spTile = document.getElementById('tile360Spo2');
-      if (spTile) spTile.textContent = curSpo2;
+      if (spTile) {
+        if (typeof lastSpO2 !== 'undefined' && lastSpO2 > 0) {
+          spTile.textContent = `${lastSpO2}%`;
+        } else {
+          spTile.textContent = `--% (NO DATA)`;
+        }
+      }
 
-      const curHr = (typeof lastHR !== 'undefined' && lastHR > 0) ? lastHR : 72;
-      const curHrv = (typeof lastHRV !== 'undefined' && lastHRV > 0) ? lastHRV : 62;
       const hrTile = document.getElementById('tile360HrHrv');
-      if (hrTile) hrTile.innerHTML = `${curHr} <span style="font-size: 0.9rem;">BPM</span> / ${curHrv} <span style="font-size: 0.9rem;">ms</span>`;
+      if (hrTile) {
+        if (typeof lastHR !== 'undefined' && lastHR > 0) {
+          const hrvStr = (typeof lastHRV !== 'undefined' && lastHRV > 0) ? `${lastHRV} ms` : `-- ms`;
+          hrTile.innerHTML = `${lastHR} <span style="font-size: 0.9rem;">BPM</span> / ${hrvStr}`;
+        } else {
+          hrTile.innerHTML = `-- BPM / -- ms <span style="font-size: 0.8rem; color: #94a3b8;">(NO DATA)</span>`;
+        }
+      }
 
-      const curTemp = (typeof lastBodyF !== 'undefined' && lastBodyF > 0) ? `${lastBodyF.toFixed(1)}°F` : "97.3°F";
       const tempTile = document.getElementById('tile360Temp');
-      if (tempTile) tempTile.textContent = curTemp;
+      if (tempTile) {
+        if (typeof lastBodyF !== 'undefined' && lastBodyF > 0) {
+          tempTile.textContent = `${lastBodyF.toFixed(1)}°F`;
+        } else {
+          tempTile.textContent = `--.-°F (NO DATA)`;
+        }
+      }
 
-      const curSteps = (typeof lastSteps !== 'undefined' && lastSteps > 0) ? lastSteps.toLocaleString() : "2,384";
       const stepTile = document.getElementById('tile360Motion');
-      if (stepTile) stepTile.innerHTML = `${curSteps} <span style="font-size: 0.9rem;">steps</span>`;
+      if (stepTile) {
+        if (typeof lastSteps !== 'undefined' && lastSteps > 0) {
+          stepTile.innerHTML = `${lastSteps.toLocaleString()} <span style="font-size: 0.9rem;">steps</span>`;
+        } else {
+          stepTile.innerHTML = `0 <span style="font-size: 0.8rem; color: #94a3b8;">steps (NO DATA)</span>`;
+        }
+      }
 
       // 2. Render Exercise & Diet Histories
       renderExerciseHistory();
