@@ -15328,7 +15328,6 @@ Patient
       }
 
       // Stage 4: SpO2
-      const spo2Obj = vitals.BLOOD_OXYGEN || vitals.SPO2;
       if (spo2Obj && spo2Obj.value1 > 0) {
         const sp = Math.round(spo2Obj.value1);
         setStageCardState(4, 'done', `${sp}%`);
@@ -15349,7 +15348,6 @@ Patient
       }
 
       // Stage 6: HRV & Stress
-      const hrvObj = vitals.HRV_STRESS || vitals.HRV;
       if (hrvObj && hrvObj.value1 > 0) {
         const hrvVal = Math.round(hrvObj.value1);
         const stressVal = Math.round(hrvObj.value2);
@@ -15363,8 +15361,7 @@ Patient
       }
 
       // Clinical Synthesis Text
-      const syn = document.getElementById('fullScanClinicalSynthesis');
-      if (syn && hasAnyVital) {
+      if (syn && hasPositiveVitals) {
         const g = (vitals.GLUCOSE && vitals.GLUCOSE.value1 > 0) ? Math.round(vitals.GLUCOSE.value1) : '--';
         const sys = (vitals.BLOOD_PRESSURE && vitals.BLOOD_PRESSURE.value1 > 0) ? Math.round(vitals.BLOOD_PRESSURE.value1) : '--';
         const dia = (vitals.BLOOD_PRESSURE && vitals.BLOOD_PRESSURE.value2 > 0) ? Math.round(vitals.BLOOD_PRESSURE.value2) : '--';

@@ -4,6 +4,8 @@ Validates every change across CLEBUGGER (CLE-001 through CLE-082) and .jsonl tra
 """
 
 import os
+import re
+import subprocess
 import sys
 import json
 import urllib.request
@@ -37,6 +39,8 @@ print("=========================================================================
 # -----------------------------------------------------------------------------
 # AUDIT GROUP 1: FILE SYNCHRONIZATION & DUAL-FILE INTEGRITY
 # -----------------------------------------------------------------------------
+
+
 print("\n[GROUP 1: DUAL-FILE ARCHITECTURE & INTEGRITY]")
 idx_root = os.path.join(ROOT_DIR, "index.html")
 idx_app = os.path.join(APP_DIR, "index.html")
@@ -53,6 +57,25 @@ run_test("TC-01", "Integrity", "Dual-File Byte-for-Byte Equality", files_match,
 
 with open(idx_root, "r", encoding="utf-8") as f:
     idx_content = f.read()
+
+# -----------------------------------------------------------------------------
+# AUDIT GROUP 0: JAVASCRIPT ENGINE & PARSER INTEGRITY
+# -----------------------------------------------------------------------------
+print("\n[GROUP 0: JAVASCRIPT ENGINE & PARSER INTEGRITY]")
+scripts = re.findall(r'<script(?:\s+[^>]*)?>(.*?)</script>', idx_content, re.DOTALL)
+temp_js = os.path.join(ROOT_DIR, '_tmp_v8_syntax_check.js')
+with open(temp_js, 'w', encoding='utf-8') as f_js:
+    for s in scripts:
+        f_js.write(s + '\n;\n')
+
+res = subprocess.run(['node', '--check', temp_js], capture_output=True, text=True)
+if os.path.exists(temp_js):
+    try: os.remove(temp_js)
+    except: pass
+
+js_syntax_clean = (res.returncode == 0)
+err_msg = res.stderr.strip() if res.returncode != 0 else 'Zero parse or declaration errors across V8 engine'
+run_test("TC-00", "JS Syntax", "JavaScript Engine V8 Syntax & Scope Validation", js_syntax_clean, err_msg)
 
 with open(os.path.join(APP_DIR, "cell.html"), "r", encoding="utf-8") as f:
     cell_content = f.read()
