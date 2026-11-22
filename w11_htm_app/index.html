@@ -5714,19 +5714,11 @@
           <div class="box-header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1a2c1e; padding-bottom: 12px; margin-bottom: 18px;">
             <div>
               <span class="box-title" style="color: var(--lcars-green); font-size: 1.15rem; letter-spacing: 2px;">
-                06-ADA DIET TRADES, CLINICAL RECIPES & PATIENT MENTORING ENGINE
+                02-MEAL PLANNER: DIET TRADES, CLINICAL RECIPES &amp; PRE-CHOICE ESTIMATION
               </span>
               <div style="font-size: 0.8rem; color: #80c890; margin-top: 3px;">
-                AMERICAN DIABETES ASSOCIATION (ADA) STANDARDS OF CARE • CLOSED-LOOP PHYSICIAN & PATIENT COACHING
+                AMERICAN DIABETES ASSOCIATION (ADA) STANDARDS OF CARE &bull; PRE-CHOICE ESTIMATION &bull; RECIPE SOURCING
               </div>
-            </div>
-            <div style="display: flex; gap: 8px;">
-              <span class="badge" style="background: rgba(85,255,119,0.15); color: var(--lcars-green); border: 1px solid var(--lcars-green); font-size: 0.75rem;">
-                CLINICAL MENTORING
-              </span>
-              <span class="badge" style="background: rgba(56,182,255,0.15); color: var(--lcars-blue); border: 1px solid var(--lcars-blue); font-size: 0.75rem;">
-                AIR-GAPPED PRIVACY
-              </span>
             </div>
           </div>
 
@@ -5747,25 +5739,7 @@
               </div>
             </div>
 
-            <!-- TOP LCARS WORKFLOW RIBBON (MINIMUM KEY & MOUSE STROKES) -->
-            <div style="display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; background: #0f172a; padding: 8px 12px; border-radius: 6px; border: 1.5px solid #334155; align-items: center;">
-              <span style="font-size: 0.74rem; font-weight: 900; color: #38bdf8; font-family: var(--lcars-mono); margin-right: 4px;">QUICK NAV:</span>
-              <button type="button" class="lcars-btn btn-blue" style="font-size: 0.78rem; padding: 5px 12px; font-weight: 800;" onclick="scrollToWorkflowSection('sectionMealPantry')">
-                📋 1. MEAL PANTRY (REUSE)
-              </button>
-              <button type="button" class="lcars-btn btn-green" style="font-size: 0.78rem; padding: 5px 12px; font-weight: 800;" onclick="scrollToWorkflowSection('sectionNewMeal')">
-                ➕ 2. NEW MEAL / SNACK
-              </button>
-              <button type="button" class="lcars-btn btn-banana" style="font-size: 0.78rem; padding: 5px 12px; font-weight: 800;" onclick="scrollToWorkflowSection('geminiMealAnalysisResult')">
-                ✨ 3. GEMINI ESTIMATION
-              </button>
-              <button type="button" class="lcars-btn btn-peach" style="font-size: 0.78rem; padding: 5px 12px; font-weight: 800;" onclick="scrollToWorkflowSection('sectionAdaTrades')">
-                ⚖️ 4. ADA TRADES
-              </button>
-              <button type="button" class="lcars-btn" style="background: #10b981; color: #ffffff; border: 1.5px solid #059669; font-size: 0.78rem; padding: 5px 14px; font-weight: 900;" onclick="submitActualMealAndMonitorMetrics()">
-                🚀 5. CONSUME &amp; LOG
-              </button>
-            </div>
+
 
             <!-- TOAST CONFIRMATIONS -->
             <div id="lblPantrySavedToast" style="display: none; background: #fef9c3; border: 1.5px solid #eab308; color: #854d0e; padding: 8px 14px; border-radius: 6px; font-size: 0.85rem; font-weight: 800; margin-bottom: 12px; text-align: center;"></div>
@@ -12688,9 +12662,79 @@
       const goals = getActiveClinicalGoals();
       const input = document.getElementById('txtMealBuilderInput');
       const btn = document.querySelector('button[onclick="analyzeMealWithGemini()"]');
-      const originalBtnHtml = btn ? btn.innerHTML : '✨ ANALYZE WITH GEMINI';
+      const originalBtnHtml = btn ? btn.innerHTML : '✨ ESTIMATE WITH GEMINI';
 
-              // 2a. Client-Side Accurate Candy, Dessert & DQ Parser
+      if (presetKey && POPULAR_MEALS[presetKey]) {
+        if (input) input.value = POPULAR_MEALS[presetKey].desc || POPULAR_MEALS[presetKey].title;
+      }
+
+      const rawText = input ? input.value.trim() : "";
+      const text = rawText.toLowerCase();
+
+      if (btn) {
+        btn.innerHTML = '✨ GEMINI EVALUATING MEAL...';
+        btn.disabled = true;
+      }
+
+      let data = null;
+
+      // 1. Attempt to call live backend /api/meal/analyze
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 4000);
+        const resp = await fetch('/api/meal/analyze', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            meal_name: rawText || "Custom Ambulatory Meal",
+            description: rawText,
+            source: "LCARS_MEAL_BUILDER",
+            analyze_only: true,
+            commit: false,
+            fluid_oz: parseFloat(document.getElementById('inpMealFluidOz')?.value) || 8.0
+          }),
+          signal: controller.signal
+        });
+        clearTimeout(timeoutId);
+        if (resp.ok) {
+          const res = await resp.json();
+          if (res && (res.status === "SUCCESS" || res.status === "ANALYSIS_PREVIEW" || res.analysis)) {
+            const a = res.analysis || res;
+            window._latestMealAnalysis = a;
+            data = {
+              title: a.meal_name || rawText,
+              desc: rawText,
+              calories: (a.calories !== undefined) ? a.calories : 450,
+              netCarbs: (a.net_carbs !== undefined) ? a.net_carbs : 25,
+              totalCarbs: (a.total_carbs !== undefined) ? a.total_carbs : 35,
+              fiber: (a.fiber !== undefined) ? a.fiber : 10,
+              protein: (a.protein !== undefined) ? a.protein : 30,
+              fat: (a.fat !== undefined) ? a.fat : 15,
+              gl: a.glycemic_load || "10 (Low)",
+              estimatedCost: a.estimated_cost || "14.75",
+              tradeAlternatives: a.trade_alternatives || [],
+              meetsGoal: a.meets_goal !== undefined ? a.meets_goal : (a.net_carbs <= goals.maxCarbsMeal),
+              bom: a.bom || [],
+              identified_items: a.identified_items || [],
+              is_safe_option_search: a.is_safe_option_search,
+              store_complete_items: a.store_complete_items,
+              safe_recipes: a.safe_recipes,
+              tips: a.gemini_notes ? [a.gemini_notes] : [
+                "Nutrient breakdown verified by Gemini against clinical diabetic baseline.",
+                "High fiber & lean protein buffer blunts postprandial glucose absorption."
+              ],
+              glut4: a.glut4_recommendation || (a.net_carbs > goals.maxCarbsMeal ?
+                `<strong>Recommended 30-Minute Brisk GLUT4 Walk starting 20 min post-meal:</strong> Blunts expected +${Math.round((a.net_carbs - goals.maxCarbsMeal)*1.8)} mg/dL spike into target safe band.` :
+                "<strong>15-Minute Ambulatory Walk:</strong> Maintains flat postprandial trajectory within the 60–200 mg/dL target band.")
+            };
+          }
+        }
+      } catch (err) {
+        console.warn("Backend /api/meal/analyze deferred, using intelligent local engine:", err);
+      }
+
+      // 2. Client-side fallback if backend was unavailable
+      if (!data) {
         const parseClientWeightOz = (str) => {
           const m = str.match(/(\d+(?:\.\d+)?)\s*(?:oz|ounces?|ounce\b)/i);
           if (m) return parseFloat(m[1]);
@@ -12700,7 +12744,57 @@
         };
         const cWeightOz = parseClientWeightOz(rawText);
 
-        if ((text.includes("peanut buster") && text.includes("parfait")) || (text.includes("dairy queen") && text.includes("parfait")) || (text.includes("dq") && text.includes("parfait")) || (text.includes("peanut") && text.includes("parfait"))) {
+        if (text.includes("cottage") && (text.includes("blueberry") || text.includes("cake"))) {
+          data = {
+            title: "Zero-Sugar Cottage Cheese Blueberry Protein Cake (Home-Baked)",
+            desc: rawText,
+            calories: 145,
+            netCarbs: 6.5,
+            totalCarbs: 8.5,
+            fiber: 2.0,
+            protein: 13.5,
+            fat: 6.0,
+            gl: "2 (Ultra-Low)",
+            estimatedCost: "1.75",
+            meetsGoal: true,
+            bom: [
+              { item: "Low-Fat Cottage Cheese (High Albumin/Casein Base)", portion: "1 cup in batch (~1/4 cup/slice)", dept: "Dairy Department", cost: "$2.49", impact: "High protein buffer, blunts glycemic spike" },
+              { item: "Fresh Organic Blueberries (Anthocyanin Antioxidant)", portion: "1/2 cup in batch (~2 tbsp/slice)", dept: "Produce Department", cost: "$3.49", impact: "Bioactive polyphenol fiber (<3g net)" },
+              { item: "Large Grade A Eggs & Egg Whites", portion: "2 eggs in batch (~1/2 egg/slice)", dept: "Dairy / Egg Department", cost: "$1.99", impact: "Protein structural binder" },
+              { item: "Almond Flour / Oat Fiber Blend (Low-GI Matrix)", portion: "1/2 cup in batch", dept: "Baking Aisle", cost: "$4.29", impact: "Grain-free slow digesting starch" },
+              { item: "Zero-Sugar Monk Fruit / Allulose Granulated Sweetener", portion: "to taste", dept: "Baking Aisle", cost: "$4.99", impact: "Zero glycemic impact" }
+            ],
+            tips: [
+              "✨ HOME RECIPE MATERIALS ANALYSIS: Low-fat cottage cheese and egg whites supply an albumin protein buffer.",
+              "Almond flour and blueberries keep net carbs under 7g per slice (well below your 45g ceiling)."
+            ],
+            glut4: "15-minute gentle postprandial stroll keeps glucose baseline steady in 80–120 mg/dL target band."
+          };
+        } else if (text.includes("kit kat") || text.includes("kitkat")) {
+          const oz = cWeightOz || 1.5;
+          const cals = Math.round(oz * 145.3);
+          const totC = Math.round(oz * 18.0);
+          const fib = Math.round(oz * 0.7);
+          const netC = Math.round(totC - fib);
+          data = {
+            title: `Kit Kat Crisp Wafers in Milk Chocolate Bar (${oz.toFixed(1)} oz portion)`,
+            desc: rawText,
+            calories: cals,
+            netCarbs: netC,
+            totalCarbs: totC,
+            fiber: fib,
+            protein: Math.round(oz * 1.8),
+            fat: Math.round(oz * 7.3),
+            gl: netC > 45 ? "46 (High / Severe Spike Risk)" : "16 (Medium)",
+            meetsGoal: netC <= 45,
+            tips: [
+              `⚠️ ACUTE CONFECTIONERY WARNING: ${oz.toFixed(1)} oz contains ${netC}g Net Carbs (Ceiling: 45g max).`,
+              "Refined wheat flour wafers and milk chocolate cause a steep, rapid glucose surge.",
+              "Harm Reduction: Limit to 1 fun-size bar (0.49 oz, 9g net carbs) or 85% dark chocolate."
+            ],
+            glut4: "<strong>45-Minute Brisk Walk starting within 20 min:</strong> Required to clear confectionery glucose load."
+          };
+        } else if ((text.includes("peanut buster") && text.includes("parfait")) || (text.includes("dairy queen") && text.includes("parfait")) || (text.includes("dq") && text.includes("parfait")) || (text.includes("peanut") && text.includes("parfait"))) {
           data = {
             title: "Dairy Queen Peanut Buster Parfait (Official Menu Disclosure)",
             desc: rawText,
@@ -12811,97 +12905,29 @@
             ],
             glut4: "<strong>40-Minute Brisk Walk starting 30 min post-meal:</strong> Targets delayed lipid-induced glucose peak."
           };
-        } else if (presetKey && POPULAR_MEALS[presetKey]) {
-        if (input) input.value = POPULAR_MEALS[presetKey].desc || POPULAR_MEALS[presetKey].title;
-      }
-
-      const rawText = input ? input.value.trim() : "";
-      const text = rawText.toLowerCase();
-
-      if (btn) {
-        btn.innerHTML = '✨ GEMINI EVALUATING MEAL...';
-        btn.disabled = true;
-      }
-
-      let data = null;
-
-      // 1. Attempt to call live backend /api/meal/analyze
-      try {
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 3500);
-        const resp = await fetch('/api/meal/analyze', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            meal_name: rawText || "Custom Ambulatory Meal",
-            description: rawText,
-            source: "LCARS_MEAL_BUILDER",
-            analyze_only: true,
-            commit: false,
-            fluid_oz: parseFloat(document.getElementById('inpMealFluidOz')?.value) || 8.0
-          }),
-          signal: controller.signal
-        });
-        clearTimeout(timeoutId);
-        if (resp.ok) {
-          const res = await resp.json();
-          if (res && res.status === "SUCCESS" && res.analysis) {
-            const a = res.analysis;
-            window._latestMealAnalysis = a;
-            data = {
-              title: a.meal_name || rawText,
-              desc: rawText,
-              calories: (a.calories !== undefined) ? a.calories : 450,
-              netCarbs: (a.net_carbs !== undefined) ? a.net_carbs : 25,
-              totalCarbs: (a.total_carbs !== undefined) ? a.total_carbs : 35,
-              fiber: (a.fiber !== undefined) ? a.fiber : 10,
-              protein: (a.protein !== undefined) ? a.protein : 30,
-              fat: (a.fat !== undefined) ? a.fat : 15,
-              gl: a.glycemic_load || "10 (Low)",
-              estimatedCost: a.estimated_cost || "14.75",
-              tradeAlternatives: a.trade_alternatives || [],
-              meetsGoal: a.meets_goal !== undefined ? a.meets_goal : (a.net_carbs <= goals.maxCarbsMeal),
-              tips: a.gemini_notes ? [a.gemini_notes] : [
-                "Nutrient breakdown verified by Gemini against clinical diabetic baseline.",
-                "High fiber & lean protein buffer blunts postprandial glucose absorption."
-              ],
-              glut4: a.glut4_recommendation || (a.net_carbs > goals.maxCarbsMeal ?
-                `<strong>Recommended 30-Minute Brisk GLUT4 Walk starting 20 min post-meal:</strong> Blunts expected +${Math.round((a.net_carbs - goals.maxCarbsMeal)*1.8)} mg/dL spike into target safe band.` :
-                "<strong>15-Minute Ambulatory Walk:</strong> Maintains flat postprandial trajectory within the 60–200 mg/dL target band.")
-            };
-          }
-        }
-      } catch (err) {
-        console.warn("Backend /api/meal/analyze deferred, using intelligent local engine:", err);
-      }
-
-      // 2. Client-side fallback if backend was unavailable
-      if (!data) {
-        if (text.includes("cottage") && (text.includes("blueberry") || text.includes("cake"))) {
+        } else if (text.includes("snickers") || text.includes("twix") || text.includes("reese") || text.includes("reeses") || text.includes("candy bar")) {
+          const oz = cWeightOz || 1.61;
+          const cals = Math.round(oz * 137.5);
+          const totC = Math.round(oz * 17);
+          const fib = Math.round(oz * 1.25);
+          const netC = totC - fib;
           data = {
-            title: "Zero-Sugar Cottage Cheese Blueberry Protein Cake (Home-Baked)",
+            title: `Confectionery Candy Bar (${oz.toFixed(1)} oz portion)`,
             desc: rawText,
-            calories: 145,
-            netCarbs: 6.5,
-            totalCarbs: 8.5,
-            fiber: 2.0,
-            protein: 13.5,
-            fat: 6.0,
-            gl: "2 (Ultra-Low)",
-            estimatedCost: "1.75",
-            meetsGoal: true,
-            bom: [
-              { item: "Low-Fat Cottage Cheese (High Albumin/Casein Base)", portion: "1 cup in batch (~1/4 cup/slice)", dept: "Dairy Department", cost: "$2.49", impact: "High protein buffer, blunts glycemic spike" },
-              { item: "Fresh Organic Blueberries (Anthocyanin Antioxidant)", portion: "1/2 cup in batch (~2 tbsp/slice)", dept: "Produce Department", cost: "$3.49", impact: "Bioactive polyphenol fiber (<3g net)" },
-              { item: "Large Grade A Eggs & Egg Whites", portion: "2 eggs in batch (~1/2 egg/slice)", dept: "Dairy / Egg Department", cost: "$1.99", impact: "Protein structural binder" },
-              { item: "Almond Flour / Oat Fiber Blend (Low-GI Matrix)", portion: "1/2 cup in batch", dept: "Baking Aisle", cost: "$4.29", impact: "Grain-free slow digesting starch" },
-              { item: "Zero-Sugar Monk Fruit / Allulose Granulated Sweetener", portion: "to taste", dept: "Baking Aisle", cost: "$4.99", impact: "Zero glycemic impact" }
-            ],
+            calories: cals,
+            netCarbs: netC,
+            totalCarbs: totC,
+            fiber: fib,
+            protein: Math.round(oz * 1.9),
+            fat: Math.round(oz * 7.5),
+            gl: netC > 45 ? "45 (High / Prolonged Spike Risk)" : "15 (Medium)",
+            meetsGoal: netC <= 45,
             tips: [
-              "✨ HOME RECIPE MATERIALS ANALYSIS: Low-fat cottage cheese and egg whites supply an albumin protein buffer.",
-              "Almond flour and blueberries keep net carbs under 7g per slice (well below your 45g ceiling)."
+              `⚠️ CONFECTIONERY ALERT: ${oz.toFixed(1)} oz contains ${netC}g Net Carbs (Max: 45g).`,
+              "Dense sucrose and fats trigger sustained hyperglycemia.",
+              "Harm Reduction: Limit to fun-size portion or swap to 85% dark chocolate."
             ],
-            glut4: "15-minute gentle postprandial stroll keeps glucose baseline steady in 80–120 mg/dL target band."
+            glut4: "<strong>40-Minute Brisk Walk:</strong> Required to blunt confectionery glycemic excursion."
           };
         } else 
         if (presetKey && POPULAR_MEALS[presetKey]) {

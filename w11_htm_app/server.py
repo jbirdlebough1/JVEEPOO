@@ -885,44 +885,89 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
             "glut4_recommendation": f"Immediate {min(60, max(25, int(net_c * 0.45)))}-minute brisk walk is clinically essential to clear acute circulating glucose."
         }
 
-    # 5. Almond Joy & Candy Bars (Hershey, Snickers, Twix, Reese's)
-    elif any(w in text for w in ["almond joy", "mounds", "snickers", "twix", "reese", "reeses", "kit kat", "candy bar", "milky way", "butterfinger"]):
-        oz = weight_oz if weight_oz else 1.61 # Standard single bar is 1.61 oz (45g)
-        is_almond_joy = "almond joy" in text or "mounds" in text
-        bar_title = "Almond Joy Milk Chocolate Coconut Candy Bar" if is_almond_joy else "Confectionery Candy Bar"
-        cals = int(round(oz * 137.5))
-        tot_carbs = round(oz * 17.0, 1)
-        fib = round(oz * 1.25, 1)
-        net_c = round(tot_carbs - fib, 1)
-        prot = round(oz * 1.9, 1)
-        fat = round(oz * 7.5, 1)
+    # 5. Kit Kat, Almond Joy & Candy Bars (Hershey, Snickers, Twix, Reese's)
+    elif any(w in text for w in ["kit kat", "kitkat", "almond joy", "mounds", "snickers", "twix", "reese", "reeses", "candy bar", "milky way", "butterfinger"]):
+        if "kit kat" in text or "kitkat" in text:
+            bar_title = "Kit Kat Crisp Wafers in Milk Chocolate Bar"
+            oz = weight_oz if weight_oz else 1.5 # Standard single pack 1.5 oz (42g)
+            cals = int(round(oz * 145.3))
+            tot_carbs = round(oz * 18.0, 1)
+            fib = round(oz * 0.7, 1)
+            net_c = round(tot_carbs - fib, 1)
+            prot = round(oz * 1.8, 1)
+            fat = round(oz * 7.3, 1)
+            photo = "candy_kitkat.jpg"
+            vendor = "USDA FoodData Central (The Hershey Company / Kit Kat)"
+            gl = "46 (High / Severe Spike Risk)" if net_c > 45.0 else "16 (Medium)"
+            cost = f"{max(1.49, oz * 0.95):.2f}"
+            notes = f"⚠️ ACUTE CONFECTIONERY WARNING: {oz:.1f} oz of {bar_title} contains {net_c}g Net Carbs ({tot_carbs}g total carbs) and {fat}g Fat. Refined wheat flour wafers and milk chocolate cause a steep, rapid glucose surge exceeding your 45g clinical ceiling by +{max(0, int(net_c - 45))}g!"
+            trades = [
+                "Limit portion to 1 fun-size Kit Kat bar (0.49 oz, 9g net carbs, meets clinical ceiling).",
+                "Swap to 2 squares 85% dark chocolate with raw walnuts (4g net carbs).",
+                "Swap to Highkey Keto chocolate cookies (2g net carbs)."
+            ]
+        elif "almond joy" in text or "mounds" in text:
+            bar_title = "Almond Joy Milk Chocolate Coconut Candy Bar"
+            oz = weight_oz if weight_oz else 1.61 # Standard single bar is 1.61 oz (45g)
+            cals = int(round(oz * 137.5))
+            tot_carbs = round(oz * 17.0, 1)
+            fib = round(oz * 1.25, 1)
+            net_c = round(tot_carbs - fib, 1)
+            prot = round(oz * 1.9, 1)
+            fat = round(oz * 7.5, 1)
+            photo = "candy_bar.jpg"
+            vendor = "USDA FoodData Central & Confectionery Disclosures (Hershey / Mars)"
+            gl = "45 (High / Prolonged Spike Risk)" if net_c > 45.0 else "15 (Medium)"
+            cost = f"{max(1.79, oz * 0.95):.2f}"
+            notes = f"⚠️ HIGH LIPID & SUGAR LOAD: {oz:.1f} oz of {bar_title} provides {net_c}g Net Carbs and {fat}g Fat. Saturated fats from coconut and cocoa butter delay gastric emptying, resulting in a late-phase glycemic excursion 2 to 4 hours post-consumption."
+            trades = [
+                "Limit to 1 snack-size fun bar (0.6 oz, 9g net carbs, meets clinical ceiling).",
+                "Swap to 1 oz raw California almonds + 1 square 85% dark chocolate (5g net carbs).",
+                "Swap to unsweetened toasted coconut flakes with raw almonds (3g net carbs)."
+            ]
+        else:
+            bar_title = "Confectionery Candy Bar"
+            oz = weight_oz if weight_oz else 1.61
+            cals = int(round(oz * 137.5))
+            tot_carbs = round(oz * 17.0, 1)
+            fib = round(oz * 1.25, 1)
+            net_c = round(tot_carbs - fib, 1)
+            prot = round(oz * 1.9, 1)
+            fat = round(oz * 7.5, 1)
+            photo = "candy_bar.jpg"
+            vendor = "USDA FoodData Central & Confectionery Disclosures (Hershey / Mars)"
+            gl = "45 (High / Prolonged Spike Risk)" if net_c > 45.0 else "15 (Medium)"
+            cost = f"{max(1.79, oz * 0.95):.2f}"
+            notes = f"⚠️ HIGH LIPID & SUGAR LOAD: {oz:.1f} oz of {bar_title} provides {net_c}g Net Carbs and {fat}g Fat."
+            trades = [
+                "Limit to 1 snack-size fun bar (0.6 oz, 9g net carbs, meets clinical ceiling).",
+                "Swap to 1 oz raw California almonds + 1 square 85% dark chocolate (5g net carbs).",
+                "Swap to unsweetened toasted coconut flakes with raw almonds (3g net carbs)."
+            ]
+
         meets_goal = net_c <= 45.0
         prod_name = f"{bar_title} ({oz:.1f} oz portion)"
         return {
             "meal_name": prod_name,
-            "vendor_matched": "USDA FoodData Central & Confectionery Disclosures (Hershey / Mars)",
-            "photo_filename": "candy_bar.jpg",
+            "vendor_matched": vendor,
+            "photo_filename": photo,
             "calories": cals,
             "net_carbs": net_c,
             "total_carbs": tot_carbs,
             "fiber": fib,
             "protein": prot,
             "fat": fat,
-            "glycemic_load": "45 (High / Prolonged Spike Risk)" if not meets_goal else "15 (Medium)",
-            "estimated_cost": f"{max(1.79, oz * 0.95):.2f}",
+            "glycemic_load": gl,
+            "estimated_cost": cost,
             "meets_goal": meets_goal,
             "is_restaurant": False,
             "identified_items": [
                 {"name": f"{bar_title} ({oz:.1f} oz)", "portion": f"{oz:.1f} oz ({int(oz*28.35)}g)", "net_carbs": net_c, "fiber": fib, "protein": prot, "fat": fat, "calories": cals}
             ],
-            "projected_spike": f"+{int(net_c * 1.3)} to +{int(net_c * 1.8)} mg/dL (Delayed Late-Phase Spike)" if not meets_goal else f"+{int(net_c * 1.0)} mg/dL",
-            "gemini_notes": f"⚠️ HIGH LIPID & SUGAR LOAD: {oz:.1f} oz of {bar_title} provides {net_c}g Net Carbs and {fat}g Fat. Saturated fats from coconut and cocoa butter delay gastric emptying, resulting in a late-phase glycemic excursion 2 to 4 hours post-consumption.",
-            "trade_alternatives": [
-                "Limit to 1 snack-size fun bar (0.6 oz, 9g net carbs, meets clinical ceiling).",
-                "Swap to 1 oz raw California almonds + 1 square 85% dark chocolate (5g net carbs).",
-                "Swap to unsweetened toasted coconut flakes with raw almonds (3g net carbs)."
-            ],
-            "glut4_recommendation": f"Schedule a {min(60, max(20, int(net_c * 0.45)))}-minute brisk walk beginning 30-45 minutes post-consumption to counter delayed lipid-induced glucose peak."
+            "projected_spike": f"+{int(net_c * 1.3)} to +{int(net_c * 1.8)} mg/dL (Severe Acute Spike Risk)" if not meets_goal else f"+{int(net_c * 1.0)} mg/dL",
+            "gemini_notes": notes,
+            "trade_alternatives": trades,
+            "glut4_recommendation": f"Schedule a {min(60, max(20, int(net_c * 0.45)))}-minute brisk walk beginning 20-30 minutes post-consumption to counter confectionery glucose spike."
         }
 
 # 1. Taco Time Northwest (Official Published Nutritional Disclosures & Menu Data)
