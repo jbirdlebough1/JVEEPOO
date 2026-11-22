@@ -6047,10 +6047,51 @@
                       <div style="font-size: 0.72rem; color: #4b5563; margin-bottom: 6px;">
                         Describe planned items, restaurant order, or custom ingredients:
                       </div>
+                      <!-- MULTI-MODAL RESTAURANT & MENU SEARCH BAR (VOICE / PHOTO / TEXT) -->
+                      <div style="display: flex; gap: 8px; margin-bottom: 8px; flex-wrap: wrap; align-items: center;">
+                        <button type="button" id="btnVoiceDictation" class="lcars-btn" style="background: #0284c7; color: #fff; font-size: 0.78rem; font-weight: 800; padding: 4px 12px; border-radius: 4px; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.1);" onclick="toggleVoiceDictation()">
+                          <span id="iconVoice">🎙️</span> <span id="lblVoice">VOICE ORDER</span>
+                        </button>
+                        <label class="lcars-btn" style="background: #059669; color: #fff; font-size: 0.78rem; font-weight: 800; padding: 4px 12px; border-radius: 4px; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; border: none; margin: 0; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                          <span>📸</span> <span>MENU / PLATE PHOTO</span>
+                          <input type="file" id="inpMenuPhotoUpload" accept="image/*" capture="environment" style="display: none;" onchange="handleMenuPhotoUpload(event)">
+                        </label>
+                        <span id="lblVoiceStatus" style="font-size: 0.75rem; color: #0284c7; font-weight: 800; display: none;">● LISTENING... Speak your order into mic</span>
+                      </div>
+                      <!-- PHOTO PREVIEW CONTAINER -->
+                      <div id="containerMenuPhotoPreview" style="display: none; margin-bottom: 8px; align-items: center; gap: 10px; background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 6px; padding: 6px 10px;">
+                        <img id="imgMenuPhotoThumb" src="" style="width: 44px; height: 44px; object-fit: cover; border-radius: 4px; border: 1px solid #94a3b8;" alt="Menu / Plate Photo">
+                        <div style="flex: 1; font-size: 0.75rem; color: #166534;">
+                          <strong id="lblPhotoFilename">menu_photo.jpg</strong>
+                          <div style="font-size: 0.70rem; color: #475569;">Attached for Multimodal Gemini Vision menu OCR &amp; portion estimation.</div>
+                        </div>
+                        <button type="button" class="lcars-btn" style="background: #ef4444; color: #fff; font-size: 0.70rem; padding: 3px 8px; border-radius: 4px; border: none; cursor: pointer;" onclick="clearMenuPhoto()">✕ Remove</button>
+                      </div>
                       <textarea id="txtMealBuilderInput" rows="3" style="width: 100%; box-sizing: border-box; padding: 8px 10px; border: 1.5px solid #0284c7; border-radius: 4px; font-size: 0.88rem; font-family: sans-serif; color: #0f172a; background: #fff; resize: vertical;" placeholder="Enter meal or snack (e.g. 'Taco Time Northwest crisp bean burrito, fresh side salad, and unsweetened iced tea')">Taco Time Northwest: Crisp Burrito &amp; Garden Fresh Salad with light salsa, unsweetened iced tea.</textarea>
                       <!-- Interactive Safe Option Prompt Tokens -->
                       <div style="margin-top: 6px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
-                        <span style="font-size: 0.70rem; font-weight: 800; color: #0369a1; font-family: var(--lcars-mono);">💡 PROMPT TOKENS:</span>
+                        <span style="font-size: 0.70rem; font-weight: 800; color: #0369a1; font-family: var(--lcars-mono);">🍽️ RESTAURANT PRE-CHOICE:</span>
+                        <button type="button" class="lcars-btn" style="padding: 2px 8px; font-size: 0.70rem; background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; border-radius: 4px; font-weight: bold;" onclick="setMealQueryToken('Bubba\'s tavern Sultan WA chicken fingers and frys honey mustard sauce, 48oz diet')">
+                          🍗 Pub Basket (Tenders &amp; Fries)
+                        </button>
+                        <button type="button" class="lcars-btn" style="padding: 2px 8px; font-size: 0.70rem; background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; border-radius: 4px; font-weight: bold;" onclick="setMealQueryToken('Double bacon cheeseburger with pub fries, ranch and large coke')">
+                          🍔 Double Bacon Burger &amp; Fries
+                        </button>
+                        <button type="button" class="lcars-btn" style="padding: 2px 8px; font-size: 0.70rem; background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; border-radius: 4px; font-weight: bold;" onclick="setMealQueryToken('Carne asada burrito with chips and salsa and diet pepsi')">
+                          🌮 Burrito &amp; Warm Chips
+                        </button>
+                        <button type="button" class="lcars-btn" style="padding: 2px 8px; font-size: 0.70rem; background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; border-radius: 4px; font-weight: bold;" onclick="setMealQueryToken('10oz ribeye steak with loaded baked potato, side salad and unsweetened tea')">
+                          🥩 10oz Ribeye &amp; Loaded Potato
+                        </button>
+                        <button type="button" class="lcars-btn" style="padding: 2px 8px; font-size: 0.70rem; background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; border-radius: 4px; font-weight: bold;" onclick="setMealQueryToken('Fluffy buttermilk pancakes with butter, maple syrup, hash browns and bacon')">
+                          🥞 Pancakes &amp; Hash Browns
+                        </button>
+                        <button type="button" class="lcars-btn" style="padding: 2px 8px; font-size: 0.70rem; background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; border-radius: 4px; font-weight: bold;" onclick="setMealQueryToken('Fish and chips basket with french fries, tartar sauce and diet soda')">
+                          🐟 Fish &amp; Chips Basket
+                        </button>
+                      </div>
+                      <div style="margin-top: 4px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+                        <span style="font-size: 0.70rem; font-weight: 800; color: #0369a1; font-family: var(--lcars-mono);">💡 DISCOVERY TOKENS:</span>
                         <button type="button" class="lcars-btn" style="padding: 2px 8px; font-size: 0.70rem; background: #e0f2fe; color: #0369a1; border: 1px solid #7dd3fc; border-radius: 4px; font-weight: bold;" onclick="setMealQueryToken(\'I want a hot candy that meets my goals what is best\')">
                           🌶️ hot candy that meets my goals
                         </button>
@@ -13901,6 +13942,134 @@
       }
     }
 
+    
+    // =========================================================================
+    // MULTI-MODAL RESTAURANT & MENU SEARCH: VOICE & PHOTO HANDLERS
+    // =========================================================================
+    let currentMenuPhotoBase64 = null;
+    let currentVoiceRecognition = null;
+    let isVoiceListening = false;
+
+    function toggleVoiceDictation() {
+      const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const statusEl = document.getElementById('lblVoiceStatus');
+      const btnEl = document.getElementById('btnVoiceDictation');
+      const lblEl = document.getElementById('lblVoice');
+
+      if (!SpeechRec) {
+        alert("Speech recognition is not supported in this browser. Please use Chrome, Edge, or Android Chrome.");
+        return;
+      }
+
+      if (isVoiceListening) {
+        if (currentVoiceRecognition) {
+          try { currentVoiceRecognition.stop(); } catch(e) {}
+        }
+        isVoiceListening = false;
+        if (statusEl) statusEl.style.display = 'none';
+        if (btnEl) btnEl.style.background = '#0284c7';
+        if (lblEl) lblEl.textContent = 'VOICE ORDER';
+        return;
+      }
+
+      try {
+        currentVoiceRecognition = new SpeechRec();
+        currentVoiceRecognition.continuous = false;
+        currentVoiceRecognition.interimResults = false;
+        currentVoiceRecognition.lang = 'en-US';
+
+        currentVoiceRecognition.onstart = function() {
+          isVoiceListening = true;
+          if (statusEl) {
+            statusEl.style.display = 'inline';
+            statusEl.textContent = '🔴 LISTENING... Speak your restaurant order into mic';
+          }
+          if (btnEl) btnEl.style.background = '#dc2626';
+          if (lblEl) lblEl.textContent = 'STOP LISTENING';
+          if (typeof soundButtonPress === 'function') soundButtonPress();
+        };
+
+        currentVoiceRecognition.onresult = function(event) {
+          if (event.results && event.results.length > 0) {
+            const transcript = event.results[0][0].transcript;
+            const inputEl = document.getElementById('txtMealBuilderInput');
+            if (inputEl) {
+              inputEl.value = transcript;
+            }
+            if (statusEl) {
+              statusEl.textContent = `🎙️ Heard: "${transcript}" — Estimating...`;
+            }
+            setTimeout(() => {
+              analyzeMealWithGemini();
+            }, 400);
+          }
+        };
+
+        currentVoiceRecognition.onerror = function(event) {
+          console.warn("Speech recognition error:", event.error);
+          isVoiceListening = false;
+          if (statusEl) {
+            statusEl.textContent = `⚠️ Voice error: ${event.error}`;
+            setTimeout(() => { if (statusEl) statusEl.style.display = 'none'; }, 3000);
+          }
+          if (btnEl) btnEl.style.background = '#0284c7';
+          if (lblEl) lblEl.textContent = 'VOICE ORDER';
+        };
+
+        currentVoiceRecognition.onend = function() {
+          isVoiceListening = false;
+          if (btnEl) btnEl.style.background = '#0284c7';
+          if (lblEl) lblEl.textContent = 'VOICE ORDER';
+          setTimeout(() => {
+            if (statusEl && !statusEl.textContent.includes('Heard')) {
+              statusEl.style.display = 'none';
+            }
+          }, 2000);
+        };
+
+        currentVoiceRecognition.start();
+      } catch (err) {
+        console.error("Failed to start voice recognition:", err);
+        alert("Voice recognition error: " + err.message);
+      }
+    }
+
+    function handleMenuPhotoUpload(e) {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        currentMenuPhotoBase64 = evt.target.result;
+        const previewContainer = document.getElementById('containerMenuPhotoPreview');
+        const thumbEl = document.getElementById('imgMenuPhotoThumb');
+        const filenameEl = document.getElementById('lblPhotoFilename');
+        const inputEl = document.getElementById('txtMealBuilderInput');
+
+        if (thumbEl) thumbEl.src = currentMenuPhotoBase64;
+        if (filenameEl) filenameEl.textContent = file.name || "menu_photo.jpg";
+        if (previewContainer) previewContainer.style.display = 'flex';
+
+        if (inputEl && (!inputEl.value || inputEl.value.includes('Taco Time'))) {
+          inputEl.value = `Photo attached: ${file.name} — scanning menu items & calculating diabetic impact...`;
+        }
+
+        if (typeof soundButtonPress === 'function') soundButtonPress();
+        setTimeout(() => {
+          analyzeMealWithGemini();
+        }, 400);
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function clearMenuPhoto() {
+      currentMenuPhotoBase64 = null;
+      const previewContainer = document.getElementById('containerMenuPhotoPreview');
+      const fileInput = document.getElementById('inpMenuPhotoUpload');
+      if (previewContainer) previewContainer.style.display = 'none';
+      if (fileInput) fileInput.value = '';
+    }
+
     async function analyzeMealWithGemini(presetKey = null) {
       if (typeof soundButtonPress === 'function') soundButtonPress();
       const goals = getActiveClinicalGoals();
@@ -13955,7 +14124,8 @@
             source: "LCARS_MEAL_BUILDER",
             analyze_only: true,
             commit: false,
-            fluid_oz: parseFloat(document.getElementById('inpMealFluidOz')?.value) || 8.0
+            fluid_oz: parseFloat(document.getElementById('inpMealFluidOz')?.value) || 8.0,
+            photo_data: currentMenuPhotoBase64 || ""
           }),
           signal: controller.signal
         });
