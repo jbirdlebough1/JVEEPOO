@@ -1655,11 +1655,11 @@
       <button id="navTabFullScan" class="lcars-pill pill-blue active" onclick="switchTab('fullscan')">
         <span class="tab-label">01-FULL SCAN</span>
       </button>
-      <button id="navTabMetabolic" class="lcars-pill pill-peach" onclick="switchTab('metabolic')">
-        <span class="tab-label">02-METABOLIC</span>
-      </button>
       <button id="navTabDietTrades" class="lcars-pill pill-green" onclick="switchTab('diettrades')">
-        <span class="tab-label">03-MEAL PLANNER</span>
+        <span class="tab-label">02-MEAL PLANNER</span>
+      </button>
+      <button id="navTabMetabolic" class="lcars-pill pill-peach" onclick="switchTab('metabolic')">
+        <span class="tab-label">03-METABOLIC</span>
       </button>
       <button id="navTabReports" class="lcars-pill pill-blue" onclick="switchTab('reports')">
         <span class="tab-label">04-REPORTS</span>
@@ -2180,7 +2180,7 @@
           <!-- COMPONENT 3: DAILY NUTRITION MACROS & MEAL JOURNAL -->
           <div class="diet-form-card" id="secMetabolicDiet" style="border-left-color: var(--lcars-lilac);">
             <div class="setup-section-title">
-              <span style="color: var(--lcars-lilac);">03. DIETARY INTAKE &amp; MEAL LOGGING</span>
+              <span style="color: var(--lcars-lilac);">03. ACTUAL CONSUMED MEALS &amp; GLUCOSE SCRUBBER (DATE &amp; TIME TIMELINE)</span>
               <span style="font-size: 0.85rem; color: var(--lcars-green);" id="lblLinkedGlucose">AUTO-LINKED TO RECENT GLUCOSE: -- MG/DL</span>
             </div>
 
@@ -5795,17 +5795,18 @@
                 <div style="flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
                   
                   <!-- PATHWAY A: MEAL PANTRY (1-CLICK REUSE) -->
+                  <!-- MEAL PANTRY: REUSABLE TEMPLATES & PREVIOUSLY CONSUMED MEALS -->
                   <div id="sectionMealPantry" style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 6px; padding: 10px;">
                     <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px;">
                       <label for="listboxPopularMeals" style="font-size: 0.8rem; font-weight: 800; color: #166534; text-transform: uppercase;">
-                        📋 PATHWAY A: REUSE MEAL PANTRY (PREVIOUSLY CONSUMED &amp; SAVED MEALS)
+                        📋 PATHWAY A: REUSE MEAL PANTRY (SAVED MEAL &amp; SNACK TEMPLATES)
                       </label>
                       <span style="font-size: 0.68rem; color: #15803d; font-weight: 800; background: #dcfce7; padding: 2px 6px; border-radius: 4px;">
                         1-CLICK SELECT
                       </span>
                     </div>
                     <div style="font-size: 0.72rem; color: #4b5563; margin-bottom: 6px;">
-                      Select any previously saved meal or snack to instant-populate metrics:
+                      Select any previously consumed or saved meal template to instant-populate metrics:
                     </div>
                     <select id="listboxPopularMeals" size="5" style="width: 100%; border: 1.5px solid #0284c7; border-radius: 4px; padding: 6px 8px; font-size: 0.85rem; font-family: inherit; color: #0f172a; background: #ffffff; cursor: pointer; box-shadow: inset 0 1px 3px rgba(0,0,0,0.06);" onchange="onSelectPopularMealFromListbox(this.value)">
                       <option value="meal01">🥣 Mon-Sat High-Fiber Metabolic Breakfast (MEAL-01) (38g Net Carbs • 8 oz Beverage • 430 kcal)</option>
