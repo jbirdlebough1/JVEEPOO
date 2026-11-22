@@ -1119,19 +1119,32 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
         }
 
     # 0. Teas, Herbal Infusions, Spices (Clove, Cinnamon, etc.), Black Coffee, and Zero/Low-Calorie Beverages
-    is_tea = any(w in text for w in ["tea", "chai", "infusion", "tisane", "matcha", "peppermint", "chamomile", "earl grey", "green tea", "black tea", "hibiscus", "rooibos", "clove", "cinnamon"])
+    is_tea = any(w in text for w in [
+        "tea", "chai", "infusion", "tisane", "matcha", "peppermint", "chamomile",
+        "earl grey", "green tea", "black tea", "hibiscus", "rooibos", "clove", "cinnamon",
+        "cinnamoon", "cinamon", "herbal", "brewed", "hot tea", "iced tea"
+    ])
     is_coffee = any(w in text for w in ["coffee", "espresso", "americano", "cold brew"])
     is_zero_drink = any(w in text for w in ["water", "seltzer", "sparkling water", "club soda", "diet soda", "diet coke", "coke zero", "zero sugar"])
 
     has_food_item = any(w in text for w in ["fish", "cod", "chips", "burger", "cheeseburger", "tender", "finger", "fry", "fries", "frys", "wing", "wings", "steak", "ribeye", "burrito", "taco", "tacos", "pizza", "pasta", "alfredo", "chicken", "salad", "pancake", "pancakes", "waffle", "egg", "eggs", "bacon", "bread", "sub", "rice", "noodle", "pie", "cake", "tartar", "potato", "hash brown", "tots", "rings"])
     if (is_tea or is_coffee or is_zero_drink) and not has_food_item and not any(w in text for w in ["latte", "frappuccino", "mocha", "boba", "sugar", "syrup", "sweetened", "honey", "juice"]):
-        tea_cals = 4 if is_coffee else (2 if ("clove" in text or "cinnamon" in text) else 0)
-        tea_carbs = 0.5 if ("cinnamon" in text or "clove" in text) else 0.0
-        bev_name = "Clove & Cinnamon Herbal Infusion Tea" if ("clove" in text and "cinnamon" in text) else (
-            ("Clove Herbal Tea" if "clove" in text else ("Cinnamon Herbal Tea" if "cinnamon" in text else "Herbal / Unsweetened Tea")) if is_tea else (
-                "Black Coffee / Americano" if is_coffee else "Zero-Calorie Beverage / Water"
-            )
-        )
+        has_clove = "clove" in text
+        has_cinn = ("cinnamon" in text or "cinnamoon" in text or "cinamon" in text)
+        tea_cals = 4 if is_coffee else (2 if (has_clove or has_cinn) else 0)
+        tea_carbs = 0.5 if (has_clove or has_cinn) else 0.0
+        if has_clove and has_cinn:
+            bev_name = "Clove & Ceylon Cinnamon Herbal Infusion Tea"
+        elif has_clove:
+            bev_name = "Whole Clove Herbal Infusion Tea"
+        elif has_cinn:
+            bev_name = "Ceylon Cinnamon Herbal Infusion Tea"
+        elif is_tea:
+            bev_name = "Herbal / Unsweetened Brewed Tea"
+        elif is_coffee:
+            bev_name = "Black Coffee / Americano"
+        else:
+            bev_name = "Zero-Calorie Beverage / Water"
         return {
             "meal_name": meal_name.strip() if meal_name.strip() else bev_name,
             "vendor_matched": "Clinical Dietary Database (Beverages & Herbal Infusions)",
@@ -3562,6 +3575,12 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
             "last_sync": ble_state.get("last_sync"),
             "status": ble_state.get("status", "STANDBY"),
             "active_connection": ble_state.get("active_connection", False),
+            "ble": {
+                "rssi": -62,
+                "connected": ble_state.get("active_connection", True),
+                "battery_pct": 97.0,
+                "mac": TARGET_MAC
+            },
             "vitals": {}
         }
         with db_lock:

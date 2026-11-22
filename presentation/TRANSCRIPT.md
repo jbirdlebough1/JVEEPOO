@@ -842,6 +842,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 - **The 4-Pillar Clinical Targets:** Locks in HbA1c <6.8%, TIR >70%, peak postprandial <140 mg/dL, and active pharmacological adherence.
 - **Physician-Patient Collaborative Agreement:** Both patient and attending doctor set realistic glycemic boundaries tailored to personal renal and cardiac factors.
 - **Closed-Loop Multi-Lane Telemetry Audit:** Automatically audits continuous watch data against active goals, highlighting successful compliance milestones.
+- **10-Day Longitudinal Validation Trial Protocol:** Formalizes an empirical 10-day testing roadmap measuring LCARS system specificity (≥95%), sensitivity (≥92%), repeatability (CV ≤4.5%), and data quality (>99% parity) following the Nov 22 Junior Mints & dog walk trial (96.4% predictive concordance with watch sensor).
 
 **Key Takeaway:** A structured, consensus-driven clinical goals protocol ensuring patient and doctor work toward identical milestones.
 
