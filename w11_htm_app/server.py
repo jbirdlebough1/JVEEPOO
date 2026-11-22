@@ -270,7 +270,7 @@ DEFAULT_POPULAR_MEALS = [
     {
         "id": "meal01",
         "title": "Mon-Sat High-Fiber Metabolic Breakfast (MEAL-01)",
-        "description": "1/2 cup berries, 3 turkey sausage links, 1/2 banana, steel cut oats with cinnamon and flax seed, oat milk.",
+        "description": "1/2 cup fresh berries, 3 turkey sausage links, 1/2 banana, steel cut oats with cinnamon and flax seed, unsweetened oat milk.",
         "calories": 430,
         "net_carbs": 38.0,
         "total_carbs": 48.0,
@@ -280,12 +280,18 @@ DEFAULT_POPULAR_MEALS = [
         "glycemic_load": "12 (Low-Med)",
         "meets_goal": 1,
         "is_custom": 0,
-        "tips_json": json.dumps(["Steel cut oats and flaxseed mucilage blunt post-meal glucose rise.", "15-min GLUT4 walk keeps peak < 122 mg/dL."])
+        "fluid_oz": 8.0,
+        "occasion": "Breakfast",
+        "tips_json": json.dumps([
+            "Steel cut oats and flaxseed mucilage blunt post-meal glucose rise.",
+            "8 oz unsweetened oat milk provides essential hydration with zero added sugar (<1g net carb).",
+            "15-min GLUT4 walk keeps peak < 122 mg/dL."
+        ])
     },
     {
         "id": "meal02",
-        "title": "Sunday Protein & Whole Wheat Toast Breakfast (MEAL-02)",
-        "description": "2 eggs scrambled, 3 turkey sausage links, 1 slice sprouted whole wheat toast, 1/2 cup fresh berries.",
+        "title": "Sunday Protein & Sprouted Toast Breakfast (MEAL-02)",
+        "description": "2 eggs scrambled, 3 turkey sausage links, 1 slice sprouted whole wheat toast, 1/2 cup fresh berries, fresh brewed black coffee.",
         "calories": 385,
         "net_carbs": 17.0,
         "total_carbs": 22.0,
@@ -295,27 +301,38 @@ DEFAULT_POPULAR_MEALS = [
         "glycemic_load": "5 (Very Low)",
         "meets_goal": 1,
         "is_custom": 0,
-        "tips_json": json.dumps(["High albumin protein-to-carb ratio (1.7:1) stimulates GLP-1.", "Minimal glycemic excursion (+18 mg/dL)."])
+        "fluid_oz": 8.0,
+        "occasion": "Breakfast",
+        "tips_json": json.dumps([
+            "High albumin protein-to-carb ratio (1.7:1) stimulates GLP-1 satiety.",
+            "8 oz black coffee / water delivers zero glycemic impact hydration."
+        ])
     },
     {
-        "id": "chipotle",
-        "title": "Chipotle Burrito Bowl (Chicken & Black Beans)",
-        "description": "Chipotle bowl with light brown rice, black beans, grilled chicken, fajita veggies, salsa, and guacamole.",
-        "calories": 540,
-        "net_carbs": 33.0,
-        "total_carbs": 44.0,
-        "fiber": 11.0,
-        "protein": 46.0,
-        "fat": 22.0,
-        "glycemic_load": "14 (Medium)",
+        "id": "soup_grilled_cheese",
+        "title": "Weekly Vegetable & Meat Soup with Whole Wheat Grilled Cheese, Mini Orange & Apple Slices",
+        "description": "Weekly vegetable & meat soup, whole wheat grilled cheese sandwich, 1 miniature orange (1.5oz), 1/2 apple slices, spring water.",
+        "calories": 493,
+        "net_carbs": 34.0,
+        "total_carbs": 43.2,
+        "fiber": 9.2,
+        "protein": 30.6,
+        "fat": 22.2,
+        "glycemic_load": "8 (Low)",
         "meets_goal": 1,
         "is_custom": 0,
-        "tips_json": json.dumps(["Avocado healthy fats and grilled chicken protein slow gastric emptying.", "15-min walk keeps post-meal curve flat."])
+        "fluid_oz": 16.0,
+        "occasion": "Lunch",
+        "tips_json": json.dumps([
+            "Vegetable fiber and beef broth proteins blunt postprandial glycemic excursions.",
+            "16 oz hydration (broth + spring water) expands intravascular plasma volume to reduce peak glucose concentration.",
+            "Small fruit portioning (1.5oz orange + 1/2 apple) stays strictly within 45g net carb ceiling."
+        ])
     },
     {
         "id": "dicks",
         "title": "Dick's Drive-In Deluxe Burger (Seattle 1954)",
-        "description": "Dick's Deluxe 100% real beef double patties, melted cheese, lettuce, pickle relish and mayo on toasted bun (28g net carbs).",
+        "description": "Dick's Deluxe 100% real beef double patties, melted cheese, lettuce, pickle relish and mayo on toasted bun (28g net carbs), iced water.",
         "calories": 420,
         "net_carbs": 28.0,
         "total_carbs": 30.0,
@@ -325,7 +342,13 @@ DEFAULT_POPULAR_MEALS = [
         "glycemic_load": "12 (Low-Med)",
         "meets_goal": 1,
         "is_custom": 0,
-        "tips_json": json.dumps(["28g Net Carbs is well below your 45g ceiling!", "Beef protein and lipid buffer slows carbohydrate uptake."])
+        "fluid_oz": 12.0,
+        "occasion": "Lunch/Dinner",
+        "tips_json": json.dumps([
+            "28g Net Carbs is well below your 45g ceiling!",
+            "Beef protein and lipid buffer slow carbohydrate uptake.",
+            "12 oz filtered iced water provides essential hydration with zero glycemic impact."
+        ])
     },
     {
         "id": "dicks_combo",
@@ -340,52 +363,55 @@ DEFAULT_POPULAR_MEALS = [
         "glycemic_load": "38 (High Spike Risk)",
         "meets_goal": 0,
         "is_custom": 0,
-        "tips_json": json.dumps(["95g Net Carbs exceeds 45g ceiling by +50g.", "Anticipated postprandial glycemic spike: +75 to +90 mg/dL.", "Immediate 35-45 minute brisk GLUT4 walk strongly recommended."])
+        "fluid_oz": 24.0,
+        "occasion": "Dinner",
+        "tips_json": json.dumps([
+            "95g Net Carbs exceeds 45g ceiling by +50g.",
+            "24 oz diet beverage delivers zero glycemic hydration.",
+            "Immediate 35-45 minute brisk GLUT4 walk strongly recommended."
+        ])
     },
     {
-        "id": "soup_grilled_cheese",
-        "title": "Weekly Vegetable & Meat Soup with Whole Wheat Grilled Cheese, Mini Orange & Apple Slices",
-        "description": "Weekly vegetable & meat soup, whole wheat grilled cheese sandwich, 1 miniature orange (1.5oz), 1/2 apple slices.",
-        "calories": 493,
-        "net_carbs": 34.0,
-        "total_carbs": 43.2,
-        "fiber": 9.2,
-        "protein": 30.6,
-        "fat": 22.2,
-        "glycemic_load": "8 (Low)",
+        "id": "snack_clove_tea",
+        "title": "[Snack] Brewed Clove & Ceylon Cinnamon Herbal Infusion",
+        "description": "16 oz hot brewed whole clove & Ceylon cinnamon herbal infusion. Zero sugar, anti-inflammatory, polyphenol rich.",
+        "calories": 2,
+        "net_carbs": 0.5,
+        "total_carbs": 0.5,
+        "fiber": 0.0,
+        "protein": 0.0,
+        "fat": 0.0,
+        "glycemic_load": "0 (Zero Glycemic Impact)",
         "meets_goal": 1,
-        "is_custom": 1,
-        "tips_json": json.dumps(["Vegetable fiber and beef broth proteins blunt postprandial glycemic excursions.", "Sprouted whole wheat and cheddar cheese lipid buffer prevents sharp glucose spike.", "Small fruit portioning (1.5oz orange + 1/2 apple) stays strictly within 45g net carb ceiling."])
+        "is_custom": 0,
+        "fluid_oz": 16.0,
+        "occasion": "Snack",
+        "tips_json": json.dumps([
+            "16 oz herbal hydration stimulates renal clearance and decreases plasma viscosity.",
+            "Eugenol and cinnamtannin B1 improve peripheral insulin receptor sensitivity.",
+            "Full snack meal status with zero caloric or glycemic load."
+        ])
     },
     {
-        "id": "steak",
-        "title": "8oz Prime Ribeye Steak & Roasted Broccoli",
-        "description": "8 oz grass-fed ribeye steak seared with garlic herb butter and double roasted broccoli florets.",
-        "calories": 560,
-        "net_carbs": 8.0,
-        "total_carbs": 12.0,
+        "id": "snack_apple_walnut",
+        "title": "[Snack] Crisp Green Apple Slices & Raw California Walnuts",
+        "description": "1/2 crisp green apple sliced with 1 oz raw California walnut halves and 12 oz chilled sparkling water.",
+        "calories": 240,
+        "net_carbs": 14.0,
+        "total_carbs": 18.0,
         "fiber": 4.0,
-        "protein": 42.0,
-        "fat": 36.0,
-        "glycemic_load": "3 (Minimal)",
+        "protein": 5.0,
+        "fat": 18.0,
+        "glycemic_load": "4 (Very Low)",
         "meets_goal": 1,
         "is_custom": 0,
-        "tips_json": json.dumps(["Zero glucose excursion.", "Sulforaphane in roasted broccoli stimulates Nrf2 cellular defense."])
-    },
-    {
-        "id": "breakfast",
-        "title": "Scrambled Eggs, Baby Spinach & Hass Avocado",
-        "description": "3 pasture-raised eggs scrambled with 2 cups organic baby spinach, 1/2 sliced avocado, and olive oil.",
-        "calories": 360,
-        "net_carbs": 4.0,
-        "total_carbs": 9.0,
-        "fiber": 5.0,
-        "protein": 22.0,
-        "fat": 26.0,
-        "glycemic_load": "2 (Minimal)",
-        "meets_goal": 1,
-        "is_custom": 0,
-        "tips_json": json.dumps(["Ultra-low glycemic ketogenic impact: zero insulin spike.", "Rich in lutein and choline."])
+        "fluid_oz": 12.0,
+        "occasion": "Snack",
+        "tips_json": json.dumps([
+            "Omega-3 fatty acids in walnuts slow gastric emptying of fructose.",
+            "12 oz sparkling water supports optimal metabolic hydration.",
+            "Ideal afternoon bridge meal maintaining steady 90-110 mg/dL glucose baseline."
+        ])
     }
 ]
 
@@ -399,9 +425,9 @@ def seed_popular_meals_if_empty():
             for m in DEFAULT_POPULAR_MEALS:
                 cur.execute("""
                     INSERT OR REPLACE INTO popular_meals 
-                    (id, title, description, calories, net_carbs, total_carbs, fiber, protein, fat, glycemic_load, tips_json, meets_goal, is_custom, updated_at)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-                """, (m["id"], m["title"], m["description"], m["calories"], m["net_carbs"], m["total_carbs"], m["fiber"], m["protein"], m["fat"], m["glycemic_load"], m["tips_json"], m["meets_goal"], m["is_custom"], ts))
+                    (id, title, description, calories, net_carbs, total_carbs, fiber, protein, fat, glycemic_load, tips_json, meets_goal, is_custom, fluid_oz, occasion, updated_at)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                """, (m["id"], m["title"], m["description"], m["calories"], m["net_carbs"], m["total_carbs"], m["fiber"], m["protein"], m["fat"], m["glycemic_load"], m["tips_json"], m["meets_goal"], m["is_custom"], m.get("fluid_oz", 8.0), m.get("occasion", "Meal"), ts))
             conn.commit()
         conn.close()
 
@@ -411,7 +437,7 @@ def get_popular_meals():
         conn = get_db()
         cur = conn.cursor()
         cur.execute("""
-            SELECT id, title, description, calories, net_carbs, total_carbs, fiber, protein, fat, glycemic_load, tips_json, meets_goal, is_custom, updated_at
+            SELECT id, title, description, calories, net_carbs, total_carbs, fiber, protein, fat, glycemic_load, tips_json, meets_goal, is_custom, updated_at, fluid_oz, occasion
             FROM popular_meals
             ORDER BY is_custom DESC, updated_at DESC, id ASC
         """)
@@ -427,7 +453,9 @@ def get_popular_meals():
                 "id": r[0], "title": r[1], "description": r[2], "calories": r[3],
                 "net_carbs": r[4], "total_carbs": r[5], "fiber": r[6], "protein": r[7],
                 "fat": r[8], "glycemic_load": r[9], "tips": tips, "meets_goal": bool(r[11]),
-                "is_custom": bool(r[12]), "updated_at": r[13]
+                "is_custom": bool(r[12]), "updated_at": r[13],
+                "fluid_oz": r[14] if len(r) > 14 and r[14] is not None else 8.0,
+                "occasion": r[15] if len(r) > 15 and r[15] is not None else "Meal"
             })
         return result
 
@@ -443,6 +471,8 @@ def upsert_popular_meal(payload):
     fat = float(payload.get("fat") or 0)
     gl = str(payload.get("glycemic_load") or payload.get("gl") or "Moderate")
     meets = 1 if (payload.get("meets_goal") if "meets_goal" in payload else (net_c <= 45)) else 0
+    fluid_oz = float(payload.get("fluid_oz") or payload.get("fluidOz") or 8.0)
+    occasion = str(payload.get("occasion") or "Meal")
     tips = payload.get("tips") or []
     tips_str = json.dumps(tips) if isinstance(tips, list) else str(tips)
     ts = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -452,9 +482,9 @@ def upsert_popular_meal(payload):
         cur = conn.cursor()
         cur.execute("""
             INSERT OR REPLACE INTO popular_meals
-            (id, title, description, calories, net_carbs, total_carbs, fiber, protein, fat, glycemic_load, tips_json, meets_goal, is_custom, updated_at)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?)
-        """, (meal_id, title, desc, cal, net_c, tot_c, fib, pro, fat, gl, tips_str, meets, ts))
+            (id, title, description, calories, net_carbs, total_carbs, fiber, protein, fat, glycemic_load, tips_json, meets_goal, is_custom, fluid_oz, occasion, updated_at)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?, ?, ?)
+        """, (meal_id, title, desc, cal, net_c, tot_c, fib, pro, fat, gl, tips_str, meets, fluid_oz, occasion, ts))
         conn.commit()
         conn.close()
     return {"id": meal_id, "title": title, "net_carbs": net_c, "calories": cal, "meets_goal": bool(meets)}
@@ -803,15 +833,15 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
         }
 
 
-def insert_meal_entry(meal_name, source, photo_filename, calories, net_carbs, total_carbs, fiber, protein, fat, glycemic_load, vendor_matched, gemini_notes, meets_goal, raw_json=""):
+def insert_meal_entry(meal_name, source, photo_filename, calories, net_carbs, total_carbs, fiber, protein, fat, glycemic_load, vendor_matched, gemini_notes, meets_goal, raw_json="", fluid_oz=8.0):
     with db_lock:
         conn = sqlite3.connect(DB_PATH)
         cur = conn.cursor()
         ts = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         cur.execute("""
-            INSERT INTO meal_entries (timestamp, meal_name, source, photo_filename, calories, net_carbs, total_carbs, fiber, protein, fat, glycemic_load, vendor_matched, gemini_notes, meets_goal, raw_json)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        """, (ts, meal_name, source, photo_filename, calories, net_carbs, total_carbs, fiber, protein, fat, glycemic_load, vendor_matched, gemini_notes, meets_goal, raw_json))
+            INSERT INTO meal_entries (timestamp, meal_name, source, photo_filename, calories, net_carbs, total_carbs, fiber, protein, fat, glycemic_load, vendor_matched, gemini_notes, meets_goal, raw_json, fluid_oz)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """, (ts, meal_name, source, photo_filename, calories, net_carbs, total_carbs, fiber, protein, fat, glycemic_load, vendor_matched, gemini_notes, meets_goal, raw_json, fluid_oz))
         meal_id = cur.lastrowid
 
         # Also insert vital record for seamless integration with telemetry queries
@@ -938,7 +968,7 @@ def get_recent_meals(limit=100):
         conn = sqlite3.connect(DB_PATH)
         cur = conn.cursor()
         cur.execute("""
-            SELECT id, timestamp, meal_name, source, photo_filename, calories, net_carbs, total_carbs, fiber, protein, fat, glycemic_load, vendor_matched, gemini_notes, meets_goal, raw_json
+            SELECT id, timestamp, meal_name, source, photo_filename, calories, net_carbs, total_carbs, fiber, protein, fat, glycemic_load, vendor_matched, gemini_notes, meets_goal, raw_json, fluid_oz
             FROM meal_entries
             ORDER BY timestamp DESC, id DESC LIMIT ?
         """, (limit,))
@@ -958,7 +988,8 @@ def get_recent_meals(limit=100):
                 "fiber": r[8], "protein": r[9], "fat": r[10], "glycemic_load": r[11],
                 "vendor_matched": r[12], "gemini_notes": r[13], "meets_goal": bool(r[14]),
                 "raw_json": r[15],
-                "identified_items": raw_obj.get("identified_items", [])
+                "identified_items": raw_obj.get("identified_items", []),
+                "fluid_oz": r[16] if len(r) > 16 and r[16] is not None else 8.0
             })
         return res
 
@@ -1883,6 +1914,7 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                 # Commit to SQLite DB if not analyze_only
                 analyze_only = payload.get("analyze_only", False) or (self.path == "/api/meal/analyze" and payload.get("commit") is False)
                 if not analyze_only:
+                    fluid_oz = float(payload.get("fluid_oz") or payload.get("fluidOz") or 8.0)
                     meal_id, ts = insert_meal_entry(
                         meal_name=analysis["meal_name"],
                         source=source,
@@ -1897,7 +1929,8 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                         vendor_matched=analysis.get("vendor_matched", "Home Recipe"),
                         gemini_notes=analysis["gemini_notes"],
                         meets_goal=1 if analysis["meets_goal"] else 0,
-                        raw_json=json.dumps(analysis)
+                        raw_json=json.dumps(analysis),
+                        fluid_oz=fluid_oz
                     )
                     analysis["meal_id"] = meal_id
                     analysis["timestamp"] = ts
