@@ -5811,6 +5811,9 @@
                       <!-- Interactive Safe Option Prompt Tokens -->
                       <div style="margin-top: 6px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
                         <span style="font-size: 0.70rem; font-weight: 800; color: #0369a1; font-family: var(--lcars-mono);">💡 PROMPT TOKENS:</span>
+                        <button type="button" class="lcars-btn" style="padding: 2px 8px; font-size: 0.70rem; background: #e0f2fe; color: #0369a1; border: 1px solid #7dd3fc; border-radius: 4px; font-weight: bold;" onclick="setMealQueryToken(\'I want a hot candy that meets my goals what is best\')">
+                          🌶️ hot candy that meets my goals
+                        </button>
                         <button type="button" class="lcars-btn" style="padding: 2px 8px; font-size: 0.70rem; background: #e0f2fe; color: #0369a1; border: 1px solid #7dd3fc; border-radius: 4px; font-weight: bold;" onclick="setMealQueryToken(\'find me a sugar free dessert like \\\'blueberry cake\\\'\')">
                           🍰 find me a sugar free dessert like 'blueberry cake'
                         </button>
@@ -12859,7 +12862,7 @@
             ],
             glut4: "<strong>35 to 45-Minute Brisk GLUT4 Walk:</strong> Required to clear refined confectionery glucose."
           };
-        } else if (text.includes("red hot") || text.includes("redhots") || text.includes("cinnamon drops") || text.includes("cinnamon candy")) {
+        } else if (text.includes("red hot") || text.includes("redhots") || text.includes("cinnamon drops") || text.includes("cinnamon candy") || text.includes("hot candy") || text.includes("atomic fireball")) {
           const oz = cWeightOz || 1.5;
           const cals = Math.round(oz * 110);
           const totC = Math.round(oz * 27);
