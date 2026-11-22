@@ -1661,14 +1661,14 @@
       <button id="navTabMetabolic" class="lcars-pill pill-peach" onclick="switchTab('metabolic')">
         <span class="tab-label">03-METABOLIC</span>
       </button>
-      <button id="navTabExport" class="lcars-pill pill-lilac" onclick="switchTab('export')" style="border-left: 5px solid #38bdf8;">
-        <span class="tab-label">04-EXPORT</span>
-      </button>
       <button id="navTabDietTrades" class="lcars-pill pill-green" onclick="switchTab('diettrades')">
-        <span class="tab-label">05-MEAL PLANNER</span>
+        <span class="tab-label">04-MEAL PLANNER</span>
       </button>
       <button id="navTabReports" class="lcars-pill pill-blue" onclick="switchTab('reports')">
-        <span class="tab-label">06-REPORTS</span>
+        <span class="tab-label">05-REPORTS</span>
+      </button>
+      <button id="navTabExport" class="lcars-pill pill-lilac" onclick="switchTab('export')" style="border-left: 5px solid #38bdf8;">
+        <span class="tab-label">06-EXPORT</span>
       </button>
       <button id="navTabLearning" class="lcars-pill pill-ice" onclick="switchTab('learning')" style="border-left: 5px solid #0284c7;">
         <span class="tab-label">07-LEARNING</span>
@@ -1751,7 +1751,7 @@
                 <span style="font-size: 0.8rem; color: var(--lcars-gray); display: block; margin-top: 2px;">RUNS EACH SENSOR SEQUENTIALLY (GLUCOSE ➔ TEMP ➔ BP ➔ SPO2 ➔ PULSE ➔ HRV) THEN REPORTS COMPLETE CLINICAL AUDIT</span>
               </div>
               <div style="display: flex; gap: 8px;">
-                <button class="lcars-btn btn-peach" style="padding: 4px 14px; font-size: 0.8rem;" onclick="switchTab('reports')">VIEW 360° SYNCHRONIZED TALL CHART (TAB 04)</button>
+                <button class="lcars-btn btn-peach" style="padding: 4px 14px; font-size: 0.8rem;" onclick="switchTab('reports')">VIEW 360° SYNCHRONIZED TALL CHART (TAB 05)</button>
               </div>
             </div>
 
@@ -2322,7 +2322,7 @@
                 <span style="font-size: 0.8rem; color: var(--lcars-gray); display: block;">SYNCHRONIZED SENSOR TELEMETRY &amp; METABOLIC HOMEOSTASIS</span>
               </div>
               <div style="display: flex; gap: 8px;">
-                <button class="lcars-btn btn-banana" style="flex: none; padding: 4px 14px; font-size: 0.8rem;" onclick="switchTab('reports')">OPEN 360° SYNCHRONIZED TALL CHART (TAB 04)</button>
+                <button class="lcars-btn btn-banana" style="flex: none; padding: 4px 14px; font-size: 0.8rem;" onclick="switchTab('reports')">OPEN 360° SYNCHRONIZED TALL CHART (TAB 05)</button>
               </div>
             </div>
 
@@ -2871,7 +2871,7 @@
                 <span style="font-size: 0.82rem; color: #475569; display: block; margin-top: 2px;">ANALYZING PRE-CHOICE GEMINI GUIDANCE &bull; ACTUAL WATCH METRICS TRACKING THE REAL EFFECT</span>
               </div>
               <div style="display: flex; gap: 8px;">
-                <button class="lcars-btn btn-banana" style="padding: 5px 14px; font-size: 0.82rem; font-weight: bold;" onclick="switchTab('diettrades')">🥗 OPEN MEAL BUILDER &amp; COACH (TAB 06)</button>
+                <button class="lcars-btn btn-banana" style="padding: 5px 14px; font-size: 0.82rem; font-weight: bold;" onclick="switchTab('diettrades')">🥗 OPEN MEAL PLANNER &amp; COACH (TAB 04)</button>
               </div>
             </div>
 
@@ -5036,7 +5036,7 @@
 
             <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 12px; border-top: 1px solid #e2e8f0; padding-top: 10px; flex-wrap: wrap; gap: 8px;">
               <span id="lblEhrConfigStatus" style="font-size: 0.76rem; color: #16a34a; font-weight: bold;">
-                ✓ Patient EHR Configuration Synchronized with Tab 05 Export
+                ✓ Patient EHR Configuration Synchronized with Tab 06 Export
               </span>
               <button type="button" class="lcars-btn btn-green" onclick="savePatientEhrConfig()" style="font-size: 0.82rem; padding: 6px 16px; font-weight: bold;">
                 💾 SAVE PATIENT EHR SETUP
@@ -5520,7 +5520,7 @@
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                       <td style="padding: 10px; font-weight: bold; background: #f8fafc; border-right: 1.5px solid #cbd5e1;">Synchronized Timeline Visualization</td>
                       <td style="padding: 10px; color: #64748b; border-right: 1.5px solid #cbd5e1;">Isolated, fragmented screens. User must flip between separate tabs for BP, HR, Temp, and Glucose. Impossible to correlate causes.</td>
-                      <td style="padding: 10px; color: #0f172a; border-right: 1.5px solid #cbd5e1;"><strong style="color: #15803d;">SINGLE TALL SYNCHRONIZED MULTI-MEASUREMENT CHART (TAB 04).</strong> 8 stacked biometric &amp; behavioral lanes (Glucose, BP, HR/HRV, SpO2, Temp, Exercise, Diet, Meds) sharing unified X-axis with continuous vertical scrubber line.</td>
+                      <td style="padding: 10px; color: #0f172a; border-right: 1.5px solid #cbd5e1;"><strong style="color: #15803d;">SINGLE TALL SYNCHRONIZED MULTI-MEASUREMENT CHART (TAB 05).</strong> 8 stacked biometric &amp; behavioral lanes (Glucose, BP, HR/HRV, SpO2, Temp, Exercise, Diet, Meds) sharing unified X-axis with continuous vertical scrubber line.</td>
                       <td style="padding: 10px; text-align: center; font-weight: bold; color: #15803d;">Instant 360° Root Cause Analysis</td>
                     </tr>
                     <tr style="border-bottom: 1px solid #e2e8f0; background: #fafafa;">
@@ -5651,7 +5651,7 @@
                 </p>
                 <ol style="margin-left: 20px; color: #ccd6e8; display: flex; flex-direction: column; gap: 4px; margin-top: 4px;">
                   <li><strong>Print / PDF Clinical Summary (04-REPORTS):</strong> Navigate to <strong>04-REPORTS</strong>. Select your reporting window (<code>DAILY</code>, <code>WEEKLY</code>, <code>MONTHLY 30-DAY</code>, or <code>ANNUAL & YTD SUMMARY</code>). Click <strong><code>[ PRINT REPORT / SAVE PDF ]</code></strong> (or press <code>Ctrl+P</code>). The workstation uses print-optimized CSS that removes black background UI chrome and renders clean, high-resolution vector charts, glucose ranges, eA1C trends, and nocturnal dipping tables onto white clinical letterhead ready for your doctor's medical chart.</li>
-                  <li><strong>Electronic Health Record (EHR) CSV Export:</strong> Click <strong><code>[ EXPORT CLINICAL CSV ]</code></strong> in Tab 04 to download raw timestamped telemetry in RFC-4180 format for direct import into Epic, Cerner, or patient portal records.</li>
+                  <li><strong>Electronic Health Record (EHR) CSV Export:</strong> Click <strong><code>[ EXPORT CLINICAL CSV ]</code></strong> in Tab 06 to download raw timestamped telemetry in RFC-4180 format for direct import into Epic, Cerner, or patient portal records.</li>
                   <li><strong>Senior Engineering & Medical Officer Specification PDF:</strong> A formal 10-page clinical handbook detailing biophysical transducers, physics, opcodes, and clinical interpretation is stored locally and viewable at: <br>
                     <a href="http://localhost:8899/docs/VEEPOO_5010_CLINICAL_SPECIFICATION_AND_REPORTING_GUIDE.pdf" target="_blank" style="color: var(--lcars-blue); text-decoration: underline;">
                       http://localhost:8899/docs/VEEPOO_5010_CLINICAL_SPECIFICATION_AND_REPORTING_GUIDE.pdf
@@ -5896,11 +5896,14 @@
                       • <strong>Consume Now:</strong> Commits this meal as eaten right now into your daily meal log and updates today's Daily Intake Summary.
                     </div>
                   </div>
-                  <div style="display: flex; gap: 10px;">
-                    <button type="button" class="lcars-btn btn-banana" style="font-size: 0.85rem; padding: 8px 16px; font-weight: 800;" onclick="saveAnalyzedMealToPantry()">
-                      ⭐ SUBMIT TO MEAL PANTRY (NEW MEAL/SNACK)
+                  <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                    <button type="button" class="lcars-btn btn-banana" style="font-size: 0.82rem; padding: 8px 14px; font-weight: 800;" onclick="saveAnalyzedMealToPantry('Meal')">
+                      ⭐ ADD TO PANTRY AS MEAL
                     </button>
-                    <button type="button" class="lcars-btn btn-green" style="font-size: 0.85rem; padding: 8px 20px; font-weight: 900;" onclick="submitActualMealAndMonitorMetrics()">
+                    <button type="button" class="lcars-btn btn-ice" style="font-size: 0.82rem; padding: 8px 14px; font-weight: 800; background: #0284c7; color: #fff; border: 1.5px solid #0369a1;" onclick="saveAnalyzedMealToPantry('Snack')">
+                      🍵 ADD TO PANTRY AS SNACK
+                    </button>
+                    <button type="button" class="lcars-btn btn-green" style="font-size: 0.82rem; padding: 8px 18px; font-weight: 900;" onclick="submitActualMealAndMonitorMetrics()">
                       🚀 CONSUME NOW (LOG TO MEAL LOG)
                     </button>
                   </div>
@@ -5913,6 +5916,9 @@
             <div id="geminiMealAnalysisResult" style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 8px; padding: 16px;">
               
               <!-- Top Row: Macros & Diabetic Goal Adherence Status -->
+              <div style="margin-bottom: 8px; font-size: 0.74rem; font-weight: 900; color: #0284c7; font-family: var(--lcars-mono); letter-spacing: 0.05em; text-transform: uppercase;">
+                💡 GEMINI PRE-CHOICE ESTIMATION: "WHAT WILL THIS CHOICE COST ME METABOLICALLY?"
+              </div>
               <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #e2e8f0; padding-bottom: 10px; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
                 <div>
                   <strong style="color: #0f172a; font-size: 1.05rem;" id="lblGeminiMealTitle">Chipotle Burrito Bowl (Estimated Analysis)</strong>
@@ -6088,15 +6094,18 @@
                 <div style="font-size: 0.76rem; color: #64748b; font-family: var(--lcars-mono);">
                   SYNC STATUS: READY TO COMMIT TO TELEMETRY LANE 7 (DIETARY INTAKE) &amp; SCRUBBER
                 </div>
-                <div style="display: flex; gap: 8px;">
-                  <button class="lcars-btn btn-banana" style="font-size: 0.85rem; padding: 6px 14px; font-weight: 800;" onclick="saveAnalyzedMealToPantry()">
-                    ⭐ SUBMIT TO MEAL PANTRY (NEW MEAL/SNACK)
+                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                  <button class="lcars-btn btn-banana" style="font-size: 0.82rem; padding: 6px 12px; font-weight: 800;" onclick="saveAnalyzedMealToPantry('Meal')">
+                    ⭐ ADD TO PANTRY AS MEAL
                   </button>
-                  <button class="lcars-btn btn-green" style="font-size: 0.85rem; padding: 6px 18px; font-weight: 900;" onclick="submitActualMealAndMonitorMetrics()">
+                  <button class="lcars-btn btn-ice" style="font-size: 0.82rem; padding: 6px 12px; font-weight: 800; background: #0284c7; color: #fff; border: 1.5px solid #0369a1;" onclick="saveAnalyzedMealToPantry('Snack')">
+                    🍵 ADD TO PANTRY AS SNACK
+                  </button>
+                  <button class="lcars-btn btn-green" style="font-size: 0.82rem; padding: 6px 16px; font-weight: 900;" onclick="submitActualMealAndMonitorMetrics()">
                     🚀 CONSUME NOW (LOG TO MEAL LOG)
                   </button>
-                  <button class="lcars-btn btn-peach" style="font-size: 0.85rem; padding: 6px 14px;" onclick="switchTab('reports')">
-                    📊 VIEW IN 8-LANE CHART (TAB 04)
+                  <button class="lcars-btn btn-peach" style="font-size: 0.82rem; padding: 6px 12px;" onclick="switchTab('reports')">
+                    📊 VIEW IN 8-LANE CHART (TAB 05)
                   </button>
                 </div>
               </div>
@@ -6480,7 +6489,7 @@
               <div style="font-size: 0.88rem; color: #1e293b; line-height: 1.5; margin-top: 6px;">
                 Isolated fingersticks only show a static number at a single moment in time without context. LCARS provides a <strong>360-Degree Personal Health Console</strong> that correlates 8 simultaneous telemetry streams (Glucose, BP, HR/HRV, SpO2, Skin Temp, Motion, Diet, and Medications).
                 <br><br>
-                When you or your doctor scrub through your daily or weekly timeline on Tab 04, you can click on any glucose spike or drop to immediately reveal the exact meal carbs consumed, the exercise completed (and its resulting &Delta;G drop), and your medication adherence. Furthermore, when your doctor adjusts a prescription, logging the titration pins a <strong>"💊 MED CHANGE"</strong> marker across your charts, allowing both of you to objectively determine whether the change prompted glycemic <strong>progress or regression</strong>.
+                When you or your doctor scrub through your daily or weekly timeline on Tab 05, you can click on any glucose spike or drop to immediately reveal the exact meal carbs consumed, the exercise completed (and its resulting &Delta;G drop), and your medication adherence. Furthermore, when your doctor adjusts a prescription, logging the titration pins a <strong>"💊 MED CHANGE"</strong> marker across your charts, allowing both of you to objectively determine whether the change prompted glycemic <strong>progress or regression</strong>.
               </div>
             </div>
 
@@ -7200,7 +7209,7 @@
               <div style="display: flex; gap: 8px; flex-wrap: wrap;">
                 <button class="lcars-btn btn-green" style="padding: 5px 16px; font-size: 0.82rem; font-weight: bold;" onclick="openAddMedModal()">+ ADD MEDICATION</button>
                 <button class="lcars-btn btn-orange" style="padding: 5px 14px; font-size: 0.82rem; font-weight: bold;" onclick="resetMedicationRegimen()">RESET REGIMEN</button>
-                <button class="lcars-btn btn-blue" style="padding: 5px 14px; font-size: 0.82rem; font-weight: bold;" onclick="switchTab('reports')">VIEW IN TALL CHART (TAB 04)</button>
+                <button class="lcars-btn btn-blue" style="padding: 5px 14px; font-size: 0.82rem; font-weight: bold;" onclick="switchTab('reports')">VIEW IN TALL CHART (TAB 05)</button>
               </div>
             </div>
 
@@ -7356,7 +7365,7 @@
                 🔒 CLINICAL PROTOCOL ACTIVE
               </span>
               <button class="lcars-btn btn-blue" style="font-size: 0.8rem; padding: 4px 14px;" onclick="switchTab('reports')">
-                📊 AUDIT % GOALS MET IN REPORTS (TAB 04)
+                📊 AUDIT % GOALS MET IN REPORTS (TAB 05)
               </button>
             </div>
           </div>
@@ -7551,7 +7560,7 @@
                   💾 SAVE &amp; LOCK CLINICAL GOALS
                 </button>
                 <button class="lcars-btn btn-blue" style="font-size: 0.82rem; padding: 6px 16px;" onclick="switchTab('reports')">
-                  📊 AUDIT % GOALS MET (TAB 04)
+                  📊 AUDIT % GOALS MET (TAB 05)
                 </button>
               </div>
             </div>
@@ -12225,6 +12234,8 @@
             meal_name: rawText || "Custom Ambulatory Meal",
             description: rawText,
             source: "LCARS_MEAL_BUILDER",
+            analyze_only: true,
+            commit: false,
             fluid_oz: parseFloat(document.getElementById('inpMealFluidOz')?.value) || 8.0
           }),
           signal: controller.signal
@@ -13706,7 +13717,7 @@
       if (statusEl) {
         statusEl.textContent = `✓ Saved & Synced with 05-EXPORT at ${new Date().toLocaleTimeString()}`;
         setTimeout(() => {
-          if (statusEl) statusEl.textContent = "✓ Patient EHR Configuration Synchronized with Tab 05 Export";
+          if (statusEl) statusEl.textContent = "✓ Patient EHR Configuration Synchronized with Tab 06 Export";
         }, 3000);
       }
       if (typeof soundNotification === 'function') soundNotification();
@@ -13715,7 +13726,7 @@
     function syncExportPageWithConfig() {
       const cfg = getPatientEhrConfig();
       
-      // Update Tab 05 Export displays
+      // Update Tab 06 Export displays
       const dSys = document.getElementById('dispExportHealthSys');
       const dMrn = document.getElementById('dispExportMrn');
       const dEmail = document.getElementById('dispExportDoctorEmail');
@@ -16608,14 +16619,14 @@ Patient
       if (tileT) tileT.innerHTML = `${bodyF.toFixed(1)}°F <span style="font-size: 0.85rem;">(${skinF.toFixed(1)}°F skin)</span>`;
 
       // -------------------------------------------------------------
-      // 4. TAB 06: ADA TRADES (#pageDietTrades)
+      // 4. TAB 04: MEAL PLANNER (#pageDietTrades)
       // -------------------------------------------------------------
       if (typeof refreshGlucoseRecommendation === 'function') {
         refreshGlucoseRecommendation();
       }
 
       // -------------------------------------------------------------
-      // 5. TAB 07: REPORTS (#pageReports)
+      // 5. TAB 05: REPORTS (#pageReports)
       // -------------------------------------------------------------
       const hudG = document.getElementById('hudGlucose');
       if (hudG) hudG.textContent = `${g} mg/dL`;
@@ -19921,17 +19932,24 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
       }
     }
 
-    async function saveAnalyzedMealToPantry() {
+    async function saveAnalyzedMealToPantry(explicitOccasion = null) {
       if (typeof soundSuccess === 'function') soundSuccess();
       const data = currentAnalyzedMealData;
       if (!data) {
-        alert("Please analyze a meal or snack first before saving to Meal Pantry.");
+        alert("Please estimate or select a meal or snack first before saving to Meal Pantry.");
         return;
       }
-      const title = data.title || "Custom Saved Meal";
+      let rawTitle = data.title || "Custom Saved Meal";
       const fluidOz = data.fluidOz || parseFloat(document.getElementById('inpMealFluidOz')?.value) || 8.0;
-      const isSnack = (data.occasion === 'Snack') || title.toLowerCase().includes('snack') || (data.calories <= 250 && data.netCarbs <= 15);
-      const occasion = isSnack ? 'Snack' : 'Meal';
+      let occasion = explicitOccasion || data.occasion || (rawTitle.toLowerCase().includes('snack') || (data.calories <= 250 && data.netCarbs <= 15) ? 'Snack' : 'Meal');
+      
+      // Clean title prefix if needed
+      let title = rawTitle;
+      if (occasion === 'Snack' && !title.toLowerCase().includes('snack')) {
+        title = `[Snack] ${title}`;
+      } else if (occasion === 'Meal' && title.startsWith('[Snack] ')) {
+        title = title.replace('[Snack] ', '');
+      }
       const mealId = "custom_" + Date.now();
 
       const payload = {
@@ -19984,7 +20002,8 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
       if (listbox) {
         const opt = document.createElement('option');
         opt.value = mealId;
-        opt.textContent = `⭐ ${title} (${data.netCarbs}g Net Carbs • ${fluidOz} oz • ${data.calories} kcal)`;
+        const icon = occasion === 'Snack' ? '🍵' : '🥣';
+        opt.textContent = `${icon} [${occasion}] ${title} (${data.netCarbs}g Net Carbs • ${fluidOz} oz • ${data.calories} kcal)`;
         listbox.insertBefore(opt, listbox.firstChild);
         listbox.value = mealId;
       }

@@ -762,6 +762,39 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
             "glut4_recommendation": "Avoid entirely."
         }
 
+    # 6.5. Chicken Breast, Garden Salad & Cornbread Dinner (Home Specification)
+    elif "chicken" in text and ("cornbread" in text or "corn bread" in text or ("salad" in text and "breast" in text)):
+        has_cornbread = ("cornbread" in text or "corn bread" in text)
+        cb_carbs = 30.0 if has_cornbread else 0.0
+        cb_cals = 260 if has_cornbread else 0
+        return {
+            "meal_name": "[Dinner] 4 oz Chicken Breast, Lettuce & Baby Tomato Salad, 2 2oz Corn Bread, 12 oz Ocean Spray Zero Sugar Tropical Punch" if ("punch" in text or "ocean spray" in text or "tropical" in text) else ("Chicken Breast, Garden Salad" + (" & Corn Bread" if has_cornbread else "")),
+            "vendor_matched": "Home Kitchen Diabetic Specification",
+            "photo_filename": "meal_chicken_salad_cornbread.jpg",
+            "calories": 230 + cb_cals,
+            "net_carbs": 3.0 + cb_carbs,
+            "total_carbs": 7.0 + cb_carbs,
+            "fiber": 4.0,
+            "protein": 42.0,
+            "fat": 11.0,
+            "glycemic_load": "10 (Safe Low Band)",
+            "estimated_cost": "5.75",
+            "meets_goal": True,
+            "identified_items": [
+                {"name": "Boneless Skinless Chicken Breast", "portion": "4 oz", "net_carbs": 0, "protein": 35, "calories": 180},
+                {"name": "Garden Romaine Lettuce & Baby Tomato Salad", "portion": "1 large bowl", "net_carbs": 3, "fiber": 2, "protein": 2, "calories": 45},
+                {"name": "Home-Baked Cornbread Squares", "portion": "2 x 2oz pieces", "net_carbs": 30, "fiber": 2, "protein": 5, "calories": 260} if has_cornbread else {"name": "Light Dressing", "portion": "2 tbsp", "net_carbs": 1, "calories": 40},
+                {"name": "Ocean Spray Zero Sugar Tropical Punch", "portion": "12 oz", "net_carbs": 0, "fiber": 0, "protein": 0, "calories": 5}
+            ],
+            "projected_spike": "+16 to +22 mg/dL (TIR Target Maintained)",
+            "gemini_notes": "✨ EXCELLENT CLINICAL ADHERENCE: Lean poultry albumin and salad fiber effectively blunt glycemic absorption from the 2 small cornbread squares. Total 33g net carbs is well within the 45g ceiling. Zero sugar beverage adds zero glycemic penalty.",
+            "trade_alternatives": [
+                "Enjoy freely! Meal complies 100% with diabetic standards of care.",
+                "If tighter control is desired on sedentary days, reducing cornbread to 1 piece saves 15g net carbs."
+            ],
+            "glut4_recommendation": "15-minute gentle evening walk maintains postprandial glucose stably under 125 mg/dL."
+        }
+
     # 7. General Semantic Parser for Unknown Vendors or Custom Meals
     else:
         # Dynamic calculations based on entered words
@@ -1938,7 +1971,7 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                 analysis = analyze_meal_with_gemini_backend(meal_name, notes, photo_data)
 
                 # Commit to SQLite DB if not analyze_only
-                analyze_only = payload.get("analyze_only", False) or (self.path == "/api/meal/analyze" and payload.get("commit") is False)
+                analyze_only = payload.get("analyze_only", False) or (self.path == "/api/meal/analyze" and not payload.get("commit", False))
                 if not analyze_only:
                     fluid_oz = float(payload.get("fluid_oz") or payload.get("fluidOz") or 8.0)
                     meal_id, ts = insert_meal_entry(
