@@ -209,7 +209,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 14: Tab 02: VITALS – Optical Glucose Absorption Spectroscopy
+### Slide 14: Tab 01: Full Scan – Optical Glucose Absorption Spectroscopy
 **Module:** Module 3: Core Biosensor Array Operations  
 **Card Title:** TAB 01: VITALS – OPTICAL GLUCOSE TONOMETRY  
 
@@ -224,7 +224,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 15: Tab 02: VITALS – Dual-Matrix Thermometry & Circadian Nadir
+### Slide 15: Tab 01: Full Scan – Dual-Matrix Thermometry & Circadian Nadir
 **Module:** Module 3: Core Biosensor Array Operations  
 **Card Title:** TAB 01: VITALS – DUAL-MATRIX THERMOMETRY  
 
@@ -239,7 +239,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 16: Tab 03: CARDIO – Pulse Wave Transit Time Blood Pressure
+### Slide 16: Tab 03: Cardio – Pulse Wave Transit Time Blood Pressure
 **Module:** Module 3: Core Biosensor Array Operations  
 **Card Title:** TAB 02: CARDIO – PWTT BLOOD PRESSURE  
 
@@ -254,7 +254,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 17: Tab 03: CARDIO – Dual-Wavelength SpO2 & Apnea Screening
+### Slide 17: Tab 03: Cardio – Dual-Wavelength SpO2 & Apnea Screening
 **Module:** Module 3: Core Biosensor Array Operations  
 **Card Title:** TAB 02: CARDIO – SPO2 & APNEA HYPOXIA SAFEGUARD  
 
@@ -269,7 +269,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 18: Tab 03: CARDIO – Autonomic HRV & Sympatho-Vagal Stress
+### Slide 18: Tab 03: Cardio – Autonomic HRV & Sympatho-Vagal Stress
 **Module:** Module 3: Core Biosensor Array Operations  
 **Card Title:** TAB 02: CARDIO – AUTONOMIC HRV SDNN RECOVERY  
 
@@ -284,7 +284,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 19: Tab 04: METABOLIC – Real-Time Physiological Telemetry Console
+### Slide 19: Tab 03: Cardio – Real-Time Physiological Telemetry Console
 **Module:** Module 4: Tab 03 METABOLIC Console & Behavioral Science  
 **Card Title:** TAB 03: 360° REAL-TIME METABOLIC CONSOLE  
 
@@ -329,7 +329,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 22: Macronutrient Meal Logger: Net Carbs, Protein, Fat & Calories
+### Slide 22: Tab 02: Meal Planner – Macronutrient Meal Logger & Pantry Reuse
 **Module:** Module 4: Tab 03 METABOLIC Console & Behavioral Science  
 **Card Title:** MACRONUTRIENT MEAL & CARBOHYDRATE LOGGER  
 
@@ -344,7 +344,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 23: Tab 06: ADA Carbohydrate Trades & Gemini-Curated Diabetic Recipes
+### Slide 23: Tab 02: Meal Planner – 06-ADA Decision Flowchart & Safe Options
 **Module:** Module 4: Tab 03 METABOLIC Console & Behavioral Science  
 **Card Title:** ADA 1-TO-1 CARBOHYDRATE TRADES & GEMINI-POWERED RECIPES  
 
@@ -359,7 +359,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 24: The Diabetes Learning Engine: Personal Glycemic Phenotyping
+### Slide 24: Tab 06: Learning – Personal Glycemic Phenotyping
 **Module:** Module 5: The Diabetes Learning Engine  
 **Card Title:** DIABETES LEARNING ENGINE & PHENOTYPING  
 
@@ -422,7 +422,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 28: Tab 05: EHR Direct Import Export – Standard HL7 FHIR R4 & Clinical CSV
+### Slide 28: Tab 05: Export – Standard HL7 FHIR R4 & Clinical Datasets
 **Module:** Module 5: The Diabetes Learning Engine  
 **Card Title:** UNIVERSAL EHR INTEROPERABILITY & DIRECT DOCTOR IMPORT  
 
@@ -438,7 +438,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 29: Tab 07: Single Tall Synchronized Multi-Measurement Chart Architecture
+### Slide 29: Tab 04: Reports – 360° Synchronized Regimen Timeline Architecture
 **Module:** Module 6: Tab 04 Synchronized Tall Chart  
 **Card Title:** TAB 04: SYNCHRONIZED TALL CHART ARCHITECTURE  
 
@@ -454,7 +454,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 30: The 8 Stacked Measurement Lanes: Complete Multi-Variable Audit
+### Slide 30: Tab 04: Reports – The 8 Stacked Multi-Variable Regimen Lanes
 **Module:** Module 6: Tab 04 Synchronized Tall Chart  
 **Card Title:** 8 STACKED 24-HOUR MEASUREMENT LANES  
 
@@ -470,7 +470,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 31: The Continuous Vertical Scrubber Line: Cross-Correlating Causes
+### Slide 31: Tab 04: Reports – Continuous Vertical Scrubber & Cross-Correlation
 **Module:** Module 6: Tab 04 Synchronized Tall Chart  
 **Card Title:** CONTINUOUS VERTICAL SCRUBBER LINE AT 13:30  
 
@@ -486,7 +486,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 32: Click-to-Pop Clinical Point Cards: Instant Micro-Audits
+### Slide 32: Tab 04: Reports – Click-to-Pop Clinical Point Cards & Excursion Auditing
 **Module:** Module 6: Tab 04 Synchronized Tall Chart  
 **Card Title:** CLICK-TO-POP CLINICAL POINT MICRO-AUDITS  
 
@@ -502,7 +502,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 33: Pinning '💊 MED CHANGE' Milestones: Auditing Progress vs Regression
+### Slide 33: Tab 04: Reports – Pinning '💊 MED CHANGE' Titration Milestones
 **Module:** Module 6: Tab 04 Synchronized Tall Chart  
 **Card Title:** PINNING '💊 MED CHANGE' MILESTONE MARKERS  
 
@@ -518,7 +518,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 34: Daily 24-Hour Continuous Glucose Curve & TIR Dynamics
+### Slide 34: Tab 04: Reports – Daily 24-Hour Continuous Glucose Curve & TIR
 **Module:** Module 5: Clinical Reports & Longitudinal Analytics  
 **Card Title:** DAILY 24-HOUR CONTINUOUS GLYCAEMIC EXCURSION TIMELINE  
 
@@ -533,7 +533,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 35: Daily 24-Hour Estimated A1C (eA1C) Projection Curve
+### Slide 35: Tab 04: Reports – Daily 24-Hour Estimated A1C (eA1C) Projection Curve
 **Module:** Module 5: Clinical Reports & Longitudinal Analytics  
 **Card Title:** ADAG MATHEMATICAL ESTIMATED A1C PROJECTION ENGINE  
 
@@ -548,7 +548,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 36: Daily 24-Hour Body Temperature Matrix: Core vs Epidermal Wrist
+### Slide 36: Tab 04: Reports – 24-Hour Body Temperature Matrix: Core vs Epidermal Wrist
 **Module:** Module 5: Clinical Reports & Longitudinal Analytics  
 **Card Title:** DUAL-MATRIX CIRCADIAN THERMOMETRY & HOMEOSTASIS  
 
@@ -563,7 +563,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 37: 24-Hour Ambulatory Blood Pressure Dual-Band (PWTT Systolic/Diastolic)
+### Slide 37: Tab 04: Reports – 24-Hour Blood Pressure (PWTT Systolic/Diastolic)
 **Module:** Module 5: Clinical Reports & Longitudinal Analytics  
 **Card Title:** AMBULATORY HEMODYNAMIC PULSE WAVE TRANSIT TIME  
 
@@ -578,7 +578,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 38: Nocturnal SpO2 & OSAHS Apnea Hypoxia Dips Matrix
+### Slide 38: Tab 04: Reports – Nocturnal SpO2 & OSAHS Apnea Hypoxia Matrix
 **Module:** Module 5: Clinical Reports & Longitudinal Analytics  
 **Card Title:** NOCTURNAL OXIMETRY & APNEA HYPOXIA DESATURATION  
 
@@ -593,7 +593,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 39: 24-Hour Heart Rate & 5-Zone Cardiac Load
+### Slide 39: Tab 04: Reports – 24-Hour Heart Rate & 5-Zone Cardiac Load
 **Module:** Module 5: Clinical Reports & Longitudinal Analytics  
 **Card Title:** 24-HOUR CARDIAC LOAD & 5-ZONE METABOLIC TRAINING  
 
@@ -608,7 +608,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 40: Autonomic HRV & Lorenz Cardiac Scatter Dynamics
+### Slide 40: Tab 04: Reports – Autonomic HRV & 2D Poincaré (Lorenz) Scatter Dynamics
 **Module:** Module 5: Clinical Reports & Longitudinal Analytics  
 **Card Title:** AUTONOMIC HRV & 2D LORENZ SCATTER PARITY  
 
@@ -623,7 +623,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 41: Nocturnal Sleep Duration & Circadian Hypnogram Architecture
+### Slide 41: Tab 04: Reports – Nocturnal Sleep Duration & Hypnogram Architecture
 **Module:** Module 5: Clinical Reports & Longitudinal Analytics  
 **Card Title:** CIRCADIAN SLEEP HYPNOGRAM & METABOLIC RESTORATION  
 
@@ -638,7 +638,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 42: Ambulatory Physical Activity, Step Density & GLUT4 Clearance
+### Slide 42: Tab 04: Reports – Ambulatory Physical Activity, Step Density & GLUT4
 **Module:** Module 5: Clinical Reports & Longitudinal Analytics  
 **Card Title:** AMBULATORY STEP DENSITY & SKELETAL GLUCOSE CLEARANCE  
 
@@ -653,7 +653,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 43: Tab 10 Architecture: Active Pharmacological Regimen Management
+### Slide 43: Tab 08: Medication – Active Pharmacological Regimen Management
 **Module:** Module 7: Tab 11 Medication Management  
 **Card Title:** TAB 11: ACTIVE PHARMACOLOGICAL MANAGEMENT  
 
@@ -668,7 +668,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 44: Two Discrete Daily Intake Schedules: Morning Suite & Dinner Split
+### Slide 44: Tab 08: Medication – Dual Daily Intake Schedules: Morning & Dinner Split
 **Module:** Module 7: Tab 11 Medication Management  
 **Card Title:** DUAL DAILY INTAKE SCHEDULES: MORNING & EVENING  
 
@@ -683,7 +683,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 45: Granular Medication Editing, Deletion & Titration Adherence
+### Slide 45: Tab 08: Medication – Granular Medication Editing, Deletion & Titration Adherence
 **Module:** Module 7: Tab 11 Medication Management  
 **Card Title:** GRANULAR MEDICATION EDITING & TITRATION ADHERENCE  
 
@@ -698,7 +698,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 46: Tab 01 Full Scan: Automated Sequential 6-Sensor Diagnostic Pipeline
+### Slide 46: Tab 01: Full Scan – Automated Sequential 6-Sensor Diagnostic Pipeline
 **Module:** Module 8: Tab 12 Sequential Full Scan  
 **Card Title:** TAB 12: SEQUENTIAL 6-SENSOR FULL SCAN PIPELINE  
 
@@ -713,7 +713,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 47: Tab 01 Full Scan: Live Stage Progression & Consolidated Clinical Report
+### Slide 47: Tab 01: Full Scan – Live Stage Progression & Consolidated Clinical Report
 **Module:** Module 8: Tab 12 Sequential Full Scan  
 **Card Title:** LIVE STAGE PROGRESSION & FULL SCAN REPORT  
 
@@ -820,7 +820,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 54: Tab 08 Learning Engine: Multi-Timeframe Metabolic Intelligence
+### Slide 54: Tab 06: Learning – Multi-Timeframe Metabolic Intelligence
 **Module:** Module 5: The Diabetes Learning Engine  
 **Card Title:** TAB 08: THE DIABETES LEARNING ENGINE  
 
@@ -836,7 +836,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 55: Tab 11 Clinical Goals: Collaborative Care Protocol & Targets
+### Slide 55: Tab 09: Clinical Goals – Targets, Protocols & Compliance Auditing
 **Module:** Module 10: Clinical Summaries & Achieving Diabetic Goals  
 **Card Title:** TAB 11: CLINICAL DIABETIC GOALS & PROTOCOL  
 
@@ -851,7 +851,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 56: Tab 07 Reports: 48-Hour Continuous Metrology & Charging Dock Transparency
+### Slide 56: Tab 04: Reports – 48-Hour Continuous Metrology & Charging Transparency
 **Module:** Module 6: Tab 04 Synchronized Tall Chart  
 **Card Title:** METROLOGICAL HONESTY: 48-HOUR DOCKING BANDS  
 

@@ -61,57 +61,51 @@ print(f"Created TRANSCRIPT.md with all {len(slides_data)} slides!")
 # TAB MAP DEFINITIONS
 # -----------------------------------------------------------------------------
 TAB_MAP = [
-    (1, "01-FULL SCAN", "images/lcars_tab_fullscan_live.png"),
-    (2, "02-VITALS", "images/lcars_tab_vitals_live.png"),
-    (3, "03-CARDIO", "images/lcars_tab_cardio_live.png"),
-    (4, "04-METABOLIC", "images/lcars_tab_metabolic_live.png"),
-    (5, "05-EXPORT", "images/lcars_tab_export_live.png"),
-    (6, "06-ADA TRADES", "images/lcars_tab_diettrades_live.png"),
-    (7, "07-REPORTS", "images/lcars_tab_reports_live.png"),
-    (8, "08-LEARNING", "images/lcars_tab_learning_live.png"),
-    (9, "09-HELP & FAQ", "images/lcars_tab_help.png"),
-    (10, "10-MEDICATION", "images/lcars_tab_medication_live.png"),
-    (11, "11-CLINICAL GOALS", "images/lcars_tab_goals_live.png"),
-    (12, "12-CONFIG", "images/lcars_tab_setup_live.png"),
-    (13, "13-OPERATIONS", "images/lcars_tab_operations.png"),
-    (14, "14-DATA LOG", "images/lcars_tab_datalog_live.png"),
-    (15, "15-WATCH FACES", "images/lcars_tab_watchfaces.png")
+    (1, "01-FULL SCAN", "images/lcars_tab01_fullscan.png"),
+    (2, "02-MEAL PLANNER", "images/lcars_tab02_meal_planner.png"),
+    (3, "03-CARDIO", "images/lcars_tab03_cardio.png"),
+    (4, "04-REPORTS", "images/lcars_tab04_reports.png"),
+    (5, "05-EXPORT", "images/lcars_tab05_export.png"),
+    (6, "06-LEARNING", "images/lcars_tab06_learning.png"),
+    (7, "07-HELP & FAQ", "images/lcars_tab07_help.png"),
+    (8, "08-MEDICATION", "images/lcars_tab08_medication.png"),
+    (9, "09-CLINICAL GOALS", "images/lcars_tab09_goals.png"),
+    (10, "10-CONFIG", "images/lcars_tab10_config.png"),
+    (11, "11-OPERATIONS", "images/lcars_tab11_operations.png"),
+    (12, "12-DATA LOG", "images/lcars_tab12_datalog.png"),
+    (13, "13-WATCH FACES", "images/lcars_tab13_watchfaces.png")
 ]
 
 def get_active_tab_num(s, tab_img):
     if s.get("tab_num"):
         return s["tab_num"]
     base = os.path.basename(tab_img or "").lower()
-    if "fullscan" in base:
+    if "fullscan" in base or "tab01" in base:
         return 1
-    if "vital" in base:
+    if "diet" in base or "meal" in base or "tab02" in base:
         return 2
-    if "cardio" in base:
+    if "cardio" in base or "vital" in base or "tab03" in base:
         return 3
-    if "metabolic" in base:
+    if "chart_" in base or "report" in base or "tall" in base or "tab04" in base or "lorenz" in base or "habit" in base:
         return 4
-    if "export" in base:
+    if "export" in base or "tab05" in base:
         return 5
-    if "diet" in base or "meal" in base:
+    if "learning" in base or "tab06" in base:
         return 6
-    if "chart_" in base or "report" in base or "tall" in base:
+    if "help" in base or "faq" in base or "tab07" in base:
         return 7
-    if "learning" in base:
+    if "medication" in base or "med_" in base or "tab08" in base or "titration" in base:
         return 8
-    if "help" in base:
+    if "goal" in base or "tab09" in base:
         return 9
-    if "medication" in base or "med_" in base:
+    if "setup" in base or "config" in base or "tab10" in base:
         return 10
-    if "goal" in base:
+    if "operation" in base or "tab11" in base:
         return 11
-    if "setup" in base or "config" in base:
+    if "log" in base or "datalog" in base or "tab12" in base:
         return 12
-    if "operation" in base:
+    if "watchface" in base or "dial" in base or "tab13" in base:
         return 13
-    if "log" in base:
-        return 14
-    if "watchface" in base or "dial" in base:
-        return 15
     for t_num, t_name, t_path in TAB_MAP:
         if os.path.basename(t_path).lower() in base:
             return t_num

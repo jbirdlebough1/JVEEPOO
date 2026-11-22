@@ -55,9 +55,10 @@ async def test_preview_and_charts():
                     if (typeof renderTallSynchronizedChart === 'function') renderTallSynchronizedChart('daily');
                     
                     const charts = [
-                        'repChartGlucose', 'repChartBloodPressure', 'repChartHeartRate',
-                        'repChartPulseOximetry', 'repChartSkinTemp', 'repChartSleepArchitecture',
-                        'repChartExerciseCadence', 'repChartAutonomicHrv'
+                        'tallChartSvgContainer', 'svgStepGlucoseCorrelator', 'curveTimelineGlucose',
+                        'curveTimelineA1C', 'curveTimelineTemp', 'curveTimelineHeartRate',
+                        'curveTimelineBP', 'curveTimelineSpO2', 'curveTimelineHRV',
+                        'svgLorenzScatter', 'curveTimelineSleep', 'curveTimelineExercise'
                     ];
 
                     const results = {};
@@ -82,11 +83,11 @@ async def test_preview_and_charts():
                     });
 
                     // Check Tall Chart
-                    const tallEl = document.getElementById('tallSynchronizedSvg');
+                    const tallEl = document.querySelector('#tallChartSvgContainer svg') || document.getElementById('tallSynchronizedSvg');
                     const tallResult = {
                         hasTallSvg: !!tallEl,
-                        hasMealTags: !!(tallEl && tallEl.innerHTML.includes('🥗')),
-                        hasCorrelations: !!(tallEl && tallEl.innerHTML.includes('line')),
+                        hasMealTags: !!(tallEl && (tallEl.innerHTML.includes('🥗') || tallEl.innerHTML.includes('MEAL') || tallEl.innerHTML.includes('SNACK'))),
+                        hasCorrelations: !!(tallEl && (tallEl.innerHTML.includes('line') || tallEl.innerHTML.includes('polyline'))),
                         hasMetformin: !!(tallEl && tallEl.innerHTML.includes('METFORMIN'))
                     };
 
@@ -111,8 +112,18 @@ async def test_preview_and_charts():
                 res_charts = await send("Runtime.evaluate", {"expression": chart_audit_script, "returnByValue": True})
                 chart_data = res_charts.get("result", {}).get("value", {})
                 print("\nLIVE CHART AUDIT RESULTS:")
-                for cid, cinfo in chart_data.get("charts", {}).items():
-                    print(f"  {cid}: hasSvg={cinfo.get('hasSvg')}, circles={cinfo.get('numCircles')}, texts={cinfo.get('numTexts')}")
+                if isinstance(chart_data, dict):
+                    charts_dict = chart_data.get("charts", {})
+                    if isinstance(charts_dict, dict):
+                        for cid, cinfo in charts_dict.items():
+                            if isinstance(cinfo, dict):
+                                print(f"  {cid}: hasSvg={cinfo.get('hasSvg')}, circles={cinfo.get('numCircles')}, texts={cinfo.get('numTexts')}")
+                            else:
+                                print(f"  {cid}: {cinfo}")
+                    else:
+                        print("  charts is not dict:", charts_dict)
+                else:
+                    print("  chart_data is not dict:", chart_data)
 
                 print("\nTALL MULTI-LANE 360 CHART:")
                 print(" ", json.dumps(chart_data.get("tall", {}), indent=2))

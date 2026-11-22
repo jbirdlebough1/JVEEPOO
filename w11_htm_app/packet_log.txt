@@ -137775,3 +137775,109 @@ r gesture to show a permission request. | BLE Security Pairing & Authorization
 [22:27:58] [TX] [*] Populating Setup parameters from active profile... | Host Command Transmission to Watch
 [22:27:58] [SYS] [+] Using initialized baseline parameters for Model 5010. | LCARS System Telemetry Event
 [22:27:58] [SYS] Watch transponder ready. Auto-connecting in background whenever in range. | LCARS System Telemetry Event
+[22:29:03] [RX] [+] Setup parameters populated successfully from active profile. | Watch Sensor Telemetry Broadcast
+[22:29:03] [SYS] Watch transponder ready. Auto-connecting in background whenever in range. | LCARS System Telemetry Event
+[22:29:03] [TX] [*] Populating Setup parameters from active profile... | Host Command Transmission to Watch
+[22:29:03] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:29:03] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:29:07] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:29:08] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[22:29:08] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[22:29:27] [TX] [*] Populating Setup parameters from active profile... | Host Command Transmission to Watch
+[22:29:27] [RX] [+] Setup parameters populated successfully from active profile. | Watch Sensor Telemetry Broadcast
+[22:29:27] [SYS] Watch transponder ready. Auto-connecting in background whenever in range. | LCARS System Telemetry Event
+[22:29:27] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:29:27] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:29:32] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[22:29:32] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[22:30:47] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:30:50] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:32:30] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:32:32] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:33:50] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:33:52] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:36:14] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:37:14] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:39:14] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:41:59] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:41:59] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:41:59] [TX] [*] Populating Setup parameters from active profile... | Host Command Transmission to Watch
+[22:41:59] [SYS] [+] Using initialized baseline parameters for Model 5010. | LCARS System Telemetry Event
+[22:41:59] [SYS] Watch transponder ready. Auto-connecting in background whenever in range. | LCARS System Telemetry Event
+[22:42:59] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:42:59] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:43:00] [TX] [*] Populating Setup parameters from active profile... | Host Command Transmission to Watch
+[22:43:00] [SYS] [+] Using initialized baseline parameters for Model 5010. | LCARS System Telemetry Event
+[22:43:00] [SYS] Watch transponder ready. Auto-connecting in background whenever in range. | LCARS System Telemetry Event
+[22:43:17] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:43:17] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:43:17] [TX] [*] Populating Setup parameters from active profile... | Host Command Transmission to Watch
+[22:43:17] [SYS] [+] Using initialized baseline parameters for Model 5010. | LCARS System Telemetry Event
+[22:43:17] [SYS] Watch transponder ready. Auto-connecting in background whenever in range. | LCARS System Telemetry Event
+[22:44:27] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[22:44:27] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[22:45:48] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:45:48] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:45:49] [TX] [*] Populating Setup parameters from active profile... | Host Command Transmission to Watch
+[22:45:49] [SYS] [+] Using initialized baseline parameters for Model 5010. | LCARS System Telemetry Event
+[22:45:49] [SYS] Watch transponder ready. Auto-connecting in background whenever in range. | LCARS System Telemetry Event
+[22:45:51] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:45:53] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:45:53] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[22:45:53] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[22:45:54] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:45:54] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:45:55] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:45:57] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:45:59] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:46:00] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:46:01] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:46:02] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:46:03] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:46:04] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:46:06] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:46:07] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:46:08] [TX] [*] Querying Watch Face Style Matrix (Opcode 0xC7)... | Host Command Transmission to Watch
+[22:46:08] [TX] [*] Transmitting Read Screen Style (0xC7)... | Host Command Transmission to Watch
+[22:46:08] [TX] [*] Establishing link with watch... | Host Command Transmission to Watch
+[22:46:08] [TX] Scanning for all visible Bluetooth smartwatch devices... | Active BLE Subspace Device Discovery
+[22:46:08] [ERR] Pairing / Authorization Cancelled: Failed to execute 'requestDevice' on 'Bluetooth': Must be handling a user gesture to show a permission request. | BLE Security Pairing & Authorization
+[22:46:08] [ERR] Error: Could not connect to watch. Ensure watch screen is awake. | Subspace Telemetry Bus Warning / Error
+[22:46:08] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:46:08] [TX] [*] Transmitting Read Screen Timeout (0xB4)... | Host Command Transmission to Watch
+[22:46:08] [ERR] Error: Could not connect to watch. Ensure watch screen is awake. | Subspace Telemetry Bus Warning / Error
+[22:46:08] [ERR] Pairing / Authorization Cancelled: Failed to execute 'requestDevice' on 'Bluetooth': Must be handling a user gesture to show a permission request. | BLE Security Pairing & Authorization
+[22:46:09] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:46:11] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:46:12] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:48:05] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:48:05] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:48:06] [TX] [*] Populating Setup parameters from active profile... | Host Command Transmission to Watch
+[22:48:06] [SYS] [+] Using initialized baseline parameters for Model 5010. | LCARS System Telemetry Event
+[22:48:06] [SYS] Watch transponder ready. Auto-connecting in background whenever in range. | LCARS System Telemetry Event
+[22:48:08] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:53:55] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:53:55] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:53:55] [TX] [*] Populating Setup parameters from active profile... | Host Command Transmission to Watch
+[22:53:55] [SYS] [+] Using initialized baseline parameters for Model 5010. | LCARS System Telemetry Event
+[22:53:56] [SYS] Watch transponder ready. Auto-connecting in background whenever in range. | LCARS System Telemetry Event
+[22:54:20] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:54:20] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:54:20] [TX] [*] Populating Setup parameters from active profile... | Host Command Transmission to Watch
+[22:54:20] [SYS] [+] Using initialized baseline parameters for Model 5010. | LCARS System Telemetry Event
+[22:54:20] [SYS] Watch transponder ready. Auto-connecting in background whenever in range. | LCARS System Telemetry Event
+[22:55:12] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:55:12] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:55:12] [SYS] [+] Using initialized baseline parameters for Model 5010. | LCARS System Telemetry Event
+[22:55:12] [TX] [*] Populating Setup parameters from active profile... | Host Command Transmission to Watch
+[22:55:12] [SYS] Watch transponder ready. Auto-connecting in background whenever in range. | LCARS System Telemetry Event
+[22:55:32] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:55:32] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:55:32] [TX] [*] Populating Setup parameters from active profile... | Host Command Transmission to Watch
+[22:55:32] [SYS] [+] Using initialized baseline parameters for Model 5010. | LCARS System Telemetry Event
+[22:55:32] [SYS] Watch transponder ready. Auto-connecting in background whenever in range. | LCARS System Telemetry Event
+[22:55:59] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:55:59] [SYS] Smart Glucose Snack Notifier updated for 151 mg/dL | LCARS System Telemetry Event
+[22:55:59] [TX] [*] Populating Setup parameters from active profile... | Host Command Transmission to Watch
+[22:55:59] [SYS] [+] Using initialized baseline parameters for Model 5010. | LCARS System Telemetry Event
+[22:55:59] [SYS] Watch transponder ready. Auto-connecting in background whenever in range. | LCARS System Telemetry Event

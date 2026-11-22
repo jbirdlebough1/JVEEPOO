@@ -1409,5 +1409,349 @@
     </ol>
   </div>
 
+
+  <!-- ========================================================================= -->
+  <!-- 10. COMPLETE 13-TAB WORKSTATION REFERENCE & FUNCTIONAL FIELD GUIDE -->
+  <!-- ========================================================================= -->
+  <div class="page-break"></div>
+  <div class="section-title">10. Complete 13-Tab Workstation Reference &amp; Functional Field Guide</div>
+  <p class="section-desc">
+    The LCARS 5010 Ambulatory Clinical Workstation organizes physiological telemetry, nutritional decision support, pharmacological adherence, and diagnostic tooling across thirteen specialized operational consoles. Each tab serves a dedicated role within the multidisciplinary clinical care continuum:
+  </p>
+
+  <!-- TAB 01: FULL SCAN CONSOLE -->
+  <div class="card" style="margin-bottom: 20px;">
+    <div class="card-header">
+      <span class="card-title">TAB 01: FULL SCAN CONSOLE (<code>pageFullScan</code>)</span>
+      <span class="card-badge badge-blue">SEQUENTIAL 6-SENSOR DIAGNOSTIC PIPELINE</span>
+    </div>
+    <div style="display: flex; gap: 16px; margin-top: 10px; flex-wrap: wrap;">
+      <div style="flex: 1; min-width: 320px;">
+        <h4 style="color: #2b6cb0; margin-top: 0;">Clinical Indication &amp; Operational Workflow:</h4>
+        <p>The Full Scan console executes an automated, sequential six-stage diagnostic evaluation across all watch transducers, validating optical tonometry, arterial transit velocity, thermal equilibrium, and autonomic balance:</p>
+        <ul>
+          <li><strong>Stage 01 (Vitals Baseline):</strong> Establishes ambient sensor contact quality, verifying 100% skin coupling with zero motion artifact before physiological acquisition.</li>
+          <li><strong>Stage 02 (PPG Waveform Acquisition):</strong> Captures raw 25 Hz infrared pulsatile waveform to compute AC/DC pulsatile ratio and vascular compliance.</li>
+          <li><strong>Stage 03 (Optical Glucose Tonometry):</strong> Measures 940 nm / 660 nm dual-wavelength absorption differential, calibrated against venous fasting baseline (Opcode 0x89).</li>
+          <li><strong>Stage 04 (Cardiac Timing Intervals):</strong> Calculates pulse arrival time (PAT) and pulse wave transit time (PWTT) for ambulatory blood pressure derivation.</li>
+          <li><strong>Stage 05 (Hemodynamic Compliance):</strong> Synthesizes arterial stiffness index and sympatho-vagal autonomic balance (HRV RMSSD/SDNN).</li>
+          <li><strong>Stage 06 (Consolidated Synthesis):</strong> Generates complete patient physiological status tile matrix with color-coded clinical risk stratification.</li>
+        </ul>
+        <h4 style="color: #2b6cb0; margin-top: 8px;">Key Fields &amp; Functional Controls:</h4>
+        <ul>
+          <li><code>btnStartFullScan</code>: Dispatches direct BLE diagnostic command sequence across watch GATT transponders.</li>
+          <li><strong>Consolidated Report Tiles:</strong> Displays real-time Optical Glucose (mg/dL), Blood Pressure (Systolic/Diastolic mmHg), Heart Rate (BPM), Core Temp (°F), Skin Temp (°F), SpO2 (%), and HRV SDNN (ms).</li>
+          <li><strong>Startup SQLite Hydration:</strong> Automatically hydrates latest recorded telemetry from <code>vital_records</code> on console initialization without requiring redundant watch re-scans.</li>
+        </ul>
+      </div>
+      <div style="flex: 1; min-width: 320px; text-align: center;">
+        <img src="../images/lcars_tab01_fullscan.png" alt="Tab 01 Full Scan Console" style="width: 100%; border: 1.5px solid #cbd5e1; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+        <div style="font-size: 8pt; color: #718096; margin-top: 4px;">Figure 10.1: Tab 01 Full Scan Console executing 6-sensor automated clinical diagnostic pipeline.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 02: MEAL PLANNER CONSOLE -->
+  <div class="card" style="margin-bottom: 20px;">
+    <div class="card-header">
+      <span class="card-title">TAB 02: MEAL PLANNER (06-ADA) (<code>pageDietTrades</code>)</span>
+      <span class="card-badge badge-green">PRE-CHOICE ESTIMATION &amp; MEAL PANTRY</span>
+    </div>
+    <div style="display: flex; gap: 16px; margin-top: 10px; flex-wrap: wrap;">
+      <div style="flex: 1; min-width: 320px;">
+        <h4 style="color: #2b6cb0; margin-top: 0;">Clinical Indication &amp; Metabolic Decision Flowchart:</h4>
+        <p>The Meal Planner provides preprandial harm reduction, calculating exact postprandial glycemic costs <em>before</em> food consumption, screening out gastric irritants, and prescribing non-insulin GLUT4 walking protocols:</p>
+        <ul>
+          <li><strong>Interactive 4-Step Clinical Flowchart:</strong> Directed workflow spanning Diet Query &rarr; Pre-Choice Estimation &rarr; Re-Assessment / ADA Trades &rarr; Pantry or Consume.</li>
+          <li><strong>Pathway A (Reuse Meal Pantry):</strong> High-density scrollable listbox (<code>listboxPopularMeals</code>) containing favorite reference templates. 1-click selection instantly loads verified macro and metabolic parameters.</li>
+          <li><strong>Pathway B (Plan New Meal or Snack):</strong> Natural language input supporting full semantic decomposition (e.g. <em>"I want a hot candy that meets my goals"</em>). Automatically discovers 3 store-bought items within 20 miles (Fred Meyer, Safeway, Walmart) and 3 curated diabetic recipes with full Bill of Materials (BOM).</li>
+          <li><strong>Zero Sneaky Sugar Alcohols:</strong> Rigorously screens out Sorbitol, Maltitol, Mannitol, and Isomalt to protect patients from osmotic diarrhea and severe gastrointestinal distress; prioritizes non-laxative Allulose and Monk Fruit.</li>
+          <li><strong>Pre-Choice Estimation Card:</strong> Real-time nutrient breakdown (Calories, Net Carbs, Total Carbs, Fiber, Protein, Fat, Glycemic Load), 16 oz hydration buffer calculation (-10 to -16 mg/dL peak attenuation), and postprandial GLUT4 walking prescription.</li>
+          <li><strong>Workflow Action Buttons:</strong> <code>⭐ ADD TO PANTRY AS MEAL</code>, <code>🍵 ADD TO PANTRY AS SNACK</code>, and <code>🚀 CONSUME NOW (LOG TO MEAL LOG)</code>.</li>
+        </ul>
+      </div>
+      <div style="flex: 1; min-width: 320px; text-align: center;">
+        <img src="../images/lcars_tab02_meal_planner.png" alt="Tab 02 Meal Planner" style="width: 100%; border: 1.5px solid #cbd5e1; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+        <div style="font-size: 8pt; color: #718096; margin-top: 4px;">Figure 10.2: Tab 02 Meal Planner (06-ADA) showing Pre-Choice Estimation, Hydration Buffer &amp; Pantry Reuse.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 03: CARDIO & VITALS CONSOLE -->
+  <div class="card" style="margin-bottom: 20px;">
+    <div class="card-header">
+      <span class="card-title">TAB 03: CARDIO &amp; VITALS CONSOLE (<code>pageCardio</code>)</span>
+      <span class="card-badge badge-blue">HEMODYNAMICS &amp; AUTONOMIC STRESS</span>
+    </div>
+    <div style="display: flex; gap: 16px; margin-top: 10px; flex-wrap: wrap;">
+      <div style="flex: 1; min-width: 320px;">
+        <h4 style="color: #2b6cb0; margin-top: 0;">Clinical Indication &amp; Transducer Gauges:</h4>
+        <p>The Cardio console provides high-frequency visual gauges for real-time cardiovascular monitoring, oxygen saturation assessment, and nocturnal hypnogram review:</p>
+        <ul>
+          <li><strong>Optical Glucose Gauge:</strong> Real-time absorbance reading with standard clinical safe zone (60–200 mg/dL) indicators and rate-of-change trend arrows.</li>
+          <li><strong>Dual-Matrix Thermometry Gauge:</strong> Core cellular temperature vs epidermal skin temperature differential monitor (Opcode 0x87).</li>
+          <li><strong>Pulse Wave Transit Time (PWTT) Blood Pressure Indicator:</strong> Continuous arterial stiffness and blood pressure estimator tracking systolic (LOINC 8480-6) and diastolic (LOINC 8462-4) dynamics.</li>
+          <li><strong>Pulse Oximetry &amp; OSAHS Monitor:</strong> High-precision SpO2 percentage display with nocturnal hypoxia dips counter and sleep apnea screening flags.</li>
+          <li><strong>48-Slot Timeline Hypnogram:</strong> Visual hypnogram mapping deep sleep, light sleep, REM sleep, and awake epochs across 24 hours.</li>
+        </ul>
+      </div>
+      <div style="flex: 1; min-width: 320px; text-align: center;">
+        <img src="../images/lcars_tab03_cardio.png" alt="Tab 03 Cardio Console" style="width: 100%; border: 1.5px solid #cbd5e1; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+        <div style="font-size: 8pt; color: #718096; margin-top: 4px;">Figure 10.3: Tab 03 Cardio &amp; Vitals console tracking real-time hemodynamics, SpO2 &amp; sleep hypnogram.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 04: CLINICAL REPORTS CONSOLE -->
+  <div class="card" style="margin-bottom: 20px;">
+    <div class="card-header">
+      <span class="card-title">TAB 04: CLINICAL REPORTS CONSOLE (<code>pageReports</code>)</span>
+      <span class="card-badge badge-amber">360° MULTI-LANE REGIMEN &amp; 12 CLINICAL CHARTS</span>
+    </div>
+    <div style="display: flex; gap: 16px; margin-top: 10px; flex-wrap: wrap;">
+      <div style="flex: 1; min-width: 320px;">
+        <h4 style="color: #2b6cb0; margin-top: 0;">Comprehensive Longitudinal Audit Suite:</h4>
+        <p>The Reports console serves as the primary diagnostic nexus for outpatient clinical encounters, offering multi-parameter synchronization and statistical regression modeling:</p>
+        <ul>
+          <li><strong>360° Multi-Lane Regimen Timeline (<code>tallChartSvgContainer</code>):</strong> Synchronizes 8 physiological lanes on a single vertical continuous scrubber with 4-line clinical meal tags (Short Desc, Cals/Protein, Carbs/Fat, GL &amp; Audit Link), vertical correlation stems, active medication markers, and GLUT4 exercise bursts.</li>
+          <li><strong>Bivariate Step vs. Glucose Correlator (<code>svgStepGlucoseCorrelator</code>):</strong> Mathematical regression scatter plot with Pearson $r$, $R^2$, clearance slope, today's gold star observation, and the <strong>Watch Configured Step Target Blue Dot (<code>#0284c7</code>)</strong>.</li>
+          <li><strong>2D Poincaré (Lorenz) Scatter Plot (<code>svgLorenzScatter</code>):</strong> Heart rate variability interval-difference scatter ($RR_n$ vs $RR_{n+1}$) providing visual diagnostic categorization (Comet, Torpedo, Club, Fork, Complex).</li>
+          <li><strong>All 8 Diurnal Biometric Curves:</strong> Continuous SVG curves with 4-hour major intervals and clean minor ticks for Glucose, eA1C, Core/Skin Temp dual curve, Heart Rate, BP dual curve, SpO2, HRV, Sleep, and Exercise.</li>
+          <li><strong>Sub-Reports 01–06:</strong> Metabolic Energy (BMR, TDEE, active burn), GLUT4 clearance rate, ECG/Autonomic stress, MET Index, and Respiration RPM.</li>
+        </ul>
+      </div>
+      <div style="flex: 1; min-width: 320px; text-align: center;">
+        <img src="../images/lcars_tab04_reports.png" alt="Tab 04 Reports Console" style="width: 100%; border: 1.5px solid #cbd5e1; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+        <div style="font-size: 8pt; color: #718096; margin-top: 4px;">Figure 10.4: Tab 04 Reports Console featuring 360° Multi-Lane Regimen Timeline &amp; Bivariate Blue Dot.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 05: EXPORT & EHR CONSOLE -->
+  <div class="card" style="margin-bottom: 20px;">
+    <div class="card-header">
+      <span class="card-title">TAB 05: EXPORT &amp; INTEROPERABILITY (<code>pageExport</code>)</span>
+      <span class="card-badge badge-blue">HL7 FHIR R4 &amp; REMOVABLE USB BACKUP</span>
+    </div>
+    <div style="display: flex; gap: 16px; margin-top: 10px; flex-wrap: wrap;">
+      <div style="flex: 1; min-width: 320px;">
+        <h4 style="color: #2b6cb0; margin-top: 0;">Clinical Standards &amp; Data Portability:</h4>
+        <p>Facilitates seamless integration into institutional Electronic Health Record (EHR) systems without third-party vendor lock-in:</p>
+        <ul>
+          <li><strong>HL7 FHIR R4 JSON Export:</strong> Generates standardized <code>Observation</code> resource bundles mapped to official LOINC identifiers:
+            <ul>
+              <li><code>2339-0</code>: Glucose in Blood (mg/dL)</li>
+              <li><code>4548-4</code>: Hemoglobin A1c / Hemoglobin.total in Blood (%)</li>
+              <li><code>8480-6</code> / <code>8462-4</code>: Systolic &amp; Diastolic Blood Pressure (mmHg)</li>
+              <li><code>8867-4</code>: Heart Rate (beats/min)</li>
+              <li><code>59408-5</code>: Oxygen Saturation in Arterial Blood by Pulse Oximetry (%)</li>
+              <li><code>80404-7</code>: R-R Interval Heart Rate Variability (ms)</li>
+            </ul>
+          </li>
+          <li><strong>Clinical CSV Export:</strong> Exports tabular time-series telemetry formatted for statistical review in R, Python pandas, and Excel.</li>
+          <li><strong>Automated Removable USB Backup:</strong> Deduplicating block-level synchronization engine (<code>perform_dedup_backup</code>) backing up SQLite telemetry to external thumb drives.</li>
+        </ul>
+      </div>
+      <div style="flex: 1; min-width: 320px; text-align: center;">
+        <img src="../images/lcars_tab05_export.png" alt="Tab 05 Export Console" style="width: 100%; border: 1.5px solid #cbd5e1; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+        <div style="font-size: 8pt; color: #718096; margin-top: 4px;">Figure 10.5: Tab 05 Export Console with HL7 FHIR R4 standard observation generator &amp; USB sync.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 06: CLINICAL LEARNING CONSOLE -->
+  <div class="card" style="margin-bottom: 20px;">
+    <div class="card-header">
+      <span class="card-title">TAB 06: CLINICAL LEARNING CONSOLE (<code>pageLearning</code>)</span>
+      <span class="card-badge badge-green">PERSONAL GLYCEMIC PHENOTYPING</span>
+    </div>
+    <div style="display: flex; gap: 16px; margin-top: 10px; flex-wrap: wrap;">
+      <div style="flex: 1; min-width: 320px;">
+        <h4 style="color: #2b6cb0; margin-top: 0;">Education &amp; Behavioral Insights:</h4>
+        <p>Translates complex biometric streams into actionable patient education and physiological self-awareness:</p>
+        <ul>
+          <li><strong>Personal Glycemic Phenotyping:</strong> Categorizes patient metabolic response type (e.g. rapid spike/rapid drop vs delayed sustained plateau).</li>
+          <li><strong>Habit &amp; Excursion Correlation:</strong> Correlates lifestyle habits (sleep quality, meal timing, hydration, physical exertion) directly with measured postprandial glucose peaks.</li>
+          <li><strong>Dawn Phenomenon Module:</strong> Explains hepatic gluconeogenesis surges between 04:00 and 08:00 and provides clinical mitigation strategies.</li>
+          <li><strong>Hypoglycemia Protocol Guide:</strong> Step-by-step guidance for treating sub-60 mg/dL nadirs with rapid glucose tablets followed by complex protein buffers.</li>
+        </ul>
+      </div>
+      <div style="flex: 1; min-width: 320px; text-align: center;">
+        <img src="../images/lcars_tab06_learning.png" alt="Tab 06 Learning Console" style="width: 100%; border: 1.5px solid #cbd5e1; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+        <div style="font-size: 8pt; color: #718096; margin-top: 4px;">Figure 10.6: Tab 06 Learning Console detailing glycemic phenotyping &amp; physiological mechanisms.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 07: HELP & FAQ CONSOLE -->
+  <div class="card" style="margin-bottom: 20px;">
+    <div class="card-header">
+      <span class="card-title">TAB 07: HELP &amp; FAQ CONSOLE (<code>pageHelp</code>)</span>
+      <span class="card-badge badge-blue">CLINICAL PROTOCOLS &amp; HARDWARE SETUP</span>
+    </div>
+    <div style="display: flex; gap: 16px; margin-top: 10px; flex-wrap: wrap;">
+      <div style="flex: 1; min-width: 320px;">
+        <h4 style="color: #2b6cb0; margin-top: 0;">System Mentoring &amp; Operation Guidelines:</h4>
+        <p>Comprehensive operating handbook and troubleshooting reference for patient and clinician alike:</p>
+        <ul>
+          <li><strong>Bluetooth Low Energy Pairing Protocol:</strong> Step-by-step instructions for pairing the Veepoo 5010/H8/VEE smartwatch directly with Windows 11.</li>
+          <li><strong>Skin-Contact &amp; Transducer Care:</strong> Guidelines for optical sensor wrist positioning (one finger width proximal to the ulnar styloid) and contact pressure optimization.</li>
+          <li><strong>Clinical Calibration Protocol:</strong> Instructions for entering venous blood draw reference anchors for optical tonometry calibration.</li>
+          <li><strong>Offline Standby Operations:</strong> Explains local SQLite storage and cellular web portal offline caching mechanics.</li>
+        </ul>
+      </div>
+      <div style="flex: 1; min-width: 320px; text-align: center;">
+        <img src="../images/lcars_tab07_help.png" alt="Tab 07 Help &amp; FAQ" style="width: 100%; border: 1.5px solid #cbd5e1; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+        <div style="font-size: 8pt; color: #718096; margin-top: 4px;">Figure 10.7: Tab 07 Help &amp; FAQ Console detailing hardware setup, calibration &amp; protocols.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 08: MEDICATION CONSOLE -->
+  <div class="card" style="margin-bottom: 20px;">
+    <div class="card-header">
+      <span class="card-title">TAB 08: MEDICATION CONSOLE (<code>pageMedication</code>)</span>
+      <span class="card-badge badge-amber">ACTIVE PHARMACOLOGICAL REGIMEN &amp; TITRATION</span>
+    </div>
+    <div style="display: flex; gap: 16px; margin-top: 10px; flex-wrap: wrap;">
+      <div style="flex: 1; min-width: 320px;">
+        <h4 style="color: #2b6cb0; margin-top: 0;">Pharmacotherapy Adherence &amp; Schedule Management:</h4>
+        <p>Tracks active pharmacological prescriptions, scheduling dual daily intake suites, and recording clinical titration milestones:</p>
+        <ul>
+          <li><strong>Dual Intake Suite Scheduling:</strong> Discrete tracking for <em>Morning Intake Suite</em> (e.g. Metformin 1000mg, Empagliflozin SGLT2 25mg, Atorvastatin 20mg) and <em>Dinner Split Suite</em> (Metformin 500mg).</li>
+          <li><strong>Dosage &amp; Titration Milestones:</strong> Records dates and dosages of medication adjustments, automatically pinning <code>💊 MED CHANGE</code> milestones on the 360° longitudinal timeline.</li>
+          <li><strong>RxNorm &amp; Drug Kinetic Mappings:</strong> Links drug biological half-life and peak plasma concentrations with measured glucose curves.</li>
+          <li><strong>Interactive Medication CRUD:</strong> Full add, edit, and delete functionality allowing instant updates during physician consultations.</li>
+        </ul>
+      </div>
+      <div style="flex: 1; min-width: 320px; text-align: center;">
+        <img src="../images/lcars_tab08_medication.png" alt="Tab 08 Medication Console" style="width: 100%; border: 1.5px solid #cbd5e1; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+        <div style="font-size: 8pt; color: #718096; margin-top: 4px;">Figure 10.8: Tab 08 Medication Console displaying dual intake schedules &amp; titration history.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 09: CLINICAL GOALS CONSOLE -->
+  <div class="card" style="margin-bottom: 20px;">
+    <div class="card-header">
+      <span class="card-title">TAB 09: CLINICAL GOALS CONSOLE (<code>pageGoals</code>)</span>
+      <span class="card-badge badge-green">TARGET PROTOCOLS &amp; COMPLIANCE AUDITING</span>
+    </div>
+    <div style="display: flex; gap: 16px; margin-top: 10px; flex-wrap: wrap;">
+      <div style="flex: 1; min-width: 320px;">
+        <h4 style="color: #2b6cb0; margin-top: 0;">Clinical Baseline Parameters &amp; Compliance Reporting:</h4>
+        <p>Establishes evidence-based patient-specific physiological boundaries agreed upon by the attending clinician and patient:</p>
+        <ul>
+          <li><strong>Anchor Target Ceiling:</strong> Establishes personal HbA1c goal (8.3% anchor target, progressing toward &lt;6.8% remission).</li>
+          <li><strong>Target Glycemic Zone:</strong> Standardizes on 60–200 mg/dL target safe band with strict 140–180 mg/dL postprandial ceiling.</li>
+          <li><strong>Time-in-Range (TIR) Target:</strong> Configurable clinical ceiling (default &gt;75% time between 70–180 mg/dL).</li>
+          <li><strong>Macronutrient &amp; Activity Targets:</strong> Daily net carb ceiling (130g/day), per-meal ceiling (45g/meal), daily step goal (8,000 steps), and minimum postprandial GLUT4 walk duration (15 min).</li>
+          <li><strong>Compliance Reporting API (<code>/api/goals/compliance-report</code>):</strong> Generates weekly, monthly, quarterly, and YTD audit summaries reporting adherence percentages and excursion event counts.</li>
+        </ul>
+      </div>
+      <div style="flex: 1; min-width: 320px; text-align: center;">
+        <img src="../images/lcars_tab09_goals.png" alt="Tab 09 Clinical Goals Console" style="width: 100%; border: 1.5px solid #cbd5e1; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+        <div style="font-size: 8pt; color: #718096; margin-top: 4px;">Figure 10.9: Tab 09 Clinical Goals Console tracking personalized targets &amp; compliance history.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 10: CONFIGURATION CONSOLE -->
+  <div class="card" style="margin-bottom: 20px;">
+    <div class="card-header">
+      <span class="card-title">TAB 10: CONFIGURATION CONSOLE (<code>pageSetup</code>)</span>
+      <span class="card-badge badge-blue">PATIENT ANTHROPOMETRY &amp; CALIBRATIONS</span>
+    </div>
+    <div style="display: flex; gap: 16px; margin-top: 10px; flex-wrap: wrap;">
+      <div style="flex: 1; min-width: 320px;">
+        <h4 style="color: #2b6cb0; margin-top: 0;">Patient Biometrics &amp; System Parameters:</h4>
+        <p>Manages baseline physical anthropometry, local geographical sourcing coordinates, and biosensing calibration constants:</p>
+        <ul>
+          <li><strong>Anthropometric Profile:</strong> Patient height (cm), weight (kg/lbs), age, gender, and automated BMI calculation (24.5 kg/m²).</li>
+          <li><strong>Local Store Sourcing ZIP Code (<code>cfgZipCode</code>):</strong> Configures patient residential ZIP code (default 98201) to automatically source grocery items within a 20-mile radius.</li>
+          <li><strong>Watch Configured Step Target (<code>cfgStepGoal</code>):</strong> Configures the hardware pedometer goal (default 8,000 steps) directly driving the Bivariate Blue Dot on the Reports console.</li>
+          <li><strong>Daily Caloric &amp; Sleep Goals:</strong> Establishes basal metabolic targets (2,200 kcal) and nocturnal sleep architecture targets (7.5 hours).</li>
+          <li><strong>USB Backup Destination:</strong> Sets drive letter or target directory for automated removable media archiving.</li>
+        </ul>
+      </div>
+      <div style="flex: 1; min-width: 320px; text-align: center;">
+        <img src="../images/lcars_tab10_config.png" alt="Tab 10 Configuration Console" style="width: 100%; border: 1.5px solid #cbd5e1; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+        <div style="font-size: 8pt; color: #718096; margin-top: 4px;">Figure 10.10: Tab 10 Configuration Console managing patient anthropometry &amp; watch settings.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 11: OPERATIONS CONSOLE -->
+  <div class="card" style="margin-bottom: 20px;">
+    <div class="card-header">
+      <span class="card-title">TAB 11: OPERATIONS CONSOLE (<code>pageOperations</code>)</span>
+      <span class="card-badge badge-blue">HARDWARE DIAGNOSTICS &amp; GATT TRANSCEIVER</span>
+    </div>
+    <div style="display: flex; gap: 16px; margin-top: 10px; flex-wrap: wrap;">
+      <div style="flex: 1; min-width: 320px;">
+        <h4 style="color: #2b6cb0; margin-top: 0;">Low-Level BLE Diagnostics &amp; Radio Management:</h4>
+        <p>Provides engineering-level transparency into Bluetooth Low Energy GATT communication channels and hardware health:</p>
+        <ul>
+          <li><strong>Hardware-Adaptive GATT Binding:</strong> Dynamically detects and binds to write characteristics across H8, VEE, and 5010 hardware revisions (e.g. <code>fea2</code>, <code>fee8</code>, <code>ae01</code>, <code>6e400002</code>, <code>f0080003</code>).</li>
+          <li><strong>15-Minute Background Proximity Dump:</strong> Manages autonomous background BLE synchronization, harvesting full sensor datasets when watch enters range.</li>
+          <li><strong>Transceiver Buffer Diagnostics:</strong> Displays MTU packet payload size, TX/RX throughput, buffer queue depth, and transmission error counts.</li>
+          <li><strong>Hardware Battery &amp; Firmware Status:</strong> Tracks watch battery level (0–100%), charging dock state, firmware build number, and Bluetooth signal strength (RSSI).</li>
+        </ul>
+      </div>
+      <div style="flex: 1; min-width: 320px; text-align: center;">
+        <img src="../images/lcars_tab11_operations.png" alt="Tab 11 Operations Console" style="width: 100%; border: 1.5px solid #cbd5e1; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+        <div style="font-size: 8pt; color: #718096; margin-top: 4px;">Figure 10.11: Tab 11 Operations Console displaying GATT transceiver diagnostics &amp; radio state.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 12: DATA LOG CONSOLE -->
+  <div class="card" style="margin-bottom: 20px;">
+    <div class="card-header">
+      <span class="card-title">TAB 12: DATA LOG CONSOLE (<code>pageLog</code>)</span>
+      <span class="card-badge badge-blue">RAW BLE OPCODES &amp; PACKET TELEMETRY</span>
+    </div>
+    <div style="display: flex; gap: 16px; margin-top: 10px; flex-wrap: wrap;">
+      <div style="flex: 1; min-width: 320px;">
+        <h4 style="color: #2b6cb0; margin-top: 0;">Live Hex Packet Stream &amp; Opcode Dissection:</h4>
+        <p>Real-time bidirectional packet inspection terminal for clinical research and protocol validation:</p>
+        <ul>
+          <li><strong>Bidirectional Color-Coded Transceiver:</strong> Renders outbound command frames in high-contrast Cyan/Blue (<code>TX</code>) and inbound sensor telemetry frames in Purple/Magenta (<code>RX</code>).</li>
+          <li><strong>Opcode Decoding Engine:</strong> Decodes live binary packets into human-readable physiological fields (e.g. Opcode <code>0x89</code> glucose tonometry, Opcode <code>0x87</code> dual temperature, Opcode <code>0x91</code> blood pressure).</li>
+          <li><strong>Diagnostic Filter Controls:</strong> Allows clinicians to isolate specific opcodes, pause streaming, or dump raw binary buffers to disk for offline analysis.</li>
+          <li><strong>Zero Synthetic Data Guarantee:</strong> Displays honest empty states (<code>--</code>) when watch is uncoupled, preventing fabricated interpolations.</li>
+        </ul>
+      </div>
+      <div style="flex: 1; min-width: 320px; text-align: center;">
+        <img src="../images/lcars_tab12_datalog.png" alt="Tab 12 Data Log Console" style="width: 100%; border: 1.5px solid #cbd5e1; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+        <div style="font-size: 8pt; color: #718096; margin-top: 4px;">Figure 10.12: Tab 12 Data Log Console displaying live raw BLE packet stream &amp; decoded opcodes.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 13: WATCH FACES CONSOLE -->
+  <div class="card" style="margin-bottom: 20px;">
+    <div class="card-header">
+      <span class="card-title">TAB 13: WATCH FACES CONSOLE (<code>pageWatchFaces</code>)</span>
+      <span class="card-badge badge-blue">SLOT MANAGEMENT &amp; 94 CLOUD DIAL OTA FLASHER</span>
+    </div>
+    <div style="display: flex; gap: 16px; margin-top: 10px; flex-wrap: wrap;">
+      <div style="flex: 1; min-width: 320px;">
+        <h4 style="color: #2b6cb0; margin-top: 0;">Firmware Dial Management &amp; OTA Installation:</h4>
+        <p>Complete control over on-device graphical watch face slots and over-the-air firmware binary installation:</p>
+        <ul>
+          <li><strong>4 Hardware Slot Manager:</strong> 1-click active face switching across Slot 0 (Default Factory Dial), Slot 1 (Sports Dial), Slot 2 (Digital Matrix Dial), and Slot 3 (Custom User Dial).</li>
+          <li><strong>94 Official Cloud Dials Library (<code>/api/dial/inventory</code>):</strong> Complete catalog of official Veepoo 240x280 watch faces categorized by clinical utility, readability, and contrast.</li>
+          <li><strong>240x280 Thumbnail Previewer:</strong> Real-time image preview rendering watch face layout before committing binary flash.</li>
+          <li><strong>One-Click OTA Binary Flasher:</strong> Packages <code>.bin</code> firmware payloads with 4-byte padding alignment, CRC16 verification, and chunked GATT transmission directly to watch flash memory.</li>
+        </ul>
+      </div>
+      <div style="flex: 1; min-width: 320px; text-align: center;">
+        <img src="../images/lcars_tab13_watchfaces.png" alt="Tab 13 Watch Faces Console" style="width: 100%; border: 1.5px solid #cbd5e1; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+        <div style="font-size: 8pt; color: #718096; margin-top: 4px;">Figure 10.13: Tab 13 Watch Faces Console managing hardware slots &amp; 94 cloud dials OTA flasher.</div>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>

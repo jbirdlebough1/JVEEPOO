@@ -14305,6 +14305,9 @@
       });
       // Populate Raw Telemetry Table
       if (typeof renderRawTelemetryTable === "function") renderRawTelemetryTable();
+      if (typeof renderStepGlucoseCorrelator === "function") renderStepGlucoseCorrelator();
+      if (typeof renderLorenzScatterPlot === "function") renderLorenzScatterPlot();
+      if (typeof updateWatchMetabolicSubReports === "function") updateWatchMetabolicSubReports();
     }
 
     
