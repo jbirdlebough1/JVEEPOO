@@ -84,23 +84,19 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 06: The FITAOS 5150 Smartwatch & 8 Biometric Measurements
+### Slide 06: Smartwatch Hardware: 15 Health Dial Functions & Sample Rate Dynamics
 **Module:** Module 1: Introduction & Clinical Scope  
-**Card Title:** FITAOS 5150: 8 CONTINUOUS BIOMETRIC MEASUREMENTS  
+**Card Title:** 15 HEALTH DIAL FUNCTIONS • REMOTE VS. USER-INITIATED MATRIX  
 
-> On the right is the physical FITAOS 5150 smartwatch, available directly on their official sales site at fitaos.com. Because our software was engineered by Google Gemini Pro using the open Veepoo Protocol and Veepoo repositories, many different Veepoo watch models are naturally compatible. On the left are the eight continuous biometric channels it measures: blood glucose, dual core and skin temperature, ambulatory blood pressure, arterial oxygen saturation, continuous heart rate, autonomic HRV, physical step cadence, and multi-stage sleep architecture. All eight signals stream continuously over Bluetooth Low Energy directly into El-CARS without any subscription paywalls.
+> On the right is the physical FITAOS 5150 smartwatch transponder. The watch dial provides 15 distinct health functions. Eight of these stream completely autonomously in the background without user intervention: optical blood glucose, ambulatory blood pressure, dual-matrix temperature, continuous heart rate, oxygen saturation, metabolic MET energy, 24-hour physical activity, and nocturnal sleep somnography. In contrast, specialized diagnostics require deliberate patient execution on the watch: Lead-I ECG requires closing the bipolar chest circuit on the right bezel electrode for 30 seconds; Body Composition BIA requires finger contact on the bioimpedance pad; and Guided Breath paces respiration via haptic motor feedback. Crucially, when the patient engages Workout mode on the watch dial, the firmware switches its sampling rate from five-minute periodic intervals into a continuous one-second dynamic telemetry stream at one Hertz, capturing high-resolution cardiovascular exertion and recovery curves.
 
 **Key Points:**
-- **1. Optical Blood Glucose (mg/dL):** Non-invasive multi-wavelength PPG capillary tonometry calculating real-time glucose and eA1C.
-- **2. Dual-Matrix Temperature (°F):** Dual NTC contact thermistors measuring core circadian nadir against cutaneous skin temperature.
-- **3. Ambulatory Blood Pressure (mmHg):** Pulse Wave Transit Time (PWTT) hemodynamics tracking ambulatory systolic and diastolic dipping.
-- **4. Arterial Oxygenation (SpO2 %):** Dual red and infrared optical spectroscopy monitoring oxygen saturation and nocturnal hypoxia.
-- **5. Continuous Heart Rate (BPM):** High-frequency green optical tonometry tracking resting baseline and active cardiovascular load.
-- **6. Autonomic HRV & Stress (ms):** Heart rate variability SDNN metrics assessing sympatho-vagal balance and physiological recovery.
-- **7. Physical Cadence & Steps:** Tri-axial accelerometer logging step cadence, daily energy expenditure, and GLUT4 exercise walks.
-- **8. Multi-Stage Sleep Architecture:** Detailed nocturnal tracking separating deep restorative sleep, light sleep, REM, and awakenings.
+- **1. Autonomous Background Streaming (8 Channels):** Glucose (0x75), BP (0x01), Temp (0x78), HR (0x02), SpO2 (0x60), MET (0x07), Activity (0x08), and Sleep (0xE0) stream automatically every 5 minutes.
+- **2. User-Initiated Contact Tests (ECG & BIA):** Lead-I ECG (0x19) and Body Composition BIA (0x85) require the patient to place their opposite fingers on the right bezel electrode to complete the physical circuit.
+- **3. Dynamic Workout Sample Rate Shift (1 Hz):** Engaging Workout mode on the dial triggers a critical firmware shift: telemetry sample rate increases from 5-min periodic to 1-second continuous dynamic streaming!
+- **4. Autonomous Nocturnal & Autonomic Analytics:** Nocturnal Somnography (0xE0), Apnea Hypoxia Index (0x61), Basal Thermal Cycle Tracking (0x88), and HRV Poincaré Lorenz scatter (0x80) process automatically.
 
-**Key Takeaway:** 8 simultaneous clinical measurements stream continuously from FITAOS 5150 and compatible Veepoo wearables.
+**Key Takeaway:** 15 health dial functions audited: 8 autonomous background streams, 3 user-initiated physical electrode tests, and a 1-second dynamic sample rate shift in Workout mode.
 
 ---
 
@@ -142,7 +138,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 **Key Points:**
 - **Shared Clinical Portal:** Both doctor and patient review the exact same synchronized longitudinal graphs.
-- **Objective Consultation Reviews:** Replaces subjective recall with 24-hour continuous biometric data.
+- **Objective Consultation Reviews:** Replaces subjective recall with 24-hour continuous biometric data. The shared portal features the Doctor & Patient Longitudinal Meal-to-Metric Explorer with an interactive 7-day recurrence matrix and strict zero-cache telemetry parity for true postprandial peak tracking (164 mg/dL).
 - **Evidence-Based Titration:** Every prescription adjustment is grounded in direct ambulatory biofeedback.
 
 **Key Takeaway:** Transforms outpatient consultations from guesswork into a data-driven clinical partnership.
@@ -337,7 +333,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 **Key Points:**
 - **Net Carbohydrate Tracking:** Focuses on net impact carbohydrates while accounting for beneficial dietary fiber.
-- **Meal-to-Spike Correlation:** Overlays meal times directly on the 24-hour glucose timeline to inspect peak heights.
+- **Meal-to-Spike Correlation:** Overlays meal times directly on the 24-hour glucose timeline to inspect peak heights. The Meal Planner incorporates the Packaged Snack Decision Matrix (single serving vs whole box) and 7-day longitudinal drilldown connecting pre-choice Gemini coaching with GLUT4 kinetic walking telemetry.
 - **Fat & Protein Buffering:** Demonstrates how healthy proteins and fats slow down carbohydrate absorption.
 
 **Key Takeaway:** Connects what is on your plate directly to your resulting 24-hour glucose curve.
