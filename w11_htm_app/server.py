@@ -561,33 +561,88 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
             "glut4_recommendation": f"<strong>{max(15, min(60, round(net_c * 0.75)))}-Minute Brisk GLUT4 Walk starting 20 min post-meal:</strong> Directly clears excess circulating glucose."
         }
 
-    # 01. Junior Mints Peppermint Crunch (Official Tootsie Roll Industries FDA Label)
-    if ("junior mint" in text or "junior mints" in text) or ("peppermint crunch" in text and ("junior" in text or "mint" in text or "24" in text or "crunch" in text)):
+    # 01. Junior Mints Peppermint Crunch (Verified Physical Box Nutrition Facts)
+    if ("junior mint" in text or "junior mints" in text) or ("peppermint crunch" in text and ("junior" in text or "mint" in text or "box" in text or "120" in text or "26" in text or "crunch" in text)):
+        is_whole_box = any(w in text for w in ["box", "whole", "entire", "3.5", "finish", "package", "all", "bag"])
+        servings = 3.5 if is_whole_box else 1.0
+        cals = round(120 * servings)
+        carbs = round(26.0 * servings, 1)
+        sugars = round(24.0 * servings, 1)
+        fat = round(2.0 * servings, 1)
+        pro = 0.0
+        fib = 0.0
+        net_c = carbs
+        spike = round(net_c * 1.9)
+        portion_label = "Full 3.5 oz (99g) Box (3.5 Servings Finished)" if is_whole_box else "1 Serving (11 pieces / 28g)"
         return {
             "status": "SUCCESS",
-            "meal_name": "Junior Mints Peppermint Crunch (Official FDA Package Label)",
-            "vendor_matched": "Junior Mints / Tootsie Roll Industries Official Nutrition Facts",
+            "meal_name": f"Junior Mints Peppermint Crunch ({portion_label})",
+            "vendor_matched": "Junior Mints / Tootsie Roll Industries (Official Box Label)",
             "photo_filename": "meal_junior_mints.jpg",
-            "calories": 140,
-            "net_carbs": 28.0,
-            "total_carbs": 29.0,
-            "fiber": 1.0,
-            "protein": 1.0,
-            "fat": 3.5,
-            "glycemic_load": "20 (Moderate Glycemic Burden)",
+            "calories": cals,
+            "net_carbs": net_c,
+            "total_carbs": carbs,
+            "fiber": fib,
+            "protein": pro,
+            "fat": fat,
+            "glycemic_load": "20 (Moderate-High Glycemic Burden)" if servings == 1.0 else "70 (Severe Hyperglycemic Risk)",
             "meets_goal": False,
-            "projected_spike": "+52 to +65 mg/dL postprandial peak",
+            "packaged_snack_matrix": {
+                "is_packaged_snack": True,
+                "product_name": "Junior Mints Peppermint Crunch (3.5 oz Box)",
+                "serving_description": "1 Serving (11 pieces / 29g)",
+                "package_description": "Whole Theater Box (3.5 Servings / 99g)",
+                "multiplier": 3.5,
+                "single": {
+                    "calories": 120,
+                    "net_carbs": 26.0,
+                    "total_carbs": 26.0,
+                    "sugars": 24.0,
+                    "fiber": 0.0,
+                    "fat": 2.0,
+                    "protein": 0.0,
+                    "gl": "18 (Medium)",
+                    "spike": "+18 to +25 mg/dL",
+                    "action": "Count exact 11 pieces (~29g). Close box, store in cupboard, drink 12 oz water."
+                },
+                "whole": {
+                    "calories": 420,
+                    "net_carbs": 91.0,
+                    "total_carbs": 91.0,
+                    "sugars": 84.0,
+                    "fiber": 0.0,
+                    "fat": 7.0,
+                    "protein": 0.0,
+                    "gl": "63 (Severe High Hazard)",
+                    "spike": "+60 to +95 mg/dL",
+                    "action": "Immediate 35-min GLUT4 brisk walk required starting 20 min postprandial."
+                },
+                "abstain": {
+                    "calories": 0,
+                    "net_carbs": 0.0,
+                    "total_carbs": 0.0,
+                    "sugars": 0.0,
+                    "fiber": 0.0,
+                    "fat": 0.0,
+                    "protein": 0.0,
+                    "gl": "0 (Zero Excursion)",
+                    "spike": "0 mg/dL",
+                    "action": "Acknowledge craving, reset habit loop. Swap to cinnamon tea or raw almonds."
+                }
+            },
+            "projected_spike": f"+{spike} to +{spike + 15} mg/dL postprandial peak",
             "trade_alternatives": [
                 "Swap to Zero-Sugar Allulose Dark Peppermint Bark (2g net carbs, zero sugar alcohols)",
                 "ChocZero Peppermint White Chocolate Squares (1g net carbs, monk fruit sweetened)",
-                "Enjoy 1/2 serving (~6-7 pieces = 12g sugars) paired with raw walnuts for protein/fat buffer"
+                "If eating Junior Mints, limit portion to 1/2 serving (5-6 pieces = 12g carbs) paired with raw walnuts"
             ],
-            "gemini_notes": "🍬 OFFICIAL PACKAGE NUTRITION FACTS (3.5 oz / 99g Box): 1 serving (1/3 box / 33g) contains 140 kcal, 29g Total Carbs, 1g Fiber, 24g Total Sugars -> 28g Net Carbs. Full 3.5 oz box = 87g Total Carbs. Fast fondant sucrose core induces an acute +52 to +65 mg/dL glycemic excursion. 20-min postprandial GLUT4 walk recommended.",
+            "gemini_notes": f"🍬 VERIFIED PHYSICAL BOX LABEL: Per serving (11 pieces): 120 kcal, 26g Total Carbs, 0g Fiber, 24g Total Sugars, 2g Fat, 0g Protein -> 26g Net Carbs. Evaluated portion ({portion_label}): {cals} kcal, {net_c}g Net Carbs ({sugars}g Sugars). Fast fondant sucrose core induces rapid postprandial glucose spike of +{spike} mg/dL.",
             "tips": [
-                "Official package label (3.5 oz / 99g Box): 29g Total Carbs, 24g Total Sugars, 1g Fiber, 140 kcal.",
-                "Fast-absorbing liquid fondant center requires 20-min GLUT4 walk or portion moderation."
+                f"Verified Box Label: 120 cal, 26g Total Carbs, 24g Sugars, 0g Fiber, 2g Fat, 0g Protein per serving.",
+                f"Evaluated portion: {portion_label} = {net_c}g Net Carbs ({sugars}g pure fast sugars).",
+                "Mandatory GLUT4 walking required to prevent rapid hyperglycemic spike."
             ],
-            "glut4_recommendation": "<strong>20-Minute Brisk GLUT4 Walk starting 20 min post-consumption:</strong> Readily blunts projected +50 mg/dL glycemic excursion back into baseline."
+            "glut4_recommendation": f"<strong>{max(20, min(60, round(net_c * 0.65)))}-Minute Brisk GLUT4 Walk starting 15 min post-consumption:</strong> Directly blunts projected +{spike} mg/dL spike."
         }
 
     # 01. High-Sugar Candy, Peppermint Crunch & Confectionery Handler

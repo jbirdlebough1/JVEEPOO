@@ -6140,6 +6140,153 @@
                   </div>
                 </div>
 
+                <!-- =========================================================================
+                     PACKAGED SNACK CLINICAL COMPARISON & BEHAVIORAL DECISION MATRIX
+                     ========================================================================= -->
+                <div id="cardPackagedSnackMatrix" style="display: none; background: #ffffff; border: 2px solid #f59e0b; border-left: 6px solid #d97706; border-radius: 8px; padding: 14px; margin-bottom: 14px; box-shadow: 0 2px 6px rgba(0,0,0,0.06);">
+                  <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1.5px solid #fed7aa; padding-bottom: 8px; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
+                    <div>
+                      <span style="font-size: 0.74rem; font-weight: 900; color: #b45309; font-family: var(--lcars-mono); letter-spacing: 0.05em; text-transform: uppercase;">
+                        📦 PACKAGED SNACK CLINICAL COMPARISON: SINGLE SERVING VS. WHOLE PACKAGE
+                      </span>
+                      <div style="font-size: 0.78rem; color: #78350f; margin-top: 2px;" id="lblPackagedSnackSubtitle">
+                        Physical Package Breakdown: 1 Serving (11 pieces / 29g) vs. Full 3.5 oz (99g) Theater Box (3.5x Multiplier)
+                      </div>
+                    </div>
+                    <span style="font-size: 0.70rem; font-weight: 800; color: #9a3412; background: #ffedd5; padding: 3px 8px; border-radius: 4px; border: 1px solid #fed7aa;">
+                      BEHAVIORAL HABIT INTERRUPTION
+                    </span>
+                  </div>
+
+                  <!-- Dual-Column Macro Comparison Table -->
+                  <div style="overflow-x: auto; margin-bottom: 12px;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 0.78rem; font-family: var(--lcars-mono);">
+                      <thead>
+                        <tr style="background: #fffbeb; border-bottom: 2px solid #fde68a; text-align: left;">
+                          <th style="padding: 6px 10px; color: #78350f;">NUTRITIONAL METRIC</th>
+                          <th style="padding: 6px 10px; color: #15803d; text-align: right;">1 SINGLE SERVING (PORTION CONTROL)</th>
+                          <th style="padding: 6px 10px; color: #b91c1c; text-align: right;">WHOLE PACKAGE (ENTIRE CONTAINER)</th>
+                          <th style="padding: 6px 10px; color: #6b21a8; text-align: right;">METABOLIC PENALTY (EXCESS DELTA)</th>
+                        </tr>
+                      </thead>
+                      <tbody id="tbodyPackagedSnackComparison">
+                        <tr style="border-bottom: 1px solid #f1f5f9;">
+                          <td style="padding: 6px 10px; font-weight: bold; color: #334155;">Serving Size / Weight</td>
+                          <td style="padding: 6px 10px; text-align: right; color: #15803d; font-weight: bold;" id="tdServingSize">11 pieces (29g)</td>
+                          <td style="padding: 6px 10px; text-align: right; color: #b91c1c; font-weight: bold;" id="tdPackageSize">3.5 Servings / 3.5 oz (99g)</td>
+                          <td style="padding: 6px 10px; text-align: right; color: #6b21a8; font-weight: bold;" id="tdMultiplierDelta">+2.5x Extra Portions</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #f1f5f9;">
+                          <td style="padding: 6px 10px; font-weight: bold; color: #334155;">Calories</td>
+                          <td style="padding: 6px 10px; text-align: right; color: #15803d; font-weight: bold;" id="tdServingCals">120 kcal</td>
+                          <td style="padding: 6px 10px; text-align: right; color: #b91c1c; font-weight: bold;" id="tdPackageCals">420 kcal</td>
+                          <td style="padding: 6px 10px; text-align: right; color: #dc2626; font-weight: bold;" id="tdCalsDelta">+300 kcal (+250%)</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #f1f5f9;">
+                          <td style="padding: 6px 10px; font-weight: bold; color: #334155;">Net Carbohydrates (45g Max)</td>
+                          <td style="padding: 6px 10px; text-align: right; color: #15803d; font-weight: bold;" id="tdServingNetCarbs">26 g (✅ Meets Goal)</td>
+                          <td style="padding: 6px 10px; text-align: right; color: #b91c1c; font-weight: bold;" id="tdPackageNetCarbs">91 g (🚨 +46g OVER CEILING)</td>
+                          <td style="padding: 6px 10px; text-align: right; color: #dc2626; font-weight: bold;" id="tdNetCarbsDelta">+65 g Net Carbs</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #f1f5f9;">
+                          <td style="padding: 6px 10px; font-weight: bold; color: #334155;">Total Sugars (Sucrose/Syrup)</td>
+                          <td style="padding: 6px 10px; text-align: right; color: #d97706;" id="tdServingSugars">24 g</td>
+                          <td style="padding: 6px 10px; text-align: right; color: #b91c1c; font-weight: bold;" id="tdPackageSugars">84 g Pure Sugar</td>
+                          <td style="padding: 6px 10px; text-align: right; color: #dc2626; font-weight: bold;" id="tdSugarsDelta">+60 g Sugar Surge</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #f1f5f9;">
+                          <td style="padding: 6px 10px; font-weight: bold; color: #334155;">Dietary Fiber</td>
+                          <td style="padding: 6px 10px; text-align: right;" id="tdServingFiber">0 g (Zero buffer)</td>
+                          <td style="padding: 6px 10px; text-align: right;" id="tdPackageFiber">0 g (Zero buffer)</td>
+                          <td style="padding: 6px 10px; text-align: right; color: #64748b;">0 g Buffer</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #f1f5f9;">
+                          <td style="padding: 6px 10px; font-weight: bold; color: #334155;">Total Fat</td>
+                          <td style="padding: 6px 10px; text-align: right;" id="tdServingFat">2.0 g</td>
+                          <td style="padding: 6px 10px; text-align: right;" id="tdPackageFat">7.0 g</td>
+                          <td style="padding: 6px 10px; text-align: right; color: #6b21a8;">+5.0 g</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #f1f5f9;">
+                          <td style="padding: 6px 10px; font-weight: bold; color: #334155;">Glycemic Load (GL)</td>
+                          <td style="padding: 6px 10px; text-align: right; color: #15803d;" id="tdServingGL">18 (Medium)</td>
+                          <td style="padding: 6px 10px; text-align: right; color: #b91c1c; font-weight: bold;" id="tdPackageGL">63 (Extreme Spike Hazard)</td>
+                          <td style="padding: 6px 10px; text-align: right; color: #dc2626; font-weight: bold;">+45 GL Units</td>
+                        </tr>
+                        <tr>
+                          <td style="padding: 6px 10px; font-weight: bold; color: #334155;">Projected Peak Glucose Excursion</td>
+                          <td style="padding: 6px 10px; text-align: right; color: #15803d; font-weight: bold;" id="tdServingSpike">+18 to +25 mg/dL</td>
+                          <td style="padding: 6px 10px; text-align: right; color: #b91c1c; font-weight: bold;" id="tdPackageSpike">+60 to +95 mg/dL (ACUTE SPIKE)</td>
+                          <td style="padding: 6px 10px; text-align: right; color: #dc2626; font-weight: bold;">+42 to +70 mg/dL Spike Delta</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <!-- The 3 Actionable Behavioral Choices -->
+                  <div style="margin-top: 10px;">
+                    <div style="font-size: 0.76rem; font-weight: 900; color: #0f172a; margin-bottom: 8px; font-family: var(--lcars-mono);">
+                      SELECT YOUR PLANNED ACTION (HABIT MODIFICATION DECISION):
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 10px;">
+                      
+                      <!-- Choice 1: Do Not Eat -->
+                      <div style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 6px; padding: 10px; display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                            <strong style="color: #166534; font-size: 0.82rem;">1. 🛑 DO NOT EAT (ABSTAIN)</strong>
+                            <span style="font-size: 0.68rem; background: #dcfce7; color: #15803d; font-weight: bold; padding: 2px 6px; border-radius: 3px;">ZERO SPIKE</span>
+                          </div>
+                          <div style="font-size: 0.73rem; color: #14532d; line-height: 1.4;">
+                            <strong>Metabolic Impact:</strong> 0 kcal, 0g Net Carbs, 0 mg/dL rise.<br>
+                            Acknowledge craving, reset the dopamine habit loop. Preserves 100% time-in-range.<br>
+                            <em>Safe Swap:</em> Brewed cinnamon tea or 1 oz raw almonds.
+                          </div>
+                        </div>
+                        <button type="button" class="lcars-btn btn-green" style="margin-top: 8px; font-size: 0.75rem; padding: 6px 10px; width: 100%; font-weight: bold;" onclick="commitSnackChoice('abstain')">
+                          🛑 CHOOSE: DO NOT EAT (RESET HABIT)
+                        </button>
+                      </div>
+
+                      <!-- Choice 2: Eat Single Serving -->
+                      <div style="background: #fefce8; border: 1.5px solid #fde047; border-radius: 6px; padding: 10px; display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                            <strong style="color: #854d0e; font-size: 0.82rem;">2. ⚠️ EAT SINGLE SERVING</strong>
+                            <span style="font-size: 0.68rem; background: #fef9c3; color: #a16207; font-weight: bold; padding: 2px 6px; border-radius: 3px;">MODERATE SPIKE</span>
+                          </div>
+                          <div style="font-size: 0.73rem; color: #713f12; line-height: 1.4;" id="descSingleServingChoice">
+                            <strong>Portion:</strong> Count exact 11 pieces (~28g).<br>
+                            <strong>Impact:</strong> 120 kcal, 26g Net Carbs. Stays under 45g ceiling.<br>
+                            <em>Action:</em> Put box back in cupboard immediately. Drink 12 oz water.
+                          </div>
+                        </div>
+                        <button type="button" class="lcars-btn btn-banana" style="margin-top: 8px; font-size: 0.75rem; padding: 6px 10px; width: 100%; font-weight: bold;" onclick="commitSnackChoice('single')">
+                          ⚠️ CHOOSE: EAT 1 SERVING ONLY (26g CARBS)
+                        </button>
+                      </div>
+
+                      <!-- Choice 3: Eat Whole Package -->
+                      <div style="background: #fef2f2; border: 1.5px solid #fca5a5; border-left: 4px solid #ef4444; border-radius: 6px; padding: 10px; display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                            <strong style="color: #991b1b; font-size: 0.82rem;">3. 🚨 EAT WHOLE PACKAGE</strong>
+                            <span style="font-size: 0.68rem; background: #fee2e2; color: #b91c1c; font-weight: bold; padding: 2px 6px; border-radius: 3px;">SEVERE SPIKE (+91g CARBS)</span>
+                          </div>
+                          <div style="font-size: 0.73rem; color: #7f1d1d; line-height: 1.4;" id="descWholePackageChoice">
+                            <strong>Portion:</strong> Entire 3.5 oz Theater Box (3.5x Servings).<br>
+                            <strong>Impact:</strong> 420 kcal, 91g Net Carbs (84g Sugars).<br>
+                            <strong style="color: #b91c1c;">MANDATORY:</strong> 35-min GLUT4 walk required at 20 min post-snack.
+                          </div>
+                        </div>
+                        <button type="button" class="lcars-btn btn-peach" style="margin-top: 8px; font-size: 0.75rem; padding: 6px 10px; width: 100%; font-weight: bold; background: #ef4444; color: #fff; border-color: #dc2626;" onclick="commitSnackChoice('whole')">
+                          🚨 RECORD WHOLE PACKAGE &amp; START GLUT4
+                        </button>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
                 <!-- Hydration & Biometric Metabolic-Activity Interaction Tile -->
                 <div style="background: #f0f9ff; border: 1.5px solid #7dd3fc; border-radius: 6px; padding: 12px; margin-bottom: 14px;">
                   <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid #bae6fd; padding-bottom: 8px; margin-bottom: 8px;">
@@ -14419,6 +14566,21 @@
 
       if (typeof renderLongitudinalView === 'function') renderLongitudinalView();
       logLCARS(`[✨ GEMINI MEAL COACH] Evaluated: "${data.title}" -> ${data.netCarbs}g Net Carbs (${data.netCarbs <= goals.maxCarbsMeal ? 'GOAL MET' : 'EXCEEDED'}), ${data.calories} kcal`, "rx");
+      if (window._latestMealAnalysis && window._latestMealAnalysis.packaged_snack_matrix) {
+        renderPackagedSnackMatrix(window._latestMealAnalysis.packaged_snack_matrix);
+      } else if (/(?:junior\s*mints?|peppermint\s+crunch|candy|snack|m&m|kitkat|kit\s*kat)/i.test(data.title || "")) {
+        renderPackagedSnackMatrix({
+          is_packaged_snack: true,
+          product_name: data.title,
+          serving_description: "1 Single Serving (11 pieces / 29g)",
+          package_description: "Whole Theater Box (3.5 Servings / 99g)",
+          multiplier: 3.5,
+          single: { calories: 120, net_carbs: 26.0, total_carbs: 26.0, sugars: 24.0, fiber: 0.0, fat: 2.0, gl: "18 (Medium)", spike: "+18 to +25 mg/dL" },
+          whole: { calories: 420, net_carbs: 91.0, total_carbs: 91.0, sugars: 84.0, fiber: 0.0, fat: 7.0, gl: "63 (Severe Hazard)", spike: "+60 to +95 mg/dL" }
+        });
+      } else {
+        renderPackagedSnackMatrix(null);
+      }
       if (typeof renderSafeOptionsDiscovery === "function") renderSafeOptionsDiscovery(window._latestMealAnalysis || data);
     }
 
@@ -22326,6 +22488,151 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
 
       // Automatically trigger Gemini analysis
       analyzeMealWithGemini(mealKey);
+    }
+
+    function renderPackagedSnackMatrix(matrix) {
+      const card = document.getElementById('cardPackagedSnackMatrix');
+      if (!card) return;
+      if (!matrix || !matrix.is_packaged_snack) {
+        card.style.display = 'none';
+        return;
+      }
+      card.style.display = 'block';
+      const sub = document.getElementById('lblPackagedSnackSubtitle');
+      if (sub) sub.textContent = `Physical Package Breakdown: ${matrix.serving_description || "1 Serving"} vs. ${matrix.package_description || "Whole Package"} (${matrix.multiplier || 3.5}x Multiplier)`;
+
+      const s = matrix.single || {};
+      const w = matrix.whole || {};
+
+      const setT = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+      setT('tdServingSize', matrix.serving_description || "11 pieces (29g)");
+      setT('tdPackageSize', matrix.package_description || "3.5 Servings / 3.5 oz (99g)");
+      setT('tdMultiplierDelta', `+${Math.round(((matrix.multiplier || 3.5) - 1)*10)/10}x Extra Portions`);
+
+      setT('tdServingCals', `${s.calories || 120} kcal`);
+      setT('tdPackageCals', `${w.calories || 420} kcal`);
+      setT('tdCalsDelta', `+${(w.calories || 420) - (s.calories || 120)} kcal`);
+
+      setT('tdServingNetCarbs', `${s.net_carbs || 26} g (✅ Meets Goal)`);
+      setT('tdPackageNetCarbs', `${w.net_carbs || 91} g (🚨 +${Math.round((w.net_carbs || 91) - 45)}g OVER CEILING)`);
+      setT('tdNetCarbsDelta', `+${Math.round(((w.net_carbs || 91) - (s.net_carbs || 26))*10)/10} g Net Carbs`);
+
+      setT('tdServingSugars', `${s.sugars || 24} g`);
+      setT('tdPackageSugars', `${w.sugars || 84} g Pure Sugar`);
+      setT('tdSugarsDelta', `+${Math.round(((w.sugars || 84) - (s.sugars || 24))*10)/10} g Sugar Surge`);
+
+      setT('tdServingFiber', `${s.fiber || 0} g`);
+      setT('tdPackageFiber', `${w.fiber || 0} g`);
+
+      setT('tdServingFat', `${s.fat || 2.0} g`);
+      setT('tdPackageFat', `${w.fat || 7.0} g`);
+
+      setT('tdServingGL', `${s.gl || "18 (Medium)"}`);
+      setT('tdPackageGL', `${w.gl || "63 (Severe Spike Hazard)"}`);
+
+      setT('tdServingSpike', `${s.spike || "+18 to +25 mg/dL"}`);
+      setT('tdPackageSpike', `${w.spike || "+60 to +95 mg/dL (ACUTE SPIKE)"}`);
+
+      window._activeSnackMatrix = matrix;
+    }
+
+    async function commitSnackChoice(choice) {
+      if (typeof soundSuccess === 'function') soundSuccess();
+      const matrix = window._activeSnackMatrix;
+      const goals = (typeof getActiveClinicalGoals === 'function') ? getActiveClinicalGoals() : { maxCarbsMeal: 45 };
+
+      if (choice === 'abstain') {
+        const payload = {
+          meal_name: `[Habit Reset] Successfully Abstained from ${matrix?.product_name || "Packaged Snack"} (Saved ${matrix?.whole?.net_carbs || 91}g Carbs)`,
+          calories: 0,
+          net_carbs: 0.0,
+          total_carbs: 0.0,
+          fiber: 0.0,
+          protein: 0.0,
+          fat: 0.0,
+          glycemic_load: "0",
+          source: "HABIT_MODIFICATION_ABSTAIN",
+          gemini_notes: "🏆 HABIT INTERRUPTED: Patient successfully chose NOT to consume the snack. Prevented acute glucose excursion and preserved beta-cell rest.",
+          meets_goal: true
+        };
+        try {
+          await fetch('/api/meal/analyze', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+        } catch (e) {}
+
+        alert(`🏆 HABIT RESET CONFIRMED!
+
+You chose: DO NOT EAT.
+
+• Avoided: ${(matrix?.whole?.calories || 420)} kcal
+• Avoided: ${(matrix?.whole?.net_carbs || 91)}g Net Carbs (${matrix?.whole?.sugars || 84}g Sucrose Sugar)
+• Glycemic Spike: ZERO (+0 mg/dL)
+
+Great job breaking the eating habit loop! Recorded in your clinical telemetry.`);
+        logLCARS(`[HABIT RESET] Chose NOT to consume snack: Saved ${matrix?.whole?.net_carbs || 91}g Carbs!`, "sys");
+        return;
+      }
+
+      if (choice === 'single') {
+        const s = matrix?.single || { calories: 120, net_carbs: 26.0, total_carbs: 26.0, fiber: 0, protein: 0, fat: 2.0, sugars: 24.0 };
+        currentAnalyzedMealData = {
+          title: `${matrix?.product_name || "Junior Mints Peppermint Crunch"} (1 Serving / 11 pieces)`,
+          desc: "Single serving measured portion (11 pieces / ~28g)",
+          calories: s.calories || 120,
+          netCarbs: s.net_carbs || 26.0,
+          totalCarbs: s.total_carbs || 26.0,
+          fiber: s.fiber || 0.0,
+          protein: s.protein || 0.0,
+          fat: s.fat || 2.0,
+          gl: s.gl || "18 (Medium)",
+          meetsGoal: (s.net_carbs || 26.0) <= goals.maxCarbsMeal,
+          tips: [
+            `Portion Controlled: 11 pieces = 120 kcal, 26g Net Carbs (${s.sugars || 24}g Sugars).`,
+            "Box stored away in cupboard. Light 10-15 minute walk keeps glucose stable."
+          ],
+          glut4: "15-Minute Ambulatory Walk: Blunts moderate +20 mg/dL rise into safe baseline."
+        };
+        await submitActiveAnalyzedMealChoice();
+        alert(`⚠️ PORTION CONTROL COMMITTED!
+
+You logged: 1 Serving (11 pieces / ~28g)
+• Calories: 120 kcal
+• Net Carbs: 26g
+
+Please close the box, store it away in the cupboard, and drink 12 oz water.`);
+        return;
+      }
+
+      if (choice === 'whole') {
+        const w = matrix?.whole || { calories: 420, net_carbs: 91.0, total_carbs: 91.0, fiber: 0, protein: 0, fat: 7.0, sugars: 84.0 };
+        currentAnalyzedMealData = {
+          title: `${matrix?.product_name || "Junior Mints Peppermint Crunch"} (Whole 3.5 oz Box Finished)`,
+          desc: "Full theater box finished (3.5 servings / 99g)",
+          calories: w.calories || 420,
+          netCarbs: w.net_carbs || 91.0,
+          totalCarbs: w.total_carbs || 91.0,
+          fiber: w.fiber || 0.0,
+          protein: w.protein || 0.0,
+          fat: w.fat || 7.0,
+          gl: w.gl || "63 (Severe High Hazard)",
+          meetsGoal: false,
+          tips: [
+            `🚨 WHOLE BOX FINISHED: 420 kcal, 91g Net Carbs (${w.sugars || 84}g Sucrose Sugar).`,
+            "Severe postprandial hyperglycemic surge anticipated (+60 to +95 mg/dL above baseline).",
+            "MANDATORY: 35-minute brisk GLUT4 walk required starting 20 minutes post-snack."
+          ],
+          glut4: "<strong>MANDATORY 35-Minute Brisk GLUT4 Walk starting 20 min post-consumption:</strong> Directly clears large carbohydrate load into skeletal muscle without beta-cell strain."
+        };
+        await submitActiveAnalyzedMealChoice();
+        alert(`🚨 WHOLE PACKAGE COMMITTED TO TELEMETRY!
+
+You logged: Entire Box (3.5 Servings / 99g)
+• Calories: 420 kcal
+• Net Carbs: 91g (${w.sugars || 84}g Pure Sugars)
+• Spike Hazard: +60 to +95 mg/dL!
+
+🚶 ACTIVATING GLUT4 TIMER: Begin a 35-minute brisk walk within 20 minutes to blunt this spike!`);
+        return;
+      }
     }
 
     function applyPreChoiceSwap(swapDesc) {
