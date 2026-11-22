@@ -193,6 +193,60 @@ async def capture_all():
                         f.write(goals_bytes)
                 print("  ✓ Captured lcars_slide38_clinical_goals.png")
 
+
+                # 5. Lorenz Poincare Scatter (Light Theme)
+                print("Capturing Lorenz Poincare Scatter crop...")
+                await send("Runtime.evaluate", {
+                    "expression": """
+                        switchTab('reports');
+                        if (typeof openLorenzModal === 'function') openLorenzModal();
+                    """
+                })
+                await asyncio.sleep(1.0)
+                res_lor = await send("Page.captureScreenshot", {"format": "png"})
+                lor_bytes = base64.b64decode(res_lor["data"])
+                for od in out_dirs:
+                    with open(os.path.join(od, "lcars_slide40_lorenz_scatter.png"), "wb") as f:
+                        f.write(lor_bytes)
+                print("  ✓ Captured lcars_slide40_lorenz_scatter.png")
+                # Close modal if open
+                await send("Runtime.evaluate", {"expression": "const m = document.getElementById('modalPoincareLorenz'); if (m) m.style.display = 'none';"})
+
+                # 6. Doctor Consultation View (Light Theme)
+                print("Capturing Doctor Consultation View crop...")
+                await send("Runtime.evaluate", {
+                    "expression": """
+                        switchTab('reports');
+                        const el = document.getElementById('secMetabolicReportingMatrix');
+                        if (el) el.scrollIntoView({ behavior: 'instant', block: 'start' });
+                    """
+                })
+                await asyncio.sleep(1.0)
+                res_doc = await send("Page.captureScreenshot", {"format": "png"})
+                doc_bytes = base64.b64decode(res_doc["data"])
+                for od in out_dirs:
+                    with open(os.path.join(od, "lcars_slide51_doctor_consultation_view.png"), "wb") as f:
+                        f.write(doc_bytes)
+                print("  ✓ Captured lcars_slide51_doctor_consultation_view.png")
+
+                # Replicate canonical screenshots to legacy aliases so no slide displays obsolete images
+                aliases_map = {
+                    "lcars_tab01_fullscan.png": ["lcars_tab_vitals.png", "lcars_slide01_vitals.png", "lcars_tab_fullscan.png"],
+                    "lcars_tab03_cardio.png": ["lcars_tab_metabolic.png", "lcars_tab_vitals_live.png"],
+                    "lcars_tab04_reports.png": ["lcars_tab_reports.png", "lcars_slide25_reports_overview.png"],
+                    "lcars_tab08_medication.png": ["lcars_tab_medication.png"],
+                    "lcars_tab10_config.png": ["lcars_tab_setup.png"],
+                    "lcars_tab11_operations.png": ["lcars_tab_operations.png"],
+                    "lcars_tab12_datalog.png": ["lcars_tab_log.png"],
+                    "lcars_tab13_watch.png": ["lcars_tab_watchfaces.png"]
+                }
+                for src_name, tgt_list in aliases_map.items():
+                    for od in out_dirs:
+                        src_p = os.path.join(od, src_name)
+                        if os.path.exists(src_p):
+                            for tgt in tgt_list:
+                                shutil.copy2(src_p, os.path.join(od, tgt))
+
     finally:
         proc.terminate()
         print("Headless Chrome process terminated.")

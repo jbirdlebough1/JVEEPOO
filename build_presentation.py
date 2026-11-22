@@ -112,15 +112,11 @@ def get_active_tab_num(s, tab_img):
     return 1
 
 def generate_left_panel(s):
-    is_steady = s.get("no_scroll", False) or s.get("num") in ["03", "04", "05", "3", "4", "5"]
-    
     bullets_html = ""
-    for idx, (title, text) in enumerate(s.get("bullets", [])):
-        li_padding = "2px 6px;" if is_steady else "4px 8px;"
-        li_margin = "margin-bottom: 2px;" if is_steady else "margin-bottom: 5px;"
+    for idx, (title, text_val) in enumerate(s.get("bullets", [])):
         bullets_html += f"""
-          <li id="bullet-item-{idx}" class="bullet-item" data-idx="{idx}" style="{li_margin} line-height: 1.25; padding: {li_padding} border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">{title}:</strong> {text}
+          <li id="bullet-item-{idx}" class="bullet-item" data-idx="{idx}" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
+            <strong style="color: #0369a1;">{title}:</strong> {text_val}
           </li>
         """
 
@@ -131,26 +127,18 @@ def generate_left_panel(s):
 
     screenshot_html = ""
     if tab_img:
-        if is_steady:
-            screenshot_html = f"""
-            <!-- Real LCARS Page Under Discussion (Steady Viewport) -->
-            <div class="left-screenshot-card" style="margin-top: 4px; margin-bottom: 2px; border: 1.5px solid #cbd5e1; border-radius: 6px; overflow: hidden; background: #ffffff; box-shadow: 0 2px 6px rgba(0,0,0,0.06); display: flex; flex-direction: column; flex: 1; min-height: 100px; max-height: 160px;">
-              <div class="left-screenshot-viewport" style="text-align: center; background: #ffffff; overflow: hidden; height: 100%; position: relative;">
-                <img src="{tab_img}" onerror="this.src='../{tab_img}'" alt="{tab_title}" style="width: 100%; height: 100%; object-fit: contain; object-position: center;">
-              </div>
-            </div>
-            """
-        else:
-            screenshot_html = f"""
-            <!-- Real LCARS Page Under Discussion (Pure Authentic Light Theme Screenshot) -->
-            <div class="left-screenshot-card" style="margin-top: 6px; margin-bottom: 6px; border: 2px solid #cbd5e1; border-radius: 8px; overflow: hidden; background: #ffffff; box-shadow: 0 4px 14px rgba(0,0,0,0.08); display: flex; flex-direction: column; flex: 1; min-height: 290px;">
-              <!-- Continuous Monotonic Scroll Viewport (Clean Light Background) -->
-              <div class="left-screenshot-viewport" style="text-align: center; background: #ffffff; overflow-y: auto; flex: 1; min-height: 250px; position: relative;">
-                <img src="{tab_img}" onerror="this.src='../{tab_img}'" alt="{tab_title}" style="width: 100%; height: auto; display: block; object-fit: cover; object-position: top center;">
-              </div>
-            </div>
-            """
+        # Full-Area Fill Screenshot Card (Pure Light Theme, Expanded Height for Slides 3/4/5 & All Slides)
+        screenshot_html = f"""
+        <!-- Real LCARS Page Under Discussion (Full Area Fill Viewport) -->
+        <div class="left-screenshot-card" style="margin-top: 6px; margin-bottom: 6px; border: 2px solid #cbd5e1; border-radius: 8px; overflow: hidden; background: #ffffff; box-shadow: 0 4px 14px rgba(0,0,0,0.08); display: flex; flex-direction: column; flex: 1; min-height: 310px;">
+          <!-- Continuous Monotonic Viewport (Clean Light Background) -->
+          <div class="left-screenshot-viewport" style="text-align: center; background: #ffffff; overflow-y: auto; flex: 1; min-height: 290px; position: relative;">
+            <img src="{tab_img}" onerror="this.src='../{tab_img}'" alt="{tab_title}" style="width: 100%; height: auto; display: block; object-fit: cover; object-position: top center;">
+          </div>
+        </div>
+        """
 
+    is_steady = False
     card_overflow = "overflow: hidden;" if is_steady else "overflow-y: auto;"
     card_padding = "padding: 8px 12px;" if is_steady else "padding: 10px 14px;"
     h3_margin = "margin-bottom: 2px; font-size: 0.95rem;" if is_steady else "margin-bottom: 5px; font-size: 1.05rem;"

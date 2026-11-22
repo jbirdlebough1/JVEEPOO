@@ -7659,6 +7659,8 @@
                 <span style="font-size: 0.82rem; color: #475569; display: block; margin-top: 2px;">EXACTLY TWO DAILY INTAKES: MORNING (INTAKE 1) &amp; EVENING (INTAKE 2) • SCROLLABLE DOSAGE LISTS</span>
               </div>
               <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <button class="lcars-btn btn-peach" style="padding: 5px 14px; font-size: 0.82rem; font-weight: bold;" onclick="switchTab('metabolic')">⚡ RETURN TO METABOLIC (TAB 03)</button>
+                <button class="lcars-btn btn-purple" style="padding: 5px 14px; font-size: 0.82rem; font-weight: bold;" onclick="switchTab('diettrades')">🥗 MEAL PLANNER (TAB 02)</button>
                 <button class="lcars-btn btn-green" style="padding: 5px 16px; font-size: 0.82rem; font-weight: bold;" onclick="openAddMedModal()">+ ADD MEDICATION</button>
                 <button class="lcars-btn btn-orange" style="padding: 5px 14px; font-size: 0.82rem; font-weight: bold;" onclick="resetMedicationRegimen()">RESET REGIMEN</button>
                 <button class="lcars-btn btn-blue" style="padding: 5px 14px; font-size: 0.82rem; font-weight: bold;" onclick="switchTab('reports')">VIEW IN TALL CHART (TAB 04)</button>
@@ -8152,7 +8154,7 @@
   <!-- =========================================================================
        EDIT / ADD PRESCRIBED MEDICATION MODAL
        ========================================================================= -->
-  <div id="modalEditMedication" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.82); z-index: 99999; backdrop-filter: blur(4px); align-items: center; justify-content: center;">
+  <div id="modalEditMedication" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.82); z-index: 99999; backdrop-filter: blur(4px); align-items: center; justify-content: center;" onclick="if(event.target === this) closeEditMedModal();">
     <div style="background: var(--theme-card-bg, #080c14); border: 2px solid var(--lcars-orange); border-radius: 10px; width: 92%; max-width: 620px; max-height: 90vh; overflow-y: auto; box-shadow: 0 0 35px rgba(255, 153, 0, 0.3); padding: 22px;">
       
       <!-- Modal Header -->
@@ -8555,80 +8557,119 @@
 
     function switchTab(tabId) {
       soundButtonPress();
+      // Universally dismiss all modal overlays and dialogs
+      const activeModals = ['modalEditMedication', 'timelinePointCardModal', 'modalClinicBloodDraw', 'modalEpicUpload', 'fullScanReportModal'];
+      activeModals.forEach(mId => {
+        const el = document.getElementById(mId);
+        if (el) el.style.display = 'none';
+      });
+      // Reset scroll position to top
+      window.scrollTo(0, 0);
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+
       document.querySelectorAll('.lcars-sidebar .lcars-pill').forEach(btn => btn.classList.remove('active'));
       document.querySelectorAll('.tab-page').forEach(page => page.classList.remove('active-page'));
 
-      if (tabId === 'vitals') {
-        switchTab('fullscan');
-        return;
-      } else if (tabId === 'cardio') {
-        // Cardio is now unified inside Tab 02: METABOLIC
-        switchTab('metabolic');
-        const cardioSec = document.getElementById('secCardioAutonomicBay');
-        if (cardioSec) cardioSec.scrollIntoView({ behavior: 'smooth' });
-        return;
-      } else if (tabId === 'metabolic') {
-        document.getElementById('navTabMetabolic').classList.add('active');
-        document.getElementById('pageMetabolic').classList.add('active-page');
-        initDietFormTime();
-        initExerciseFormTime();
-        render360HealthView();
-            } else if (tabId === 'export') {
-        const btnExp = document.getElementById('navTabExport');
-        const pageExp = document.getElementById('pageExport');
-        if (btnExp) btnExp.classList.add('active');
-        if (pageExp) pageExp.classList.add('active-page');
-        syncExportPageWithConfig();
-      } else if (tabId === 'learning') {
-        const btnLrn = document.getElementById('navTabLearning');
-        const pageLrn = document.getElementById('pageLearning');
-        if (btnLrn) btnLrn.classList.add('active');
-        if (pageLrn) pageLrn.classList.add('active-page');
-        generatePersonalHealthInsights();
-        loadDoctorMentoringNotes();
-} else if (tabId === 'reports') {
-        document.getElementById('navTabReports').classList.add('active');
-        document.getElementById('pageReports').classList.add('active-page');
-        renderReportsView();
-        if (typeof renderTallSynchronizedChart === 'function') renderTallSynchronizedChart(currentTallChartTimeframe);
-      } else if (tabId === 'setup') {
-        document.getElementById('navTabSetup').classList.add('active');
-        document.getElementById('pageSetup').classList.add('active-page');
-      } else if (tabId === 'log') {
-        document.getElementById('navTabLog').classList.add('active');
-        document.getElementById('pageLog').classList.add('active-page');
-      } else if (tabId === 'operations') {
-        document.getElementById('navTabOperations').classList.add('active');
-        document.getElementById('pageOperations').classList.add('active-page');
-      } else if (tabId === 'watchfaces') {
-        setTimeout(initWatchAnalyzer, 50);
-        document.getElementById('navTabWatchFaces').classList.add('active');
-        document.getElementById('pageWatchFaces').classList.add('active-page');
-        queryCurrentWatchFace();
-      } else if (tabId === 'help') {
-        document.getElementById('navTabHelp').classList.add('active');
-        document.getElementById('pageHelp').classList.add('active-page');
-      } else if (tabId === 'diettrades') {
-        document.getElementById('navTabDietTrades').classList.add('active');
-        document.getElementById('pageDietTrades').classList.add('active-page');
-        renderDietTradesView();
-      } else if (tabId === 'medication') {
-        document.getElementById('navTabMedication').classList.add('active');
-        document.getElementById('pageMedication').classList.add('active-page');
-        renderMedicationView();
-      } else if (tabId === 'goals') {
-        document.getElementById('navTabGoals').classList.add('active');
-        document.getElementById('pageGoals').classList.add('active-page');
-        if (typeof loadClinicalGoalsUI === 'function') renderBOMTable('meal01');
-      loadClinicalGoalsUI();
-      } else if (tabId === 'fullscan') {
-        document.getElementById('navTabFullScan').classList.add('active');
-        document.getElementById('pageFullScan').classList.add('active-page');
-        initFullScanView();
+      try {
+        if (tabId === 'vitals') {
+          switchTab('fullscan');
+          return;
+        } else if (tabId === 'cardio') {
+          switchTab('metabolic');
+          const cardioSec = document.getElementById('secCardioAutonomicBay');
+          if (cardioSec) cardioSec.scrollIntoView({ behavior: 'smooth' });
+          return;
+        } else if (tabId === 'metabolic') {
+          const btn = document.getElementById('navTabMetabolic');
+          const page = document.getElementById('pageMetabolic');
+          if (btn) btn.classList.add('active');
+          if (page) page.classList.add('active-page');
+          try { initDietFormTime(); } catch (e) {}
+          try { initExerciseFormTime(); } catch (e) {}
+          try { render360HealthView(); } catch (e) {}
+        } else if (tabId === 'export') {
+          const btnExp = document.getElementById('navTabExport');
+          const pageExp = document.getElementById('pageExport');
+          if (btnExp) btnExp.classList.add('active');
+          if (pageExp) pageExp.classList.add('active-page');
+          try { syncExportPageWithConfig(); } catch (e) {}
+        } else if (tabId === 'learning') {
+          const btnLrn = document.getElementById('navTabLearning');
+          const pageLrn = document.getElementById('pageLearning');
+          if (btnLrn) btnLrn.classList.add('active');
+          if (pageLrn) pageLrn.classList.add('active-page');
+          try { generatePersonalHealthInsights(); } catch (e) {}
+          try { loadDoctorMentoringNotes(); } catch (e) {}
+        } else if (tabId === 'reports') {
+          const btnRep = document.getElementById('navTabReports');
+          const pageRep = document.getElementById('pageReports');
+          if (btnRep) btnRep.classList.add('active');
+          if (pageRep) pageRep.classList.add('active-page');
+          try { renderReportsView(); } catch (e) {}
+          if (typeof renderTallSynchronizedChart === 'function') {
+            try { renderTallSynchronizedChart(currentTallChartTimeframe); } catch (e) {}
+          }
+        } else if (tabId === 'setup') {
+          const btn = document.getElementById('navTabSetup');
+          const page = document.getElementById('pageSetup');
+          if (btn) btn.classList.add('active');
+          if (page) page.classList.add('active-page');
+        } else if (tabId === 'log') {
+          const btn = document.getElementById('navTabLog');
+          const page = document.getElementById('pageLog');
+          if (btn) btn.classList.add('active');
+          if (page) page.classList.add('active-page');
+        } else if (tabId === 'operations') {
+          const btn = document.getElementById('navTabOperations');
+          const page = document.getElementById('pageOperations');
+          if (btn) btn.classList.add('active');
+          if (page) page.classList.add('active-page');
+        } else if (tabId === 'watchfaces') {
+          setTimeout(initWatchAnalyzer, 50);
+          const btn = document.getElementById('navTabWatchFaces');
+          const page = document.getElementById('pageWatchFaces');
+          if (btn) btn.classList.add('active');
+          if (page) page.classList.add('active-page');
+          try { queryCurrentWatchFace(); } catch (e) {}
+        } else if (tabId === 'help') {
+          const btn = document.getElementById('navTabHelp');
+          const page = document.getElementById('pageHelp');
+          if (btn) btn.classList.add('active');
+          if (page) page.classList.add('active-page');
+        } else if (tabId === 'diettrades') {
+          const btn = document.getElementById('navTabDietTrades');
+          const page = document.getElementById('pageDietTrades');
+          if (btn) btn.classList.add('active');
+          if (page) page.classList.add('active-page');
+          try { renderDietTradesView(); } catch (e) {}
+        } else if (tabId === 'medication') {
+          const btn = document.getElementById('navTabMedication');
+          const page = document.getElementById('pageMedication');
+          if (btn) btn.classList.add('active');
+          if (page) page.classList.add('active-page');
+          try { renderMedicationView(); } catch (e) {}
+        } else if (tabId === 'goals') {
+          const btn = document.getElementById('navTabGoals');
+          const page = document.getElementById('pageGoals');
+          if (btn) btn.classList.add('active');
+          if (page) page.classList.add('active-page');
+          try { if (typeof renderBOMTable === 'function') renderBOMTable('meal01'); } catch (e) {}
+          try { if (typeof loadClinicalGoalsUI === 'function') loadClinicalGoalsUI(); } catch (e) {}
+        } else if (tabId === 'fullscan') {
+          const btn = document.getElementById('navTabFullScan');
+          const page = document.getElementById('pageFullScan');
+          if (btn) btn.classList.add('active');
+          if (page) page.classList.add('active-page');
+          try { initFullScanView(); } catch (e) {}
+        }
+      } catch (navErr) {
+        console.error('[TAB NAVIGATION ERROR]', navErr);
       }
+
       // Guarantee instant live telemetry refresh across tab navigation
       if (typeof pollLiveTelemetryChanges === 'function') {
-        pollLiveTelemetryChanges(true);
+        try { pollLiveTelemetryChanges(true); } catch (e) {}
       }
     }
 
@@ -11188,23 +11229,43 @@
         }
       }
 
+      // Group contiguous gap indices into clean translucent blue bars for duration of no data
+      const gapIntervals = [];
+      let activeInterval = null;
       points.forEach((p, idx) => {
-        if (p.isGap || p.val === null || (p.val === 0 && !options.allowZeroValue)) {
-          flushCurveSegment();
-          const prevX = idx > 0 ? points[idx - 1].x : padLeft;
-          const nextX = idx < points.length - 1 ? points[idx + 1].x : padLeft + plotW;
-          const gStart = (p.x + prevX) / 2;
-          const gEnd = (p.x + nextX) / 2;
-          const gW = Math.max(30, gEnd - gStart);
-          gapRectsHtml += `
-            <rect x="${gStart.toFixed(1)}" y="${padTop + 4}" width="${gW.toFixed(1)}" height="${plotH - 8}" fill="rgba(241, 245, 249, 0.75)" stroke="#cbd5e1" stroke-dasharray="3 3" rx="4"/>
-            <text x="${p.x.toFixed(1)}" y="${padTop + 16}" text-anchor="middle" fill="#64748b" font-family="var(--lcars-mono)" font-size="8.5" font-weight="900">⚡ CHARGING GAP (0 DATA)</text>
-          `;
+        const isGap = (p.isGap || p.val === null || (p.val === 0 && !options.allowZeroValue));
+        if (isGap) {
+          if (!activeInterval) activeInterval = { startIdx: idx, endIdx: idx };
+          else activeInterval.endIdx = idx;
         } else {
+          if (activeInterval) {
+            gapIntervals.push(activeInterval);
+            activeInterval = null;
+          }
           currentSegment.push(p);
         }
       });
+      if (activeInterval) gapIntervals.push(activeInterval);
       flushCurveSegment();
+
+      gapIntervals.forEach(interval => {
+        const sP = points[interval.startIdx];
+        const eP = points[interval.endIdx];
+        const prevX = interval.startIdx > 0 ? points[interval.startIdx - 1].x : padLeft;
+        const nextX = interval.endIdx < points.length - 1 ? points[interval.endIdx + 1].x : padLeft + plotW;
+        const startX = (sP.x + prevX) / 2;
+        const endX = (eP.x + nextX) / 2;
+        const barW = Math.max(25, endX - startX);
+        const midX = (startX + endX) / 2;
+        gapRectsHtml += `
+          <!-- Blue Vertical Bar For Duration of No Data -->
+          <rect x="${startX.toFixed(1)}" y="${padTop}" width="${barW.toFixed(1)}" height="${plotH}" fill="rgba(56, 182, 255, 0.18)" stroke="#0284c7" stroke-width="1.2" stroke-dasharray="4 2" rx="3"/>
+          <g>
+            <rect x="${(midX - 60).toFixed(1)}" y="${padTop + 6}" width="120" height="18" fill="#f0f9ff" stroke="#0284c7" stroke-width="1" rx="3"/>
+            <text x="${midX.toFixed(1)}" y="${padTop + 18}" text-anchor="middle" fill="#0369a1" font-family="var(--lcars-mono)" font-size="8" font-weight="900">⚡ NO DATA (OFF-WRIST)</text>
+          </g>
+        `;
+      });
 
       let refLinesHtml = "";
       if (options.referenceLines) {
