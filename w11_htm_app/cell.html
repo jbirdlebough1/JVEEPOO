@@ -695,6 +695,29 @@
         };
       }
 
+      // 01a. Junior Mints Peppermint Crunch (Official Package Label)
+      if (/(?:junior\s*mints?|peppermint\s+crunch)/i.test(t)) {
+        return {
+          meal_name: "Junior Mints Peppermint Crunch (Official FDA Package Label)",
+          vendor_matched: "Junior Mints / Tootsie Roll Industries Official Label",
+          calories: 130,
+          net_carbs: 26.0,
+          total_carbs: 27.0,
+          fiber: 1.0,
+          protein: 0,
+          fat: 3.0,
+          glycemic_load: "18 (Moderate Glycemic Burden)",
+          meets_goal: false,
+          projected_spike: "+45 to +60 mg/dL postprandial rise",
+          gemini_notes: "🍬 OFFICIAL PACKAGE NUTRITION FACTS: 1.1 oz (31g) serving contains 130 kcal, 27g Carbs, 1g Fiber, 24g Total Sugars -> 26g Net Carbs. Fits under 45g ceiling; 20-min post-snack walk recommended to blunt 24g sucrose spike.",
+          trade_alternatives: [
+            "Swap to Zero-Sugar Allulose Dark Peppermint Bark (2g net carbs)",
+            "ChocZero Peppermint White Chocolate Squares (1g net carbs)"
+          ],
+          glut4_recommendation: "<strong>20-Minute Brisk GLUT4 Walk starting 20 min post-snack:</strong> Blunts expected +50 mg/dL spike."
+        };
+      }
+
       // 01. High-Sugar Candy, Peppermint Crunch & Confectionery Handler
       if (/(?:peppermint|crunch|candy|candies|confection|fudge|caramel|toffee|marshmallow|snickers|skittles|jelly bean|lollipop)/i.test(t)) {
         const is2oz = t.includes("2") || t.includes("2 oz");

@@ -13832,6 +13832,24 @@
             ],
             glut4: `<strong>${Math.max(15, Math.min(60, Math.round(netC * 0.75)))}-Minute Brisk GLUT4 Walk starting 20 min post-meal:</strong> Required to blunt postprandial glucose spike.`
           };
+                } else if (/(?:junior\s*mints?|peppermint\s+crunch)/i.test(text)) {
+          data = {
+            title: "Junior Mints Peppermint Crunch (Official FDA Package Label)",
+            desc: rawText,
+            calories: 130,
+            netCarbs: 26.0,
+            totalCarbs: 27.0,
+            fiber: 1.0,
+            protein: 0,
+            fat: 3.0,
+            gl: "18 (Moderate Glycemic Burden)",
+            meetsGoal: false,
+            tips: [
+              "🍬 OFFICIAL PACKAGE NUTRITION FACTS: 1.1 oz (31g) serving contains 130 kcal, 27g Total Carbs, 1g Fiber, 24g Total Sugars -> 26g Net Carbs.",
+              "Meets clinical 45g ceiling. Because 24g is pure rapid sucrose/corn syrup, expect a +45 to +60 mg/dL rise within 30 min."
+            ],
+            glut4: "<strong>20-Minute Brisk GLUT4 Walk starting 20 min post-snack:</strong> Blunts anticipated +50 mg/dL spike back into baseline."
+          };
         } else if (/(?:peppermint|crunch|candy|candies|confection|fudge|caramel|toffee|marshmallow|snickers|skittles|lollipop)/i.test(text)) {
           const is2oz = text.includes("2") || text.includes("2 oz");
           const netC = is2oz ? 52.0 : 39.0;

@@ -561,6 +561,35 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
             "glut4_recommendation": f"<strong>{max(15, min(60, round(net_c * 0.75)))}-Minute Brisk GLUT4 Walk starting 20 min post-meal:</strong> Directly clears excess circulating glucose."
         }
 
+    # 01. Junior Mints Peppermint Crunch (Official Tootsie Roll Industries FDA Label)
+    if ("junior mint" in text or "junior mints" in text) or ("peppermint crunch" in text and ("junior" in text or "mint" in text or "24" in text or "crunch" in text)):
+        return {
+            "status": "SUCCESS",
+            "meal_name": "Junior Mints Peppermint Crunch (Official FDA Package Label)",
+            "vendor_matched": "Junior Mints / Tootsie Roll Industries Official Nutrition Facts",
+            "photo_filename": "meal_junior_mints.jpg",
+            "calories": 130,
+            "net_carbs": 26.0,
+            "total_carbs": 27.0,
+            "fiber": 1.0,
+            "protein": 0.0,
+            "fat": 3.0,
+            "glycemic_load": "18 (Moderate Glycemic Burden)",
+            "meets_goal": False,
+            "projected_spike": "+45 to +60 mg/dL postprandial peak",
+            "trade_alternatives": [
+                "Swap to Zero-Sugar Allulose Dark Peppermint Bark (2g net carbs, zero sugar alcohols)",
+                "ChocZero Peppermint White Chocolate Squares (1g net carbs, monk fruit sweetened)",
+                "Enjoy 1/2 serving (~6-7 pieces = 12g sugars) with a handful of raw walnuts for protein/fat buffer"
+            ],
+            "gemini_notes": "🍬 OFFICIAL PACKAGE NUTRITION FACTS: 1.1 oz (31g) serving contains 130 kcal, 27g Total Carbs, 1g Fiber, 24g Total Sugars -> 26g Net Carbs. Fits within your 45g net carb ceiling, but because 24g is pure fast-acting sucrose/corn syrup, expect a sharp +45 to +60 mg/dL rise within 30 minutes without a follow-up walk.",
+            "tips": [
+                "Official label disclosure: 24g Total Sugars (24g Added Sugars), 26g Net Carbs, 130 kcal.",
+                "Fast liquid-like fondant center absorbs rapidly; pairing with protein/nuts slows glycemic spike."
+            ],
+            "glut4_recommendation": "<strong>20-Minute Brisk GLUT4 Walk starting 20 min post-consumption:</strong> Readily blunts projected +50 mg/dL glycemic excursion back into baseline."
+        }
+
     # 01. High-Sugar Candy, Peppermint Crunch & Confectionery Handler
     if any(w in text for w in ["peppermint", "peppermint crunch", "candy", "candies", "confection", "confectionery", "fudge", "caramel", "toffee", "peppermint bark", "marshmallow", "snickers", "skittles", "jelly bean", "gumdrop", "lollipop", "taffy", "brittle"]):
         oz = 2.0 if ("2" in text or "2 oz" in text) else 1.5
