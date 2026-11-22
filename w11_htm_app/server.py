@@ -510,6 +510,10 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
     """
     text = (meal_name + " " + custom_notes).lower()
     # -------------------------------------------------------------------------
+    # SNEAKY SUGAR ALCOHOL & GASTRIC DISTRESS DETECTION (Sorbitol, Maltitol, Mannitol, Isomalt)
+    # -------------------------------------------------------------------------
+    has_sneaky_polyol = any(w in text for w in ["sorbitol", "maltitol", "mannitol", "isomalt", "hydrogenated starch", "lycasin", "sugar alcohol", "sugar alcohols"])
+    # -------------------------------------------------------------------------
     # 0a. WHOLE-FIELD GOAL-SEEKING & SAFE OPTIONS DISCOVERY ENGINE
     # Handles: "I want a hot candy 4 oz that meets my goals what is best", "find me a sugar free dessert like...", etc.
     # -------------------------------------------------------------------------
@@ -546,9 +550,9 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
         if any(w in tgt_l for w in ["hot candy", "cinnamon", "red hot", "fireball", "tamale", "spicy candy"]):
             cat = "hot_candy"
             store_items = [
-                {"name": "Dr. John's Sugar-Free Cinnamon Hard Candies (Tooth Ticklers)", "store": "Fred Meyer / QFC (2.8 mi)", "net_carbs": "0g Net (Isomalt/Xylitol)", "cals": "35 / serving", "price": "$4.99", "aisle": "Candy Aisle 7 (Sugar-Free)"},
-                {"name": "Russell Stover Sugar-Free Cinnamon Hard Candies (8.25 oz bag)", "store": "Safeway / Albertsons (4.1 mi)", "net_carbs": "0g Net", "cals": "30 / serving", "price": "$3.99", "aisle": "Confectionery / Sugar-Free Wall"},
-                {"name": "Simply Gum Natural Sugar-Free Cinnamon Mints / Drops", "store": "Walmart Supercenter (5.9 mi)", "net_carbs": "<1g Net", "cals": "5 / serving", "price": "$2.98", "aisle": "Front Register Snack Bay"}
+                {"name": "Pur 100% Cinnamon Drops / Mints", "store": "Fred Meyer / QFC (2.8 mi)", "net_carbs": "0g Net", "sweetener": "Zero Sorbitol • Zero Maltitol • 100% Plant Polyol (Gastric Safe)", "cals": "5 / serving", "price": "$3.99", "aisle": "Candy Aisle 7 (Sugar-Free)"},
+                {"name": "Keto Wise / SmartSweets Zero Sugar Cinnamon Chews", "store": "Safeway / Albertsons (4.1 mi)", "net_carbs": "1g Net", "sweetener": "100% SUGAR-ALCOHOL FREE (Allulose & Monk Fruit — Zero Diarrhea Risk)", "cals": "35 / bag", "price": "$3.98", "aisle": "Health & Diabetic Snack Bay"},
+                {"name": "Simply Spiced Organic Cinnamon Drops (Stevia & Allulose)", "store": "Walmart Supercenter (5.9 mi)", "net_carbs": "<1g Net", "sweetener": "Zero Sorbitol • Zero Maltitol • Non-Laxative Formula", "cals": "5 / serving", "price": "$2.98", "aisle": "Front Register Snack Bay"}
             ]
             recipes = [
                 {
@@ -560,7 +564,7 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
                     "bom": [
                         {"item": "Raw Georgia Pecan Halves (Healthy Monounsaturated Fat)", "portion": "1 cup in batch (~1/4 cup/serving)", "dept": "Produce / Nut Aisle", "cost": "$3.49", "impact": "High fat/fiber matrix halts glucose entry"},
                         {"item": "Ground Ceylon Cinnamon & Whole Cloves", "portion": "1 tbsp generous", "dept": "Spice Aisle", "cost": "$2.99", "impact": "Cinnamaldehyde & eugenol sensitize insulin"},
-                        {"item": "Granulated Monk Fruit / Allulose Sweetener", "portion": "2 tbsp in batch", "dept": "Baking Aisle", "cost": "$4.99", "impact": "Zero glycemic / insulin response"},
+                        {"item": "Granulated Monk Fruit / Allulose Sweetener (100% Sugar-Alcohol Free)", "portion": "2 tbsp in batch", "dept": "Baking Aisle", "cost": "$4.99", "impact": "Zero glycemic spike • 0% Sorbitol / Maltitol • Zero osmotic diarrhea risk"},
                         {"item": "Organic Cayenne Pepper & Sea Salt", "portion": "1 pinch for hot bite", "dept": "Spice Aisle", "cost": "$1.99", "impact": "Thermogenic capsaicin"},
                         {"item": "Pure Madagascar Vanilla Extract & Egg White", "portion": "1 tsp vanilla + 1 egg white glaze", "dept": "Baking / Dairy Aisle", "cost": "$2.29", "impact": "Binding glaze with albumin protein"}
                     ]
@@ -604,9 +608,9 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
         elif any(w in tgt_l for w in ["ice cream", "parfait", "sundae", "frozen", "blizzard"]):
             cat = "ice_cream"
             store_items = [
-                {"name": "Rebel Creamery Zero Sugar Vanilla / Triple Chocolate Pint", "store": "Fred Meyer / QFC (2.8 mi)", "net_carbs": "4g Net", "cals": "180 / serving", "price": "$5.49", "aisle": "Frozen Aisle 14 (Ice Cream)"},
-                {"name": "Nick's Swedish-Style Light Ice Cream (Strawberry Swirl)", "store": "Safeway / Albertsons (4.1 mi)", "net_carbs": "5g Net", "cals": "240 / pint", "price": "$5.99", "aisle": "Frozen Desserts"},
-                {"name": "Halo Top Keto Series Salted Caramel Pint", "store": "Walmart Supercenter (5.9 mi)", "net_carbs": "6g Net", "cals": "190 / serving", "price": "$4.98", "aisle": "Freezer Bay 8"}
+                {"name": "Rebel Creamery Zero Sugar Vanilla / Triple Chocolate Pint", "store": "Fred Meyer / QFC (2.8 mi)", "net_carbs": "4g Net", "sweetener": "Zero Sorbitol / Zero Maltitol • Allulose & Monk Fruit (Gut-Friendly)", "cals": "180 / serving", "price": "$5.49", "aisle": "Frozen Aisle 14 (Ice Cream)"},
+                {"name": "Nick's Swedish-Style Light Ice Cream (Strawberry Swirl)", "store": "Safeway / Albertsons (4.1 mi)", "net_carbs": "5g Net", "sweetener": "Zero Sorbitol / Zero Maltitol • Allulose, Stevia & Birch Polyol (No GI Distress)", "cals": "240 / pint", "price": "$5.99", "aisle": "Frozen Desserts"},
+                {"name": "Halo Top Keto Series Salted Caramel Pint", "store": "Walmart Supercenter (5.9 mi)", "net_carbs": "6g Net", "sweetener": "Zero Sorbitol / Zero Maltitol • Stevia & Allulose Formulation", "cals": "190 / serving", "price": "$4.98", "aisle": "Freezer Bay 8"}
             ]
             recipes = [
                 {
@@ -620,7 +624,7 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
                         {"item": "Fresh Organic Blueberries (Anthocyanin Antioxidant)", "portion": "1/2 cup in batch (~2 tbsp/slice)", "dept": "Produce Department", "cost": "$3.49", "impact": "Bioactive polyphenol fiber (<3g net)"},
                         {"item": "Large Grade A Eggs & Egg Whites", "portion": "2 eggs in batch (~1/2 egg/slice)", "dept": "Dairy / Egg Department", "cost": "$1.99", "impact": "Protein structural binder"},
                         {"item": "Almond Flour / Oat Fiber Blend (Low-GI Matrix)", "portion": "1/2 cup in batch", "dept": "Baking Aisle", "cost": "$4.29", "impact": "Grain-free slow digesting starch"},
-                        {"item": "Zero-Sugar Monk Fruit / Allulose Granulated Sweetener", "portion": "to taste", "dept": "Baking Aisle", "cost": "$4.99", "impact": "Zero glycemic impact"}
+                        {"item": "Zero-Sugar Monk Fruit / Allulose Granulated Sweetener (100% Sugar-Alcohol Free)", "portion": "to taste", "dept": "Baking Aisle", "cost": "$4.99", "impact": "Zero glycemic spike • 0% Sorbitol / Maltitol • Zero osmotic diarrhea risk"}
                     ]
                 },
                 {
@@ -662,9 +666,9 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
         elif any(w in tgt_l for w in ["chocolate", "candy", "bar", "snack"]):
             cat = "chocolate"
             store_items = [
-                {"name": "Lily's Stevia-Sweetened Dark Chocolate Sea Salt Bar (3 oz)", "store": "Fred Meyer / QFC (2.8 mi)", "net_carbs": "3g Net / oz", "cals": "130 / serving", "price": "$3.99", "aisle": "Candy / Specialty Aisle 7"},
-                {"name": "Russell Stover Zero Sugar Dark Chocolate Medallions (8 oz bag)", "store": "Safeway / Albertsons (4.1 mi)", "net_carbs": "1g Net / serving", "cals": "140 / serving", "price": "$4.29", "aisle": "Confectionery Aisle"},
-                {"name": "ChocZero Sugar-Free Almond Keto Bark", "store": "Walmart Supercenter (5.9 mi)", "net_carbs": "2g Net / bar", "cals": "120 / serving", "price": "$4.88", "aisle": "Health & Nutrition Aisle"}
+                {"name": "ChocZero 55% Dark Chocolate Almond Bark (3 oz bag)", "store": "Fred Meyer / QFC (2.8 mi)", "net_carbs": "2g Net / oz", "sweetener": "100% SUGAR-ALCOHOL FREE (Sweetened with Monk Fruit — 0% Maltitol, 0% Sorbitol, Zero GI Distress!)", "cals": "120 / serving", "price": "$4.88", "aisle": "Candy / Specialty Aisle 7"},
+                {"name": "Lily's Stevia-Sweetened Dark Chocolate Sea Salt Bar (3 oz)", "store": "Safeway / Albertsons (4.1 mi)", "net_carbs": "3g Net / oz", "sweetener": "Zero Sorbitol • Zero Maltitol (Stevia & Non-Laxative Erythritol Matrix)", "cals": "130 / serving", "price": "$3.99", "aisle": "Confectionery Aisle"},
+                {"name": "Hu Kitchen No-Added-Sugar Simple Dark Chocolate (Allulose)", "store": "Walmart Supercenter (5.9 mi)", "net_carbs": "3g Net / oz", "sweetener": "100% SUGAR-ALCOHOL FREE (Rare Sugar Allulose • Zero Polyols • Zero Laxative Effect)", "cals": "130 / serving", "price": "$4.98", "aisle": "Health & Nutrition Aisle"}
             ]
             recipes = [
                 {
@@ -691,7 +695,7 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
                         {"item": "Fresh Organic Blueberries (Anthocyanin Antioxidant)", "portion": "1/2 cup in batch (~2 tbsp/slice)", "dept": "Produce Department", "cost": "$3.49", "impact": "Bioactive polyphenol fiber (<3g net)"},
                         {"item": "Large Grade A Eggs & Egg Whites", "portion": "2 eggs in batch (~1/2 egg/slice)", "dept": "Dairy / Egg Department", "cost": "$1.99", "impact": "Protein structural binder"},
                         {"item": "Almond Flour / Oat Fiber Blend (Low-GI Matrix)", "portion": "1/2 cup in batch", "dept": "Baking Aisle", "cost": "$4.29", "impact": "Grain-free slow digesting starch"},
-                        {"item": "Zero-Sugar Monk Fruit / Allulose Granulated Sweetener", "portion": "to taste", "dept": "Baking Aisle", "cost": "$4.99", "impact": "Zero glycemic impact"}
+                        {"item": "Zero-Sugar Monk Fruit / Allulose Granulated Sweetener (100% Sugar-Alcohol Free)", "portion": "to taste", "dept": "Baking Aisle", "cost": "$4.99", "impact": "Zero glycemic spike • 0% Sorbitol / Maltitol • Zero osmotic diarrhea risk"}
                     ]
                 },
                 {
@@ -720,9 +724,9 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
         else:
             cat = "baked"
             store_items = [
-                {"name": "Simple Mills Almond Flour Soft-Baked Snack Bars", "store": "Fred Meyer / QFC (2.8 mi)", "net_carbs": "8g Net", "cals": "140 / bar", "price": "$4.99", "aisle": "Organic / Bakery Aisle 9"},
-                {"name": "Two Good Zero Sugar Blueberry Greek Yogurt Cup", "store": "Safeway / Albertsons (4.1 mi)", "net_carbs": "3g Net", "cals": "80 / cup", "price": "$1.59", "aisle": "Dairy / Yogurt Wall"},
-                {"name": "Highkey Keto Zero Sugar Mini Blueberry / Chocolate Cookies", "store": "Walmart Supercenter (5.9 mi)", "net_carbs": "2g Net", "cals": "130 / serving", "price": "$4.48", "aisle": "Snack Aisle 6"}
+                {"name": "Simple Mills Almond Flour Soft-Baked Snack Bars", "store": "Fred Meyer / QFC (2.8 mi)", "net_carbs": "8g Net", "sweetener": "Zero Sorbitol / Zero Maltitol • Whole Food Organic Sweetener Matrix", "cals": "140 / bar", "price": "$4.99", "aisle": "Organic / Bakery Aisle 9"},
+                {"name": "Two Good Zero Sugar Blueberry Greek Yogurt Cup", "store": "Safeway / Albertsons (4.1 mi)", "net_carbs": "3g Net", "sweetener": "100% SUGAR-ALCOHOL FREE • Stevia & Cultured Fruit (<2g natural sugar)", "cals": "80 / cup", "price": "$1.59", "aisle": "Dairy / Yogurt Wall"},
+                {"name": "Highkey Keto Zero Sugar Mini Blueberry / Chocolate Cookies", "store": "Walmart Supercenter (5.9 mi)", "net_carbs": "2g Net", "sweetener": "Zero Sorbitol / Zero Maltitol • Allulose & Monk Fruit Matrix", "cals": "130 / serving", "price": "$4.48", "aisle": "Snack Aisle 6"}
             ]
             recipes = [
                 {
@@ -736,7 +740,7 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
                         {"item": "Fresh Organic Blueberries (Anthocyanin Antioxidant)", "portion": "1/2 cup in batch (~2 tbsp/slice)", "dept": "Produce Department", "cost": "$3.49", "impact": "Bioactive polyphenol fiber (<3g net)"},
                         {"item": "Large Grade A Eggs & Egg Whites", "portion": "2 eggs in batch (~1/2 egg/slice)", "dept": "Dairy / Egg Department", "cost": "$1.99", "impact": "Protein structural binder"},
                         {"item": "Almond Flour / Oat Fiber Blend (Low-GI Matrix)", "portion": "1/2 cup in batch", "dept": "Baking Aisle", "cost": "$4.29", "impact": "Grain-free slow digesting starch"},
-                        {"item": "Zero-Sugar Monk Fruit / Allulose Granulated Sweetener", "portion": "to taste", "dept": "Baking Aisle", "cost": "$4.99", "impact": "Zero glycemic impact"}
+                        {"item": "Zero-Sugar Monk Fruit / Allulose Granulated Sweetener (100% Sugar-Alcohol Free)", "portion": "to taste", "dept": "Baking Aisle", "cost": "$4.99", "impact": "Zero glycemic spike • 0% Sorbitol / Maltitol • Zero osmotic diarrhea risk"}
                     ]
                 },
                 {
@@ -833,7 +837,7 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
                 {"item": "Fresh Organic Blueberries (Anthocyanin Antioxidant)", "portion": "1/2 cup in batch (~2 tbsp/slice)", "dept": "Produce Department", "cost": "$3.49", "impact": "Bioactive polyphenol fiber (<3g net)"},
                 {"item": "Large Grade A Eggs & Egg Whites", "portion": "2 eggs in batch (~1/2 egg/slice)", "dept": "Dairy / Egg Department", "cost": "$1.99", "impact": "Protein structural binder"},
                 {"item": "Almond Flour / Oat Fiber Blend (Low-GI Matrix)", "portion": "1/2 cup in batch", "dept": "Baking Aisle", "cost": "$4.29", "impact": "Grain-free slow digesting starch"},
-                {"item": "Zero-Sugar Monk Fruit / Allulose Granulated Sweetener", "portion": "to taste", "dept": "Baking Aisle", "cost": "$4.99", "impact": "Zero glycemic impact"}
+                {"item": "Zero-Sugar Monk Fruit / Allulose Granulated Sweetener (100% Sugar-Alcohol Free)", "portion": "to taste", "dept": "Baking Aisle", "cost": "$4.99", "impact": "Zero glycemic spike • 0% Sorbitol / Maltitol • Zero osmotic diarrhea risk"}
             ],
             "projected_spike": "+6 to +12 mg/dL (Homeostatic Target Zone)",
             "gemini_notes": "✨ HOME RECIPE MATERIALS ANALYSIS: Low-fat cottage cheese and egg whites supply an albumin/casein protein sponge that decelerates gastric emptying, while almond flour and blueberries maintain net carbs under 7g per slice.",

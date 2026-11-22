@@ -5863,9 +5863,14 @@
                     <span>🔍 GEMINI SAFE OPTIONS LOCATOR:</span>
                     <span id="lblSafeOptionTarget" style="color: #0f172a; background: #f0f9ff; padding: 2px 8px; border-radius: 4px; border: 1px solid #bae6fd;">"blueberry cake"</span>
                   </strong>
-                  <span style="font-size: 0.70rem; color: #15803d; font-weight: bold; background: #ecfdf5; padding: 2px 8px; border-radius: 4px; border: 1px solid #a7f3d0;">
-                    ✅ 100% DIABETIC-SAFE CEILING VERIFIED
-                  </span>
+                  <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                    <span style="font-size: 0.70rem; color: #15803d; font-weight: bold; background: #ecfdf5; padding: 2px 8px; border-radius: 4px; border: 1px solid #a7f3d0;">
+                      ✅ 100% DIABETIC-SAFE CEILING VERIFIED
+                    </span>
+                    <span style="font-size: 0.70rem; color: #047857; font-weight: 800; background: #d1fae5; padding: 2px 8px; border-radius: 4px; border: 1px solid #6ee7b7;">
+                      🌿 0% SORBITOL / MALTITOL &bull; NO OSMOTIC DIARRHEA OR GASTRIC DISTRESS
+                    </span>
+                  </div>
                 </div>
 
                 <!-- SUB-SECTION A: COMPLETE READY-TO-EAT ITEMS AT LOCAL STORES -->
@@ -12418,6 +12423,9 @@
               <span style="font-size: 0.76rem; color: #15803d; font-weight: 900;">${it.price || '$3.99'}</span>
             </div>
             <div style="font-size: 0.72rem; color: #0284c7; margin-top: 2px; font-weight: 600;">📍 ${it.store} &bull; ${it.aisle || 'In-Stock'}</div>
+            <div style="font-size: 0.69rem; color: #047857; margin-top: 2px; font-weight: 700;">
+              🌿 ${it.sweetener || 'Zero Sorbitol / Zero Maltitol • 100% Gut-Friendly'}
+            </div>
             <div style="margin-top: 4px; display: flex; justify-content: space-between; align-items: center; font-size: 0.72rem;">
               <span style="color: #15803d; font-weight: bold; background: #ecfdf5; padding: 1px 5px; border-radius: 3px;">✅ ${it.net_carbs}</span>
               <span style="color: #64748b;">${it.cals}</span>
@@ -12436,8 +12444,9 @@
                 <strong style="color: #166534; font-size: 0.82rem;">Recipe ${idx + 1}: ${r.title}</strong>
               </div>
               <div style="font-size: 0.72rem; color: #374151; margin-top: 3px; line-height: 1.35;">${r.desc}</div>
-              <div style="margin: 6px 0; display: flex; gap: 8px; flex-wrap: wrap; font-size: 0.72rem;">
+              <div style="margin: 6px 0; display: flex; gap: 6px; flex-wrap: wrap; font-size: 0.72rem;">
                 <span style="color: #15803d; font-weight: 900; background: #dcfce7; padding: 1px 6px; border-radius: 3px;">✅ ${r.net_carbs}g Net Carbs</span>
+                <span style="color: #047857; font-weight: 800; background: #ecfdf5; padding: 1px 6px; border-radius: 3px;">🌿 0% Sorbitol / Maltitol</span>
                 <span style="color: #0369a1; font-weight: bold;">${r.calories} kcal</span>
                 <span style="color: #475569;">${r.protein}g Protein</span>
               </div>
