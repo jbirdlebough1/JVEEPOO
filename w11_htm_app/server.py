@@ -343,19 +343,19 @@ DEFAULT_POPULAR_MEALS = [
         "tips_json": json.dumps(["95g Net Carbs exceeds 45g ceiling by +50g.", "Anticipated postprandial glycemic spike: +75 to +90 mg/dL.", "Immediate 35-45 minute brisk GLUT4 walk strongly recommended."])
     },
     {
-        "id": "salmon",
-        "title": "Wild Alaskan Salmon & Roasted Asparagus",
-        "description": "6 oz wild-caught salmon fillet grilled with dill, roasted asparagus spears, and 1/2 baked sweet potato.",
-        "calories": 410,
-        "net_carbs": 22.0,
-        "total_carbs": 28.0,
-        "fiber": 6.0,
-        "protein": 38.0,
-        "fat": 18.0,
-        "glycemic_load": "6 (Low)",
+        "id": "soup_grilled_cheese",
+        "title": "Weekly Vegetable & Meat Soup with Whole Wheat Grilled Cheese, Mini Orange & Apple Slices",
+        "description": "Weekly vegetable & meat soup, whole wheat grilled cheese sandwich, 1 miniature orange (1.5oz), 1/2 apple slices.",
+        "calories": 493,
+        "net_carbs": 34.0,
+        "total_carbs": 43.2,
+        "fiber": 9.2,
+        "protein": 30.6,
+        "fat": 22.2,
+        "glycemic_load": "8 (Low)",
         "meets_goal": 1,
-        "is_custom": 0,
-        "tips_json": json.dumps(["Omega-3 fatty acids reduce systemic inflammation.", "Low glycemic oligosaccharides."])
+        "is_custom": 1,
+        "tips_json": json.dumps(["Vegetable fiber and beef broth proteins blunt postprandial glycemic excursions.", "Sprouted whole wheat and cheddar cheese lipid buffer prevents sharp glucose spike.", "Small fruit portioning (1.5oz orange + 1/2 apple) stays strictly within 45g net carb ceiling."])
     },
     {
         "id": "steak",

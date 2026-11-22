@@ -11468,24 +11468,25 @@
         glut4: "<strong>Mandatory 35-45 Minute Brisk GLUT4 Walk starting 20 min post-meal:</strong> Translocates muscle GLUT4 transporters to cell membrane without insulin, forcing glucose directly into working skeletal muscle.",
         glut4Peak: "PREDICTED PEAK WITHOUT WALK: 185-195 MG/DL | WITH 40-MIN WALK: 148 MG/DL (BLUNTED)"
       },
-      salmon: {
+      soup_grilled_cheese: {
         id: "MEAL-06",
-        title: "Wild Alaskan Salmon, Roasted Asparagus & Half Sweet Potato",
-        desc: "6 oz wild-caught salmon fillet grilled with olive oil and dill, roasted asparagus spears, and 1/2 baked sweet potato.",
-        calories: 410,
-        netCarbs: 22,
-        totalCarbs: 28,
-        fiber: 6,
-        protein: 38,
-        fat: 18,
-        gl: "6 (LOW)",
+        title: "Weekly Vegetable & Meat Soup with Whole Wheat Grilled Cheese, Mini Orange & Apple Slices",
+        desc: "Weekly vegetable & meat soup, whole wheat grilled cheese sandwich, 1 miniature orange (1.5oz), 1/2 apple slices.",
+        calories: 493,
+        netCarbs: 34,
+        totalCarbs: 43.2,
+        fiber: 9.2,
+        protein: 30.6,
+        fat: 22.2,
+        gl: "8 (LOW)",
         meetsGoal: true,
         tips: [
-          "Omega-3 fatty acids reduce systemic inflammation.",
-          "Complex oligosaccharides in asparagus support healthy gut microbiome."
+          "Vegetable fiber and beef broth proteins blunt postprandial glycemic excursions.",
+          "Sprouted whole wheat and cheddar cheese lipid buffer prevents sharp glucose spike.",
+          "Small fruit portioning (1.5oz orange + 1/2 apple) stays strictly within 45g net carb ceiling."
         ],
-        glut4: "15-minute relaxed walk promotes digestion.",
-        glut4Peak: "PREDICTED PEAK: 114 MG/DL (EXCELLENT CONTROL)"
+        glut4: "15-minute post-meal GLUT4 walk promotes peripheral glucose uptake.",
+        glut4Peak: "PREDICTED PEAK: 126 MG/DL (OPTIMAL GLYCEMIC REGULATION)"
       },
       breakfast: {
         id: "MEAL-07",
@@ -13968,9 +13969,28 @@ Patient
         occasions[occ].items.push(m.meal_name || 'Meal');
 
         // Extract food components
-        const comps = m.identified_items || (m.raw_json ? (typeof m.raw_json === 'string' ? JSON.parse(m.raw_json).identified_items : m.raw_json.identified_items) : null);
-        if (comps && Array.isArray(comps)) {
+        let comps = null;
+        try {
+          if (m.identified_items && Array.isArray(m.identified_items)) {
+            comps = m.identified_items;
+          } else if (m.raw_json) {
+            const parsed = typeof m.raw_json === 'string' ? JSON.parse(m.raw_json) : m.raw_json;
+            if (parsed && Array.isArray(parsed.identified_items)) {
+              comps = parsed.identified_items;
+            }
+          }
+        } catch (e) {}
+
+        if (comps && Array.isArray(comps) && comps.length > 0) {
           comps.forEach(c => occasions[occ].foodComponents.push(c.name || c.item || 'Food Item'));
+        } else if (m.meal_name) {
+          // If no raw_json items, split meal title into distinct components if comma-separated
+          const cleanName = m.meal_name.replace(/\[[^\]]+\]/g, '').trim();
+          if (cleanName.includes(',')) {
+            cleanName.split(',').forEach(p => occasions[occ].foodComponents.push(p.trim()));
+          } else {
+            occasions[occ].foodComponents.push(cleanName);
+          }
         }
       });
 
@@ -19697,8 +19717,8 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
           input.value = "Dick's Drive-In: Single Deluxe Burger";
         } else if (mealKey === 'chipotle') {
           input.value = "Chipotle Burrito Bowl with chicken, black beans, brown rice, fajita veggies, guacamole";
-        } else if (mealKey === 'salmon') {
-          input.value = "Wild Pacific Salmon, roasted asparagus, half sweet potato";
+        } else if (mealKey === 'soup_grilled_cheese') {
+          input.value = "Weekly vegetable and meat soup, whole wheat grilled cheese sandwich, 1 miniature orange (1.5oz), 1/2 apple slices";
         } else if (mealKey === 'steak') {
           input.value = "Grilled Sirloin Steak, garlic broccoli, side salad";
         } else if (mealKey === 'meal01') {

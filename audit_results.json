@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-11-21T16:14:04.410951",
+  "timestamp": "2026-11-21T16:56:45.045247",
   "total": 45,
   "passed": 45,
   "failed": 0,
@@ -10,7 +10,7 @@
       "category": "Integrity",
       "name": "Dual-File Byte-for-Byte Equality",
       "passed": true,
-      "details": "Root: 1139322 bytes == App: 1139322 bytes"
+      "details": "Root: 1140368 bytes == App: 1140368 bytes"
     },
     {
       "id": "TC-00",
@@ -143,7 +143,7 @@
       "category": "Goals Report",
       "name": "Goals Compliance Report Endpoint (/api/goals/compliance-report)",
       "passed": true,
-      "details": "11 events, 100.0% compliance"
+      "details": "6 events, 100.0% compliance"
     },
     {
       "id": "TC-20",
