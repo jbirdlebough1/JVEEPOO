@@ -58,7 +58,8 @@ async def test_preview_and_charts():
                         'tallChartSvgContainer', 'svgStepGlucoseCorrelator', 'curveTimelineGlucose',
                         'curveTimelineA1C', 'curveTimelineTemp', 'curveTimelineHeartRate',
                         'curveTimelineBP', 'curveTimelineSpO2', 'curveTimelineHRV',
-                        'svgLorenzScatter', 'curveTimelineSleep', 'curveTimelineExercise'
+                        'svgLorenzScatter', 'curveTimelineSleep', 'curveTimelineExercise',
+                        'curveTimelineECG', 'curveTimelineMET', 'curveTimelineBloodComp', 'curveTimelineBodyComp'
                     ];
 
                     const results = {};

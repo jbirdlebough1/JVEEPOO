@@ -73,7 +73,7 @@ TAB_MAP = [
     (10, "10-CONFIG", "images/lcars_tab10_config.png"),
     (11, "11-OPERATIONS", "images/lcars_tab11_operations.png"),
     (12, "12-DATA LOG", "images/lcars_tab12_datalog.png"),
-    (13, "13-WATCH FACES", "images/lcars_tab13_watchfaces.png")
+    (13, "13-WATCH", "images/lcars_tab13_watch.png")
 ]
 
 def get_active_tab_num(s, tab_img):

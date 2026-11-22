@@ -22,7 +22,7 @@ TABS_TO_CAPTURE = [
     {"tab": "setup", "file": "lcars_tab10_config.png", "title": "Tab 10 Configuration"},
     {"tab": "operations", "file": "lcars_tab11_operations.png", "title": "Tab 11 Operations & Hardware"},
     {"tab": "log", "file": "lcars_tab12_datalog.png", "title": "Tab 12 Data Log & Packets"},
-    {"tab": "watchfaces", "file": "lcars_tab13_watchfaces.png", "title": "Tab 13 Watch Faces & OTA"}
+    {"tab": "watchfaces", "file": "lcars_tab13_watch.png", "title": "Tab 13 Watch Hardware & Analyzer"}
 ]
 
 async def capture_all():
