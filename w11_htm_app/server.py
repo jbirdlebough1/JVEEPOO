@@ -509,6 +509,44 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
     offers harm-reduction trade choices, and prescribes GLUT4 walking activity.
     """
     text = (meal_name + " " + custom_notes).lower()
+
+    # Kit Kat wafer bar handler
+    if "kit kat" in text or "kitkat" in text:
+        oz = 6.0 if ("6" in text or "6 oz" in text) else 1.5
+        mult = oz / 1.5
+        cals = round(218 * mult)
+        carbs = round(27.0 * mult, 1)
+        fiber = round(1.0 * mult, 1)
+        net_c = round(carbs - fiber, 1)
+        fat = round(11.0 * mult, 1)
+        pro = round(2.7 * mult, 1)
+        gl = min(48, round(12 * mult))
+        return {
+            "status": "SUCCESS",
+            "meal_name": f"Kit Kat Crisp Wafers in Milk Chocolate Bar ({oz:.1f} oz portion)",
+            "description": f"Kit Kat Crisp Wafers in Milk Chocolate ({oz:.1f} oz) — High sucrose confection with refined wheat flour wafers and milk chocolate glaze.",
+            "calories": cals,
+            "net_carbs": net_c,
+            "total_carbs": carbs,
+            "fiber": fiber,
+            "protein": pro,
+            "fat": fat,
+            "glycemic_load": f"{gl} (HIGH SPIKE HAZARD)",
+            "estimated_cost": f"${3.49 * mult:.2f}",
+            "meets_goal": False,
+            "trade_alternatives": [
+                "ChocZero / Lily's No Added Sugar Crispy Milk Chocolate Bar (2g net carbs, sweetened with Allulose & Monk Fruit — zero diarrhea risk)",
+                "Zero-Sugar Dark Chocolate Almond Bark (3g net carbs, high magnesium & healthy fats)",
+                "Single 1 oz square of 85% Dark Chocolate paired with raw walnuts (4g net carbs)"
+            ],
+            "gemini_notes": f"🚨 CLINICAL POSTPRANDIAL HAZARD: {oz:.1f} oz Kit Kat bar contains {net_c}g fast net carbs ({carbs}g sucrose/refined flour). Expected glycemic excursion: +80 to +110 mg/dL above baseline within 45 minutes, exceeding safe 140 mg/dL ceiling. Recommend immediate harm-reduction trade.",
+            "tips": [
+                f"High sucrose and refined starch rapidly hydrolyze into glucose ({net_c}g net carbs).",
+                "Swap to Lily's or ChocZero monk fruit-sweetened chocolate for identical crunch with zero glycemic spike.",
+                "If consumed, initiate a 30-minute brisk GLUT4 walking protocol within 20 minutes to blunt excursion."
+            ],
+            "glut4_recommendation": f"<strong>URGENT 30-Minute Brisk GLUT4 Walk starting 20 min post-consumption:</strong> Required to blunt projected +{min(110, round(net_c * 0.9))} mg/dL glycemic excursion back into safe target range."
+        }
     # -------------------------------------------------------------------------
     # SNEAKY SUGAR ALCOHOL & GASTRIC DISTRESS DETECTION (Sorbitol, Maltitol, Mannitol, Isomalt)
     # -------------------------------------------------------------------------
@@ -2694,6 +2732,18 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
 
                 # Analyze meal with Gemini multimodal logic
                 analysis = analyze_meal_with_gemini_backend(meal_name, notes, photo_data)
+                if not analysis.get("status"):
+                    analysis["status"] = "SUCCESS"
+                
+                # Check for sneaky sugar alcohols (Sorbitol, Maltitol, Mannitol, Isomalt)
+                polyol_words = ["sorbitol", "maltitol", "mannitol", "isomalt", "hydrogenated starch", "lycasin", "sugar alcohol", "sugar alcohols"]
+                if any(w in desc.lower() or w in meal_name.lower() for w in polyol_words):
+                    analysis["meets_goal"] = False
+                    polyol_warn = "⚠️ SNEAKY SUGAR ALCOHOL WARNING: Sorbitol, maltitol, mannitol, and hydrogenated polyols are poorly absorbed in the small intestine, drawing osmotic water into the colon and causing severe bloating, cramping, and osmotic diarrhea in diabetic patients. Recommend 100% Sugar-Alcohol Free alternatives sweetened with pure allulose, stevia, or monk fruit."
+                    if "tips" not in analysis or not isinstance(analysis["tips"], list):
+                        analysis["tips"] = []
+                    analysis["tips"].insert(0, polyol_warn)
+                    analysis["gemini_notes"] = polyol_warn + " " + analysis.get("gemini_notes", "")
 
                 # Commit to SQLite DB if not analyze_only
                 analyze_only = payload.get("analyze_only", False) or (self.path == "/api/meal/analyze" and not payload.get("commit", False))
