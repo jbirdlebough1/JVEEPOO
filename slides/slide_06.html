@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>LCARS 5010 - Slide 06: The FITAOS 5150 Smartwatch & 8 Biometric Measurements</title>
+  <title>LCARS 5010 - Slide 06: Smartwatch Hardware: 15 Health Dial Functions & Sample Rate Dynamics</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
@@ -88,7 +88,7 @@
     <div class="slide-header">
       <div>
         <div class="slide-module">Module 1: Introduction & Clinical Scope</div>
-        <div class="slide-title">The FITAOS 5150 Smartwatch & 8 Biometric Measurements</div>
+        <div class="slide-title">Smartwatch Hardware: 15 Health Dial Functions & Sample Rate Dynamics</div>
       </div>
       <div class="slide-badge">SLIDE 06 / 56</div>
     </div>
@@ -97,40 +97,24 @@
       
       <!-- High-Contrast Dynamic Content Card -->
       <div class="content-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #0284c7; padding: 10px 14px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto;">
-        <h3 style="color: #0284c7; font-weight: 800; border-bottom: 2px solid #e2e8f0; padding-bottom: 4px; margin-bottom: 5px; font-size: 1.05rem; text-transform: uppercase;">FITAOS 5150: 8 CONTINUOUS BIOMETRIC MEASUREMENTS</h3>
-        <p style="color: #334155; font-weight: 500; margin-bottom: 5px; font-size: 0.85rem; line-height: 1.35;">The FITAOS 5150 wearable biosensing array continuously captures 8 distinct physiological channels over Bluetooth Low Energy directly to your PC.</p>
+        <h3 style="color: #0284c7; font-weight: 800; border-bottom: 2px solid #e2e8f0; padding-bottom: 4px; margin-bottom: 5px; font-size: 1.05rem; text-transform: uppercase;">15 HEALTH DIAL FUNCTIONS • REMOTE VS. USER-INITIATED MATRIX</h3>
+        <p style="color: #334155; font-weight: 500; margin-bottom: 5px; font-size: 0.85rem; line-height: 1.35;">Comprehensive breakdown of all 15 health functions on the watch dial, detailing autonomous background streaming, remote command opcodes, physical electrode contact requirements, and the critical 1-second high-frequency sample rate shift during workouts.</p>
         <ul class="bullets-list" style="padding-left: 0; list-style-type: none; margin-bottom: 3px; color: #1e293b; font-size: 0.80rem;">
           
           <li id="bullet-item-0" class="bullet-item" data-idx="0" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">1. Optical Blood Glucose (mg/dL):</strong> Non-invasive multi-wavelength PPG capillary tonometry calculating real-time glucose and eA1C.
+            <strong style="color: #0369a1;">1. Autonomous Background Streaming (8 Channels):</strong> Glucose (0x75), BP (0x01), Temp (0x78), HR (0x02), SpO2 (0x60), MET (0x07), Activity (0x08), and Sleep (0xE0) stream automatically every 5 minutes.
           </li>
         
           <li id="bullet-item-1" class="bullet-item" data-idx="1" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">2. Dual-Matrix Temperature (°F):</strong> Dual NTC contact thermistors measuring core circadian nadir against cutaneous skin temperature.
+            <strong style="color: #0369a1;">2. User-Initiated Contact Tests (ECG & BIA):</strong> Lead-I ECG (0x19) and Body Composition BIA (0x85) require the patient to place their opposite fingers on the right bezel electrode to complete the physical circuit.
           </li>
         
           <li id="bullet-item-2" class="bullet-item" data-idx="2" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">3. Ambulatory Blood Pressure (mmHg):</strong> Pulse Wave Transit Time (PWTT) hemodynamics tracking ambulatory systolic and diastolic dipping.
+            <strong style="color: #0369a1;">3. Dynamic Workout Sample Rate Shift (1 Hz):</strong> Engaging Workout mode on the dial triggers a critical firmware shift: telemetry sample rate increases from 5-min periodic to 1-second continuous dynamic streaming!
           </li>
         
           <li id="bullet-item-3" class="bullet-item" data-idx="3" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">4. Arterial Oxygenation (SpO2 %):</strong> Dual red and infrared optical spectroscopy monitoring oxygen saturation and nocturnal hypoxia.
-          </li>
-        
-          <li id="bullet-item-4" class="bullet-item" data-idx="4" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">5. Continuous Heart Rate (BPM):</strong> High-frequency green optical tonometry tracking resting baseline and active cardiovascular load.
-          </li>
-        
-          <li id="bullet-item-5" class="bullet-item" data-idx="5" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">6. Autonomic HRV & Stress (ms):</strong> Heart rate variability SDNN metrics assessing sympatho-vagal balance and physiological recovery.
-          </li>
-        
-          <li id="bullet-item-6" class="bullet-item" data-idx="6" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">7. Physical Cadence & Steps:</strong> Tri-axial accelerometer logging step cadence, daily energy expenditure, and GLUT4 exercise walks.
-          </li>
-        
-          <li id="bullet-item-7" class="bullet-item" data-idx="7" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">8. Multi-Stage Sleep Architecture:</strong> Detailed nocturnal tracking separating deep restorative sleep, light sleep, REM, and awakenings.
+            <strong style="color: #0369a1;">4. Autonomous Nocturnal & Autonomic Analytics:</strong> Nocturnal Somnography (0xE0), Apnea Hypoxia Index (0x61), Basal Thermal Cycle Tracking (0x88), and HRV Poincaré Lorenz scatter (0x80) process automatically.
           </li>
         
         </ul>
@@ -139,7 +123,7 @@
         <div class="left-screenshot-card" style="margin-top: 6px; margin-bottom: 6px; border: 2px solid #cbd5e1; border-radius: 8px; overflow: hidden; background: #ffffff; box-shadow: 0 4px 14px rgba(0,0,0,0.08); display: flex; flex-direction: column; flex: 1; min-height: 310px;">
           <!-- Continuous Monotonic Viewport (Clean Light Background) -->
           <div class="left-screenshot-viewport" style="text-align: center; background: #ffffff; overflow-y: auto; flex: 1; min-height: 290px; position: relative;">
-            <img src="images/lcars_tab_vitals.png" onerror="this.src='../images/lcars_tab_vitals.png'" alt="FITAOS 5150 HARDWARE TRANSPONDER & LCARS CONSOLE" style="width: 100%; height: auto; display: block; object-fit: cover; object-position: top center;">
+            <img src="images/lcars_tab01_fullscan.png" onerror="this.src="images/lcars_tab01_fullscan.png"" alt="FITAOS 5150 HARDWARE TRANSPONDER & LCARS CONSOLE" style="width: 100%; height: auto; display: block; object-fit: cover; object-position: top center;">
           </div>
         </div>
         
@@ -158,7 +142,7 @@
             <!-- FITAOS 5150 Watch Photo -->
             <div style="text-align: center; background: #ffffff; border-radius: 8px; padding: 8px; border: 1.5px solid #cbd5e1; display: flex; flex-direction: column; align-items: center; justify-content: space-between;">
               <div style="height: 180px; display: flex; align-items: center; justify-content: center; width: 100%;">
-                <img src="images/watch_fitaos5150.jpg" onerror="this.src='../images/watch_fitaos5150.jpg'" alt="FITAOS 5150 Smartwatch Transponder" style="max-height: 175px; max-width: 100%; object-fit: contain; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+                <img src="images/lcars_tab01_fullscan.png" onerror="this.src="images/lcars_tab01_fullscan.png"" alt="FITAOS 5150 Smartwatch Transponder" style="max-height: 175px; max-width: 100%; object-fit: contain; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
               </div>
               <div style="margin-top: 6px;">
                 <div style="color: #38bdf8; font-size: 0.78rem; font-weight: 800; font-family: monospace;">FITAOS 5150 HARDWARE</div>
@@ -171,7 +155,7 @@
             <!-- LCARS 5010 Workstation Console Screenshot -->
             <div style="text-align: center; background: #ffffff; border-radius: 8px; padding: 8px; border: 1.5px solid #cbd5e1; display: flex; flex-direction: column; align-items: center; justify-content: space-between;">
               <div style="height: 180px; display: flex; align-items: center; justify-content: center; width: 100%;">
-                <img src="images/lcars_screenshot.jpg" onerror="this.src='../images/lcars_screenshot.jpg'" alt="LCARS 5010 Clinical Workstation Console" style="max-height: 175px; max-width: 100%; object-fit: contain; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+                <img src="images/lcars_tab01_fullscan.png" onerror="this.src="images/lcars_tab01_fullscan.png"" alt="LCARS 5010 Clinical Workstation Console" style="max-height: 175px; max-width: 100%; object-fit: contain; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
               </div>
               <div style="margin-top: 6px;">
                 <div style="color: #22c55e; font-size: 0.78rem; font-weight: 800; font-family: monospace;">LCARS 5010 CONSOLE</div>
@@ -195,7 +179,7 @@
         
         </div>
         <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.76rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
-          <strong style="color: #15803d;">Key Takeaway:</strong> 8 simultaneous clinical measurements stream continuously from FITAOS 5150 and compatible Veepoo wearables.
+          <strong style="color: #15803d;">Key Takeaway:</strong> 15 health dial functions audited: 8 autonomous background streams, 3 user-initiated physical electrode tests, and a 1-second dynamic sample rate shift in Workout mode.
         </div>
       </div>
     

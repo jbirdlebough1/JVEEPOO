@@ -160,7 +160,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 11: In-Clinic Venous Blood Draw Calibration & Baseline Anchor
+### Slide 11: In-Clinic Venous Blood Draw Calibration & Baseline Anchor and 1-Click 164 mg/dL Watch Dial Parity Synchronizer
 **Module:** Module 2: Physician-Patient Alignment & Calibration  
 **Card Title:** DOCTOR-CONFIGURED CLINICAL CALIBRATION ANCHOR  
 
@@ -340,7 +340,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 23: Tab 02: Meal Planner – 06-ADA Decision Flowchart & Safe Options
+### Slide 23: Tab 02: Meal Planner – 06-ADA Decision Flowchart & Safe Options and Sultan 98294 Local Grocer Sourcing
 **Module:** Module 4: Tab 03 METABOLIC Console & Behavioral Science  
 **Card Title:** ADA 1-TO-1 CARBOHYDRATE TRADES & GEMINI-POWERED RECIPES  
 
@@ -402,7 +402,7 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 27: Correlating Behavioral Habits with Direct Sensor Evidence
+### Slide 27: Correlating Behavioral Habits with Direct Sensor Evidence – Packaged Snack 3-Choice Decision Matrix & GLUT4 Kinetic Mitigation
 **Module:** Module 5: The Diabetes Learning Engine  
 **Card Title:** CORRELATING HABITS WITH DIRECT SENSOR EVIDENCE  
 
