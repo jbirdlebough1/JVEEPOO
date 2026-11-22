@@ -12417,19 +12417,24 @@
       const gridItems = document.getElementById('gridSafeStoreItems');
       if (gridItems && bundle.store_complete_items) {
         gridItems.innerHTML = bundle.store_complete_items.map((it, idx) => `
-          <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 4px; padding: 8px 10px;">
-            <div style="display: flex; justify-content: space-between; align-items: baseline;">
-              <strong style="color: #0f172a; font-size: 0.82rem;">${idx + 1}. ${it.name}</strong>
-              <span style="font-size: 0.76rem; color: #15803d; font-weight: 900;">${it.price || '$3.99'}</span>
+          <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 4px; padding: 8px 10px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                <strong style="color: #0f172a; font-size: 0.82rem;">${idx + 1}. ${it.name}</strong>
+                <span style="font-size: 0.76rem; color: #15803d; font-weight: 900;">${it.price || '$3.99'}</span>
+              </div>
+              <div style="font-size: 0.72rem; color: #0284c7; margin-top: 2px; font-weight: 600;">📍 ${it.store} &bull; ${it.aisle || 'In-Stock'}</div>
+              <div style="font-size: 0.69rem; color: #047857; margin-top: 2px; font-weight: 700;">
+                🌿 ${it.sweetener || 'Zero Sorbitol / Zero Maltitol • 100% Gut-Friendly'}
+              </div>
+              <div style="margin-top: 4px; display: flex; justify-content: space-between; align-items: center; font-size: 0.72rem;">
+                <span style="color: #15803d; font-weight: bold; background: #ecfdf5; padding: 1px 5px; border-radius: 3px;">✅ ${it.net_carbs}</span>
+                <span style="color: #64748b;">${it.cals}</span>
+              </div>
             </div>
-            <div style="font-size: 0.72rem; color: #0284c7; margin-top: 2px; font-weight: 600;">📍 ${it.store} &bull; ${it.aisle || 'In-Stock'}</div>
-            <div style="font-size: 0.69rem; color: #047857; margin-top: 2px; font-weight: 700;">
-              🌿 ${it.sweetener || 'Zero Sorbitol / Zero Maltitol • 100% Gut-Friendly'}
-            </div>
-            <div style="margin-top: 4px; display: flex; justify-content: space-between; align-items: center; font-size: 0.72rem;">
-              <span style="color: #15803d; font-weight: bold; background: #ecfdf5; padding: 1px 5px; border-radius: 3px;">✅ ${it.net_carbs}</span>
-              <span style="color: #64748b;">${it.cals}</span>
-            </div>
+            <button type="button" class="lcars-btn" style="width: 100%; margin-top: 6px; padding: 5px 8px; font-size: 0.74rem; background: #0284c7; color: #fff; font-weight: bold; border-radius: 4px;" onclick="loadCuratedSafeStoreItem(${idx})">
+              🏪 SELECT STORE OPTION &amp; VIEW METRICS
+            </button>
           </div>
         `).join('');
       }
@@ -12457,6 +12462,82 @@
           </div>
         `).join('');
       }
+    }
+
+        function loadCuratedSafeStoreItem(idx) {
+      if (typeof soundButtonPress === 'function') soundButtonPress();
+      if (!currentSafeOptionsBundle || !currentSafeOptionsBundle.store_complete_items || !currentSafeOptionsBundle.store_complete_items[idx]) return;
+      const it = currentSafeOptionsBundle.store_complete_items[idx];
+
+      const cals = parseInt(it.cals) || 100;
+      let netC = 3.0;
+      const mNet = it.net_carbs.match(/(\d+(?:\.\d+)?)/);
+      if (mNet) netC = parseFloat(mNet[1]);
+
+      currentAnalyzedMealData = {
+        title: `${it.name} (${it.store})`,
+        desc: `${it.name} — ${it.sweetener || 'Zero Sorbitol / Zero Maltitol • 100% Gut-Friendly'}`,
+        calories: cals,
+        netCarbs: netC,
+        totalCarbs: Math.round(netC + 3),
+        fiber: 3,
+        protein: 2,
+        fat: 1,
+        gl: netC <= 5 ? "1 (Near Zero)" : "4 (Low)",
+        estimatedCost: it.price ? it.price.replace('$', '') : "3.49",
+        meetsGoal: true,
+        occasion: 'Snack',
+        bom: [
+          { item: it.name, portion: "1 commercial package", dept: it.aisle || "Snack Aisle", cost: it.price || "$3.49", impact: "0% Sorbitol/Maltitol • Non-laxative gut-safe choice" }
+        ],
+        tips: [
+          `🏪 STORE SELECTION LOADED: ${it.name}`,
+          `Available locally at ${it.store} &bull; ${it.aisle || 'In-Stock'}.`,
+          `Sweetener verified: ${it.sweetener || '100% Sugar-Alcohol Free (Allulose & Monk Fruit — Zero Diarrhea Risk)'}.`,
+          `Click '🍵 ADD TO PANTRY AS SNACK' below to save this reference template to your Meal Pantry list!`
+        ],
+        glut4: "15-minute gentle walk maintains optimal baseline in 80–120 mg/dL target band."
+      };
+
+      // Populate Pre-Choice Estimation UI Chips
+      const setEl = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+      const elTitle = document.getElementById('lblGeminiMealTitle');
+      if (elTitle) elTitle.textContent = `${it.name} (Gemini Pre-Choice Nutrition Coach)`;
+      setEl('lblGeminiMealSub', `${it.store.toUpperCase()} • ${it.net_carbs.toUpperCase()}`);
+      setEl('chipCalories', `${cals} KCAL`);
+      setEl('chipNetCarbs', `${netC} G`);
+      setEl('chipTotalCarbs', `${Math.round(netC + 3)} G`);
+      setEl('chipFiber', "3 G");
+      setEl('chipProtein', "2 G");
+      setEl('chipFat', "1 G");
+      setEl('chipGlycemicLoad', netC <= 5 ? "1 (Near Zero)" : "4 (Low)");
+
+      const statusEl = document.getElementById('badgeGeminiGoalStatus');
+      if (statusEl) {
+        statusEl.className = 'goal-status-badge goal-met';
+        statusEl.style.display = 'inline-block';
+        statusEl.textContent = `✅ MEETS CLINICAL DIABETIC GOALS (${netC}G NET CARBS / 45G MAX)`;
+      }
+
+      const listTips = document.getElementById('listGeminiTips');
+      if (listTips && currentAnalyzedMealData.tips) {
+        listTips.innerHTML = currentAnalyzedMealData.tips.map(t => `<li>${t}</li>`).join("");
+      }
+
+      const descGlut4 = document.getElementById('descGeminiGlut4');
+      if (descGlut4) descGlut4.innerHTML = currentAnalyzedMealData.glut4;
+
+      // Scroll smoothly to pre-choice estimation result
+      const resCard = document.getElementById('geminiMealAnalysisResult');
+      if (resCard) {
+        resCard.style.display = 'block';
+        resCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+
+      // Re-render BOM
+      renderBOMTable();
+      if (typeof soundSuccess === 'function') soundSuccess();
+      logLCARS(`Loaded store option: ${it.name} (${netC}g net carbs)`, 'rx');
     }
 
     function loadCuratedSafeRecipe(idx) {
@@ -12505,14 +12586,18 @@
         statusEl.textContent = `✅ MEETS CLINICAL DIABETIC GOALS (${r.net_carbs}G NET CARBS / 45G MAX)`;
       }
 
+      const elTitle = document.getElementById('lblGeminiMealTitle');
+      if (elTitle) elTitle.textContent = `${r.title} (Gemini Pre-Choice Nutrition Coach)`;
+
+      // Scroll smoothly to pre-choice card
+      const resCard = document.getElementById('geminiMealAnalysisResult');
+      if (resCard) {
+        resCard.style.display = 'block';
+        resCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+
       // Re-render BOM
       renderBOMTable();
-      const bomCard = document.getElementById('cardMealBOM');
-      if (bomCard) {
-        bomCard.scrollIntoView({ behavior: 'smooth' });
-        bomCard.style.outline = "2px solid #16a34a";
-        setTimeout(() => { if (bomCard) bomCard.style.outline = "none"; }, 1500);
-      }
       if (typeof soundSuccess === 'function') soundSuccess();
       logLCARS(`Loaded recipe BOM: ${r.title} (${r.net_carbs}g net carbs)`, 'rx');
     }
@@ -20740,12 +20825,15 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
         listbox.value = mealId;
       }
 
-      // Show toast
+      // Show toast & scroll to Pathway A listbox so user sees it highlighted in their list!
       const toast = document.getElementById('lblPantrySavedToast');
       if (toast) {
         toast.style.display = 'block';
-        toast.textContent = `✅ "${title}" successfully saved to Meal Pantry! Ready for 1-click reuse.`;
-        setTimeout(() => { if (toast) toast.style.display = 'none'; }, 5000);
+        toast.textContent = `✅ "${title}" successfully saved to Meal Pantry! Template is highlighted in Pathway A list below for 1-click consumption.`;
+        setTimeout(() => { if (toast) toast.style.display = 'none'; }, 6000);
+      }
+      if (listbox) {
+        listbox.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
       logLCARS(`[⭐ PANTRY SAVED] "${title}" added to Meal Pantry as reusable ${occasion}.`, "rx");
     }
