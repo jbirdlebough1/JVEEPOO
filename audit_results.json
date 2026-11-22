@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-11-21T20:37:23.505497",
+  "timestamp": "2026-11-21T21:08:17.928963",
   "total": 45,
   "passed": 45,
   "failed": 0,
@@ -10,7 +10,7 @@
       "category": "Integrity",
       "name": "Dual-File Byte-for-Byte Equality",
       "passed": true,
-      "details": "Root: 1212904 bytes == App: 1212904 bytes"
+      "details": "Root: 1218058 bytes == App: 1218058 bytes"
     },
     {
       "id": "TC-00",
