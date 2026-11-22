@@ -1484,6 +1484,32 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
             timeline_data = get_two_day_timeline()
             self.send_json_response(timeline_data)
 
+        # 3b. Nocturnal Sleep Records API (CLE-090)
+        elif self.path.startswith("/api/sleep/records"):
+            with db_lock:
+                conn = get_db()
+                cur = conn.cursor()
+                cur.execute("""
+                    SELECT id, timestamp, value1, value2, mode, status
+                    FROM vital_records
+                    WHERE metric = 'SLEEP'
+                    ORDER BY timestamp DESC
+                    LIMIT 20
+                """)
+                rows = cur.fetchall()
+                conn.close()
+            records = []
+            for r in rows:
+                records.append({
+                    "id": r[0],
+                    "timestamp": r[1],
+                    "total_hours": r[2],
+                    "deep_hours": r[3],
+                    "mode": r[4],
+                    "status": r[5]
+                })
+            self.send_json_response({"records": records, "count": len(records)})
+
         elif self.path.startswith("/api/telemetry/latest"):
             data = self.get_latest_telemetry_snapshot()
             self.send_json_response(data)

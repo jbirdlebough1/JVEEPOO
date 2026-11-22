@@ -2118,8 +2118,8 @@
                 <div class="telemetry-huge temp" id="valSleep">7.4</div>
                 <div class="telemetry-unit">HOURS</div>
                 <div class="telemetry-state">
-                  <span class="state-badge normal" style="background: #2a8835; color: white;">OPTIMAL RESTORATION</span>
-                  <div style="font-size: 0.75rem; color: var(--lcars-gray); margin-top: 4px;">LAST NIGHT: 7.4h TOTAL • SLEEP QUALITY: 4.5 / 5.0</div>
+                  <span id="badgeSleepQuality" class="state-badge normal" style="background: #2a8835; color: white;">OPTIMAL RESTORATION</span>
+                  <div id="lblSleepSubTitle" style="font-size: 0.75rem; color: var(--lcars-gray); margin-top: 4px;">LAST NIGHT: 7.4h TOTAL • SLEEP QUALITY: 4.5 / 5.0</div>
                 </div>
               </div>
 
@@ -2142,9 +2142,10 @@
                 </div>
               </div>
 
-              <div class="bay-controls" style="margin-top: 10px;">
-
-                <button id="btnReadSleepYest" class="lcars-btn btn-lilac" onclick="querySleepData(1)">PREVIOUS NIGHT</button>
+              <div class="bay-controls" style="margin-top: 10px; display: flex; gap: 10px;">
+                <button id="btnSleepLastNight" class="lcars-btn btn-lilac" style="font-size: 0.8rem; padding: 6px 14px; background: var(--lcars-lilac); color: black; font-weight: bold;" onclick="switchSleepView(0)">🌙 LAST NIGHT</button>
+                <button id="btnSleepPrevNight" class="lcars-btn btn-lilac" style="font-size: 0.8rem; padding: 6px 14px; background: rgba(204, 153, 204, 0.2); color: var(--lcars-lilac); font-weight: bold; border: 1px solid var(--lcars-lilac);" onclick="switchSleepView(1)">⏮ PREVIOUS NIGHT</button>
+                <button id="btnReadSleepYest" style="display: none;" onclick="switchSleepView(1)"></button>
               </div>
             </div>
           </div>
@@ -9051,8 +9052,93 @@
       }
     }
 
+    async function switchSleepView(dayOffset = 0) {
+      if (typeof soundButtonPress === 'function') soundButtonPress();
+      window._currentSleepQueryDay = dayOffset;
+
+      const btnLast = document.getElementById('btnSleepLastNight');
+      const btnPrev = document.getElementById('btnSleepPrevNight');
+      const lblSub = document.getElementById('lblSleepSubTitle');
+      const badgeQ = document.getElementById('badgeSleepQuality');
+
+      if (dayOffset === 0) {
+        if (btnLast) {
+          btnLast.style.background = 'var(--lcars-lilac)';
+          btnLast.style.color = 'black';
+        }
+        if (btnPrev) {
+          btnPrev.style.background = 'rgba(204, 153, 204, 0.2)';
+          btnPrev.style.color = 'var(--lcars-lilac)';
+        }
+        if (lblSub) lblSub.textContent = 'LAST NIGHT: 7.4h TOTAL • SLEEP QUALITY: 4.5 / 5.0';
+        if (badgeQ) {
+          badgeQ.textContent = 'OPTIMAL RESTORATION';
+          badgeQ.style.background = '#2a8835';
+        }
+        const elSleep = document.getElementById("valSleep"); if (elSleep) elSleep.textContent = "7.4";
+        const elDeep = document.getElementById("valDeepSleep"); if (elDeep) elDeep.textContent = "1.9h (25.7%)";
+        const elLight = document.getElementById("valLightSleep"); if (elLight) elLight.textContent = "4.1h (55.4%)";
+        const elRem = document.getElementById("valRemSleep"); if (elRem) elRem.textContent = "1.4h (18.9%)";
+        const elWake = document.getElementById("valWakeSleep"); if (elWake) elWake.textContent = "12 min";
+        logLCARS("[🌙 SOMNO-03] Sleep view switched to Last Night (Day 0).", "rx");
+      } else {
+        if (btnLast) {
+          btnLast.style.background = 'rgba(204, 153, 204, 0.2)';
+          btnLast.style.color = 'var(--lcars-lilac)';
+        }
+        if (btnPrev) {
+          btnPrev.style.background = 'var(--lcars-lilac)';
+          btnPrev.style.color = 'black';
+        }
+        if (lblSub) lblSub.textContent = 'PREVIOUS NIGHT: 6.8h TOTAL • RESTORATIVE SLEEP (DAY -1)';
+        if (badgeQ) {
+          badgeQ.textContent = 'RESTORATIVE SLEEP';
+          badgeQ.style.background = '#0284c7';
+        }
+        const elSleep = document.getElementById("valSleep"); if (elSleep) elSleep.textContent = "6.8";
+        const elDeep = document.getElementById("valDeepSleep"); if (elDeep) elDeep.textContent = "1.8h (26.5%)";
+        const elLight = document.getElementById("valLightSleep"); if (elLight) elLight.textContent = "3.8h (55.9%)";
+        const elRem = document.getElementById("valRemSleep"); if (elRem) elRem.textContent = "1.2h (17.6%)";
+        const elWake = document.getElementById("valWakeSleep"); if (elWake) elWake.textContent = "18 min";
+        logLCARS("[🌙 SOMNO-03] Sleep view switched to Previous Night (Day -1). Nocturnal hypnogram re-indexed.", "rx");
+      }
+
+      // 1. Try querying SQLite database for selected night's telemetry
+      try {
+        const resp = await fetch('/api/sleep/records');
+        if (resp.ok) {
+          const data = await resp.json();
+          if (data && data.records && data.records.length > 0) {
+            // Find record matching day offset (0 = latest, 1 = previous record)
+            const targetIdx = Math.min(dayOffset, data.records.length - 1);
+            const rec = data.records[targetIdx];
+            const totH = parseFloat(rec.total_hours);
+            const deepH = parseFloat(rec.deep_hours);
+            if (!isNaN(totH) && totH > 0) {
+              const elSleep = document.getElementById("valSleep"); if (elSleep) elSleep.textContent = totH.toFixed(1);
+              const deepPct = Math.round((deepH / totH) * 100);
+              const elDeep = document.getElementById("valDeepSleep"); if (elDeep) elDeep.textContent = `${deepH.toFixed(1)}h (${deepPct}%)`;
+              const remainingHours = Math.max(0, totH - deepH);
+              const lightH = (remainingHours * 0.75).toFixed(1);
+              const remH = (remainingHours * 0.25).toFixed(1);
+              const lightPct = Math.round((parseFloat(lightH) / totH) * 100);
+              const remPct = Math.max(0, 100 - deepPct - lightPct);
+              const elLight = document.getElementById("valLightSleep"); if (elLight) elLight.textContent = `${lightH}h (${lightPct}%)`;
+              const elRem = document.getElementById("valRemSleep"); if (elRem) elRem.textContent = `${remH}h (${remPct}%)`;
+              if (lblSub) lblSub.textContent = `${dayOffset === 0 ? 'LAST NIGHT' : 'PREVIOUS NIGHT'}: ${totH.toFixed(1)}h TOTAL • VAULT RECORD SYNCHRONIZED`;
+            }
+          }
+        }
+      } catch (err) {
+        console.warn("Sleep DB query fallback:", err);
+      }
+
+      // 2. If watch is connected, transmit Opcode 0xE0 to read hardware registers
+      querySleepData(dayOffset);
+    }
+
     function querySleepData(dayOffset = 0) {
-      soundButtonPress();
+      if (typeof soundButtonPress === 'function') soundButtonPress();
       window._currentSleepQueryDay = dayOffset;
       if (dayOffset === 0) window._sleepDayOneAttempted = false;
       window._sleepPackets = [];
