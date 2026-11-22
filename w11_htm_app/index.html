@@ -10502,7 +10502,27 @@
     }
 
     function renderSvgCurveChart(containerId, data, options = {}) {
-      const container = document.getElementById(containerId);
+      let container = document.getElementById(containerId);
+      if (!container) {
+        const altMap = {
+          'repChartGlucose': 'curveTimelineGlucose',
+          'repChartA1C': 'curveTimelineA1C',
+          'repChartTemp': 'curveTimelineTemp',
+          'repChartHR': 'curveTimelineHeartRate',
+          'repChartHeartRate': 'curveTimelineHeartRate',
+          'repChartBloodPressure': 'curveTimelineBP',
+          'repChartBP': 'curveTimelineBP',
+          'repChartSpO2': 'curveTimelineSpO2',
+          'repChartPulseOximetry': 'curveTimelineSpO2',
+          'repChartHRV': 'curveTimelineHRV',
+          'repChartAutonomicHrv': 'curveTimelineHRV',
+          'repChartSleep': 'curveTimelineSleep',
+          'repChartSleepArchitecture': 'curveTimelineSleep',
+          'repChartExercise': 'curveTimelineExercise',
+          'repChartExerciseCadence': 'curveTimelineExercise'
+        };
+        if (altMap[containerId]) container = document.getElementById(altMap[containerId]);
+      }
       if (!container) return;
 
       const validPoints = (data || []).filter(d => d.val !== null && d.val !== undefined && !d.isGap && d.val > 0);
@@ -10701,7 +10721,16 @@
     }
 
     function renderSvgDualCurveChart(containerId, data, options = {}) {
-      const container = document.getElementById(containerId);
+      let container = document.getElementById(containerId);
+      if (!container) {
+        const altMap = {
+          'repChartTemp': 'curveTimelineTemp',
+          'repChartTemperature': 'curveTimelineTemp',
+          'repChartBP': 'curveTimelineBP',
+          'repChartBloodPressure': 'curveTimelineBP'
+        };
+        if (altMap[containerId]) container = document.getElementById(altMap[containerId]);
+      }
       if (!container) return;
 
       const validDual = (data || []).filter(d => (d.core !== null && d.core !== undefined && d.core > 0) || (d.skin !== null && d.skin !== undefined && d.skin > 0));
