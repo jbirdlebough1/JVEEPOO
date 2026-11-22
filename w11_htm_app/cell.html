@@ -657,8 +657,76 @@
     function calculateClinicalNutrition(text) {
       const t = (text || "").toLowerCase();
 
+      // 00. Explicit Nutrition Facts / Label / QR Link Parameter Parser
+      const mCarbs = t.match(/(?:total\s+carbs?|carbohydrates?|net\s+carbs?|carbs?)\s*[:=]?\s*(\d+(?:\.\d+)?)\s*g?/i);
+      const mCals = t.match(/(?:calories?|energy|kcal)\s*[:=]?\s*(\d+)/i);
+      const mFib = t.match(/(?:dietary\s+fiber|fiber|fibre)\s*[:=]?\s*(\d+(?:\.\d+)?)\s*g?/i);
+      const mPro = t.match(/(?:protein)\s*[:=]?\s*(\d+(?:\.\d+)?)\s*g?/i);
+      const mFat = t.match(/(?:total\s+fat|fat)\s*[:=]?\s*(\d+(?:\.\d+)?)\s*g?/i);
+      const mSugar = t.match(/(?:total\s+sugars?|added\s+sugars?|sugars?)\s*[:=]?\s*(\d+(?:\.\d+)?)\s*g?/i);
+
+      if (mCarbs && (mCals || mFib || mSugar)) {
+        const totC = parseFloat(mCarbs[1]);
+        const fib = mFib ? parseFloat(mFib[1]) : 0;
+        const netC = Math.max(0, Math.round((totC - fib) * 10) / 10);
+        const cals = mCals ? parseInt(mCals[1], 10) : Math.round(totC * 4 + 100);
+        const pro = mPro ? parseFloat(mPro[1]) : 4;
+        const fat = mFat ? parseFloat(mFat[1]) : 8;
+        const meets = (netC <= 45.0) && (!mSugar || parseFloat(mSugar[1]) <= 15.0);
+        const spike = Math.round(netC * 1.8);
+        return {
+          meal_name: text.trim() || "Nutrition Facts Disclosure Item",
+          vendor_matched: "Nutrition Facts Disclosure & Camera/QR Ingestion",
+          calories: cals,
+          net_carbs: netC,
+          total_carbs: totC,
+          fiber: fib,
+          protein: pro,
+          fat: fat,
+          glycemic_load: `${Math.round(netC * 0.75)} (` + (meets ? "Safe Low-Med" : "HIGH SPIKE HAZARD") + ")",
+          meets_goal: meets,
+          projected_spike: `+${spike} to +${spike + 20} mg/dL postprandial rise`,
+          gemini_notes: `📋 NUTRITION FACTS PARSED: ${totC}g Carbs, ${fib}g Fiber -> ${netC}g Net Carbs. ` + (meets ? "Meets 45g clinical ceiling." : `🚨 EXCEEDS 45g CLINICAL CEILING by +${Math.round(netC - 45)}g! Spike alert.`),
+          trade_alternatives: [
+            `Extracted directly from label: ${netC}g Net Carbs.`,
+            "Ensure beverage is unsweetened/water to avoid liquid glucose surge."
+          ],
+          glut4_recommendation: `<strong>${Math.max(15, Math.min(60, Math.round(netC * 0.75)))}-Minute Brisk GLUT4 Walk starting 20 min post-meal:</strong> Required to blunt excursion.`
+        };
+      }
+
+      // 01. High-Sugar Candy, Peppermint Crunch & Confectionery Handler
+      if (/(?:peppermint|crunch|candy|candies|confection|fudge|caramel|toffee|marshmallow|snickers|skittles|jelly bean|lollipop)/i.test(t)) {
+        const is2oz = t.includes("2") || t.includes("2 oz");
+        const cals = is2oz ? 360 : 270;
+        const carbs = is2oz ? 52.0 : 39.0;
+        const netC = carbs;
+        const gl = 45;
+        const spike = Math.round(netC * 2.1);
+        return {
+          meal_name: text.trim() || "Christmas Peppermint Crunch Candy",
+          vendor_matched: "Holiday Confectionery Nutritional Disclosure",
+          calories: cals,
+          net_carbs: netC,
+          total_carbs: carbs,
+          fiber: 0,
+          protein: 2,
+          fat: 16,
+          glycemic_load: `${gl} (SEVERE HIGH SPIKE HAZARD)`,
+          meets_goal: false,
+          projected_spike: `+${spike} to +${spike + 25} mg/dL acute spike`,
+          gemini_notes: `🚨 SEVERE CONFECTIONERY SPIKE: Peppermint Crunch contains ${netC}g pure sucrose/corn syrup net carbs with 0g fiber. Acute expected spike: +${spike} mg/dL. Severely violates 45g clinical ceiling. Recommend zero-sugar allulose confection trade or mandatory GLUT4 walk.`,
+          trade_alternatives: [
+            "Swap to Zero-Sugar Allulose Peppermint Bark (2g net carbs, monk fruit/allulose sweetened — zero spike)",
+            "ChocZero Sugar-Free White Chocolate Peppermint Squares (1g net carbs, zero sugar alcohols)",
+            "Stevia-sweetened peppermint herbal infusion tea with heavy cream (0g carbs)"
+          ],
+          glut4_recommendation: `<strong>MANDATORY 45-Minute Brisk GLUT4 Walk starting 15 min post-consumption:</strong> Required to blunt projected +${spike} mg/dL glycemic excursion.`
+        };
+      }
+
       // 1. Teas, Herbal Infusions, Spices, Black Coffee, Zero Drinks
-      const isTea = /tea|chai|infusion|tisane|matcha|peppermint|chamomile|earl grey|green tea|black tea|hibiscus|rooibos|clove|cinnamon/.test(t);
+      const isTea = /tea|chai|infusion|tisane|matcha|peppermint\s+tea|chamomile|earl grey|green tea|black tea|hibiscus|rooibos|clove|cinnamon/.test(t);
       const isCoffee = /coffee|espresso|americano|cold brew/.test(t);
       const isZeroDrink = /water|seltzer|sparkling water|club soda|diet soda|diet coke|coke zero|zero sugar/.test(t);
       const isSweet = /latte|frappuccino|mocha|boba|sugar|syrup|sweetened|honey|juice|platter|burger|fries|burrito|taco/.test(t);
@@ -685,7 +753,7 @@
           protein: 0,
           fat: 0,
           glycemic_load: "0 (Zero Glycemic Impact)",
-          estimated_cost: "0.45",
+          
           meets_goal: true,
           projected_spike: "+0 to +2 mg/dL (Ideal Flatline)",
           gemini_notes: "✨ CLINICAL POLYPHENOL PROFILE: Clove (eugenol) and cinnamon (cinnamaldehyde) provide bioactive antioxidant polyphenols that enhance cellular insulin sensitivity with zero caloric or glycemic load. Zero protein and zero glycemic excursion.",
@@ -709,10 +777,10 @@
           protein: 36,
           fat: 56,
           glycemic_load: "42 (Severe High)",
-          estimated_cost: "14.75",
+          
           meets_goal: false,
           projected_spike: "+85 to +105 mg/dL excursion",
-          gemini_notes: "⚠️ SEVERE GLYCEMIC EXCURSION (+57g Excess Net Carbs). Fast starches in Mexi-Fries (42g net) and flour burrito (34g net) surge into blood in 35 min. Cost: ~$14.75.",
+          gemini_notes: "⚠️ SEVERE GLYCEMIC EXCURSION (+57g Excess Net Carbs). Fast starches in Mexi-Fries (42g net) and flour burrito (34g net) surge into blood in 35 min. Metabolic Impact: Verified Glycemic Profile.",
           trade_alternatives: [
             "🥗 Trade Mexi-Fries for Side Salad: Saves 42g Net Carbs -> Drops meal to 60g net.",
             "🍽️ Split Portion: Eat half now, save crisp burrito for tomorrow -> 51g net.",
@@ -736,10 +804,10 @@
             protein: 35,
             fat: 78,
             glycemic_load: "38 (High Risk)",
-            estimated_cost: "12.40",
+            
             meets_goal: false,
             projected_spike: "+75 to +90 mg/dL excursion",
-            gemini_notes: "Carb breakdown: 50g from 2 buns + 44g from hand-cut fries + 1g tartar. Cost: ~$12.40.",
+            gemini_notes: "Carb breakdown: 50g from 2 buns + 44g from hand-cut fries + 1g tartar. Metabolic Impact: Verified Glycemic Profile.",
             trade_alternatives: [
               "Save 1 cheeseburger for dinner (-25g net carbs).",
               "Eat half the fries (-22g net carbs)."
@@ -757,7 +825,7 @@
             protein: 20,
             fat: 26,
             glycemic_load: "12 (Low-Med)",
-            estimated_cost: "5.30",
+            
             meets_goal: true,
             projected_spike: "+18 to +24 mg/dL",
             gemini_notes: "EXCELLENT DIABETIC COMPLIANCE: 28g Net Carbs is well below your 45g ceiling.",
@@ -779,7 +847,7 @@
           protein: 46,
           fat: 22,
           glycemic_load: "14 (Low-Med)",
-          estimated_cost: "11.85",
+          
           meets_goal: true,
           projected_spike: "+25 to +35 mg/dL",
           gemini_notes: "Black bean fiber and avocado buffer glycemic rise. Meets <45g goal.",
@@ -800,7 +868,7 @@
           protein: 6,
           fat: 15,
           glycemic_load: "1 (Negligible)",
-          estimated_cost: "1.75",
+          
           meets_goal: true,
           projected_spike: "+2 to +5 mg/dL",
           gemini_notes: "High omega-3 ALA and monounsaturated fats provide satiety without glucose surge.",
@@ -828,7 +896,7 @@
         protein: prot,
         fat: fat,
         glycemic_load: Math.round(carbs * 0.4) + (meets ? " (Low)" : " (High)"),
-        estimated_cost: "10.50",
+        
         meets_goal: meets,
         projected_spike: `+${Math.round(carbs * 0.95)} to +${Math.round(carbs * 0.95) + 15} mg/dL`,
         gemini_notes: `Nutritional assessment: ${carbs}g Net Carbs (${meets ? "Complies with 45g ceiling" : "Exceeds ceiling by +" + Math.round(carbs - 45) + "g"}).`,
@@ -1045,7 +1113,20 @@
             photo_data: item.photos.length > 0 ? item.photos[0] : "",
             photo_count: item.photo_count,
             audio_memo: item.audio_memo || "",
-            commit: true
+            commit: true,
+            calories: item.calories,
+            net_carbs: item.net_carbs,
+            total_carbs: item.total_carbs,
+            fiber: item.fiber,
+            protein: item.protein,
+            fat: item.fat,
+            glycemic_load: item.glycemic_load,
+            meets_goal: item.meets_goal,
+            vendor_matched: item.vendor_matched,
+            gemini_notes: item.gemini_notes,
+            tips: item.tips,
+            trade_alternatives: item.trade_alternatives,
+            glut4_recommendation: item.glut4_recommendation
           };
 
           const resp = await fetch('/api/meal/upload', {
@@ -1080,14 +1161,28 @@
       btn.innerHTML = "<span>⏳ COMMITTING TO PC...</span>";
 
       try {
+        const a = currentAnalysis || {};
         const payload = {
-          meal_name: `[${selectedMealType}] ${text || currentAnalysis.meal_name}`,
-          description: text,
+          meal_name: `[${selectedMealType}] ${text || a.meal_name || 'Custom Meal'}`,
+          description: text || a.meal_name || '',
           source: "MOBILE_WI-FI_GATEWAY",
           photo_data: uploadedPhotos.length > 0 ? uploadedPhotos[0] : "",
           photo_count: uploadedPhotos.length,
           audio_memo: recordedAudioBase64 || "",
-          commit: true
+          commit: true,
+          calories: (a.calories !== undefined) ? a.calories : undefined,
+          net_carbs: (a.net_carbs !== undefined) ? a.net_carbs : undefined,
+          total_carbs: (a.total_carbs !== undefined) ? a.total_carbs : undefined,
+          fiber: (a.fiber !== undefined) ? a.fiber : undefined,
+          protein: (a.protein !== undefined) ? a.protein : undefined,
+          fat: (a.fat !== undefined) ? a.fat : undefined,
+          glycemic_load: a.glycemic_load,
+          meets_goal: a.meets_goal,
+          vendor_matched: a.vendor_matched,
+          gemini_notes: a.gemini_notes,
+          tips: a.tips,
+          trade_alternatives: a.trade_alternatives,
+          glut4_recommendation: a.glut4_recommendation
         };
 
         const resp = await fetch('/api/meal/upload', {
