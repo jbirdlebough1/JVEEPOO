@@ -568,24 +568,24 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
             "meal_name": "Junior Mints Peppermint Crunch (Official FDA Package Label)",
             "vendor_matched": "Junior Mints / Tootsie Roll Industries Official Nutrition Facts",
             "photo_filename": "meal_junior_mints.jpg",
-            "calories": 130,
-            "net_carbs": 26.0,
-            "total_carbs": 27.0,
+            "calories": 140,
+            "net_carbs": 28.0,
+            "total_carbs": 29.0,
             "fiber": 1.0,
-            "protein": 0.0,
-            "fat": 3.0,
-            "glycemic_load": "18 (Moderate Glycemic Burden)",
+            "protein": 1.0,
+            "fat": 3.5,
+            "glycemic_load": "20 (Moderate Glycemic Burden)",
             "meets_goal": False,
-            "projected_spike": "+45 to +60 mg/dL postprandial peak",
+            "projected_spike": "+52 to +65 mg/dL postprandial peak",
             "trade_alternatives": [
                 "Swap to Zero-Sugar Allulose Dark Peppermint Bark (2g net carbs, zero sugar alcohols)",
                 "ChocZero Peppermint White Chocolate Squares (1g net carbs, monk fruit sweetened)",
-                "Enjoy 1/2 serving (~6-7 pieces = 12g sugars) with a handful of raw walnuts for protein/fat buffer"
+                "Enjoy 1/2 serving (~6-7 pieces = 12g sugars) paired with raw walnuts for protein/fat buffer"
             ],
-            "gemini_notes": "🍬 OFFICIAL PACKAGE NUTRITION FACTS: 1.1 oz (31g) serving contains 130 kcal, 27g Total Carbs, 1g Fiber, 24g Total Sugars -> 26g Net Carbs. Fits within your 45g net carb ceiling, but because 24g is pure fast-acting sucrose/corn syrup, expect a sharp +45 to +60 mg/dL rise within 30 minutes without a follow-up walk.",
+            "gemini_notes": "🍬 OFFICIAL PACKAGE NUTRITION FACTS (3.5 oz / 99g Box): 1 serving (1/3 box / 33g) contains 140 kcal, 29g Total Carbs, 1g Fiber, 24g Total Sugars -> 28g Net Carbs. Full 3.5 oz box = 87g Total Carbs. Fast fondant sucrose core induces an acute +52 to +65 mg/dL glycemic excursion. 20-min postprandial GLUT4 walk recommended.",
             "tips": [
-                "Official label disclosure: 24g Total Sugars (24g Added Sugars), 26g Net Carbs, 130 kcal.",
-                "Fast liquid-like fondant center absorbs rapidly; pairing with protein/nuts slows glycemic spike."
+                "Official package label (3.5 oz / 99g Box): 29g Total Carbs, 24g Total Sugars, 1g Fiber, 140 kcal.",
+                "Fast-absorbing liquid fondant center requires 20-min GLUT4 walk or portion moderation."
             ],
             "glut4_recommendation": "<strong>20-Minute Brisk GLUT4 Walk starting 20 min post-consumption:</strong> Readily blunts projected +50 mg/dL glycemic excursion back into baseline."
         }
