@@ -1658,6 +1658,81 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
             "glut4_recommendation": "15-minute gentle evening walk maintains postprandial glucose stably under 125 mg/dL."
         }
 
+    # 6.6. Pub / Tavern Baskets: Chicken Fingers/Tenders, French Fries, Dipping Sauces
+    elif any(w in text for w in ["chicken finger", "chicken fingers", "chicken tender", "chicken tenders", "tenders and fries", "fingers and fries", "tenders and frys", "fingers and frys", "bubba", "tavern basket", "pub basket"]) or (("tender" in text or "finger" in text or "strips" in text) and ("fry" in text or "fries" in text or "frys" in text)):
+        has_fries = any(w in text for w in ["fry", "fries", "frys", "french fries", "tater tots", "potato wedges"])
+        has_honey_mustard = "honey mustard" in text
+        has_bbq = "bbq" in text or "barbecue" in text
+        has_ranch = "ranch" in text
+        has_diet = any(w in text for w in ["diet", "zero sugar", "unsweet", "water", "coke zero", "pepsi zero"])
+
+        # 1. Chicken Tenders (4-5 count / ~200g battered, deep-fried)
+        tender_cals = 420; tender_tot_c = 24.0; tender_fib = 1.0; tender_net_c = 23.0; tender_pro = 36.0; tender_fat = 22.0
+
+        # 2. Pub French Fries Basket (~6 oz / 170g deep-fried potatoes)
+        fry_cals = 480 if has_fries else 0; fry_tot_c = 58.0 if has_fries else 0.0; fry_fib = 5.0 if has_fries else 0.0; fry_net_c = 53.0 if has_fries else 0.0; fry_pro = 5.0 if has_fries else 0.0; fry_fat = 24.0 if has_fries else 0.0
+
+        # 3. Dipping Sauce (2 oz ramekin)
+        sauce_name = "Honey Mustard Sauce (2 oz)" if has_honey_mustard else ("Ranch Dressing (2 oz)" if has_ranch else ("BBQ Sauce (2 oz)" if has_bbq else "Standard Dipping Sauce (2 oz)"))
+        if has_honey_mustard:
+            sauce_cals = 190; sauce_tot_c = 16.0; sauce_fib = 0.0; sauce_net_c = 16.0; sauce_pro = 0.5; sauce_fat = 15.0
+        elif has_bbq:
+            sauce_cals = 140; sauce_tot_c = 32.0; sauce_fib = 0.0; sauce_net_c = 32.0; sauce_pro = 0.0; sauce_fat = 0.0
+        elif has_ranch:
+            sauce_cals = 260; sauce_tot_c = 2.0; sauce_fib = 0.0; sauce_net_c = 2.0; sauce_pro = 1.0; sauce_fat = 28.0
+        else:
+            sauce_cals = 150; sauce_tot_c = 10.0; sauce_fib = 0.0; sauce_net_c = 10.0; sauce_pro = 0.5; sauce_fat = 12.0
+
+        drink_cals = 0; drink_tot_c = 0.0; drink_net_c = 0.0
+        drink_name = "48 oz Diet Beverage" if ("48" in text or "diet" in text) else "Diet Beverage (0 kcal)"
+
+        cals = tender_cals + fry_cals + sauce_cals + drink_cals
+        tot_c = round(tender_tot_c + fry_tot_c + sauce_tot_c + drink_tot_c, 1)
+        fib = round(tender_fib + fry_fib, 1)
+        net_c = round(tot_c - fib, 1)
+        pro = round(tender_pro + fry_pro + sauce_pro, 1)
+        fat = round(tender_fat + fry_fat + sauce_fat, 1)
+        gl_val = round(net_c * 0.58)
+        spike = round(net_c * 1.3)
+        meets = (net_c <= 45.0)
+
+        vendor = "Bubba's Tavern (Sultan, WA) Culinary Decomposition" if "bubba" in text else "Tavern / Pub Basket Nutritional Decomposition"
+        title = "Bubba's Tavern Chicken Fingers & Fries Basket with Honey Mustard" if "bubba" in text else ("Chicken Fingers & Fries Basket" if has_fries else "Chicken Fingers Basket")
+
+        items = [
+            {"name": "Deep-Fried Battered Chicken Fingers (4-5 count)", "portion": "approx 7 oz", "net_carbs": tender_net_c, "protein": tender_pro, "fat": tender_fat, "calories": tender_cals}
+        ]
+        if has_fries:
+            items.append({"name": "Pub Basket French Fries", "portion": "approx 6 oz", "net_carbs": fry_net_c, "fiber": fry_fib, "protein": fry_pro, "fat": fry_fat, "calories": fry_cals})
+        items.append({"name": sauce_name, "portion": "2 oz ramekin", "net_carbs": sauce_net_c, "protein": sauce_pro, "fat": sauce_fat, "calories": sauce_cals})
+        if has_diet:
+            items.append({"name": drink_name, "portion": "48 oz", "net_carbs": 0, "protein": 0, "fat": 0, "calories": 0})
+
+        return {
+            "meal_name": title,
+            "vendor_matched": vendor,
+            "photo_filename": "meal_chicken_fingers_fries.jpg",
+            "calories": cals,
+            "net_carbs": net_c,
+            "total_carbs": tot_c,
+            "fiber": fib,
+            "protein": pro,
+            "fat": fat,
+            "glycemic_load": f"{gl_val} (SEVERE SPIKE HAZARD)" if gl_val > 40 else f"{gl_val} (Moderate-High)",
+            "estimated_cost": "15.95",
+            "meets_goal": meets,
+            "projected_spike": f"+{spike} to +{spike + 25} mg/dL acute postprandial rise",
+            "identified_items": items,
+            "gemini_notes": f"🚨 SEVERE POSTPRANDIAL HAZARD: This pub basket delivers {cals} kcal and {net_c}g net carbs ({tot_c}g total carbs) — exceeding the 45g clinical ceiling by +{round(net_c - 45)}g! Deep frying batter, high-starch potatoes, and honey-heavy dipping sauce induce rapid glycemic excursion to +{spike} mg/dL.",
+            "trade_alternatives": [
+                "Swap French fries for a side garden salad with blue cheese or ranch (-53g net carbs -> total meal drops to ~39g net carbs, MEETS GOAL!)",
+                "Swap Honey Mustard (16g sugar carbs) for Buffalo sauce, creamy garlic aioli, or unsweetened yellow mustard (-15g net carbs)",
+                "Split the basket: Eat 2 tenders + small handful of fries (38g net carbs), take the remaining half home",
+                "Skip dipping sauce or dip fork tines only instead of submerging fingers"
+            ],
+            "glut4_recommendation": f"<strong>MANDATORY 45-Minute Brisk GLUT4 Walk starting 20 min postprandial:</strong> Required to blunt projected +{spike} mg/dL glucose surge back below 180 mg/dL renal threshold."
+        }
+
     # 7. General Semantic Parser for Unknown Vendors or Custom Meals
     else:
         # Dynamic calculations based on entered words
@@ -1668,7 +1743,11 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
         est_fiber = 7.0
         est_cost = "11.50"
 
-        if any(w in text for w in ["pizza", "pasta", "spaghetti", "macaroni", "lasagna", "bread", "sub", "hoagie", "noodle"]):
+        if any(w in text for w in ["fry", "fries", "frys", "tots", "tater tots", "rings", "onion ring"]):
+            est_carbs = 53.0; est_cals = 480; est_fiber = 5.0; est_protein = 5.0; est_fat = 24.0; est_cost = "6.50"
+        elif any(w in text for w in ["chicken tender", "chicken tenders", "chicken finger", "chicken fingers", "fried chicken", "nugget", "nuggets"]):
+            est_carbs = 23.0; est_cals = 420; est_fiber = 1.0; est_protein = 36.0; est_fat = 22.0; est_cost = "11.50"
+        elif any(w in text for w in ["pizza", "pasta", "spaghetti", "macaroni", "lasagna", "bread", "sub", "hoagie", "noodle"]):
             est_carbs = 72.0; est_cals = 780; est_fiber = 4.0; est_protein = 22.0; est_fat = 26.0; est_cost = "13.25"
         elif any(w in text for w in ["rice", "fried rice", "chow mein", "teriyaki", "sushi", "roll"]):
             est_carbs = 68.0; est_cals = 650; est_fiber = 3.0; est_protein = 24.0; est_fat = 16.0; est_cost = "14.00"
