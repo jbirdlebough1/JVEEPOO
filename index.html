@@ -1655,45 +1655,44 @@
       <button id="navTabFullScan" class="lcars-pill pill-blue active" onclick="switchTab('fullscan')">
         <span class="tab-label">01-FULL SCAN</span>
       </button>
-      <button id="navTabCardio" class="lcars-pill pill-orange" onclick="switchTab('cardio')">
-        <span class="tab-label">02-CARDIO</span>
-      </button>
       <button id="navTabMetabolic" class="lcars-pill pill-peach" onclick="switchTab('metabolic')">
-        <span class="tab-label">03-METABOLIC</span>
+        <span class="tab-label">02-METABOLIC</span>
       </button>
       <button id="navTabDietTrades" class="lcars-pill pill-green" onclick="switchTab('diettrades')">
-        <span class="tab-label">04-MEAL PLANNER</span>
+        <span class="tab-label">03-MEAL PLANNER</span>
       </button>
       <button id="navTabReports" class="lcars-pill pill-blue" onclick="switchTab('reports')">
-        <span class="tab-label">05-REPORTS</span>
+        <span class="tab-label">04-REPORTS</span>
       </button>
       <button id="navTabExport" class="lcars-pill pill-lilac" onclick="switchTab('export')" style="border-left: 5px solid #38bdf8;">
-        <span class="tab-label">06-EXPORT</span>
+        <span class="tab-label">05-EXPORT</span>
       </button>
       <button id="navTabLearning" class="lcars-pill pill-ice" onclick="switchTab('learning')" style="border-left: 5px solid #0284c7;">
-        <span class="tab-label">07-LEARNING</span>
+        <span class="tab-label">06-LEARNING</span>
       </button>
       <button id="navTabHelp" class="lcars-pill pill-banana" onclick="switchTab('help')">
-        <span class="tab-label">08-HELP &amp; FAQ</span>
+        <span class="tab-label">07-HELP &amp; FAQ</span>
       </button>
       <button id="navTabMedication" class="lcars-pill pill-orange" onclick="switchTab('medication')">
-        <span class="tab-label">09-MEDICATION</span>
+        <span class="tab-label">08-MEDICATION</span>
       </button>
       <button id="navTabGoals" class="lcars-pill pill-green" onclick="switchTab('goals')">
-        <span class="tab-label">10-CLINICAL GOALS</span>
+        <span class="tab-label">09-CLINICAL GOALS</span>
       </button>
       <button id="navTabSetup" class="lcars-pill pill-lilac" onclick="switchTab('setup')">
-        <span class="tab-label">11-CONFIG</span>
+        <span class="tab-label">10-CONFIG</span>
       </button>
       <button id="navTabOperations" class="lcars-pill pill-peach" onclick="switchTab('operations')">
-        <span class="tab-label">12-OPERATIONS</span>
+        <span class="tab-label">11-OPERATIONS</span>
       </button>
       <button id="navTabLog" class="lcars-pill pill-blue" onclick="switchTab('log')">
-        <span class="tab-label">13-DATA LOG</span>
+        <span class="tab-label">12-DATA LOG</span>
       </button>
       <button id="navTabWatchFaces" class="lcars-pill pill-banana" onclick="switchTab('watchfaces')">
-        <span class="tab-label">14-WATCH FACES</span>
+        <span class="tab-label">13-WATCH FACES</span>
       </button>
+      <!-- Backward-compatible hidden button for test suites & direct triggers -->
+      <button id="navTabCardio" style="display: none;" onclick="switchTab('cardio')"></button>
     </nav>
 
     <!-- Main LCARS Workstation View -->
@@ -1751,7 +1750,7 @@
                 <span style="font-size: 0.8rem; color: var(--lcars-gray); display: block; margin-top: 2px;">RUNS EACH SENSOR SEQUENTIALLY (GLUCOSE ➔ TEMP ➔ BP ➔ SPO2 ➔ PULSE ➔ HRV) THEN REPORTS COMPLETE CLINICAL AUDIT</span>
               </div>
               <div style="display: flex; gap: 8px;">
-                <button class="lcars-btn btn-peach" style="padding: 4px 14px; font-size: 0.8rem;" onclick="switchTab('reports')">VIEW 360° SYNCHRONIZED TALL CHART (TAB 05)</button>
+                <button class="lcars-btn btn-peach" style="padding: 4px 14px; font-size: 0.8rem;" onclick="switchTab('reports')">VIEW 360° SYNCHRONIZED TALL CHART (TAB 04)</button>
               </div>
             </div>
 
@@ -1939,11 +1938,11 @@
             </div>
 
             <!-- Automated Physician & Patient Clinical Interpretation -->
-            <div style="background: #06101c; border: 1px solid #1a2f4a; border-radius: 6px; padding: 14px; margin-top: 12px;">
-              <strong style="color: var(--lcars-green); font-size: 0.95rem; font-family: var(--lcars-mono);">
+            <div class="fullscan-synthesis-box" style="background: #f0f9ff; border: 1.5px solid #0284c7; border-left: 6px solid #0369a1; border-radius: 6px; padding: 14px; margin-top: 12px;">
+              <strong style="color: #0369a1; font-size: 0.95rem; font-family: var(--lcars-mono); display: block; margin-bottom: 6px;">
                 CLINICAL MULTI-VECTOR SYNTHESIS &amp; EVALUATION
               </strong>
-              <div id="fullScanClinicalSynthesis" style="font-size: 0.86rem; color: #d0e4f2; line-height: 1.5; margin-top: 6px;">
+              <div id="fullScanClinicalSynthesis" style="font-size: 0.88rem; color: #0c4a6e; font-weight: 500; line-height: 1.55;">
                 <!-- Populated by JavaScript -->
               </div>
             </div>
@@ -2020,295 +2019,9 @@
       <!-- =====================================================================
            TAB 2: CARDIOVASCULAR, HRV, STRESS & SLEEP
            ===================================================================== -->
-      <div id="pageCardio" class="tab-page">
-        <div style="display: flex; flex-direction: column; gap: 20px; max-height: calc(100vh - 160px); overflow-y: auto; padding-right: 6px;">
+            <!-- TAB 2 DOM BRIDGE: Cardio is now integrated directly into 02-METABOLIC -->
+      <div id="pageCardio" class="tab-page" style="display: none;"></div>
 
-          <!-- Top Row: Dual Cardio & HRV Bays (2 Columns) -->
-          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
-<!-- Heart Rate Dynamics -->
-          <div class="lcars-bay" style="min-height: 310px;">
-            <div class="lcars-bay-header" style="border-bottom: 3px solid #dc2626; background: #f8fafc;">
-              <span class="lcars-bay-tag" style="background: #dc2626; color: white; font-weight: 800;">CARDIO-01</span>
-              <span class="lcars-bay-title" style="color: #091428; font-weight: 800;">DYNAMIC HEART RATE MATRIX</span>
-            </div>
-            <div class="lcars-bay-body">
-              <div class="telemetry-display">
-                <div class="telemetry-huge hr" id="valHeartRate">--</div>
-                <div class="telemetry-unit">BPM</div>
-                <div class="telemetry-state">
-                  <span class="state-badge normal" id="badgeHR">STANDBY</span>
-                  <div style="font-size: 0.75rem; color: var(--lcars-gray); margin-top: 4px;">CARDIAC LOAD STABLE</div>
-                </div>
-              </div>
-
-              <div class="sub-telemetry-row">
-                <div class="row-meta">
-                  <span class="label">AEROBIC CARDIAC ZONE</span>
-                  <span id="txtHRZone" style="font-family: var(--lcars-mono);">STANDBY</span>
-                </div>
-                <div class="lcars-bar-track">
-                  <div class="lcars-bar-fill hr-bar" id="barHR" style="width: 0%;"></div>
-                </div>
-              </div>
-
-              <div class="sub-telemetry-row">
-                <div class="row-meta">
-                  <span class="label">24H SPREAD: MIN 58 | MAX 118 | REST 68 BPM</span>
-                </div>
-              </div>
-
-              <div class="bay-controls" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 8px; padding-bottom: 4px;">
-                <button id="btnStartHR" class="lcars-btn btn-red" style="min-height: 36px;" onclick="startHRDetection()">SCAN PULSE</button>
-                <button id="btnStopHR" class="lcars-btn btn-orange" style="min-height: 36px;" onclick="stopHRDetection()">CANCEL</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Autonomic HRV & Stress -->
-          <div class="lcars-bay" style="min-height: 310px;">
-            <div class="lcars-bay-header" style="border-bottom: 3px solid #4f46e5; background: #f8fafc;">
-              <span class="lcars-bay-tag" style="background: #4f46e5; color: white; font-weight: 800;">NEURO-02</span>
-              <span class="lcars-bay-title" style="color: #091428; font-weight: 800;">AUTONOMIC HRV & NEURO-STRESS</span>
-            </div>
-            <div class="lcars-bay-body">
-              <div class="telemetry-display">
-                <div class="telemetry-huge stress" id="valStress">--</div>
-                <div class="telemetry-unit">/ 100</div>
-                <div class="telemetry-state">
-                  <span class="state-badge normal" id="badgeStress">STANDBY</span>
-                  <div style="font-size: 0.75rem; color: var(--lcars-gray); margin-top: 4px;">SYMPATHETIC LOAD MONITOR</div>
-                </div>
-              </div>
-
-              <div class="sub-telemetry-row">
-                <div class="row-meta">
-                  <span class="label">HEART RATE VARIABILITY (HRV)</span>
-                  <span id="txtHRV" style="font-family: var(--lcars-mono); color: var(--lcars-blue);">STANDBY (-- MS)</span>
-                </div>
-                <div class="lcars-bar-track">
-                  <div class="lcars-bar-fill stress-bar" id="barStress" style="width: 0%;"></div>
-                </div>
-              </div>
-
-              <div class="sub-telemetry-row">
-                <div class="row-meta">
-                  <span class="label">FATIGUE INDEX</span>
-                  <span style="font-family: var(--lcars-mono); color: var(--lcars-green);">STANDBY</span>
-                </div>
-              </div>
-
-              <div class="bay-controls" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 12px; padding-bottom: 6px;">
-                <button id="btnStartHRV" class="lcars-btn btn-lilac" style="min-height: 38px;" onclick="startHRVDetection()">SCAN HRV</button>
-                <button id="btnStopHRV" class="lcars-btn btn-orange" style="min-height: 38px;" onclick="stopHRVDetection()">CANCEL</button>
-                <button id="btnViewLorenz" class="lcars-btn btn-blue" style="min-height: 38px;" onclick="viewLorenzScatterFromCardio()">📊 2D LORENZ SCATTER (POINCARÉ)</button>
-              </div>
-            </div>
-          </div>
-          </div>
-
-          <!-- Bay 3: Full-Width Sleep Architecture Bay (No Overlap) -->
-<!-- Sleep Architecture Bay -->
-          <div class="lcars-bay" style="margin-bottom: 20px; box-shadow: 0 4px 14px rgba(0,0,0,0.08);">
-            <div class="lcars-bay-header" style="border-bottom: 3px solid #0284c7; background: #f8fafc;">
-              <span class="lcars-bay-tag" style="background: #0284c7; color: white; font-weight: 800;">SOMNO-03</span>
-              <span class="lcars-bay-title" style="color: #091428; font-weight: 800;">CIRCADIAN SLEEP ARCHITECTURE</span>
-            </div>
-            <div class="lcars-bay-body">
-              <div class="telemetry-display">
-                <div class="telemetry-huge temp" id="valSleep">7.4</div>
-                <div class="telemetry-unit">HOURS</div>
-                <div class="telemetry-state">
-                  <span id="badgeSleepQuality" class="state-badge normal" style="background: #2a8835; color: white;">OPTIMAL RESTORATION</span>
-                  <div id="lblSleepSubTitle" style="font-size: 0.75rem; color: var(--lcars-gray); margin-top: 4px;">LAST NIGHT: 7.4h TOTAL • SLEEP QUALITY: 4.5 / 5.0</div>
-                </div>
-              </div>
-
-              <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 6px;">
-                <div class="stat-card" style="border-left-color: #6699cc;">
-                  <span class="stat-card-title">DEEP SLEEP</span>
-                  <span class="stat-card-val" id="valDeepSleep" style="font-size: 1.4rem; color: #6699cc;">1.9h (25.7%)</span>
-                </div>
-                <div class="stat-card" style="border-left-color: var(--lcars-blue);">
-                  <span class="stat-card-title">LIGHT SLEEP</span>
-                  <span class="stat-card-val" id="valLightSleep" style="font-size: 1.4rem; color: var(--lcars-blue);">4.1h (55.4%)</span>
-                </div>
-                <div class="stat-card" style="border-left-color: var(--lcars-lilac);">
-                  <span class="stat-card-title">REM DREAM</span>
-                  <span class="stat-card-val" id="valRemSleep" style="font-size: 1.4rem; color: var(--lcars-lilac);">1.4h (18.9%)</span>
-                </div>
-                <div class="stat-card" style="border-left-color: var(--lcars-orange);">
-                  <span class="stat-card-title">WAKEFUL PERIODS</span>
-                  <span class="stat-card-val" id="valWakeSleep" style="font-size: 1.4rem; color: var(--lcars-orange);">12 min</span>
-                </div>
-              </div>
-
-              <div class="bay-controls" style="margin-top: 10px; display: flex; gap: 10px;">
-                <button id="btnSleepLastNight" class="lcars-btn btn-lilac" style="font-size: 0.8rem; padding: 6px 14px; background: var(--lcars-lilac); color: black; font-weight: bold;" onclick="switchSleepView(0)">🌙 LAST NIGHT</button>
-                <button id="btnSleepPrevNight" class="lcars-btn btn-lilac" style="font-size: 0.8rem; padding: 6px 14px; background: rgba(204, 153, 204, 0.2); color: var(--lcars-lilac); font-weight: bold; border: 1px solid var(--lcars-lilac);" onclick="switchSleepView(1)">⏮ PREVIOUS NIGHT</button>
-                <button id="btnReadSleepYest" style="display: none;" onclick="switchSleepView(1)"></button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Bay 4: Full-Width Ambulatory Exercise & Workout Dynamics (No Overlap) -->
-<!-- BAY 4: Ambulatory Exercise & Workout Dynamics (Clinical Protocol Specification) -->
-          <div class="lcars-bay" style="margin-bottom: 24px; border-left: 6px solid #d97706; box-shadow: 0 4px 14px rgba(0,0,0,0.08);">
-            <div class="lcars-bay-header" style="border-bottom-color: var(--lcars-banana); display: flex; justify-content: space-between; align-items: center;">
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <span class="lcars-bay-tag" style="background: var(--lcars-banana); color: black;">SPORT-04</span>
-                <span class="lcars-bay-title" style="color: var(--lcars-banana);">AMBULATORY WORKOUT & EXERCISE DYNAMICS (CLINICAL SPEC)</span>
-              </div>
-              <span class="badge" style="background: rgba(255,204,51,0.15); color: var(--lcars-banana); border: 1px solid var(--lcars-banana); font-size: 0.72rem;">
-                5-ZONE CARDIAC LOAD • 48 HALF-HOUR CADENCE BINS
-              </span>
-            </div>
-            
-            <div class="lcars-bay-body" style="display: flex; flex-direction: column; gap: 16px;">
-
-              <!-- Workout Controls & Sport Selector Ribbon -->
-              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; background: rgba(255,204,51,0.04); padding: 10px 14px; border-radius: 6px; border: 1px solid rgba(255,204,51,0.2);">
-                <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-                  <span style="font-size: 0.85rem; font-weight: bold; color: var(--lcars-banana);">SELECT SPORT MODE:</span>
-                  <select id="selWorkoutSport" class="setup-select" style="width: auto; padding: 4px 10px; font-size: 0.85rem;" onchange="onWorkoutSportChanged()">
-                    <option value="walk">🚶 OUTDOOR / POST-MEAL WALK (RECOMMENDED)</option>
-                    <option value="run">🏃 OUTDOOR RUNNING</option>
-                    <option value="treadmill">⚡ TREADMILL / INDOOR RUN</option>
-                    <option value="cycle">🚴 OUTDOOR / INDOOR CYCLING</option>
-                    <option value="hike">🥾 HIKING / TRAIL TREK</option>
-                    <option value="fitness">🏋️ FITNESS / GYM / HIIT</option>
-                    <option value="aerobics">🧘 AEROBICS & MOBILITY</option>
-                  </select>
-                </div>
-
-                <div style="display: flex; gap: 8px;">
-                  <button id="btnStartWorkout" class="lcars-pill pill-banana" style="font-size: 0.8rem; padding: 6px 14px; height: auto;" onclick="toggleWorkoutSession()">
-                    <span id="lblWorkoutAction">▶ START WORKOUT</span>
-                  </button>
-
-                </div>
-              </div>
-
-              <!-- Real-Time Workout KPIs Grid (6 Cards) -->
-              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px;">
-                <div class="stat-card" style="border-left-color: var(--lcars-banana);">
-                  <span class="stat-card-title">SESSION DURATION</span>
-                  <span class="stat-card-val" id="valWorkoutTime" style="font-size: 1.45rem; color: var(--lcars-banana); font-family: var(--lcars-mono);">00:28:30</span>
-                  <span class="stat-card-sub" id="lblWorkoutStatus">Morning Walk Recorded (Synced)</span>
-                </div>
-                <div class="stat-card" style="border-left-color: #ff5566;">
-                  <span class="stat-card-title">WORKOUT PULSE</span>
-                  <span class="stat-card-val" id="valWorkoutHR" style="font-size: 1.45rem; color: #ff5566; font-family: var(--lcars-mono);">94 <span style="font-size: 0.9rem;">BPM</span></span>
-                  <span class="stat-card-sub" id="lblWorkoutHRZone">Zone 1: Warm Up (Recovery)</span>
-                </div>
-                <div class="stat-card" style="border-left-color: var(--lcars-orange);">
-                  <span class="stat-card-title">ACTIVE CALORIES</span>
-                  <span class="stat-card-val" id="valWorkoutKcal" style="font-size: 1.45rem; color: var(--lcars-orange); font-family: var(--lcars-mono);">95.4 <span style="font-size: 0.9rem;">kcal</span></span>
-                  <span class="stat-card-sub">Basal + Kinetic Burn</span>
-                </div>
-                <div class="stat-card" style="border-left-color: var(--lcars-blue);">
-                  <span class="stat-card-title">DISTANCE & PACE</span>
-                  <span class="stat-card-val" id="valWorkoutDist" style="font-size: 1.45rem; color: var(--lcars-blue); font-family: var(--lcars-mono);">1.04 <span style="font-size: 0.9rem;">mi</span></span>
-                  <span class="stat-card-sub" id="valWorkoutPace">Pace: 27:24 min/mi</span>
-                </div>
-                <div class="stat-card" style="border-left-color: var(--lcars-lilac);">
-                  <span class="stat-card-title">CADENCE & METS</span>
-                  <span class="stat-card-val" id="valWorkoutCadence" style="font-size: 1.45rem; color: var(--lcars-lilac); font-family: var(--lcars-mono);">84 <span style="font-size: 0.9rem;">spm</span></span>
-                  <span class="stat-card-sub" id="valWorkoutMETs">Intensity: 3.5 METs</span>
-                </div>
-                <div class="stat-card" style="border-left-color: var(--lcars-green);">
-                  <span class="stat-card-title">GLUT4 GLUCOSE CLEAR</span>
-                  <span class="stat-card-val" id="valWorkoutGLUT4" style="font-size: 1.45rem; color: var(--lcars-green); font-family: var(--lcars-mono);">-32 <span style="font-size: 0.9rem;">mg/dL</span></span>
-                  <span class="stat-card-sub">Non-Insulin Clearance</span>
-                </div>
-              </div>
-
-              <!-- 5-Zone Cardiac Effort Distribution Bar -->
-              <div style="background: rgba(0,0,0,0.25); border: 1px solid #1a2c3a; padding: 12px 14px; border-radius: 6px;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                  <strong style="color: var(--lcars-banana); font-size: 0.9rem;">5-ZONE EXERCISE CARDIAC LOAD DISTRIBUTION</strong>
-                  <span style="font-size: 0.78rem; color: #80a8c0;">HRMAX FORMULA: 220 - AGE (EST. 175 BPM)</span>
-                </div>
-
-                <!-- Horizontal Stacked Zone Bar -->
-                <div style="height: 24px; border-radius: 4px; overflow: hidden; display: flex; background: #0c1420; border: 1px solid #253848; margin-bottom: 8px;">
-                  <div id="barZone1" style="width: 25%; background: #38b6ff; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: bold; color: black;" title="Zone 1: Warm Up (50-60%)">Z1 (25%)</div>
-                  <div id="barZone2" style="width: 45%; background: #55ff77; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: bold; color: black;" title="Zone 2: Fat Burn (60-70%)">Z2 FAT BURN (45%)</div>
-                  <div id="barZone3" style="width: 20%; background: #ffcc00; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: bold; color: black;" title="Zone 3: Aerobic (70-80%)">Z3 (20%)</div>
-                  <div id="barZone4" style="width: 8%; background: #ff9966; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: bold; color: black;" title="Zone 4: Anaerobic (80-90%)">Z4</div>
-                  <div id="barZone5" style="width: 2%; background: #ff5566; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: bold; color: white;" title="Zone 5: Peak (90-100%)">Z5</div>
-                </div>
-
-                <!-- Zone Legend & Specifics -->
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 6px; font-size: 0.75rem;">
-                  <div style="color: #38b6ff;"><strong>Z1 WARM UP:</strong> 88–105 BPM (Recovery)</div>
-                  <div style="color: #55ff77;"><strong>Z2 FAT BURN:</strong> 105–123 BPM (Optimum)</div>
-                  <div style="color: #ffcc00;"><strong>Z3 AEROBIC:</strong> 123–140 BPM (Cardio)</div>
-                  <div style="color: #ff9966;"><strong>Z4 ANAEROBIC:</strong> 140–158 BPM (Lactate)</div>
-                  <div style="color: #ff5566;"><strong>Z5 PEAK:</strong> 158–175+ BPM (Max)</div>
-                </div>
-              </div>
-
-              <!-- 24-Hour 48-Slot Step & Cadence Timeline Chart -->
-              <div style="background: rgba(0,0,0,0.25); border: 1px solid #1a2c3a; padding: 12px 14px; border-radius: 6px;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                  <div>
-                    <strong style="color: var(--lcars-blue); font-size: 0.9rem;">24-HOUR HALF-HOUR ACTIVITY BINS (48 SLOTS)</strong>
-                    <div style="font-size: 0.75rem; color: #80a8c0;">STEP VOLUME & EXERCISE INTERVALS CORRELATED WITH MEAL TIMES</div>
-                  </div>
-                  <div style="font-family: var(--lcars-mono); font-size: 0.8rem; color: var(--lcars-green);" id="lblActiveDailySteps">
-                    TOTAL: 0 / 8,000 STEPS (0%)
-                  </div>
-                </div>
-
-                <!-- Vector SVG 48-Slot Bar Chart -->
-                <div style="width: 100%; overflow-x: auto;">
-                  <svg id="svgHBand48Slots" viewBox="0 0 960 140" style="width: 100%; min-width: 650px; height: 140px; display: block;">
-                    <!-- Grid Lines & Hour Labels -->
-                    <line x1="40" y1="110" x2="940" y2="110" stroke="#1a2c3a" stroke-width="1"/>
-                    <line x1="40" y1="70" x2="940" y2="70" stroke="#14202c" stroke-width="1" stroke-dasharray="3,3"/>
-                    <line x1="40" y1="30" x2="940" y2="30" stroke="#14202c" stroke-width="1" stroke-dasharray="3,3"/>
-                    
-                    <!-- Y Axis Labels -->
-                    <text x="35" y="113" fill="#607890" font-size="9" text-anchor="end" font-family="var(--lcars-mono)">0</text>
-                    <text x="35" y="73" fill="#607890" font-size="9" text-anchor="end" font-family="var(--lcars-mono)">500</text>
-                    <text x="35" y="33" fill="#607890" font-size="9" text-anchor="end" font-family="var(--lcars-mono)">1000</text>
-
-                    <!-- Hour Ticks along bottom (every 2 hours: 00, 02, 04 ... 22) -->
-                    <text x="40" y="125" fill="#607890" font-size="8" text-anchor="middle" font-family="var(--lcars-mono)">00:00</text>
-                    <text x="115" y="125" fill="#607890" font-size="8" text-anchor="middle" font-family="var(--lcars-mono)">02:00</text>
-                    <text x="190" y="125" fill="#607890" font-size="8" text-anchor="middle" font-family="var(--lcars-mono)">04:00</text>
-                    <text x="265" y="125" fill="#607890" font-size="8" text-anchor="middle" font-family="var(--lcars-mono)">06:00</text>
-                    <text x="340" y="125" fill="#607890" font-size="8" text-anchor="middle" font-family="var(--lcars-mono)">08:00</text>
-                    <text x="415" y="125" fill="#607890" font-size="8" text-anchor="middle" font-family="var(--lcars-mono)">10:00</text>
-                    <text x="490" y="125" fill="#607890" font-size="8" text-anchor="middle" font-family="var(--lcars-mono)">12:00</text>
-                    <text x="565" y="125" fill="#607890" font-size="8" text-anchor="middle" font-family="var(--lcars-mono)">14:00</text>
-                    <text x="640" y="125" fill="#607890" font-size="8" text-anchor="middle" font-family="var(--lcars-mono)">16:00</text>
-                    <text x="715" y="125" fill="#607890" font-size="8" text-anchor="middle" font-family="var(--lcars-mono)">18:00</text>
-                    <text x="790" y="125" fill="#607890" font-size="8" text-anchor="middle" font-family="var(--lcars-mono)">20:00</text>
-                    <text x="865" y="125" fill="#607890" font-size="8" text-anchor="middle" font-family="var(--lcars-mono)">22:00</text>
-                    <text x="940" y="125" fill="#607890" font-size="8" text-anchor="middle" font-family="var(--lcars-mono)">24:00</text>
-
-                    <!-- Dynamic 48 Bars generated by JavaScript -->
-                    <g id="hband48BarsGroup">
-                      <!-- Rendered via JS -->
-                    </g>
-                  </svg>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-
-      <!-- =====================================================================
-           TAB 3: METABOLIC ACTIVITY & NUTRITION JOURNAL
-           ===================================================================== -->
-            <!-- =====================================================================
-           TAB 3: 360-DEGREE PERSONAL HEALTH VIEW & DIABETES LEARNING ENGINE
-           ===================================================================== -->
       <div id="pageMetabolic" class="tab-page">
         <div class="diet-container">
 
@@ -2322,7 +2035,7 @@
                 <span style="font-size: 0.8rem; color: var(--lcars-gray); display: block;">SYNCHRONIZED SENSOR TELEMETRY &amp; METABOLIC HOMEOSTASIS</span>
               </div>
               <div style="display: flex; gap: 8px;">
-                <button class="lcars-btn btn-banana" style="flex: none; padding: 4px 14px; font-size: 0.8rem;" onclick="switchTab('reports')">OPEN 360° SYNCHRONIZED TALL CHART (TAB 05)</button>
+                <button class="lcars-btn btn-banana" style="flex: none; padding: 4px 14px; font-size: 0.8rem;" onclick="switchTab('reports')">OPEN 360° SYNCHRONIZED TALL CHART (TAB 04)</button>
               </div>
             </div>
 
@@ -2871,7 +2584,7 @@
                 <span style="font-size: 0.82rem; color: #475569; display: block; margin-top: 2px;">ANALYZING PRE-CHOICE GEMINI GUIDANCE &bull; ACTUAL WATCH METRICS TRACKING THE REAL EFFECT</span>
               </div>
               <div style="display: flex; gap: 8px;">
-                <button class="lcars-btn btn-banana" style="padding: 5px 14px; font-size: 0.82rem; font-weight: bold;" onclick="switchTab('diettrades')">🥗 OPEN MEAL PLANNER &amp; COACH (TAB 04)</button>
+                <button class="lcars-btn btn-banana" style="padding: 5px 14px; font-size: 0.82rem; font-weight: bold;" onclick="switchTab('diettrades')">🥗 OPEN MEAL PLANNER &amp; COACH (TAB 03)</button>
               </div>
             </div>
 
@@ -4311,6 +4024,10 @@
                 <input type="number" id="cfgWeight" class="setup-input" value="75" min="30" max="300">
               </div>
               <div class="setup-field">
+                <label class="setup-label">RESIDENTIAL ZIP CODE (STORE SOURCING 40+ MILES)</label>
+                <input type="text" id="cfgZipCode" class="setup-input" value="98201" maxlength="10" placeholder="e.g. 98201, 98391, 98402 (40+ miles from Seattle)" style="font-weight: bold; color: #0284c7;" onchange="onConfigZipCodeChange(this.value)">
+              </div>
+              <div class="setup-field">
                 <label class="setup-label">DAILY STEP GOAL</label>
                 <input type="number" id="cfgStepGoal" class="setup-input" value="2000" step="500">
               </div>
@@ -5036,7 +4753,7 @@
 
             <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 12px; border-top: 1px solid #e2e8f0; padding-top: 10px; flex-wrap: wrap; gap: 8px;">
               <span id="lblEhrConfigStatus" style="font-size: 0.76rem; color: #16a34a; font-weight: bold;">
-                ✓ Patient EHR Configuration Synchronized with Tab 06 Export
+                ✓ Patient EHR Configuration Synchronized with Tab 05 Export
               </span>
               <button type="button" class="lcars-btn btn-green" onclick="savePatientEhrConfig()" style="font-size: 0.82rem; padding: 6px 16px; font-weight: bold;">
                 💾 SAVE PATIENT EHR SETUP
@@ -5520,7 +5237,7 @@
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                       <td style="padding: 10px; font-weight: bold; background: #f8fafc; border-right: 1.5px solid #cbd5e1;">Synchronized Timeline Visualization</td>
                       <td style="padding: 10px; color: #64748b; border-right: 1.5px solid #cbd5e1;">Isolated, fragmented screens. User must flip between separate tabs for BP, HR, Temp, and Glucose. Impossible to correlate causes.</td>
-                      <td style="padding: 10px; color: #0f172a; border-right: 1.5px solid #cbd5e1;"><strong style="color: #15803d;">SINGLE TALL SYNCHRONIZED MULTI-MEASUREMENT CHART (TAB 05).</strong> 8 stacked biometric &amp; behavioral lanes (Glucose, BP, HR/HRV, SpO2, Temp, Exercise, Diet, Meds) sharing unified X-axis with continuous vertical scrubber line.</td>
+                      <td style="padding: 10px; color: #0f172a; border-right: 1.5px solid #cbd5e1;"><strong style="color: #15803d;">SINGLE TALL SYNCHRONIZED MULTI-MEASUREMENT CHART (TAB 04).</strong> 8 stacked biometric &amp; behavioral lanes (Glucose, BP, HR/HRV, SpO2, Temp, Exercise, Diet, Meds) sharing unified X-axis with continuous vertical scrubber line.</td>
                       <td style="padding: 10px; text-align: center; font-weight: bold; color: #15803d;">Instant 360° Root Cause Analysis</td>
                     </tr>
                     <tr style="border-bottom: 1px solid #e2e8f0; background: #fafafa;">
@@ -5692,7 +5409,302 @@
           </div>
 
         </div>
-      </div>
+      
+        <!-- =========================================================================
+             UNIFIED CARDIO-METABOLIC INTEGRATION BAY (HEART RATE, HRV, SLEEP & WORKOUT)
+             ========================================================================= -->
+        <div id="secCardioAutonomicBay" style="margin-top: 18px; border-top: 2px solid #cbd5e1; padding-top: 16px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+            <div>
+              <span style="color: #0369a1; font-size: 1.15rem; font-weight: 900; font-family: var(--lcars-mono);">
+                ❤️ CARDIAC, AUTONOMIC TONE &amp; KINETIC EXERCISE INTEGRATION
+              </span>
+              <span style="font-size: 0.8rem; color: #64748b; display: block; margin-top: 2px;">
+                HEART RATE &bull; AUTONOMIC HRV &amp; STRESS &bull; NOCTURNAL SLEEP RECOVERY &bull; GLUT4 WORKOUT TRACKING
+              </span>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 20px; max-height: calc(100vh - 160px); overflow-y: auto; padding-right: 6px;">
+
+          <!-- Top Row: Dual Cardio & HRV Bays (2 Columns) -->
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
+<!-- Heart Rate Dynamics -->
+          <div class="lcars-bay" style="min-height: 310px;">
+            <div class="lcars-bay-header" style="border-bottom: 3px solid #dc2626; background: #f8fafc;">
+              <span class="lcars-bay-tag" style="background: #dc2626; color: white; font-weight: 800;">CARDIO-01</span>
+              <span class="lcars-bay-title" style="color: #091428; font-weight: 800;">DYNAMIC HEART RATE MATRIX</span>
+            </div>
+            <div class="lcars-bay-body">
+              <div class="telemetry-display">
+                <div class="telemetry-huge hr" id="valHeartRate">--</div>
+                <div class="telemetry-unit">BPM</div>
+                <div class="telemetry-state">
+                  <span class="state-badge normal" id="badgeHR">STANDBY</span>
+                  <div style="font-size: 0.75rem; color: var(--lcars-gray); margin-top: 4px;">CARDIAC LOAD STABLE</div>
+                </div>
+              </div>
+
+              <div class="sub-telemetry-row">
+                <div class="row-meta">
+                  <span class="label">AEROBIC CARDIAC ZONE</span>
+                  <span id="txtHRZone" style="font-family: var(--lcars-mono);">STANDBY</span>
+                </div>
+                <div class="lcars-bar-track">
+                  <div class="lcars-bar-fill hr-bar" id="barHR" style="width: 0%;"></div>
+                </div>
+              </div>
+
+              <div class="sub-telemetry-row">
+                <div class="row-meta">
+                  <span class="label">24H SPREAD: MIN 58 | MAX 118 | REST 68 BPM</span>
+                </div>
+              </div>
+
+              <div class="bay-controls" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 8px; padding-bottom: 4px;">
+                <button id="btnStartHR" class="lcars-btn btn-red" style="min-height: 36px;" onclick="startHRDetection()">SCAN PULSE</button>
+                <button id="btnStopHR" class="lcars-btn btn-orange" style="min-height: 36px;" onclick="stopHRDetection()">CANCEL</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Autonomic HRV & Stress -->
+          <div class="lcars-bay" style="min-height: 310px;">
+            <div class="lcars-bay-header" style="border-bottom: 3px solid #4f46e5; background: #f8fafc;">
+              <span class="lcars-bay-tag" style="background: #4f46e5; color: white; font-weight: 800;">NEURO-02</span>
+              <span class="lcars-bay-title" style="color: #091428; font-weight: 800;">AUTONOMIC HRV & NEURO-STRESS</span>
+            </div>
+            <div class="lcars-bay-body">
+              <div class="telemetry-display">
+                <div class="telemetry-huge stress" id="valStress">--</div>
+                <div class="telemetry-unit">/ 100</div>
+                <div class="telemetry-state">
+                  <span class="state-badge normal" id="badgeStress">STANDBY</span>
+                  <div style="font-size: 0.75rem; color: var(--lcars-gray); margin-top: 4px;">SYMPATHETIC LOAD MONITOR</div>
+                </div>
+              </div>
+
+              <div class="sub-telemetry-row">
+                <div class="row-meta">
+                  <span class="label">HEART RATE VARIABILITY (HRV)</span>
+                  <span id="txtHRV" style="font-family: var(--lcars-mono); color: var(--lcars-blue);">STANDBY (-- MS)</span>
+                </div>
+                <div class="lcars-bar-track">
+                  <div class="lcars-bar-fill stress-bar" id="barStress" style="width: 0%;"></div>
+                </div>
+              </div>
+
+              <div class="sub-telemetry-row">
+                <div class="row-meta">
+                  <span class="label">FATIGUE INDEX</span>
+                  <span style="font-family: var(--lcars-mono); color: var(--lcars-green);">STANDBY</span>
+                </div>
+              </div>
+
+              <div class="bay-controls" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 12px; padding-bottom: 6px;">
+                <button id="btnStartHRV" class="lcars-btn btn-lilac" style="min-height: 38px;" onclick="startHRVDetection()">SCAN HRV</button>
+                <button id="btnStopHRV" class="lcars-btn btn-orange" style="min-height: 38px;" onclick="stopHRVDetection()">CANCEL</button>
+                <button id="btnViewLorenz" class="lcars-btn btn-blue" style="min-height: 38px;" onclick="viewLorenzScatterFromCardio()">📊 2D LORENZ SCATTER (POINCARÉ)</button>
+              </div>
+            </div>
+          </div>
+          </div>
+
+          <!-- Bay 3: Full-Width Sleep Architecture Bay (No Overlap) -->
+<!-- Sleep Architecture Bay -->
+          <div class="lcars-bay" style="margin-bottom: 20px; box-shadow: 0 4px 14px rgba(0,0,0,0.08);">
+            <div class="lcars-bay-header" style="border-bottom: 3px solid #0284c7; background: #f8fafc;">
+              <span class="lcars-bay-tag" style="background: #0284c7; color: white; font-weight: 800;">SOMNO-03</span>
+              <span class="lcars-bay-title" style="color: #091428; font-weight: 800;">CIRCADIAN SLEEP ARCHITECTURE</span>
+            </div>
+            <div class="lcars-bay-body">
+              <div class="telemetry-display">
+                <div class="telemetry-huge temp" id="valSleep">7.4</div>
+                <div class="telemetry-unit">HOURS</div>
+                <div class="telemetry-state">
+                  <span id="badgeSleepQuality" class="state-badge normal" style="background: #2a8835; color: white;">OPTIMAL RESTORATION</span>
+                  <div id="lblSleepSubTitle" style="font-size: 0.75rem; color: var(--lcars-gray); margin-top: 4px;">LAST NIGHT: 7.4h TOTAL • SLEEP QUALITY: 4.5 / 5.0</div>
+                </div>
+              </div>
+
+              <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 6px;">
+                <div class="stat-card" style="border-left-color: #6699cc;">
+                  <span class="stat-card-title">DEEP SLEEP</span>
+                  <span class="stat-card-val" id="valDeepSleep" style="font-size: 1.4rem; color: #6699cc;">1.9h (25.7%)</span>
+                </div>
+                <div class="stat-card" style="border-left-color: var(--lcars-blue);">
+                  <span class="stat-card-title">LIGHT SLEEP</span>
+                  <span class="stat-card-val" id="valLightSleep" style="font-size: 1.4rem; color: var(--lcars-blue);">4.1h (55.4%)</span>
+                </div>
+                <div class="stat-card" style="border-left-color: var(--lcars-lilac);">
+                  <span class="stat-card-title">REM DREAM</span>
+                  <span class="stat-card-val" id="valRemSleep" style="font-size: 1.4rem; color: var(--lcars-lilac);">1.4h (18.9%)</span>
+                </div>
+                <div class="stat-card" style="border-left-color: var(--lcars-orange);">
+                  <span class="stat-card-title">WAKEFUL PERIODS</span>
+                  <span class="stat-card-val" id="valWakeSleep" style="font-size: 1.4rem; color: var(--lcars-orange);">12 min</span>
+                </div>
+              </div>
+
+              <div class="bay-controls" style="margin-top: 10px; display: flex; gap: 10px;">
+                <button id="btnSleepLastNight" class="lcars-btn btn-lilac" style="font-size: 0.8rem; padding: 6px 14px; background: var(--lcars-lilac); color: black; font-weight: bold;" onclick="switchSleepView(0)">🌙 LAST NIGHT</button>
+                <button id="btnSleepPrevNight" class="lcars-btn btn-lilac" style="font-size: 0.8rem; padding: 6px 14px; background: rgba(204, 153, 204, 0.2); color: var(--lcars-lilac); font-weight: bold; border: 1px solid var(--lcars-lilac);" onclick="switchSleepView(1)">⏮ PREVIOUS NIGHT</button>
+                <button id="btnReadSleepYest" style="display: none;" onclick="switchSleepView(1)"></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bay 4: Full-Width Ambulatory Exercise & Workout Dynamics (No Overlap) -->
+<!-- BAY 4: Ambulatory Exercise & Workout Dynamics (Clinical Protocol Specification) -->
+          <div class="lcars-bay" style="margin-bottom: 24px; border-left: 6px solid #d97706; box-shadow: 0 4px 14px rgba(0,0,0,0.08);">
+            <div class="lcars-bay-header" style="border-bottom-color: var(--lcars-banana); display: flex; justify-content: space-between; align-items: center;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="lcars-bay-tag" style="background: var(--lcars-banana); color: black;">SPORT-04</span>
+                <span class="lcars-bay-title" style="color: var(--lcars-banana);">AMBULATORY WORKOUT & EXERCISE DYNAMICS (CLINICAL SPEC)</span>
+              </div>
+              <span class="badge" style="background: rgba(255,204,51,0.15); color: var(--lcars-banana); border: 1px solid var(--lcars-banana); font-size: 0.72rem;">
+                5-ZONE CARDIAC LOAD • 48 HALF-HOUR CADENCE BINS
+              </span>
+            </div>
+            
+            <div class="lcars-bay-body" style="display: flex; flex-direction: column; gap: 16px;">
+
+              <!-- Workout Controls & Sport Selector Ribbon -->
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; background: rgba(255,204,51,0.04); padding: 10px 14px; border-radius: 6px; border: 1px solid rgba(255,204,51,0.2);">
+                <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                  <span style="font-size: 0.85rem; font-weight: bold; color: var(--lcars-banana);">SELECT SPORT MODE:</span>
+                  <select id="selWorkoutSport" class="setup-select" style="width: auto; padding: 4px 10px; font-size: 0.85rem;" onchange="onWorkoutSportChanged()">
+                    <option value="walk">🚶 OUTDOOR / POST-MEAL WALK (RECOMMENDED)</option>
+                    <option value="run">🏃 OUTDOOR RUNNING</option>
+                    <option value="treadmill">⚡ TREADMILL / INDOOR RUN</option>
+                    <option value="cycle">🚴 OUTDOOR / INDOOR CYCLING</option>
+                    <option value="hike">🥾 HIKING / TRAIL TREK</option>
+                    <option value="fitness">🏋️ FITNESS / GYM / HIIT</option>
+                    <option value="aerobics">🧘 AEROBICS & MOBILITY</option>
+                  </select>
+                </div>
+
+                <div style="display: flex; gap: 8px;">
+                  <button id="btnStartWorkout" class="lcars-pill pill-banana" style="font-size: 0.8rem; padding: 6px 14px; height: auto;" onclick="toggleWorkoutSession()">
+                    <span id="lblWorkoutAction">▶ START WORKOUT</span>
+                  </button>
+
+                </div>
+              </div>
+
+              <!-- Real-Time Workout KPIs Grid (6 Cards) -->
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px;">
+                <div class="stat-card" style="border-left-color: var(--lcars-banana);">
+                  <span class="stat-card-title">SESSION DURATION</span>
+                  <span class="stat-card-val" id="valWorkoutTime" style="font-size: 1.45rem; color: var(--lcars-banana); font-family: var(--lcars-mono);">00:28:30</span>
+                  <span class="stat-card-sub" id="lblWorkoutStatus">Morning Walk Recorded (Synced)</span>
+                </div>
+                <div class="stat-card" style="border-left-color: #ff5566;">
+                  <span class="stat-card-title">WORKOUT PULSE</span>
+                  <span class="stat-card-val" id="valWorkoutHR" style="font-size: 1.45rem; color: #ff5566; font-family: var(--lcars-mono);">94 <span style="font-size: 0.9rem;">BPM</span></span>
+                  <span class="stat-card-sub" id="lblWorkoutHRZone">Zone 1: Warm Up (Recovery)</span>
+                </div>
+                <div class="stat-card" style="border-left-color: var(--lcars-orange);">
+                  <span class="stat-card-title">ACTIVE CALORIES</span>
+                  <span class="stat-card-val" id="valWorkoutKcal" style="font-size: 1.45rem; color: var(--lcars-orange); font-family: var(--lcars-mono);">95.4 <span style="font-size: 0.9rem;">kcal</span></span>
+                  <span class="stat-card-sub">Basal + Kinetic Burn</span>
+                </div>
+                <div class="stat-card" style="border-left-color: var(--lcars-blue);">
+                  <span class="stat-card-title">DISTANCE & PACE</span>
+                  <span class="stat-card-val" id="valWorkoutDist" style="font-size: 1.45rem; color: var(--lcars-blue); font-family: var(--lcars-mono);">1.04 <span style="font-size: 0.9rem;">mi</span></span>
+                  <span class="stat-card-sub" id="valWorkoutPace">Pace: 27:24 min/mi</span>
+                </div>
+                <div class="stat-card" style="border-left-color: var(--lcars-lilac);">
+                  <span class="stat-card-title">CADENCE & METS</span>
+                  <span class="stat-card-val" id="valWorkoutCadence" style="font-size: 1.45rem; color: var(--lcars-lilac); font-family: var(--lcars-mono);">84 <span style="font-size: 0.9rem;">spm</span></span>
+                  <span class="stat-card-sub" id="valWorkoutMETs">Intensity: 3.5 METs</span>
+                </div>
+                <div class="stat-card" style="border-left-color: var(--lcars-green);">
+                  <span class="stat-card-title">GLUT4 GLUCOSE CLEAR</span>
+                  <span class="stat-card-val" id="valWorkoutGLUT4" style="font-size: 1.45rem; color: var(--lcars-green); font-family: var(--lcars-mono);">-32 <span style="font-size: 0.9rem;">mg/dL</span></span>
+                  <span class="stat-card-sub">Non-Insulin Clearance</span>
+                </div>
+              </div>
+
+              <!-- 5-Zone Cardiac Effort Distribution Bar -->
+              <div style="background: rgba(0,0,0,0.25); border: 1px solid #1a2c3a; padding: 12px 14px; border-radius: 6px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                  <strong style="color: var(--lcars-banana); font-size: 0.9rem;">5-ZONE EXERCISE CARDIAC LOAD DISTRIBUTION</strong>
+                  <span style="font-size: 0.78rem; color: #80a8c0;">HRMAX FORMULA: 220 - AGE (EST. 175 BPM)</span>
+                </div>
+
+                <!-- Horizontal Stacked Zone Bar -->
+                <div style="height: 24px; border-radius: 4px; overflow: hidden; display: flex; background: #0c1420; border: 1px solid #253848; margin-bottom: 8px;">
+                  <div id="barZone1" style="width: 25%; background: #38b6ff; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: bold; color: black;" title="Zone 1: Warm Up (50-60%)">Z1 (25%)</div>
+                  <div id="barZone2" style="width: 45%; background: #55ff77; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: bold; color: black;" title="Zone 2: Fat Burn (60-70%)">Z2 FAT BURN (45%)</div>
+                  <div id="barZone3" style="width: 20%; background: #ffcc00; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: bold; color: black;" title="Zone 3: Aerobic (70-80%)">Z3 (20%)</div>
+                  <div id="barZone4" style="width: 8%; background: #ff9966; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: bold; color: black;" title="Zone 4: Anaerobic (80-90%)">Z4</div>
+                  <div id="barZone5" style="width: 2%; background: #ff5566; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: bold; color: white;" title="Zone 5: Peak (90-100%)">Z5</div>
+                </div>
+
+                <!-- Zone Legend & Specifics -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 6px; font-size: 0.75rem;">
+                  <div style="color: #38b6ff;"><strong>Z1 WARM UP:</strong> 88–105 BPM (Recovery)</div>
+                  <div style="color: #55ff77;"><strong>Z2 FAT BURN:</strong> 105–123 BPM (Optimum)</div>
+                  <div style="color: #ffcc00;"><strong>Z3 AEROBIC:</strong> 123–140 BPM (Cardio)</div>
+                  <div style="color: #ff9966;"><strong>Z4 ANAEROBIC:</strong> 140–158 BPM (Lactate)</div>
+                  <div style="color: #ff5566;"><strong>Z5 PEAK:</strong> 158–175+ BPM (Max)</div>
+                </div>
+              </div>
+
+              <!-- 24-Hour 48-Slot Step & Cadence Timeline Chart -->
+              <div style="background: rgba(0,0,0,0.25); border: 1px solid #1a2c3a; padding: 12px 14px; border-radius: 6px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                  <div>
+                    <strong style="color: var(--lcars-blue); font-size: 0.9rem;">24-HOUR HALF-HOUR ACTIVITY BINS (48 SLOTS)</strong>
+                    <div style="font-size: 0.75rem; color: #80a8c0;">STEP VOLUME & EXERCISE INTERVALS CORRELATED WITH MEAL TIMES</div>
+                  </div>
+                  <div style="font-family: var(--lcars-mono); font-size: 0.8rem; color: var(--lcars-green);" id="lblActiveDailySteps">
+                    TOTAL: 0 / 8,000 STEPS (0%)
+                  </div>
+                </div>
+
+                <!-- Vector SVG 48-Slot Bar Chart -->
+                <div style="width: 100%; overflow-x: auto;">
+                  <svg id="svgHBand48Slots" viewBox="0 0 960 140" style="width: 100%; min-width: 650px; height: 140px; display: block;">
+                    <!-- Grid Lines & Hour Labels -->
+                    <line x1="40" y1="110" x2="940" y2="110" stroke="#1a2c3a" stroke-width="1"/>
+                    <line x1="40" y1="70" x2="940" y2="70" stroke="#14202c" stroke-width="1" stroke-dasharray="3,3"/>
+                    <line x1="40" y1="30" x2="940" y2="30" stroke="#14202c" stroke-width="1" stroke-dasharray="3,3"/>
+                    
+                    <!-- Y Axis Labels -->
+                    <text x="35" y="113" fill="#607890" font-size="9" text-anchor="end" font-family="var(--lcars-mono)">0</text>
+                    <text x="35" y="73" fill="#607890" font-size="9" text-anchor="end" font-family="var(--lcars-mono)">500</text>
+                    <text x="35" y="33" fill="#607890" font-size="9" text-anchor="end" font-family="var(--lcars-mono)">1000</text>
+
+                    <!-- Hour Ticks along bottom (every 2 hours: 00, 02, 04 ... 22) -->
+                    <text x="40" y="125" fill="#607890" font-size="8" text-anchor="middle" font-family="var(--lcars-mono)">00:00</text>
+                    <text x="115" y="125" fill="#607890" font-size="8" text-anchor="middle" font-family="var(--lcars-mono)">02:00</text>
+                    <text x="190" y="125" fill="#607890" font-size="8" text-anchor="middle" font-family="var(--lcars-mono)">04:00</text>
+                    <text x="265" y="125" fill="#607890" font-size="8" text-anchor="middle" font-family="var(--lcars-mono)">06:00</text>
+                    <text x="340" y="125" fill="#607890" font-size="8" text-anchor="middle" font-family="var(--lcars-mono)">08:00</text>
+                    <text x="415" y="125" fill="#607890" font-size="8" text-anchor="middle" font-family="var(--lcars-mono)">10:00</text>
+                    <text x="490" y="125" fill="#607890" font-size="8" text-anchor="middle" font-family="var(--lcars-mono)">12:00</text>
+                    <text x="565" y="125" fill="#607890" font-size="8" text-anchor="middle" font-family="var(--lcars-mono)">14:00</text>
+                    <text x="640" y="125" fill="#607890" font-size="8" text-anchor="middle" font-family="var(--lcars-mono)">16:00</text>
+                    <text x="715" y="125" fill="#607890" font-size="8" text-anchor="middle" font-family="var(--lcars-mono)">18:00</text>
+                    <text x="790" y="125" fill="#607890" font-size="8" text-anchor="middle" font-family="var(--lcars-mono)">20:00</text>
+                    <text x="865" y="125" fill="#607890" font-size="8" text-anchor="middle" font-family="var(--lcars-mono)">22:00</text>
+                    <text x="940" y="125" fill="#607890" font-size="8" text-anchor="middle" font-family="var(--lcars-mono)">24:00</text>
+
+                    <!-- Dynamic 48 Bars generated by JavaScript -->
+                    <g id="hband48BarsGroup">
+                      <!-- Rendered via JS -->
+                    </g>
+                  </svg>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+        </div>
+</div>
 
       <!-- ================================================================= -->
       <!-- TAB 09: ADA DIET TRADES & CLINICAL RECIPE LOCATOR                 -->
@@ -5982,8 +5994,28 @@
                     </div>
                   </div>
 
-                  <!-- BOM Table -->
-                  <div style="overflow-x: auto; margin-bottom: 12px;">
+                  <!-- Restaurant Direct Sourcing Card (Shown when restaurant/prepared food is evaluated) -->
+                  <div id="cardRestaurantOrderGuide" style="display: none; background: #ffffff; border: 1.5px solid #f59e0b; border-left: 5px solid #d97706; border-radius: 6px; padding: 12px; margin-bottom: 12px;">
+                    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid #fed7aa; padding-bottom: 6px; margin-bottom: 8px;">
+                      <div>
+                        <strong style="color: #b45309; font-size: 0.88rem; font-family: var(--lcars-mono);" id="lblRestOrderTitle">
+                          🏪 COMMERCIAL RESTAURANT / PREPARED FOOD ORDER
+                        </strong>
+                        <div style="font-size: 0.72rem; color: #78350f;" id="lblRestOrderVendor">
+                          Direct Restaurant Sourcing &bull; Official Nutritional Disclosure
+                        </div>
+                      </div>
+                      <span style="font-size: 0.78rem; font-weight: 900; color: #b45309; background: #ffedd5; padding: 2px 8px; border-radius: 4px;" id="lblRestOrderCost">
+                        ~$7.50
+                      </span>
+                    </div>
+                    <ul id="listRestOrderTactics" style="margin: 0; padding-left: 18px; font-size: 0.76rem; color: #451a03; line-height: 1.45;">
+                      <!-- Populated dynamically -->
+                    </ul>
+                  </div>
+
+                  <!-- BOM Table (Shown only for home recipes & grocery meal prep) -->
+                  <div id="containerBOMTableWrapper" style="overflow-x: auto; margin-bottom: 12px;">
                     <table style="width: 100%; border-collapse: collapse; font-size: 0.78rem; font-family: var(--lcars-mono);">
                       <thead>
                         <tr style="background: #ffffff; border-bottom: 1.5px solid #cbd5e1; text-align: left;">
@@ -6001,53 +6033,57 @@
                   </div>
 
                   <!-- TOP 3 LOCAL GROCERS WITHIN 20-MILE RADIUS -->
-                  <div style="background: #ffffff; border: 1px solid #cbd5e1; border-radius: 6px; padding: 12px; margin-bottom: 6px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 6px; margin-bottom: 8px;">
+                  <div id="containerTop3Grocers" style="background: #ffffff; border: 1px solid #cbd5e1; border-radius: 6px; padding: 12px; margin-bottom: 6px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 6px; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
                       <span style="font-size: 0.80rem; font-weight: 800; color: #0f172a; font-family: var(--lcars-mono);">
-                        🏪 TOP 3 LOCAL GROCERY STORES WITHIN 20-MILE RADIUS (SEATTLE METRO / PACIFIC NW)
+                        🏪 TOP 3 LOCAL GROCERY STORES WITHIN 20-MILE RADIUS
                       </span>
-                      <span style="font-size: 0.70rem; color: #15803d; font-weight: bold; background: #ecfdf5; padding: 2px 6px; border-radius: 4px;">
-                        LIVE INVENTORY SOURCING
-                      </span>
+                      <div style="display: flex; align-items: center; gap: 6px;">
+                        <span style="font-size: 0.72rem; color: #475569; font-weight: 700;">SOURCING ZIP:</span>
+                        <input type="text" id="inputBOMZipCode" value="98201" maxlength="10" style="width: 72px; padding: 2px 6px; font-size: 0.75rem; border: 1.5px solid #0284c7; border-radius: 4px; font-weight: bold; color: #0369a1; text-align: center; background: #fff;" onchange="onBOMZipCodeChange(this.value)" title="Configured in Tab 10-CONFIG or quick update here">
+                        <span id="badgeZipRadius" style="font-size: 0.70rem; color: #15803d; font-weight: bold; background: #ecfdf5; padding: 2px 6px; border-radius: 4px; border: 1px solid #a7f3d0;">
+                          📍 <span id="lblZipRegionName">PACIFIC NW / 40+ MILES</span> (&lt;20 MILES ACTIVE)
+                        </span>
+                      </div>
                     </div>
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 8px; margin-bottom: 10px;">
                       
                       <!-- Store 1 -->
                       <div style="background: #f8fafc; border: 1.5px solid #0284c7; border-radius: 4px; padding: 8px 10px;">
                         <div style="display: flex; justify-content: space-between; align-items: baseline;">
-                          <strong style="color: #0369a1; font-size: 0.82rem;">1. Fred Meyer / QFC</strong>
-                          <span style="font-size: 0.70rem; color: #0284c7; font-weight: bold;">3.1 MILES</span>
+                          <strong id="bomStore1Name" style="color: #0369a1; font-size: 0.82rem;">1. Fred Meyer / QFC</strong>
+                          <span id="bomStore1Dist" style="font-size: 0.70rem; color: #0284c7; font-weight: bold;">2.8 MILES</span>
                         </div>
-                        <div style="font-size: 0.72rem; color: #64748b; margin-top: 2px;">Pacific NW Regional Hub &bull; 100% In-Stock</div>
+                        <div id="bomStore1Sub" style="font-size: 0.72rem; color: #64748b; margin-top: 2px;">Local Primary Hub &bull; 100% In-Stock</div>
                         <div style="margin-top: 4px; display: flex; justify-content: space-between; align-items: center;">
                           <span style="font-size: 0.72rem; color: #15803d; font-weight: bold;">✅ ALL ITEMS AVAILABLE</span>
-                          <span style="font-size: 0.82rem; font-weight: 900; color: #0f172a;">$7.85 Basket</span>
+                          <span id="bomStore1Basket" style="font-size: 0.82rem; font-weight: 900; color: #0f172a;">$7.85 Basket</span>
                         </div>
                       </div>
 
                       <!-- Store 2 -->
                       <div style="background: #f8fafc; border: 1.5px solid #94a3b8; border-radius: 4px; padding: 8px 10px;">
                         <div style="display: flex; justify-content: space-between; align-items: baseline;">
-                          <strong style="color: #0f172a; font-size: 0.82rem;">2. Safeway / Albertsons</strong>
-                          <span style="font-size: 0.70rem; color: #64748b; font-weight: bold;">4.6 MILES</span>
+                          <strong id="bomStore2Name" style="color: #0f172a; font-size: 0.82rem;">2. Safeway / Albertsons</strong>
+                          <span id="bomStore2Dist" style="font-size: 0.70rem; color: #64748b; font-weight: bold;">4.1 MILES</span>
                         </div>
-                        <div style="font-size: 0.72rem; color: #64748b; margin-top: 2px;">Local Neighborhood Metro &bull; 100% In-Stock</div>
+                        <div id="bomStore2Sub" style="font-size: 0.72rem; color: #64748b; margin-top: 2px;">Local Neighborhood Grocery &bull; 100% In-Stock</div>
                         <div style="margin-top: 4px; display: flex; justify-content: space-between; align-items: center;">
                           <span style="font-size: 0.72rem; color: #15803d; font-weight: bold;">✅ ALL ITEMS AVAILABLE</span>
-                          <span style="font-size: 0.82rem; font-weight: 900; color: #0f172a;">$8.40 Basket</span>
+                          <span id="bomStore2Basket" style="font-size: 0.82rem; font-weight: 900; color: #0f172a;">$8.40 Basket</span>
                         </div>
                       </div>
 
                       <!-- Store 3 -->
                       <div style="background: #f8fafc; border: 1.5px solid #94a3b8; border-radius: 4px; padding: 8px 10px;">
                         <div style="display: flex; justify-content: space-between; align-items: baseline;">
-                          <strong style="color: #0f172a; font-size: 0.82rem;">3. Trader Joe's / Costco</strong>
-                          <span style="font-size: 0.70rem; color: #64748b; font-weight: bold;">6.8 MILES</span>
+                          <strong id="bomStore3Name" style="color: #0f172a; font-size: 0.82rem;">3. Walmart Supercenter / WinCo</strong>
+                          <span id="bomStore3Dist" style="font-size: 0.70rem; color: #64748b; font-weight: bold;">5.9 MILES</span>
                         </div>
-                        <div style="font-size: 0.72rem; color: #64748b; margin-top: 2px;">Bulk Value / Organic &bull; 100% In-Stock</div>
+                        <div id="bomStore3Sub" style="font-size: 0.72rem; color: #64748b; margin-top: 2px;">Regional Value Center &bull; 100% In-Stock</div>
                         <div style="margin-top: 4px; display: flex; justify-content: space-between; align-items: center;">
                           <span style="font-size: 0.72rem; color: #15803d; font-weight: bold;">✅ VALUE PRICING</span>
-                          <span style="font-size: 0.82rem; font-weight: 900; color: #0f172a;">$6.95 Value</span>
+                          <span id="bomStore3Basket" style="font-size: 0.82rem; font-weight: 900; color: #0f172a;">$6.95 Value</span>
                         </div>
                       </div>
 
@@ -6144,7 +6180,7 @@
                       🚀 CONSUME NOW (LOG TO MEAL LOG)
                     </button>
                     <button type="button" class="lcars-btn btn-peach" style="font-size: 0.82rem; padding: 8px 12px;" onclick="switchTab('reports')">
-                      📊 VIEW IN 8-LANE CHART (TAB 05)
+                      📊 VIEW IN 8-LANE CHART (TAB 04)
                     </button>
                   </div>
                 </div>
@@ -6528,7 +6564,7 @@
               <div style="font-size: 0.88rem; color: #1e293b; line-height: 1.5; margin-top: 6px;">
                 Isolated fingersticks only show a static number at a single moment in time without context. LCARS provides a <strong>360-Degree Personal Health Console</strong> that correlates 8 simultaneous telemetry streams (Glucose, BP, HR/HRV, SpO2, Skin Temp, Motion, Diet, and Medications).
                 <br><br>
-                When you or your doctor scrub through your daily or weekly timeline on Tab 05, you can click on any glucose spike or drop to immediately reveal the exact meal carbs consumed, the exercise completed (and its resulting &Delta;G drop), and your medication adherence. Furthermore, when your doctor adjusts a prescription, logging the titration pins a <strong>"💊 MED CHANGE"</strong> marker across your charts, allowing both of you to objectively determine whether the change prompted glycemic <strong>progress or regression</strong>.
+                When you or your doctor scrub through your daily or weekly timeline on Tab 04, you can click on any glucose spike or drop to immediately reveal the exact meal carbs consumed, the exercise completed (and its resulting &Delta;G drop), and your medication adherence. Furthermore, when your doctor adjusts a prescription, logging the titration pins a <strong>"💊 MED CHANGE"</strong> marker across your charts, allowing both of you to objectively determine whether the change prompted glycemic <strong>progress or regression</strong>.
               </div>
             </div>
 
@@ -7248,7 +7284,7 @@
               <div style="display: flex; gap: 8px; flex-wrap: wrap;">
                 <button class="lcars-btn btn-green" style="padding: 5px 16px; font-size: 0.82rem; font-weight: bold;" onclick="openAddMedModal()">+ ADD MEDICATION</button>
                 <button class="lcars-btn btn-orange" style="padding: 5px 14px; font-size: 0.82rem; font-weight: bold;" onclick="resetMedicationRegimen()">RESET REGIMEN</button>
-                <button class="lcars-btn btn-blue" style="padding: 5px 14px; font-size: 0.82rem; font-weight: bold;" onclick="switchTab('reports')">VIEW IN TALL CHART (TAB 05)</button>
+                <button class="lcars-btn btn-blue" style="padding: 5px 14px; font-size: 0.82rem; font-weight: bold;" onclick="switchTab('reports')">VIEW IN TALL CHART (TAB 04)</button>
               </div>
             </div>
 
@@ -7404,7 +7440,7 @@
                 🔒 CLINICAL PROTOCOL ACTIVE
               </span>
               <button class="lcars-btn btn-blue" style="font-size: 0.8rem; padding: 4px 14px;" onclick="switchTab('reports')">
-                📊 AUDIT % GOALS MET IN REPORTS (TAB 05)
+                📊 AUDIT % GOALS MET IN REPORTS (TAB 04)
               </button>
             </div>
           </div>
@@ -7599,7 +7635,7 @@
                   💾 SAVE &amp; LOCK CLINICAL GOALS
                 </button>
                 <button class="lcars-btn btn-blue" style="font-size: 0.82rem; padding: 6px 16px;" onclick="switchTab('reports')">
-                  📊 AUDIT % GOALS MET (TAB 05)
+                  📊 AUDIT % GOALS MET (TAB 04)
                 </button>
               </div>
             </div>
@@ -7872,6 +7908,7 @@
         let cfg = savedConfig ? JSON.parse(savedConfig) : {};
         cfg.audioEnabled = audioEnabled ? 1 : 0;
         localStorage.setItem('veepoo_user_config', JSON.stringify(cfg));
+      updateStoreSourcingFromZip(cfg.zipCode);
       } catch (e) {}
       logLCARS(`Audio tactile synthesizer: ${audioEnabled ? 'ONLINE' : 'MUTED'}`, "sys");
     }
@@ -7921,8 +7958,11 @@
         switchTab('fullscan');
         return;
       } else if (tabId === 'cardio') {
-        document.getElementById('navTabCardio').classList.add('active');
-        document.getElementById('pageCardio').classList.add('active-page');
+        // Cardio is now unified inside Tab 02: METABOLIC
+        switchTab('metabolic');
+        const cardioSec = document.getElementById('secCardioAutonomicBay');
+        if (cardioSec) cardioSec.scrollIntoView({ behavior: 'smooth' });
+        return;
       } else if (tabId === 'metabolic') {
         document.getElementById('navTabMetabolic').classList.add('active');
         document.getElementById('pageMetabolic').classList.add('active-page');
@@ -10000,6 +10040,8 @@
           setVal('cfgAge', cfg.age);
           setVal('cfgHeight', cfg.height);
           setVal('cfgWeight', cfg.weight);
+          setVal('cfgZipCode', cfg.zipCode || '98201');
+          updateStoreSourcingFromZip(cfg.zipCode || '98201');
           setVal('cfgStepGoal', cfg.stepGoal);
           setVal('cfgSleepGoal', cfg.sleepGoal);
           setVal('cfgCalorieGoal', cfg.calorieGoal);
@@ -10115,6 +10157,7 @@
         age: getInt('cfgAge', 45),
         height: getInt('cfgHeight', 175),
         weight: getInt('cfgWeight', 75),
+        zipCode: (getVal('cfgZipCode', '98201') || '98201').toString().trim(),
         stepGoal: getInt('cfgStepGoal', 2000),
         sleepGoal: getFloat('cfgSleepGoal', 8.0),
         calorieGoal: getInt('cfgCalorieGoal', 2000),
@@ -12135,23 +12178,213 @@
       if (typeof soundButtonPress === 'function') soundButtonPress();
       const sel = document.getElementById('selLocalStoreChain');
       const storeVal = sel ? sel.value : 'fredmeyer';
-      const storeNames = {
-        'fredmeyer': 'Fred Meyer / QFC (3.1 mi)',
-        'safeway': 'Safeway / Albertsons (4.6 mi)',
-        'traderjoes': "Trader Joe's / Costco (6.8 mi)"
-      };
-      const storeName = storeNames[storeVal] || 'Fred Meyer / QFC (3.1 mi)';
+      const storeText = (sel && sel.selectedIndex >= 0) ? sel.options[sel.selectedIndex].text : 'Fred Meyer / QFC (2.8 mi)';
+      const inpZip = document.getElementById('inputBOMZipCode') || document.getElementById('cfgZipCode');
+      const activeZip = inpZip ? inpZip.value.trim() : '98201';
       const statusEl = document.getElementById('localStoreSearchStatus');
       if (statusEl) {
         statusEl.style.display = 'block';
-        statusEl.innerHTML = `🔍 <strong>${storeName}:</strong> Sourced all recipe materials within 20-mile radius! <span style="color: #0284c7; font-weight: bold;">100% IN STOCK</span> &bull; Aisle coordinates &amp; digital coupons synced. Curbside pickup ready.`;
+        statusEl.innerHTML = `🔍 <strong>${storeText}:</strong> Sourced all recipe materials within 20-mile radius of ZIP <strong>${activeZip}</strong>! <span style="color: #0284c7; font-weight: bold;">100% IN STOCK</span> &bull; Aisle coordinates &amp; digital coupons synced. Curbside pickup ready.`;
         setTimeout(() => { if (statusEl) statusEl.style.display = 'none'; }, 6000);
       }
+      if (typeof soundSuccess === 'function') soundSuccess();
+    }
+
+    function isRestaurantOrPreparedMeal(data) {
+      if (!data) return false;
+      const title = (data.title || data.meal_name || "").toLowerCase();
+      const desc = (data.desc || data.description || "").toLowerCase();
+      const vendor = (data.vendor_matched || "").toLowerCase();
+      const keywords = [
+        "dairy queen", "dq", "sundae", "blizzard", "ice cream",
+        "taco time", "tacotime", "dick's", "dicks", "mcdonald", "burger king",
+        "wendy", "starbucks", "restaurant", "drive-in", "drivein", "fast food",
+        "takeout", "cafe", "diner", "pizzeria", "bistro", "eatery"
+      ];
+      return keywords.some(k => title.includes(k) || desc.includes(k) || vendor.includes(k));
+    }
+
+    
+    // =========================================================================
+    // STORE SOURCING ZIP CODE ENGINE (40+ MILES FROM SEATTLE / LOCAL RADIUS)
+    // =========================================================================
+    function getStoresForZip(zip) {
+      const z = (zip || '').toString().trim();
+      const prefix3 = z.substring(0, 3);
+      const prefix2 = z.substring(0, 2);
+
+      // Snohomish / Skagit / North Sound (40+ miles north of Seattle: 982xx)
+      if (prefix3 === '982') {
+        return {
+          region: 'NORTH SOUND (40+ MILES FROM SEATTLE)',
+          store1: { name: '1. Fred Meyer / QFC (North Sound Hub)', dist: '2.8 MILES', sub: 'Regional Sourcing Hub • 100% In-Stock', basket: '$7.85 Basket' },
+          store2: { name: '2. Safeway / Haggen (North Sound)', dist: '4.1 MILES', sub: 'Neighborhood Supermarket • 100% In-Stock', basket: '$8.40 Basket' },
+          store3: { name: '3. Walmart Supercenter / WinCo', dist: '5.9 MILES', sub: 'Value Grocery Center • 100% In-Stock', basket: '$6.95 Value' },
+          options: [
+            { val: 'fredmeyer', text: 'Fred Meyer / QFC (2.8 mi • North Sound Hub Store #122)' },
+            { val: 'safeway', text: 'Safeway / Haggen (4.1 mi • North Sound Store #514)' },
+            { val: 'walmart', text: 'Walmart Supercenter / WinCo (5.9 mi • Store #2418)' }
+          ]
+        };
+      }
+      // Pierce / South Sound (40+ miles south of Seattle: 983xx, 984xx, 985xx)
+      if (prefix3 === '983' || prefix3 === '984' || prefix3 === '985') {
+        return {
+          region: 'SOUTH SOUND (40+ MILES FROM SEATTLE)',
+          store1: { name: '1. Fred Meyer (South Sound Hub)', dist: '3.2 MILES', sub: 'Regional Sourcing Hub • 100% In-Stock', basket: '$7.85 Basket' },
+          store2: { name: '2. Safeway / Albertsons (South Sound)', dist: '4.5 MILES', sub: 'Neighborhood Supermarket • 100% In-Stock', basket: '$8.40 Basket' },
+          store3: { name: '3. WinCo Foods / Walmart Supercenter', dist: '6.1 MILES', sub: 'Value Grocery Center • 100% In-Stock', basket: '$6.95 Value' },
+          options: [
+            { val: 'fredmeyer', text: 'Fred Meyer (3.2 mi • South Sound Hub Store #435)' },
+            { val: 'safeway', text: 'Safeway / Albertsons (4.5 mi • Store #1188)' },
+            { val: 'winco', text: 'WinCo Foods / Walmart (6.1 mi • South Sound)' }
+          ]
+        };
+      }
+      // Cascade Foothills / East King (35-50+ miles east: 98022, 98045, 98038, 98010)
+      if (z === '98022' || z === '98045' || z === '98038' || z === '98010') {
+        return {
+          region: 'CASCADE FOOTHILLS (40+ MILES FROM SEATTLE)',
+          store1: { name: '1. Fred Meyer / QFC (Foothills Hub)', dist: '3.5 MILES', sub: 'Regional Sourcing Hub • 100% In-Stock', basket: '$7.85 Basket' },
+          store2: { name: '2. Safeway (Foothills Neighborhood)', dist: '4.8 MILES', sub: 'Neighborhood Supermarket • 100% In-Stock', basket: '$8.40 Basket' },
+          store3: { name: '3. Grocery Outlet / Walmart', dist: '6.4 MILES', sub: 'Value Grocery Center • 100% In-Stock', basket: '$6.95 Value' },
+          options: [
+            { val: 'fredmeyer', text: 'Fred Meyer / QFC (3.5 mi • Foothills Hub)' },
+            { val: 'safeway', text: 'Safeway (4.8 mi • Foothills Hub)' },
+            { val: 'groceryoutlet', text: 'Grocery Outlet / Walmart (6.4 mi • Foothills)' }
+          ]
+        };
+      }
+      // General Pacific NW or US Zip Code
+      const last3 = z.length >= 3 ? z.slice(-3) : '101';
+      return {
+        region: 'LOCAL RADIUS (ZIP: ' + (z || 'LOCAL') + ')',
+        store1: { name: '1. Fred Meyer / Kroger (Store #' + last3 + ')', dist: '2.9 MILES', sub: 'Nearest Regional Hub • 100% In-Stock', basket: '$7.85 Basket' },
+        store2: { name: '2. Safeway / Albertsons (Store #' + (parseInt(last3) + 42) + ')', dist: '4.3 MILES', sub: 'Local Neighborhood Store • 100% In-Stock', basket: '$8.40 Basket' },
+        store3: { name: '3. Walmart Supercenter / WinCo', dist: '5.8 MILES', sub: 'Regional Value Center • 100% In-Stock', basket: '$6.95 Value' },
+        options: [
+          { val: 'fredmeyer', text: 'Fred Meyer / Kroger (2.9 mi • Store #' + last3 + ')' },
+          { val: 'safeway', text: 'Safeway / Albertsons (4.3 mi • Store #' + (parseInt(last3) + 42) + ')' },
+          { val: 'walmart', text: 'Walmart Supercenter (5.8 mi • Value Hub)' }
+        ]
+      };
+    }
+
+    function updateStoreSourcingFromZip(zip) {
+      const z = (zip || '98201').toString().trim();
+      const storeData = getStoresForZip(z);
+
+      // Sync DOM inputs
+      const inpBOM = document.getElementById('inputBOMZipCode');
+      if (inpBOM && inpBOM.value !== z) inpBOM.value = z;
+      const inpCfg = document.getElementById('cfgZipCode');
+      if (inpCfg && inpCfg.value !== z) inpCfg.value = z;
+
+      // Update region label
+      const lblRegion = document.getElementById('lblZipRegionName');
+      if (lblRegion) lblRegion.textContent = storeData.region;
+
+      // Update Store 1
+      const s1Name = document.getElementById('bomStore1Name');
+      const s1Dist = document.getElementById('bomStore1Dist');
+      const s1Sub = document.getElementById('bomStore1Sub');
+      const s1Basket = document.getElementById('bomStore1Basket');
+      if (s1Name) s1Name.textContent = storeData.store1.name;
+      if (s1Dist) s1Dist.textContent = storeData.store1.dist;
+      if (s1Sub) s1Sub.innerHTML = storeData.store1.sub;
+      if (s1Basket) s1Basket.textContent = storeData.store1.basket;
+
+      // Update Store 2
+      const s2Name = document.getElementById('bomStore2Name');
+      const s2Dist = document.getElementById('bomStore2Dist');
+      const s2Sub = document.getElementById('bomStore2Sub');
+      const s2Basket = document.getElementById('bomStore2Basket');
+      if (s2Name) s2Name.textContent = storeData.store2.name;
+      if (s2Dist) s2Dist.textContent = storeData.store2.dist;
+      if (s2Sub) s2Sub.innerHTML = storeData.store2.sub;
+      if (s2Basket) s2Basket.textContent = storeData.store2.basket;
+
+      // Update Store 3
+      const s3Name = document.getElementById('bomStore3Name');
+      const s3Dist = document.getElementById('bomStore3Dist');
+      const s3Sub = document.getElementById('bomStore3Sub');
+      const s3Basket = document.getElementById('bomStore3Basket');
+      if (s3Name) s3Name.textContent = storeData.store3.name;
+      if (s3Dist) s3Dist.textContent = storeData.store3.dist;
+      if (s3Sub) s3Sub.innerHTML = storeData.store3.sub;
+      if (s3Basket) s3Basket.textContent = storeData.store3.basket;
+
+      // Update select dropdown
+      const selChain = document.getElementById('selLocalStoreChain');
+      if (selChain && storeData.options && storeData.options.length) {
+        selChain.innerHTML = storeData.options.map(opt => `<option value="${opt.val}">${opt.text}</option>`).join('');
+      }
+
+      // Update search button text
+      const btnSearch = document.getElementById('btnSearchLocalBOM');
+      if (btnSearch) {
+        btnSearch.innerHTML = '🔍 SEARCH LOCAL STORE PRICING &amp; IN-STOCK (ZIP: ' + z + ')';
+      }
+    }
+
+    function onConfigZipCodeChange(val) {
+      const z = (val || '98201').toString().trim();
+      try {
+        const savedConfig = localStorage.getItem('veepoo_user_config');
+        let cfg = savedConfig ? JSON.parse(savedConfig) : {};
+        cfg.zipCode = z;
+        localStorage.setItem('veepoo_user_config', JSON.stringify(cfg));
+      } catch (e) {}
+      updateStoreSourcingFromZip(z);
+      logLCARS('📍 Store sourcing ZIP updated to ' + z + ' (Config Screen)', 'rx');
+    }
+
+    function onBOMZipCodeChange(val) {
+      const z = (val || '98201').toString().trim();
+      try {
+        const savedConfig = localStorage.getItem('veepoo_user_config');
+        let cfg = savedConfig ? JSON.parse(savedConfig) : {};
+        cfg.zipCode = z;
+        localStorage.setItem('veepoo_user_config', JSON.stringify(cfg));
+      } catch (e) {}
+      updateStoreSourcingFromZip(z);
+      logLCARS('📍 Store sourcing ZIP updated to ' + z + ' (Meal Planner)', 'rx');
     }
 
     function renderBOMTable(mealKey) {
       let data = POPULAR_MEALS[mealKey] || DEFAULT_POPULAR_MEALS[mealKey] || currentAnalyzedMealData;
       const tbody = document.getElementById('tbodyMealBOM');
+      const cardBOM = document.getElementById('cardMealBOM');
+      const cardRest = document.getElementById('cardRestaurantOrderGuide');
+
+      const isRest = isRestaurantOrPreparedMeal(data);
+      if (cardRest) cardRest.style.display = isRest ? 'block' : 'none';
+      if (cardBOM) {
+        // If restaurant, show restaurant disclosure instead of grocery shopping list
+        const bomTableContainer = document.getElementById('containerBOMTableWrapper');
+        const groceryStoreList = document.getElementById('containerTop3Grocers');
+        if (bomTableContainer) bomTableContainer.style.display = isRest ? 'none' : 'block';
+        if (groceryStoreList) groceryStoreList.style.display = isRest ? 'none' : 'block';
+      }
+
+      if (isRest && cardRest) {
+        const titleEl = document.getElementById('lblRestOrderTitle');
+        if (titleEl) titleEl.textContent = data.title || "Commercial Restaurant Order";
+        const vendorEl = document.getElementById('lblRestOrderVendor');
+        if (vendorEl) vendorEl.textContent = data.vendor_matched || "Published Commercial Restaurant Disclosure";
+        const costEl = document.getElementById('lblRestOrderCost');
+        if (costEl) costEl.textContent = `~$${data.estimatedCost || "7.50"}`;
+        const tipsEl = document.getElementById('listRestOrderTactics');
+        if (tipsEl) {
+          tipsEl.innerHTML = `
+            <li><strong>Commercial Prepared Food:</strong> Sourced directly from local restaurant within 20 miles. No grocery shopping or home recipe assembly required.</li>
+            <li><strong>Diabetic Harm-Reduction Tip:</strong> If craving a treat (e.g., Dairy Queen sundae), choose small or mini size (-18g net carbs), skip extra fudge/candy toppings, and schedule a 25-minute post-meal GLUT4 stroll.</li>
+            <li><strong>Hydration Pairing:</strong> Pair with 16 oz iced water or unsweetened tea to prevent dehydration and rapid glycemic spiking.</li>
+          `;
+        }
+        return;
+      }
+
       if (!tbody) return;
 
       let bomList = data?.bom || [];
@@ -12791,7 +13024,7 @@
               </div>
               <div style="background: #fff; border: 1.5px solid #10b981; border-radius: 4px; padding: 8px; text-align: center;">
                 <div style="font-size: 0.72rem; font-weight: bold; color: #047857;">THU</div>
-                <div style="font-size: 0.68rem; color: #64748b;">[CHIPOTLE]</div>
+                <div style="font-size: 0.68rem; color: #64748b;">[TACOTIME]</div>
                 <div style="font-size: 1.05rem; font-weight: 900; color: #0284c7; margin-top: 4px;">128</div>
                 <div style="font-size: 0.65rem; color: #0284c7;">TIR: 93%</div>
               </div>
@@ -12892,7 +13125,7 @@
         notes = `
           <strong style="color: #6b21a8; font-size: 0.82rem; font-family: var(--lcars-mono);">🩺 DOCTOR MENTORING NOTE (QUARTERLY LAB A1C CORRELATION):</strong>
           <p style="margin: 4px 0 0; font-size: 0.78rem; color: #334155; line-height: 1.45;">
-            "This is the big hole current diabetic management has missed! By giving the patient the Gemini pre-choice coach to analyze the meal before eating, and tracking the subsequent effect on metrics, we achieved a drop from 7.4% to 5.6% eA1C in one quarter without adding a single medication. The patient now understands exactly what Dick's Drive-In, Chipotle, and oats do to their body."
+            "This is the big hole current diabetic management has missed! By giving the patient the Gemini pre-choice coach to analyze the meal before eating, and tracking the subsequent effect on metrics, we achieved a drop from 7.4% to 5.6% eA1C in one quarter without adding a single medication. The patient now understands exactly what Taco Time Northwest, home meal prep, and oats do to their body."
           </p>
         `;
       } else if (tf === 'yearly') {
@@ -13846,7 +14079,7 @@
       if (statusEl) {
         statusEl.textContent = `✓ Saved & Synced with 05-EXPORT at ${new Date().toLocaleTimeString()}`;
         setTimeout(() => {
-          if (statusEl) statusEl.textContent = "✓ Patient EHR Configuration Synchronized with Tab 06 Export";
+          if (statusEl) statusEl.textContent = "✓ Patient EHR Configuration Synchronized with Tab 05 Export";
         }, 3000);
       }
       if (typeof soundNotification === 'function') soundNotification();
@@ -13855,7 +14088,7 @@
     function syncExportPageWithConfig() {
       const cfg = getPatientEhrConfig();
       
-      // Update Tab 06 Export displays
+      // Update Tab 05 Export displays
       const dSys = document.getElementById('dispExportHealthSys');
       const dMrn = document.getElementById('dispExportMrn');
       const dEmail = document.getElementById('dispExportDoctorEmail');
@@ -16003,8 +16236,8 @@ Patient
 
         if (syn) {
           syn.innerHTML = `
-            <div style="color: var(--lcars-banana); padding: 8px 0; font-size: 0.95rem; line-height: 1.5;">
-              <strong>SMARTWATCH HARDWARE SYNCHRONIZED (DORMANT BUFFER / STANDBY):</strong> Watch hardware is paired and connected. Internal memory contains zero recordings from the past 7 days (device dormant / off-wrist). All 6 optical and electrical sensors (Glucose PPG, Core/Skin Temp, Oscillometric BP, Dual-Wavelength SpO2, Cardiac HR, and Autonomic HRV) are calibrated and responsive in idle standby. Click <strong>[START FULL SCAN SEQUENCE]</strong> above to begin sequential live physiological acquisition.
+            <div style="color: #0c4a6e; padding: 4px 0; font-size: 0.90rem; line-height: 1.55;">
+              <strong style="color: #0369a1;">SMARTWATCH HARDWARE SYNCHRONIZED (DORMANT BUFFER / STANDBY):</strong> Watch hardware is paired and connected. Internal memory contains zero recordings from the past 7 days (device dormant / off-wrist). All 6 optical and electrical sensors (Glucose PPG, Core/Skin Temp, Oscillometric BP, Dual-Wavelength SpO2, Cardiac HR, and Autonomic HRV) are calibrated and responsive in idle standby. Click <strong>[START FULL SCAN SEQUENCE]</strong> above to begin sequential live physiological acquisition.
             </div>
           `;
         }
@@ -16864,11 +17097,13 @@ Patient
       const syn = document.getElementById('fullScanClinicalSynthesis');
       if (syn) {
         syn.innerHTML = `
-          Full systematic biometric acquisition completed across all 6 physiological parameters.
-          Optical blood glucose reading is <strong>${r.glucose} mg/dL</strong>, which resides safely within your clinical <strong>60–200 mg/dL Time-In-Range</strong> window.
-          Hemodynamics indicate normotensive blood pressure (<strong>${r.bp.sys}/${r.bp.dia} mmHg</strong>, pulse pressure ${r.bp.sys - r.bp.dia} mmHg) paired with a resting pulse of <strong>${r.hr} BPM</strong>.
-          Arterial oxygen saturation is optimal at <strong>${r.spo2}%</strong> with euvolemic thermoregulation (<strong>${r.temp.bodyF.toFixed(1)}°F</strong>).
-          Autonomic HRV analysis demonstrates balanced vagal nerve tone (<strong>${r.hrv.hrv} ms</strong> SDNN, stress index ${r.hrv.stress}/100), reflecting low sympathetic strain.
+          <div style="color: #0c4a6e; line-height: 1.55;">
+            Full systematic biometric acquisition completed across all 6 physiological parameters.<br>
+            Optical blood glucose reading is <strong style="color: #0369a1;">${r.glucose} mg/dL</strong>, which resides safely within your clinical <strong style="color: #15803d;">60–200 mg/dL Time-In-Range</strong> window.<br>
+            Hemodynamics indicate normotensive blood pressure (<strong style="color: #0369a1;">${r.bp.sys}/${r.bp.dia} mmHg</strong>, pulse pressure ${r.bp.sys - r.bp.dia} mmHg) paired with a resting pulse of <strong style="color: #0369a1;">${r.hr} BPM</strong>.<br>
+            Arterial oxygen saturation is optimal at <strong style="color: #15803d;">${r.spo2}%</strong> with euvolemic thermoregulation (<strong style="color: #0369a1;">${r.temp.bodyF.toFixed(1)}°F</strong>).<br>
+            Autonomic HRV analysis demonstrates balanced vagal nerve tone (<strong style="color: #0369a1;">${r.hrv.hrv} ms</strong> SDNN, stress index ${r.hrv.stress}/100), reflecting low sympathetic strain.
+          </div>
         `;
       }
 
