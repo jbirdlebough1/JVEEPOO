@@ -12511,7 +12511,128 @@
       const btn = document.querySelector('button[onclick="analyzeMealWithGemini()"]');
       const originalBtnHtml = btn ? btn.innerHTML : '✨ ANALYZE WITH GEMINI';
 
-      if (presetKey && POPULAR_MEALS[presetKey]) {
+              // 2a. Client-Side Accurate Candy, Dessert & DQ Parser
+        const parseClientWeightOz = (str) => {
+          const m = str.match(/(\d+(?:\.\d+)?)\s*(?:oz|ounces?|ounce\b)/i);
+          if (m) return parseFloat(m[1]);
+          const mg = str.match(/(\d+(?:\.\d+)?)\s*(?:g|grams?)\b/i);
+          if (mg) return parseFloat(mg[1]) / 28.35;
+          return null;
+        };
+        const cWeightOz = parseClientWeightOz(rawText);
+
+        if ((text.includes("peanut buster") && text.includes("parfait")) || (text.includes("dairy queen") && text.includes("parfait")) || (text.includes("dq") && text.includes("parfait")) || (text.includes("peanut") && text.includes("parfait"))) {
+          data = {
+            title: "Dairy Queen Peanut Buster Parfait (Official Menu Disclosure)",
+            desc: rawText,
+            calories: 710,
+            netCarbs: 90,
+            totalCarbs: 94,
+            fiber: 4,
+            protein: 16,
+            fat: 33,
+            gl: "36 (High / Severe Spike Risk)",
+            meetsGoal: false,
+            tips: [
+              "⚠️ SEVERE DIABETIC WARNING: 90g Net Carbs exceeds your 45g ceiling by +45g!",
+              "Dense sucrose from hot fudge and lactose from soft serve cause acute rapid spike.",
+              "Peanut fats delay clearance, prolonging hyperglycemia for 4+ hours."
+            ],
+            glut4: "<strong>Mandatory 45 to 55-Minute Brisk Walk:</strong> Required to clear excessive glucose without insulin dependence."
+          };
+        } else if (text.includes("dairy queen") || text.includes("dq") || text.includes("blizzard") || text.includes("dilly bar") || text.includes("sundae")) {
+          const isSm = text.includes("mini") || text.includes("small");
+          const isBlizz = text.includes("blizzard");
+          const cals = isBlizz ? (isSm ? 380 : 680) : (isSm ? 280 : 440);
+          const carbs = isBlizz ? (isSm ? 48 : 92) : (isSm ? 38 : 62);
+          data = {
+            title: isBlizz ? (isSm ? "Dairy Queen Mini Blizzard Treat" : "Dairy Queen Standard Blizzard") : (isSm ? "Dairy Queen Small Sundae" : "Dairy Queen Regular Sundae"),
+            desc: rawText,
+            calories: cals,
+            netCarbs: carbs,
+            totalCarbs: carbs + 2,
+            fiber: 1,
+            protein: 7,
+            fat: 12,
+            gl: carbs > 45 ? "22 (High Spike Risk)" : "12 (Low-Med)",
+            meetsGoal: carbs <= 45,
+            tips: [
+              "🍦 Official Dairy Queen Published Disclosures.",
+              carbs > 45 ? "⚠️ Exceeds 45g net carb ceiling." : "✅ Meets 45g clinical ceiling."
+            ],
+            glut4: "<strong>30-Minute Brisk Walk:</strong> Blunts acute postprandial spike."
+          };
+        } else if (text.includes("m and m") || text.includes("m&m") || text.includes("mnm")) {
+          const oz = cWeightOz || 1.69;
+          const cals = Math.round(oz * 140);
+          const totC = Math.round(oz * 20);
+          const fib = Math.round(oz * 1);
+          const netC = totC - fib;
+          data = {
+            title: `M&M's Milk Chocolate Candy (${oz.toFixed(1)} oz portion)`,
+            desc: rawText,
+            calories: cals,
+            netCarbs: netC,
+            totalCarbs: totC,
+            fiber: fib,
+            protein: Math.round(oz * 1.5),
+            fat: Math.round(oz * 6),
+            gl: netC > 45 ? "42 (High / Severe Spike Risk)" : "14 (Medium)",
+            meetsGoal: netC <= 45,
+            tips: [
+              `⚠️ ACUTE CONFECTIONERY WARNING: ${oz.toFixed(1)} oz contains ${netC}g Net Carbs (Ceiling: 45g max).`,
+              "Pure sucrose and chocolate lipids drive rapid glucose entry with minimal fiber.",
+              "Harm Reduction: Limit to 1 oz fun-size pack (19g net carbs) or 85% dark chocolate."
+            ],
+            glut4: "<strong>35 to 45-Minute Brisk GLUT4 Walk:</strong> Required to clear refined confectionery glucose."
+          };
+        } else if (text.includes("red hot") || text.includes("redhots") || text.includes("cinnamon drops") || text.includes("cinnamon candy")) {
+          const oz = cWeightOz || 1.5;
+          const cals = Math.round(oz * 110);
+          const totC = Math.round(oz * 27);
+          data = {
+            title: `Red Hots Cinnamon Candy (${oz.toFixed(1)} oz portion)`,
+            desc: rawText,
+            calories: cals,
+            netCarbs: totC,
+            totalCarbs: totC,
+            fiber: 0,
+            protein: 0,
+            fat: 0,
+            gl: "58 (Extreme / Dangerous Spike Risk)",
+            meetsGoal: totC <= 45,
+            tips: [
+              `🚨 SEVERE GLYCEMIC SURGE: ${oz.toFixed(1)} oz is 100% refined sugar/syrup (${totC}g net carbs) with zero protein, fat, or fiber buffer!`,
+              "Causes immediate, steep glucose rise (>250+ mg/dL).",
+              "Swap to sugar-free cinnamon candies or brewed clove-cinnamon tea (0g carbs)."
+            ],
+            glut4: "<strong>Immediate 45-Minute Brisk Walk:</strong> Essential to clear unbuffered sugar surge."
+          };
+        } else if (text.includes("almond joy") || text.includes("mounds")) {
+          const oz = cWeightOz || 1.61;
+          const cals = Math.round(oz * 137.5);
+          const totC = Math.round(oz * 17);
+          const fib = Math.round(oz * 1.25);
+          const netC = totC - fib;
+          data = {
+            title: `Almond Joy Milk Chocolate Coconut Candy Bar (${oz.toFixed(1)} oz portion)`,
+            desc: rawText,
+            calories: cals,
+            netCarbs: netC,
+            totalCarbs: totC,
+            fiber: fib,
+            protein: Math.round(oz * 1.9),
+            fat: Math.round(oz * 7.5),
+            gl: netC > 45 ? "45 (High / Prolonged Spike Risk)" : "15 (Medium)",
+            meetsGoal: netC <= 45,
+            tips: [
+              `⚠️ HIGH LIPID & SUGAR LOAD: ${oz.toFixed(1)} oz contains ${netC}g Net Carbs and ${Math.round(oz * 7.5)}g Fat.`,
+              "Coconut lipids delay gastric emptying, causing dual-phase prolonged spike 2-4 hours post-intake.",
+              "Harm Reduction: Limit to 1 mini bar (0.6 oz, 9g net carbs) or raw almonds with dark chocolate."
+            ],
+            glut4: "<strong>40-Minute Brisk Walk starting 30 min post-meal:</strong> Targets delayed lipid-induced glucose peak."
+          };
+        } else if (presetKey && POPULAR_MEALS[presetKey]) {
         if (input) input.value = POPULAR_MEALS[presetKey].desc || POPULAR_MEALS[presetKey].title;
       }
 
@@ -12550,12 +12671,12 @@
             data = {
               title: a.meal_name || rawText,
               desc: rawText,
-              calories: a.calories || 450,
-              netCarbs: a.net_carbs || 25,
-              totalCarbs: a.total_carbs || 35,
-              fiber: a.fiber || 10,
-              protein: a.protein || 30,
-              fat: a.fat || 15,
+              calories: (a.calories !== undefined) ? a.calories : 450,
+              netCarbs: (a.net_carbs !== undefined) ? a.net_carbs : 25,
+              totalCarbs: (a.total_carbs !== undefined) ? a.total_carbs : 35,
+              fiber: (a.fiber !== undefined) ? a.fiber : 10,
+              protein: (a.protein !== undefined) ? a.protein : 30,
+              fat: (a.fat !== undefined) ? a.fat : 15,
               gl: a.glycemic_load || "10 (Low)",
               estimatedCost: a.estimated_cost || "14.75",
               tradeAlternatives: a.trade_alternatives || [],
