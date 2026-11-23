@@ -325,18 +325,20 @@ Voice: **Australian Female Voice (`en-AU-NatashaNeural`)**
 
 ---
 
-### Slide 22: Tab 02: Meal Planner – Macronutrient Meal Logger & Pantry Reuse
+### Slide 22: Tab 02: Meal Planner – Multi-Modal Intake, Compound Sum & Recipe Portion Control
 **Module:** Module 4: Tab 03 METABOLIC Console & Behavioral Science  
-**Card Title:** MACRONUTRIENT MEAL & CARBOHYDRATE LOGGER  
+**Card Title:** MULTI-MODAL INTAKE ESTIMATOR & COMPOUND SUM ENGINE  
 
-> Next, we review the Macronutrient Meal Logger. Logging meals allows El-CARS to overlay dietary carbohydrates, protein, and fat directly on your glucose timeline. You can see precisely how different foods affect your peak height and latency, teaching you which meals spike your sugar and which keep you stable.
+> Next, we review the Multi-Modal Intake Estimator and Compound Meal Engine in Tab 02. Accurately anticipating glycemic load before taking a bite is the single most critical cornerstone of diabetes self-management. Patients can enter dietary intake via any preferred modality—photo capture with OCR and vendor recognition, verbal voice dictation, or text typing—across both mobile smartphone (`/cell`) and desktop PC, targeting clinical accuracy within &plusmn;5%. Crucially, the engine evaluates the sum of composite entries: for example, entering a restaurant item paired with a previously saved pantry snack—such as "hot dog foot long Costo, tea"—decomposes both the Costco all-beef frank and bun alongside the saved antioxidant herbal infusion, summing macronutrients and fluid volume seamlessly. For home-cooked dishes, the PC Recipe Engine computes total batch materials (BOM) alongside single-serving diabetic portion recommendations, establishing maximum safe consumption thresholds to prevent accidental glycemic surges.
 
 **Key Points:**
-- **Net Carbohydrate Tracking:** Focuses on net impact carbohydrates while accounting for beneficial dietary fiber.
+- **Multi-Modal Tri-Entry Modality (&plusmn;5% Target):** Accepts photo analysis with automated vendor discovery, voice dictation, or direct text on both mobile (`/cell`) and desktop workstation.
+- **Composite Compound Sum Decomposition:** Accurately evaluates compound meals (e.g. `hot dog foot long Costo, tea`) by decomposing restaurant items and cross-referencing previously saved pantry snacks/beverages, delivering a unified sum total.
+- **Recipe Batch Materials (BOM) & Diabetic Portion Sizing:** Calculates full recipe materials totals and provides precise single-portion recommendations, calculating maximum safe servings to keep postprandial excursions below clinical ceilings.
+- **Continuous Fluid & Hydration Tracking:** Tracks fluid volume throughout the day across vendor beverages (e.g., Diet Coke 24oz) and custom herbal infusions (black+green tea bags, cloves, cinnamon, nutmeg, water volume).
 - **Meal-to-Spike Correlation:** Overlays meal times directly on the 24-hour glucose timeline to inspect peak heights. The Meal Planner incorporates the Packaged Snack Decision Matrix (single serving vs whole box) and 7-day longitudinal drilldown connecting pre-choice Gemini coaching with GLUT4 kinetic walking telemetry.
-- **Fat & Protein Buffering:** Demonstrates how healthy proteins and fats slow down carbohydrate absorption.
 
-**Key Takeaway:** Connects what is on your plate directly to your resulting 24-hour glucose curve.
+**Key Takeaway:** Multi-modal intake, compound meal summing, and recipe portion control ensure patients know exact metabolic and hydration impacts before eating, maintaining tight glycemic control within &plusmn;5%.
 
 ---
 

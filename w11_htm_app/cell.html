@@ -345,6 +345,9 @@
 
     <!-- Quick Presets -->
     <div style="display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 10px;">
+      <button type="button" onclick="setPreset('hot dog foot long Costo, tea', 'Lunch')" style="padding: 4px 8px; font-size: 0.72rem; background: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe; border-radius: 4px; cursor: pointer; font-weight: bold;">🌭 Costco Hot Dog &amp; Tea</button>
+      <button type="button" onclick="setPreset('tea black+green bag, three cloves, cinnimon, nutmeg, 12oz water', 'Snack')" style="padding: 4px 8px; font-size: 0.72rem; background: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe; border-radius: 4px; cursor: pointer; font-weight: bold;">🍵 Custom Herbal Tea</button>
+      <button type="button" onclick="setPreset('Recipe: 2 cups almond flour, 1 cup Greek yogurt, 4 eggs, 1 cup blueberries, 1/2 cup allulose. Batch makes 8 servings', 'Snack')" style="padding: 4px 8px; font-size: 0.72rem; background: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe; border-radius: 4px; cursor: pointer; font-weight: bold;">👩‍🍳 Recipe &amp; Portion Sizing</button>
       <button type="button" onclick="setPreset('Clove and cinnamon tea', 'Snack')" style="padding: 4px 8px; font-size: 0.72rem; background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 4px; cursor: pointer;">☕ Clove &amp; Cinnamon Tea</button>
       <button type="button" onclick="setPreset('Taco Time Fiesta Platter with Crisp Pinto Bean Burrito, Mexi-Fries & Diet Drink', 'Lunch')" style="padding: 4px 8px; font-size: 0.72rem; background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 4px; cursor: pointer;">🌮 Taco Time Platter</button>
       <button type="button" onclick="setPreset('Dick\'s Drive-In 2 Cheeseburgers, 3 Tartar, Fries & Diet', 'Lunch')" style="padding: 4px 8px; font-size: 0.72rem; background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 4px; cursor: pointer;">🍔 Dick's Combo</button>
@@ -1020,8 +1023,9 @@
 
         if (!resp.ok) throw new Error("HTTP error " + resp.status);
         const data = await resp.json();
-        if (data.status === "SUCCESS" && data.analysis) {
-          renderAnalysis(data.analysis);
+        const a = data.analysis || data;
+        if (a && (data.status === "SUCCESS" || data.status === "ANALYSIS_PREVIEW" || a.calories !== undefined)) {
+          renderAnalysis(a);
         } else {
           throw new Error("Analysis failed");
         }
