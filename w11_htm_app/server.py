@@ -96,12 +96,16 @@ def get_local_wifi_ip():
         s.close()
     return ip
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+LOG_FILE = os.path.join(BASE_DIR, "packet_log.txt")
+DB_PATH = os.path.join(BASE_DIR, "telemetry.db")
+
 def ensure_qr_svg():
     try:
         import qrcode
         import qrcode.image.svg
         ip = get_local_wifi_ip()
-        url = f"http://{ip}:{PORT}/mobile_upload.html"
+        url = f"http://{ip}:{PORT}/cell.html"
         factory = qrcode.image.svg.SvgPathImage
         img = qrcode.make(url, image_factory=factory)
         qr_path = os.path.join(BASE_DIR, "mobile_wifi_qr.svg")
@@ -110,12 +114,9 @@ def ensure_qr_svg():
         print(f"[*] Generated mobile Wi-Fi QR SVG for {url}")
     except Exception as e:
         print(f"[!] Warning: could not generate QR SVG: {e}")
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-LOG_FILE = os.path.join(BASE_DIR, "packet_log.txt")
-DB_PATH = os.path.join(BASE_DIR, "telemetry.db")
 
 TARGET_NAME = "vee"
-TARGET_MAC = "8B:DE:40:83:F6:16"
+TARGET_MAC = os.environ.get("VEEPOO_TARGET_MAC", "")
 
 VEEPOO_SERVICE_UUID = "f0080001-0451-4000-b000-000000000000"
 VEEPOO_NOTIFY_UUID  = "f0080002-0451-4000-b000-000000000000"
@@ -283,6 +284,18 @@ def init_database():
                 signature_acknowledgment INTEGER DEFAULT 1,
                 ip_address TEXT,
                 device_fingerprint TEXT
+            )
+        """)
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS feeling_entries (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                timestamp TEXT NOT NULL,
+                source TEXT DEFAULT 'SHUTTLECRAFT_CELL',
+                raw_text TEXT NOT NULL,
+                topic TEXT NOT NULL,
+                pain_score REAL DEFAULT 0,
+                mood_score REAL DEFAULT 5,
+                notes TEXT
             )
         """)
 
@@ -3371,6 +3384,56 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
         self.do_GET()
 
     def do_GET(self):
+        # 0. Mobile QR Code Stream for Google Lens Cell Download
+        if self.path.startswith("/api/qrcode/cell") or self.path.startswith("/mobile_wifi_qr.svg"):
+            try:
+                import qrcode
+                import qrcode.image.svg
+                import io
+                ip = get_local_wifi_ip()
+                url = f"http://{ip}:{PORT}/cell.html"
+                factory = qrcode.image.svg.SvgPathImage
+                img = qrcode.make(url, image_factory=factory)
+                buf = io.BytesIO()
+                img.save(buf)
+                svg_data = buf.getvalue()
+                self.send_response(200)
+                self.send_header("Content-Type", "image/svg+xml")
+                self.send_header("Content-Length", str(len(svg_data)))
+                self.send_header("Access-Control-Allow-Origin", "*")
+                self.end_headers()
+                self.wfile.write(svg_data)
+                return
+            except Exception as e:
+                self.send_json_response({"error": str(e)}, 500)
+                return
+
+        # Feeling Entries API for 3D Behavioral Impact Tool
+        if self.path.startswith("/api/feeling/entries"):
+            with db_lock:
+                conn = get_db()
+                cur = conn.cursor()
+                cur.execute("""
+                    SELECT id, timestamp, source, raw_text, topic, pain_score, mood_score, notes 
+                    FROM feeling_entries 
+                    ORDER BY id DESC LIMIT 50
+                """)
+                rows = cur.fetchall()
+                entries = []
+                for r in rows:
+                    entries.append({
+                        "id": r[0],
+                        "timestamp": r[1],
+                        "source": r[2],
+                        "raw_text": r[3],
+                        "topic": r[4],
+                        "pain_score": r[5],
+                        "mood_score": r[6],
+                        "notes": r[7]
+                    })
+                self.send_json_response({"entries": entries, "count": len(entries)})
+                return
+
         # 0. Mobile Food Intake Route (CLE-078)
         if self.path in ["/cell", "/cell/", "/cell.html"]:
             cell_file = os.path.join(BASE_DIR, "cell.html")
@@ -3834,7 +3897,7 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
             ble_state["contention_warning"] = False
             self.send_json_response({"status": "RADIO_YIELDED_TO_BROWSER"})
 
-        elif self.path == "/api/telemetry":
+        elif self.path in ["/api/telemetry", "/api/telemetry/record"]:
             record_browser_activity()
             content_length = int(self.headers.get("Content-Length", 0))
             body = self.rfile.read(content_length).decode("utf-8", errors="ignore")
@@ -3852,6 +3915,32 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                 insert_vital_record(metric, val1, val2, unit, progress, status, mode, raw_hex, ts)
                 update_sync_state("BROWSER_GATT_SYNC", 1)
                 self.send_json_response({"status": "SAVED"})
+            except Exception as e:
+                self.send_json_response({"status": "ERROR", "error": str(e)}, 400)
+
+        # Feeling Entry API for HDYF ("How Do You Feel?") Portal
+        elif self.path == "/api/feeling/entry":
+            content_length = int(self.headers.get("Content-Length", 0))
+            body = self.rfile.read(content_length).decode("utf-8", errors="ignore")
+            try:
+                data = json.loads(body)
+                raw_text = data.get("raw_text", "").strip()
+                topic = data.get("topic", "").strip() or "General"
+                pain_score = float(data.get("pain_score", 0))
+                mood_score = float(data.get("mood_score", 5))
+                notes = data.get("notes", "").strip()
+                source = data.get("source", "SHUTTLECRAFT_CELL")
+                ts = data.get("timestamp") or datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+                with db_lock:
+                    conn = get_db()
+                    cur = conn.cursor()
+                    cur.execute("""
+                        INSERT INTO feeling_entries (timestamp, source, raw_text, topic, pain_score, mood_score, notes)
+                        VALUES (?, ?, ?, ?, ?, ?, ?)
+                    """, (ts, source, raw_text, topic, pain_score, mood_score, notes))
+                    conn.commit()
+                self.send_json_response({"status": "SUCCESS", "message": "Feeling entry recorded", "timestamp": ts})
             except Exception as e:
                 self.send_json_response({"status": "ERROR", "error": str(e)}, 400)
 

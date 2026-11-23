@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>BFM Shuttlecraft Foodoor • Auxiliary Intake Scout (Star Ship Gemini NCC-202X)</title>
+  <title>BFM Shuttlecraft-A • Field Data Collector</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -278,9 +278,14 @@
 
   <!-- Mobile Top Header -->
   <div class="header">
-    <div>
-      <h1>📱 SHUTTLECRAFT FOODOOR &bull; AUXILIARY SCOUT</h1>
-      <div class="sub">STAR SHIP GEMINI NCC-202X &bull; CELL 1 &bull; <span id="lblMobileEsn">ESN-9482-A01</span></div>
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <div style="font-size: 1.5rem; background: #0284c7; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 8px; border: 2px solid #38bdf8;">
+        🩺
+      </div>
+      <div>
+        <h1 style="font-size: 1.05rem; font-weight: 900; letter-spacing: 0.04em; color: #38bdf8;">BFM SHUTTLECRAFT-A &bull; FIELD DATA COLLECTOR</h1>
+        <div class="sub">PORTABLE INTAKE &amp; FEELING RECORDER &bull; <span id="lblMobileEsn">CELL 1 (ACTIVE)</span></div>
+      </div>
     </div>
     <div id="wifiStatusPill" class="wifi-pill">
       <span>●</span> <span id="wifiStatusText">CHECKING LINK...</span>
@@ -517,6 +522,74 @@
 
   <div id="lblSubmitSuccess" style="display: none; background: #dcfce7; color: #15803d; border: 1px solid #16a34a; padding: 12px; border-radius: 6px; font-weight: bold; font-size: 0.85rem; text-align: center; margin-top: 10px;">
     ✅ Meal successfully committed to PC database! Telemetry &amp; timeline synchronized.
+  </div>
+
+  <!-- HDYF: "How Do You Feel?" Natural Language & Symptom Recorder -->
+  <div class="card" id="cardFeelingPortal" style="border-top: 6px solid #a855f7;">
+    <div class="card-title">
+      <span style="color: #a855f7;">🧠 "HOW DO YOU FEEL?" RECORDER</span>
+      <span style="font-size: 0.72rem; color: #64748b;">Correlated to 3D Biometrics</span>
+    </div>
+
+    <div style="font-size: 0.78rem; color: #475569; margin-bottom: 10px;">
+      Record how you feel (symptoms, headache, pain, fatigue, mood). Voice or type below to link feeling data to your biometric timeline:
+    </div>
+
+    <!-- Voice Feeling Dictation -->
+    <div style="background: #faf5ff; border: 1.5px solid #a855f7; border-radius: 6px; padding: 10px; margin-bottom: 10px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+        <span style="font-size: 0.75rem; font-weight: 800; color: #7e22ce;">🎙️ VOICE FEELING DICTATION:</span>
+        <span id="lblVoiceFeelingStatus" style="font-size: 0.72rem; color: #64748b; font-family: monospace;">TAP TO RECORD</span>
+      </div>
+      <button type="button" id="btnRecordFeelingVoice" class="btn" style="background: #a855f7; color: #ffffff; padding: 10px; margin-bottom: 6px; font-size: 0.88rem;" onclick="toggleVoiceFeelingRecording()">
+        <span id="iconRecordFeelingVoice">🎙️</span> <span id="txtRecordFeelingVoice">START VOICE RECORDING (HOW I FEEL)</span>
+      </button>
+      <div id="voiceFeelingFeedbackBox" style="display: none; background: #f3e8ff; border: 1px dashed #a855f7; border-radius: 4px; padding: 6px 10px; font-size: 0.80rem; color: #6b21a8;">
+        <span style="font-weight: bold;">Listening:</span> Speak how you feel (e.g. <em>"Throbbing frontal headache, feeling sluggish after lunch"</em>)...
+      </div>
+    </div>
+
+    <!-- Feeling Text Input -->
+    <label style="font-size: 0.75rem; font-weight: 800; color: #475569; display: block; margin-bottom: 4px;">
+      FEELING / SYMPTOM DESCRIPTION:
+    </label>
+    <textarea id="txtFeelingInput" rows="3" style="width: 100%; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 8px; font-size: 0.85rem; font-family: inherit; margin-bottom: 10px;" placeholder="Describe any pain, discomfort, mental alertness, mood, or physical sensations..."></textarea>
+
+    <!-- Feeling Topic Quick Badges -->
+    <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px;">
+      <button type="button" class="btn" style="padding: 4px 8px; font-size: 0.72rem; background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; border-radius: 4px;" onclick="setFeelingTopic('Headache')">🤕 Headache</button>
+      <button type="button" class="btn" style="padding: 4px 8px; font-size: 0.72rem; background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; border-radius: 4px;" onclick="setFeelingTopic('Fatigue / Sluggish')">🥱 Fatigue</button>
+      <button type="button" class="btn" style="padding: 4px 8px; font-size: 0.72rem; background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; border-radius: 4px;" onclick="setFeelingTopic('Joint / Muscle Pain')">🦵 Joint/Muscle Pain</button>
+      <button type="button" class="btn" style="padding: 4px 8px; font-size: 0.72rem; background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; border-radius: 4px;" onclick="setFeelingTopic('Dizziness / Lightheaded')">💫 Dizziness</button>
+      <button type="button" class="btn" style="padding: 4px 8px; font-size: 0.72rem; background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; border-radius: 4px;" onclick="setFeelingTopic('Nausea / Indigestion')">🤢 Nausea</button>
+      <button type="button" class="btn" style="padding: 4px 8px; font-size: 0.72rem; background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; border-radius: 4px;" onclick="setFeelingTopic('High Energy / Alert')">⚡ Great / Alert</button>
+    </div>
+
+    <!-- Dual Sliders: Pain Index & Mood Scale -->
+    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 10px; margin-bottom: 12px;">
+      <div style="margin-bottom: 8px;">
+        <div style="display: flex; justify-content: space-between; font-size: 0.75rem; font-weight: 800; color: #475569; margin-bottom: 2px;">
+          <span>PAIN INDEX (0 = NONE, 10 = SEVERE):</span>
+          <span id="lblPainVal" style="color: #dc2626; font-size: 0.85rem; font-weight: bold;">0 / 10</span>
+        </div>
+        <input type="range" id="rngPainIndex" min="0" max="10" step="1" value="0" style="width: 100%; accent-color: #dc2626;" oninput="document.getElementById('lblPainVal').textContent = this.value + ' / 10'">
+      </div>
+
+      <div>
+        <div style="display: flex; justify-content: space-between; font-size: 0.75rem; font-weight: 800; color: #475569; margin-bottom: 2px;">
+          <span>MOOD SCALE (0 = BAD, 10 = GOOD):</span>
+          <span id="lblMoodVal" style="color: #16a34a; font-size: 0.85rem; font-weight: bold;">5 / 10</span>
+        </div>
+        <input type="range" id="rngMoodScale" min="0" max="10" step="1" value="5" style="width: 100%; accent-color: #16a34a;" oninput="document.getElementById('lblMoodVal').textContent = this.value + ' / 10'">
+      </div>
+    </div>
+
+    <button id="btnSubmitFeeling" type="button" class="btn" style="background: #a855f7; color: #ffffff; padding: 12px; font-size: 0.92rem; font-weight: bold; width: 100%; margin-bottom: 0;" onclick="submitFeelingDirect()">
+      <span>🧠 SUBMIT FEELING TO TIMELINE</span>
+    </button>
+    <div id="lblFeelingSubmitSuccess" style="display: none; background: #f3e8ff; color: #7e22ce; border: 1px solid #a855f7; padding: 10px; border-radius: 6px; font-weight: bold; font-size: 0.82rem; text-align: center; margin-top: 8px;">
+      ✅ Feeling entry saved! Timeline channels updated.
+    </div>
   </div>
 
   <script>
@@ -1397,6 +1470,137 @@
         isConnectedToHost = false;
         pill.className = "wifi-pill offline";
         text.textContent = "⚡ OFFLINE (STAGING READY)";
+      }
+    }
+
+    // =========================================================================
+    // HDYF: "HOW DO YOU FEEL?" NATURAL LANGUAGE HANDLERS
+    // =========================================================================
+    let activeFeelingTopic = "General";
+    let isRecordingFeelingVoice = false;
+    let feelingSpeechRecognizer = null;
+
+    function setFeelingTopic(topic) {
+      activeFeelingTopic = topic;
+      const input = document.getElementById('txtFeelingInput');
+      if (input) {
+        const cur = input.value.trim();
+        input.value = cur ? `${cur} [${topic}]` : `Feeling: ${topic}. `;
+        input.focus();
+      }
+    }
+
+    function toggleVoiceFeelingRecording() {
+      const btn = document.getElementById('btnRecordFeelingVoice');
+      const icon = document.getElementById('iconRecordFeelingVoice');
+      const txt = document.getElementById('txtRecordFeelingVoice');
+      const box = document.getElementById('voiceFeelingFeedbackBox');
+      const status = document.getElementById('lblVoiceFeelingStatus');
+
+      if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+        alert("Speech recognition not supported on this browser. Please type how you feel into the box.");
+        return;
+      }
+
+      if (isRecordingFeelingVoice) {
+        if (feelingSpeechRecognizer) feelingSpeechRecognizer.stop();
+        isRecordingFeelingVoice = false;
+        if (btn) btn.style.background = "#a855f7";
+        if (icon) icon.textContent = "🎙️";
+        if (txt) txt.textContent = "START VOICE RECORDING (HOW I FEEL)";
+        if (box) box.style.display = "none";
+        if (status) status.textContent = "RECORDING FINISHED";
+        return;
+      }
+
+      const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+      feelingSpeechRecognizer = new SpeechRec();
+      feelingSpeechRecognizer.continuous = true;
+      feelingSpeechRecognizer.interimResults = true;
+      feelingSpeechRecognizer.lang = 'en-US';
+
+      feelingSpeechRecognizer.onstart = () => {
+        isRecordingFeelingVoice = true;
+        if (btn) btn.style.background = "#dc2626";
+        if (icon) icon.textContent = "⏹️";
+        if (txt) txt.textContent = "STOP VOICE RECORDING";
+        if (box) box.style.display = "block";
+        if (status) status.textContent = "LISTENING LIVE...";
+      };
+
+      feelingSpeechRecognizer.onresult = (evt) => {
+        let transcript = "";
+        for (let i = evt.resultIndex; i < evt.results.length; ++i) {
+          transcript += evt.results[i][0].transcript;
+        }
+        const input = document.getElementById('txtFeelingInput');
+        if (input && transcript) {
+          input.value = transcript;
+        }
+      };
+
+      feelingSpeechRecognizer.onerror = (e) => {
+        console.warn("Speech error:", e);
+        if (status) status.textContent = "MIC ERROR";
+      };
+
+      feelingSpeechRecognizer.onend = () => {
+        isRecordingFeelingVoice = false;
+        if (btn) btn.style.background = "#a855f7";
+        if (icon) icon.textContent = "🎙️";
+        if (txt) txt.textContent = "START VOICE RECORDING (HOW I FEEL)";
+        if (box) box.style.display = "none";
+        if (status) status.textContent = "TRANSCRIPT READY";
+      };
+
+      feelingSpeechRecognizer.start();
+    }
+
+    async function submitFeelingDirect() {
+      const input = document.getElementById('txtFeelingInput');
+      const text = input ? input.value.trim() : "";
+      if (!text) {
+        alert("Please describe how you feel or speak into the microphone.");
+        return;
+      }
+
+      const pain = parseFloat(document.getElementById('rngPainIndex').value) || 0;
+      const mood = parseFloat(document.getElementById('rngMoodScale').value) || 5;
+      const btn = document.getElementById('btnSubmitFeeling');
+      btn.disabled = true;
+      btn.innerHTML = "<span>⏳ COMMITTING FEELING DATA...</span>";
+
+      const payload = {
+        raw_text: text,
+        topic: activeFeelingTopic,
+        pain_score: pain,
+        mood_score: mood,
+        source: "SHUTTLECRAFT_CELL",
+        timestamp: new Date().toISOString()
+      };
+
+      try {
+        const resp = await fetch('/api/feeling/entry', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (resp.ok) {
+          const succ = document.getElementById('lblFeelingSubmitSuccess');
+          if (succ) {
+            succ.style.display = 'block';
+            setTimeout(() => { succ.style.display = 'none'; }, 4000);
+          }
+          if (input) input.value = "";
+        } else {
+          alert("Could not commit feeling to PC. Make sure PC server is running.");
+        }
+      } catch (e) {
+        alert("Network error communicating with PC: " + e.message);
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = "<span>🧠 SUBMIT FEELING TO TIMELINE</span>";
       }
     }
 

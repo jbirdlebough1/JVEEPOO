@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BFM Console • Star Ship Gemini NCC-202X (Powered By Gemini)</title>
+  <title>BFM Workstation • Biometric Function Monitor</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
@@ -1717,7 +1717,7 @@
 
   
     /* =========================================================================
-       BFM DESIGN SYSTEM & STAR SHIP GEMINI NCC-202X ALIASES
+       BFM CLINICAL DESIGN SYSTEM & COLOR ALIASES
        ========================================================================= */
     :root {
       --bfm-orange: var(--lcars-orange, #ff9900);
@@ -1751,27 +1751,25 @@
 
     <!-- Top LCARS Header Arch -->
     <header class="lcars-header">
-      <div class="lcars-elbow-top-left bfm-elbow-top-left">NCC-202X</div>
+      <div class="lcars-elbow-top-left bfm-elbow-top-left">BFM-WS</div>
       <div class="lcars-title-block bfm-title-block">
         <div>
-          <div class="lcars-main-title bfm-main-title">BFM CONSOLE &bull; STAR SHIP GEMINI NCC-202X</div>
-          <div class="lcars-sub-title bfm-sub-title">WEARABLE SENSOR ARRAY &bull; MOBILE AUXILIARY SHUTTLECRAFT FOODOR &bull; POWERED BY GEMINI</div>
+          <div class="lcars-main-title bfm-main-title">BFM WORKSTATION &bull; BIOMETRIC FUNCTION MONITOR</div>
+          <div class="lcars-sub-title bfm-sub-title">WEARABLE SENSOR ARRAY &bull; MOBILE SHUTTLECRAFT-A DATA COLLECTOR &bull; POWERED BY GOOGLE GEMINI AI</div>
         </div>
         <div class="lcars-time-block">
           <div class="actual-datetime" id="actualDateTime">FRIDAY, NOV 20, 2026 9:55:00 AM PST</div>
-          <div class="lcars-stardate" id="stardateClock">STARDATE 126885.4 • BUILD beta.00.01.0002 • SEC-SYS-ONLINE</div>
+          <div class="lcars-stardate" id="stardateClock">STARDATE 126885.4 • BUILD beta.00.01.0003 • CLINICAL-SYS-ONLINE</div>
         </div>
         <div style="margin-left: 12px; display: flex; gap: 8px; align-items: center;">
           <span id="headerSyncPill" class="lcars-pill pill-green" style="padding: 4px 10px; font-size: 0.72rem; height: auto;" title="Vault Telemetry Sync Status">
             ● NOT SYNCED
           </span>
-
-          <button id="btnHeaderThemeToggle" class="lcars-pill pill-banana" style="padding: 4px 10px; font-size: 0.72rem; height: auto;" onclick="toggleTheme()">
-            <span id="lblHeaderTheme">THEME: LIGHT</span>
+          <button id="btnHeaderAddCell" class="lcars-pill pill-blue" style="padding: 4px 12px; font-size: 0.72rem; height: auto; font-weight: bold; cursor: pointer;" onclick="openProvisionModal()">
+            📱 ADD CELL
           </button>
         </div>
       </div>
-
     </header>
 
     <!-- Left LCARS Navigation Rail (Ultra-Clean Ergonomics) -->
@@ -1867,23 +1865,23 @@
       <div id="pageFullScan" class="tab-page active-page">
         <div class="diet-container">
 
-          <!-- BFM HERITAGE & DEDICATION BANNER -->
+          <!-- BFM CLINICAL TRIAGE BANNER -->
           <div style="background: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%); border: 1.5px solid #bfdbfe; border-left: 6px solid #0284c7; border-radius: 8px; padding: 12px 16px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
             <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
               <div style="display: flex; align-items: center; gap: 10px;">
-                <span style="font-size: 1.4rem;">🚀</span>
+                <span style="font-size: 1.4rem;">🩺</span>
                 <div>
                   <div style="font-size: 0.92rem; font-weight: 800; color: #0c4a6e; letter-spacing: 0.04em; font-family: var(--lcars-mono);">
-                    BFM 5010 BIOFUNCTION MONITOR • USS GEMINI (NCC-5010-G)
+                    BFM BIOMETRIC FUNCTION MONITOR &bull; CLINICAL TRIAGE WORKSTATION
                   </div>
                   <div style="font-size: 0.78rem; color: #0369a1; margin-top: 1px;">
-                    Dedicated to <strong>Gene Roddenberry</strong> &amp; <strong>Scott Chambliss</strong> • Informed by <strong>Physio-Control LIFEPAK</strong> Triage Telemetry
+                    VEEPOO MODEL 5010 CONTINUOUS TELEMETRY &bull; POWERED BY GOOGLE GEMINI AI
                   </div>
                 </div>
               </div>
               <div style="display: flex; gap: 6px; align-items: center;">
-                <span class="lcars-pill pill-blue" style="font-size: 0.72rem; padding: 3px 8px; height: auto; font-weight: bold;">MOTHERSHIP: ONLINE</span>
-                <span class="lcars-pill pill-green" style="font-size: 0.72rem; padding: 3px 8px; height: auto; font-weight: bold;">SHUTTLE: FOODOOR READY</span>
+                <span class="lcars-pill pill-blue" style="font-size: 0.72rem; padding: 3px 8px; height: auto; font-weight: bold;">WORKSTATION: ONLINE</span>
+                <span class="lcars-pill pill-green" style="font-size: 0.72rem; padding: 3px 8px; height: auto; font-weight: bold;">SHUTTLECRAFT-A: READY</span>
               </div>
             </div>
           </div>
@@ -3197,6 +3195,35 @@
                 <div style="background: rgba(255,204,102,0.1); border-left: 3px solid #ffcc66; padding: 5px 8px; border-radius: 3px; grid-column: span 2;">
                   <span style="color: var(--lcars-gray); display: block; font-size: 0.7rem;">MEDICATION REGIMEN</span>
                   <strong style="color: #ffcc66; font-size: 0.85rem;" id="hudMeds">Metformin 1,000mg Active • No acute changes</strong>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3D Multi-Channel Behavioral & Biometric Viewer (10 Ribbons with CLE CNC Orbit/Pan/Fly-through) -->
+            <div id="box3DMultiChannelViewer" style="background: #0f172a; border: 2px solid #0284c7; border-radius: 8px; margin-top: 14px; margin-bottom: 14px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.18);">
+              <div style="display: flex; justify-content: space-between; align-items: center; background: #1e293b; padding: 10px 16px; border-bottom: 1.5px solid #0284c7; flex-wrap: wrap; gap: 8px;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <span style="font-size: 1.25rem;">🌐</span>
+                  <div>
+                    <strong style="color: #38bdf8; font-size: 0.95rem; font-family: var(--lcars-mono, monospace); letter-spacing: 0.5px;">3D MULTI-CHANNEL BIOMETRIC &amp; BEHAVIORAL FLY-THROUGH VIEWER</strong>
+                    <span style="display: block; font-size: 0.74rem; color: #94a3b8;">10 Parallel Ribbon Channels &bull; Continuous Z-Depth Axis &bull; CLE CNC Orbit, Pan &amp; Wheel Fly-Through Controls</span>
+                  </div>
+                </div>
+                <div style="display: flex; gap: 6px; align-items: center;">
+                  <button type="button" class="lcars-btn btn-blue" onclick="reset3DCamera()" style="font-size: 0.72rem; padding: 4px 10px;">↺ RESET VIEW</button>
+                  <button type="button" class="lcars-btn btn-green" onclick="toggle3DFlyThrough()" id="btnAutoFly" style="font-size: 0.72rem; padding: 4px 10px;">▶ AUTO FLY</button>
+                  <span style="font-size: 0.72rem; color: #94a3b8; background: #0f172a; padding: 4px 8px; border-radius: 4px; border: 1px solid #334155;">DRAG: Orbit | SHIFT+DRAG: Pan | WHEEL: Fly-Through</span>
+                </div>
+              </div>
+              <div style="position: relative; width: 100%; height: 440px; background: #020617;">
+                <canvas id="canvas3DMultiChannel" width="1200" height="440" style="display: block; width: 100%; height: 100%; cursor: grab;"></canvas>
+                <div id="lbl3DChannelsLegend" style="position: absolute; bottom: 8px; left: 12px; right: 12px; display: flex; flex-wrap: wrap; gap: 8px; pointer-events: none; font-size: 0.70rem; font-family: monospace;">
+                  <!-- Dynamic Legend Chips generated by JS -->
+                </div>
+                <div id="overlay3DZeroData" style="display: none; position: absolute; inset: 0; background: rgba(2,6,23,0.85); display: flex; flex-direction: column; align-items: center; justify-content: center; pointer-events: none;">
+                  <span style="font-size: 2rem; margin-bottom: 6px;">📡</span>
+                  <strong style="color: #94a3b8; font-size: 0.90rem; font-family: monospace;">[NO TELEMETRY RECORDED &bull; 10 RIBBONS AT BASELINE 0]</strong>
+                  <span style="color: #64748b; font-size: 0.75rem; margin-top: 4px;">Connect Veepoo Model 5010 watch or log nutrition/feelings to illuminate 3D tracks</span>
                 </div>
               </div>
             </div>
@@ -4692,16 +4719,18 @@
               <span style="font-size: 0.8rem; color: var(--lcars-ice);">CMD 0xB1 / 0xAA / 0xB8</span>
             </div>
             <div class="setup-grid">
-              <!-- Workstation Theme Switcher -->
-              <div class="setup-field" style="grid-column: span 2; background: rgba(255,204,51,0.06); padding: 12px; border-radius: 6px; border: 1px solid rgba(255,204,51,0.25); margin-bottom: 6px;">
-                <label class="setup-label" style="color: var(--lcars-banana); font-size: 0.9rem;">WORKSTATION DISPLAY THEME (LIGHT / DARK)</label>
-                <div style="display: flex; gap: 10px; margin-top: 6px;">
-                  <button type="button" id="btnThemeDark" class="lcars-pill pill-orange active" style="flex: 1; font-size: 0.85rem; padding: 6px 14px; height: auto;" onclick="setTheme('dark')">
-                    <span>DARK THEME (OLED / HIGH CONTRAST)</span>
-                  </button>
-                  <button type="button" id="btnThemeLight" class="lcars-pill pill-banana" style="flex: 1; font-size: 0.85rem; padding: 6px 14px; height: auto;" onclick="setTheme('light')">
-                    <span>LIGHT THEME (CLINICAL DAYLIGHT SPEC)</span>
-                  </button>
+              <!-- Workstation Theme Locked Profile (Dark Theme Removed) -->
+              <div class="setup-field" style="grid-column: span 2; background: rgba(2, 132, 199, 0.08); padding: 12px; border-radius: 6px; border: 1.5px solid #0284c7; margin-bottom: 6px;">
+                <label class="setup-label" style="color: #0369a1; font-size: 0.9rem; font-weight: 800;">CLINICAL WORKSTATION VISUAL PROFILE</label>
+                <div style="margin-top: 6px; display: flex; align-items: center; justify-content: space-between; background: #ffffff; padding: 8px 14px; border-radius: 4px; border: 1px solid #cbd5e1;">
+                  <div style="display: flex; align-items: center; gap: 10px;">
+                    <span style="font-size: 1.2rem;">🔬</span>
+                    <div>
+                      <strong style="color: #0f172a; font-size: 0.88rem;">CLINICAL DAYLIGHT SPECIFICATION (ABRAMS / SCOTT CONSOLE)</strong>
+                      <span style="display: block; font-size: 0.75rem; color: #64748b;">High-luminance clinical white palette permanently locked for optimal surgical diagnostic contrast.</span>
+                    </div>
+                  </div>
+                  <span class="lcars-pill pill-green" style="padding: 4px 12px; font-weight: 800; font-size: 0.75rem;">LOCKED ACTIVE</span>
                 </div>
               </div>
 
@@ -5092,15 +5121,15 @@
             </div>
           </div>
 
-          <!-- SECTION 12: REGISTERED FAMILY CELLS & WEARABLE WATCH ROSTER (STAR SHIP GEMINI NCC-202X) -->
+          <!-- SECTION 12: REGISTERED SHUTTLECRAFT CELLS & WEARABLE SENSOR ROSTER -->
           <div class="setup-section" style="border-left-color: #38bdf8; margin-top: 24px; background: #0f172a; border: 1.5px solid #334155; border-left: 6px solid #38bdf8; border-radius: 8px; padding: 18px; color: #f8fafc;">
             <div class="setup-section-title" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #334155; padding-bottom: 10px; margin-bottom: 14px;">
               <div>
                 <span style="color: #38bdf8; font-size: 1.18rem; font-weight: 800; letter-spacing: 0.5px;">
-                  12. REGISTERED FAMILY CELLS &amp; WEARABLE SENSOR ARRAY ROSTER
+                  12. REGISTERED SHUTTLECRAFT CELLS &amp; WEARABLE SENSOR ARRAY ROSTER
                 </span>
                 <span style="font-size: 0.78rem; color: #94a3b8; display: block; margin-top: 2px;">
-                  STAR SHIP GEMINI NCC-202X MULTI-TENANT ROSTER &bull; MOBILE AUXILIARY SHUTTLECRAFT FOODOR DOCKING &bull; BLE BINDINGS
+                  BFM WORKSTATION &bull; MOBILE SHUTTLECRAFT FIELD DATA COLLECTOR DOCKING &bull; BLE BINDINGS
                 </span>
               </div>
               <div style="display: flex; gap: 8px;">
@@ -5108,7 +5137,7 @@
                   🔄 REFRESH ROSTER
                 </button>
                 <button type="button" class="lcars-btn btn-green" onclick="openProvisionModal()" style="font-size: 0.80rem; padding: 6px 16px; font-weight: bold;">
-                  ➕ PROVISION NEW FAMILY CELL
+                  📱 ADD CELL
                 </button>
               </div>
             </div>
@@ -5133,7 +5162,7 @@
                   <!-- Rendered dynamically via loadFamilyCellsRoster() -->
                   <tr>
                     <td colspan="9" style="text-align: center; padding: 16px; color: #94a3b8;">
-                      Loading Star Ship Gemini NCC-202X Registered Cells Roster...
+                      Loading Registered Shuttlecraft Cells Roster...
                     </td>
                   </tr>
                 </tbody>
@@ -9497,8 +9526,15 @@
     let isClinicScanRunning = false;
     let lastBodyC = 0;
     let lastSkinC = 0;
+    let lastBodyF = 0;
+    let lastSkinF = 0;
     let lastHeartRate = 0;
+    let lastHR = 0;
+    let lastSystolic = 0;
+    let lastDiastolic = 0;
     let lastSpO2 = 0;
+    let lastHRV = 0;
+    let lastStress = 0;
     let lastSteps = 0;
 
     let sessionTelemetryLogs = [];
@@ -9650,7 +9686,7 @@
       const pill = document.getElementById('headerSyncPill');
 
       if (elComm) {
-        elComm.textContent = 'LINKED & DOWNLOADING';
+        elComm.textContent = 'Connecting...';
         elComm.style.color = 'var(--lcars-banana)';
       }
       if (ribbonSync) {
@@ -9720,11 +9756,44 @@
         // Step 9: Re-hydrate ALL UI Consoles, Fields, Charts, and Metrics
         await pollLiveTelemetryChanges(true);
         await fetchTelemetryTimeline();
+        // Mandatory biometric harvest propagation
+        if (window._latestTelemetry) {
+          const vit = window._latestTelemetry;
+          if (vit.GLUCOSE && vit.GLUCOSE.value1 > 0) lastGlucoseMg = Math.round(vit.GLUCOSE.value1);
+          if (vit.BLOOD_PRESSURE && vit.BLOOD_PRESSURE.value1 > 0) {
+            lastSystolic = Math.round(vit.BLOOD_PRESSURE.value1);
+            lastDiastolic = Math.round(vit.BLOOD_PRESSURE.value2);
+          }
+          if (vit.HEART_RATE && vit.HEART_RATE.value1 > 0) {
+            lastHR = Math.round(vit.HEART_RATE.value1);
+            lastHeartRate = lastHR;
+          }
+          if (vit.SPO2 && vit.SPO2.value1 > 0) lastSpO2 = Math.round(vit.SPO2.value1);
+          if (vit.BLOOD_OXYGEN && vit.BLOOD_OXYGEN.value1 > 0) lastSpO2 = Math.round(vit.BLOOD_OXYGEN.value1);
+          if (vit.TEMPERATURE && vit.TEMPERATURE.value1 > 0) {
+            lastBodyF = vit.TEMPERATURE.value1;
+            lastSkinF = vit.TEMPERATURE.value2 || (lastBodyF - 2.4);
+            lastBodyC = parseFloat(((lastBodyF - 32) * 5 / 9).toFixed(1));
+          }
+          if (vit.HRV_STRESS && vit.HRV_STRESS.value1 > 0) {
+            lastHRV = Math.round(vit.HRV_STRESS.value1);
+            lastStress = Math.round(vit.HRV_STRESS.value2);
+          }
+          if (typeof propagateFullScanResultsToAllPages === 'function') {
+            propagateFullScanResultsToAllPages({
+              glucose: lastGlucoseMg,
+              bp: { sys: lastSystolic, dia: lastDiastolic },
+              spo2: lastSpO2,
+              hr: lastHR,
+              temp: { bodyF: lastBodyF, skinF: lastSkinF, bodyC: lastBodyC },
+              hrv: { hrv: lastHRV, stress: lastStress }
+            });
+          }
+        }
         if (typeof initFullScanView === 'function') initFullScanView();
         if (typeof render360HealthView === 'function') render360HealthView();
         if (typeof renderReportsView === 'function') renderReportsView();
-        if (typeof renderDietHistory === 'function') renderDietHistory();
-        if (typeof render360HealthView === 'function') render360HealthView();
+        if (typeof render3DMultiChannelScene === 'function') render3DMultiChannelScene();
         if (typeof renderDietHistory === 'function') renderDietHistory();
         if (typeof loadGoalsComplianceReport === 'function') loadGoalsComplianceReport();
         if (typeof updateWorkoutWithSteps === 'function') updateWorkoutWithSteps(lastSteps || 0);
@@ -9734,8 +9803,8 @@
         window._lastFullSyncTime = lastFullSyncTime;
 
         if (elComm) {
-          elComm.textContent = 'LINKED & ONLINE';
-          elComm.style.color = 'var(--lcars-green)';
+          elComm.textContent = 'Connected';
+          elComm.style.color = '#10b981';
         }
         if (ribbonSync) {
           ribbonSync.textContent = '● SYNC COMPLETE (100% CURRENT)';
@@ -9844,19 +9913,19 @@
 
       if (isTrulyConnected) {
         if (elComm) {
-          elComm.textContent = 'LINKED & ONLINE';
-          elComm.style.color = 'var(--lcars-green)';
+          elComm.textContent = 'Connected';
+          elComm.style.color = '#10b981';
         }
         if (unlinkedBanner) unlinkedBanner.style.display = 'none';
         if (btnPairNew) btnPairNew.style.display = 'none';
       } else if (isAutoReconnecting) {
         if (elComm) {
-          elComm.textContent = 'AUTO-RECONNECTING...';
+          elComm.textContent = 'Connecting...';
           elComm.style.color = 'var(--lcars-banana)';
         }
       } else {
         if (elComm) {
-          elComm.textContent = 'STANDBY (CLICK TO ENGAGE)';
+          elComm.textContent = 'Standby (Disconnected)';
           elComm.style.color = 'var(--lcars-orange)';
         }
         if (unlinkedBanner) unlinkedBanner.style.display = 'none';
@@ -10206,16 +10275,31 @@
         const status = bytes[4] || 0;
 
         if (progress > 0 && progress < 100) {
-          document.getElementById("badgeBP").textContent = `MEASURING (${progress}%)`;
-          document.getElementById("badgeBP").className = "state-badge scanning";
+          const elB = document.getElementById("badgeBP");
+          if (elB) {
+            elB.textContent = `MEASURING (${progress}%)`;
+            elB.className = "state-badge scanning";
+          }
         }
         if (systolic > 40 && diastolic > 30) {
-          document.getElementById("valBP").textContent = `${systolic} / ${diastolic}`;
+          lastSystolic = systolic;
+          lastDiastolic = diastolic;
+          window._lastSystolic = systolic;
+          window._lastDiastolic = diastolic;
+          const hexDump = Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join(' ');
+          postTelemetryToServer("BLOOD_PRESSURE", systolic, diastolic, "mmHg", hexDump);
+
+          const elValBP = document.getElementById("valBP"); if (elValBP) elValBP.textContent = `${systolic} / ${diastolic}`;
+          const hudBP = document.getElementById("hudBp"); if (hudBP) hudBP.textContent = `${systolic}/${diastolic} mmHg`;
+          const tileBP = document.getElementById("tile360Bp"); if (tileBP) tileBP.innerHTML = `${systolic}/${diastolic} <span style="font-size: 0.9rem;">mmHg</span>`;
           const map = Math.round(diastolic + ((systolic - diastolic) / 3));
-          document.getElementById("txtMAP").textContent = `${map} mmHg (PULSE PRESSURE: ${systolic - diastolic})`;
-          document.getElementById("badgeBP").textContent = "COMPLETE (100%)";
-          document.getElementById("badgeBP").className = "state-badge complete";
-          recordTelemetrySample(lastGlucoseMg, parseFloat(document.getElementById("valTemp").textContent), 85.0, `BP ${systolic}/${diastolic}`);
+          const elMap = document.getElementById("txtMAP"); if (elMap) elMap.textContent = `${map} mmHg (PULSE PRESSURE: ${systolic - diastolic})`;
+          const badgeBP = document.getElementById("badgeBP");
+          if (badgeBP) {
+            badgeBP.textContent = "COMPLETE (100%)";
+            badgeBP.className = "state-badge complete";
+          }
+          recordTelemetrySample(lastGlucoseMg, parseFloat(document.getElementById("valTemp") ? document.getElementById("valTemp").textContent : 0), 85.0, `BP ${systolic}/${diastolic}`);
         }
       }
 
@@ -10224,11 +10308,24 @@
         const hr = bytes[1];
         if (hr >= 30 && hr <= 220) {
           lastHeartRate = hr;
-          document.getElementById("valHeartRate").textContent = hr;
-          document.getElementById("barHR").style.width = `${Math.min(100, (hr / 180) * 100)}%`;
-          document.getElementById("barHR").classList.add("complete");
-          document.getElementById("badgeHR").textContent = "COMPLETE (STREAMING)";
-          document.getElementById("badgeHR").className = "state-badge complete";
+          lastHR = hr;
+          window._lastHR = hr;
+          const hexDump = Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join(' ');
+          postTelemetryToServer("HEART_RATE", hr, 0, "BPM", hexDump);
+
+          const elHR = document.getElementById("valHeartRate"); if (elHR) elHR.textContent = hr;
+          const hudHR = document.getElementById("hudHrHrv"); if (hudHR) hudHR.textContent = `${hr} BPM`;
+          const tileHR = document.getElementById("tile360HrHrv"); if (tileHR) tileHR.innerHTML = `${hr} BPM`;
+          const barHR = document.getElementById("barHR");
+          if (barHR) {
+            barHR.style.width = `${Math.min(100, (hr / 180) * 100)}%`;
+            barHR.classList.add("complete");
+          }
+          const badgeHR = document.getElementById("badgeHR");
+          if (badgeHR) {
+            badgeHR.textContent = "COMPLETE (STREAMING)";
+            badgeHR.className = "state-badge complete";
+          }
         }
       }
 
@@ -10258,8 +10355,14 @@
         }
         if (spo2 >= 70 && spo2 <= 100) {
           lastSpO2 = spo2;
+          window._lastSpO2 = spo2;
+          const hexDump = Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join(' ');
+          postTelemetryToServer("SPO2", spo2, 0, "%", hexDump);
+
           const elVal = document.getElementById("valSpO2");
           if (elVal) elVal.textContent = spo2;
+          const hudSp = document.getElementById("hudSpo2"); if (hudSp) hudSp.textContent = `${spo2}% SpO2`;
+          const tileSp = document.getElementById("tile360Spo2"); if (tileSp) tileSp.innerHTML = `${spo2}% <span style="font-size: 0.9rem;">SpO2</span>`;
           const elBar = document.getElementById("barSpO2");
           if (elBar) {
             elBar.style.width = `${spo2}%`;
@@ -10750,6 +10853,13 @@
         clearInterval(_hrvInterval);
         _hrvInterval = null;
       }
+      lastHRV = hrvMs;
+      lastStress = stressScore;
+      window._lastHRV = hrvMs;
+      window._lastStress = stressScore;
+      postTelemetryToServer("HRV_STRESS", hrvMs, stressScore, "ms / score");
+      const hudStress = document.getElementById("hudStress"); if (hudStress) hudStress.textContent = `${stressScore}/100`;
+      const tileStress = document.getElementById("tile360Stress"); if (tileStress) tileStress.textContent = `${stressScore}/100`;
 
       const elVal = document.getElementById("valStress");
       if (elVal) elVal.textContent = stressScore;
@@ -12127,7 +12237,7 @@
           <g>
             <circle class="plot-point" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="4" 
                     fill="${strokeColor}" stroke="#ffffff" stroke-width="2">
-              <title>BFM Console • Star Ship Gemini NCC-202X (Powered By Gemini)</title>
+              <title>BFM Workstation • Biometric Function Monitor</title>
             </circle>
             ${showVal ? `
               <rect x="${(p.x - 18).toFixed(1)}" y="${(valY - 10).toFixed(1)}" width="36" height="13" fill="rgba(255,255,255,0.9)" stroke="#e2e8f0" stroke-width="0.8" rx="2"/>
@@ -12294,7 +12404,7 @@
           <g>
             <circle class="plot-point" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="4" 
                     fill="var(--lcars-blue)" stroke="#ffffff" stroke-width="2">
-              <title>BFM Console • Star Ship Gemini NCC-202X (Powered By Gemini)</title>
+              <title>BFM Workstation • Biometric Function Monitor</title>
             </circle>
             ${showVal ? `
               <rect x="${(p.x - 16).toFixed(1)}" y="${(valY - 10).toFixed(1)}" width="32" height="13" fill="rgba(255,255,255,0.9)" stroke="#e2e8f0" stroke-width="0.8" rx="2"/>
@@ -12309,7 +12419,7 @@
         circlesHtml += `
           <circle class="plot-point" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="3" 
                   fill="var(--lcars-orange)" stroke="#ffffff" stroke-width="1.5">
-            <title>BFM Console • Star Ship Gemini NCC-202X (Powered By Gemini)</title>
+            <title>BFM Workstation • Biometric Function Monitor</title>
           </circle>
         `;
       });
@@ -12832,7 +12942,7 @@
         else if (p.steps < 3000 || p.glucose >= 150) fillCol = '#dc2626';
 
         svgHtml += `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="3" fill="${fillCol}" stroke="#ffffff" stroke-width="0.8" opacity="0.82">
-          <title>BFM Console • Star Ship Gemini NCC-202X (Powered By Gemini)</title>
+          <title>BFM Workstation • Biometric Function Monitor</title>
         </circle>`;
       });
 
@@ -15644,6 +15754,7 @@
     window.addEventListener('DOMContentLoaded', async () => {
       initializeVitalsAndCardioBaselines();
       initPopularMeals();
+      if (typeof init3DMultiChannelViewer === 'function') init3DMultiChannelViewer();
       switchTab('fullscan');
 
       // 1. Immediately hydrate telemetry from SQLite database into LCARS without waiting
@@ -16029,6 +16140,7 @@
     }
 
     function renderReportsView() {
+      if (typeof render3DMultiChannelScene === 'function') render3DMultiChannelScene();
       updateWatchMetabolicSubReports();
       const isDaily = currentReportTimeframe === 'daily';
       const isWeekly = currentReportTimeframe === 'weekly';
@@ -18420,7 +18532,7 @@ Patient`;
           svg += `
             <g style="cursor: pointer;" onclick="openTimelinePointCard(${i})">
               <circle class="plot-point" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="6" fill="#ea580c" stroke="#ffffff" stroke-width="2">
-                <title>BFM Console • Star Ship Gemini NCC-202X (Powered By Gemini)</title>
+                <title>BFM Workstation • Biometric Function Monitor</title>
               </circle>
               <rect x="${(p.x - 14).toFixed(1)}" y="${(p.y - 21).toFixed(1)}" width="28" height="13" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
               <text x="${p.x.toFixed(1)}" y="${(p.y - 11).toFixed(1)}" text-anchor="middle" fill="#78350f" font-size="9" font-weight="900">${p.val}</text>
@@ -18679,6 +18791,381 @@ Patient`;
       soundButtonPress();
       const modal = document.getElementById('timelinePointCardModal');
       if (modal) modal.style.display = 'none';
+    }
+
+
+    // =========================================================================
+    // 3D MULTI-CHANNEL BIOMETRIC & BEHAVIORAL FLY-THROUGH VISUALIZER ENGINE
+    // 10 Parallel Ribbon Channels • CLE CNC Visualizer Orbit, Pan & Wheel Flight
+    // =========================================================================
+    const CHANNELS_3D = [
+      { id: "ch_glucose", name: "CH 01: GLUCOSE", unit: "mg/dL", min: 0, max: 300, color: "#f59e0b", bg: "rgba(245, 158, 11, 0.25)" },
+      { id: "ch_bp",      name: "CH 02: BLOOD PRESSURE", unit: "mmHg", min: 0, max: 200, color: "#ef4444", bg: "rgba(239, 68, 68, 0.25)" },
+      { id: "ch_hr",      name: "CH 03: HEART RATE", unit: "BPM", min: 0, max: 180, color: "#ec4899", bg: "rgba(236, 72, 153, 0.25)" },
+      { id: "ch_spo2",    name: "CH 04: SpO2", unit: "%", min: 0, max: 100, color: "#06b6d4", bg: "rgba(6, 182, 212, 0.25)" },
+      { id: "ch_temp",    name: "CH 05: BODY TEMP", unit: "°F", min: 90, max: 105, color: "#f97316", bg: "rgba(249, 115, 22, 0.25)" },
+      { id: "ch_hrv",     name: "CH 06: HRV / STRESS", unit: "ms/idx", min: 0, max: 100, color: "#8b5cf6", bg: "rgba(139, 92, 246, 0.25)" },
+      { id: "ch_steps",   name: "CH 07: STEPS", unit: "steps", min: 0, max: 10000, color: "#10b981", bg: "rgba(16, 185, 129, 0.25)" },
+      { id: "ch_sleep",   name: "CH 08: SLEEP ARCH", unit: "%", min: 0, max: 100, color: "#6366f1", bg: "rgba(99, 102, 241, 0.25)" },
+      { id: "ch_pain",    name: "CH 09: PAIN INDEX", unit: "0-10", min: 0, max: 10, color: "#dc2626", bg: "rgba(220, 38, 38, 0.25)" },
+      { id: "ch_mood",    name: "CH 10: MOOD SCALE", unit: "0-10", min: 0, max: 10, color: "#14b8a6", bg: "rgba(20, 184, 166, 0.25)" }
+    ];
+
+    let cam3D = {
+      yaw: -0.55,       // Rotation around Y (horizontal orbit)
+      pitch: 0.38,      // Elevation angle around X
+      distance: 850,    // Camera Z distance (fly-through zoom)
+      zoom: 1.0,
+      panX: 0,
+      panY: -40,
+      isDragging: false,
+      isPanning: false,
+      lastMouseX: 0,
+      lastMouseY: 0,
+      autoFly: false,
+      flyTime: 0
+    };
+
+    let animation3DId = null;
+    let feelingCache3D = [];
+
+    async function loadFeelingsFor3D() {
+      try {
+        const resp = await fetch('/api/feeling/entries');
+        if (resp.ok) {
+          const d = await resp.json();
+          feelingCache3D = d.entries || [];
+        }
+      } catch (e) {}
+    }
+
+    function init3DMultiChannelViewer() {
+      const canvas = document.getElementById('canvas3DMultiChannel');
+      if (!canvas) return;
+
+      // Render legend chips
+      const legend = document.getElementById('lbl3DChannelsLegend');
+      if (legend && legend.children.length === 0) {
+        legend.innerHTML = CHANNELS_3D.map(c => `
+          <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid ${c.color}; border-radius: 3px; padding: 2px 6px; display: flex; align-items: center; gap: 4px;">
+            <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: ${c.color};"></span>
+            <span style="color: #f8fafc; font-weight: bold;">${c.name.split(':')[1].trim()}</span>
+          </div>
+        `).join('');
+      }
+
+      // Mouse drag controls (Orbit & Pan)
+      canvas.addEventListener('mousedown', (e) => {
+        cam3D.isDragging = true;
+        cam3D.isPanning = (e.shiftKey || e.button === 2);
+        cam3D.lastMouseX = e.clientX;
+        cam3D.lastMouseY = e.clientY;
+        canvas.style.cursor = cam3D.isPanning ? 'move' : 'grabbing';
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        if (!cam3D.isDragging) return;
+        const dx = e.clientX - cam3D.lastMouseX;
+        const dy = e.clientY - cam3D.lastMouseY;
+        cam3D.lastMouseX = e.clientX;
+        cam3D.lastMouseY = e.clientY;
+
+        if (cam3D.isPanning) {
+          cam3D.panX += dx * 0.8;
+          cam3D.panY -= dy * 0.8;
+        } else {
+          cam3D.yaw += dx * 0.008;
+          cam3D.pitch = Math.max(-0.2, Math.min(1.4, cam3D.pitch + dy * 0.008));
+        }
+        render3DMultiChannelScene();
+      });
+
+      window.addEventListener('mouseup', () => {
+        if (cam3D.isDragging) {
+          cam3D.isDragging = false;
+          if (canvas) canvas.style.cursor = 'grab';
+        }
+      });
+
+      // Fly-through Wheel Zoom
+      canvas.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        const delta = e.deltaY;
+        cam3D.distance = Math.max(120, Math.min(2200, cam3D.distance + delta * 0.9));
+        render3DMultiChannelScene();
+      }, { passive: false });
+
+      // Prevent context menu for right-drag pan
+      canvas.addEventListener('contextmenu', (e) => e.preventDefault());
+
+      // Resize observer
+      const resizeObserver = new ResizeObserver(() => {
+        if (canvas.parentElement) {
+          const rect = canvas.parentElement.getBoundingClientRect();
+          if (rect.width > 0 && rect.height > 0) {
+            canvas.width = rect.width;
+            canvas.height = rect.height;
+            render3DMultiChannelScene();
+          }
+        }
+      });
+      if (canvas.parentElement) resizeObserver.observe(canvas.parentElement);
+
+      loadFeelingsFor3D();
+      render3DMultiChannelScene();
+    }
+
+    function reset3DCamera() {
+      cam3D.yaw = -0.55;
+      cam3D.pitch = 0.38;
+      cam3D.distance = 850;
+      cam3D.panX = 0;
+      cam3D.panY = -40;
+      cam3D.autoFly = false;
+      const btn = document.getElementById('btnAutoFly');
+      if (btn) btn.textContent = "▶ AUTO FLY";
+      render3DMultiChannelScene();
+    }
+
+    function toggle3DFlyThrough() {
+      cam3D.autoFly = !cam3D.autoFly;
+      const btn = document.getElementById('btnAutoFly');
+      if (btn) btn.textContent = cam3D.autoFly ? "⏹ STOP FLY" : "▶ AUTO FLY";
+
+      if (cam3D.autoFly) {
+        run3DFlyLoop();
+      }
+    }
+
+    function run3DFlyLoop() {
+      if (!cam3D.autoFly) return;
+      cam3D.flyTime += 0.015;
+      // Fly gently forward along time axis and oscillate yaw
+      cam3D.yaw = -0.55 + Math.sin(cam3D.flyTime * 0.4) * 0.25;
+      cam3D.panX = Math.sin(cam3D.flyTime * 0.2) * 80;
+      render3DMultiChannelScene();
+      requestAnimationFrame(run3DFlyLoop);
+    }
+
+    function project3D(x, y, z, width, height) {
+      // CLE 3D perspective projection
+      const px = x + cam3D.panX;
+      const py = y + cam3D.panY;
+      const pz = z;
+
+      // Rotation around Y (yaw)
+      const cosY = Math.cos(cam3D.yaw);
+      const sinY = Math.sin(cam3D.yaw);
+      const x1 = px * cosY - pz * sinY;
+      const z1 = px * sinY + pz * cosY;
+
+      // Rotation around X (pitch)
+      const cosP = Math.cos(cam3D.pitch);
+      const sinP = Math.sin(cam3D.pitch);
+      const y2 = py * cosP - z1 * sinP;
+      const z2 = py * sinP + z1 * cosP + cam3D.distance;
+
+      if (z2 <= 10) return null; // Behind camera clipping
+      const fov = 750 * cam3D.zoom;
+      const screenX = (width / 2) + (x1 * fov) / z2;
+      const screenY = (height / 2) - (y2 * fov) / z2;
+      return { x: screenX, y: screenY, z: z2 };
+    }
+
+    function render3DMultiChannelScene() {
+      const canvas = document.getElementById('canvas3DMultiChannel');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const W = canvas.width;
+      const H = canvas.height;
+      ctx.clearRect(0, 0, W, H);
+
+      // Deep space background gradient
+      const bgGrad = ctx.createLinearGradient(0, 0, 0, H);
+      bgGrad.addColorStop(0, '#020617');
+      bgGrad.addColorStop(1, '#090d16');
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, W, H);
+
+      // Time points along X (-380 to +380) representing 24 hours (00:00 to 23:59)
+      const numPoints = 25;
+      const xStep = 760 / (numPoints - 1);
+      const zSpacing = 52; // Spacing between channels along Z
+      const zStart = -((CHANNELS_3D.length - 1) * zSpacing) / 2;
+
+      // Check if any real data exists
+      let hasRealData = false;
+      if (typeof telemetryTimelinePoints !== 'undefined' && telemetryTimelinePoints.length > 0) hasRealData = true;
+      if (typeof lastGlucoseMg !== 'undefined' && lastGlucoseMg > 0) hasRealData = true;
+      if (typeof lastHR !== 'undefined' && lastHR > 0) hasRealData = true;
+      if (feelingCache3D && feelingCache3D.length > 0) hasRealData = true;
+
+      const overlay = document.getElementById('overlay3DZeroData');
+      if (overlay) overlay.style.display = hasRealData ? 'none' : 'flex';
+
+      // 3D Grid Floor along time and channel depth
+      ctx.lineWidth = 1;
+      for (let c = 0; c < CHANNELS_3D.length; c++) {
+        const cz = zStart + c * zSpacing;
+        const p1 = project3D(-380, 0, cz, W, H);
+        const p2 = project3D(380, 0, cz, W, H);
+        if (p1 && p2) {
+          ctx.strokeStyle = 'rgba(51, 65, 85, 0.45)';
+          ctx.beginPath();
+          ctx.moveTo(p1.x, p1.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.stroke();
+
+          // Channel Label at start of track
+          const pLbl = project3D(-420, 0, cz, W, H);
+          if (pLbl) {
+            ctx.fillStyle = CHANNELS_3D[c].color;
+            ctx.font = 'bold 10px monospace';
+            ctx.textAlign = 'right';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(CHANNELS_3D[c].name.replace('CH ', 'CH'), pLbl.x, pLbl.y);
+          }
+        }
+      }
+
+      // Time Grid lines (every 4 hours: 00, 04, 08, 12, 16, 20, 24)
+      for (let t = 0; t <= 6; t++) {
+        const tx = -380 + (t / 6) * 760;
+        const pFront = project3D(tx, 0, zStart, W, H);
+        const pBack = project3D(tx, 0, zStart + (CHANNELS_3D.length - 1) * zSpacing, W, H);
+        if (pFront && pBack) {
+          ctx.strokeStyle = 'rgba(71, 85, 105, 0.35)';
+          ctx.beginPath();
+          ctx.moveTo(pFront.x, pFront.y);
+          ctx.lineTo(pBack.x, pBack.y);
+          ctx.stroke();
+
+          // Time stamp at front
+          const pTime = project3D(tx, -14, zStart + (CHANNELS_3D.length - 1) * zSpacing + 20, W, H);
+          if (pTime) {
+            ctx.fillStyle = '#64748b';
+            ctx.font = '9px monospace';
+            ctx.textAlign = 'center';
+            ctx.fillText(`${(t * 4).toString().padStart(2, '0')}:00`, pTime.x, pTime.y);
+          }
+        }
+      }
+
+      // Render Each of the 10 Parallel Ribbons (Sorted back-to-front by projected Z)
+      const renderOrder = [];
+      for (let c = 0; c < CHANNELS_3D.length; c++) {
+        const cz = zStart + c * zSpacing;
+        const testProj = project3D(0, 0, cz, W, H);
+        renderOrder.push({ index: c, z: testProj ? testProj.z : cz });
+      }
+      renderOrder.sort((a, b) => b.z - a.z); // Render farthest first
+
+      for (const item of renderOrder) {
+        const c = item.index;
+        const channel = CHANNELS_3D[c];
+        const cz = zStart + c * zSpacing;
+
+        // Build data points array for this channel
+        const pts = [];
+        for (let i = 0; i < numPoints; i++) {
+          const x = -380 + i * xStep;
+          let val = 0;
+
+          if (hasRealData) {
+            // Sample real value based on channel type
+            if (c === 0) { // Glucose
+              val = (typeof lastGlucoseMg !== 'undefined' && lastGlucoseMg > 0) ? lastGlucoseMg : 0;
+            } else if (c === 1) { // BP Systolic
+              val = (typeof lastSystolic !== 'undefined' && lastSystolic > 0) ? lastSystolic : 0;
+            } else if (c === 2) { // HR
+              val = (typeof lastHR !== 'undefined' && lastHR > 0) ? lastHR : (typeof lastHeartRate !== 'undefined' ? lastHeartRate : 0);
+            } else if (c === 3) { // SpO2
+              val = (typeof lastSpO2 !== 'undefined' && lastSpO2 > 0) ? lastSpO2 : 0;
+            } else if (c === 4) { // Temp
+              const rawF = (typeof lastBodyF !== 'undefined' && lastBodyF > 0) ? lastBodyF : 0;
+              val = rawF > 0 ? (rawF - 90) : 0;
+            } else if (c === 5) { // HRV
+              val = (typeof lastHRV !== 'undefined' && lastHRV > 0) ? lastHRV : 0;
+            } else if (c === 6) { // Steps
+              val = (typeof lastSteps !== 'undefined' && lastSteps > 0) ? lastSteps : 0;
+            } else if (c === 7) { // Sleep
+              val = 0; // Sleep architecture percent
+            } else if (c === 8) { // Pain Index (0-10)
+              if (feelingCache3D && feelingCache3D.length > 0) {
+                val = feelingCache3D[0].pain_score || 0;
+              }
+            } else if (c === 9) { // Mood Scale (0-10)
+              if (feelingCache3D && feelingCache3D.length > 0) {
+                val = feelingCache3D[0].mood_score || 0;
+              }
+            }
+          }
+
+          // Normalize Y height: max ribbon height = 110px
+          const normY = val > 0 ? Math.min(110, (val / (channel.max - channel.min)) * 110) : 0;
+          pts.push({ x: x, y: normY, val: val });
+        }
+
+        // Project top and bottom points
+        const topProjs = [];
+        const botProjs = [];
+        for (const pt of pts) {
+          const pTop = project3D(pt.x, pt.y, cz, W, H);
+          const pBot = project3D(pt.x, 0, cz, W, H);
+          if (pTop && pBot) {
+            topProjs.push(pTop);
+            botProjs.push(pBot);
+          }
+        }
+
+        if (topProjs.length > 1) {
+          // 1. Draw Ribbon Polygon
+          ctx.beginPath();
+          ctx.moveTo(topProjs[0].x, topProjs[0].y);
+          for (let i = 1; i < topProjs.length; i++) ctx.lineTo(topProjs[i].x, topProjs[i].y);
+          for (let i = botProjs.length - 1; i >= 0; i--) ctx.lineTo(botProjs[i].x, botProjs[i].y);
+          ctx.closePath();
+
+          ctx.fillStyle = channel.bg;
+          ctx.fill();
+
+          // 2. Draw Top Glowing Crest Line
+          ctx.beginPath();
+          ctx.moveTo(topProjs[0].x, topProjs[0].y);
+          for (let i = 1; i < topProjs.length; i++) ctx.lineTo(topProjs[i].x, topProjs[i].y);
+          ctx.strokeStyle = channel.color;
+          ctx.lineWidth = 2.0;
+          ctx.stroke();
+
+          // 3. Draw Vertical Struts at Key Intervals
+          ctx.lineWidth = 1.0;
+          ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+          for (let i = 0; i < topProjs.length; i += 4) {
+            ctx.beginPath();
+            ctx.moveTo(topProjs[i].x, topProjs[i].y);
+            ctx.lineTo(botProjs[i].x, botProjs[i].y);
+            ctx.stroke();
+          }
+
+          // 4. Latest Value Indicator Dot on Crest
+          const lastIdx = topProjs.length - 1;
+          const pEnd = topProjs[lastIdx];
+          const curVal = pts[lastIdx].val;
+          if (curVal > 0) {
+            ctx.fillStyle = channel.color;
+            ctx.beginPath();
+            ctx.arc(pEnd.x, pEnd.y, 4, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 9px monospace';
+            ctx.textAlign = 'left';
+            ctx.fillText(`${curVal} ${channel.unit}`, pEnd.x + 6, pEnd.y);
+          }
+        }
+      }
     }
 
 
@@ -19210,11 +19697,11 @@ All 14 LCARS consoles, 8-lane metabolic chart, and clinical database now match y
         fullScanCountdown--;
         if (cDown) cDown.textContent = fullScanCountdown + 's';
 
-        const curSys = (typeof lastSystolic !== 'undefined' && lastSystolic > 0) ? lastSystolic : 118;
-        const curDia = (typeof lastDiastolic !== 'undefined' && lastDiastolic > 0) ? lastDiastolic : 76;
-        if (liveVal) liveVal.textContent = `${curSys}/${curDia} mmHg`;
+        const curSys = (typeof lastSystolic !== 'undefined' && lastSystolic > 0) ? lastSystolic : 0;
+        const curDia = (typeof lastDiastolic !== 'undefined' && lastDiastolic > 0) ? lastDiastolic : 0;
+        if (liveVal) liveVal.textContent = curSys > 0 ? `${curSys}/${curDia} mmHg` : 'Inflating cuff / sampling...';
         const bpPct = Math.min(99, Math.max(1, Math.round(((22 - fullScanCountdown) / 22) * 100)));
-        setStageCardState(3, 'active', `${curSys}/${curDia} mmHg`, bpPct);
+        setStageCardState(3, 'active', curSys > 0 ? `${curSys}/${curDia} mmHg` : 'Measuring', bpPct);
 
         if (fullScanCountdown <= 0) {
           clearInterval(fullScanStageTimer);
@@ -19271,10 +19758,10 @@ All 14 LCARS consoles, 8-lane metabolic chart, and clinical database now match y
         fullScanCountdown--;
         if (cDown) cDown.textContent = fullScanCountdown + 's';
 
-        const curSp = (typeof lastSpO2 !== 'undefined' && lastSpO2 > 0) ? lastSpO2 : 98;
-        if (liveVal) liveVal.textContent = `${curSp}%`;
+        const curSp = (typeof lastSpO2 !== 'undefined' && lastSpO2 > 0) ? lastSpO2 : 0;
+        if (liveVal) liveVal.textContent = curSp > 0 ? `${curSp}%` : 'Sampling pulse oximetry...';
         const o2Pct = Math.min(99, Math.max(1, Math.round(((15 - fullScanCountdown) / 15) * 100)));
-        setStageCardState(4, 'active', `${curSp}%`, o2Pct);
+        setStageCardState(4, 'active', curSp > 0 ? `${curSp}%` : 'Scanning', o2Pct);
 
         if (fullScanCountdown <= 0) {
           clearInterval(fullScanStageTimer);
@@ -19326,9 +19813,9 @@ All 14 LCARS consoles, 8-lane metabolic chart, and clinical database now match y
         fullScanCountdown--;
         if (cDown) cDown.textContent = fullScanCountdown + 's';
 
-        const curHr = (typeof lastHR !== 'undefined' && lastHR > 0) ? lastHR : 72;
-        if (liveVal) liveVal.textContent = `${curHr} BPM`;
-        const hrPct = Math.min(99, Math.max(1, Math.round(((15 - fullScanCountdown) / 15) * 100))); setStageCardState(5, 'active', `${curHr} BPM`, hrPct);
+        const curHr = (typeof lastHR !== 'undefined' && lastHR > 0) ? lastHR : 0;
+        if (liveVal) liveVal.textContent = curHr > 0 ? `${curHr} BPM` : 'Acquiring pulse...';
+        const hrPct = Math.min(99, Math.max(1, Math.round(((15 - fullScanCountdown) / 15) * 100))); setStageCardState(5, 'active', curHr > 0 ? `${curHr} BPM` : 'Measuring', hrPct);
 
         if (fullScanCountdown <= 0) {
           clearInterval(fullScanStageTimer);
@@ -19380,9 +19867,9 @@ All 14 LCARS consoles, 8-lane metabolic chart, and clinical database now match y
         fullScanCountdown--;
         if (cDown) cDown.textContent = fullScanCountdown + 's';
 
-        const curHrv = (typeof lastHRV !== 'undefined' && lastHRV > 0) ? lastHRV : 64;
-        if (liveVal) liveVal.textContent = `${curHrv} ms`;
-        const hrvPct = Math.min(99, Math.max(1, Math.round(((18 - fullScanCountdown) / 18) * 100))); setStageCardState(6, 'active', `${curHrv} ms`, hrvPct);
+        const curHrv = (typeof lastHRV !== 'undefined' && lastHRV > 0) ? lastHRV : 0;
+        if (liveVal) liveVal.textContent = curHrv > 0 ? `${curHrv} ms` : 'Analyzing autonomic tone...';
+        const hrvPct = Math.min(99, Math.max(1, Math.round(((18 - fullScanCountdown) / 18) * 100))); setStageCardState(6, 'active', curHrv > 0 ? `${curHrv} ms` : 'Analyzing', hrvPct);
 
         if (fullScanCountdown <= 0) {
           clearInterval(fullScanStageTimer);
@@ -20379,47 +20866,30 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
 
 
     // =========================================================================
-    // CLINICAL THEME MANAGER (DARK OLED / LIGHT CLINICAL)
+    // CLINICAL THEME MANAGER (CLINICAL DAYLIGHT SPEC - DARK THEME PURGED)
     // =========================================================================
-    let currentTheme = localStorage.getItem('veepoo_theme') || 'dark';
+    let currentTheme = 'light';
 
     function applyTheme(theme) {
-      currentTheme = theme;
+      currentTheme = 'light';
+      document.body.classList.add('theme-light');
       const lbl = document.getElementById('lblHeaderTheme');
-      const btnDark = document.getElementById('btnThemeDark');
-      const btnLight = document.getElementById('btnThemeLight');
-
-      if (theme === 'light') {
-        document.body.classList.add('theme-light');
-        if (lbl) lbl.textContent = "THEME: LIGHT";
-        if (btnLight) btnLight.classList.add('active');
-        if (btnDark) btnDark.classList.remove('active');
-      } else {
-        document.body.classList.remove('theme-light');
-        if (lbl) lbl.textContent = "THEME: DARK";
-        if (btnDark) btnDark.classList.add('active');
-        if (btnLight) btnLight.classList.remove('active');
-      }
+      if (lbl) lbl.textContent = "THEME: CLINICAL DAYLIGHT";
       try {
-        localStorage.setItem('veepoo_theme', theme);
+        localStorage.setItem('veepoo_theme', 'light');
       } catch (e) {}
     }
 
     function toggleTheme() {
-      soundButtonPress();
-      const next = currentTheme === 'light' ? 'dark' : 'light';
-      applyTheme(next);
-      logLCARS(`Workstation display theme switched: ${next.toUpperCase()}`, "sys");
+      applyTheme('light');
     }
 
     function setTheme(theme) {
-      soundButtonPress();
-      applyTheme(theme);
-      logLCARS(`Workstation display theme set: ${theme.toUpperCase()}`, "sys");
+      applyTheme('light');
     }
 
-    // Initialize saved theme on page load
-    applyTheme(currentTheme);
+    // Initialize Clinical Daylight theme permanently
+    applyTheme('light');
 
     // =========================================================================
     // VAULT AUTO-SYNC & 24-HOUR STALE TELEMETRY MONITOR
@@ -21412,21 +21882,21 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
         if (isChargingSlot) {
           barsSvg += `
             <rect x="${x}" y="${baseY - 14}" width="${slotWidth - 2}" height="14" fill="rgba(245, 158, 11, 0.25)" stroke="#f59e0b" stroke-dasharray="2 2" rx="1">
-              <title>BFM Console • Star Ship Gemini NCC-202X (Powered By Gemini)</title>
+              <title>BFM Workstation • Biometric Function Monitor</title>
             </rect>
             <text x="${x + (slotWidth - 2)/2}" y="${baseY - 3}" text-anchor="middle" fill="#d97706" font-size="9" font-weight="bold">⚡</text>
           `;
         } else if (val > 0) {
           barsSvg += `
             <rect x="${x}" y="${y}" width="${slotWidth - 2}" height="${barHeight}" fill="${fillColor}" rx="1" opacity="0.9">
-              <title>BFM Console • Star Ship Gemini NCC-202X (Powered By Gemini)</title>
+              <title>BFM Workstation • Biometric Function Monitor</title>
             </rect>
           `;
         } else {
           // Zero data slot: small baseline tick
           barsSvg += `
             <rect x="${x}" y="${baseY - 2}" width="${slotWidth - 2}" height="2" fill="#e2e8f0" rx="1">
-              <title>BFM Console • Star Ship Gemini NCC-202X (Powered By Gemini)</title>
+              <title>BFM Workstation • Biometric Function Monitor</title>
             </rect>
           `;
         }
@@ -23484,33 +23954,44 @@ You logged: Entire Box (3.5 Servings / 99g)
   </div>
 
   <!-- =========================================================================
-       MODAL 1: PROVISION NEW FAMILY CELL MODAL (STAR SHIP GEMINI NCC-202X)
+       MODAL 1: ADD CELL & SHUTTLECRAFT PROVISIONING (GOOGLE LENS QR CODE)
        ========================================================================= -->
   <div id="modalProvisionCell" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 99999; justify-content: center; align-items: center;">
     <div style="background: #1e293b; border: 2px solid #38bdf8; border-radius: 10px; width: 90%; max-width: 540px; padding: 22px; color: #f8fafc; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
       <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #334155; padding-bottom: 10px; margin-bottom: 16px;">
         <div style="font-size: 1.15rem; font-weight: 800; color: #38bdf8;">
-          ➕ PROVISION NEW FAMILY CELL
+          📱 ADD CELL &bull; SHUTTLECRAFT PROVISIONING
         </div>
         <button type="button" onclick="closeProvisionModal()" style="background: none; border: none; color: #94a3b8; font-size: 1.4rem; cursor: pointer;">&times;</button>
       </div>
 
+      <!-- Google Lens Shuttlecraft QR Download Portal -->
+      <div style="background: #0f172a; border: 2px solid #38bdf8; border-radius: 8px; padding: 14px; text-align: center; margin-bottom: 12px;">
+        <div style="font-size: 0.88rem; font-weight: 800; color: #38bdf8; margin-bottom: 8px;">
+          SCAN WITH GOOGLE LENS / CELL CAMERA
+        </div>
+        <div style="display: flex; justify-content: center; margin-bottom: 8px;">
+          <img id="provCellQrImg" src="/api/qrcode/cell" alt="Cell QR Code" style="width: 170px; height: 170px; background: #ffffff; padding: 6px; border-radius: 6px; border: 1.5px solid #38bdf8;">
+        </div>
+        <div style="font-size: 0.78rem; color: #cbd5e1; line-height: 1.45;">
+          1. Open <strong>Google Lens</strong> or <strong>Camera</strong> on your phone.<br>
+          2. Scan QR code to launch <strong>BFM Shuttlecraft Field Data Collector</strong>.<br>
+          3. Tap <strong>'Add to Home Screen'</strong> to launch with the <strong>🩺 BFM</strong> icon.
+        </div>
+      </div>
+
       <div style="display: flex; flex-direction: column; gap: 12px;">
         <div>
-          <label style="font-size: 0.75rem; font-weight: bold; color: #94a3b8;">CELL ID</label>
-          <input type="text" id="provCellId" class="setup-input" value="Cell 3" style="width: 100%; padding: 8px; background: #0f172a; border: 1px solid #334155; color: #f8fafc; border-radius: 4px; font-family: monospace;">
+          <label style="font-size: 0.75rem; font-weight: bold; color: #94a3b8;">CELL DESIGNATION</label>
+          <input type="text" id="provCellId" class="setup-input" value="Shuttlecraft-A" style="width: 100%; padding: 8px; background: #0f172a; border: 1px solid #334155; color: #f8fafc; border-radius: 4px; font-family: monospace;">
         </div>
         <div>
           <label style="font-size: 0.75rem; font-weight: bold; color: #94a3b8;">USER CALLSIGN / NAME</label>
-          <input type="text" id="provCallsign" class="setup-input" placeholder="e.g. Spock, Sarah, Alex" style="width: 100%; padding: 8px; background: #0f172a; border: 1px solid #334155; color: #f8fafc; border-radius: 4px;">
+          <input type="text" id="provCallsign" class="setup-input" placeholder="e.g. Primary User, Alex" style="width: 100%; padding: 8px; background: #0f172a; border: 1px solid #334155; color: #f8fafc; border-radius: 4px;">
         </div>
         <div>
           <label style="font-size: 0.75rem; font-weight: bold; color: #94a3b8;">ASSIGNED REGISTRY NUMBER</label>
-          <input type="text" id="provRegistry" class="setup-input" value="NCC-202X-3" style="width: 100%; padding: 8px; background: #0f172a; border: 1px solid #334155; color: #38bdf8; border-radius: 4px; font-family: monospace;">
-        </div>
-        <div>
-          <label style="font-size: 0.75rem; font-weight: bold; color: #94a3b8;">LINKED WATCH MAC ADDRESS</label>
-          <input type="text" id="provWatchMac" class="setup-input" placeholder="XX:XX:XX:XX:XX:XX" style="width: 100%; padding: 8px; background: #0f172a; border: 1px solid #334155; color: #4ade80; border-radius: 4px; font-family: monospace;">
+          <input type="text" id="provRegistry" class="setup-input" value="NCC-5010-A" style="width: 100%; padding: 8px; background: #0f172a; border: 1px solid #334155; color: #38bdf8; border-radius: 4px; font-family: monospace;">
         </div>
         <div>
           <label style="font-size: 0.75rem; font-weight: bold; color: #94a3b8;">BASELINE HbA1c TARGET (%)</label>
@@ -23523,7 +24004,7 @@ You logged: Entire Box (3.5 Servings / 99g)
 
       <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 18px; border-top: 1px solid #334155; padding-top: 12px;">
         <button type="button" class="lcars-btn btn-peach" onclick="closeProvisionModal()" style="font-size: 0.82rem; padding: 6px 14px;">CANCEL</button>
-        <button type="button" class="lcars-btn btn-green" onclick="submitProvisionCell()" style="font-size: 0.82rem; padding: 6px 18px; font-weight: bold;">⚡ PROVISION CELL NOW</button>
+        <button type="button" class="lcars-btn btn-green" onclick="submitProvisionCell()" style="font-size: 0.82rem; padding: 6px 18px; font-weight: bold;">⚡ PROVISION SHUTTLECRAFT</button>
       </div>
     </div>
   </div>
@@ -23540,7 +24021,7 @@ You logged: Entire Box (3.5 Servings / 99g)
             CRITICAL CLINICAL NOTICE &amp; TERMS OF USE
           </div>
           <div style="color: #94a3b8; font-size: 0.78rem;">
-            BFM CONSOLE &bull; STAR SHIP GEMINI NCC-202X &bull; GOVERNANCE GOV-2026-BETA1
+            BFM WORKSTATION &bull; CLINICAL GOVERNANCE GOV-2026-BETA1
           </div>
         </div>
       </div>
@@ -23573,10 +24054,10 @@ You logged: Entire Box (3.5 Servings / 99g)
 
 
   <!-- =========================================================================
-       BFM BETA 1 JAVASCRIPT LOGIC: FAMILY ROSTER, SHUTTLECRAFT DOCK & LEGAL MODAL
+       BFM BETA 1 JAVASCRIPT LOGIC: ROSTER, SHUTTLECRAFT DOCK & LEGAL MODAL
        ========================================================================= -->
   <script>
-    // 1. Family Cells & Watch Roster Logic
+    // 1. Shuttlecraft Cells & Watch Roster Logic
     async function loadFamilyCellsRoster() {
       try {
         const resp = await fetch('/api/shuttle/roster');
@@ -23588,7 +24069,7 @@ You logged: Entire Box (3.5 Servings / 99g)
         if (countLbl) countLbl.textContent = roster.length;
 
         if (roster.length === 0) {
-          tbody.innerHTML = '<tr><td colspan="9" style="text-align: center; color: #94a3b8; padding: 14px;">No family cells registered yet. Click Provision New Family Cell above.</td></tr>';
+          tbody.innerHTML = '<tr><td colspan="9" style="text-align: center; color: #94a3b8; padding: 14px;">No cells registered yet. Click Add Cell above.</td></tr>';
           return;
         }
 
@@ -23601,7 +24082,7 @@ You logged: Entire Box (3.5 Servings / 99g)
               <td style="color: #fb923c;">${c.registry_number}</td>
               <td style="font-weight: bold;">${c.user_callsign}</td>
               <td style="color: #94a3b8;">${c.user_uid}</td>
-              <td style="color: #4ade80;">${c.linked_watch_mac || 'UNASSIGNED'}</td>
+              <td style="color: #4ade80;">${c.linked_watch_mac || 'AUTO (LAN)'}</td>
               <td style="color: #cbd5e1;">${c.phone_name} (${c.phone_esn || 'PENDING'})</td>
               <td style="color: #94a3b8;">${lastDock}</td>
               <td class="${statusCls}">${c.status}</td>
@@ -23612,7 +24093,7 @@ You logged: Entire Box (3.5 Servings / 99g)
           `;
         }).join('');
       } catch (e) {
-        console.warn("Failed loading family cells roster:", e);
+        console.warn("Failed loading roster:", e);
       }
     }
 
@@ -23621,6 +24102,8 @@ You logged: Entire Box (3.5 Servings / 99g)
       if (modal) modal.style.display = 'flex';
       const res = document.getElementById('provResultBox');
       if (res) res.style.display = 'none';
+      const qr = document.getElementById('provCellQrImg');
+      if (qr) qr.src = `/api/qrcode/cell?_t=${Date.now()}`;
     }
 
     function closeProvisionModal() {
@@ -23629,10 +24112,9 @@ You logged: Entire Box (3.5 Servings / 99g)
     }
 
     async function submitProvisionCell() {
-      const cellId = document.getElementById('provCellId').value.trim();
-      const callsign = document.getElementById('provCallsign').value.trim() || 'Crew Member';
-      const registry = document.getElementById('provRegistry').value.trim();
-      const mac = document.getElementById('provWatchMac').value.trim();
+      const cellId = document.getElementById('provCellId').value.trim() || 'Shuttlecraft-A';
+      const callsign = document.getElementById('provCallsign').value.trim() || 'Primary User';
+      const registry = document.getElementById('provRegistry').value.trim() || 'NCC-5010-A';
       const a1c = parseFloat(document.getElementById('provTargetA1c').value) || 6.5;
 
       const payload = {
@@ -23640,7 +24122,7 @@ You logged: Entire Box (3.5 Servings / 99g)
         user_uid: `USR-9482-${cellId.replace(/[^0-9]/g, '') || Math.floor(Math.random()*100)}`,
         user_callsign: callsign,
         assigned_registry: registry,
-        linked_watch_mac: mac,
+        linked_watch_mac: '',
         target_a1c: a1c
       };
 
@@ -23654,7 +24136,7 @@ You logged: Entire Box (3.5 Servings / 99g)
         if (resp.ok) {
           const resBox = document.getElementById('provResultBox');
           resBox.style.display = 'block';
-          resBox.innerHTML = `✅ <strong>PROVISIONED:</strong> Token: <code>${res.pairing_token}</code><br>Enter token into mobile client <code>cell.html</code> to complete handshake.`;
+          resBox.innerHTML = `✅ <strong>SHUTTLECRAFT PROVISIONED:</strong> Token: <code>${res.pairing_token}</code><br>Scan QR code above with cell phone Google Lens to launch mobile collector.`;
           loadFamilyCellsRoster();
           setTimeout(() => { closeProvisionModal(); }, 3500);
         } else {
