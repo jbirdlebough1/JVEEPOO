@@ -1,7 +1,21 @@
-with open(r'D:\veepoo\index.html', 'r', encoding='utf-8') as f:
-    text = f.read()
+# trace_diet_end.py
+import re
 
-lines = text.splitlines()
+with open('D:/veepoo/index.html', 'r', encoding='utf-8') as f:
+    lines = f.readlines()
 
-for i in range(6565, 6610):
-    print(f"{i+1:5}: {lines[i]}")
+stack = []
+for ln in range(5909, 6806):
+    line = lines[ln - 1]
+    tokens = re.finditer(r'(<div[^>]*>|</div>)', line, re.I)
+    for m in tokens:
+        tag = m.group(1)
+        if tag.startswith('</'):
+            if stack:
+                stack.pop()
+            else:
+                print(f"L{ln}: EXTRA CLOSE </div>")
+        else:
+            stack.append((ln, tag[:40]))
+    if ln >= 6765:
+        print(f"L{ln:5}: depth={len(stack)} | {line.strip()[:60]}")
