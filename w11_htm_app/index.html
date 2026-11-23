@@ -946,8 +946,105 @@
       color: #0f172a !important;
     }
 
+    /* Scott / Abrams Bridge Science Station Architecture */
     body.theme-light .lcars-header {
-      border-bottom-color: #d97706 !important;
+      border-bottom: 3px solid #0284c7 !important;
+    }
+    body.theme-light .lcars-elbow-top-left {
+      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%) !important;
+      color: #ffffff !important;
+      border-radius: 8px 0 0 8px !important;
+      box-shadow: 0 2px 8px rgba(2, 132, 199, 0.25) !important;
+    }
+    body.theme-light .lcars-main-title {
+      color: #0369a1 !important;
+      font-size: 1.85rem !important;
+      font-weight: 800 !important;
+      letter-spacing: 0.08em !important;
+    }
+    body.theme-light .lcars-sub-title {
+      color: #64748b !important;
+      font-size: 0.85rem !important;
+      letter-spacing: 0.06em !important;
+    }
+    body.theme-light .actual-datetime {
+      color: #0284c7 !important;
+      text-shadow: none !important;
+    }
+    body.theme-light .lcars-stardate {
+      color: #64748b !important;
+    }
+    body.theme-light .lcars-sidebar {
+      gap: 6px !important;
+    }
+    body.theme-light .lcars-pill {
+      background: #ffffff !important;
+      color: #1e293b !important;
+      border: 1px solid #cbd5e1 !important;
+      border-left: 5px solid #0284c7 !important;
+      border-radius: 6px !important;
+      padding: 10px 14px !important;
+      font-size: 0.95rem !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.04em !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+      text-align: right !important;
+      transition: all 0.15s ease-in-out !important;
+    }
+    body.theme-light .lcars-pill:hover:not(:disabled) {
+      background: #f0f9ff !important;
+      border-color: #0284c7 !important;
+      color: #0369a1 !important;
+      padding-right: 18px !important;
+      box-shadow: 0 2px 6px rgba(2, 132, 199, 0.15) !important;
+    }
+    body.theme-light .lcars-pill.active {
+      background: #0284c7 !important;
+      color: #ffffff !important;
+      font-weight: 800 !important;
+      border: 1px solid #0369a1 !important;
+      border-left: 6px solid #38bdf8 !important;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35) !important;
+      transform: translateX(4px) !important;
+    }
+    body.theme-light .lcars-pill.active span {
+      color: #ffffff !important;
+    }
+    body.theme-light .lcars-pill.pill-peach { border-left-color: #f97316 !important; }
+    body.theme-light .lcars-pill.pill-banana { border-left-color: #eab308 !important; }
+    body.theme-light .lcars-pill.pill-lilac { border-left-color: #8b5cf6 !important; }
+    body.theme-light .lcars-pill.pill-blue { border-left-color: #0284c7 !important; }
+    body.theme-light .lcars-pill.pill-ice { border-left-color: #06b6d4 !important; }
+    body.theme-light .lcars-pill.pill-green { border-left-color: #10b981 !important; }
+    body.theme-light .lcars-pill.pill-orange { border-left-color: #f97316 !important; }
+    body.theme-light .lcars-ribbon {
+      background: #ffffff !important;
+      border: 1.5px solid #cbd5e1 !important;
+      border-radius: 8px !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+    }
+    body.theme-light .ribbon-item {
+      border-right: 1px solid #e2e8f0 !important;
+      background: transparent !important;
+    }
+    body.theme-light .ribbon-label {
+      color: #64748b !important;
+      font-size: 0.72rem !important;
+      font-weight: 700 !important;
+    }
+    body.theme-light .ribbon-value {
+      font-size: 0.95rem !important;
+      font-weight: 800 !important;
+    }
+    body.theme-light .lcars-bay {
+      background: #ffffff !important;
+      border: 1.5px solid #cbd5e1 !important;
+      border-radius: 8px !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+    }
+    body.theme-light .lcars-bay-title {
+      color: #0369a1 !important;
+      border-bottom: 2px solid #e2e8f0 !important;
     }
 
     /* Report & Chart Backgrounds in Light Theme */
@@ -1662,17 +1759,11 @@
         </div>
         <div class="lcars-time-block">
           <div class="actual-datetime" id="actualDateTime">FRIDAY, NOV 20, 2026 9:55:00 AM PST</div>
-          <div class="lcars-stardate" id="stardateClock">STARDATE 126885.4 • BUILD beta.00.01.0001 • SEC-SYS-ONLINE</div>
+          <div class="lcars-stardate" id="stardateClock">STARDATE 126885.4 • BUILD beta.00.01.0002 • SEC-SYS-ONLINE</div>
         </div>
         <div style="margin-left: 12px; display: flex; gap: 8px; align-items: center;">
-          <span id="headerBatteryPill" class="lcars-pill pill-green" style="padding: 4px 10px; font-size: 0.72rem; height: auto; font-weight: 800; display: inline-flex; align-items: center; gap: 4px;" title="Veepoo Model 5010 Hardware Battery">
-            🔋 <span id="valBattery">97%</span>
-          </span>
-          <span id="headerBtSignalPill" class="lcars-pill pill-blue" style="padding: 4px 10px; font-size: 0.72rem; height: auto; font-weight: 800; display: inline-flex; align-items: center; gap: 4px;" title="Bluetooth Low Energy Transducer Link RSSI">
-            📶 <span id="valBtSignal">-62 dBm</span>
-          </span>
           <span id="headerSyncPill" class="lcars-pill pill-green" style="padding: 4px 10px; font-size: 0.72rem; height: auto;" title="Vault Telemetry Sync Status">
-            ● SYNC: OK (&lt;1h)
+            ● NOT SYNCED
           </span>
 
           <button id="btnHeaderThemeToggle" class="lcars-pill pill-banana" style="padding: 4px 10px; font-size: 0.72rem; height: auto;" onclick="toggleTheme()">
@@ -1750,22 +1841,22 @@
       <div class="lcars-ribbon">
         <div class="ribbon-item" style="cursor: pointer;" onclick="ensureConnected()" title="Click to Connect/Reconnect Watch">
           <div class="ribbon-label">COMM LINK STATE (CLICK TO ENGAGE)</div>
-          <div class="ribbon-value" id="ribbonComm" style="color: var(--lcars-banana);">CONNECTING...</div>
+          <div class="ribbon-value" id="ribbonComm" style="color: #64748b;">DISCONNECTED (CLICK TO CONNECT)</div>
         </div>
         <div class="ribbon-item blue">
           <div class="ribbon-label">AUTHORIZED WATCH TRANSPONDER</div>
-          <div class="ribbon-value" id="ribbonDevice">VEE (8B:DE:40:83:F6:16)</div>
+          <div class="ribbon-value" id="ribbonDevice">UNASSIGNED (CLICK TO DISCOVER)</div>
         </div>
         <div class="ribbon-item lilac">
           <div class="ribbon-label">BATTERY &amp; BT SIGNAL</div>
-          <div class="ribbon-value" id="ribbonBatterySignal" style="color: var(--lcars-green); display: flex; align-items: center; gap: 10px;">
-            <span>🔋 <strong id="lblRibbonBattery">97%</strong></span>
-            <span>📶 <strong id="lblRibbonBtSignal">-62 dBm</strong></span>
+          <div class="ribbon-value" id="ribbonBatterySignal" style="color: #64748b; display: flex; align-items: center; gap: 10px;">
+            <span>🔋 <strong id="lblRibbonBattery">--%</strong></span>
+            <span>📶 <strong id="lblRibbonBtSignal">-- dBm</strong></span>
           </div>
         </div>
         <div class="ribbon-item green" id="ribbonSyncItem" style="cursor: pointer;" onclick="triggerWatchSyncNow()" title="Click to Trigger Immediate Watch Sync">
           <div class="ribbon-label">VAULT SYNC STATUS (CLICK TO SYNC)</div>
-          <div class="ribbon-value" id="ribbonSyncStatus" style="color: var(--lcars-green);">● SYNC NOMINAL</div>
+          <div class="ribbon-value" id="ribbonSyncStatus" style="color: #64748b;">● NOT SYNCED</div>
         </div>
       </div>
 
@@ -1930,7 +2021,7 @@
               <div style="display: flex; gap: 8px;">
                 <button class="lcars-btn btn-ice" style="padding: 4px 12px; font-size: 0.8rem;" onclick="copyFullScanSummary()">📋 COPY SUMMARY</button>
                 <button class="lcars-btn btn-green" style="padding: 4px 12px; font-size: 0.8rem;" onclick="window.print()">🖨️ PRINT / PDF</button>
-                <button class="lcars-btn btn-banana" style="padding: 4px 12px; font-size: 0.8rem;" onclick="exportFullScanCsv()">💾 EXPORT CSV</button>
+                <button class="lcars-btn btn-banana" style="padding: 4px 12px; font-size: 0.8rem;" onclick="switchTab('export')" title="Navigate to Consolidated EHR Data Export">↗ 05-EHR EXPORT</button>
               </div>
             </div>
 
@@ -2449,7 +2540,7 @@
               </div>
               <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 10px;">
                 <div style="font-size: 0.70rem; color: #64748b; font-weight: bold;">PATIENT MRN / CHART #</div>
-                <div style="font-size: 0.90rem; font-weight: 800; color: #0f172a; margin-top: 2px;" id="dispExportMrn">PATIENT-MRN-948201</div>
+                <div style="font-size: 0.90rem; font-weight: 800; color: #0f172a; margin-top: 2px;" id="dispExportMrn">[UNASSIGNED]</div>
               </div>
               <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 10px;">
                 <div style="font-size: 0.70rem; color: #64748b; font-weight: bold;">PRIMARY CARE PHYSICIAN / CLINIC</div>
@@ -3225,8 +3316,8 @@
                 <button class="lcars-btn btn-blue" style="font-size: 0.8rem; padding: 4px 12px;" onclick="switchTab('goals')">
                   ⚙️ CONFIGURE CLINICAL GOALS (TAB 13)
                 </button>
-                <button class="lcars-btn btn-orange" style="font-size: 0.8rem; padding: 4px 12px;" onclick="exportGoalAuditToEpic()">
-                  📄 EXPORT GOAL AUDIT (LOCAL)
+                <button class="lcars-btn btn-orange" style="font-size: 0.8rem; padding: 4px 12px;" onclick="switchTab('export')" title="Navigate to Consolidated EHR Data Export">
+                  ↗ 05-EHR EXPORT
                 </button>
               </div>
             </div>
@@ -3435,8 +3526,8 @@
                 <!-- Step Simulator Slider -->
                 <div style="display: flex; align-items: center; gap: 10px; flex: 1; min-width: 280px;">
                   <label for="sliderStepTarget" style="font-size: 0.76rem; font-weight: 800; color: #0f172a; white-space: nowrap;">🎯 SIMULATE STEP TARGET:</label>
-                  <input type="range" id="sliderStepTarget" min="1500" max="13000" step="250" value="7500" oninput="onStepTargetSliderChanged(this.value)" style="flex: 1; accent-color: #0284c7; cursor: pointer;">
-                  <span id="lblStepTargetVal" style="font-family: monospace; font-size: 0.85rem; font-weight: 800; color: #0284c7; min-width: 85px;">7,500 STEPS</span>
+                  <input type="range" id="sliderStepTarget" min="1500" max="13000" step="250" value="2000" oninput="onStepTargetSliderChanged(this.value)" style="flex: 1; accent-color: #0284c7; cursor: pointer;">
+                  <span id="lblStepTargetVal" style="font-family: monospace; font-size: 0.85rem; font-weight: 800; color: #0284c7; min-width: 85px;">2,000 STEPS</span>
                 </div>
                 <!-- Dynamic Target Projection Chip -->
                 <div id="boxStepProjection" style="background: #ecfdf5; border: 1.5px solid #10b981; border-radius: 4px; padding: 4px 10px; font-family: monospace; font-size: 0.75rem; color: #065f46; font-weight: bold;">
@@ -4974,7 +5065,7 @@
 
               <div class="setup-field">
                 <label class="setup-label" style="font-size: 0.74rem; font-weight: bold; color: #475569;">PATIENT MRN (CHART NUMBER)</label>
-                <input type="text" id="cfgEhrMrn" class="setup-input" value="PATIENT-MRN-948201" onchange="savePatientEhrConfig()" style="width: 100%; padding: 7px 10px; border: 1.5px solid #94a3b8; border-radius: 4px; font-family: monospace; font-weight: bold; font-size: 0.85rem; color: #0284c7; background: #ffffff;">
+                <input type="text" id="cfgEhrMrn" class="setup-input" value="" placeholder="[UNASSIGNED]" onchange="savePatientEhrConfig()" style="width: 100%; padding: 7px 10px; border: 1.5px solid #94a3b8; border-radius: 4px; font-family: monospace; font-weight: bold; font-size: 0.85rem; color: #0284c7; background: #ffffff;">
               </div>
 
               <div class="setup-field">
@@ -8493,8 +8584,8 @@
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 12px 16px; margin-bottom: 18px;">
             <div>
               <span style="font-size: 0.72rem; color: #64748b; font-weight: bold; text-transform: uppercase;">PATIENT IDENTIFICATION</span>
-              <div style="font-size: 0.95rem; font-weight: bold; color: #0f172a;">JOHN DOE (MRN: 984210)</div>
-              <div style="font-size: 0.78rem; color: #475569;">DOB: 1960-04-12 • Type 2 Diabetes Mellitus</div>
+              <div style="font-size: 0.95rem; font-weight: bold; color: #0f172a;">[UNASSIGNED]</div>
+              <div style="font-size: 0.78rem; color: #475569;">Type 2 Diabetes Mellitus Continuous Monitoring</div>
             </div>
             <div>
               <span style="font-size: 0.72rem; color: #64748b; font-weight: bold; text-transform: uppercase;">PRESCRIBING PHYSICIAN</span>
@@ -8669,7 +8760,7 @@
             <div style="font-size: 0.85rem; font-weight: bold; color: #0f172a; margin-bottom: 6px;">
               PHYSICIAN CLINICAL RATIONALE &amp; AMBULATORY ORDERS:
             </div>
-            <textarea id="goalPhysicianNotes" rows="2" style="width: 100%; padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 0.82rem; font-family: sans-serif; color: #1e293b; background: #fff; line-height: 1.4;">Patient John Doe: Focus on blunting post-lunch and post-dinner excursions using 15-minute GLUT4 walks. Aiming for calibrated 8.3% eA1C anchor to minimize hypoglycemia risk while steadily reducing glycemic variability.</textarea>
+            <textarea id="goalPhysicianNotes" rows="2" style="width: 100%; padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 0.82rem; font-family: sans-serif; color: #1e293b; background: #fff; line-height: 1.4;">Clinical Rationale: Focus on blunting postprandial excursions using 15-minute GLUT4 walks. Aiming for calibrated senior ambulatory baseline to minimize hypoglycemia risk while steadily reducing glycemic variability.</textarea>
             <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px; flex-wrap: wrap; gap: 8px;">
               <div style="font-size: 0.78rem; color: #64748b; font-family: var(--lcars-mono);">
                 SIGNATURE: Primary Care Physician / Care Team &bull; VERIFIED AIR-GAPPED HASH: 0x9B4E...A1F0
@@ -8880,6 +8971,19 @@
   </div>
 
   <script>
+    // =========================================================================
+    // STANDALONE DESKTOP EXECUTION VECTOR (file:///) RUNTIME PARITY
+    // Transparently routes relative /api/* requests to local daemon port 8899
+    // =========================================================================
+    const BFM_API_BASE = (window.location.protocol === 'file:') ? 'http://127.0.0.1:8899' : '';
+    const _origFetch = window.fetch;
+    window.fetch = function(url, opts) {
+      if (typeof url === 'string' && url.startsWith('/api/')) {
+        url = BFM_API_BASE + url;
+      }
+      return _origFetch.call(this, url, opts);
+    };
+
     // =========================================================================
     // LCARS AUDIO SYNTHESIZER (Pure Web Audio API - Zero External Dependencies)
     // =========================================================================
@@ -12538,7 +12642,7 @@
     // STEP VOLUME VS. 24-HOUR MEAN GLUCOSE BIVARIATE CORRELATOR ENGINE
     // =========================================================================
     let correlatorPoints = [];
-    let currentStepSimulationTarget = 7500;
+    let currentStepSimulationTarget = 2000;
 
     // Helper: Query Active Configured Watch Step Target (Clinical Anchor)
     function getWatchConfiguredStepTarget() {
@@ -12568,7 +12672,7 @@
           if (p.stepGoal) return parseInt(p.stepGoal, 10);
         }
       } catch(e) {}
-      return 8000;
+      return 2000;
     }
 
     function initStepGlucoseCorrelatorData() {
@@ -12797,7 +12901,7 @@
       maxCarbsMeal: 45,
       dailyNetCarbs: 130,
       minFiber: 30,
-      stepTarget: 8000,
+      stepTarget: 2000,
       glut4Duration: 15,
       glut4Window: "20 - 45 min",
       bpCeiling: "130/80",
@@ -12806,7 +12910,7 @@
       sleepDuration: 7.0,
       physician: "Primary Care Physician / Care Team",
       lockedDate: "2026-11-18",
-      notes: "Patient John Doe: Focus on blunting post-lunch and post-dinner excursions using 15-minute GLUT4 walks. Aiming for calibrated 8.3% eA1C anchor to minimize hypoglycemia risk while steadily reducing glycemic variability."
+      notes: "Clinical Focus: Focus on blunting post-lunch and post-dinner excursions using 15-minute GLUT4 walks. Aiming for calibrated senior ambulatory baseline to minimize hypoglycemia risk while steadily reducing glycemic variability."
     };
 
     function getActiveClinicalGoals() {
@@ -13115,15 +13219,15 @@
         glut4: "<strong>15-Minute Post-Meal Stroll:</strong> Light walking starting 25 min post-meal completely dampens the predicted 38 mg/dL curve down to < 14 mg/dL.",
         glut4Peak: "PREDICTED PEAK WITH WALK: 122 MG/DL (STEADY COMPLIANCE)",
         bom: [
-          { item: "Organic Steel Cut Oats (Bob's Red Mill / Quaker)", portion: "1/2 cup dry (40g)", dept: "Aisle 4: Hot Breakfast Grains", impact: "High Beta-Glucan Soluble Fiber", cost: "$0.42" },
-          { item: "Fresh Organic Mixed Berries (Blueberries & Blackberries)", portion: "1/2 cup (75g)", dept: "Produce: Fresh Berry Cooler", impact: "Low GI Polyphenols & Antioxidants", cost: "$0.85" },
-          { item: "All-Natural Turkey Sausage Links (Jennie-O / Applegate)", portion: "3 cooked links (60g)", dept: "Meat: Poultry & Sausage Case", impact: "Lean Protein / Albumin Satiety", cost: "$0.95" },
-          { item: "Fresh Banana (Yellow with green tips)", portion: "1/2 medium banana", dept: "Produce: Fresh Fruit Stand", impact: "Resistant Starch & Potassium", cost: "$0.18" },
-          { item: "Organic Ground Flaxseed Meal (Spectrum / Bob's)", portion: "1 tbsp (10g)", dept: "Natural Foods / Baking Aisle", impact: "Omega-3 ALA & Lignan Mucilage", cost: "$0.15" },
-          { item: "Pure Organic Ceylon Cinnamon Powder", portion: "1/2 tsp (1.5g)", dept: "Aisle 7: Spices & Seasonings", impact: "Cinnamtannin Insulin Mimetic", cost: "$0.08" },
-          { item: "Unsweetened Plain Oat Milk (Planet Oat / Califia)", portion: "1/2 cup (120ml)", dept: "Dairy / Plant-Based Beverages", impact: "Zero Added Sugar (<1g Net Carb)", cost: "$0.22" }
+          { item: "Organic Steel Cut Oats (Bob's Red Mill / Quaker)", portion: "1/2 cup dry (40g)", dept: "Aisle 4: Hot Breakfast Grains", impact: "High Beta-Glucan Soluble Fiber", cost: "18g Net Carbs" },
+          { item: "Fresh Organic Mixed Berries (Blueberries & Blackberries)", portion: "1/2 cup (75g)", dept: "Produce: Fresh Berry Cooler", impact: "Low GI Polyphenols & Antioxidants", cost: "5g Net Carbs" },
+          { item: "All-Natural Turkey Sausage Links (Jennie-O / Applegate)", portion: "3 cooked links (60g)", dept: "Meat: Poultry & Sausage Case", impact: "Lean Protein / Albumin Satiety", cost: "1g Net Carb" },
+          { item: "Fresh Banana (Yellow with green tips)", portion: "1/2 medium banana", dept: "Produce: Fresh Fruit Stand", impact: "Resistant Starch & Potassium", cost: "6g Net Carbs" },
+          { item: "Organic Ground Flaxseed Meal (Spectrum / Bob's)", portion: "1 tbsp (10g)", dept: "Natural Foods / Baking Aisle", impact: "Omega-3 ALA & Lignan Mucilage", cost: "0g Net Carbs" },
+          { item: "Pure Organic Ceylon Cinnamon Powder", portion: "1/2 tsp (1.5g)", dept: "Aisle 7: Spices & Seasonings", impact: "Cinnamtannin Insulin Mimetic", cost: "0g Net Carbs" },
+          { item: "Unsweetened Plain Oat Milk (Planet Oat / Califia)", portion: "1/2 cup (120ml)", dept: "Dairy / Plant-Based Beverages", impact: "Zero Added Sugar (<1g Net Carb)", cost: "1g Net Carb" }
         ],
-        totalBOMCost: "$2.85 per serving ($17.10 for 6-day package)"
+        totalBOMCost: "31g Net Carbs per serving (Clinically Compliant)"
       },
       meal02: {
         id: "MEAL-02",
@@ -13146,13 +13250,13 @@
         glut4: "<strong>Relaxed 15-Minute Sunday Stroll:</strong> Keeps digestive motility active and supports Sunday circadian relaxation.",
         glut4Peak: "PREDICTED PEAK: 116 MG/DL (EXCELLENT CONTROL)",
         bom: [
-          { item: "Pasture-Raised Grade A Large Eggs (Vital Farms / Pete & Gerry's)", portion: "2 whole eggs", dept: "Dairy: Egg Case", impact: "Choline & Complete Amino Acids", cost: "$0.70" },
-          { item: "All-Natural Turkey Sausage Links (Jennie-O / Butterball)", portion: "3 cooked links (60g)", dept: "Meat: Poultry & Breakfast Meats", impact: "Lean Protein / Low Saturated Fat", cost: "$0.95" },
-          { item: "100% Whole Wheat Sprouted Bread (Dave's Killer / Ezekiel)", portion: "1 slice toasted (34g)", dept: "Bakery / Whole Grain Bread", impact: "Sprouted Grain Low Glycemic Index", cost: "$0.32" },
-          { item: "Fresh Organic Mixed Berries (Blueberries & Raspberries)", portion: "1/2 cup (75g)", dept: "Produce: Organic Fruit Case", impact: "Anthocyanins & Fiber", cost: "$0.85" },
-          { item: "Grass-Fed Pure Butter or Extra Virgin Olive Oil", portion: "1 tsp (5g)", dept: "Dairy / Butter Case", impact: "Healthy Lipids & Satiety Buffer", cost: "$0.12" }
+          { item: "Pasture-Raised Grade A Large Eggs (Vital Farms / Pete & Gerry's)", portion: "2 whole eggs", dept: "Dairy: Egg Case", impact: "Choline & Complete Amino Acids", cost: "1g Net Carb" },
+          { item: "All-Natural Turkey Sausage Links (Jennie-O / Butterball)", portion: "3 cooked links (60g)", dept: "Meat: Poultry & Breakfast Meats", impact: "Lean Protein / Low Saturated Fat", cost: "1g Net Carb" },
+          { item: "100% Whole Wheat Sprouted Bread (Dave's Killer / Ezekiel)", portion: "1 slice toasted (34g)", dept: "Bakery / Whole Grain Bread", impact: "Sprouted Grain Low Glycemic Index", cost: "10g Net Carbs" },
+          { item: "Fresh Organic Mixed Berries (Blueberries & Raspberries)", portion: "1/2 cup (75g)", dept: "Produce: Organic Fruit Case", impact: "Anthocyanins & Fiber", cost: "5g Net Carbs" },
+          { item: "Grass-Fed Pure Butter or Extra Virgin Olive Oil", portion: "1 tsp (5g)", dept: "Dairy / Butter Case", impact: "Healthy Lipids & Satiety Buffer", cost: "0g Net Carbs" }
         ],
-        totalBOMCost: "$2.94 per serving"
+        totalBOMCost: "17g Net Carbs per serving (Optimal Euglycemic Band)"
       },
       soup_grilled_cheese: {
         id: "MEAL-06",
@@ -13614,6 +13718,22 @@
         console.warn("Could not post meal to server:", err);
       }
 
+      const newMeal = {
+        id: Date.now(),
+        ts: new Date().toISOString().replace('T', ' ').slice(0, 16),
+        type: "meal",
+        desc: currentAnalyzedMealData?.title || mealDesc,
+        carbs: netCarbs,
+        protein: currentAnalyzedMealData?.protein || 28,
+        cal: calories,
+        glucose: (typeof lastGlucoseMg !== 'undefined' && lastGlucoseMg > 0) ? lastGlucoseMg : 110,
+        context: "Gemini Meal Builder"
+      };
+      if (typeof mealJournal !== 'undefined') {
+        mealJournal.unshift(newMeal);
+        try { localStorage.setItem('veepoo_meal_journal', JSON.stringify(mealJournal)); } catch (e) {}
+      }
+
       if (typeof activeTallDataset !== 'undefined' && activeTallDataset && activeTallDataset.length > 5) {
         const pt = activeTallDataset.find(d => d.time === "13:30") || activeTallDataset[5];
         if (pt) {
@@ -13962,11 +14082,10 @@
         protein: 2,
         fat: 1,
         gl: netC <= 5 ? "1 (Near Zero)" : "4 (Low)",
-        estimatedCost: it.price ? it.price.replace('$', '') : "3.49",
         meetsGoal: true,
         occasion: 'Snack',
         bom: [
-          { item: it.name, portion: "1 commercial package", dept: it.aisle || "Snack Aisle", cost: it.price || "$3.49", impact: "0% Sorbitol/Maltitol • Non-laxative gut-safe choice" }
+          { item: it.name, portion: "1 commercial package", dept: it.aisle || "Snack Aisle", cost: `${netC}g Net Carbs`, impact: "0% Sorbitol/Maltitol • Non-laxative gut-safe choice" }
         ],
         tips: [
           `🏪 STORE SELECTION LOADED: ${it.name}`,
@@ -14034,7 +14153,6 @@
         protein: r.protein,
         fat: r.fat,
         gl: r.glycemic_load,
-        estimatedCost: r.cost,
         meetsGoal: true,
         bom: r.bom,
         identified_items: r.bom.map(b => ({ name: b.item, portion: b.portion, net_carbs: 1.5, fiber: 0.5, protein: 3.0, fat: 1.0, calories: 35 })),
@@ -14123,7 +14241,7 @@
           portion: it.portion || "Standard Serving",
           dept: idx === 0 ? "Poultry / Meat Department" : (idx === 1 ? "Produce: Salad & Fresh Vegetables" : "Aisle 3: Grains / Bakery / Pantry"),
           impact: (it.net_carbs !== undefined && it.net_carbs <= 5) ? "Low Glycemic / Fiber Buffer" : (it.net_carbs <= 25 ? "Moderate Starch Matrix" : "High Glycemic Load"),
-          cost: idx === 0 ? "$3.45" : (idx === 1 ? "$1.85" : "$1.20")
+          cost: `${it.net_carbs || 5}g Net Carbs`
         }));
       }
 
@@ -14138,12 +14256,12 @@
           <td style="padding: 6px 8px; color: #334155;">${b.portion}</td>
           <td style="padding: 6px 8px; color: #0284c7;">${b.dept}</td>
           <td style="padding: 6px 8px; color: #15803d; font-weight: bold;">${b.impact}</td>
-          <td style="padding: 6px 8px; color: #0f172a; text-align: right; font-weight: bold;">${b.cost}</td>
+          <td style="padding: 6px 8px; color: #0f172a; text-align: right; font-weight: bold;">${b.cost || (b.net_carbs ? b.net_carbs + 'g Net Carbs' : 'Euglycemic')}</td>
         </tr>
       `).join("") + `
         <tr style="background: #f8fafc; font-weight: 900; border-top: 2px solid #cbd5e1;">
-          <td colspan="4" style="padding: 8px; color: #0369a1; text-align: right;">TOTAL ESTIMATED BILL OF MATERIALS (BOM) COST:</td>
-          <td style="padding: 8px; color: #15803d; text-align: right; font-size: 0.85rem;">${data.totalBOMCost || "$2.85"}</td>
+          <td colspan="4" style="padding: 8px; color: #0369a1; text-align: right;">TOTAL ESTIMATED BILL OF MATERIALS (BOM) METABOLIC IMPACT:</td>
+          <td style="padding: 8px; color: #15803d; text-align: right; font-size: 0.85rem;">${data.totalBOMCost || ((data?.netCarbs || 33) + "g Net Carbs (Target Met)")}</td>
         </tr>
       `;
     }
@@ -14204,7 +14322,7 @@
           listText += `${i+1}. [ ] ${b.item} (${b.portion}) - ${b.dept}\n`;
         });
         listText += `--------------------------------------------------------\n`;
-        listText += `Estimated Cost: ${pkg.totalBOMCost}\n`;
+        listText += `Metabolic Impact: ${pkg.totalBOMCost}\n`;
         listText += `Diabetic Macros: ${pkg.netCarbs}g Net Carbs • ${pkg.calories} • ${pkg.protein}g Protein\n`;
       }
       
@@ -14228,7 +14346,7 @@
       const statusEl = document.getElementById('localStoreSearchStatus');
       if (statusEl) {
         statusEl.style.display = "block";
-        statusEl.innerHTML = `🔍 <strong>${storeName}:</strong> Sourcing all 7 bill of materials items... <span style="color: #0284c7;">ALL ITEMS IN STOCK</span> &bull; Estimated basket total: <strong>${pkg.totalBOMCost}</strong> &bull; Curbside Pickup / Aisles mapped!`;
+        statusEl.innerHTML = `🔍 <strong>${storeName}:</strong> Sourcing all bill of materials items... <span style="color: #0284c7;">ALL ITEMS IN STOCK</span> &bull; Metabolic impact: <strong>${pkg.totalBOMCost}</strong> &bull; Curbside Pickup / Aisles mapped!`;
       }
     }
 
@@ -14438,7 +14556,6 @@
               protein: (a.protein !== undefined) ? a.protein : 30,
               fat: (a.fat !== undefined) ? a.fat : 15,
               gl: a.glycemic_load || "10 (Low)",
-              estimatedCost: a.estimated_cost || "14.75",
               tradeAlternatives: a.trade_alternatives || [],
               meetsGoal: a.meets_goal !== undefined ? a.meets_goal : (a.net_carbs <= goals.maxCarbsMeal),
               bom: a.bom || [],
@@ -14564,14 +14681,13 @@
             protein: 13.5,
             fat: 6.0,
             gl: "2 (Ultra-Low)",
-            estimatedCost: "1.75",
             meetsGoal: true,
             bom: [
               { item: "Low-Fat Cottage Cheese (High Albumin/Casein Base)", portion: "1 cup in batch (~1/4 cup/slice)", dept: "Dairy Department", cost: "0g Net Carbs (0 GL)", impact: "High protein buffer, blunts glycemic spike" },
               { item: "Fresh Organic Blueberries (Anthocyanin Antioxidant)", portion: "1/2 cup in batch (~2 tbsp/slice)", dept: "Produce Department", cost: "<3g Net Carbs (Low GL)", impact: "Bioactive polyphenol fiber (<3g net)" },
-              { item: "Large Grade A Eggs & Egg Whites", portion: "2 eggs in batch (~1/2 egg/slice)", dept: "Dairy / Egg Department", cost: "$1.99", impact: "Protein structural binder" },
-              { item: "Almond Flour / Oat Fiber Blend (Low-GI Matrix)", portion: "1/2 cup in batch", dept: "Baking Aisle", cost: "$4.29", impact: "Grain-free slow digesting starch" },
-              { item: "Zero-Sugar Monk Fruit / Allulose Granulated Sweetener", portion: "to taste", dept: "Baking Aisle", cost: "$4.99", impact: "Zero glycemic impact" }
+              { item: "Large Grade A Eggs & Egg Whites", portion: "2 eggs in batch (~1/2 egg/slice)", dept: "Dairy / Egg Department", cost: "1g Net Carb", impact: "Protein structural binder" },
+              { item: "Almond Flour / Oat Fiber Blend (Low-GI Matrix)", portion: "1/2 cup in batch", dept: "Baking Aisle", cost: "2g Net Carbs", impact: "Grain-free slow digesting starch" },
+              { item: "Zero-Sugar Monk Fruit / Allulose Granulated Sweetener", portion: "to taste", dept: "Baking Aisle", cost: "0g Net Carbs", impact: "Zero glycemic impact" }
             ],
             tips: [
               "✨ HOME RECIPE MATERIALS ANALYSIS: Low-fat cottage cheese and egg whites supply an albumin protein buffer.",
@@ -14808,22 +14924,22 @@
             data = {
               title: "Taco Time Northwest: Fiesta Platter & Diet Drink",
               desc: rawText,
-              calories: 1360,
-              netCarbs: 167.0,
-              totalCarbs: 183.0,
-              fiber: 16.0,
-              protein: 36.0,
-              fat: 56.0,
-              gl: "42 (Severe High Spike Risk)",
-              estimatedCost: "14.75",
-              meetsGoal: false,
+              calories: 520,
+              netCarbs: 33.0,
+              totalCarbs: 41.0,
+              fiber: 8.0,
+              protein: 28.0,
+              fat: 28.0,
+              fluidOz: 32.0,
+              gl: "12 (Low-Medium Postprandial Excursion)",
+              meetsGoal: true,
               tips: [
-                "⚠️ SEVERE GLYCEMIC EXCURSION (+57g Excess Net Carbs). Fast amylopectin starches in Mexi-Fries (42g net) and flour tortilla (34g net) flood bloodstream in 30-45 minutes.",
-                "🥗 Harm Reduction: Trade Mexi-Fries for Side Salad to save 42g net carbs.",
-                "🥤 Drink unsweetened tea or water to maintain zero liquid sugar."
+                "✅ CLINICAL GOAL MET (33g Net Carbs). Published nutritional disclosure: seasoned beef, sour cream, and diet drink.",
+                "🥤 Diet drink delivers 0 kcal and 0g liquid carbs.",
+                "🥗 Lean protein (28g) and dietary fiber (8g) blunt glucose absorption rate."
               ],
-              glut4: "<strong>Mandatory 45-Minute Brisk GLUT4 Walk starting 20 min post-meal:</strong> Translocates GLUT4 glucose transporters without insulin, blunting peak from 205 mg/dL to 152 mg/dL.",
-              glut4Peak: "PREDICTED PEAK WITHOUT WALK: 205 MG/DL | WITH 45-MIN WALK: 152 MG/DL"
+              glut4: "<strong>15-Minute Post-Meal Walk:</strong> Light movement translocates GLUT4 transporters to muscle membranes, keeping peak safely under 130 mg/dL.",
+              glut4Peak: "PREDICTED PEAK WITH 15-MIN WALK: 126 MG/DL (EUGLYCEMIC CONTROL)"
             };
           } else if (text.includes("chili")) {
             data = {
@@ -14836,7 +14952,6 @@
               protein: 24.0,
               fat: 8.0,
               gl: "9 (Safe Low Band)",
-              estimatedCost: "5.49",
               meetsGoal: true,
               tips: [
                 "✨ EXCELLENT DIABETIC CHOICE: 28g Net Carbs with 7g soluble legume fiber blunts postprandial glucose absorption.",
@@ -14856,7 +14971,6 @@
               protein: 20.0,
               fat: 22.0,
               gl: "13 (Safe Low-Med Band)",
-              estimatedCost: "6.95",
               meetsGoal: true,
               tips: [
                 "Verified from Taco Time NW published disclosures: 34g Net Carbs meets your 45g clinical ceiling.",
@@ -14896,7 +15010,6 @@
             protein: 0,
             fat: 0,
             gl: "0 (Zero Glycemic Impact)",
-            estimatedCost: "0.45",
             meetsGoal: true,
             tips: [
               "✨ CLINICAL POLYPHENOL PROFILE: Clove (eugenol) and cinnamon (cinnamaldehyde) provide bioactive antioxidant polyphenols that enhance cellular insulin sensitivity with zero caloric or glycemic load.",
@@ -15831,11 +15944,11 @@
       } else if (isMonthly) {
         for (let d = 1; d <= 30; d++) {
           const lbl = `D${d}`;
-          const qVal = Math.round(416 - ((d / 30) * 5) + (Math.sin(d) * 2));
-          const lfVal = parseFloat((1.28 - ((d / 30) * 0.12) + (Math.cos(d) * 0.04)).toFixed(2));
-          const mVal = parseFloat((30.5 + ((d / 30) * 4.5) + (Math.sin(d * 1.5) * 1.8)).toFixed(1));
-          const vVal = parseFloat((3.9 - ((d / 30) * 0.2) + (Math.sin(d) * 0.05)).toFixed(2));
-          const uVal = parseFloat((5.5 - ((d / 30) * 0.4) + (Math.cos(d) * 0.1)).toFixed(1));
+          const qVal = Math.round(416 - ((d / 30) * 5));
+          const lfVal = parseFloat((1.28 - ((d / 30) * 0.12)).toFixed(2));
+          const mVal = parseFloat((30.5 + ((d / 30) * 4.5)).toFixed(1));
+          const vVal = parseFloat((3.9 - ((d / 30) * 0.2)).toFixed(2));
+          const uVal = parseFloat((5.5 - ((d / 30) * 0.4)).toFixed(1));
           const musVal = parseFloat((33.8 + ((d / 30) * 0.6)).toFixed(1));
           const fVal = parseFloat((23.0 - ((d / 30) * 0.8)).toFixed(1));
 
@@ -16122,16 +16235,16 @@
         for (let d = 1; d <= 30; d++) {
           const lbl = `D${d}`;
           const gVal = is83Mode 
-            ? Math.round(197.3 - ((d / 30) * 5.8) + (Math.sin(d * 1.5) * 2.0))
-            : Math.round(134 - ((d / 30) * 16) + (Math.sin(d * 1.5) * 2.5));
+            ? Math.round(197.3 - ((d / 30) * 5.8))
+            : Math.round(134 - ((d / 30) * 16));
           glucoseData.push({ label: lbl, val: gVal });
-          tempData.push({ label: lbl, val: parseFloat((97.2 + (Math.sin(d) * 0.15)).toFixed(2)), core: 97.2 + (Math.sin(d) * 0.15), skin: 92.4 + (Math.cos(d) * 0.3) });
-          sleepData.push({ label: lbl, val: parseFloat((7.2 + (Math.sin(d * 0.8) * 0.35)).toFixed(1)) });
-          exerciseData.push({ label: lbl, val: Math.round(2100 + (d * 35) + (Math.sin(d * 2) * 250)) });
-          hrData.push({ label: lbl, val: Math.round(66 - ((d / 30) * 4) + (Math.cos(d) * 2)) });
+          tempData.push({ label: lbl, val: 97.2, core: 97.2, skin: 92.4 });
+          sleepData.push({ label: lbl, val: 7.2 });
+          exerciseData.push({ label: lbl, val: Math.round(2000 + (d * 30)) });
+          hrData.push({ label: lbl, val: Math.round(66 - ((d / 30) * 4)) });
           bpData.push({ label: lbl, val: Math.round(122 - ((d / 30) * 6)), core: Math.round(122 - ((d / 30) * 6)), skin: Math.round(78 - ((d / 30) * 4)) });
           spo2Data.push({ label: lbl, val: parseFloat((97.2 + ((d / 30) * 0.8)).toFixed(1)) });
-          hrvData.push({ label: lbl, val: Math.round(52 + ((d / 30) * 12) + (Math.sin(d) * 3)) });
+          hrvData.push({ label: lbl, val: Math.round(52 + ((d / 30) * 12)) });
         }
 
       } else {
@@ -16495,7 +16608,7 @@
       } catch(e) {}
       return {
         healthSys: "EvergreenHealth • Epic Systems (Evergreen MyChart)",
-        mrn: "PATIENT-MRN-948201",
+        mrn: "",
         doctorEmail: "physician@evergreenhealth.com",
         prefFormat: "fhir"
       };
@@ -16504,7 +16617,7 @@
     function savePatientEhrConfig() {
       const cfg = {
         healthSys: document.getElementById('cfgEhrSystem')?.value || "EvergreenHealth • Epic Systems (Evergreen MyChart)",
-        mrn: document.getElementById('cfgEhrMrn')?.value || "PATIENT-MRN-948201",
+        mrn: document.getElementById('cfgEhrMrn')?.value || "",
         doctorEmail: document.getElementById('cfgEhrDoctorEmail')?.value || "physician@evergreenhealth.com",
         prefFormat: document.getElementById('cfgEhrFormat')?.value || "fhir"
       };
@@ -16530,7 +16643,7 @@
       const dMrn = document.getElementById('dispExportMrn');
       const dEmail = document.getElementById('dispExportDoctorEmail');
       if (dSys) dSys.textContent = cfg.healthSys;
-      if (dMrn) dMrn.textContent = cfg.mrn;
+      if (dMrn) dMrn.textContent = cfg.mrn || "[UNASSIGNED]";
       if (dEmail) dEmail.textContent = cfg.doctorEmail;
 
       // Update Config inputs
@@ -16555,7 +16668,7 @@
 
     function downloadEpicFHIR() {
       soundButtonPress();
-      const mrn = document.getElementById('epicMRN')?.value || 'PATIENT-MRN-948201';
+      const mrn = document.getElementById('epicMRN')?.value || 'UNASSIGNED';
       const healthSys = document.getElementById('epicHealthSystem')?.value || 'evergreen';
       const nowIso = new Date().toISOString();
       const dateStr = nowIso.split('T')[0];
@@ -16695,7 +16808,7 @@
 
     function downloadClinicalCSV() {
       soundButtonPress();
-      const mrn = document.getElementById('epicMRN')?.value || 'PATIENT-MRN-948201';
+      const mrn = document.getElementById('epicMRN')?.value || 'UNASSIGNED';
       const dateStr = new Date().toISOString().split('T')[0];
       const timelineData = (typeof getTallSynchronizedDataset === 'function') ? getTallSynchronizedDataset('2day') : [];
 
@@ -16730,7 +16843,7 @@
 
     function draftEmailToDoctor() {
       soundButtonPress();
-      const mrn = document.getElementById('epicMRN')?.value || 'PATIENT-MRN-948201';
+      const mrn = document.getElementById('epicMRN')?.value || 'UNASSIGNED';
       const docEmail = document.getElementById('txtDoctorEmail')?.value.trim() || 
                        document.getElementById('cfgEhrDoctorEmail')?.value.trim() || 
                        'physician@evergreenhealth.com';
@@ -16835,7 +16948,7 @@ Patient`;
       soundButtonPress();
       const docEmail = document.getElementById('modalDoctorRecipient')?.value || '';
       const subject = document.getElementById('modalDoctorSubject')?.value || '';
-      const conciseBody = `Dear Doctor,\n\nPlease find attached my continuous physiological telemetry export (HL7 FHIR JSON and Clinical CSV) for my electronic health record chart.\n\nPATIENT INFORMATION:\n- Identifier / MRN: ${document.getElementById('epicMRN')?.value || 'PATIENT-MRN-948201'}\n- Date: ${new Date().toISOString().split('T')[0]}\n\nATTACHED FILES:\n1. Standard HL7 FHIR R4 Observation Bundle (.json)\n2. Standard LOINC Clinical CSV (.csv)\n\nThank you,\nPatient`;
+      const conciseBody = `Dear Doctor,\n\nPlease find attached my continuous physiological telemetry export (HL7 FHIR JSON and Clinical CSV) for my electronic health record chart.\n\nPATIENT INFORMATION:\n- Identifier / MRN: ${document.getElementById('epicMRN')?.value || '[UNASSIGNED]'}\n- Date: ${new Date().toISOString().split('T')[0]}\n\nATTACHED FILES:\n1. Standard HL7 FHIR R4 Observation Bundle (.json)\n2. Standard LOINC Clinical CSV (.csv)\n\nThank you,\nPatient`;
       const mailto = `mailto:${encodeURIComponent(docEmail)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(conciseBody)}`;
       window.open(mailto, '_blank');
     }
@@ -16859,41 +16972,13 @@ Patient`;
     }
 
     // =========================================================================
-    // DIET JOURNAL (Real Data Only)
+    // DIET JOURNAL (Real Data Only - Zero Synthetic Placeholders)
     // =========================================================================
     let mealJournal = [];
     try {
       const savedMeals = localStorage.getItem('veepoo_meal_journal');
       if (savedMeals) mealJournal = JSON.parse(savedMeals);
     } catch (e) {}
-    if (!mealJournal || mealJournal.length === 0) {
-      const todayStr = new Date().toISOString().slice(0, 10);
-      mealJournal = [
-        {
-          id: 1,
-          ts: `${todayStr} 08:15`,
-          type: "breakfast",
-          desc: "Poached eggs, avocado, keto toast, black coffee",
-          carbs: 14,
-          protein: 24,
-          cal: 380,
-          glucose: 118,
-          context: "Post-Meal Walk"
-        },
-        {
-          id: 2,
-          ts: `${todayStr} 12:45`,
-          type: "lunch",
-          desc: "Grilled chicken breast salad, olive oil, leafy greens, walnuts",
-          carbs: 18,
-          protein: 38,
-          cal: 520,
-          glucose: 130,
-          context: "Postprandial Peak"
-        }
-      ];
-      try { localStorage.setItem('veepoo_meal_journal', JSON.stringify(mealJournal)); } catch (e) {}
-    }
 
     function initDietFormTime() {
       const now = new Date();
@@ -16988,7 +17073,7 @@ Patient`;
       if (meals.length === 0) {
         list.innerHTML = `
           <div style="padding: 24px; text-align: center; color: var(--lcars-blue); font-family: var(--lcars-mono); font-size: 0.95rem; border: 1px dashed #cbd5e1; border-radius: 6px; background: #ffffff;">
-            NO MEALS RECORDED IN REPOSITORY • USE THE FORM ABOVE OR MOBILE /cell GATEWAY TO LOG MEALS
+            [NO NUTRITION LOGGED — JOURNAL EMPTY]
           </div>
         `;
         const sC = document.getElementById('sumCarbs'); if (sC && sC.firstChild) sC.firstChild.textContent = "0";
@@ -17253,42 +17338,13 @@ Patient`;
     // =========================================================================
 
     // -------------------------------------------------------------------------
-    // 1. EXERCISE & GLUT4 JOURNAL STATE
+    // 1. EXERCISE & GLUT4 JOURNAL STATE (Real Data Only - Zero Synthetic Placeholders)
     // -------------------------------------------------------------------------
     let exerciseJournal = [];
     try {
       const savedEx = localStorage.getItem('veepoo_exercise_journal');
       if (savedEx) exerciseJournal = JSON.parse(savedEx);
     } catch (e) {}
-
-    if (!exerciseJournal || exerciseJournal.length === 0) {
-      const todayStr = new Date().toISOString().slice(0, 10);
-      exerciseJournal = [
-        {
-          id: 1,
-          ts: `${todayStr} 08:45`,
-          type: "Post-Meal Walk",
-          duration: 15,
-          timing: "15-min Post-Breakfast",
-          preG: 172,
-          postG: 138,
-          delta: -34,
-          notes: "Brisk neighborhood walk after poached eggs; flattened acute postprandial spike."
-        },
-        {
-          id: 2,
-          ts: `${todayStr} 13:15`,
-          type: "Brisk Walk / GLUT4 Ambulation",
-          duration: 20,
-          timing: "20-min Post-Lunch",
-          preG: 188,
-          postG: 146,
-          delta: -42,
-          notes: "Steady 110 BPM pace. Cleared 42 mg/dL via non-insulin GLUT4 transport."
-        }
-      ];
-      try { localStorage.setItem('veepoo_exercise_journal', JSON.stringify(exerciseJournal)); } catch (e) {}
-    }
 
     function initExerciseFormTime() {
       const now = new Date();
@@ -17361,7 +17417,7 @@ Patient`;
       if (exerciseJournal.length === 0) {
         list.innerHTML = `
           <div style="padding: 20px; text-align: center; color: var(--lcars-peach); font-family: var(--lcars-mono); font-size: 0.9rem; border: 1px dashed #2d241c; border-radius: 6px;">
-            NO WORKOUT SESSIONS LOGGED • RECORD A POST-MEAL WALK ABOVE TO AUDIT GLUT4 GLUCOSE CLEARANCE
+            [NO EXERCISE LOGGED — JOURNAL EMPTY]
           </div>
         `;
         const valG = document.getElementById('valGlut4Clearance');
@@ -17409,153 +17465,14 @@ Patient`;
     }
 
     // -------------------------------------------------------------------------
-    // 2. MEDICATION MANAGEMENT & CHANGE LOG STATE (11-MEDICATION)
+    // 2. MEDICATION MANAGEMENT & CHANGE LOG STATE (Zero Synthetic Data Mandate)
     // -------------------------------------------------------------------------
     function getDefaultMedicationList() {
-      return [
-        {
-          id: 1,
-          name: "Metformin Extended-Release (Glucophage XR)",
-          dose: "1,000 mg",
-          slot: "morning",
-          schedule: "Oral with Breakfast (Split Dose 1 of 2)",
-          indication: "Type 2 Diabetes • Hepatic Gluconeogenesis Suppression",
-          status: "ACTIVE",
-          lastTaken: "Today 08:15 AM (Breakfast)"
-        },
-        {
-          id: 2,
-          name: "Empagliflozin (Jardiance)",
-          dose: "10 mg",
-          slot: "morning",
-          schedule: "Oral Daily • Morning with Breakfast",
-          indication: "SGLT2 Inhibitor • Renal Glucose Clearance & Cardiorenal Protection",
-          status: "ACTIVE",
-          lastTaken: "Today 08:15 AM (Breakfast)"
-        },
-        {
-          id: 3,
-          name: "Lisinopril",
-          dose: "10 mg",
-          slot: "morning",
-          schedule: "Oral Daily • Morning with Breakfast",
-          indication: "ACE Inhibitor • Renal Microvascular Protection & Blood Pressure Homeostasis",
-          status: "ACTIVE",
-          lastTaken: "Today 08:15 AM (Breakfast)"
-        },
-        {
-          id: 4,
-          name: "Atorvastatin (Lipitor)",
-          dose: "20 mg",
-          slot: "morning",
-          schedule: "Oral Daily • Morning with Breakfast",
-          indication: "HMG-CoA Reductase Inhibitor • Vascular Endothelial & Lipid Homeostasis",
-          status: "ACTIVE",
-          lastTaken: "Today 08:15 AM (Breakfast)"
-        },
-        {
-          id: 5,
-          name: "Coenzyme Q10 (Ubiquinol)",
-          dose: "100 mg",
-          slot: "morning",
-          schedule: "Oral Daily • Morning with Breakfast",
-          indication: "Mitochondrial Support • Statin Co-Therapy & Cellular Energy",
-          status: "ACTIVE",
-          lastTaken: "Today 08:15 AM (Breakfast)"
-        },
-        {
-          id: 6,
-          name: "Vitamin D3 (Cholecalciferol)",
-          dose: "2,000 IU",
-          slot: "morning",
-          schedule: "Oral Daily • Morning with Breakfast",
-          indication: "Immune Homeostasis & Insulin Receptor Sensitivity Support",
-          status: "ACTIVE",
-          lastTaken: "Today 08:15 AM (Breakfast)"
-        },
-        {
-          id: 7,
-          name: "Vitamin B12 (Methylcobalamin)",
-          dose: "1,000 mcg",
-          slot: "morning",
-          schedule: "Oral Daily • Morning with Breakfast",
-          indication: "Neuro-Support • Metformin-Associated B12 Clearance Maintenance",
-          status: "ACTIVE",
-          lastTaken: "Today 08:15 AM (Breakfast)"
-        },
-        {
-          id: 8,
-          name: "Omega-3 Triglycerides (EPA/DHA)",
-          dose: "1,000 mg",
-          slot: "morning",
-          schedule: "Oral Daily • Morning with Breakfast",
-          indication: "Cardiovascular Endothelial Stabilization & Triglyceride Management",
-          status: "ACTIVE",
-          lastTaken: "Today 08:15 AM (Breakfast)"
-        },
-        {
-          id: 9,
-          name: "Metformin Extended-Release (Glucophage XR)",
-          dose: "1,000 mg",
-          slot: "dinner",
-          schedule: "Oral with Dinner (Split Dose 2 of 2)",
-          indication: "Type 2 Diabetes • Hepatic Gluconeogenesis Suppression (Evening & Overnight)",
-          status: "ACTIVE",
-          lastTaken: "Pending today (Dinner)"
-        }
-      ];
+      return [];
     }
 
     function normalizeMedicationList(list) {
-      if (!list || !Array.isArray(list) || list.length < 5) {
-        return getDefaultMedicationList();
-      }
-      let hasDinner = false;
-      let metforminMorning = null;
-
-      list.forEach(m => {
-        if (!m.slot) {
-          const s = ((m.schedule || "") + " " + (m.name || "")).toLowerCase();
-          if (s.includes("dinner") || s.includes("evening") || s.includes("pm") || s.includes("night")) {
-            m.slot = "dinner";
-          } else {
-            m.slot = "morning";
-          }
-        }
-        if (m.slot === "dinner") hasDinner = true;
-        if (m.name && m.name.toLowerCase().includes("metformin") && m.slot === "morning") {
-          metforminMorning = m;
-        }
-      });
-
-      // User requirement: two intake times: morning with complete list, dinner with just metformin.
-      // If there is no dinner slot med, establish the split Metformin 1000mg with dinner.
-      if (!hasDinner) {
-        if (metforminMorning) {
-          metforminMorning.schedule = "Oral with Breakfast (Split Dose 1 of 2)";
-          list.push({
-            id: Date.now() + 101,
-            name: metforminMorning.name,
-            dose: metforminMorning.dose || "1,000 mg",
-            slot: "dinner",
-            schedule: "Oral with Dinner (Split Dose 2 of 2)",
-            indication: metforminMorning.indication || "Type 2 Diabetes • Hepatic Gluconeogenesis Suppression (Evening & Overnight)",
-            status: "ACTIVE",
-            lastTaken: "Pending today (Dinner)"
-          });
-        } else {
-          list.push({
-            id: Date.now() + 102,
-            name: "Metformin Extended-Release (Glucophage XR)",
-            dose: "1,000 mg",
-            slot: "dinner",
-            schedule: "Oral with Dinner (Split Dose 2 of 2)",
-            indication: "Type 2 Diabetes • Hepatic Gluconeogenesis Suppression (Evening & Overnight)",
-            status: "ACTIVE",
-            lastTaken: "Pending today (Dinner)"
-          });
-        }
-      }
+      if (!list || !Array.isArray(list)) return [];
       return list;
     }
 
@@ -17566,34 +17483,12 @@ Patient`;
     } catch (e) {}
 
     medicationList = normalizeMedicationList(medicationList);
-    try { localStorage.setItem('veepoo_medication_list', JSON.stringify(medicationList)); } catch (e) {}
 
     let medicationChangeLog = [];
     try {
       const savedChanges = localStorage.getItem('veepoo_medication_changes');
       if (savedChanges) medicationChangeLog = JSON.parse(savedChanges);
     } catch (e) {}
-
-    if (!medicationChangeLog || medicationChangeLog.length === 0) {
-      medicationChangeLog = [
-        {
-          id: 1,
-          ts: "2026-10-28 09:30",
-          name: "Metformin ER",
-          type: "Dose Increase",
-          oldDose: "500 mg BID",
-          newDose: "1,000 mg BID (Breakfast & Dinner)",
-          doctor: "Dr. Martinez, Endocrinology",
-          reason: "Titrated to address persistent morning fasting baseline >170 mg/dL",
-          preMeanG: 182,
-          postMeanG: 154,
-          deltaG: -28,
-          tirDelta: +16.2,
-          verdict: "PROGRESS"
-        }
-      ];
-      try { localStorage.setItem('veepoo_medication_changes', JSON.stringify(medicationChangeLog)); } catch (e) {}
-    }
 
     function initMedChangeTime() {
       const now = new Date();
@@ -17846,12 +17741,12 @@ Patient`;
 
     function resetMedicationRegimen() {
       soundButtonPress();
-      if (confirm("Reset medication regimen to standard 2-intake schedule (Morning complete meds + Dinner Metformin)?")) {
-        medicationList = getDefaultMedicationList();
-        try { localStorage.setItem('veepoo_medication_list', JSON.stringify(medicationList)); } catch (e) {}
+      if (confirm("Clear all medication records and reset to clean zero-data registry?")) {
+        medicationList = [];
+        localStorage.removeItem('veepoo_medication_list');
         renderMedicationView();
         if (typeof renderTallSynchronizedChart === 'function') renderTallSynchronizedChart(currentTallChartTimeframe);
-        logLCARS(`[RX RESET] Regimen reset to 2-intake schedule: Morning suite + Dinner Metformin split.`, "rx");
+        logLCARS(`[RX PURGED] Regimen cleared to clean zero-data state.`, "rx");
       }
     }
 
@@ -17902,7 +17797,7 @@ Patient`;
 
       if (morningGrid) {
         if (morningMeds.length === 0) {
-          morningGrid.innerHTML = `<div style="padding: 16px; color: var(--lcars-gray); font-family: var(--lcars-mono); font-size: 0.85rem; grid-column: 1 / -1; text-align: center; border: 1px dashed #1a2f4a; border-radius: 4px;">NO MORNING MEDICATIONS CONFIGURED • CLICK "+ ADD MORNING MED" ABOVE</div>`;
+          morningGrid.innerHTML = `<div style="padding: 16px; color: var(--lcars-gray); font-family: var(--lcars-mono); font-size: 0.85rem; grid-column: 1 / -1; text-align: center; border: 1px dashed #cbd5e1; border-radius: 4px;">[NO MEDICATIONS RECORDED] • CLICK "+ ADD MORNING MED" ABOVE TO REGISTER PRESCRIBED REGIMEN</div>`;
         } else {
           morningMeds.forEach(m => morningGrid.appendChild(buildCard(m)));
         }
@@ -17910,7 +17805,7 @@ Patient`;
 
       if (dinnerGrid) {
         if (dinnerMeds.length === 0) {
-          dinnerGrid.innerHTML = `<div style="padding: 16px; color: var(--lcars-gray); font-family: var(--lcars-mono); font-size: 0.85rem; grid-column: 1 / -1; text-align: center; border: 1px dashed #231b3b; border-radius: 4px;">NO DINNER MEDICATIONS CONFIGURED • CLICK "+ ADD DINNER MED" ABOVE</div>`;
+          dinnerGrid.innerHTML = `<div style="padding: 16px; color: var(--lcars-gray); font-family: var(--lcars-mono); font-size: 0.85rem; grid-column: 1 / -1; text-align: center; border: 1px dashed #cbd5e1; border-radius: 4px;">[NO MEDICATIONS RECORDED] • CLICK "+ ADD DINNER MED" ABOVE TO REGISTER PRESCRIBED REGIMEN</div>`;
         } else {
           dinnerMeds.forEach(m => dinnerGrid.appendChild(buildCard(m)));
         }
@@ -18158,99 +18053,38 @@ Patient`;
         if (tf === 'daily' || tf === 'today') return enrichBiometrics(cached2DayTimeline.filter(d => d.day === 'TODAY'));
       }
 
-      // High-Fidelity 48-Hour Fallback (Yesterday + Today with Transparent Blue Charging Areas & Zero Random Fill)
-      const yesterdayData = [
-        { day: 'YESTERDAY', time: 'Y-00:00', fullTime: 'YESTERDAY 00:00', g: 154, sys: 112, dia: 70, hr: 58, hrv: 68, spo2: 98.2, temp: 97.0, steps: 0, meal: null, ex: null, med: null, notes: "Nocturnal baseline stability" },
-        { day: 'YESTERDAY', time: 'Y-04:00', fullTime: 'YESTERDAY 04:00', g: 148, sys: 108, dia: 66, hr: 54, hrv: 72, spo2: 97.6, temp: 96.6, steps: 0, meal: null, ex: null, med: null, notes: "Nocturnal nadir" },
-        { day: 'YESTERDAY', time: 'Y-07:30', fullTime: 'YESTERDAY 07:30', g: 162, sys: 116, dia: 74, hr: 66, hrv: 62, spo2: 98.0, temp: 97.0, steps: 220, meal: null, ex: null, med: null, notes: "Dawn phenomenon waking curve" },
-        { day: 'YESTERDAY', time: 'Y-08:15', fullTime: 'YESTERDAY 08:15', g: 155, sys: 118, dia: 74, hr: 68, hrv: 60, spo2: 98.5, temp: 97.2, steps: 410, meal: { type: "Breakfast", carbs: 14, cal: 360, desc: "Eggs, spinach & avocado" }, ex: null, med: { name: "Morning Regimen", taken: true }, notes: "Low-carb breakfast paired with oral meds" },
-        { day: 'YESTERDAY', time: 'Y-09:00', fullTime: 'YESTERDAY 09:00', g: 142, sys: 120, dia: 76, hr: 92, hrv: 55, spo2: 99.0, temp: 97.4, steps: 2450, meal: null, ex: { type: "Morning Walk", dur: 15, delta: -32, desc: "15-min GLUT4 walk" }, med: null, notes: "Non-insulin skeletal muscle GLUT4 blunted breakfast spike" },
-        { day: 'YESTERDAY', time: 'Y-11:00', fullTime: 'YESTERDAY 11:00', g: null, sys: null, dia: null, hr: null, hrv: null, spo2: null, temp: null, steps: 2510, isChargingGap: true, meal: null, ex: null, med: null, notes: "⚡ Watch Charging on Dock (Off-Wrist • No Telemetry Samples)" },
-        { day: 'YESTERDAY', time: 'Y-12:30', fullTime: 'YESTERDAY 12:30', g: 138, sys: 115, dia: 72, hr: 68, hrv: 62, spo2: 98.0, temp: 97.2, steps: 2600, meal: null, ex: null, med: null, notes: "Pre-lunch resting state (Watch donned post-charge)" },
-        { day: 'YESTERDAY', time: 'Y-13:15', fullTime: 'YESTERDAY 13:15', g: 172, sys: 119, dia: 76, hr: 84, hrv: 56, spo2: 98.0, temp: 97.3, steps: 3850, meal: { type: "Lunch", carbs: 22, cal: 510, desc: "Grilled chicken salad" }, ex: { type: "Walk", dur: 15, delta: -38, desc: "Post-lunch walk" }, med: null, notes: "Postprandial peak held < 180 mg/dL" },
-        { day: 'YESTERDAY', time: 'Y-16:00', fullTime: 'YESTERDAY 16:00', g: 130, sys: 114, dia: 72, hr: 66, hrv: 64, spo2: 98.5, temp: 97.4, steps: 4420, meal: null, ex: null, med: null, notes: "Afternoon euglycemic homeostasis" },
-        { day: 'YESTERDAY', time: 'Y-19:00', fullTime: 'YESTERDAY 19:00', g: 158, sys: 118, dia: 75, hr: 72, hrv: 58, spo2: 98.0, temp: 97.5, steps: 5100, meal: { type: "Dinner", carbs: 24, cal: 580, desc: "Salmon & roasted vegetables" }, ex: null, med: { name: "Evening Dose", taken: true }, notes: "Low-carb dinner" },
-        { day: 'YESTERDAY', time: 'Y-22:30', fullTime: 'YESTERDAY 22:30', g: 140, sys: 110, dia: 68, hr: 60, hrv: 68, spo2: 98.2, temp: 97.2, steps: 5400, meal: null, ex: null, med: null, notes: "Pre-sleep baseline" }
-      ];
-
-      const todayData = [
-        { day: 'TODAY', time: 'T-00:00', fullTime: 'TODAY 00:00', g: 136, sys: 108, dia: 68, hr: 56, hrv: 70, spo2: 98.4, temp: 97.0, steps: 0, meal: null, ex: null, med: null, notes: "Nocturnal baseline stability" },
-        { day: 'TODAY', time: 'T-04:00', fullTime: 'TODAY 04:00', g: 132, sys: 106, dia: 65, hr: 53, hrv: 74, spo2: 97.8, temp: 96.5, steps: 0, meal: null, ex: null, med: null, notes: "Diurnal temperature & metabolic nadir" },
-        { day: 'TODAY', time: 'T-07:00', fullTime: 'TODAY 07:00', g: 145, sys: 114, dia: 72, hr: 64, hrv: 63, spo2: 98.0, temp: 97.0, steps: 150, meal: null, ex: null, med: null, notes: "Mild cortisol awakening surge" },
-        { day: 'TODAY', time: 'T-08:15', fullTime: 'TODAY 08:15', g: 138, sys: 118, dia: 74, hr: 68, hrv: 60, spo2: 98.5, temp: 97.2, steps: 340, meal: { type: "Breakfast", carbs: 14, cal: 380, desc: "Poached eggs, avocado, keto toast" }, ex: null, med: { name: "Morning Regimen", taken: true }, notes: "Low-carb breakfast paired with oral meds" },
-        { day: 'TODAY', time: 'T-09:00', fullTime: 'TODAY 09:00', g: 124, sys: 122, dia: 78, hr: 94, hrv: 54, spo2: 99.0, temp: 97.4, steps: 2384, meal: null, ex: { type: "Post-Meal Walk", dur: 15, delta: -34, desc: "15-min brisk neighborhood walk" }, med: null, notes: "GLUT4 muscle uptake blunted breakfast spike" },
-        { day: 'TODAY', time: 'T-10:15', fullTime: 'TODAY 10:15', g: 118, sys: 116, dia: 74, hr: 68, hrv: 64, spo2: 99.0, temp: 97.4, steps: 2450, meal: null, ex: null, med: null, notes: "Optimal sustained Time-in-Range (TIR 60–200)" },
-        { day: 'TODAY', time: 'T-11:00', fullTime: 'TODAY 11:00', g: null, sys: null, dia: null, hr: null, hrv: null, spo2: null, temp: null, steps: 2450, isChargingGap: true, meal: null, ex: null, med: null, notes: "⚡ Watch Charging on Dock (Off-Wrist • No Telemetry Samples)" },
-        { day: 'TODAY', time: 'T-12:30', fullTime: 'TODAY 12:30', g: 114, sys: 115, dia: 73, hr: 70, hrv: 60, spo2: 98.0, temp: 97.2, steps: 2600, meal: null, ex: null, med: null, notes: "Pre-lunch euvolemic resting state (Watch donned post-charge)" },
-        { day: 'TODAY', time: 'T-13:15', fullTime: 'TODAY 13:15', g: 148, sys: 119, dia: 76, hr: 84, hrv: 56, spo2: 98.0, temp: 97.3, steps: 3980, meal: { type: "Lunch", carbs: 18, cal: 520, desc: "Grilled chicken breast salad" }, ex: { type: "GLUT4 Walk", dur: 20, delta: -42, desc: "20-min post-lunch walk" }, med: null, notes: "Postprandial peak held safely under target ceiling" },
-        { day: 'TODAY', time: 'T-15:30', fullTime: 'TODAY 15:30', g: 106, sys: 114, dia: 72, hr: 68, hrv: 62, spo2: 98.0, temp: 97.4, steps: 4420, meal: { type: "Snack", carbs: 4, cal: 160, desc: "Celery with almond butter" }, ex: null, med: null, notes: "ADA trade snack produced flat glycemic trajectory" },
-        { day: 'TODAY', time: 'T-18:30', fullTime: 'TODAY 18:30', g: null, sys: null, dia: null, hr: null, hrv: null, spo2: null, temp: null, steps: 0, isFuture: true, meal: null, ex: null, med: null, notes: "Awaiting Live Telemetry (Future Window)" },
-        { day: 'TODAY', time: 'T-21:00', fullTime: 'TODAY 21:00', g: null, sys: null, dia: null, hr: null, hrv: null, spo2: null, temp: null, steps: 0, isFuture: true, meal: null, ex: null, med: null, notes: "Awaiting Live Telemetry (Future Window)" }
-      ];
-
-      if (tf === '2day') return [...yesterdayData, ...todayData];
-      if (tf === 'yesterday') return yesterdayData;
-      if (tf === 'weekly') {
-        const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-        const gW = [124, 121, 124, 118, 116, 115, 118];
-        const sW = [2420, 2850, 2140, 2772, 2600, 3200, 2800];
-        const sysW = [119, 117, 119, 118, 116, 115, 116];
-        const diaW = [76, 74, 75, 76, 72, 71, 72];
-        const hrW = [66, 64, 68, 72, 65, 62, 63];
-        return days.map((d, i) => ({
-          day: d, time: d, fullTime: `Weekly Summary: ${d}`,
-          g: gW[i], sys: sysW[i], dia: diaW[i], hr: hrW[i], hrv: 64, spo2: 98.0, temp: 97.3,
-          steps: sW[i], meal: (i === 3 ? { type: "Lunch", carbs: 18, cal: 520, desc: "Chicken Salad" } : null),
-          ex: (sW[i] > 2500 ? { type: "Daily Walk", dur: 20, delta: -32, desc: "GLUT4 brisk walk" } : null),
-          med: (i === 0 ? { name: "Weekly Regimen", taken: true, isMedChange: false } : null),
-          notes: `Weekly day ${d} telemetry`
-        }));
+      // Pure Zero-Data Reality Principle: When watch has not synced, return zeroed baseline (0 is 0)
+      if (!cached2DayTimeline || cached2DayTimeline.length === 0) {
+        const nowH = new Date().getHours();
+        const baseSlots = ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00'];
+        const zeroToday = baseSlots.map(t => {
+          const slotH = parseInt(t.substring(0, 2), 10);
+          const isPast = slotH <= nowH;
+          return {
+            day: 'TODAY',
+            time: `T-${t}`,
+            fullTime: `TODAY ${t}`,
+            g: null,
+            sys: null,
+            dia: null,
+            hr: null,
+            hrv: null,
+            spo2: null,
+            temp: null,
+            steps: 0,
+            isChargingGap: false,
+            isFuture: !isPast,
+            meal: null,
+            ex: null,
+            med: null,
+            notes: isPast ? "[NO TELEMETRY RECORDED — WATCH NOT SYNCED]" : "Awaiting Live Telemetry (Future Window)"
+          };
+        });
+        if (tf === 'yesterday') return [];
+        if (tf === 'weekly' || tf === 'monthly' || tf === 'quarterly' || tf === 'yearly') return [];
+        return zeroToday;
       }
-      if (tf === 'monthly') {
-        const mPts = [];
-        for (let d = 1; d <= 30; d++) {
-          const gVal = Math.round(134 - ((d / 30) * 16) + (Math.sin(d * 1.5) * 2.5));
-          const stepVal = Math.round(2100 + (d * 35) + (Math.sin(d * 2) * 250));
-          mPts.push({
-            day: `D${d}`, time: `D${d}`, fullTime: `Day ${d} of Month`,
-            g: gVal, sys: Math.round(122 - ((d / 30) * 6)), dia: Math.round(78 - ((d / 30) * 4)),
-            hr: Math.round(66 - ((d / 30) * 4)), hrv: Math.round(54 + (d * 0.4)), spo2: 98.0, temp: 97.2,
-            steps: stepVal,
-            meal: (d === 15 ? { type: "Audit Meal", carbs: 20, cal: 540, desc: "Clinical diet test" } : null),
-            ex: (stepVal > 2800 ? { type: "Cardio", dur: 25, delta: -38, desc: "Active walk" } : null),
-            med: (d === 1 ? { name: "Monthly Start", isMedChange: true } : null),
-            notes: `Day ${d} longitudinal record`
-          });
-        }
-        return mPts;
-      }
-      if (tf === 'quarterly') {
-        const qWeeks = ['W01', 'W02', 'W03', 'W04', 'W05', 'W06', 'W07', 'W08', 'W09', 'W10', 'W11', 'W12'];
-        return qWeeks.map((w, idx) => ({
-          day: w, time: w, fullTime: `Quarterly Week ${idx + 1}`,
-          g: Math.round(132 - (idx * 1.4)), sys: Math.round(122 - (idx * 0.5)), dia: Math.round(78 - (idx * 0.4)),
-          hr: Math.round(68 - (idx * 0.4)), hrv: Math.round(52 + (idx * 1.2)), spo2: 98.2, temp: 97.2,
-          steps: Math.round(2200 + (idx * 90)),
-          meal: null, ex: { type: "Weekly Target", dur: 120, delta: -40, desc: "Target Met" },
-          med: (idx === 6 ? { name: "Dose Adjustment", isMedChange: true } : null),
-          notes: `Quarterly week ${idx + 1} compliance`
-        }));
-      }
-      if (tf === 'yearly') {
-        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-        const gAnnual = [131, 130, 128, 126, 125, 123, 122, 121, 120, 118, 117, 116];
-        const sAnnual = [2100, 2250, 2400, 2550, 2700, 2800, 2900, 3050, 3100, 3200, 3150, 3250];
-        return months.map((m, idx) => ({
-          day: m, time: m, fullTime: `Yearly Overview: ${m}`,
-          g: gAnnual[idx], sys: Math.round(126 - (idx * 0.9)), dia: Math.round(82 - (idx * 0.7)),
-          hr: Math.round(72 - (idx * 0.8)), hrv: Math.round(48 + (idx * 1.7)), spo2: 98.0, temp: 97.2,
-          steps: sAnnual[idx],
-          meal: null, ex: { type: "Monthly Mean", dur: 150, delta: -45, desc: "Consistent active sink" },
-          med: (idx === 0 ? { name: "Annual Baseline", isMedChange: false } : null),
-          notes: `${m} longitudinal summary`
-        }));
-      }
-      return todayData;
+      return [];
     }
 
     let activeTallDataset = [];
@@ -23517,7 +23351,7 @@ You logged: Entire Box (3.5 Servings / 99g)
           </div>
           <div>
             <label style="font-size: 0.72rem; font-weight: 800; color: #475569; text-transform: uppercase;">Patient MRN (Medical Record Number)</label>
-            <input id="epicMRN" type="text" value="PATIENT-MRN-948201" style="width: 100%; margin-top: 4px; padding: 6px 10px; border-radius: 4px; border: 1.5px solid #94a3b8; font-size: 0.82rem; font-weight: 700; font-family: monospace; color: #0284c7; background: #ffffff;">
+            <input id="epicMRN" type="text" value="" placeholder="[UNASSIGNED]" style="width: 100%; margin-top: 4px; padding: 6px 10px; border-radius: 4px; border: 1.5px solid #94a3b8; font-size: 0.82rem; font-weight: 700; font-family: monospace; color: #0284c7; background: #ffffff;">
           </div>
           <div style="grid-column: span 2;">
             <label style="font-size: 0.72rem; font-weight: 800; color: #475569; text-transform: uppercase;">Physician / Clinic Email (Optional - for Email Drafting)</label>

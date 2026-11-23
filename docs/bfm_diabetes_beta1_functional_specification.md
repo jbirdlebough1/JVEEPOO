@@ -10,7 +10,7 @@
 * **The Author's 20-Year AI Provenance (Since 2007)**: Engineering AI and cloud systems for nearly two decades. After testing early Gemini, the author spent **18 grueling months fighting Claude's chronic development issues** (context drift, logic hallucinations, and regressive syntax breaks). Returning to **current-generation Google Gemini** produced **immediate, transformative success**: dramatically lower defects, rock-solid architectural compliance, and superior full-stack code quality.
 * **Open Engineering Trajectory (`.jsonl`)**: In an unprecedented commitment to scientific rigor, the author has committed the **entire 14.3+ MB raw `.jsonl` trajectory (`session_logs/transcript.jsonl`) directly into the public build tree**. Google AI engineers, DeepMind researchers, and community developers can inspect real-world turn-by-turn performance, bug post-mortems, and iterative learning.
 * **Rigorous Systems Engineering over Random Comments**: Eliminates cryptic commits and random comments. Every architectural decision on Star Ship Gemini NCC-202X is backed by formal Requirements, Functional Specifications (FS), and FMEA risk post-mortems.
-* **Author & Philosophical Leader**: **The Author** (Creator, Chief Architect, and Leader of the BFM Philosophy)
+* **Pioneer, Inventor & Philosophical Leader**: **The Author** (Creator, Chief Architect, and Leader of the BFM Philosophy)
 * **Corporate & Technology Sponsor**: **Google** (Sponsoring, Hosting, and Powering via Google Gemini AI)
 * **Base Vessel**: **Star Ship Gemini (NCC-202X)** (Desktop Workstation Console)
 * **Auxiliary Units**: **Shuttlecraft Foodoor** (Mobile PWA, registered as **Cell 1, Cell 2, Cell 3...**)
@@ -50,6 +50,11 @@ Every requirement specified in [`bfm_diabetes_beta_requirements_specification.md
 | **REQ-16** | Two-Pass Master Test Plan & CLEBugger Integration | Quality Assurance / TQM | `docs/bfm_beta1_master_test_plan.md` | Automated Pass 1 + Human Pass 2 via `BFM.HTM` |
 | **REQ-17** | Human-Centric User & Physician Adoption Metric | Behavioral Feedback Engine | Longitudinal Vault & FHIR | Daily Active Use (>=90%) & Doctor FHIR Review |
 | **REQ-18** | Subjective Experiential Telemetry ("How Do You Feel?") | Behavioral Psychology / HDYF | `cell.html`, `server.py`, DB | Mobile HDYF Prompt, Home Wi-Fi Sync & FHIR Export |
+| **REQ-19** | Somatosensory Pain & Physical Discomfort Telemetry | HDYF NLP Classification Engine | `cell.html`, `server.py`, DB | Pain & Discomfort Extraction and Timeline Anchor |
+| **REQ-20** | HBand & HBand 2.0 Full Hardware Equivalence | Universal Wearable Subsystem | BLE GATT Stream & DB | Raw ECG, MET, Sleep Hypnogram, BIA Verification |
+| **REQ-21** | Abrams-Era Bridge Science Station Design System | Luminous Clinical UI Framework | `BFM.HTM`, CSS System | Light Slate `#f8fafc`, Ice-Blue `#0284c7`, Zero Slabs |
+| **REQ-22** | Pure Zero-Data Reality Principle (Zero Is Zero) | Telemetry & Database State Engine | All Charts, Gauges, Journals | Un-synced 0 Baseline, Empty Journals, Blank MRN |
+| **REQ-23** | Consolidated Single-Bay EHR Data Export | Export Subsystem | `BFM.HTM` (Bay 05) | 1-Click Centralized Export, Zero Redundant Triggers |
 
 ---
 
@@ -370,3 +375,59 @@ Following the viable Beta 1 release, BFM operationalizes SEI-CMMI Level 5 closed
 1. **Patient Adherence Metrics**: Tracks frequency of daily mobile meal staging via Shuttlecraft Foodoor (`cell.html`), post-meal physical activity compliance, and nocturnal watch wearing.
 2. **Physician Data Utilization**: Analyzes doctor review of generated Epic FHIR R4 JSON bundles, identifying the most clinically valuable LOINC telemetry streams.
 3. **Closed-Loop Feature Evolution**: Translates user and physician behavioral patterns into prioritized feature enhancements matching the largest set of common real-world requirements.
+
+
+---
+
+## 12. HDYF Somatosensory Pain & Discomfort Classification Engine
+
+The "How Do You Feel?" (HDYF) portal captures the patient's natural language state on home Wi-Fi and automatically parses, categorizes, and timestamps physical pain and somatic distress:
+
+| Pain / Discomfort Category | Extracted Clinical Keywords | Mapped Etiology | Target Correlation Telemetry |
+| :--- | :--- | :--- | :--- |
+| **Diabetic Peripheral Neuropathy (DPN)** | Burning feet, tingling, pins and needles, electric zaps, numb toes. | Microvascular peripheral ischemia from chronic glucose variability. | Nocturnal glucose excursions (>180 mg/dL), sleep fragmentation, low HRV. |
+| **Articular / Musculoskeletal** | Knee pain, joint stiffness, lumbar ache, walking discomfort. | Joint degeneration; physical limitation preventing post-meal walks. | Ambulatory step volume (<2,000 steps); identifies valid reasons for low kinetic activity. |
+| **Neuro-Vascular Cephalalgia** | Throbbing headache, retro-orbital eye pressure, temple throbbing. | Hypertensive crisis or rapid glucose rate of rise (dG/dt > +2.5 mg/dL/min). | Systolic BP spikes (>140 mmHg) and acute postprandial glucose surges. |
+| **Gastrointestinal / Visceral** | Bloating, acid reflux, stomach heaviness, delayed digestion, nausea. | Diabetic autonomic vagal neuropathy (gastroparesis) or drug intolerance. | Delayed glucose spikes occurring 3 to 5 hours post-consumption. |
+| **Plantar Cutaneous Distress** | Foot tenderness, friction hotspot, blister pressure, heel fissure. | Biomechanical overload from sensory loss predisposing to ulceration. | Cumulative daily step peaks; prompts immediate physical foot check. |
+
+---
+
+## 13. HBand & HBand 2.0 Full Hardware Equivalence Model
+
+BFM delivers complete functional equivalence with **HBand and HBand 2.0** across all Veepoo wearable telemetry streams:
+
+| Wearable Stream | GATT Command / Protocol | HBand 2.0 Benchmark | BFM Workstation Implementation | Zero-Data Display Rule |
+| :--- | :--- | :--- | :--- | :--- |
+| **Optical Glucose** | `0x87` Calibration & Stream | Real-time glucose, TIR (60-200), daily average, eA1C. | Real-time tile, TIR breakdown, 24-hr diurnal curve. | Displays `0 mg/dL` until first physical scan. |
+| **Hemodynamics (BP)** | `0x02` Optical PPG / Oscillometric | Systolic, Diastolic, MAP, hypertension staging. | Hemodynamic dual-line gauge, morning surge detector. | Displays `0 / 0 mmHg` until first physical scan. |
+| **Resting & Peak HR** | `0x01` 5-10 Min Duty Cycle | Continuous HR timeline, resting heart rate (RHR), zones. | 24-Hour continuous heart rate envelope, RHR baseline. | Displays `0 BPM` until first physical scan. |
+| **HRV & Autonomic Stress** | `0x08` R-R Interval & SDNN | Lorenz scatter plot, HRV score (0-100 ms), autonomic balance. | Real-time stress index, Lorenz plot, autonomic card. | Displays `0 ms` until first physical scan. |
+| **SpO2 & Nocturnal Apnea** | `0x12` Red/Infrared Ratio | Nocturnal oxygenation, desaturation index (ODI), hypoxia count. | Continuous oxygenation track, apnea cluster alerts. | Displays `0 %` until first physical scan. |
+| **Body Temperature** | `0x0C` Contact NTC Sensor | Dual-channel core estimate and skin contact curve (°F / °C). | Diurnal temperature oscillation graph, febrile alerts. | Displays `0.0 °F` until first physical scan. |
+| **ECG Waveform Strip** | `0x99` Micro-Volt Lead | 30-60s rhythm strip, PR interval, QRS duration, QT interval, Afib. | 25 mm/sec canvas rhythm strip, arrhythmia flag, PDF export. | Displays flat baseline (`0 µV`) until ECG sampled. |
+| **MET Energy Expenditure** | `0x89` Accelerometer + HR | Real-time energy expenditure in METs (1.0 = rest, 3.0+ = walk). | Instantaneous MET gauge, cumulative daily MET-hours. | Displays `1.0 MET` (resting baseline) or `0`. |
+| **Sleep Architecture** | `0xE0` Multi-Stage Actigraphy | Total sleep, Deep, Light, REM, Awake count, Sleep Score. | Full stacked hypnogram, sleep debt, dawn surge alignment. | Displays `0 hrs / 0 score` until nocturnal sync. |
+| **Body Composition (BIA)** | `0x78` Dual-Frequency Impedance | Body fat %, muscle mass (lbs), body water %, BMI, visceral fat. | Multi-metric composition card, longitudinal lean/fat ratio. | Displays `0.0 %` until calibration entry. |
+
+---
+
+## 14. Abrams Science Station Design System & Color Specifications
+
+The BFM interface is authored to the **J.J. Abrams Enterprise bridge science station design system**:
+* **Base Canvas**: Crisp luminous medical white and light slate (`#f8fafc` to `#ffffff`).
+* **Card Containers**: Precision frosted glass cards with 1px subtle border (`#cbd5e1`) and clean drop shadows (`box-shadow: 0 1px 3px rgba(0,0,0,0.05)`).
+* **Telemetry Accents**: Starfleet science ice-blue (`#0284c7`), cobalt (`#1d4ed8`), and cyan (`#06b6d4`).
+* **Diagnostic Alerts**: Luminous clinical alert amber (`#f59e0b`), clinical nominal emerald (`#10b981`), and critical red (`#ef4444`).
+* **Typography**: Modern clinical sans-serif paired with monospaced tabular numerals (`font-family: monospace; font-variant-numeric: tabular-nums`). Zero 1990s clunky pill bars.
+
+---
+
+## 15. Pure Zero-Data Reality Architecture & Empty-State Mandate
+
+In strict accordance with clinical data sanctity:
+1. **Un-synced Telemetry Zeroing**: All charts and gauges display zero (`0`) until valid physical watch transponder data is received. No synthetic sine curves or artificial baselines.
+2. **Future Diurnal Truncation**: All 24-hour daily timeline curves are truncated at the current wall-clock hour (`new Date()`). All future hours (e.g. from 12:00 to 23:59) are strictly set to 0 or null.
+3. **Empty Journal Default**: The Chronological Nutrition & Meal Journal and Exercise Journal initialize to completely empty arrays (`[]`). If no meals have been logged, the UI displays: `[NO NUTRITION LOGGED — JOURNAL EMPTY]`.
+4. **Zero-Mock Prescription Table**: The medication table contains zero pre-populated drugs. Only medications explicitly entered by the user or clinician are displayed.
+5. **Blank Patient Chart Number**: The MRN field is initialized to blank (`""`), displaying `[NOT ENTERED / UNASSIGNED]` until explicitly configured. Zero hardcoded synthetic MRN strings.

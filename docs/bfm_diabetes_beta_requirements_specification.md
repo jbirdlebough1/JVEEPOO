@@ -6,7 +6,7 @@
 ### 1. Document Control & Mission Charter
 
 * **System Name**: **BFM Biometric Function Monitor** (Console Powered By Gemini)
-* **Author & Philosophical Leader**: **The Author** (Creator, Chief Architect, and Leader of the BFM Philosophy)
+* **Pioneer, Inventor & Philosophical Leader**: **The Author** (Creator, Chief Architect, and Leader of the BFM Philosophy)
 * **Corporate & Technology Sponsor**: **Google** (Sponsoring, Hosting, and Powering via Google Gemini AI)
 * **Desktop Workstation Base**: **Star Ship Gemini (NCC-202X)** (Shared Family PC Workstation)
 * **Mobile Auxiliary Unit**: **Shuttlecraft Foodoor** (Field Intake & Real-Time Gemini Meal Estimator)
@@ -232,3 +232,34 @@ To foster an unstoppable open-source movement for global health, Google Gemini p
   10. Two-Pass Master Test Plan execution (Gemini automated + human manual via `BFM.HTM`) with CLEBugger defect synchronization (`http://127.0.0.1:8999/`).
   11. Human-Centric Adoption Verification: Daily patient utilization tracking and physician FHIR R4 report validation.
   12. Subjective Experiential Telemetry: "How Do You Feel?" (HDYF) logging, correlation with metabolic datasets, and FHIR export.
+
+
+---
+
+### 13. System Formal Requirements Traceability Matrix (REQ-01 to REQ-24)
+
+| Requirement ID | Requirement Category | Requirement Specification Mandate | Verification Method |
+| :--- | :--- | :--- | :--- |
+| **REQ-01** | Architecture | Sovereign, air-gapped standalone execution from local file system (`BFM.HTM`) with zero mandatory cloud connectivity. | Dual origin test (`file:///` and `http://127.0.0.1:8899`) |
+| **REQ-02** | Security & Legal | Mandatory startup terms-of-use acceptance modal cryptographically hashed and logged to SQLite table `user_legal_acceptance`. | Audit table inspection |
+| **REQ-03** | Hardware Binding | 3-Way binding triad strictly isolating data: User Profile (`UID`) <-> Cell Portal (`ESN`) <-> Watch Transponder (`MAC`). | Relational schema integrity check |
+| **REQ-04** | Data Storage | Relational SQLite vault storing continuous 5-minute telemetry, meals, exercises, and medications. | Schema DDL validation |
+| **REQ-05** | EHR Export | 1-Click US-Core Epic FHIR R4 JSON bundle and LOINC-coded CSV clinical export generated strictly on demand. | FHIR R4 JSON schema validator |
+| **REQ-06** | Dual Backup | Automated daily dual external backup generating synchronized SQLite snapshot, FHIR JSON, and SHA-256 checksum manifest. | Backup engine audit |
+| **REQ-07** | Nutrition BOM | Compound meal intake decomposition: calories, net carbs, fat, protein, and glycemic load without monetary cost strings. | Nutrition calculator audit |
+| **REQ-08** | GLUT4 Engine | Correlated physical activity logging calculating non-insulin kinetic glucose clearance and post-meal recovery deltas. | Metabolic correlation engine |
+| **REQ-09** | Prescription Safety | Dedicated medication registry tracking drug name, dosage, schedule, and titration milestones. **Absolute zero-mock data policy**. | Medication table audit |
+| **REQ-10** | Clinical Goals | Personalized physician-configured clinical targets (fasting glucose, postprandial ceiling, daily step goal) overriding static defaults. | Goal compliance calculator |
+| **REQ-11** | Dial Matching | Interactive hybrid dial studio enabling exact synchronization of physical watch dial values to the desktop console. | Dial sync handler test |
+| **REQ-12** | Voice Synthesis | Hands-free Web Speech accessibility reading aloud real-time biometric readings and nutritional summaries on demand. | Speech API synthetic event |
+| **REQ-13** | Quality Gate | Six Sigma (-Werror) strict automated verification gate enforcing zero broken links, zero LaTeX, zero ASCII box art, and perfect DOM balance. | Pre-commit gate execution |
+| **REQ-14** | Defect Logging | Real-time bidirectional synchronization with local CLEBugger daemon on port 8999 logging all defects and change requests. | CLEBugger REST audit |
+| **REQ-15** | Canonical Taxonomy | Standardized build versioning: `alpha.xx.xx.xx.xxxx` (Alpha) and `beta.00.01.xxxx` (Beta) pinned across UI, API, and FHIR metadata. | Build badge & AST scanner |
+| **REQ-16** | Human Success | Primary governing philosophy: daily user adoption and physician trust overriding purely mathematical process rankings. | User & clinician audit |
+| **REQ-17** | HDYF Telemetry | "How Do You Feel?" 360° x 360° spherical telemetry capturing natural language voice/text comments anchored to master timeline. | Experiential journal test |
+| **REQ-18** | Governance | The Author is the sole Pioneer, Inventor, and Philosophical Leader; Google is strictly Corporate and Technology Sponsor. | Document & legal review |
+| **REQ-19** | Somatosensory Pain | Real-time classification and tracking of all voiced **pain and physical discomfort** (DPN neuropathy, joint stiffness, cephalalgia, gastroparesis). | NLP sentiment & pain parser |
+| **REQ-20** | HBand 2.0 Parity | Complete hardware equivalence with HBand and HBand 2.0 (raw ECG strips, MET energy expenditure, multi-stage sleep hypnogram, BIA body composition). | Transponder GATT protocol check |
+| **REQ-21** | Abrams Aesthetic | Interface follows the **J.J. Abrams Enterprise bridge science station design system**: luminous light theme (`#f8fafc`), Starfleet science ice-blue (`#0284c7`), and precision cards. | DOM class & CSS audit |
+| **REQ-22** | Zero-Data Reality | **Zero Data = Zero Line**: Un-synced charts show 0, no mock fallback arrays, future diurnal curve points set strictly to 0/null, blank unassigned MRN. | State & chart rendering audit |
+| **REQ-23** | Consolidated Export | All EHR, FHIR, CSV, and SQLite backup triggers centralized exclusively in **Bay 05 (`05-EHR DATA EXPORT`)**, eliminating duplicate buttons across other bays. | DOM button presence audit |

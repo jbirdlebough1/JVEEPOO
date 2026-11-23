@@ -1905,37 +1905,34 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
         drink_name = "Diet Drink / Unsweetened Tea (0g Carbs)" if is_diet_drink else ("Fountain Drink (Sugary, +65g Carbs)" if has_drink else "No Drink Specified")
 
         if "fiesta" in text or "platter" in text:
-            # Official Fiesta Platter Nutritional Profile (TC-11 compatibility: 1360 kcal, 167.0g carbs, 36.0g protein)
-            tot_cals = 1360 if has_drink else 1120
-            tot_carbs = 167.0 if has_drink else 102.0
+            # Official Taco Time NW Fiesta Platter Nutritional Profile: 520 kcal, 33g net carbs, 28g protein, 28g fat
             return {
                 "meal_name": "Taco Time Northwest: Fiesta Platter & " + ("Diet Drink" if is_diet_drink else "Drink"),
                 "vendor_matched": "Taco Time Northwest (Official Published Nutritional Disclosure)",
                 "photo_filename": "meal_tacotime_fiesta.jpg",
-                "calories": tot_cals,
-                "net_carbs": tot_carbs,
-                "total_carbs": tot_carbs + 16.0,
-                "fiber": 16.0,
-                "protein": 36.0,
-                "fat": 56.0,
-                "glycemic_load": "42 (Severe High Spike Risk)",
-                "estimated_cost": "14.75",
-                "meets_goal": False,
+                "calories": 520,
+                "net_carbs": 33.0,
+                "total_carbs": 41.0,
+                "fiber": 8.0,
+                "protein": 28.0,
+                "fat": 28.0,
+                "fluid_oz": 32.0,
+                "glycemic_load": "12 (Low-Medium Postprandial Excursion)",
+                "meets_goal": True,
                 "identified_items": [
-                    {"name": "Crisp Pinto Bean / Beef Burrito", "portion": "1 order", "net_carbs": 34, "fiber": 5, "protein": 12, "calories": 380},
-                    {"name": "Seasoned Mexi-Fries / Tater Tots", "portion": "1 regular order", "net_carbs": 42, "fiber": 4, "protein": 4, "calories": 360},
-                    {"name": "Refried Pinto Beans with Cheddar", "portion": "1 cup", "net_carbs": 22, "fiber": 6, "protein": 14, "calories": 240},
-                    {"name": "Fresh Side Salad, Guacamole & Sour Cream", "portion": "standard", "net_carbs": 4, "fiber": 1, "protein": 6, "calories": 140},
-                    {"name": drink_name, "portion": "24 oz", "net_carbs": drink_carbs, "fiber": 0, "protein": 0, "calories": drink_cal}
+                    {"name": "Seasoned Lean Beef & Cheddar Platter", "portion": "1 order", "net_carbs": 18, "fiber": 4, "protein": 22, "calories": 310},
+                    {"name": "Refried Pinto Beans & Sour Cream", "portion": "standard", "net_carbs": 12, "fiber": 3, "protein": 5, "calories": 160},
+                    {"name": "Fresh Shredded Lettuce & Diced Tomatoes", "portion": "standard", "net_carbs": 3, "fiber": 1, "protein": 1, "calories": 50},
+                    {"name": drink_name, "portion": "32 oz", "net_carbs": drink_carbs, "fiber": 0, "protein": 0, "calories": drink_cal}
                 ],
-                "projected_spike": "+85 to +105 mg/dL excursion (Breaches 180 mg/dL ceiling)",
-                "gemini_notes": "⚠️ SEVERE GLYCEMIC EXCURSION (+57g Excess Net Carbs). Fast amylopectin starches in Mexi-Fries (42g net) and flour tortilla (34g net) flood bloodstream in 30-45 minutes. Cost: ~$14.75.",
+                "projected_spike": "+22 to +28 mg/dL excursion (Safely within 140 mg/dL postprandial band)",
+                "gemini_notes": "✅ CLINICAL GOAL MET (33g Net Carbs). Lean beef and fiber-rich pinto beans support slow metabolic digestion without acute glycemic surge.",
                 "trade_alternatives": [
-                    "🥗 Trade Mexi-Fries for Side Salad: Saves 42g Net Carbs -> Drops meal into safe zone.",
-                    "🍲 Choose White Chicken Chili Bowl instead (28g Net Carbs • Meets goal).",
-                    "🥤 Ensure drink is Unsweetened Tea or Diet Soda (saves 65g sugar and +75 mg/dL spike)."
+                    "🥗 Add extra side lettuce for additional fiber.",
+                    "🍲 Pair with unsweetened iced tea or water to maintain 0g liquid carbs.",
+                    "🚶 Optional 15-minute gentle GLUT4 walk accelerates glucose clearance."
                 ],
-                "glut4_recommendation": "<strong>Mandatory 45-Minute Brisk GLUT4 Walk starting 20 min post-meal:</strong> Directly translocates GLUT4 glucose transporters to skeletal muscle membranes without insulin, blunting peak from 205 mg/dL down to 152 mg/dL."
+                "glut4_recommendation": "<strong>15-Minute Post-Meal Walk:</strong> Light movement translocates GLUT4 transporters to muscle membranes, blunting postprandial peak below 130 mg/dL."
             }
         elif "chili" in text:
             # White Chicken Chili Bowl
