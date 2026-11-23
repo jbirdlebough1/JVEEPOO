@@ -1748,8 +1748,8 @@ html_content = """<!DOCTYPE html>
         <p>The Reports console serves as the primary diagnostic nexus for outpatient clinical encounters, offering multi-parameter synchronization and statistical regression modeling:</p>
         <ul>
           <li><strong>360° Multi-Lane Regimen Timeline (<code>tallChartSvgContainer</code>):</strong> Synchronizes 8 physiological lanes on a single vertical continuous scrubber with 4-line clinical meal tags (Short Desc, Cals/Protein, Carbs/Fat, GL &amp; Audit Link), vertical correlation stems, active medication markers, and GLUT4 exercise bursts.</li>
-          <li><strong>Bivariate Step vs. Glucose Correlator (<code>svgStepGlucoseCorrelator</code>):</strong> Mathematical regression scatter plot with Pearson $r$, $R^2$, clearance slope, today's gold star observation, and the <strong>Watch Configured Step Target Blue Dot (<code>#0284c7</code>)</strong>.</li>
-          <li><strong>2D Poincaré (Lorenz) Scatter Plot (<code>svgLorenzScatter</code>):</strong> Heart rate variability interval-difference scatter ($RR_n$ vs $RR_{n+1}$) providing visual diagnostic categorization (Comet, Torpedo, Club, Fork, Complex).</li>
+          <li><strong>Bivariate Step vs. Glucose Correlator (<code>svgStepGlucoseCorrelator</code>):</strong> Mathematical regression scatter plot with Pearson r, R^2, clearance slope, today's gold star observation, and the <strong>Watch Configured Step Target Blue Dot (<code>#0284c7</code>)</strong>.</li>
+          <li><strong>2D Poincaré (Lorenz) Scatter Plot (<code>svgLorenzScatter</code>):</strong> Heart rate variability interval-difference scatter (RR[n] vs RR[n+1]) providing visual diagnostic categorization (Comet, Torpedo, Club, Fork, Complex).</li>
           <li><strong>All 8 Diurnal Biometric Curves:</strong> Continuous SVG curves with 4-hour major intervals and clean minor ticks for Glucose, eA1C, Core/Skin Temp dual curve, Heart Rate, BP dual curve, SpO2, HRV, Sleep, and Exercise.</li>
           <li><strong>Sub-Reports 01–06:</strong> Metabolic Energy (BMR, TDEE, active burn), GLUT4 clearance rate, ECG/Autonomic stress, MET Index, and Respiration RPM.</li>
         </ul>

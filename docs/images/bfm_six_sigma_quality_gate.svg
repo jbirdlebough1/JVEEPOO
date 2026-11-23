@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" width="1000" height="620" style="background:#070b12; font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Roboto,sans-serif;">
+  <defs>
+    <linearGradient id="bgGrad4" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080d1a"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+    <linearGradient id="headerGrad4" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1000" height="620" fill="url(#bgGrad4)"/>
+  <rect x="15" y="15" width="970" height="590" rx="12" fill="none" stroke="#1e293b" stroke-width="1.5"/>
+
+  <!-- Scott BFM Corner Accents -->
+  <path d="M 15 45 L 15 15 L 45 15" fill="none" stroke="#38bdf8" stroke-width="3"/>
+  <path d="M 955 15 L 985 15 L 985 45" fill="none" stroke="#38bdf8" stroke-width="3"/>
+  <path d="M 15 575 L 15 605 L 45 605" fill="none" stroke="#38bdf8" stroke-width="3"/>
+  <path d="M 955 605 L 985 605 L 985 575" fill="none" stroke="#38bdf8" stroke-width="3"/>
+
+  <!-- Header Banner -->
+  <rect x="35" y="30" width="930" height="58" rx="8" fill="url(#headerGrad4)" stroke="#334155" stroke-width="1"/>
+  <rect x="35" y="30" width="12" height="58" rx="4" fill="#10b981"/>
+  <text x="60" y="55" fill="#f8fafc" font-size="16" font-weight="800" letter-spacing="1.5">TEN-POINT SIX SIGMA PRE-BUILD QUALITY GATE (-Werror)</text>
+  <text x="60" y="75" fill="#38bdf8" font-size="11" font-weight="600" letter-spacing="1">MANDATORY AUTOMATED PRE-COMMIT AUDIT • ZERO DEFECTS &amp; ZERO REGRESSIONS</text>
+  <rect x="800" y="44" width="150" height="30" rx="15" fill="#064e3b" stroke="#10b981" stroke-width="1.5"/>
+  <text x="875" y="63" fill="#34d399" font-size="10" font-weight="800" text-anchor="middle" letter-spacing="1">10/10 CERTIFIED</text>
+
+  <!-- Level 1: Static Code & DOM Integrity (Checks 1-5) -->
+  <rect x="35" y="110" width="455" height="415" rx="10" fill="#0d1527" stroke="#1e3a8a" stroke-width="1.5"/>
+  <rect x="35" y="110" width="455" height="36" rx="10" fill="#1e293b"/>
+  <rect x="35" y="136" width="455" height="10" fill="#1e293b"/>
+  <text x="50" y="133" fill="#93c5fd" font-size="11" font-weight="800" letter-spacing="1">LEVEL 1: STATIC CODE &amp; DOM TREE INTEGRITY</text>
+
+  <!-- Check 01 -->
+  <g transform="translate(50, 160)">
+    <rect width="425" height="60" rx="6" fill="#0b1324" stroke="#334155" stroke-width="1"/>
+    <rect width="6" height="60" rx="2" fill="#10b981"/>
+    <text x="16" y="22" fill="#f8fafc" font-size="11" font-weight="700">[CHECK 01/10] Dual-File SHA-256 Mirror Parity</text>
+    <text x="16" y="38" fill="#94a3b8" font-size="9">Root index.html and w11_htm_app/index.html must be bit-for-bit identical.</text>
+    <text x="16" y="52" fill="#34d399" font-size="9" font-weight="700">PASS: SHA-256 1f15b42ad1c8... matched perfectly.</text>
+  </g>
+
+  <!-- Check 02 -->
+  <g transform="translate(50, 230)">
+    <rect width="425" height="60" rx="6" fill="#0b1324" stroke="#334155" stroke-width="1"/>
+    <rect width="6" height="60" rx="2" fill="#10b981"/>
+    <text x="16" y="22" fill="#f8fafc" font-size="11" font-weight="700">[CHECK 02/10] Strict HTML Div Tag Balance</text>
+    <text x="16" y="38" fill="#94a3b8" font-size="9">Opens must equal Closes; diff must be mathematically zero.</text>
+    <text x="16" y="52" fill="#34d399" font-size="9" font-weight="700">PASS: index.html (1965/1965, Diff=0) • cell.html (61/61, Diff=0)</text>
+  </g>
+
+  <!-- Check 03 -->
+  <g transform="translate(50, 300)">
+    <rect width="425" height="60" rx="6" fill="#0b1324" stroke="#334155" stroke-width="1"/>
+    <rect width="6" height="60" rx="2" fill="#10b981"/>
+    <text x="16" y="22" fill="#f8fafc" font-size="11" font-weight="700">[CHECK 03/10] Strict DOM Workspace Hierarchy</text>
+    <text x="16" y="38" fill="#94a3b8" font-size="9">All 14 tab pages must be verified direct children of &lt;main.bfm-workspace&gt;.</text>
+    <text x="16" y="52" fill="#34d399" font-size="9" font-weight="700">PASS: 14/14 tab consoles verified as immediate workspace children.</text>
+  </g>
+
+  <!-- Check 04 -->
+  <g transform="translate(50, 370)">
+    <rect width="425" height="60" rx="6" fill="#0b1324" stroke="#334155" stroke-width="1"/>
+    <rect width="6" height="60" rx="2" fill="#10b981"/>
+    <text x="16" y="22" fill="#f8fafc" font-size="11" font-weight="700">[CHECK 04/10] JavaScript AST Static Syntax</text>
+    <text x="16" y="38" fill="#94a3b8" font-size="9">Full script extraction and Node.js parser validation (-c).</text>
+    <text x="16" y="52" fill="#34d399" font-size="9" font-weight="700">PASS: Zero JavaScript syntax errors across all tab controllers.</text>
+  </g>
+
+  <!-- Check 05 -->
+  <g transform="translate(50, 440)">
+    <rect width="425" height="60" rx="6" fill="#0b1324" stroke="#334155" stroke-width="1"/>
+    <rect width="6" height="60" rx="2" fill="#10b981"/>
+    <text x="16" y="22" fill="#f8fafc" font-size="11" font-weight="700">[CHECK 05/10] Python Server Compilation &amp; Route AST</text>
+    <text x="16" y="38" fill="#94a3b8" font-size="9">Mandatory py_compile execution across backend daemons.</text>
+    <text x="16" y="52" fill="#34d399" font-size="9" font-weight="700">PASS: server.py and watch_monitor.py bytecode compiled cleanly.</text>
+  </g>
+
+  <!-- Level 2: Data Schemas & Algorithmic Safety (Checks 6-10) -->
+  <rect x="510" y="110" width="455" height="415" rx="10" fill="#0d1527" stroke="#1e3a8a" stroke-width="1.5"/>
+  <rect x="510" y="110" width="455" height="36" rx="10" fill="#1e293b"/>
+  <rect x="510" y="136" width="455" height="10" fill="#1e293b"/>
+  <text x="525" y="133" fill="#93c5fd" font-size="11" font-weight="800" letter-spacing="1">LEVEL 2: DATA SCHEMAS &amp; ALGORITHMIC SAFETY</text>
+
+  <!-- Check 06 -->
+  <g transform="translate(525, 160)">
+    <rect width="425" height="60" rx="6" fill="#0b1324" stroke="#334155" stroke-width="1"/>
+    <rect width="6" height="60" rx="2" fill="#10b981"/>
+    <text x="16" y="22" fill="#f8fafc" font-size="11" font-weight="700">[CHECK 06/10] SQLite Schema Parity &amp; 3-Way Triad Integrity</text>
+    <text x="16" y="38" fill="#94a3b8" font-size="9">Validates UID &lt;-&gt; ESN &lt;-&gt; Watch MAC relational constraints.</text>
+    <text x="16" y="52" fill="#34d399" font-size="9" font-weight="700">PASS: telemetry_master.db DDL &amp; vault tables verified.</text>
+  </g>
+
+  <!-- Check 07 -->
+  <g transform="translate(525, 230)">
+    <rect width="425" height="60" rx="6" fill="#0b1324" stroke="#334155" stroke-width="1"/>
+    <rect width="6" height="60" rx="2" fill="#10b981"/>
+    <text x="16" y="22" fill="#f8fafc" font-size="11" font-weight="700">[CHECK 07/10] Confectionery Safety &amp; Nutrition Calculations</text>
+    <text x="16" y="38" fill="#94a3b8" font-size="9">Verifies popular_meals truth table; zero high-sugar candy records.</text>
+    <text x="16" y="52" fill="#34d399" font-size="9" font-weight="700">PASS: 17 verified items, zero duplicates, zero candy entries.</text>
+  </g>
+
+  <!-- Check 08 -->
+  <g transform="translate(525, 300)">
+    <rect width="425" height="60" rx="6" fill="#0b1324" stroke="#334155" stroke-width="1"/>
+    <rect width="6" height="60" rx="2" fill="#10b981"/>
+    <text x="16" y="22" fill="#f8fafc" font-size="11" font-weight="700">[CHECK 08/10] Zero Monetary Cost Strings in Nutrition BOM</text>
+    <text x="16" y="38" fill="#94a3b8" font-size="9">Audits Tab 09 meal headers to prevent price string confusion.</text>
+    <text x="16" y="52" fill="#34d399" font-size="9" font-weight="700">PASS: Zero price strings; strictly metabolic impact metrics.</text>
+  </g>
+
+  <!-- Check 09 -->
+  <g transform="translate(525, 370)">
+    <rect width="425" height="60" rx="6" fill="#0b1324" stroke="#334155" stroke-width="1"/>
+    <rect width="6" height="60" rx="2" fill="#10b981"/>
+    <text x="16" y="22" fill="#f8fafc" font-size="11" font-weight="700">[CHECK 09/10] Zero Forbidden Terms Enforcement</text>
+    <text x="16" y="38" fill="#94a3b8" font-size="9">Scans for forbidden legacy tokens: '5010', 'Patient', 'Clinical'.</text>
+    <text x="16" y="52" fill="#34d399" font-size="9" font-weight="700">PASS: Pre-build scan verified clean; all replacement targets mapped.</text>
+  </g>
+
+  <!-- Check 10 -->
+  <g transform="translate(525, 440)">
+    <rect width="425" height="60" rx="6" fill="#0b1324" stroke="#334155" stroke-width="1"/>
+    <rect width="6" height="60" rx="2" fill="#10b981"/>
+    <text x="16" y="22" fill="#f8fafc" font-size="11" font-weight="700">[CHECK 10/10] Mock Auto-Scan Handshake &amp; Ingestion Test</text>
+    <text x="16" y="38" fill="#94a3b8" font-size="9">Simulates concurrent watch BLE and cell docking payloads.</text>
+    <text x="16" y="52" fill="#34d399" font-size="9" font-weight="700">PASS: Dual-payload ingestion dispatches to isolated vaults.</text>
+  </g>
+
+  <!-- Bottom Certification Banner -->
+  <rect x="35" y="540" width="930" height="50" rx="8" fill="#064e3b" stroke="#10b981" stroke-width="1.5"/>
+  <text x="500" y="570" fill="#f8fafc" font-size="13" font-weight="800" text-anchor="middle" letter-spacing="1">SIX SIGMA QUALITY STATUS: 10/10 GATES PASSING • CERTIFIED READY FOR BETA 1 BUILD</text>
+</svg>

@@ -110,11 +110,11 @@
           </li>
         
           <li id="bullet-item-2" class="bullet-item" data-idx="2" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">The 5 Metrology Dimensions Compared:</strong> More samples yield higher resolution and quality: Sensitivity jumps from <15% to >98%; Specificity provides true baseline context; Accuracy is anchor-calibrated; Precision CI narrows by 1/√N; Repeatability achieves continuous autocorrelation.
+            <strong style="color: #0369a1;">The 5 Metrology Dimensions Compared:</strong> More samples yield higher resolution and quality: Sensitivity jumps from <15% to >98%; Specificity provides true baseline context; Accuracy is anchor-calibrated; Precision CI narrows by 1 / sqrt(N); Repeatability achieves continuous autocorrelation.
           </li>
         
           <li id="bullet-item-3" class="bullet-item" data-idx="3" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">Nyquist Theorem & Standard Error Math:</strong> Shannon-Nyquist criterion mandates fs ≥ 2 fmax. Biological half-life (15-30m) requires 5-min epochs (fs = 3.33 mHz). High-density sampling (N=25,920) reduces standard error (SE = σ/√N) by 99.4% (161× noise suppression).
+            <strong style="color: #0369a1;">Nyquist Theorem & Standard Error Math:</strong> Shannon-Nyquist criterion mandates fs >= 2 * fmax. Biological half-life (15-30m) requires 5-min epochs (fs = 3.33 mHz). High-density sampling (N=25,920) reduces standard error (SE = sigma / sqrt(N)) by 99.4% (161× noise suppression).
           </li>
         
         </ul>
@@ -133,7 +133,7 @@
       <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #0284c7; padding: 10px 14px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto;">
         <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 4px; margin-bottom: 6px; flex-shrink: 0;">
           <span style="font-family: monospace; font-weight: 800; color: #0284c7; font-size: 0.84rem;">MATHEMATICAL SAMPLING THEORY & METROLOGY</span>
-          <span style="background: #f8fafc; color: #0284c7; font-weight: 800; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; border: 1.5px solid #0284c7;">fs ≥ 2 fmax • SE = σ/√N</span>
+          <span style="background: #f8fafc; color: #0284c7; font-weight: 800; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; border: 1.5px solid #0284c7;">fs >= 2 * fmax • SE = sigma / sqrt(N)</span>
         </div>
         <div class="visual-content" style="flex: 1; display: flex; flex-direction: column;">
           
@@ -160,7 +160,7 @@
                   <!-- Day 90 Sample Point -->
                   <div style="position: absolute; right: 4px; width: 12px; height: 12px; background: #dc2626; border-radius: 50%; box-shadow: 0 0 6px #ef4444;" title="End Lab Draw (Day 90)"></div>
                   <span style="position: absolute; left: 26px; font-size: 0.58rem; color: #991b1b; font-weight: bold;">
-                    📍 DAY 0 ────── 90-DAY TOTAL BLIND VOID (7.78M SECONDS: ZERO DATA) ────── 📍 DAY 90
+                    📍 DAY 0 ------ 90-DAY TOTAL BLIND VOID (7.78M SECONDS: ZERO DATA) ------ 📍 DAY 90
                   </span>
                 </div>
               </div>
@@ -184,7 +184,7 @@
                 </div>
                 <div style="position: relative; height: 20px; background: linear-gradient(90deg, #16a34a, #22c55e, #0284c7, #22c55e, #16a34a); border-radius: 4px; border: 1.5px solid #16a34a; overflow: hidden; display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 4px rgba(22,163,74,0.3);">
                   <span style="font-size: 0.62rem; color: #ffffff; font-weight: 800; letter-spacing: 0.05em; text-shadow: 0 1px 2px rgba(0,0,0,0.5);">
-                    ████ FULL NEYE-QUIST RECONSTRUCTION: fs = 3.33 mHz ≥ 2 fmax • 25,920 CONTINUOUS EPOCHS ████
+                    ████ FULL NEYE-QUIST RECONSTRUCTION: fs = 3.33 mHz >= 2 fmax • 25,920 CONTINUOUS EPOCHS ████
                   </span>
                 </div>
               </div>
@@ -216,16 +216,16 @@
                   <td style="padding: 3px 6px; color: #15803d; font-family: monospace; font-weight: bold; background: #f0fdf4;">&gt; 96% (Full contextual trajectory)</td>
                 </tr>
                 <tr style="border-bottom: 1px solid #e2e8f0;">
-                  <td style="padding: 3px 6px; font-weight: bold; color: #334155;">Accuracy (|x̄ - μ| True Value)</td>
+                  <td style="padding: 3px 6px; font-weight: bold; color: #334155;">Accuracy (|x_mean - μ| True Value)</td>
                   <td style="padding: 3px 6px; color: #dc2626; font-family: monospace;">Confounded by RBC lifespan</td>
-                  <td style="padding: 3px 6px; color: #d97706; font-family: monospace;">±15% Strip Enzyme Bias</td>
+                  <td style="padding: 3px 6px; color: #d97706; font-family: monospace;">+/- 15% Strip Enzyme Bias</td>
                   <td style="padding: 3px 6px; color: #15803d; font-family: monospace; font-weight: bold; background: #f0fdf4;">Calibrated Multi-Sensor Fusion</td>
                 </tr>
                 <tr style="border-bottom: 1px solid #e2e8f0;">
                   <td style="padding: 3px 6px; font-weight: bold; color: #334155;">Precision (Dispersion / CI)</td>
-                  <td style="padding: 3px 6px; color: #dc2626; font-family: monospace;">df=1: Wide CI (±1.38 σ)</td>
-                  <td style="padding: 3px 6px; color: #d97706; font-family: monospace;">CI: ±1.96σ/√180 = ±0.15 σ</td>
-                  <td style="padding: 3px 6px; color: #15803d; font-family: monospace; font-weight: bold; background: #f0fdf4;">High CI: ±1.96σ/√25920 = ±0.012 σ</td>
+                  <td style="padding: 3px 6px; color: #dc2626; font-family: monospace;">df=1: Wide CI (+/- 1.38 sigma)</td>
+                  <td style="padding: 3px 6px; color: #d97706; font-family: monospace;">CI: +/- 1.96 * sigma / sqrt(180) = +/- 0.15 sigma</td>
+                  <td style="padding: 3px 6px; color: #15803d; font-family: monospace; font-weight: bold; background: #f0fdf4;">High CI: +/-1.96sigma/sqrt25920 = +/-0.012 sigma</td>
                 </tr>
                 <tr style="border-bottom: 1px solid #e2e8f0;">
                   <td style="padding: 3px 6px; font-weight: bold; color: #334155;">Repeatability (Reproducibility)</td>
@@ -234,10 +234,10 @@
                   <td style="padding: 3px 6px; color: #15803d; font-family: monospace; font-weight: bold; background: #f0fdf4;">Continuous Autocorrelation Rxx(τ)</td>
                 </tr>
                 <tr>
-                  <td style="padding: 3px 6px; font-weight: bold; color: #334155;">Standard Error (SE = σ/√N)</td>
-                  <td style="padding: 3px 6px; color: #dc2626; font-family: monospace; font-weight: bold;">SE = σ/√2 = 0.707 σ</td>
-                  <td style="padding: 3px 6px; color: #d97706; font-family: monospace;">SE = σ/√180 = 0.0745 σ</td>
-                  <td style="padding: 3px 6px; color: #15803d; font-family: monospace; font-weight: 800; background: #f0fdf4;">SE = σ/√25920 = 0.0062 σ (99.4% Reduction)</td>
+                  <td style="padding: 3px 6px; font-weight: bold; color: #334155;">Standard Error (SE = sigma / sqrt(N))</td>
+                  <td style="padding: 3px 6px; color: #dc2626; font-family: monospace; font-weight: bold;">SE = sigma / sqrt(2) = 0.707 sigma</td>
+                  <td style="padding: 3px 6px; color: #d97706; font-family: monospace;">SE = sigma / sqrt(180) = 0.0745 sigma</td>
+                  <td style="padding: 3px 6px; color: #15803d; font-family: monospace; font-weight: 800; background: #f0fdf4;">SE = sigma / sqrt(25920) = 0.0062 sigma (99.4% Reduction)</td>
                 </tr>
               </tbody>
             </table>
@@ -247,17 +247,17 @@
           <div style="margin-top: 6px; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; font-family: monospace; font-size: 0.67rem;">
             <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 4px; padding: 6px;">
               <div style="color: #1e40af; font-weight: bold;">📐 NEYE-QUIST SHANNON THEOREM</div>
-              <div style="color: #1e3a8a; margin-top: 2px; line-height: 1.35;">fs ≥ 2 fmax | t½ = 15-30m ⟹ fmax ≈ 1.1 mHz<br>5-min rate (fs = 3.33 mHz) &gt; 2 fmax: <strong>Zero Aliasing</strong></div>
+              <div style="color: #1e3a8a; margin-top: 2px; line-height: 1.35;">fs >= 2 * fmax | t½ = 15-30m ⟹ fmax ≈ 1.1 mHz<br>5-min rate (fs = 3.33 mHz) &gt; 2 fmax: <strong>Zero Aliasing</strong></div>
             </div>
             <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 4px; padding: 6px;">
               <div style="color: #166534; font-weight: bold;">📈 RESOLUTION & SNR CONVERGENCE</div>
-              <div style="color: #14532d; margin-top: 2px; line-height: 1.35;">SNR ∝ √N | SE = σ / √N<br>N = 25,920 ⟹ <strong>161× Noise Suppression</strong> & True Kinetic Quality</div>
+              <div style="color: #14532d; margin-top: 2px; line-height: 1.35;">SNR scales with sqrt(N) | SE = sigma / sqrt(N)<br>N = 25,920 ⟹ <strong>161× Noise Suppression</strong> & True Kinetic Quality</div>
             </div>
           </div>
 
         </div>
         <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.76rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
-          <strong style="color: #15803d;">Key Takeaway:</strong> More samples yield higher resolution and measurement quality. A quarterly lab has only 2 samples (Day 0 & Day 90) with a 90-day blind interval. Automated continuous telemetry (N=25,920) satisfies the Nyquist criterion (fs ≥ 2 fmax), reduces standard error by 99.4% (SE = σ/√N), and achieves superior sensitivity, specificity, accuracy, precision, and repeatability.
+          <strong style="color: #15803d;">Key Takeaway:</strong> More samples yield higher resolution and measurement quality. A quarterly lab has only 2 samples (Day 0 & Day 90) with a 90-day blind interval. Automated continuous telemetry (N=25,920) satisfies the Nyquist criterion (fs >= 2 * fmax), reduces standard error by 99.4% (SE = sigma / sqrt(N)), and achieves superior sensitivity, specificity, accuracy, precision, and repeatability.
         </div>
       </div>
     

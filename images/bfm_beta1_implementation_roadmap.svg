@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 380" width="1000" height="380" style="background:#070b12; font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Roboto,sans-serif;">
+  <defs>
+    <linearGradient id="bgGrad5" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080d1a"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+    <linearGradient id="headerGrad5" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1000" height="380" fill="url(#bgGrad5)"/>
+  <rect x="15" y="15" width="970" height="350" rx="12" fill="none" stroke="#1e293b" stroke-width="1.5"/>
+
+  <!-- Scott BFM Corner Accents -->
+  <path d="M 15 45 L 15 15 L 45 15" fill="none" stroke="#38bdf8" stroke-width="3"/>
+  <path d="M 955 15 L 985 15 L 985 45" fill="none" stroke="#38bdf8" stroke-width="3"/>
+  <path d="M 15 335 L 15 365 L 45 365" fill="none" stroke="#38bdf8" stroke-width="3"/>
+  <path d="M 955 365 L 985 365 L 985 335" fill="none" stroke="#38bdf8" stroke-width="3"/>
+
+  <!-- Header Banner -->
+  <rect x="35" y="30" width="930" height="55" rx="8" fill="url(#headerGrad5)" stroke="#334155" stroke-width="1"/>
+  <rect x="35" y="30" width="12" height="55" rx="4" fill="#38bdf8"/>
+  <text x="60" y="55" fill="#f8fafc" font-size="16" font-weight="800" letter-spacing="1.5">BETA 1 PHASED IMPLEMENTATION ROADMAP &amp; ZERO-REGRESSION PIPELINE</text>
+  <text x="60" y="73" fill="#38bdf8" font-size="11" font-weight="600" letter-spacing="1">STRUCTURED FIVE-PHASE SEQUENTIAL EXECUTION ENFORCED BY -Werror GATES</text>
+  <rect x="800" y="42" width="150" height="30" rx="15" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
+  <text x="875" y="61" fill="#38bdf8" font-size="10" font-weight="800" text-anchor="middle" letter-spacing="1">ZERO REGRESSION</text>
+
+  <!-- 5 Sequential Phase Cards -->
+  <!-- Phase 1 -->
+  <g transform="translate(35, 110)">
+    <rect width="170" height="230" rx="8" fill="#0c4a6e" stroke="#0284c7" stroke-width="1.5"/>
+    <rect width="170" height="34" rx="8" fill="#0369a1"/>
+    <rect y="24" width="170" height="10" fill="#0369a1"/>
+    <text x="14" y="22" fill="#ffffff" font-size="11" font-weight="800">PHASE 1</text>
+    <text x="14" y="50" fill="#38bdf8" font-size="10" font-weight="800">ENGINE &amp; DB</text>
+    <text x="14" y="72" fill="#f8fafc" font-size="9">• telemetry_master.db</text>
+    <text x="14" y="88" fill="#f8fafc" font-size="9">• user_profiles table</text>
+    <text x="14" y="104" fill="#f8fafc" font-size="9">• registered_cells table</text>
+    <text x="14" y="120" fill="#f8fafc" font-size="9">• 3-Way Triad DDL</text>
+    <text x="14" y="136" fill="#f8fafc" font-size="9">• /api/shuttle/register</text>
+    <text x="14" y="152" fill="#f8fafc" font-size="9">• /api/shuttle/dock</text>
+    <text x="14" y="168" fill="#f8fafc" font-size="9">• Dynamic BLE Router</text>
+    <rect x="14" y="195" width="142" height="22" rx="4" fill="#082f49" stroke="#38bdf8" stroke-width="1"/>
+    <text x="85" y="210" fill="#38bdf8" font-size="8" font-weight="800" text-anchor="middle">GATE: SQL PARITY</text>
+  </g>
+
+  <!-- Arrow 1 -> 2 -->
+  <polygon points="213,220 221,225 213,230" fill="#38bdf8"/>
+
+  <!-- Phase 2 -->
+  <g transform="translate(225, 110)">
+    <rect width="170" height="230" rx="8" fill="#1e1b4b" stroke="#6366f1" stroke-width="1.5"/>
+    <rect width="170" height="34" rx="8" fill="#4338ca"/>
+    <rect y="24" width="170" height="10" fill="#4338ca"/>
+    <text x="14" y="22" fill="#ffffff" font-size="11" font-weight="800">PHASE 2</text>
+    <text x="14" y="50" fill="#a5b4fc" font-size="10" font-weight="800">CONSOLE UI</text>
+    <text x="14" y="72" fill="#f8fafc" font-size="9">• lcars- to bfm- classes</text>
+    <text x="14" y="88" fill="#f8fafc" font-size="9">• Star Ship Gemini branding</text>
+    <text x="14" y="104" fill="#f8fafc" font-size="9">• Tab 10 Master Roster</text>
+    <text x="14" y="120" fill="#f8fafc" font-size="9">• Add/Edit/Delete modals</text>
+    <text x="14" y="136" fill="#f8fafc" font-size="9">• Legal Acceptance modal</text>
+    <text x="14" y="152" fill="#f8fafc" font-size="9">• Senior contrast halos</text>
+    <text x="14" y="168" fill="#f8fafc" font-size="9">• Zero Div Balance Drift</text>
+    <rect x="14" y="195" width="142" height="22" rx="4" fill="#0f172a" stroke="#a5b4fc" stroke-width="1"/>
+    <text x="85" y="210" fill="#a5b4fc" font-size="8" font-weight="800" text-anchor="middle">GATE: DIV BALANCE = 0</text>
+  </g>
+
+  <!-- Arrow 2 -> 3 -->
+  <polygon points="403,220 411,225 403,230" fill="#a5b4fc"/>
+
+  <!-- Phase 3 -->
+  <g transform="translate(415, 110)">
+    <rect width="170" height="230" rx="8" fill="#451a03" stroke="#f59e0b" stroke-width="1.5"/>
+    <rect width="170" height="34" rx="8" fill="#b45309"/>
+    <rect y="24" width="170" height="10" fill="#b45309"/>
+    <text x="14" y="22" fill="#ffffff" font-size="11" font-weight="800">PHASE 3</text>
+    <text x="14" y="50" fill="#fde68a" font-size="10" font-weight="800">MOBILE PWA</text>
+    <text x="14" y="72" fill="#f8fafc" font-size="9">• cell.html auto-scan</text>
+    <text x="14" y="88" fill="#f8fafc" font-size="9">• Pull ESN &amp; phone name</text>
+    <text x="14" y="104" fill="#f8fafc" font-size="9">• IndexedDB offline vault</text>
+    <text x="14" y="120" fill="#f8fafc" font-size="9">• Multi-day meal storage</text>
+    <text x="14" y="136" fill="#f8fafc" font-size="9">• Homecoming Dock button</text>
+    <text x="14" y="152" fill="#f8fafc" font-size="9">• Two-phase receipt hash</text>
+    <text x="14" y="168" fill="#f8fafc" font-size="9">• Zero Data Loss in Transit</text>
+    <rect x="14" y="195" width="142" height="22" rx="4" fill="#0f172a" stroke="#fbbf24" stroke-width="1"/>
+    <text x="85" y="210" fill="#fbbf24" font-size="8" font-weight="800" text-anchor="middle">GATE: ESN REFLECTION</text>
+  </g>
+
+  <!-- Arrow 3 -> 4 -->
+  <polygon points="593,220 601,225 593,230" fill="#fbbf24"/>
+
+  <!-- Phase 4 -->
+  <g transform="translate(605, 110)">
+    <rect width="170" height="230" rx="8" fill="#052e16" stroke="#10b981" stroke-width="1.5"/>
+    <rect width="170" height="34" rx="8" fill="#047857"/>
+    <rect y="24" width="170" height="10" fill="#047857"/>
+    <text x="14" y="22" fill="#ffffff" font-size="11" font-weight="800">PHASE 4</text>
+    <text x="14" y="50" fill="#6ee7b7" font-size="10" font-weight="800">DUAL BACKUP</text>
+    <text x="14" y="72" fill="#f8fafc" font-size="9">• USB &amp; SD card exports</text>
+    <text x="14" y="88" fill="#f8fafc" font-size="9">• File System Access API</text>
+    <text x="14" y="104" fill="#f8fafc" font-size="9">• Format 1: Raw .sqlite</text>
+    <text x="14" y="120" fill="#f8fafc" font-size="9">• Format 2: FHIR R4 JSON</text>
+    <text x="14" y="136" fill="#f8fafc" font-size="9">• Verified LOINC codes</text>
+    <text x="14" y="152" fill="#f8fafc" font-size="9">• SHA-256 batch manifest</text>
+    <text x="14" y="168" fill="#f8fafc" font-size="9">• Graceful download fallback</text>
+    <rect x="14" y="195" width="142" height="22" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
+    <text x="85" y="210" fill="#10b981" font-size="8" font-weight="800" text-anchor="middle">GATE: FHIR R4 VALID</text>
+  </g>
+
+  <!-- Arrow 4 -> 5 -->
+  <polygon points="783,220 791,225 783,230" fill="#10b981"/>
+
+  <!-- Phase 5 -->
+  <g transform="translate(795, 110)">
+    <rect width="170" height="230" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+    <rect width="170" height="34" rx="8" fill="#0f172a"/>
+    <rect y="24" width="170" height="10" fill="#0f172a"/>
+    <text x="14" y="22" fill="#ffffff" font-size="11" font-weight="800">PHASE 5</text>
+    <text x="14" y="50" fill="#38bdf8" font-size="10" font-weight="800">CERTIFICATION</text>
+    <text x="14" y="72" fill="#f8fafc" font-size="9">• strict_gate_v2.py (10/10)</text>
+    <text x="14" y="88" fill="#f8fafc" font-size="9">• Multi-device concurrent test</text>
+    <text x="14" y="104" fill="#f8fafc" font-size="9">• Zero cross-talk verify</text>
+    <text x="14" y="120" fill="#f8fafc" font-size="9">• Offline PWA sync test</text>
+    <text x="14" y="136" fill="#f8fafc" font-size="9">• Automated backup test</text>
+    <text x="14" y="152" fill="#f8fafc" font-size="9">• Zero Forbidden Terms</text>
+    <text x="14" y="168" fill="#f8fafc" font-size="9">• 100% Six Sigma Certified</text>
+    <rect x="14" y="195" width="142" height="22" rx="4" fill="#064e3b" stroke="#10b981" stroke-width="1"/>
+    <text x="85" y="210" fill="#34d399" font-size="8" font-weight="800" text-anchor="middle">100% SIX SIGMA</text>
+  </g>
+</svg>

@@ -98,19 +98,19 @@
       <!-- High-Contrast Dynamic Content Card -->
       <div class="content-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #0284c7; padding: 10px 14px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto;">
         <h3 style="color: #0284c7; font-weight: 800; border-bottom: 2px solid #e2e8f0; padding-bottom: 4px; margin-bottom: 5px; font-size: 1.05rem; text-transform: uppercase;">CENTRAL LIMIT THEOREM & NOISE SUPPRESSION MATH</h3>
-        <p style="color: #334155; font-weight: 500; margin-bottom: 5px; font-size: 0.85rem; line-height: 1.35;">How sample size scales resolution and measurement quality: mathematical proof of SE = σ/√N, Central Limit Theorem, and 161× SNR noise suppression.</p>
+        <p style="color: #334155; font-weight: 500; margin-bottom: 5px; font-size: 0.85rem; line-height: 1.35;">How sample size scales resolution and measurement quality: mathematical proof of SE = sigma / sqrt(N), Central Limit Theorem, and 161× SNR noise suppression.</p>
         <ul class="bullets-list" style="padding-left: 0; list-style-type: none; margin-bottom: 3px; color: #1e293b; font-size: 0.80rem;">
           
           <li id="bullet-item-0" class="bullet-item" data-idx="0" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">More Samples = Higher Resolution & Quality:</strong> Metrological law dictates that measurement uncertainty is inversely proportional to the square root of sample size: SE = σ/√N. Increasing N directly sharpens clinical resolution and suppresses stochastic noise.
+            <strong style="color: #0369a1;">More Samples = Higher Resolution & Quality:</strong> Metrological law dictates that measurement uncertainty is inversely proportional to the square root of sample size: SE = sigma / sqrt(N). Increasing N directly sharpens clinical resolution and suppresses stochastic noise.
           </li>
         
           <li id="bullet-item-1" class="bullet-item" data-idx="1" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">Error Variance Reduction (Var(x̄) = σ²/N):</strong> N=2 quarterly lab draws yield an error variance of 0.5σ². LCARS N=25,920 reduces error variance to 0.000038σ²—a 99.4% elimination of uncertainty, transforming noisy bio-signals into crystalline trajectories.
+            <strong style="color: #0369a1;">Error Variance Reduction (Var = sigma^2 / N):</strong> N=2 quarterly lab draws yield an error variance of 0.5 sigma^2. LCARS N=25,920 reduces error variance to 0.000038 sigma^2—a 99.4% elimination of uncertainty, transforming noisy bio-signals into crystalline trajectories.
           </li>
         
           <li id="bullet-item-2" class="bullet-item" data-idx="2" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">161× Signal-to-Noise Ratio (SNR ∝ √N):</strong> Coherent continuous averaging enhances SNR by √N. At N=25,920, random sensor noise and epidermal baseline wander are suppressed by a factor of 161 (24.1 dB SNR improvement), revealing subtle metabolic dynamics.
+            <strong style="color: #0369a1;">161× Signal-to-Noise Ratio (SNR scales with sqrt(N)):</strong> Coherent continuous averaging enhances SNR by sqrtN. At N=25,920, random sensor noise and epidermal baseline wander are suppressed by a factor of 161 (24.1 dB SNR improvement), revealing subtle metabolic dynamics.
           </li>
         
           <li id="bullet-item-3" class="bullet-item" data-idx="3" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
@@ -133,47 +133,47 @@
       <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #0284c7; padding: 8px 12px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow: hidden;">
         <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 4px; margin-bottom: 6px; flex-shrink: 0;">
           <span style="font-family: monospace; font-weight: 800; color: #0284c7; font-size: 0.84rem;">ERROR CONVERGENCE & SNR SCALING</span>
-          <span style="background: #f8fafc; color: #0284c7; font-weight: 800; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; border: 1.5px solid #0284c7;">SE = σ/√N • 161× NOISE SUPPRESSION</span>
+          <span style="background: #f8fafc; color: #0284c7; font-weight: 800; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; border: 1.5px solid #0284c7;">SE = sigma / sqrt(N) • 161× NOISE SUPPRESSION</span>
         </div>
         <div class="visual-content" style="flex: 1; display: flex; flex-direction: column;">
           
           <!-- Error Convergence & SNR Resolution Scale (Compact Fit) -->
           <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 6px 8px; color: #0f172a;">
             <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 2px; margin-bottom: 5px;">
-              <span style="font-family: monospace; font-size: 0.68rem; color: #0284c7; font-weight: 800;">STATISTICAL ERROR CONVERGENCE (SE = σ / √N)</span>
+              <span style="font-family: monospace; font-size: 0.68rem; color: #0284c7; font-weight: 800;">STATISTICAL ERROR CONVERGENCE (SE = sigma / sqrt(N))</span>
               <span style="background: #0284c7; color: #fff; font-size: 0.58rem; font-weight: bold; padding: 1px 5px; border-radius: 3px; font-family: monospace;">CENTRAL LIMIT</span>
             </div>
 
             <div style="display: flex; flex-direction: column; gap: 4px; font-family: monospace; font-size: 0.63rem;">
               <div>
                 <div style="display: flex; justify-content: space-between; color: #dc2626; font-weight: bold;">
-                  <span>QUARTERLY LAB (N=2 SAMPLES): SE = 0.707 σ</span>
+                  <span>QUARTERLY LAB (N=2 SAMPLES): SE = 0.707 sigma</span>
                   <span>UNCERTAINTY: 70.7%</span>
                 </div>
                 <div style="height: 15px; background: #fee2e2; border-radius: 3px; border: 1px solid #ef4444; position: relative; overflow: hidden; display: flex; align-items: center;">
                   <div style="width: 70.7%; height: 100%; background: #ef4444; opacity: 0.7;"></div>
-                  <span style="position: absolute; left: 6px; font-size: 0.55rem; color: #ffffff; font-weight: 800;">CI: ±1.38 σ (EXTREME UNCERTAINTY)</span>
+                  <span style="position: absolute; left: 6px; font-size: 0.55rem; color: #ffffff; font-weight: 800;">CI: +/-1.38 sigma (EXTREME UNCERTAINTY)</span>
                 </div>
               </div>
 
               <div>
                 <div style="display: flex; justify-content: space-between; color: #d97706; font-weight: bold;">
-                  <span>FINGERSTICKS (N=180 SAMPLES): SE = 0.075 σ</span>
+                  <span>FINGERSTICKS (N=180 SAMPLES): SE = 0.075 sigma</span>
                   <span>UNCERTAINTY: 7.5%</span>
                 </div>
                 <div style="height: 15px; background: #fef3c7; border-radius: 3px; border: 1px solid #f59e0b; position: relative; overflow: hidden; display: flex; align-items: center;">
                   <div style="width: 28%; height: 100%; background: #f59e0b; opacity: 0.7;"></div>
-                  <span style="position: absolute; left: 6px; font-size: 0.55rem; color: #78350f; font-weight: 800;">CI: ±0.15 σ (MODERATE VARIANCE)</span>
+                  <span style="position: absolute; left: 6px; font-size: 0.55rem; color: #78350f; font-weight: 800;">CI: +/-0.15 sigma (MODERATE VARIANCE)</span>
                 </div>
               </div>
 
               <div>
                 <div style="display: flex; justify-content: space-between; color: #15803d; font-weight: bold;">
-                  <span>LCARS 5010 (N=25,920 SAMPLES): SE = 0.0062 σ</span>
+                  <span>LCARS 5010 (N=25,920 SAMPLES): SE = 0.0062 sigma</span>
                   <span>UNCERTAINTY: 0.62%</span>
                 </div>
                 <div style="height: 16px; background: linear-gradient(90deg, #15803d, #16a34a); border-radius: 3px; border: 1.5px solid #15803d; display: flex; align-items: center; padding: 0 6px;">
-                  <span style="font-size: 0.56rem; color: #ffffff; font-weight: 800;">CI: ±0.012 σ • 161× NOISE SUPPRESSION • NEAR-ZERO VARIANCE</span>
+                  <span style="font-size: 0.56rem; color: #ffffff; font-weight: 800;">CI: +/-0.012 sigma • 161× NOISE SUPPRESSION • NEAR-ZERO VARIANCE</span>
                 </div>
               </div>
             </div>
@@ -199,21 +199,21 @@
                 </tr>
                 <tr style="border-bottom: 1px solid #f1f5f9;">
                   <td style="padding: 2px 4px; font-weight: bold;">Standard Error (SE)</td>
-                  <td style="padding: 2px 4px; color: #dc2626;">0.7071 σ</td>
-                  <td style="padding: 2px 4px; color: #d97706;">0.0745 σ</td>
-                  <td style="padding: 2px 4px; color: #15803d; font-weight: bold; background: #f0fdf4;">0.0062 σ (114× lower)</td>
+                  <td style="padding: 2px 4px; color: #dc2626;">0.7071 sigma</td>
+                  <td style="padding: 2px 4px; color: #d97706;">0.0745 sigma</td>
+                  <td style="padding: 2px 4px; color: #15803d; font-weight: bold; background: #f0fdf4;">0.0062 sigma (114× lower)</td>
                 </tr>
                 <tr style="border-bottom: 1px solid #f1f5f9;">
-                  <td style="padding: 2px 4px; font-weight: bold;">SNR Improvement (√N)</td>
+                  <td style="padding: 2px 4px; font-weight: bold;">SNR Improvement (sqrtN)</td>
                   <td style="padding: 2px 4px; color: #dc2626;">1.41× Baseline</td>
                   <td style="padding: 2px 4px; color: #d97706;">13.4× (+9.5×)</td>
                   <td style="padding: 2px 4px; color: #15803d; font-weight: bold; background: #f0fdf4;">161.0× (+161× gain)</td>
                 </tr>
                 <tr>
                   <td style="padding: 2px 4px; font-weight: bold;">Confidence Interval</td>
-                  <td style="padding: 2px 4px; color: #dc2626;">±138% Width</td>
-                  <td style="padding: 2px 4px; color: #d97706;">±14.6% Width</td>
-                  <td style="padding: 2px 4px; color: #15803d; font-weight: bold; background: #f0fdf4;">±1.2% (True Value)</td>
+                  <td style="padding: 2px 4px; color: #dc2626;">+/- 138% Width</td>
+                  <td style="padding: 2px 4px; color: #d97706;">+/- 14.6% Width</td>
+                  <td style="padding: 2px 4px; color: #15803d; font-weight: bold; background: #f0fdf4;">+/- 1.2% (True Value)</td>
                 </tr>
               </tbody>
             </table>
@@ -221,12 +221,12 @@
 
           <!-- Metrology Callout -->
           <div style="margin-top: 5px; background: #f0fdf4; border-left: 3px solid #16a34a; padding: 4px 8px; border-radius: 4px; font-size: 0.62rem; color: #14532d; line-height: 1.3; font-family: monospace;">
-            <strong>METROLOGICAL LAW:</strong> In stochastic signal processing, noise is zero-mean Gaussian. Averaging N independent measurements diminishes noise by 1/√N. LCARS achieves 161× higher precision than quarterly blood draws.
+            <strong>METROLOGICAL LAW:</strong> In stochastic signal processing, noise is zero-mean Gaussian. Averaging N independent measurements diminishes noise by 1 / sqrt(N). LCARS achieves 161× higher precision than quarterly blood draws.
           </div>
 
         </div>
         <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.76rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
-          <strong style="color: #15803d;">Key Takeaway:</strong> More samples yield higher resolution and measurement quality: by the Central Limit Theorem, LCARS's 25,920 continuous glucose samples reduce standard error by 99.4% (SE = σ/√N) and suppress noise by 161× (SNR ∝ √N), elevating clinical precision and repeatability far beyond isolated snapshots.
+          <strong style="color: #15803d;">Key Takeaway:</strong> More samples yield higher resolution and measurement quality: by the Central Limit Theorem, LCARS's 25,920 continuous glucose samples reduce standard error by 99.4% (SE = sigma / sqrt(N)) and suppress noise by 161× (SNR scales with sqrt(N)), elevating clinical precision and repeatability far beyond isolated snapshots.
         </div>
       </div>
     

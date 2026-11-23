@@ -243,6 +243,49 @@ def init_database():
             )
         """)
 
+        # Multi-Tenant 3-Way Triad Tables (Star Ship Gemini NCC-202X)
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS user_profiles (
+                user_uid TEXT PRIMARY KEY,
+                user_callsign TEXT NOT NULL,
+                assigned_registry TEXT NOT NULL,
+                baseline_a1c REAL DEFAULT 6.5,
+                eag_target_low REAL DEFAULT 70.0,
+                eag_target_high REAL DEFAULT 140.0,
+                database_filename TEXT NOT NULL,
+                created_at TEXT NOT NULL,
+                status TEXT DEFAULT 'ACTIVE'
+            )
+        """)
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS registered_cells (
+                cell_id TEXT PRIMARY KEY,
+                registry_number TEXT NOT NULL,
+                user_uid TEXT NOT NULL,
+                user_callsign TEXT NOT NULL,
+                linked_watch_mac TEXT UNIQUE NOT NULL,
+                phone_name TEXT NOT NULL,
+                phone_esn TEXT UNIQUE NOT NULL,
+                pairing_token TEXT NOT NULL,
+                registered_at TEXT NOT NULL,
+                last_docked_at TEXT,
+                status TEXT DEFAULT 'ACTIVE',
+                FOREIGN KEY(user_uid) REFERENCES user_profiles(user_uid)
+            )
+        """)
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS user_legal_acceptance (
+                agreement_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                user_uid TEXT NOT NULL,
+                terms_version TEXT NOT NULL,
+                terms_sha256 TEXT NOT NULL,
+                accepted_timestamp TEXT NOT NULL,
+                signature_acknowledgment INTEGER DEFAULT 1,
+                ip_address TEXT,
+                device_fingerprint TEXT
+            )
+        """)
+
         # Seed initial state if empty
         cur.execute("SELECT value FROM sync_state WHERE key = 'last_sync_timestamp'")
         row = cur.fetchone()
@@ -3344,6 +3387,55 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                 self.end_headers()
                 self.wfile.write(data)
                 return
+
+        # BFM Shuttlecraft & Multi-Tenant Family Cells Roster
+        if self.path.startswith("/api/shuttle/roster"):
+            with db_lock:
+                conn = sqlite3.connect(DB_PATH)
+                cur = conn.cursor()
+                cur.execute("""
+                    SELECT c.cell_id, c.registry_number, c.user_uid, c.user_callsign,
+                           c.linked_watch_mac, c.phone_name, c.phone_esn, c.pairing_token,
+                           c.registered_at, c.last_docked_at, c.status, p.baseline_a1c
+                    FROM registered_cells c
+                    LEFT JOIN user_profiles p ON c.user_uid = p.user_uid
+                    ORDER BY c.cell_id ASC
+                """)
+                rows = cur.fetchall()
+                conn.close()
+                roster = []
+                for r in rows:
+                    roster.append({
+                        "cell_id": r[0],
+                        "registry_number": r[1],
+                        "user_uid": r[2],
+                        "user_callsign": r[3],
+                        "linked_watch_mac": r[4],
+                        "phone_name": r[5],
+                        "phone_esn": r[6],
+                        "pairing_token": r[7],
+                        "registered_at": r[8],
+                        "last_docked_at": r[9],
+                        "status": r[10],
+                        "baseline_a1c": r[11]
+                    })
+            self.send_json_response({"status": "OK", "roster": roster})
+            return
+
+        # Startup Legal Acceptance Status
+        if self.path.startswith("/api/legal/status"):
+            with db_lock:
+                conn = sqlite3.connect(DB_PATH)
+                cur = conn.cursor()
+                cur.execute("SELECT agreement_id, user_uid, terms_version, accepted_timestamp FROM user_legal_acceptance ORDER BY agreement_id DESC LIMIT 1")
+                row = cur.fetchone()
+                conn.close()
+                if row:
+                    self.send_json_response({"accepted": True, "agreement_id": row[0], "user_uid": row[1], "terms_version": row[2], "accepted_timestamp": row[3]})
+                else:
+                    self.send_json_response({"accepted": False})
+            return
+
         # 1. Sync Status API
         if self.path.startswith("/api/sync/status"):
             last_sync_iso = ble_state.get("last_sync")
@@ -3970,6 +4062,191 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
             self.send_header("Access-Control-Allow-Origin", "*")
             self.end_headers()
             self.wfile.write(b"OK")
+
+        # BFM Shuttlecraft Triad: Provisioning Handshake
+        elif self.path == "/api/shuttle/provision":
+            import uuid
+            content_length = int(self.headers.get("Content-Length", 0))
+            body = self.rfile.read(content_length).decode("utf-8", errors="ignore")
+            try:
+                payload = json.loads(body)
+                cell_id = payload.get("cell_id", f"Cell {datetime.datetime.now().strftime('%M%S')}")
+                user_uid = payload.get("user_uid", "USR-9482-NEW")
+                user_callsign = payload.get("user_callsign", "Family Member")
+                registry_number = payload.get("assigned_registry", f"NCC-202X-{cell_id.replace('Cell ', '')}")
+                linked_watch_mac = payload.get("linked_watch_mac", "")
+                target_a1c = float(payload.get("target_a1c", 6.5))
+                pairing_token = str(uuid.uuid4())
+                now_iso = datetime.datetime.utcnow().isoformat() + "Z"
+
+                with db_lock:
+                    conn = sqlite3.connect(DB_PATH)
+                    cur = conn.cursor()
+                    cur.execute("""
+                        INSERT OR REPLACE INTO user_profiles 
+                        (user_uid, user_callsign, assigned_registry, baseline_a1c, database_filename, created_at, status)
+                        VALUES (?, ?, ?, ?, 'telemetry.db', ?, 'ACTIVE')
+                    """, (user_uid, user_callsign, registry_number, target_a1c, now_iso))
+                    
+                    cur.execute("""
+                        INSERT OR REPLACE INTO registered_cells
+                        (cell_id, registry_number, user_uid, user_callsign, linked_watch_mac, phone_name, phone_esn, pairing_token, registered_at, status)
+                        VALUES (?, ?, ?, ?, ?, 'Pending Handshake', ?, ?, ?, 'PENDING_HANDSHAKE')
+                    """, (cell_id, registry_number, user_uid, user_callsign, linked_watch_mac, f"ESN-PENDING-{pairing_token[:8]}", pairing_token, now_iso))
+                    conn.commit()
+                    conn.close()
+
+                self.send_json_response({
+                    "status": "PROVISIONED",
+                    "cell_id": cell_id,
+                    "registry_number": registry_number,
+                    "user_uid": user_uid,
+                    "user_callsign": user_callsign,
+                    "linked_watch_mac": linked_watch_mac,
+                    "pairing_token": pairing_token
+                })
+            except Exception as e:
+                self.send_json_response({"status": "ERROR", "error": str(e)}, 400)
+
+        # BFM Shuttlecraft Triad: Mobile Registration Handshake
+        elif self.path == "/api/shuttle/register":
+            import uuid
+            content_length = int(self.headers.get("Content-Length", 0))
+            body = self.rfile.read(content_length).decode("utf-8", errors="ignore")
+            try:
+                payload = json.loads(body)
+                pairing_token = payload.get("pairing_token")
+                cell_id = payload.get("cell_id")
+                phone_name = payload.get("phone_name", "Android Auxiliary Scout")
+                phone_esn = payload.get("phone_esn", f"ESN-{uuid.uuid4().hex[:8].upper()}")
+                now_iso = datetime.datetime.utcnow().isoformat() + "Z"
+
+                with db_lock:
+                    conn = sqlite3.connect(DB_PATH)
+                    cur = conn.cursor()
+                    if pairing_token:
+                        cur.execute("SELECT cell_id, user_uid, user_callsign, registry_number FROM registered_cells WHERE pairing_token = ?", (pairing_token,))
+                    else:
+                        cur.execute("SELECT cell_id, user_uid, user_callsign, registry_number FROM registered_cells WHERE cell_id = ?", (cell_id,))
+                    row = cur.fetchone()
+                    if not row:
+                        conn.close()
+                        self.send_json_response({"status": "ERROR", "error": "Invalid pairing token or cell ID"}, 404)
+                        return
+
+                    matched_cell_id, user_uid, callsign, reg_num = row
+                    cur.execute("""
+                        UPDATE registered_cells 
+                        SET phone_name = ?, phone_esn = ?, status = 'ACTIVE', registered_at = ?
+                        WHERE cell_id = ?
+                    """, (phone_name, phone_esn, now_iso, matched_cell_id))
+                    conn.commit()
+                    conn.close()
+
+                self.send_json_response({
+                    "status": "REGISTERED",
+                    "cell_id": matched_cell_id,
+                    "user_uid": user_uid,
+                    "user_callsign": callsign,
+                    "registry_number": reg_num,
+                    "phone_esn": phone_esn,
+                    "registered_at": now_iso
+                })
+            except Exception as e:
+                self.send_json_response({"status": "ERROR", "error": str(e)}, 400)
+
+        # BFM Shuttlecraft Triad: Homecoming Bulk Data Docking
+        elif self.path == "/api/shuttle/dock":
+            content_length = int(self.headers.get("Content-Length", 0))
+            body = self.rfile.read(content_length).decode("utf-8", errors="ignore")
+            try:
+                payload = json.loads(body)
+                cell_id = payload.get("cell_id", "Cell 1")
+                phone_esn = payload.get("phone_esn", "")
+                batch_records = payload.get("batch_records", [])
+                now_iso = datetime.datetime.utcnow().isoformat() + "Z"
+
+                docked_count = 0
+                with db_lock:
+                    conn = sqlite3.connect(DB_PATH)
+                    cur = conn.cursor()
+                    cur.execute("SELECT user_uid FROM registered_cells WHERE cell_id = ? OR phone_esn = ?", (cell_id, phone_esn))
+                    urow = cur.fetchone()
+                    cell_uid = urow[0] if urow else "USR-9482-01"
+
+                    for item in batch_records:
+                        m_time = item.get("intake_timestamp") or item.get("timestamp") or now_iso
+                        m_name = item.get("meal_name", "Shuttlecraft Intake")
+                        cals = item.get("calories", 0)
+                        nc = item.get("net_carbs", 0)
+                        tc = item.get("total_carbs", nc)
+                        fib = item.get("fiber", 0)
+                        prot = item.get("protein", 0)
+                        fat = item.get("fat", 0)
+                        gl = item.get("glycemic_impact_score") or item.get("glycemic_load") or "MODERATE"
+                        raw_json_str = json.dumps(item)
+
+                        cur.execute("""
+                            INSERT INTO meal_entries 
+                            (timestamp, meal_name, source, calories, net_carbs, total_carbs, fiber, protein, fat, glycemic_load, vendor_matched, gemini_notes, meets_goal, raw_json, user_uid)
+                            VALUES (?, ?, 'SHUTTLE_DOCK', ?, ?, ?, ?, ?, ?, ?, 1, ?, 1, ?, ?)
+                        """, (m_time, m_name, cals, nc, tc, fib, prot, fat, gl, item.get("audio_transcript", ""), raw_json_str, cell_uid))
+                        docked_count += 1
+
+                    cur.execute("UPDATE registered_cells SET last_docked_at = ? WHERE cell_id = ? OR phone_esn = ?", (now_iso, cell_id, phone_esn))
+                    conn.commit()
+                    conn.close()
+
+                self.send_json_response({
+                    "status": "DOCK_SUCCESS",
+                    "cell_id": cell_id,
+                    "docked_records": docked_count,
+                    "last_docked_at": now_iso
+                })
+            except Exception as e:
+                self.send_json_response({"status": "ERROR", "error": str(e)}, 400)
+
+        # Startup Legal Acceptance Logging
+        elif self.path == "/api/legal/accept":
+            content_length = int(self.headers.get("Content-Length", 0))
+            body = self.rfile.read(content_length).decode("utf-8", errors="ignore")
+            try:
+                payload = json.loads(body)
+                user_uid = payload.get("user_uid", "USR-9482-01")
+                terms_version = payload.get("terms_version", "BFM-BETA1-2026")
+                terms_sha256 = payload.get("terms_sha256", "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855")
+                now_iso = datetime.datetime.utcnow().isoformat() + "Z"
+                client_ip = self.client_address[0] if hasattr(self, "client_address") else "127.0.0.1"
+
+                with db_lock:
+                    conn = sqlite3.connect(DB_PATH)
+                    cur = conn.cursor()
+                    cur.execute("""
+                        INSERT INTO user_legal_acceptance 
+                        (user_uid, terms_version, terms_sha256, accepted_timestamp, signature_acknowledgment, ip_address, device_fingerprint)
+                        VALUES (?, ?, ?, ?, 1, ?, ?)
+                    """, (user_uid, terms_version, terms_sha256, now_iso, client_ip, payload.get("device_fingerprint", "BROWSER_CLIENT")))
+                    conn.commit()
+                    conn.close()
+
+                self.send_json_response({
+                    "status": "ACCEPTED",
+                    "user_uid": user_uid,
+                    "terms_version": terms_version,
+                    "accepted_timestamp": now_iso
+                })
+            except Exception as e:
+                self.send_json_response({"status": "ERROR", "error": str(e)}, 400)
+
+        # Dual USB/SD Export Engine Trigger
+        elif self.path == "/api/backup/dual_export":
+            try:
+                sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+                import dual_backup_engine
+                summary = dual_backup_engine.perform_dual_backup()
+                self.send_json_response(summary)
+            except Exception as e:
+                self.send_json_response({"status": "ERROR", "error": str(e)}, 500)
 
         else:
             self.send_error(404, "Not Found")

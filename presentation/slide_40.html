@@ -144,20 +144,20 @@
             <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 4px; padding: 6px; margin-bottom: 6px;">
               <div style="color: #1e40af; font-weight: bold;">1. TIME-DOMAIN STANDARD METRICS:</div>
               <div style="color: #1e3a8a; margin-top: 3px;">
-                • <strong>Beat Interval:</strong> RR_i = t_i - t_{i-1} (ms)<br>
-                • <strong>Total Autonomic Power:</strong> SDNN = √[ 1/(N-1) ∑ (RR_i - Mean_RR)² ]<br>
-                • <strong>Parasympathetic Vagal Tone:</strong> RMSSD = √[ 1/(N-1) ∑ (RR_{i+1} - RR_i)² ]
+                • <strong>Beat Interval:</strong> RR[i] = t_i - t[i-1] (ms)<br>
+                • <strong>Total Autonomic Power:</strong> SDNN = sqrt[ 1/(N-1) ∑ (RR[i] - Mean_RR)^2 ]<br>
+                • <strong>Parasympathetic Vagal Tone:</strong> RMSSD = sqrt[ 1/(N-1) ∑ (RR[i+1] - RR[i])^2 ]
               </div>
             </div>
 
             <!-- Poincaré Lorenz Scatter Geometry -->
             <div style="background: #f5f3ff; border: 1.5px solid #ddd6fe; border-radius: 4px; padding: 6px; margin-bottom: 6px;">
-              <div style="color: #5b21b6; font-weight: bold;">2. LORENZ 2D SCATTER ELLIPSE EQUATIONS (RR_i vs RR_{i+1}):</div>
+              <div style="color: #5b21b6; font-weight: bold;">2. LORENZ 2D SCATTER ELLIPSE EQUATIONS (RR[i] vs RR[i+1]):</div>
               <div style="color: #4c1d95; margin-top: 3px;">
                 • <strong>Transverse Axis (Instantaneous Vagal):</strong><br>
-                &nbsp;&nbsp;SD1 = √[ 1/2 Var(RR_{i+1} - RR_i) ] = <strong>RMSSD / √2</strong><br>
+                &nbsp;&nbsp;SD1 = sqrt[ 1/2 Var(RR[i+1] - RR[i]) ] = <strong>RMSSD / sqrt2</strong><br>
                 • <strong>Longitudinal Axis (Total / Sympathetic):</strong><br>
-                &nbsp;&nbsp;SD2 = √[ 2·SDNN² - 1/2·RMSSD² ]<br>
+                &nbsp;&nbsp;SD2 = sqrt( 2 * SDNN^2 - 0.5 * RMSSD^2 )<br>
                 • <strong>Sympatho-Vagal Balance Ratio:</strong><br>
                 &nbsp;&nbsp;Ratio = <strong>SD1 / SD2</strong> (Normal resting ratio: 0.30 – 0.50)
               </div>

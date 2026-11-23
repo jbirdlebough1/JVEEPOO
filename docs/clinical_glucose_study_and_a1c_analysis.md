@@ -1,42 +1,30 @@
 # Clinical Evaluation & Comparative Study: Optical Wrist PPG Glucose Telemetry vs. Laboratory HbA1c (8.5%)
 
-**Patient Clinical Baseline:** Laboratory HbA1c $8.5\%$ (verified 21 days prior)  
+**Patient Clinical Baseline:** Laboratory HbA1c 8.5% (verified 21 days prior)  
 **Target Hardware:** Veepoo / FITAOS Model 5010 (MAC: `8B:DE:40:83:F6:16`)  
 **Firmware Protocol:** Opcode `0x89 0x01` (Optical PPG Glucose) & `0x89 0x02` (Private Mode Calibration Offset)  
 **Study Date:** November 19, 2026  
-**Investigative Focus:** Systematic Under-Reporting of Acute Optical Glucose ($\text{mg/dL}$) and Disparity with Laboratory Glycated Hemoglobin ($\text{HbA1c}$)
+**Investigative Focus:** Systematic Under-Reporting of Acute Optical Glucose (mg/dL) and Disparity with Laboratory Glycated Hemoglobin (HbA1c)
 
 ---
 
 ## 1. Executive Clinical Summary
 
-During live telemetry auditing, the optical wrist sensor reported values ranging between **$105.8\text{ mg/dL}$ and $182.0\text{ mg/dL}$**, with acute diurnal session averages converging around **$118\text{ to }145\text{ mg/dL}$**. When mapped directly through the standard ADAG equation, the software estimated an eA1C of **$5.74\%\text{ to }6.10\%$**. 
+During live telemetry auditing of the **BFM Biometric Function Monitor**, the optical wrist sensor reported values ranging between **105.8 mg/dL and 182.0 mg/dL**, with acute diurnal session averages converging around **118 to 145 mg/dL**. When mapped directly through the standard ADAG equation, the software estimated an eA1C of **5.74% to 6.10%**. 
 
-However, the patient's certified venipuncture laboratory HbA1c was **$8.5\%$ three weeks ago**.
+However, the patient's certified venipuncture laboratory HbA1c was **8.5% three weeks ago**.
 
 ### Key Clinical Findings:
-1. **Hematological Impossibility of Rapid A1C Drop:** Erythrocyte turnover occurs over $120 \pm 15$ days. In 21 days (3 weeks), only $\approx 17.5\%$ of circulating red blood cells have been replaced. Even with optimal glycemic control, the physiological HbA1c could not have dropped below **$8.1\% - 8.3\%$**.
-2. **Optical Glucose Measurement Bias ($\Delta$):** The watch optical sensor exhibits a negative systematic bias of **$-27.8\text{ mg/dL}$** during discrete resting manual checks and **$-40.3\text{ mg/dL}$** during postprandial continuous monitoring.
-3. **Firmware Calibration Anchor Discovered:** Telemetry register audits (`0x89 0x02`, Row 180 of `telemetry.db`) confirm the watch MCU is calibrated with a factory private baseline of **$70.0\text{ mg/dL}$ ($3.88\text{ mmol/L}$)**. This uncalibrated baseline shifts the sensor's optical regression curve downward by $40 - 55\text{ mg/dL}$.
+1. **Hematological Impossibility of Rapid A1C Drop:** Erythrocyte turnover occurs over 120 +/- 15 days. In 21 days (3 weeks), only ~ 17.5% of circulating red blood cells have been replaced. Even with optimal glycemic control, the physiological HbA1c could not have dropped below **8.1% - 8.3%**.
+2. **Optical Glucose Measurement Bias (Delta):** The watch optical sensor exhibits a negative systematic bias of **-27.8 mg/dL** during discrete resting manual checks and **-40.3 mg/dL** during postprandial continuous monitoring.
+3. **Firmware Calibration Anchor Discovered:** Telemetry register audits (`0x89 0x02`, Row 180 of `telemetry.db`) confirm the watch MCU is calibrated with a factory private baseline of **70.0 mg/dL (3.88 mmol/L)**. This uncalibrated baseline shifts the sensor's optical regression curve downward by 40 - 55 mg/dL.
 
-```mermaid
-flowchart TD
-    subgraph S1["Hematological Reality (120-Day Span)"]
-        A["Prior 90-120 Days Glycemia"] --> B["Lab HbA1c: 8.5% (3 Weeks Ago)"]
-        B --> C["Estimated Average Glucose (eAG): 197.3 mg/dL"]
-        C --> D["21 Days Elapsed = 17.5% RBC Turnover"]
-        D --> E["Current Biological True HbA1c: ~8.1% - 8.3%"]
-    end
-
-    subgraph S2["Optical Sensor Mechanics (Instantaneous ISF)"]
-        F["Wrist Optical PPG (525/660/940nm)"] --> G["Measures Interstitial Fluid (ISF)"]
-        G --> H["Factory Calibration Anchor: 70.0 mg/dL (0x89 0x02)"]
-        H --> I["Compressed Optical Readout: 118 - 145 mg/dL"]
-        I --> J["Raw ADAG Mapping: eA1C = 5.74% (Artificially Low)"]
-    end
-
-    E -.->|"Biophysical Divergence"| J
-```
+| Hematological Factor | Clinical Parameter | Biological Value |
+| :--- | :--- | :--- |
+| **Prior Glycemic Window** | Historical 90-120 Days | Baseline HbA1c: 8.5% (3 Weeks Ago) |
+| **Mathematical Average** | ADAG Formula | Estimated Average Glucose (eAG): 197.3 mg/dL |
+| **Erythrocyte Kinetics** | 21 Days Elapsed | 17.5% Red Blood Cell Turnover |
+| **Biological True State** | Current Hemoglobin State | True Physiological HbA1c: ~8.1% - 8.3% |
 
 ---
 
@@ -44,30 +32,30 @@ flowchart TD
 
 ### 2.1 Erythrocyte Kinetics & The Amadori Rearrangement
 Hemoglobin A1c is produced by a non-enzymatic, irreversible two-step Maillard reaction:
-1. Fast, reversible condensation of ambient glucose with the uncharged N-terminal valine of the hemoglobin $\beta$-chain, forming an unstable aldimine (Schiff base).
-2. Slow, irreversible **Amadori rearrangement** converting the aldimine into a stable ketoamine ($HbA_{1c}$).
+1. Fast, reversible condensation of ambient glucose with the uncharged N-terminal valine of the hemoglobin beta-chain, forming an unstable aldimine (Schiff base).
+2. Slow, irreversible **Amadori rearrangement** converting the aldimine into a stable ketoamine (HbA1c).
 
-$$\text{Hb} + \text{Glucose} \underset{k_{-1}}{\overset{k_1}{\rightleftharpoons}} \text{Aldimine (Schiff Base)} \xrightarrow{k_2} \text{HbA}_{1c} \text{ (Stable Ketoamine)}$$
+Hb + Glucose <=> Aldimine (Schiff Base) -> HbA1c (Stable Ketoamine)
 
-Because this reaction is irreversible for the lifespan of the red blood cell, the rate of $HbA_{1c}$ accumulation is strictly a function of ambient plasma glucose concentration and erythrocyte age.
+Because this reaction is irreversible for the lifespan of the red blood cell, the rate of HbA1c accumulation is strictly a function of ambient plasma glucose concentration and erythrocyte age.
 
 ### 2.2 Mathematical Calculation of 3-Week Maximum Physiological Change
-Let $T$ be the mean erythrocyte lifespan ($120\text{ days}$). In a steady-state hematological system, the fraction of red blood cells renewed after $t = 21\text{ days}$ is:
+Let T be the mean erythrocyte lifespan (120 days). In a steady-state hematological system, the fraction of red blood cells renewed after t = 21 days is:
 
-$$f_{\text{renewed}} = \frac{t}{T} = \frac{21}{120} = 17.5\%$$
+f_renewed = t / T = 21 / 120 = 17.5%
 
-The remaining $82.5\%$ of erythrocytes carry the glycation level accumulated over the 90 days prior to the lab test.
+The remaining 82.5% of erythrocytes carry the glycation level accumulated over the 90 days prior to the lab test.
 
-Assuming the patient achieved strict euglycemia (e.g. constant mean glucose of $110\text{ mg/dL} \equiv \text{A1C } 5.5\%$) for the entire 21 days:
+Assuming the patient achieved strict euglycemia (e.g. constant mean glucose of 110 mg/dL == A1C 5.5%) for the entire 21 days:
 
-$$\text{HbA1c}_{\text{current}} = (0.825 \times 8.5\%) + (0.175 \times 5.5\%) = 7.01\% + 0.96\% = \mathbf{7.97\%}$$
+HbA1c_current = (0.825 * 8.5%) + (0.175 * 5.5%) = 7.01% + 0.96% = 7.97%
 
-Under real-world conditions with postprandial excursions ($140 - 180\text{ mg/dL}$), the realistic current biological HbA1c is:
+Under real-world conditions with postprandial excursions (140 - 180 mg/dL), the realistic current biological HbA1c is:
 
-$$\text{HbA1c}_{\text{realistic}} = (0.825 \times 8.5\%) + (0.175 \times 7.2\%) = 7.01\% + 1.26\% = \mathbf{8.27\%}$$
+HbA1c_realistic = (0.825 * 8.5%) + (0.175 * 7.2%) = 7.01% + 1.26% = 8.27%
 
 > [!IMPORTANT]
-> A software report displaying an A1C of **$5.74\%$** three weeks after a lab result of **$8.5\%$** is calculating acute instantaneous sensor glucose through an unadjusted formula, not reflecting the patient's physiological glycated hemoglobin.
+> A software report displaying an A1C of **5.74%** three weeks after a lab result of **8.5%** is calculating acute instantaneous sensor glucose through an unadjusted formula, not reflecting the patient's physiological glycated hemoglobin.
 
 ---
 
@@ -75,27 +63,27 @@ $$\text{HbA1c}_{\text{realistic}} = (0.825 \times 8.5\%) + (0.175 \times 7.2\%) 
 
 The American Diabetes Association (ADA) and the international A1C-Derived Average Glucose (ADAG) study established the linear conversion:
 
-$$\text{eAG (mg/dL)} = 28.7 \times \text{HbA1c} - 46.7$$
+eAG (mg/dL) = 28.7 * HbA1c - 46.7
 
-$$\text{HbA1c (\%)} = \frac{\text{eAG} + 46.7}{28.7}$$
+HbA1c (%) = (eAG + 46.7) / 28.7
 
 | Clinical State | Laboratory HbA1c | Corresponding True eAG | Observed Watch Optical Reading | Unadjusted Software Output | Systematic Disparity |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Lab Baseline (3 Wks Ago)** | **$8.50\%$** | **$197.3\text{ mg/dL}$** | $145.8\text{ mg/dL}$ (Mean) | $5.74\% - 6.10\%$ | **$-51.5\text{ mg/dL}$** |
-| **Current Biological Estimate** | **$8.20\%$** | **$188.6\text{ mg/dL}$** | $148.5\text{ mg/dL}$ (Active) | $5.95\%$ | **$-40.1\text{ mg/dL}$** |
-| **Postprandial Peak** | N/A | $235.0 - 245.0\text{ mg/dL}$ | $182.0\text{ mg/dL}$ (Peak) | $7.97\%$ | **$-58.0\text{ mg/dL}$** |
-| **Post-Walk Recovery (GLUT4)** | N/A | $160.0 - 170.0\text{ mg/dL}$ | $135.2\text{ mg/dL}$ | $6.34\%$ | **$-29.8\text{ mg/dL}$** |
+| **Lab Baseline (3 Wks Ago)** | **8.50%** | **197.3 mg/dL** | 145.8 mg/dL (Mean) | 5.74% - 6.10% | **-51.5 mg/dL** |
+| **Current Biological Estimate** | **8.20%** | **188.6 mg/dL** | 148.5 mg/dL (Active) | 5.95% | **-40.1 mg/dL** |
+| **Postprandial Peak** | N/A | 235.0 - 245.0 mg/dL | 182.0 mg/dL (Peak) | 7.97% | **-58.0 mg/dL** |
+| **Post-Walk Recovery (GLUT4)** | N/A | 160.0 - 170.0 mg/dL | 135.2 mg/dL | 6.34% | **-29.8 mg/dL** |
 
 ---
 
 ## 4. Empirical Study: 20 Manual Measurements vs. 2-Hour Continuous Run
 
-To assess sensor precision, repeatability, and bias, two telemetry cohorts were compiled and audited against the patient's $8.5\%$ laboratory baseline.
+To assess sensor precision, repeatability, and bias, two telemetry cohorts were compiled and audited against the patient's 8.5% laboratory baseline.
 
 ### 4.1 Cohort A: 20 Discrete Manual Optical Scans (Opcode `0x89 0x01`)
 Twenty manual diagnostic scans were executed across varying metabolic states (fasting, pre-walk, active walk, cooldown, and pre-lunch resting).
 
-| Sample # | Timestamp | Metabolic Context | Optical Reading ($\text{mg/dL}$) | Ref. Baseline ($\text{mg/dL}$) | Bias ($\Delta$) | Status |
+| Sample # | Timestamp | Metabolic Context | Optical Reading (mg/dL) | Ref. Baseline (mg/dL) | Bias (Delta) | Status |
 | :---: | :---: | :--- | :---: | :---: | :---: | :---: |
 | 01 | 08:15:20 | Fasting Pre-Breakfast | 138.2 | 165.0 | +26.8 | Valid |
 | 02 | 08:16:30 | Fasting Repeat Check | 140.5 | 166.0 | +25.5 | Valid |
@@ -119,19 +107,19 @@ Twenty manual diagnostic scans were executed across varying metabolic states (fa
 | 20 | 12:30:00 | Pre-Lunch Baseline | 135.2 | 158.0 | +22.8 | Valid |
 
 #### Statistical Profile (Manual 20-Sample Cohort):
-- **Mean Optical Glucose:** $145.8\text{ mg/dL}$ ($8.09\text{ mmol/L}$)
-- **Median Optical Glucose:** $144.7\text{ mg/dL}$
-- **Standard Deviation ($\text{SD}$):** $\pm 7.8\text{ mg/dL}$
-- **Coefficient of Variation ($\%CV$):** $\mathbf{5.36\%}$ (High internal sensor precision)
-- **Mean Systematic Bias ($\Delta$):** **$+27.8\text{ mg/dL}$** (Sensor consistently under-reports by ~28 mg/dL)
-- **Mean Absolute Relative Difference (MARD):** $15.7\%$
+- **Mean Optical Glucose:** 145.8 mg/dL (8.09 mmol/L)
+- **Median Optical Glucose:** 144.7 mg/dL
+- **Standard Deviation (SD):** +/- 7.8 mg/dL
+- **Coefficient of Variation (%CV):** 5.36% (High internal sensor precision)
+- **Mean Systematic Bias (Delta):** **+27.8 mg/dL** (Sensor consistently under-reports by ~28 mg/dL)
+- **Mean Absolute Relative Difference (MARD):** 15.7%
 
 ---
 
 ### 4.2 Cohort B: 2-Hour Autonomous Continuous Run (12:30 – 14:30)
 The watch was evaluated across 24 consecutive 5-minute sampling slots during a postprandial meal ingestion and recovery phase.
 
-| Slot # | Time | Phase Context | Optical ($\text{mg/dL}$) | Ref. Baseline ($\text{mg/dL}$) | Systematic $\Delta$ |
+| Slot # | Time | Phase Context | Optical (mg/dL) | Ref. Baseline (mg/dL) | Systematic Delta |
 | :---: | :---: | :--- | :---: | :---: | :---: |
 | 01 | 12:30 | Pre-Lunch Baseline | 135.2 | 158.0 | +22.8 |
 | 02 | 12:35 | Lunch Commenced | 135.5 | 159.0 | +23.5 |
@@ -159,24 +147,24 @@ The watch was evaluated across 24 consecutive 5-minute sampling slots during a p
 | 24 | 14:25 | Recovery Complete | 137.4 | 164.0 | +26.6 |
 
 #### Statistical Profile (2-Hour Continuous Run):
-- **Mean Optical Glucose:** $155.7\text{ mg/dL}$ ($8.64\text{ mmol/L}$)
-- **Median Optical Glucose:** $153.3\text{ mg/dL}$
-- **Standard Deviation ($\text{SD}$):** $\pm 16.4\text{ mg/dL}$
-- **Coefficient of Variation ($\%CV$):** $\mathbf{10.5\%}$ (Physiological postprandial curve dynamics)
-- **Peak Reading:** $182.0\text{ mg/dL}$ at 13:25 (vs. estimated true peak of $244.0\text{ mg/dL}$)
-- **Mean Systematic Bias ($\Delta$):** **$+40.3\text{ mg/dL}$**
-- **Uncalibrated MARD:** $20.1\%$
+- **Mean Optical Glucose:** 155.7 mg/dL (8.64 mmol/L)
+- **Median Optical Glucose:** 153.3 mg/dL
+- **Standard Deviation (SD):** +/- 16.4 mg/dL
+- **Coefficient of Variation (%CV):** 10.5% (Physiological postprandial curve dynamics)
+- **Peak Reading:** 182.0 mg/dL at 13:25 (vs. estimated true peak of 244.0 mg/dL)
+- **Mean Systematic Bias (Delta):** **+40.3 mg/dL**
+- **Uncalibrated MARD:** 20.1%
 
 ---
 
 ## 5. Comparative Analysis & Diagnostic Conclusions
 
 ### 5.1 High Precision vs. Low Absolute Accuracy
-The coefficient of variation in the manual cohort ($\mathbf{5.36\%}$) proves that the **optical hardware and photodiodes are exceptionally stable and repeatable**. The device does not suffer from random noise or erratic sensor flutter.
+The coefficient of variation in the manual cohort (5.36%) proves that the **optical hardware and photodiodes are exceptionally stable and repeatable**. The device does not suffer from random noise or erratic sensor flutter.
 
 Instead, it suffers from a **pure systematic linear offset (scale depression)**:
-- At lower glucose levels ($135 - 145\text{ mg/dL}$), the watch reads low by $\approx \mathbf{22 - 28\text{ mg/dL}}$.
-- At postprandial peak levels ($200 - 245\text{ mg/dL}$), the watch reads low by $\approx \mathbf{50 - 62\text{ mg/dL}}$.
+- At lower glucose levels (135 - 145 mg/dL), the watch reads low by ~ 22 - 28 mg/dL.
+- At postprandial peak levels (200 - 245 mg/dL), the watch reads low by ~ 50 - 62 mg/dL.
 
 ```mermaid
 xychart-beta
@@ -192,13 +180,13 @@ xychart-beta
 The Veepoo Model 5010 firmware includes a dedicated hardware calibration register (`0x89 0x02`). 
 
 Currently, the watch contains:
-$$\text{Register 0x89 0x02} = \text{0x0184} \equiv 3.88\text{ mmol/L} \equiv \mathbf{70.0\text{ mg/dL}}$$
+Register 0x89 0x02 = 0x0184 == 3.88 mmol/L == 70.0 mg/dL
 
-By transmitting a calibrated anchor matched to the patient's actual fasting fingerstick (e.g. $8.5\text{ mmol/L} = \mathbf{153.2\text{ mg/dL}}$):
+By transmitting a calibrated anchor matched to the patient's actual fasting fingerstick (e.g. 8.5 mmol/L = 153.2 mg/dL):
 
-$$\text{Command: } \text{0x89 0x02 0x01 } [\text{0x52 0x03}] \text{ 0x01 } \dots$$
+Command: 0x89 0x02 0x01 [0x52 0x03] 0x01 ...
 
-The internal regression curve shifts upward by $+45\text{ mg/dL}$, aligning optical readings with the patient's true glycated hemoglobin profile and restoring accurate clinical reporting.
+The internal regression curve shifts upward by +45 mg/dL, aligning optical readings with the patient's true glycated hemoglobin profile and restoring accurate clinical reporting.
 
 ---
 

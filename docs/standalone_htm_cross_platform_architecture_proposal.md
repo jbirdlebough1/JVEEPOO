@@ -5,46 +5,20 @@
 
 ### Executive Summary
 
-To achieve universal patient and clinical adoption, the **BFM 5010 Clinical Workstation** is architected as a **single, zero-install, double-click `.HTM` application** (modeled after the proven monolithic pattern of *JumpStart 3D*). 
+To achieve universal patient and clinical adoption, the **BFM Biometric Function Monitor** is architected as a **single, zero-install, double-click `.HTM` application** (modeled after the proven monolithic pattern of *JumpStart 3D*). 
 
 This proposal establishes three non-negotiable architectural pillars:
 1. **Long-Term Longitudinal Vault (&ge; 1 Year Continuous Storage)**: Preserves 365+ days of multi-resolution ambulatory telemetry locally within persistent browser storage.
 2. **Automated Daily USB / SD Card External Backup**: Delivers automated, 1-click external backups to thumb drives and SD cards across all operating systems.
 3. **Zero-Variance Clinical Determinism**: Ensures bit-for-bit identical physiological calculations, glycemic projections, and Epic FHIR R4 exports regardless of whether opened on Windows, macOS, Linux, ChromeOS, Android, or iOS/iPadOS.
 
-```
-┌────────────────────────────────────────────────────────────────────────────────┐
-│                      UNIVERSAL SINGLE-FILE .HTM WORKSTATION                    │
-│                                                                                │
-│   [Windows PC]     [Apple Mac]     [Chromebook]     [Android]     [iPadOS]     │
-│        │                │               │               │             │        │
-│        └────────────────┴───────┬───────┴───────────────┴─────────────┘        │
-│                                 ▼                                              │
-│                  Web Bluetooth GATT (0xFEE7)                                   │
-│                                 ▼                                              │
-│       ┌─────────────────────────────────────────────────────────────┐          │
-│       │        STANDALONE DETERMINISTIC CLINICAL CORE (JS/WASM)     │          │
-│       │  • IEEE 754 Fixed-Precision Math (Zero Variance Engine)     │          │
-│       │  • Multi-Modal Intake & Compound Estimator (BOM + Sizing)   │          │
-│       │  • GLUT4 Kinetic ΔG Calculations & eA1c Modeling            │          │
-│       └─────────────────────────────┬───────────────────────────────┘          │
-│                                     ▼                                          │
-│       ┌─────────────────────────────────────────────────────────────┐          │
-│       │       LOCAL 1-YEAR HIGH-RESOLUTION VAULT (SQLITE-WASM)      │          │
-│       │  • 365-Day Continuous Epoch FIFO (< 25 MB Footprint)       │          │
-│       │  • navigator.storage.persist() Eviction Shield              │          │
-│       └─────────────────────────────┬───────────────────────────────┘          │
-│                                     │                                          │
-│                      AUTOMATED DAILY EXTERNAL BACKUP                           │
-│                                     │                                          │
-│           ┌─────────────────────────┴─────────────────────────┐                │
-│           ▼                                                   ▼                │
-│    Chromium Platforms                                  Mobile / Safari         │
-│  [File System Access API]                            [HTML5 Stream Export]     │
-│  Auto-sync to designated USB/SD Drive               1-Click Direct File Save   │
-│  (e.g., E:\BFM_VAULT\2026-11-22.sqlite)           to USB/SD via Files App    │
-└────────────────────────────────────────────────────────────────────────────────┘
-```
+| Workstation Layer | Platforms & Drivers | Key Responsibilities |
+| :--- | :--- | :--- |
+| **Client Platforms** | Windows PC, Apple Mac, Chromebook, Android, iPadOS | Zero-install single-file HTM execution via modern browser. |
+| **Hardware Driver** | Web Bluetooth GATT (0xFEE7) | Direct continuous BLE telemetry streaming from wrist sensor. |
+| **Deterministic Core** | Standalone JavaScript / WASM | IEEE 754 fixed-precision math, GLUT4 kinetics, eA1C modeling. |
+| **Local Vault** | SQLite-WASM / IndexedDB | 365-day continuous epoch storage (<25MB) with eviction shield. |
+| **Dual Export** | File System Access API | Automated daily export: Format 1 (.sqlite) + Format 2 (FHIR R4 .json). |
 
 ---
 
@@ -72,7 +46,7 @@ A full year of continuous 24-hour ambulatory monitoring generates the following 
   ```javascript
   if (navigator.storage && navigator.storage.persist) {
     const isPersisted = await navigator.storage.persist();
-    console.log(`[VAULT] Browser persistent storage locked: ${isPersisted}`);
+    console.log(`[VAULT] Browser persistent storage locked: {isPersisted}`);
   }
   ```
   This instructs Windows, macOS, Android, and iOS never to purge the database during routine disk cache cleanups.
@@ -84,11 +58,11 @@ A full year of continuous 24-hour ambulatory monitoring generates the following 
 Physicians and clinical risk managers require off-device redundancy so that device theft, hardware damage, or OS upgrades never result in lost health telemetry.
 
 ```
-[Watch Sync Complete] ──> [Append to 1-Yr SQLite-WASM Vault]
-                                    │
+[Watch Sync Complete] > [Append to 1-Yr SQLite-WASM Vault]
+                                    
                   Daily External Backup Triggered
-                                    │
-         ┌──────────────────────────┴──────────────────────────┐
+                                    
+         
          ▼                                                     ▼
 [Chromium: Win, Mac, Linux, ChromeOS]              [Mobile / Safari Fallback]
   • File System Access API                           • Programmatic Blob Stream
@@ -119,16 +93,16 @@ Doctors and endocrinologists look for absolute consistency. If a patient display
 
 ```
        [Raw Optical PPG Absorption & Accelerometry Telemetry]
-                                 │
-     ┌───────────────────────────┴───────────────────────────┐
+                                 
+     
      ▼                                                       ▼
 [Patient Home PC: Windows 11]                   [Clinic Consultation: iPadOS]
   • Calculated Mean Glucose: 139.4 mg/dL          • Calculated Mean Glucose: 139.4 mg/dL
   • Time-in-Range (70–180): 88.2%                 • Time-in-Range (70–180): 88.2%
   • Projected Excursion: +54 mg/dL                • Projected Excursion: +54 mg/dL
   • eA1c: 6.48%                                   • eA1c: 6.48%
-     │                                                       │
-     └───────────────────────────┬───────────────────────────┘
+                                                            
+     
                                  ▼
          [VARIANCE = 0.000% • BIT-FOR-BIT CLINICAL CONCORDANCE]
 ```
@@ -137,12 +111,12 @@ Doctors and endocrinologists look for absolute consistency. If a patient display
 1. **Fixed-Precision Math Core**:
    * All clinical formulas avoid nondeterministic floating-point drift by utilizing fixed-precision integer math or strict rounding standards conforming to **CLSI EP05-A3** and **ISO 15197**.
    * Example: Glucose calculations compute in integer micro-units before final display formatting:
-     $$\text{Glucose}_{\text{calibrated}} = \text{round}\left(\text{Baseline} + \frac{\Delta G_{\text{optical}} \times K_{\text{cal}}}{1000}\right)$$
+     Glucose}_{calibrated}} = round}(Baseline} + {\Delta G_{optical}} \times K_{cal}}}{1000})
 2. **Identical Inlined SQLite Engine**:
    * By compiling the exact same `sqlite3-wasm` binary into the `.HTM`, SQL queries (`ORDER BY`, `GROUP BY`, date formatting, aggregate means) execute with identical C-level bytecode semantics on ARM64 (Apple Silicon, Android) and x86_64 (Windows, Intel).
 3. **Standardized Clinical Terminology & Units**:
-   * Glucose: $\text{mg/dL}$ (primary) and $\text{mmol/L}$ (dual-scale).
-   * Energy & Carbs: $\text{kcal}$, $\text{g net carbs}$ (carbs minus fiber).
+   * Glucose: mg/dL} (primary) and mmol/L} (dual-scale).
+   * Energy & Carbs: kcal}, g net carbs} (carbs minus fiber).
    * Time: ISO 8601 timestamps (`YYYY-MM-DDTHH:MM:SSZ`) anchored to device UTC offsets to prevent time-zone distortion when traveling.
 
 ---
