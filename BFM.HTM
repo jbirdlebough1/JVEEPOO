@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BFM Workstation • Biometric Function Monitor</title>
+  <title>Biometric Function Monitor</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
@@ -1751,15 +1751,15 @@
 
     <!-- Top LCARS Header Arch -->
     <header class="lcars-header">
-      <div class="lcars-elbow-top-left bfm-elbow-top-left">BFM-WS</div>
+      <div class="lcars-elbow-top-left bfm-elbow-top-left">BFM SYSTEM</div>
       <div class="lcars-title-block bfm-title-block">
         <div>
-          <div class="lcars-main-title bfm-main-title">BFM WORKSTATION &bull; BIOMETRIC FUNCTION MONITOR</div>
+          <div class="lcars-main-title bfm-main-title">BIOMETRIC FUNCTION MONITOR</div>
           <div class="lcars-sub-title bfm-sub-title">WEARABLE SENSOR ARRAY &bull; MOBILE SHUTTLECRAFT-A DATA COLLECTOR &bull; POWERED BY GOOGLE GEMINI AI</div>
         </div>
         <div class="lcars-time-block">
           <div class="actual-datetime" id="actualDateTime">FRIDAY, NOV 20, 2026 9:55:00 AM PST</div>
-          <div class="lcars-stardate" id="stardateClock">STARDATE 126885.4 • BUILD beta.00.01.0006 • CLINICAL-SYS-ONLINE</div>
+          <div class="lcars-stardate" id="stardateClock">STARDATE 126885.4 • BUILD beta.00.01.0007 • CLINICAL-SYS-ONLINE</div>
         </div>
         <div style="margin-left: 12px; display: flex; gap: 8px; align-items: center;">
           <span id="headerSyncPill" class="lcars-pill pill-green" style="padding: 4px 10px; font-size: 0.72rem; height: auto;" title="Vault Telemetry Sync Status">
@@ -1836,7 +1836,7 @@
       <div class="lcars-ribbon">
         <div class="ribbon-item" style="cursor: pointer;" onclick="ensureConnected()" title="Click to Connect/Reconnect Watch">
           <div class="ribbon-label">COMM LINK STATE (CLICK TO ENGAGE)</div>
-          <div class="ribbon-value" id="ribbonComm" style="color: #64748b;">DISCONNECTED (CLICK TO CONNECT)</div>
+          <div class="ribbon-value" id="ribbonComm" style="color: #ef4444;">DISCONNECTED (CLICK TO CONNECT)</div>
         </div>
         <div class="ribbon-item blue">
           <div class="ribbon-label">AUTHORIZED WATCH TRANSPONDER</div>
@@ -2649,8 +2649,8 @@
             <!-- Timeframe Summary Banner -->
             <div style="margin-top: 10px; background: #f0f9ff; border: 1.5px solid #bae6fd; border-radius: 6px; padding: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
               <div>
-                <div style="font-size: 0.78rem; color: #0284c7; font-weight: 800; font-family: var(--lcars-mono);" id="lblLearningRangeTitle">ACTIVE TIMEFRAME: LAST 7 DAYS (WEEKLY TREND)</div>
-                <div style="font-size: 0.88rem; color: #0c4a6e; margin-top: 2px;" id="lblLearningRangeDesc">Evaluating meal glycemic spikes, postprandial blunting, and exercise impact across recent telemetry.</div>
+                <div style="font-size: 0.78rem; color: #0284c7; font-weight: 800; font-family: var(--lcars-mono);" id="lblLearningRangeTitle">METABOLIC DISCOVERY ENGINE &bull; CONTINUOUS HARDWARE TELEMETRY</div>
+                <div style="font-size: 0.88rem; color: #0c4a6e; margin-top: 2px;" id="lblLearningRangeDesc">Evaluating meal glycemic spikes, postprandial blunting, and exercise impact across verified watch telemetry.</div>
               </div>
               <div style="display: flex; gap: 8px;">
                 <button class="lcars-btn btn-blue" style="padding: 6px 14px; font-size: 0.82rem; font-weight: bold;" onclick="generatePersonalHealthInsights()">🔄 RE-ANALYZE TELEMETRY</button>
@@ -5084,7 +5084,7 @@
                   12. REGISTERED SHUTTLECRAFT CELLS &amp; WEARABLE SENSOR ARRAY ROSTER
                 </span>
                 <span style="font-size: 0.78rem; color: #94a3b8; display: block; margin-top: 2px;">
-                  BFM WORKSTATION &bull; MOBILE SHUTTLECRAFT FIELD DATA COLLECTOR DOCKING &bull; BLE BINDINGS
+                  BFM SYSTEM &bull; MOBILE SHUTTLECRAFT FIELD DATA COLLECTOR DOCKING &bull; BLE BINDINGS
                 </span>
               </div>
               <div style="display: flex; gap: 8px;">
@@ -12151,7 +12151,10 @@
           'repChartBloodCompTrend': 'curveTimelineBloodComp',
           'curveTimelineBloodComp': 'curveTimelineBloodComp',
           'repChartBodyCompTrend': 'curveTimelineBodyComp',
-          'curveTimelineBodyComp': 'curveTimelineBodyComp'
+          'curveTimelineBodyComp': 'curveTimelineBodyComp',
+          'curveTimelineBreath': 'curveTimelineBreath',
+          'repChartBreath': 'curveTimelineBreath',
+          'repChartBreathTrend': 'curveTimelineBreath'
         };
         if (altMap[containerId]) container = document.getElementById(altMap[containerId]);
       }
@@ -12323,7 +12326,7 @@
           <g>
             <circle class="plot-point" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="4" 
                     fill="${strokeColor}" stroke="#ffffff" stroke-width="2">
-              <title>BFM Workstation • Biometric Function Monitor</title>
+              <title>Biometric Function Monitor</title>
             </circle>
             ${showVal ? `
               <rect x="${(p.x - 18).toFixed(1)}" y="${(valY - 10).toFixed(1)}" width="36" height="13" fill="rgba(255,255,255,0.9)" stroke="#e2e8f0" stroke-width="0.8" rx="2"/>
@@ -12490,7 +12493,7 @@
           <g>
             <circle class="plot-point" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="4" 
                     fill="var(--lcars-blue)" stroke="#ffffff" stroke-width="2">
-              <title>BFM Workstation • Biometric Function Monitor</title>
+              <title>Biometric Function Monitor</title>
             </circle>
             ${showVal ? `
               <rect x="${(p.x - 16).toFixed(1)}" y="${(valY - 10).toFixed(1)}" width="32" height="13" fill="rgba(255,255,255,0.9)" stroke="#e2e8f0" stroke-width="0.8" rx="2"/>
@@ -12505,7 +12508,7 @@
         circlesHtml += `
           <circle class="plot-point" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="3" 
                   fill="var(--lcars-orange)" stroke="#ffffff" stroke-width="1.5">
-            <title>BFM Workstation • Biometric Function Monitor</title>
+            <title>Biometric Function Monitor</title>
           </circle>
         `;
       });
@@ -13028,7 +13031,7 @@
         else if (p.steps < 3000 || p.glucose >= 150) fillCol = '#dc2626';
 
         svgHtml += `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="3" fill="${fillCol}" stroke="#ffffff" stroke-width="0.8" opacity="0.82">
-          <title>BFM Workstation • Biometric Function Monitor</title>
+          <title>Biometric Function Monitor</title>
         </circle>`;
       });
 
@@ -18677,7 +18680,7 @@ Patient`;
           svg += `
             <g style="cursor: pointer;" onclick="openTimelinePointCard(${i})">
               <circle class="plot-point" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="6" fill="#ea580c" stroke="#ffffff" stroke-width="2">
-                <title>BFM Workstation • Biometric Function Monitor</title>
+                <title>Biometric Function Monitor</title>
               </circle>
               <rect x="${(p.x - 14).toFixed(1)}" y="${(p.y - 21).toFixed(1)}" width="28" height="13" rx="3" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
               <text x="${p.x.toFixed(1)}" y="${(p.y - 11).toFixed(1)}" text-anchor="middle" fill="#78350f" font-size="9" font-weight="900">${p.val}</text>
@@ -20620,8 +20623,47 @@ All 14 LCARS consoles, 8-lane metabolic chart, and clinical database now match y
       const stageDesc = document.getElementById('lblActiveScanDetails');
       if (stageDesc) stageDesc.textContent = "Full multi-vector diagnostic audit ready for review below. All sensors disengaged.";
 
+      // Fallback to latest verified telemetry for any parameter not captured in dynamic sweep
+      const lt = window._latestTelemetry || {};
+      if (!r.glucose || r.glucose === 0) {
+        if (lt.GLUCOSE && lt.GLUCOSE.value1 > 0) r.glucose = Math.round(lt.GLUCOSE.value1);
+        else if (typeof lastGlucoseMg !== 'undefined' && lastGlucoseMg > 0) r.glucose = lastGlucoseMg;
+      }
+      if (!r.bp || !r.bp.sys || r.bp.sys === 0) {
+        if (lt.BLOOD_PRESSURE && lt.BLOOD_PRESSURE.value1 > 0) {
+          r.bp = { sys: Math.round(lt.BLOOD_PRESSURE.value1), dia: Math.round(lt.BLOOD_PRESSURE.value2) };
+        } else if (typeof lastSystolic !== 'undefined' && lastSystolic > 0) {
+          r.bp = { sys: lastSystolic, dia: lastDiastolic };
+        }
+      }
+      if (!r.spo2 || r.spo2 === 0) {
+        const spObj = lt.BLOOD_OXYGEN || lt.SPO2;
+        if (spObj && spObj.value1 > 0) r.spo2 = Math.round(spObj.value1);
+        else if (typeof lastSpO2 !== 'undefined' && lastSpO2 > 0) r.spo2 = lastSpO2;
+      }
+      if (!r.hr || r.hr === 0) {
+        if (lt.HEART_RATE && lt.HEART_RATE.value1 > 0) r.hr = Math.round(lt.HEART_RATE.value1);
+        else if (typeof lastHR !== 'undefined' && lastHR > 0) r.hr = lastHR;
+      }
+      if (!r.temp || !r.temp.bodyF || r.temp.bodyF === 0) {
+        if (lt.TEMPERATURE && lt.TEMPERATURE.value1 > 0) {
+          const bF = lt.TEMPERATURE.value1;
+          const sF = lt.TEMPERATURE.value2 || (bF - 2.4);
+          r.temp = { bodyF: bF, skinF: sF, bodyC: (bF - 32) * 5 / 9 };
+        } else if (typeof lastBodyF !== 'undefined' && lastBodyF > 0) {
+          r.temp = { bodyF: lastBodyF, skinF: lastSkinF, bodyC: lastBodyC };
+        }
+      }
+      if (!r.hrv || !r.hrv.hrv || r.hrv.hrv === 0) {
+        const hrvObj = lt.HRV_STRESS || lt.HRV;
+        if (hrvObj && hrvObj.value1 > 0) {
+          r.hrv = { hrv: Math.round(hrvObj.value1), stress: Math.round(hrvObj.value2) };
+        } else if (typeof lastHRV !== 'undefined' && lastHRV > 0) {
+          r.hrv = { hrv: lastHRV, stress: lastStress };
+        }
+      }
+
       // Populate Report Card
-      const r = fullScanResults;
       const gEl = document.getElementById('repValGlucose');
       if (gEl) gEl.innerHTML = `${r.glucose} <span style="font-size: 0.9rem;">mg/dL</span>`;
       const gBadge = document.getElementById('repBadgeGlucose');
@@ -21476,6 +21518,15 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
         const vitals = data.vitals || {};
         window._latestTelemetry = vitals;
         const dbVer = data.db_version || 0;
+
+        // Synchronize Comm Link status (Always Connected when backend link or Web Bluetooth is established)
+        if (data.active_connection || (data.ble && data.ble.connected) || (typeof bluetoothDevice !== 'undefined' && bluetoothDevice && bluetoothDevice.gatt && bluetoothDevice.gatt.connected)) {
+          const elComm = document.getElementById('ribbonComm');
+          if (elComm) {
+            elComm.textContent = 'Connected';
+            elComm.style.color = '#10b981';
+          }
+        }
 
         // Check if new records arrived OR forced update
         if (force || dbVer !== lastKnownDbVersion || !lastKnownDbVersion) {
@@ -22348,21 +22399,21 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
         if (isChargingSlot) {
           barsSvg += `
             <rect x="${x}" y="${baseY - 14}" width="${slotWidth - 2}" height="14" fill="rgba(245, 158, 11, 0.25)" stroke="#f59e0b" stroke-dasharray="2 2" rx="1">
-              <title>BFM Workstation • Biometric Function Monitor</title>
+              <title>Biometric Function Monitor</title>
             </rect>
             <text x="${x + (slotWidth - 2)/2}" y="${baseY - 3}" text-anchor="middle" fill="#d97706" font-size="9" font-weight="bold">⚡</text>
           `;
         } else if (val > 0) {
           barsSvg += `
             <rect x="${x}" y="${y}" width="${slotWidth - 2}" height="${barHeight}" fill="${fillColor}" rx="1" opacity="0.9">
-              <title>BFM Workstation • Biometric Function Monitor</title>
+              <title>Biometric Function Monitor</title>
             </rect>
           `;
         } else {
           // Zero data slot: small baseline tick
           barsSvg += `
             <rect x="${x}" y="${baseY - 2}" width="${slotWidth - 2}" height="2" fill="#e2e8f0" rx="1">
-              <title>BFM Workstation • Biometric Function Monitor</title>
+              <title>Biometric Function Monitor</title>
             </rect>
           `;
         }
@@ -24439,7 +24490,9 @@ You logged: Entire Box (3.5 Servings / 99g)
           SCAN WITH GOOGLE LENS / CELL CAMERA
         </div>
         <div style="display: flex; justify-content: center; margin-bottom: 8px;">
-          <img id="provCellQrImg" src="http://127.0.0.1:8899/api/qrcode/cell" alt="Cell QR Code" style="width: 170px; height: 170px; background: #ffffff; padding: 6px; border-radius: 6px; border: 1.5px solid #38bdf8;">
+          <div id="provCellQrContainer" style="width: 170px; height: 170px; background: #ffffff; padding: 6px; border-radius: 6px; border: 1.5px solid #38bdf8; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+            <img id="provCellQrImg" src="http://127.0.0.1:8899/api/qrcode/cell" alt="Cell QR Code" style="width: 100%; height: 100%; object-fit: contain; display: block;">
+          </div>
         </div>
         <div style="font-size: 0.78rem; color: #cbd5e1; line-height: 1.45;">
           1. Open <strong>Google Lens</strong> or <strong>Camera</strong> on your phone.<br>
@@ -24489,7 +24542,7 @@ You logged: Entire Box (3.5 Servings / 99g)
             CRITICAL CLINICAL NOTICE &amp; TERMS OF USE
           </div>
           <div style="color: #94a3b8; font-size: 0.78rem;">
-            BFM WORKSTATION &bull; CLINICAL GOVERNANCE GOV-2026-BETA1
+            BFM SYSTEM &bull; CLINICAL GOVERNANCE GOV-2026-BETA1
           </div>
         </div>
       </div>
@@ -24586,13 +24639,31 @@ You logged: Entire Box (3.5 Servings / 99g)
       }
     }
 
-    function openProvisionModal() {
+    async function openProvisionModal() {
       const modal = document.getElementById('modalProvisionCell');
       if (modal) modal.style.display = 'flex';
       const res = document.getElementById('provResultBox');
       if (res) res.style.display = 'none';
-      const qr = document.getElementById('provCellQrImg');
+      const qrBox = document.getElementById('provCellQrContainer');
       const apiBase = (window.location.protocol === 'file:') ? 'http://127.0.0.1:8899' : '';
+      try {
+        const resp = await fetch(`${apiBase}/api/qrcode/cell?_t=${Date.now()}`);
+        if (resp.ok) {
+          const svgText = await resp.text();
+          if (qrBox && svgText && svgText.includes('<svg')) {
+            qrBox.innerHTML = svgText;
+            const svgEl = qrBox.querySelector('svg');
+            if (svgEl) {
+              svgEl.setAttribute('width', '100%');
+              svgEl.setAttribute('height', '100%');
+              svgEl.style.display = 'block';
+              svgEl.style.fill = '#000000';
+            }
+            return;
+          }
+        }
+      } catch (e) {}
+      const qr = document.getElementById('provCellQrImg');
       if (qr) qr.src = `${apiBase}/api/qrcode/cell?_t=${Date.now()}`;
     }
 

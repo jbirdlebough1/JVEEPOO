@@ -24,6 +24,7 @@ import glob
 import re
 import hashlib
 import py_compile
+import sqlite3
 
 WORKSPACE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -261,6 +262,10 @@ def run_audit():
     check8_defects = []
     with open(f_bfm, "r", encoding="utf-8", errors="ignore") as fp:
         bfm_content = fp.read()
+    with open(os.path.join(WORKSPACE_DIR, "w11_htm_app", "server.py"), "r", encoding="utf-8", errors="ignore") as fp:
+        server_content = fp.read()
+    with open(os.path.join(WORKSPACE_DIR, "w11_htm_app", "cell.html"), "r", encoding="utf-8", errors="ignore") as fp:
+        cell_content = fp.read()
     
     if "const BFM_API_BASE" not in bfm_content or "http://127.0.0.1:8899" not in bfm_content:
         check8_defects.append("BFM.HTM is missing dynamic BFM_API_BASE resolution for standalone file:/// protocol!")
@@ -356,13 +361,25 @@ def run_audit():
     if "UNASSIGNED (CLICK TO DISCOVER)" not in bfm_content:
         check11_defects.append("Status ribbon Transponder does not show initial fresh discovery state 'UNASSIGNED (CLICK TO DISCOVER)'!")
 
+    # Assert Canonical Header Demarcations (BFM SYSTEM on left elbow, BIOMETRIC FUNCTION MONITOR on title ribbon)
+    if ">BFM SYSTEM</div>" not in bfm_content and "BFM SYSTEM" not in bfm_content:
+        check11_defects.append("Left top blue elbow tab does not display 'BFM SYSTEM'!")
+    if "BIOMETRIC FUNCTION MONITOR" not in bfm_content:
+        check11_defects.append("Header title ribbon does not display 'BIOMETRIC FUNCTION MONITOR'!")
+    if "BFM WORKSTATION" in bfm_content:
+        check11_defects.append("Forbidden legacy branding 'BFM WORKSTATION' found in BFM.HTM!")
+    if "STARSHIP GEMINI" in bfm_content or "NCC-202X" in bfm_content:
+        check11_defects.append("Forbidden speculative branding 'STARSHIP GEMINI' or 'NCC-202X' found in BFM.HTM!")
+    if "STARSHIP GEMINI" in server_content or "NCC-202X" in server_content:
+        check11_defects.append("Forbidden speculative branding 'STARSHIP GEMINI' or 'NCC-202X' found in server.py!")
+
     if check11_defects:
         print(f"  {C_RED}[FAIL] Found {len(check11_defects)} header/ribbon demarcation defect(s):{C_RESET}")
         for d in check11_defects:
             print(f"    - {d}")
         all_defects.extend(check11_defects)
     else:
-        print(f"  {C_GREEN}[PASS] Top header arch decluttered; single consolidated status ribbon verified with fresh discovery defaults.{C_RESET}")
+        print(f"  {C_GREEN}[PASS] Top header arch decluttered; BFM SYSTEM / BIOMETRIC FUNCTION MONITOR canonical labels verified; zero speculative branding.{C_RESET}")
         passed_checks += 1
 
     # --------------------------------------------------------------------------
@@ -488,13 +505,25 @@ def run_audit():
     if "if (sp > 0" not in bfm_content:
         check17_defects.append("propagateFullScanResultsToAllPages lacks guard preventing overwriting valid SpO2 with zero/empty values!")
 
+    # Verify SQLite database preserves continuous watch dataset (> 10,000 vital records since Nov 18)
+    db_path = os.path.join(WORKSPACE_DIR, "w11_htm_app", "telemetry.db")
+    if os.path.exists(db_path):
+        try:
+            c = sqlite3.connect(db_path)
+            v_cnt = c.execute("SELECT COUNT(*) FROM vital_records").fetchone()[0]
+            c.close()
+            if v_cnt < 10000:
+                check17_defects.append(f"vital_records count is only {v_cnt} (< 10,000 threshold)! Historical telemetry dropped!")
+        except Exception as e:
+            check17_defects.append(f"Failed to query telemetry.db vital_records: {e}")
+
     if check17_defects:
         print(f"  {C_RED}[FAIL] Found {len(check17_defects)} telemetry dropping defect(s):{C_RESET}")
         for d in check17_defects:
             print(f"    - {d}")
         all_defects.extend(check17_defects)
     else:
-        print(f"  {C_GREEN}[PASS] Full scan and polling telemetry persistence guards verified; zero data dropping.{C_RESET}")
+        print(f"  {C_GREEN}[PASS] Full scan and polling telemetry persistence guards verified; {v_cnt} records preserved; zero data dropping.{C_RESET}")
         passed_checks += 1
 
     # --------------------------------------------------------------------------
@@ -571,6 +600,10 @@ def run_audit():
         check21_defects.append("3D Multi-Channel visualizer lacks interactive hover inspection and data point hit-testing!")
     if "fetchServer2DayTimeline" not in bfm_content:
         check21_defects.append("3D Multi-Channel visualizer lacks 48-hour continuous timeline integration!")
+    if "CH 01: GLUCOSE" not in bfm_content or "CH 09: PAIN INDEX" not in bfm_content or "CH 10: MOOD SCALE" not in bfm_content:
+        check21_defects.append("3D Multi-Channel channel ordering defect: must start with Glucose mg/dL and end with Pain and Mood!")
+    if "drawBoxStrut" not in bfm_content:
+        check21_defects.append("3D Multi-Channel visualizer lacks SETI@home wireframe bounding cage struts!")
 
     if check21_defects:
         print(f"  {C_RED}[FAIL] Found {len(check21_defects)} 3D visualizer defect(s):{C_RESET}")
@@ -578,7 +611,7 @@ def run_audit():
             print(f"    - {d}")
         all_defects.extend(check21_defects)
     else:
-        print(f"  {C_GREEN}[PASS] 3D Multi-Channel dynamic time-series data points, visible crest nodes, and hover inspection verified.{C_RESET}")
+        print(f"  {C_GREEN}[PASS] 3D Multi-Channel SETI@home plot box, dynamic points, crest nodes, and hover inspection verified.{C_RESET}")
         passed_checks += 1
 
     # --------------------------------------------------------------------------

@@ -121,7 +121,7 @@ def generate_fhir_bundle(db_path, output_dir, mrn="PATIENT-MRN-948201", user_uid
                 ],
                 "note": [
                     {
-                        "text": f"Telemetry Mode: {mode or 'AMBULATORY'} | Hardware: Wearable Sensor Array (Star Ship GEMINI NCC-202X)"
+                        "text": f"Telemetry Mode: {mode or 'AMBULATORY'} | Hardware: Wearable Sensor Array (Veepoo 5010)"
                     }
                 ]
             }

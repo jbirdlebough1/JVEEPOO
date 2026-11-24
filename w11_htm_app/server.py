@@ -244,7 +244,7 @@ def init_database():
             )
         """)
 
-        # Multi-Tenant 3-Way Triad Tables (Star Ship Gemini NCC-202X)
+        # Multi-Tenant 3-Way Triad Tables
         cur.execute("""
             CREATE TABLE IF NOT EXISTS user_profiles (
                 user_uid TEXT PRIMARY KEY,
@@ -4178,7 +4178,7 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                 cell_id = payload.get("cell_id", f"Cell {datetime.datetime.now().strftime('%M%S')}")
                 user_uid = payload.get("user_uid", "USR-9482-NEW")
                 user_callsign = payload.get("user_callsign", "Family Member")
-                registry_number = payload.get("assigned_registry", f"NCC-202X-{cell_id.replace('Cell ', '')}")
+                registry_number = payload.get("assigned_registry", "NCC-5010-A")
                 linked_watch_mac = payload.get("linked_watch_mac", "")
                 target_a1c = float(payload.get("target_a1c", 6.5))
                 pairing_token = str(uuid.uuid4())

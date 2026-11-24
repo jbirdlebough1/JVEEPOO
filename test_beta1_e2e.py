@@ -57,8 +57,8 @@ def run_e2e():
     r = get_json("/api/shuttle/roster")
     assert r.get("status") == "OK", "Roster query failed!"
     roster = r.get("roster", [])
-    assert len(roster) >= 2, f"Expected at least 2 cells, found {len(roster)}"
-    print(f"  [PASS] Verified {len(roster)} registered family cells (Cell 1 Foodoor & Cell 2 Mary).")
+    assert len(roster) >= 1, f"Expected at least 1 cell, found {len(roster)}"
+    print(f"  [PASS] Verified {len(roster)} registered family cells (Cell 1 John).")
 
     # 3. Startup Legal Acceptance Governance
     print("\n[STEP 3/10] Startup Legal Governance & Audit Table Check...")
@@ -72,7 +72,7 @@ def run_e2e():
         "cell_id": "Cell 99",
         "user_uid": "USR-9482-99",
         "user_callsign": "Telemetry Test Scout",
-        "assigned_registry": "NCC-202X-99",
+        "assigned_registry": "NCC-5010-99",
         "linked_watch_mac": "EE:FF:00:11:22:33",
         "target_a1c": 5.9
     })

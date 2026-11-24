@@ -171,7 +171,7 @@ def run_gate():
     """)
     # Test insertion of triad
     mem_cur.execute("INSERT INTO user_profiles VALUES ('USR-001', 'John', 6.5, 'telemetry_user_1.db')")
-    mem_cur.execute("INSERT INTO registered_cells VALUES ('Cell 1', 'NCC-202X-1', 'USR-001', 'Pixel 9 Pro', 'ESN-9482', '8B:DE:40:83:F6:16', 'ACTIVE')")
+    mem_cur.execute("INSERT INTO registered_cells VALUES ('Cell 1', 'NCC-5010-A', 'USR-001', 'Pixel 9 Pro', 'ESN-9482', '8B:DE:40:83:F6:16', 'ACTIVE')")
     mem_cur.execute("INSERT INTO user_legal_acceptance (user_uid, terms_version, terms_sha256, accepted_timestamp) VALUES ('USR-001', 'BFM-BETA1', 'sha256...', '2026-11-22T20:00:00Z')")
     mem_db.commit()
     mem_db.close()
