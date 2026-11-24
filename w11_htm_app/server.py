@@ -210,9 +210,15 @@ def init_database():
                 status TEXT,
                 mode TEXT,
                 raw_hex TEXT,
+                device_id TEXT DEFAULT 'VEE_5010',
                 UNIQUE(timestamp, metric, mode)
             )
         """)
+        try:
+            cur.execute("ALTER TABLE vital_records ADD COLUMN device_id TEXT DEFAULT 'VEE_5010'")
+            conn.commit()
+        except Exception:
+            pass
         cur.execute("CREATE INDEX IF NOT EXISTS idx_vital_ts ON vital_records(timestamp)")
         cur.execute("CREATE INDEX IF NOT EXISTS idx_vital_metric ON vital_records(metric)")
         # De-duplication unique index across timestamp and metric
@@ -2876,10 +2882,11 @@ def insert_vital_record(metric, value1, value2, unit, progress, status, mode, ra
         conn = get_db()
         cur = conn.cursor()
         try:
+            device_id = str(payload.get("device_id") or "VEE_5010").strip()
             cur.execute("""
                 INSERT INTO vital_records 
-                (timestamp, metric, value1, value2, unit, progress, status, mode, raw_hex)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                (timestamp, metric, value1, value2, unit, progress, status, mode, raw_hex, device_id)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 ON CONFLICT(timestamp, metric) DO UPDATE SET
                     value1 = excluded.value1,
                     value2 = excluded.value2,
@@ -2887,8 +2894,9 @@ def insert_vital_record(metric, value1, value2, unit, progress, status, mode, ra
                     progress = excluded.progress,
                     status = excluded.status,
                     mode = excluded.mode,
-                    raw_hex = excluded.raw_hex
-            """, (ts, metric, value1, value2, unit, progress, status, mode, raw_hex))
+                    raw_hex = excluded.raw_hex,
+                    device_id = excluded.device_id
+            """, (ts, metric, value1, value2, unit, progress, status, mode, raw_hex, device_id))
             conn.commit()
             cur.execute("SELECT COUNT(*) FROM vital_records")
             ble_state["total_records"] = cur.fetchone()[0]
@@ -3663,7 +3671,10 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
             self.send_json_response({"records": records, "count": len(records)})
 
         elif self.path.startswith("/api/telemetry/latest"):
-            data = self.get_latest_telemetry_snapshot()
+            parsed = urllib.parse.urlparse(self.path)
+            params = urllib.parse.parse_qs(parsed.query)
+            target_dev = params.get("device_id", [None])[0]
+            data = self.get_latest_telemetry_snapshot(target_device=target_dev)
             self.send_json_response(data)
 
         # 4. Dial Inventory API (CLE-009)
@@ -4467,7 +4478,7 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(body)
 
-    def get_latest_telemetry_snapshot(self):
+    def get_latest_telemetry_snapshot(self, target_device=None):
         snapshot = {
             "db_version": ble_state.get("records_synced", 0) + ble_state.get("total_records", 0),
             "last_sync": ble_state.get("last_sync"),
@@ -4484,14 +4495,22 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
         with db_lock:
             conn = get_db()
             cur = conn.cursor()
-            metrics = ["GLUCOSE", "BLOOD_PRESSURE", "HEART_RATE", "SPO2", "BLOOD_OXYGEN", "TEMPERATURE", "PEDOMETER", "BATTERY", "HRV_STRESS", "HRV", "SLEEP"]
+            metrics = ["GLUCOSE", "BLOOD_PRESSURE", "HEART_RATE", "SPO2", "BLOOD_OXYGEN", "TEMPERATURE", "PEDOMETER", "BATTERY", "HRV_STRESS", "HRV", "SLEEP", "FLUID_INTAKE"]
             for m in metrics:
-                cur.execute("""
-                    SELECT timestamp, value1, value2, unit, status, mode 
-                    FROM vital_records 
-                    WHERE metric = ? 
-                    ORDER BY id DESC LIMIT 1
-                """, (m,))
+                if target_device:
+                    cur.execute("""
+                        SELECT timestamp, value1, value2, unit, status, mode 
+                        FROM vital_records 
+                        WHERE metric = ? AND (device_id = ? OR device_id IS NULL OR device_id = '')
+                        ORDER BY id DESC LIMIT 1
+                    """, (m, target_device))
+                else:
+                    cur.execute("""
+                        SELECT timestamp, value1, value2, unit, status, mode 
+                        FROM vital_records 
+                        WHERE metric = ? 
+                        ORDER BY id DESC LIMIT 1
+                    """, (m,))
                 row = cur.fetchone()
                 if row:
                     snapshot["vitals"][m] = dict(row)

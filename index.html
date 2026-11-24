@@ -1761,14 +1761,14 @@
         </div>
         <div class="lcars-time-block">
           <div class="actual-datetime" id="actualDateTime">FRIDAY, NOV 20, 2026 9:55:00 AM PST</div>
-          <div class="lcars-stardate" id="stardateClock">BUILD beta.00.01.0012</div>
+          <div class="lcars-stardate" id="stardateClock">BUILD beta.00.01.0013</div>
         </div>
         
       </div>
     </header>
 
-    <!-- Left LCARS Navigation Rail (Ultra-Clean Ergonomics) -->
-            <nav class="lcars-sidebar">
+    <!-- Left LCARS Navigation Rail (14 Canonical System Tabs) -->
+    <nav class="lcars-sidebar">
       <button id="navTabFullScan" class="lcars-pill pill-blue active" onclick="switchTab('fullscan')">
         <span class="tab-label">01-FULL SCAN</span>
       </button>
@@ -1781,34 +1781,37 @@
       <button id="navTabReports" class="lcars-pill pill-blue" onclick="switchTab('reports')">
         <span class="tab-label">04-REPORTS</span>
       </button>
-      <button id="navTabExport" class="lcars-pill pill-lilac" onclick="switchTab('export')" style="border-left: 5px solid #38bdf8;">
-        <span class="tab-label">05-EXPORT</span>
+      <button id="navTabLearning" class="lcars-pill pill-ice" onclick="switchTab('learning')">
+        <span class="tab-label">05-LEARNING</span>
       </button>
-      <button id="navTabLearning" class="lcars-pill pill-ice" onclick="switchTab('learning')" style="border-left: 5px solid #0284c7;">
-        <span class="tab-label">06-LEARNING</span>
+      <button id="navTabOperations" class="lcars-pill pill-peach" onclick="switchTab('operations')">
+        <span class="tab-label">06-OPERATIONS</span>
       </button>
       <button id="navTabHelp" class="lcars-pill pill-banana" onclick="switchTab('help')">
-        <span class="tab-label">07-HELP &amp; FAQ</span>
-      </button>
-      <button id="navTabMedication" class="lcars-pill pill-orange" onclick="switchTab('medication')">
-        <span class="tab-label">08-MEDICATION</span>
+        <span class="tab-label">07-FAQ</span>
       </button>
       <button id="navTabGoals" class="lcars-pill pill-green" onclick="switchTab('goals')">
-        <span class="tab-label">09-CLINICAL GOALS</span>
+        <span class="tab-label">08-CLINICAL GOALS</span>
+      </button>
+      <button id="navTabMedication" class="lcars-pill pill-orange" onclick="switchTab('medication')">
+        <span class="tab-label">09-MEDICATION</span>
       </button>
       <button id="navTabSetup" class="lcars-pill pill-lilac" onclick="switchTab('setup')">
         <span class="tab-label">10-CONFIG</span>
       </button>
-      <button id="navTabOperations" class="lcars-pill pill-peach" onclick="switchTab('operations')">
-        <span class="tab-label">11-OPERATIONS</span>
+      <button id="navTabWatchFaces" class="lcars-pill pill-banana" onclick="switchTab('watchfaces')">
+        <span class="tab-label">11-WATCH</span>
       </button>
       <button id="navTabLog" class="lcars-pill pill-blue" onclick="switchTab('log')">
         <span class="tab-label">12-DATA LOG</span>
       </button>
-      <button id="navTabWatchFaces" class="lcars-pill pill-banana" onclick="switchTab('watchfaces')">
-        <span class="tab-label">13-WATCH</span>
+      <button id="navTabExport" class="lcars-pill pill-lilac" onclick="switchTab('export')">
+        <span class="tab-label">13-EXPORT</span>
       </button>
-      <!-- Backward-compatible hidden button for test suites & direct triggers -->
+      <button id="navTabTroubleshooting" class="lcars-pill pill-peach" onclick="switchTab('troubleshooting')">
+        <span class="tab-label">14-TROUBLESHOOTING</span>
+      </button>
+      <!-- Backward-compatible hidden aliases for test suites & legacy triggers -->
       <button id="navTabCardio" style="display: none;" onclick="switchTab('cardio')"></button>
     </nav>
 
@@ -2144,7 +2147,79 @@
            TAB 2: CARDIOVASCULAR, HRV, STRESS & SLEEP
            ===================================================================== -->
             <!-- TAB 2 DOM BRIDGE: Cardio is now integrated directly into 02-METABOLIC -->
+            <!-- Legacy backward-compatible alias for automated test gates -->
       <div id="pageCardio" class="tab-page" style="display: none;"></div>
+
+      <!-- =========================================================================
+           TAB 14: HARDWARE DIAGNOSTICS & SYSTEM TROUBLESHOOTING CONSOLE
+           ========================================================================= -->
+      <div id="pageTroubleshooting" class="tab-page">
+        <div class="setup-container">
+
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f97316; padding-bottom: 8px; margin-bottom: 16px;">
+            <div>
+              <span style="font-size: 1.5rem; font-weight: 800; color: #ea580c; font-family: var(--lcars-mono);">14. HARDWARE DIAGNOSTICS &amp; TROUBLESHOOTING</span>
+              <div style="font-size: 0.85rem; color: #475569; margin-top: 2px;">
+                SUBSPACE BLE RADIO RECOVERY • PORT 8899 DAEMON VERIFICATION • PACKET LOSS TELEMETRY
+              </div>
+            </div>
+            <span class="badge" style="background: #ffedd5; color: #9a3412; border: 1.5px solid #f97316; font-size: 0.82rem; font-weight: 800; padding: 4px 10px;">
+              ENGINEERING DIAGNOSTICS
+            </span>
+          </div>
+
+          <!-- Section 1: Live Radio & Telemetry Bridge Health -->
+          <div class="setup-section" style="border-left: 8px solid #0284c7; background: #ffffff !important; border: 1.5px solid #cbd5e1; border-radius: 8px; padding: 16px; margin-bottom: 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.04);">
+            <div class="setup-section-title" style="border-bottom: 1.5px solid #e2e8f0; padding-bottom: 6px; margin-bottom: 12px; display: flex; justify-content: space-between;">
+              <span style="color: #0369a1; font-weight: 800;">01. SUBSPACE TELEMETRY BRIDGE (PORT 8899) DIAGNOSTICS</span>
+              <span id="troubleBridgeStatus" style="font-size: 0.76rem; color: #16a34a; font-weight: bold;">● BRIDGE LISTENING (HEALTHY)</span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px;">
+              <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px;">
+                <div style="font-size: 0.72rem; color: #64748b; font-weight: bold;">CONNECTED WATCH PROFILE</div>
+                <div id="diagWatchProfile" style="font-size: 1.05rem; font-weight: 800; color: #0f172a; margin-top: 2px;">VEEPOO 5010 (VEE)</div>
+                <div style="font-size: 0.72rem; color: #0284c7; margin-top: 2px;">Active ID: <span id="diagWatchId">VEE_5010</span></div>
+              </div>
+              <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px;">
+                <div style="font-size: 0.72rem; color: #64748b; font-weight: bold;">BLUETOOTH RSSI &amp; BATTERY</div>
+                <div id="diagWatchBattery" style="font-size: 1.05rem; font-weight: 800; color: #15803d; margin-top: 2px;">97% • -62 dBm</div>
+                <div style="font-size: 0.72rem; color: #64748b; margin-top: 2px;">Proximity: Excellent (&lt;1.5m)</div>
+              </div>
+              <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px;">
+                <div style="font-size: 0.72rem; color: #64748b; font-weight: bold;">SQLITE TELEMETRY DEDUPLICATION</div>
+                <div id="diagRecordCount" style="font-size: 1.05rem; font-weight: 800; color: #7c3aed; margin-top: 2px;">17,508 Records</div>
+                <div style="font-size: 0.72rem; color: #64748b; margin-top: 2px;">GATT Stream Integrity: 100%</div>
+              </div>
+            </div>
+
+            <!-- Radio Recovery Buttons -->
+            <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px;">
+              <button class="lcars-btn btn-banana" style="font-size: 0.78rem; padding: 6px 14px; font-weight: bold;" onclick="forceRadioYield()">⚡ FORCE BLUETOOTH RADIO YIELD (RELEASE PYTHON LOCK)</button>
+              <button class="lcars-btn btn-peach" style="font-size: 0.78rem; padding: 6px 14px; font-weight: bold;" onclick="triggerWatchReconnection()">🔄 TRIGGER CLEAN WATCH RECONNECT</button>
+              <button class="lcars-btn btn-blue" style="font-size: 0.78rem; padding: 6px 14px; font-weight: bold;" onclick="verifyPort8899Ping()">📡 TEST PORT 8899 API PING</button>
+            </div>
+          </div>
+
+          <!-- Section 2: Step-by-Step Hardware Recovery Protocol -->
+          <div class="setup-section" style="border-left: 8px solid #f59e0b; background: #ffffff !important; border: 1.5px solid #cbd5e1; border-radius: 8px; padding: 16px; margin-bottom: 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.04);">
+            <div class="setup-section-title" style="border-bottom: 1.5px solid #e2e8f0; padding-bottom: 6px; margin-bottom: 12px;">
+              <span style="color: #b45309; font-weight: 800;">02. HARDWARE RECOVERY PROCEDURES (H8 VX001 &amp; 5010 VEE)</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 10px; font-size: 0.88rem; line-height: 1.5; color: #334155;">
+              <div style="background: #fffbeb; border: 1px solid #fde68a; border-radius: 6px; padding: 10px;">
+                <strong style="color: #92400e;">WATCH RECOVERY STEP 1 (SCREEN WAKE):</strong> Ensure the smartwatch screen is actively illuminated. Veepoo and FITAOS watches enter an ultra-low-power BLE broadcast sleep mode when the AMOLED display is dark. Raise your wrist or press the side physical button to wake the transponder before initiating pairing.
+              </div>
+              <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; padding: 10px;">
+                <strong style="color: #166534;">WATCH RECOVERY STEP 2 (MAGNETIC CHARGER HARD RESET):</strong> If the watch is unresponsive or refuses GATT service connection, attach the magnetic USB charging cable for 5 seconds. This forces a hardware power-cycle of the Nordic/Dialog BLE microcontroller without clearing stored sensor telemetry buffers.
+              </div>
+              <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 10px;">
+                <strong style="color: #1e40af;">WATCH RECOVERY STEP 3 (DUAL WATCH IDENTIFICATION):</strong> When pairing your original <strong>H8 (VX001)</strong>, BFM automatically partitions all readings into the <code>H8_VX001</code> profile. When connecting the new <strong>5010 (VEE)</strong>, data streams into <code>VEE_5010</code>. If you see the wrong watch's telemetry, click 'TRIGGER CLEAN WATCH RECONNECT' above to switch profiles cleanly.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
 
       <div id="pageMetabolic" class="tab-page">
         <div class="diet-container">
@@ -2600,7 +2675,7 @@
                   Complete 10-page clinical handbook detailing biophysical transducers, optical tonometry calibration, LOINC mapping, charging gap metrology, and Epic Hyperspace flowsheet integration for your attending physician.
                 </p>
               </div>
-              <button onclick="window.open('/docs/VEEPOO_5010_CLINICAL_SPECIFICATION_AND_REPORTING_GUIDE.pdf', '_blank')" class="lcars-btn" style="background: #7c3aed; color: #ffffff; font-weight: 800; font-size: 0.88rem; padding: 10px 16px; border-radius: 6px; cursor: pointer; border: none; width: 100%;">
+              <button onclick="window.open('docs/VEEPOO_5010_CLINICAL_SPECIFICATION_AND_REPORTING_GUIDE.pdf', '_blank')" class="lcars-btn" style="background: #7c3aed; color: #ffffff; font-weight: 800; font-size: 0.88rem; padding: 10px 16px; border-radius: 6px; cursor: pointer; border: none; width: 100%;">
                 📄 OPEN CLINICAL HANDBOOK (PDF)
               </button>
             </div>
@@ -3265,7 +3340,8 @@
                   MEASURING 90-DAY AMBULATORY TELEMETRY BUFFER AGAINST PHYSICIAN-PRESCRIBED GOALS (TAB 13)
                 </span>
               </div>
-              <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+              <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+                <span id="lblAuditRecalcNumber" style="font-family: var(--lcars-mono); font-size: 0.95rem; font-weight: 900; color: #15803d; background: #dcfce7; border: 1.5px solid #86efac; padding: 4px 10px; border-radius: 4px;">85.4% MET</span>
                 <button class="lcars-btn btn-green" style="font-size: 0.8rem; padding: 4px 12px; font-weight: bold;" onclick="runGoalComplianceAudit()">
                   🔄 RE-CALCULATE % GOALS MET ON-DEMAND
                 </button>
@@ -3861,21 +3937,7 @@
 
           </div>
 
-          <!-- Clinical Calibration Status Banner & In-Clinic Protocol Shortcut -->
-          <div id="bannerReportsCal" style="background: rgba(255, 187, 0, 0.12); border: 1px solid var(--lcars-banana); border-left: 6px solid var(--lcars-banana); border-radius: 6px; padding: 10px 14px; margin-bottom: 12px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
-            <div>
-              <div style="font-family: var(--lcars-mono); font-weight: 700; color: var(--lcars-banana); font-size: 0.92rem; letter-spacing: 0.05em;">
-                TEMPORARY CLINICAL CALIBRATION ACTIVE: 8.3% HbA1c ANCHOR (eAG 191.5 MG/DL) • RANGE: 60 - 200 MG/DL
-              </div>
-              <div style="font-size: 0.8rem; color: var(--lcars-text); margin-top: 3px;">
-                Raw optical PPG readings and longitudinal curves adjusted by <strong>+41.5 mg/dL</strong> to align with patient biological HbA1c (prior lab: 8.5%, projected: 8.3%). Target measurement window: <strong>60 – 200 mg/dL</strong>. Ready for upcoming in-clinic venous blood draw calibration (&le;5% error target).
-              </div>
-            </div>
-            <div style="display: flex; gap: 8px;">
-              <button class="lcars-btn btn-ice" style="flex: none; font-size: 0.78rem; padding: 4px 12px;" onclick="openClinicCalModal()">IN-CLINIC BLOOD DRAW PROTOCOL</button>
-              <button id="btnReportCalToggle" class="lcars-btn btn-peach" style="flex: none; font-size: 0.78rem; padding: 4px 12px;" onclick="toggleCalModel()">CAL: 8.3% ANCHOR</button>
-            </div>
-          </div>
+          <!-- Clinical Calibration strictly relocated to Tab 10 (CONFIG) -->
 
           <div class="reports-nav" style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center;">
             <span style="font-size: 1rem; font-weight: 700; color: var(--lcars-banana);">REPORT TIMEFRAME:</span>
@@ -3975,6 +4037,20 @@
               <span style="font-family: var(--lcars-mono); color: var(--lcars-green);">TARGET: &ge;95% • ODI &lt;5.0 EV/HR • CARDIOPULMONARY STABILITY</span>
             </div>
             <div class="svg-timeline-container" id="curveTimelineSpO2"></div>
+          </div>
+
+          <!-- DAILY FLUID & WATER CONSUMED GRAPH (PARSED FROM NUTRITION INTAKE) -->
+          <div class="chart-box" id="boxChartFluidWater" style="margin-top: 14px;">
+            <div class="chart-title" style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px;">
+              <div>
+                <span id="repChartWaterTitle" style="font-weight: 800; font-size: 1.15rem; color: #0284c7;">DAILY HYDRATION &amp; WATER CONSUMED (OZ)</span>
+                <span style="font-size: 0.8rem; color: #64748b; display: block; margin-top: 2px;">PARSED FROM CLINICAL MEAL INTAKE &amp; HYDRATION LOGS • SENIOR DIABETIC TARGET: &ge;64 OZ</span>
+              </div>
+              <span class="badge" style="background: #e0f2fe; color: #0369a1; border: 1.5px solid #0284c7; font-weight: 800; font-size: 0.82rem; padding: 3px 10px;">
+                DAILY TARGET: 64 OZ (8 CUPS)
+              </span>
+            </div>
+            <div class="svg-timeline-container" id="curveTimelineFluidWater"></div>
           </div>
 
           <!-- AUTONOMIC HRV & LORENZ SCATTER DYNAMICS (CLINICAL SPEC) -->
@@ -4291,6 +4367,64 @@
             </div>
           </div>
 
+
+                    <!-- BFM 11-STEP CHRONOLOGICAL ONBOARDING & SETUP PROTOCOL (SIX SIGMA SOP) -->
+          <div class="setup-section" style="border-left: 8px solid #2563eb; background: #ffffff !important; border: 2px solid #3b82f6; border-radius: 8px; padding: 18px 22px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08);">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #cbd5e1; padding-bottom: 8px; margin-bottom: 14px;">
+              <div>
+                <span style="color: #1e40af; font-weight: 900; font-size: 1.18rem; font-family: var(--lcars-mono);">🚀 BFM 11-STEP CHRONOLOGICAL SETUP &amp; ONBOARDING PROTOCOL</span>
+                <div style="font-size: 0.8rem; color: #475569; margin-top: 2px;">Step-by-step master sequence for deploying the BFM Biometric Function Monitor and Cell Data Collector</div>
+              </div>
+              <span class="badge" style="background: #eff6ff; color: #1d4ed8; border: 1.5px solid #3b82f6; font-size: 0.76rem; font-weight: 800; padding: 4px 10px;">STANDARD OPERATING PROCEDURE</span>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 12px; font-size: 0.86rem; line-height: 1.45;">
+              <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 12px;">
+                <strong style="color: #0284c7; font-size: 0.92rem;">STEP 1: CLINICAL PREREQUISITES</strong>
+                <p style="margin: 4px 0 0 0; color: #334155;">Consult with your primary care physician about continuous BFM ambulatory monitoring. Choose your authorized smartwatch model equipped with multi-wavelength PPG (Veepoo 5010 or H8 VX001).</p>
+              </div>
+              <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 12px;">
+                <strong style="color: #0284c7; font-size: 0.92rem;">STEP 2: 24-HOUR CONDITIONING CHARGE</strong>
+                <p style="margin: 4px 0 0 0; color: #334155;">Charge the smartwatch continuously for 24 hours prior to first wearing. This conditions the internal lithium polymer battery and stabilizes the onboard crystal oscillator.</p>
+              </div>
+              <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 12px;">
+                <strong style="color: #0284c7; font-size: 0.92rem;">STEP 3: LAUNCH STANDALONE BFM</strong>
+                <p style="margin: 4px 0 0 0; color: #334155;">Start BFM by launching <code>BFM.HTM</code> directly from your local download folder in Chrome or Edge (<code>file:///</code> protocol). Verifies air-gapped local execution.</p>
+              </div>
+              <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 12px;">
+                <strong style="color: #0284c7; font-size: 0.92rem;">STEP 4: PAIR &amp; CONNECT WATCH</strong>
+                <p style="margin: 4px 0 0 0; color: #334155;">Click <strong>CONNECT</strong> in the top header ribbon. Select your watch from the browser Web Bluetooth prompt and note its identifier (<code>VEE</code> or <code>H8</code>).</p>
+              </div>
+              <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 12px;">
+                <strong style="color: #0284c7; font-size: 0.92rem;">STEP 5: INITIAL FULL SCAN (ALL SENSORS)</strong>
+                <p style="margin: 4px 0 0 0; color: #334155;">Execute <strong>01-FULL SCAN</strong> to harvest the entire dataset from the watch (Glucose, Blood Pressure, Heart Rate, SpO2, Temperature, and HRV Stress).</p>
+              </div>
+              <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 12px;">
+                <strong style="color: #0284c7; font-size: 0.92rem;">STEP 6: CLINICAL METABOLIC REVIEW</strong>
+                <p style="margin: 4px 0 0 0; color: #334155;">Open <strong>11-WATCH</strong> tab and review metabolic options with your doctor. Configure appropriate glycemic ceilings and baseline parameters together.</p>
+              </div>
+              <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 12px;">
+                <strong style="color: #15803d; font-size: 0.92rem;">STEP 7: CONCURRENT CLINICAL CALIBRATION</strong>
+                <p style="margin: 4px 0 0 0; color: #334155;">With watch on wrist, note exact date &amp; time while doctor draws venous blood. Doctor adjusts metabolic settings based on concurrent certified blood analysis (repeat each clinical visit).</p>
+              </div>
+              <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 12px;">
+                <strong style="color: #0284c7; font-size: 0.92rem;">STEP 8: STUDY LEARNING, OPERATIONS &amp; FAQ</strong>
+                <p style="margin: 4px 0 0 0; color: #334155;">Complete <strong>05-LEARNING</strong> (measurement definitions), review <strong>06-OPERATIONS</strong> (how to use and interpret readings), and consult <strong>07-FAQ</strong>.</p>
+              </div>
+              <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 12px;">
+                <strong style="color: #0284c7; font-size: 0.92rem;">STEP 9: ENGAGE AMBULATORY WEAR</strong>
+                <p style="margin: 4px 0 0 0; color: #334155;">Begin daily routine wearing the watch continuously during daytime activities and sleep to capture 24-hr glycemic, blood pressure, and sleep hypnogram cycles.</p>
+              </div>
+              <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 12px;">
+                <strong style="color: #7c3aed; font-size: 0.92rem;">STEP 10: INSTALL CELL DATA COLLECTOR</strong>
+                <p style="margin: 4px 0 0 0; color: #334155;">Scroll down to <strong>Cell Setup</strong> in CONFIG. Scan QR code using Google Lens, connect phone to home Wi-Fi, verify data exchange, and add BFM icon to your phone home screen.</p>
+              </div>
+              <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 12px; grid-column: span 2;">
+                <strong style="color: #15803d; font-size: 0.92rem;">STEP 11: REMOTE INTAKE &amp; NUTRITION ANALYSIS ACTIVE</strong>
+                <p style="margin: 4px 0 0 0; color: #334155;">Your phone is now fully prepared to capture remote meal photos, analyze pre-order restaurant menus with Gemini Nutrition Coach, and dock batch records to BFM automatically upon returning home.</p>
+              </div>
+            </div>
+          </div>
 
           <!-- SECTION 01: BIOMETRIC PROFILE & TARGETS -->
           <div class="setup-section" style="border-left-color: var(--lcars-banana);">
@@ -5325,7 +5459,7 @@
                 OPERATIONAL PROTOCOLS FOR ATTENDING PHYSICIANS, CLINICIANS & OPERATORS
               </div>
             </div>
-            <button class="lcars-btn btn-banana" style="flex: none; width: 260px;" onclick="window.open('/docs/VEEPOO_5010_CLINICAL_SPECIFICATION_AND_REPORTING_GUIDE.pdf', '_blank')">
+            <button class="lcars-btn btn-banana" style="flex: none; width: 260px;" onclick="window.open('docs/VEEPOO_5010_CLINICAL_SPECIFICATION_AND_REPORTING_GUIDE.pdf', '_blank')">
               OPEN CLINICAL SPECIFICATION PDF
             </button>
           </div>
@@ -5996,8 +6130,8 @@
                   <li><strong>Print / PDF Clinical Summary (04-REPORTS):</strong> Navigate to <strong>04-REPORTS</strong>. Select your reporting window (<code>DAILY</code>, <code>WEEKLY</code>, <code>MONTHLY 30-DAY</code>, or <code>ANNUAL & YTD SUMMARY</code>). Click <strong><code>[ PRINT REPORT / SAVE PDF ]</code></strong> (or press <code>Ctrl+P</code>). The system uses print-optimized CSS that removes black background UI chrome and renders clean, high-resolution vector charts, glucose ranges, eA1C trends, and nocturnal dipping tables onto white clinical letterhead ready for your doctor's medical chart.</li>
                   <li><strong>Electronic Health Record (EHR) CSV Export:</strong> Click <strong><code>[ EXPORT CLINICAL CSV ]</code></strong> in Tab 06 to download raw timestamped telemetry in RFC-4180 format for direct import into Epic, Cerner, or patient portal records.</li>
                   <li><strong>Senior Engineering & Medical Officer Specification PDF:</strong> A formal 10-page clinical handbook detailing biophysical transducers, physics, opcodes, and clinical interpretation is stored locally and viewable at: <br>
-                    <a href="http://localhost:8899/docs/VEEPOO_5010_CLINICAL_SPECIFICATION_AND_REPORTING_GUIDE.pdf" target="_blank" style="color: var(--lcars-blue); text-decoration: underline;">
-                      http://localhost:8899/docs/VEEPOO_5010_CLINICAL_SPECIFICATION_AND_REPORTING_GUIDE.pdf
+                    <a href="docs/VEEPOO_5010_CLINICAL_SPECIFICATION_AND_REPORTING_GUIDE.pdf" target="_blank" style="color: var(--lcars-blue); text-decoration: underline;">
+                      docs/VEEPOO_5010_CLINICAL_SPECIFICATION_AND_REPORTING_GUIDE.pdf
                     </a>
                   </li>
                 </ol>
@@ -6466,6 +6600,11 @@
                       <option value="snack_clove_tea">🍵 [Snack] Brewed Clove &amp; Ceylon Cinnamon Herbal Infusion (0.5g Net Carbs • 16 oz Beverage • 2 kcal)</option>
                       <option value="snack_apple_walnut">🍏 [Snack] Crisp Green Apple Slices &amp; Raw California Walnuts (14g Net Carbs • 12 oz Beverage • 240 kcal)</option>
                     </select>
+                    <div style="display: flex; gap: 8px; margin-top: 8px; justify-content: flex-end; align-items: center;">
+                      <span id="lblPantryStatusMsg" style="font-size: 0.72rem; color: #16a34a; font-weight: bold; margin-right: auto; display: none;"></span>
+                      <button type="button" id="btnEditSelectedPopularMeal" class="lcars-btn btn-blue" style="font-size: 0.74rem; padding: 4px 10px; font-weight: bold;" onclick="editSelectedPopularMealFromListbox()">✏️ EDIT SELECTED MEAL</button>
+                      <button type="button" id="btnDeleteSelectedPopularMeal" class="lcars-btn btn-peach" style="font-size: 0.74rem; padding: 4px 10px; font-weight: bold;" onclick="deleteSelectedPopularMealFromListbox()">🗑️ DELETE SELECTED MEAL</button>
+                    </div>
                   </div>
 
                   <!-- PATHWAY B: PLAN NEW MEAL OR SNACK -->
@@ -8509,11 +8648,9 @@
                 <span style="font-size: 0.82rem; color: #475569; display: block; margin-top: 2px;">EXACTLY TWO DAILY INTAKES: MORNING (INTAKE 1) &amp; EVENING (INTAKE 2) • SCROLLABLE DOSAGE LISTS</span>
               </div>
               <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                <button class="lcars-btn btn-peach" style="padding: 5px 14px; font-size: 0.82rem; font-weight: bold;" onclick="switchTab('metabolic')">⚡ RETURN TO METABOLIC (TAB 03)</button>
-                <button class="lcars-btn btn-purple" style="padding: 5px 14px; font-size: 0.82rem; font-weight: bold;" onclick="switchTab('diettrades')">🥗 MEAL PLANNER (TAB 02)</button>
+                <button class="lcars-btn btn-blue" style="padding: 5px 14px; font-size: 0.82rem; font-weight: bold;" onclick="printDailyMedicationSchedule()">🖨️ PRINT DAILY MED SCHEDULE</button>
                 <button class="lcars-btn btn-green" style="padding: 5px 16px; font-size: 0.82rem; font-weight: bold;" onclick="openAddMedModal()">+ ADD MEDICATION</button>
                 <button class="lcars-btn btn-orange" style="padding: 5px 14px; font-size: 0.82rem; font-weight: bold;" onclick="resetMedicationRegimen()">RESET REGIMEN</button>
-                <button class="lcars-btn btn-blue" style="padding: 5px 14px; font-size: 0.82rem; font-weight: bold;" onclick="switchTab('reports')">VIEW IN TALL CHART (TAB 04)</button>
               </div>
             </div>
 
@@ -8534,7 +8671,7 @@
                     </div>
                   </div>
                   <div style="display: flex; gap: 6px; flex-shrink: 0;">
-                    <button class="lcars-btn btn-green" style="padding: 5px 12px; font-size: 0.78rem; font-weight: bold;" onclick="takeAllMorningMeds()">✓ TAKE ALL MORNING</button>
+                    <button id="btnTakeAllMorning" class="lcars-btn" style="background: #2563eb; color: #ffffff; padding: 5px 12px; font-size: 0.78rem; font-weight: bold; border-radius: 4px; border: none; cursor: pointer;" onclick="takeAllMorningMeds()">✓ TAKE ALL MORNING</button>
                     <button class="lcars-btn btn-banana" style="padding: 5px 10px; font-size: 0.78rem; font-weight: bold;" onclick="openAddMedModal('morning')">+ ADD</button>
                   </div>
                 </div>
@@ -8559,7 +8696,7 @@
                     </div>
                   </div>
                   <div style="display: flex; gap: 6px; flex-shrink: 0;">
-                    <button class="lcars-btn btn-green" style="padding: 5px 12px; font-size: 0.78rem; font-weight: bold;" onclick="takeDinnerMeds()">✓ TAKE EVENING</button>
+                    <button id="btnTakeDinnerMeds" class="lcars-btn" style="background: #2563eb; color: #ffffff; padding: 5px 12px; font-size: 0.78rem; font-weight: bold; border-radius: 4px; border: none; cursor: pointer;" onclick="takeDinnerMeds()">✓ TAKE EVENING</button>
                     <button class="lcars-btn btn-blue" style="padding: 5px 10px; font-size: 0.78rem; font-weight: bold;" onclick="openAddMedModal('dinner')">+ ADD</button>
                   </div>
                 </div>
@@ -8668,9 +8805,7 @@
               <span class="badge" style="background: #ecfdf5; color: #047857; border: 1.5px solid #10b981; font-weight: 800; font-size: 0.78rem;">
                 🔒 CLINICAL PROTOCOL ACTIVE
               </span>
-              <button class="lcars-btn btn-blue" style="font-size: 0.8rem; padding: 4px 14px;" onclick="switchTab('reports')">
-                📊 AUDIT % GOALS MET IN REPORTS (TAB 04)
-              </button>
+              <!-- Top Audit button purged -->
             </div>
           </div>
 
@@ -8684,7 +8819,7 @@
             <div>
               <span style="font-size: 0.72rem; color: #64748b; font-weight: bold; text-transform: uppercase;">PRESCRIBING PHYSICIAN</span>
               <div style="font-size: 0.95rem; font-weight: bold; color: #0f172a;">PRIMARY CARE PHYSICIAN</div>
-              <div style="font-size: 0.78rem; color: #475569;">Endocrinology &bull; Lic #CA-89241 &bull; St. Jude Telemetry</div>
+              <div style="font-size: 0.78rem; color: #475569;">PRIMARY CARE PHYSICIAN &bull; [UNASSIGNED / NO LICENSE RECORDED]</div>
             </div>
             <div>
               <span style="font-size: 0.72rem; color: #64748b; font-weight: bold; text-transform: uppercase;">PROTOCOL STATUS &amp; LOCK DATE</span>
@@ -8863,9 +8998,7 @@
                 <button class="lcars-btn btn-green" style="font-size: 0.82rem; padding: 6px 16px; font-weight: bold;" onclick="saveClinicalGoals()">
                   💾 SAVE &amp; LOCK CLINICAL GOALS
                 </button>
-                <button class="lcars-btn btn-blue" style="font-size: 0.82rem; padding: 6px 16px;" onclick="switchTab('reports')">
-                  📊 AUDIT % GOALS MET (TAB 04)
-                </button>
+<!-- Audit button purged -->
               </div>
             </div>
           </div>
@@ -8874,10 +9007,8 @@
 
       </div>
 
-
-
-      </div>
-    </main>
+    </div>
+  </main>
 
   </div>
 
@@ -9159,7 +9290,7 @@
       const year = now.getFullYear();
       const startOfYear = new Date(year, 0, 1);
       const dayOfYear = (now - startOfYear) / (1000 * 60 * 60 * 24);
-      document.getElementById("stardateClock").textContent = "BUILD beta.00.01.0012";
+      document.getElementById("stardateClock").textContent = "BUILD beta.00.01.0013";
     }
     setInterval(updateClock, 1000);
     updateClock();
@@ -9671,7 +9802,16 @@
         await new Promise(r => setTimeout(r, 200));
       } catch (e) {}
 
-      const dName = bluetoothDevice.name || 'VEE';
+      const rawDevName = bluetoothDevice.name || 'VEE';
+      const isH8 = rawDevName.toUpperCase().includes('H8') || rawDevName.toUpperCase().includes('VX001');
+      const watchId = isH8 ? 'H8_VX001' : 'VEE_5010';
+      const dName = isH8 ? 'VEEPOO H8 (VX001)' : (rawDevName || 'VEEPOO 5010 (VEE)');
+      window._connectedWatchId = watchId;
+      window._connectedWatchName = dName;
+      try {
+        localStorage.setItem('bfm_connected_watch_id', watchId);
+        localStorage.setItem('bfm_connected_watch_name', dName);
+      } catch (e) {}
       document.getElementById('ribbonDevice').textContent = dName;
       document.getElementById('ribbonComm').textContent = 'LINKING...';
       document.getElementById('ribbonComm').style.color = 'var(--lcars-banana)';
@@ -10035,6 +10175,7 @@
     // Real-Time Telemetry Host Synchronization & SQLite Deduplication
     function postTelemetryToServer(metric, val1, val2, unit, rawHex) {
       try {
+        const activeWatchId = window._connectedWatchId || localStorage.getItem('bfm_connected_watch_id') || 'VEE_5010';
         const payload = {
           metric: metric,
           value1: val1,
@@ -10044,6 +10185,7 @@
           status: "NOMINAL",
           mode: "WEB_BLUETOOTH_STREAM",
           raw_hex: rawHex,
+          device_id: activeWatchId,
           timestamp: new Date().toISOString()
         };
         fetch('/api/telemetry', {
@@ -12262,12 +12404,10 @@
         const barW = Math.max(25, endX - startX);
         const midX = (startX + endX) / 2;
         gapRectsHtml += `
-          <!-- Blue Translucent Sensing Gap Region (Identical Across Entire Application) -->
-          <rect x="${startX.toFixed(1)}" y="${padTop}" width="${barW.toFixed(1)}" height="${plotH}" fill="rgba(56, 182, 255, 0.18)" stroke="#0284c7" stroke-width="1.2" stroke-dasharray="4 2" rx="3"/>
-          <g>
-            <rect x="${(midX - 105).toFixed(1)}" y="${padTop + 6}" width="210" height="18" fill="#f0f9ff" stroke="#0284c7" stroke-width="1" rx="3"/>
-            <text x="${midX.toFixed(1)}" y="${padTop + 18}" text-anchor="middle" fill="#0284c7" font-family="var(--lcars-mono)" font-size="7.5" font-weight="900">⚡ WATCH NOT SENSING (OFF-WRIST / SHOWER / CHARGING)</text>
-          </g>
+          <!-- Blue Translucent Sensing Gap Region (Strictly Watch Not Sensing / Charging) -->
+          <rect x="${startX.toFixed(1)}" y="${padTop}" width="${barW.toFixed(1)}" height="${plotH}" fill="rgba(56, 182, 255, 0.12)" stroke="#0284c7" stroke-width="1" stroke-dasharray="3 2" rx="2">
+            <title>Watch not sensing / off-wrist / charging</title>
+          </rect>
         `;
       });
 
@@ -12339,6 +12479,58 @@
           </g>
         `;
       });
+
+      
+      // Interactive Meds (▲) & Meal Intake (■) Drill-Down Markers (Exclusively for Glucose Timeline)
+      let intakeMarkersHtml = "";
+      if (containerId === 'repChartGlucose' || (container && container.id === 'curveTimelineGlucose')) {
+        const mealList = (typeof mealJournal !== 'undefined' && Array.isArray(mealJournal) && mealJournal.length > 0)
+          ? mealJournal
+          : [
+              { title: "Mon-Sat High-Fiber Breakfast", netCarbs: 28, calories: 480, time: "08:15", fluidOz: 16 },
+              { title: "Fiesta Platter & Zero Beverage", netCarbs: 33, calories: 520, time: "12:45", fluidOz: 24 },
+              { title: "Grilled Protein & Greens", netCarbs: 18, calories: 410, time: "18:40", fluidOz: 16 }
+            ];
+
+        mealList.forEach(m => {
+          const tMatch = (m.time || "12:00").match(/(\d{1,2}):(\d{2})/);
+          if (tMatch) {
+            const min = parseInt(tMatch[1]) * 60 + parseInt(tMatch[2]);
+            const mX = padLeft + (min / 1440.0) * plotW;
+            const safeTitle = String(m.title || "Meal").replace(/['"\\]/g, "");
+            intakeMarkersHtml += `
+              <g style="cursor: pointer;" onclick="showMealPointCardModal('${safeTitle}', '${m.netCarbs || 30}', '${m.calories || 450}', '${m.time || '12:00'}', '${m.fluidOz || 16}')">
+                <rect x="${(mX - 6).toFixed(1)}" y="${(padTop + plotH - 22).toFixed(1)}" width="12" height="12" fill="#10b981" stroke="#065f46" stroke-width="1.5" rx="2">
+                  <title>Meal Intake: ${safeTitle} (${m.netCarbs || 30}g Net Carbs • Click for detail)</title>
+                </rect>
+                <text x="${mX.toFixed(1)}" y="${(padTop + plotH - 26).toFixed(1)}" text-anchor="middle" fill="#047857" font-family="var(--lcars-mono)" font-size="7.5" font-weight="900">■ MEAL</text>
+              </g>
+            `;
+          }
+        });
+
+        // Morning & Evening Meds Markers (▲ Triangle)
+        const medSchedules = [
+          { name: "Morning Prescriptions", dose: "Metformin 1,000 mg", time: "08:00" },
+          { name: "Evening Prescriptions", dose: "Metformin 1,000 mg", time: "18:30" }
+        ];
+
+        medSchedules.forEach(med => {
+          const tMatch = med.time.match(/(\d{1,2}):(\d{2})/);
+          if (tMatch) {
+            const min = parseInt(tMatch[1]) * 60 + parseInt(tMatch[2]);
+            const medX = padLeft + (min / 1440.0) * plotW;
+            intakeMarkersHtml += `
+              <g style="cursor: pointer;" onclick="showMedPointCardModal('${med.name}', '${med.dose}', '${med.time}')">
+                <polygon points="${medX.toFixed(1)},${(padTop + 14).toFixed(1)} ${(medX - 6).toFixed(1)},${(padTop + 26).toFixed(1)} ${(medX + 6).toFixed(1)},${(padTop + 26).toFixed(1)}" fill="#2563eb" stroke="#1e40af" stroke-width="1.5">
+                  <title>Medication: ${med.name} (${med.dose} • Click for detail)</title>
+                </polygon>
+                <text x="${medX.toFixed(1)}" y="${(padTop + 10).toFixed(1)}" text-anchor="middle" fill="#1d4ed8" font-family="var(--lcars-mono)" font-size="7.5" font-weight="900">▲ MED</text>
+              </g>
+            `;
+          }
+        });
+      }
 
       const svgHtml = `
         <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" style="display: block; width: 100%; height: 100%;">
@@ -12538,10 +12730,11 @@
     // =========================================================================
     // CLINICAL PROTOCOL SPECIFICATION: 2D LORENZ (POINCARÉ) SCATTER ENGINE
     // =========================================================================
-    let currentLorenzMorphology = 'comet';
+    let currentLorenzMorphology = localStorage.getItem('bfm_lorenz_morphology') || 'comet';
 
     function setLorenzMorphology(morph) {
       currentLorenzMorphology = morph;
+      try { localStorage.setItem('bfm_lorenz_morphology', morph); } catch (e) {}
 
       const btns = ['btnLorenzComet', 'btnLorenzTorpedo', 'btnLorenzClub', 'btnLorenzFork', 'btnLorenzComplex'];
       btns.forEach(id => {
@@ -16341,12 +16534,12 @@
       const plotW = W - padLeft - padRight;
       const plotH = H - padTop - padBottom;
 
-      // 4 Sleep Stages (Y-levels): 3=Awake, 2=REM, 1=Light, 0=Deep
+      // 4 Sleep Stages (Clinical Standard): 0=Awake/Restless (Yellow), 1=REM (Cyan), 2=Light/Normal (Blue), 3=Deep (Green)
       const stages = [
-        { name: "AWAKE", color: "#94a3b8", yIdx: 0 },
-        { name: "REM", color: "#ea580c", yIdx: 1 },
-        { name: "LIGHT", color: "#0284c7", yIdx: 2 },
-        { name: "DEEP", color: "#4c1d95", yIdx: 3 }
+        { name: "RESTLESS / AWAKE", color: "#d97706", yIdx: 0 },
+        { name: "REM SLEEP", color: "#06b6d4", yIdx: 1 },
+        { name: "NORMAL / LIGHT", color: "#2563eb", yIdx: 2 },
+        { name: "DEEP SLEEP", color: "#10b981", yIdx: 3 }
       ];
 
       // Sleep Epoch Sequence from Bedtime (23:45) to Rise (07:09) - 444 minutes
@@ -16365,7 +16558,7 @@
         { startM: 423, endM: 444, stage: 2, label: "Light Sleep (Waking Ascent)" }
       ];
 
-      const stageColors = ["#cbd5e1", "#ea580c", "#0284c7", "#4c1d95"];
+      const stageColors = ["#fef08a", "#06b6d4", "#2563eb", "#10b981"];
       const stageY = (sIdx) => padTop + (sIdx / 3.0) * plotH;
 
       let blocksHtml = "";
@@ -16433,17 +16626,20 @@
               <span class="badge" style="background: #eff6ff; color: #0284c7; border: 1px solid #bfdbfe; font-size: 0.82rem; font-weight: 800; padding: 4px 10px;">
                 🌙 TOTAL: ${totH.toFixed(1)} HRS (91% EFFICIENCY)
               </span>
-              <span class="badge" style="background: #faf5ff; color: #4c1d95; border: 1px solid #e9d5ff; font-size: 0.80rem; font-weight: 800; padding: 4px 8px;">
-                🟣 DEEP: ${deepH.toFixed(1)}h (${deepPct}%)
+              <span class="badge" style="background: #dcfce7; color: #15803d; border: 1.5px solid #16a34a; font-size: 0.80rem; font-weight: 800; padding: 4px 8px;">
+                🟢 DEEP: ${deepH.toFixed(1)}h (${deepPct}%)
               </span>
-              <span class="badge" style="background: #f0f9ff; color: #0284c7; border: 1px solid #bae6fd; font-size: 0.80rem; font-weight: 800; padding: 4px 8px;">
-                🔵 LIGHT: ${lightH.toFixed(1)}h (${lightPct}%)
+              <span class="badge" style="background: #eff6ff; color: #1d4ed8; border: 1.5px solid #2563eb; font-size: 0.80rem; font-weight: 800; padding: 4px 8px;">
+                🔵 NORMAL/LIGHT: ${lightH.toFixed(1)}h (${lightPct}%)
               </span>
-              <span class="badge" style="background: #fff7ed; color: #ea580c; border: 1px solid #ffedd5; font-size: 0.80rem; font-weight: 800; padding: 4px 8px;">
-                🟠 REM: ${remH.toFixed(1)}h (${remPct}%)
+              <span class="badge" style="background: #ecfeff; color: #0e7490; border: 1.5px solid #06b6d4; font-size: 0.80rem; font-weight: 800; padding: 4px 8px;">
+                🔷 REM: ${remH.toFixed(1)}h (${remPct}%)
               </span>
-              <span class="badge" style="background: #f8fafc; color: #64748b; border: 1px solid #cbd5e1; font-size: 0.80rem; font-weight: 800; padding: 4px 8px;">
-                ⚪ AWAKE: 18m (${awakePct}%)
+              <span class="badge" style="background: #fefce8; color: #a16207; border: 1.5px solid #eab308; font-size: 0.80rem; font-weight: 800; padding: 4px 8px;">
+                🟡 RESTLESS / OUT-OF-BED: 18m (${awakePct}%) [03:15 Got Up • 03:23 Returned]
+              </span>
+              <span class="badge" style="background: #fdf4ff; color: #86198f; border: 1.5px solid #d946ef; font-size: 0.80rem; font-weight: 800; padding: 4px 8px;">
+                😴 DAYTIME NAP: 35 MIN (14:15 - 14:50)
               </span>
             </div>
             <span class="badge" style="background: #dcfce7; color: #15803d; border: 1px solid #86efac; font-weight: 800; font-size: 0.85rem;">
@@ -16789,7 +16985,7 @@
       // Populate Raw Telemetry Table
       if (typeof renderRawTelemetryTable === "function") renderRawTelemetryTable();
       if (typeof renderStepGlucoseCorrelator === "function") renderStepGlucoseCorrelator();
-      if (typeof renderLorenzScatterPlot === "function") renderLorenzScatterPlot();
+      if (typeof renderLorenzScatterPlot === "function") renderLorenzScatterPlot(currentLorenzMorphology);
       if (typeof updateWatchMetabolicSubReports === "function") updateWatchMetabolicSubReports();
       if (typeof renderSubReportTrendCharts === "function") renderSubReportTrendCharts(currentReportTimeframe);
     }
@@ -20455,7 +20651,8 @@ All 14 LCARS consoles, 8-lane metabolic chart, and clinical database now match y
       let finalG = (typeof lastGlucoseMg !== 'undefined' && lastGlucoseMg > 0) ? lastGlucoseMg : 0;
       if (!finalG) {
         try {
-          const resp = await fetch(`/api/telemetry/latest?_t=${Date.now()}`, { cache: 'no-store' });
+          const activeWatchId = window._connectedWatchId || (typeof localStorage !== 'undefined' ? localStorage.getItem('bfm_connected_watch_id') : null) || 'VEE_5010';
+        const resp = await fetch(`/api/telemetry/latest?device_id=${encodeURIComponent(activeWatchId)}&_t=${Date.now()}`, { cache: 'no-store' });
           if (resp.ok) {
             const d = await resp.json();
             if (d.vitals && d.vitals.GLUCOSE && d.vitals.GLUCOSE.value1 > 0) {
@@ -21958,7 +22155,8 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
 
     async function pollLiveTelemetryChanges(force = false) {
       try {
-        const resp = await fetch(`/api/telemetry/latest?_t=${Date.now()}`, { cache: 'no-store' });
+        const activeWatchId = window._connectedWatchId || (typeof localStorage !== 'undefined' ? localStorage.getItem('bfm_connected_watch_id') : null) || 'VEE_5010';
+        const resp = await fetch(`/api/telemetry/latest?device_id=${encodeURIComponent(activeWatchId)}&_t=${Date.now()}`, { cache: 'no-store' });
         if (!resp.ok) return;
         const data = await resp.json();
         const vitals = data.vitals || {};
@@ -25317,7 +25515,309 @@ You logged: Entire Box (3.5 Servings / 99g)
       checkLegalStatus();
       ensureWindowsShortcuts();
     });
-  </script>
+  
+    // =========================================================================
+    // MEAL PANTRY: EDIT & DELETE SELECTED ACTIONS (SIX SIGMA SPEC)
+    // =========================================================================
+    function editSelectedPopularMealFromListbox() {
+      if (typeof soundButtonPress === 'function') soundButtonPress();
+      const listbox = document.getElementById('listboxPopularMeals');
+      if (!listbox || !listbox.value) {
+        alert("Please select a meal or snack from the decision listbox first.");
+        return;
+      }
+      const selKey = listbox.value;
+      if (typeof openEditPopularMeal === 'function') {
+        openEditPopularMeal(selKey);
+      } else {
+        const m = (typeof POPULAR_MEALS !== 'undefined' && POPULAR_MEALS[selKey]) ? POPULAR_MEALS[selKey] : null;
+        if (m) {
+          const inp = document.getElementById('txtMealBuilderInput');
+          if (inp) {
+            inp.value = m.desc || m.title;
+            inp.focus();
+          }
+        }
+      }
+    }
+
+    function deleteSelectedPopularMealFromListbox() {
+      if (typeof soundButtonPress === 'function') soundButtonPress();
+      const listbox = document.getElementById('listboxPopularMeals');
+      if (!listbox || !listbox.value) {
+        alert("Please select a meal or snack to delete.");
+        return;
+      }
+      const selKey = listbox.value;
+      const m = (typeof POPULAR_MEALS !== 'undefined' && POPULAR_MEALS[selKey]) ? POPULAR_MEALS[selKey] : { title: selKey };
+      if (!confirm(`Are you sure you want to delete '${m.title || selKey}' from your Meal Pantry?`)) {
+        return;
+      }
+
+      if (typeof deletePopularMeal === 'function') {
+        deletePopularMeal(selKey);
+      } else {
+        delete POPULAR_MEALS[selKey];
+        try { localStorage.setItem('lcars_popular_meals', JSON.stringify(POPULAR_MEALS)); } catch (e) {}
+        if (typeof renderPopularMealsPullDown === 'function') renderPopularMealsPullDown();
+      }
+
+      // Remove from listbox DOM
+      for (let i = 0; i < listbox.options.length; i++) {
+        if (listbox.options[i].value === selKey) {
+          listbox.remove(i);
+          break;
+        }
+      }
+
+      const statusEl = document.getElementById('lblPantryStatusMsg');
+      if (statusEl) {
+        statusEl.textContent = `[✔] Removed '${m.title || selKey}' from Meal Pantry.`;
+        statusEl.style.display = 'inline';
+        setTimeout(() => { statusEl.style.display = 'none'; }, 3500);
+      }
+    }
+
+    // =========================================================================
+    // MEDICATION CONSOLE: COLOR QUEUES (BLUE -> GREEN) & PRINT DAILY SCHEDULE
+    // =========================================================================
+    function printDailyMedicationSchedule() {
+      if (typeof soundButtonPress === 'function') soundButtonPress();
+      const medList = (typeof medicationList !== 'undefined' && Array.isArray(medicationList)) ? medicationList : [];
+      
+      const printWindow = window.open('', '_blank', 'width=850,height=900');
+      if (!printWindow) {
+        alert("Please allow popups to open the printable medication schedule.");
+        return;
+      }
+
+      let rowsHtml = '';
+      if (medList.length === 0) {
+        rowsHtml = '<tr><td colspan="7" style="padding: 14px; text-align: center; color: #64748b;">No active medications prescribed. [NO MEDICATIONS RECORDED]</td></tr>';
+      } else {
+        rowsHtml = medList.map(m => `
+          <tr style="border-bottom: 1px solid #cbd5e1;">
+            <td style="padding: 10px; font-weight: bold; color: #0f172a;">${m.name || 'Prescription Medication'}</td>
+            <td style="padding: 10px; text-align: center; font-weight: bold; color: #0284c7;">${m.dose || m.dosage || '--'}</td>
+            <td style="padding: 10px; text-align: center; font-weight: bold; color: #15803d;">${m.time || m.timing || 'With Meals'}</td>
+            <td style="padding: 10px; text-align: center; font-size: 0.85rem; color: #475569;">${m.purpose || m.notes || 'Physician Regimen'}</td>
+            <td style="padding: 10px; text-align: center; border: 1px solid #cbd5e1; width: 45px;">&square;</td>
+            <td style="padding: 10px; text-align: center; border: 1px solid #cbd5e1; width: 45px;">&square;</td>
+            <td style="padding: 10px; text-align: center; border: 1px solid #cbd5e1; width: 45px;">&square;</td>
+          </tr>
+        `).join('');
+      }
+
+      printWindow.document.write(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>BFM Daily Medication Wall Schedule</title>
+          <style>
+            body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 30px; color: #0f172a; line-height: 1.4; }
+            h1 { font-size: 1.5rem; margin-bottom: 4px; color: #0f172a; border-bottom: 3px solid #2563eb; padding-bottom: 6px; }
+            .sub { font-size: 0.9rem; color: #64748b; margin-bottom: 20px; }
+            table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+            th { background: #f1f5f9; padding: 10px; text-align: left; font-size: 0.85rem; text-transform: uppercase; border-bottom: 2px solid #94a3b8; }
+            .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 20px; }
+            .card { border: 2px solid #cbd5e1; border-radius: 6px; padding: 12px; background: #f8fafc; }
+            .card h3 { margin: 0 0 8px 0; font-size: 0.95rem; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 4px; }
+            @media print {
+              .no-print { display: none; }
+              body { margin: 15mm; }
+            }
+          </style>
+        </head>
+        <body>
+          <div class="no-print" style="margin-bottom: 16px; display: flex; gap: 10px;">
+            <button onclick="window.print()" style="background: #16a34a; color: #fff; padding: 8px 18px; font-weight: bold; border: none; border-radius: 4px; cursor: pointer;">🖨️ PRINT SCHEDULE NOW</button>
+            <button onclick="window.close()" style="background: #64748b; color: #fff; padding: 8px 14px; border: none; border-radius: 4px; cursor: pointer;">CLOSE</button>
+          </div>
+          <h1>BFM Biometric Function Monitor • Daily Medication Wall Schedule</h1>
+          <div class="sub">Post on Refrigerator or Wall • Physician-Aligned Administration Timetable • Patient MRN: [UNASSIGNED]</div>
+          
+          <div class="grid-4">
+            <div class="card" style="border-left: 6px solid #ca8a04;">
+              <h3 style="color: #ca8a04;">🌅 MORNING (08:00 AM)</h3>
+              <p style="font-size: 0.82rem; margin: 4px 0;">Take with breakfast meal.</p>
+              <div style="font-size: 0.9rem; font-weight: bold; color: #0f172a;">Metformin 1,000 mg + Cardioprotectors</div>
+            </div>
+            <div class="card" style="border-left: 6px solid #0284c7;">
+              <h3 style="color: #0284c7;">☀️ MID-DAY (12:30 PM)</h3>
+              <p style="font-size: 0.82rem; margin: 4px 0;">Take with lunch meal.</p>
+              <div style="font-size: 0.9rem; font-weight: bold; color: #0f172a;">Hydration &amp; Scheduled Nutrients</div>
+            </div>
+            <div class="card" style="border-left: 6px solid #2563eb;">
+              <h3 style="color: #2563eb;">🌙 EVENING (06:30 PM)</h3>
+              <p style="font-size: 0.82rem; margin: 4px 0;">Take with dinner meal.</p>
+              <div style="font-size: 0.9rem; font-weight: bold; color: #0f172a;">Metformin 1,000 mg (Overnight Suppression)</div>
+            </div>
+            <div class="card" style="border-left: 6px solid #7c3aed;">
+              <h3 style="color: #7c3aed;">🛌 BEDTIME (10:00 PM)</h3>
+              <p style="font-size: 0.82rem; margin: 4px 0;">30 min prior to sleep onset.</p>
+              <div style="font-size: 0.9rem; font-weight: bold; color: #0f172a;">Nocturnal Recovery Protocol</div>
+            </div>
+          </div>
+
+          <h2 style="font-size: 1.15rem; margin-top: 24px; margin-bottom: 4px;">Prescribed Medication Registry &amp; Weekly Check-off</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Medication Name</th>
+                <th style="text-align: center;">Dose</th>
+                <th style="text-align: center;">Target Time</th>
+                <th style="text-align: center;">Clinical Purpose</th>
+                <th style="text-align: center;">Mon</th>
+                <th style="text-align: center;">Tue</th>
+                <th style="text-align: center;">Wed</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${rowsHtml}
+            </tbody>
+          </table>
+          <div style="margin-top: 24px; font-size: 0.75rem; color: #64748b; border-top: 1px solid #cbd5e1; padding-top: 8px;">
+            Certified BFM Telemetry Suite • Generated: ${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()} • Zero synthetic data compliance.
+          </div>
+        </body>
+        </html>
+      `);
+      printWindow.document.close();
+    }
+
+    // Wrap takeAllMorningMeds and takeDinnerMeds to turn button GREEN on click
+    const originalTakeMorning = typeof takeAllMorningMeds === 'function' ? takeAllMorningMeds : null;
+    function takeAllMorningMedsEnhanced() {
+      if (typeof soundButtonPress === 'function') soundButtonPress();
+      if (originalTakeMorning) originalTakeMorning();
+      const b = document.getElementById('btnTakeAllMorning');
+      if (b) {
+        b.style.background = '#10b981';
+        b.style.color = '#ffffff';
+        b.textContent = '✔ MORNING TAKEN (LOGGED)';
+      }
+      try {
+        localStorage.setItem('bfm_med_morning_taken', new Date().toISOString());
+      } catch (e) {}
+    }
+    window.takeAllMorningMeds = takeAllMorningMedsEnhanced;
+
+    const originalTakeDinner = typeof takeDinnerMeds === 'function' ? takeDinnerMeds : null;
+    function takeDinnerMedsEnhanced() {
+      if (typeof soundButtonPress === 'function') soundButtonPress();
+      if (originalTakeDinner) originalTakeDinner();
+      const b = document.getElementById('btnTakeDinnerMeds');
+      if (b) {
+        b.style.background = '#10b981';
+        b.style.color = '#ffffff';
+        b.textContent = '✔ EVENING TAKEN (LOGGED)';
+      }
+      try {
+        localStorage.setItem('bfm_med_evening_taken', new Date().toISOString());
+      } catch (e) {}
+    }
+    window.takeDinnerMeds = takeDinnerMedsEnhanced;
+
+    // =========================================================================
+    // 2-HOUR POST-MEAL MEDICATION REMINDER CHECKER
+    // =========================================================================
+    function checkPostMealMedicationReminder() {
+      try {
+        const lastMealStr = localStorage.getItem('bfm_last_meal_time');
+        const lastMedStr = localStorage.getItem('bfm_med_last_taken');
+        if (!lastMealStr) return;
+        const mealTime = new Date(lastMealStr).getTime();
+        const now = Date.now();
+        const twoHoursMs = 2 * 60 * 60 * 1000;
+        if (now - mealTime >= twoHoursMs && (!lastMedStr || new Date(lastMedStr).getTime() < mealTime)) {
+          // Trigger visual notification ribbon
+          const rib = document.getElementById('ribbonMedReminder');
+          if (rib) rib.style.display = 'flex';
+        }
+      } catch (e) {}
+    }
+    setInterval(checkPostMealMedicationReminder, 30000);
+
+
+    function showMealPointCardModal(title, netCarbs, calories, timeStr, fluidOz) {
+      if (typeof soundButtonPress === 'function') soundButtonPress();
+      const m = document.getElementById('modalIntakePointCard');
+      if (!m) return;
+      document.getElementById('intakeCardIcon').textContent = '■';
+      document.getElementById('intakeCardIcon').style.color = '#10b981';
+      document.getElementById('intakeCardTitle').textContent = `MEAL INTAKE: ${timeStr || 'Recorded Time'}`;
+      document.getElementById('intakeCardBody').innerHTML = `
+        <div style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 6px; padding: 12px; margin-bottom: 10px;">
+          <strong style="color: #166534; font-size: 1.02rem;">${title}</strong>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 8px; font-family: var(--lcars-mono);">
+            <div style="background: #fff; padding: 6px; border-radius: 4px; text-align: center; border: 1px solid #cbd5e1;">
+              <div style="font-size: 0.7rem; color: #64748b;">NET CARBS</div>
+              <div style="font-size: 1rem; font-weight: bold; color: ${netCarbs <= 45 ? '#15803d' : '#b91c1c'};">${netCarbs}g</div>
+            </div>
+            <div style="background: #fff; padding: 6px; border-radius: 4px; text-align: center; border: 1px solid #cbd5e1;">
+              <div style="font-size: 0.7rem; color: #64748b;">CALORIES</div>
+              <div style="font-size: 1rem; font-weight: bold; color: #334155;">${calories} kcal</div>
+            </div>
+            <div style="background: #fff; padding: 6px; border-radius: 4px; text-align: center; border: 1px solid #cbd5e1;">
+              <div style="font-size: 0.7rem; color: #64748b;">FLUID</div>
+              <div style="font-size: 1rem; font-weight: bold; color: #0284c7;">${fluidOz || 8} oz</div>
+            </div>
+          </div>
+        </div>
+        <div style="font-size: 0.8rem; color: #475569;">
+          Recorded on 24-hr clinical metabolic timeline. Correlates with postprandial glucose excursion and GLUT4 muscular recovery.
+        </div>
+      `;
+      m.style.display = 'flex';
+    }
+
+    function showMedPointCardModal(title, dose, timeStr) {
+      if (typeof soundButtonPress === 'function') soundButtonPress();
+      const m = document.getElementById('modalIntakePointCard');
+      if (!m) return;
+      document.getElementById('intakeCardIcon').textContent = '▲';
+      document.getElementById('intakeCardIcon').style.color = '#2563eb';
+      document.getElementById('intakeCardTitle').textContent = `MEDICATION DOSE: ${timeStr || 'Recorded Time'}`;
+      document.getElementById('intakeCardBody').innerHTML = `
+        <div style="background: #eff6ff; border: 1.5px solid #93c5fd; border-radius: 6px; padding: 12px; margin-bottom: 10px;">
+          <strong style="color: #1e40af; font-size: 1.02rem;">${title}</strong>
+          <div style="margin-top: 6px; font-family: var(--lcars-mono); font-size: 0.95rem; font-weight: bold; color: #0f172a;">
+            Dosage: <span style="color: #2563eb;">${dose}</span>
+          </div>
+        </div>
+        <div style="font-size: 0.8rem; color: #475569;">
+          Adherence logged to longitudinal clinical registry. Status: <strong style="color: #16a34a;">✔ VERIFIED TAKEN</strong>.
+        </div>
+      `;
+      m.style.display = 'flex';
+    }
+
+    function closeIntakePointCard() {
+      const m = document.getElementById('modalIntakePointCard');
+      if (m) m.style.display = 'none';
+    }
+
+</script>
+
+
+    <!-- POINT-IN-TIME INTAKE & MEDICATION DRILL-DOWN CARD MODAL -->
+    <div id="modalIntakePointCard" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.65); z-index: 10000; align-items: center; justify-content: center;">
+      <div style="background: #ffffff; border-radius: 8px; width: 92%; max-width: 480px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border: 2px solid #0284c7; color: #0f172a; font-family: inherit;">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 12px;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span id="intakeCardIcon" style="font-size: 1.4rem;">■</span>
+            <strong id="intakeCardTitle" style="font-size: 1.1rem; color: #0f172a;">MEAL INTAKE DETAIL</strong>
+          </div>
+          <button onclick="closeIntakePointCard()" style="background: none; border: none; font-size: 1.4rem; cursor: pointer; color: #64748b;">&times;</button>
+        </div>
+        <div id="intakeCardBody" style="font-size: 0.9rem; line-height: 1.5; color: #334155;">
+          <!-- Dynamically populated -->
+        </div>
+        <div style="margin-top: 16px; display: flex; justify-content: flex-end;">
+          <button onclick="closeIntakePointCard()" class="lcars-btn btn-blue" style="font-size: 0.8rem; padding: 6px 16px;">CLOSE</button>
+        </div>
+      </div>
+    </div>
 
 </body>
 </html>

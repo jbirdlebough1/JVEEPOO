@@ -1,0 +1,24 @@
+{
+  "name": "veepoo",
+  "version": "1.0.0",
+  "description": "[![Platform: Cross-Platform](https://img.shields.io/badge/Platform-Windows%2011%20%7C%20macOS%20%7C%20Android%20%7C%20iOS%20%7C%20ChromeOS-blue.svg)](https://github.com/jbirdlebough1/JVEEPOO) [![Hardware: Model 5010](https://img.shields.io/badge/Hardware-FITAOS%205150%20%2F%20Veepoo-orange.svg)](https://fitaos.com) [![Aesthetic: BFM / Starfleet Sickbay](https://img.shields.io/badge/Aesthetic-BFM%20Biofunction%20Monitor-purple.svg)](https://github.com/jbirdlebough1/JVEEPOO) [![Consensus: ADA / ADAG Algorithm](https://img.shields.io/badge/Clinical-ADA%20%2F%20ADAG%20eA1C-green.svg)](docs/clinical_glucose_study_and_a1c_analysis.md) [![Heritage: Physio-Control LIFEPAK](https://img.shields.io/badge/Heritage-Physio--Control%20LIFEPAK%20%26%20LifeLine-red.svg)](docs/bfm_diabetes_beta_requirements_specification.md) [![License: GPL v3 / Open Source](https://img.shields.io/badge/License-GPL%20v3%20%2F%20Open%20Source-green.svg)](LICENSE)",
+  "main": "cdp_debug_style.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "C:/recover/git_repos/JVEEPOO.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "playwright": "^1.65.1",
+    "puppeteer-core": "^25.18.1"
+  }
+}
