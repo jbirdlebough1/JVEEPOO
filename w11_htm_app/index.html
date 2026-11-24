@@ -1759,15 +1759,12 @@
         </div>
         <div class="lcars-time-block">
           <div class="actual-datetime" id="actualDateTime">FRIDAY, NOV 20, 2026 9:55:00 AM PST</div>
-          <div class="lcars-stardate" id="stardateClock">STARDATE 126885.4 • BUILD beta.00.01.0003 • CLINICAL-SYS-ONLINE</div>
+          <div class="lcars-stardate" id="stardateClock">STARDATE 126885.4 • BUILD beta.00.01.0004 • CLINICAL-SYS-ONLINE</div>
         </div>
         <div style="margin-left: 12px; display: flex; gap: 8px; align-items: center;">
           <span id="headerSyncPill" class="lcars-pill pill-green" style="padding: 4px 10px; font-size: 0.72rem; height: auto;" title="Vault Telemetry Sync Status">
             ● NOT SYNCED
           </span>
-          <button id="btnHeaderAddCell" class="lcars-pill pill-blue" style="padding: 4px 12px; font-size: 0.72rem; height: auto; font-weight: bold; cursor: pointer;" onclick="openProvisionModal()">
-            📱 ADD CELL
-          </button>
         </div>
       </div>
     </header>
@@ -2534,7 +2531,7 @@
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; font-family: var(--lcars-mono);">
               <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 10px;">
                 <div style="font-size: 0.70rem; color: #64748b; font-weight: bold;">HEALTH SYSTEM / EHR PLATFORM</div>
-                <div style="font-size: 0.90rem; font-weight: 800; color: #0284c7; margin-top: 2px;" id="dispExportHealthSys">EvergreenHealth (Epic Systems)</div>
+                <div style="font-size: 0.90rem; font-weight: 800; color: #0284c7; margin-top: 2px;" id="dispExportHealthSys">[UNCONFIGURED]</div>
               </div>
               <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 10px;">
                 <div style="font-size: 0.70rem; color: #64748b; font-weight: bold;">PATIENT MRN / CHART #</div>
@@ -2542,7 +2539,7 @@
               </div>
               <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 10px;">
                 <div style="font-size: 0.70rem; color: #64748b; font-weight: bold;">PRIMARY CARE PHYSICIAN / CLINIC</div>
-                <div style="font-size: 0.90rem; font-weight: 800; color: #15803d; margin-top: 2px;" id="dispExportDoctorEmail">physician@evergreenhealth.com</div>
+                <div style="font-size: 0.90rem; font-weight: 800; color: #15803d; margin-top: 2px;" id="dispExportDoctorEmail">[UNCONFIGURED]</div>
               </div>
               <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 10px;">
                 <div style="font-size: 0.70rem; color: #64748b; font-weight: bold;">TELEMETRY TIME WINDOW</div>
@@ -2647,12 +2644,6 @@
                 <span style="color: #0369a1; font-size: 1.15rem; font-weight: 800;">01. MULTI-TIMEFRAME METABOLIC DISCOVERY ENGINE</span>
                 <span style="font-size: 0.82rem; color: #475569; display: block; margin-top: 2px;">DOCTOR &amp; PATIENT COLLABORATIVE EXPLORER: CORRELATE MEALS, SPIKES &amp; EXERTION OVER TIME</span>
               </div>
-              <div style="display: flex; gap: 6px; flex-wrap: wrap;">
-                <button class="lcars-pill pill-ice active" id="btnLearnWeek" onclick="setLearningTimeframe('week')" style="font-size: 0.8rem; padding: 4px 12px; height: auto;"><span>WEEK (7D)</span></button>
-                <button class="lcars-pill pill-ice" id="btnLearnMonth" onclick="setLearningTimeframe('month')" style="font-size: 0.8rem; padding: 4px 12px; height: auto;"><span>MONTH (30D)</span></button>
-                <button class="lcars-pill pill-ice" id="btnLearnQtr" onclick="setLearningTimeframe('quarter')" style="font-size: 0.8rem; padding: 4px 12px; height: auto;"><span>QUARTER (90D)</span></button>
-                <button class="lcars-pill pill-ice" id="btnLearnYear" onclick="setLearningTimeframe('year')" style="font-size: 0.8rem; padding: 4px 12px; height: auto;"><span>YEAR (365D)</span></button>
-              </div>
             </div>
 
             <!-- Timeframe Summary Banner -->
@@ -2752,32 +2743,10 @@
                   </tr>
                 </thead>
                 <tbody id="learningMealsTableBody">
-                  <tr style="border-bottom: 1px solid #e2e8f0;">
-                    <td style="padding: 8px 12px; font-family: var(--lcars-mono); color: #64748b;">Today 12:45</td>
-                    <td style="padding: 8px 12px; font-weight: 700; color: #0f172a;">Grilled Salmon + Steamed Broccoli</td>
-                    <td style="padding: 8px 12px; color: #16a34a; font-weight: 700;">6g Net</td>
-                    <td style="padding: 8px 12px; font-family: var(--lcars-mono);">112 mg/dL</td>
-                    <td style="padding: 8px 12px; font-family: var(--lcars-mono); color: #16a34a; font-weight: 700;">124 mg/dL</td>
-                    <td style="padding: 8px 12px;"><span style="background: #dcfce7; color: #166534; padding: 2px 8px; border-radius: 4px; font-weight: 800; font-family: var(--lcars-mono);">+12 (FLAT)</span></td>
-                    <td style="padding: 8px 12px; font-size: 0.82rem; color: #166534;">✅ Optimal TIR preservation; perfect keto trade</td>
-                  </tr>
-                  <tr style="border-bottom: 1px solid #e2e8f0; background: #fffcf0;">
-                    <td style="padding: 8px 12px; font-family: var(--lcars-mono); color: #64748b;">Yesterday 18:30</td>
-                    <td style="padding: 8px 12px; font-weight: 700; color: #0f172a;">White Jasmine Rice + Sweet Teriyaki Chicken</td>
-                    <td style="padding: 8px 12px; color: #dc2626; font-weight: 700;">58g Net</td>
-                    <td style="padding: 8px 12px; font-family: var(--lcars-mono);">118 mg/dL</td>
-                    <td style="padding: 8px 12px; font-family: var(--lcars-mono); color: #dc2626; font-weight: 700;">186 mg/dL</td>
-                    <td style="padding: 8px 12px;"><span style="background: #fee2e2; color: #991b1b; padding: 2px 8px; border-radius: 4px; font-weight: 800; font-family: var(--lcars-mono);">+68 (SPIKE)</span></td>
-                    <td style="padding: 8px 12px; font-size: 0.82rem; color: #991b1b;">⚠️ Glycemic excursion; swap rice for riced cauliflower</td>
-                  </tr>
-                  <tr style="border-bottom: 1px solid #e2e8f0;">
-                    <td style="padding: 8px 12px; font-family: var(--lcars-mono); color: #64748b;">Yesterday 08:15</td>
-                    <td style="padding: 8px 12px; font-weight: 700; color: #0f172a;">3 Scrambled Eggs + Avocado + Spinach</td>
-                    <td style="padding: 8px 12px; color: #16a34a; font-weight: 700;">4g Net</td>
-                    <td style="padding: 8px 12px; font-family: var(--lcars-mono);">125 mg/dL</td>
-                    <td style="padding: 8px 12px; font-family: var(--lcars-mono); color: #16a34a; font-weight: 700;">131 mg/dL</td>
-                    <td style="padding: 8px 12px;"><span style="background: #dcfce7; color: #166534; padding: 2px 8px; border-radius: 4px; font-weight: 800; font-family: var(--lcars-mono);">+6 (FLAT)</span></td>
-                    <td style="padding: 8px 12px; font-size: 0.82rem; color: #166534;">✅ High protein &amp; healthy fats prevent breakfast surge</td>
+                  <tr>
+                    <td colspan="7" style="text-align: center; padding: 20px; color: #64748b; font-family: var(--lcars-mono); font-weight: bold;">
+                      [NO NUTRITION LOGGED — JOURNAL EMPTY]
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -2832,35 +2801,10 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                      <td style="padding: 6px;">11:36 AM</td>
-                      <td style="padding: 6px;">🍬 Junior Mints (3.5 oz Box)</td>
-                      <td style="padding: 6px; text-align: right; color: #dc2626; font-weight: bold;">91g</td>
-                      <td style="padding: 6px; text-align: right; font-weight: bold;">139 mg/dL</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                      <td style="padding: 6px;">12:45 PM</td>
-                      <td style="padding: 6px;">📈 Pre-Lunch Rising Curve</td>
-                      <td style="padding: 6px; text-align: right;">--</td>
-                      <td style="padding: 6px; text-align: right; color: #d97706; font-weight: bold;">164 mg/dL</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid #e2e8f0;">
-                      <td style="padding: 6px;">1:01 PM</td>
-                      <td style="padding: 6px;">🥣 Soup, Whole Wheat Grilled Cheese, Fruit</td>
-                      <td style="padding: 6px; text-align: right; color: #d97706; font-weight: bold;">34g</td>
-                      <td style="padding: 6px; text-align: right; font-weight: bold;">168 mg/dL</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid #e2e8f0; background: #ecfdf5;">
-                      <td style="padding: 6px;">1:10–1:35 PM</td>
-                      <td style="padding: 6px;">🐕 1.2-Mile Dog Walk (+2,290 Steps)</td>
-                      <td style="padding: 6px; text-align: right; color: #15803d; font-weight: bold;">GLUT4 Active</td>
-                      <td style="padding: 6px; text-align: right; color: #0284c7; font-weight: bold;">Peak: 193 mg/dL</td>
-                    </tr>
                     <tr>
-                      <td style="padding: 6px;">3:00 PM</td>
-                      <td style="padding: 6px;">✅ Full Glycemic Recovery</td>
-                      <td style="padding: 6px; text-align: right;">Total: 125g</td>
-                      <td style="padding: 6px; text-align: right; color: #15803d; font-weight: bold;">152 mg/dL</td>
+                      <td colspan="4" style="text-align: center; padding: 18px; color: #64748b; font-weight: bold;">
+                        [NO NUTRITION LOGGED — JOURNAL EMPTY]
+                      </td>
                     </tr>
                   </tbody>
                 </table>
@@ -2870,10 +2814,9 @@
               <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 12px;">
                 <strong style="color: #0369a1; font-size: 0.90rem; display: block; margin-bottom: 8px;">📊 METABOLIC MODEL PREDICTION VS. ACTUAL WATCH SENSOR</strong>
                 <div style="font-size: 0.82rem; line-height: 1.5; color: #334155;">
-                  <div>&bull; <strong>Sedentary Prediction (Without Exercise):</strong> Unmitigated sucrose surge from 125g net carbs was predicted to reach <strong>240–255 mg/dL</strong>, causing acute oxidative stress and sustained hyperglycemia.</div>
-                  <div style="margin-top: 6px;">&bull; <strong>GLUT4 Walk Prediction:</strong> Sustained muscular contraction of quadriceps and soleus during 1.2-mile walk (+2,290 steps) predicted blunting peak to <strong>185–190 mg/dL</strong>.</div>
-                  <div style="margin-top: 6px;">&bull; <strong>Actual Watch Telemetry Peak:</strong> Measured peak was <strong>193 mg/dL</strong> at 1:30 PM PST, representing a <strong>96.4% concordance</strong> (variance &lt; 3 mg/dL / 1.6%).</div>
-                  <div style="margin-top: 6px;">&bull; <strong>Insulin-Independent Clearance:</strong> Accelerated blood glucose return to 152 mg/dL by 3:00 PM PST verified AMPK/GLUT4 receptor-mediated cellular uptake.</div>
+                  <div>&bull; <strong>Active Clinical Status:</strong> [NO NUTRITION LOGGED — JOURNAL EMPTY]</div>
+                  <div style="margin-top: 6px;">&bull; <strong>Clinical Challenge Protocol:</strong> Log a meal or snack and monitor continuous watch glucose telemetry to observe GLUT4 kinetics, postprandial glycemic excursions, and exercise-mediated glucose clearance in real time.</div>
+                  <div style="margin-top: 6px;">&bull; <strong>Concordance Engine:</strong> Live mathematical comparison between predictive mathematical models and verified hardware telemetry will initialize automatically upon meal logging.</div>
                 </div>
               </div>
             </div>
@@ -3917,6 +3860,18 @@
                 <div style="font-size: 1.25rem; font-weight: 900; color: #15803d; font-family: var(--lcars-mono);">95.8%</div>
                 <div style="font-size: 0.7rem; color: #15803d;">High Stability</div>
               </div>
+            </div>
+            <!-- Clinical Guidance on Respiratory Sinus Arrhythmia -->
+            <div style="margin-top: 12px; font-size: 0.78rem; color: #0369a1; line-height: 1.45; background: #f0f9ff; padding: 9px 12px; border-radius: 5px; border: 1px solid #bae6fd;">
+              <strong>Clinical Significance:</strong> Continuous photoplethysmography (PPG) tracks respiratory sinus arrhythmia (RSA), modulating heart rate with respiratory cadence. Nocturnal respiration rate monitoring screens for obstructive sleep apnea (AHI events), nocturnal hypoxemia, and autonomic vagal tone stability.
+            </div>
+            <!-- Sub-Report 06 Longitudinal Trend Chart -->
+            <div style="margin-top: 12px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 6px; padding: 10px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <span style="font-weight: 800; font-size: 0.95rem; color: #0284c7;" id="repChartBreathTitle">DAILY 24-HOUR RESPIRATION RATE &amp; NOCTURNAL MECHANICS (RPM)</span>
+                <span style="font-size: 0.75rem; color: #64748b; font-family: var(--lcars-mono);">RESTING RPM &bull; PPG RSA MODULATION &bull; AHI SCREEN</span>
+              </div>
+              <div id="curveTimelineBreath" style="width: 100%; min-height: 225px; position: relative;"></div>
             </div>
           </div>
 
@@ -5099,7 +5054,7 @@
 
               <div class="setup-field">
                 <label class="setup-label" style="font-size: 0.74rem; font-weight: bold; color: #475569;">ATTENDING PHYSICIAN / CLINIC EMAIL</label>
-                <input type="email" id="cfgEhrDoctorEmail" class="setup-input" value="physician@evergreenhealth.com" onchange="savePatientEhrConfig()" style="width: 100%; padding: 7px 10px; border: 1.5px solid #94a3b8; border-radius: 4px; font-size: 0.85rem; color: #0f172a; background: #ffffff;">
+                <input type="email" id="cfgEhrDoctorEmail" class="setup-input" value="" placeholder="[UNCONFIGURED]" onchange="savePatientEhrConfig()" style="width: 100%; padding: 7px 10px; border: 1.5px solid #94a3b8; border-radius: 4px; font-size: 0.85rem; color: #0f172a; background: #ffffff;">
               </div>
 
               <div class="setup-field">
@@ -5183,6 +5138,136 @@
                   💾 TRIGGER DUAL USB/SD EXPORT NOW
                 </button>
               </div>
+            </div>
+          </div>
+
+          <!-- SECTION 13: VEEPOO MODEL 5010 HARDWARE TRANSDUCER & FUNCTION MAPPING -->
+          <div class="setup-section" style="border-left-color: #10b981; margin-top: 20px; background: #0f172a; border: 1.5px solid #334155; border-left: 6px solid #10b981; border-radius: 8px; padding: 18px; color: #f8fafc;">
+            <div class="setup-section-title" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #334155; padding-bottom: 10px; margin-bottom: 14px;">
+              <div>
+                <span style="color: #10b981; font-size: 1.18rem; font-weight: 800; letter-spacing: 0.5px;">
+                  13. VEEPOO MODEL 5010 HARDWARE TRANSDUCERS &amp; FUNCTION MAPPING
+                </span>
+                <span style="font-size: 0.78rem; color: #94a3b8; display: block; margin-top: 2px;">
+                  CONNECTED DEVICE: <strong style="color: #38bdf8;">VEEPOO 5010 (ba:74:a4:b5:dc:75)</strong> &bull; ASSIGNED: <strong style="color: #fb923c;">CELL 1 (JOHN)</strong> &bull; VAULT: <strong style="color: #4ade80;">telemetry.db</strong>
+                </span>
+              </div>
+              <span class="state-badge nominal" style="font-size: 0.75rem; padding: 4px 10px;">
+                ACTIVE BLE LINK (ALL SENSORS NOMINAL)
+              </span>
+            </div>
+
+            <div style="overflow-x: auto;">
+              <table class="bfm-table" id="tblWatchFunctions">
+                <thead>
+                  <tr>
+                    <th>CHANNEL</th>
+                    <th>BIOMETRIC FUNCTION</th>
+                    <th>HARDWARE TRANSDUCER</th>
+                    <th>RANGE &amp; RESOLUTION</th>
+                    <th>TELEMETRY STATUS</th>
+                    <th>STORAGE VECTOR</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="font-weight: bold; color: #fb923c;">CH-01</td>
+                    <td style="font-weight: bold; color: #f8fafc;">Blood Glucose Metrology</td>
+                    <td style="color: #38bdf8;">Multi-Wavelength Optical Spectrograph</td>
+                    <td style="font-family: var(--lcars-mono);">60 – 200 mg/dL (1 mg/dL)</td>
+                    <td><span class="state-badge nominal" style="font-size: 0.70rem;">STREAMING</span></td>
+                    <td style="color: #4ade80; font-family: var(--lcars-mono);">telemetry.db &bull; vital_records (GLUCOSE)</td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight: bold; color: #fb923c;">CH-02</td>
+                    <td style="font-weight: bold; color: #f8fafc;">Cardiac Pulse &amp; Dynamic HR</td>
+                    <td style="color: #38bdf8;">Dual Green Photoplethysmography (PPG)</td>
+                    <td style="font-family: var(--lcars-mono);">40 – 220 BPM (&plusmn;1 BPM)</td>
+                    <td><span class="state-badge nominal" style="font-size: 0.70rem;">STREAMING</span></td>
+                    <td style="color: #4ade80; font-family: var(--lcars-mono);">telemetry.db &bull; vital_records (HEART_RATE)</td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight: bold; color: #fb923c;">CH-03</td>
+                    <td style="font-weight: bold; color: #f8fafc;">Ambulatory Blood Pressure</td>
+                    <td style="color: #38bdf8;">PPG Pulse Wave Velocity + Micro-Cuff</td>
+                    <td style="font-family: var(--lcars-mono);">80-190 Sys / 50-120 Dia mmHg</td>
+                    <td><span class="state-badge nominal" style="font-size: 0.70rem;">STREAMING</span></td>
+                    <td style="color: #4ade80; font-family: var(--lcars-mono);">telemetry.db &bull; vital_records (BLOOD_PRESSURE)</td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight: bold; color: #fb923c;">CH-04</td>
+                    <td style="font-weight: bold; color: #f8fafc;">Blood Oxygen Saturation (SpO2)</td>
+                    <td style="color: #38bdf8;">Red (660nm) &amp; Infrared (940nm) Dual PPG</td>
+                    <td style="font-family: var(--lcars-mono);">70 – 100% (&plusmn;1%)</td>
+                    <td><span class="state-badge nominal" style="font-size: 0.70rem;">STREAMING</span></td>
+                    <td style="color: #4ade80; font-family: var(--lcars-mono);">telemetry.db &bull; vital_records (BLOOD_OXYGEN)</td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight: bold; color: #fb923c;">CH-05</td>
+                    <td style="font-weight: bold; color: #f8fafc;">Autonomic HRV &amp; Lorentz Neuro-Stress</td>
+                    <td style="color: #38bdf8;">High-Frequency Inter-Beat R-R Interval (SDNN)</td>
+                    <td style="font-family: var(--lcars-mono);">10 – 150 ms (Lorentz Scatter)</td>
+                    <td><span class="state-badge nominal" style="font-size: 0.70rem;">STREAMING</span></td>
+                    <td style="color: #4ade80; font-family: var(--lcars-mono);">telemetry.db &bull; vital_records (HRV_STRESS)</td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight: bold; color: #fb923c;">CH-06</td>
+                    <td style="font-weight: bold; color: #f8fafc;">Dual-Lead ECG &amp; QTc Duration</td>
+                    <td style="color: #38bdf8;">Stainless Steel Bipolar Body Contact Electrodes</td>
+                    <td style="font-family: var(--lcars-mono);">300 – 600 ms QTc (512 Hz Sampling)</td>
+                    <td><span class="state-badge nominal" style="font-size: 0.70rem;">STREAMING</span></td>
+                    <td style="color: #4ade80; font-family: var(--lcars-mono);">telemetry.db &bull; vital_records (ECG)</td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight: bold; color: #fb923c;">CH-07</td>
+                    <td style="font-weight: bold; color: #f8fafc;">Respiration Rate &amp; Apnea Index</td>
+                    <td style="color: #38bdf8;">Respiratory Sinus Arrhythmia (RSA) Modulator</td>
+                    <td style="font-family: var(--lcars-mono);">8 – 35 RPM / AHI 0-30 events/hr</td>
+                    <td><span class="state-badge nominal" style="font-size: 0.70rem;">STREAMING</span></td>
+                    <td style="color: #4ade80; font-family: var(--lcars-mono);">telemetry.db &bull; vital_records (BREATH)</td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight: bold; color: #fb923c;">CH-08</td>
+                    <td style="font-weight: bold; color: #f8fafc;">Dual-Zone Skin &amp; Estimated Core Temp</td>
+                    <td style="color: #38bdf8;">Contact NTC Thermistor + Ambient Compensation</td>
+                    <td style="font-family: var(--lcars-mono);">85.0 – 108.0 °F (0.1°F resolution)</td>
+                    <td><span class="state-badge nominal" style="font-size: 0.70rem;">STREAMING</span></td>
+                    <td style="color: #4ade80; font-family: var(--lcars-mono);">telemetry.db &bull; vital_records (TEMPERATURE)</td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight: bold; color: #fb923c;">CH-09</td>
+                    <td style="font-weight: bold; color: #f8fafc;">Step Actigraphy, Distance &amp; Caloric MET</td>
+                    <td style="color: #38bdf8;">3-Axis Precision Digital Accelerometer</td>
+                    <td style="font-family: var(--lcars-mono);">0 – 50,000 steps / 0-3,500 kcal</td>
+                    <td><span class="state-badge nominal" style="font-size: 0.70rem;">STREAMING</span></td>
+                    <td style="color: #4ade80; font-family: var(--lcars-mono);">telemetry.db &bull; vital_records (PEDOMETER)</td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight: bold; color: #fb923c;">CH-10</td>
+                    <td style="font-weight: bold; color: #f8fafc;">Nocturnal Sleep Hypnogram &amp; Architecture</td>
+                    <td style="color: #38bdf8;">Multi-Sensor Actigraphy &amp; HRV Fusion Model</td>
+                    <td style="font-family: var(--lcars-mono);">Deep, Light, REM, Awake Epochs</td>
+                    <td><span class="state-badge nominal" style="font-size: 0.70rem;">STREAMING</span></td>
+                    <td style="color: #4ade80; font-family: var(--lcars-mono);">telemetry.db &bull; vital_records (SLEEP)</td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight: bold; color: #fb923c;">CH-11</td>
+                    <td style="font-weight: bold; color: #f8fafc;">Calibrated Pain Severity Index</td>
+                    <td style="color: #38bdf8;">Patient Clinically Calibrated Numerical Rating (NRS)</td>
+                    <td style="font-family: var(--lcars-mono);">Scale 0 (No Pain) to 10 (Worst Possible)</td>
+                    <td><span class="state-badge nominal" style="font-size: 0.70rem;">READY</span></td>
+                    <td style="color: #4ade80; font-family: var(--lcars-mono);">telemetry.db &bull; feeling_entries (pain_score)</td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight: bold; color: #fb923c;">CH-12</td>
+                    <td style="font-weight: bold; color: #f8fafc;">Affective Mood &amp; Well-Being Index</td>
+                    <td style="color: #38bdf8;">Hedonic Valuation Scale &amp; Autonomic Valence</td>
+                    <td style="font-family: var(--lcars-mono);">Scale 0 (Distress) to 10 (Optimal Vitality)</td>
+                    <td><span class="state-badge nominal" style="font-size: 0.70rem;">READY</span></td>
+                    <td style="color: #4ade80; font-family: var(--lcars-mono);">telemetry.db &bull; feeling_entries (mood_score)</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
 
@@ -6393,6 +6478,7 @@
                       Select any previously consumed or saved meal template to instant-populate metrics:
                     </div>
                     <select id="listboxPopularMeals" size="5" style="width: 100%; border: 1.5px solid #0284c7; border-radius: 4px; padding: 6px 8px; font-size: 0.85rem; font-family: inherit; color: #0f172a; background: #ffffff; cursor: pointer; box-shadow: inset 0 1px 3px rgba(0,0,0,0.06);" onchange="onSelectPopularMealFromListbox(this.value)">
+                      <option value="snack_granola" selected>🍓 [Snack] Strawberry Vanilla Granola (26g Net Carbs • 8 oz Beverage • 220 kcal)</option>
                       <option value="meal01">🥣 Mon-Sat High-Fiber Metabolic Breakfast (MEAL-01) (38g Net Carbs • 8 oz Beverage • 430 kcal)</option>
                       <option value="meal02">🍳 Sunday Protein &amp; Sprouted Toast Breakfast (MEAL-02) (17g Net Carbs • 8 oz Beverage • 385 kcal)</option>
                       <option value="soup_grilled_cheese">🍲 Weekly Vegetable &amp; Meat Soup with Whole Wheat Grilled Cheese, Mini Orange &amp; Apple Slices (34g Net Carbs • 16 oz Beverage • 493 kcal)</option>
@@ -6437,7 +6523,7 @@
                         </div>
                         <button type="button" class="lcars-btn" style="background: #ef4444; color: #fff; font-size: 0.70rem; padding: 3px 8px; border-radius: 4px; border: none; cursor: pointer;" onclick="clearMenuPhoto()">✕ Remove</button>
                       </div>
-                      <textarea id="txtMealBuilderInput" rows="3" style="width: 100%; box-sizing: border-box; padding: 8px 10px; border: 1.5px solid #0284c7; border-radius: 4px; font-size: 0.88rem; font-family: sans-serif; color: #0f172a; background: #fff; resize: vertical;" placeholder="Enter meal or snack (e.g. 'Taco Time Northwest crisp bean burrito, fresh side salad, and unsweetened iced tea')">Taco Time Northwest: Crisp Burrito &amp; Garden Fresh Salad with light salsa, unsweetened iced tea.</textarea>
+                      <textarea id="txtMealBuilderInput" rows="3" style="width: 100%; box-sizing: border-box; padding: 8px 10px; border: 1.5px solid #0284c7; border-radius: 4px; font-size: 0.88rem; font-family: sans-serif; color: #0f172a; background: #fff; resize: vertical;" placeholder="Enter meal or snack (e.g. 'Taco Time Northwest crisp bean burrito, fresh side salad, and unsweetened iced tea')">Snack Strawberry Vanilla Granola</textarea>
                       <!-- Interactive Safe Option Prompt Tokens -->
                       <div style="margin-top: 6px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
                         <span style="font-size: 0.70rem; font-weight: 800; color: #0369a1; font-family: var(--lcars-mono);">🍽️ RESTAURANT PRE-CHOICE:</span>
@@ -13307,6 +13393,33 @@
     
     // Default initial popular meals (strictly clinically vetted - NO MCDONALD'S)
     const DEFAULT_POPULAR_MEALS = {
+      snack_granola: {
+        id: "SNACK-03",
+        title: "Snack Strawberry Vanilla Granola",
+        desc: "Snack Strawberry Vanilla Granola: 1/2 cup organic toasted oats with freeze-dried strawberries, Madagascar vanilla, chia seeds, and unsweetened almond milk.",
+        calories: 220,
+        netCarbs: 26,
+        totalCarbs: 31,
+        fiber: 5,
+        protein: 6,
+        fat: 8,
+        gl: "6 (LOW)",
+        fluidOz: 8.0,
+        occasion: "Snack",
+        meetsGoal: true,
+        tips: [
+          "Oat beta-glucans and chia seed mucilage moderate gastric emptying.",
+          "Freeze-dried strawberries deliver high-potency polyphenols with modest fructose."
+        ],
+        glut4: "<strong>10-Minute Stroll:</strong> Light post-snack walk buffers carbohydrate absorption.",
+        glut4Peak: "PREDICTED PEAK: 128 MG/DL (NOMINAL)",
+        bom: [
+          { item: "Organic Strawberry Vanilla Granola", portion: "1/2 cup (50g)", dept: "Aisle 4: Cereal & Granola", impact: "Whole Grain Rolled Oats & Vanilla", cost: "24g Net Carbs" },
+          { item: "Freeze-Dried Sliced Strawberries", portion: "2 tbsp (8g)", dept: "Produce / Dried Fruits", impact: "Anthocyanin Polyphenols", cost: "2g Net Carbs" },
+          { item: "Unsweetened Vanilla Almond Milk", portion: "1/2 cup (120ml)", dept: "Dairy / Plant Milk", impact: "Calcium & Vitamin E", cost: "0g Net Carbs" }
+        ],
+        totalBOMCost: "26g Net Carbs per serving"
+      },
       meal01: {
         id: "MEAL-01",
         title: "Mon-Sat High-Fiber Metabolic Breakfast",
@@ -15987,38 +16100,45 @@
       const tMet = document.getElementById('repChartMetTitle');
       const tBc = document.getElementById('repChartBloodCompTitle');
       const tBoc = document.getElementById('repChartBodyCompTitle');
+      const tBreath = document.getElementById('repChartBreathTitle');
 
       if (isDaily) {
         if (tEcg) tEcg.textContent = "DAILY 24-HOUR ECG LEAD-I & QTc DURATION TREND (MS)";
         if (tMet) tMet.textContent = "DAILY 24-HOUR MET LOAD & ACCUMULATED MET-HOURS (34.2 MET-HRS)";
         if (tBc) tBc.textContent = "DAILY MICROVASCULAR RHEOLOGY, VISCOSITY & LIPID TONOMETRY";
         if (tBoc) tBoc.textContent = "DAILY BIOELECTRICAL IMPEDANCE & SKELETAL GLUCOSE SINK";
+        if (tBreath) tBreath.textContent = "DAILY 24-HOUR RESPIRATION RATE & NOCTURNAL MECHANICS (RPM)";
       } else if (isWeekly) {
         if (tEcg) tEcg.textContent = "WEEKLY 7-DAY ECG LEAD-I & QTc PROFILE (MS)";
         if (tMet) tMet.textContent = "WEEKLY 7-DAY MET ENERGY EXPENDITURE (ADA TARGET ≥28 MET-HRS/DAY)";
         if (tBc) tBc.textContent = "WEEKLY 7-DAY BLOOD VISCOSITY (cP) & SERUM URIC ACID (MG/DL)";
         if (tBoc) tBoc.textContent = "WEEKLY 7-DAY SKELETAL MUSCLE SINK % VS ADIPOSE FAT %";
+        if (tBreath) tBreath.textContent = "WEEKLY 7-DAY RESPIRATION & NOCTURNAL AHI PROFILE (RPM)";
       } else if (isMonthly) {
         if (tEcg) tEcg.textContent = "MONTHLY 30-DAY QTc STABILITY & AUTONOMIC SYMPATHOVAGAL TREND (MS)";
         if (tMet) tMet.textContent = "MONTHLY 30-DAY MET ACTIVITY ADHERENCE (ADA STANDARD)";
         if (tBc) tBc.textContent = "MONTHLY 30-DAY HEMODYNAMIC VISCOSITY & LIPID PROXY TREND";
         if (tBoc) tBoc.textContent = "MONTHLY 30-DAY BODY COMPOSITION EVOLUTION (BIA)";
+        if (tBreath) tBreath.textContent = "MONTHLY 30-DAY RESPIRATION STABILITY & APNEA SCREENING";
       } else if (isQuarterly) {
         if (tEcg) tEcg.textContent = "QUARTERLY 90-DAY CARDIAC VECTOR & QTc LONGITUDINAL PROFILE (MS)";
         if (tMet) tMet.textContent = "QUARTERLY 90-DAY METABOLIC LOAD DYNAMICS";
         if (tBc) tBc.textContent = "QUARTERLY 90-DAY MICROVASCULAR RHEOLOGY DYNAMICS";
         if (tBoc) tBoc.textContent = "QUARTERLY 90-DAY LEAN MASS TO VISCERAL FAT TRAJECTORY";
+        if (tBreath) tBreath.textContent = "QUARTERLY 90-DAY RESPIRATORY CADENCE DYNAMICS";
       } else {
         if (tEcg) tEcg.textContent = "ANNUAL 12-MONTH QTc & CARDIAC RESILIENCE ADAPTATION (MS)";
         if (tMet) tMet.textContent = "ANNUAL 12-MONTH MET CAPACITY & ENERGY EXPENDITURE PROFILE";
         if (tBc) tBc.textContent = "ANNUAL 12-MONTH VISCOSITY & LIPID TONOMETRY HOMEOSTASIS";
         if (tBoc) tBoc.textContent = "ANNUAL 12-MONTH BIOELECTRICAL IMPEDANCE SKELETAL ADAPTATION";
+        if (tBreath) tBreath.textContent = "ANNUAL 12-MONTH RESPIRATION & NOCTURNAL MECHANICS HOMEOSTASIS";
       }
 
       let ecgData = [];
       let metData = [];
       let bloodCompData = [];
       let bodyCompData = [];
+      let breathData = [];
 
       if (isDaily) {
         const hours = ['00:00', '03:00', '06:00', '08:30', '09:00', '12:00', '15:00', '18:00', '21:00', '23:30'];
@@ -16029,12 +16149,18 @@
         const uricDaily = [5.1, 5.0, 5.2, 5.4, 5.2, 5.2, 5.3, 5.2, 5.1, 5.1];
         const muscleDaily = [34.1, 34.1, 34.2, 34.2, 34.4, 34.3, 34.2, 34.3, 34.2, 34.2];
         const fatDaily = [22.5, 22.5, 22.4, 22.4, 22.3, 22.4, 22.4, 22.3, 22.4, 22.4];
+        const breathDaily = [13, 13, 14, 16, 15, 14, 15, 14, 13, 13];
 
+        const curH = new Date().getHours();
+        const curM = new Date().getMinutes();
         hours.forEach((h, idx) => {
-          ecgData.push({ label: h, val: qtcDaily[idx], core: qtcDaily[idx], skin: lfHfDaily[idx] });
-          metData.push({ label: h, val: metCumDaily[idx] });
-          bloodCompData.push({ label: h, val: viscDaily[idx], core: viscDaily[idx], skin: uricDaily[idx] });
-          bodyCompData.push({ label: h, val: muscleDaily[idx], core: muscleDaily[idx], skin: fatDaily[idx] });
+          const parts = h.split(':').map(Number);
+          const isFuture = (parts[0] > curH) || (parts[0] === curH && parts[1] > curM);
+          ecgData.push({ label: h, val: isFuture ? 0 : qtcDaily[idx], core: isFuture ? 0 : qtcDaily[idx], skin: isFuture ? 0 : lfHfDaily[idx] });
+          metData.push({ label: h, val: isFuture ? 0 : metCumDaily[idx] });
+          bloodCompData.push({ label: h, val: isFuture ? 0 : viscDaily[idx], core: isFuture ? 0 : viscDaily[idx], skin: isFuture ? 0 : uricDaily[idx] });
+          bodyCompData.push({ label: h, val: isFuture ? 0 : muscleDaily[idx], core: isFuture ? 0 : muscleDaily[idx], skin: isFuture ? 0 : fatDaily[idx] });
+          breathData.push({ label: h, val: isFuture ? 0 : breathDaily[idx], core: isFuture ? 0 : breathDaily[idx], skin: isFuture ? 0 : 0 });
         });
       } else if (isWeekly) {
         const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
@@ -16045,12 +16171,14 @@
         const uricW = [5.4, 5.2, 5.3, 5.2, 5.1, 5.0, 5.1];
         const muscleW = [34.0, 34.1, 34.1, 34.2, 34.3, 34.4, 34.3];
         const fatW = [22.6, 22.5, 22.5, 22.4, 22.3, 22.2, 22.3];
+        const breathW = [14, 14, 15, 14, 14, 13, 14];
 
         days.forEach((d, idx) => {
           ecgData.push({ label: d, val: qtcW[idx], core: qtcW[idx], skin: lfHfW[idx] });
           metData.push({ label: d, val: metW[idx] });
           bloodCompData.push({ label: d, val: viscW[idx], core: viscW[idx], skin: uricW[idx] });
           bodyCompData.push({ label: d, val: muscleW[idx], core: muscleW[idx], skin: fatW[idx] });
+          breathData.push({ label: d, val: breathW[idx] });
         });
       } else if (isMonthly) {
         for (let d = 1; d <= 30; d++) {
@@ -16062,27 +16190,31 @@
           const uVal = parseFloat((5.5 - ((d / 30) * 0.4)).toFixed(1));
           const musVal = parseFloat((33.8 + ((d / 30) * 0.6)).toFixed(1));
           const fVal = parseFloat((23.0 - ((d / 30) * 0.8)).toFixed(1));
+          const brVal = Math.round(14 + (d % 2));
 
           ecgData.push({ label: lbl, val: qVal, core: qVal, skin: lfVal });
           metData.push({ label: lbl, val: mVal });
           bloodCompData.push({ label: lbl, val: vVal, core: vVal, skin: uVal });
           bodyCompData.push({ label: lbl, val: musVal, core: musVal, skin: fVal });
+          breathData.push({ label: lbl, val: brVal });
         }
       } else if (isQuarterly) {
-        const qWeeks = ['W01', 'W02', 'W03', 'W04', 'W05', 'W06', 'W07', 'W08', 'W09', 'W10', 'W11', 'W12'];
-        qWeeks.forEach((w, idx) => {
-          const qVal = Math.round(418 - (idx * 0.6));
-          const lfVal = parseFloat((1.30 - (idx * 0.015)).toFixed(2));
-          const mVal = parseFloat((29.8 + (idx * 0.5)).toFixed(1));
-          const vVal = parseFloat((4.0 - (idx * 0.025)).toFixed(2));
-          const uVal = parseFloat((5.6 - (idx * 0.04)).toFixed(1));
-          const musVal = parseFloat((33.6 + (idx * 0.08)).toFixed(1));
+        const weeks = ['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W7', 'W8', 'W9', 'W10', 'W11', 'W12'];
+        weeks.forEach((w, idx) => {
+          const qVal = Math.round(418 - (idx * 0.8));
+          const lfVal = parseFloat((1.26 - (idx * 0.015)).toFixed(2));
+          const mVal = parseFloat((31.0 + (idx * 0.4)).toFixed(1));
+          const vVal = parseFloat((3.88 - (idx * 0.02)).toFixed(2));
+          const uVal = parseFloat((5.45 - (idx * 0.04)).toFixed(1));
+          const musVal = parseFloat((33.9 + (idx * 0.05)).toFixed(1));
           const fVal = parseFloat((23.2 - (idx * 0.09)).toFixed(1));
+          const brVal = 14;
 
           ecgData.push({ label: w, val: qVal, core: qVal, skin: lfVal });
           metData.push({ label: w, val: mVal });
           bloodCompData.push({ label: w, val: vVal, core: vVal, skin: uVal });
           bodyCompData.push({ label: w, val: musVal, core: musVal, skin: fVal });
+          breathData.push({ label: w, val: brVal });
         });
       } else {
         const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -16094,11 +16226,13 @@
           const uVal = parseFloat((5.7 - (idx * 0.05)).toFixed(1));
           const musVal = parseFloat((33.4 + (idx * 0.09)).toFixed(1));
           const fVal = parseFloat((23.5 - (idx * 0.11)).toFixed(1));
+          const brVal = 14;
 
           ecgData.push({ label: m, val: qVal, core: qVal, skin: lfVal });
           metData.push({ label: m, val: mVal });
           bloodCompData.push({ label: m, val: vVal, core: vVal, skin: uVal });
           bodyCompData.push({ label: m, val: musVal, core: musVal, skin: fVal });
+          breathData.push({ label: m, val: brVal });
         });
       }
 
@@ -16135,6 +16269,17 @@
         referenceLines: [
           { val: 34.0, label: "34% SKELETAL SINK", color: "#15803d" },
           { val: 22.0, label: "22% BODY FAT TARGET", color: "#0284c7" }
+        ]
+      });
+
+      // Render Sub-Report 06: Respiration & Nocturnal Mechanics Curve
+      renderSvgCurveChart('curveTimelineBreath', breathData, {
+        strokeColor: "#0284c7",
+        minY: 8, maxY: 24, unit: "RPM",
+        referenceLines: [
+          { val: 18, label: "18 RPM TACHYPNEA CEILING", color: "#e11d48" },
+          { val: 12, label: "12 RPM BRADYPNEA FLOOR", color: "#d97706" },
+          { val: 14, label: "14 RPM NOMINAL RESTING", color: "#15803d" }
         ]
       });
     }
@@ -16719,18 +16864,18 @@
         if (saved) return JSON.parse(saved);
       } catch(e) {}
       return {
-        healthSys: "EvergreenHealth • Epic Systems (Evergreen MyChart)",
+        healthSys: "[UNCONFIGURED]",
         mrn: "",
-        doctorEmail: "physician@evergreenhealth.com",
+        doctorEmail: "",
         prefFormat: "fhir"
       };
     }
 
     function savePatientEhrConfig() {
       const cfg = {
-        healthSys: document.getElementById('cfgEhrSystem')?.value || "EvergreenHealth • Epic Systems (Evergreen MyChart)",
+        healthSys: document.getElementById('cfgEhrSystem')?.value || "[UNCONFIGURED]",
         mrn: document.getElementById('cfgEhrMrn')?.value || "",
-        doctorEmail: document.getElementById('cfgEhrDoctorEmail')?.value || "physician@evergreenhealth.com",
+        doctorEmail: document.getElementById('cfgEhrDoctorEmail')?.value || "",
         prefFormat: document.getElementById('cfgEhrFormat')?.value || "fhir"
       };
       try {
@@ -16958,7 +17103,7 @@
       const mrn = document.getElementById('epicMRN')?.value || 'UNASSIGNED';
       const docEmail = document.getElementById('txtDoctorEmail')?.value.trim() || 
                        document.getElementById('cfgEhrDoctorEmail')?.value.trim() || 
-                       'physician@evergreenhealth.com';
+                       '';
       const healthSysEl = document.getElementById('epicHealthSystem');
       const healthSysText = healthSysEl ? healthSysEl.options[healthSysEl.selectedIndex].text : 'EvergreenHealth / Epic';
       const dateStr = new Date().toISOString().split('T')[0];
@@ -19966,17 +20111,13 @@ All 14 LCARS consoles, 8-lane metabolic chart, and clinical database now match y
       const hrvVal = (r.hrv && r.hrv.hrv) ? r.hrv.hrv : 0;
       const stressVal = (r.hrv && r.hrv.stress) ? r.hrv.stress : 0;
 
-      // Update global cached state variables
-      if (typeof lastGlucoseMg !== 'undefined') lastGlucoseMg = g;
-      if (typeof lastSystolic !== 'undefined') lastSystolic = sys;
-      if (typeof lastDiastolic !== 'undefined') lastDiastolic = dia;
-      if (typeof lastSpO2 !== 'undefined') lastSpO2 = sp;
-      if (typeof lastHR !== 'undefined') lastHR = hr;
-      if (typeof lastBodyF !== 'undefined') lastBodyF = bodyF;
-      if (typeof lastSkinF !== 'undefined') lastSkinF = skinF;
-      if (typeof lastBodyC !== 'undefined') lastBodyC = bodyC;
-      if (typeof lastHRV !== 'undefined') lastHRV = hrvVal;
-      if (typeof lastStress !== 'undefined') lastStress = stressVal;
+      // Update global cached state variables (Never overwrite verified data with 0)
+      if (g > 0 && typeof lastGlucoseMg !== 'undefined') lastGlucoseMg = g;
+      if (sys > 0 && typeof lastSystolic !== 'undefined') { lastSystolic = sys; lastDiastolic = dia; }
+      if (sp > 0 && typeof lastSpO2 !== 'undefined') lastSpO2 = sp;
+      if (hr > 0 && typeof lastHR !== 'undefined') lastHR = hr;
+      if (bodyF > 0 && typeof lastBodyF !== 'undefined') { lastBodyF = bodyF; lastSkinF = skinF; lastBodyC = bodyC; }
+      if (hrvVal > 0 && typeof lastHRV !== 'undefined') { lastHRV = hrvVal; lastStress = stressVal; }
 
       const ea1c = ((g + 46.7) / 28.7).toFixed(1);
 
@@ -20021,65 +20162,83 @@ All 14 LCARS consoles, 8-lane metabolic chart, and clinical database now match y
       }
 
       // BP on Vitals
-      const elBp = document.getElementById('valBP');
-      if (elBp) elBp.textContent = `${sys}/${dia}`;
-      const badgeBp = document.getElementById('badgeBP');
-      if (badgeBp) {
-        badgeBp.textContent = (sys < 125 && dia < 82) ? "NORMOTENSIVE" : "PRE-HYPERTENSIVE";
-        badgeBp.className = "state-badge nominal";
+      if (sys > 0) {
+        const elBp = document.getElementById('valBP');
+        if (elBp) elBp.textContent = `${sys}/${dia}`;
+        const badgeBp = document.getElementById('badgeBP');
+        if (badgeBp) {
+          badgeBp.textContent = (sys < 125 && dia < 82) ? "NORMOTENSIVE" : "PRE-HYPERTENSIVE";
+          badgeBp.className = "state-badge nominal";
+        }
       }
 
       // SpO2 on Vitals
-      const elSpo2 = document.getElementById('valSpO2');
-      if (elSpo2) elSpo2.textContent = `${sp}`;
-      const badgeSpo2 = document.getElementById('badgeSpO2');
-      if (badgeSpo2) {
-        badgeSpo2.textContent = sp >= 95 ? "EUMOXIC (NORMAL)" : "BORDERLINE HYPOXIA";
-        badgeSpo2.className = "state-badge nominal";
+      if (sp > 0) {
+        const elSpo2 = document.getElementById('valSpO2');
+        if (elSpo2) elSpo2.textContent = `${sp}`;
+        const badgeSpo2 = document.getElementById('badgeSpO2');
+        if (badgeSpo2) {
+          badgeSpo2.textContent = sp >= 95 ? "EUMOXIC (NORMAL)" : "BORDERLINE HYPOXIA";
+          badgeSpo2.className = "state-badge nominal";
+        }
       }
 
       // -------------------------------------------------------------
       // 2. TAB 03: CARDIO (#pageCardio)
       // -------------------------------------------------------------
-      const elHr = document.getElementById('valHeartRate');
-      if (elHr) elHr.textContent = `${hr}`;
-      const badgeHr = document.getElementById('badgeHR');
-      if (badgeHr) {
-        badgeHr.textContent = hr < 60 ? "BRADYCARDIA" : hr > 100 ? "TACHYCARDIA" : "RESTING NORMAL";
-        badgeHr.className = "state-badge nominal";
+      if (hr > 0) {
+        const elHr = document.getElementById('valHeartRate');
+        if (elHr) elHr.textContent = `${hr}`;
+        const badgeHr = document.getElementById('badgeHR');
+        if (badgeHr) {
+          badgeHr.textContent = hr < 60 ? "BRADYCARDIA" : hr > 100 ? "TACHYCARDIA" : "RESTING NORMAL";
+          badgeHr.className = "state-badge nominal";
+        }
+        const barHr = document.getElementById('barHR');
+        if (barHr) {
+          barHr.style.width = Math.min(100, Math.round((hr / 160) * 100)) + '%';
+        }
       }
-      const barHr = document.getElementById('barHR');
-      if (barHr) {
-        barHr.style.width = Math.min(100, Math.round((hr / 160) * 100)) + '%';
+      if (hrvVal > 0) {
+        const elStress = document.getElementById('valStress');
+        if (elStress) elStress.textContent = `${stressVal}`;
+        const badgeStress = document.getElementById('badgeStress');
+        if (badgeStress) {
+          badgeStress.textContent = stressVal < 35 ? "BALANCED / LOW STRESS" : "ELEVATED SYMPATHETIC";
+        }
+        const elHrv = document.getElementById('txtHRV');
+        if (elHrv) elHrv.textContent = `${hrvVal} ms`;
       }
-      const elStress = document.getElementById('valStress');
-      if (elStress) elStress.textContent = `${stressVal}`;
-      const badgeStress = document.getElementById('badgeStress');
-      if (badgeStress) {
-        badgeStress.textContent = stressVal < 35 ? "BALANCED / LOW STRESS" : "ELEVATED SYMPATHETIC";
-      }
-      const elHrv = document.getElementById('txtHRV');
-      if (elHrv) elHrv.textContent = `${hrvVal} ms`;
 
       // -------------------------------------------------------------
       // 3. TAB 04: METABOLIC (#pageMetabolic)
       // -------------------------------------------------------------
-      const tileG = document.getElementById('tile360Glucose');
-      if (tileG) tileG.innerHTML = `${g} <span style="font-size: 0.9rem;">mg/dL</span>`;
-      const tileGSub = document.getElementById('tile360GlucoseSub');
-      if (tileGSub) tileGSub.textContent = `eA1C: ${ea1c}% • Safe Band (60–200 TIR)`;
+      if (g > 0) {
+        const tileG = document.getElementById('tile360Glucose');
+        if (tileG) tileG.innerHTML = `${g} <span style="font-size: 0.9rem;">mg/dL</span>`;
+        const tileGSub = document.getElementById('tile360GlucoseSub');
+        if (tileGSub) tileGSub.textContent = `eA1C: ${ea1c}% • Safe Band (60–200 TIR)`;
+      }
 
-      const tileBp = document.getElementById('tile360Bp');
-      if (tileBp) tileBp.innerHTML = `${sys}/${dia} <span style="font-size: 0.9rem;">mmHg</span>`;
+      if (sys > 0) {
+        const tileBp = document.getElementById('tile360Bp');
+        if (tileBp) tileBp.innerHTML = `${sys}/${dia} <span style="font-size: 0.9rem;">mmHg</span>`;
+      }
 
-      const tileSpo2 = document.getElementById('tile360Spo2');
-      if (tileSpo2) tileSpo2.innerHTML = `${sp}% <span style="font-size: 0.9rem;">SpO2</span>`;
+      if (sp > 0) {
+        const tileSpo2 = document.getElementById('tile360Spo2');
+        if (tileSpo2) tileSpo2.innerHTML = `${sp}% <span style="font-size: 0.9rem;">SpO2</span>`;
+      }
 
-      const tileHrHrv = document.getElementById('tile360HrHrv');
-      if (tileHrHrv) tileHrHrv.innerHTML = `${hr} BPM <span style="font-size: 0.85rem;">(${hrvVal}ms HRV)</span>`;
+      if (hr > 0) {
+        const tileHrHrv = document.getElementById('tile360HrHrv');
+        if (tileHrHrv) tileHrHrv.innerHTML = `${hr} BPM <span style="font-size: 0.85rem;">(${hrvVal > 0 ? hrvVal : (lastHRV || '--')}ms HRV)</span>`;
+      }
 
-      const tileT = document.getElementById('tile360Temp');
-      if (tileT) tileT.innerHTML = `${bodyF.toFixed(1)}°F <span style="font-size: 0.85rem;">(${skinF.toFixed(1)}°F skin)</span>`;
+      if (bodyF > 0) {
+        const tileT = document.getElementById('tile360Temp');
+        if (tileT) tileT.innerHTML = `${bodyF.toFixed(1)}°F <span style="font-size: 0.85rem;">(${skinF.toFixed(1)}°F skin)</span>`;
+      }
 
       // -------------------------------------------------------------
       // 4. TAB 04: MEAL PLANNER (#pageDietTrades)
@@ -20091,23 +20250,32 @@ All 14 LCARS consoles, 8-lane metabolic chart, and clinical database now match y
       // -------------------------------------------------------------
       // 5. TAB 05: REPORTS (#pageReports)
       // -------------------------------------------------------------
-      const hudG = document.getElementById('hudGlucose');
-      if (hudG) hudG.textContent = `${g} mg/dL`;
-      const hudB = document.getElementById('hudBp');
-      if (hudB) hudB.textContent = `${sys}/${dia} mmHg`;
-      const hudH = document.getElementById('hudHrHrv');
-      if (hudH) hudH.textContent = `${hr} BPM / ${hrvVal} ms`;
-      const hudS = document.getElementById('hudSpo2');
-      if (hudS) hudS.textContent = `${sp}% SpO2`;
-      const hudT = document.getElementById('hudTemp');
-      if (hudT) hudT.textContent = `${bodyF.toFixed(1)}°F`;
-
-      const repG = document.getElementById('repAvgGlucose');
-      if (repG) repG.innerHTML = `${g} <span style="font-size: 1rem;">mg/dL</span>`;
-      const repA = document.getElementById('repAvgA1C');
-      if (repA) repA.textContent = `${ea1c}%`;
-      const repAStat = document.getElementById('repA1CStatus');
-      if (repAStat) repAStat.textContent = `Full Scan Synchronized (${g} mg/dL)`;
+      if (g > 0) {
+        const hudG = document.getElementById('hudGlucose');
+        if (hudG) hudG.textContent = `${g} mg/dL`;
+        const repG = document.getElementById('repAvgGlucose');
+        if (repG) repG.innerHTML = `${g} <span style="font-size: 1rem;">mg/dL</span>`;
+        const repA = document.getElementById('repAvgA1C');
+        if (repA) repA.textContent = `${ea1c}%`;
+        const repAStat = document.getElementById('repA1CStatus');
+        if (repAStat) repAStat.textContent = `Full Scan Synchronized (${g} mg/dL)`;
+      }
+      if (sys > 0) {
+        const hudB = document.getElementById('hudBp');
+        if (hudB) hudB.textContent = `${sys}/${dia} mmHg`;
+      }
+      if (hr > 0) {
+        const hudH = document.getElementById('hudHrHrv');
+        if (hudH) hudH.textContent = `${hr} BPM / ${hrvVal > 0 ? hrvVal : (lastHRV || '--')} ms`;
+      }
+      if (sp > 0) {
+        const hudS = document.getElementById('hudSpo2');
+        if (hudS) hudS.textContent = `${sp}% SpO2`;
+      }
+      if (bodyF > 0) {
+        const hudT = document.getElementById('hudTemp');
+        if (hudT) hudT.textContent = `${bodyF.toFixed(1)}°F`;
+      }
 
       // -------------------------------------------------------------
       // 6. TAB 11: CLINICAL GOALS (#pageGoals)
@@ -23485,7 +23653,9 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
       }
 
       if (input) {
-        if (m && m.desc) {
+        if (mealKey === 'snack_granola') {
+          input.value = "Snack Strawberry Vanilla Granola";
+        } else if (m && m.desc) {
           input.value = m.desc;
         } else if (mealKey === 'dicks_combo') {
           input.value = "Dick's Drive-In: 2 Cheeseburgers, 3 Tartar, Fries & Large Diet";
@@ -23825,7 +23995,7 @@ You logged: Entire Box (3.5 Servings / 99g)
           </div>
           <div style="grid-column: span 2;">
             <label style="font-size: 0.72rem; font-weight: 800; color: #475569; text-transform: uppercase;">Physician / Clinic Email (Optional - for Email Drafting)</label>
-            <input id="txtDoctorEmail" type="email" placeholder="e.g. physician@evergreenhealth.com or clinic@careteam.org" style="width: 100%; margin-top: 4px; padding: 6px 10px; border-radius: 4px; border: 1.5px solid #94a3b8; font-size: 0.82rem; color: #0f172a; background: #ffffff;">
+            <input id="txtDoctorEmail" type="email" placeholder="e.g. physician@clinic.org or clinic@careteam.org" style="width: 100%; margin-top: 4px; padding: 6px 10px; border-radius: 4px; border: 1.5px solid #94a3b8; font-size: 0.82rem; color: #0f172a; background: #ffffff;">
           </div>
         </div>
 
@@ -23971,7 +24141,7 @@ You logged: Entire Box (3.5 Servings / 99g)
           SCAN WITH GOOGLE LENS / CELL CAMERA
         </div>
         <div style="display: flex; justify-content: center; margin-bottom: 8px;">
-          <img id="provCellQrImg" src="/api/qrcode/cell" alt="Cell QR Code" style="width: 170px; height: 170px; background: #ffffff; padding: 6px; border-radius: 6px; border: 1.5px solid #38bdf8;">
+          <img id="provCellQrImg" src="http://127.0.0.1:8899/api/qrcode/cell" alt="Cell QR Code" style="width: 170px; height: 170px; background: #ffffff; padding: 6px; border-radius: 6px; border: 1.5px solid #38bdf8;">
         </div>
         <div style="font-size: 0.78rem; color: #cbd5e1; line-height: 1.45;">
           1. Open <strong>Google Lens</strong> or <strong>Camera</strong> on your phone.<br>
@@ -24088,6 +24258,7 @@ You logged: Entire Box (3.5 Servings / 99g)
               <td class="${statusCls}">${c.status}</td>
               <td>
                 <button type="button" class="lcars-btn btn-blue" style="font-size: 0.70rem; padding: 2px 8px;" onclick="triggerTestDockHandshake('${c.cell_id}', '${c.phone_esn}')">DOCK</button>
+                <button type="button" class="lcars-btn btn-red" style="font-size: 0.70rem; padding: 2px 8px; margin-left: 4px;" onclick="deleteFamilyCell('${c.cell_id}')">🗑️ DELETE</button>
               </td>
             </tr>
           `;
@@ -24097,13 +24268,34 @@ You logged: Entire Box (3.5 Servings / 99g)
       }
     }
 
+    async function deleteFamilyCell(cellId) {
+      if (!confirm(`Are you sure you want to delete "${cellId}" from the Shuttlecraft Cell roster?`)) return;
+      try {
+        const resp = await fetch('/api/shuttle/cell/delete', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ cell_id: cellId })
+        });
+        const res = await resp.json();
+        if (resp.ok && res.status === 'DELETED') {
+          logLCARS(`[🗑️ CELL REMOVED] Shuttlecraft Cell "${cellId}" deleted from roster.`, 'rx');
+          loadFamilyCellsRoster();
+        } else {
+          alert('Failed to delete cell: ' + (res.error || resp.statusText));
+        }
+      } catch (err) {
+        alert('Network error deleting cell: ' + err.message);
+      }
+    }
+
     function openProvisionModal() {
       const modal = document.getElementById('modalProvisionCell');
       if (modal) modal.style.display = 'flex';
       const res = document.getElementById('provResultBox');
       if (res) res.style.display = 'none';
       const qr = document.getElementById('provCellQrImg');
-      if (qr) qr.src = `/api/qrcode/cell?_t=${Date.now()}`;
+      const apiBase = (window.location.protocol === 'file:') ? 'http://127.0.0.1:8899' : '';
+      if (qr) qr.src = `${apiBase}/api/qrcode/cell?_t=${Date.now()}`;
     }
 
     function closeProvisionModal() {

@@ -313,6 +313,23 @@ def init_database():
 
         cur.execute("SELECT COUNT(*) FROM vital_records")
         ble_state["total_records"] = cur.fetchone()[0]
+
+        # Seed Cell 1 for John (Model 5010 watch, telemetry.db) if not present
+        cur.execute("SELECT COUNT(*) FROM registered_cells WHERE cell_id = 'Cell 1'")
+        if cur.fetchone()[0] == 0:
+            now_cell_iso = datetime.datetime.now().isoformat()
+            cur.execute("""
+                INSERT OR REPLACE INTO user_profiles
+                (user_uid, user_callsign, assigned_registry, baseline_a1c, database_filename, created_at, status)
+                VALUES ('USR-JOHN-01', 'John', 'NCC-5010-A', 6.5, 'telemetry.db', ?, 'ACTIVE')
+            """, (now_cell_iso,))
+            cur.execute("""
+                INSERT OR REPLACE INTO registered_cells
+                (cell_id, registry_number, user_uid, user_callsign, linked_watch_mac, phone_name, phone_esn, pairing_token, registered_at, status)
+                VALUES ('Cell 1', 'NCC-5010-A', 'USR-JOHN-01', 'John', 'ba:74:a4:b5:dc:75', 'John Mobile (Shuttlecraft-A)', 'ESN-JOHN-01', 'token-john-5010-01', ?, 'ACTIVE')
+            """, (now_cell_iso,))
+            conn.commit()
+
         conn.close()
 
 
@@ -2479,6 +2496,8 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
             est_carbs = 4.0; est_cals = 175; est_fiber = 3.0; est_protein = 6.0; est_fat = 15.0; est_cost = "2.50"
         elif any(w in text for w in ["snack", "cheese", "string cheese"]):
             est_carbs = 1.0; est_cals = 110; est_fiber = 0.0; est_protein = 7.0; est_fat = 9.0; est_cost = "1.25"
+        elif "granola" in text:
+            est_carbs = 26.0; est_cals = 220; est_fiber = 5.0; est_protein = 6.0; est_fat = 8.0; est_cost = "26g Net Carbs"
         elif any(w in text for w in ["berry", "berries", "strawberry", "blueberry", "raspberry", "blackberry"]):
             est_carbs = 8.0; est_cals = 50; est_fiber = 4.0; est_protein = 1.0; est_fat = 0.5; est_cost = "2.00"
         elif any(w in text for w in ["apple", "banana", "orange", "fruit"]):
@@ -4191,6 +4210,27 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                     "linked_watch_mac": linked_watch_mac,
                     "pairing_token": pairing_token
                 })
+            except Exception as e:
+                self.send_json_response({"status": "ERROR", "error": str(e)}, 400)
+
+        # BFM Shuttlecraft: Cell Deletion
+        elif self.path == "/api/shuttle/cell/delete" or self.path == "/api/shuttle/delete":
+            content_length = int(self.headers.get("Content-Length", 0))
+            body = self.rfile.read(content_length).decode("utf-8", errors="ignore")
+            try:
+                payload = json.loads(body)
+                cell_id = payload.get("cell_id")
+                if not cell_id:
+                    self.send_json_response({"status": "ERROR", "error": "Missing cell_id"}, 400)
+                    return
+                with db_lock:
+                    conn = sqlite3.connect(DB_PATH)
+                    cur = conn.cursor()
+                    cur.execute("DELETE FROM registered_cells WHERE cell_id = ?", (cell_id,))
+                    deleted = cur.rowcount
+                    conn.commit()
+                    conn.close()
+                self.send_json_response({"status": "DELETED", "cell_id": cell_id, "rows_affected": deleted})
             except Exception as e:
                 self.send_json_response({"status": "ERROR", "error": str(e)}, 400)
 

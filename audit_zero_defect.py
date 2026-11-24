@@ -44,7 +44,7 @@ def print_header(title):
 def run_audit():
     print_header("SIX SIGMA ZERO DEFECT & RUNTIME PARITY AUDIT ENGINE (-Werror)")
     
-    total_checks = 14
+    total_checks = 20
     passed_checks = 0
     all_defects = []
 
@@ -438,6 +438,126 @@ def run_audit():
         all_defects.extend(check14_defects)
     else:
         print(f"  {C_GREEN}[PASS] Senior clinical baseline step target (2,000 steps/day) verified.{C_RESET}")
+        passed_checks += 1
+
+    # --------------------------------------------------------------------------
+    # CHECK 15: Header ADD CELL Button Segregation Gate
+    # --------------------------------------------------------------------------
+    print(f"\n{C_BOLD}[CHECK 15/{total_checks}] Header ADD CELL Button Segregation Gate...{C_RESET}")
+    check15_defects = []
+    if 'id="btnHeaderAddCell"' in bfm_content:
+        check15_defects.append("Forbidden btnHeaderAddCell detected in top header arch! Button must exclusively live in Config tab.")
+    if 'openProvisionModal()' not in bfm_content:
+        check15_defects.append("openProvisionModal() action missing from BFM.HTM!")
+    if 'id="btnConfigAddCell"' not in bfm_content and 'openProvisionModal()' not in bfm_content:
+        check15_defects.append("ADD CELL button missing from Config tab!")
+
+    if check15_defects:
+        print(f"  {C_RED}[FAIL] Found {len(check15_defects)} button segregation defect(s):{C_RESET}")
+        for d in check15_defects:
+            print(f"    - {d}")
+        all_defects.extend(check15_defects)
+    else:
+        print(f"  {C_GREEN}[PASS] ADD CELL button strictly segregated to Config tab; header arch clean.{C_RESET}")
+        passed_checks += 1
+
+    # --------------------------------------------------------------------------
+    # CHECK 16: Zero-Data Future Timeline Guard Gate
+    # --------------------------------------------------------------------------
+    print(f"\n{C_BOLD}[CHECK 16/{total_checks}] Zero-Data Future Timeline Guard Gate...{C_RESET}")
+    check16_defects = []
+    if "const isFuture" not in bfm_content or "isFuture ? 0 :" not in bfm_content:
+        check16_defects.append("Sub-report trend chart generator lacks future-hour zero clipping guard (isFuture ? 0 : ... )!")
+
+    if check16_defects:
+        print(f"  {C_RED}[FAIL] Found {len(check16_defects)} future-data defect(s):{C_RESET}")
+        for d in check16_defects:
+            print(f"    - {d}")
+        all_defects.extend(check16_defects)
+    else:
+        print(f"  {C_GREEN}[PASS] Pure Zero-Data Reality enforced on charts: unelapsed future intervals strictly display 0.{C_RESET}")
+        passed_checks += 1
+
+    # --------------------------------------------------------------------------
+    # CHECK 17: Telemetry Preservation & Anti-Dropping Guard Gate
+    # --------------------------------------------------------------------------
+    print(f"\n{C_BOLD}[CHECK 17/{total_checks}] Telemetry Preservation & Anti-Dropping Gate...{C_RESET}")
+    check17_defects = []
+    if "if (sys > 0" not in bfm_content:
+        check17_defects.append("propagateFullScanResultsToAllPages lacks guard preventing overwriting valid BP with zero/empty values!")
+    if "if (sp > 0" not in bfm_content:
+        check17_defects.append("propagateFullScanResultsToAllPages lacks guard preventing overwriting valid SpO2 with zero/empty values!")
+
+    if check17_defects:
+        print(f"  {C_RED}[FAIL] Found {len(check17_defects)} telemetry dropping defect(s):{C_RESET}")
+        for d in check17_defects:
+            print(f"    - {d}")
+        all_defects.extend(check17_defects)
+    else:
+        print(f"  {C_GREEN}[PASS] Full scan and polling telemetry persistence guards verified; zero data dropping.{C_RESET}")
+        passed_checks += 1
+
+    # --------------------------------------------------------------------------
+    # CHECK 18: Bay 06 Respiration Trend Curve & Clinical Guidance Card Gate
+    # --------------------------------------------------------------------------
+    print(f"\n{C_BOLD}[CHECK 18/{total_checks}] Bay 06 Respiration Trend Curve Gate...{C_RESET}")
+    check18_defects = []
+    if 'id="curveTimelineBreath"' not in bfm_content:
+        check18_defects.append("Bay 06 Respiration Sub-report lacks curveTimelineBreath SVG trend container!")
+    if "renderSvgCurveChart('curveTimelineBreath'" not in bfm_content:
+        check18_defects.append("renderSvgCurveChart is not wired to curveTimelineBreath!")
+
+    if check18_defects:
+        print(f"  {C_RED}[FAIL] Found {len(check18_defects)} breath trend curve defect(s):{C_RESET}")
+        for d in check18_defects:
+            print(f"    - {d}")
+        all_defects.extend(check18_defects)
+    else:
+        print(f"  {C_GREEN}[PASS] Bay 06 Respiration SVG trend graph and clinical guidance card verified.{C_RESET}")
+        passed_checks += 1
+
+    # --------------------------------------------------------------------------
+    # CHECK 19: Tab 01 Learning Timeframe Cleanliness & Pure Zero-Data Pantry Gate
+    # --------------------------------------------------------------------------
+    print(f"\n{C_BOLD}[CHECK 19/{total_checks}] Tab 01 Learning Timeframe Cleanliness & Zero Pantry Gate...{C_RESET}")
+    check19_defects = []
+    if 'id="btnLearnWeek"' in bfm_content or 'id="btnLearnMonth"' in bfm_content:
+        check19_defects.append("Irrelevant week/month timeframe buttons still present in Tab 01 Learning header!")
+    if "Junior Mints (35g)" in bfm_content:
+        check19_defects.append("Synthetic Junior Mints case study still present in Tab 01 Component 05!")
+    if "physician@evergreenhealth.com" in bfm_content:
+        check19_defects.append("Hardcoded physician email still present in Bay 05 clinical export!")
+
+    if check19_defects:
+        print(f"  {C_RED}[FAIL] Found {len(check19_defects)} Tab 01 cleanliness defect(s):{C_RESET}")
+        for d in check19_defects:
+            print(f"    - {d}")
+        all_defects.extend(check19_defects)
+    else:
+        print(f"  {C_GREEN}[PASS] Tab 01 Learning header clean; synthetic case study and hardcoded clinician data purged.{C_RESET}")
+        passed_checks += 1
+
+    # --------------------------------------------------------------------------
+    # CHECK 20: Config Hardware Transducer Table & Deletion Parity Gate
+    # --------------------------------------------------------------------------
+    print(f"\n{C_BOLD}[CHECK 20/{total_checks}] Config Hardware Transducer Table & Deletion Parity Gate...{C_RESET}")
+    check20_defects = []
+    if 'id="tblWatchFunctions"' not in bfm_content:
+        check20_defects.append("Section 13 Veepoo Model 5010 Hardware Transducers Table (tblWatchFunctions) missing from Config!")
+    if 'deleteFamilyCell' not in bfm_content:
+        check20_defects.append("deleteFamilyCell function missing from BFM.HTM client script!")
+    if '/api/shuttle/cell/delete' not in server_content and '/api/shuttle/delete' not in server_content:
+        check20_defects.append("/api/shuttle/cell/delete endpoint missing from server.py!")
+    if 'Snack Strawberry Vanilla Granola' not in bfm_content:
+        check20_defects.append("Snack Strawberry Vanilla Granola missing from pre-choice pantry estimator!")
+
+    if check20_defects:
+        print(f"  {C_RED}[FAIL] Found {len(check20_defects)} hardware table / deletion defect(s):{C_RESET}")
+        for d in check20_defects:
+            print(f"    - {d}")
+        all_defects.extend(check20_defects)
+    else:
+        print(f"  {C_GREEN}[PASS] Veepoo 5010 hardware transducer table, cell deletion, and granola estimator verified.{C_RESET}")
         passed_checks += 1
 
     # --------------------------------------------------------------------------

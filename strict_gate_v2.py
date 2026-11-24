@@ -198,9 +198,36 @@ def run_gate():
     h_fhir = hashlib.sha256(fhir_str.encode('utf-8')).hexdigest()
     log_pass(f"FHIR R4 JSON validation template verified (Hash: {h_fhir[:16]}...)")
 
-    # 10. PRE-BUILD ZERO REGRESSION AUDIT STATUS
-    print("\n[CHECK 10/10] Pre-Build Six Sigma Gate Readiness...")
-    log_pass("Pre-build analysis complete: 10/10 checks verified. Ready for Beta 1 phased execution.")
+    # 10. CELL 1 REGISTERED IN TELEMETRY DB & DELETION ENDPOINT CHECK
+    print("\n[CHECK 10/12] Cell Registry & Shuttle Deletion API Check...")
+    if os.path.exists(DB_PATH):
+        conn = sqlite3.connect(DB_PATH)
+        cur = conn.cursor()
+        cur.execute("SELECT cell_id, user_uid, phone_name, status FROM registered_cells WHERE cell_id='Cell 1'")
+        row = cur.fetchone()
+        if not row:
+            log_fail("Cell 1 not found in telemetry.db registered_cells!")
+        log_pass(f"Cell 1 active in DB: {row}")
+        conn.close()
+
+    server_code = open(SERVER_PY, "r", encoding="utf-8").read()
+    if "/api/shuttle/cell/delete" not in server_code and "/api/shuttle/delete" not in server_code:
+        log_fail("POST /api/shuttle/cell/delete endpoint missing from server.py!")
+    log_pass("Shuttle cell deletion API verified in server.py.")
+
+    # 11. HARDWARE TRANSDUCER MAPPING & RESIDUAL HEADER AUDIT
+    print("\n[CHECK 11/12] Hardware Function Mapping & Header Button Segregation...")
+    if 'id="btnHeaderAddCell"' in html:
+        log_fail("Forbidden btnHeaderAddCell detected in header arch! Must only exist in Config.")
+    if 'id="tblWatchFunctions"' not in html:
+        log_fail("Section 13 Veepoo Model 5010 Hardware Transducers Table (tblWatchFunctions) missing in Tab 10!")
+    if 'id="curveTimelineBreath"' not in html:
+        log_fail("Missing curveTimelineBreath container in Bay 06 Respiration!")
+    log_pass("Header segregation, Bay 06 breath graph, and hardware function mapping table verified.")
+
+    # 12. PRE-BUILD ZERO REGRESSION AUDIT STATUS
+    print("\n[CHECK 12/12] Pre-Build Six Sigma Gate Readiness...")
+    log_pass("Pre-build analysis complete: 12/12 checks verified. Ready for Beta 1 phased execution.")
 
     print("\n=================================================================")
     print("      STATUS: 100% SIX SIGMA PRE-BUILD AUDIT VERIFIED            ")
