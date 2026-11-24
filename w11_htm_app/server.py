@@ -3292,14 +3292,15 @@ def get_two_day_timeline():
                 steps_val = 0
                 notes = ""
 
-                # Real daytime desk charge window (11:00 to 12:00)
-                is_known_charging_window = (h == 11)
+                # Real morning shower & watch charge window (07:00 to 08:30) + desk charge (11:00 to 12:00)
+                is_am_charge_shower = (h == 7 and m >= 30) or (h == 8 and m <= 30)
+                is_known_charging_window = is_am_charge_shower or (h == 11)
 
                 if is_future:
                     notes = "Awaiting Live Telemetry (Future Window)"
                 elif is_known_charging_window and not has_glucose and not has_hr:
                     is_gap = True
-                    notes = "⚡ Watch Charging on Dock (Off-Wrist • No Sensing Telemetry)"
+                    notes = "⚡ Watch Not Sensing (Off-Wrist / Shower / Charging)"
                 elif has_glucose or has_bp or has_hr or has_temp or has_steps or has_spo2 or has_hrv:
                     if has_glucose: g_val = round(slot_data["GLUCOSE"][0])
                     if has_bp:
@@ -3434,6 +3435,36 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                 self.send_json_response({"error": str(e)}, 500)
                 return
 
+        # System Windows Shortcuts API (Desktop & Favorites)
+        if self.path.startswith("/api/system/create_shortcuts"):
+            try:
+                import subprocess
+                ps_cmd = """
+                $WshShell = New-Object -ComObject WScript.Shell
+                $Desktop = [Environment]::GetFolderPath('Desktop')
+                $Fav = [Environment]::GetFolderPath('Favorites')
+                $s1 = $WshShell.CreateShortcut("$Desktop\\Biometric Function Monitor.lnk")
+                $s1.TargetPath = "D:\\veepoo\\BFM.HTM"
+                $s1.WorkingDirectory = "D:\\veepoo"
+                $s1.IconLocation = "D:\\veepoo\\bfm.ico, 0"
+                $s1.Description = "Biometric Function Monitor (BFM 5010)"
+                $s1.Save()
+                Set-Content -Path "$Desktop\\Biometric Function Monitor.url" -Value "[InternetShortcut]`r`nURL=file:///D:/veepoo/BFM.HTM`r`nIconIndex=0`r`nIconFile=D:\\veepoo\\bfm.ico`r`n" -Encoding ASCII
+                $s2 = $WshShell.CreateShortcut("$Fav\\Biometric Function Monitor.lnk")
+                $s2.TargetPath = "D:\\veepoo\\BFM.HTM"
+                $s2.WorkingDirectory = "D:\\veepoo"
+                $s2.IconLocation = "D:\\veepoo\\bfm.ico, 0"
+                $s2.Description = "Biometric Function Monitor (BFM 5010)"
+                $s2.Save()
+                Set-Content -Path "$Fav\\Biometric Function Monitor.url" -Value "[InternetShortcut]`r`nURL=file:///D:/veepoo/BFM.HTM`r`nIconIndex=0`r`nIconFile=D:\\veepoo\\bfm.ico`r`n" -Encoding ASCII
+                """
+                subprocess.run(["powershell", "-NoProfile", "-Command", ps_cmd], check=True)
+                self.send_json_response({"status": "SUCCESS", "message": "Windows Desktop and Favorites shortcuts installed"})
+                return
+            except Exception as e:
+                self.send_json_response({"error": str(e)}, 500)
+                return
+
         # Feeling Entries API for 3D Behavioral Impact Tool
         if self.path.startswith("/api/feeling/entries"):
             with db_lock:
@@ -3468,6 +3499,24 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                     data = f.read()
                 self.send_response(200)
                 self.send_header("Content-Type", "text/html; charset=utf-8")
+                self.send_header("Content-Length", str(len(data)))
+                self.send_header("Access-Control-Allow-Origin", "*")
+                self.end_headers()
+                self.wfile.write(data)
+                return
+
+        # Static PWA and Icon assets
+        if self.path in ["/manifest.json", "/icon-192.png", "/icon-512.png", "/bfm.ico"]:
+            fname = self.path.lstrip("/")
+            fpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), fname)
+            if not os.path.exists(fpath):
+                fpath = os.path.join(os.path.dirname(BASE_DIR), fname)
+            if os.path.exists(fpath):
+                content_type = "application/manifest+json" if fname.endswith(".json") else ("image/png" if fname.endswith(".png") else "image/x-icon")
+                with open(fpath, "rb") as f:
+                    data = f.read()
+                self.send_response(200)
+                self.send_header("Content-Type", content_type)
                 self.send_header("Content-Length", str(len(data)))
                 self.send_header("Access-Control-Allow-Origin", "*")
                 self.end_headers()
@@ -4308,6 +4357,20 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                     cell_uid = urow[0] if urow else "USR-9482-01"
 
                     for item in batch_records:
+                        if item.get("metric") == "FEELING" or "pain_score" in item or "mood_score" in item or "raw_text" in item:
+                            f_time = item.get("timestamp") or now_iso
+                            f_raw = item.get("raw_text") or item.get("description") or "Field feeling recorded"
+                            f_top = item.get("topic") or "General"
+                            f_pain = float(item.get("pain_score", 0))
+                            f_mood = float(item.get("mood_score", 5))
+                            f_notes = item.get("notes") or "Docked from Mobile Field Queue"
+                            cur.execute("""
+                                INSERT INTO feeling_entries (timestamp, source, raw_text, topic, pain_score, mood_score, notes)
+                                VALUES (?, 'SHUTTLECRAFT_CELL', ?, ?, ?, ?, ?)
+                            """, (f_time, f_raw, f_top, f_pain, f_mood, f_notes))
+                            docked_count += 1
+                            continue
+
                         m_time = item.get("intake_timestamp") or item.get("timestamp") or now_iso
                         m_name = item.get("meal_name", "Shuttlecraft Intake")
                         cals = item.get("calories", 0)

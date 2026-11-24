@@ -3,7 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>BFM Shuttlecraft-A • Field Data Collector</title>
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+  <link rel="apple-touch-icon" href="/icon-192.png">
+  <meta name="theme-color" content="#091428">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="BFM Cell">
+  <title>BFM Cell Data Collector</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -277,13 +283,20 @@
 <body>
 
   <!-- Mobile Top Header -->
-  <div class="header">
+  <div id="pwaInstallBanner" style="display: none; background: #0284c7; color: #ffffff; border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; justify-content: space-between; align-items: center; box-shadow: 0 2px 6px rgba(0,0,0,0.2);">
+      <div>
+        <div style="font-weight: 800; font-size: 0.85rem;">📱 INSTALL BFM CELL APP</div>
+        <div style="font-size: 0.72rem; opacity: 0.9;">Add to Home Screen / Desktop for offline field collection</div>
+      </div>
+      <button id="btnInstallApp" class="btn" style="background: #ffffff; color: #0284c7; font-weight: 800; font-size: 0.75rem; padding: 6px 12px; border-radius: 6px;" onclick="triggerPwaInstall()">INSTALL</button>
+    </div>
+    <div class="header">
     <div style="display: flex; align-items: center; gap: 10px;">
       <div style="font-size: 1.5rem; background: #0284c7; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 8px; border: 2px solid #38bdf8;">
         🩺
       </div>
       <div>
-        <h1 style="font-size: 1.05rem; font-weight: 900; letter-spacing: 0.04em; color: #38bdf8;">BFM SHUTTLECRAFT-A &bull; FIELD DATA COLLECTOR</h1>
+        <h1 style="font-size: 1.05rem; font-weight: 900; letter-spacing: 0.04em; color: #38bdf8;">BFM CELL DATA COLLECTOR</h1>
         <div class="sub">PORTABLE INTAKE &amp; FEELING RECORDER &bull; <span id="lblMobileEsn">CELL 1 (ACTIVE)</span></div>
       </div>
     </div>
@@ -1373,7 +1386,7 @@
         const succ = document.getElementById('lblSubmitSuccess');
         if (succ) {
           succ.style.display = 'block';
-          succ.innerHTML = `🎉 <strong>ALL ${uploadedCount} MEALS SYNCHRONIZED TO PC WORKSTATION!</strong> Telemetry &amp; diet journal updated.`;
+          succ.innerHTML = `🎉 <strong>ALL ${uploadedCount} MEALS SYNCHRONIZED TO BFM!</strong> Telemetry &amp; diet journal updated.`;
         }
       }
 
@@ -1556,6 +1569,66 @@
       feelingSpeechRecognizer.start();
     }
 
+    
+    // =========================================================================
+    // PWA INSTALLATION & OFFLINE FEELING QUEUE BATCHING
+    // =========================================================================
+    let deferredPrompt = null;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      const banner = document.getElementById('pwaInstallBanner');
+      if (banner) banner.style.display = 'flex';
+    });
+
+    async function triggerPwaInstall() {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+          const banner = document.getElementById('pwaInstallBanner');
+          if (banner) banner.style.display = 'none';
+        }
+        deferredPrompt = null;
+      } else {
+        alert("To install BFM Cell on Android/Chrome: Tap browser menu (⋮) -> 'Add to Home screen' or 'Install app'. On iPhone/iPad Safari: Tap Share (⎋) -> 'Add to Home Screen'.");
+      }
+    }
+
+    function getStagedFeelings() {
+      try {
+        return JSON.parse(localStorage.getItem('bfm_staged_feelings') || '[]');
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function saveStagedFeelings(queue) {
+      localStorage.setItem('bfm_staged_feelings', JSON.stringify(queue));
+    }
+
+    async function syncStagedFeelingsWithServer() {
+      const queue = getStagedFeelings();
+      if (!queue || queue.length === 0) return;
+      const remaining = [];
+      for (const item of queue) {
+        try {
+          const resp = await fetch('/api/feeling/entry', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(item)
+          });
+          if (!resp.ok) remaining.push(item);
+        } catch (e) {
+          remaining.push(item);
+        }
+      }
+      saveStagedFeelings(remaining);
+      if (remaining.length === 0 && queue.length > 0) {
+        console.log(`[✔] Synced ${queue.length} offline feelings with BFM.`);
+      }
+    }
+    
     async function submitFeelingDirect() {
       const input = document.getElementById('txtFeelingInput');
       const text = input ? input.value.trim() : "";
@@ -1575,7 +1648,7 @@
         topic: activeFeelingTopic,
         pain_score: pain,
         mood_score: mood,
-        source: "SHUTTLECRAFT_CELL",
+        source: "CELL_DATA_COLLECTOR",
         timestamp: new Date().toISOString()
       };
 
@@ -1597,7 +1670,11 @@
           alert("Could not commit feeling to PC. Make sure PC server is running.");
         }
       } catch (e) {
-        alert("Network error communicating with PC: " + e.message);
+        const queue = getStagedFeelings();
+        queue.push(payload);
+        saveStagedFeelings(queue);
+        if (input) input.value = "";
+        alert("Field Mode: Feeling saved to offline queue (" + queue.length + " pending). It will sync automatically when Wi-Fi connects.");
       } finally {
         btn.disabled = false;
         btn.innerHTML = "<span>🧠 SUBMIT FEELING TO TIMELINE</span>";

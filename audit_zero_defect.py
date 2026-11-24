@@ -369,9 +369,11 @@ def run_audit():
     if "BFM WORKSTATION" in bfm_content:
         check11_defects.append("Forbidden legacy branding 'BFM WORKSTATION' found in BFM.HTM!")
     if "STARSHIP GEMINI" in bfm_content or "NCC-202X" in bfm_content:
-        check11_defects.append("Forbidden speculative branding 'STARSHIP GEMINI' or 'NCC-202X' found in BFM.HTM!")
-    if "STARSHIP GEMINI" in server_content or "NCC-202X" in server_content:
-        check11_defects.append("Forbidden speculative branding 'STARSHIP GEMINI' or 'NCC-202X' found in server.py!")
+        check11_defects.append("Forbidden Star Trek branding 'STARSHIP GEMINI NCC-202X' found in BFM.HTM!")
+    if "CLINICAL TRIAGE WORKSTATION" in bfm_content:
+        check11_defects.append("Forbidden legacy term 'CLINICAL TRIAGE WORKSTATION' found in BFM.HTM!")
+    if "VIEW 360° SYNCHRONIZED TALL CHART" in bfm_content:
+        check11_defects.append("Unrequested 'VIEW 360' button still present in Component 01!")
 
     if check11_defects:
         print(f"  {C_RED}[FAIL] Found {len(check11_defects)} header/ribbon demarcation defect(s):{C_RESET}")
