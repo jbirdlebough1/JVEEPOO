@@ -1759,7 +1759,7 @@
         </div>
         <div class="lcars-time-block">
           <div class="actual-datetime" id="actualDateTime">FRIDAY, NOV 20, 2026 9:55:00 AM PST</div>
-          <div class="lcars-stardate" id="stardateClock">STARDATE 126885.4 • BUILD beta.00.01.0004 • CLINICAL-SYS-ONLINE</div>
+          <div class="lcars-stardate" id="stardateClock">STARDATE 126885.4 • BUILD beta.00.01.0005 • CLINICAL-SYS-ONLINE</div>
         </div>
         <div style="margin-left: 12px; display: flex; gap: 8px; align-items: center;">
           <span id="headerSyncPill" class="lcars-pill pill-green" style="padding: 4px 10px; font-size: 0.72rem; height: auto;" title="Vault Telemetry Sync Status">
@@ -18967,6 +18967,8 @@ Patient`;
       isPanning: false,
       lastMouseX: 0,
       lastMouseY: 0,
+      hoverMouseX: -1,
+      hoverMouseY: -1,
       autoFly: false,
       flyTime: 0
     };
@@ -19005,6 +19007,8 @@ Patient`;
         cam3D.isPanning = (e.shiftKey || e.button === 2);
         cam3D.lastMouseX = e.clientX;
         cam3D.lastMouseY = e.clientY;
+        cam3D.hoverMouseX = -1;
+        cam3D.hoverMouseY = -1;
         canvas.style.cursor = cam3D.isPanning ? 'move' : 'grabbing';
       });
 
@@ -19032,6 +19036,21 @@ Patient`;
         }
       });
 
+      // Hover hit-testing for individual data point inspection
+      canvas.addEventListener('mousemove', (e) => {
+        if (cam3D.isDragging) return;
+        const rect = canvas.getBoundingClientRect();
+        cam3D.hoverMouseX = (e.clientX - rect.left) * (canvas.width / rect.width);
+        cam3D.hoverMouseY = (e.clientY - rect.top) * (canvas.height / rect.height);
+        render3DMultiChannelScene();
+      });
+
+      canvas.addEventListener('mouseleave', () => {
+        cam3D.hoverMouseX = -1;
+        cam3D.hoverMouseY = -1;
+        render3DMultiChannelScene();
+      });
+
       // Fly-through Wheel Zoom
       canvas.addEventListener('wheel', (e) => {
         e.preventDefault();
@@ -19057,6 +19076,11 @@ Patient`;
       if (canvas.parentElement) resizeObserver.observe(canvas.parentElement);
 
       loadFeelingsFor3D();
+      if (typeof fetchServer2DayTimeline === 'function') {
+        fetchServer2DayTimeline().then(() => {
+          render3DMultiChannelScene();
+        });
+      }
       render3DMultiChannelScene();
     }
 
@@ -19140,11 +19164,15 @@ Patient`;
       const zSpacing = 52; // Spacing between channels along Z
       const zStart = -((CHANNELS_3D.length - 1) * zSpacing) / 2;
 
+      const curH = new Date().getHours();
+      const curM = new Date().getMinutes();
+
       // Check if any real data exists
       let hasRealData = false;
-      if (typeof telemetryTimelinePoints !== 'undefined' && telemetryTimelinePoints.length > 0) hasRealData = true;
+      if (cached2DayTimeline && cached2DayTimeline.some(d => d.day === 'TODAY' && (d.g > 0 || d.hr > 0 || d.sys > 0 || d.steps > 0))) hasRealData = true;
       if (typeof lastGlucoseMg !== 'undefined' && lastGlucoseMg > 0) hasRealData = true;
       if (typeof lastHR !== 'undefined' && lastHR > 0) hasRealData = true;
+      if (typeof lastSystolic !== 'undefined' && lastSystolic > 0) hasRealData = true;
       if (feelingCache3D && feelingCache3D.length > 0) hasRealData = true;
 
       const overlay = document.getElementById('overlay3DZeroData');
@@ -19198,6 +19226,69 @@ Patient`;
         }
       }
 
+      // Extract real time-series data point for channel c at hour h
+      function getChannelValueAtHour(channelIndex, h) {
+        // Pure Zero-Data Reality Principle: unelapsed future hours strictly display 0
+        if (h > curH) return 0;
+
+        if (cached2DayTimeline && cached2DayTimeline.length > 0) {
+          const matches = cached2DayTimeline.filter(d => {
+            if (d.day !== 'TODAY') return false;
+            const ptH = parseInt((d.time || "00").substring(0, 2), 10);
+            return ptH === h && !d.isFuture && !d.isChargingGap;
+          });
+
+          if (matches.length > 0) {
+            const match = matches[matches.length - 1];
+            switch(channelIndex) {
+              case 0: return (match.g && match.g > 0) ? match.g : 0; // CH 01: Glucose (mg/dL)
+              case 1: return (match.sys && match.sys > 0) ? match.sys : 0; // CH 02: Blood Pressure (mmHg)
+              case 2: return (match.hr && match.hr > 0) ? match.hr : 0; // CH 03: Heart Rate (BPM)
+              case 3: return (match.spo2 && match.spo2 > 0) ? Math.round(match.spo2) : 0; // CH 04: SpO2 (%)
+              case 4: return (match.temp && match.temp > 90) ? parseFloat(match.temp.toFixed(1)) : 0; // CH 05: Body Temp (°F)
+              case 5: return (match.hrv && match.hrv > 0) ? match.hrv : 0; // CH 06: HRV / Stress (ms)
+              case 6: return (match.steps && match.steps > 0) ? match.steps : 0; // CH 07: Steps
+              case 7: { // CH 08: Sleep Architecture (%)
+                if (h < 8 && match.notes && match.notes.toLowerCase().includes('sleep')) {
+                  return 88;
+                }
+                return 0;
+              }
+              case 8: { // CH 09: Pain Index (0-10)
+                if (feelingCache3D && feelingCache3D.length > 0) {
+                  return feelingCache3D[0].pain_score || 0;
+                }
+                return 0;
+              }
+              case 9: { // CH 10: Mood Scale (0-10)
+                if (feelingCache3D && feelingCache3D.length > 0) {
+                  return feelingCache3D[0].mood_score || 0;
+                }
+                return 0;
+              }
+            }
+          }
+        }
+
+        // Live telemetry reading for current hour
+        if (h === curH) {
+          switch(channelIndex) {
+            case 0: return (typeof lastGlucoseMg !== 'undefined' && lastGlucoseMg > 0) ? lastGlucoseMg : 0;
+            case 1: return (typeof lastSystolic !== 'undefined' && lastSystolic > 0) ? lastSystolic : 0;
+            case 2: return (typeof lastHR !== 'undefined' && lastHR > 0) ? lastHR : 0;
+            case 3: return (typeof lastSpO2 !== 'undefined' && lastSpO2 > 0) ? lastSpO2 : 0;
+            case 4: return (typeof lastBodyF !== 'undefined' && lastBodyF > 90) ? lastBodyF : 0;
+            case 5: return (typeof lastHRV !== 'undefined' && lastHRV > 0) ? lastHRV : 0;
+            case 6: return (typeof lastSteps !== 'undefined' && lastSteps > 0) ? lastSteps : 0;
+            case 7: return 0;
+            case 8: return (feelingCache3D && feelingCache3D.length > 0) ? (feelingCache3D[0].pain_score || 0) : 0;
+            case 9: return (feelingCache3D && feelingCache3D.length > 0) ? (feelingCache3D[0].mood_score || 0) : 0;
+          }
+        }
+
+        return 0;
+      }
+
       // Render Each of the 10 Parallel Ribbons (Sorted back-to-front by projected Z)
       const renderOrder = [];
       for (let c = 0; c < CHANNELS_3D.length; c++) {
@@ -19207,61 +19298,48 @@ Patient`;
       }
       renderOrder.sort((a, b) => b.z - a.z); // Render farthest first
 
+      const allPlottedPoints = []; // Collected for hover HUD inspection
+
       for (const item of renderOrder) {
         const c = item.index;
         const channel = CHANNELS_3D[c];
         const cz = zStart + c * zSpacing;
 
-        // Build data points array for this channel
+        // Build data points array for this channel across 24 hours
         const pts = [];
         for (let i = 0; i < numPoints; i++) {
           const x = -380 + i * xStep;
-          let val = 0;
-
-          if (hasRealData) {
-            // Sample real value based on channel type
-            if (c === 0) { // Glucose
-              val = (typeof lastGlucoseMg !== 'undefined' && lastGlucoseMg > 0) ? lastGlucoseMg : 0;
-            } else if (c === 1) { // BP Systolic
-              val = (typeof lastSystolic !== 'undefined' && lastSystolic > 0) ? lastSystolic : 0;
-            } else if (c === 2) { // HR
-              val = (typeof lastHR !== 'undefined' && lastHR > 0) ? lastHR : (typeof lastHeartRate !== 'undefined' ? lastHeartRate : 0);
-            } else if (c === 3) { // SpO2
-              val = (typeof lastSpO2 !== 'undefined' && lastSpO2 > 0) ? lastSpO2 : 0;
-            } else if (c === 4) { // Temp
-              const rawF = (typeof lastBodyF !== 'undefined' && lastBodyF > 0) ? lastBodyF : 0;
-              val = rawF > 0 ? (rawF - 90) : 0;
-            } else if (c === 5) { // HRV
-              val = (typeof lastHRV !== 'undefined' && lastHRV > 0) ? lastHRV : 0;
-            } else if (c === 6) { // Steps
-              val = (typeof lastSteps !== 'undefined' && lastSteps > 0) ? lastSteps : 0;
-            } else if (c === 7) { // Sleep
-              val = 0; // Sleep architecture percent
-            } else if (c === 8) { // Pain Index (0-10)
-              if (feelingCache3D && feelingCache3D.length > 0) {
-                val = feelingCache3D[0].pain_score || 0;
-              }
-            } else if (c === 9) { // Mood Scale (0-10)
-              if (feelingCache3D && feelingCache3D.length > 0) {
-                val = feelingCache3D[0].mood_score || 0;
-              }
-            }
-          }
+          const h = i;
+          const timeLabel = `${h.toString().padStart(2, '0')}:00`;
+          let val = getChannelValueAtHour(c, h);
 
           // Normalize Y height: max ribbon height = 110px
-          const normY = val > 0 ? Math.min(110, (val / (channel.max - channel.min)) * 110) : 0;
-          pts.push({ x: x, y: normY, val: val });
+          let normVal = val;
+          if (c === 4 && val > 0) normVal = Math.max(0, val - 90);
+          const range = channel.max - channel.min;
+          const normY = normVal > 0 ? Math.min(110, (normVal / range) * 110) : 0;
+          pts.push({ x: x, y: normY, val: val, hour: h, timeLabel: timeLabel });
         }
 
         // Project top and bottom points
         const topProjs = [];
         const botProjs = [];
-        for (const pt of pts) {
+        for (let i = 0; i < pts.length; i++) {
+          const pt = pts[i];
           const pTop = project3D(pt.x, pt.y, cz, W, H);
           const pBot = project3D(pt.x, 0, cz, W, H);
           if (pTop && pBot) {
             topProjs.push(pTop);
             botProjs.push(pBot);
+            if (pt.val > 0) {
+              allPlottedPoints.push({
+                channel: channel,
+                pt: pt,
+                top: pTop,
+                bot: pBot,
+                cz: cz
+              });
+            }
           }
         }
 
@@ -19284,7 +19362,7 @@ Patient`;
           ctx.lineWidth = 2.0;
           ctx.stroke();
 
-          // 3. Draw Vertical Struts at Key Intervals
+          // 3. Draw Vertical Struts at Key Intervals (every 4 hours)
           ctx.lineWidth = 1.0;
           ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
           for (let i = 0; i < topProjs.length; i += 4) {
@@ -19294,21 +19372,110 @@ Patient`;
             ctx.stroke();
           }
 
-          // 4. Latest Value Indicator Dot on Crest
-          const lastIdx = topProjs.length - 1;
-          const pEnd = topProjs[lastIdx];
-          const curVal = pts[lastIdx].val;
-          if (curVal > 0) {
+          // 4. Draw Individual Data Point Nodes (Circles & Drop Pins) along the Crest
+          for (let i = 0; i < topProjs.length; i++) {
+            const pt = pts[i];
+            if (pt.val > 0) {
+              const p = topProjs[i];
+              const b = botProjs[i];
+
+              // Laser drop pin to floor
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(b.x, b.y);
+              ctx.strokeStyle = channel.color;
+              ctx.lineWidth = 0.8;
+              ctx.stroke();
+
+              // Data Point Node Circle
+              ctx.beginPath();
+              ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
+              ctx.fillStyle = channel.color;
+              ctx.fill();
+              ctx.lineWidth = 1.5;
+              ctx.strokeStyle = '#ffffff';
+              ctx.stroke();
+            }
+          }
+
+          // 5. Latest Value Indicator Dot & Tag on Crest
+          let lastActiveIdx = -1;
+          for (let i = topProjs.length - 1; i >= 0; i--) {
+            if (pts[i].val > 0) {
+              lastActiveIdx = i;
+              break;
+            }
+          }
+          if (lastActiveIdx >= 0) {
+            const pEnd = topProjs[lastActiveIdx];
+            const curVal = pts[lastActiveIdx].val;
             ctx.fillStyle = channel.color;
             ctx.beginPath();
-            ctx.arc(pEnd.x, pEnd.y, 4, 0, Math.PI * 2);
+            ctx.arc(pEnd.x, pEnd.y, 5.5, 0, Math.PI * 2);
             ctx.fill();
+            ctx.lineWidth = 2.0;
+            ctx.strokeStyle = '#ffffff';
+            ctx.stroke();
 
             ctx.fillStyle = '#ffffff';
             ctx.font = 'bold 9px monospace';
             ctx.textAlign = 'left';
-            ctx.fillText(`${curVal} ${channel.unit}`, pEnd.x + 6, pEnd.y);
+            ctx.fillText(`${curVal} ${channel.unit}`, pEnd.x + 8, pEnd.y);
           }
+        }
+      }
+
+      // 6. Interactive 3D Hover Tooltip & Node Inspection
+      if (cam3D.hoverMouseX >= 0 && cam3D.hoverMouseY >= 0 && allPlottedPoints.length > 0) {
+        let closest = null;
+        let minDist = 22; // px radius
+        for (const item of allPlottedPoints) {
+          const dx = item.top.x - cam3D.hoverMouseX;
+          const dy = item.top.y - cam3D.hoverMouseY;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < minDist) {
+            minDist = dist;
+            closest = item;
+          }
+        }
+
+        if (closest) {
+          // Highlight hover node with outer ring
+          ctx.beginPath();
+          ctx.arc(closest.top.x, closest.top.y, 7, 0, Math.PI * 2);
+          ctx.strokeStyle = '#38bdf8';
+          ctx.lineWidth = 2.5;
+          ctx.stroke();
+
+          // Laser drop pin to floor with glow
+          ctx.beginPath();
+          ctx.moveTo(closest.top.x, closest.top.y);
+          ctx.lineTo(closest.bot.x, closest.bot.y);
+          ctx.strokeStyle = '#38bdf8';
+          ctx.lineWidth = 2.0;
+          ctx.stroke();
+
+          // Abrams Bridge 3D HUD Tooltip Card
+          const ttX = Math.min(W - 195, Math.max(10, closest.top.x + 12));
+          const ttY = Math.min(H - 65, Math.max(10, closest.top.y - 45));
+          ctx.fillStyle = 'rgba(15, 23, 42, 0.94)';
+          ctx.strokeStyle = closest.channel.color;
+          ctx.lineWidth = 1.5;
+          ctx.fillRect(ttX, ttY, 185, 48);
+          ctx.strokeRect(ttX, ttY, 185, 48);
+
+          ctx.fillStyle = closest.channel.color;
+          ctx.font = 'bold 10px monospace';
+          ctx.textAlign = 'left';
+          ctx.fillText(closest.channel.name, ttX + 8, ttY + 16);
+
+          ctx.fillStyle = '#ffffff';
+          ctx.font = 'bold 12px monospace';
+          ctx.fillText(`${closest.pt.val} ${closest.channel.unit}`, ttX + 8, ttY + 32);
+
+          ctx.fillStyle = '#94a3b8';
+          ctx.font = '9px monospace';
+          ctx.fillText(`TIME: ${closest.pt.timeLabel}`, ttX + 8, ttY + 44);
         }
       }
     }
@@ -20305,6 +20472,7 @@ All 14 LCARS consoles, 8-lane metabolic chart, and clinical database now match y
         }).catch(() => {});
       });
 
+      if (typeof render3DMultiChannelScene === 'function') render3DMultiChannelScene();
       logLCARS(`[★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose ${g} mg/dL, BP ${sys}/${dia}, SpO2 ${sp}%, HR ${hr} BPM, Temp ${bodyF.toFixed(1)}°F`, "rx", "Full Diagnostic Telemetry Synchronized All Consoles");
     }
 
@@ -21369,6 +21537,7 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
 
           // 9. Synchronize Subordinate Consoles & Tabs
           if (typeof render360HealthView === 'function') render360HealthView();
+          if (typeof render3DMultiChannelScene === 'function') render3DMultiChannelScene();
           if (typeof renderDietHistory === 'function') renderDietHistory();
           if (typeof loadGoalsComplianceReport === 'function') loadGoalsComplianceReport();
           if (!isFullScanRunning && typeof initFullScanView === 'function') initFullScanView();

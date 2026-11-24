@@ -185868,3 +185868,1001 @@ Cholesterol	40mg	13%
 [15:59:30] [SYS] Watch link severed (screen asleep or out of range). Reconnecting in background... | Watch Standby / Out of Range
 [16:09:34] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
 [16:09:34] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[16:24:34] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[16:24:34] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[16:39:34] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[16:39:34] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[16:54:34] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[16:54:34] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[17:10:19] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[17:10:19] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[17:25:19] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[17:25:19] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[17:36:15] [RX] [+] Watch link automatically restored (Attempt 365)! | Watch Link Automatically Restored
+[17:36:22] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:36:23] [TX] [*] Transmitting 0xA1 Authentication & Time Handshake... | Host-Watch Chronometer Synchronization
+[17:36:23] [TX] TX [f0080003]: b8 01 02 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Host Command Transmission to Watch
+[17:36:23] [RX] RX [0000fea1]: 01 55 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:36:23] [RX] RX [f0080002]: b8 01 02 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[17:36:23] [TX] TX [f0080003]: a1 00 00 00 07 ea 0b 17 11 24 17 00 01 e0 00 00 00 00 00 00 | Host-to-Watch Time Sync Handshake (0xA1)
+[17:36:23] [RX] RX [0000fea1]: 01 55 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:36:23] [RX] RX [f0080002]: a7 01 00 01 01 01 01 00 02 14 01 01 03 00 00 01 00 06 05 01 | Watch Sensor Telemetry Broadcast
+[17:36:23] [RX] RX [f0080002]: a7 00 03 04 00 03 05 00 01 01 05 01 01 01 02 06 03 00 01 02 | Watch Sensor Telemetry Broadcast
+[17:36:23] [RX] RX [f0080002]: a7 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 04 | Watch Sensor Telemetry Broadcast
+[17:36:23] [RX] RX [f0080002]: a7 02 11 00 02 01 01 04 01 00 00 00 01 00 00 04 01 01 01 03 | Watch Sensor Telemetry Broadcast
+[17:36:23] [RX] RX [f0080002]: b8 02 02 01 01 01 00 00 00 00 01 01 00 00 00 00 01 00 00 00 | Watch Sensor Telemetry Broadcast
+[17:36:23] [RX] RX [f0080002]: ad 02 02 02 02 02 00 02 02 00 02 02 02 02 02 02 02 00 00 02 | Watch Sensor Telemetry Broadcast
+[17:36:23] [RX] RX [f0080002]: b8 02 00 00 01 02 00 01 00 00 02 01 02 02 00 00 00 00 00 01 | Watch Sensor Telemetry Broadcast
+[17:36:24] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[17:36:24] [RX] RX [f0080002]: a1 00 00 06 13 92 00 10 10 00 00 01 16 f6 83 40 de 8b 00 00 | Device Authentication • Model 5010 v0.16.16.0
+[17:36:24] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[17:36:24] [TX] [*] Transmitting Opcode 0xE0 to read Nocturnal Sleep Architecture (Day 0)... | Host Command Transmission to Watch
+[17:36:24] [TX] TX [f0080003]: e0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Host Command Transmission to Watch
+[17:36:24] [RX] RX [f0080002]: bd 03 01 01 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[17:36:24] [RX] RX [f0080002]: e0 3b 02 00 a1 00 01 a2 08 4d e4 30 cf b1 e7 43 64 a3 24 0b | Watch Sensor Telemetry Broadcast
+[17:36:24] [RX] RX [f0080002]: e0 3a 02 00 17 01 00 0b 17 02 0f 03 04 00 04 03 00 00 02 00 | Watch Sensor Telemetry Broadcast
+[17:36:24] [RX] RX [f0080002]: e0 39 02 00 00 00 09 00 2f 00 13 00 4b 00 13 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 37 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 38 02 00 3c 00 01 a4 2d 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 36 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 35 02 00 00 00 a5 96 00 20 00 20 00 20 00 20 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 34 02 00 00 40 00 20 00 40 00 20 00 40 00 40 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 33 02 00 00 00 00 20 00 40 00 20 00 20 00 20 00 00 00 20 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 32 02 00 00 20 00 20 00 20 00 20 00 20 00 40 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 31 02 00 00 20 00 20 00 40 00 20 00 40 00 20 00 20 00 40 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 30 02 00 00 00 00 20 00 00 00 20 00 00 00 40 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 2f 02 00 00 20 00 00 00 00 00 20 00 20 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 2d 02 00 00 20 00 20 00 40 00 40 00 20 00 40 00 40 00 40 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 2e 02 00 00 00 00 20 00 40 00 20 00 20 00 00 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 2b 02 00 a1 b8 02 a2 08 ff ec 30 cf 59 74 4d bc a3 24 0b | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 2a 02 00 17 02 0f 0b 17 07 0a 03 02 02 04 03 02 00 02 02 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 29 02 00 00 00 51 00 b7 00 4f 00 72 01 13 00 1b 00 08 00 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 28 02 00 3c 00 01 a4 2d 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 27 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 26 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 25 02 00 00 00 a5 4e 02 45 80 40 00 40 00 80 80 85 80 80 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 24 02 00 80 80 00 80 80 80 00 80 00 80 00 80 00 80 00 80 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 22 02 00 00 20 00 40 00 40 00 40 00 20 00 40 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 23 02 00 00 80 00 80 80 80 00 80 00 80 00 80 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 21 02 00 00 00 00 20 80 20 80 20 00 00 00 40 00 40 00 40 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 20 02 00 00 40 00 40 00 20 00 20 00 25 00 00 00 20 00 40 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 1f 02 00 00 40 00 20 00 40 00 40 00 40 00 20 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 1d 02 00 00 80 00 80 80 80 00 80 00 80 00 80 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 1e 02 00 00 40 00 40 80 40 80 45 00 80 80 85 80 80 00 80 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 1b 02 00 00 20 00 00 00 00 00 20 00 00 00 00 00 00 00 20 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 1c 02 00 00 00 00 00 00 20 00 00 00 00 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 1a 02 00 00 20 00 40 00 40 00 00 00 00 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 19 02 00 00 00 00 40 00 20 00 20 00 20 00 20 00 00 00 20 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 18 02 00 00 20 00 00 00 00 00 20 00 20 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 17 02 00 00 40 00 00 00 20 00 20 00 40 00 20 00 00 00 20 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 16 02 00 00 40 00 00 00 20 00 00 00 20 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 14 02 00 00 40 00 20 00 20 00 20 00 00 00 20 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 15 02 00 00 20 00 40 00 00 00 00 00 40 00 40 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 13 02 00 00 40 00 20 00 40 00 20 00 00 00 20 00 40 00 40 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 12 02 00 00 40 00 00 00 20 00 00 00 40 00 00 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 11 02 00 00 00 00 20 00 20 00 40 00 20 00 00 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 10 02 00 00 40 00 20 00 40 00 20 00 20 00 40 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 0f 02 00 00 20 00 00 00 00 00 20 00 20 00 20 00 20 00 00 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 0e 02 00 00 20 00 20 00 20 00 20 00 20 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 0d 02 00 00 40 00 20 00 20 00 20 00 40 00 20 00 20 00 00 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 0c 02 00 00 20 00 20 00 00 00 20 00 00 00 40 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 0b 02 00 00 00 00 40 00 20 00 20 00 00 00 20 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 09 02 00 00 00 00 20 00 40 00 20 00 20 00 40 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 0a 02 00 00 00 00 00 00 20 00 00 00 20 00 20 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 08 02 00 00 00 00 40 00 00 00 00 00 00 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 07 02 00 00 20 00 00 00 20 00 20 00 20 00 00 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 05 02 00 00 00 00 20 00 20 00 40 00 20 00 20 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 06 02 00 00 20 00 00 00 20 00 00 00 00 00 40 00 20 00 00 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 04 02 00 00 40 00 20 00 00 00 20 00 00 00 00 00 00 00 20 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 03 02 00 00 00 00 00 00 20 00 20 00 00 00 20 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 02 02 00 00 20 00 00 00 20 00 20 00 40 00 40 00 20 00 40 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 01 02 00 00 20 00 40 00 20 00 20 00 45 80 25 80 45 80 25 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [f0080002]: e0 00 02 00 80 45 80 a6 02 01 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[17:36:25] [RX] RX [0000fea1]: 01 55 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:36:25] [RX] RX [0000fea1]: 01 55 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:36:26] [RX] [🌙 SOMNO-03] Sleep Telemetry Loaded: 4.3 hrs total (Deep: 4.3h / 100%, Light: 4.1h / 95%, REM: 0.0h / 0%, Wake: 2) | Watch Sensor Telemetry Broadcast
+[17:36:26] [SYS] Smart Glucose Snack Notifier updated for 147 mg/dL | LCARS System Telemetry Event
+[17:36:26] [RX] RX [0000fea1]: 01 55 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:36:28] [RX] RX [0000fea1]: 01 55 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:36:28] [RX] RX [0000fea1]: 01 55 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:36:29] [RX] RX [0000fea1]: 01 55 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:36:30] [RX] RX [0000fea1]: 01 55 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:36:31] [RX] RX [0000fea1]: 01 59 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:36:32] [RX] RX [0000fea1]: 01 59 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:36:33] [RX] RX [0000fea1]: 01 59 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:36:34] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:36:34] [RX] RX [0000fea1]: 01 5e 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:36:35] [RX] RX [0000fea1]: 01 5e 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:36:36] [RX] RX [0000fea1]: 01 5e 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:36:38] [RX] RX [0000fea1]: 01 5e 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:36:38] [RX] RX [0000fea1]: 01 5e 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:36:39] [RX] RX [0000fea1]: 01 5e 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:36:40] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:36:42] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:36:42] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:36:43] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:36:44] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:36:45] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:36:46] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:36:46] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:36:47] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:36:48] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:36:49] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:36:50] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:36:51] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:36:52] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:36:54] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:36:53] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:36:55] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:36:56] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:36:57] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:36:58] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:36:58] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:36:59] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:00] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:01] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:02] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:03] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:04] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:05] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:06] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:07] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:08] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:09] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:10] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:10] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:37:11] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:12] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:13] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:14] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:15] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:16] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:17] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:18] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:19] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:20] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:21] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:22] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:22] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:37:23] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:24] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:25] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:26] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:27] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:28] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:29] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:30] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:31] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:32] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:33] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:34] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:34] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:37:35] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:36] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:37] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:38] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:40] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:40] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:41] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:42] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:43] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:44] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:45] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:47] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:49] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:37:49] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:49] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:51] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:51] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:51] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:52] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:53] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:54] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:55] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:56] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:57] [RX] RX [0000fea1]: 01 61 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:58] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:37:58] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:37:59] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:38:00] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:38:02] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:38:02] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:38:04] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:38:04] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:38:08] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:38:08] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:38:14] [SYS] Watch link severed (screen asleep or out of range). Reconnecting in background... | Watch Standby / Out of Range
+[17:38:29] [RX] [+] Watch link automatically restored (Attempt 2)! | Watch Link Automatically Restored
+[17:38:40] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:38:41] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:38:42] [TX] [*] Transmitting 0xA1 Authentication & Time Handshake... | Host-Watch Chronometer Synchronization
+[17:38:42] [TX] TX [f0080003]: b8 01 02 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Host Command Transmission to Watch
+[17:38:42] [RX] RX [f0080002]: b8 01 02 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[17:38:42] [TX] TX [f0080003]: a1 00 00 00 07 ea 0b 17 11 26 2a 00 01 e0 00 00 00 00 00 00 | Host-to-Watch Time Sync Handshake (0xA1)
+[17:38:42] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:38:43] [RX] RX [f0080002]: a7 01 00 01 01 01 01 00 02 14 01 01 03 00 00 01 00 06 05 01 | Watch Sensor Telemetry Broadcast
+[17:38:43] [RX] RX [f0080002]: a7 00 03 04 00 03 05 00 01 01 05 01 01 01 02 06 03 00 01 02 | Watch Sensor Telemetry Broadcast
+[17:38:43] [RX] RX [f0080002]: a7 02 11 00 02 01 01 04 01 00 00 00 01 00 00 04 01 01 01 03 | Watch Sensor Telemetry Broadcast
+[17:38:43] [RX] RX [f0080002]: a7 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 04 | Watch Sensor Telemetry Broadcast
+[17:38:43] [RX] RX [f0080002]: ad 02 02 02 02 02 00 02 02 00 02 02 02 02 02 02 02 00 00 02 | Watch Sensor Telemetry Broadcast
+[17:38:43] [RX] RX [f0080002]: ad 02 02 02 02 02 00 02 00 00 00 00 00 00 00 00 00 00 00 10 | Watch Sensor Telemetry Broadcast
+[17:38:43] [RX] RX [f0080002]: b8 02 02 01 01 01 00 00 00 00 01 01 00 00 00 00 01 00 00 00 | Watch Sensor Telemetry Broadcast
+[17:38:43] [RX] RX [f0080002]: b8 02 00 00 01 02 00 01 00 00 02 01 02 02 00 00 00 00 00 01 | Watch Sensor Telemetry Broadcast
+[17:38:43] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[17:38:43] [TX] [*] Transmitting Opcode 0xE0 to read Nocturnal Sleep Architecture (Day 0)... | Host Command Transmission to Watch
+[17:38:43] [TX] TX [f0080003]: e0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Host Command Transmission to Watch
+[17:38:44] [RX] RX [f0080002]: a1 00 00 06 13 92 00 10 10 00 00 01 16 f6 83 40 de 8b 00 00 | Device Authentication • Model 5010 v0.16.16.0
+[17:38:44] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:38:44] [RX] RX [f0080002]: e0 3b 02 00 a1 00 01 a2 08 4d e4 30 cf b1 e7 43 64 a3 24 0b | Watch Sensor Telemetry Broadcast
+[17:38:44] [RX] RX [f0080002]: e0 3a 02 00 17 01 00 0b 17 02 0f 03 04 00 04 03 00 00 02 00 | Watch Sensor Telemetry Broadcast
+[17:38:44] [RX] RX [f0080002]: e0 39 02 00 00 00 09 00 2f 00 13 00 4b 00 13 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[17:38:44] [RX] [🌙 SOMNO-03] Sleep Telemetry Loaded: 1.6 hrs total (Deep: 1.6h / 100%, Light: 1.3h / 81%, REM: 0.0h / 0%, Wake: 47) | Watch Sensor Telemetry Broadcast
+[17:38:45] [RX] RX [f0080002]: e0 38 02 00 3c 00 01 a4 2d 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[17:38:45] [RX] RX [f0080002]: e0 37 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[17:38:45] [RX] RX [f0080002]: e0 36 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[17:38:45] [RX] RX [f0080002]: e0 35 02 00 00 00 a5 96 00 20 00 20 00 20 00 20 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:45] [RX] RX [f0080002]: e0 34 02 00 00 40 00 20 00 40 00 20 00 40 00 40 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:45] [RX] RX [f0080002]: e0 33 02 00 00 00 00 20 00 40 00 20 00 20 00 20 00 00 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:45] [RX] RX [f0080002]: e0 32 02 00 00 20 00 20 00 20 00 20 00 20 00 40 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:45] [RX] RX [f0080002]: e0 31 02 00 00 20 00 20 00 40 00 20 00 40 00 20 00 20 00 40 | Watch Sensor Telemetry Broadcast
+[17:38:45] [RX] RX [f0080002]: e0 30 02 00 00 00 00 20 00 00 00 20 00 00 00 40 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:45] [RX] RX [f0080002]: e0 2f 02 00 00 20 00 00 00 00 00 20 00 20 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:45] [RX] RX [f0080002]: e0 2e 02 00 00 00 00 20 00 40 00 20 00 20 00 00 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:45] [RX] RX [f0080002]: e0 2d 02 00 00 20 00 20 00 40 00 40 00 20 00 40 00 40 00 40 | Watch Sensor Telemetry Broadcast
+[17:38:45] [RX] RX [f0080002]: e0 2c 02 00 00 20 00 20 00 20 00 40 00 20 00 a6 02 00 01 00 | Watch Sensor Telemetry Broadcast
+[17:38:46] [SYS] [*] Day 0 sleep block count zero. Falling back to Day 1 (Previous Night)... | LCARS System Telemetry Event
+[17:38:46] [RX] RX [f0080002]: e0 2b 02 00 a1 b8 02 a2 08 ff ec 30 cf 59 74 4d bc a3 24 0b | Watch Sensor Telemetry Broadcast
+[17:38:46] [TX] [*] Transmitting Opcode 0xE0 to read Nocturnal Sleep Architecture (Day 1)... | Host Command Transmission to Watch
+[17:38:46] [TX] TX [f0080003]: e0 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Host Command Transmission to Watch
+[17:38:46] [SYS] Smart Glucose Snack Notifier updated for 147 mg/dL | LCARS System Telemetry Event
+[17:38:46] [RX] RX [f0080002]: e0 2a 02 00 17 02 0f 0b 17 07 0a 03 02 02 04 03 02 00 02 02 | Watch Sensor Telemetry Broadcast
+[17:38:46] [RX] RX [f0080002]: e0 29 02 00 00 00 51 00 b7 00 4f 00 72 01 13 00 1b 00 08 00 | Watch Sensor Telemetry Broadcast
+[17:38:46] [RX] RX [f0080002]: e0 28 02 00 3c 00 01 a4 2d 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[17:38:47] [SYS] [🌙 SOMNO-03] No nocturnal sleep architecture found on watch for queried date. Displaying NO DATA. | LCARS System Telemetry Event
+[17:38:47] [RX] RX [f0080002]: e0 27 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[17:38:47] [RX] RX [f0080002]: e0 26 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[17:38:47] [RX] RX [f0080002]: e0 25 02 00 00 00 a5 4e 02 45 80 40 00 40 00 80 80 85 80 80 | Watch Sensor Telemetry Broadcast
+[17:38:47] [RX] RX [f0080002]: e0 24 02 00 80 80 00 80 80 80 00 80 00 80 00 80 00 80 00 80 | Watch Sensor Telemetry Broadcast
+[17:38:47] [RX] RX [f0080002]: e0 23 02 00 00 80 00 80 80 80 00 80 00 80 00 80 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:47] [RX] RX [f0080002]: e0 22 02 00 00 20 00 40 00 40 00 40 00 20 00 40 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:47] [RX] RX [f0080002]: e0 21 02 00 00 00 00 20 80 20 80 20 00 00 00 40 00 40 00 40 | Watch Sensor Telemetry Broadcast
+[17:38:47] [RX] RX [f0080002]: e0 1f 02 00 00 40 00 20 00 40 00 40 00 40 00 20 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:47] [RX] RX [f0080002]: e0 20 02 00 00 40 00 40 00 20 00 20 00 25 00 00 00 20 00 40 | Watch Sensor Telemetry Broadcast
+[17:38:47] [RX] RX [f0080002]: e0 1e 02 00 00 40 00 40 80 40 80 45 00 80 80 85 80 80 00 80 | Watch Sensor Telemetry Broadcast
+[17:38:47] [RX] RX [f0080002]: e0 1d 02 00 00 80 00 80 80 80 00 80 00 80 00 80 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:47] [RX] RX [f0080002]: e0 1c 02 00 00 00 00 00 00 20 00 00 00 00 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:47] [RX] RX [f0080002]: e0 1b 02 00 00 20 00 00 00 00 00 20 00 00 00 00 00 00 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:47] [RX] RX [f0080002]: e0 1a 02 00 00 20 00 40 00 40 00 00 00 00 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:47] [RX] RX [f0080002]: e0 19 02 00 00 00 00 40 00 20 00 20 00 20 00 20 00 00 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:47] [RX] RX [f0080002]: e0 18 02 00 00 20 00 00 00 00 00 20 00 20 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:47] [RX] RX [f0080002]: e0 17 02 00 00 40 00 00 00 20 00 20 00 40 00 20 00 00 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:47] [RX] RX [f0080002]: e0 16 02 00 00 40 00 00 00 20 00 00 00 20 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:47] [RX] RX [f0080002]: e0 15 02 00 00 20 00 40 00 00 00 00 00 40 00 40 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:47] [RX] RX [f0080002]: e0 14 02 00 00 40 00 20 00 20 00 20 00 00 00 20 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:47] [RX] RX [f0080002]: e0 13 02 00 00 40 00 20 00 40 00 20 00 00 00 20 00 40 00 40 | Watch Sensor Telemetry Broadcast
+[17:38:47] [RX] RX [f0080002]: e0 12 02 00 00 40 00 00 00 20 00 00 00 40 00 00 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:47] [RX] RX [f0080002]: e0 11 02 00 00 00 00 20 00 20 00 40 00 20 00 00 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:47] [RX] RX [f0080002]: e0 10 02 00 00 40 00 20 00 40 00 20 00 20 00 40 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:47] [RX] RX [f0080002]: e0 0f 02 00 00 20 00 00 00 00 00 20 00 20 00 20 00 20 00 00 | Watch Sensor Telemetry Broadcast
+[17:38:47] [RX] RX [f0080002]: e0 0e 02 00 00 20 00 20 00 20 00 20 00 20 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:47] [RX] RX [f0080002]: e0 0d 02 00 00 40 00 20 00 20 00 20 00 40 00 20 00 20 00 00 | Watch Sensor Telemetry Broadcast
+[17:38:47] [RX] RX [f0080002]: e0 0b 02 00 00 00 00 40 00 20 00 20 00 00 00 20 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[17:38:47] [RX] RX [f0080002]: e0 0a 02 00 00 00 00 00 00 20 00 00 00 20 00 20 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 09 02 00 00 00 00 20 00 40 00 20 00 20 00 40 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 08 02 00 00 00 00 40 00 00 00 00 00 00 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 06 02 00 00 20 00 00 00 20 00 00 00 00 00 40 00 20 00 00 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 04 02 00 00 40 00 20 00 00 00 20 00 00 00 00 00 00 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 03 02 00 00 00 00 00 00 20 00 20 00 00 00 20 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 02 02 00 00 20 00 00 00 20 00 20 00 40 00 40 00 20 00 40 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 01 02 00 00 20 00 40 00 20 00 20 00 45 80 25 80 45 80 25 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 00 02 00 80 45 80 a6 02 01 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:38:48] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:38:48] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:38:48] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:38:48] [RX] RX [f0080002]: e0 41 03 01 a1 0c 02 a2 08 6e a3 30 cf d5 6a 52 79 a3 24 0b | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 3f 03 01 00 00 26 00 73 00 37 00 d0 00 0a 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 40 03 01 16 00 20 0b 16 04 00 03 04 00 04 03 00 00 02 00 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 3e 03 01 3c 00 01 a4 2d 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 3d 03 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 3c 03 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 3b 03 01 00 00 a5 a0 01 20 00 20 00 20 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 3a 03 01 00 00 00 20 00 20 00 20 00 20 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 39 03 01 00 20 00 20 00 20 00 20 00 00 00 40 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 38 03 01 00 00 00 20 00 20 00 40 00 40 00 40 00 40 00 00 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 37 03 01 00 20 00 40 00 40 00 20 00 00 00 40 00 00 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 35 03 01 00 20 00 20 00 20 00 20 00 20 00 20 00 20 00 00 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 36 03 01 00 40 00 40 00 40 00 40 00 40 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 34 03 01 00 20 00 40 00 40 00 20 00 20 00 20 00 20 00 00 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 33 03 01 00 20 00 40 00 00 00 40 00 20 00 20 00 00 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 32 03 01 00 20 00 20 00 00 00 00 00 00 00 40 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 31 03 01 00 40 00 20 00 20 00 40 00 40 00 40 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 30 03 01 00 00 00 20 00 00 00 20 00 20 00 20 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 2f 03 01 00 00 00 00 00 00 00 20 00 00 00 20 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 2e 03 01 00 00 00 40 00 00 00 40 00 40 00 40 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 2d 03 01 00 40 00 20 00 40 00 40 00 20 00 00 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 2c 03 01 00 20 00 40 00 20 00 00 00 20 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 2b 03 01 00 20 00 00 00 20 00 20 00 00 00 20 00 20 00 00 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 2a 03 01 00 00 00 40 00 20 00 40 00 40 00 40 00 40 00 40 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 29 03 01 00 40 00 40 00 40 00 20 00 40 00 00 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 28 03 01 00 00 00 40 00 20 00 40 00 20 00 20 00 20 00 00 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 27 03 01 00 20 00 20 00 20 00 20 00 20 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 26 03 01 00 20 00 00 00 40 00 20 00 20 00 40 00 40 00 40 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 25 03 01 00 20 00 40 00 20 00 20 00 00 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 24 03 01 00 00 00 00 00 20 00 20 00 40 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 23 03 01 00 00 00 00 00 20 00 40 00 20 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 22 03 01 00 40 00 20 00 20 00 20 00 40 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 21 03 01 00 40 00 20 00 a6 04 00 01 00 00 00 a1 64 01 a2 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 20 03 01 08 45 a3 30 cf 90 59 c9 c8 a3 24 0b 16 04 00 0b | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 1f 03 01 16 06 05 03 03 00 04 03 00 00 02 01 00 00 3e 00 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 1e 03 01 b5 00 54 00 4d 01 0a 00 06 00 02 00 3c 00 01 a4 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 1d 03 01 2d 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 1c 03 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 1b 03 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 a5 fa | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 1a 03 01 00 40 00 20 00 20 00 20 00 40 00 85 80 85 80 85 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 19 03 01 80 85 80 85 80 80 00 20 00 20 00 20 00 00 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 18 03 01 00 00 00 00 00 40 80 20 80 40 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:48] [RX] RX [f0080002]: e0 17 03 01 00 40 00 40 00 20 00 40 00 20 00 20 00 20 00 40 | Watch Sensor Telemetry Broadcast
+[17:38:49] [RX] RX [f0080002]: e0 16 03 01 80 20 00 40 00 20 00 20 00 00 00 20 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:49] [RX] RX [f0080002]: e0 14 03 01 00 40 00 00 00 40 00 00 00 20 00 00 00 40 00 40 | Watch Sensor Telemetry Broadcast
+[17:38:49] [RX] RX [f0080002]: e0 13 03 01 00 20 00 40 00 20 00 00 00 00 00 00 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:49] [RX] RX [f0080002]: e0 10 03 01 00 20 00 40 00 40 00 20 00 20 00 20 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:49] [RX] RX [f0080002]: e0 0f 03 01 00 40 00 40 00 20 00 00 00 00 00 20 00 20 00 00 | Watch Sensor Telemetry Broadcast
+[17:38:49] [RX] RX [f0080002]: e0 0e 03 01 00 20 00 20 00 40 00 20 00 20 00 20 00 00 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:49] [RX] RX [f0080002]: e0 0b 03 01 00 20 00 20 00 20 00 40 00 20 00 a6 02 01 01 00 | Watch Sensor Telemetry Broadcast
+[17:38:49] [RX] RX [f0080002]: e0 0d 03 01 00 20 00 45 00 40 00 20 00 00 00 40 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:49] [RX] RX [f0080002]: e0 0c 03 01 00 40 00 20 00 20 00 40 00 20 00 40 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:49] [RX] RX [f0080002]: e0 0a 03 01 a1 b0 00 a2 08 92 f3 30 cf 50 e6 df b6 a3 24 0b | Watch Sensor Telemetry Broadcast
+[17:38:49] [RX] RX [f0080002]: e0 09 03 01 16 06 05 0b 16 06 28 03 03 00 04 03 02 00 02 01 | Watch Sensor Telemetry Broadcast
+[17:38:49] [RX] RX [f0080002]: e0 08 03 01 00 00 43 00 cb 00 5c 00 70 01 0a 00 06 00 02 00 | Watch Sensor Telemetry Broadcast
+[17:38:49] [RX] RX [f0080002]: e0 07 03 01 3c 00 01 a4 2d 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[17:38:49] [RX] RX [f0080002]: e0 06 03 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[17:38:49] [RX] RX [f0080002]: e0 02 03 01 00 40 00 20 00 40 00 20 00 00 00 20 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:49] [RX] RX [f0080002]: e0 03 03 01 80 20 80 20 00 20 80 20 80 00 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[17:38:49] [RX] RX [f0080002]: e0 01 03 01 00 40 00 20 00 20 00 20 00 40 00 20 00 25 80 20 | Watch Sensor Telemetry Broadcast
+[17:38:49] [RX] RX [f0080002]: e0 00 03 01 00 20 00 20 00 40 00 40 00 40 00 a6 02 01 00 00 | Watch Sensor Telemetry Broadcast
+[17:38:49] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:38:49] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:38:49] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:38:49] [RX] [🌙 SOMNO-03] Sleep Telemetry Loaded: 4.3 hrs total (Deep: 4.3h / 100%, Light: 4.1h / 95%, REM: 0.0h / 0%, Wake: 2) | Watch Sensor Telemetry Broadcast
+[17:38:50] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:38:51] [SYS] Smart Glucose Snack Notifier updated for 147 mg/dL | LCARS System Telemetry Event
+[17:38:52] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:38:52] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:38:54] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:38:54] [RX] RX [f0080002]: bd 03 01 02 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[17:38:55] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:38:55] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:38:56] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:38:57] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:38:58] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:38:58] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:38:59] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:00] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:01] [RX] RX [f0080002]: bd 03 01 01 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[17:39:01] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:02] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:03] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:04] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:05] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:06] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:07] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:08] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:09] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:10] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:39:10] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:11] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:12] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:13] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:14] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:15] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:16] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:17] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:18] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:19] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:20] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:21] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:22] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:22] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:39:23] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:24] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:25] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:26] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:27] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:28] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:29] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:30] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:31] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:32] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:33] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:34] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[17:39:34] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[17:39:34] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:34] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:39:35] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:36] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:37] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:38] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:39] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:40] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:41] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:42] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:43] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:44] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:45] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:46] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:46] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:39:47] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:48] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:49] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:50] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:52] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:52] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:53] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:54] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:55] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:56] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:57] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:58] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:58] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:40:00] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:39:59] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:01] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:02] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:04] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:05] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:06] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:07] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:08] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:09] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:10] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:10] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:40:11] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:12] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:13] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:14] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:15] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:16] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:17] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:18] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:19] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:20] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:21] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:22] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:22] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:40:23] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:24] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:25] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:26] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:27] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:28] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:29] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:30] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:31] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:32] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:33] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:34] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:35] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:40:35] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:36] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:37] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:38] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:39] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:40] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:41] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:42] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:43] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:44] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:45] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:46] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:40:46] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:47] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:48] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:49] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:50] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:51] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:52] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:53] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:54] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:55] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:56] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:57] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:58] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:40:58] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:40:59] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:00] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:01] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:02] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:03] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:04] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:06] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:07] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:08] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:09] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:10] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:11] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:11] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:41:12] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:13] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:14] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:15] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:16] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:17] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:18] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:19] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:20] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:21] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:22] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:23] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:41:23] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:24] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:25] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:26] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:27] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:28] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:29] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:30] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:31] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:32] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:33] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:34] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:35] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:41:35] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:36] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:37] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:38] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:39] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:40] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:41] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:42] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:43] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:44] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:45] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:46] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:47] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:41:47] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:48] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:49] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:50] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:51] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:52] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:53] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:54] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:55] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:56] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:57] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:58] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:41:59] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:41:59] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:00] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:01] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:02] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:03] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:04] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:05] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:06] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:07] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:08] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:09] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:10] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:11] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:42:11] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:12] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:13] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:14] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:15] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:16] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:17] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:18] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:19] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:20] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:21] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:22] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:22] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:42:23] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:24] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:25] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:26] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:27] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:28] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:29] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:30] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:31] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:32] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:33] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:34] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:35] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:42:35] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:36] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:37] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:38] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:39] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:40] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:41] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:42] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:43] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:44] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:45] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:46] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:47] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:42:47] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:48] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:49] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:50] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:51] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:52] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:53] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:54] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:55] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:56] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:57] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:58] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:42:59] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:42:59] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:00] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:01] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:02] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:03] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:04] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:05] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:06] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:07] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:08] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:09] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:10] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:11] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:43:11] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:12] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:13] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:14] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:15] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:16] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:17] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:18] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:19] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:20] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:21] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:22] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:23] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:43:23] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:24] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:25] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:26] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:27] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:28] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:29] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:30] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:31] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:32] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:33] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:34] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:34] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:43:35] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:36] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:37] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:38] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:39] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:40] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:41] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:42] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:43] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:44] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:45] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:46] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:47] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:43:47] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:48] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:49] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:50] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:51] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:52] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:53] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:54] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:55] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:56] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:57] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:58] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:43:59] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:43:59] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:00] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:01] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:02] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:03] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:04] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:05] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:06] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:07] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:08] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:09] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:10] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:11] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:44:11] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:12] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:13] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:14] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:15] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:16] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:17] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:18] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:19] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:20] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:21] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:22] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:23] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:44:23] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:24] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:25] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:26] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:27] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:28] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:29] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:30] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:31] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:32] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:33] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:34] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:35] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:44:35] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:36] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:37] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:38] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:39] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:40] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:41] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:42] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:43] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:44] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:45] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:46] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:46] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:44:47] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:48] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:49] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:50] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:51] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:52] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:53] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:54] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:55] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:56] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:57] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:58] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:44:58] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:44:59] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:00] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:01] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:02] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:03] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:04] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:05] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:06] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:07] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:08] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:09] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:10] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:10] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:45:11] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:12] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:13] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:14] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:15] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:16] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:17] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:18] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:19] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:20] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:21] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:22] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:23] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:45:23] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:24] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:25] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:26] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:27] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:28] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:29] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:30] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:31] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:32] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:33] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:34] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:34] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:45:35] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:36] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:37] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:38] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:39] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:40] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:41] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:42] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:43] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:44] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:45] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:46] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:46] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:45:47] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:48] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:49] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:50] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:51] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:52] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:53] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:54] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:55] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:56] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:57] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:58] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:45:58] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:45:59] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:00] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:01] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:02] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:03] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:04] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:05] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:06] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:07] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:08] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:09] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:10] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:10] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:46:11] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:12] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:13] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:14] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:15] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:16] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:17] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:18] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:19] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:20] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:21] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:22] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:22] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:46:23] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:24] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:25] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:26] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:27] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:28] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:29] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:30] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:31] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:32] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:33] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:34] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:34] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:46:35] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:36] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:37] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:38] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:39] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:40] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:41] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:42] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:43] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:44] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:45] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:46] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:46] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:46:47] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:48] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:49] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:50] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:51] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:52] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:53] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:54] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:55] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:56] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:57] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:58] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:46:59] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:46:59] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:00] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:01] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:02] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:03] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:04] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:05] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:06] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:07] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:08] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:09] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:10] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:11] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:47:11] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:12] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:13] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:14] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:15] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:16] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:17] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:18] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:19] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:20] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:21] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:22] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:22] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:47:23] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:24] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:25] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:26] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:27] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:28] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:29] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:30] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:31] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:32] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:33] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:34] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:35] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:47:35] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:36] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:37] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:38] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:39] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:40] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:41] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:42] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:43] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:44] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:45] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:46] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:46] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:47:47] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:48] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:49] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:50] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:51] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:52] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:53] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:54] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:55] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:56] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:57] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:58] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:47:59] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:47:59] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:48:00] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:48:01] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:48:02] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:48:03] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:48:04] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:48:05] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:48:06] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:48:07] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:48:08] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:48:09] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:48:10] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:48:10] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:48:11] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:48:12] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:48:13] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:48:14] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:48:15] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:48:16] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:48:17] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:48:18] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:48:19] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:48:20] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:48:21] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:48:22] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:48:22] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:48:23] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:48:24] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:48:25] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:48:26] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:48:27] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:48:28] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:48:29] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:48:30] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:48:31] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:48:32] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:48:33] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:48:34] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:48:34] [RX] RX [f0080002]: a0 00 00 00 4e 01 4e 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 78% Battery
+[17:48:35] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:48:36] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[17:48:37] [RX] RX [0000fea1]: 01 76 0b 00 | Watch Heartbeat & Bluetooth Link Ping

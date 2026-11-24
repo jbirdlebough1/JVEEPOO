@@ -44,7 +44,7 @@ def print_header(title):
 def run_audit():
     print_header("SIX SIGMA ZERO DEFECT & RUNTIME PARITY AUDIT ENGINE (-Werror)")
     
-    total_checks = 20
+    total_checks = 21
     passed_checks = 0
     all_defects = []
 
@@ -558,6 +558,27 @@ def run_audit():
         all_defects.extend(check20_defects)
     else:
         print(f"  {C_GREEN}[PASS] Veepoo 5010 hardware transducer table, cell deletion, and granola estimator verified.{C_RESET}")
+        passed_checks += 1
+
+    # --------------------------------------------------------------------------
+    # CHECK 21: 3D Multi-Channel Dynamic Data Points & Node Visibility Gate
+    # --------------------------------------------------------------------------
+    print(f"\n{C_BOLD}[CHECK 21/{total_checks}] 3D Multi-Channel Dynamic Data Points Gate...{C_RESET}")
+    check21_defects = []
+    if "getChannelValueAtHour" not in bfm_content:
+        check21_defects.append("3D Multi-Channel visualizer lacks getChannelValueAtHour dynamic hourly sampler!")
+    if "allPlottedPoints" not in bfm_content or "cam3D.hoverMouseX" not in bfm_content:
+        check21_defects.append("3D Multi-Channel visualizer lacks interactive hover inspection and data point hit-testing!")
+    if "fetchServer2DayTimeline" not in bfm_content:
+        check21_defects.append("3D Multi-Channel visualizer lacks 48-hour continuous timeline integration!")
+
+    if check21_defects:
+        print(f"  {C_RED}[FAIL] Found {len(check21_defects)} 3D visualizer defect(s):{C_RESET}")
+        for d in check21_defects:
+            print(f"    - {d}")
+        all_defects.extend(check21_defects)
+    else:
+        print(f"  {C_GREEN}[PASS] 3D Multi-Channel dynamic time-series data points, visible crest nodes, and hover inspection verified.{C_RESET}")
         passed_checks += 1
 
     # --------------------------------------------------------------------------
