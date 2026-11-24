@@ -2,7 +2,7 @@
   "resourceType": "Bundle",
   "id": "epic-fhir-bundle-PATIENT-MRN-948201-2026-11-24",
   "type": "collection",
-  "timestamp": "2026-11-24T02:35:36.649264Z",
+  "timestamp": "2026-11-24T03:26:06.398565Z",
   "meta": {
     "profile": [
       "http://hl7.org/fhir/us/core/StructureDefinition/us-core-bundle"
@@ -21972,10 +21972,482 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:obs-nutrition-373",
+      "fullUrl": "urn:uuid:obs-glucose-373",
       "resource": {
         "resourceType": "Observation",
-        "id": "obs-nutrition-373",
+        "id": "obs-glucose-373",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "2339-0",
+              "display": "Glucose [Mass/volume] in Blood"
+            }
+          ],
+          "text": "Continuous Ambulatory Blood Glucose"
+        },
+        "subject": {
+          "reference": "Patient/PATIENT-MRN-948201"
+        },
+        "effectiveDateTime": "2026-11-24T02:38:29.378000Z",
+        "valueQuantity": {
+          "value": 145.0,
+          "unit": "mg/dL",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dL"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 70,
+              "unit": "mg/dL"
+            },
+            "high": {
+              "value": 140,
+              "unit": "mg/dL"
+            },
+            "type": {
+              "text": "Physician Target Band"
+            }
+          }
+        ],
+        "note": [
+          {
+            "text": "Telemetry Mode: FULL_SCAN | Hardware: Wearable Sensor Array (Veepoo 5010)"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:obs-glucose-374",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-glucose-374",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "2339-0",
+              "display": "Glucose [Mass/volume] in Blood"
+            }
+          ],
+          "text": "Continuous Ambulatory Blood Glucose"
+        },
+        "subject": {
+          "reference": "Patient/PATIENT-MRN-948201"
+        },
+        "effectiveDateTime": "2026-11-24T02:39:28.054000Z",
+        "valueQuantity": {
+          "value": 176.0,
+          "unit": "mg/dL",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dL"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 70,
+              "unit": "mg/dL"
+            },
+            "high": {
+              "value": 140,
+              "unit": "mg/dL"
+            },
+            "type": {
+              "text": "Physician Target Band"
+            }
+          }
+        ],
+        "note": [
+          {
+            "text": "Telemetry Mode: WEB_BLUETOOTH_STREAM | Hardware: Wearable Sensor Array (Veepoo 5010)"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:obs-glucose-375",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-glucose-375",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "2339-0",
+              "display": "Glucose [Mass/volume] in Blood"
+            }
+          ],
+          "text": "Continuous Ambulatory Blood Glucose"
+        },
+        "subject": {
+          "reference": "Patient/PATIENT-MRN-948201"
+        },
+        "effectiveDateTime": "2026-11-24T02:39:29.060000Z",
+        "valueQuantity": {
+          "value": 174.0,
+          "unit": "mg/dL",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dL"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 70,
+              "unit": "mg/dL"
+            },
+            "high": {
+              "value": 140,
+              "unit": "mg/dL"
+            },
+            "type": {
+              "text": "Physician Target Band"
+            }
+          }
+        ],
+        "note": [
+          {
+            "text": "Telemetry Mode: WEB_BLUETOOTH_STREAM | Hardware: Wearable Sensor Array (Veepoo 5010)"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:obs-glucose-376",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-glucose-376",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "2339-0",
+              "display": "Glucose [Mass/volume] in Blood"
+            }
+          ],
+          "text": "Continuous Ambulatory Blood Glucose"
+        },
+        "subject": {
+          "reference": "Patient/PATIENT-MRN-948201"
+        },
+        "effectiveDateTime": "2026-11-24T02:39:30.066000Z",
+        "valueQuantity": {
+          "value": 174.0,
+          "unit": "mg/dL",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dL"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 70,
+              "unit": "mg/dL"
+            },
+            "high": {
+              "value": 140,
+              "unit": "mg/dL"
+            },
+            "type": {
+              "text": "Physician Target Band"
+            }
+          }
+        ],
+        "note": [
+          {
+            "text": "Telemetry Mode: WEB_BLUETOOTH_STREAM | Hardware: Wearable Sensor Array (Veepoo 5010)"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:obs-glucose-377",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-glucose-377",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "2339-0",
+              "display": "Glucose [Mass/volume] in Blood"
+            }
+          ],
+          "text": "Continuous Ambulatory Blood Glucose"
+        },
+        "subject": {
+          "reference": "Patient/PATIENT-MRN-948201"
+        },
+        "effectiveDateTime": "2026-11-24T02:39:31.073000Z",
+        "valueQuantity": {
+          "value": 170.0,
+          "unit": "mg/dL",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dL"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 70,
+              "unit": "mg/dL"
+            },
+            "high": {
+              "value": 140,
+              "unit": "mg/dL"
+            },
+            "type": {
+              "text": "Physician Target Band"
+            }
+          }
+        ],
+        "note": [
+          {
+            "text": "Telemetry Mode: WEB_BLUETOOTH_STREAM | Hardware: Wearable Sensor Array (Veepoo 5010)"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:obs-glucose-378",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-glucose-378",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "2339-0",
+              "display": "Glucose [Mass/volume] in Blood"
+            }
+          ],
+          "text": "Continuous Ambulatory Blood Glucose"
+        },
+        "subject": {
+          "reference": "Patient/PATIENT-MRN-948201"
+        },
+        "effectiveDateTime": "2026-11-24T02:39:32.079000Z",
+        "valueQuantity": {
+          "value": 171.0,
+          "unit": "mg/dL",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dL"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 70,
+              "unit": "mg/dL"
+            },
+            "high": {
+              "value": 140,
+              "unit": "mg/dL"
+            },
+            "type": {
+              "text": "Physician Target Band"
+            }
+          }
+        ],
+        "note": [
+          {
+            "text": "Telemetry Mode: WEB_BLUETOOTH_STREAM | Hardware: Wearable Sensor Array (Veepoo 5010)"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:obs-glucose-379",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-glucose-379",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "2339-0",
+              "display": "Glucose [Mass/volume] in Blood"
+            }
+          ],
+          "text": "Continuous Ambulatory Blood Glucose"
+        },
+        "subject": {
+          "reference": "Patient/PATIENT-MRN-948201"
+        },
+        "effectiveDateTime": "2026-11-24T02:39:33.084000Z",
+        "valueQuantity": {
+          "value": 179.0,
+          "unit": "mg/dL",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dL"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 70,
+              "unit": "mg/dL"
+            },
+            "high": {
+              "value": 140,
+              "unit": "mg/dL"
+            },
+            "type": {
+              "text": "Physician Target Band"
+            }
+          }
+        ],
+        "note": [
+          {
+            "text": "Telemetry Mode: WEB_BLUETOOTH_STREAM | Hardware: Wearable Sensor Array (Veepoo 5010)"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:obs-glucose-380",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-glucose-380",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory",
+                "display": "Laboratory"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "2339-0",
+              "display": "Glucose [Mass/volume] in Blood"
+            }
+          ],
+          "text": "Continuous Ambulatory Blood Glucose"
+        },
+        "subject": {
+          "reference": "Patient/PATIENT-MRN-948201"
+        },
+        "effectiveDateTime": "2026-11-24T02:39:34.099000Z",
+        "valueQuantity": {
+          "value": 179.0,
+          "unit": "mg/dL",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dL"
+        },
+        "referenceRange": [
+          {
+            "low": {
+              "value": 70,
+              "unit": "mg/dL"
+            },
+            "high": {
+              "value": 140,
+              "unit": "mg/dL"
+            },
+            "type": {
+              "text": "Physician Target Band"
+            }
+          }
+        ],
+        "note": [
+          {
+            "text": "Telemetry Mode: WEB_BLUETOOTH_STREAM | Hardware: Wearable Sensor Array (Veepoo 5010)"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:obs-nutrition-381",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-nutrition-381",
         "status": "final",
         "category": [
           {
@@ -22016,10 +22488,10 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:obs-nutrition-374",
+      "fullUrl": "urn:uuid:obs-nutrition-382",
       "resource": {
         "resourceType": "Observation",
-        "id": "obs-nutrition-374",
+        "id": "obs-nutrition-382",
         "status": "final",
         "category": [
           {
@@ -22060,10 +22532,10 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:obs-nutrition-375",
+      "fullUrl": "urn:uuid:obs-nutrition-383",
       "resource": {
         "resourceType": "Observation",
-        "id": "obs-nutrition-375",
+        "id": "obs-nutrition-383",
         "status": "final",
         "category": [
           {
@@ -22104,10 +22576,10 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:obs-nutrition-376",
+      "fullUrl": "urn:uuid:obs-nutrition-384",
       "resource": {
         "resourceType": "Observation",
-        "id": "obs-nutrition-376",
+        "id": "obs-nutrition-384",
         "status": "final",
         "category": [
           {
@@ -22148,10 +22620,10 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:obs-nutrition-377",
+      "fullUrl": "urn:uuid:obs-nutrition-385",
       "resource": {
         "resourceType": "Observation",
-        "id": "obs-nutrition-377",
+        "id": "obs-nutrition-385",
         "status": "final",
         "category": [
           {
@@ -22192,10 +22664,10 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:obs-nutrition-378",
+      "fullUrl": "urn:uuid:obs-nutrition-386",
       "resource": {
         "resourceType": "Observation",
-        "id": "obs-nutrition-378",
+        "id": "obs-nutrition-386",
         "status": "final",
         "category": [
           {
@@ -22236,10 +22708,10 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:obs-nutrition-379",
+      "fullUrl": "urn:uuid:obs-nutrition-387",
       "resource": {
         "resourceType": "Observation",
-        "id": "obs-nutrition-379",
+        "id": "obs-nutrition-387",
         "status": "final",
         "category": [
           {
@@ -22280,10 +22752,10 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:obs-nutrition-380",
+      "fullUrl": "urn:uuid:obs-nutrition-388",
       "resource": {
         "resourceType": "Observation",
-        "id": "obs-nutrition-380",
+        "id": "obs-nutrition-388",
         "status": "final",
         "category": [
           {
@@ -22324,10 +22796,10 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:obs-nutrition-381",
+      "fullUrl": "urn:uuid:obs-nutrition-389",
       "resource": {
         "resourceType": "Observation",
-        "id": "obs-nutrition-381",
+        "id": "obs-nutrition-389",
         "status": "final",
         "category": [
           {
@@ -22368,10 +22840,10 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:obs-nutrition-382",
+      "fullUrl": "urn:uuid:obs-nutrition-390",
       "resource": {
         "resourceType": "Observation",
-        "id": "obs-nutrition-382",
+        "id": "obs-nutrition-390",
         "status": "final",
         "category": [
           {
@@ -22412,10 +22884,10 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:obs-nutrition-383",
+      "fullUrl": "urn:uuid:obs-nutrition-391",
       "resource": {
         "resourceType": "Observation",
-        "id": "obs-nutrition-383",
+        "id": "obs-nutrition-391",
         "status": "final",
         "category": [
           {
@@ -22456,10 +22928,10 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:obs-nutrition-384",
+      "fullUrl": "urn:uuid:obs-nutrition-392",
       "resource": {
         "resourceType": "Observation",
-        "id": "obs-nutrition-384",
+        "id": "obs-nutrition-392",
         "status": "final",
         "category": [
           {
@@ -22500,10 +22972,10 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:obs-nutrition-385",
+      "fullUrl": "urn:uuid:obs-nutrition-393",
       "resource": {
         "resourceType": "Observation",
-        "id": "obs-nutrition-385",
+        "id": "obs-nutrition-393",
         "status": "final",
         "category": [
           {
@@ -22544,10 +23016,10 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:obs-nutrition-386",
+      "fullUrl": "urn:uuid:obs-nutrition-394",
       "resource": {
         "resourceType": "Observation",
-        "id": "obs-nutrition-386",
+        "id": "obs-nutrition-394",
         "status": "final",
         "category": [
           {
@@ -22588,10 +23060,10 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:obs-nutrition-387",
+      "fullUrl": "urn:uuid:obs-nutrition-395",
       "resource": {
         "resourceType": "Observation",
-        "id": "obs-nutrition-387",
+        "id": "obs-nutrition-395",
         "status": "final",
         "category": [
           {
@@ -22632,10 +23104,10 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:obs-nutrition-388",
+      "fullUrl": "urn:uuid:obs-nutrition-396",
       "resource": {
         "resourceType": "Observation",
-        "id": "obs-nutrition-388",
+        "id": "obs-nutrition-396",
         "status": "final",
         "category": [
           {
@@ -22676,10 +23148,10 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:obs-nutrition-389",
+      "fullUrl": "urn:uuid:obs-nutrition-397",
       "resource": {
         "resourceType": "Observation",
-        "id": "obs-nutrition-389",
+        "id": "obs-nutrition-397",
         "status": "final",
         "category": [
           {
@@ -22720,10 +23192,10 @@
       }
     },
     {
-      "fullUrl": "urn:uuid:obs-nutrition-390",
+      "fullUrl": "urn:uuid:obs-nutrition-398",
       "resource": {
         "resourceType": "Observation",
-        "id": "obs-nutrition-390",
+        "id": "obs-nutrition-398",
         "status": "final",
         "category": [
           {
@@ -22750,6 +23222,50 @@
           "reference": "Patient/PATIENT-MRN-948201"
         },
         "effectiveDateTime": "2026-11-23T15:32:47Z",
+        "valueQuantity": {
+          "value": 55.0,
+          "unit": "g",
+          "system": "http://unitsofmeasure.org",
+          "code": "g"
+        },
+        "note": [
+          {
+            "text": "Calories: 585 kcal | Net Carbs: 55.0g | Protein: 29.0g | Fat: 22.0g"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:obs-nutrition-399",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "obs-nutrition-399",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "exam",
+                "display": "Exam"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "9052-2",
+              "display": "Dietary intake"
+            }
+          ],
+          "text": "Nutritional Ingestion: water 12 oz"
+        },
+        "subject": {
+          "reference": "Patient/PATIENT-MRN-948201"
+        },
+        "effectiveDateTime": "2026-11-23T18:41:51Z",
         "valueQuantity": {
           "value": 0,
           "unit": "g",

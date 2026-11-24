@@ -1595,7 +1595,14 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
     is_coffee = any(w in text for w in ["coffee", "espresso", "americano", "cold brew"])
     is_zero_drink = any(w in text for w in ["water", "seltzer", "sparkling water", "club soda", "diet soda", "diet coke", "coke zero", "zero sugar"])
 
-    has_food_item = any(w in text for w in ["fish", "cod", "chips", "burger", "cheeseburger", "tender", "finger", "fry", "fries", "frys", "wing", "wings", "steak", "ribeye", "burrito", "taco", "tacos", "pizza", "pasta", "alfredo", "chicken", "salad", "pancake", "pancakes", "waffle", "egg", "eggs", "bacon", "bread", "sub", "rice", "noodle", "pie", "cake", "tartar", "potato", "hash brown", "tots", "rings", "hot dog", "hotdog", "frank"])
+    has_food_item = any(w in text for w in [
+        "fish", "cod", "chips", "burger", "cheeseburger", "tender", "finger", "fry", "fries", "frys",
+        "wing", "wings", "steak", "ribeye", "burrito", "taco", "tacos", "pizza", "pasta", "alfredo",
+        "chicken", "salad", "pancake", "pancakes", "waffle", "egg", "eggs", "bacon", "bread", "sub",
+        "rice", "noodle", "pie", "cake", "tartar", "potato", "hash brown", "tots", "rings", "hot dog",
+        "hotdog", "frank", "soup", "sandwich", "cheese", "apple", "orange", "granola", "meat", "vegetable",
+        "fruit", "berries", "beef", "pork", "turkey", "ham", "toast", "cracker", "cereal", "oats", "yogurt"
+    ])
     if (is_tea or is_coffee or is_zero_drink) and not has_food_item and not any(w in text for w in ["latte", "frappuccino", "mocha", "boba", "sugar", "syrup", "sweetened", "honey", "juice"]):
         has_clove = ("clove" in text or "cloves" in text)
         has_cinn = ("cinnamon" in text or "cinnamoon" in text or "cinamon" in text or "cinnimon" in text)
@@ -4380,8 +4387,8 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
     def do_OPTIONS(self):
         self.send_response(200)
         self.send_header("Access-Control-Allow-Origin", "*")
-        self.send_header("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
-        self.send_header("Access-Control-Allow-Headers", "Content-Type")
+        self.send_header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+        self.send_header("Access-Control-Allow-Headers", "*")
         self.end_headers()
 
     def send_json_response(self, data, status_code=200):
@@ -4389,6 +4396,7 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
         self.send_response(status_code)
         self.send_header("Content-Type", "application/json")
         self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Access-Control-Allow-Headers", "*")
         self.send_header("Cache-Control", "no-cache, no-store, must-revalidate")
         self.send_header("Pragma", "no-cache")
         self.send_header("Expires", "0")
