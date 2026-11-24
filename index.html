@@ -6486,7 +6486,7 @@
                     <div style="font-size: 0.72rem; color: #4b5563; margin-bottom: 6px;">
                       Select any previously consumed or saved meal template to instant-populate metrics:
                     </div>
-                    <select id="listboxPopularMeals" size="5" style="width: 100%; border: 1.5px solid #0284c7; border-radius: 4px; padding: 6px 8px; font-size: 0.85rem; font-family: inherit; color: #0f172a; background: #ffffff; cursor: pointer; box-shadow: inset 0 1px 3px rgba(0,0,0,0.06);" onchange="onSelectPopularMealFromListbox(this.value)">
+                    <select id="listboxPopularMeals" size="5" style="width: 100%; border: 1.5px solid #0284c7; border-radius: 4px; padding: 6px 8px; font-size: 0.85rem; font-family: inherit; color: #0f172a; background: #ffffff; cursor: pointer; box-shadow: inset 0 1px 3px rgba(0,0,0,0.06);" onchange="onSelectPopularMealFromListbox(this.value)" onclick="onSelectPopularMealFromListbox(this.value)">
                       <option value="snack_granola" selected>🍓 [Snack] Strawberry Vanilla Granola (26g Net Carbs • 8 oz Beverage • 220 kcal)</option>
                       <option value="meal01">🥣 Mon-Sat High-Fiber Metabolic Breakfast (MEAL-01) (38g Net Carbs • 8 oz Beverage • 430 kcal)</option>
                       <option value="meal02">🍳 Sunday Protein &amp; Sprouted Toast Breakfast (MEAL-02) (17g Net Carbs • 8 oz Beverage • 385 kcal)</option>
@@ -10815,11 +10815,9 @@
         lastSteps = 0;
 
         document.getElementById("valGlucose").textContent = "--";
-        postTelemetryToServer("GLUCOSE", glucoseMgdl, ea1c, "mg/dL", hex);
         document.getElementById("txtGlucoseProgress").textContent = "0%";
         document.getElementById("barGlucose").style.width = "0%";
         document.getElementById("valTemp").textContent = "--.-";
-        postTelemetryToServer("TEMPERATURE", bodyF, skinF, "°F", hex);
         document.getElementById("txtTempCore").textContent = "--.-°F (STANDBY)";
         document.getElementById("txtTempSkin").textContent = "--.-°F";
         document.getElementById("barTempCore").style.width = "0%";
@@ -14723,7 +14721,7 @@
 
       if (presetKey && POPULAR_MEALS[presetKey]) {
         const pm = POPULAR_MEALS[presetKey];
-        if (input) input.value = pm.desc || pm.title;
+        if (input) input.value = (presetKey === 'snack_granola') ? "Snack Strawberry Vanilla Granola" : (pm.title || pm.desc);
         if (pm.calories !== undefined && pm.netCarbs !== undefined) {
           currentAnalyzedMealData = {
             title: pm.title,
@@ -19424,18 +19422,17 @@ Patient`;
       ctx.fillStyle = bgGrad;
       ctx.fillRect(0, 0, W, H);
 
-      // Time points along X (-380 to +380) representing 24 hours (00:00 to 23:59)
-      const numPoints = 25;
+      // Time points along X (-380 to +380) representing active timeframe (Daily, Weekly, Monthly, Quarterly, Yearly)
+      const tf = (typeof currentGlobalTimeframe !== 'undefined') ? currentGlobalTimeframe : (typeof currentTallChartTimeframe !== 'undefined' ? currentTallChartTimeframe : 'daily');
+      const dataset = (typeof getTallSynchronizedDataset === 'function') ? getTallSynchronizedDataset(tf) : [];
+      const numPoints = Math.max(2, dataset.length);
       const xStep = 760 / (numPoints - 1);
       const zSpacing = 52; // Spacing between channels along Z
       const zStart = -((CHANNELS_3D.length - 1) * zSpacing) / 2;
 
-      const curH = new Date().getHours();
-      const curM = new Date().getMinutes();
-
-      // Check if any real data exists
+      // Check if any real data exists across dataset
       let hasRealData = false;
-      if (cached2DayTimeline && cached2DayTimeline.some(d => d.day === 'TODAY' && (d.g > 0 || d.hr > 0 || d.sys > 0 || d.steps > 0))) hasRealData = true;
+      if (dataset && dataset.some(d => (d.g > 0 || d.hr > 0 || d.sys > 0 || d.steps > 0))) hasRealData = true;
       if (typeof lastGlucoseMg !== 'undefined' && lastGlucoseMg > 0) hasRealData = true;
       if (typeof lastHR !== 'undefined' && lastHR > 0) hasRealData = true;
       if (typeof lastSystolic !== 'undefined' && lastSystolic > 0) hasRealData = true;
@@ -19447,8 +19444,8 @@ Patient`;
       // =======================================================================
       // SETI@home-STYLE 3D PLOT BOX WIREFRAME BOUNDING CAGE
       // =======================================================================
-      const xBoxMin = -380; // 00:00 (Time Start)
-      const xBoxMax = 380;  // 24:00 (Time End)
+      const xBoxMin = -380; // Time Start
+      const xBoxMax = 380;  // Time End
       const yBoxFloor = 0;  // Baseline / Floor
       const yBoxCeil = 125; // Amplitude Ceiling
       const zBoxFront = zStart - 18; // CH 01 Front boundary
@@ -19464,7 +19461,7 @@ Patient`;
       const b111 = project3D(xBoxMax, yBoxCeil,  zBoxBack, W, H);  // Top-Back-Right
       const b011 = project3D(xBoxMin, yBoxCeil,  zBoxBack, W, H);  // Top-Back-Left
 
-      // 1. Shaded Floor Plane
+      // 1. Shaded Floor Plane (SETI@home 3D Plot Box light gray model deck)
       if (b000 && b100 && b101 && b001) {
         ctx.beginPath();
         ctx.moveTo(b000.x, b000.y);
@@ -19472,8 +19469,11 @@ Patient`;
         ctx.lineTo(b101.x, b101.y);
         ctx.lineTo(b001.x, b001.y);
         ctx.closePath();
-        ctx.fillStyle = 'rgba(241, 245, 249, 0.85)';
+        ctx.fillStyle = 'rgba(226, 232, 240, 0.90)';
         ctx.fill();
+        ctx.strokeStyle = 'rgba(148, 163, 184, 0.50)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
       }
 
       // 2. Shaded Back Wall Plane
@@ -19484,7 +19484,7 @@ Patient`;
         ctx.lineTo(b111.x, b111.y);
         ctx.lineTo(b011.x, b011.y);
         ctx.closePath();
-        ctx.fillStyle = 'rgba(226, 232, 240, 0.40)';
+        ctx.fillStyle = 'rgba(226, 232, 240, 0.35)';
         ctx.fill();
       }
 
@@ -19496,7 +19496,7 @@ Patient`;
         ctx.lineTo(b011.x, b011.y);
         ctx.lineTo(b010.x, b010.y);
         ctx.closePath();
-        ctx.fillStyle = 'rgba(241, 245, 249, 0.35)';
+        ctx.fillStyle = 'rgba(241, 245, 249, 0.30)';
         ctx.fill();
       }
 
@@ -19525,9 +19525,11 @@ Patient`;
         }
       }
 
-      // 5. Time Grid lines along Floor (every 4 hours: 00, 04, 08, 12, 16, 20, 24)
-      for (let t = 0; t <= 6; t++) {
-        const tx = xBoxMin + (t / 6) * (xBoxMax - xBoxMin);
+      // 5. Time Grid lines along Floor at regular ticks
+      const numTicks = Math.min(6, numPoints - 1);
+      for (let t = 0; t <= numTicks; t++) {
+        const ptIdx = Math.min(numPoints - 1, Math.round((t / numTicks) * (numPoints - 1)));
+        const tx = xBoxMin + (ptIdx / (numPoints - 1)) * (xBoxMax - xBoxMin);
         const pFront = project3D(tx, 0, zBoxFront, W, H);
         const pBack = project3D(tx, 0, zBoxBack, W, H);
         if (pFront && pBack) {
@@ -19537,79 +19539,58 @@ Patient`;
           ctx.lineTo(pBack.x, pBack.y);
           ctx.stroke();
 
-          // Time stamp at front
+          // Time / Epoch stamp at front
           const pTime = project3D(tx, -14, zBoxFront - 6, W, H);
-          if (pTime) {
+          if (pTime && dataset[ptIdx]) {
             ctx.fillStyle = '#475569';
             ctx.font = 'bold 9px monospace';
             ctx.textAlign = 'center';
-            ctx.fillText(`${(t * 4).toString().padStart(2, '0')}:00`, pTime.x, pTime.y);
+            const tickLbl = dataset[ptIdx].time || dataset[ptIdx].day || `${ptIdx}`;
+            ctx.fillText(tickLbl, pTime.x, pTime.y);
           }
         }
       }
 
-      // Extract real time-series data point for channel c at hour h
-      function getChannelValueAtHour(channelIndex, h) {
-        // Pure Zero-Data Reality Principle: unelapsed future hours strictly display 0
-        if (h > curH) return 0;
+      // Extract real time-series data point for channel c at index/hour idx
+      function getChannelValueAtHour(channelIndex, idx) {
+        if (!dataset || idx >= dataset.length) return 0;
+        const d = dataset[idx];
+        if (!d) return 0;
 
-        if (cached2DayTimeline && cached2DayTimeline.length > 0) {
-          const matches = cached2DayTimeline.filter(d => {
-            if (d.day !== 'TODAY') return false;
-            const ptH = parseInt((d.time || "00").substring(0, 2), 10);
-            return ptH === h && !d.isFuture && !d.isChargingGap;
-          });
+        // Pure Zero-Data Reality Principle: unelapsed future intervals strictly display 0
+        if (d.isFuture || d.isChargingGap) return 0;
 
-          if (matches.length > 0) {
-            const match = matches[matches.length - 1];
-            switch(channelIndex) {
-              case 0: return (match.g && match.g > 0) ? match.g : 0; // CH 01: Glucose (mg/dL)
-              case 1: return (match.sys && match.sys > 0) ? match.sys : 0; // CH 02: Blood Pressure (mmHg)
-              case 2: return (match.hr && match.hr > 0) ? match.hr : 0; // CH 03: Heart Rate (BPM)
-              case 3: return (match.spo2 && match.spo2 > 0) ? Math.round(match.spo2) : 0; // CH 04: SpO2 (%)
-              case 4: return (match.temp && match.temp > 90) ? parseFloat(match.temp.toFixed(1)) : 0; // CH 05: Body Temp (°F)
-              case 5: return (match.hrv && match.hrv > 0) ? match.hrv : 0; // CH 06: HRV / Stress (ms)
-              case 6: return (match.steps && match.steps > 0) ? match.steps : 0; // CH 07: Steps
-              case 7: { // CH 08: Sleep Architecture (%)
-                if (h < 8 && match.notes && match.notes.toLowerCase().includes('sleep')) {
-                  return 88;
-                }
-                return 0;
-              }
-              case 8: { // CH 09: Pain Index (0-10)
-                if (feelingCache3D && feelingCache3D.length > 0) {
-                  return feelingCache3D[0].pain_score || 0;
-                }
-                return 0;
-              }
-              case 9: { // CH 10: Mood Scale (0-10)
-                if (feelingCache3D && feelingCache3D.length > 0) {
-                  return feelingCache3D[0].mood_score || 0;
-                }
-                return 0;
-              }
+        switch(channelIndex) {
+          case 0: return (d.g && d.g > 0) ? d.g : 0; // CH 01: Glucose (mg/dL)
+          case 1: return (d.sys && d.sys > 0) ? d.sys : 0; // CH 02: Blood Pressure (mmHg)
+          case 2: return (d.hr && d.hr > 0) ? d.hr : 0; // CH 03: Heart Rate (BPM)
+          case 3: return (d.spo2 && d.spo2 > 0) ? Math.round(d.spo2) : 0; // CH 04: SpO2 (%)
+          case 4: return (d.temp && d.temp > 90) ? parseFloat(d.temp.toFixed(1)) : 0; // CH 05: Body Temp (°F)
+          case 5: return (d.hrv && d.hrv > 0) ? d.hrv : 0; // CH 06: HRV / Stress (ms)
+          case 6: return (d.steps && d.steps > 0) ? d.steps : 0; // CH 07: Steps
+          case 7: { // CH 08: Sleep Architecture (%)
+            return (d.notes && d.notes.toLowerCase().includes('sleep')) ? 85 : 0;
+          }
+          case 8: { // CH 09: Pain Index (0-10)
+            if (feelingCache3D && feelingCache3D.length > 0 && d.time) {
+              const h = parseInt(d.time.substring(0, 2), 10);
+              const match = feelingCache3D.find(f => f.timestamp && new Date(f.timestamp).getHours() === h);
+              return match ? (match.pain_score || 0) : 0;
             }
+            return 0;
+          }
+          case 9: { // CH 10: Mood Scale (0-10)
+            if (feelingCache3D && feelingCache3D.length > 0 && d.time) {
+              const h = parseInt(d.time.substring(0, 2), 10);
+              const match = feelingCache3D.find(f => f.timestamp && new Date(f.timestamp).getHours() === h);
+              return match ? (match.mood_score || 0) : 0;
+            }
+            return 0;
           }
         }
-
-        // Live telemetry reading for current hour
-        if (h === curH) {
-          switch(channelIndex) {
-            case 0: return (typeof lastGlucoseMg !== 'undefined' && lastGlucoseMg > 0) ? lastGlucoseMg : 0;
-            case 1: return (typeof lastSystolic !== 'undefined' && lastSystolic > 0) ? lastSystolic : 0;
-            case 2: return (typeof lastHR !== 'undefined' && lastHR > 0) ? lastHR : 0;
-            case 3: return (typeof lastSpO2 !== 'undefined' && lastSpO2 > 0) ? lastSpO2 : 0;
-            case 4: return (typeof lastBodyF !== 'undefined' && lastBodyF > 90) ? lastBodyF : 0;
-            case 5: return (typeof lastHRV !== 'undefined' && lastHRV > 0) ? lastHRV : 0;
-            case 6: return (typeof lastSteps !== 'undefined' && lastSteps > 0) ? lastSteps : 0;
-            case 7: return 0;
-            case 8: return (feelingCache3D && feelingCache3D.length > 0) ? (feelingCache3D[0].pain_score || 0) : 0;
-            case 9: return (feelingCache3D && feelingCache3D.length > 0) ? (feelingCache3D[0].mood_score || 0) : 0;
-          }
-        }
-
         return 0;
       }
+      const getChannelValue = getChannelValueAtHour;
 
       // Render Each of the 10 Parallel Ribbons (Sorted back-to-front by projected Z)
       const renderOrder = [];
@@ -19621,26 +19602,27 @@ Patient`;
       renderOrder.sort((a, b) => b.z - a.z); // Render farthest first
 
       const allPlottedPoints = []; // Collected for hover HUD inspection
+      const gridTopProjs = {}; // Store top projections for cross-channel wireframe mesh
 
       for (const item of renderOrder) {
         const c = item.index;
         const channel = CHANNELS_3D[c];
         const cz = zStart + c * zSpacing;
 
-        // Build data points array for this channel across 24 hours
+        // Build data points array for this channel across active timeframe points
         const pts = [];
         for (let i = 0; i < numPoints; i++) {
           const x = -380 + i * xStep;
-          const h = i;
-          const timeLabel = `${h.toString().padStart(2, '0')}:00`;
-          let val = getChannelValueAtHour(c, h);
+          const dItem = dataset[i] || {};
+          const timeLabel = dItem.time || dItem.day || `${i}`;
+          let val = getChannelValue(c, i);
 
           // Normalize Y height: max ribbon height = 110px
           let normVal = val;
           if (c === 4 && val > 0) normVal = Math.max(0, val - 90);
           const range = channel.max - channel.min;
           const normY = normVal > 0 ? Math.min(110, (normVal / range) * 110) : 0;
-          pts.push({ x: x, y: normY, val: val, hour: h, timeLabel: timeLabel });
+          pts.push({ x: x, y: normY, val: val, hour: i, timeLabel: timeLabel });
         }
 
         // Project top and bottom points
@@ -19664,6 +19646,7 @@ Patient`;
             }
           }
         }
+        gridTopProjs[c] = topProjs;
 
         if (topProjs.length > 1) {
           // 1. Draw Ribbon Polygon
@@ -19796,7 +19779,9 @@ Patient`;
         ctx.fillStyle = '#475569';
         ctx.font = 'bold 9px monospace';
         ctx.textAlign = 'center';
-        ctx.fillText('TIME (00:00 – 24:00)', midTimeX, midTimeY);
+        const startLbl = dataset[0] ? (dataset[0].time || dataset[0].day) : 'START';
+        const endLbl = dataset[dataset.length - 1] ? (dataset[dataset.length - 1].time || dataset[dataset.length - 1].day) : 'END';
+        ctx.fillText(`TIME (${tf.toUpperCase()}: ${startLbl} – ${endLbl})`, midTimeX, midTimeY);
       }
 
       // 2. Amplitude Axis (Y) along front-right vertical post with SETI arrow
@@ -20874,6 +20859,10 @@ All 14 LCARS consoles, 8-lane metabolic chart, and clinical database now match y
     function generateFinalFullScanReport() {
       isFullScanRunning = false;
       fullScanResults.endTime = new Date();
+      const r = fullScanResults || {};
+      if (!r.temp) r.temp = { bodyF: 0, skinF: 0, bodyC: 0 };
+      if (!r.bp) r.bp = { sys: 0, dia: 0 };
+      if (!r.hrv) r.hrv = { hrv: 0, stress: 0 };
 
       document.getElementById('btnStartFullScan').disabled = false;
       document.getElementById('btnCancelFullScan').disabled = true;
@@ -24926,6 +24915,10 @@ You logged: Entire Box (3.5 Servings / 99g)
               svgEl.setAttribute('height', '100%');
               svgEl.style.display = 'block';
               svgEl.style.fill = '#000000';
+              svgEl.querySelectorAll('path').forEach(p => {
+                p.setAttribute('fill', '#000000');
+                p.style.fill = '#000000';
+              });
             }
             return;
           }
