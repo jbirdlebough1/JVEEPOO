@@ -193196,3 +193196,1609 @@ Cholesterol	40mg	13%
 [19:27:05] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
 [19:27:06] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
 [19:27:07] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:08] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:08] [RX] RX [f0080002]: a0 00 00 00 4c 01 4c 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 76% Battery
+[19:27:09] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:10] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:11] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:12] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:13] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:14] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:15] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:16] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:17] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:18] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:19] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:20] [RX] RX [f0080002]: a0 00 00 00 4c 01 4c 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 76% Battery
+[19:27:20] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:21] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:22] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:23] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:24] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:25] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:26] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:27] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:28] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:29] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:30] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:31] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:32] [RX] RX [f0080002]: a0 00 00 00 4c 01 4c 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 76% Battery
+[19:27:32] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:33] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:34] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:35] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:36] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:37] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:38] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:39] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:40] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:41] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:42] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:43] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:44] [RX] RX [f0080002]: a0 00 00 00 4c 01 4c 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 76% Battery
+[19:27:44] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:45] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:46] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:47] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:48] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:49] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:50] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:51] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:52] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:53] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:54] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:55] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:56] [RX] RX [f0080002]: a0 00 00 00 4c 01 4c 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 76% Battery
+[19:27:56] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:57] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:58] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:27:59] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:00] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:01] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:02] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:03] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:04] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:05] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:06] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:07] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:07] [RX] RX [f0080002]: a0 00 00 00 4c 01 4c 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 76% Battery
+[19:28:08] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:09] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:10] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:11] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:12] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:13] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:14] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:15] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:16] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:17] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:18] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:19] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:19] [RX] RX [f0080002]: a0 00 00 00 4c 01 4c 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 76% Battery
+[19:28:20] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:21] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:22] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:23] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:24] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:25] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:26] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:27] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:28] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:29] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:30] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:31] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:32] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:32] [RX] RX [f0080002]: a0 00 00 00 4c 01 4c 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 76% Battery
+[19:28:33] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:34] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:35] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:36] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:37] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:38] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:39] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:40] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:41] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:42] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:43] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:44] [RX] RX [f0080002]: a0 00 00 00 4c 01 4c 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 76% Battery
+[19:28:44] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:45] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:46] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:47] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:48] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:49] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:50] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:51] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:52] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:53] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:54] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:55] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:56] [RX] RX [f0080002]: a0 00 00 00 4c 01 4c 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 76% Battery
+[19:28:56] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:57] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:58] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:28:59] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:00] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:01] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:02] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:03] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:04] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:05] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:06] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:07] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:08] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:08] [RX] RX [f0080002]: a0 00 00 00 4c 01 4c 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 76% Battery
+[19:29:09] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:10] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:11] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:12] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:13] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:14] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:15] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:16] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:17] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:18] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:19] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:20] [RX] RX [f0080002]: a0 00 00 00 4c 01 4c 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 76% Battery
+[19:29:20] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:21] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:22] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:23] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:24] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:25] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:26] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:27] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:28] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:29] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:30] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:31] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:32] [RX] RX [f0080002]: a0 00 00 00 4c 01 4c 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 76% Battery
+[19:29:32] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:33] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:34] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:35] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:36] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:37] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:38] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:39] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:40] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:41] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:42] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:43] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:43] [RX] RX [f0080002]: a0 00 00 00 4c 01 4c 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 76% Battery
+[19:29:44] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:45] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:46] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:47] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:48] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:49] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:50] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:51] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:52] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:53] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:54] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:55] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:56] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:56] [RX] RX [f0080002]: a0 00 00 00 4c 01 4c 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 76% Battery
+[19:29:57] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:58] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:29:59] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:00] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:01] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:02] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:03] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:04] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:05] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:06] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:07] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:08] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:08] [RX] RX [f0080002]: a0 00 00 00 4c 01 4c 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 76% Battery
+[19:30:09] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:10] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:11] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:12] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:13] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:14] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:15] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:16] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:17] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:18] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:19] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:20] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:20] [RX] RX [f0080002]: a0 00 00 00 4c 01 4c 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 76% Battery
+[19:30:21] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:22] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:23] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:24] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:25] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:26] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:27] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:28] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:29] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:30] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:31] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:32] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:32] [RX] RX [f0080002]: a0 00 00 00 4c 01 4c 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 76% Battery
+[19:30:33] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:34] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:35] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:36] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:37] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:38] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:39] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:40] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:41] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:42] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:43] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:44] [RX] RX [f0080002]: a0 00 00 00 4c 01 4c 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 76% Battery
+[19:30:44] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:45] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:46] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:47] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:48] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:49] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:50] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:51] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:52] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:53] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:54] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:55] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:56] [RX] RX [f0080002]: a0 00 00 00 4c 01 4c 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 76% Battery
+[19:30:56] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:57] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:58] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:30:59] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:31:00] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:31:01] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:31:02] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:31:03] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:31:04] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:31:05] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:31:06] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:31:07] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:31:08] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:31:08] [RX] RX [f0080002]: a0 00 00 00 4c 01 4c 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 76% Battery
+[19:31:09] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:31:10] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:31:11] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:31:12] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:31:13] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:31:14] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:31:15] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:31:16] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:31:17] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:31:18] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:31:19] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:31:19] [RX] RX [f0080002]: a0 00 00 00 4c 01 4c 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 76% Battery
+[19:31:20] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:31:21] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:31:22] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:31:23] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:31:24] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:31:25] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:31:26] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:31:27] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:31:28] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:31:29] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:31:30] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:31:31] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:31:31] [RX] RX [f0080002]: a0 00 00 00 4c 01 4c 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 76% Battery
+[19:31:32] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:31:33] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:31:34] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:31:35] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:31:43] [SYS] Smart Glucose Snack Notifier updated for 179 mg/dL | LCARS System Telemetry Event
+[19:31:43] [SYS] Smart Glucose Snack Notifier updated for 179 mg/dL | LCARS System Telemetry Event
+[19:31:46] [SYS] Smart Glucose Snack Notifier updated for 179 mg/dL | LCARS System Telemetry Event
+[19:31:46] [TX] [*] Establishing link with watch... | Host Command Transmission to Watch
+[19:31:46] [TX] Scanning for all visible Bluetooth smartwatch devices... | Active BLE Subspace Device Discovery
+[19:31:48] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[19:31:48] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[19:31:48] [SYS] Smart Glucose Snack Notifier updated for 179 mg/dL | LCARS System Telemetry Event
+[19:31:51] [SYS] Smart Glucose Snack Notifier updated for 179 mg/dL | LCARS System Telemetry Event
+[19:31:51] [TX] Connecting to GATT server on VEE (Attempt 1/3)... | Host Command Transmission to Watch
+[19:31:52] [RX] [+] GATT Subspace connection established! | BLE Subspace Link Connected
+[19:31:53] [SYS] Smart Glucose Snack Notifier updated for 179 mg/dL | LCARS System Telemetry Event
+[19:31:56] [SYS] Smart Glucose Snack Notifier updated for 179 mg/dL | LCARS System Telemetry Event
+[19:31:57] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:31:58] [TX] [*] Transmitting 0xA1 Authentication & Time Handshake... | Host-Watch Chronometer Synchronization
+[19:31:58] [TX] TX [f0080003]: b8 01 02 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Host Command Transmission to Watch
+[19:31:58] [RX] [★] Watch GATT channels ready and verified online (VEE)! | GATT Command & RX Channels Ready
+[19:31:58] [TX] [*] Populating Setup parameters from active profile... | Host Command Transmission to Watch
+[19:31:58] [SYS] [+] Using initialized baseline parameters for Model 5010. | LCARS System Telemetry Event
+[19:31:58] [RX] [★ CONNECT SYNC ENGAGED] VEE linked. Downloading full watch dataset... | Watch Sensor Telemetry Broadcast
+[19:31:58] [TX] TX [f0080003]: a1 00 00 00 07 ea 0b 17 13 1f 3a 00 01 e0 00 00 00 00 00 00 | Host-to-Watch Time Sync Handshake (0xA1)
+[19:31:58] [RX] RX [f0080002]: b8 01 02 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:31:58] [TX] TX [f0080003]: b8 01 02 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Host Command Transmission to Watch
+[19:31:58] [RX] RX [f0080002]: a7 01 00 01 01 01 01 00 02 14 01 01 03 00 00 01 00 06 05 01 | Watch Sensor Telemetry Broadcast
+[19:31:58] [RX] RX [f0080002]: a7 00 03 04 00 03 05 00 01 01 05 01 01 01 02 06 03 00 01 02 | Watch Sensor Telemetry Broadcast
+[19:31:58] [RX] RX [f0080002]: a7 02 11 00 02 01 01 04 01 00 00 00 01 00 00 04 01 01 01 03 | Watch Sensor Telemetry Broadcast
+[19:31:58] [RX] RX [f0080002]: a7 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 04 | Watch Sensor Telemetry Broadcast
+[19:31:58] [RX] RX [f0080002]: ad 02 02 02 02 02 00 02 02 00 02 02 02 02 02 02 02 00 00 02 | Watch Sensor Telemetry Broadcast
+[19:31:58] [RX] RX [f0080002]: ad 02 02 02 02 02 00 02 00 00 00 00 00 00 00 00 00 00 00 10 | Watch Sensor Telemetry Broadcast
+[19:31:58] [RX] RX [f0080002]: b8 02 02 01 01 01 00 00 00 00 01 01 00 00 00 00 01 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:31:58] [TX] TX [f0080003]: a1 00 00 00 07 ea 0b 17 13 1f 3a 00 01 e0 00 00 00 00 00 00 | Host-to-Watch Time Sync Handshake (0xA1)
+[19:31:58] [RX] RX [f0080002]: b8 02 00 00 01 02 00 01 00 00 02 01 02 02 00 00 00 00 00 01 | Watch Sensor Telemetry Broadcast
+[19:31:58] [RX] RX [f0080002]: bd 03 01 01 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:31:58] [RX] RX [f0080002]: a1 00 00 06 13 92 00 10 10 00 00 01 16 f6 83 40 de 8b 00 00 | Device Authentication • Model 5010 v0.16.16.0
+[19:31:58] [RX] RX [f0080002]: b8 01 02 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:31:58] [TX] TX [f0080003]: 03 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Hardware System Information & Battery Query (0x03)
+[19:31:58] [RX] RX [f0080002]: a7 01 00 01 01 01 01 00 02 14 01 01 03 00 00 01 00 06 05 01 | Watch Sensor Telemetry Broadcast
+[19:31:58] [RX] RX [f0080002]: ad 02 02 02 02 02 00 02 02 00 02 02 02 02 02 02 02 00 00 02 | Watch Sensor Telemetry Broadcast
+[19:31:58] [RX] RX [f0080002]: ad 02 02 02 02 02 00 02 00 00 00 00 00 00 00 00 00 00 00 10 | Watch Sensor Telemetry Broadcast
+[19:31:58] [RX] RX [f0080002]: a7 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 04 | Watch Sensor Telemetry Broadcast
+[19:31:58] [RX] RX [f0080002]: a7 00 03 04 00 03 05 00 01 01 05 01 01 01 02 06 03 00 01 02 | Watch Sensor Telemetry Broadcast
+[19:31:58] [RX] RX [f0080002]: b8 02 02 01 01 01 00 00 00 00 01 01 00 00 00 00 01 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:31:58] [RX] RX [f0080002]: b8 02 00 00 01 02 00 01 00 00 02 01 02 02 00 00 00 00 00 01 | Watch Sensor Telemetry Broadcast
+[19:31:58] [RX] RX [f0080002]: bd 03 01 01 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:31:58] [RX] RX [f0080002]: a1 00 00 06 13 92 00 10 10 00 00 01 16 f6 83 40 de 8b 00 00 | Device Authentication • Model 5010 v0.16.16.0
+[19:31:58] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:31:58] [SYS] Smart Glucose Snack Notifier updated for 179 mg/dL | LCARS System Telemetry Event
+[19:31:58] [TX] [*] Synchronizing real watch pedometer & active calories (0xA8 / 0x07)... | Host Command Transmission to Watch
+[19:31:58] [TX] TX [f0080003]: a8 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Host Command Transmission to Watch
+[19:31:59] [TX] [*] Transmitting Opcode 0xE0 to read Nocturnal Sleep Architecture (Day 0)... | Host Command Transmission to Watch
+[19:31:59] [TX] TX [f0080003]: e0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Host Command Transmission to Watch
+[19:31:59] [TX] TX [f0080003]: 07 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Host Command Transmission to Watch
+[19:31:59] [TX] TX [f0080003]: a7 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Host Command Transmission to Watch
+[19:31:59] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:31:59] [RX] RX [f0080002]: a8 00 00 0b 95 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:31:59] [RX] [👟 PEDOMETER] Real watch step data: 2,965 steps | 1.29 mi (2.08 km) | 0 kcal | Watch Sensor Telemetry Broadcast
+[19:31:59] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:31:59] [RX] RX [f0080002]: a7 01 00 01 01 01 01 00 02 14 01 01 03 00 00 01 00 06 05 01 | Watch Sensor Telemetry Broadcast
+[19:31:59] [RX] RX [f0080002]: a7 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 04 | Watch Sensor Telemetry Broadcast
+[19:31:59] [RX] RX [f0080002]: a7 02 11 00 02 01 01 04 01 00 00 00 01 00 00 04 01 01 01 03 | Watch Sensor Telemetry Broadcast
+[19:31:59] [RX] RX [f0080002]: a7 00 03 04 00 03 05 00 01 01 05 01 01 01 02 06 03 00 01 02 | Watch Sensor Telemetry Broadcast
+[19:31:59] [RX] RX [f0080002]: e0 3b 02 00 a1 00 01 a2 08 4d e4 30 cf b1 e7 43 64 a3 24 0b | Watch Sensor Telemetry Broadcast
+[19:31:59] [RX] RX [f0080002]: e0 3a 02 00 17 01 00 0b 17 02 0f 03 04 00 04 03 00 00 02 00 | Watch Sensor Telemetry Broadcast
+[19:31:59] [RX] RX [f0080002]: e0 39 02 00 00 00 09 00 2f 00 13 00 4b 00 13 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:31:59] [RX] RX [f0080002]: e0 37 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:31:59] [RX] RX [f0080002]: e0 38 02 00 3c 00 01 a4 2d 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:31:59] [RX] RX [f0080002]: e0 36 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:31:59] [RX] RX [f0080002]: e0 35 02 00 00 00 a5 96 00 20 00 20 00 20 00 20 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[19:31:59] [RX] RX [f0080002]: e0 34 02 00 00 40 00 20 00 40 00 20 00 40 00 40 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:31:59] [RX] RX [f0080002]: e0 33 02 00 00 00 00 20 00 40 00 20 00 20 00 20 00 00 00 20 | Watch Sensor Telemetry Broadcast
+[19:31:59] [RX] RX [f0080002]: e0 32 02 00 00 20 00 20 00 20 00 20 00 20 00 40 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:31:59] [RX] RX [f0080002]: e0 31 02 00 00 20 00 20 00 40 00 20 00 40 00 20 00 20 00 40 | Watch Sensor Telemetry Broadcast
+[19:31:59] [RX] RX [f0080002]: e0 30 02 00 00 00 00 20 00 00 00 20 00 00 00 40 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:31:59] [RX] RX [f0080002]: e0 2f 02 00 00 20 00 00 00 00 00 20 00 20 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:31:59] [RX] RX [f0080002]: e0 2e 02 00 00 00 00 20 00 40 00 20 00 20 00 00 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[19:31:59] [RX] RX [f0080002]: e0 2d 02 00 00 20 00 20 00 40 00 40 00 20 00 40 00 40 00 40 | Watch Sensor Telemetry Broadcast
+[19:31:59] [RX] RX [f0080002]: e0 2c 02 00 00 20 00 20 00 20 00 40 00 20 00 a6 02 00 01 00 | Watch Sensor Telemetry Broadcast
+[19:31:59] [TX] [*] Querying Watch Blood Glucose Calibration Offset (0x89 0x02 0x02)... | Blood Glucose Optical Baseline Calibration
+[19:31:59] [TX] TX [f0080003]: 89 02 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Host Command Transmission to Watch
+[19:31:59] [RX] RX [f0080002]: e0 2b 02 00 a1 b8 02 a2 08 ff ec 30 cf 59 74 4d bc a3 24 0b | Watch Sensor Telemetry Broadcast
+[19:31:59] [RX] RX [f0080002]: e0 2a 02 00 17 02 0f 0b 17 07 0a 03 02 02 04 03 02 00 02 02 | Watch Sensor Telemetry Broadcast
+[19:31:59] [RX] RX [f0080002]: e0 29 02 00 00 00 51 00 b7 00 4f 00 72 01 13 00 1b 00 08 00 | Watch Sensor Telemetry Broadcast
+[19:31:59] [RX] RX [f0080002]: e0 28 02 00 3c 00 01 a4 2d 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:31:59] [RX] RX [f0080002]: e0 27 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:31:59] [RX] RX [f0080002]: e0 26 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:31:59] [RX] RX [f0080002]: e0 25 02 00 00 00 a5 4e 02 45 80 40 00 40 00 80 80 85 80 80 | Watch Sensor Telemetry Broadcast
+[19:31:59] [RX] RX [f0080002]: e0 24 02 00 80 80 00 80 80 80 00 80 00 80 00 80 00 80 00 80 | Watch Sensor Telemetry Broadcast
+[19:31:59] [RX] RX [f0080002]: e0 23 02 00 00 80 00 80 80 80 00 80 00 80 00 80 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:31:59] [RX] RX [f0080002]: e0 22 02 00 00 20 00 40 00 40 00 40 00 20 00 40 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:31:59] [RX] RX [f0080002]: e0 21 02 00 00 00 00 20 80 20 80 20 00 00 00 40 00 40 00 40 | Watch Sensor Telemetry Broadcast
+[19:31:59] [RX] RX [f0080002]: e0 20 02 00 00 40 00 40 00 20 00 20 00 25 00 00 00 20 00 40 | Watch Sensor Telemetry Broadcast
+[19:31:59] [RX] RX [f0080002]: e0 1f 02 00 00 40 00 20 00 40 00 40 00 40 00 20 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[19:31:59] [RX] RX [f0080002]: e0 1d 02 00 00 80 00 80 80 80 00 80 00 80 00 80 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:31:59] [RX] RX [f0080002]: e0 1e 02 00 00 40 00 40 80 40 80 45 00 80 80 85 80 80 00 80 | Watch Sensor Telemetry Broadcast
+[19:31:59] [RX] RX [f0080002]: e0 1c 02 00 00 00 00 00 00 20 00 00 00 00 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 1b 02 00 00 20 00 00 00 00 00 20 00 00 00 00 00 00 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 1a 02 00 00 20 00 40 00 40 00 00 00 00 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 19 02 00 00 00 00 40 00 20 00 20 00 20 00 20 00 00 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 17 02 00 00 40 00 00 00 20 00 20 00 40 00 20 00 00 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 18 02 00 00 20 00 00 00 00 00 20 00 20 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 16 02 00 00 40 00 00 00 20 00 00 00 20 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 15 02 00 00 20 00 40 00 00 00 00 00 40 00 40 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 14 02 00 00 40 00 20 00 20 00 20 00 00 00 20 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 13 02 00 00 40 00 20 00 40 00 20 00 00 00 20 00 40 00 40 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 12 02 00 00 40 00 00 00 20 00 00 00 40 00 00 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 11 02 00 00 00 00 20 00 20 00 40 00 20 00 00 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 0f 02 00 00 20 00 00 00 00 00 20 00 20 00 20 00 20 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 10 02 00 00 40 00 20 00 40 00 20 00 20 00 40 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 0e 02 00 00 20 00 20 00 20 00 20 00 20 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 0d 02 00 00 40 00 20 00 20 00 20 00 40 00 20 00 20 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 0b 02 00 00 00 00 40 00 20 00 20 00 00 00 20 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] [★ GLUCOSE CALIBRATION] Watch stored baseline: 70 mg/dL (3.88 mmol/L) | Private Mode: ACTIVE | Blood Glucose Optical Baseline Calibration
+[19:32:00] [RX] RX [f0080002]: e0 0a 02 00 00 00 00 00 00 20 00 00 00 20 00 20 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 09 02 00 00 00 00 20 00 40 00 20 00 20 00 40 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 08 02 00 00 00 00 40 00 00 00 00 00 00 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 07 02 00 00 20 00 00 00 20 00 20 00 20 00 00 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [TX] [*] Transmitting Opcode 0xE0 to read Nocturnal Sleep Architecture (Day 0)... | Host Command Transmission to Watch
+[19:32:00] [TX] TX [f0080003]: e0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Host Command Transmission to Watch
+[19:32:00] [RX] RX [f0080002]: e0 06 02 00 00 20 00 00 00 20 00 00 00 00 00 40 00 20 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 05 02 00 00 00 00 20 00 20 00 40 00 20 00 20 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 04 02 00 00 40 00 20 00 00 00 20 00 00 00 00 00 00 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 03 02 00 00 00 00 00 00 20 00 20 00 00 00 20 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 02 02 00 00 20 00 00 00 20 00 20 00 40 00 40 00 20 00 40 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 01 02 00 00 20 00 40 00 20 00 20 00 45 80 25 80 45 80 25 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 00 02 00 80 45 80 a6 02 01 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 3b 02 00 a1 00 01 a2 08 4d e4 30 cf b1 e7 43 64 a3 24 0b | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 3a 02 00 17 01 00 0b 17 02 0f 03 04 00 04 03 00 00 02 00 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 39 02 00 00 00 09 00 2f 00 13 00 4b 00 13 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 38 02 00 3c 00 01 a4 2d 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 36 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 35 02 00 00 00 a5 96 00 20 00 20 00 20 00 20 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 37 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 34 02 00 00 40 00 20 00 40 00 20 00 40 00 40 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 2f 02 00 00 20 00 00 00 00 00 20 00 20 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 33 02 00 00 00 00 20 00 40 00 20 00 20 00 20 00 00 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 31 02 00 00 20 00 20 00 40 00 20 00 40 00 20 00 20 00 40 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 2e 02 00 00 00 00 20 00 40 00 20 00 20 00 00 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 2d 02 00 00 20 00 20 00 40 00 40 00 20 00 40 00 40 00 40 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 29 02 00 00 00 51 00 b7 00 4f 00 72 01 13 00 1b 00 08 00 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 2b 02 00 a1 b8 02 a2 08 ff ec 30 cf 59 74 4d bc a3 24 0b | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 28 02 00 3c 00 01 a4 2d 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 2a 02 00 17 02 0f 0b 17 07 0a 03 02 02 04 03 02 00 02 02 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 27 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 26 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 25 02 00 00 00 a5 4e 02 45 80 40 00 40 00 80 80 85 80 80 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 22 02 00 00 20 00 40 00 40 00 40 00 20 00 40 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 23 02 00 00 80 00 80 80 80 00 80 00 80 00 80 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 20 02 00 00 40 00 40 00 20 00 20 00 25 00 00 00 20 00 40 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 1f 02 00 00 40 00 20 00 40 00 40 00 40 00 20 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 1e 02 00 00 40 00 40 80 40 80 45 00 80 80 85 80 80 00 80 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 1d 02 00 00 80 00 80 80 80 00 80 00 80 00 80 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 1c 02 00 00 00 00 00 00 20 00 00 00 00 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 1b 02 00 00 20 00 00 00 00 00 20 00 00 00 00 00 00 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 1a 02 00 00 20 00 40 00 40 00 00 00 00 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 19 02 00 00 00 00 40 00 20 00 20 00 20 00 20 00 00 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 18 02 00 00 20 00 00 00 00 00 20 00 20 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 17 02 00 00 40 00 00 00 20 00 20 00 40 00 20 00 00 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 15 02 00 00 20 00 40 00 00 00 00 00 40 00 40 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 16 02 00 00 40 00 00 00 20 00 00 00 20 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 14 02 00 00 40 00 20 00 20 00 20 00 00 00 20 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 13 02 00 00 40 00 20 00 40 00 20 00 00 00 20 00 40 00 40 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 12 02 00 00 40 00 00 00 20 00 00 00 40 00 00 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 11 02 00 00 00 00 20 00 20 00 40 00 20 00 00 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 10 02 00 00 40 00 20 00 40 00 20 00 20 00 40 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 0f 02 00 00 20 00 00 00 00 00 20 00 20 00 20 00 20 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 0e 02 00 00 20 00 20 00 20 00 20 00 20 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 0d 02 00 00 40 00 20 00 20 00 20 00 40 00 20 00 20 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 0c 02 00 00 20 00 20 00 00 00 20 00 00 00 40 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 0b 02 00 00 00 00 40 00 20 00 20 00 00 00 20 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 0a 02 00 00 00 00 00 00 20 00 00 00 20 00 20 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 07 02 00 00 20 00 00 00 20 00 20 00 20 00 00 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 06 02 00 00 20 00 00 00 20 00 00 00 00 00 40 00 20 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 09 02 00 00 00 00 20 00 40 00 20 00 20 00 40 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 08 02 00 00 00 00 40 00 00 00 00 00 00 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 05 02 00 00 00 00 20 00 20 00 40 00 20 00 20 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 04 02 00 00 40 00 20 00 00 00 20 00 00 00 00 00 00 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 03 02 00 00 00 00 00 00 20 00 20 00 00 00 20 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 02 02 00 00 20 00 00 00 20 00 20 00 40 00 40 00 20 00 40 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 00 02 00 80 45 80 a6 02 01 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 01 02 00 00 20 00 40 00 20 00 20 00 45 80 25 80 45 80 25 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:00] [TX] [*] Transmitting Opcode 0xE0 to read Nocturnal Sleep Architecture (Day 1)... | Host Command Transmission to Watch
+[19:32:00] [TX] TX [f0080003]: e0 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Host Command Transmission to Watch
+[19:32:00] [RX] RX [f0080002]: e0 41 03 01 a1 0c 02 a2 08 6e a3 30 cf d5 6a 52 79 a3 24 0b | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 40 03 01 16 00 20 0b 16 04 00 03 04 00 04 03 00 00 02 00 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 3f 03 01 00 00 26 00 73 00 37 00 d0 00 0a 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 3e 03 01 3c 00 01 a4 2d 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 3d 03 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 3c 03 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 3a 03 01 00 00 00 20 00 20 00 20 00 20 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 3b 03 01 00 00 a5 a0 01 20 00 20 00 20 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 39 03 01 00 20 00 20 00 20 00 20 00 00 00 40 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:00] [RX] RX [f0080002]: e0 38 03 01 00 00 00 20 00 20 00 40 00 40 00 40 00 40 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 37 03 01 00 20 00 40 00 40 00 20 00 00 00 40 00 00 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 36 03 01 00 40 00 40 00 40 00 40 00 40 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 35 03 01 00 20 00 20 00 20 00 20 00 20 00 20 00 20 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 34 03 01 00 20 00 40 00 40 00 20 00 20 00 20 00 20 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 33 03 01 00 20 00 40 00 00 00 40 00 20 00 20 00 00 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 31 03 01 00 40 00 20 00 20 00 40 00 40 00 40 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 32 03 01 00 20 00 20 00 00 00 00 00 00 00 40 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 30 03 01 00 00 00 20 00 00 00 20 00 20 00 20 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 2f 03 01 00 00 00 00 00 00 00 20 00 00 00 20 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 2e 03 01 00 00 00 40 00 00 00 40 00 40 00 40 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 2d 03 01 00 40 00 20 00 40 00 40 00 20 00 00 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 2c 03 01 00 20 00 40 00 20 00 00 00 20 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 2b 03 01 00 20 00 00 00 20 00 20 00 00 00 20 00 20 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 2a 03 01 00 00 00 40 00 20 00 40 00 40 00 40 00 40 00 40 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 29 03 01 00 40 00 40 00 40 00 20 00 40 00 00 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 25 03 01 00 20 00 40 00 20 00 20 00 00 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 24 03 01 00 00 00 00 00 20 00 20 00 40 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 27 03 01 00 20 00 20 00 20 00 20 00 20 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 26 03 01 00 20 00 00 00 40 00 20 00 20 00 40 00 40 00 40 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 23 03 01 00 00 00 00 00 20 00 40 00 20 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 22 03 01 00 40 00 20 00 20 00 20 00 40 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 1e 03 01 b5 00 54 00 4d 01 0a 00 06 00 02 00 3c 00 01 a4 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 20 03 01 08 45 a3 30 cf 90 59 c9 c8 a3 24 0b 16 04 00 0b | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 1f 03 01 16 06 05 03 03 00 04 03 00 00 02 01 00 00 3e 00 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 1d 03 01 2d 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 1c 03 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:01] [SYS] Smart Glucose Snack Notifier updated for 179 mg/dL | LCARS System Telemetry Event
+[19:32:01] [RX] RX [f0080002]: e0 1b 03 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 a5 fa | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 1a 03 01 00 40 00 20 00 20 00 20 00 40 00 85 80 85 80 85 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 19 03 01 80 85 80 85 80 80 00 20 00 20 00 20 00 00 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 18 03 01 00 00 00 00 00 40 80 20 80 40 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 16 03 01 80 20 00 40 00 20 00 20 00 00 00 20 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 15 03 01 00 40 00 00 00 20 00 20 00 40 00 20 00 00 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 14 03 01 00 40 00 00 00 40 00 00 00 20 00 00 00 40 00 40 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 12 03 01 00 00 00 20 00 20 00 40 00 00 00 20 00 20 00 40 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 0f 03 01 00 40 00 40 00 20 00 00 00 00 00 20 00 20 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 11 03 01 00 00 00 20 00 20 00 20 00 20 00 40 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 13 03 01 00 20 00 40 00 20 00 00 00 00 00 00 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 10 03 01 00 20 00 40 00 40 00 20 00 20 00 20 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 0e 03 01 00 20 00 20 00 40 00 20 00 20 00 20 00 00 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 0d 03 01 00 20 00 45 00 40 00 20 00 00 00 40 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 0c 03 01 00 40 00 20 00 20 00 40 00 20 00 40 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 0b 03 01 00 20 00 20 00 20 00 40 00 20 00 a6 02 01 01 00 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 0a 03 01 a1 b0 00 a2 08 92 f3 30 cf 50 e6 df b6 a3 24 0b | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 09 03 01 16 06 05 0b 16 06 28 03 03 00 04 03 02 00 02 01 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 08 03 01 00 00 43 00 cb 00 5c 00 70 01 0a 00 06 00 02 00 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 07 03 01 3c 00 01 a4 2d 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 06 03 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 05 03 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 04 03 01 00 00 a5 46 00 20 00 40 00 20 00 40 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 03 03 01 80 20 80 20 00 20 80 20 80 00 00 20 00 20 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 02 03 01 00 40 00 20 00 40 00 20 00 00 00 20 00 40 00 20 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 01 03 01 00 40 00 20 00 20 00 20 00 40 00 20 00 25 80 20 | Watch Sensor Telemetry Broadcast
+[19:32:01] [RX] RX [f0080002]: e0 00 03 01 00 20 00 20 00 40 00 40 00 40 00 a6 02 01 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:01] [SYS] Smart Glucose Snack Notifier updated for 179 mg/dL | LCARS System Telemetry Event
+[19:32:01] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:01] [SYS] Smart Glucose Snack Notifier updated for 179 mg/dL | LCARS System Telemetry Event
+[19:32:01] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 179 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:32:01] [RX] [★ SYNC 100% COMPLETE] Full watch dataset downloaded from VEE and deduplicated in SQLite. All fields, sleep, and activity updated. | Watch Sensor Telemetry Broadcast
+[19:32:01] [SYS] [🌙 SOMNO-03] No nocturnal sleep architecture found on watch for queried date. Displaying NO DATA. | LCARS System Telemetry Event
+[19:32:02] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:03] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:03] [SYS] Smart Glucose Snack Notifier updated for 179 mg/dL | LCARS System Telemetry Event
+[19:32:04] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:05] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:06] [SYS] Smart Glucose Snack Notifier updated for 179 mg/dL | LCARS System Telemetry Event
+[19:32:06] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:07] [SYS] Smart Glucose Snack Notifier updated for 179 mg/dL | LCARS System Telemetry Event
+[19:32:07] [TX] [★ FULL SCAN] Initiating automated 6-sensor sequential diagnostic pipeline... | Host Command Transmission to Watch
+[19:32:07] [TX] [*] Commencing optical PPG blood glucose scan [STANDARDIZED PRIVATE MODE (0x89 0x01 0x01 0x01)]... | Host Command Transmission to Watch
+[19:32:07] [TX] TX [f0080003]: 89 01 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Host Command Transmission to Watch
+[19:32:07] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:07] [RX] RX [f0080002]: 89 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:08] [RX] RX [f0080002]: a0 00 00 00 4c 01 4c 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 76% Battery
+[19:32:08] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:08] [RX] RX [f0080002]: 89 01 01 00 06 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:08] [SYS] Smart Glucose Snack Notifier updated for 179 mg/dL | LCARS System Telemetry Event
+[19:32:09] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:09] [RX] RX [f0080002]: 89 01 01 00 0c 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:10] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:10] [RX] RX [f0080002]: 89 01 01 00 12 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:11] [SYS] Smart Glucose Snack Notifier updated for 179 mg/dL | LCARS System Telemetry Event
+[19:32:11] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:11] [RX] RX [f0080002]: 89 01 01 00 18 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:12] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:12] [RX] RX [f0080002]: 89 01 01 00 1e 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:13] [RX] RX [f0080002]: 89 01 01 00 24 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:13] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:13] [SYS] Smart Glucose Snack Notifier updated for 179 mg/dL | LCARS System Telemetry Event
+[19:32:14] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:14] [RX] RX [f0080002]: 89 01 01 00 2a 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:15] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:15] [RX] RX [f0080002]: 89 01 01 00 30 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:16] [SYS] Smart Glucose Snack Notifier updated for 179 mg/dL | LCARS System Telemetry Event
+[19:32:16] [RX] RX [f0080002]: 89 01 01 00 36 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:16] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:17] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:17] [RX] RX [f0080002]: 89 01 01 00 3c 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:18] [RX] RX [f0080002]: 89 01 01 00 42 dc 03 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:18] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:18] [SYS] Smart Glucose Snack Notifier updated for 178 mg/dL | LCARS System Telemetry Event
+[19:32:19] [RX] RX [f0080002]: 89 01 01 00 48 df 03 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:19] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:20] [RX] RX [f0080002]: a0 00 00 00 4c 01 4c 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 76% Battery
+[19:32:20] [RX] RX [f0080002]: 89 01 01 00 4e fb 03 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:20] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:21] [SYS] Smart Glucose Snack Notifier updated for 184 mg/dL | LCARS System Telemetry Event
+[19:32:21] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:21] [RX] RX [f0080002]: 89 01 01 00 54 f6 03 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:22] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:22] [RX] RX [f0080002]: 89 01 01 00 5a e4 03 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:23] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:23] [RX] RX [f0080002]: 89 01 01 00 60 cf 03 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:23] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:32:24] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:24] [RX] RX [f0080002]: 89 01 01 00 64 cf 03 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:25] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:26] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:32:26] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:27] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:28] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:28] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:32:29] [TX] [*] Canceling optical glucose scan... | Host Command Transmission to Watch
+[19:32:29] [RX] [+] Full Scan Stage 1 Complete: Optical Glucose = 176 mg/dL | Watch Sensor Telemetry Broadcast
+[19:32:29] [TX] TX [f0080003]: 89 01 02 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Host Command Transmission to Watch
+[19:32:29] [RX] RX [f0080002]: 89 01 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:29] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:30] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:30] [TX] TX [f0080003]: 87 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Host Command Transmission to Watch
+[19:32:30] [TX] [*] Initiating dual-sensor temperature acquisition... | Host Command Transmission to Watch
+[19:32:31] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:32:31] [RX] RX [f0080002]: 87 01 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:31] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:31] [RX] RX [f0080002]: 87 01 01 07 00 64 01 28 01 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:32] [RX] RX [f0080002]: a0 00 00 00 4c 01 4c 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 76% Battery
+[19:32:32] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:32] [RX] RX [f0080002]: 87 01 01 07 09 4a 01 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:33] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:33] [RX] RX [f0080002]: 87 01 01 07 11 64 01 28 01 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:33] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:32:34] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:34] [RX] RX [f0080002]: 87 01 01 07 1b 64 01 29 01 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:35] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:35] [RX] RX [f0080002]: 87 01 01 07 24 64 01 29 01 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:36] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:32:36] [RX] RX [f0080002]: 87 01 01 07 2e 64 01 29 01 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:36] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:37] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:37] [RX] RX [f0080002]: 87 01 01 07 36 64 01 29 01 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:38] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:38] [RX] RX [f0080002]: 87 01 01 07 3e 64 01 29 01 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:38] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:32:39] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:39] [RX] RX [f0080002]: 87 01 01 07 48 64 01 29 01 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:40] [RX] RX [f0080002]: 87 01 01 07 52 64 01 29 01 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:40] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:41] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:32:41] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:41] [RX] RX [f0080002]: 87 01 01 07 5c 64 01 29 01 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:42] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:42] [RX] RX [f0080002]: 87 01 01 07 64 64 01 29 01 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:42] [TX] [*] Halting body temperature acquisition... | Host Command Transmission to Watch
+[19:32:42] [TX] TX [f0080003]: 87 01 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Host Command Transmission to Watch
+[19:32:42] [RX] [+] Full Scan Stage 2 Complete: Core Temp = 96.1°F | Skin = 85.5°F | Watch Sensor Telemetry Broadcast
+[19:32:43] [RX] RX [f0080002]: 87 01 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:43] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:43] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:32:44] [TX] [*] Initiating arterial blood pressure oscillometric detection (0x90)... | Host Command Transmission to Watch
+[19:32:44] [TX] TX [f0080003]: 90 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Host Command Transmission to Watch
+[19:32:44] [RX] RX [f0080002]: a0 00 00 00 4c 01 4c 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 76% Battery
+[19:32:44] [RX] RX [f0080002]: 90 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:44] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:44] [RX] RX [f0080002]: 90 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:45] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:45] [RX] RX [f0080002]: 90 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:46] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:32:46] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:46] [RX] RX [f0080002]: 90 00 00 04 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:47] [RX] RX [f0080002]: 90 00 00 08 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:47] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:48] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:48] [RX] RX [f0080002]: 90 00 00 0c 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:48] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:32:49] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:49] [RX] RX [f0080002]: 90 00 00 10 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:50] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:50] [RX] RX [f0080002]: 90 00 00 14 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:51] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:32:51] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:51] [RX] RX [f0080002]: 90 00 00 18 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:52] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:52] [RX] RX [f0080002]: 90 00 00 1c 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:53] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+ 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:53] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:32:54] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:54] [RX] RX [f0080002]: 90 00 00 28 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:55] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:55] [RX] RX [f0080002]: 90 00 00 28 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:56] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:32:56] [RX] RX [f0080002]: a0 00 00 00 4c 01 4c 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 76% Battery
+[19:32:56] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:56] [RX] RX [f0080002]: 90 00 00 30 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:57] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:57] [RX] RX [f0080002]: 90 00 00 30 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:58] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:58] [RX] RX [f0080002]: 90 00 00 38 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:32:58] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:32:59] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:32:59] [RX] RX [f0080002]: 90 00 00 38 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:33:00] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:00] [RX] RX [f0080002]: 90 00 00 40 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:33:01] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:33:01] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:01] [RX] RX [f0080002]: 90 00 00 40 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:33:02] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:02] [RX] RX [f0080002]: 90 00 00 48 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:33:03] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:03] [RX] RX [f0080002]: 90 00 00 48 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:33:03] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:33:04] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:04] [RX] RX [f0080002]: 90 00 00 50 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:33:05] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:05] [RX] RX [f0080002]: 90 00 00 50 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:33:06] [TX] [*] Halting blood pressure detection (0x90)... | Host Command Transmission to Watch
+[19:33:06] [RX] [+] Full Scan Stage 3 Complete: Blood Pressure = 125/83 mmHg | Watch Sensor Telemetry Broadcast
+[19:33:06] [TX] TX [f0080003]: 90 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Host Command Transmission to Watch
+[19:33:06] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:33:06] [RX] RX [f0080002]: 90 01 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:33:06] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:07] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:07] [TX] [*] Commencing pulse oximetry (SpO2) detection (0x80)... | Pulse Oximetry (SpO2) Oxygen Saturation
+[19:33:07] [TX] TX [f0080003]: 80 01 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Host Command Transmission to Watch
+[19:33:08] [RX] RX [f0080002]: a0 00 00 00 4c 01 4c 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 76% Battery
+[19:33:08] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:08] [RX] RX [f0080002]: 80 01 00 00 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:33:08] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:33:09] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:09] [RX] RX [f0080002]: 80 01 00 00 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:33:10] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:10] [RX] RX [f0080002]: 80 01 00 00 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:33:11] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:33:11] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:11] [RX] RX [f0080002]: 80 01 00 00 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:33:12] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:12] [RX] RX [f0080002]: 80 01 00 00 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:33:13] [RX] RX [f0080002]: 80 01 00 00 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:33:13] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:13] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:33:14] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:14] [RX] RX [f0080002]: 80 01 00 00 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:33:15] [RX] RX [f0080002]: 80 01 00 00 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:33:15] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:16] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:33:16] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:16] [RX] RX [f0080002]: 80 01 00 00 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:33:17] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:17] [RX] RX [f0080002]: 80 01 00 00 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:33:18] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:18] [RX] RX [f0080002]: 80 01 00 00 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:33:18] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:33:19] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:19] [RX] RX [f0080002]: 80 01 00 00 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:33:20] [RX] RX [f0080002]: a0 00 00 00 4c 01 4c 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 76% Battery
+[19:33:20] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:20] [RX] RX [f0080002]: 80 01 00 00 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:33:21] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:33:21] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:21] [RX] RX [f0080002]: 80 01 00 00 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:33:22] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:22] [RX] RX [f0080002]: 80 01 00 00 00 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:33:22] [TX] [*] Halting SpO2 detection (0x80)... | Pulse Oximetry (SpO2) Oxygen Saturation
+[19:33:22] [TX] TX [f0080003]: 80 02 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Host Command Transmission to Watch
+[19:33:22] [RX] [+] Full Scan Stage 4 Complete: SpO2 = 99% | Pulse Oximetry (SpO2) Oxygen Saturation
+[19:33:23] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:23] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:33:24] [TX] [*] Commencing continuous dynamic heart rate scan (0xD0)... | Host Command Transmission to Watch
+[19:33:24] [TX] TX [f0080003]: d0 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Host Command Transmission to Watch
+[19:33:24] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:24] [RX] RX [f0080002]: d0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:33:25] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:25] [RX] RX [f0080002]: d0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:33:26] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:33:26] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:26] [RX] RX [f0080002]: d0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:33:27] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:27] [RX] RX [f0080002]: d0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:33:28] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:28] [RX] RX [f0080002]: d0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:33:28] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:33:29] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:29] [RX] RX [f0080002]: d0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:33:30] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:30] [RX] RX [f0080002]: d0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:33:31] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:33:31] [RX] RX [f0080002]: d0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:33:31] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:32] [RX] RX [f0080002]: a0 00 00 00 4c 01 4c 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 76% Battery
+[19:33:32] [RX] RX [f0080002]: d0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:33:32] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:33] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:33] [RX] RX [f0080002]: d0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:33:33] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:33:34] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:34] [RX] RX [f0080002]: d0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:33:35] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:35] [RX] RX [f0080002]: d0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:33:36] [TX] [*] Halting heart rate scan (0xD0)... | Host Command Transmission to Watch
+[19:33:36] [RX] [+] Full Scan Stage 5 Complete: Heart Rate = 76 BPM | Watch Sensor Telemetry Broadcast
+[19:33:36] [TX] TX [f0080003]: d0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Host Command Transmission to Watch
+[19:33:36] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:33:36] [RX] RX [f0080002]: d0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:33:36] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:37] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:37] [TX] TX [f0080003]: 89 07 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Host Command Transmission to Watch
+tch
+[19:33:37] [TX] TX [f0080003]: 81 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Host Command Transmission to Watch
+[19:33:38] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:33:38] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:38] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:33:39] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:40] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:41] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:33:41] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:42] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:43] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:43] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:33:44] [RX] RX [f0080002]: a0 00 00 00 4c 01 4c 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 76% Battery
+[19:33:44] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:45] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:46] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:33:46] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:47] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:48] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:48] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:33:49] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:50] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:51] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:33:51] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:52] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:53] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:53] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:33:53] [TX] [*] Halting HRV / Stress acquisition (Opcode 0x89 0x07 0x02)... | Host Command Transmission to Watch
+[19:33:53] [TX] TX [f0080003]: 89 07 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Host Command Transmission to Watch
+[19:33:53] [TX] TX [f0080003]: 81 02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Host Command Transmission to Watch
+[19:33:54] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[19:33:54] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:55] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:56] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:33:56] [RX] RX [f0080002]: a0 00 00 00 4c 01 4c 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 76% Battery
+[19:33:56] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:57] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:58] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:33:58] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:33:59] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:00] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:01] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:34:01] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:02] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:03] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:03] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:34:04] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:05] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:06] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:34:06] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:07] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:08] [RX] RX [f0080002]: a0 00 00 00 4c 01 4c 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 76% Battery
+[19:34:08] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:08] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:34:09] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:10] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:11] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:34:11] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:12] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:13] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:13] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:34:14] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:15] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:16] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:34:16] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:17] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:18] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:18] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:34:19] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:20] [RX] RX [f0080002]: a0 00 00 00 4c 01 4c 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 76% Battery
+[19:34:20] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:21] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:34:21] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:22] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:23] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:23] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:34:24] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:25] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:26] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:34:26] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:27] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:28] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:28] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:34:29] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:30] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:31] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:34:31] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:32] [RX] RX [f0080002]: a0 00 00 00 4c 01 4c 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 76% Battery
+[19:34:32] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:33] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:33] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:34:34] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:35] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:36] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:34:36] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:37] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:38] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:38] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:34:39] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:40] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:41] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:34:41] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:42] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:43] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:43] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:34:44] [RX] RX [f0080002]: a0 00 00 00 4c 01 4c 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 76% Battery
+[19:34:44] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:45] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:46] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:34:46] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:47] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:48] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:48] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:34:49] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:50] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:51] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:34:51] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:52] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:53] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:53] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:34:54] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:55] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:56] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:34:56] [RX] RX [f0080002]: a0 00 00 00 4b 01 4b 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 75% Battery
+[19:34:56] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:57] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:58] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:34:58] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:34:59] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:00] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:01] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:35:01] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:02] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:03] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:03] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:35:04] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:05] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:06] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:35:06] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:07] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:08] [RX] RX [f0080002]: a0 00 00 00 4b 01 4b 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 75% Battery
+[19:35:08] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:08] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:35:09] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:10] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:11] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:35:11] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:12] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:13] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:13] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:35:14] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:15] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:16] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:35:16] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:17] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:18] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:18] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:35:19] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:19] [RX] RX [f0080002]: a0 00 00 00 4b 01 4b 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 75% Battery
+[19:35:20] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:21] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:35:21] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:22] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:23] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:35:23] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:24] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:25] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:26] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:35:26] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:27] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:28] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:28] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:35:29] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:30] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:31] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:35:31] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:31] [RX] RX [f0080002]: a0 00 00 00 4b 01 4b 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 75% Battery
+[19:35:32] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:33] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:35:33] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:34] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:35] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:36] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:35:36] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:37] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:38] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:35:38] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:39] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:40] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:41] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:35:41] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:42] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:43] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:43] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:35:44] [RX] RX [f0080002]: a0 00 00 00 4b 01 4b 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 75% Battery
+[19:35:44] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:45] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:46] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:35:46] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:47] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:48] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:35:48] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:49] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:50] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:51] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:35:51] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:52] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:53] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:53] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:35:54] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:55] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:56] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:35:56] [RX] RX [f0080002]: a0 00 00 00 4b 01 4b 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 75% Battery
+[19:35:56] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:57] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:58] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:35:58] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:35:59] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:00] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:01] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:36:01] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:02] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:03] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:03] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:36:04] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:05] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:06] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:36:06] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:07] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:08] [RX] RX [f0080002]: a0 00 00 00 4b 01 4b 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 75% Battery
+[19:36:08] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:08] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:36:09] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:10] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:11] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:36:11] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:12] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:13] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:13] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:36:14] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:15] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:16] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:36:16] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:17] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:18] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:18] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:36:19] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:20] [RX] RX [f0080002]: a0 00 00 00 4b 01 4b 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 75% Battery
+[19:36:20] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:21] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:36:21] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:22] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:23] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:23] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:36:24] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:25] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:26] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:36:26] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:27] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:28] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:28] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:36:29] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:30] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:31] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:36:31] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:32] [RX] RX [f0080002]: a0 00 00 00 4b 01 4b 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 75% Battery
+[19:36:32] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:33] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:33] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:36:34] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:35] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:36] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:36:36] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:37] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:38] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:38] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:36:39] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:40] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:41] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:36:41] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:42] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:43] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:43] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:36:44] [RX] RX [f0080002]: a0 00 00 00 4b 01 4b 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 75% Battery
+[19:36:44] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:45] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:46] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:36:46] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:47] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:48] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:48] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:36:49] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:50] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:51] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:36:51] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:52] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:53] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:53] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:36:54] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:55] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:56] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:36:56] [RX] RX [f0080002]: a0 00 00 00 4b 01 4b 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 75% Battery
+[19:36:56] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:57] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:58] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:36:58] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:36:59] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:00] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:01] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:37:01] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:02] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:03] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:03] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:37:04] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:05] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:06] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:37:06] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:07] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:08] [RX] RX [f0080002]: a0 00 00 00 4b 01 4b 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 75% Battery
+[19:37:08] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:08] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:37:09] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:10] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:11] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:37:11] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:12] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:13] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:13] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:37:14] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:15] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:16] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:37:16] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:17] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:18] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:18] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:37:19] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:20] [RX] RX [f0080002]: a0 00 00 00 4b 01 4b 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 75% Battery
+[19:37:20] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:21] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:37:21] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:22] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:23] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:23] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:37:24] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:25] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:26] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:37:26] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:27] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:28] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:28] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:37:29] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:30] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:31] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:37:31] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:31] [RX] RX [f0080002]: a0 00 00 00 4b 01 4b 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 75% Battery
+[19:37:32] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:33] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:37:33] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:34] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:35] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:36] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:37:36] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:37] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:38] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:38] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:37:39] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:40] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:41] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:37:41] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:42] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:43] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:37:43] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:43] [RX] RX [f0080002]: a0 00 00 00 4b 01 4b 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 75% Battery
+[19:37:44] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:45] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:46] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:37:46] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:47] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:48] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:48] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:37:49] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:50] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:51] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:37:51] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:52] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:53] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:37:53] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:54] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:55] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:56] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:37:56] [RX] RX [f0080002]: a0 00 00 00 4b 01 4b 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 75% Battery
+[19:37:56] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:57] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:58] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:37:58] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:37:59] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:00] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:01] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:38:01] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:02] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:03] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:03] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:38:04] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:05] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:06] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:38:06] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:07] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:08] [RX] RX [f0080002]: a0 00 00 00 4b 01 4b 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 75% Battery
+[19:38:08] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:08] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:38:09] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:10] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:11] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:38:11] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:12] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:13] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:13] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:38:14] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:15] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:16] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:38:16] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:17] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:18] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:18] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:38:19] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:20] [RX] RX [f0080002]: a0 00 00 00 4b 01 4b 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 75% Battery
+[19:38:20] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:21] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:38:21] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:22] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:23] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:23] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:38:24] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:25] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:26] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:38:26] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:27] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:28] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:28] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:38:29] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:30] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:31] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:38:31] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:32] [RX] RX [f0080002]: a0 00 00 00 4b 01 4b 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 75% Battery
+[19:38:32] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:33] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:33] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:38:34] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:35] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:36] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:38:36] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:37] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:38] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:38] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:38:39] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:40] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:41] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:38:41] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:42] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:43] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:43] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:38:44] [RX] RX [f0080002]: a0 00 00 00 4b 01 4b 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 75% Battery
+[19:38:44] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:45] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:46] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:38:46] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:47] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:48] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:48] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:38:49] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:50] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:51] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:38:51] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:52] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:53] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:53] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:38:54] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:55] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:56] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:38:56] [RX] RX [f0080002]: a0 00 00 00 4b 01 4b 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 75% Battery
+[19:38:56] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:57] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:58] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:38:58] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:38:59] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:00] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:01] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:39:01] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:02] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:03] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:03] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:39:04] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:05] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:06] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:39:06] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:07] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:08] [RX] RX [f0080002]: a0 00 00 00 4b 01 4b 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 75% Battery
+[19:39:08] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:08] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:39:09] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:10] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:11] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:39:11] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:12] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:13] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:13] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:39:14] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:15] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:16] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:39:16] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:17] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:18] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:18] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:39:19] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:20] [RX] RX [f0080002]: a0 00 00 00 4b 01 4b 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 75% Battery
+[19:39:20] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:21] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:39:21] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:22] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:23] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:23] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:39:24] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:25] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:26] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:39:26] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:27] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:28] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:39:28] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:29] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:30] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:31] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:39:31] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:32] [RX] RX [f0080002]: a0 00 00 00 4b 01 4b 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 75% Battery
+[19:39:32] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:33] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:39:33] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:34] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:35] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:36] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:39:36] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:38] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:38] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:39:38] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:39] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:40] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:41] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:39:41] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:42] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:43] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:39:43] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:44] [RX] RX [f0080002]: a0 00 00 00 4b 01 4b 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 75% Battery
+[19:39:44] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:45] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:46] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:39:46] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:47] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:48] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:39:48] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:49] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:50] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:51] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:39:51] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:52] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:53] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:39:53] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:54] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:55] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:55] [RX] RX [f0080002]: a0 00 00 00 4b 01 4b 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 75% Battery
+[19:39:56] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:39:56] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:57] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:58] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:39:58] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:39:59] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:00] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:01] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:40:02] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:03] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:03] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:40:04] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:05] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:06] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:06] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:40:07] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:07] [RX] RX [f0080002]: a0 00 00 00 4b 01 4b 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 75% Battery
+[19:40:08] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:08] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:40:09] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:10] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:11] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:40:11] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:12] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:13] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:13] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:40:14] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:15] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:16] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:40:16] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:17] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:18] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:18] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:40:19] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:20] [RX] RX [f0080002]: a0 00 00 00 4b 01 4b 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 75% Battery
+[19:40:20] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:21] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:40:21] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:22] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:23] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:23] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:40:24] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:25] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:26] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:40:26] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:27] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:28] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:28] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:40:29] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:30] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:31] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:40:31] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:32] [RX] RX [f0080002]: a0 00 00 00 4b 01 4b 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 75% Battery
+[19:40:32] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:33] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:33] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:40:34] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:35] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:36] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:40:36] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:37] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:38] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:38] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:40:39] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:40] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:41] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:40:41] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:42] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:43] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:40:43] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:43] [RX] RX [f0080002]: a0 00 00 00 4b 01 4b 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 75% Battery
+[19:40:44] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:45] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:46] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:40:46] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:47] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:48] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:40:48] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:49] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:50] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:51] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:40:51] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:53] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:53] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:40:53] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:55] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:55] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:55] [RX] RX [f0080002]: a0 00 00 00 4b 01 4b 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 75% Battery
+[19:40:56] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:40:57] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:57] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:40:58] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:40:59] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:00] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:01] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:01] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:41:02] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:03] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:03] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:41:04] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:05] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:06] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:41:06] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:07] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:07] [RX] RX [f0080002]: a0 00 00 00 4b 01 4b 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 75% Battery
+[19:41:08] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:08] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:41:09] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:10] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:11] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:11] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:41:12] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:13] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:13] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:41:14] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:15] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:16] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:41:16] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:17] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:18] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:18] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:41:19] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:20] [RX] RX [f0080002]: a0 00 00 00 4b 01 4b 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 75% Battery
+[19:41:20] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:21] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:41:21] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:22] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:23] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:23] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:41:24] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:25] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:26] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:41:26] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:27] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:28] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:28] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:41:29] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:30] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:31] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:41:31] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:31] [RX] RX [f0080002]: a0 00 00 00 4b 01 4b 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 75% Battery
+[19:41:32] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:33] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:41:33] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:34] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:35] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:36] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:41:36] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:37] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:38] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:41:38] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:39] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:40] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:41] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:41:41] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:42] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:43] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:41:43] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:43] [RX] RX [f0080002]: a0 00 00 00 4b 01 4b 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 75% Battery
+[19:41:44] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:45] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:46] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:41:46] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:47] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:47] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:41:47] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:41:48] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:41:48] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:49] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:50] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:51] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:41:51] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:52] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:53] [RX] [✨ GEMINI MEAL COACH] Evaluated: "water 12 oz" -> 0g Net Carbs (GOAL MET), 0 kcal | Watch Sensor Telemetry Broadcast
+[19:41:53] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:41:53] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:54] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:55] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:55] [RX] RX [f0080002]: a0 00 00 00 4b 01 4b 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 75% Battery
+[19:41:56] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:41:56] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:57] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:58] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:41:58] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:41:59] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:42:01] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:42:01] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:42:01] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:42:03] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:42:03] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:42:04] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:42:05] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:42:06] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:42:06] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:42:07] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:42:07] [RX] RX [f0080002]: a0 00 00 00 4b 01 4b 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 75% Battery
+[19:42:08] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:42:08] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:42:09] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:42:10] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:42:11] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:42:11] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:42:12] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:42:13] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:42:13] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:42:14] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:42:15] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:42:16] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:42:16] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:42:17] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:42:18] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:42:18] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:42:19] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:42:20] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:42:20] [RX] RX [f0080002]: a0 00 00 00 4b 01 4b 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 75% Battery
+[19:42:21] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:42:21] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:42:22] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:42:23] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:42:23] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:42:24] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:42:25] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:42:26] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:42:26] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:42:27] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:42:28] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:42:28] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:42:29] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:42:30] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:42:31] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:42:31] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:42:32] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:42:32] [RX] RX [f0080002]: a0 00 00 00 4b 01 4b 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 75% Battery
+[19:42:33] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:42:33] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:42:34] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:42:35] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping
+[19:42:36] [SYS] Smart Glucose Snack Notifier updated for 176 mg/dL | LCARS System Telemetry Event
+[19:42:36] [RX] RX [0000fea1]: 01 95 0b 00 | Watch Heartbeat & Bluetooth Link Ping

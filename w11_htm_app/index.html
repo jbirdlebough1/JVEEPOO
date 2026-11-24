@@ -4864,8 +4864,8 @@
               <div class="setup-field">
                 <label class="setup-label">LCARS AUDIO SYNTHESIZER (TACTILE CHIRP FX)</label>
                 <select id="cfgAudioEnabled" class="setup-select" onchange="updateAudioFromConfig(this.value)">
+                  <option value="0" selected>MUTED / SILENT OPERATION (DEFAULT)</option>
                   <option value="1">ENABLED (AUDITORY TACTILE CONFIRMATIONS)</option>
-                  <option value="0">MUTED / SILENT OPERATION</option>
                 </select>
               </div>
             </div>
@@ -9112,75 +9112,52 @@
     // LCARS AUDIO SYNTHESIZER (Pure Web Audio API - Zero External Dependencies)
     // =========================================================================
     let audioCtx = null;
-    let audioEnabled = true;
+    let audioEnabled = false;
 
     function initAudio() {
-      if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      }
-      if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
-      }
+      // Audio completely muted per user directive
+      return;
     }
 
     function playBeep(freq = 880, type = 'sine', duration = 0.06, gainLevel = 0.08) {
-      if (!audioEnabled) return;
-      try {
-        initAudio();
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.type = type;
-        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-        gain.gain.setValueAtTime(gainLevel, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-        osc.start();
-        osc.stop(audioCtx.currentTime + duration);
-      } catch (e) {}
+      // Audio completely muted per user directive: kill all beep noises
+      return;
     }
 
     function soundButtonPress() {
-      if (new URLSearchParams(window.location.search).get('headless')) return;
-      playBeep(980, 'sine', 0.06, 0.09);
-      setTimeout(() => playBeep(1320, 'sine', 0.05, 0.07), 40);
+      // Audio completely muted per user directive: kill all beep noises
+      return;
     }
 
     function soundRxPacket() {
       // Audio packet ticks completely disabled per clinical directive
+      return;
     }
 
     function soundError() {
-      playBeep(260, 'sawtooth', 0.14, 0.12);
+      // Audio completely muted per user directive: kill all beep noises
+      return;
     }
 
     function soundSuccess() {
-      if (typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('headless')) return;
-      if (typeof playBeep === 'function') {
-        playBeep(880, 'sine', 0.08, 0.08);
-        setTimeout(() => { if (typeof playBeep === 'function') playBeep(1760, 'sine', 0.08, 0.10); }, 60);
-      }
+      // Audio completely muted per user directive: kill all beep noises
+      return;
     }
     window.soundSuccess = soundSuccess;
 
     function soundNotification() {
-      if (new URLSearchParams(window.location.search).get('headless')) return;
-      playBeep(1046.5, 'sine', 0.07, 0.09);
-      setTimeout(() => playBeep(1318.5, 'sine', 0.09, 0.12), 70);
+      // Audio completely muted per user directive: kill all beep noises
+      return;
     }
 
     function updateAudioFromConfig(val) {
       audioEnabled = (val === "1" || val === 1 || val === true);
-      if (audioEnabled) {
-        initAudio();
-        playBeep(1200, 'sine', 0.08, 0.1);
-      }
       try {
         const savedConfig = localStorage.getItem('veepoo_user_config');
         let cfg = savedConfig ? JSON.parse(savedConfig) : {};
         cfg.audioEnabled = audioEnabled ? 1 : 0;
         localStorage.setItem('veepoo_user_config', JSON.stringify(cfg));
-      updateStoreSourcingFromZip(cfg.zipCode);
+        updateStoreSourcingFromZip(cfg.zipCode);
       } catch (e) {}
       logLCARS(`Audio tactile synthesizer: ${audioEnabled ? 'ONLINE' : 'MUTED'}`, "sys");
     }
@@ -11776,6 +11753,10 @@
             audioEnabled = (cfg.audioEnabled === 1 || cfg.audioEnabled === "1" || cfg.audioEnabled === true);
             const el = document.getElementById('cfgAudioEnabled');
             if (el) el.value = audioEnabled ? "1" : "0";
+          } else {
+            audioEnabled = false;
+            const el = document.getElementById('cfgAudioEnabled');
+            if (el) el.value = "0";
           }
           logLCARS("[+] Setup parameters populated successfully from active profile.", "rx");
           return;
@@ -12065,9 +12046,9 @@
       setVal('cfgNotifCall', "1");
       setVal('cfgNotifSms', "1");
       setVal('cfgNotifSocial', "1");
-      setVal('cfgAudioEnabled', "1");
+      setVal('cfgAudioEnabled', "0");
 
-      audioEnabled = true;
+      audioEnabled = false;
       logLCARS("Restored clinical baseline default parameters.", "sys");
     }
 
