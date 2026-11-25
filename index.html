@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Biometric Function Monitor</title>
+  <link rel="icon" type="image/x-icon" href="bfm.ico">
+  <link rel="shortcut icon" href="bfm.ico">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="manifest" href="manifest.json">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
@@ -9277,6 +9281,9 @@
 
     function soundButtonPress() {
       // Audio completely muted per user directive: kill all beep noises
+      if (typeof scheduleFullPipelineRefresh === 'function') {
+        scheduleFullPipelineRefresh();
+      }
       return;
     }
 
@@ -9811,30 +9818,91 @@ function renderWatchTabConnectedDetails() {
     // =========================================================================
     // CENTRAL REACTIVE PIPELINE: RUNS CALCULATIONS & REFRESHES ALL SCREENS
     // =========================================================================
-    function runFullPipelineAndRefreshAllScreens() {
-      // 1. Recalculate hydration from journals
+    let _refreshThrottleTimer = null;
+    function scheduleFullPipelineRefresh() {
+      if (_refreshThrottleTimer) return;
+      _refreshThrottleTimer = setTimeout(() => {
+        _refreshThrottleTimer = null;
+        runFullPipelineAndRefreshAllScreens();
+      }, 100);
+    }
+
+    async function runFullPipelineAndRefreshAllScreens() {
+      // 1. Fetch latest telemetry and populate state from current cache/database
+      try {
+        if (typeof pollLiveTelemetryChanges === 'function') {
+          await pollLiveTelemetryChanges(true);
+        }
+      } catch (e) {}
+
+      // 2. Propagate current real measurements across dynamic fields (Zero Is Zero)
+      if (typeof propagateFullScanResultsToAllPages === 'function' && window._latestTelemetry) {
+        const vit = window._latestTelemetry;
+        const g = (vit.GLUCOSE && vit.GLUCOSE.value1 > 0) ? Math.round(vit.GLUCOSE.value1) : (typeof lastGlucoseMg !== 'undefined' ? lastGlucoseMg : 0);
+        const sys = (vit.BLOOD_PRESSURE && vit.BLOOD_PRESSURE.value1 > 0) ? Math.round(vit.BLOOD_PRESSURE.value1) : (typeof lastSystolic !== 'undefined' ? lastSystolic : 0);
+        const dia = (vit.BLOOD_PRESSURE && vit.BLOOD_PRESSURE.value2 > 0) ? Math.round(vit.BLOOD_PRESSURE.value2) : (typeof lastDiastolic !== 'undefined' ? lastDiastolic : 0);
+        const sp = (vit.SPO2 && vit.SPO2.value1 > 0) ? Math.round(vit.SPO2.value1) : ((vit.BLOOD_OXYGEN && vit.BLOOD_OXYGEN.value1 > 0) ? Math.round(vit.BLOOD_OXYGEN.value1) : (typeof lastSpO2 !== 'undefined' ? lastSpO2 : 0));
+        const hr = (vit.HEART_RATE && vit.HEART_RATE.value1 > 0) ? Math.round(vit.HEART_RATE.value1) : (typeof lastHR !== 'undefined' ? lastHR : 0);
+        const bF = (vit.TEMPERATURE && vit.TEMPERATURE.value1 > 0) ? vit.TEMPERATURE.value1 : (typeof lastBodyF !== 'undefined' ? lastBodyF : 0);
+        const sF = (vit.TEMPERATURE && vit.TEMPERATURE.value2 > 0) ? vit.TEMPERATURE.value2 : (typeof lastSkinF !== 'undefined' ? lastSkinF : 0);
+        const bC = bF > 0 ? parseFloat(((bF - 32) * 5 / 9).toFixed(1)) : 0;
+        const hrvVal = (vit.HRV_STRESS && vit.HRV_STRESS.value1 > 0) ? Math.round(vit.HRV_STRESS.value1) : (typeof lastHRV !== 'undefined' ? lastHRV : 0);
+        const stVal = (vit.HRV_STRESS && vit.HRV_STRESS.value2 > 0) ? Math.round(vit.HRV_STRESS.value2) : (typeof lastStress !== 'undefined' ? lastStress : 0);
+
+        propagateFullScanResultsToAllPages({
+          glucose: g,
+          bp: { sys: sys, dia: dia },
+          spo2: sp,
+          hr: hr,
+          temp: { bodyF: bF, skinF: sF, bodyC: bC },
+          hrv: { hrv: hrvVal, stress: stVal }
+        });
+      }
+
+      // 3. Recalculate daily hydration chart from journals
       if (typeof renderDailyHydrationChart === 'function') {
         renderDailyHydrationChart('curveTimelineFluidWater');
       }
-      // 2. Recalculate metabolic & clinical goals
+
+      // 4. Recalculate clinical goals audit
       if (typeof runGoalComplianceAudit === 'function') {
-        runGoalComplianceAudit();
+        runGoalComplianceAudit(false);
       }
-      // 3. Re-render reports view & charts
+
+      // 5. Re-render reports view & charts
       if (typeof renderReportsView === 'function') {
         renderReportsView();
       }
-      // 4. Update Diet history
+
+      // 6. Update Diet history
       if (typeof renderDietHistory === 'function') {
         renderDietHistory();
       }
-      // 5. Update Medication views
+
+      // 7. Update Medication views and change audit
       if (typeof renderMedicationRegimen === 'function') {
         renderMedicationRegimen();
       }
-      // 6. Update 3D feelings cache
+      if (typeof renderMedicationChangeHistory === 'function') {
+        renderMedicationChangeHistory();
+      }
+
+      // 8. Update 3D feelings cache & 3D multi scene
       if (typeof loadFeelingsFor3D === 'function') {
         loadFeelingsFor3D();
+      }
+      if (typeof render3DMultiChannelScene === 'function') {
+        render3DMultiChannelScene();
+      }
+
+      // 9. Update connected watch details
+      if (typeof renderWatchTabConnectedDetails === 'function') {
+        renderWatchTabConnectedDetails();
+      }
+
+      // 10. Update 360 Health overview
+      if (typeof render360HealthView === 'function') {
+        render360HealthView();
       }
     }
 
@@ -10364,17 +10432,8 @@ function switchTab(tabId) {
         if (typeof loadGoalsComplianceReport === 'function') loadGoalsComplianceReport();
         if (typeof updateWorkoutWithSteps === 'function') updateWorkoutWithSteps(lastSteps || 0);
 
-        // Immediately update all screen elements with harvested vitals
-        if (typeof propagateFullScanResultsToAllPages === 'function') {
-          propagateFullScanResultsToAllPages({
-            glucose: lastGlucoseMg || 170,
-            bp: { sys: lastSystolic || 125, dia: lastDiastolic || 83 },
-            spo2: lastSpO2 || 99,
-            hr: lastHR || 76,
-            temp: { bodyF: lastBodyF || 96.1, skinF: lastSkinF || 85.8, bodyC: lastBodyC || 35.6 },
-            hrv: { hrv: lastHRV || 64, stress: lastStress || 32 }
-          });
-        }
+        // Immediately update all screen elements with harvested vitals via full pipeline
+        await runFullPipelineAndRefreshAllScreens();
 
         // Step 10: State Sync Complete in Vault Sync Status Field (100% Current)
         lastFullSyncTime = new Date();
@@ -13914,7 +13973,11 @@ function switchTab(tabId) {
     // =========================================================================
     // ON-DEMAND CLINICAL GOAL COMPLIANCE AUDIT (% OF GOALS MET)
     // =========================================================================
-    function runGoalComplianceAudit() {
+    function runGoalComplianceAudit(animate = true) {
+      if (window._goalAuditAnimInterval) {
+        clearInterval(window._goalAuditAnimInterval);
+        window._goalAuditAnimInterval = null;
+      }
       const goals = getActiveClinicalGoals();
       
       // 1. Daily Steps Compliance against active target (default 2000 steps)
@@ -13967,13 +14030,29 @@ function switchTab(tabId) {
       const lblRecalcNum = document.getElementById('lblAuditRecalcNumber');
       const lblCompositePercent = document.getElementById('lblAuditCompositePercent');
       const circleProgress = document.getElementById('circleGoalAuditProgress');
+      const circumference = 2 * Math.PI * 42; // ~263.89
+
+      if (!animate) {
+        if (lblRecalcNum) {
+          lblRecalcNum.textContent = `${compositeScore.toFixed(1)}% MET (CURRENT)`;
+          lblRecalcNum.style.background = "#dcfce7";
+          lblRecalcNum.style.color = "#15803d";
+        }
+        if (lblCompositePercent) {
+          lblCompositePercent.textContent = `${compositeScore.toFixed(1)}%`;
+        }
+        if (circleProgress) {
+          const finalOffset = circumference - (compositeScore / 100) * circumference;
+          circleProgress.style.strokeDashoffset = finalOffset.toFixed(1);
+        }
+        return;
+      }
 
       if (lblRecalcNum) {
         let currentP = 0;
-        const circumference = 2 * Math.PI * 42; // ~263.89
-        if (circleProgress) circleProgress.style.transition = "stroke-dashoffset 0.04s ease-out";
-        const animInterval = setInterval(() => {
-          currentP += 10;
+        if (circleProgress) circleProgress.style.transition = "stroke-dashoffset 0.02s ease-out";
+        window._goalAuditAnimInterval = setInterval(() => {
+          currentP += 20;
           if (currentP <= 100) {
             if (lblRecalcNum) {
               lblRecalcNum.textContent = `${currentP}% (RECALCULATING...)`;
@@ -13988,7 +14067,8 @@ function switchTab(tabId) {
               circleProgress.style.strokeDashoffset = sweepOffset.toFixed(1);
             }
           } else {
-            clearInterval(animInterval);
+            clearInterval(window._goalAuditAnimInterval);
+            window._goalAuditAnimInterval = null;
             if (lblRecalcNum) {
               lblRecalcNum.textContent = `${compositeScore.toFixed(1)}% MET (CURRENT)`;
               lblRecalcNum.style.background = "#dcfce7";
@@ -14003,7 +14083,7 @@ function switchTab(tabId) {
             }
             if (typeof soundSuccess === 'function') soundSuccess();
           }
-        }, 35);
+        }, 25);
       }
     }
 
@@ -25792,7 +25872,8 @@ You logged: Entire Box (3.5 Servings / 99g)
 
     function ensureWindowsShortcuts() {
       if (!localStorage.getItem('bfm_windows_shortcuts_installed')) {
-        fetch('/api/system/create_shortcuts')
+        const apiHost = window.location.protocol === 'file:' ? 'http://127.0.0.1:8899' : '';
+        fetch(apiHost + '/api/system/create_shortcuts')
           .then(r => r.json())
           .then(d => {
             if (d.status === 'SUCCESS') {
@@ -25802,12 +25883,21 @@ You logged: Entire Box (3.5 Servings / 99g)
       }
     }
 
+    // Global Interactive Button & Tab Click Listener: continuous processing & dynamic refresh
+    document.addEventListener('click', (e) => {
+      const target = e.target;
+      if (target && target.closest('button, .lcars-btn, .tab-btn, select, input[type="radio"], input[type="checkbox"]')) {
+        scheduleFullPipelineRefresh();
+      }
+    });
+
     // Initialize on DOM ready
     window.addEventListener('DOMContentLoaded', () => {
       try { renderWatchTabConnectedDetails(); } catch (e) {}
       loadFamilyCellsRoster();
       checkLegalStatus();
       ensureWindowsShortcuts();
+      scheduleFullPipelineRefresh();
     });
   
     // =========================================================================

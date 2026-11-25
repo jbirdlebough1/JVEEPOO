@@ -3570,31 +3570,57 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                 self.send_json_response({"error": str(e)}, 500)
                 return
 
-        # System Windows Shortcuts API (Desktop & Favorites)
+        # System Windows Shortcuts API (Desktop & Programs)
         if self.path.startswith("/api/system/create_shortcuts"):
             try:
                 import subprocess
                 ps_cmd = """
                 $WshShell = New-Object -ComObject WScript.Shell
                 $Desktop = [Environment]::GetFolderPath('Desktop')
-                $Fav = [Environment]::GetFolderPath('Favorites')
+                $Programs = [Environment]::GetFolderPath('Programs')
+                $TargetHtml = "D:\\veepoo\\BFM.HTM"
+                $WorkingDir = "D:\\veepoo"
+                $IconFile = "D:\\veepoo\\bfm.ico"
+
+                # 1. Desktop Shortcut
                 $s1 = $WshShell.CreateShortcut("$Desktop\\Biometric Function Monitor.lnk")
-                $s1.TargetPath = "D:\\veepoo\\BFM.HTM"
-                $s1.WorkingDirectory = "D:\\veepoo"
-                $s1.IconLocation = "D:\\veepoo\\bfm.ico, 0"
-                $s1.Description = "Biometric Function Monitor (BFM 5010)"
+                $s1.TargetPath = $TargetHtml
+                $s1.WorkingDirectory = $WorkingDir
+                $s1.IconLocation = "$IconFile, 0"
+                $s1.Description = "BFM Biometric Function Monitor"
                 $s1.Save()
                 Set-Content -Path "$Desktop\\Biometric Function Monitor.url" -Value "[InternetShortcut]`r`nURL=file:///D:/veepoo/BFM.HTM`r`nIconIndex=0`r`nIconFile=D:\\veepoo\\bfm.ico`r`n" -Encoding ASCII
-                $s2 = $WshShell.CreateShortcut("$Fav\\Biometric Function Monitor.lnk")
-                $s2.TargetPath = "D:\\veepoo\\BFM.HTM"
-                $s2.WorkingDirectory = "D:\\veepoo"
-                $s2.IconLocation = "D:\\veepoo\\bfm.ico, 0"
-                $s2.Description = "Biometric Function Monitor (BFM 5010)"
+
+                # 2. Start Menu Programs App List Shortcut
+                $s2 = $WshShell.CreateShortcut("$Programs\\Biometric Function Monitor.lnk")
+                $s2.TargetPath = $TargetHtml
+                $s2.WorkingDirectory = $WorkingDir
+                $s2.IconLocation = "$IconFile, 0"
+                $s2.Description = "BFM Biometric Function Monitor"
                 $s2.Save()
-                Set-Content -Path "$Fav\\Biometric Function Monitor.url" -Value "[InternetShortcut]`r`nURL=file:///D:/veepoo/BFM.HTM`r`nIconIndex=0`r`nIconFile=D:\\veepoo\\bfm.ico`r`n" -Encoding ASCII
+                Set-Content -Path "$Programs\\Biometric Function Monitor.url" -Value "[InternetShortcut]`r`nURL=file:///D:/veepoo/BFM.HTM`r`nIconIndex=0`r`nIconFile=D:\\veepoo\\bfm.ico`r`n" -Encoding ASCII
+
+                # 3. Start Menu Program Group Folder
+                $GroupFolder = "$Programs\\BFM Biometric Function Monitor"
+                if (!(Test-Path $GroupFolder)) {
+                    New-Item -ItemType Directory -Path $GroupFolder -Force | Out-Null
+                }
+                $s3 = $WshShell.CreateShortcut("$GroupFolder\\BFM Desktop Console.lnk")
+                $s3.TargetPath = $TargetHtml
+                $s3.WorkingDirectory = $WorkingDir
+                $s3.IconLocation = "$IconFile, 0"
+                $s3.Description = "BFM Biometric Function Monitor Console"
+                $s3.Save()
+
+                $s4 = $WshShell.CreateShortcut("$GroupFolder\\BFM Mobile Cell Gateway.lnk")
+                $s4.TargetPath = "http://127.0.0.1:8899/cell.html"
+                $s4.WorkingDirectory = $WorkingDir
+                $s4.IconLocation = "$IconFile, 0"
+                $s4.Description = "BFM Mobile Cell Field Collector"
+                $s4.Save()
                 """
                 subprocess.run(["powershell", "-NoProfile", "-Command", ps_cmd], check=True)
-                self.send_json_response({"status": "SUCCESS", "message": "Windows Desktop and Favorites shortcuts installed"})
+                self.send_json_response({"status": "SUCCESS", "message": "Windows Desktop and Start Menu App List shortcuts installed successfully."})
                 return
             except Exception as e:
                 self.send_json_response({"error": str(e)}, 500)
@@ -3641,13 +3667,22 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                 return
 
         # Static PWA and Icon assets
-        if self.path in ["/manifest.json", "/icon-192.png", "/icon-512.png", "/bfm.ico"]:
+        if self.path in ["/manifest.json", "/icon-192.png", "/icon-512.png", "/bfm.ico", "/sw.js"]:
             fname = self.path.lstrip("/")
             fpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), fname)
             if not os.path.exists(fpath):
                 fpath = os.path.join(os.path.dirname(BASE_DIR), fname)
             if os.path.exists(fpath):
-                content_type = "application/manifest+json" if fname.endswith(".json") else ("image/png" if fname.endswith(".png") else "image/x-icon")
+                if fname.endswith(".json"):
+                    content_type = "application/manifest+json"
+                elif fname.endswith(".png"):
+                    content_type = "image/png"
+                elif fname.endswith(".ico"):
+                    content_type = "image/x-icon"
+                elif fname.endswith(".js"):
+                    content_type = "application/javascript"
+                else:
+                    content_type = "application/octet-stream"
                 with open(fpath, "rb") as f:
                     data = f.read()
                 self.send_response(200)

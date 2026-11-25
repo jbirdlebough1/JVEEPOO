@@ -1708,6 +1708,51 @@
     renderStagedQueue();
     checkHostConnection();
     setInterval(checkHostConnection, 5000);
+
+    // =========================================================================
+    // PWA SERVICE WORKER & CELL APP LIST INSTALLATION ENGINE
+    // =========================================================================
+    let deferredInstallPrompt = null;
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').then(reg => {
+          console.log('[PWA] BFM Cell Service Worker registered:', reg.scope);
+        }).catch(err => {
+          console.warn('[PWA] SW registration failed:', err);
+        });
+      });
+    }
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredInstallPrompt = e;
+      const banner = document.getElementById('pwaInstallBanner');
+      if (banner) banner.style.display = 'flex';
+    });
+
+    async function triggerPwaInstall() {
+      if (deferredInstallPrompt) {
+        deferredInstallPrompt.prompt();
+        const { outcome } = await deferredInstallPrompt.userChoice;
+        if (outcome === 'accepted') {
+          console.log('[PWA] User accepted install to app list');
+          const banner = document.getElementById('pwaInstallBanner');
+          if (banner) banner.style.display = 'none';
+        }
+        deferredInstallPrompt = null;
+      } else {
+        alert("To install BFM Cell to your Phone App List:\n\n• Android Chrome: Tap browser menu (⋮) -> 'Install app' or 'Add to Home screen'\n• iPhone Safari: Tap Share (⎋) -> 'Add to Home Screen' (➕)");
+      }
+    }
+    window.triggerPwaInstall = triggerPwaInstall;
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const isStandalone = window.navigator.standalone === true || window.matchMedia('(display-mode: standalone)').matches;
+      const banner = document.getElementById('pwaInstallBanner');
+      if (banner && !isStandalone) {
+        banner.style.display = 'flex';
+      }
+    });
   </script>
 </body>
 </html>
