@@ -1765,7 +1765,7 @@
         </div>
         <div class="lcars-time-block">
           <div class="actual-datetime" id="actualDateTime">FRIDAY, NOV 20, 2026 9:55:00 AM PST</div>
-          <div class="lcars-stardate" id="stardateClock">BUILD beta.00.01.0024</div>
+          <div class="lcars-stardate" id="stardateClock">BUILD beta.00.01.0025</div>
         </div>
         
       </div>
@@ -2619,6 +2619,15 @@
                 <div><span style="color: #64748b;">TOTAL FAT:</span> <strong id="lblDayFat" style="color: #7c3aed;">0 g</strong></div>
                 <div><span style="color: #64748b;">TOTAL FIBER:</span> <strong id="lblDayFiber" style="color: #059669;">0 g</strong></div>
               </div>
+
+              <!-- 24-HOUR DIABETIC FLUID INTAKE & HYDRATION PROGRESSION -->
+              <div style="margin-top: 12px; background: #f0fdf4; border: 1.5px solid #86efac; border-left: 5px solid #0284c7; border-radius: 6px; padding: 12px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #bbf7d0; padding-bottom: 6px; margin-bottom: 8px; flex-wrap: wrap; gap: 6px;">
+                  <strong style="color: #0369a1; font-size: 0.90rem; font-family: var(--lcars-mono);">💧 24-HOUR DIABETIC FLUID INTAKE &amp; HYDRATION PROGRESSION</strong>
+                  <span id="badgeDailyIntakeFluidStatus" class="badge" style="background: #e0f2fe; color: #0369a1; border: 1.5px solid #0284c7; font-size: 0.72rem; padding: 2px 8px; font-weight: 800;">TARGET: 64 FL OZ</span>
+                </div>
+                <div id="svgDailyIntakeFluidChart"></div>
+              </div>
             </div>
 
             <!-- Meal Log Entry Form -->
@@ -2652,6 +2661,10 @@
               <div class="setup-field">
                 <label class="setup-label">CALORIES (KCAL)</label>
                 <input type="number" id="dietCalories" class="setup-input" value="480" min="0" max="4000">
+              </div>
+              <div class="setup-field">
+                <label class="setup-label">FLUID / WATER INTAKE (OZ)</label>
+                <input type="number" id="dietFluidOz" class="setup-input" value="12" min="0" max="128">
               </div>
               <div class="setup-field">
                 <label class="setup-label">GLUCOSE CONTEXT</label>
@@ -4184,9 +4197,37 @@
                 <span id="repChartWaterTitle" style="font-weight: 800; font-size: 1.15rem; color: #0284c7;">DAILY HYDRATION &amp; WATER CONSUMED (OZ)</span>
                 <span style="font-size: 0.8rem; color: #64748b; display: block; margin-top: 2px;">PARSED FROM CLINICAL MEAL INTAKE &amp; HYDRATION LOGS • SENIOR DIABETIC TARGET: &ge;64 OZ</span>
               </div>
-              <span class="badge" style="background: #e0f2fe; color: #0369a1; border: 1.5px solid #0284c7; font-weight: 800; font-size: 0.82rem; padding: 3px 10px;">
-                DAILY TARGET: 64 OZ (8 CUPS)
-              </span>
+              <div style="display: flex; gap: 6px; align-items: center; flex-wrap: wrap;">
+                <span id="repBadgeDehydrationRisk" class="badge" style="background: #ecfdf5; color: #15803d; border: 1.5px solid #10b981; font-weight: 800; font-size: 0.80rem; padding: 3px 10px;">
+                  HYDRATION STABLE: EUHYDRATION
+                </span>
+                <span class="badge" style="background: #e0f2fe; color: #0369a1; border: 1.5px solid #0284c7; font-weight: 800; font-size: 0.82rem; padding: 3px 10px;">
+                  DAILY TARGET: 64 OZ (8 CUPS)
+                </span>
+              </div>
+            </div>
+            <!-- Clinical Hydration & Dehydration Status Summary Panel -->
+            <div id="panelDehydrationClinicalMetrics" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px; margin-bottom: 12px; font-family: var(--lcars-mono);">
+              <div style="background: #ffffff; border: 1px solid #e2e8f0; border-left: 4px solid #0284c7; border-radius: 4px; padding: 8px;">
+                <div style="font-size: 0.70rem; color: #64748b; font-weight: 800; text-transform: uppercase;">TODAY CUMULATIVE FLUID</div>
+                <div id="repMetricFluidTotal" style="font-size: 1.15rem; font-weight: 900; color: #0284c7; margin-top: 2px;">-- FL OZ</div>
+                <div id="repMetricFluidMl" style="font-size: 0.72rem; color: #64748b;">-- mL consumed</div>
+              </div>
+              <div style="background: #ffffff; border: 1px solid #e2e8f0; border-left: 4px solid #10b981; border-radius: 4px; padding: 8px;">
+                <div style="font-size: 0.70rem; color: #64748b; font-weight: 800; text-transform: uppercase;">TARGET PROGRESS (64 OZ)</div>
+                <div id="repMetricFluidProgress" style="font-size: 1.15rem; font-weight: 900; color: #15803d; margin-top: 2px;">--%</div>
+                <div id="repMetricFluidRemaining" style="font-size: 0.72rem; color: #64748b;">-- oz to clinical goal</div>
+              </div>
+              <div style="background: #ffffff; border: 1px solid #e2e8f0; border-left: 4px solid #f59e0b; border-radius: 4px; padding: 8px;">
+                <div style="font-size: 0.70rem; color: #64748b; font-weight: 800; text-transform: uppercase;">DEHYDRATION RISK INDEX</div>
+                <div id="repMetricDehydrationRisk" style="font-size: 1.15rem; font-weight: 900; color: #b45309; margin-top: 2px;">LOW (LEVEL 0)</div>
+                <div style="font-size: 0.72rem; color: #64748b;">Microvascular stability nominal</div>
+              </div>
+              <div style="background: #ffffff; border: 1px solid #e2e8f0; border-left: 4px solid #8b5cf6; border-radius: 4px; padding: 8px;">
+                <div style="font-size: 0.70rem; color: #64748b; font-weight: 800; text-transform: uppercase;">OSMOTIC GLUCOSE CLEARANCE</div>
+                <div id="repMetricRenalClearance" style="font-size: 1.15rem; font-weight: 900; color: #6d28d9; margin-top: 2px;">ACTIVE</div>
+                <div style="font-size: 0.72rem; color: #64748b;">Prevents hyperosmolar spikes</div>
+              </div>
             </div>
             <div class="svg-timeline-container" id="curveTimelineFluidWater"></div>
           </div>
@@ -9347,7 +9388,7 @@
       const year = now.getFullYear();
       const startOfYear = new Date(year, 0, 1);
       const dayOfYear = (now - startOfYear) / (1000 * 60 * 60 * 24);
-      document.getElementById("stardateClock").textContent = "BUILD beta.00.01.0024";
+      document.getElementById("stardateClock").textContent = "BUILD beta.00.01.0025";
     }
     setInterval(updateClock, 1000);
     updateClock();
@@ -9689,6 +9730,18 @@ function renderWatchTabConnectedDetails() {
       if (typeof window._cachedRecentMeals !== 'undefined' && Array.isArray(window._cachedRecentMeals)) allSources.push(...window._cachedRecentMeals);
       if (typeof dietJournal !== 'undefined' && Array.isArray(dietJournal)) allSources.push(...dietJournal);
       if (typeof mealJournal !== 'undefined' && Array.isArray(mealJournal)) allSources.push(...mealJournal);
+
+      // Asynchronous hydration cache population if empty
+      if (allSources.length === 0 && !window._fetchingHydrMeals) {
+        window._fetchingHydrMeals = true;
+        const apiBase = (window.location.protocol === 'file:' ? 'http://127.0.0.1:8899' : '');
+        fetch(apiBase + '/api/meal/recent?limit=100').then(r => r.json()).then(data => {
+          if (data && data.meals && data.meals.length > 0) {
+            window._cachedRecentMeals = data.meals;
+            renderDailyHydrationChart(containerId);
+          }
+        }).catch(() => {}).finally(() => { window._fetchingHydrMeals = false; });
+      }
       
       const seenHydrKeys = new Set();
       const journalEntries = [];
@@ -9704,21 +9757,35 @@ function renderWatchTabConnectedDetails() {
       let cumulative = 0;
       const cumulativeByHour = [];
 
+      const todayIsoPrefix = `${new Date().getFullYear()}-${String(new Date().getMonth() + 1).padStart(2, '0')}-${String(new Date().getDate()).padStart(2, '0')}`;
+
       journalEntries.forEach(entry => {
+        const timeStr = entry.timestamp || entry.time || entry.ts || '';
+        // Only include today's fluid intakes in the 24-hour daily chart
+        if (timeStr && !timeStr.startsWith(todayIsoPrefix)) {
+          return;
+        }
+
         let flOz = parseFloat(entry.fluid_oz || entry.fluidOz || entry.hydration_oz || 0);
         const entryText = ((entry.meal_name || '') + ' ' + (entry.title || '') + ' ' + (entry.description || '')).toLowerCase();
         if (!flOz) {
           const mFl = entryText.match(/(\d+(?:\.\d+)?)\s*(?:oz|fl\s*oz|ounces?)/);
           if (mFl) flOz = parseFloat(mFl[1]);
         }
-        if (!flOz && (entryText.includes('water') || entryText.includes('root beer') || entryText.includes('tea') || entryText.includes('beverage') || entryText.includes('drink') || entryText.includes('seltzer'))) {
-          flOz = 12.0;
+        if (!flOz) {
+          if (entryText.includes('water') || entryText.includes('spring') || entryText.includes('root beer') || entryText.includes('beverage') || entryText.includes('drink') || entryText.includes('seltzer')) {
+            flOz = 12.0;
+          } else if (entryText.includes('infusion') || entryText.includes('tea') || entryText.includes('coffee') || entryText.includes('milk')) {
+            flOz = 16.0;
+          } else {
+            flOz = 8.0;
+          }
         }
         
         let hr = 12;
-        if (entry.time) {
-          const m = entry.time.match(/(\d{1,2}):/);
-          if (m) hr = Math.min(23, Math.max(0, parseInt(m[1])));
+        const m = timeStr.match(/(\d{1,2}):(\d{2})/);
+        if (m) {
+          hr = Math.min(23, Math.max(0, parseInt(m[1], 10)));
         }
         hourlyFluid[hr] += flOz;
       });
@@ -9779,6 +9846,45 @@ function renderWatchTabConnectedDetails() {
         `;
       });
 
+      // Synchronize clinical dehydration report cards if present
+      const elRepTotal = document.getElementById('repMetricFluidTotal');
+      if (elRepTotal) elRepTotal.textContent = `${currentTotalOz.toFixed(1)} FL OZ`;
+      const elRepMl = document.getElementById('repMetricFluidMl');
+      if (elRepMl) elRepMl.textContent = `${Math.round(currentTotalOz * 29.5735)} mL consumed`;
+      const elRepProg = document.getElementById('repMetricFluidProgress');
+      if (elRepProg) elRepProg.textContent = `${targetPct}%`;
+      const elRepRem = document.getElementById('repMetricFluidRemaining');
+      if (elRepRem) {
+        const remainingOz = Math.max(0, targetOz - currentTotalOz);
+        elRepRem.textContent = remainingOz === 0 ? 'Goal achieved (≥64 oz)' : `${remainingOz.toFixed(1)} oz to clinical goal`;
+      }
+      const badgeRisk = document.getElementById('repBadgeDehydrationRisk');
+      const elRisk = document.getElementById('repMetricDehydrationRisk');
+      if (badgeRisk && elRisk) {
+        if (targetPct >= 80) {
+          badgeRisk.textContent = "HYDRATION STABLE: EUHYDRATION";
+          badgeRisk.style.background = "#ecfdf5";
+          badgeRisk.style.color = "#15803d";
+          badgeRisk.style.borderColor = "#10b981";
+          elRisk.textContent = "LOW (NOMINAL)";
+          elRisk.style.color = "#15803d";
+        } else if (targetPct >= 50) {
+          badgeRisk.textContent = "MILD DEHYDRATION RISK • INTAKE RECOMMENDED";
+          badgeRisk.style.background = "#fefce8";
+          badgeRisk.style.color = "#a16207";
+          badgeRisk.style.borderColor = "#facc15";
+          elRisk.textContent = "MODERATE (LEVEL 1)";
+          elRisk.style.color = "#b45309";
+        } else {
+          badgeRisk.textContent = "⚠️ ELEVATED DEHYDRATION RISK • PROMPT FLUIDS";
+          badgeRisk.style.background = "#fef2f2";
+          badgeRisk.style.color = "#b91c1c";
+          badgeRisk.style.borderColor = "#ef4444";
+          elRisk.textContent = "ELEVATED (LEVEL 2)";
+          elRisk.style.color = "#b91c1c";
+        }
+      }
+
       container.innerHTML = `
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
           <div style="display: flex; gap: 10px; align-items: baseline;">
@@ -9786,7 +9892,7 @@ function renderWatchTabConnectedDetails() {
             <span style="font-size: 0.82rem; color: #64748b; font-weight: 700;">(${Math.round(currentTotalOz * 29.5735)} mL) • ${targetPct}% OF SENIOR TARGET</span>
           </div>
           <div style="display: flex; gap: 6px;">
-            <span class="badge" style="background: ${targetPct >= 80 ? '#dcfce7' : '#fef08a'}; color: ${targetPct >= 80 ? '#15803d' : '#854d0e'}; border: 1.5px solid ${targetPct >= 80 ? '#86efac' : '#ca8a04'}; font-weight: 800; font-size: 0.76rem; padding: 3px 8px;">
+            <span class="badge" style="background: ${targetPct >= 80 ? '#dcfce7' : (targetPct >= 50 ? '#fef08a' : '#fef2f2')}; color: ${targetPct >= 80 ? '#15803d' : (targetPct >= 50 ? '#854d0e' : '#b91c1c')}; border: 1.5px solid ${targetPct >= 80 ? '#86efac' : (targetPct >= 50 ? '#ca8a04' : '#ef4444')}; font-weight: 800; font-size: 0.76rem; padding: 3px 8px;">
               ${targetPct >= 100 ? 'OPTIMAL HYDRATION REACHED' : (targetPct >= 60 ? 'ON TRACK (SENIOR TARGET: 64 OZ)' : 'HYDRATION ATTENTION NEEDED')}
             </span>
           </div>
@@ -14465,7 +14571,8 @@ function switchTab(tabId) {
       const calories = parseInt(currentAnalyzedMealData?.calories || document.getElementById('chipCalories')?.textContent || "540");
 
       try {
-        await fetch('/api/meal/upload', {
+        const apiBase = (window.location.protocol === 'file:' ? 'http://127.0.0.1:8899' : '');
+        await fetch(apiBase + '/api/meal/upload', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -18045,7 +18152,7 @@ Patient`;
       document.getElementById('dietTimestamp').value = localISO;
     }
 
-    function saveMealEntry() {
+    async function saveMealEntry() {
       soundButtonPress();
       const tsVal = document.getElementById('dietTimestamp').value.replace('T', ' ');
       const type = document.getElementById('dietMealType').value;
@@ -18053,24 +18160,54 @@ Patient`;
       const carbs = parseInt(document.getElementById('dietCarbs').value) || 0;
       const protein = parseInt(document.getElementById('dietProtein').value) || 0;
       const cal = parseInt(document.getElementById('dietCalories').value) || 0;
+      const fluidOzVal = parseFloat(document.getElementById('dietFluidOz')?.value) || 12.0;
       const context = document.getElementById('dietContext').value;
 
+      const fullMealName = `[${type}] ${desc}`;
       const newEntry = {
         id: Date.now(),
         ts: tsVal,
+        timestamp: tsVal,
         type: type,
+        meal_name: fullMealName,
         desc: desc,
         carbs: carbs,
+        net_carbs: carbs,
         protein: protein,
         cal: cal,
+        calories: cal,
+        fluid_oz: fluidOzVal,
         context: context,
         glucose: lastGlucoseMg || 0
       };
 
+      // Synchronously post to server SQLite repository
+      try {
+        await fetch('/api/meal/upload', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            meal_name: fullMealName,
+            source: context || "User Manual Entry",
+            description: desc,
+            calories: cal,
+            net_carbs: carbs,
+            total_carbs: carbs,
+            fiber: 0,
+            protein: protein,
+            fat: 0,
+            fluid_oz: fluidOzVal,
+            meets_goal: carbs <= 45
+          })
+        });
+      } catch (e) {
+        console.warn("Could not post meal to server SQLite repository:", e);
+      }
+
       mealJournal.unshift(newEntry);
       try { localStorage.setItem('veepoo_meal_journal', JSON.stringify(mealJournal)); } catch (e) {}
-      renderDietHistory();
-      logLCARS(`[+] Meal logged: ${type} (${carbs}g carbs). Real correlated glucose: ${newEntry.glucose ? newEntry.glucose + ' mg/dL' : 'None'}`, "rx");
+      await renderDietHistory();
+      logLCARS(`[+] Meal logged: ${fullMealName} (${carbs}g carbs, ${fluidOzVal} oz fluid). Real correlated glucose: ${newEntry.glucose ? newEntry.glucose + ' mg/dL' : 'None'}`, "rx");
       clearMealForm();
     }
 
@@ -18079,6 +18216,8 @@ Patient`;
       document.getElementById('dietCarbs').value = '0';
       document.getElementById('dietProtein').value = '0';
       document.getElementById('dietCalories').value = '0';
+      const elFl = document.getElementById('dietFluidOz');
+      if (elFl) elFl.value = '12';
       initDietFormTime();
     }
 
@@ -18089,11 +18228,13 @@ Patient`;
       // 1. Fetch real submitted meals from server SQLite repository
       let meals = [];
       try {
-        const resp = await fetch('/api/meal/recent?limit=100');
+        const apiBase = (window.location.protocol === 'file:' ? 'http://127.0.0.1:8899' : '');
+        const resp = await fetch(apiBase + '/api/meal/recent?limit=100');
         if (resp.ok) {
           const data = await resp.json();
           if (data && data.meals && data.meals.length > 0) {
             meals = data.meals;
+            window._cachedRecentMeals = meals;
           }
         }
       } catch (e) {
@@ -18185,13 +18326,18 @@ Patient`;
         }
 
         const mealTitleLower = (m.meal_name || '').toLowerCase();
-        if (mealTitleLower.includes('[snack]') || mealTitleLower.includes('snack') || mealTitleLower.includes('infusion') || /\btea\b/i.test(mealTitleLower) || mealTitleLower.includes('cookie')) {
+        const isBeverage = mealTitleLower.includes('water') || mealTitleLower.includes('tea') || 
+                           mealTitleLower.includes('infusion') || mealTitleLower.includes('root beer') || 
+                           mealTitleLower.includes('drink') || mealTitleLower.includes('beverage') || 
+                           mealTitleLower.includes('seltzer');
+
+        if (mealTitleLower.includes('[snack]') || mealTitleLower.includes('cookie') || (isBeverage && !mealTitleLower.includes('[breakfast]') && !mealTitleLower.includes('[lunch]') && !mealTitleLower.includes('[dinner]'))) {
           occ = 'Snack';
-        } else if (mealTitleLower.includes('[breakfast]') || mealTitleLower.includes('breakfast') || hour < 11) {
+        } else if (mealTitleLower.includes('[breakfast]') || (!isBeverage && (mealTitleLower.includes('breakfast') || hour < 11))) {
           occ = 'Breakfast';
-        } else if (mealTitleLower.includes('[lunch]') || mealTitleLower.includes('lunch') || (hour >= 11 && hour < 16)) {
+        } else if (mealTitleLower.includes('[lunch]') || (!isBeverage && (mealTitleLower.includes('lunch') || (hour >= 11 && hour < 16)))) {
           occ = 'Lunch';
-        } else if (mealTitleLower.includes('[dinner]') || mealTitleLower.includes('dinner') || hour >= 16) {
+        } else if (mealTitleLower.includes('[dinner]') || (!isBeverage && (mealTitleLower.includes('dinner') || hour >= 16))) {
           occ = 'Dinner';
         } else {
           occ = 'Snack';
@@ -18279,6 +18425,12 @@ Patient`;
       const sC = document.getElementById('sumCarbs'); if (sC && sC.firstChild) sC.firstChild.textContent = Math.round(dayTotalNetC);
       const sP = document.getElementById('sumProtein'); if (sP && sP.firstChild) sP.firstChild.textContent = Math.round(dayTotalPro);
       const sCal = document.getElementById('sumCalories'); if (sCal && sCal.firstChild) sCal.firstChild.textContent = Math.round(dayTotalKcal);
+
+      // Render 24-Hour Hydration Charts on Tab 03 and Tab 04
+      if (typeof renderDailyHydrationChart === 'function') {
+        renderDailyHydrationChart('svgDailyIntakeFluidChart');
+        renderDailyHydrationChart('curveTimelineFluidWater');
+      }
 
       // 3. Render submitted meals list strictly latest to oldest
       meals.forEach((m, idx) => {
