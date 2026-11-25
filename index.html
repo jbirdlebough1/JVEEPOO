@@ -1765,7 +1765,7 @@
         </div>
         <div class="lcars-time-block">
           <div class="actual-datetime" id="actualDateTime">FRIDAY, NOV 20, 2026 9:55:00 AM PST</div>
-          <div class="lcars-stardate" id="stardateClock">BUILD beta.00.01.0022</div>
+          <div class="lcars-stardate" id="stardateClock">BUILD beta.00.01.0024</div>
         </div>
         
       </div>
@@ -9347,7 +9347,7 @@
       const year = now.getFullYear();
       const startOfYear = new Date(year, 0, 1);
       const dayOfYear = (now - startOfYear) / (1000 * 60 * 60 * 24);
-      document.getElementById("stardateClock").textContent = "BUILD beta.00.01.0022";
+      document.getElementById("stardateClock").textContent = "BUILD beta.00.01.0024";
     }
     setInterval(updateClock, 1000);
     updateClock();
@@ -9856,7 +9856,7 @@ function renderWatchTabConnectedDetails() {
           hr: hr,
           temp: { bodyF: bF, skinF: sF, bodyC: bC },
           hrv: { hrv: hrvVal, stress: stVal }
-        });
+        }, false);
       }
 
       // 3. Recalculate daily hydration chart from journals
@@ -10427,7 +10427,7 @@ function switchTab(tabId) {
               hr: lastHR,
               temp: { bodyF: lastBodyF, skinF: lastSkinF, bodyC: lastBodyC },
               hrv: { hrv: lastHRV, stress: lastStress }
-            });
+            }, false);
           }
         }
         if (typeof initFullScanView === 'function') initFullScanView();
@@ -10646,6 +10646,19 @@ function switchTab(tabId) {
     }
 
     function onTelemetryReceived(event) {
+      const charUuid = event.target.uuid;
+      const value = event.target.value;
+      const bytes = new Uint8Array(value.buffer);
+      totalBytesRx += bytes.length;
+      const rxEl = document.getElementById("rxByteCounter");
+      if (rxEl) rxEl.textContent = `${totalBytesRx} BYTES PROCESSED`;
+
+      const hex = Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join(' ');
+      if (hex === "01 00 00 00") return;
+
+      if (bytes.length === 0) return;
+      const header = bytes[0];
+
       // 0xA0: Battery & Power Status Telemetry
       if (header === 0xA0 && bytes.length >= 5) {
         const batt = bytes[4];
@@ -10663,21 +10676,8 @@ function switchTab(tabId) {
         }
       }
 
-
-      const charUuid = event.target.uuid;
-      const value = event.target.value;
-      const bytes = new Uint8Array(value.buffer);
-      totalBytesRx += bytes.length;
-      document.getElementById("rxByteCounter").textContent = `${totalBytesRx} BYTES PROCESSED`;
-
-      const hex = Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join(' ');
-      if (hex === "01 00 00 00") return;
-
       // Audio packet tick removed
       logLCARS(`RX [${charUuid.substring(0, 8)}]: ${hex}`, "rx");
-
-      if (bytes.length === 0) return;
-      const header = bytes[0];
 
       // 0xA1: Auth / Time Sync
       if (header === 0xA1 && bytes.length >= 10) {
@@ -12208,6 +12208,9 @@ function switchTab(tabId) {
         </div>
       `;
       logBox.appendChild(entry);
+      while (logBox.children.length > 150) {
+        logBox.removeChild(logBox.firstChild);
+      }
 
       if (currentLogFilter !== 'all') {
         const matches = (currentLogFilter === 'rx' && type === 'rx') ||
@@ -14121,8 +14124,8 @@ function switchTab(tabId) {
         const stored = localStorage.getItem('lcars_popular_meals');
         if (stored) {
           POPULAR_MEALS = JSON.parse(stored);
-          // Purge any synthetic demo keys from legacy sessions
-          const syntheticKeys = ['banquet_beef_pot_pie_7oz', 'meal01', 'meal02', 'soup_grilled_cheese', 'dicks', 'dicks_combo', 'snack_clove_tea', 'snack_apple_walnut', 'snack_granola'];
+          // Purge only legacy demo keys from old alpha sessions
+          const syntheticKeys = ['banquet_beef_pot_pie_7oz', 'soup_grilled_cheese', 'dicks', 'dicks_combo', 'snack_apple_walnut'];
           syntheticKeys.forEach(k => delete POPULAR_MEALS[k]);
           savePopularMealsToStorage();
         } else {
@@ -14155,7 +14158,7 @@ function switchTab(tabId) {
         if (resp.ok) {
           const data = await resp.json();
           const listbox = document.getElementById('listboxPopularMeals');
-          if (data && data.popular_meals && Array.isArray(data.popular_meals)) {
+          if (data && data.popular_meals && Array.isArray(data.popular_meals) && data.popular_meals.length > 0) {
             POPULAR_MEALS = {};
             data.popular_meals.forEach(m => {
               if (m.id) {
@@ -14179,25 +14182,35 @@ function switchTab(tabId) {
 
             if (listbox) {
               listbox.innerHTML = '';
-              if (data.popular_meals.length === 0) {
-                listbox.innerHTML = '<option value="" disabled selected>[NO SAVED MEALS IN PANTRY — USE ESTIMATE &amp; SAVE BELOW]</option>';
-              } else {
-                const seenTitles = new Set();
-                data.popular_meals.forEach(m => {
-                  const normTitle = (m.title || '').trim().toLowerCase();
-                  if (seenTitles.has(normTitle)) return; // Skip duplicates!
-                  seenTitles.add(normTitle);
+              const seenTitles = new Set();
+              data.popular_meals.forEach(m => {
+                const normTitle = (m.title || '').trim().toLowerCase();
+                if (seenTitles.has(normTitle)) return; // Skip duplicates!
+                seenTitles.add(normTitle);
 
-                  const opt = document.createElement('option');
-                  opt.value = m.id;
-                  const statusIcon = (m.net_carbs <= 45) ? '✅' : '⚠️';
-                  opt.textContent = `${statusIcon} ${m.title} (${m.net_carbs}g Net Carbs • ${m.calories} kcal)`;
-                  listbox.appendChild(opt);
-                });
-              }
+                const opt = document.createElement('option');
+                opt.value = m.id;
+                const statusIcon = (m.net_carbs <= 45) ? '✅' : '⚠️';
+                opt.textContent = `${statusIcon} ${m.title} (${m.net_carbs}g Net Carbs • ${m.calories} kcal)`;
+                listbox.appendChild(opt);
+              });
             }
           } else if (listbox && (!POPULAR_MEALS || Object.keys(POPULAR_MEALS).length === 0)) {
             listbox.innerHTML = '<option value="" disabled selected>[NO SAVED MEALS IN PANTRY — USE ESTIMATE &amp; SAVE BELOW]</option>';
+          } else if (listbox && POPULAR_MEALS && Object.keys(POPULAR_MEALS).length > 0) {
+            listbox.innerHTML = '';
+            const seenTitles = new Set();
+            Object.keys(POPULAR_MEALS).forEach(k => {
+              const m = POPULAR_MEALS[k];
+              const normTitle = (m.title || '').trim().toLowerCase();
+              if (seenTitles.has(normTitle)) return;
+              seenTitles.add(normTitle);
+              const opt = document.createElement('option');
+              opt.value = m.id;
+              const statusIcon = (m.netCarbs <= 45) ? '✅' : '⚠️';
+              opt.textContent = `${statusIcon} ${m.title} (${m.netCarbs}g Net Carbs • ${m.calories} kcal)`;
+              listbox.appendChild(opt);
+            });
           }
         }
       } catch (e) {}
@@ -21415,7 +21428,7 @@ All 14 LCARS consoles, 8-lane metabolic chart, and clinical database now match y
     // =========================================================================
     // MASTER FULL SCAN DATA PROPAGATION ENGINE (ACROSS ALL 15 LCARS TABS)
     // =========================================================================
-    function propagateFullScanResultsToAllPages(r) {
+    function propagateFullScanResultsToAllPages(r, persistToDb = false) {
       if (!r) return;
 
       const g = (r.glucose && r.glucose > 0) ? r.glucose : 0;
@@ -21603,28 +21616,30 @@ All 14 LCARS consoles, 8-lane metabolic chart, and clinical database now match y
       }
 
       // -------------------------------------------------------------
-      // 7. POST TO SQLITE VIA /api/telemetry
+      // 7. POST TO SQLITE VIA /api/telemetry (ONLY ON EXPLICIT SCAN COMPLETION)
       // -------------------------------------------------------------
-      const nowTs = new Date().toISOString();
-      const telemetryPackets = [
-        { metric: 'GLUCOSE', value1: g, value2: parseFloat(ea1c), unit: 'mg/dL', status: 'NOMINAL', mode: 'FULL_SCAN', timestamp: nowTs },
-        { metric: 'TEMPERATURE', value1: bodyF, value2: skinF, unit: '°F', status: 'NOMINAL', mode: 'FULL_SCAN', timestamp: nowTs },
-        { metric: 'BLOOD_PRESSURE', value1: sys, value2: dia, unit: 'mmHg', status: 'NOMINAL', mode: 'FULL_SCAN', timestamp: nowTs },
-        { metric: 'BLOOD_OXYGEN', value1: sp, value2: 0, unit: '%', status: 'NOMINAL', mode: 'FULL_SCAN', timestamp: nowTs },
-        { metric: 'HEART_RATE', value1: hr, value2: 0, unit: 'BPM', status: 'NOMINAL', mode: 'FULL_SCAN', timestamp: nowTs },
-        { metric: 'HRV_STRESS', value1: hrvVal, value2: stressVal, unit: 'ms', status: 'NOMINAL', mode: 'FULL_SCAN', timestamp: nowTs }
-      ];
+      if (persistToDb) {
+        const nowTs = new Date().toISOString();
+        const telemetryPackets = [
+          { metric: 'GLUCOSE', value1: g, value2: parseFloat(ea1c), unit: 'mg/dL', status: 'NOMINAL', mode: 'FULL_SCAN', timestamp: nowTs },
+          { metric: 'TEMPERATURE', value1: bodyF, value2: skinF, unit: '°F', status: 'NOMINAL', mode: 'FULL_SCAN', timestamp: nowTs },
+          { metric: 'BLOOD_PRESSURE', value1: sys, value2: dia, unit: 'mmHg', status: 'NOMINAL', mode: 'FULL_SCAN', timestamp: nowTs },
+          { metric: 'BLOOD_OXYGEN', value1: sp, value2: 0, unit: '%', status: 'NOMINAL', mode: 'FULL_SCAN', timestamp: nowTs },
+          { metric: 'HEART_RATE', value1: hr, value2: 0, unit: 'BPM', status: 'NOMINAL', mode: 'FULL_SCAN', timestamp: nowTs },
+          { metric: 'HRV_STRESS', value1: hrvVal, value2: stressVal, unit: 'ms', status: 'NOMINAL', mode: 'FULL_SCAN', timestamp: nowTs }
+        ];
 
-      telemetryPackets.forEach(pkt => {
-        fetch('/api/telemetry', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(pkt)
-        }).catch(() => {});
-      });
+        telemetryPackets.forEach(pkt => {
+          fetch('/api/telemetry', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(pkt)
+          }).catch(() => {});
+        });
+        logLCARS(`[★ FULL SCAN SYNC] Full telemetry saved: Glucose ${g} mg/dL, BP ${sys}/${dia}, SpO2 ${sp}%, HR ${hr} BPM, Temp ${bodyF.toFixed(1)}°F`, "rx", "Full Diagnostic Telemetry Synchronized All Consoles");
+      }
 
       if (typeof render3DMultiChannelScene === 'function') render3DMultiChannelScene();
-      logLCARS(`[★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose ${g} mg/dL, BP ${sys}/${dia}, SpO2 ${sp}%, HR ${hr} BPM, Temp ${bodyF.toFixed(1)}°F`, "rx", "Full Diagnostic Telemetry Synchronized All Consoles");
     }
 
     function generateFinalFullScanReport() {
@@ -21746,7 +21761,7 @@ All 14 LCARS consoles, 8-lane metabolic chart, and clinical database now match y
       }
 
       // Master multi-console synchronization: propagate full scan data across all 15 LCARS consoles & SQLite database
-      propagateFullScanResultsToAllPages(r);
+      propagateFullScanResultsToAllPages(r, true);
 
       logLCARS(`[★ FULL SCAN COMPLETED] Glucose: ${r.glucose} mg/dL | BP: ${r.bp.sys}/${r.bp.dia} | SpO2: ${r.spo2}% | HR: ${r.hr} BPM | Temp: ${r.temp.bodyF.toFixed(1)}°F | HRV: ${r.hrv.hrv} ms`, "rx");
     }
@@ -22782,16 +22797,26 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
           if (typeof updateWatchMetabolicSubReports === 'function') updateWatchMetabolicSubReports();
       if (typeof renderDailyHydrationChart === 'function') renderDailyHydrationChart('curveTimelineFluidWater');
 
-          // Propagate fresh vitals across all screen elements immediately
+          // Propagate fresh vitals across all screen elements immediately (Zero Is Zero)
           if (typeof propagateFullScanResultsToAllPages === 'function') {
             propagateFullScanResultsToAllPages({
-              glucose: lastGlucoseMg || 170,
-              bp: { sys: lastSystolic || 125, dia: lastDiastolic || 83 },
-              spo2: lastSpO2 || 99,
-              hr: lastHR || 76,
-              temp: { bodyF: lastBodyF || 96.1, skinF: lastSkinF || 85.8, bodyC: (lastBodyF ? (lastBodyF - 32) * 5 / 9 : 35.6) },
-              hrv: { hrv: lastHRV || 64, stress: lastStress || 32 }
-            });
+              glucose: (typeof lastGlucoseMg !== 'undefined' && lastGlucoseMg > 0) ? lastGlucoseMg : 0,
+              bp: {
+                sys: (typeof lastSystolic !== 'undefined' && lastSystolic > 0) ? lastSystolic : 0,
+                dia: (typeof lastDiastolic !== 'undefined' && lastDiastolic > 0) ? lastDiastolic : 0
+              },
+              spo2: (typeof lastSpO2 !== 'undefined' && lastSpO2 > 0) ? lastSpO2 : 0,
+              hr: (typeof lastHR !== 'undefined' && lastHR > 0) ? lastHR : 0,
+              temp: {
+                bodyF: (typeof lastBodyF !== 'undefined' && lastBodyF > 0) ? lastBodyF : 0,
+                skinF: (typeof lastSkinF !== 'undefined' && lastSkinF > 0) ? lastSkinF : 0,
+                bodyC: (typeof lastBodyC !== 'undefined' && lastBodyC > 0) ? lastBodyC : 0
+              },
+              hrv: {
+                hrv: (typeof lastHRV !== 'undefined' && lastHRV > 0) ? lastHRV : 0,
+                stress: (typeof lastStress !== 'undefined' && lastStress > 0) ? lastStress : 0
+              }
+            }, false);
           }
         }
       } catch (e) {
