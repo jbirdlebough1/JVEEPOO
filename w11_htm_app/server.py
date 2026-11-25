@@ -518,23 +518,11 @@ DEFAULT_POPULAR_MEALS = [
 ]
 
 def seed_popular_meals_if_empty():
-    with db_lock:
-        conn = get_db()
-        cur = conn.cursor()
-        cur.execute("SELECT COUNT(*) FROM popular_meals")
-        if cur.fetchone()[0] == 0:
-            ts = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            for m in DEFAULT_POPULAR_MEALS:
-                cur.execute("""
-                    INSERT OR REPLACE INTO popular_meals 
-                    (id, title, description, calories, net_carbs, total_carbs, fiber, protein, fat, glycemic_load, tips_json, meets_goal, is_custom, fluid_oz, occasion, updated_at)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-                """, (m["id"], m["title"], m["description"], m["calories"], m["net_carbs"], m["total_carbs"], m["fiber"], m["protein"], m["fat"], m["glycemic_load"], m["tips_json"], m["meets_goal"], m["is_custom"], m.get("fluid_oz", 8.0), m.get("occasion", "Meal"), ts))
-            conn.commit()
-        conn.close()
+    # Pure Zero-Data Reality Principle (Zero Is Zero) - Never inject synthetic placeholder meals
+    pass
 
 def get_popular_meals():
-    seed_popular_meals_if_empty()
+    # Return user-entered meals only (Zero Is Zero)
     with db_lock:
         conn = get_db()
         cur = conn.cursor()
@@ -617,7 +605,10 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
     calculates projected glucose spike, financial dollar costs,
     offers harm-reduction trade choices, and prescribes GLUT4 walking activity.
     """
-    text = (meal_name + " " + custom_notes).lower()
+    if custom_notes and custom_notes.strip().lower() != meal_name.strip().lower():
+        text = f"{meal_name}, {custom_notes}".lower()
+    else:
+        text = meal_name.lower()
     # Typo, phonetic and vendor normalization for compound and beverage inputs
     text = re.sub(r"\bcinnamoon\b|\bcinamon\b|\bcinnimon\b", "cinnamon", text)
     text = re.sub(r"\bcloves\b", "clove", text)
@@ -649,13 +640,15 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
         tot_fat = 0.0
         tot_fl = 0.0
 
+        seen_cats = set()
         for comp in components_split:
             comp_l = comp.lower()
             m_oz = re.search(r'(\d+(?:\.\d+)?)\s*(?:oz|ounces?)', comp_l)
             c_oz = float(m_oz.group(1)) if m_oz else None
 
             # 1. Chicken / Poultry (6 oz portion)
-            if "chicken" in comp_l or "poultry" in comp_l or "turkey" in comp_l:
+            if ("chicken" in comp_l or "poultry" in comp_l or "turkey" in comp_l) and "chicken" not in seen_cats:
+                seen_cats.add("chicken")
                 oz = c_oz if c_oz else 6.0
                 is_breaded = "breaded" in comp_l or "crispy" in comp_l or "fried" in comp_l or "tender" in comp_l
                 cals = int(round(oz * (60.0 if is_breaded else 45.0)))
@@ -669,7 +662,8 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
                 tot_cals += cals; tot_net_c += net_c; tot_fib += fib; tot_pro += pro; tot_fat += fat
 
             # 2. Garden Salad / Lettuce & Tomatoes (3 oz portion)
-            elif any(w in comp_l for w in ["salad", "lettuce", "greens", "tomato", "tomatoes", "cucumber", "spinach"]):
+            elif any(w in comp_l for w in ["salad", "lettuce", "greens", "tomato", "tomatoes", "cucumber", "spinach"]) and "salad" not in seen_cats:
+                seen_cats.add("salad")
                 oz = c_oz if c_oz else 3.0
                 cals = int(round(oz * 7.5))
                 carbs = round(oz * 1.3, 1)
@@ -681,7 +675,8 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
                 tot_cals += cals; tot_net_c += net_c; tot_fib += fib; tot_pro += pro; tot_fat += fat
 
             # 3. Cottage Cheese (3 oz portion)
-            elif "cottage" in comp_l or "curd" in comp_l:
+            elif ("cottage" in comp_l or "curd" in comp_l) and "cottage" not in seen_cats:
+                seen_cats.add("cottage")
                 oz = c_oz if c_oz else 3.0
                 cals = int(round(oz * 24.0))
                 carbs = round(oz * 0.9, 1)
@@ -693,7 +688,8 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
                 tot_cals += cals; tot_net_c += net_c; tot_fib += fib; tot_pro += pro; tot_fat += fat
 
             # 4. Water / Fluid Intake (12 oz)
-            elif any(w in comp_l for w in ["water", "seltzer", "tea", "beverage", "drink"]):
+            elif any(w in comp_l for w in ["water", "seltzer", "tea", "beverage", "drink"]) and "water" not in seen_cats:
+                seen_cats.add("water")
                 oz = c_oz if c_oz else 12.0
                 tot_fl += oz
                 parsed_comps.append({"name": f"Pure Spring Water ({oz:.0f} fl oz)", "portion": f"{oz:.0f} fl oz", "calories": 0, "net_carbs": 0.0, "total_carbs": 0.0, "fiber": 0.0, "protein": 0.0, "fat": 0.0})
@@ -724,7 +720,7 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
                 "protein": tot_pro,
                 "fat": tot_fat,
                 "glycemic_load": f"{round(tot_net_c * 0.45)} (Safe Low Band)",
-                "estimated_cost": "6.25",
+                "estimated_cost": f"{tot_net_c}g Net Carbs",
                 "meets_goal": meets_goal,
                 "is_restaurant": False,
                 "fluid_oz": fl_final,
@@ -2133,7 +2129,7 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
                 "protein": 24.0,
                 "fat": 15.0,
                 "glycemic_load": "10 (Low-Med)",
-                "estimated_cost": "6.25",
+                "estimated_cost": f"{tot_net_c}g Net Carbs",
                 "meets_goal": True,
                 "identified_items": [
                     {"name": "Soft Flour Tortilla with Grilled Chicken", "portion": "1 taco", "net_carbs": 22, "fiber": 2, "protein": 20, "calories": 260},

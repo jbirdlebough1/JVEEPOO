@@ -1761,7 +1761,7 @@
         </div>
         <div class="lcars-time-block">
           <div class="actual-datetime" id="actualDateTime">FRIDAY, NOV 20, 2026 9:55:00 AM PST</div>
-          <div class="lcars-stardate" id="stardateClock">BUILD beta.00.01.0015</div>
+          <div class="lcars-stardate" id="stardateClock">BUILD beta.00.01.0016</div>
         </div>
         
       </div>
@@ -2102,12 +2102,6 @@
         <span id="valSpO2">--</span>
         <span id="badgeSpO2">IDLE</span>
         <span id="unitSpO2">%</span>
-        <span id="valHeartRate">--</span>
-        <span id="badgeHR">IDLE</span>
-        <span id="barHR"></span>
-        <span id="badgeStress">IDLE</span>
-        <span id="txtHRV">--</span>
-        <span id="barStress"></span>
         <span id="txtTempCore">Core: --.-°F</span>
         <span id="txtTempSkin">Skin: --.-°F</span>
         <span id="barTempCore"></span>
@@ -2396,7 +2390,7 @@
               <div class="stat-card" style="border-left-color: var(--lcars-green);">
                 <span class="stat-card-title">BLOOD OXYGEN (SpO2)</span>
                 <span class="stat-card-val" id="tile360Spo2" style="color: var(--lcars-green);">98%</span>
-                <span class="stat-card-sub">Nocturnal Stability >95%</span>
+                <span class="stat-card-sub">Nocturnal Stability &gt;95%</span>
               </div>
               <!-- Tile 4: Heart Rate & HRV -->
               <div class="stat-card" style="border-left-color: var(--lcars-peach);">
@@ -2483,7 +2477,7 @@
                   <label class="setup-label">TIMING RELATIVE TO MEAL</label>
                   <select id="exTiming" class="setup-select">
                     <option value="15-min Post-Meal">15–30 MIN POST-MEAL (OPTIMAL BLUNTING)</option>
-                    <option value="Immediate Post-Meal">IMMEDIATE POST-MEAL (<15 MIN)</option>
+                    <option value="Immediate Post-Meal">IMMEDIATE POST-MEAL (&lt;15 MIN)</option>
                     <option value="Fasted Morning">FASTED MORNING (WAKE-UP SENSITIVITY)</option>
                     <option value="Late Afternoon">AFTERNOON / PRE-DINNER</option>
                     <option value="Evening Stroll">EVENING BEDTIME STROLL</option>
@@ -3481,7 +3475,7 @@
                 </span>
               </div>
               <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
-                <span id="lblAuditRecalcNumber" style="font-family: var(--lcars-mono); font-size: 0.95rem; font-weight: 900; color: #15803d; background: #dcfce7; border: 1.5px solid #86efac; padding: 4px 10px; border-radius: 4px;">85.4% MET</span>
+                <span id="lblAuditRecalcNumber" style="font-family: var(--lcars-mono); font-size: 0.95rem; font-weight: 900; color: #15803d; background: #dcfce7; border: 1.5px solid #86efac; padding: 4px 10px; border-radius: 4px;">[CLICK RE-CALC]</span>
                 <button class="lcars-btn btn-green" style="font-size: 0.8rem; padding: 4px 12px; font-weight: bold;" onclick="runGoalComplianceAudit()">
                   🔄 RE-CALCULATE % GOALS MET ON-DEMAND
                 </button>
@@ -3502,7 +3496,7 @@
                     <circle id="circleGoalAuditProgress" cx="50" cy="50" r="42" fill="none" stroke="#16a34a" stroke-width="10" stroke-dasharray="264" stroke-dashoffset="38" stroke-linecap="round"/>
                   </svg>
                   <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                    <span id="lblAuditCompositePercent" style="font-size: 1.6rem; font-weight: 900; color: #15803d; font-family: var(--lcars-mono);">85.4%</span>
+                    <span id="lblAuditCompositePercent" style="font-size: 1.6rem; font-weight: 900; color: #15803d; font-family: var(--lcars-mono);">0.0%</span>
                     <span style="font-size: 0.68rem; font-weight: bold; color: #64748b; text-transform: uppercase;">GOALS MET</span>
                   </div>
                 </div>
@@ -5551,8 +5545,8 @@
           <div class="log-filter-bar">
             <span style="font-size: 0.8rem; color: var(--lcars-gray);">FILTER STREAM:</span>
             <button class="log-filter-btn active" id="fltAll" onclick="setLogFilter('all')">ALL PACKETS</button>
-            <button class="log-filter-btn" id="fltRx" onclick="setLogFilter('rx')">RX TELEMETRY (WATCH -> HOST)</button>
-            <button class="log-filter-btn" id="fltTx" onclick="setLogFilter('tx')">TX COMMANDS (HOST -> WATCH)</button>
+            <button class="log-filter-btn" id="fltRx" onclick="setLogFilter('rx')">RX TELEMETRY (WATCH -&gt; HOST)</button>
+            <button class="log-filter-btn" id="fltTx" onclick="setLogFilter('tx')">TX COMMANDS (HOST -&gt; WATCH)</button>
             <button class="log-filter-btn" id="fltErr" onclick="setLogFilter('err')">ERRORS / TIMEOUTS</button>
             <span id="rxByteCounter" style="margin-left: auto; font-family: var(--lcars-mono); font-size: 0.85rem; color: var(--lcars-banana);">0 BYTES PROCESSED</span>
           </div>
@@ -6076,7 +6070,7 @@
                   </ol>
                 </div>
                 <div style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.4;">
-                  <strong>Clinical Significance:</strong> Completes Einthoven Lead-I thoracic circuit across the chest cavity. Derives cardiac vector, detects dysrhythmias (PVCs, PACs, atrial fibrillation), and calculates QTc interval (<440ms normal) to screen for Diabetic Autonomic Neuropathy (DAN). Synced into LCARS <strong>Sub-Report 02</strong> with Poincaré 2D Lorenz scatter plots and weekly/monthly/quarterly/YTD trend curves.
+                  <strong>Clinical Significance:</strong> Completes Einthoven Lead-I thoracic circuit across the chest cavity. Derives cardiac vector, detects dysrhythmias (PVCs, PACs, atrial fibrillation), and calculates QTc interval (&lt;440ms normal) to screen for Diabetic Autonomic Neuropathy (DAN). Synced into LCARS <strong>Sub-Report 02</strong> with Poincaré 2D Lorenz scatter plots and weekly/monthly/quarterly/YTD trend curves.
                 </div>
               </div>
 
@@ -6099,7 +6093,7 @@
                   </ol>
                 </div>
                 <div style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.4;">
-                  <strong>Clinical Significance:</strong> Estimates microvascular blood viscosity (cP, target 3.5-4.5 cP), total lipid proxy (optimal <200 mg/dL), and serum uric acid (target <6.5 mg/dL). Enables early detection of hemorheological hyperviscosity and renal microvascular compromise. Synced into LCARS <strong>Sub-Report 04</strong> across weekly, monthly, quarterly, and YTD trend timelines.
+                  <strong>Clinical Significance:</strong> Estimates microvascular blood viscosity (cP, target 3.5-4.5 cP), total lipid proxy (optimal &lt;200 mg/dL), and serum uric acid (target &lt;6.5 mg/dL). Enables early detection of hemorheological hyperviscosity and renal microvascular compromise. Synced into LCARS <strong>Sub-Report 04</strong> across weekly, monthly, quarterly, and YTD trend timelines.
                 </div>
               </div>
 
@@ -6767,7 +6761,7 @@
                       </div>
                       <!-- PHOTO PREVIEW CONTAINER -->
                       <div id="containerMenuPhotoPreview" style="display: none; margin-bottom: 8px; align-items: center; gap: 10px; background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 6px; padding: 6px 10px;">
-                        <img id="imgMenuPhotoThumb" src="" style="width: 44px; height: 44px; object-fit: cover; border-radius: 4px; border: 1px solid #94a3b8;" alt="Menu / Plate Photo">
+                        <img id="imgMenuPhotoThumb" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E" style="width: 44px; height: 44px; object-fit: cover; border-radius: 4px; border: 1px solid #94a3b8;" alt="Menu / Plate Photo">
                         <div style="flex: 1; font-size: 0.75rem; color: #166534;">
                           <strong id="lblPhotoFilename">menu_photo.jpg</strong>
                           <div style="font-size: 0.70rem; color: #475569;">Attached for Multimodal Gemini Vision menu OCR &amp; portion estimation.</div>
@@ -8469,7 +8463,7 @@
             <div class="box-content" style="padding: 16px;">
               <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;" id="watchFaceGalleryGrid">
 
-                <!-- Face 0: Bio-Metabolic LCARS Console -->
+                <!-- Face 0: Bio-Metabolic BFM Dashboard -->
                 <div class="watchface-card" id="cardFace0" style="background: #ffffff; border: 2px solid var(--lcars-banana); border-radius: 10px; padding: 14px; display: flex; flex-direction: column; justify-content: space-between;">
                   <div>
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
@@ -8819,59 +8813,6 @@
             </div>
           </div>
 
-          <!-- COMPONENT 2: LOG MEDICATION CHANGE / TITRATION EVENT -->
-          <div class="diet-form-card" style="border-left-color: var(--lcars-banana);">
-            <div class="setup-section-title">
-              <span style="color: var(--lcars-banana);">02. LOG MEDICATION CHANGE OR TITRATION (PIN TO CLINICAL TIMELINE)</span>
-              <span style="font-size: 0.85rem; color: var(--lcars-green);">AUTOMATICALLY FLAGS TIMELINE TO EVALUATE PROGRESS VS REGRESSION</span>
-            </div>
-
-            <div style="font-size: 0.86rem; color: var(--lcars-text); margin-bottom: 8px; line-height: 1.4;">
-              When your physician changes a medication dosage, switches a drug class, or introduces a new agent, log the change below. The system pins a <strong>"💊 MED CHANGE"</strong> milestone marker across the daily, weekly, and yearly timeline charts so you and your doctor can visually evaluate whether the change prompted glycemic progress or regression.
-            </div>
-
-            <div class="diet-form-grid">
-              <div class="setup-field">
-                <label class="setup-label">CHANGE DATE &amp; TIME</label>
-                <input type="datetime-local" id="medChangeTimestamp" class="setup-input">
-              </div>
-              <div class="setup-field">
-                <label class="setup-label">MEDICATION NAME</label>
-                <input type="text" id="medChangeName" class="setup-input" placeholder="e.g. Metformin ER, Empagliflozin, Ozempic">
-              </div>
-              <div class="setup-field">
-                <label class="setup-label">CHANGE CLASSIFICATION</label>
-                <select id="medChangeType" class="setup-select">
-                  <option value="Dose Increase">DOSAGE INCREASE (TITRATION UP)</option>
-                  <option value="Dose Decrease">DOSAGE DECREASE (TAPERING DOWN)</option>
-                  <option value="New Medication">NEW MEDICATION INITIATED</option>
-                  <option value="Discontinued">MEDICATION DISCONTINUED</option>
-                  <option value="Schedule Change">INTAKE SCHEDULE / TIMING CHANGE</option>
-                </select>
-              </div>
-              <div class="setup-field">
-                <label class="setup-label">PREVIOUS DOSAGE</label>
-                <input type="text" id="medChangeOldDose" class="setup-input" placeholder="e.g. 500 mg Daily">
-              </div>
-              <div class="setup-field">
-                <label class="setup-label">NEW PRESCRIBED DOSAGE</label>
-                <input type="text" id="medChangeNewDose" class="setup-input" placeholder="e.g. 1,000 mg BID (Breakfast &amp; Dinner)">
-              </div>
-              <div class="setup-field">
-                <label class="setup-label">PRESCRIBING PHYSICIAN / CLINIC</label>
-                <input type="text" id="medChangeDoctor" class="setup-input" placeholder="e.g. Dr. Martinez, Endocrinology Clinic">
-              </div>
-              <div class="setup-field" style="grid-column: span 2;">
-                <label class="setup-label">CLINICAL RATIONALE &amp; EXPECTED OUTCOME</label>
-                <input type="text" id="medChangeReason" class="setup-input" placeholder="e.g. Titrated up to address elevated morning fasting levels; target HbA1c &lt; 7.0%">
-              </div>
-            </div>
-            <div style="display: flex; gap: 10px; margin-top: 10px;">
-              <button class="lcars-btn btn-banana" style="flex: 2;" onclick="saveMedicationChange()">COMMIT MEDICATION CHANGE &amp; PIN TO CLINICAL TIMELINE</button>
-              <button class="lcars-btn btn-orange" style="flex: 1;" onclick="clearMedChangeForm()">CLEAR FORM</button>
-            </div>
-          </div>
-
           <!-- COMPONENT 3: CHRONOLOGICAL MEDICATION CHANGE HISTORY & CLINICAL PROGRESS AUDIT -->
           <div class="diet-form-card" style="border-left-color: var(--lcars-lilac);">
             <div class="setup-section-title" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
@@ -8904,7 +8845,7 @@
           <div class="box-header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #e2e8f0; padding-bottom: 12px; margin-bottom: 16px;">
             <div>
               <span class="box-title" style="color: #15803d; font-size: 1.25rem; font-weight: 900; letter-spacing: 1px;">
-                13-CLINICAL DIABETIC GOALS &amp; PERSONALIZED AMBULATORY CARE PROTOCOL
+                08-CLINICAL DIABETIC GOALS &amp; PERSONALIZED AMBULATORY CARE PROTOCOL
               </span>
               <div style="font-size: 0.85rem; color: #475569; margin-top: 3px;">
                 COLLABORATIVE PHYSICIAN &amp; PATIENT TARGET SETUP • CLOSED-LOOP MULTI-LANE TELEMETRY AUDITING
@@ -9399,7 +9340,7 @@
       const year = now.getFullYear();
       const startOfYear = new Date(year, 0, 1);
       const dayOfYear = (now - startOfYear) / (1000 * 60 * 60 * 24);
-      document.getElementById("stardateClock").textContent = "BUILD beta.00.01.0015";
+      document.getElementById("stardateClock").textContent = "BUILD beta.00.01.0016";
     }
     setInterval(updateClock, 1000);
     updateClock();
@@ -13936,21 +13877,6 @@ function switchTab(tabId) {
     // ON-DEMAND CLINICAL GOAL COMPLIANCE AUDIT (% OF GOALS MET)
     // =========================================================================
     function runGoalComplianceAudit() {
-      const lblRecalcNum = document.getElementById('lblAuditRecalcNumber');
-      if (lblRecalcNum) {
-        lblRecalcNum.textContent = "0% (RECALCULATING...)";
-        lblRecalcNum.style.background = "#fef08a";
-        lblRecalcNum.style.color = "#854d0e";
-        setTimeout(() => { if (lblRecalcNum) lblRecalcNum.textContent = "35% (ANALYZING SENSORS...)"; }, 120);
-        setTimeout(() => { if (lblRecalcNum) lblRecalcNum.textContent = "70% (RECONCILING GOALS...)"; }, 250);
-        setTimeout(() => {
-          if (lblRecalcNum) {
-            lblRecalcNum.textContent = `${compositeScore > 0 ? compositeScore.toFixed(1) : '85.4'}% MET (CURRENT)`;
-            lblRecalcNum.style.background = "#dcfce7";
-            lblRecalcNum.style.color = "#15803d";
-          }
-        }, 400);
-      }
       const goals = getActiveClinicalGoals();
       
       // 1. Daily Steps Compliance against active target (default 2000 steps)
@@ -13966,61 +13892,67 @@ function switchTab(tabId) {
       }
 
       // 3. Dietary Compliance: percentage of logged meals <= 45g net carbs
-      let carbRatio = 100;
-      if (typeof mealJournal !== 'undefined' && mealJournal.length > 0) {
-        const metMeals = mealJournal.filter(m => (m.carbs || 0) <= (goals.maxCarbsMeal || 45)).length;
-        carbRatio = Math.round((metMeals / mealJournal.length) * 100);
+      const meals = (typeof patientDietaryLog !== 'undefined' && Array.isArray(patientDietaryLog)) ? patientDietaryLog : [];
+      let dietRatio = 100;
+      if (meals.length > 0) {
+        const compliantMeals = meals.filter(m => (m.net_carbs || m.netCarbs || 0) <= goals.maxCarbsMeal).length;
+        dietRatio = Math.round((compliantMeals / meals.length) * 100);
       }
 
-      // 4. SpO2 Compliance (target >= 95%)
-      const spo2 = (typeof lastSpO2 === 'number' && lastSpO2 > 0) ? lastSpO2 : 98;
-      const spo2Ratio = spo2 >= 95 ? 100 : Math.max(50, Math.round((spo2 / 95) * 100));
+      // 4. Nocturnal Glycemic Stability Ratio
+      const noctRatio = (typeof lastHypnoScore === 'number' && lastHypnoScore > 0) ? lastHypnoScore : 88;
 
-      // 5. Autonomic Stress / HRV Compliance (target >= 50ms)
-      const hrv = (typeof lastHRV === 'number' && lastHRV > 0) ? lastHRV : 64;
-      const hrvRatio = Math.min(100, Math.round((hrv / 50) * 100));
+      // 5. Blood Pressure Compliance
+      const bpSys = (typeof lastSysBp === 'number' && lastSysBp > 0) ? lastSysBp : 120;
+      const bpDia = (typeof lastDiaBp === 'number' && lastDiaBp > 0) ? lastDiaBp : 80;
+      const bpRatio = (bpSys <= goals.maxBpSys && bpDia <= goals.maxBpDia) ? 100 : 75;
 
-      // Dynamic Weighted Composite Score
-      const compositeScore = (actualSteps > 0 || g > 0)
-        ? parseFloat(((stepRatio * 0.30) + (tirRatio * 0.30) + (carbRatio * 0.20) + (spo2Ratio * 0.10) + (hrvRatio * 0.10)).toFixed(1))
-        : 0.0;
+      // 6. Medication Adherence
+      const medRatio = (typeof medAdherenceScore === 'number') ? medAdherenceScore : 100;
 
-      const lblScore = document.getElementById('lblAuditCompositePercent');
-      if (lblScore) lblScore.textContent = compositeScore > 0 ? (compositeScore.toFixed(1) + '%') : '--%';
+      // 7. Hydration Compliance: against 64 oz fluid target
+      const targetHydration = 64;
+      const actualHydration = (typeof currentDailyHydrationOz === 'number') ? currentDailyHydrationOz : 48;
+      const hydrRatio = Math.min(100, Math.round((actualHydration / targetHydration) * 100));
 
-      const circle = document.getElementById('circleGoalAuditProgress');
-      if (circle) {
-        const circumference = 264;
-        const offset = circumference - (circumference * (compositeScore / 100));
-        circle.style.strokeDashoffset = offset.toFixed(0);
+      // Weighted Composite Score
+      const compositeScore = Math.round(
+        (tirRatio * 0.28) +
+        (dietRatio * 0.22) +
+        (stepRatio * 0.15) +
+        (noctRatio * 0.12) +
+        (bpRatio * 0.10) +
+        (medRatio * 0.08) +
+        (hydrRatio * 0.05)
+      );
+
+      const lblRecalcNum = document.getElementById('lblAuditRecalcNumber');
+      const lblCompositePercent = document.getElementById('lblAuditCompositePercent');
+      const circleProgress = document.getElementById('circleGoalAuditProgress');
+
+      if (lblRecalcNum) {
+        lblRecalcNum.textContent = "0% (RECALCULATING...)";
+        lblRecalcNum.style.background = "#fef08a";
+        lblRecalcNum.style.color = "#854d0e";
+        setTimeout(() => { if (lblRecalcNum) lblRecalcNum.textContent = "25% (ANALYZING SENSORS...)"; }, 80);
+        setTimeout(() => { if (lblRecalcNum) lblRecalcNum.textContent = "50% (RECONCILING GOALS...)"; }, 160);
+        setTimeout(() => { if (lblRecalcNum) lblRecalcNum.textContent = "75% (WEIGHTING DOMAINS...)"; }, 240);
+        setTimeout(() => {
+          if (lblRecalcNum) {
+            lblRecalcNum.textContent = `${compositeScore.toFixed(1)}% MET (CURRENT)`;
+            lblRecalcNum.style.background = "#dcfce7";
+            lblRecalcNum.style.color = "#15803d";
+          }
+          if (lblCompositePercent) {
+            lblCompositePercent.textContent = `${compositeScore.toFixed(1)}%`;
+          }
+          if (circleProgress) {
+            const circumference = 2 * Math.PI * 42; // ~263.89
+            const offset = circumference - (compositeScore / 100) * circumference;
+            circleProgress.style.strokeDashoffset = offset.toFixed(1);
+          }
+        }, 320);
       }
-
-      const badge = document.getElementById('badgeAuditGrade');
-      if (badge) {
-        if (compositeScore >= 80) {
-          badge.textContent = `GRADE A • EXCELLENT ADHERENCE (${compositeScore}%)`;
-          badge.style.background = "#dcfce7";
-          badge.style.color = "#15803d";
-          badge.style.borderColor = "#86efac";
-        } else if (compositeScore >= 60) {
-          badge.textContent = `GRADE B • CLINICAL PROGRESS (${compositeScore}%)`;
-          badge.style.background = "#fef3c7";
-          badge.style.color = "#b45309";
-          badge.style.borderColor = "#fcd34d";
-        } else if (compositeScore > 0) {
-          badge.textContent = `GRADE C • ATTENTION REQUIRED (${compositeScore}%)`;
-          badge.style.background = "#fee2e2";
-          badge.style.color = "#dc2626";
-          badge.style.borderColor = "#fca5a5";
-        } else {
-          badge.textContent = `[AWAITING LIVE SENSORS]`;
-          badge.style.background = "#f1f5f9";
-          badge.style.color = "#64748b";
-          badge.style.borderColor = "#cbd5e1";
-        }
-      }
-
-      if (typeof soundNotification === 'function') soundNotification();
     }
 
     function exportGoalAuditToEpic() {
@@ -14033,206 +13965,7 @@ function switchTab(tabId) {
     // =========================================================================
     
     // Default initial popular meals (strictly clinically vetted - NO MCDONALD'S)
-    const DEFAULT_POPULAR_MEALS = {
-      snack_granola: {
-        id: "SNACK-03",
-        title: "Snack Strawberry Vanilla Granola",
-        desc: "Snack Strawberry Vanilla Granola: 1/2 cup organic toasted oats with freeze-dried strawberries, Madagascar vanilla, chia seeds, and unsweetened almond milk.",
-        calories: 220,
-        netCarbs: 26,
-        totalCarbs: 31,
-        fiber: 5,
-        protein: 6,
-        fat: 8,
-        gl: "6 (LOW)",
-        fluidOz: 8.0,
-        occasion: "Snack",
-        meetsGoal: true,
-        tips: [
-          "Oat beta-glucans and chia seed mucilage moderate gastric emptying.",
-          "Freeze-dried strawberries deliver high-potency polyphenols with modest fructose."
-        ],
-        glut4: "<strong>10-Minute Stroll:</strong> Light post-snack walk buffers carbohydrate absorption.",
-        glut4Peak: "PREDICTED PEAK: 128 MG/DL (NOMINAL)",
-        bom: [
-          { item: "Organic Strawberry Vanilla Granola", portion: "1/2 cup (50g)", dept: "Aisle 4: Cereal & Granola", impact: "Whole Grain Rolled Oats & Vanilla", cost: "24g Net Carbs" },
-          { item: "Freeze-Dried Sliced Strawberries", portion: "2 tbsp (8g)", dept: "Produce / Dried Fruits", impact: "Anthocyanin Polyphenols", cost: "2g Net Carbs" },
-          { item: "Unsweetened Vanilla Almond Milk", portion: "1/2 cup (120ml)", dept: "Dairy / Plant Milk", impact: "Calcium & Vitamin E", cost: "0g Net Carbs" }
-        ],
-        totalBOMCost: "26g Net Carbs per serving"
-      },
-      meal01: {
-        id: "MEAL-01",
-        title: "Mon-Sat High-Fiber Metabolic Breakfast",
-        desc: "1/2 cup fresh berries, 3 all-natural turkey sausage links, 1/2 banana sliced, 1/2 cup steel cut oatmeal prepared with Ceylon cinnamon and 1 tbsp ground flax seed, unsweetened oat milk.",
-        calories: 430,
-        netCarbs: 38,
-        totalCarbs: 48,
-        fiber: 10,
-        protein: 24,
-        fat: 14,
-        gl: "12 (MED-LOW)",
-        fluidOz: 8.0,
-        occasion: "Breakfast",
-        meetsGoal: true,
-        tips: [
-          "Steel cut oats and ground flaxseed form a viscous matrix slowing carbohydrate digestion.",
-          "8 oz unsweetened oat milk provides essential hydration with zero added sugar (<1g net carb).",
-          "15-minute GLUT4 post-meal stroll keeps glucose peak < 122 mg/dL."
-        ],
-        glut4: "<strong>15-Minute Post-Meal Stroll:</strong> Light walking starting 25 min post-meal completely dampens the predicted 38 mg/dL curve down to < 14 mg/dL.",
-        glut4Peak: "PREDICTED PEAK WITH WALK: 122 MG/DL (STEADY COMPLIANCE)",
-        bom: [
-          { item: "Organic Steel Cut Oats (Bob's Red Mill / Quaker)", portion: "1/2 cup dry (40g)", dept: "Aisle 4: Hot Breakfast Grains", impact: "High Beta-Glucan Soluble Fiber", cost: "18g Net Carbs" },
-          { item: "Fresh Organic Mixed Berries (Blueberries & Blackberries)", portion: "1/2 cup (75g)", dept: "Produce: Fresh Berry Cooler", impact: "Low GI Polyphenols & Antioxidants", cost: "5g Net Carbs" },
-          { item: "All-Natural Turkey Sausage Links (Jennie-O / Applegate)", portion: "3 cooked links (60g)", dept: "Meat: Poultry & Sausage Case", impact: "Lean Protein / Albumin Satiety", cost: "1g Net Carb" },
-          { item: "Fresh Banana (Yellow with green tips)", portion: "1/2 medium banana", dept: "Produce: Fresh Fruit Stand", impact: "Resistant Starch & Potassium", cost: "6g Net Carbs" },
-          { item: "Organic Ground Flaxseed Meal (Spectrum / Bob's)", portion: "1 tbsp (10g)", dept: "Natural Foods / Baking Aisle", impact: "Omega-3 ALA & Lignan Mucilage", cost: "0g Net Carbs" },
-          { item: "Pure Organic Ceylon Cinnamon Powder", portion: "1/2 tsp (1.5g)", dept: "Aisle 7: Spices & Seasonings", impact: "Cinnamtannin Insulin Mimetic", cost: "0g Net Carbs" },
-          { item: "Unsweetened Plain Oat Milk (Planet Oat / Califia)", portion: "1/2 cup (120ml)", dept: "Dairy / Plant-Based Beverages", impact: "Zero Added Sugar (<1g Net Carb)", cost: "1g Net Carb" }
-        ],
-        totalBOMCost: "31g Net Carbs per serving (Clinically Compliant)"
-      },
-      meal02: {
-        id: "MEAL-02",
-        title: "Sunday Protein & Sprouted Toast Breakfast",
-        desc: "2 large eggs scrambled in butter/olive oil, 3 turkey sausage links, 1 slice 100% whole wheat sprouted bread, 1/2 cup organic berries, fresh black coffee.",
-        calories: 385,
-        netCarbs: 17,
-        totalCarbs: 22,
-        fiber: 5,
-        protein: 29,
-        fat: 19,
-        gl: "5 (VERY LOW)",
-        fluidOz: 8.0,
-        occasion: "Breakfast",
-        meetsGoal: true,
-        tips: [
-          "High albumin protein-to-carb ratio (1.7:1) stimulates GLP-1 without beta-cell strain.",
-          "8 oz black coffee / water delivers zero glycemic impact hydration."
-        ],
-        glut4: "<strong>Relaxed 15-Minute Sunday Stroll:</strong> Keeps digestive motility active and supports Sunday circadian relaxation.",
-        glut4Peak: "PREDICTED PEAK: 116 MG/DL (EXCELLENT CONTROL)",
-        bom: [
-          { item: "Pasture-Raised Grade A Large Eggs (Vital Farms / Pete & Gerry's)", portion: "2 whole eggs", dept: "Dairy: Egg Case", impact: "Choline & Complete Amino Acids", cost: "1g Net Carb" },
-          { item: "All-Natural Turkey Sausage Links (Jennie-O / Butterball)", portion: "3 cooked links (60g)", dept: "Meat: Poultry & Breakfast Meats", impact: "Lean Protein / Low Saturated Fat", cost: "1g Net Carb" },
-          { item: "100% Whole Wheat Sprouted Bread (Dave's Killer / Ezekiel)", portion: "1 slice toasted (34g)", dept: "Bakery / Whole Grain Bread", impact: "Sprouted Grain Low Glycemic Index", cost: "10g Net Carbs" },
-          { item: "Fresh Organic Mixed Berries (Blueberries & Raspberries)", portion: "1/2 cup (75g)", dept: "Produce: Organic Fruit Case", impact: "Anthocyanins & Fiber", cost: "5g Net Carbs" },
-          { item: "Grass-Fed Pure Butter or Extra Virgin Olive Oil", portion: "1 tsp (5g)", dept: "Dairy / Butter Case", impact: "Healthy Lipids & Satiety Buffer", cost: "0g Net Carbs" }
-        ],
-        totalBOMCost: "17g Net Carbs per serving (Optimal Euglycemic Band)"
-      },
-      soup_grilled_cheese: {
-        id: "MEAL-06",
-        title: "Weekly Vegetable & Meat Soup with Whole Wheat Grilled Cheese, Mini Orange & Apple Slices",
-        desc: "Weekly vegetable & meat soup, whole wheat grilled cheese sandwich, 1 miniature orange (1.5oz), 1/2 apple slices, spring water.",
-        calories: 493,
-        netCarbs: 34,
-        totalCarbs: 43.2,
-        fiber: 9.2,
-        protein: 30.6,
-        fat: 22.2,
-        gl: "8 (LOW)",
-        fluidOz: 16.0,
-        occasion: "Lunch",
-        meetsGoal: true,
-        tips: [
-          "Vegetable fiber and beef broth proteins blunt postprandial glycemic excursions.",
-          "16 oz hydration (broth + spring water) expands intravascular plasma volume to reduce peak glucose concentration.",
-          "Small fruit portioning (1.5oz orange + 1/2 apple) stays strictly within 45g net carb ceiling."
-        ],
-        glut4: "15-minute post-meal GLUT4 walk promotes peripheral glucose uptake.",
-        glut4Peak: "PREDICTED PEAK: 126 MG/DL (OPTIMAL GLYCEMIC REGULATION)"
-      },
-      dicks: {
-        id: "MEAL-04",
-        title: "Dick's Drive-In Deluxe Burger (Seattle Iconic 1954)",
-        desc: "Dick's Deluxe 100% real beef double patties, melted cheese, crisp lettuce, pickle relish and mayo on a toasted bun, iced water.",
-        calories: 420,
-        netCarbs: 28,
-        totalCarbs: 30,
-        fiber: 2,
-        protein: 20,
-        fat: 26,
-        gl: "12 (MED-LOW)",
-        fluidOz: 12.0,
-        occasion: "Lunch/Dinner",
-        meetsGoal: true,
-        tips: [
-          "28g Net Carbs is well below your 45g ceiling!",
-          "Beef albumin and healthy lipid buffer slows carb absorption.",
-          "12 oz filtered iced water provides essential hydration with zero glycemic impact."
-        ],
-        glut4: "15-minute post-meal walk keeps peak < 160 mg/dL.",
-        glut4Peak: "PREDICTED PEAK WITH WALK: 128 MG/DL (SAFE TARGET BAND)"
-      },
-      dicks_combo: {
-        id: "MEAL-05",
-        title: "Dick's Drive-In: 2 Cheeseburgers, 3 Tartar, Fries & Large Diet",
-        desc: "Dick's Drive-In order: 2 cheeseburgers, 3 house tartar sauces, 1 regular hand-cut fry, and 1 large diet drink.",
-        calories: 1260,
-        netCarbs: 95,
-        totalCarbs: 101,
-        fiber: 6,
-        protein: 35,
-        fat: 78,
-        gl: "38 (HIGH SPIKE)",
-        fluidOz: 24.0,
-        occasion: "Dinner",
-        meetsGoal: false,
-        tips: [
-          "<strong>Carb Breakdown:</strong> 50g net carbs from 2 cheeseburgers + 44g from hand-cut fries + 1g from 3 tartar sauces + 0g from diet drink = 95g Net Carbs.",
-          "<strong>Anticipated Excursion:</strong> Glucose spike of +75 to +90 mg/dL without kinetic intervention.",
-          "24 oz diet beverage delivers zero glycemic hydration."
-        ],
-        glut4: "<strong>Mandatory 35-45 Minute Brisk GLUT4 Walk starting 20 min post-meal:</strong> Translocates muscle GLUT4 transporters to cell membrane without insulin, forcing glucose directly into working skeletal muscle.",
-        glut4Peak: "PREDICTED PEAK WITHOUT WALK: 185-195 MG/DL | WITH 40-MIN WALK: 148 MG/DL (BLUNTED)"
-      },
-      snack_clove_tea: {
-        id: "SNACK-01",
-        title: "[Snack] Brewed Clove & Ceylon Cinnamon Herbal Infusion",
-        desc: "16 oz hot brewed whole clove & Ceylon cinnamon herbal infusion. Zero sugar, anti-inflammatory, polyphenol rich.",
-        calories: 2,
-        netCarbs: 0.5,
-        totalCarbs: 0.5,
-        fiber: 0.0,
-        protein: 0.0,
-        fat: 0.0,
-        gl: "0 (ZERO)",
-        fluidOz: 16.0,
-        occasion: "Snack",
-        meetsGoal: true,
-        tips: [
-          "16 oz herbal hydration stimulates renal clearance and decreases plasma viscosity.",
-          "Eugenol and cinnamtannin B1 improve peripheral insulin receptor sensitivity.",
-          "Full snack meal status with zero caloric or glycemic load."
-        ],
-        glut4: "No postprandial GLUT4 walk required. Glycemic trajectory will remain completely flat in target safe zone.",
-        glut4Peak: "PREDICTED PEAK: FLATLINE (< 2 MG/DL EXCURSION)"
-      },
-      snack_apple_walnut: {
-        id: "SNACK-02",
-        title: "[Snack] Crisp Green Apple Slices & Raw California Walnuts",
-        desc: "1/2 crisp green apple sliced with 1 oz raw California walnut halves and 12 oz chilled sparkling water.",
-        calories: 240,
-        netCarbs: 14.0,
-        totalCarbs: 18.0,
-        fiber: 4.0,
-        protein: 5.0,
-        fat: 18.0,
-        gl: "4 (LOW)",
-        fluidOz: 12.0,
-        occasion: "Snack",
-        meetsGoal: true,
-        tips: [
-          "Omega-3 fatty acids in walnuts slow gastric emptying of fructose.",
-          "12 oz sparkling water supports optimal metabolic hydration.",
-          "Ideal afternoon bridge meal maintaining steady 90-110 mg/dL glucose baseline."
-        ],
-        glut4: "15-minute relaxed stroll promotes healthy digestive circulation.",
-        glut4Peak: "PREDICTED PEAK: 106 MG/DL (FLAT BASELINE)"
-      }
-    };
+    const DEFAULT_POPULAR_MEALS = {};
 
     // Backward compatibility alias for presets
     const MEAL_BUILDER_PRESETS = DEFAULT_POPULAR_MEALS;
@@ -14247,12 +13980,15 @@ function switchTab(tabId) {
         const stored = localStorage.getItem('lcars_popular_meals');
         if (stored) {
           POPULAR_MEALS = JSON.parse(stored);
-        } else {
-          POPULAR_MEALS = JSON.parse(JSON.stringify(DEFAULT_POPULAR_MEALS));
+          // Purge any synthetic demo keys from legacy sessions
+          const syntheticKeys = ['banquet_beef_pot_pie_7oz', 'meal01', 'meal02', 'soup_grilled_cheese', 'dicks', 'dicks_combo', 'snack_clove_tea', 'snack_apple_walnut', 'snack_granola'];
+          syntheticKeys.forEach(k => delete POPULAR_MEALS[k]);
           savePopularMealsToStorage();
+        } else {
+          POPULAR_MEALS = {};
         }
       } catch (e) {
-        POPULAR_MEALS = JSON.parse(JSON.stringify(DEFAULT_POPULAR_MEALS));
+        POPULAR_MEALS = {};
       }
 
       syncPopularMealsWithServer();
@@ -14273,10 +14009,13 @@ function switchTab(tabId) {
 
     async function syncPopularMealsWithServer() {
       try {
-        const resp = await fetch('/api/meals/popular');
+        const apiHost = window.location.protocol === 'file:' ? 'http://127.0.0.1:8899' : '';
+        const resp = await fetch(apiHost + '/api/meals/popular');
         if (resp.ok) {
           const data = await resp.json();
+          const listbox = document.getElementById('listboxPopularMeals');
           if (data && data.popular_meals && Array.isArray(data.popular_meals)) {
+            POPULAR_MEALS = {};
             data.popular_meals.forEach(m => {
               if (m.id) {
                 POPULAR_MEALS[m.id] = {
@@ -14297,23 +14036,27 @@ function switchTab(tabId) {
             });
             savePopularMealsToStorage();
 
-            // Synchronize with #listboxPopularMeals in Meal Pantry (DEDUPLICATED BY TITLE)
-            const listbox = document.getElementById('listboxPopularMeals');
             if (listbox) {
               listbox.innerHTML = '';
-              const seenTitles = new Set();
-              data.popular_meals.forEach(m => {
-                const normTitle = (m.title || '').trim().toLowerCase();
-                if (seenTitles.has(normTitle)) return; // Skip duplicates!
-                seenTitles.add(normTitle);
+              if (data.popular_meals.length === 0) {
+                listbox.innerHTML = '<option value="" disabled selected>[NO SAVED MEALS IN PANTRY — USE ESTIMATE &amp; SAVE BELOW]</option>';
+              } else {
+                const seenTitles = new Set();
+                data.popular_meals.forEach(m => {
+                  const normTitle = (m.title || '').trim().toLowerCase();
+                  if (seenTitles.has(normTitle)) return; // Skip duplicates!
+                  seenTitles.add(normTitle);
 
-                const opt = document.createElement('option');
-                opt.value = m.id;
-                const statusIcon = (m.net_carbs <= 45) ? '✅' : '⚠️';
-                opt.textContent = `${statusIcon} ${m.title} (${m.net_carbs}g Net Carbs • ${m.calories} kcal)`;
-                listbox.appendChild(opt);
-              });
+                  const opt = document.createElement('option');
+                  opt.value = m.id;
+                  const statusIcon = (m.net_carbs <= 45) ? '✅' : '⚠️';
+                  opt.textContent = `${statusIcon} ${m.title} (${m.net_carbs}g Net Carbs • ${m.calories} kcal)`;
+                  listbox.appendChild(opt);
+                });
+              }
             }
+          } else if (listbox && (!POPULAR_MEALS || Object.keys(POPULAR_MEALS).length === 0)) {
+            listbox.innerHTML = '<option value="" disabled selected>[NO SAVED MEALS IN PANTRY — USE ESTIMATE &amp; SAVE BELOW]</option>';
           }
         }
       } catch (e) {}
@@ -19575,7 +19318,7 @@ Patient`;
       const gapBlocks = [];
       let curBlock = null;
       data.forEach((d, i) => {
-        const isGap = (d.isChargingGap || d.g === null);
+        const isGap = !d.isFuture && (d.isChargingGap || (d.g === null && !d.isFuture));
         if (isGap) {
           if (!curBlock) curBlock = { start: i, end: i };
           else curBlock.end = i;
@@ -19595,12 +19338,8 @@ Patient`;
         const midX = (x1 + x2) / 2;
 
         svg += `
-          <!-- Contiguous Watch Charging / Off-Wrist Region -->
-          <rect x="${x1.toFixed(1)}" y="20" width="${gapW.toFixed(1)}" height="${H - 55}" fill="rgba(56, 189, 248, 0.16)" stroke="#38bdf8" stroke-dasharray="4 4" rx="4"/>
-          <g>
-            <rect x="${(midX - 120).toFixed(1)}" y="26" width="240" height="20" fill="#ffffff" stroke="#38bdf8" stroke-width="1.5" rx="4" style="filter: drop-shadow(0 1px 3px rgba(0,0,0,0.08));"/>
-            <text x="${midX.toFixed(1)}" y="40" text-anchor="middle" fill="#0284c7" font-size="8.5" font-weight="900">⚡ WATCH NOT SENSING (OFF-WRIST / SHOWER / CHARGING)</text>
-          </g>
+          <!-- Contiguous Watch Charging / Off-Wrist Region (Subtle Translucent Blue Fill Only) -->
+          <rect x="${x1.toFixed(1)}" y="20" width="${gapW.toFixed(1)}" height="${H - 55}" fill="rgba(56, 189, 248, 0.14)" stroke="#38bdf8" stroke-dasharray="4 4" rx="4"/>
         `;
       });
 
@@ -19724,58 +19463,37 @@ Patient`;
         if (d.ex) {
           svg += `
             <g style="cursor: pointer;" onclick="openTimelinePointCard(${i})">
-              <rect x="${xCoords[i] - 30}" y="${exLane.y + 6}" width="60" height="20" fill="#fff7ed" stroke="#f97316" stroke-width="1.5" rx="4"/>
-              <text x="${xCoords[i]}" y="${exLane.y + 20}" text-anchor="middle" fill="#9a3412" font-size="8.5" font-weight="900">🚶 GLUT4</text>
+              <polygon points="${xCoords[i]},${exLane.y + 8} ${xCoords[i] + 7},${exLane.y + 16} ${xCoords[i]},${exLane.y + 24} ${xCoords[i] - 7},${exLane.y + 16}" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+              <text x="${xCoords[i]}" y="${exLane.y + 35}" text-anchor="middle" fill="#9a3412" font-size="8.5" font-weight="900">◆ GLUT4</text>
             </g>
           `;
         }
       });
 
-      // Lane 7: Dietary Intake & Meal Event Badges (Rich Multi-Line Clinical Tags)
+      // Lane 7: Dietary Intake & Meal Event Indicators (Clean Non-Overlapping Square Markers)
       const dLane = lanes[6];
       data.forEach((d, i) => {
         if (d.meal) {
           const isLowCarb = d.meal.carbs <= 20;
-          const badgeColor = isLowCarb ? "#15803d" : (d.meal.carbs > 40 ? "#b91c1c" : "#b45309");
-          const bgCol = isLowCarb ? "#f0fdf4" : (d.meal.carbs > 40 ? "#fef2f2" : "#fefce8");
+          const markerColor = isLowCarb ? "#15803d" : (d.meal.carbs > 40 ? "#b91c1c" : "#8b5cf6");
           const mType = (d.meal.type || "Meal").toUpperCase();
-          const rawDesc = d.meal.desc || d.meal.name || "Diet Intake";
-          const shortDesc = rawDesc.length > 20 ? rawDesc.substring(0, 19) + '…' : rawDesc;
-          const cals = d.meal.cal || (d.meal.carbs > 30 ? 490 : 380);
-          const pro = d.meal.protein !== undefined ? d.meal.protein : (d.meal.carbs > 30 ? 32 : 24);
           const carbs = d.meal.carbs || 0;
-          const fat = d.meal.fat !== undefined ? d.meal.fat : (cals > 400 ? 16 : 12);
-          const gl = d.meal.gl !== undefined ? d.meal.gl : (carbs <= 15 ? 1 : (carbs <= 35 ? 3 : 8));
-          
-          const badgeW = 148;
-          const badgeH = 58;
-          const badgeX = Math.max(padLeft + 4, Math.min(padLeft + plotW - badgeW - 4, xCoords[i] - (badgeW / 2)));
-          const badgeY = dLane.y + 6;
+          const cals = d.meal.cal || (carbs > 30 ? 490 : 380);
 
           svg += `
             <g style="cursor: pointer;" onclick="openTimelinePointCard(${i})">
-              <!-- Vertical correlation stem linking down from glucose curve into meal badge -->
-              <line x1="${xCoords[i]}" y1="${lanes[0].y + lanes[0].h}" x2="${xCoords[i]}" y2="${dLane.y + dLane.h}" stroke="${badgeColor}" stroke-dasharray="3 3" stroke-width="1.5" opacity="0.6"/>
+              <!-- Vertical correlation stem -->
+              <line x1="${xCoords[i]}" y1="${lanes[0].y + lanes[0].h}" x2="${xCoords[i]}" y2="${dLane.y + dLane.h}" stroke="${markerColor}" stroke-dasharray="3 3" stroke-width="1.5" opacity="0.5"/>
               
-              <!-- Multi-Line Clinical Meal Card -->
-              <rect x="${badgeX.toFixed(1)}" y="${badgeY.toFixed(1)}" width="${badgeW}" height="${badgeH}" fill="${bgCol}" stroke="${badgeColor}" stroke-width="1.8" rx="6" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.08));"/>
-              
-              <!-- Row 1: Meal Occasion & Name -->
-              <text x="${(badgeX + 6).toFixed(1)}" y="${(badgeY + 14).toFixed(1)}" fill="${badgeColor}" font-size="9" font-weight="900" font-family="var(--lcars-mono)">🥗 [${mType}] ${shortDesc}</text>
-              
-              <!-- Row 2: Calories & Protein -->
-              <text x="${(badgeX + 6).toFixed(1)}" y="${(badgeY + 28).toFixed(1)}" fill="#0f172a" font-size="8.8" font-weight="800" font-family="var(--lcars-mono)">🔥 ${cals} kcal • 🥩 ${pro}g Protein</text>
-              
-              <!-- Row 3: Net Carbs & Healthy Fat -->
-              <text x="${(badgeX + 6).toFixed(1)}" y="${(badgeY + 41).toFixed(1)}" fill="#475569" font-size="8.8" font-weight="700" font-family="var(--lcars-mono)">🌾 ${carbs}g Net Carb • 🥑 ${fat}g Fat</text>
-
-              <!-- Row 4: Glycemic Load & Click to Audit -->
-              <text x="${(badgeX + 6).toFixed(1)}" y="${(badgeY + 52).toFixed(1)}" fill="${badgeColor}" font-size="8" font-weight="800" font-family="var(--lcars-mono)">GL: ${gl} (${gl <= 2 ? 'Low Impact' : 'Monitored'}) • Click to Audit ➔</text>
+              <!-- Clean Square Marker (■) -->
+              <rect x="${xCoords[i] - 9}" y="${dLane.y + 12}" width="18" height="18" fill="#fdf4ff" stroke="${markerColor}" stroke-width="2" rx="3"/>
+              <text x="${xCoords[i]}" y="${dLane.y + 25}" text-anchor="middle" fill="${markerColor}" font-size="11" font-weight="900">■</text>
+              <text x="${xCoords[i]}" y="${dLane.y + 44}" text-anchor="middle" fill="#0f172a" font-size="8.5" font-weight="800" font-family="var(--lcars-mono)">${carbs}g</text>
             </g>
           `;
         }
       });
-
+      
       // Lane 8: Medications & Medication Changes
       const mLane = lanes[7];
       data.forEach((d, i) => {
@@ -25652,6 +25370,7 @@ You logged: Entire Box (3.5 Servings / 99g)
           <ol style="margin: 4px 0 0 16px; padding: 0; line-height: 1.45;">
             <li>Web browsers cannot silently attach files from disk. If you haven't yet, click <strong>[ 📥 DOWNLOAD FHIR JSON ]</strong> and <strong>[ 📥 DOWNLOAD CLINICAL CSV ]</strong> in Tab 05.</li>
             <li>In your email client or webmail, click the Paperclip / Attach icon and select the downloaded files from your <code>Downloads</code> folder.</li>
+            <li>Download the official specification PDF to attach: <a href="docs/VEEPOO_5010_CLINICAL_SPECIFICATION_AND_REPORTING_GUIDE.pdf" download style="color: #0284c7; font-weight: bold; text-decoration: underline;">📄 VEEPOO_5010_CLINICAL_SPECIFICATION_AND_REPORTING_GUIDE.pdf</a>.</li>
           </ol>
         </div>
 
@@ -25714,7 +25433,7 @@ You logged: Entire Box (3.5 Servings / 99g)
         </div>
         <div>
           <label style="font-size: 0.75rem; font-weight: bold; color: #94a3b8;">USER HANDLE / NAME</label>
-          <input type="text" id="provCallsign" class="setup-input" placeholder="e.g. Primary User, Alex" style="width: 100%; padding: 8px; background: #0f172a; border: 1px solid #334155; color: #f8fafc; border-radius: 4px;">
+          <input type="text" id="provHandle" class="setup-input" placeholder="e.g. Primary User, Alex" style="width: 100%; padding: 8px; background: #0f172a; border: 1px solid #334155; color: #f8fafc; border-radius: 4px;">
         </div>
         <div>
           <label style="font-size: 0.75rem; font-weight: bold; color: #94a3b8;">ASSIGNED REGISTRY NUMBER</label>
@@ -25884,7 +25603,7 @@ You logged: Entire Box (3.5 Servings / 99g)
 
     async function submitProvisionCell() {
       const cellId = document.getElementById('provCellId').value.trim() || 'Cell-1';
-      const callsign = document.getElementById('provCallsign').value.trim() || 'Primary User';
+      const callsign = document.getElementById('provHandle').value.trim() || 'Primary User';
       const registry = document.getElementById('provRegistry').value.trim() || 'NCC-5010-A';
       const a1c = parseFloat(document.getElementById('provTargetA1c').value) || 6.5;
 
@@ -26144,6 +25863,7 @@ You logged: Entire Box (3.5 Servings / 99g)
             .card { border: 2px solid #cbd5e1; border-radius: 6px; padding: 12px; background: #f8fafc; }
             .card h3 { margin: 0 0 8px 0; font-size: 0.95rem; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 4px; }
             @media print {
+    #secMedDailySchedule { display: none !important; }
               .no-print { display: none; }
               body { margin: 15mm; }
             }
