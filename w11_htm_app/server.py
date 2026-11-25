@@ -3531,16 +3531,13 @@ def get_two_day_timeline():
                 steps_val = 0
                 notes = ""
 
-                # Real morning shower & watch charge window (07:00 to 08:30) + desk charge (11:00 to 12:00)
+                # Real morning shower & watch charge window (07:30 to 08:30) only when zero sensor data exists
                 is_am_charge_shower = (h == 7 and m >= 30) or (h == 8 and m <= 30)
-                is_known_charging_window = is_am_charge_shower or (h == 11)
+                has_any_sensor = has_glucose or has_bp or has_hr or has_temp or has_steps or has_spo2 or has_hrv
 
                 if is_future:
                     notes = "Awaiting Live Telemetry (Future Window)"
-                elif is_known_charging_window and not has_glucose and not has_hr:
-                    is_gap = True
-                    notes = "⚡ Watch Not Sensing (Off-Wrist / Shower / Charging)"
-                elif has_glucose or has_bp or has_hr or has_temp or has_steps or has_spo2 or has_hrv:
+                elif has_any_sensor:
                     if has_glucose: g_val = round(slot_data["GLUCOSE"][0])
                     if has_bp:
                         sys_val = round(slot_data["BLOOD_PRESSURE"][0])
@@ -3554,6 +3551,9 @@ def get_two_day_timeline():
                     if has_temp: temp_val = round(slot_data["TEMPERATURE"][0], 1)
                     if has_steps: steps_val = round(slot_data["PEDOMETER"][0])
                     notes = "Verified Sensor Telemetry"
+                elif is_am_charge_shower:
+                    is_gap = True
+                    notes = "⚡ Watch Not Sensing (Off-Wrist / Shower / Charging)"
                 elif (h == 14) or (h == 15 and m == 0):
                     # Verified Afternoon Restorative Nap Window (14:00 - 15:00)
                     # Resting metabolic tone: quiescent steps, lowered HR, stable SpO2

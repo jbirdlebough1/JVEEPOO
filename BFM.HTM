@@ -8963,16 +8963,18 @@
       return;
     }
 
-    function soundButtonPress() {
+    function soundButtonPress(skipRefresh = false) {
       // Audio completely muted per user directive: kill all beep noises
-      if (typeof syncStepData === 'function' && gattServer && gattServer.connected && txCharacteristic) {
-        try { syncStepData(true); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
-      }
-      if (typeof pollLiveTelemetryChanges === 'function') {
-        try { pollLiveTelemetryChanges(true); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
-      }
-      if (typeof runFullPipelineAndRefreshAllScreens === 'function') {
-        try { runFullPipelineAndRefreshAllScreens(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+      if (!skipRefresh) {
+        if (typeof syncStepData === 'function' && gattServer && gattServer.connected && txCharacteristic) {
+          try { syncStepData(true); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+        }
+        if (typeof pollLiveTelemetryChanges === 'function') {
+          try { pollLiveTelemetryChanges(true); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+        }
+        if (typeof runFullPipelineAndRefreshAllScreens === 'function') {
+          try { runFullPipelineAndRefreshAllScreens(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+        }
       }
       return;
     }
@@ -9590,10 +9592,13 @@ function renderWatchTabConnectedDetails() {
     }
 
     async function runFullPipelineAndRefreshAllScreens() {
-      // 1. Fetch latest telemetry and populate state from current cache/database
+      // 1. Fetch latest telemetry and 48-hr timeline from current database/watch
       try {
         if (typeof pollLiveTelemetryChanges === 'function') {
           await pollLiveTelemetryChanges(true);
+        }
+        if (typeof fetchServer2DayTimeline === 'function') {
+          await fetchServer2DayTimeline();
         }
       } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
 
@@ -9637,12 +9642,36 @@ function renderWatchTabConnectedDetails() {
       if (isReportsActive && typeof renderReportsView === 'function') {
         renderReportsView();
       }
+      if (isReportsActive && typeof renderTallSynchronizedChart === 'function') {
+        renderTallSynchronizedChart(currentTallChartTimeframe);
+      }
+      if (isReportsActive && typeof renderSubReportTrendCharts === 'function') {
+        renderSubReportTrendCharts(currentReportTimeframe);
+      }
 
       const pageDiet = document.getElementById('pageDiet');
       const pageMetabolic = document.getElementById('pageMetabolic');
       const isDietActive = (pageDiet && pageDiet.classList.contains('active-page')) || (pageMetabolic && pageMetabolic.classList.contains('active-page'));
       if (isDietActive && typeof renderDietHistory === 'function') {
         renderDietHistory();
+      }
+      if (pageMetabolic && pageMetabolic.classList.contains('active-page') && typeof renderExerciseHistory === 'function') {
+        renderExerciseHistory();
+      }
+
+      const pageDietTrades = document.getElementById('pageDietTrades');
+      if (pageDietTrades && pageDietTrades.classList.contains('active-page') && typeof renderLongitudinalView === 'function') {
+        renderLongitudinalView();
+      }
+
+      const pageFullScan = document.getElementById('pageFullScan');
+      if (pageFullScan && pageFullScan.classList.contains('active-page') && (typeof isFullScanRunning === 'undefined' || !isFullScanRunning) && typeof initFullScanView === 'function') {
+        initFullScanView();
+      }
+
+      const pageGoals = document.getElementById('pageGoals');
+      if (pageGoals && pageGoals.classList.contains('active-page') && typeof loadClinicalGoalsUI === 'function') {
+        loadClinicalGoalsUI();
       }
 
       const pageMed = document.getElementById('pageMedication');
@@ -9769,7 +9798,7 @@ function switchTab(tabId) {
       if (tabId === 'watchfaces' || tabId === 'troubleshooting') {
         if (typeof renderWatchTabConnectedDetails === 'function') renderWatchTabConnectedDetails();
       }
-      soundButtonPress();
+      soundButtonPress(true);
       // Universally dismiss all modal overlays and dialogs
       const activeModals = ['modalEditMedication', 'timelinePointCardModal', 'modalClinicBloodDraw', 'modalEpicUpload', 'fullScanReportModal', 'modalDraftEmailToDoctor'];
       activeModals.forEach(mId => {
@@ -16469,26 +16498,48 @@ function switchTab(tabId) {
       let breathData = [];
 
       if (isDaily) {
-        const hours = ['00:00', '03:00', '06:00', '08:30', '09:00', '12:00', '15:00', '18:00', '21:00', '23:30'];
-        const qtcDaily = [408, 404, 412, 422, 414, 416, 412, 418, 410, 408];
-        const lfHfDaily = [0.95, 0.90, 1.05, 1.35, 1.20, 1.22, 1.18, 1.25, 1.10, 1.02];
-        const metCumDaily = [1.0, 3.2, 7.6, 12.4, 18.2, 22.8, 27.4, 31.8, 33.6, 34.2];
-        const viscDaily = [3.8, 3.8, 3.9, 3.7, 3.7, 3.8, 3.8, 3.7, 3.8, 3.8];
-        const uricDaily = [5.1, 5.0, 5.2, 5.4, 5.2, 5.2, 5.3, 5.2, 5.1, 5.1];
-        const muscleDaily = [34.1, 34.1, 34.2, 34.2, 34.4, 34.3, 34.2, 34.3, 34.2, 34.2];
-        const fatDaily = [22.5, 22.5, 22.4, 22.4, 22.3, 22.4, 22.4, 22.3, 22.4, 22.4];
-        const breathDaily = [13, 13, 14, 16, 15, 14, 15, 14, 13, 13];
+        const nowObj = new Date();
+        const curH = nowObj.getHours();
+        const curM = nowObj.getMinutes();
+        const nowHM = `${String(curH).padStart(2, '0')}:${String(curM).padStart(2, '0')}`;
+        const hours = Array.from({ length: 24 }, (_, idx) => `${String(idx).padStart(2, '0')}:00`);
+        if (curM > 0 && !hours.includes(nowHM)) {
+          hours.push(nowHM);
+          hours.sort();
+        }
+        const liveHr = (typeof lastHR !== 'undefined' && lastHR > 0) ? lastHR : 72;
+        const liveHrv = (typeof lastHRV !== 'undefined' && lastHRV > 0) ? lastHRV : 64;
+        const liveSteps = (typeof lastSteps !== 'undefined' && lastSteps > 0) ? lastSteps : 0;
+        const todayTimelinePts = (typeof cached2DayTimeline !== 'undefined' && Array.isArray(cached2DayTimeline))
+          ? cached2DayTimeline.filter(d => d.day === 'TODAY' && !d.isFuture && !d.isChargingGap)
+          : [];
 
-        const curH = new Date().getHours();
-        const curM = new Date().getMinutes();
-        hours.forEach((h, idx) => {
+        hours.forEach((h) => {
           const parts = h.split(':').map(Number);
           const isFuture = (parts[0] > curH) || (parts[0] === curH && parts[1] > curM);
-          ecgData.push({ label: h, val: isFuture ? 0 : qtcDaily[idx], core: isFuture ? 0 : qtcDaily[idx], skin: isFuture ? 0 : lfHfDaily[idx] });
-          metData.push({ label: h, val: isFuture ? 0 : metCumDaily[idx] });
-          bloodCompData.push({ label: h, val: isFuture ? 0 : viscDaily[idx], core: isFuture ? 0 : viscDaily[idx], skin: isFuture ? 0 : uricDaily[idx] });
-          bodyCompData.push({ label: h, val: isFuture ? 0 : muscleDaily[idx], core: isFuture ? 0 : muscleDaily[idx], skin: isFuture ? 0 : fatDaily[idx] });
-          breathData.push({ label: h, val: isFuture ? 0 : breathDaily[idx], core: isFuture ? 0 : breathDaily[idx], skin: isFuture ? 0 : 0 });
+          const isLivePoint = (h === nowHM);
+          const hPrefix = `${String(parts[0]).padStart(2, '0')}:`;
+          const matchingSlot = todayTimelinePts.find(p => p.time === h)
+            || todayTimelinePts.filter(p => p.time && p.time.startsWith(hPrefix)).slice(-1)[0];
+
+          const slotHr = isLivePoint ? liveHr : ((matchingSlot && matchingSlot.hr > 0) ? matchingSlot.hr : (parts[0] < 7 ? 58 : 72));
+          const slotHrv = isLivePoint ? liveHrv : ((matchingSlot && matchingSlot.hrv > 0) ? matchingSlot.hrv : 62);
+          const slotSteps = isLivePoint ? liveSteps : ((matchingSlot && matchingSlot.steps > 0) ? matchingSlot.steps : 0);
+
+          const qtcVal = Math.round(406 + Math.max(0, (slotHr - 60) * 0.45));
+          const lfHfVal = parseFloat((1.10 + (slotHr > 80 ? 0.25 : 0.08) - (slotHrv / 200)).toFixed(2));
+          const metCumVal = parseFloat((1.0 + (parts[0] * 1.25) + (slotSteps * 0.0025)).toFixed(1));
+          const viscVal = parseFloat((3.7 + ((parts[0] % 3) * 0.1) - (slotSteps > 100 ? 0.1 : 0)).toFixed(1));
+          const uricVal = parseFloat((5.0 + ((parts[0] % 4) * 0.1)).toFixed(1));
+          const musVal = parseFloat((34.1 + (slotSteps > 150 ? 0.2 : 0.1)).toFixed(1));
+          const fatVal = parseFloat((22.5 - (slotSteps > 150 ? 0.2 : 0.1)).toFixed(1));
+          const brVal = Math.round(13 + (parts[0] >= 7 ? 1 : 0) + (slotHr > 80 ? 1 : 0));
+
+          ecgData.push({ label: h, val: isFuture ? 0 : qtcVal, core: isFuture ? 0 : qtcVal, skin: isFuture ? 0 : lfHfVal });
+          metData.push({ label: h, val: isFuture ? 0 : metCumVal });
+          bloodCompData.push({ label: h, val: isFuture ? 0 : viscVal, core: isFuture ? 0 : viscVal, skin: isFuture ? 0 : uricVal });
+          bodyCompData.push({ label: h, val: isFuture ? 0 : musVal, core: isFuture ? 0 : musVal, skin: isFuture ? 0 : fatVal });
+          breathData.push({ label: h, val: isFuture ? 0 : brVal, core: isFuture ? 0 : brVal, skin: isFuture ? 0 : 0 });
         });
       } else if (isWeekly) {
         const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
@@ -16916,8 +16967,8 @@ function switchTab(tabId) {
             }
             if (p.g !== null && p.g !== undefined) glucoseData.push({ label: p.time, val: p.g });
             if (p.temp !== null && p.temp !== undefined) tempData.push({ label: p.time, val: p.temp, core: p.temp, skin: (p.temp > 90 ? p.temp - 5.0 : p.temp) });
-            if (p.hr !== null && p.hr !== undefined) hrData.push({ label: p.time, val: Math.min(135, Math.max(52, hrMod)) });
-            if (p.sys !== null && p.sys !== undefined) bpData.push({ label: p.time, val: sysMod, core: sysMod, skin: diaMod });
+            if (p.hr !== null && p.hr !== undefined) hrData.push({ label: p.time, val: p.hr > 0 ? p.hr : Math.min(135, Math.max(52, hrMod)) });
+            if (p.sys !== null && p.sys !== undefined) bpData.push({ label: p.time, val: p.sys > 0 ? p.sys : sysMod, core: p.sys > 0 ? p.sys : sysMod, skin: (p.dia && p.dia > 0) ? p.dia : diaMod });
             if (p.spo2 !== null && p.spo2 !== undefined) spo2Data.push({ label: p.time, val: p.spo2 });
             if (p.hrv !== null && p.hrv !== undefined) hrvData.push({ label: p.time, val: p.hrv });
             if (p.steps > 0) exerciseData.push({ label: p.time, val: p.steps });
@@ -16925,14 +16976,21 @@ function switchTab(tabId) {
         }
 
         const nowHM = new Date().toTimeString().substring(0, 5);
-        if (glucoseData.length === 0 && typeof lastGlucoseMg !== 'undefined' && lastGlucoseMg > 0) {
-          glucoseData.push({ label: `${nowHM} (Latest)`, val: lastGlucoseMg });
+        const liveLbl = `${nowHM} (Latest)`;
+        if (typeof lastGlucoseMg !== 'undefined' && lastGlucoseMg > 0 && (glucoseData.length === 0 || glucoseData[glucoseData.length - 1].label < nowHM)) {
+          glucoseData.push({ label: liveLbl, val: lastGlucoseMg });
         }
-        if (hrData.length === 0 && typeof lastHR !== 'undefined' && lastHR > 0) {
-          hrData.push({ label: `${nowHM} (Latest)`, val: lastHR });
+        if (typeof lastHR !== 'undefined' && lastHR > 0 && (hrData.length === 0 || hrData[hrData.length - 1].label < nowHM)) {
+          hrData.push({ label: liveLbl, val: lastHR });
         }
-        if (bpData.length === 0 && typeof lastSystolic !== 'undefined' && lastSystolic > 0) {
-          bpData.push({ label: `${nowHM} (Latest)`, val: lastSystolic, core: lastSystolic, skin: lastDiastolic });
+        if (typeof lastSystolic !== 'undefined' && lastSystolic > 0 && (bpData.length === 0 || bpData[bpData.length - 1].label < nowHM)) {
+          bpData.push({ label: liveLbl, val: lastSystolic, core: lastSystolic, skin: lastDiastolic });
+        }
+        if (typeof lastSpO2 !== 'undefined' && lastSpO2 > 0 && (spo2Data.length === 0 || spo2Data[spo2Data.length - 1].label < nowHM)) {
+          spo2Data.push({ label: liveLbl, val: lastSpO2 });
+        }
+        if (typeof lastHRV !== 'undefined' && lastHRV > 0 && (hrvData.length === 0 || hrvData[hrvData.length - 1].label < nowHM)) {
+          hrvData.push({ label: liveLbl, val: lastHRV });
         }
         // Ensure nocturnal SpO2 continuity across sleep and daytime windows
         if (spo2Data.length <= 1) {
@@ -16953,10 +17011,10 @@ function switchTab(tabId) {
           ];
           hrvData = circadianHRV;
         }
-        if (tempData.length === 0 && typeof lastBodyF !== 'undefined' && lastBodyF > 0) {
-          tempData.push({ label: `${nowHM} (Latest)`, val: lastBodyF, core: lastBodyF, skin: lastBodyF - 5.0 });
+        if (typeof lastBodyF !== 'undefined' && lastBodyF > 0 && (tempData.length === 0 || tempData[tempData.length - 1].label < nowHM)) {
+          tempData.push({ label: liveLbl, val: lastBodyF, core: lastBodyF, skin: lastBodyF - 5.0 });
         }
-        if (exerciseData.length === 0 && typeof lastSteps !== 'undefined' && lastSteps > 0) {
+        if (typeof lastSteps !== 'undefined' && lastSteps > 0 && (exerciseData.length === 0 || exerciseData[exerciseData.length - 1].label < nowHM)) {
           exerciseData.push({ label: `${nowHM} (Active)`, val: lastSteps });
         }
 
@@ -21418,12 +21476,16 @@ All 14 LCARS consoles, 8-lane metabolic chart, and clinical database now match y
           { metric: 'HRV_STRESS', value1: hrvVal, value2: stressVal, unit: 'ms', status: 'NOMINAL', mode: 'FULL_SCAN', timestamp: nowTs }
         ];
 
-        telemetryPackets.forEach(pkt => {
+        Promise.all(telemetryPackets.map(pkt =>
           fetch('/api/telemetry', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(pkt)
-          }).catch((err) => { console.warn('[MIL-SPEC ASYNC REJECTION]', err); });
+          }).catch((err) => { console.warn('[MIL-SPEC ASYNC REJECTION]', err); })
+        )).then(() => {
+          if (typeof runFullPipelineAndRefreshAllScreens === 'function') {
+            try { runFullPipelineAndRefreshAllScreens(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+          }
         });
         logLCARS(`[★ FULL SCAN SYNC] Full telemetry saved: Glucose ${g} mg/dL, BP ${sys}/${dia}, SpO2 ${sp}%, HR ${hr} BPM, Temp ${bodyF.toFixed(1)}°F`, "rx", "Full Diagnostic Telemetry Synchronized All Consoles");
       }
@@ -22343,8 +22405,12 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
     let lastKnownGlucoseTs = "";
 
     let _isPollingTelemetry = false;
+    let _pendingForceTelemetryPoll = false;
     async function pollLiveTelemetryChanges(force = false) {
-      if (_isPollingTelemetry) return;
+      if (_isPollingTelemetry) {
+        if (force) _pendingForceTelemetryPoll = true;
+        return;
+      }
       _isPollingTelemetry = true;
       try {
         const activeWatchId = window._connectedWatchId || (typeof localStorage !== 'undefined' ? localStorage.getItem('bfm_connected_watch_id') : null) || 'VEE_5010';
@@ -22587,11 +22653,16 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
           }
 
           // 9. Synchronize Subordinate Consoles & Tabs (Scoped to Active Page)
+          if (typeof fetchServer2DayTimeline === 'function') {
+            try { await fetchServer2DayTimeline(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+          }
           if (typeof render360HealthView === 'function') render360HealthView();
           const pageRep = document.getElementById('pageReports');
           const isRepActive = pageRep && pageRep.classList.contains('active-page');
           if (isRepActive && typeof render3DMultiChannelScene === 'function') render3DMultiChannelScene();
           if (isRepActive && typeof renderReportsView === 'function') renderReportsView();
+          if (isRepActive && typeof renderTallSynchronizedChart === 'function') renderTallSynchronizedChart(currentTallChartTimeframe);
+          if (isRepActive && typeof renderSubReportTrendCharts === 'function') renderSubReportTrendCharts(currentReportTimeframe);
 
           const pageDiet = document.getElementById('pageDiet');
           const pageMetabolic = document.getElementById('pageMetabolic');
@@ -22629,6 +22700,10 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
         console.warn("pollLiveTelemetryChanges error:", e);
       } finally {
         _isPollingTelemetry = false;
+        if (_pendingForceTelemetryPoll) {
+          _pendingForceTelemetryPoll = false;
+          setTimeout(() => pollLiveTelemetryChanges(true), 50);
+        }
       }
     }
     // Run live telemetry poll every 2.5 seconds
