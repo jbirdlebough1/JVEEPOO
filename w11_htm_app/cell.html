@@ -1748,8 +1748,9 @@
 
     window.addEventListener('DOMContentLoaded', () => {
       const isStandalone = window.navigator.standalone === true || window.matchMedia('(display-mode: standalone)').matches;
+      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
       const banner = document.getElementById('pwaInstallBanner');
-      if (banner && !isStandalone) {
+      if (banner && !isStandalone && isMobile) {
         banner.style.display = 'flex';
       }
     });
