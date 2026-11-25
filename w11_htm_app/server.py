@@ -2717,7 +2717,7 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
             matched_any = True; est_carbs = 26.0; est_cals = 220; est_fiber = 5.0; est_protein = 6.0; est_fat = 8.0; est_cost = "26g Net Carbs"
         elif any(w in text for w in ["berry", "berries", "strawberry", "blueberry", "raspberry", "blackberry"]):
             matched_any = True; est_carbs = 8.0; est_cals = 50; est_fiber = 4.0; est_protein = 1.0; est_fat = 0.5; est_cost = "2.00"
-        elif any(w in text for w in ["apple", "banana", "orange", "fruit"]):
+        elif any(re.search(r"\b" + re.escape(w) + r"s?\b", text) for w in ["apple", "banana", "orange", "fruit"]) and "pineapple" not in text:
             matched_any = True; est_carbs = 19.0; est_cals = 85; est_fiber = 3.0; est_protein = 0.5; est_fat = 0.2; est_cost = "1.00"
         elif any(w in text for w in ["soup", "broth"]):
             matched_any = True; est_carbs = 4.0; est_cals = 65; est_fiber = 1.0; est_protein = 5.0; est_fat = 2.0; est_cost = "3.50"

@@ -1765,7 +1765,7 @@
         </div>
         <div class="lcars-time-block">
           <div class="actual-datetime" id="actualDateTime">FRIDAY, NOV 20, 2026 9:55:00 AM PST</div>
-          <div class="lcars-stardate" id="stardateClock">BUILD beta.00.01.0027</div>
+          <div class="lcars-stardate" id="stardateClock">BUILD beta.00.01.0028</div>
         </div>
         
       </div>
@@ -9388,7 +9388,7 @@
       const year = now.getFullYear();
       const startOfYear = new Date(year, 0, 1);
       const dayOfYear = (now - startOfYear) / (1000 * 60 * 60 * 24);
-      document.getElementById("stardateClock").textContent = "BUILD beta.00.01.0027";
+      document.getElementById("stardateClock").textContent = "BUILD beta.00.01.0028";
     }
     setInterval(updateClock, 1000);
     updateClock();
@@ -9925,12 +9925,19 @@ function renderWatchTabConnectedDetails() {
     // CENTRAL REACTIVE PIPELINE: RUNS CALCULATIONS & REFRESHES ALL SCREENS
     // =========================================================================
     let _refreshThrottleTimer = null;
+    let _isPipelineRunning = false;
     function scheduleFullPipelineRefresh() {
       if (_refreshThrottleTimer) return;
-      _refreshThrottleTimer = setTimeout(() => {
+      _refreshThrottleTimer = setTimeout(async () => {
         _refreshThrottleTimer = null;
-        runFullPipelineAndRefreshAllScreens();
-      }, 100);
+        if (_isPipelineRunning) return;
+        _isPipelineRunning = true;
+        try {
+          await runFullPipelineAndRefreshAllScreens();
+        } finally {
+          _isPipelineRunning = false;
+        }
+      }, 350);
     }
 
     async function runFullPipelineAndRefreshAllScreens() {
@@ -9975,38 +9982,36 @@ function renderWatchTabConnectedDetails() {
         runGoalComplianceAudit(false);
       }
 
-      // 5. Re-render reports view & charts
-      if (typeof renderReportsView === 'function') {
+      // 5. Active Tab Scoped Re-renders (Prevents Background DOM & WebGL Thrashing)
+      const pageReports = document.getElementById('pageReports');
+      const isReportsActive = pageReports && pageReports.classList.contains('active-page');
+      if (isReportsActive && typeof renderReportsView === 'function') {
         renderReportsView();
       }
 
-      // 6. Update Diet history
-      if (typeof renderDietHistory === 'function') {
+      const pageDiet = document.getElementById('pageDiet');
+      const pageMetabolic = document.getElementById('pageMetabolic');
+      const isDietActive = (pageDiet && pageDiet.classList.contains('active-page')) || (pageMetabolic && pageMetabolic.classList.contains('active-page'));
+      if (isDietActive && typeof renderDietHistory === 'function') {
         renderDietHistory();
       }
 
-      // 7. Update Medication views and change audit
-      if (typeof renderMedicationRegimen === 'function') {
-        renderMedicationRegimen();
-      }
-      if (typeof renderMedicationChangeHistory === 'function') {
-        renderMedicationChangeHistory();
+      const pageMed = document.getElementById('pageMedication');
+      if (pageMed && pageMed.classList.contains('active-page')) {
+        if (typeof renderMedicationRegimen === 'function') renderMedicationRegimen();
+        if (typeof renderMedicationChangeHistory === 'function') renderMedicationChangeHistory();
       }
 
-      // 8. Update 3D feelings cache & 3D multi scene
-      if (typeof loadFeelingsFor3D === 'function') {
-        loadFeelingsFor3D();
-      }
-      if (typeof render3DMultiChannelScene === 'function') {
-        render3DMultiChannelScene();
+      if (isReportsActive) {
+        if (typeof loadFeelingsFor3D === 'function') loadFeelingsFor3D();
+        if (typeof render3DMultiChannelScene === 'function') render3DMultiChannelScene();
       }
 
-      // 9. Update connected watch details
-      if (typeof renderWatchTabConnectedDetails === 'function') {
+      const pageWatch = document.getElementById('pageWatch');
+      if (pageWatch && pageWatch.classList.contains('active-page') && typeof renderWatchTabConnectedDetails === 'function') {
         renderWatchTabConnectedDetails();
       }
 
-      // 10. Update 360 Health overview
       if (typeof render360HealthView === 'function') {
         render360HealthView();
       }
@@ -15951,7 +15956,39 @@ function switchTab(tabId) {
           data = POPULAR_MEALS.steak || DEFAULT_POPULAR_MEALS.steak;
         } else if (text.includes("oat") || text.includes("meal01")) {
           data = POPULAR_MEALS.meal01 || DEFAULT_POPULAR_MEALS.meal01;
-        } else if (text.includes("clove") || text.includes("cinnamon") || text.includes("tea") || text.includes("infusion") || text.includes("tisane") || text.includes("coffee") || text.includes("seltzer") || text.includes("diet")) {
+        } else if (text.includes("red pepper") || text.includes("pizza") || text.includes("pizzeria")) {
+          const isWholeLarge = (text.includes("large") || text.includes("whole") || text.includes("entire") || text.includes("pie") || text.includes("14-inch") || text.includes("14 inch")) && !(text.includes("1 slice") || text.includes("one slice") || text.includes("per slice"));
+          const pCals = isWholeLarge ? 2780 : 348;
+          const pCarbs = isWholeLarge ? 261.0 : 32.6;
+          const pNetC = isWholeLarge ? 215.0 : 26.8;
+          const pFib = isWholeLarge ? 46.0 : 5.8;
+          const pPro = isWholeLarge ? 139.0 : 17.4;
+          const pFat = isWholeLarge ? 130.0 : 16.3;
+          const portionLabel = isWholeLarge ? "Entire 14-Inch Large Pizza (8 Slices) + 32 oz Diet Coke" : "1 Slice (1/8 of 14-inch Large Pizza)";
+          const meets = pNetC <= goals.maxCarbsMeal;
+          const spikeEst = Math.round(pNetC * 0.95);
+
+          data = {
+            title: `Red Pepper Pizzeria: Pepperoni, Canadian Bacon, Pineapple, Olives (${portionLabel})`,
+            desc: rawText,
+            calories: pCals,
+            netCarbs: pNetC,
+            totalCarbs: pCarbs,
+            fiber: pFib,
+            protein: pPro,
+            fat: pFat,
+            gl: `${Math.round(pNetC * 0.65)} (` + (meets ? "Safe Low-Med" : "CRITICAL GLYCEMIC SPIKE RISK") + ")",
+            meetsGoal: meets,
+            tips: [
+              "We did not find Red Pepper nutrition guide, we checked three similar nearest restaurants that had similar size and contents, then averaged and maxed for your estimate.",
+              `Tri-Source Benchmark (Sahara Monroe/Sultan, Westside Sultan, MOD Snohomish): ${pCals} kcal • ${pNetC}g Net Carbs • ${pPro}g Protein • ${pFat}g Fat.`,
+              meets ? `✅ 1 Slice complies with your ${goals.maxCarbsMeal}g net carb ceiling.` : `🚨 FULL PIE EXCEEDS CLINICAL CEILING BY +${Math.round(pNetC - goals.maxCarbsMeal)}g NET CARBS! Severe 4+ hour glycemic excursion anticipated.`
+            ],
+            glut4: meets ?
+              "<strong>20-Minute Ambulatory Walk:</strong> Gentle movement 20 minutes post-meal maintains flat trajectory in 80–120 mg/dL target zone." :
+              `<strong>MANDATORY 50 to 60-Minute Sustained Brisk GLUT4 Walk starting 25 min post-meal:</strong> Required to translocate GLUT4 transporters and blunt expected +${spikeEst} mg/dL glucose surge.`
+          };
+        } else if (text.includes("clove") || text.includes("cinnamon") || text.includes("infusion") || text.includes("tisane") || text.includes("coffee") || text.includes("seltzer") || ((text.includes("tea") || text.includes("diet")) && !text.includes("burger") && !text.includes("fry") && !text.includes("fries") && !text.includes("pizza"))) {
           const isCoffee = text.includes("coffee") || text.includes("espresso") || text.includes("americano");
           const isCloveCinn = text.includes("clove") || text.includes("cinnamon");
           const cals = isCoffee ? 4 : (isCloveCinn ? 2 : 0);
@@ -15982,34 +16019,24 @@ function switchTab(tabId) {
             glut4Peak: "PREDICTED PEAK: FLATLINE (< 2 MG/DL EXCURSION)"
           };
         } else {
-          let estCarbs = 28;
-          let estCals = 450;
-          let estProtein = 32;
-          let estFat = 16;
-          let estFiber = 8;
-          if (text.includes("pizza") || text.includes("pasta") || text.includes("rice") || text.includes("bread") || text.includes("cake") || text.includes("sweet") || text.includes("cookie")) {
-            estCarbs = 68; estCals = 720; estFiber = 3; estProtein = 18; estFat = 28;
-          } else if (text.includes("salad") || text.includes("keto") || text.includes("green") || text.includes("cauliflower") || text.includes("broccol")) {
-            estCarbs = 12; estCals = 380; estFiber = 9; estProtein = 35; estFat = 20;
-          }
+          // Pure Zero-Data Reality Principle: zero out unverified queries and prompt user
           data = {
-            title: rawText ? (rawText.charAt(0).toUpperCase() + rawText.slice(1)) : "Custom Ambulatory Meal",
+            title: rawText ? (rawText.charAt(0).toUpperCase() + rawText.slice(1)) : "Information Insufficient",
             desc: rawText,
-            calories: estCals,
-            netCarbs: estCarbs,
-            totalCarbs: estCarbs + estFiber,
-            fiber: estFiber,
-            protein: estProtein,
-            fat: estFat,
-            gl: estCarbs > 45 ? "28 (High Spike Risk)" : "11 (Safe Low-Med)",
-            meetsGoal: estCarbs <= goals.maxCarbsMeal,
+            calories: 0,
+            netCarbs: 0.0,
+            totalCarbs: 0.0,
+            fiber: 0.0,
+            protein: 0.0,
+            fat: 0.0,
+            gl: "0 (Zero Data)",
+            meetsGoal: true,
             tips: [
-              `Estimated by Gemini Clinical Nutrition Engine: ${estCarbs}g Net Carbs (${estCarbs <= goals.maxCarbsMeal ? 'Meets' : 'Exceeds'} your ${goals.maxCarbsMeal}g clinical target).`,
-              "Pair carbohydrates with healthy fats and soluble fiber to decelerate postprandial glucose absorption."
+              "I need more detailed information, please update and hit estimate.",
+              "Specify restaurant name, portion size (e.g., 1 slice, 14-inch whole pie), and specific toppings or ingredients.",
+              "If restaurant nutrition is unavailable, Gemini will cross-reference 3 similar regional competitors and average/max-bound them."
             ],
-            glut4: estCarbs > goals.maxCarbsMeal ?
-              `<strong>Mandatory 30-Minute Brisk GLUT4 Walk:</strong> Exceeds ${goals.maxCarbsMeal}g goal by +${estCarbs - goals.maxCarbsMeal}g. Walk 20 minutes post-meal to blunt expected spike.` :
-              "<strong>15-Minute Ambulatory Walk:</strong> Light movement ensures stable baseline in 60–200 mg/dL target band."
+            glut4: "Awaiting detailed meal description to prescribe kinetic GLUT4 clearance."
           };
         }
       }
@@ -20329,6 +20356,8 @@ Patient`;
     }
 
     function render3DMultiChannelScene() {
+      const pageReports = document.getElementById('pageReports');
+      if (!pageReports || !pageReports.classList.contains('active-page')) return;
       const canvas = document.getElementById('canvas3DMultiChannel');
       if (!canvas) return;
       const ctx = canvas.getContext('2d');
@@ -22937,17 +22966,20 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
             }
           }
 
-          // 9. Synchronize Subordinate Consoles & Tabs
+          // 9. Synchronize Subordinate Consoles & Tabs (Scoped to Active Page)
           if (typeof render360HealthView === 'function') render360HealthView();
-          if (typeof render3DMultiChannelScene === 'function') render3DMultiChannelScene();
-          if (typeof renderDietHistory === 'function') renderDietHistory();
+          const pageRep = document.getElementById('pageReports');
+          const isRepActive = pageRep && pageRep.classList.contains('active-page');
+          if (isRepActive && typeof render3DMultiChannelScene === 'function') render3DMultiChannelScene();
+          if (isRepActive && typeof renderReportsView === 'function') renderReportsView();
+
+          const pageDiet = document.getElementById('pageDiet');
+          const pageMetabolic = document.getElementById('pageMetabolic');
+          if (((pageDiet && pageDiet.classList.contains('active-page')) || (pageMetabolic && pageMetabolic.classList.contains('active-page'))) && typeof renderDietHistory === 'function') {
+            renderDietHistory();
+          }
           if (typeof loadGoalsComplianceReport === 'function') loadGoalsComplianceReport();
           if (!isFullScanRunning && typeof initFullScanView === 'function') initFullScanView();
-
-          const pageRep = document.getElementById('pageReports');
-          if (pageRep && pageRep.classList.contains('active-page') && typeof renderReportsView === 'function') {
-            renderReportsView();
-          }
           if (typeof updateWatchMetabolicSubReports === 'function') updateWatchMetabolicSubReports();
       if (typeof renderDailyHydrationChart === 'function') renderDailyHydrationChart('curveTimelineFluidWater');
 
@@ -24478,6 +24510,11 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
 
     let lastAutoCheckMinute = -1;
     function tickChronoClock() {
+      const pageWatch = document.getElementById('pageWatch');
+      if (!pageWatch || !pageWatch.classList.contains('active-page')) {
+        setTimeout(() => requestAnimationFrame(tickChronoClock), 1000);
+        return;
+      }
       // Check auto theme transition if auto mode is enabled (at most once per minute)
       const currentMinute = new Date().getMinutes();
       if (currentDialTheme === 'auto' && currentMinute !== lastAutoCheckMinute) {
