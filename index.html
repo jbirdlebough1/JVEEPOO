@@ -9891,6 +9891,7 @@ function switchTab(tabId) {
           const page = document.getElementById('pageSetup');
           if (btn) btn.classList.add('active');
           if (page) page.classList.add('active-page');
+          try { if (typeof loadBackupStatusUI === 'function') loadBackupStatusUI(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
         } else if (tabId === 'log') {
           const btn = document.getElementById('navTabLog');
           const page = document.getElementById('pageLog');
@@ -13696,11 +13697,11 @@ function switchTab(tabId) {
           alert(`✅ USB DEDUP BACKUP COMPLETED!\n\nTarget: ${s.usb_target}\nSnapshot: ${s.snapshot_id}\nFiles Backed Up: ${s.total_files}\nDeduped / Reused: ${s.deduped_blobs_reused}\nNew Blobs: ${s.new_blobs_stored}\nPool Size: ${s.physical_pool_size_mb} MB (Space Saved: ${s.space_saved_percent})\n\nAir-gapped verification complete!`);
           updateBackupUI(s);
         } else {
-          alert("Backup failed: " + (data.message || "Unknown error"));
+          alert("❌ Backup failed: " + (data.message || "Unknown error"));
         }
       } catch (e) {
-        // Fallback for standalone demo mode
-        alert("✅ USB BACKUP ENGINE TRIGGERED! (Air-Gapped Standalone Mode)\n\nSnapshot created at: D:\\LCARS_USB_BACKUP\\LCARS_BACKUP\n14 files deduplicated with SHA-256 block hashing (100% dedup parity).");
+        console.warn('[MIL-SPEC HANDLED FAULT]', e);
+        alert("❌ USB BACKUP FAILED: " + (e.message || e));
       }
     }
 
@@ -13753,6 +13754,20 @@ function switchTab(tabId) {
       if (elSav) elSav.textContent = `${s.space_saved_percent || '10.7%'} Saved`;
       const elTime = document.getElementById('lblLastBackupTime');
       if (elTime) elTime.textContent = s.timestamp;
+    }
+
+    async function loadBackupStatusUI() {
+      try {
+        const apiBase = (window.location.protocol === 'file:' ? 'http://127.0.0.1:8899' : '');
+        const res = await fetch(`${apiBase}/api/backup/status?_t=${Date.now()}`, { cache: 'no-store' });
+        if (!res.ok) return;
+        const data = await res.json();
+        if (data && data.last_backup_summary) {
+          updateBackupUI(data.last_backup_summary);
+        }
+      } catch (e) {
+        console.warn('[MIL-SPEC HANDLED FAULT]', e);
+      }
     }
 
     

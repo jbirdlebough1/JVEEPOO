@@ -26,15 +26,14 @@ except ImportError:
 
 # USB Dedup Backup Engine Import & Config
 try:
+    _app_dir = os.path.dirname(os.path.abspath(__file__))
+    if _app_dir not in sys.path:
+        sys.path.insert(0, _app_dir)
     import usb_backup_engine
     USB_BACKUP_AVAILABLE = True
-except ImportError:
-    try:
-        sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-        import usb_backup_engine
-        USB_BACKUP_AVAILABLE = True
-    except:
-        USB_BACKUP_AVAILABLE = False
+except Exception as e:
+    print(f"[MIL-SPEC HANDLED FAULT] Failed importing usb_backup_engine: {e}")
+    USB_BACKUP_AVAILABLE = False
 
 backup_config = {
     "schedule_time": "01:00",
@@ -4061,10 +4060,11 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                 self.wfile.write(content)
                 return
 
-        elif self.path == "/api/backup/status":
+        elif self.path.startswith("/api/backup/status"):
             drives = usb_backup_engine.get_drive_letters() if USB_BACKUP_AVAILABLE else []
             self.send_json_response({
                 "status": "OK",
+                "engine_available": USB_BACKUP_AVAILABLE,
                 "schedule_time": backup_config.get("schedule_time", "01:00"),
                 "detected_drives": drives,
                 "current_target": backup_config.get("usb_target_path") or (drives[0] if drives else "D:\\LCARS_USB_BACKUP\\"),
@@ -4461,12 +4461,27 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
         
         # 5. USB Backup Endpoints
         elif self.path == "/api/backup/trigger":
+            content_length = int(self.headers.get("Content-Length", 0) or 0)
+            target_path = backup_config.get("usb_target_path")
+            if content_length > 0:
+                try:
+                    body = self.rfile.read(content_length).decode("utf-8", errors="ignore")
+                    payload = json.loads(body)
+                    if payload.get("usb_target_path"):
+                        target_path = payload["usb_target_path"]
+                except Exception as e:
+                    print(f"[MIL-SPEC HANDLED FAULT] Invalid /api/backup/trigger JSON payload: {e}")
+
             if USB_BACKUP_AVAILABLE:
-                summary = usb_backup_engine.perform_dedup_backup(backup_config.get("usb_target_path"))
-                backup_config["last_backup_summary"] = summary
-                backup_config["last_run_date"] = datetime.datetime.now().strftime("%Y-%m-%d")
-                save_backup_config()
-                self.send_json_response({"status": "SUCCESS", "summary": summary})
+                try:
+                    summary = usb_backup_engine.perform_dedup_backup(target_path)
+                    backup_config["last_backup_summary"] = summary
+                    backup_config["last_run_date"] = datetime.datetime.now().strftime("%Y-%m-%d")
+                    save_backup_config()
+                    self.send_json_response({"status": "SUCCESS", "summary": summary})
+                except Exception as e:
+                    print(f"[MIL-SPEC HANDLED FAULT] /api/backup/trigger execution failed: {e}")
+                    self.send_json_response({"status": "ERROR", "message": str(e)}, 500)
             else:
                 self.send_json_response({"status": "ERROR", "message": "Backup engine unavailable"}, 500)
 
