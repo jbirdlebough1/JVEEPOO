@@ -3966,6 +3966,69 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
             else:
                 self.send_json_response({"error": "Inventory not found"}, 404)
 
+        # 4b. Full Veepoo Dial Catalog API (with local verified Shape 4 annotation)
+        elif self.path.startswith("/api/dial/catalog"):
+            veepoo_root = os.path.dirname(BASE_DIR)
+            cat_path = os.path.join(veepoo_root, "veepoo_dials_catalog.json")
+            inv_path = os.path.join(veepoo_root, "stock_dials", "shape4_240x280", "inventory.json")
+            local_names = set()
+            if os.path.exists(inv_path):
+                with open(inv_path, "r", encoding="utf-8") as f:
+                    for item in json.load(f):
+                        if isinstance(item, dict) and item.get("name"):
+                            local_names.add(item["name"])
+            if os.path.exists(cat_path):
+                with open(cat_path, "r", encoding="utf-8") as f:
+                    catalog = json.load(f)
+                for entry in catalog:
+                    if isinstance(entry, dict):
+                        entry["local_verified"] = entry.get("name") in local_names
+                catalog.sort(key=lambda e: (0 if e.get("local_verified") else 1, e.get("name", "")))
+                self.send_json_response(catalog)
+            elif local_names:
+                fallback = [{"name": n, "dialShape": 4, "local_verified": True} for n in sorted(local_names)]
+                self.send_json_response(fallback)
+            else:
+                self.send_json_response({"error": "Dial catalog not found"}, 404)
+
+        # 4c. Relabeled Stock Dial Builder for Real BLE Upgrade Verification
+        elif self.path.startswith("/api/dial/relabel/"):
+            raw_name = self.path.split("/api/dial/relabel/")[1].split("?")[0].strip()
+            dial_name = os.path.basename(raw_name) or "C164.bin"
+            if dial_name.endswith(".bin"):
+                base_name = dial_name[:-4]
+            else:
+                base_name = dial_name
+                dial_name += ".bin"
+            dial_path = os.path.join(os.path.dirname(BASE_DIR), "stock_dials", "shape4_240x280", dial_name)
+            if not os.path.exists(dial_path):
+                self.send_json_response({"error": f"Dial binary {dial_name} not found"}, 404)
+                return
+            with open(dial_path, "rb") as f:
+                orig_raw = f.read()
+            if len(orig_raw) < 0x28 or orig_raw[:6] != b"VEEPOO":
+                self.send_json_response({"error": f"Invalid VEEPOO magic in {dial_name}"}, 400)
+                return
+            orig_padded = orig_raw + (b"\xff" * ((4 - (len(orig_raw) % 4)) % 4))
+            orig_crc = calc_veepoo_crc(orig_padded)
+            buf = bytearray(orig_padded)
+            label_str = f"BFM_TST_{datetime.datetime.now().strftime('%H%M%S')}"
+            stamp = label_str.encode("ascii")[:16].ljust(16, b"\xff")
+            buf[0x06:0x16] = stamp
+            relabeled = bytes(buf)
+            new_crc = calc_veepoo_crc(relabeled)
+            self.send_response(200)
+            self.send_header("Content-Type", "application/octet-stream")
+            self.send_header("Content-Length", str(len(relabeled)))
+            self.send_header("X-Dial-CRC16", str(new_crc))
+            self.send_header("X-Dial-Orig-CRC16", str(orig_crc))
+            self.send_header("X-Dial-Size", str(len(relabeled)))
+            self.send_header("X-Dial-Label", f"{base_name}:{label_str}")
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.send_header("Access-Control-Expose-Headers", "X-Dial-CRC16, X-Dial-Orig-CRC16, X-Dial-Size, X-Dial-Label")
+            self.end_headers()
+            self.wfile.write(relabeled)
+
         # 5. Dial Binary API (CLE-009)
         elif self.path.startswith("/api/dial/binary/"):
             dial_name = self.path.split("/api/dial/binary/")[1].strip()

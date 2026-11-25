@@ -1775,7 +1775,7 @@
         </div>
         <div class="lcars-time-block">
           <div class="actual-datetime" id="actualDateTime">FRIDAY, NOV 20, 2026 9:55:00 AM PST</div>
-          <div class="lcars-stardate" id="stardateClock">BUILD beta.00.01.0034</div>
+          <div class="lcars-stardate" id="stardateClock">BUILD beta.00.01.0048</div>
         </div>
         
       </div>
@@ -2786,19 +2786,6 @@
                 <span style="font-size: 0.82rem; color: #475569; display: block; margin-top: 2px;">DOCTOR &amp; PATIENT COLLABORATIVE EXPLORER: CORRELATE MEALS, SPIKES &amp; EXERTION OVER TIME</span>
               </div>
             </div>
-
-            <!-- Timeframe Summary Banner -->
-            <div style="margin-top: 10px; background: #f0f9ff; border: 1.5px solid #bae6fd; border-radius: 6px; padding: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-              <div>
-                <div style="font-size: 0.78rem; color: #0284c7; font-weight: 800; font-family: var(--lcars-mono);" id="lblLearningRangeTitle">METABOLIC DISCOVERY ENGINE &bull; CONTINUOUS HARDWARE TELEMETRY</div>
-                <div style="font-size: 0.88rem; color: #0c4a6e; margin-top: 2px;" id="lblLearningRangeDesc">Evaluating meal glycemic spikes, postprandial blunting, and exercise impact across verified watch telemetry.</div>
-              </div>
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <span id="txtLearningReanalyzeProgress" style="font-family: var(--lcars-mono); font-size: 0.85rem; font-weight: 800; color: #0284c7;">100% COMPLETE</span>
-                <button class="lcars-btn btn-blue" id="btnLearningReanalyze" style="padding: 6px 14px; font-size: 0.82rem; font-weight: bold;" onclick="generatePersonalHealthInsights()">🔄 RE-ANALYZE TELEMETRY</button>
-                <button class="lcars-btn btn-green" style="padding: 6px 14px; font-size: 0.82rem; font-weight: bold;" onclick="exportLearningReport()">📥 EXPORT FOR DOCTOR</button>
-              </div>
-            </div>
           </div>
 
           <!-- COMPONENT 2: PERSONALIZED PHENOTYPING & ADAPTIVE INSIGHT CARDS -->
@@ -3436,9 +3423,6 @@
                 <button class="lcars-btn btn-green" style="font-size: 0.8rem; padding: 4px 12px; font-weight: bold;" onclick="runGoalComplianceAudit(true)">
                   🔄 RE-CALCULATE % GOALS MET ON-DEMAND
                 </button>
-                <button class="lcars-btn btn-blue" style="font-size: 0.8rem; padding: 4px 12px;" onclick="switchTab('goals')">
-                  ⚙️ CONFIGURE CLINICAL GOALS (TAB 13)
-                </button>
                 </div>
             </div>
 
@@ -4038,7 +4022,6 @@
             <button id="btnRepYearly" class="lcars-btn btn-blue" style="flex: none; width: 160px;" onclick="setReportTimeframe('yearly')">YEARLY & YTD SUMMARY</button>
             <button id="btnToggleCurveFill" class="lcars-btn btn-peach" style="flex: none; width: 160px;" onclick="toggleCurveFill()">CURVE FILL: SHOWN</button>
             <button id="btnToggleStaticExamples" class="lcars-btn btn-green" style="flex: none; width: 190px;" onclick="toggleStaticClinicalExamples()">STATIC EXEMPLARS: OFF</button>
-            <button class="lcars-btn btn-orange" style="margin-left: auto; flex: none; width: 170px;" onclick="exportMedicalReport()">EXPORT CSV</button>
           </div>
 
           <div class="report-stat-grid">
@@ -7841,6 +7824,11 @@
                   <div style="font-size: 0.95rem;">🎯 ENGAGE CUSTOM SLOT 3</div>
                 </button>
 
+                <button id="btnStepRelabelTest" class="lcars-btn btn-lilac" style="padding: 10px 14px; font-weight: bold; cursor: pointer; text-align: left;" onclick="testRelabelAndFlashWatchFace()">
+                  <div style="font-size: 0.75rem; opacity: 0.8;">REAL BLE UPGRADE TEST (DOOG)</div>
+                  <div style="font-size: 0.95rem;">🧪 RELABEL STOCK DIAL &amp; FLASH</div>
+                </button>
+
                 <button id="btnStepRevertSlot0" class="lcars-btn btn-green" style="padding: 10px 14px; font-weight: bold; cursor: pointer; text-align: left;" onclick="applyWatchFace(0, 'SLOT 0: CLEAN DEFAULT ROM', 0)">
                   <div style="font-size: 0.75rem; opacity: 0.8;">SAFETY REVERT</div>
                   <div style="font-size: 0.95rem;">🛡️ RESTORE ROM SLOT 0</div>
@@ -7899,22 +7887,16 @@
             <div class="box-content" style="padding: 16px; font-size: 0.84rem; color: #334155; line-height: 1.5;">
               <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px;">
                 <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 12px;">
-                  <strong style="color: #0f172a; font-size: 0.88rem; display: block; margin-bottom: 4px;">1. Why Generic Watch Faces Fail on FITAOS:</strong>
-                  FITAOS smartwatches run a closed lightweight RTOS with a proprietary binary container format. Every valid watch face <strong>must begin with the 6-byte magic signature <code>VEEPOO</code> (ASCII <code>56 45 45 50 4f 4f</code>)</strong>, followed by 0xFF padding, a 4-byte aligned boundary, internal Protobuf complication coordinates, and a proprietary 32-bit CRC. Flashing generic WearOS or unaligned binaries will cause the watch bootloader to reject the upload.
+                  <strong style="color: #0f172a; font-size: 0.88rem; display: block; margin-bottom: 4px;">1. Veepoo 5010 Binary Layout &amp; Readback Limit:</strong>
+                  Veepoo 5010 dials use the proprietary Shape 4 (240&times;280) container: <strong>6-byte magic <code>VEEPOO</code> (<code>0x00..0x05</code>)</strong>, <code>0xFF</code> padding (<code>0x06..0x22</code>), Protobuf widget descriptor (<code>0x28+</code>), RGB565 sprites, and <strong>CRC-16 Modbus (<code>0xA001</code>)</strong>. Note: Veepoo firmware exposes flash metadata (<code>0x50 0x02</code>) and slot IDs (<code>0xC7 0x02</code>), but no BLE flash readback/dump command; all 94 verified Shape 4 stock <code>.bin</code> files are cached in <code>stock_dials/shape4_240x280</code>.
                 </div>
                 <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 12px;">
-                  <strong style="color: #0f172a; font-size: 0.88rem; display: block; margin-bottom: 4px;">2. Downloadable Compatible Dials (94 Local + Cloud):</strong>
-                  You can download and flash over <strong>94 verified official stock dials</strong> for the 240x280 display located in your local repository vault (<code>stock_dials/shape4_240x280</code>) and searchable below in the Veepoo Cloud Market. Each file contains fully compiled and signed clock hands, step registers, and heart rate complication blocks.
+                  <strong style="color: #0f172a; font-size: 0.88rem; display: block; margin-bottom: 4px;">2. Real BLE Upgrade Protocol (Service <code>F0030001</code>):</strong>
+                  Over-the-air watch-face flashing uses two BLE services: control negotiation on <code>F0080001</code> (Opcode <code>0x50</code> read info &amp; enter update mode) followed by flash erase, 20-byte chunk streaming, end update, and CRC check using <code>DOOG</code> frames on <code>F0030002</code>/<code>F0030003</code> (per decompiled <code>UiUpdateUtil.java</code>).
                 </div>
                 <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 12px;">
-                  <strong style="color: #0f172a; font-size: 0.88rem; display: block; margin-bottom: 4px;">3. How to Build a Custom Compatible Dial:</strong>
-                  To create a custom face (such as our BFM Glucose Chronometer):
-                  <ul style="margin: 4px 0 0 16px; padding: 0;">
-                    <li>Use a verified Shape 4 base binary (e.g. <code>C164.bin</code> or <code>C176.bin</code>) as the layout container.</li>
-                    <li>Export your custom background design as a <strong>240x280 16-bit RGB565 bitmap</strong> (134,400 raw bytes).</li>
-                    <li>Inject the RGB565 stream into the base binary at the image data offset (<code>0x1000</code>).</li>
-                    <li>Recalculate the Veepoo CRC checksum using <code>calc_veepoo_crc()</code> and push via BLE GATT OTA.</li>
-                  </ul>
+                  <strong style="color: #0f172a; font-size: 0.88rem; display: block; margin-bottom: 4px;">3. 5010 Watch Face Glucose Widget Determination:</strong>
+                  Decompiled SDK enum <code>EWatchUIElementType.java</code> defines the complete set of firmware-supported dynamic watch-face widgets: <code>0=NONE</code>, <code>1=DATE_1</code>, <code>2=DATE_2</code>, <code>3=STEP</code>, <code>4=SLEEP</code>, <code>5=HEART</code>, <code>6=KCAL</code>, <code>7=DISTANCE</code>, <code>8=BT_BATT</code>, <code>99=TIME</code>. <strong>No native Glucose <code>mg/dL</code> widget ID exists in Veepoo's closed RTOS watch firmware</strong> (the repo's <code>vpprotocol-2.3.96.15.aar</code> is Android BLE client code, not watch MCU C firmware source). Only firmware images built by Veepoo can bind a new live sensor field like <code>STEP</code>.
                 </div>
               </div>
             </div>
@@ -9049,7 +9031,7 @@
       const year = now.getFullYear();
       const startOfYear = new Date(year, 0, 1);
       const dayOfYear = (now - startOfYear) / (1000 * 60 * 60 * 24);
-      document.getElementById("stardateClock").textContent = "BUILD beta.00.01.0034";
+      document.getElementById("stardateClock").textContent = "BUILD beta.00.01.0048";
     }
     setInterval(updateClock, 1000);
     updateClock();
@@ -9695,7 +9677,7 @@ function renderWatchTabConnectedDetails() {
         if (typeof render3DMultiChannelScene === 'function') render3DMultiChannelScene();
       }
 
-      const pageWatch = document.getElementById('pageWatch');
+      const pageWatch = document.getElementById('pageWatchFaces');
       if (pageWatch && pageWatch.classList.contains('active-page') && typeof renderWatchTabConnectedDetails === 'function') {
         renderWatchTabConnectedDetails();
       }
@@ -9908,6 +9890,9 @@ function switchTab(tabId) {
           const page = document.getElementById('pageWatchFaces');
           if (btn) btn.classList.add('active');
           if (page) page.classList.add('active-page');
+          try { if (typeof initUnifiedGlucoseRing === 'function') initUnifiedGlucoseRing(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+          try { if (typeof loadStockDialInventory === 'function' && (!stockDialInventory || stockDialInventory.length === 0)) loadStockDialInventory(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+          try { if (typeof veepooCatalog !== 'undefined' && veepooCatalog.length === 0 && typeof loadVeepooDialCatalog === 'function') loadVeepooDialCatalog(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
           try { queryCurrentWatchFace(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
         } else if (tabId === 'help') {
           const btn = document.getElementById('navTabHelp');
@@ -9966,9 +9951,17 @@ function switchTab(tabId) {
     // VEEPOO GATT CONSTANTS & PROTOCOL MAPPINGS
     // =========================================================================
     const VEEPOO_SERVICE_UUID = 'f0080001-0451-4000-b000-000000000000';
+    const VEEPOO_UI_SERVICE_UUID = 'f0030001-0451-4000-b000-000000000000';
+    const VEEPOO_UI_CTRL_UUID = 'f0030002-0451-4000-b000-000000000000';
+    const VEEPOO_UI_DATA_UUID = 'f0030003-0451-4000-b000-000000000000';
     let bluetoothDevice = null;
     let gattServer = null;
     let txCharacteristic = null;
+    let uiCtrlCharacteristic = null;
+    let uiDataCharacteristic = null;
+    let lastUiBaseInfo = null;
+    let _ui0x50Waiters = [];
+    let _uiDoogWaiters = [];
     let allWriteChars = [];
     let rxCharacteristics = [];
     let totalBytesRx = 0;
@@ -10297,6 +10290,9 @@ function switchTab(tabId) {
       allWriteChars = [];
       rxCharacteristics = [];
       txCharacteristic = null;
+      uiCtrlCharacteristic = null;
+      uiDataCharacteristic = null;
+      lastUiBaseInfo = null;
 
       try {
         // Direct target Veepoo Primary Service (Fast & Reliable)
@@ -10319,6 +10315,27 @@ function switchTab(tabId) {
             rxCharacteristics.push(rxChar);
             logLCARS(`[★] Telemetry RX Stream Bound: ${rxChar.uuid.substring(0, 8)}`, 'rx');
           } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+        }
+
+        // Bind Veepoo UI Big Data Transfer Service (F0030001) for real DOOG watch-face flashing
+        try {
+          const uiService = await gattServer.getPrimaryService(VEEPOO_UI_SERVICE_UUID);
+          if (uiService) {
+            try {
+              uiCtrlCharacteristic = await uiService.getCharacteristic(VEEPOO_UI_CTRL_UUID);
+              await uiCtrlCharacteristic.startNotifications();
+              uiCtrlCharacteristic.removeEventListener('characteristicvaluechanged', onUiTransferNotify);
+              uiCtrlCharacteristic.addEventListener('characteristicvaluechanged', onUiTransferNotify);
+              logLCARS(`[★] UI Control Channel Bound: ${uiCtrlCharacteristic.uuid.substring(0, 8)}`, 'rx');
+            } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+            try {
+              uiDataCharacteristic = await uiService.getCharacteristic(VEEPOO_UI_DATA_UUID);
+              logLCARS(`[★] UI Binary Data Channel Bound: ${uiDataCharacteristic.uuid.substring(0, 8)}`, 'rx');
+            } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+          }
+        } catch (e) {
+          console.warn('[MIL-SPEC HANDLED FAULT] F0030001 UI Transfer Service not exposed on watch:', e);
+          logLCARS(`[!] UI Transfer Service F0030001 not found on watch hardware (${e.message})`, 'err');
         }
 
         // Also discover any additional notify / write services
@@ -10404,6 +10421,8 @@ function switchTab(tabId) {
 
     function onDisconnected() {
       txCharacteristic = null;
+      uiCtrlCharacteristic = null;
+      uiDataCharacteristic = null;
       logLCARS('Watch link severed (screen asleep or out of range). Reconnecting in background...', 'sys');
       updateConnectionStateUI();
       startAutoReconnectLoop();
@@ -10580,23 +10599,41 @@ function switchTab(tabId) {
 
       // 0x50: Big Data & Watch Face Flash Memory Controller (Veepoo vp_dc.java)
       if (header === 0x50 && bytes.length >= 4) {
-        const opType = bytes[1];  // 2 = read info
+        const opType = bytes[1];  // 1 = enter update mode ACK, 2 = read base info
         const uiKind = bytes[2];  // 1 = SERVER, 2 = CUSTOM
         const isOk = bytes[3] === 1;
+        const parsed0x50 = { opType, uiKind, status: bytes[3], isOk, raw: Array.from(bytes) };
         if (opType === 2 && isOk && bytes.length >= 12) {
-          const flashAddr = bytes[4] | (bytes[5] << 8) | (bytes[6] << 16) | (bytes[7] << 24);
-          const maxLen = bytes[8] | (bytes[9] << 8) | (bytes[10] << 16) | (bytes[11] << 24);
-          const currentCrc = (bytes.length >= 18) ? (bytes[16] | (bytes[17] << 8)) : 0;
+          const flashAddr = (bytes[4] | (bytes[5] << 8) | (bytes[6] << 16) | (bytes[7] << 24)) >>> 0;
+          const maxLen = (bytes[8] | (bytes[9] << 8) | (bytes[10] << 16) | (bytes[11] << 24)) >>> 0;
+          const binDataType = (bytes.length >= 14) ? (bytes[12] | (bytes[13] << 8)) : 0;
           const shapeId = (bytes.length >= 16) ? (bytes[14] | (bytes[15] << 8)) : 4;
-          
+          const currentCrc = (bytes.length >= 18) ? (bytes[16] | (bytes[17] << 8)) : 0;
+          Object.assign(parsed0x50, { flashAddr, maxLen, binDataType, shapeId, currentCrc });
+          lastUiBaseInfo = parsed0x50;
+
           logLCARS(`[✔] FLASH PARTITION AUDIT: Addr 0x${flashAddr.toString(16).toUpperCase()} | Max: ${maxLen}B (${Math.round(maxLen/1024)}KB) | Shape: ${shapeId} | CRC: ${currentCrc} (0x${currentCrc.toString(16).toUpperCase()})`, 'rx');
-          
+
           const elAddr = document.getElementById('lblFlashAddr');
           const elMax = document.getElementById('lblFlashMax');
           const elCrc = document.getElementById('lblFlashCrc');
           if (elAddr) elAddr.textContent = `0x${flashAddr.toString(16).toUpperCase().padStart(8, '0')}`;
           if (elMax) elMax.textContent = `${maxLen.toLocaleString()} Bytes (${Math.round(maxLen/1024)} KB)`;
           if (elCrc) elCrc.textContent = `${currentCrc} (0x${currentCrc.toString(16).toUpperCase()})`;
+        } else if (opType === 1) {
+          logLCARS(`[${isOk ? '✔' : '!'}] 0x50 ENTER UPDATE MODE ACK: uiKind=0x0${uiKind} status=${bytes[3]} (${isOk ? 'READY' : 'REJECTED'})`, isOk ? 'rx' : 'err');
+        }
+        if (typeof _ui0x50Waiters !== 'undefined' && _ui0x50Waiters.length > 0) {
+          const remaining = [];
+          for (const w of _ui0x50Waiters) {
+            if ((w.opType === null || w.opType === opType) && (w.uiKind === null || w.uiKind === uiKind)) {
+              clearTimeout(w.timer);
+              w.resolve(parsed0x50);
+            } else {
+              remaining.push(w);
+            }
+          }
+          _ui0x50Waiters = remaining;
         }
       }
 
@@ -23607,57 +23644,51 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
       await applyWatchFace(2, 'SLOT 2: BIG DIGITAL', 0);
     }
 
-    // CLE-009: Tests overwriting Slot 3 with Slot 2 Dial (Dynamic Flash Experiment)
+    // CLE-009: Tests overwriting Slot 3 with Slot 2 Dial (Real DOOG BLE Flash)
     async function testOverwriteSlot3WithSlot2() {
       soundButtonPress();
-      logLCARS("[*] Executing Step 2: Overwrite Slot 3 with Slot 2 Dial...", "tx");
-      
-      // 1. Clear any sensor lockouts first
-      await clearSensorLockouts();
-      await new Promise(r => setTimeout(r, 200));
-
-      // 2. Fetch verified Style 2 binary from local server
-      logLCARS("[*] Fetching verified Style 2 dial binary from local repository (/api/dial/style2)...", "tx");
-      let binCrc = 24196; // 0x5E84
-      let binSize = 205252;
+      logLCARS("[*] Executing Step 2: Real DOOG Flash Style 2 (C006.bin) into Slot 3...", "tx");
+      const dialApiBase = (window.location.protocol === 'file:' ? 'http://127.0.0.1:8899' : '');
       try {
-        const resp = await fetch('/api/dial/style2');
-        if (resp.ok) {
-          binCrc = parseInt(resp.headers.get('X-Dial-CRC16') || '24196', 10);
-          binSize = parseInt(resp.headers.get('X-Dial-Size') || '205252', 10);
-          logLCARS(`[+] Verified Stock Dial Binary ready: ${binSize.toLocaleString()} bytes | CRC-16: ${binCrc} (0x${binCrc.toString(16).toUpperCase()})`, "rx");
-        }
-      } catch (e) {
-        logLCARS("[*] Local binary cache loaded: 205,252 bytes | CRC 0x5E84", "rx");
+        const resp = await fetch(`${dialApiBase}/api/dial/style2`);
+        if (!resp.ok) throw new Error(`HTTP ${resp.status} fetching /api/dial/style2`);
+        const buf = await resp.arrayBuffer();
+        const binBytes = new Uint8Array(buf);
+        logLCARS(`[+] Loaded Style 2 binary: ${binBytes.length.toLocaleString()} bytes | Executing DOOG BLE upload...`, "rx");
+        await flashDialBinaryViaDoogProtocol('C006 (STYLE 2)', binBytes, 0x02);
+      } catch (err) {
+        console.warn('[MIL-SPEC HANDLED FAULT]', err);
+        logLCARS(`[!] Step 2 Real Flash Error: ${err.message}`, "err");
+        soundError();
       }
+    }
 
-      // 3. Audit SPI Flash custom partition
-      logLCARS("[*] Auditing SPI Flash Slot 3 Partition (0x50 0x02 0x02)...", "tx");
-      const fPkt = new Uint8Array(20);
-      fPkt[0] = 0x50; fPkt[1] = 0x02; fPkt[2] = 0x02;
-      await sendCommandBytes(fPkt);
-      await new Promise(r => setTimeout(r, 350));
-
-      // 4. Direct watch to activate Slot 3 as Custom Dynamic Dial
-      logLCARS("[*] Directing watch to overwrite & activate Slot 3 as SPI Flash Custom (0xC7 0x01 0x03 0x02)...", "tx");
-      const sPkt = new Uint8Array(20);
-      sPkt[0] = 0xC7;
-      sPkt[1] = 0x01;
-      sPkt[2] = 0x03; // Target: Slot 3
-      sPkt[3] = 0x02; // Type: SPI Flash Custom
-      await sendCommandBytes(sPkt);
-
-      const elExpTx = document.getElementById('lblLastGattTx');
-      if (elExpTx) elExpTx.textContent = "TX 0xC7 0x01 0x03 0x02 (OVERWRITE SLOT 3)";
-
-      // 5. Query hardware ACK verification
-      setTimeout(async () => {
-        logLCARS("[*] Auditing Hardware ACK for Slot 3 overwrite...", "tx");
-        const qPkt = new Uint8Array(20);
-        qPkt[0] = 0xC7;
-        qPkt[1] = 0x02;
-        await sendCommandBytes(qPkt);
-      }, 450);
+    // Relabels a Shape 4 stock binary and tests real BLE watch-face upload capability
+    async function testRelabelAndFlashWatchFace() {
+      soundButtonPress();
+      const sel = document.getElementById('selQuickCloudDial');
+      const baseName = (sel && sel.value) ? sel.value : 'C164';
+      const dialApiBase = (window.location.protocol === 'file:' ? 'http://127.0.0.1:8899' : '');
+      const elTx = document.getElementById('lblLastGattTx');
+      if (elTx) elTx.textContent = `BUILDING RELABELED ${baseName}.BIN...`;
+      logLCARS(`[*] Building relabeled Shape 4 watch face from ${baseName}.bin for real BLE upgrade test...`, "tx");
+      try {
+        const resp = await fetch(`${dialApiBase}/api/dial/relabel/${encodeURIComponent(baseName)}`);
+        if (!resp.ok) throw new Error(`HTTP ${resp.status} fetching /api/dial/relabel/${baseName}`);
+        const newCrc = parseInt(resp.headers.get('X-Dial-CRC16') || '0', 10);
+        const origCrc = parseInt(resp.headers.get('X-Dial-Orig-CRC16') || '0', 10);
+        const labelHdr = resp.headers.get('X-Dial-Label') || `${baseName}:RELABELED`;
+        const buf = await resp.arrayBuffer();
+        const binBytes = new Uint8Array(buf);
+        const magic = String.fromCharCode(...binBytes.slice(0, 6));
+        logLCARS(`[+] Relabeled binary ready (${labelHdr}) | ${binBytes.length.toLocaleString()} B | Magic="${magic}" | Orig CRC=0x${origCrc.toString(16).toUpperCase()} -> New CRC=0x${newCrc.toString(16).toUpperCase()}`, "rx");
+        await flashDialBinaryViaDoogProtocol(labelHdr, binBytes, 0x01);
+      } catch (err) {
+        console.warn('[MIL-SPEC HANDLED FAULT]', err);
+        logLCARS(`[!] Relabel Upgrade Test Failed: ${err.message}`, "err");
+        if (elTx) elTx.textContent = `RELABEL TEST ERROR: ${err.message}`;
+        soundError();
+      }
     }
 
     // CLE-009: Tests direct activation of Slot 3 (Custom/Dynamic Slot)
@@ -23842,14 +23873,333 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
 
   
     // =========================================================================
-    // OFFICIAL VEEPOO CLOUD DIAL MARKET CATALOG (659 THEMES) & FLASHER
+    // OFFICIAL VEEPOO CLOUD DIAL MARKET CATALOG (659 THEMES) & REAL DOOG FLASHER
     // =========================================================================
     let veepooCatalog = [];
     let stockDialInventory = [];
 
-    async function loadStockDialInventory() {
+    function calcVeepooCrc16(bytes) {
+      let crc = 0xFFFF;
+      for (let i = 0; i < bytes.length; i++) {
+        crc ^= (bytes[i] & 0xFF);
+        for (let b = 0; b < 8; b++) {
+          crc = (crc & 1) ? ((crc >>> 1) ^ 0xA001) : (crc >>> 1);
+        }
+      }
+      return crc & 0xFFFF;
+    }
+
+    function onUiTransferNotify(event) {
+      const dv = event.target.value;
+      const bytes = new Uint8Array(dv.buffer, dv.byteOffset, dv.byteLength);
+      const hex = Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join(' ');
+      logLCARS(`[DOOG RX] ${hex}`, 'rx');
+      if (bytes.length > 0 && _uiDoogWaiters.length > 0) {
+        const cmd = bytes[0];
+        const sub = bytes.length > 1 ? bytes[1] : null;
+        const remaining = [];
+        for (const w of _uiDoogWaiters) {
+          if (w.cmd === cmd && (w.sub === null || w.sub === sub)) {
+            clearTimeout(w.timer);
+            w.resolve(bytes);
+          } else {
+            if (w.onProgress) w.onProgress(bytes);
+            remaining.push(w);
+          }
+        }
+        _uiDoogWaiters = remaining;
+      }
+    }
+
+    function waitFor0x50Response(opType, uiKind, timeoutMs = 4000) {
+      return new Promise((resolve, reject) => {
+        const entry = { opType, uiKind, resolve, timer: null };
+        entry.timer = setTimeout(() => {
+          _ui0x50Waiters = _ui0x50Waiters.filter(w => w !== entry);
+          reject(new Error(`Timeout waiting for 0x50 op=0x0${opType} response`));
+        }, timeoutMs);
+        _ui0x50Waiters.push(entry);
+      });
+    }
+
+    function waitForDoogResponse(cmd, sub = null, timeoutMs = 6000, onProgress = null) {
+      return new Promise((resolve, reject) => {
+        const entry = { cmd, sub, resolve, onProgress, timer: null };
+        entry.timer = setTimeout(() => {
+          _uiDoogWaiters = _uiDoogWaiters.filter(w => w !== entry);
+          reject(new Error(`Timeout waiting for F0030002 DOOG cmd=0x${cmd.toString(16)} ACK`));
+        }, timeoutMs);
+        _uiDoogWaiters.push(entry);
+      });
+    }
+
+    async function writeUiCtrl(bytes) {
+      if (!uiCtrlCharacteristic) throw new Error('UI Control characteristic (f0030002) not bound');
+      if (uiCtrlCharacteristic.writeValueWithResponse) {
+        await uiCtrlCharacteristic.writeValueWithResponse(bytes);
+      } else {
+        await uiCtrlCharacteristic.writeValue(bytes);
+      }
+    }
+
+    async function writeUiData(bytes) {
+      if (!uiDataCharacteristic) throw new Error('UI Data characteristic (f0030003) not bound');
+      if (uiDataCharacteristic.writeValueWithoutResponse) {
+        await uiDataCharacteristic.writeValueWithoutResponse(bytes);
+      } else {
+        await uiDataCharacteristic.writeValue(bytes);
+      }
+    }
+
+    async function flashDialBinaryViaDoogProtocol(dialName, rawBytes, uiFromType = 0x01) {
+      const pCont = document.getElementById('applyProgressContainer');
+      const pBar = document.getElementById('applyProgressBar');
+      const pPct = document.getElementById('lblApplyPct');
+      const pStep = document.getElementById('lblApplyStep');
+      const pStat = document.getElementById('lblApplyStatus');
+      const elTx = document.getElementById('lblLastGattTx');
+      const setUi = (pct, step, stat, color = null) => {
+        if (pCont) pCont.style.display = 'block';
+        if (pBar) {
+          pBar.style.width = `${pct}%`;
+          if (color) pBar.style.background = color;
+        }
+        if (pPct) pPct.textContent = `${pct}%`;
+        if (pStep) pStep.textContent = step;
+        if (pStat) pStat.textContent = stat;
+      };
+
+      setUi(5, '1/7: HALTING OPTICAL SENSORS...', 'Stopping background PPG scans before BLE flash transfer...', 'linear-gradient(90deg, #38bdf8, #22c55e)');
       try {
-        const resp = await fetch('/api/dial/inventory');
+        await clearSensorLockouts();
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+      await new Promise(r => setTimeout(r, 200));
+
+      setUi(12, '2/7: VERIFYING BLE LINK & F0030001 SERVICE...', 'Checking Veepoo UI Big Data transfer characteristics...');
+      const ok = await ensureConnected();
+      if (!ok) {
+        setUi(0, 'BLUETOOTH LINK FAILED', 'Connect watch via BLE before attempting watch face flash.', '#ef4444');
+        soundError();
+        return { supported: false, reason: 'NOT_CONNECTED' };
+      }
+
+      if (!uiCtrlCharacteristic || !uiDataCharacteristic) {
+        try {
+          const uiService = await gattServer.getPrimaryService(VEEPOO_UI_SERVICE_UUID);
+          if (uiService) {
+            if (!uiCtrlCharacteristic) {
+              uiCtrlCharacteristic = await uiService.getCharacteristic(VEEPOO_UI_CTRL_UUID);
+              await uiCtrlCharacteristic.startNotifications();
+              uiCtrlCharacteristic.removeEventListener('characteristicvaluechanged', onUiTransferNotify);
+              uiCtrlCharacteristic.addEventListener('characteristicvaluechanged', onUiTransferNotify);
+            }
+            if (!uiDataCharacteristic) {
+              uiDataCharacteristic = await uiService.getCharacteristic(VEEPOO_UI_DATA_UUID);
+            }
+          }
+        } catch (e) {
+          console.warn('[MIL-SPEC HANDLED FAULT]', e);
+        }
+      }
+
+      if (!uiCtrlCharacteristic || !uiDataCharacteristic) {
+        const msg = 'HARDWARE VERDICT: Watch firmware does NOT expose Veepoo UI Transfer Service (F0030001) — Watch cannot perform BLE watch-face upgrades.';
+        logLCARS(`[!] ${msg}`, 'err');
+        if (elTx) elTx.textContent = 'UNSUPPORTED: NO F0030001 UI SERVICE';
+        setUi(100, 'HARDWARE UNSUPPORTED (NO F0030001)', msg, '#ef4444');
+        soundError();
+        return { supported: false, reason: 'NO_F0030001_SERVICE' };
+      }
+
+      // 3. Query base partition info (0x50 0x02 <uiFromType>)
+      setUi(18, '3/7: QUERYING FLASH PARTITION (0x50 0x02)...', `Querying watch SPI flash base address & CRC for type 0x0${uiFromType}...`);
+      let baseInfo = null;
+      try {
+        const waitInfo = waitFor0x50Response(2, uiFromType, 4000);
+        const qPkt = new Uint8Array(20);
+        qPkt[0] = 0x50; qPkt[1] = 0x02; qPkt[2] = uiFromType;
+        await sendCommandBytes(qPkt);
+        baseInfo = await waitInfo;
+      } catch (e) {
+        console.warn('[MIL-SPEC HANDLED FAULT]', e);
+      }
+
+      if (!baseInfo || !baseInfo.isOk || !baseInfo.maxLen) {
+        const msg = 'HARDWARE VERDICT: Watch rejected 0x50 flash partition query — Watch face upgrades not supported on this firmware.';
+        logLCARS(`[!] ${msg}`, 'err');
+        if (elTx) elTx.textContent = 'REJECTED: 0x50 0x02 QUERY FAILED';
+        setUi(100, 'HARDWARE REJECTED (0x50 0x02)', msg, '#ef4444');
+        soundError();
+        return { supported: false, reason: '0x50_INFO_REJECTED' };
+      }
+
+      // 4-byte align with 0xFF and calculate CRC-16 Modbus
+      const padRem = rawBytes.length % 4;
+      let padded = rawBytes;
+      if (padRem !== 0) {
+        padded = new Uint8Array(rawBytes.length + (4 - padRem));
+        padded.fill(0xFF);
+        padded.set(rawBytes, 0);
+      }
+      if (padded.length > baseInfo.maxLen) {
+        const msg = `Binary (${padded.length} B) exceeds watch flash capacity (${baseInfo.maxLen} B).`;
+        logLCARS(`[!] ${msg}`, 'err');
+        setUi(100, 'SIZE EXCEEDS FLASH', msg, '#ef4444');
+        soundError();
+        return { supported: false, reason: 'EXCEEDS_MAX_LEN' };
+      }
+
+      const appCrc = calcVeepooCrc16(padded);
+      if (appCrc === baseInfo.currentCrc) {
+        logLCARS(`[!] Device CRC already equals 0x${appCrc.toString(16).toUpperCase()} — use Relabel Test to verify fresh flash write.`, 'rx');
+      }
+
+      // 4. Enter update mode (0x50 0x01 <uiFromType>) per vp_dc.java
+      setUi(24, '4/7: ENTERING FLASH UPDATE MODE (0x50 0x01)...', `Addr 0x${baseInfo.flashAddr.toString(16)} | Size ${padded.length}B | CRC 0x${appCrc.toString(16).toUpperCase()}`);
+      const addr = baseInfo.flashAddr >>> 0;
+      const flen = padded.length >>> 0;
+      const enterPkt = new Uint8Array(20);
+      enterPkt[0] = 0x50;
+      enterPkt[1] = 0x01;
+      enterPkt[2] = uiFromType;
+      enterPkt[3] = addr & 0xFF; enterPkt[4] = (addr >> 8) & 0xFF; enterPkt[5] = (addr >> 16) & 0xFF; enterPkt[6] = (addr >> 24) & 0xFF;
+      enterPkt[7] = flen & 0xFF; enterPkt[8] = (flen >> 8) & 0xFF; enterPkt[9] = (flen >> 16) & 0xFF; enterPkt[10] = (flen >> 24) & 0xFF;
+      if (uiFromType === 0x01) {
+        const bType = baseInfo.binDataType || 0;
+        enterPkt[11] = bType & 0xFF; enterPkt[12] = (bType >> 8) & 0xFF;
+        enterPkt[13] = appCrc & 0xFF; enterPkt[14] = (appCrc >> 8) & 0xFF;
+        enterPkt[15] = 0x01;
+      }
+
+      let enterAck = null;
+      try {
+        const waitEnter = waitFor0x50Response(1, uiFromType, 4000);
+        await sendCommandBytes(enterPkt);
+        enterAck = await waitEnter;
+      } catch (e) {
+        console.warn('[MIL-SPEC HANDLED FAULT]', e);
+      }
+
+      if (!enterAck || !enterAck.isOk) {
+        const msg = 'HARDWARE VERDICT: Watch rejected 0x50 0x01 Enter UI Update Mode — firmware refuses external dial writes.';
+        logLCARS(`[!] ${msg}`, 'err');
+        if (elTx) elTx.textContent = 'REJECTED: 0x50 0x01 UPDATE MODE';
+        setUi(100, 'UPDATE MODE REJECTED', msg, '#ef4444');
+        soundError();
+        return { supported: false, reason: 'ENTER_UPDATE_REJECTED' };
+      }
+
+      try {
+        // 5. DOOG Start UI Update [68, 79, 79, 71, 5, 0]
+        setUi(28, '5/7: STARTING DOOG UI SESSION...', 'Sending DOOG Start Update command on F0030002...');
+        const waitStart = waitForDoogResponse(0x05, null, 5000);
+        await writeUiCtrl(new Uint8Array([0x44, 0x4F, 0x4F, 0x47, 0x05, 0x00]));
+        await waitStart;
+
+        // 6. DOOG Clear/Erase UI Flash [68, 79, 79, 71, 1, addrLE, lenLE]
+        setUi(32, '5/7: ERASING SPI FLASH PARTITION...', 'Waiting for watch SPI flash erase completion...');
+        const erasePkt = new Uint8Array([
+          0x44, 0x4F, 0x4F, 0x47, 0x01,
+          addr & 0xFF, (addr >> 8) & 0xFF, (addr >> 16) & 0xFF, (addr >> 24) & 0xFF,
+          flen & 0xFF, (flen >> 8) & 0xFF, (flen >> 16) & 0xFF, (flen >> 24) & 0xFF
+        ]);
+        const waitEraseDone = waitForDoogResponse(0x01, 0x03, 25000, (b) => {
+          if (b[0] === 0x01 && b.length >= 3) {
+            setUi(34, '5/7: ERASING SPI FLASH PARTITION...', `Watch flash erase sector ${b[2]} (op=${b[1]})...`);
+          }
+        });
+        await writeUiCtrl(erasePkt);
+        await waitEraseDone;
+
+        // 7. Stream binary chunks on F0030003
+        let chunkSize = 20;
+        const totalChunks = Math.ceil(padded.length / chunkSize);
+        let offset = 0;
+        let idx = 0;
+        let lastUiTick = 0;
+        while (offset < padded.length) {
+          const end = Math.min(offset + chunkSize, padded.length);
+          await writeUiData(padded.subarray(offset, end));
+          offset = end;
+          idx++;
+          if (idx % 12 === 0 || offset >= padded.length) {
+            const pct = 35 + Math.round((offset / padded.length) * 55);
+            const now = Date.now();
+            if (now - lastUiTick > 150 || offset >= padded.length) {
+              lastUiTick = now;
+              setUi(pct, `6/7: STREAMING "${dialName}" TO WATCH...`, `Block ${idx}/${totalChunks} (${(offset / 1024).toFixed(1)} / ${(padded.length / 1024).toFixed(1)} KB)`);
+            }
+            await new Promise(r => setTimeout(r, 8));
+          }
+        }
+
+        // 8. DOOG End Update [68, 79, 79, 71, 2, 0...]
+        setUi(92, '7/7: FINALIZING & VERIFYING HARDWARE CRC...', 'Sending DOOG End Update on F0030002...');
+        const waitEnd = waitForDoogResponse(0x02, null, 8000);
+        const endPkt = new Uint8Array(20);
+        endPkt[0] = 0x44; endPkt[1] = 0x4F; endPkt[2] = 0x4F; endPkt[3] = 0x47; endPkt[4] = 0x02;
+        await writeUiCtrl(endPkt);
+        await waitEnd;
+
+        // 9. DOOG Check CRC [68, 79, 79, 71, 3, crcLE...]
+        const waitCrc = waitForDoogResponse(0x03, null, 8000);
+        const crcPkt = new Uint8Array(20);
+        crcPkt[0] = 0x44; crcPkt[1] = 0x4F; crcPkt[2] = 0x4F; crcPkt[3] = 0x47; crcPkt[4] = 0x03;
+        crcPkt[5] = appCrc & 0xFF; crcPkt[6] = (appCrc >> 8) & 0xFF;
+        await writeUiCtrl(crcPkt);
+        const crcResp = await waitCrc;
+        const devCrc = (crcResp.length >= 3) ? ((crcResp[1] & 0xFF) | ((crcResp[2] & 0xFF) << 8)) : -1;
+
+        if (devCrc !== appCrc) {
+          const msg = `CRC MISMATCH: App=0x${appCrc.toString(16).toUpperCase()} vs Watch=0x${devCrc.toString(16).toUpperCase()}`;
+          logLCARS(`[!] ${msg}`, 'err');
+          if (elTx) elTx.textContent = msg;
+          setUi(100, 'DOOG CRC MISMATCH', msg, '#ef4444');
+          soundError();
+          return { supported: false, reason: 'CRC_MISMATCH', appCrc, devCrc };
+        }
+
+        // 10. Activate Slot 3 via 0xC7
+        const sPkt = new Uint8Array(20);
+        sPkt[0] = 0xC7; sPkt[1] = 0x01; sPkt[2] = 0x03; sPkt[3] = uiFromType;
+        await sendCommandBytes(sPkt);
+
+        const elAct = document.getElementById('lblCurrentActiveFace');
+        const elSlot = document.getElementById('lblActiveFaceSlot');
+        const elSrc = document.getElementById('lblActiveFaceSource');
+        if (elAct) elAct.textContent = `FLASHED DIAL: ${dialName.toUpperCase()}`;
+        if (elSlot) elSlot.textContent = `Slot 3 (Type 0x0${uiFromType})`;
+        if (elSrc) elSrc.textContent = uiFromType === 0x02 ? 'SPI FLASH CUSTOM (0x02)' : 'SERVER THEME (0x01)';
+        if (elTx) elTx.textContent = `✔ HARDWARE PASS: DOOG FLASH + CRC 0x${devCrc.toString(16).toUpperCase()} VERIFIED`;
+
+        setUi(100, `✔ HARDWARE PASS: "${dialName}" FLASHED (CRC 0x${devCrc.toString(16).toUpperCase()})`, 'Watch accepted binary & verified CRC-16 match — Watch face upgrades SUPPORTED!', '#22c55e');
+        logLCARS(`[✔] HARDWARE PASS: Watch accepted "${dialName}" (${padded.length} B, CRC 0x${devCrc.toString(16).toUpperCase()})!`, 'rx');
+        if (typeof soundSuccess === 'function') soundSuccess();
+
+        setTimeout(async () => {
+          try {
+            const qPkt = new Uint8Array(20);
+            qPkt[0] = 0xC7; qPkt[1] = 0x02;
+            await sendCommandBytes(qPkt);
+          } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+        }, 400);
+
+        return { supported: true, appCrc, devCrc };
+      } catch (err) {
+        console.warn('[MIL-SPEC HANDLED FAULT]', err);
+        const msg = `DOOG Transfer Fault: ${err.message}`;
+        logLCARS(`[!] ${msg}`, 'err');
+        if (elTx) elTx.textContent = msg;
+        setUi(100, 'DOOG TRANSFER INTERRUPTED', msg, '#ef4444');
+        soundError();
+        return { supported: false, reason: err.message };
+      }
+    }
+
+    async function loadStockDialInventory() {
+      const dialApiBase = (window.location.protocol === 'file:' ? 'http://127.0.0.1:8899' : '');
+      try {
+        const resp = await fetch(`${dialApiBase}/api/dial/inventory`);
         if (!resp.ok) return;
         stockDialInventory = await resp.json();
         const sel = document.getElementById('selQuickCloudDial');
@@ -23860,7 +24210,7 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
           onQuickDialSelect(stockDialInventory[0].name);
         }
       } catch (e) {
-        console.error("Could not load stock dial inventory:", e);
+        console.warn('[MIL-SPEC HANDLED FAULT] Could not load stock dial inventory:', e);
       }
     }
 
@@ -23868,12 +24218,24 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
       const img = document.getElementById('quickDialPreviewImg');
       const info = document.getElementById('quickDialInfo');
       const dial = stockDialInventory.find(d => d.name === name);
+      const dialApiBase = (window.location.protocol === 'file:' ? 'http://127.0.0.1:8899' : '');
       if (img) {
-        const apiBase = (window.location.protocol === 'file:' ? 'http://127.0.0.1:8899' : '');
-        img.src = apiBase ? (apiBase + `/api/dial/preview/${name}.png`) : 'images/lcars_watch_dial_164_sync.png';
+        img.src = `${dialApiBase}/api/dial/preview/${encodeURIComponent(name)}.png`;
         img.onerror = function() {
-          this.src = 'images/lcars_watch_dial_164_sync.png';
+          this.onerror = null;
+          this.style.display = 'none';
+          const fallback = this.parentElement ? this.parentElement.querySelector('.dial-prev-fallback') : null;
+          if (!fallback && this.parentElement) {
+            const div = document.createElement('div');
+            div.className = 'dial-prev-fallback';
+            div.style.cssText = 'color:#94a3b8;font-size:0.65rem;font-family:var(--lcars-mono);text-align:center;padding:4px;';
+            div.textContent = name;
+            this.parentElement.appendChild(div);
+          }
         };
+        img.style.display = '';
+        const oldFb = img.parentElement ? img.parentElement.querySelector('.dial-prev-fallback') : null;
+        if (oldFb) oldFb.remove();
       }
       if (info && dial) {
         info.textContent = `${(dial.bin_size / 1024).toFixed(0)} KB • 240x280 Shape 4`;
@@ -23883,156 +24245,72 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
     async function flashSelectedQuickDial() {
       const sel = document.getElementById('selQuickCloudDial');
       if (!sel || !sel.value) return;
+      const dialApiBase = (window.location.protocol === 'file:' ? 'http://127.0.0.1:8899' : '');
       const dial = stockDialInventory.find(d => d.name === sel.value);
       const fileUrl = dial ? `https://www.vphband.com/themebin/release/${dial.name}/Dial_${dial.name}.bin` : '';
-      const previewUrl = dial ? `/api/dial/preview/${dial.name}.png` : '';
+      const previewUrl = dial ? `${dialApiBase}/api/dial/preview/${dial.name}.png` : '';
       await flashCloudDialToWatch(sel.value, fileUrl, previewUrl, 0);
     }
 
     async function flashCloudDialToWatch(dialName, fileUrl, previewUrl, crc) {
       soundButtonPress();
-      logLCARS(`[*] Initiating Cloud Dial Update for "${dialName}" (Slot 3 Custom / Server Register)...`, "tx");
+      const dialApiBase = (window.location.protocol === 'file:' ? 'http://127.0.0.1:8899' : '');
+      logLCARS(`[*] Loading "${dialName}" watch face binary for real DOOG BLE upgrade...`, "tx");
 
-      const pCont = document.getElementById('applyProgressContainer');
-      const pBar = document.getElementById('applyProgressBar');
-      const pPct = document.getElementById('lblApplyPct');
-      const pStep = document.getElementById('lblApplyStep');
-      const pStat = document.getElementById('lblApplyStatus');
-
-      if (pCont) pCont.style.display = 'block';
-      if (pBar) pBar.style.width = '12%';
-      if (pPct) pPct.textContent = '12%';
-      if (pStep) pStep.textContent = `HALTING OPTICAL SENSORS (PREVENTING "MEASURING KEEP STILL")...`;
-      if (pStat) pStat.textContent = `Shutting down background PPG diodes before dial transfer...`;
-
-      // 1. Clear sensor lockouts & halt background streams
+      let binBytes = null;
       try {
-        await clearSensorLockouts();
-        const pD0 = new Uint8Array(20); pD0[0] = 0xD0; pD0[1] = 0x00; await sendCommandBytes(pD0);
-        const pBg = new Uint8Array(20); pBg[0] = 0x89; pBg[1] = 0x01; pBg[2] = 0x02; await sendCommandBytes(pBg);
-        const pHrv = new Uint8Array(20); pHrv[0] = 0x89; pHrv[1] = 0x07; pHrv[2] = 0x02; await sendCommandBytes(pHrv);
-        const pSpo2 = new Uint8Array(20); pSpo2[0] = 0x80; pSpo2[1] = 0x02; pSpo2[2] = 0x02; await sendCommandBytes(pSpo2);
-        const pBp = new Uint8Array(20); pBp[0] = 0x90; pBp[1] = 0x00; pBp[2] = 0x00; await sendCommandBytes(pBp);
-      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
-
-      await new Promise(r => setTimeout(r, 200));
-
-      // 2. Ensure Bluetooth Connection
-      if (pBar) pBar.style.width = '28%';
-      if (pPct) pPct.textContent = '28%';
-      if (pStep) pStep.textContent = `VERIFYING GATT BLE LINK TO WATCH...`;
-      if (pStat) pStat.textContent = `Checking device proximity and active connection...`;
-
-      const ok = await ensureConnected();
-      if (!ok) {
-        if (pStep) pStep.textContent = 'BLUETOOTH LINK FAILED';
-        if (pStat) pStat.textContent = 'Ensure watch screen is turned on and in range.';
-        soundError();
-        return;
-      }
-
-      // 3. Audit SPI Flash Partition for Slot 3
-      if (pBar) pBar.style.width = '45%';
-      if (pPct) pPct.textContent = '45%';
-      if (pStep) pStep.textContent = `AUDITING SPI FLASH TARGET PARTITION (OPCODE 0x50)...`;
-      if (pStat) pStat.textContent = `Targeting Dynamic Custom Register 0x00100000...`;
-
-      try {
-        const fPkt = new Uint8Array(20);
-        fPkt[0] = 0x50; fPkt[1] = 0x02; fPkt[2] = 0x02;
-        await sendCommandBytes(fPkt);
-      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
-
-      await new Promise(r => setTimeout(r, 250));
-
-      // 4. Fetch & Validate Dial Binary
-      if (pBar) pBar.style.width = '65%';
-      if (pPct) pPct.textContent = '65%';
-      if (pStep) pStep.textContent = `VERIFYING CLOUD DIAL BINARY "${dialName}"...`;
-      if (pStat) pStat.textContent = `Loading payload and verifying VEEPOO RTOS signature...`;
-
-      let binSize = 0;
-      let binCrc = crc || 0;
-      try {
-        const localResp = await fetch(`/api/dial/binary/${dialName}`);
+        const localResp = await fetch(`${dialApiBase}/api/dial/binary/${encodeURIComponent(dialName)}`);
         if (localResp.ok) {
-          binSize = parseInt(localResp.headers.get('X-Dial-Size') || '0', 10);
-          binCrc = parseInt(localResp.headers.get('X-Dial-CRC16') || '0', 10);
           const buf = await localResp.arrayBuffer();
-          const view = new Uint8Array(buf);
-          const magic = String.fromCharCode(...view.slice(0, 6));
-          logLCARS(`[+] Verified Local Cloud Binary: ${dialName} (${(buf.byteLength / 1024).toFixed(1)} KB) | Header: "${magic}" | CRC16: ${binCrc}`, "rx");
+          binBytes = new Uint8Array(buf);
+          const magic = String.fromCharCode(...binBytes.slice(0, 6));
+          logLCARS(`[+] Loaded Local Stock Binary: ${dialName} (${(buf.byteLength / 1024).toFixed(1)} KB) | Magic="${magic}"`, "rx");
         } else if (fileUrl) {
           logLCARS(`[*] Local binary not cached, fetching from Veepoo CDN: ${fileUrl}...`, "tx");
           const cdnResp = await fetch(fileUrl);
           if (cdnResp.ok) {
             const buf = await cdnResp.arrayBuffer();
+            binBytes = new Uint8Array(buf);
             logLCARS(`[+] Downloaded from Veepoo CDN: ${dialName} (${(buf.byteLength / 1024).toFixed(1)} KB)`, "rx");
           }
         }
       } catch (e) {
-        logLCARS(`[*] Dial binary check completed: ${dialName}`, "rx");
+        console.warn('[MIL-SPEC HANDLED FAULT]', e);
+        logLCARS(`[!] Failed to load binary for "${dialName}": ${e.message}`, "err");
       }
 
-      // 5. Transmit Hardware Command to Activate Slot 3 as Server/Custom Theme
-      if (pBar) pBar.style.width = '82%';
-      if (pPct) pPct.textContent = '82%';
-      if (pStep) pStep.textContent = `TRANSMITTING CLOUD DIAL COMMAND (OPCODE 0xC7)...`;
-      if (pStat) pStat.textContent = `Directing watch to activate ${dialName} in Slot 3 (Server / Custom UI)...`;
+      if (!binBytes || binBytes.length < 16) {
+        const msg = `Cannot flash "${dialName}": binary not available in local Shape 4 vault or blocked by offline/CORS policy.`;
+        logLCARS(`[!] ${msg}`, 'err');
+        const elTx = document.getElementById('lblLastGattTx');
+        if (elTx) elTx.textContent = msg;
+        soundError();
+        return;
+      }
 
-      // Set Screen Style: Slot 3, Type 0x01 (Server Dial)
-      const sPkt = new Uint8Array(20);
-      sPkt[0] = 0xC7;
-      sPkt[1] = 0x01;
-      sPkt[2] = 0x03; // Slot 3
-      sPkt[3] = 0x01; // uiType 1 = Server Theme / Cloud Dial
-      await sendCommandBytes(sPkt);
-
-      // Update UI HUD
-      const elAct = document.getElementById('lblCurrentActiveFace');
-      const elSlot = document.getElementById('lblActiveFaceSlot');
-      const elSrc = document.getElementById('lblActiveFaceSource');
-      const elTx = document.getElementById('lblLastGattTx');
-      if (elAct) elAct.textContent = `CLOUD DIAL: ${dialName.toUpperCase()}`;
-      if (elSlot) elSlot.textContent = "Slot 3 (Server / Cloud)";
-      if (elSrc) elSrc.textContent = "VEEPOO CLOUD MARKET (SLOT 3 / SERVICE DIAL)";
-      if (elTx) elTx.textContent = `TX 0xC7 0x01 0x03 0x01 (APPLY ${dialName})`;
-
-      // 6. Query Hardware ACK
-      setTimeout(async () => {
-        try {
-          const qPkt = new Uint8Array(20);
-          qPkt[0] = 0xC7;
-          qPkt[1] = 0x02;
-          await sendCommandBytes(qPkt);
-        } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
-      }, 350);
-
-      // 7. Complete
-      setTimeout(() => {
-        if (pBar) pBar.style.width = '100%';
-        if (pPct) pPct.textContent = '100%';
-        if (pStep) pStep.textContent = `✔ CLOUD DIAL APPLIED: ${dialName} ACTIVE!`;
-        if (pStat) pStat.textContent = `Watch face "${dialName}" commanded to Slot 3 (Server Dial).`;
-        if (typeof soundSuccess === "function") soundSuccess();
-        logLCARS(`[+] SUCCESS: Cloud Watch Face "${dialName}" commanded & active on physical watch (Slot 3)!`, "rx");
-
-        setTimeout(() => {
-          if (pCont) pCont.style.display = 'none';
-        }, 2200);
-      }, 900);
+      await flashDialBinaryViaDoogProtocol(dialName, binBytes, 0x01);
     }
 
     async function loadVeepooDialCatalog() {
+      const dialApiBase = (window.location.protocol === 'file:' ? 'http://127.0.0.1:8899' : '');
       try {
         loadStockDialInventory();
-        const apiBase = (window.location.protocol === 'file:' ? '' : '');
-        const resp = await fetch('veepoo_dials_catalog.json');
-        if (!resp.ok) return;
-        veepooCatalog = await resp.json();
+        let resp = await fetch(`${dialApiBase}/api/dial/catalog`);
+        if (!resp.ok) {
+          resp = await fetch(`${dialApiBase}/api/dial/inventory`);
+          if (!resp.ok) return;
+          const inv = await resp.json();
+          veepooCatalog = inv.map(d => ({ name: d.name, dialShape: 4, fileLength: d.bin_size, local_verified: true }));
+        } else {
+          veepooCatalog = await resp.json();
+        }
         renderVeepooDials(veepooCatalog);
       } catch (e) {
-        console.error("Could not load dial catalog:", e);
+        console.warn('[MIL-SPEC HANDLED FAULT] Could not load dial catalog:', e);
+        const grid = document.getElementById('veepooCloudDialsGrid');
+        if (grid) {
+          grid.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; color: #ef4444; padding: 20px;">Unable to load dial catalog (ensure local BFM server on port 8899 is running).</div>';
+        }
       }
     }
 
@@ -24044,28 +24322,40 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
         return;
       }
 
+      const dialApiBase = (window.location.protocol === 'file:' ? 'http://127.0.0.1:8899' : '');
       // Display up to 60 dials at a time for silky rendering performance
       const slice = dials.slice(0, 60);
-      grid.innerHTML = slice.map(item => `
+      grid.innerHTML = slice.map(item => {
+        const previewSrc = item.local_verified
+          ? `${dialApiBase}/api/dial/preview/${encodeURIComponent(item.name)}.png`
+          : (item.previewUrl || `${dialApiBase}/api/dial/preview/${encodeURIComponent(item.name)}.png`);
+        const localBadge = item.local_verified
+          ? '<span style="background:#14532d;color:#4ade80;font-size:0.62rem;padding:1px 5px;border-radius:3px;font-weight:800;margin-left:4px;">LOCAL</span>'
+          : '';
+        const downloadHref = item.local_verified
+          ? `${dialApiBase}/api/dial/binary/${encodeURIComponent(item.name)}`
+          : (item.fileUrl || `${dialApiBase}/api/dial/binary/${encodeURIComponent(item.name)}`);
+        return `
         <div style="background: rgba(12, 14, 20, 0.95); border: 1px solid var(--lcars-border); border-radius: 8px; padding: 10px; display: flex; flex-direction: column; justify-content: space-between; align-items: center; text-align: center; transition: border-color 0.2s;">
           <div style="width: 100%; height: 170px; background: #000; border-radius: 6px; overflow: hidden; display: flex; align-items: center; justify-content: center; margin-bottom: 8px; border: 1px solid #222;">
-            <img src="images/lcars_watch_dial_164_sync.png" alt="${item.name}" loading="lazy" style="max-width: 100%; max-height: 100%; object-fit: contain;">
-            <div style="display: none; font-size: 0.75rem; color: var(--lcars-gray);">[PREVIEW N/A]</div>
+            <img src="${previewSrc}" alt="${item.name}" loading="lazy" style="max-width: 100%; max-height: 100%; object-fit: contain;" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';">
+            <div style="display: none; font-size: 0.75rem; color: var(--lcars-gray); font-family: var(--lcars-mono);">[PREVIEW N/A]<br>${item.name}</div>
           </div>
           <div style="width: 100%;">
-            <div style="font-weight: bold; color: var(--lcars-banana); font-size: 0.95rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${item.name}</div>
+            <div style="font-weight: bold; color: var(--lcars-banana); font-size: 0.95rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${item.name}${localBadge}</div>
             <div style="font-size: 0.72rem; color: var(--lcars-gray); margin-top: 2px;">Size: ${(item.fileLength ? (item.fileLength / 1024).toFixed(0) + ' KB' : 'ROM')} • Dial ${item.dialShape}</div>
             <div style="display: flex; gap: 6px; margin-top: 8px;">
-              <button class="lcars-btn btn-banana" style="flex: 1.3; padding: 6px 4px; font-size: 0.75rem; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px;" onclick="flashCloudDialToWatch('${item.name}', '${item.fileUrl}', '${item.previewUrl}', ${item.crc || 0})">
+              <button class="lcars-btn btn-banana" style="flex: 1.3; padding: 6px 4px; font-size: 0.75rem; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px;" onclick="flashCloudDialToWatch('${item.name}', '${item.fileUrl || ''}', '${previewSrc}', ${item.crc || 0})">
                 <span>⚡ APPLY / FLASH</span>
               </button>
-              <a href="${item.fileUrl}" target="_blank" download class="lcars-btn btn-green" style="flex: 0.7; text-decoration: none; padding: 6px 2px; font-size: 0.75rem; font-weight: bold; display: flex; align-items: center; justify-content: center;">
+              <a href="${downloadHref}" target="_blank" download="${item.name}.bin" class="lcars-btn btn-green" style="flex: 0.7; text-decoration: none; padding: 6px 2px; font-size: 0.75rem; font-weight: bold; display: flex; align-items: center; justify-content: center;">
                 <span>💾 .BIN</span>
               </a>
             </div>
           </div>
         </div>
-      `).join('');
+      `;
+      }).join('');
     }
 
     function filterVeepooDials(term) {
@@ -24232,8 +24522,9 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
       // Lower-Left Battery Readout & Dynamic Fill
       const elBat = document.getElementById('chronoBattery');
       const elBatFill = document.getElementById('chronoBatteryFill');
-      const liveBat = document.getElementById('valBattery')?.textContent || "85%";
-      const batPct = parseInt(liveBat.replace(/[^0-9]/g, '')) || 85;
+      const liveBat = document.getElementById('valBattery')?.textContent || "0%";
+      const batParsed = parseInt(liveBat.replace(/[^0-9]/g, ''), 10);
+      const batPct = Number.isFinite(batParsed) ? batParsed : 0;
       if (elBat) {
         elBat.textContent = `${batPct}%`;
         if (batPct <= 20) elBat.setAttribute('fill', '#ef4444');
@@ -24293,7 +24584,7 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
 
     let lastAutoCheckMinute = -1;
     function tickChronoClock() {
-      const pageWatch = document.getElementById('pageWatch');
+      const pageWatch = document.getElementById('pageWatchFaces');
       if (!pageWatch || !pageWatch.classList.contains('active-page')) {
         setTimeout(() => requestAnimationFrame(tickChronoClock), 1000);
         return;
@@ -24340,15 +24631,19 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
         elDate.textContent = `${days[now.getDay()]} ${months[now.getMonth()]} ${now.getDate()}`;
       }
 
-      // Pull real sensor readings if not simulating
+      // Pull real sensor readings if not simulating (Pure Zero-Data Reality: 0 when unsynced)
       if (!chronoSimulationMode) {
-        const gText = document.getElementById('valGlucose')?.textContent || "124";
-        const sText = document.getElementById('valStepCount')?.textContent || "8420";
-        const hText = document.getElementById('valHeartRate')?.textContent || "72";
+        const gText = document.getElementById('valGlucose')?.textContent || "";
+        const sText = document.getElementById('valStepCount')?.textContent || "";
+        const hText = document.getElementById('valHeartRate')?.textContent || "";
 
-        const g = parseFloat(gText.replace(/[^0-9.]/g, '')) || 124;
-        const s = parseFloat(sText.replace(/[^0-9.]/g, '')) || 8420;
-        const h = parseFloat(hText.replace(/[^0-9.]/g, '')) || 72;
+        const gParsed = parseFloat(gText.replace(/[^0-9.]/g, ''));
+        const sParsed = parseFloat(sText.replace(/[^0-9.]/g, ''));
+        const hParsed = parseFloat(hText.replace(/[^0-9.]/g, ''));
+
+        const g = (typeof lastGlucoseMg === 'number' && lastGlucoseMg > 0) ? lastGlucoseMg : (Number.isFinite(gParsed) ? gParsed : 0);
+        const s = (typeof lastSteps === 'number' && lastSteps > 0) ? lastSteps : (Number.isFinite(sParsed) ? sParsed : 0);
+        const h = (typeof lastHeartRate === 'number' && lastHeartRate > 0) ? lastHeartRate : (Number.isFinite(hParsed) ? hParsed : 0);
 
         updateChronoDial(g, s, h);
       }
@@ -24560,6 +24855,11 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
     // Initialize unified ring on page load
     setTimeout(() => {
       initUnifiedGlucoseRing();
+      updateChronoDial(
+        (typeof lastGlucoseMg === 'number' && lastGlucoseMg > 0) ? lastGlucoseMg : 0,
+        (typeof lastSteps === 'number' && lastSteps > 0) ? lastSteps : 0,
+        (typeof lastHeartRate === 'number' && lastHeartRate > 0) ? lastHeartRate : 0
+      );
       requestAnimationFrame(tickChronoClock);
     }, 400);
 
