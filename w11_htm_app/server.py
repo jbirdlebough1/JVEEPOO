@@ -3107,15 +3107,15 @@ def get_recent_meals(limit=100):
             })
         return res
 
-def insert_vital_record(metric, value1, value2, unit, progress, status, mode, raw_hex, custom_ts=None):
+def insert_vital_record(metric, value1, value2, unit, progress, status, mode, raw_hex, custom_ts=None, device_id="VEE_5010"):
     ts = custom_ts or datetime.datetime.now().isoformat()
+    dev_id = str(device_id or "VEE_5010").strip()
     with db_lock:
         conn = get_db()
         cur = conn.cursor()
         try:
-            device_id = str(payload.get("device_id") or "VEE_5010").strip()
             cur.execute("""
-                INSERT INTO vital_records 
+                INSERT INTO vital_records
                 (timestamp, metric, value1, value2, unit, progress, status, mode, raw_hex, device_id)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 ON CONFLICT(timestamp, metric) DO UPDATE SET
@@ -3127,7 +3127,7 @@ def insert_vital_record(metric, value1, value2, unit, progress, status, mode, ra
                     mode = excluded.mode,
                     raw_hex = excluded.raw_hex,
                     device_id = excluded.device_id
-            """, (ts, metric, value1, value2, unit, progress, status, mode, raw_hex, device_id))
+            """, (ts, metric, value1, value2, unit, progress, status, mode, raw_hex, dev_id))
             conn.commit()
             cur.execute("SELECT COUNT(*) FROM vital_records")
             ble_state["total_records"] = cur.fetchone()[0]
@@ -3169,7 +3169,7 @@ def parse_and_store_packet(data: bytearray, custom_ts=None):
     if header == 0xA1 and len(data) >= 10:
         dev_num = (data[4] << 8) | data[5]
         version = f"{data[6]}.{data[7]}.{data[8]}.{data[9]}"
-        insert_vital_record("AUTH", dev_num, float(f"{data[6]}.{data[7]}", custom_ts=custom_ts), "version", 100, "VERIFIED", "AUTH", hex_str)
+        insert_vital_record("AUTH", dev_num, float(f"{data[6]}.{data[7]}"), "version", 100, "VERIFIED", "AUTH", hex_str, custom_ts=custom_ts)
         return "AUTH"
 
     # 0xA0: Battery
@@ -3181,7 +3181,7 @@ def parse_and_store_packet(data: bytearray, custom_ts=None):
         return "BATTERY"
 
     # 0xA8: 32-bit Steps & Accelerometer
-    elif header == 0xA8 and len(data) >= 5:
+    elif header in (0x07, 0xA8) and len(data) >= 5:
         steps = (data[1] << 24) | (data[2] << 16) | (data[3] << 8) | data[4]
         kcal = round(steps * 0.04, 1)
         insert_vital_record("PEDOMETER", steps, kcal, "steps", 100, "ACTIVE", "32BIT_REG", hex_str, custom_ts=custom_ts)
@@ -4279,7 +4279,8 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                 mode = payload.get("mode", "AMBULATORY")
                 raw_hex = payload.get("raw_hex", "")
                 ts = payload.get("timestamp")
-                insert_vital_record(metric, val1, val2, unit, progress, status, mode, raw_hex, ts)
+                dev_id = payload.get("device_id") or "VEE_5010"
+                insert_vital_record(metric, val1, val2, unit, progress, status, mode, raw_hex, ts, device_id=dev_id)
                 update_sync_state("BROWSER_GATT_SYNC", 1)
                 self.send_json_response({"status": "SAVED"})
             except Exception as e:
@@ -4746,7 +4747,7 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
             "active_connection": ble_state.get("active_connection", False),
             "ble": {
                 "rssi": -62,
-                "connected": ble_state.get("active_connection", True),
+                "connected": ble_state.get("active_connection", False),
                 "battery_pct": 97.0,
                 "mac": TARGET_MAC
             },
@@ -4773,7 +4774,15 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                     """, (m,))
                 row = cur.fetchone()
                 if row:
-                    snapshot["vitals"][m] = dict(row)
+                    row_dict = dict(row)
+                    if m == "PEDOMETER":
+                        ts_str = str(row_dict.get("timestamp") or "")
+                        rec_date = ts_str.split("T")[0] if "T" in ts_str else ts_str.split(" ")[0]
+                        today_str = datetime.date.today().isoformat()
+                        if rec_date and rec_date != today_str:
+                            row_dict["value1"] = 0
+                            row_dict["value2"] = 0
+                    snapshot["vitals"][m] = row_dict
             conn.close()
         return snapshot
 

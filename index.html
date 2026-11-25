@@ -1765,7 +1765,7 @@
         </div>
         <div class="lcars-time-block">
           <div class="actual-datetime" id="actualDateTime">FRIDAY, NOV 20, 2026 9:55:00 AM PST</div>
-          <div class="lcars-stardate" id="stardateClock">BUILD beta.00.01.0031</div>
+          <div class="lcars-stardate" id="stardateClock">BUILD beta.00.01.0032</div>
         </div>
         
       </div>
@@ -9323,13 +9323,13 @@
     function soundButtonPress() {
       // Audio completely muted per user directive: kill all beep noises
       if (typeof syncStepData === 'function' && gattServer && gattServer.connected && txCharacteristic) {
-        try { syncStepData(false); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+        try { syncStepData(true); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       }
       if (typeof pollLiveTelemetryChanges === 'function') {
-        try { pollLiveTelemetryChanges(false); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+        try { pollLiveTelemetryChanges(true); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       }
-      if (typeof scheduleFullPipelineRefresh === 'function') {
-        scheduleFullPipelineRefresh();
+      if (typeof runFullPipelineAndRefreshAllScreens === 'function') {
+        try { runFullPipelineAndRefreshAllScreens(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       }
       return;
     }
@@ -9394,7 +9394,7 @@
       const year = now.getFullYear();
       const startOfYear = new Date(year, 0, 1);
       const dayOfYear = (now - startOfYear) / (1000 * 60 * 60 * 24);
-      document.getElementById("stardateClock").textContent = "BUILD beta.00.01.0031";
+      document.getElementById("stardateClock").textContent = "BUILD beta.00.01.0032";
     }
     setInterval(updateClock, 1000);
     updateClock();
@@ -10158,6 +10158,7 @@ function switchTab(tabId) {
           try { initDietFormTime(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
           try { initExerciseFormTime(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
           try { render360HealthView(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+          try { propagateStepTelemetry(lastSteps || 0, lastKcal || 0); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
         } else if (tabId === 'export') {
           const btnExp = document.getElementById('navTabExport');
           const pageExp = document.getElementById('pageExport');
@@ -10246,13 +10247,13 @@ function switchTab(tabId) {
 
       // Guarantee instant live telemetry & watch step refresh across tab navigation
       if (typeof syncStepData === 'function' && gattServer && gattServer.connected && txCharacteristic) {
-        try { syncStepData(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+        try { syncStepData(true); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       }
       if (typeof pollLiveTelemetryChanges === 'function') {
         try { pollLiveTelemetryChanges(true); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       }
-      if (typeof scheduleFullPipelineRefresh === 'function') {
-        try { scheduleFullPipelineRefresh(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+      if (typeof runFullPipelineAndRefreshAllScreens === 'function') {
+        try { runFullPipelineAndRefreshAllScreens(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       }
     }
 
@@ -12064,8 +12065,8 @@ function switchTab(tabId) {
 
     function syncStepData(force = false) {
       const now = Date.now();
-      // Enforce at least 3 seconds between BLE hardware pedometer queries to prevent RF congestion
-      if (!force && (now - _lastStepSyncTime < 3000 || _isSyncingStepData)) {
+      // Allow forced immediate queries (button clicks, tab navigation)
+      if (!force && (now - _lastStepSyncTime < 1000 || _isSyncingStepData)) {
         return;
       }
       if (!txCharacteristic || !gattServer || !gattServer.connected) {
