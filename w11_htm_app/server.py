@@ -1425,7 +1425,7 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
     is_recommendation_query = (query_target is not None) or (
         any(phrase in text for phrase in ["meets my goals", "meets goals", "what is best", "what's best", "healthy alternative", "safe alternative", "best option"]) and any(word in text for word in ["candy", "dessert", "snack", "treat", "hot candy", "chocolate", "sweet", "ice cream", "cookie", "cake", "pie"])
     ) or (
-        "sugar free" in text and any(w in text for w in ["dessert", "treat", "cake", "cookie", "muffin", "ice cream", "candy", "hot candy"]) and not ("cottage cheese" in text and "blueberry" in text)
+        "sugar free" in text and any(w in text for w in ["dessert", "treat", "muffin", "ice cream", "candy", "hot candy"]) and not any(p in text for p in ["pancake", "pancakes", "waffle", "waffles", "syrup"]) and not ("cottage cheese" in text and "blueberry" in text)
     )
 
     if is_recommendation_query:
