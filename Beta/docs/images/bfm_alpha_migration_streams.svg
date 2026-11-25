@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" width="1000" height="620" style="background:#070b12; font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Roboto,sans-serif;">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080d1a"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+    <linearGradient id="headerGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1000" height="620" fill="url(#bgGrad)"/>
+  <rect x="15" y="15" width="970" height="590" rx="12" fill="none" stroke="#1e293b" stroke-width="1.5"/>
+
+  <!-- Scott BFM Corner Accents -->
+  <path d="M 15 45 L 15 15 L 45 15" fill="none" stroke="#38bdf8" stroke-width="3"/>
+  <path d="M 955 15 L 985 15 L 985 45" fill="none" stroke="#38bdf8" stroke-width="3"/>
+  <path d="M 15 575 L 15 605 L 45 605" fill="none" stroke="#38bdf8" stroke-width="3"/>
+  <path d="M 955 605 L 985 605 L 985 575" fill="none" stroke="#38bdf8" stroke-width="3"/>
+
+  <!-- Header Banner -->
+  <rect x="35" y="30" width="930" height="58" rx="8" fill="url(#headerGrad)" stroke="#334155" stroke-width="1"/>
+  <rect x="35" y="30" width="12" height="58" rx="4" fill="#fb923c"/>
+  <text x="60" y="55" fill="#f8fafc" font-size="16" font-weight="800" letter-spacing="1.5">STAR SHIP GEMINI NCC-202X • ARCHITECTURAL ASSET AUDIT</text>
+  <text x="60" y="75" fill="#38bdf8" font-size="11" font-weight="600" letter-spacing="1">ALPHA CODEBASE TRIAGE (23,100 LINES) CATEGORIZED INTO THREE BETA 1 STREAMS</text>
+  <rect x="810" y="44" width="140" height="30" rx="15" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
+  <text x="880" y="63" fill="#10b981" font-size="10" font-weight="800" text-anchor="middle" letter-spacing="1">100% AUDITED</text>
+
+  <!-- Left Column: Alpha Source Codebase -->
+  <rect x="35" y="110" width="280" height="475" rx="10" fill="#0d1527" stroke="#1e3a8a" stroke-width="1.5"/>
+  <rect x="35" y="110" width="280" height="38" rx="10" fill="#1e293b"/>
+  <rect x="35" y="138" width="280" height="10" fill="#1e293b"/>
+  <text x="52" y="134" fill="#93c5fd" font-size="12" font-weight="800" letter-spacing="1">EXISTING ALPHA CODEBASE</text>
+  <rect x="235" y="116" width="70" height="22" rx="11" fill="#0369a1"/>
+  <text x="270" y="131" fill="#ffffff" font-size="9" font-weight="800" text-anchor="middle">23.1K LOC</text>
+
+  <g transform="translate(50, 165)">
+    <rect width="250" height="85" rx="6" fill="#0b1324" stroke="#334155" stroke-width="1"/>
+    <rect width="6" height="85" rx="2" fill="#38bdf8"/>
+    <text x="16" y="24" fill="#f8fafc" font-size="12" font-weight="700">index.html (19,800 lines)</text>
+    <text x="16" y="44" fill="#94a3b8" font-size="10">• 14 Workstation Tab Consoles</text>
+    <text x="16" y="60" fill="#94a3b8" font-size="10">• Live SVG Circadian Telemetry</text>
+    <text x="16" y="76" fill="#94a3b8" font-size="10">• Reverse-engineered BLE parsers</text>
+  </g>
+
+  <g transform="translate(50, 265)">
+    <rect width="250" height="85" rx="6" fill="#0b1324" stroke="#334155" stroke-width="1"/>
+    <rect width="6" height="85" rx="2" fill="#38bdf8"/>
+    <text x="16" y="24" fill="#f8fafc" font-size="12" font-weight="700">cell.html (1,200 lines)</text>
+    <text x="16" y="44" fill="#94a3b8" font-size="10">• Mobile Shuttlecraft Foodoor PWA</text>
+    <text x="16" y="60" fill="#94a3b8" font-size="10">• Real-Time Gemini Nutrition Coach</text>
+    <text x="16" y="76" fill="#94a3b8" font-size="10">• Voice &amp; Camera Multi-Modal Intake</text>
+  </g>
+
+  <g transform="translate(50, 365)">
+    <rect width="250" height="85" rx="6" fill="#0b1324" stroke="#334155" stroke-width="1"/>
+    <rect width="6" height="85" rx="2" fill="#fb923c"/>
+    <text x="16" y="24" fill="#f8fafc" font-size="12" font-weight="700">server.py (1,500 lines)</text>
+    <text x="16" y="44" fill="#94a3b8" font-size="10">• Local HTTP Daemon (Port 8899)</text>
+    <text x="16" y="60" fill="#94a3b8" font-size="10">• Conagra / USDA Nutrition Truth DB</text>
+    <text x="16" y="76" fill="#94a3b8" font-size="10">• Zero-Cost String Verification</text>
+  </g>
+
+  <g transform="translate(50, 465)">
+    <rect width="250" height="85" rx="6" fill="#0b1324" stroke="#334155" stroke-width="1"/>
+    <rect width="6" height="85" rx="2" fill="#fb923c"/>
+    <text x="16" y="24" fill="#f8fafc" font-size="12" font-weight="700">watch_monitor.py (600 lines)</text>
+    <text x="16" y="44" fill="#94a3b8" font-size="10">• Background BLE Heartbeat Daemon</text>
+    <text x="16" y="60" fill="#94a3b8" font-size="10">• Raw GATT Characteristic Pipes</text>
+    <text x="16" y="76" fill="#94a3b8" font-size="10">• 24/7 Optical Telemetry Ingest</text>
+  </g>
+
+  <!-- Conduits (Connecting Lines) -->
+  <path d="M 315 207 C 345 207, 345 175, 375 175" fill="none" stroke="#10b981" stroke-width="3" stroke-dasharray="6 4"/>
+  <path d="M 315 307 C 345 307, 345 330, 375 330" fill="none" stroke="#fb923c" stroke-width="3" stroke-dasharray="6 4"/>
+  <path d="M 315 507 C 345 507, 345 490, 375 490" fill="none" stroke="#38bdf8" stroke-width="3" stroke-dasharray="6 4"/>
+
+  <!-- Right Column: 3 Migration Streams -->
+  <!-- Stream 1: Verbatim Reuse -->
+  <g transform="translate(375, 110)">
+    <rect width="590" height="145" rx="10" fill="#052e16" stroke="#059669" stroke-width="1.5" fill-opacity="0.6"/>
+    <rect width="590" height="34" rx="10" fill="#064e3b"/>
+    <rect y="24" width="590" height="10" fill="#064e3b"/>
+    <text x="18" y="23" fill="#34d399" font-size="12" font-weight="800" letter-spacing="1">STREAM 1: VERBATIM REUSE (100% PRESERVED ASSETS)</text>
+    <text x="18" y="56" fill="#f8fafc" font-size="11" font-weight="600">• 6-Sensor Optical BLE Pipeline: 0x89 Glucose, 0xD0 HR, 0x80 SpO2, 0xA0 Batt, 0xA8 Steps</text>
+    <text x="18" y="78" fill="#f8fafc" font-size="11" font-weight="600">• ADAG Mathematical Engine: eA1C = (Glucose + 46.7) / 28.7 (Zero clinical variance)</text>
+    <text x="18" y="100" fill="#f8fafc" font-size="11" font-weight="600">• Circadian Multi-Lane SVG Timelines: 8 stacked lanes, staggered X-axis, high contrast</text>
+    <text x="18" y="122" fill="#f8fafc" font-size="11" font-weight="600">• Nutrition Truth Tables: Conagra pot pie (34g net carbs) &amp; GLUT4 kinetic velocity</text>
+  </g>
+
+  <!-- Stream 2: Refactored Modules -->
+  <g transform="translate(375, 270)">
+    <rect width="590" height="145" rx="10" fill="#451a03" stroke="#d97706" stroke-width="1.5" fill-opacity="0.6"/>
+    <rect width="590" height="34" rx="10" fill="#78350f"/>
+    <rect y="24" width="590" height="10" fill="#78350f"/>
+    <text x="18" y="23" fill="#fbbf24" font-size="12" font-weight="800" letter-spacing="1">STREAM 2: REFACTORED MODULES (STRUCTURAL HARDENING)</text>
+    <text x="18" y="56" fill="#f8fafc" font-size="11" font-weight="600">• CSS Class Migration: 1,847 replacements from lcars-* to modular bfm-* design system</text>
+    <text x="18" y="78" fill="#f8fafc" font-size="11" font-weight="600">• Universal Wearables: Strip legacy '5010' brands to Universal Sensor Array standard</text>
+    <text x="18" y="100" fill="#f8fafc" font-size="11" font-weight="600">• Multi-Tenant Storage: Partition single telemetry.db into user-isolated telemetry_user_&lt;uuid&gt;.db</text>
+    <text x="18" y="122" fill="#f8fafc" font-size="11" font-weight="600">• Ingestion Dispatcher: Replace hardcoded MAC with Dynamic 3-Way Triad Routing Engine</text>
+  </g>
+
+  <!-- Stream 3: Newly Engineered Modules -->
+  <g transform="translate(375, 430)">
+    <rect width="590" height="155" rx="10" fill="#082f49" stroke="#0284c7" stroke-width="1.5" fill-opacity="0.6"/>
+    <rect width="590" height="34" rx="10" fill="#0c4a6e"/>
+    <rect y="24" width="590" height="10" fill="#0c4a6e"/>
+    <text x="18" y="23" fill="#38bdf8" font-size="12" font-weight="800" letter-spacing="1">STREAM 3: NEWLY ENGINEERED CAPABILITIES (ZERO-REGRESSION BETA 1)</text>
+    <text x="18" y="56" fill="#f8fafc" font-size="11" font-weight="600">• Tab 10 Master Roster: Registered Family Cells &amp; Watch Roster with live sync status</text>
+    <text x="18" y="78" fill="#f8fafc" font-size="11" font-weight="600">• Auto-Scan Handshake: /api/shuttle/register mobile interrogation (Phone ESN + Name)</text>
+    <text x="18" y="100" fill="#f8fafc" font-size="11" font-weight="600">• Offline Mobile Vault: cell.html IndexedDB with field meal photo BLOBs and audio notes</text>
+    <text x="18" y="122" fill="#f8fafc" font-size="11" font-weight="600">• Automated Dual External Backup: Daily .sqlite + Epic FHIR R4 .json with SHA-256 manifests</text>
+    <text x="18" y="142" fill="#f8fafc" font-size="11" font-weight="600">• Legal Safety Gate: Acceptance modal locked to immutable user_legal_acceptance DB table</text>
+  </g>
+</svg>

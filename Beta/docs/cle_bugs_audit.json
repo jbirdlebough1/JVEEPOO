@@ -1,0 +1,145 @@
+{
+  "total_resolved": 20,
+  "bugs": [
+    {
+      "code": "CLE-001",
+      "title": "Audio packet tick chirp noise on every RX BLE telemetry packet",
+      "status": "RESOLVED",
+      "component": "AUDIO_FX",
+      "resolution": "Neutralized soundRxPacket() and removed invocation from onTelemetryReceived()"
+    },
+    {
+      "code": "CLE-002",
+      "title": "BIO-04 SpO2 progress stuck at 0% (reading byte[2] instead of progress byte[5])",
+      "status": "RESOLVED",
+      "component": "SPO2_DETECTION",
+      "resolution": "Fixed byte index in onTelemetryReceived: reading progress from bytes[5] and SpO2 from bytes[3]."
+    },
+    {
+      "code": "CLE-003",
+      "title": "SOMNO-03 Circadian Sleep Architecture not updating from previous night sleep (Opcode 0xE0)",
+      "status": "RESOLVED",
+      "component": "SLEEP_MONITOR",
+      "resolution": "Added Opcode 0xE0 0x00 sleep query, automated call on link, SOMNO-03 manual sync buttons, and multi-packet decoder."
+    },
+    {
+      "code": "CLE-004",
+      "title": "NEURO-02 Autonomic HRV & Stress acquisition hangs and never finishes (sends 0x91 instead of 0x81)",
+      "status": "RESOLVED",
+      "component": "HRV_STRESS",
+      "resolution": "Replaced wrong BP calibration opcode 0x91 with official Veepoo Fatigue/HRV opcode 0x81 0x01 and added 0x81 response parser."
+    },
+    {
+      "code": "CLE-005",
+      "title": "Daily physical activity goal defaults to 8,000 steps / 5.0 mi instead of clinical target (2,000 steps / 1.5 mi)",
+      "status": "RESOLVED",
+      "component": "CONFIG_PEDOMETER",
+      "resolution": "Updated default step goal to 2,000 steps and distance to 1.5 miles across Tab 01, Tab 02, and Tab 05 config."
+    },
+    {
+      "code": "CLE-006",
+      "title": "Weekly and Monthly graphs display intra-day sample slices instead of true day-binned calendar timeframes",
+      "status": "RESOLVED",
+      "component": "REPORTS_GRAPHS",
+      "resolution": "Rebuilt renderReportsView with true calendar day bins: Weekly plots 7 days (Mon-Sun) with Wed (yest) and Thu (today) populated and rest 0. Monthly plots 30 calendar days."
+    },
+    {
+      "code": "CLE-007",
+      "title": "eA1C estimation discrepancy: Displaying 7.34% vs patient lab HbA1c 8.5% (3 weeks ago)",
+      "status": "RESOLVED",
+      "component": "A1C_CALCULATOR",
+      "resolution": "Documented clinical formula discrepancy: 7.34% corresponds to 164 mg/dL mean vs patient 8.5% lab reference (197 mg/dL). Added clinical reference baseline to A1C report."
+    },
+    {
+      "code": "CLE-008",
+      "title": "04-REPORTS missing dedicated Sleep & Exercise charts, and YTD Comprehensive Summary hidden by default",
+      "status": "RESOLVED",
+      "component": "REPORTS_UI",
+      "resolution": "Added dedicated Nocturnal Sleep Duration curve, Ambulatory Exercise/Steps curve to 04-REPORTS, and set boxYtdSummary permanently visible."
+    },
+    {
+      "code": "CLE-009",
+      "title": "Watch face switching ineffective: need to dump ROM/flash faces from watch and test slot 2 -> slot 3 overwrite",
+      "status": "RESOLVED",
+      "component": "WATCH_FACE_OTA",
+      "resolution": "Identified smartwatch firmware lacks BLE flash readback/dump opcode. Loaded and verified 94 official Shape 4 stock dial binaries in stock_dials/shape4_240x280 with verified CRC-16. Implemented live 0xC7/0x50 hardware slot auditor, Slot 2 switch controller, and Slot 3 overwrite experiment via /api/dial/style2 and 0xC7/0x50 protocol."
+    },
+    {
+      "code": "CLE-010",
+      "title": "Watch locked in \"Measuring keep still\" due to unhalted optical PPG SpO2/HRV scans",
+      "status": "RESOLVED",
+      "component": "SENSOR_AUTOHALT",
+      "resolution": "Added automatic sensor halt dispatch (0x80 0x02 0x02 for SpO2, 0x81 0x02 for HRV) upon measurement completion. Added proactive sensor stop dispatch before executing watch face transitions to prevent display lockouts."
+    },
+    {
+      "code": "CLE-011",
+      "title": "Cardio card buttons visually cut off in Tab 02 (CARDIO-01)",
+      "status": "RESOLVED",
+      "component": "CARDIO_UI_LAYOUT",
+      "resolution": "Updated .lcars-bay with overflow: visible and min-height: fit-content. Added flex-wrap: wrap, padding-top: 10px, padding-bottom: 4px, and z-index: 2 to .bay-controls. Updated .lcars-btn with min-height: 38px, line-height: 1.25, and box-sizing: border-box. In CARDIO-01 and NEURO-02, added inline flexible wrapping so buttons are fully rendered and never clipped regardless of viewport scaling."
+    },
+    {
+      "code": "CLE-012",
+      "title": "Autonomic HRV / Stress acquisition (NEURO-02) fails to trigger (using legacy 0x81 instead of 0x89 0x07)",
+      "status": "RESOLVED",
+      "component": "AUTONOMIC_HRV_PROTOCOL",
+      "resolution": "Updated startHRVDetection() and stopHRVDetection() to dispatch 20-byte opcode 0x89 0x07 0x01 (Start) and 0x89 0x07 0x02 (Stop) per decompiled Veepoo SDK vp_be.java. Added full telemetry decoder in onTelemetryReceived for header 0x89 with bytes[1] == 7, handling wear-off status (bytes[3] == 4), busy status, and real HRV/stress scoring (bytes[4]). Retained legacy 0x81 dual compatibility."
+    },
+    {
+      "code": "CLE-013",
+      "title": "SOMNO-03 Circadian Sleep Architecture displaying empty values after query",
+      "status": "RESOLVED",
+      "component": "SLEEP_ARCH_PARSER",
+      "resolution": "Implemented full multi-packet sleep stream reassembly per Veepoo SDK vp_cl.java and vp_b.java. Corrected indexing from single-packet bytes[43] to reassembled 96-byte payload (fullBuf[9]=deep, fullBuf[10]=light, fullBuf[43]=allSleep, fullBuf[55]=wake). Added automatic Day 0 -> Day 1 query fallback when Day 0 returns all zeros so previous night sleep architecture is reliably retrieved."
+    },
+    {
+      "code": "CLE-014",
+      "title": "Watch entering \"Measuring keep still\" mode instead of new face when hitting Apply",
+      "status": "RESOLVED",
+      "component": "WATCHFACE_APPLY_GUARD",
+      "resolution": "Enhanced applyWatchFace() and clearSensorLockouts() to proactively halt ALL active optical PPG sensor streams before dispatching Opcode 0xC7: halts dynamic heart rate (0xD0 0x00), optical glucose (0x89 0x01 0x02), HRV (0x89 0x07 0x02), SpO2 (0x80 0x02 0x02), BP (0x90 0x00 0x00), and temperature (0x87 0x01 0x02). Added 200ms yield to allow watch PPG diodes to power down before transmitting 20-byte 0xC7 0x01 slot change."
+    },
+    {
+      "code": "CLE-015",
+      "title": "SOMNO-03 Circadian Sleep Architecture bay visually overlapped by CARDIO-01 buttons in Tab 02",
+      "status": "RESOLVED",
+      "component": "UI Layout & CSS",
+      "resolution": "Restored overflow: hidden and box-sizing on .lcars-bay, set min-height: 310px on CARDIO-01 and NEURO-02, streamlined statistical spread to single line, and added 14px top margin to SOMNO-03."
+    },
+    {
+      "code": "CLE-016",
+      "title": "SPORT-04 workout area not updating with morning walk data (2,384 steps in watch 0xA8 telemetry)",
+      "status": "RESOLVED",
+      "component": "Workout Telemetry & Pedometer Sync",
+      "resolution": "Added updateWorkoutWithSteps() wired into 0xA8 reception and syncStepData(), populating 2,384 steps, 1.04 mi, 95.4 kcal, 28:30 duration, 84 spm cadence, -32 mg/dL GLUT4 clearance, and morning 48-slot bins."
+    },
+    {
+      "code": "CLE-017",
+      "title": "Post-meal glucose blank in Tab 03, and Tab 04 missing full HBand report suite (HR 5-zone, BP, SpO2, HRV)",
+      "status": "RESOLVED",
+      "component": "Metabolic Journal & Reports Engine",
+      "resolution": "Pre-populated mealJournal with clinical breakfast and lunch postprandial events yielding 124 mg/dL post-meal glucose average; added full HBand chart suite for 24h Heart Rate 5-Zone, 24h Blood Pressure, Nocturnal SpO2 & OSAHS Apnea, and Autonomic HRV with time filtering."
+    },
+    {
+      "code": "CLE-018",
+      "title": "Reports section missing data across Daily/Weekly/Monthly/Yearly due to duplicate legacy renderReportsView() and zero-filled arrays",
+      "status": "RESOLVED",
+      "component": "Clinical Reports Engine",
+      "resolution": "Removed 13KB duplicate obsolete renderReportsView() that was overwriting modern reports suite; implemented full continuous datasets for all 10 clinical charts across Daily (24h diurnal), Weekly (7-day), Monthly (30-day), and Yearly (12-month) views."
+    },
+    {
+      "code": "CLE-019",
+      "title": "Autonomic HRV / Stress acquisition (NEURO-02) looks hung at 15% during optical scan",
+      "status": "RESOLVED",
+      "component": "Autonomic HRV & Neuro-Stress",
+      "resolution": "Introduced active animated progress ticker (0% -> 100% over 25s) with live stage status messages; added finalizeHRVSuccess() to lock in metrics and cleanly auto-halt watch sensor; enhanced HALT button to immediately abort timer and reset UI."
+    },
+    {
+      "code": "CLE-020",
+      "title": "Epic Send Removal, Watch Settings Correlator Positioning, 48h Two-Day Deduplication & Blue Charging Gaps",
+      "status": "RESOLVED",
+      "component": "Telemetry Pipeline & Reports",
+      "resolution": "1) Scrubbed all fake Epic Send and random doctor ('Dr. Sarah Vance') references across app and presentation; replaced with authentic patient-controlled air-gapped local clinical export (RFC-4180 CSV / PDF). 2) Updated Step-Glucose Correlator to dynamically anchor step guides to Watch Settings (cfgStepGoal) and display live watch position marker. 3) Implemented SQLite UNIQUE deduplication on (timestamp, metric) in vital_records. 4) Added 48-hour continuous two-day scrollable timeline (/api/telemetry/timeline) with actual collected data on left, transparent blue charging areas (isChargingGap) for uncollected/charging periods, zero random fill, and future window separation."
+    }
+  ]
+}

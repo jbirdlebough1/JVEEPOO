@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" width="1000" height="620" style="background:#070b12; font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Roboto,sans-serif;">
+  <defs>
+    <linearGradient id="bgGrad3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080d1a"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+    <linearGradient id="headerGrad3" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1000" height="620" fill="url(#bgGrad3)"/>
+  <rect x="15" y="15" width="970" height="590" rx="12" fill="none" stroke="#1e293b" stroke-width="1.5"/>
+
+  <!-- Scott BFM Corner Accents -->
+  <path d="M 15 45 L 15 15 L 45 15" fill="none" stroke="#10b981" stroke-width="3"/>
+  <path d="M 955 15 L 985 15 L 985 45" fill="none" stroke="#10b981" stroke-width="3"/>
+  <path d="M 15 575 L 15 605 L 45 605" fill="none" stroke="#10b981" stroke-width="3"/>
+  <path d="M 955 605 L 985 605 L 985 575" fill="none" stroke="#10b981" stroke-width="3"/>
+
+  <!-- Header Banner -->
+  <rect x="35" y="30" width="930" height="58" rx="8" fill="url(#headerGrad3)" stroke="#334155" stroke-width="1"/>
+  <rect x="35" y="30" width="12" height="58" rx="4" fill="#10b981"/>
+  <text x="60" y="55" fill="#f8fafc" font-size="16" font-weight="800" letter-spacing="1.5">MOBILE SHUTTLECRAFT FOODOR • AUTO-SCAN &amp; HOMECOMING DOCKING</text>
+  <text x="60" y="75" fill="#34d399" font-size="11" font-weight="600" letter-spacing="1">CRYPTOGRAPHIC QR PAIRING, MULTI-DAY OFFLINE FIELD VAULT &amp; TWO-PHASE SHA-256 SYNC</text>
+  <rect x="800" y="44" width="150" height="30" rx="15" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
+  <text x="875" y="63" fill="#10b981" font-size="10" font-weight="800" text-anchor="middle" letter-spacing="1">AIR-GAPPED PHI</text>
+
+  <!-- Sequence Diagram Swimlanes -->
+  <!-- Lane 1: User -->
+  <rect x="55" y="105" width="130" height="32" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+  <text x="120" y="125" fill="#f8fafc" font-size="10" font-weight="700" text-anchor="middle">HOUSEHOLD USER</text>
+  <line x1="120" y1="137" x2="120" y2="585" stroke="#334155" stroke-width="1" stroke-dasharray="4 4"/>
+
+  <!-- Lane 2: PC Workstation (index.html) -->
+  <rect x="235" y="105" width="160" height="32" rx="6" fill="#0c4a6e" stroke="#0284c7" stroke-width="1"/>
+  <text x="315" y="125" fill="#38bdf8" font-size="10" font-weight="800" text-anchor="middle">STAR SHIP GEMINI (PC)</text>
+  <line x1="315" y1="137" x2="315" y2="585" stroke="#0284c7" stroke-width="1" stroke-dasharray="4 4"/>
+
+  <!-- Lane 3: Station Server (server.py) -->
+  <rect x="445" y="105" width="140" height="32" rx="6" fill="#1e1b4b" stroke="#6366f1" stroke-width="1"/>
+  <text x="515" y="125" fill="#a5b4fc" font-size="10" font-weight="800" text-anchor="middle">SERVER (server.py)</text>
+  <line x1="515" y1="137" x2="515" y2="585" stroke="#6366f1" stroke-width="1" stroke-dasharray="4 4"/>
+
+  <!-- Lane 4: Mobile PWA (cell.html) -->
+  <rect x="635" y="105" width="160" height="32" rx="6" fill="#78350f" stroke="#d97706" stroke-width="1"/>
+  <text x="715" y="125" fill="#fbbf24" font-size="10" font-weight="800" text-anchor="middle">SHUTTLECRAFT (PWA)</text>
+  <line x1="715" y1="137" x2="715" y2="585" stroke="#d97706" stroke-width="1" stroke-dasharray="4 4"/>
+
+  <!-- Lane 5: Local Database -->
+  <rect x="840" y="105" width="125" height="32" rx="6" fill="#064e3b" stroke="#059669" stroke-width="1"/>
+  <text x="902" y="125" fill="#34d399" font-size="10" font-weight="800" text-anchor="middle">SQLITE VAULTS</text>
+  <line x1="902" y1="137" x2="902" y2="585" stroke="#059669" stroke-width="1" stroke-dasharray="4 4"/>
+
+  <!-- STAGE 1: AUTO-SCAN ONBOARDING HANDSHAKE -->
+  <rect x="45" y="150" width="910" height="24" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="60" y="166" fill="#38bdf8" font-size="10" font-weight="800" letter-spacing="1">PHASE A: AUTO-SCAN MOBILE ONBOARDING &amp; ESN HARDWARE LOCK</text>
+
+  <!-- Step 1 -->
+  <line x1="120" y1="190" x2="315" y2="190" stroke="#f8fafc" stroke-width="1.5"/>
+  <polygon points="310,186 318,190 310,194" fill="#f8fafc"/>
+  <text x="140" y="184" fill="#f8fafc" font-size="9" font-weight="600">1. Click "Add Cell &amp; User" (Mary / USR-002)</text>
+
+  <!-- Step 2 -->
+  <line x1="315" y1="210" x2="515" y2="210" stroke="#38bdf8" stroke-width="1.5"/>
+  <polygon points="510,206 518,210 510,214" fill="#38bdf8"/>
+  <text x="330" y="204" fill="#38bdf8" font-size="9" font-weight="600">2. GET /api/shuttle/provision?uid=USR-002</text>
+
+  <!-- Step 3 -->
+  <line x1="515" y1="230" x2="315" y2="230" stroke="#a5b4fc" stroke-width="1.5" stroke-dasharray="4 2"/>
+  <polygon points="320,226 312,230 320,234" fill="#a5b4fc"/>
+  <text x="330" y="224" fill="#a5b4fc" font-size="9" font-weight="600">3. Dynamic QR Code with Cryptographic Token</text>
+
+  <!-- Step 4 -->
+  <line x1="715" y1="250" x2="315" y2="250" stroke="#fbbf24" stroke-width="1.5"/>
+  <polygon points="320,246 312,250 320,254" fill="#fbbf24"/>
+  <text x="440" y="244" fill="#fbbf24" font-size="9" font-weight="600">4. Shuttlecraft Camera Scans Dynamic QR Code</text>
+
+  <!-- Step 5 -->
+  <line x1="715" y1="270" x2="515" y2="270" stroke="#fbbf24" stroke-width="1.5"/>
+  <polygon points="520,266 512,270 520,274" fill="#fbbf24"/>
+  <text x="535" y="264" fill="#fbbf24" font-size="9" font-weight="600">5. POST /api/shuttle/register (Token, Phone Name, ESN-7731)</text>
+
+  <!-- Step 6 -->
+  <line x1="515" y1="290" x2="902" y2="290" stroke="#10b981" stroke-width="1.5"/>
+  <polygon points="897,286 905,290 897,294" fill="#10b981"/>
+  <text x="540" y="284" fill="#10b981" font-size="9" font-weight="600">6. INSERT INTO registered_cells (UID, ESN-7731, Watch MAC)</text>
+
+  <!-- Step 7 -->
+  <line x1="515" y1="310" x2="715" y2="310" stroke="#10b981" stroke-width="1.5" stroke-dasharray="4 2"/>
+  <polygon points="710,306 718,310 710,314" fill="#10b981"/>
+  <text x="540" y="304" fill="#10b981" font-size="9" font-weight="600">7. 200 OK: Handshake Confirmed (Cell 2 Paired &amp; Bound)</text>
+
+  <!-- STAGE 2: FIELD AUTONOMY & HOMECOMING BULK DOCKING -->
+  <rect x="45" y="335" width="910" height="24" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="60" y="351" fill="#fbbf24" font-size="10" font-weight="800" letter-spacing="1">PHASE B: OFFLINE FIELD AUTONOMY &amp; HOMECOMING BULK TRANSFER</text>
+
+  <!-- Step 8: Offline Field Work -->
+  <rect x="650" y="370" width="130" height="45" rx="4" fill="#451a03" stroke="#f59e0b" stroke-width="1"/>
+  <text x="715" y="388" fill="#fde68a" font-size="9" font-weight="700" text-anchor="middle">OFFLINE FIELD USE</text>
+  <text x="715" y="402" fill="#f8fafc" font-size="8" text-anchor="middle">Photo BLOBs &amp; Transcripts</text>
+
+  <!-- Step 9: Return Home & Tap Dock -->
+  <line x1="120" y1="435" x2="715" y2="435" stroke="#f8fafc" stroke-width="1.5"/>
+  <polygon points="710,431 718,435 710,439" fill="#f8fafc"/>
+  <text x="240" y="429" fill="#f8fafc" font-size="9" font-weight="600">8. User Returns to Home Wi-Fi &amp; Taps "Homecoming Dock"</text>
+
+  <!-- Step 10: Bulk Transfer -->
+  <line x1="715" y1="460" x2="515" y2="460" stroke="#fbbf24" stroke-width="1.5"/>
+  <polygon points="520,456 512,460 520,464" fill="#fbbf24"/>
+  <text x="535" y="454" fill="#fbbf24" font-size="9" font-weight="600">9. POST /api/shuttle/dock (ESN-7731 + Field Meal Batch)</text>
+
+  <!-- Step 11: ESN Resolve & Write -->
+  <line x1="515" y1="485" x2="902" y2="485" stroke="#10b981" stroke-width="1.5"/>
+  <polygon points="897,481 905,485 897,489" fill="#10b981"/>
+  <text x="540" y="479" fill="#10b981" font-size="9" font-weight="600">10. Resolve ESN -> Mary -> Ingest to telemetry_user_2.db</text>
+
+  <!-- Step 12: Cryptographic Receipt -->
+  <line x1="515" y1="510" x2="715" y2="510" stroke="#10b981" stroke-width="1.5" stroke-dasharray="4 2"/>
+  <polygon points="710,506 718,510 710,514" fill="#10b981"/>
+  <text x="535" y="504" fill="#10b981" font-size="9" font-weight="600">11. Return Verified SHA-256 Batch Receipt Hash</text>
+
+  <!-- Step 13: Local Prune -->
+  <rect x="650" y="525" width="130" height="35" rx="4" fill="#064e3b" stroke="#10b981" stroke-width="1"/>
+  <text x="715" y="542" fill="#34d399" font-size="9" font-weight="700" text-anchor="middle">RECEIPT VERIFIED</text>
+  <text x="715" y="554" fill="#f8fafc" font-size="8" text-anchor="middle">Clear PENDING in IndexedDB</text>
+
+  <!-- Step 14: PC Live Refresh -->
+  <line x1="515" y1="575" x2="315" y2="575" stroke="#38bdf8" stroke-width="1.5"/>
+  <polygon points="320,571 312,575 320,579" fill="#38bdf8"/>
+  <text x="330" y="569" fill="#38bdf8" font-size="9" font-weight="600">12. Broadcast SSE Event: Tab 10 Roster Sync Live</text>
+</svg>

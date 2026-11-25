@@ -1,0 +1,479 @@
+[
+  {
+    "slide_num": "01",
+    "title": "Why This Toolset: An Author's Journey & Multidisciplinary Care",
+    "module": "Module 1: Introduction & Clinical Scope",
+    "features": [
+      "LCARS Sickbay Header, 5010 Clinical Telemetry Branding"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "02",
+    "title": "The Snapshot Fallacy: Sampling Mathematics & Metrology",
+    "module": "Module 1: Introduction & Clinical Scope",
+    "features": [
+      "Air-Gapped Telemetry, BLE GATT Architecture, 5-Second 288x8 Protocol, Nyquist Oversampling (0.2 Hz vs 0.0055 Hz)"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "03",
+    "title": "Mathematical Sampling Theory: Nyquist Kinetics & Biological Aliasing",
+    "module": "Module 1: Introduction & Clinical Scope",
+    "features": [
+      "Air-Gapped Telemetry, BLE GATT Architecture, 5-Second 288x8 Protocol, Nyquist Oversampling (0.2 Hz vs 0.0055 Hz)"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "04",
+    "title": "Metrological Precision & Noise Convergence: The Math of High-Density Telemetry",
+    "module": "Module 1: Introduction & Clinical Scope",
+    "features": [
+      "Air-Gapped Telemetry, BLE GATT Architecture, 5-Second 288x8 Protocol, Nyquist Oversampling (0.2 Hz vs 0.0055 Hz)"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "05",
+    "title": "Peer-Reviewed References, Citations & Interactive Gemini Research Query",
+    "module": "Module 1: Introduction & Clinical Scope",
+    "features": [
+      "Air-Gapped Telemetry, BLE GATT Architecture, 5-Second 288x8 Protocol, Nyquist Oversampling (0.2 Hz vs 0.0055 Hz)"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "06",
+    "title": "The FITAOS 5150 Smartwatch & 8 Biometric Measurements",
+    "module": "Module 1: Introduction & Clinical Scope",
+    "features": [
+      "FITAOS 5150 / 5010 Hardware Specs, 8 Continuous Biometric Measurements"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "07",
+    "title": "Strict Zero-Egress Local Telemetry vs Cloud Silos",
+    "module": "Module 1: Introduction & Clinical Scope",
+    "features": [
+      "Optical Glucose PPG Tonometry, Continuous Glucose Waveform, eA1C Calculation (ADAG Equation)"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "08",
+    "title": "Core Clinical Targets: Achieving HbA1c <6.8% and TIR >70%",
+    "module": "Module 1: Introduction & Clinical Scope",
+    "features": [
+      "Optical Glucose PPG Tonometry, Continuous Glucose Waveform, eA1C Calculation (ADAG Equation)"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "09",
+    "title": "Physician-Patient Collaborative Care Partnership",
+    "module": "Module 2: Physician-Patient Alignment & Calibration",
+    "features": [
+      "Optical Glucose PPG Tonometry, Continuous Glucose Waveform, eA1C Calculation (ADAG Equation)"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "10",
+    "title": "Clinical Glycemic Band: Standardizing on 60\u2013200 mg/dL",
+    "module": "Module 2: Physician-Patient Alignment & Calibration",
+    "features": [
+      "PWTT Ambulatory Blood Pressure, Systolic/Diastolic Calibration, Nocturnal BP Dipping"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "11",
+    "title": "In-Clinic Venous Blood Draw Calibration & Baseline Anchor",
+    "module": "Module 2: Physician-Patient Alignment & Calibration",
+    "features": [
+      "PWTT Ambulatory Blood Pressure, Systolic/Diastolic Calibration, Nocturnal BP Dipping"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "12",
+    "title": "Standardizing Strictly on Private Mode Telemetry",
+    "module": "Module 2: Physician-Patient Alignment & Calibration",
+    "features": [
+      "PWTT Ambulatory Blood Pressure, Systolic/Diastolic Calibration, Nocturnal BP Dipping"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "13",
+    "title": "Continuous Ambulatory Background Acquisition",
+    "module": "Module 2: Physician-Patient Alignment & Calibration",
+    "features": [
+      "Nocturnal SpO2 Tonometry, OSAHS Apnea Hypoxia Dip Detection (<90% Drops)"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "14",
+    "title": "Tab 01: VITALS \u2013 Optical Glucose Absorption Spectroscopy",
+    "module": "Module 3: Core Biosensor Array Operations",
+    "features": [
+      "Nocturnal SpO2 Tonometry, OSAHS Apnea Hypoxia Dip Detection (<90% Drops)"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "15",
+    "title": "Tab 01: VITALS \u2013 Dual-Matrix Thermometry & Circadian Nadir",
+    "module": "Module 3: Core Biosensor Array Operations",
+    "features": [
+      "Dual-Matrix Core Circadian Temperature vs Cutaneous Skin Temperature Nadir"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "16",
+    "title": "Tab 02: CARDIO \u2013 Pulse Wave Transit Time Blood Pressure",
+    "module": "Module 3: Core Biosensor Array Operations",
+    "features": [
+      "Dual-Matrix Core Circadian Temperature vs Cutaneous Skin Temperature Nadir"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "17",
+    "title": "Tab 02: CARDIO \u2013 Dual-Wavelength SpO2 & Apnea Screening",
+    "module": "Module 3: Core Biosensor Array Operations",
+    "features": [
+      "Dual-Matrix Core Circadian Temperature vs Cutaneous Skin Temperature Nadir"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "18",
+    "title": "Tab 02: CARDIO \u2013 Autonomic HRV & Sympatho-Vagal Stress",
+    "module": "Module 3: Core Biosensor Array Operations",
+    "features": [
+      "Autonomic HRV R-R Interval Spectrum, SDNN/RMSSD, 2D Lorenz Poincar\u00e9 Cardiac Scatter Dynamics"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "19",
+    "title": "03-METABOLIC Console: Real-Time Physiological Telemetry",
+    "module": "Module 4: Tab 03 METABOLIC Console & Behavioral Science",
+    "features": [
+      "Autonomic HRV R-R Interval Spectrum, SDNN/RMSSD, 2D Lorenz Poincar\u00e9 Cardiac Scatter Dynamics"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "20",
+    "title": "GLUT4 Translocation Kinetics: How Exercise Lowers Glucose",
+    "module": "Module 4: Tab 03 METABOLIC Console & Behavioral Science",
+    "features": [
+      "Autonomic HRV R-R Interval Spectrum, SDNN/RMSSD, 2D Lorenz Poincar\u00e9 Cardiac Scatter Dynamics"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "21",
+    "title": "The GLUT4 Exercise Journal: Calculating Direct \u0394G Glucose Drops",
+    "module": "Module 4: Tab 03 METABOLIC Console & Behavioral Science",
+    "features": [
+      "Sleep Hypnogram Architecture, REM/Deep/Light Cycles, Circadian Glycemic Coupling"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "22",
+    "title": "Macronutrient Meal Logger: Net Carbs, Protein, Fat & Calories",
+    "module": "Module 4: Tab 03 METABOLIC Console & Behavioral Science",
+    "features": [
+      "Sleep Hypnogram Architecture, REM/Deep/Light Cycles, Circadian Glycemic Coupling"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "23",
+    "title": "ADA Carbohydrate Trades & Gemini-Curated Diabetic Recipes",
+    "module": "Module 4: Tab 03 METABOLIC Console & Behavioral Science",
+    "features": [
+      "Sleep Hypnogram Architecture, REM/Deep/Light Cycles, Circadian Glycemic Coupling"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "24",
+    "title": "The Diabetes Learning Engine: Personal Glycemic Phenotyping",
+    "module": "Module 5: The Diabetes Learning Engine",
+    "features": [
+      "Kinetic Step Activity, MET Ergonomics, Non-Insulin GLUT4 Post-Meal Glucose Clearance"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "25",
+    "title": "Circadian Fasting Windows & Dawn Phenomenon Suppression",
+    "module": "Module 5: The Diabetes Learning Engine",
+    "features": [
+      "Kinetic Step Activity, MET Ergonomics, Non-Insulin GLUT4 Post-Meal Glucose Clearance"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "26",
+    "title": "Sleep Architecture & Glycemic Resilience: SpO2, REM & Cortisol",
+    "module": "Module 5: The Diabetes Learning Engine",
+    "features": [
+      "Kinetic Step Activity, MET Ergonomics, Non-Insulin GLUT4 Post-Meal Glucose Clearance"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "27",
+    "title": "Correlating Behavioral Habits with Direct Sensor Evidence",
+    "module": "Module 5: The Diabetes Learning Engine",
+    "features": [
+      "Bivariate Step Volume vs Mean Glucose Correlator Engine (boxExerciseMetabolicCorrelation)"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "28",
+    "title": "Actionable Clinical Reports & Epic EHR Integration",
+    "module": "Module 5: The Diabetes Learning Engine",
+    "features": [
+      "Doctor's Epic EHR Gateway, Tab 04 Toolbar & On-Demand Clinical Goal Compliance Audit (% Goals Met)"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "29",
+    "title": "Tab 04 Architecture: Single Tall Synchronized Multi-Measurement Chart",
+    "module": "Module 6: Tab 04 Synchronized Tall Chart",
+    "features": [
+      "360\u00b0 Synchronized 8-Lane Telemetry Stack (#boxSynchronizedTallChart, #svgTallMaster), Continuous Scrubber (#tallVerticalScrubberLine, #tallHudRibbon)"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "30",
+    "title": "The 8 Stacked Measurement Lanes: Complete Multi-Variable Audit",
+    "module": "Module 6: Tab 04 Synchronized Tall Chart",
+    "features": [
+      "360\u00b0 Synchronized 8-Lane Telemetry Stack (#boxSynchronizedTallChart, #svgTallMaster), Continuous Scrubber (#tallVerticalScrubberLine, #tallHudRibbon)"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "31",
+    "title": "The Continuous Vertical Scrubber Line: Cross-Correlating Causes",
+    "module": "Module 6: Tab 04 Synchronized Tall Chart",
+    "features": [
+      "360\u00b0 Synchronized 8-Lane Telemetry Stack (#boxSynchronizedTallChart, #svgTallMaster), Continuous Scrubber (#tallVerticalScrubberLine, #tallHudRibbon)"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "32",
+    "title": "Click-to-Pop Clinical Point Cards: Instant Micro-Audits",
+    "module": "Module 6: Tab 04 Synchronized Tall Chart",
+    "features": [
+      "Interactive Point Audit Modal (#timelinePointCardModal), Longitudinal Med Change Marker Cutting Top-to-Bottom"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "33",
+    "title": "Pinning '\ud83d\udc8a MED CHANGE' Milestones: Auditing Progress vs Regression",
+    "module": "Module 6: Tab 04 Synchronized Tall Chart",
+    "features": [
+      "Interactive Point Audit Modal (#timelinePointCardModal), Longitudinal Med Change Marker Cutting Top-to-Bottom"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "34",
+    "title": "Daily 24-Hour Continuous Glucose Curve & TIR Dynamics",
+    "module": "Module 5: Clinical Reports & Longitudinal EHR Records",
+    "features": [
+      "Diabetic Goal Anchoring (eA1C 8.3%), Hypoglycemia Unawareness Prevention, Personalized Targets"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "35",
+    "title": "Daily 24-Hour Estimated A1C (eA1C) Projection Curve",
+    "module": "Module 5: Clinical Reports & Longitudinal EHR Records",
+    "features": [
+      "Diabetic Goal Anchoring (eA1C 8.3%), Hypoglycemia Unawareness Prevention, Personalized Targets"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "36",
+    "title": "Daily 24-Hour Body Temperature Matrix: Core vs Epidermal Wrist",
+    "module": "Module 5: Clinical Reports & Longitudinal EHR Records",
+    "features": [
+      "Executive Annual YTD Medical Summary (#boxYtdSummary), ADA Homeostasis TIR Scoring"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "37",
+    "title": "24-Hour Ambulatory Blood Pressure Dual-Band (PWTT Systolic/Diastolic)",
+    "module": "Module 5: Clinical Reports & Longitudinal EHR Records",
+    "features": [
+      "Executive Annual YTD Medical Summary (#boxYtdSummary), ADA Homeostasis TIR Scoring"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "38",
+    "title": "Nocturnal SpO2 & OSAHS Apnea Hypoxia Dips Matrix",
+    "module": "Module 5: Clinical Reports & Longitudinal EHR Records",
+    "features": [
+      "H-Band Protocol Parity, 48 30-Minute Telemetry Slots (#svgHBand48Slots), 5-Zone Cardiac Load Matrix"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "39",
+    "title": "24-Hour Heart Rate & 5-Zone Cardiac Load",
+    "module": "Module 5: Clinical Reports & Longitudinal EHR Records",
+    "features": [
+      "H-Band Protocol Parity, 48 30-Minute Telemetry Slots (#svgHBand48Slots), 5-Zone Cardiac Load Matrix"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "40",
+    "title": "Autonomic HRV & Lorenz Cardiac Scatter Dynamics",
+    "module": "Module 5: Clinical Reports & Longitudinal EHR Records",
+    "features": [
+      "H-Band 2D Lorenz Poincar\u00e9 Scatter Plot (boxChartHRV, svgLorenzScatter, Comet/Torpedo/Club/Fork/Complex Morphologies)"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "41",
+    "title": "Nocturnal Sleep Duration & Circadian Hypnogram Architecture",
+    "module": "Module 5: Clinical Reports & Longitudinal EHR Records",
+    "features": [
+      "ADA Diet Trades Engine (#pageDietTrades), Smart Glucose-Driven Snack Notifier, Fast Food Helper"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "42",
+    "title": "Ambulatory Physical Activity, Step Density & GLUT4 Clearance",
+    "module": "Module 5: Clinical Reports & Longitudinal EHR Records",
+    "features": [
+      "ADA Diet Trades Engine (#pageDietTrades), Smart Glucose-Driven Snack Notifier, Fast Food Helper"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "43",
+    "title": "Tab 11 Architecture: Active Pharmacological Regimen Management",
+    "module": "Module 7: Tab 11 Medication Management",
+    "features": [
+      "Interactive Diabetic Meal Builder & Gemini Nutrition Coach (Macros, Goals Comparison, GLUT4 Prescription)"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "44",
+    "title": "Two Discrete Daily Intake Schedules: Morning Suite & Dinner Split",
+    "module": "Module 7: Tab 11 Medication Management",
+    "features": [
+      "Interactive Diabetic Meal Builder & Gemini Nutrition Coach (Macros, Goals Comparison, GLUT4 Prescription)"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "45",
+    "title": "Granular Medication Editing, Deletion & Titration Adherence",
+    "module": "Module 7: Tab 11 Medication Management",
+    "features": [
+      "Custom Watch Faces Studio (#pageWatchFaces), Hybrid Dial Marketplace (659 Dial Binaries)"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "46",
+    "title": "Tab 12 Full Scan: Automated Sequential 6-Sensor Diagnostic Pipeline",
+    "module": "Module 8: Tab 12 Sequential Full Scan",
+    "features": [
+      "Custom Watch Faces Studio (#pageWatchFaces), Hybrid Dial Marketplace (659 Dial Binaries)"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "47",
+    "title": "Live Stage Progression, Non-Interfering Scan Flow & Clinical Report",
+    "module": "Module 8: Tab 12 Sequential Full Scan",
+    "features": [
+      "Medication Scheduling & Adherence Tracker (#pageMedication), Pill Logging"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "48",
+    "title": "OEM App vs LCARS Matrix Part 1: Hardware Parity & Zero-Cloud Privacy",
+    "module": "Module 9: Master Capability Matrix: OEM App vs LCARS",
+    "features": [
+      "Medication Scheduling & Adherence Tracker (#pageMedication), Pill Logging"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "49",
+    "title": "OEM App vs LCARS Matrix Part 2: Calibration, Timelines & Metabolic Engine",
+    "module": "Module 9: Master Capability Matrix: OEM App vs LCARS",
+    "features": [
+      "Sequential Automated Biometric Full Scan (#pageFullScan, 6 Sensors in 90 Seconds)"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "50",
+    "title": "OEM App vs LCARS Matrix Part 3: Senior-Friendly Ergonomics & 21:1 Contrast",
+    "module": "Module 9: Master Capability Matrix: OEM App vs LCARS",
+    "features": [
+      "Sequential Automated Biometric Full Scan (#pageFullScan, 6 Sensors in 90 Seconds)"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "51",
+    "title": "Outpatient Clinical Review: YTD, Monthly & Daily Telemetry Records",
+    "module": "Module 10: Clinical Summaries & Achieving Diabetic Goals",
+    "features": [
+      "Closed-Loop Biofeedback Architecture, Google Diabetes Research Sponsorship Repository, Zero-PHI Open Science"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "52",
+    "title": "Evolution to Closed-Loop Biofeedback: The Global Diabetes Research Opportunity",
+    "module": "Module 10: Clinical Summaries, Closed-Loop Science & Open Source",
+    "features": [
+      "Closed-Loop Biofeedback Architecture, Google Diabetes Research Sponsorship Repository, Zero-PHI Open Science"
+    ],
+    "status": "100% COVERED IN BUILD"
+  },
+  {
+    "slide_num": "53",
+    "title": "Open Source Copyleft, Documentation & Powered by Google Gemini Pro",
+    "module": "Module 10: Clinical Summaries & Open Source Ecosystem",
+    "features": [
+      "Closed-Loop Biofeedback Architecture, Google Diabetes Research Sponsorship Repository, Zero-PHI Open Science"
+    ],
+    "status": "100% COVERED IN BUILD"
+  }
+]

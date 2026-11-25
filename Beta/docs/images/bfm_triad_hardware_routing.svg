@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" width="1000" height="620" style="background:#070b12; font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Roboto,sans-serif;">
+  <defs>
+    <linearGradient id="bgGrad2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080d1a"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+    <linearGradient id="headerGrad2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1000" height="620" fill="url(#bgGrad2)"/>
+  <rect x="15" y="15" width="970" height="590" rx="12" fill="none" stroke="#1e293b" stroke-width="1.5"/>
+
+  <!-- Scott BFM Corner Accents -->
+  <path d="M 15 45 L 15 15 L 45 15" fill="none" stroke="#fb923c" stroke-width="3"/>
+  <path d="M 955 15 L 985 15 L 985 45" fill="none" stroke="#fb923c" stroke-width="3"/>
+  <path d="M 15 575 L 15 605 L 45 605" fill="none" stroke="#fb923c" stroke-width="3"/>
+  <path d="M 955 605 L 985 605 L 985 575" fill="none" stroke="#fb923c" stroke-width="3"/>
+
+  <!-- Header Banner -->
+  <rect x="35" y="30" width="930" height="58" rx="8" fill="url(#headerGrad2)" stroke="#334155" stroke-width="1"/>
+  <rect x="35" y="30" width="12" height="58" rx="4" fill="#38bdf8"/>
+  <text x="60" y="55" fill="#f8fafc" font-size="16" font-weight="800" letter-spacing="1.5">MULTI-TENANT ANTI-COLLISION • 3-WAY HARDWARE BINDING TRIAD</text>
+  <text x="60" y="75" fill="#fb923c" font-size="11" font-weight="600" letter-spacing="1">USER UID &lt;-&gt; CELL PHONE ESN &lt;-&gt; LINKED WATCH MAC (SCREEN INDEPENDENT ROUTING)</text>
+  <rect x="800" y="44" width="150" height="30" rx="15" fill="#0f172a" stroke="#fb923c" stroke-width="1.5"/>
+  <text x="875" y="63" fill="#fb923c" font-size="10" font-weight="800" text-anchor="middle" letter-spacing="1">ZERO CONTAMINATION</text>
+
+  <!-- 3 Main Columns: Household Hardware -> Workstation Dispatcher -> Isolated Vaults -->
+  <!-- Column 1: Concurrent Household Hardware -->
+  <rect x="35" y="110" width="270" height="475" rx="10" fill="#0d1527" stroke="#1e3a8a" stroke-width="1.5"/>
+  <rect x="35" y="110" width="270" height="36" rx="10" fill="#1e293b"/>
+  <rect x="35" y="136" width="270" height="10" fill="#1e293b"/>
+  <text x="50" y="133" fill="#93c5fd" font-size="11" font-weight="800" letter-spacing="1">1. HOUSEHOLD HARDWARE</text>
+
+  <!-- Dad's Hardware -->
+  <g transform="translate(50, 160)">
+    <rect width="240" height="85" rx="6" fill="#0b1324" stroke="#0284c7" stroke-width="1.5"/>
+    <text x="14" y="24" fill="#38bdf8" font-size="12" font-weight="700">PROFILE 01: DAD (JOHN)</text>
+    <text x="14" y="46" fill="#f8fafc" font-size="10">⌚ Watch: MAC 8B:DE:40:83:F6:16</text>
+    <text x="14" y="64" fill="#f8fafc" font-size="10">📱 Cell 1: ESN-9482-A018-7F</text>
+    <text x="14" y="78" fill="#10b981" font-size="9" font-weight="700">Status: Active Continuous BLE</text>
+  </g>
+
+  <!-- Mom's Hardware -->
+  <g transform="translate(50, 265)">
+    <rect width="240" height="85" rx="6" fill="#0b1324" stroke="#d97706" stroke-width="1.5"/>
+    <text x="14" y="24" fill="#fbbf24" font-size="12" font-weight="700">PROFILE 02: MOM (MARY)</text>
+    <text x="14" y="46" fill="#f8fafc" font-size="10">⌚ Watch: MAC C4:12:9A:33:02:51</text>
+    <text x="14" y="64" fill="#f8fafc" font-size="10">📱 Cell 2: ESN-7731-B942-3C</text>
+    <text x="14" y="78" fill="#fbbf24" font-size="9" font-weight="700">Status: Field Meal Wi-Fi Dock</text>
+  </g>
+
+  <!-- Son's Hardware -->
+  <g transform="translate(50, 370)">
+    <rect width="240" height="85" rx="6" fill="#0b1324" stroke="#475569" stroke-width="1.5"/>
+    <text x="14" y="24" fill="#cbd5e1" font-size="12" font-weight="700">PROFILE 03: SON (ALEX)</text>
+    <text x="14" y="46" fill="#f8fafc" font-size="10">⌚ Watch: MAC E1:55:88:99:A2:00</text>
+    <text x="14" y="64" fill="#f8fafc" font-size="10">📱 Cell 3: ESN-4410-C209-1E</text>
+    <text x="14" y="78" fill="#94a3b8" font-size="9" font-weight="700">Status: Standby / Paired</text>
+  </g>
+
+  <g transform="translate(50, 475)">
+    <rect width="240" height="90" rx="6" fill="#1e1b4b" stroke="#6366f1" stroke-width="1"/>
+    <text x="14" y="24" fill="#a5b4fc" font-size="10" font-weight="800">HARDWARE COLLISION HAZARD:</text>
+    <text x="14" y="44" fill="#e0e7ff" font-size="9">If Dad is actively viewing Tab 04 on PC,</text>
+    <text x="14" y="58" fill="#e0e7ff" font-size="9">Mom's incoming watch packets must NEVER</text>
+    <text x="14" y="72" fill="#e0e7ff" font-size="9">route to Dad's open browser screen!</text>
+  </g>
+
+  <!-- Column 2: Center Dispatcher -->
+  <rect x="345" y="110" width="310" height="475" rx="10" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <rect x="345" y="110" width="310" height="36" rx="10" fill="#1e293b"/>
+  <rect x="345" y="136" width="310" height="10" fill="#1e293b"/>
+  <text x="360" y="133" fill="#f8fafc" font-size="11" font-weight="800" letter-spacing="1">2. STAR SHIP GEMINI BASE DISPATCHER</text>
+
+  <!-- Monitor State Card -->
+  <g transform="translate(360, 160)">
+    <rect width="280" height="65" rx="6" fill="#312e81" stroke="#4338ca" stroke-width="1"/>
+    <text x="14" y="24" fill="#c7d2fe" font-size="10" font-weight="800">ACTIVE PC MONITOR SCREEN STATE</text>
+    <text x="14" y="44" fill="#ffffff" font-size="11" font-weight="700">Viewing: Profile 01 (Dad) • Tab 04 Charts</text>
+    <text x="14" y="58" fill="#f43f5e" font-size="9" font-weight="800">⚡ COMPLETELY IGNORED BY INGESTION ROUTER</text>
+  </g>
+
+  <!-- Dispatcher Routing Engine -->
+  <g transform="translate(360, 240)">
+    <rect width="280" height="180" rx="8" fill="#020617" stroke="#38bdf8" stroke-width="1.5"/>
+    <text x="16" y="26" fill="#38bdf8" font-size="12" font-weight="800">TRIAD ROUTING ENGINE (server.py)</text>
+    <rect x="16" y="38" width="248" height="30" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <text x="24" y="57" fill="#94a3b8" font-size="9">BLE Ingest: Inspect Source Watch MAC</text>
+
+    <rect x="16" y="76" width="248" height="30" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <text x="24" y="95" fill="#94a3b8" font-size="9">Cell Dock: Inspect Payload Hardware ESN</text>
+
+    <rect x="16" y="114" width="248" height="54" rx="4" fill="#064e3b" stroke="#059669" stroke-width="1"/>
+    <text x="24" y="132" fill="#34d399" font-size="9" font-weight="800">SQLITE MASTER REGISTRY LOOKUP:</text>
+    <text x="24" y="146" fill="#f8fafc" font-size="9">SELECT user_uid FROM registered_cells</text>
+    <text x="24" y="160" fill="#f8fafc" font-size="9">WHERE linked_watch_mac=? OR phone_esn=?</text>
+  </g>
+
+  <g transform="translate(360, 435)">
+    <rect width="280" height="130" rx="8" fill="#14532d" stroke="#16a34a" stroke-width="1" fill-opacity="0.4"/>
+    <text x="16" y="24" fill="#4ade80" font-size="11" font-weight="800">DETERMINISTIC ROUTING RULE:</text>
+    <text x="16" y="44" fill="#f8fafc" font-size="10">• Watch MAC 8B:DE... -> telemetry_user_1.db</text>
+    <text x="16" y="62" fill="#f8fafc" font-size="10">• Cell ESN-9482...   -> telemetry_user_1.db</text>
+    <text x="16" y="80" fill="#fbbf24" font-size="10">• Watch MAC C4:12... -> telemetry_user_2.db</text>
+    <text x="16" y="98" fill="#fbbf24" font-size="10">• Cell ESN-7731...   -> telemetry_user_2.db</text>
+    <text x="16" y="118" fill="#38bdf8" font-size="9" font-weight="700">Zero Cross-Tenant Contamination Guaranteed</text>
+  </g>
+
+  <!-- Column 3: Isolated User Vaults -->
+  <rect x="695" y="110" width="270" height="475" rx="10" fill="#0d1527" stroke="#1e3a8a" stroke-width="1.5"/>
+  <rect x="695" y="110" width="270" height="36" rx="10" fill="#1e293b"/>
+  <rect x="695" y="136" width="270" height="10" fill="#1e293b"/>
+  <text x="710" y="133" fill="#93c5fd" font-size="11" font-weight="800" letter-spacing="1">3. AIR-GAPPED USER VAULTS</text>
+
+  <!-- Vault 1 -->
+  <g transform="translate(710, 160)">
+    <rect width="240" height="120" rx="6" fill="#0b1324" stroke="#0284c7" stroke-width="1.5"/>
+    <text x="14" y="24" fill="#38bdf8" font-size="11" font-weight="800">telemetry_user_USR-001.db</text>
+    <text x="14" y="44" fill="#f8fafc" font-size="10">Owner: John (Dad)</text>
+    <text x="14" y="62" fill="#94a3b8" font-size="9">• 24h Optical Glucose Tonometry</text>
+    <text x="14" y="78" fill="#94a3b8" font-size="9">• Heart Rate, SpO2, Temperature</text>
+    <text x="14" y="94" fill="#94a3b8" font-size="9">• Cell 1 Nutrition Intake Records</text>
+    <text x="14" y="110" fill="#10b981" font-size="9" font-weight="700">Lock: Dedicated Thread SQLite Handle</text>
+  </g>
+
+  <!-- Vault 2 -->
+  <g transform="translate(710, 300)">
+    <rect width="240" height="120" rx="6" fill="#0b1324" stroke="#d97706" stroke-width="1.5"/>
+    <text x="14" y="24" fill="#fbbf24" font-size="11" font-weight="800">telemetry_user_USR-002.db</text>
+    <text x="14" y="44" fill="#f8fafc" font-size="10">Owner: Mary (Mom)</text>
+    <text x="14" y="62" fill="#94a3b8" font-size="9">• Continuous Watch 2 Biometrics</text>
+    <text x="14" y="78" fill="#94a3b8" font-size="9">• Cell 2 Field Meal Intake Batches</text>
+    <text x="14" y="94" fill="#94a3b8" font-size="9">• Personalized Glycemic Baseline</text>
+    <text x="14" y="110" fill="#10b981" font-size="9" font-weight="700">Lock: Dedicated Thread SQLite Handle</text>
+  </g>
+
+  <!-- Vault 3 -->
+  <g transform="translate(710, 440)">
+    <rect width="240" height="125" rx="6" fill="#0b1324" stroke="#475569" stroke-width="1.5"/>
+    <text x="14" y="24" fill="#cbd5e1" font-size="11" font-weight="800">telemetry_user_USR-003.db</text>
+    <text x="14" y="44" fill="#f8fafc" font-size="10">Owner: Alex (Son)</text>
+    <text x="14" y="62" fill="#94a3b8" font-size="9">• Standby Telemetry Vault</text>
+    <text x="14" y="78" fill="#94a3b8" font-size="9">• Ready for Watch 3 Pairing</text>
+    <text x="14" y="94" fill="#94a3b8" font-size="9">• Cell 3 Registered and Bound</text>
+    <text x="14" y="112" fill="#38bdf8" font-size="9" font-weight="700">Status: Zero Cross-Talk Ready</text>
+  </g>
+
+  <!-- Routing Connectors -->
+  <path d="M 290 200 L 360 270" fill="none" stroke="#38bdf8" stroke-width="2"/>
+  <path d="M 290 305 L 360 295" fill="none" stroke="#fbbf24" stroke-width="2"/>
+  <path d="M 640 450 L 710 220" fill="none" stroke="#38bdf8" stroke-width="2"/>
+  <path d="M 640 495 L 710 360" fill="none" stroke="#fbbf24" stroke-width="2"/>
+</svg>
