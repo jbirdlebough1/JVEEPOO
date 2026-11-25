@@ -272,14 +272,14 @@
 
     /* Tab Page Containers */
     .tab-page {
-      display: none;
+      display: none !important;
       flex-direction: column;
       gap: 16px;
       flex: 1;
     }
 
     .tab-page.active-page {
-      display: flex;
+      display: flex !important;
     }
 
     /* 4-Bay & 6-Bay Biometrics Grid */
@@ -1765,7 +1765,7 @@
         </div>
         <div class="lcars-time-block">
           <div class="actual-datetime" id="actualDateTime">FRIDAY, NOV 20, 2026 9:55:00 AM PST</div>
-          <div class="lcars-stardate" id="stardateClock">BUILD beta.00.01.0016</div>
+          <div class="lcars-stardate" id="stardateClock">BUILD beta.00.01.0022</div>
         </div>
         
       </div>
@@ -1864,7 +1864,7 @@
       <!-- =====================================================================
            TAB 01: SEQUENTIAL COMPREHENSIVE BIOMETRIC FULL SCAN
            ===================================================================== -->
-      <div id="pageFullScan" class="tab-page" style="display: none;">
+      <div id="pageFullScan" class="tab-page active-page">
         <div class="diet-container">
 
           <!-- BFM STETHOSCOPE ICON -->
@@ -3480,7 +3480,7 @@
               </div>
               <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
                 <span id="lblAuditRecalcNumber" style="font-family: var(--lcars-mono); font-size: 0.95rem; font-weight: 900; color: #15803d; background: #dcfce7; border: 1.5px solid #86efac; padding: 4px 10px; border-radius: 4px;">[CLICK RE-CALC]</span>
-                <button class="lcars-btn btn-green" style="font-size: 0.8rem; padding: 4px 12px; font-weight: bold;" onclick="runGoalComplianceAudit()">
+                <button class="lcars-btn btn-green" style="font-size: 0.8rem; padding: 4px 12px; font-weight: bold;" onclick="runGoalComplianceAudit(true)">
                   🔄 RE-CALCULATE % GOALS MET ON-DEMAND
                 </button>
                 <button class="lcars-btn btn-blue" style="font-size: 0.8rem; padding: 4px 12px;" onclick="switchTab('goals')">
@@ -6655,7 +6655,7 @@
       <!-- ================================================================= -->
       <!-- TAB 09: ADA DIET TRADES & CLINICAL RECIPE LOCATOR                 -->
       <!-- ================================================================= -->
-      <div id="pageDietTrades" class="tab-page active-page">
+      <div id="pageDietTrades" class="tab-page">
         <div class="card-box" style="margin-bottom: 25px; border-left: 6px solid var(--lcars-green);">
           <div class="box-header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1a2c1e; padding-bottom: 12px; margin-bottom: 18px;">
             <div>
@@ -9347,7 +9347,7 @@
       const year = now.getFullYear();
       const startOfYear = new Date(year, 0, 1);
       const dayOfYear = (now - startOfYear) / (1000 * 60 * 60 * 24);
-      document.getElementById("stardateClock").textContent = "BUILD beta.00.01.0016";
+      document.getElementById("stardateClock").textContent = "BUILD beta.00.01.0022";
     }
     setInterval(updateClock, 1000);
     updateClock();
@@ -10116,6 +10116,12 @@ function switchTab(tabId) {
           if (btn) btn.classList.add('active');
           if (page) page.classList.add('active-page');
           try { initFullScanView(); } catch (e) {}
+        } else if (tabId === 'troubleshooting') {
+          const btn = document.getElementById('navTabTroubleshooting');
+          const page = document.getElementById('pageTroubleshooting');
+          if (btn) btn.classList.add('active');
+          if (page) page.classList.add('active-page');
+          try { if (typeof renderWatchTabConnectedDetails === 'function') renderWatchTabConnectedDetails(); } catch (e) {}
         }
       } catch (navErr) {
         console.error('[TAB NAVIGATION ERROR]', navErr);
@@ -13973,9 +13979,10 @@ function switchTab(tabId) {
     // =========================================================================
     // ON-DEMAND CLINICAL GOAL COMPLIANCE AUDIT (% OF GOALS MET)
     // =========================================================================
-    function runGoalComplianceAudit(animate = true) {
+    function runGoalComplianceAudit(animate = false) {
       if (window._goalAuditAnimInterval) {
-        clearInterval(window._goalAuditAnimInterval);
+        if (!animate) return; // Do not interrupt an active sweep animation!
+        clearTimeout(window._goalAuditAnimInterval);
         window._goalAuditAnimInterval = null;
       }
       const goals = getActiveClinicalGoals();
@@ -14050,10 +14057,11 @@ function switchTab(tabId) {
 
       if (lblRecalcNum) {
         let currentP = 0;
-        if (circleProgress) circleProgress.style.transition = "stroke-dashoffset 0.02s ease-out";
-        window._goalAuditAnimInterval = setInterval(() => {
-          currentP += 20;
-          if (currentP <= 100) {
+        const animSteps = [20, 45, 70, 90, 100];
+        let stepIdx = 0;
+        const runStep = () => {
+          if (stepIdx < animSteps.length) {
+            currentP = animSteps[stepIdx++];
             if (lblRecalcNum) {
               lblRecalcNum.textContent = `${currentP}% (RECALCULATING...)`;
               lblRecalcNum.style.background = "#fef08a";
@@ -14066,8 +14074,8 @@ function switchTab(tabId) {
               const sweepOffset = circumference - (currentP / 100) * circumference;
               circleProgress.style.strokeDashoffset = sweepOffset.toFixed(1);
             }
+            window._goalAuditAnimInterval = setTimeout(runStep, 35);
           } else {
-            clearInterval(window._goalAuditAnimInterval);
             window._goalAuditAnimInterval = null;
             if (lblRecalcNum) {
               lblRecalcNum.textContent = `${compositeScore.toFixed(1)}% MET (CURRENT)`;
@@ -14083,7 +14091,8 @@ function switchTab(tabId) {
             }
             if (typeof soundSuccess === 'function') soundSuccess();
           }
-        }, 25);
+        };
+        window._goalAuditAnimInterval = setTimeout(runStep, 35);
       }
     }
 
@@ -25893,6 +25902,7 @@ You logged: Entire Box (3.5 Servings / 99g)
 
     // Initialize on DOM ready
     window.addEventListener('DOMContentLoaded', () => {
+      try { switchTab('fullscan'); } catch (e) {}
       try { renderWatchTabConnectedDetails(); } catch (e) {}
       loadFamilyCellsRoster();
       checkLegalStatus();
