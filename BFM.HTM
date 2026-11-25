@@ -1765,7 +1765,7 @@
         </div>
         <div class="lcars-time-block">
           <div class="actual-datetime" id="actualDateTime">FRIDAY, NOV 20, 2026 9:55:00 AM PST</div>
-          <div class="lcars-stardate" id="stardateClock">BUILD beta.00.01.0029</div>
+          <div class="lcars-stardate" id="stardateClock">BUILD beta.00.01.0030</div>
         </div>
         
       </div>
@@ -9322,6 +9322,12 @@
 
     function soundButtonPress() {
       // Audio completely muted per user directive: kill all beep noises
+      if (typeof syncStepData === 'function' && gattServer && gattServer.connected && txCharacteristic) {
+        try { syncStepData(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+      }
+      if (typeof pollLiveTelemetryChanges === 'function') {
+        try { pollLiveTelemetryChanges(true); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+      }
       if (typeof scheduleFullPipelineRefresh === 'function') {
         scheduleFullPipelineRefresh();
       }
@@ -9357,7 +9363,7 @@
         cfg.audioEnabled = audioEnabled ? 1 : 0;
         localStorage.setItem('veepoo_user_config', JSON.stringify(cfg));
         updateStoreSourcingFromZip(cfg.zipCode);
-      } catch (e) {}
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       logLCARS(`Audio tactile synthesizer: ${audioEnabled ? 'ONLINE' : 'MUTED'}`, "sys");
     }
 
@@ -9388,7 +9394,7 @@
       const year = now.getFullYear();
       const startOfYear = new Date(year, 0, 1);
       const dayOfYear = (now - startOfYear) / (1000 * 60 * 60 * 24);
-      document.getElementById("stardateClock").textContent = "BUILD beta.00.01.0029";
+      document.getElementById("stardateClock").textContent = "BUILD beta.00.01.0030";
     }
     setInterval(updateClock, 1000);
     updateClock();
@@ -9559,7 +9565,7 @@
       try {
         const cmd03 = new Uint8Array(20); cmd03[0] = 0x03;
         sendCommandBytes(cmd03);
-      } catch (e) {}
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
 
       setTimeout(() => {
         if (pctLbl) pctLbl.textContent = "25%";
@@ -9567,7 +9573,7 @@
         try {
           const cmdB8_0 = new Uint8Array(20); cmdB8_0[0] = 0xB8; cmdB8_0[1] = 0x01; cmdB8_0[2] = 0x00;
           sendCommandBytes(cmdB8_0);
-        } catch (e) {}
+        } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       }, 150);
 
       setTimeout(() => {
@@ -9576,7 +9582,7 @@
         try {
           const cmdB8_1 = new Uint8Array(20); cmdB8_1[0] = 0xB8; cmdB8_1[1] = 0x01; cmdB8_1[2] = 0x01;
           sendCommandBytes(cmdB8_1);
-        } catch (e) {}
+        } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       }, 300);
 
       setTimeout(() => {
@@ -9740,7 +9746,7 @@ function renderWatchTabConnectedDetails() {
             window._cachedRecentMeals = data.meals;
             renderDailyHydrationChart(containerId);
           }
-        }).catch(() => {}).finally(() => { window._fetchingHydrMeals = false; });
+        }).catch((err) => { console.warn('[MIL-SPEC ASYNC REJECTION]', err); }).finally(() => { window._fetchingHydrMeals = false; });
       }
       
       const seenHydrKeys = new Set();
@@ -9946,7 +9952,7 @@ function renderWatchTabConnectedDetails() {
         if (typeof pollLiveTelemetryChanges === 'function') {
           await pollLiveTelemetryChanges(true);
         }
-      } catch (e) {}
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
 
       // 2. Propagate current real measurements across dynamic fields (Zero Is Zero)
       if (typeof propagateFullScanResultsToAllPages === 'function' && window._latestTelemetry) {
@@ -10039,7 +10045,7 @@ function renderWatchTabConnectedDetails() {
         const pBg = new Uint8Array(20); pBg[0] = 0x89; pBg[1] = 0x01; pBg[2] = 0x02; await sendCommandBytes(pBg);
         const pHrv = new Uint8Array(20); pHrv[0] = 0x89; pHrv[1] = 0x07; pHrv[2] = 0x02; await sendCommandBytes(pHrv);
         const pSpo2 = new Uint8Array(20); pSpo2[0] = 0x80; pSpo2[1] = 0x02; pSpo2[2] = 0x02; await sendCommandBytes(pSpo2);
-      } catch (e) {}
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
 
       await new Promise(r => setTimeout(r, 200));
 
@@ -10059,7 +10065,7 @@ function renderWatchTabConnectedDetails() {
         pB8[10] = 0x01;
         pB8[19] = 0x01;
         await sendCommandBytes(pB8);
-      } catch (e) {}
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
 
       await new Promise(r => setTimeout(r, 200));
 
@@ -10079,7 +10085,7 @@ function renderWatchTabConnectedDetails() {
         p89[4] = (rawVal >> 8) & 0xFF;
         p89[5] = 0x01;
         await sendCommandBytes(p89);
-      } catch (e) {}
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
 
       await new Promise(r => setTimeout(r, 200));
 
@@ -10095,11 +10101,11 @@ function renderWatchTabConnectedDetails() {
         pC7[2] = 0x03;
         pC7[3] = 0x02;
         await sendCommandBytes(pC7);
-      } catch (e) {}
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
 
       try {
         await fetch('/api/dial/style2');
-      } catch (e) {}
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
 
       await new Promise(r => setTimeout(r, 300));
 
@@ -10149,31 +10155,31 @@ function switchTab(tabId) {
           const page = document.getElementById('pageMetabolic');
           if (btn) btn.classList.add('active');
           if (page) page.classList.add('active-page');
-          try { initDietFormTime(); } catch (e) {}
-          try { initExerciseFormTime(); } catch (e) {}
-          try { render360HealthView(); } catch (e) {}
+          try { initDietFormTime(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+          try { initExerciseFormTime(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+          try { render360HealthView(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
         } else if (tabId === 'export') {
           const btnExp = document.getElementById('navTabExport');
           const pageExp = document.getElementById('pageExport');
           if (btnExp) btnExp.classList.add('active');
           if (pageExp) pageExp.classList.add('active-page');
-          try { syncExportPageWithConfig(); } catch (e) {}
+          try { syncExportPageWithConfig(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
         } else if (tabId === 'learning') {
           const btnLrn = document.getElementById('navTabLearning');
           const pageLrn = document.getElementById('pageLearning');
           if (btnLrn) btnLrn.classList.add('active');
           if (pageLrn) pageLrn.classList.add('active-page');
-          try { generatePersonalHealthInsights(); } catch (e) {}
-          try { loadLearningMealsData(); } catch (e) {}
-          try { loadDoctorMentoringNotes(); } catch (e) {}
+          try { generatePersonalHealthInsights(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+          try { loadLearningMealsData(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+          try { loadDoctorMentoringNotes(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
         } else if (tabId === 'reports') {
           const btnRep = document.getElementById('navTabReports');
           const pageRep = document.getElementById('pageReports');
           if (btnRep) btnRep.classList.add('active');
           if (pageRep) pageRep.classList.add('active-page');
-          try { renderReportsView(); } catch (e) {}
+          try { renderReportsView(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
           if (typeof renderTallSynchronizedChart === 'function') {
-            try { renderTallSynchronizedChart(currentTallChartTimeframe); } catch (e) {}
+            try { renderTallSynchronizedChart(currentTallChartTimeframe); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
           }
         } else if (tabId === 'setup') {
           const btn = document.getElementById('navTabSetup');
@@ -10196,7 +10202,7 @@ function switchTab(tabId) {
           const page = document.getElementById('pageWatchFaces');
           if (btn) btn.classList.add('active');
           if (page) page.classList.add('active-page');
-          try { queryCurrentWatchFace(); } catch (e) {}
+          try { queryCurrentWatchFace(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
         } else if (tabId === 'help') {
           const btn = document.getElementById('navTabHelp');
           const page = document.getElementById('pageHelp');
@@ -10207,40 +10213,46 @@ function switchTab(tabId) {
           const page = document.getElementById('pageDietTrades');
           if (btn) btn.classList.add('active');
           if (page) page.classList.add('active-page');
-          try { renderDietTradesView(); } catch (e) {}
+          try { renderDietTradesView(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
         } else if (tabId === 'medication') {
           const btn = document.getElementById('navTabMedication');
           const page = document.getElementById('pageMedication');
           if (btn) btn.classList.add('active');
           if (page) page.classList.add('active-page');
-          try { renderMedicationView(); } catch (e) {}
+          try { renderMedicationView(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
         } else if (tabId === 'goals') {
           const btn = document.getElementById('navTabGoals');
           const page = document.getElementById('pageGoals');
           if (btn) btn.classList.add('active');
           if (page) page.classList.add('active-page');
-          try { if (typeof renderBOMTable === 'function') renderBOMTable('meal01'); } catch (e) {}
-          try { if (typeof loadClinicalGoalsUI === 'function') loadClinicalGoalsUI(); } catch (e) {}
+          try { if (typeof renderBOMTable === 'function') renderBOMTable('meal01'); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+          try { if (typeof loadClinicalGoalsUI === 'function') loadClinicalGoalsUI(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
         } else if (tabId === 'fullscan') {
           const btn = document.getElementById('navTabFullScan');
           const page = document.getElementById('pageFullScan');
           if (btn) btn.classList.add('active');
           if (page) page.classList.add('active-page');
-          try { initFullScanView(); } catch (e) {}
+          try { initFullScanView(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
         } else if (tabId === 'troubleshooting') {
           const btn = document.getElementById('navTabTroubleshooting');
           const page = document.getElementById('pageTroubleshooting');
           if (btn) btn.classList.add('active');
           if (page) page.classList.add('active-page');
-          try { if (typeof renderWatchTabConnectedDetails === 'function') renderWatchTabConnectedDetails(); } catch (e) {}
+          try { if (typeof renderWatchTabConnectedDetails === 'function') renderWatchTabConnectedDetails(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
         }
       } catch (navErr) {
         console.error('[TAB NAVIGATION ERROR]', navErr);
       }
 
-      // Guarantee instant live telemetry refresh across tab navigation
+      // Guarantee instant live telemetry & watch step refresh across tab navigation
+      if (typeof syncStepData === 'function' && gattServer && gattServer.connected && txCharacteristic) {
+        try { syncStepData(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+      }
       if (typeof pollLiveTelemetryChanges === 'function') {
-        try { pollLiveTelemetryChanges(true); } catch (e) {}
+        try { pollLiveTelemetryChanges(true); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+      }
+      if (typeof scheduleFullPipelineRefresh === 'function') {
+        try { scheduleFullPipelineRefresh(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       }
     }
 
@@ -10283,7 +10295,7 @@ function switchTab(tabId) {
     try {
       const savedLogs = localStorage.getItem('veepoo_session_telemetry');
       if (savedLogs) sessionTelemetryLogs = JSON.parse(savedLogs);
-    } catch (e) {}
+    } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
 
     // =========================================================================
     // AUTOMATIC BACKGROUND LINKING (Preconfigured Watch Opens Already Linked)
@@ -10307,7 +10319,7 @@ function switchTab(tabId) {
               return target;
             }
           }
-        } catch (e) {}
+        } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       }
       return null;
     }
@@ -10369,7 +10381,7 @@ function switchTab(tabId) {
       try {
         await fetch('/api/radio_yield', { method: 'POST' });
         await new Promise(r => setTimeout(r, 200));
-      } catch (e) {}
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
 
       const rawDevName = bluetoothDevice.name || 'VEE';
       const isH8 = rawDevName.toUpperCase().includes('H8') || rawDevName.toUpperCase().includes('VX001');
@@ -10380,7 +10392,7 @@ function switchTab(tabId) {
       try {
         localStorage.setItem('bfm_connected_watch_id', watchId);
         localStorage.setItem('bfm_connected_watch_name', dName);
-      } catch (e) {}
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       document.getElementById('ribbonDevice').textContent = dName;
       document.getElementById('ribbonComm').textContent = 'LINKING...';
       document.getElementById('ribbonComm').style.color = 'var(--lcars-banana)';
@@ -10497,7 +10509,7 @@ function switchTab(tabId) {
         // Step 8: Trigger Server Sync & Telemetry Deduplication
         try {
           await fetch('/api/sync/trigger', { method: 'POST' });
-        } catch(e) {}
+        } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
 
         // If no steps received yet from a dormant device (H8 off-wrist), set 0 steps cleanly
         if (typeof lastSteps === 'undefined' || lastSteps === null) {
@@ -10589,14 +10601,14 @@ function switchTab(tabId) {
         let vService = null;
         try {
           vService = await gattServer.getPrimaryService(VEEPOO_SERVICE_UUID);
-        } catch(e) {}
+        } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
 
         if (vService) {
           try {
             txCharacteristic = await vService.getCharacteristic(VEEPOO_WRITE_UUID);
             allWriteChars.push(txCharacteristic);
             logLCARS(`[★] Primary Command TX Bound: ${txCharacteristic.uuid.substring(0, 8)}`, 'rx');
-          } catch(e) {}
+          } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
           try {
             const rxChar = await vService.getCharacteristic(VEEPOO_NOTIFY_UUID);
             await rxChar.startNotifications();
@@ -10604,7 +10616,7 @@ function switchTab(tabId) {
             rxChar.addEventListener('characteristicvaluechanged', onTelemetryReceived);
             rxCharacteristics.push(rxChar);
             logLCARS(`[★] Telemetry RX Stream Bound: ${rxChar.uuid.substring(0, 8)}`, 'rx');
-          } catch(e) {}
+          } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
         }
 
         // Also discover any additional notify / write services
@@ -10626,12 +10638,12 @@ function switchTab(tabId) {
                     c.removeEventListener('characteristicvaluechanged', onTelemetryReceived);
                     c.addEventListener('characteristicvaluechanged', onTelemetryReceived);
                     if (!rxCharacteristics.includes(c)) rxCharacteristics.push(c);
-                  } catch (e) {}
+                  } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
                 }
               }
-            } catch (e) {}
+            } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
           }
-        } catch(e) {}
+        } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
         // Adaptive Characteristic Discovery for H8 / VEE / Older Veepoo watches
         if (!txCharacteristic && allWriteChars.length > 0) {
           const knownWrite = allWriteChars.find(ch => {
@@ -10752,8 +10764,8 @@ function switchTab(tabId) {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
-        }).catch(err => {});
-      } catch (e) {}
+        }).catch((err) => { console.warn('[MIL-SPEC ASYNC REJECTION]', err); });
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
     }
 
     function onTelemetryReceived(event) {
@@ -11293,7 +11305,7 @@ function switchTab(tabId) {
       if (sessionTelemetryLogs.length > 50) sessionTelemetryLogs.pop();
       try {
         localStorage.setItem('veepoo_session_telemetry', JSON.stringify(sessionTelemetryLogs));
-      } catch (e) {}
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       renderReportsView();
     }
 
@@ -11324,7 +11336,7 @@ function switchTab(tabId) {
               await proceedWithGattConnection();
               return !!txCharacteristic;
             }
-          } catch(e) {}
+          } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
         }
         // If no device recognized in Chrome, prompt user to select VEE
         await pairNewWatchPrompt();
@@ -11381,7 +11393,7 @@ function switchTab(tabId) {
         const c0 = new Uint8Array(20);
         c0[0] = 0xB8; c0[1] = 0x01; c0[2] = 0x02; c0[3] = 0x02;
         sendCommandBytes(c0);
-      } catch(e) {}
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
 
       const buf = new Uint8Array(20);
       buf[0] = 0xA1; buf[1] = 0x00; buf[2] = 0x00; buf[3] = 0x00;
@@ -11944,7 +11956,7 @@ function switchTab(tabId) {
               timestamp: new Date().toISOString()
             })
           }).catch(e => console.warn("Sleep telemetry POST deferred:", e));
-        } catch (e) {}
+        } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       } else if (window._currentSleepQueryDay === 0 && !window._sleepDayOneAttempted) {
         window._sleepDayOneAttempted = true;
         logLCARS("[*] Day 0 sleep block count zero. Falling back to Day 1 (Previous Night)...", "sys");
@@ -12336,7 +12348,7 @@ function switchTab(tabId) {
         method: "POST",
         headers: { "Content-Type": "text/plain" },
         body: `[${ts}] [${type.toUpperCase()}] ${msg} | ${englishDesc}`
-      }).catch(() => {});
+      }).catch((err) => { console.warn('[MIL-SPEC ASYNC REJECTION]', err); });
     }
 
     function clearDiagLog() {
@@ -12464,7 +12476,7 @@ function switchTab(tabId) {
           }
           logLCARS("[+] Setup parameters populated successfully from active profile.", "rx");
           return;
-        } catch (e) {}
+        } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       }
       logLCARS("[+] Using initialized baseline parameters for Model 5010.", "sys");
     }
@@ -13301,7 +13313,7 @@ function switchTab(tabId) {
 
     function setLorenzMorphology(morph) {
       currentLorenzMorphology = morph;
-      try { localStorage.setItem('bfm_lorenz_morphology', morph); } catch (e) {}
+      try { localStorage.setItem('bfm_lorenz_morphology', morph); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
 
       const btns = ['btnLorenzComet', 'btnLorenzTorpedo', 'btnLorenzClub', 'btnLorenzFork', 'btnLorenzComplex'];
       btns.forEach(id => {
@@ -13633,7 +13645,7 @@ function switchTab(tabId) {
           const p = JSON.parse(vc);
           if (p.stepGoal) return parseInt(p.stepGoal, 10);
         }
-      } catch(e) {}
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       return 2000;
     }
 
@@ -13994,7 +14006,7 @@ function switchTab(tabId) {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ schedule_time: timeVal, usb_target_path: driveVal })
         });
-      } catch (e) {}
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
 
       alert(`✅ BACKUP CONFIG SAVED!\n\nTarget: ${driveVal}\nNightly Schedule: ${timeVal} AM\n\nBackground daemon will automatically back up and deduplicate all app data nightly at ${timeVal} AM.`);
     }
@@ -14085,7 +14097,7 @@ function switchTab(tabId) {
       }
       try {
         localStorage.setItem('lcars_clinical_goals', JSON.stringify(goals));
-      } catch (e) {}
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       loadClinicalGoalsUI();
       runGoalComplianceAudit();
     }
@@ -14324,7 +14336,7 @@ function switchTab(tabId) {
             });
           }
         }
-      } catch (e) {}
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
     }
 
     function renderPopularMealsPullDown() {
@@ -14482,7 +14494,7 @@ function switchTab(tabId) {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ id: key, ...mealObj })
         });
-      } catch (err) {}
+      } catch (err) { console.warn('[MIL-SPEC HANDLED FAULT]', err); }
 
       alert(`✅ POPULAR MEAL UPDATED!\n\nID: [${mId}]\nTitle: ${title}\nNet Carbs: ${netC}g\nCalories: ${cal} kcal\n\nSaved permanently to your clinical meal library.`);
     }
@@ -14502,7 +14514,7 @@ function switchTab(tabId) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ id: key })
           });
-        } catch (e) {}
+        } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
 
         alert(`🗑️ Meal "[${m.id || key}]" removed from popular meals.`);
       }
@@ -14562,7 +14574,7 @@ function switchTab(tabId) {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ id: key, ...POPULAR_MEALS[key] })
         });
-      } catch (err) {}
+      } catch (err) { console.warn('[MIL-SPEC HANDLED FAULT]', err); }
 
       alert(`⭐ MEAL ADDED TO POPULAR MEALS!\n\nID: [${pkgId}]\nTitle: ${POPULAR_MEALS[key].title}\nNet Carbs: ${POPULAR_MEALS[key].netCarbs}g\nCalories: ${POPULAR_MEALS[key].calories} kcal\n\nNow permanently accessible in your 1-click pull-down and manager.`);
       renderPopularMealsManager();
@@ -14604,7 +14616,7 @@ function switchTab(tabId) {
       };
       if (typeof mealJournal !== 'undefined') {
         mealJournal.unshift(newMeal);
-        try { localStorage.setItem('veepoo_meal_journal', JSON.stringify(mealJournal)); } catch (e) {}
+        try { localStorage.setItem('veepoo_meal_journal', JSON.stringify(mealJournal)); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       }
 
       if (typeof activeTallDataset !== 'undefined' && activeTallDataset && activeTallDataset.length > 5) {
@@ -14837,7 +14849,7 @@ function switchTab(tabId) {
         let cfg = savedConfig ? JSON.parse(savedConfig) : {};
         cfg.zipCode = z;
         localStorage.setItem('veepoo_user_config', JSON.stringify(cfg));
-      } catch (e) {}
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       updateStoreSourcingFromZip(z);
       logLCARS('📍 Store sourcing ZIP updated to ' + z + ' (Config Screen)', 'rx');
     }
@@ -14849,7 +14861,7 @@ function switchTab(tabId) {
         let cfg = savedConfig ? JSON.parse(savedConfig) : {};
         cfg.zipCode = z;
         localStorage.setItem('veepoo_user_config', JSON.stringify(cfg));
-      } catch (e) {}
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       updateStoreSourcingFromZip(z);
       logLCARS('📍 Store sourcing ZIP updated to ' + z + ' (Meal Planner)', 'rx');
     }
@@ -15244,7 +15256,7 @@ function switchTab(tabId) {
 
       if (isVoiceListening) {
         if (currentVoiceRecognition) {
-          try { currentVoiceRecognition.stop(); } catch(e) {}
+          try { currentVoiceRecognition.stop(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
         }
         isVoiceListening = false;
         if (statusEl) statusEl.style.display = 'none';
@@ -17800,7 +17812,7 @@ function switchTab(tabId) {
       try {
         const saved = localStorage.getItem('veepoo_patient_ehr_config');
         if (saved) return JSON.parse(saved);
-      } catch(e) {}
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       return {
         healthSys: "[UNCONFIGURED]",
         mrn: "",
@@ -17818,7 +17830,7 @@ function switchTab(tabId) {
       };
       try {
         localStorage.setItem('veepoo_patient_ehr_config', JSON.stringify(cfg));
-      } catch(e) {}
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       syncExportPageWithConfig();
       const statusEl = document.getElementById('lblEhrConfigStatus');
       if (statusEl) {
@@ -18097,7 +18109,7 @@ Patient`;
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(`To: ${docEmail}\nSubject: ${subject}\n\n${body}`).then(() => {
           if (confirmNotice) confirmNotice.textContent = '✓ AUTO-COPIED TO CLIPBOARD';
-        }).catch(() => {});
+        }).catch((err) => { console.warn('[MIL-SPEC ASYNC REJECTION]', err); });
       }
 
       logLCARS(`[✔] Prepared clinical email template to doctor (${docEmail}) with Epic FHIR import instructions`, 'sys');
@@ -18173,7 +18185,7 @@ Patient`;
     try {
       const savedMeals = localStorage.getItem('veepoo_meal_journal');
       if (savedMeals) mealJournal = JSON.parse(savedMeals);
-    } catch (e) {}
+    } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
 
     function initDietFormTime() {
       const now = new Date();
@@ -18234,7 +18246,7 @@ Patient`;
       }
 
       mealJournal.unshift(newEntry);
-      try { localStorage.setItem('veepoo_meal_journal', JSON.stringify(mealJournal)); } catch (e) {}
+      try { localStorage.setItem('veepoo_meal_journal', JSON.stringify(mealJournal)); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       await renderDietHistory();
       logLCARS(`[+] Meal logged: ${fullMealName} (${carbs}g carbs, ${fluidOzVal} oz fluid). Real correlated glucose: ${newEntry.glucose ? newEntry.glucose + ' mg/dL' : 'None'}`, "rx");
       clearMealForm();
@@ -18388,7 +18400,7 @@ Patient`;
               comps = parsed.identified_items;
             }
           }
-        } catch (e) {}
+        } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
 
         if (comps && Array.isArray(comps) && comps.length > 0) {
           comps.forEach(c => occasions[occ].foodComponents.push(c.name || c.item || 'Food Item'));
@@ -18480,7 +18492,7 @@ Patient`;
           try {
             const rawObj = typeof m.raw_json === 'string' ? JSON.parse(m.raw_json) : m.raw_json;
             if (rawObj && rawObj.identified_items) foodItems = rawObj.identified_items;
-          } catch(e) {}
+          } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
         }
 
         let foodComponentsHtml = '';
@@ -18552,7 +18564,7 @@ Patient`;
       mealJournal = mealJournal.filter(m => m.id !== id && m.id != id);
       try {
         localStorage.setItem('veepoo_meal_journal', JSON.stringify(mealJournal));
-      } catch (e) {}
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       await renderDietHistory();
       if (typeof loadGoalsComplianceReport === 'function') {
         loadGoalsComplianceReport();
@@ -18584,7 +18596,7 @@ Patient`;
     try {
       const savedEx = localStorage.getItem('veepoo_exercise_journal');
       if (savedEx) exerciseJournal = JSON.parse(savedEx);
-    } catch (e) {}
+    } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
 
     function initExerciseFormTime() {
       const now = new Date();
@@ -18618,7 +18630,7 @@ Patient`;
       };
 
       exerciseJournal.unshift(newEntry);
-      try { localStorage.setItem('veepoo_exercise_journal', JSON.stringify(exerciseJournal)); } catch (e) {}
+      try { localStorage.setItem('veepoo_exercise_journal', JSON.stringify(exerciseJournal)); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       renderExerciseHistory();
       render360HealthView();
       logLCARS(`[+] Exercise logged: ${type} (${duration}m). GLUT4 Glucose Delta: ${delta} mg/dL`, "rx");
@@ -18634,7 +18646,7 @@ Patient`;
     function deleteExerciseEntry(id) {
       soundButtonPress();
       exerciseJournal = exerciseJournal.filter(x => x.id !== id);
-      try { localStorage.setItem('veepoo_exercise_journal', JSON.stringify(exerciseJournal)); } catch (e) {}
+      try { localStorage.setItem('veepoo_exercise_journal', JSON.stringify(exerciseJournal)); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       renderExerciseHistory();
       render360HealthView();
     }
@@ -18720,7 +18732,7 @@ Patient`;
     try {
       const savedMeds = localStorage.getItem('veepoo_medication_list');
       if (savedMeds) medicationList = JSON.parse(savedMeds);
-    } catch (e) {}
+    } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
 
     medicationList = normalizeMedicationList(medicationList);
 
@@ -18728,7 +18740,7 @@ Patient`;
     try {
       const savedChanges = localStorage.getItem('veepoo_medication_changes');
       if (savedChanges) medicationChangeLog = JSON.parse(savedChanges);
-    } catch (e) {}
+    } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
 
     function initMedChangeTime() {
       const now = new Date();
@@ -18745,7 +18757,7 @@ Patient`;
         if (m.id === medId) m.lastTaken = timeStr;
         return m;
       });
-      try { localStorage.setItem('veepoo_medication_list', JSON.stringify(medicationList)); } catch (e) {}
+      try { localStorage.setItem('veepoo_medication_list', JSON.stringify(medicationList)); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       renderMedicationView();
       logLCARS(`[+] Medication dose confirmed taken: ID ${medId} at ${timeStr}`, "rx");
     }
@@ -18788,7 +18800,7 @@ Patient`;
       };
 
       medicationChangeLog.unshift(newChange);
-      try { localStorage.setItem('veepoo_medication_changes', JSON.stringify(medicationChangeLog)); } catch (e) {}
+      try { localStorage.setItem('veepoo_medication_changes', JSON.stringify(medicationChangeLog)); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
 
       // If active list contains this med, update its dose
       medicationList = medicationList.map(m => {
@@ -18797,7 +18809,7 @@ Patient`;
         }
         return m;
       });
-      try { localStorage.setItem('veepoo_medication_list', JSON.stringify(medicationList)); } catch (e) {}
+      try { localStorage.setItem('veepoo_medication_list', JSON.stringify(medicationList)); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
 
       renderMedicationView();
       if (typeof renderTallSynchronizedChart === 'function') renderTallSynchronizedChart(currentTallChartTimeframe);
@@ -18836,7 +18848,7 @@ Patient`;
         }
         return m;
       });
-      try { localStorage.setItem('veepoo_medication_list', JSON.stringify(medicationList)); } catch (e) {}
+      try { localStorage.setItem('veepoo_medication_list', JSON.stringify(medicationList)); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       renderMedicationView();
       logLCARS(`[✓ INTAKE 1 CONFIRMED] All ${count} morning medications taken at ${timeStr}. Adherence recorded.`, "rx");
       if (typeof showToast === 'function') showToast(`✓ All ${count} morning medications marked as taken!`);
@@ -18854,7 +18866,7 @@ Patient`;
         }
         return m;
       });
-      try { localStorage.setItem('veepoo_medication_list', JSON.stringify(medicationList)); } catch (e) {}
+      try { localStorage.setItem('veepoo_medication_list', JSON.stringify(medicationList)); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       renderMedicationView();
       logLCARS(`[✓ INTAKE 2 CONFIRMED] Dinner medication (Metformin split) taken at ${timeStr}. Adherence recorded.`, "rx");
       if (typeof showToast === 'function') showToast(`✓ Dinner medication marked as taken!`);
@@ -18946,7 +18958,7 @@ Patient`;
         logLCARS(`[★ MED ADDED] ${name} (${dose || 'Std'}) added to ${slot.toUpperCase()} regimen.`, "rx");
       }
 
-      try { localStorage.setItem('veepoo_medication_list', JSON.stringify(medicationList)); } catch (e) {}
+      try { localStorage.setItem('veepoo_medication_list', JSON.stringify(medicationList)); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       closeEditMedModal();
       renderMedicationView();
       if (typeof renderTallSynchronizedChart === 'function') renderTallSynchronizedChart(currentTallChartTimeframe);
@@ -18958,7 +18970,7 @@ Patient`;
       const name = m ? m.name : `ID ${medId}`;
       if (confirm(`Remove "${name}" from your active medication regimen?`)) {
         medicationList = medicationList.filter(x => x.id !== medId);
-        try { localStorage.setItem('veepoo_medication_list', JSON.stringify(medicationList)); } catch (e) {}
+        try { localStorage.setItem('veepoo_medication_list', JSON.stringify(medicationList)); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
         renderMedicationView();
         if (typeof renderTallSynchronizedChart === 'function') renderTallSynchronizedChart(currentTallChartTimeframe);
         logLCARS(`[-] Medication removed from regimen: ${name}`, "rx");
@@ -19199,7 +19211,7 @@ Patient`;
       if (elSleep) {
         elSleep.innerHTML = `Nights with <strong>SpO2 &gt;96% and 7+ hours of sleep</strong> correlate with <strong>14–18 mg/dL lower morning fasting glucose</strong>. Latest medication titration confirmed <strong style="color: var(--lcars-green);">Progress (+16% TIR)</strong>.`;
       }
-      try { await loadLearningMealsData(); } catch(e) {}
+      try { await loadLearningMealsData(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       if (pTxt) { pTxt.textContent = "100% COMPLETE"; pTxt.style.color = "#16a34a"; }
     }
 
@@ -19356,7 +19368,7 @@ Patient`;
             return data;
           }
         }
-      } catch(e) {}
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       return null;
     }
 
@@ -20199,7 +20211,7 @@ Patient`;
           const d = await resp.json();
           feelingCache3D = d.entries || [];
         }
-      } catch (e) {}
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
     }
 
     function init3DMultiChannelViewer() {
@@ -21119,7 +21131,7 @@ Patient`;
             timestamp: nowTs
           })
         });
-      } catch (e) {}
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
 
       // Update all DOM elements immediately
       const elG = document.getElementById('valGlucose'); if (elG) elG.textContent = `${mgdl}`;
@@ -21236,7 +21248,7 @@ All 14 LCARS consoles, 8-lane metabolic chart, and clinical database now match y
               lastGlucoseMg = finalG;
             }
           }
-        } catch (e) {}
+        } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       }
       fullScanResults.glucose = finalG;
       setStageCardState(1, 'done', finalG > 0 ? `${finalG} mg/dL` : 'PENDING REACQUISITION');
@@ -21818,7 +21830,7 @@ All 14 LCARS consoles, 8-lane metabolic chart, and clinical database now match y
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(pkt)
-          }).catch(() => {});
+          }).catch((err) => { console.warn('[MIL-SPEC ASYNC REJECTION]', err); });
         });
         logLCARS(`[★ FULL SCAN SYNC] Full telemetry saved: Glucose ${g} mg/dL, BP ${sys}/${dia}, SpO2 ${sp}%, HR ${hr} BPM, Temp ${bodyF.toFixed(1)}°F`, "rx", "Full Diagnostic Telemetry Synchronized All Consoles");
       }
@@ -22606,7 +22618,7 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
       if (lbl) lbl.textContent = "THEME: CLINICAL DAYLIGHT";
       try {
         localStorage.setItem('veepoo_theme', 'light');
-      } catch (e) {}
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
     }
 
     function toggleTheme() {
@@ -22691,7 +22703,7 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
             }
           }
         }
-      } catch (err) {}
+      } catch (err) { console.warn('[MIL-SPEC HANDLED FAULT]', err); }
     }
 
     async function triggerWatchSyncNow() {
@@ -22708,17 +22720,22 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
       setTimeout(checkVaultSyncStatus, 1500);
     }
 
-    // BLE Keep-Alive Ping (prevents watch from entering deep sleep disconnect)
+    // BLE Keep-Alive & Continuous Telemetry Harvest Ping (MIL-SPEC)
     setInterval(() => {
       if (txCharacteristic && gattServer && gattServer.connected) {
-        // Lightweight battery query keep-alive ping
+        // Lightweight battery query keep-alive ping (0xA0) + Pedometer step query (0x07)
         const ping = new Uint8Array(20);
         ping[0] = 0xA0;
+        const pingPed = new Uint8Array(20);
+        pingPed[0] = 0x07; pingPed[1] = 0x00;
         try {
           if (txCharacteristic.writeValueWithoutResponse) {
             txCharacteristic.writeValueWithoutResponse(ping);
+            setTimeout(() => {
+              try { txCharacteristic.writeValueWithoutResponse(pingPed); } catch(e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+            }, 300);
           }
-        } catch (e) {}
+        } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       } else if (!isAutoReconnecting) {
         // If not connected, keep attempting background reconnect
         startAutoReconnectLoop();
@@ -22946,6 +22963,11 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
             if (lblSteps) {
               const pct = Math.min(100, Math.round((steps / 8000) * 100));
               lblSteps.textContent = `TOTAL: ${steps.toLocaleString()} / 8,000 STEPS (${pct}%)`;
+            }
+            const tileSub = document.getElementById('tile360MotionSub');
+            if (tileSub) tileSub.textContent = steps > 0 ? "Daily Ambulation Recorded" : "Watch Linked (0 Steps Today)";
+            if (typeof updateWorkoutWithSteps === 'function') {
+              updateWorkoutWithSteps(steps);
             }
           }
 
@@ -23231,7 +23253,7 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
       }
       try {
         localStorage.setItem('veepoo_favorite_recipes', JSON.stringify(favs));
-      } catch (e) {}
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       updateFavoriteCountBadge();
       renderRecipesGrid();
       // If currently viewing detail, refresh it
@@ -23945,7 +23967,7 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
         // 5. Halt BP (0x90 0x00 0x00)
         const pBp = new Uint8Array(20); pBp[0] = 0x90; pBp[1] = 0x00; pBp[2] = 0x00;
         await sendCommandBytes(pBp);
-      } catch (e) {}
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
 
       // Brief yield so watch controller processes sensor shutdowns
       await new Promise(r => setTimeout(r, 200));
@@ -24132,7 +24154,7 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
         const pHrv = new Uint8Array(20); pHrv[0] = 0x89; pHrv[1] = 0x07; pHrv[2] = 0x02; await sendCommandBytes(pHrv);
         const pSpo2 = new Uint8Array(20); pSpo2[0] = 0x80; pSpo2[1] = 0x02; pSpo2[2] = 0x02; await sendCommandBytes(pSpo2);
         const pBp = new Uint8Array(20); pBp[0] = 0x90; pBp[1] = 0x00; pBp[2] = 0x00; await sendCommandBytes(pBp);
-      } catch (e) {}
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
 
       await new Promise(r => setTimeout(r, 200));
 
@@ -24160,7 +24182,7 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
         const fPkt = new Uint8Array(20);
         fPkt[0] = 0x50; fPkt[1] = 0x02; fPkt[2] = 0x02;
         await sendCommandBytes(fPkt);
-      } catch (e) {}
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
 
       await new Promise(r => setTimeout(r, 250));
 
@@ -24224,7 +24246,7 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
           qPkt[0] = 0xC7;
           qPkt[1] = 0x02;
           await sendCommandBytes(qPkt);
-        } catch (e) {}
+        } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       }, 350);
 
       // 7. Complete
@@ -24715,7 +24737,7 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
         const pBg = new Uint8Array(20); pBg[0] = 0x89; pBg[1] = 0x01; pBg[2] = 0x02; await sendCommandBytes(pBg);
         const pHrv = new Uint8Array(20); pHrv[0] = 0x89; pHrv[1] = 0x07; pHrv[2] = 0x02; await sendCommandBytes(pHrv);
         const pSpo2 = new Uint8Array(20); pSpo2[0] = 0x80; pSpo2[1] = 0x02; pSpo2[2] = 0x02; await sendCommandBytes(pSpo2);
-      } catch (e) {}
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       await new Promise(r => setTimeout(r, 200));
 
       const pCont = document.getElementById('applyProgressContainer');
@@ -24787,7 +24809,7 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
     function pingBrowserActiveToDaemon() {
       // Only signal active radio lock when Chrome is actively linked or connecting
       if (bluetoothDevice && ((bluetoothDevice.gatt && bluetoothDevice.gatt.connected) || isAutoReconnecting)) {
-        fetch('/api/browser_active', { method: 'POST' }).catch(() => {});
+        fetch('/api/browser_active', { method: 'POST' }).catch((err) => { console.warn('[MIL-SPEC ASYNC REJECTION]', err); });
       }
     }
     setInterval(pingBrowserActiveToDaemon, 3000);
@@ -24923,12 +24945,12 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
       try {
         const saved = localStorage.getItem('veepoo_clinic_cal_history');
         if (saved) history = JSON.parse(saved);
-      } catch (e) {}
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       history.unshift(calRecord);
       if (history.length > 20) history = history.slice(0, 20);
       try {
         localStorage.setItem('veepoo_clinic_cal_history', JSON.stringify(history));
-      } catch (e) {}
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
 
       // Update UI displays
       updateCalUIStatus();
@@ -25015,7 +25037,7 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
       try {
         const saved = localStorage.getItem('veepoo_clinic_cal_history');
         if (saved) history = JSON.parse(saved);
-      } catch (e) {}
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
 
       if (history.length === 0) {
         container.innerHTML = '<div style="color: var(--lcars-gray); font-style: italic;">No clinic blood draw calibrations recorded yet. Temporary 8.3% HbA1c anchor currently active.</div>';
@@ -25152,7 +25174,7 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
         const txtPat = document.getElementById('txtPatientGoals');
         if (doc && txtDoc && !txtDoc.value) txtDoc.value = doc;
         if (pat && txtPat && !txtPat.value) txtPat.value = pat;
-      } catch (e) {}
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
     }
 
     function exportLearningReport() {
@@ -25382,7 +25404,7 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
         };
         try {
           await fetch('/api/meal/analyze', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-        } catch (e) {}
+        } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
 
         alert(`🏆 HABIT RESET CONFIRMED!
 
@@ -25953,7 +25975,7 @@ You logged: Entire Box (3.5 Servings / 99g)
             return;
           }
         }
-      } catch (e) {}
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       const qr = document.getElementById('provCellQrImg');
       if (qr) qr.src = `${apiBase}/api/qrcode/cell?_t=${Date.now()}`;
     }
@@ -26108,7 +26130,7 @@ You logged: Entire Box (3.5 Servings / 99g)
             if (d.status === 'SUCCESS') {
               localStorage.setItem('bfm_windows_shortcuts_installed', 'true');
             }
-          }).catch(() => {});
+          }).catch((err) => { console.warn('[MIL-SPEC ASYNC REJECTION]', err); });
       }
     }
 
@@ -26122,8 +26144,8 @@ You logged: Entire Box (3.5 Servings / 99g)
 
     // Initialize on DOM ready
     window.addEventListener('DOMContentLoaded', () => {
-      try { switchTab('fullscan'); } catch (e) {}
-      try { renderWatchTabConnectedDetails(); } catch (e) {}
+      try { switchTab('fullscan'); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+      try { renderWatchTabConnectedDetails(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       loadFamilyCellsRoster();
       checkLegalStatus();
       ensureWindowsShortcuts();
@@ -26172,7 +26194,7 @@ You logged: Entire Box (3.5 Servings / 99g)
         deletePopularMeal(selKey);
       } else {
         delete POPULAR_MEALS[selKey];
-        try { localStorage.setItem('lcars_popular_meals', JSON.stringify(POPULAR_MEALS)); } catch (e) {}
+        try { localStorage.setItem('lcars_popular_meals', JSON.stringify(POPULAR_MEALS)); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
         if (typeof renderPopularMealsPullDown === 'function') renderPopularMealsPullDown();
       }
 
@@ -26292,7 +26314,7 @@ You logged: Entire Box (3.5 Servings / 99g)
       }
       try {
         localStorage.setItem('bfm_med_morning_taken', new Date().toISOString());
-      } catch (e) {}
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
     }
     window.takeAllMorningMeds = takeAllMorningMedsEnhanced;
 
@@ -26308,7 +26330,7 @@ You logged: Entire Box (3.5 Servings / 99g)
       }
       try {
         localStorage.setItem('bfm_med_evening_taken', new Date().toISOString());
-      } catch (e) {}
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
     }
     window.takeDinnerMeds = takeDinnerMedsEnhanced;
 
@@ -26328,7 +26350,7 @@ You logged: Entire Box (3.5 Servings / 99g)
           const rib = document.getElementById('ribbonMedReminder');
           if (rib) rib.style.display = 'flex';
         }
-      } catch (e) {}
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
     }
     setInterval(checkPostMealMedicationReminder, 30000);
 

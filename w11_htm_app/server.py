@@ -538,7 +538,8 @@ def get_popular_meals():
             tips = []
             try:
                 if r[10]: tips = json.loads(r[10])
-            except Exception: pass
+            except Exception as e:
+                print(f"[MIL-SPEC SERVER NOTICE] Popular meal tips JSON decode fault: {e}")
             result.append({
                 "id": r[0], "title": r[1], "description": r[2], "calories": r[3],
                 "net_carbs": r[4], "total_carbs": r[5], "fiber": r[6], "protein": r[7],
