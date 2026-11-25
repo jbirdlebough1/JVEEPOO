@@ -16948,144 +16948,182 @@ function switchTab(tabId) {
       const remPct = Math.round((remH / totH) * 100);
       const awakePct = Math.round((awakeH / totH) * 100);
 
-      const W = 800;
+      const W = 1000;
       const H = 220;
-      const padLeft = 70;
+      const padLeft = 110;
       const padRight = 35;
-      const padTop = 20;
-      const padBottom = 45;
+      const padTop = 15;
+      const padBottom = 35;
       const plotW = W - padLeft - padRight;
       const plotH = H - padTop - padBottom;
+      const rowH = plotH / 4.0;
 
-      // 4 Sleep Stages (Clinical Standard): 0=Awake/Restless (Yellow), 1=REM (Cyan), 2=Light/Normal (Blue), 3=Deep (Green)
+      // 4 Clinical Sleep Stages ordered from top to bottom:
+      // Index 0: AWAKE / WAKING (Top)
+      // Index 1: REM SLEEP
+      // Index 2: LIGHT SLEEP
+      // Index 3: DEEP SLEEP (Bottom / Restorative Base)
       const stages = [
-        { name: "RESTLESS / AWAKE", color: "#d97706", yIdx: 0 },
-        { name: "REM SLEEP", color: "#06b6d4", yIdx: 1 },
-        { name: "NORMAL / LIGHT", color: "#2563eb", yIdx: 2 },
-        { name: "DEEP SLEEP", color: "#10b981", yIdx: 3 }
+        { name: "WAKING / AWAKE", color: "#e11d48", bg: "rgba(254, 205, 211, 0.45)", border: "#fda4af", y: padTop },
+        { name: "REM SLEEP",      color: "#0891b2", bg: "rgba(207, 250, 254, 0.45)", border: "#a5f3fc", y: padTop + rowH },
+        { name: "LIGHT SLEEP",    color: "#2563eb", bg: "rgba(219, 234, 254, 0.45)", border: "#bfdbfe", y: padTop + rowH * 2 },
+        { name: "DEEP SLEEP",     color: "#15803d", bg: "rgba(220, 252, 231, 0.50)", border: "#86efac", y: padTop + rowH * 3 }
       ];
 
       // Sleep Epoch Sequence from Bedtime (23:45) to Rise (07:09) - 444 minutes
       const totalMinutes = 444;
       const epochs = [
-        { startM: 0, endM: 20, stage: 0, label: "Awake (Sleep Onset Latency)" },
-        { startM: 20, endM: 65, stage: 2, label: "Light Sleep (Stage 1/2)" },
-        { startM: 65, endM: 140, stage: 3, label: "Deep Sleep (Restorative Delta)" },
-        { startM: 140, endM: 175, stage: 1, label: "REM Sleep (Dreaming)" },
-        { startM: 175, endM: 215, stage: 2, label: "Light Sleep" },
-        { startM: 215, endM: 280, stage: 3, label: "Deep Sleep (Cycle 2)" },
-        { startM: 280, endM: 325, stage: 2, label: "Light Sleep" },
-        { startM: 325, endM: 365, stage: 1, label: "REM Sleep (Cycle 2)" },
-        { startM: 365, endM: 415, stage: 2, label: "Light Sleep" },
-        { startM: 415, endM: 423, stage: 0, label: "Brief Awake (Micro-Arousal)" },
-        { startM: 423, endM: 444, stage: 2, label: "Light Sleep (Waking Ascent)" }
+        { startM: 0, endM: 18, stage: 0, label: "Awake (Sleep Latency)" },
+        { startM: 18, endM: 65, stage: 2, label: "Light Sleep" },
+        { startM: 65, endM: 145, stage: 3, label: "Deep Sleep (Restorative Cycle 1)" },
+        { startM: 145, endM: 180, stage: 1, label: "REM Sleep (Cycle 1)" },
+        { startM: 180, endM: 220, stage: 2, label: "Light Sleep" },
+        { startM: 220, endM: 290, stage: 3, label: "Deep Sleep (Restorative Cycle 2)" },
+        { startM: 290, endM: 330, stage: 2, label: "Light Sleep" },
+        { startM: 330, endM: 375, stage: 1, label: "REM Sleep (Cycle 2)" },
+        { startM: 375, endM: 415, stage: 2, label: "Light Sleep" },
+        { startM: 415, endM: 423, stage: 0, label: "Brief Waking (03:15 Got Up)" },
+        { startM: 423, endM: 444, stage: 2, label: "Light Sleep (Final Awakening)" }
       ];
 
-      const stageColors = ["#fef08a", "#06b6d4", "#2563eb", "#10b981"];
-      const stageY = (sIdx) => padTop + (sIdx / 3.0) * plotH;
+      // 1. Background Stage Boxes (Horizontal Bands)
+      let bgBoxesHtml = "";
+      stages.forEach(st => {
+        bgBoxesHtml += `
+          <g>
+            <rect x="${padLeft}" y="${st.y.toFixed(1)}" width="${plotW}" height="${rowH.toFixed(1)}" fill="${st.bg}" stroke="${st.border}" stroke-width="1"/>
+            <text x="${padLeft - 10}" y="${(st.y + rowH / 2 + 4).toFixed(1)}" text-anchor="end" fill="${st.color}" font-family="var(--lcars-mono, monospace)" font-size="10.5" font-weight="900">${st.name}</text>
+          </g>
+        `;
+      });
 
-      let blocksHtml = "";
+      // 2. Epoch Active Overlay Blocks & Step Waveform Line
+      let epochBlocksHtml = "";
       let stepPoints = [];
+      const stageCenterY = (sIdx) => padTop + sIdx * rowH + rowH / 2;
 
-      epochs.forEach((ep, idx) => {
+      epochs.forEach((ep) => {
         const x1 = padLeft + (ep.startM / totalMinutes) * plotW;
         const x2 = padLeft + (ep.endM / totalMinutes) * plotW;
         const bW = Math.max(2, x2 - x1);
-        const yTop = stageY(ep.stage);
-        const bH = plotH - (yTop - padTop);
-        const col = stageColors[ep.stage];
+        const yTop = padTop + ep.stage * rowH;
+        const stageObj = stages[ep.stage];
 
-        blocksHtml += `
+        epochBlocksHtml += `
           <g>
-            <rect x="${x1.toFixed(1)}" y="${yTop.toFixed(1)}" width="${bW.toFixed(1)}" height="${bH.toFixed(1)}" 
-                  fill="${col}" opacity="0.85" rx="2">
-              <title>${ep.label}: ${Math.round(ep.endM - ep.startM)} min</title>
+            <rect x="${x1.toFixed(1)}" y="${(yTop + 2).toFixed(1)}" width="${bW.toFixed(1)}" height="${(rowH - 4).toFixed(1)}" 
+                  fill="${stageObj.color}" opacity="0.80" rx="3">
+              <title>${ep.label}: ${Math.round(ep.endM - ep.startM)} min (${stageObj.name})</title>
             </rect>
           </g>
         `;
 
-        const midY = yTop + 3;
+        const midY = stageCenterY(ep.stage);
         stepPoints.push(`${x1.toFixed(1)},${midY.toFixed(1)}`);
         stepPoints.push(`${x2.toFixed(1)},${midY.toFixed(1)}`);
       });
 
-      // Y-Axis Stage Grid & Labels
-      let yAxisHtml = "";
-      stages.forEach((st, sIdx) => {
-        const y = stageY(sIdx);
-        yAxisHtml += `
-          <line x1="${padLeft}" y1="${y.toFixed(1)}" x2="${padLeft + plotW}" y2="${y.toFixed(1)}" stroke="#e2e8f0" stroke-dasharray="3 3" stroke-width="1"/>
-          <text x="${padLeft - 8}" y="${(y + 4).toFixed(1)}" text-anchor="end" fill="${st.color}" font-family="var(--lcars-mono)" font-size="9.5" font-weight="900">${st.name}</text>
-        `;
-      });
-
-      // X-Axis Time Ticks
+      // 3. X-Axis Time Ticks
       const xTimes = [
-        { m: 0, label: "23:45" },
-        { m: 75, label: "01:00" },
-        { m: 135, label: "02:00" },
-        { m: 195, label: "03:00" },
-        { m: 255, label: "04:00" },
-        { m: 315, label: "05:00" },
-        { m: 375, label: "06:00" },
-        { m: 444, label: "07:09" }
+        { m: 0, label: "11:45 PM" },
+        { m: 75, label: "01:00 AM" },
+        { m: 135, label: "02:00 AM" },
+        { m: 195, label: "03:00 AM" },
+        { m: 255, label: "04:00 AM" },
+        { m: 315, label: "05:00 AM" },
+        { m: 375, label: "06:00 AM" },
+        { m: 444, label: "07:09 AM" }
       ];
       let xAxisHtml = "";
       xTimes.forEach(t => {
         const x = padLeft + (t.m / totalMinutes) * plotW;
         xAxisHtml += `
-          <line x1="${x.toFixed(1)}" y1="${padTop + plotH}" x2="${x.toFixed(1)}" y2="${padTop + plotH + 5}" stroke="#94a3b8" stroke-width="1.5"/>
-          <text x="${x.toFixed(1)}" y="${padTop + plotH + 18}" text-anchor="middle" fill="#475569" font-family="var(--lcars-mono)" font-size="9.5" font-weight="800">${t.label}</text>
+          <line x1="${x.toFixed(1)}" y1="${padTop + plotH}" x2="${x.toFixed(1)}" y2="${padTop + plotH + 5}" stroke="#64748b" stroke-width="1.5"/>
+          <text x="${x.toFixed(1)}" y="${padTop + plotH + 18}" text-anchor="middle" fill="#475569" font-family="var(--lcars-mono, monospace)" font-size="10" font-weight="800">${t.label}</text>
         `;
       });
 
       const polySteps = stepPoints.join(" ");
 
       container.innerHTML = `
-        <div style="background: #ffffff; border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.05);">
-          <!-- Top H Band Metrics Bar -->
-          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1.5px solid #e2e8f0; font-family: var(--lcars-mono);">
+        <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 8px; padding: 14px; box-shadow: 0 1px 4px rgba(0,0,0,0.05);">
+          
+          <!-- Top Hypnogram Stage Badges Strip -->
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1.5px solid #e2e8f0; font-family: var(--lcars-mono, monospace);">
             <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
-              <span class="badge" style="background: #eff6ff; color: #0284c7; border: 1px solid #bfdbfe; font-size: 0.82rem; font-weight: 800; padding: 4px 10px;">
-                🌙 TOTAL: ${totH.toFixed(1)} HRS (91% EFFICIENCY)
+              <span class="badge" style="background: #f0fdf4; color: #166534; border: 1.5px solid #22c55e; font-size: 0.85rem; font-weight: 900; padding: 5px 12px;">
+                🌙 TOTAL SLEEP: ${totH.toFixed(1)} HRS
               </span>
-              <span class="badge" style="background: #dcfce7; color: #15803d; border: 1.5px solid #16a34a; font-size: 0.80rem; font-weight: 800; padding: 4px 8px;">
-                🟢 DEEP: ${deepH.toFixed(1)}h (${deepPct}%)
+              <span class="badge" style="background: rgba(220, 252, 231, 0.7); color: #15803d; border: 1.5px solid #86efac; font-size: 0.80rem; font-weight: 800; padding: 4px 10px;">
+                🟢 DEEP SLEEP: ${deepH.toFixed(1)}h (${deepPct}%)
               </span>
-              <span class="badge" style="background: #eff6ff; color: #1d4ed8; border: 1.5px solid #2563eb; font-size: 0.80rem; font-weight: 800; padding: 4px 8px;">
-                🔵 NORMAL/LIGHT: ${lightH.toFixed(1)}h (${lightPct}%)
+              <span class="badge" style="background: rgba(207, 250, 254, 0.7); color: #0891b2; border: 1.5px solid #a5f3fc; font-size: 0.80rem; font-weight: 800; padding: 4px 10px;">
+                🔷 REM SLEEP: ${remH.toFixed(1)}h (${remPct}%)
               </span>
-              <span class="badge" style="background: #ecfeff; color: #0e7490; border: 1.5px solid #06b6d4; font-size: 0.80rem; font-weight: 800; padding: 4px 8px;">
-                🔷 REM: ${remH.toFixed(1)}h (${remPct}%)
+              <span class="badge" style="background: rgba(219, 234, 254, 0.7); color: #1d4ed8; border: 1.5px solid #bfdbfe; font-size: 0.80rem; font-weight: 800; padding: 4px 10px;">
+                🔵 LIGHT SLEEP: ${lightH.toFixed(1)}h (${lightPct}%)
               </span>
-              <span class="badge" style="background: #fefce8; color: #a16207; border: 1.5px solid #eab308; font-size: 0.80rem; font-weight: 800; padding: 4px 8px;">
-                🟡 RESTLESS / OUT-OF-BED: 18m (${awakePct}%) [03:15 Got Up • 03:23 Returned]
-              </span>
-              <span class="badge" style="background: #fdf4ff; color: #86198f; border: 1.5px solid #d946ef; font-size: 0.80rem; font-weight: 800; padding: 4px 8px;">
-                😴 DAYTIME NAP: 35 MIN (14:15 - 14:50)
+              <span class="badge" style="background: rgba(254, 205, 211, 0.7); color: #be123c; border: 1.5px solid #fda4af; font-size: 0.80rem; font-weight: 800; padding: 4px 10px;">
+                🔴 WAKING: 18m (${awakePct}%) [03:15 Got Up]
               </span>
             </div>
-            <span class="badge" style="background: #dcfce7; color: #15803d; border: 1px solid #86efac; font-weight: 800; font-size: 0.85rem;">
-              ⭐ SLEEP SCORE: ${sleepScore} (OPTIMAL)
+            <span class="badge" style="background: #dcfce7; color: #15803d; border: 1.5px solid #16a34a; font-weight: 900; font-size: 0.88rem; padding: 5px 12px;">
+              ⭐ SLEEP EFFICIENCY: 91% (OPTIMAL)
             </span>
           </div>
 
-          <!-- Polysomnography SVG Hypnogram -->
-          <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" style="display: block; width: 100%; height: 180px;">
-            <rect x="${padLeft}" y="${padTop}" width="${plotW}" height="${plotH}" fill="#fafbfc" stroke="#cbd5e1" stroke-width="1.2" rx="4"/>
-            ${yAxisHtml}
-            ${blocksHtml}
-            <polyline points="${polySteps}" fill="none" stroke="#0f172a" stroke-width="1.8" stroke-linejoin="miter"/>
+          <!-- Polysomnography SVG Hypnogram with Stage Background Boxes -->
+          <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" style="display: block; width: 100%; height: 210px;">
+            <!-- Outer Box Frame -->
+            <rect x="${padLeft}" y="${padTop}" width="${plotW}" height="${plotH}" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
+            <!-- Background Stage Boxes -->
+            ${bgBoxesHtml}
+            <!-- Colored Active Epoch Blocks -->
+            ${epochBlocksHtml}
+            <!-- Connecting Step Line -->
+            <polyline points="${polySteps}" fill="none" stroke="#0f172a" stroke-width="2.2" stroke-linejoin="round"/>
+            <!-- Time Axis Ticks -->
             ${xAxisHtml}
           </svg>
 
-          <!-- Stage Legend -->
-          <div style="display: flex; justify-content: center; gap: 16px; margin-top: 8px; font-family: var(--lcars-mono); font-size: 0.75rem; color: #475569;">
-            <span><strong style="color: #4c1d95;">■</strong> DEEP SLEEP (N3 DELTA)</span>
-            <span><strong style="color: #0284c7;">■</strong> LIGHT SLEEP (N1/N2)</span>
-            <span><strong style="color: #ea580c;">■</strong> REM (DREAMING)</span>
-            <span><strong style="color: #94a3b8;">■</strong> AWAKE / WAKING</span>
+          <!-- BELOW THE CHART: SLEEP QUALITY RATING SUMMARY -->
+          <div style="margin-top: 14px; background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 12px 16px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 10px;">
+              <strong style="color: #0369a1; font-family: var(--lcars-mono, monospace); font-size: 0.92rem; letter-spacing: 0.5px;">
+                📊 SLEEP QUALITY RATING SUMMARY &amp; ARCHITECTURAL AUDIT
+              </strong>
+              <span class="badge" style="background: #dcfce7; color: #15803d; border: 1px solid #86efac; font-weight: 800; font-size: 0.75rem;">
+                CLINICAL SCORE: 91 / 100 (GRADE A)
+              </span>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; font-family: var(--lcars-mono, monospace); font-size: 0.80rem;">
+              <div style="background: #ffffff; border: 1px solid #e2e8f0; border-left: 4px solid #15803d; padding: 8px 10px; border-radius: 4px;">
+                <div style="color: #64748b; font-size: 0.70rem; text-transform: uppercase;">Deep Sleep Continuity</div>
+                <div style="font-weight: 800; color: #15803d; font-size: 0.95rem; margin-top: 2px;">2.2h (30%) &bull; EXCELLENT</div>
+                <div style="color: #475569; font-size: 0.72rem; margin-top: 2px;">Exceeds &ge;20% restorative threshold for physical cellular repair.</div>
+              </div>
+
+              <div style="background: #ffffff; border: 1px solid #e2e8f0; border-left: 4px solid #0891b2; padding: 8px 10px; border-radius: 4px;">
+                <div style="color: #64748b; font-size: 0.70rem; text-transform: uppercase;">REM Sleep Architecture</div>
+                <div style="font-weight: 800; color: #0891b2; font-size: 0.95rem; margin-top: 2px;">1.2h (16%) &bull; NOMINAL</div>
+                <div style="color: #475569; font-size: 0.72rem; margin-top: 2px;">Supports neurocognitive memory consolidation &amp; autonomic recovery.</div>
+              </div>
+
+              <div style="background: #ffffff; border: 1px solid #e2e8f0; border-left: 4px solid #2563eb; padding: 8px 10px; border-radius: 4px;">
+                <div style="color: #64748b; font-size: 0.70rem; text-transform: uppercase;">Light Sleep Stability</div>
+                <div style="font-weight: 800; color: #2563eb; font-size: 0.95rem; margin-top: 2px;">3.7h (50%) &bull; BALANCED</div>
+                <div style="color: #475569; font-size: 0.72rem; margin-top: 2px;">Smooth transitional buffering between restorative deep cycles.</div>
+              </div>
+
+              <div style="background: #ffffff; border: 1px solid #e2e8f0; border-left: 4px solid #e11d48; padding: 8px 10px; border-radius: 4px;">
+                <div style="color: #64748b; font-size: 0.70rem; text-transform: uppercase;">Sleep Latency &amp; WASO</div>
+                <div style="font-weight: 800; color: #e11d48; font-size: 0.95rem; margin-top: 2px;">18m WASO &bull; LOW FRAGMENTATION</div>
+                <div style="color: #475569; font-size: 0.72rem; margin-top: 2px;">Single nocturnal arousal (03:15 Got Up &bull; 03:23 Returned to bed).</div>
+              </div>
+            </div>
           </div>
+
         </div>
       `;
     }
@@ -17364,12 +17402,16 @@ function switchTab(tabId) {
         referenceLines: [{ val: 98.6, label: "98.6° NORMAL", color: "#15803d" }] 
       });
 
-      renderSvgCurveChart('repChartSleep', sleepData, { 
-        strokeColor: "var(--lcars-blue)", 
-        unit: "hrs",
-        allowZeroValue: false,
-        referenceLines: [{ val: 7.0, label: "7.0 HRS TARGET", color: "#15803d" }] 
-      });
+      if (isDaily) {
+        renderNocturnalSleepHypnogram('curveTimelineSleep');
+      } else {
+        renderSvgCurveChart('repChartSleep', sleepData, { 
+          strokeColor: "var(--lcars-blue)", 
+          unit: "hrs",
+          allowZeroValue: false,
+          referenceLines: [{ val: 7.0, label: "7.0 HRS TARGET", color: "#15803d" }] 
+        });
+      }
 
       renderSvgCurveChart('repChartExercise', exerciseData, { 
         strokeColor: "var(--lcars-peach)", 
