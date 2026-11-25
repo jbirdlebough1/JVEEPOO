@@ -226732,3 +226732,394 @@ try Event
 [19:23:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
 [19:23:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
 [19:23:51] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:24:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:24:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:24:51] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:25:51] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[19:25:51] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[19:25:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:25:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:25:51] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:26:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:26:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:26:51] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:27:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:27:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:27:51] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:28:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:28:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:28:51] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:29:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:29:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:29:51] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:30:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:30:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:30:51] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:31:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:31:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:31:51] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:32:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:32:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:32:51] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:33:49] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:33:49] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:33:49] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:33:49] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:33:49] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:33:49] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:33:49] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:33:49] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:33:49] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:33:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:33:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:33:51] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:34:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:34:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:34:51] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:35:01] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:01] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:01] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:35:02] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:02] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:02] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:35:02] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:02] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:02] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:35:04] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:04] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:04] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:35:06] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[19:35:06] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[19:35:06] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:06] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:06] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:35:09] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:09] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:09] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:35:11] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:11] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:11] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:35:14] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:14] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:14] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:35:16] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:16] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:16] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:35:19] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:19] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:19] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:35:21] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:21] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:21] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:35:31] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:31] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:31] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:35:32] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:32] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:32] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:35:32] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:32] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:32] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:35:34] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:34] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:34] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:35:36] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[19:35:36] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[19:35:36] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:36] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:36] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:35:39] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:39] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:39] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:35:41] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:41] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:41] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:35:44] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:44] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:44] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:35:46] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:46] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:46] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:35:49] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:49] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:49] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:35:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:51] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:35:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:51] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:35:54] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:54] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:54] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:35:56] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:56] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:56] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:35:59] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:59] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:35:59] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:36:13] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:36:13] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:36:13] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:36:14] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:36:14] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:36:14] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:36:14] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:36:14] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:36:14] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:36:16] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:36:16] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:36:16] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:36:18] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[19:36:18] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[19:36:18] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:36:18] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:36:18] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:36:21] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:36:21] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:36:21] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:36:23] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:36:23] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:36:23] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:36:26] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:36:26] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:36:26] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:36:40] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:36:40] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:36:40] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:36:40] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:36:40] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:36:40] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:36:40] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:36:40] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:36:40] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:36:42] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:36:42] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:36:42] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:36:42] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:36:42] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:36:42] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:36:42] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:36:42] [RX] [✨ GEMINI MEAL COACH] Evaluated: "Breaded Chicken Dinner with Garden Salad, Cottage Cheese & Water" -> 18.9g Net Carbs (GOAL MET), 454 kcal | Watch Sensor Telemetry Broadcast
+[19:36:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:36:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:36:51] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:37:02] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:37:02] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:37:02] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:37:03] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:37:03] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:37:03] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:37:03] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:37:03] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:37:03] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:37:04] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:37:04] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:37:04] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:37:04] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:37:05] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:37:05] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:37:05] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:37:05] [RX] [✨ GEMINI MEAL COACH] Evaluated: "Safe Options Discovery: 'blueberry cake'" -> 6.5g Net Carbs (GOAL MET), 145 kcal | Watch Sensor Telemetry Broadcast
+[19:37:06] [RX] [✨ GEMINI MEAL COACH] Evaluated: "Breaded Chicken Dinner with Garden Salad, Cottage Cheese & Water" -> 18.9g Net Carbs (GOAL MET), 454 kcal | Watch Sensor Telemetry Broadcast
+[19:37:07] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[19:37:07] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[19:37:07] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:37:07] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:37:07] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:37:22] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:37:22] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:37:22] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:37:22] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:37:22] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:37:22] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:37:22] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:37:22] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:37:22] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:37:24] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:37:24] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:37:24] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:37:24] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:37:25] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:37:25] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:37:25] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:37:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:37:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:37:51] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:38:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:38:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:38:51] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:39:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:39:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:39:51] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:40:51] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[19:40:51] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[19:40:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:40:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:40:51] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:41:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:41:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:41:51] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:42:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:42:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:42:51] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:43:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:43:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:43:51] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:44:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:44:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:44:51] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:45:33] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:45:33] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:45:33] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:45:33] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:45:33] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:45:33] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:45:33] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:45:33] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:45:33] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:45:34] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:45:34] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:45:34] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:45:34] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:45:35] [RX] [✨ GEMINI MEAL COACH] Evaluated: "Breaded Chicken Dinner with Garden Salad, Cottage Cheese & Water" -> 18.9g Net Carbs (GOAL MET), 454 kcal | Watch Sensor Telemetry Broadcast
+[19:45:35] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:45:35] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:45:35] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:45:36] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:45:36] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:45:36] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:45:37] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:45:37] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:45:37] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:45:38] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[19:45:38] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[19:45:38] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:45:38] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:45:38] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:45:44] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:45:44] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:45:44] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:45:44] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:45:44] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:45:44] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:45:44] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:45:44] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:45:44] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:45:46] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:45:46] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:45:46] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:45:46] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:45:46] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:45:46] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:45:46] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:45:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:45:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:45:51] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:45:53] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:45:53] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:45:53] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:45:53] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:45:53] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:45:53] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:45:53] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:45:53] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:45:53] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:46:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:46:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:46:51] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:47:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:47:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:47:51] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:48:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:48:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:48:51] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:49:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:49:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:49:51] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:50:04] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:50:04] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:50:04] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:50:04] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:50:18] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:50:18] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:50:18] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:50:18] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:50:18] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:50:18] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:50:18] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:50:18] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:50:18] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:50:20] [RX] [✨ GEMINI MEAL COACH] Evaluated: "Breaded Chicken Dinner with Garden Salad, Cottage Cheese & Water" -> 18.9g Net Carbs (GOAL MET), 454 kcal | Watch Sensor Telemetry Broadcast
+[19:50:20] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:50:20] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:50:20] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:50:23] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[19:50:23] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[19:50:23] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:50:23] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:50:23] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:50:50] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:50:50] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:50:50] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:50:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:50:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:50:51] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:50:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:50:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:50:51] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:50:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:50:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:50:51] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:50:52] [RX] [✨ GEMINI MEAL COACH] Evaluated: "Breaded Chicken Dinner with Garden Salad, Cottage Cheese & Water" -> 18.9g Net Carbs (GOAL MET), 454 kcal | Watch Sensor Telemetry Broadcast
+[19:50:53] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:50:53] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:50:53] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:50:55] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[19:50:55] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[19:50:55] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:50:55] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:50:55] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:51:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:51:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:51:51] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:52:08] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:52:08] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:52:08] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:52:09] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:52:09] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:52:09] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:52:09] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:52:09] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:52:09] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:52:10] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:52:10] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:52:10] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:52:10] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:52:10] [RX] [✨ GEMINI MEAL COACH] Evaluated: "Breaded Chicken Dinner with Garden Salad, Cottage Cheese & Water" -> 18.9g Net Carbs (GOAL MET), 454 kcal | Watch Sensor Telemetry Broadcast
+[19:52:11] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:52:11] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:52:11] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:52:12] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:52:12] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:52:12] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:52:13] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:52:13] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:52:13] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:52:13] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:52:13] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:52:13] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:52:13] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[19:52:13] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[19:52:20] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:52:20] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:52:20] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:52:20] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:52:20] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:52:20] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:52:20] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:52:20] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:52:20] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles
+[19:52:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:52:51] [SYS] Smart Glucose Snack Notifier updated for 170 mg/dL | LCARS System Telemetry Event
+[19:52:51] [RX] [★ FULL SCAN SYNC] Full telemetry propagated across all 15 LCARS consoles & SQLite database: Glucose 170 mg/dL, BP 125/83, SpO2 99%, HR 76 BPM, Temp 96.1°F | Full Diagnostic Telemetry Synchronized All Consoles

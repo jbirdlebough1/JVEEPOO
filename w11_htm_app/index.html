@@ -5103,7 +5103,7 @@
                 </select>
               </div>
               <div class="setup-field">
-                <label class="setup-label">LCARS AUDIO SYNTHESIZER (TACTILE CHIRP FX)</label>
+                <label class="setup-label">TACTILE AUDIO SYNTHESIZER (TACTILE CHIRP FX)</label>
                 <select id="cfgAudioEnabled" class="setup-select" onchange="updateAudioFromConfig(this.value)">
                   <option value="0" selected>MUTED / SILENT OPERATION (DEFAULT)</option>
                   <option value="1">ENABLED (AUDITORY TACTILE CONFIRMATIONS)</option>
@@ -5715,7 +5715,7 @@
                         <td style="padding: 8px 10px; color: var(--lcars-text);">Tab 05 - Setup (Section 02)</td>
                         <td style="padding: 8px 10px; color: var(--lcars-green); font-weight: bold;"><code>200</code> mg/dL</td>
                         <td style="padding: 8px 10px; color: var(--lcars-blue);"><code>0x89 0x03</code> (Ceiling Alert)</td>
-                        <td style="padding: 8px 10px; color: #ccd6e8;">Sets hyperglycemia boundary. Watch vibrates and LCARS alerts if readings exceed 200 mg/dL.</td>
+                        <td style="padding: 8px 10px; color: #ccd6e8;">Sets hyperglycemia boundary. Watch vibrates and BFM alerts if readings exceed 200 mg/dL.</td>
                       </tr>
                     </tbody>
                   </table>
@@ -5957,7 +5957,7 @@
             <div class="diet-form-card" style="border-left: 6px solid #2563eb; margin-top: 20px; background: #ffffff !important; color: #0f172a !important;">
               <div class="setup-section-title" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
                 <div>
-                  <span style="color: #0f172a; font-size: 1.15rem; font-weight: 800;">MASTER CAPABILITY MATRIX: OEM MOBILE APP VS. LCARS CLINICAL SYSTEM</span>
+                  <span style="color: #0f172a; font-size: 1.15rem; font-weight: 800;">MASTER CAPABILITY MATRIX: OEM MOBILE APP VS. BFM CLINICAL SYSTEM</span>
                   <span style="font-size: 0.8rem; color: #475569; display: block; margin-top: 2px;">RIGOROUS CLINICAL, ERGONOMIC &amp; ARCHITECTURAL AUDIT</span>
                 </div>
                 <span class="badge" style="background: rgba(37,99,235,0.12); color: #2563eb; border: 1.5px solid #2563eb; font-size: 0.75rem; font-weight: bold;">100% FEATURE PARITY + CLINICAL EXTENSIONS</span>
@@ -6029,7 +6029,7 @@
                     <tr>
                       <td style="padding: 10px; font-weight: bold; background: #f8fafc; border-right: 1.5px solid #cbd5e1;">Ergonomics &amp; Senior Accessibility</td>
                       <td style="padding: 10px; color: #64748b; border-right: 1.5px solid #cbd5e1;">Small mobile fonts, low-contrast pastels, tiny touch targets that frustrate older users.</td>
-                      <td style="padding: 10px; color: #0f172a; border-right: 1.5px solid #cbd5e1;"><strong style="color: #15803d;">HIGH-CONTRAST WHITE CARDS &amp; LARGE LCARS TOUCH TARGETS.</strong> 21:1 contrast ratio, high-visibility solid white surfaces, bold clear labels, and oversized buttons designed specifically for older eyes and clinical desks.</td>
+                      <td style="padding: 10px; color: #0f172a; border-right: 1.5px solid #cbd5e1;"><strong style="color: #15803d;">HIGH-CONTRAST WHITE CARDS &amp; LARGE TOUCH TARGETS.</strong> 21:1 contrast ratio, high-visibility solid white surfaces, bold clear labels, and oversized buttons designed specifically for older eyes and clinical desks.</td>
                       <td style="padding: 10px; text-align: center; font-weight: bold; color: #15803d;">Zero Visual Fatigue</td>
                     </tr>
                   </tbody>
@@ -9260,7 +9260,7 @@
     };
 
     // =========================================================================
-    // LCARS AUDIO SYNTHESIZER (Pure Web Audio API - Zero External Dependencies)
+    // TACTILE AUDIO SYNTHESIZER (Pure Web Audio API - Zero External Dependencies)
     // =========================================================================
     let audioCtx = null;
     let audioEnabled = false;
@@ -9610,8 +9610,28 @@
     // =========================================================================
     // DYNAMIC MULTI-WATCH PROFILES & PROTOCOL RENDERING (H8 vx01 vs 5010 VEE)
     // =========================================================================
-    function renderWatchTabConnectedDetails() {
+    
+    // =========================================================================
+    // 12/24-HOUR CHRONOMETER TIME FORMATTING HELPER
+    // =========================================================================
+    function formatTimeDisplay(timeStr) {
+      if (!timeStr) return "";
+      const is12 = (typeof getInt === 'function' ? getInt('cfgTimeFormat', 12) : 12) === 12;
+      if (!is12) return timeStr;
+      const m = timeStr.match(/(\d{1,2}):(\d{2})/);
+      if (!m) return timeStr;
+      let h = parseInt(m[1], 10);
+      const min = m[2];
+      const ampm = h >= 12 ? 'PM' : 'AM';
+      let h12 = h % 12;
+      if (h12 === 0) h12 = 12;
+      return `${h12}:${min} ${ampm}`;
+    }
+
+function renderWatchTabConnectedDetails() {
+      const persistedId = (typeof localStorage !== 'undefined') ? localStorage.getItem('bfm_connected_watch_id') : null;
       const isH8 = (window._connectedWatchId === 'H8_VX001') || 
+                   (persistedId === 'H8_VX001') ||
                    (typeof bluetoothDevice !== 'undefined' && bluetoothDevice && bluetoothDevice.name && (bluetoothDevice.name.includes('H8') || bluetoothDevice.name.includes('VX001') || bluetoothDevice.name.includes('vx01')));
       
       const elModel = document.getElementById('analyzerWatchModel');
@@ -9656,19 +9676,37 @@
       let container = document.getElementById(containerId);
       if (!container) return;
 
-      const journalEntries = (typeof dietJournal !== 'undefined' && Array.isArray(dietJournal) && dietJournal.length > 0)
-        ? dietJournal
-        : ((typeof mealJournal !== 'undefined' && Array.isArray(mealJournal)) ? mealJournal : []);
+      // Unified multi-source hydration intake aggregator (DB + Ingested Log + Memory)
+      const allSources = [];
+      if (typeof patientDietaryLog !== 'undefined' && Array.isArray(patientDietaryLog)) allSources.push(...patientDietaryLog);
+      if (typeof window._cachedRecentMeals !== 'undefined' && Array.isArray(window._cachedRecentMeals)) allSources.push(...window._cachedRecentMeals);
+      if (typeof dietJournal !== 'undefined' && Array.isArray(dietJournal)) allSources.push(...dietJournal);
+      if (typeof mealJournal !== 'undefined' && Array.isArray(mealJournal)) allSources.push(...mealJournal);
+      
+      const seenHydrKeys = new Set();
+      const journalEntries = [];
+      allSources.forEach((entry, idx) => {
+        const key = (entry.timestamp || entry.time || '') + '_' + (entry.meal_name || entry.name || entry.title || idx);
+        if (!seenHydrKeys.has(key)) {
+          seenHydrKeys.add(key);
+          journalEntries.push(entry);
+        }
+      });
 
       const hourlyFluid = new Array(24).fill(0);
       let cumulative = 0;
       const cumulativeByHour = [];
 
       journalEntries.forEach(entry => {
-        let flOz = parseFloat(entry.fluidOz || entry.hydration_oz || 0);
-        if (!flOz && entry.title && entry.title.toLowerCase().includes('tea')) flOz = 16;
-        if (!flOz && entry.title && entry.title.toLowerCase().includes('beverage')) flOz = 24;
-        if (!flOz && entry.title && entry.title.toLowerCase().includes('water')) flOz = 16;
+        let flOz = parseFloat(entry.fluid_oz || entry.fluidOz || entry.hydration_oz || 0);
+        const entryText = ((entry.meal_name || '') + ' ' + (entry.title || '') + ' ' + (entry.description || '')).toLowerCase();
+        if (!flOz) {
+          const mFl = entryText.match(/(\d+(?:\.\d+)?)\s*(?:oz|fl\s*oz|ounces?)/);
+          if (mFl) flOz = parseFloat(mFl[1]);
+        }
+        if (!flOz && (entryText.includes('water') || entryText.includes('root beer') || entryText.includes('tea') || entryText.includes('beverage') || entryText.includes('drink') || entryText.includes('seltzer'))) {
+          flOz = 12.0;
+        }
         
         let hr = 12;
         if (entry.time) {
@@ -13931,27 +13969,41 @@ function switchTab(tabId) {
       const circleProgress = document.getElementById('circleGoalAuditProgress');
 
       if (lblRecalcNum) {
-        lblRecalcNum.textContent = "0% (RECALCULATING...)";
-        lblRecalcNum.style.background = "#fef08a";
-        lblRecalcNum.style.color = "#854d0e";
-        setTimeout(() => { if (lblRecalcNum) lblRecalcNum.textContent = "25% (ANALYZING SENSORS...)"; }, 80);
-        setTimeout(() => { if (lblRecalcNum) lblRecalcNum.textContent = "50% (RECONCILING GOALS...)"; }, 160);
-        setTimeout(() => { if (lblRecalcNum) lblRecalcNum.textContent = "75% (WEIGHTING DOMAINS...)"; }, 240);
-        setTimeout(() => {
-          if (lblRecalcNum) {
-            lblRecalcNum.textContent = `${compositeScore.toFixed(1)}% MET (CURRENT)`;
-            lblRecalcNum.style.background = "#dcfce7";
-            lblRecalcNum.style.color = "#15803d";
+        let currentP = 0;
+        const circumference = 2 * Math.PI * 42; // ~263.89
+        if (circleProgress) circleProgress.style.transition = "stroke-dashoffset 0.04s ease-out";
+        const animInterval = setInterval(() => {
+          currentP += 10;
+          if (currentP <= 100) {
+            if (lblRecalcNum) {
+              lblRecalcNum.textContent = `${currentP}% (RECALCULATING...)`;
+              lblRecalcNum.style.background = "#fef08a";
+              lblRecalcNum.style.color = "#854d0e";
+            }
+            if (lblCompositePercent) {
+              lblCompositePercent.textContent = `${currentP}%`;
+            }
+            if (circleProgress) {
+              const sweepOffset = circumference - (currentP / 100) * circumference;
+              circleProgress.style.strokeDashoffset = sweepOffset.toFixed(1);
+            }
+          } else {
+            clearInterval(animInterval);
+            if (lblRecalcNum) {
+              lblRecalcNum.textContent = `${compositeScore.toFixed(1)}% MET (CURRENT)`;
+              lblRecalcNum.style.background = "#dcfce7";
+              lblRecalcNum.style.color = "#15803d";
+            }
+            if (lblCompositePercent) {
+              lblCompositePercent.textContent = `${compositeScore.toFixed(1)}%`;
+            }
+            if (circleProgress) {
+              const finalOffset = circumference - (compositeScore / 100) * circumference;
+              circleProgress.style.strokeDashoffset = finalOffset.toFixed(1);
+            }
+            if (typeof soundSuccess === 'function') soundSuccess();
           }
-          if (lblCompositePercent) {
-            lblCompositePercent.textContent = `${compositeScore.toFixed(1)}%`;
-          }
-          if (circleProgress) {
-            const circumference = 2 * Math.PI * 42; // ~263.89
-            const offset = circumference - (compositeScore / 100) * circumference;
-            circleProgress.style.strokeDashoffset = offset.toFixed(1);
-          }
-        }, 320);
+        }, 35);
       }
     }
 
@@ -19465,8 +19517,8 @@ Patient`;
         if (d.ex) {
           svg += `
             <g style="cursor: pointer;" onclick="openTimelinePointCard(${i})">
-              <polygon points="${xCoords[i]},${exLane.y + 8} ${xCoords[i] + 7},${exLane.y + 16} ${xCoords[i]},${exLane.y + 24} ${xCoords[i] - 7},${exLane.y + 16}" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
-              <text x="${xCoords[i]}" y="${exLane.y + 35}" text-anchor="middle" fill="#9a3412" font-size="8.5" font-weight="900">◆ GLUT4</text>
+              <polygon points="${xCoords[i]},${exLane.y + 10} ${xCoords[i] + 8},${exLane.y + 24} ${xCoords[i] - 8},${exLane.y + 24}" fill="#f97316" stroke="#ffffff" stroke-width="1.5"/>
+              <text x="${xCoords[i]}" y="${exLane.y + 35}" text-anchor="middle" fill="#9a3412" font-size="8.5" font-weight="900">▲ GLUT4</text>
             </g>
           `;
         }
@@ -19487,10 +19539,9 @@ Patient`;
               <!-- Vertical correlation stem -->
               <line x1="${xCoords[i]}" y1="${lanes[0].y + lanes[0].h}" x2="${xCoords[i]}" y2="${dLane.y + dLane.h}" stroke="${markerColor}" stroke-dasharray="3 3" stroke-width="1.5" opacity="0.5"/>
               
-              <!-- Clean Square Marker (■) -->
-              <rect x="${xCoords[i] - 9}" y="${dLane.y + 12}" width="18" height="18" fill="#fdf4ff" stroke="${markerColor}" stroke-width="2" rx="3"/>
-              <text x="${xCoords[i]}" y="${dLane.y + 25}" text-anchor="middle" fill="${markerColor}" font-size="11" font-weight="900">■</text>
-              <text x="${xCoords[i]}" y="${dLane.y + 44}" text-anchor="middle" fill="#0f172a" font-size="8.5" font-weight="800" font-family="var(--lcars-mono)">${carbs}g</text>
+              <!-- Clean Meal Triangle Indicator (▲) -->
+              <polygon points="${xCoords[i]},${dLane.y + 12} ${xCoords[i] + 9},${dLane.y + 28} ${xCoords[i] - 9},${dLane.y + 28}" fill="${markerColor}" stroke="#ffffff" stroke-width="1.5"/>
+              <text x="${xCoords[i]}" y="${dLane.y + 42}" text-anchor="middle" fill="#0f172a" font-size="8.5" font-weight="800" font-family="var(--lcars-mono)">${carbs}g</text>
             </g>
           `;
         }
@@ -19513,8 +19564,8 @@ Patient`;
           } else {
             svg += `
               <g style="cursor: pointer;" onclick="openTimelinePointCard(${i})">
-                <circle cx="${xCoords[i]}" cy="${mLane.y + 36}" r="11" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.8"/>
-                <text x="${xCoords[i]}" y="${mLane.y + 40}" text-anchor="middle" fill="#1e40af" font-size="8.5" font-weight="900">Rx</text>
+                <polygon points="${xCoords[i]},${mLane.y + 42} ${xCoords[i] - 8},${mLane.y + 26} ${xCoords[i] + 8},${mLane.y + 26}" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/>
+                <text x="${xCoords[i]}" y="${mLane.y + 22}" text-anchor="middle" fill="#1e40af" font-size="8.5" font-weight="900">▼ Rx</text>
               </g>
             `;
           }
@@ -19544,14 +19595,14 @@ Patient`;
 
       for (let i = 0; i < n; i += tickStep) {
         svg += `
-          <text x="${xCoords[i]}" y="${H - 18}" text-anchor="middle" fill="var(--lcars-gray)" font-size="10.5" font-weight="bold">${data[i].time}</text>
+          <text x="${xCoords[i]}" y="${H - 18}" text-anchor="middle" fill="var(--lcars-gray)" font-size="10.5" font-weight="bold">${formatTimeDisplay(data[i].time)}</text>
           <line x1="${xCoords[i]}" y1="${H - 35}" x2="${xCoords[i]}" y2="${H - 28}" stroke="#253549" stroke-width="1.2"/>
         `;
       }
       if ((n - 1) % tickStep !== 0) {
         const lastIdx = n - 1;
         svg += `
-          <text x="${xCoords[lastIdx]}" y="${H - 18}" text-anchor="middle" fill="var(--lcars-gray)" font-size="10.5" font-weight="bold">${data[lastIdx].time}</text>
+          <text x="${xCoords[lastIdx]}" y="${H - 18}" text-anchor="middle" fill="var(--lcars-gray)" font-size="10.5" font-weight="bold">${formatTimeDisplay(data[lastIdx].time)}</text>
           <line x1="${xCoords[lastIdx]}" y1="${H - 35}" x2="${xCoords[lastIdx]}" y2="${H - 28}" stroke="#253549" stroke-width="1.2"/>
         `;
       }
@@ -24602,7 +24653,7 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
       
       const commitStatus = document.getElementById('lblClinicCommitStatus');
       if (commitStatus) {
-        commitStatus.textContent = 'ACTIVE: Temporary 8.3% HbA1c Calibration (+41.5 mg/dL) applied to LCARS and Watch.';
+        commitStatus.textContent = 'ACTIVE: Temporary 8.3% HbA1c Calibration (+41.5 mg/dL) applied to BFM and Watch.';
       }
     }
 
@@ -25162,7 +25213,7 @@ You logged: Entire Box (3.5 Servings / 99g)
       const toast = document.getElementById('lblMealChoiceCommittedToast');
       if (toast) {
         toast.style.display = 'block';
-        toast.textContent = `✅ "${mealName}" committed! LCARS is now actively tracking postprandial glycemic response.`;
+        toast.textContent = `✅ "${mealName}" committed! BFM is now actively tracking postprandial glycemic response.`;
         setTimeout(() => { if (toast) toast.style.display = 'none'; }, 6000);
       }
 
@@ -25171,7 +25222,7 @@ You logged: Entire Box (3.5 Servings / 99g)
         setTimeout(() => { if (btn) { btn.innerHTML = originalText; btn.disabled = false; } }, 3000);
       }
 
-      logLCARS(`[🍽️ MEAL COMMITTED] "${mealName}" logged (${data.netCarbs || 0}g Net Carbs). LCARS watching 2-hour response curve.`, "rx");
+      logLCARS(`[🍽️ MEAL COMMITTED] "${mealName}" logged (${data.netCarbs || 0}g Net Carbs). BFM watching 2-hour response curve.`, "rx");
       if (typeof renderLongitudinalView === 'function') renderLongitudinalView();
       if (typeof renderDietHistory === 'function') renderDietHistory();
       if (typeof loadGoalsComplianceReport === 'function') loadGoalsComplianceReport();
@@ -25605,14 +25656,14 @@ You logged: Entire Box (3.5 Servings / 99g)
 
     async function submitProvisionCell() {
       const cellId = document.getElementById('provCellId').value.trim() || 'Cell-1';
-      const callsign = document.getElementById('provHandle').value.trim() || 'Primary User';
+      const handle = document.getElementById('provHandle').value.trim() || 'Primary User';
       const registry = document.getElementById('provRegistry').value.trim() || 'NCC-5010-A';
       const a1c = parseFloat(document.getElementById('provTargetA1c').value) || 6.5;
 
       const payload = {
         cell_id: cellId,
         user_uid: `USR-9482-${cellId.replace(/[^0-9]/g, '') || Math.floor(Math.random()*100)}`,
-        user_handle: callsign,
+        user_handle: handle,
         assigned_registry: registry,
         linked_watch_mac: '',
         target_a1c: a1c
@@ -25753,6 +25804,7 @@ You logged: Entire Box (3.5 Servings / 99g)
 
     // Initialize on DOM ready
     window.addEventListener('DOMContentLoaded', () => {
+      try { renderWatchTabConnectedDetails(); } catch (e) {}
       loadFamilyCellsRoster();
       checkLegalStatus();
       ensureWindowsShortcuts();
@@ -25879,28 +25931,7 @@ You logged: Entire Box (3.5 Servings / 99g)
           <h1>BFM Biometric Function Monitor • Daily Medication Wall Schedule</h1>
           <div class="sub">Post on Refrigerator or Wall • Physician-Aligned Administration Timetable • Patient MRN: [UNASSIGNED]</div>
           
-          <div class="grid-4">
-            <div class="card" style="border-left: 6px solid #ca8a04;">
-              <h3 style="color: #ca8a04;">🌅 MORNING (08:00 AM)</h3>
-              <p style="font-size: 0.82rem; margin: 4px 0;">Take with breakfast meal.</p>
-              <div style="font-size: 0.9rem; font-weight: bold; color: #0f172a;">Metformin 1,000 mg + Cardioprotectors</div>
-            </div>
-            <div class="card" style="border-left: 6px solid #0284c7;">
-              <h3 style="color: #0284c7;">☀️ MID-DAY (12:30 PM)</h3>
-              <p style="font-size: 0.82rem; margin: 4px 0;">Take with lunch meal.</p>
-              <div style="font-size: 0.9rem; font-weight: bold; color: #0f172a;">Hydration &amp; Scheduled Nutrients</div>
-            </div>
-            <div class="card" style="border-left: 6px solid #2563eb;">
-              <h3 style="color: #2563eb;">🌙 EVENING (06:30 PM)</h3>
-              <p style="font-size: 0.82rem; margin: 4px 0;">Take with dinner meal.</p>
-              <div style="font-size: 0.9rem; font-weight: bold; color: #0f172a;">Metformin 1,000 mg (Overnight Suppression)</div>
-            </div>
-            <div class="card" style="border-left: 6px solid #7c3aed;">
-              <h3 style="color: #7c3aed;">🛌 BEDTIME (10:00 PM)</h3>
-              <p style="font-size: 0.82rem; margin: 4px 0;">30 min prior to sleep onset.</p>
-              <div style="font-size: 0.9rem; font-weight: bold; color: #0f172a;">Nocturnal Recovery Protocol</div>
-            </div>
-          </div>
+          <!-- Daily 4-slot administration schedule excised per instruction: intake is submitted via BFM and BFM Cell -->
 
           <h2 style="font-size: 1.15rem; margin-top: 24px; margin-bottom: 4px;">Prescribed Medication Registry &amp; Weekly Check-off</h2>
           <table>

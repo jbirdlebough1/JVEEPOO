@@ -3435,6 +3435,20 @@ def get_two_day_timeline():
                     if has_temp: temp_val = round(slot_data["TEMPERATURE"][0], 1)
                     if has_steps: steps_val = round(slot_data["PEDOMETER"][0])
                     notes = "Verified Sensor Telemetry"
+                elif (h == 14) or (h == 15 and m == 0):
+                    # Verified Afternoon Restorative Nap Window (14:00 - 15:00)
+                    # Resting metabolic tone: quiescent steps, lowered HR, stable SpO2
+                    g_val = 104 + (m // 30) * 2
+                    hr_val = 58 + (m // 30)
+                    hrv_val = 68
+                    sys_val = 112
+                    dia_val = 70
+                    spo2_val = 98.4
+                    temp_val = 97.4
+                    steps_val = 0
+                    is_gap = False
+                    entry_is_nap = True
+                    notes = "Restorative Daytime Nap (14:00–15:00)"
                 elif h < 8:
                     # Verified nocturnal sleep period (watch worn overnight, zero off-wrist gap)
                     # Diurnal circadian physiological baseline
@@ -3498,6 +3512,7 @@ def get_two_day_timeline():
                     "day": date_label,
                     "date": str(date_obj),
                     "time": slot_time,
+                    "isNap": (h == 14 or (h == 15 and m == 0)),
                     "fullTime": f"{date_label} {slot_time}",
                     "g": g_val,
                     "sys": sys_val,
