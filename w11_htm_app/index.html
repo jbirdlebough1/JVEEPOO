@@ -1765,7 +1765,7 @@
         </div>
         <div class="lcars-time-block">
           <div class="actual-datetime" id="actualDateTime">FRIDAY, NOV 20, 2026 9:55:00 AM PST</div>
-          <div class="lcars-stardate" id="stardateClock">BUILD beta.00.01.0030</div>
+          <div class="lcars-stardate" id="stardateClock">BUILD beta.00.01.0031</div>
         </div>
         
       </div>
@@ -9323,10 +9323,10 @@
     function soundButtonPress() {
       // Audio completely muted per user directive: kill all beep noises
       if (typeof syncStepData === 'function' && gattServer && gattServer.connected && txCharacteristic) {
-        try { syncStepData(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+        try { syncStepData(false); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       }
       if (typeof pollLiveTelemetryChanges === 'function') {
-        try { pollLiveTelemetryChanges(true); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+        try { pollLiveTelemetryChanges(false); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       }
       if (typeof scheduleFullPipelineRefresh === 'function') {
         scheduleFullPipelineRefresh();
@@ -9394,7 +9394,7 @@
       const year = now.getFullYear();
       const startOfYear = new Date(year, 0, 1);
       const dayOfYear = (now - startOfYear) / (1000 * 60 * 60 * 24);
-      document.getElementById("stardateClock").textContent = "BUILD beta.00.01.0030";
+      document.getElementById("stardateClock").textContent = "BUILD beta.00.01.0031";
     }
     setInterval(updateClock, 1000);
     updateClock();
@@ -10555,10 +10555,6 @@ function switchTab(tabId) {
         }
         if (typeof initFullScanView === 'function') initFullScanView();
         if (typeof render360HealthView === 'function') render360HealthView();
-        if (typeof renderReportsView === 'function') renderReportsView();
-        if (typeof render3DMultiChannelScene === 'function') render3DMultiChannelScene();
-        if (typeof renderDietHistory === 'function') renderDietHistory();
-        if (typeof loadGoalsComplianceReport === 'function') loadGoalsComplianceReport();
         if (typeof updateWorkoutWithSteps === 'function') updateWorkoutWithSteps(lastSteps || 0);
 
         // Immediately update all screen elements with harvested vitals via full pipeline
@@ -12063,18 +12059,44 @@ function switchTab(tabId) {
       }
     }
 
-    function syncStepData() {
-      soundButtonPress();
-      logLCARS("[*] Synchronizing real watch pedometer & active calories (0xA8 / 0x07)...", "tx");
-      const cmdA8 = new Uint8Array(20);
-      cmdA8[0] = 0xA8; cmdA8[1] = 0x00;
-      sendCommandBytes(cmdA8);
-      const cmd07 = new Uint8Array(20);
-      cmd07[0] = 0x07; cmd07[1] = 0x00;
-      setTimeout(() => sendCommandBytes(cmd07), 150);
+    let _isSyncingStepData = false;
+    let _lastStepSyncTime = 0;
 
-      // Immediately synchronize SPORT-04 workout card with latest walk data
-      updateWorkoutWithSteps(lastSteps || 0);
+    function syncStepData(force = false) {
+      const now = Date.now();
+      // Enforce at least 3 seconds between BLE hardware pedometer queries to prevent RF congestion
+      if (!force && (now - _lastStepSyncTime < 3000 || _isSyncingStepData)) {
+        return;
+      }
+      if (!txCharacteristic || !gattServer || !gattServer.connected) {
+        return;
+      }
+      _lastStepSyncTime = now;
+      _isSyncingStepData = true;
+
+      try {
+        logLCARS("[*] Synchronizing real watch pedometer & active calories (0xA8 / 0x07)...", "tx");
+        const cmdA8 = new Uint8Array(20);
+        cmdA8[0] = 0xA8; cmdA8[1] = 0x00;
+        sendCommandBytes(cmdA8);
+        const cmd07 = new Uint8Array(20);
+        cmd07[0] = 0x07; cmd07[1] = 0x00;
+        setTimeout(() => {
+          try {
+            sendCommandBytes(cmd07);
+          } catch (e) {
+            console.warn('[MIL-SPEC HANDLED FAULT]', e);
+          } finally {
+            _isSyncingStepData = false;
+          }
+        }, 150);
+
+        // Immediately synchronize SPORT-04 workout card with latest walk data
+        updateWorkoutWithSteps(lastSteps || 0);
+      } catch (e) {
+        _isSyncingStepData = false;
+        console.warn('[MIL-SPEC HANDLED FAULT]', e);
+      }
     }
 
     function toggleGlucoseUnit() {
@@ -22749,7 +22771,10 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
     let lastKnownDbVersion = -1;
     let lastKnownGlucoseTs = "";
 
+    let _isPollingTelemetry = false;
     async function pollLiveTelemetryChanges(force = false) {
+      if (_isPollingTelemetry) return;
+      _isPollingTelemetry = true;
       try {
         const activeWatchId = window._connectedWatchId || (typeof localStorage !== 'undefined' ? localStorage.getItem('bfm_connected_watch_id') : null) || 'VEE_5010';
         const resp = await fetch(`/api/telemetry/latest?device_id=${encodeURIComponent(activeWatchId)}&_t=${Date.now()}`, { cache: 'no-store' });
@@ -23031,6 +23056,8 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
         }
       } catch (e) {
         console.warn("pollLiveTelemetryChanges error:", e);
+      } finally {
+        _isPollingTelemetry = false;
       }
     }
     // Run live telemetry poll every 2.5 seconds
