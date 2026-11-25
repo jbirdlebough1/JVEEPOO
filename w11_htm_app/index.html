@@ -795,6 +795,16 @@
       display: block;
     }
 
+    #curveTimelineSleep {
+      height: auto !important;
+      min-height: 440px;
+      overflow: visible !important;
+    }
+
+    #curveTimelineSleep svg {
+      height: 240px !important;
+    }
+
     .plot-curve-fill {
       transition: opacity 0.25s ease;
     }
@@ -4269,7 +4279,7 @@
           <div class="chart-box" id="boxChartExercise">
             <div class="chart-title">
               <span id="repChartExerciseTitle">AMBULATORY PHYSICAL ACTIVITY & DAILY STEPS</span>
-              <span style="font-family: var(--lcars-mono); color: var(--lcars-banana);">CLINICAL GOAL: 2,000 STEPS (1.5 MILES)</span>
+              <span style="font-family: var(--lcars-mono); color: var(--lcars-banana);">CLINICAL GOAL: 2,000 STEPS (0.95 MILES)</span>
             </div>
             <div class="svg-timeline-container" id="curveTimelineExercise"></div>
           </div>
@@ -16812,7 +16822,7 @@ function switchTab(tabId) {
           </div>
 
           <!-- Polysomnography SVG Hypnogram with Stage Background Boxes -->
-          <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" style="display: block; width: 100%; height: 210px;">
+          <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" style="display: block; width: 100%; height: 240px;">
             <!-- Outer Box Frame -->
             <rect x="${padLeft}" y="${padTop}" width="${plotW}" height="${plotH}" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
             <!-- Background Stage Boxes -->
@@ -16839,19 +16849,19 @@ function switchTab(tabId) {
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; font-family: var(--lcars-mono, monospace); font-size: 0.80rem;">
               <div style="background: #ffffff; border: 1px solid #e2e8f0; border-left: 4px solid #15803d; padding: 8px 10px; border-radius: 4px;">
                 <div style="color: #64748b; font-size: 0.70rem; text-transform: uppercase;">Deep Sleep Continuity</div>
-                <div style="font-weight: 800; color: #15803d; font-size: 0.95rem; margin-top: 2px;">2.2h (30%) &bull; EXCELLENT</div>
+                <div style="font-weight: 800; color: #15803d; font-size: 0.95rem; margin-top: 2px;">${deepH.toFixed(1)}h (${deepPct}%) &bull; EXCELLENT</div>
                 <div style="color: #475569; font-size: 0.72rem; margin-top: 2px;">Exceeds &ge;20% restorative threshold for physical cellular repair.</div>
               </div>
 
               <div style="background: #ffffff; border: 1px solid #e2e8f0; border-left: 4px solid #0891b2; padding: 8px 10px; border-radius: 4px;">
                 <div style="color: #64748b; font-size: 0.70rem; text-transform: uppercase;">REM Sleep Architecture</div>
-                <div style="font-weight: 800; color: #0891b2; font-size: 0.95rem; margin-top: 2px;">1.2h (16%) &bull; NOMINAL</div>
+                <div style="font-weight: 800; color: #0891b2; font-size: 0.95rem; margin-top: 2px;">${remH.toFixed(1)}h (${remPct}%) &bull; NOMINAL</div>
                 <div style="color: #475569; font-size: 0.72rem; margin-top: 2px;">Supports neurocognitive memory consolidation &amp; autonomic recovery.</div>
               </div>
 
               <div style="background: #ffffff; border: 1px solid #e2e8f0; border-left: 4px solid #2563eb; padding: 8px 10px; border-radius: 4px;">
                 <div style="color: #64748b; font-size: 0.70rem; text-transform: uppercase;">Light Sleep Stability</div>
-                <div style="font-weight: 800; color: #2563eb; font-size: 0.95rem; margin-top: 2px;">3.7h (50%) &bull; BALANCED</div>
+                <div style="font-weight: 800; color: #2563eb; font-size: 0.95rem; margin-top: 2px;">${lightH.toFixed(1)}h (${lightPct}%) &bull; BALANCED</div>
                 <div style="color: #475569; font-size: 0.72rem; margin-top: 2px;">Smooth transitional buffering between restorative deep cycles.</div>
               </div>
 
@@ -16881,8 +16891,13 @@ function switchTab(tabId) {
         document.getElementById('repChartGlucoseTitle').textContent = "DAILY 24-HOUR GLUCOSE TIMELINE (MG/DL)";
         document.getElementById('repChartA1CTitle').textContent = "DAILY 24-HOUR ESTIMATED A1C (eA1C) PROJECTION CURVE (%)";
         document.getElementById('repChartTempTitle').textContent = "DAILY 24-HOUR BODY TEMPERATURE MATRIX (CORE °F VS SKIN °F)";
-        const sT = document.getElementById('repChartSleepTitle'); if (sT) sT.textContent = "LAST NIGHT NOCTURNAL SLEEP HYPNOGRAM (7.4 HOURS TOTAL)";
-        const eT = document.getElementById('repChartExerciseTitle'); if (eT) eT.textContent = "TODAY HOURLY STEP ACTIVITY (2,384 MORNING WALK • 4,994 TOTAL)";
+        const liveSleepH = (typeof lastSleepTotalHours !== 'undefined' && lastSleepTotalHours > 0) ? lastSleepTotalHours.toFixed(1) : '0.0';
+        const sT = document.getElementById('repChartSleepTitle');
+        if (sT) sT.textContent = (typeof lastSleepTotalHours !== 'undefined' && lastSleepTotalHours > 0) ? `LAST NIGHT NOCTURNAL SLEEP HYPNOGRAM (${liveSleepH} HOURS • 91% EFFICIENCY)` : "LAST NIGHT NOCTURNAL SLEEP HYPNOGRAM (AWAITING WATCH SYNC)";
+        const totStepsTitle = (typeof lastSteps !== 'undefined' && lastSteps > 0) ? lastSteps : 0;
+        const totMilesTitle = (totStepsTitle * 0.000473).toFixed(2);
+        const eT = document.getElementById('repChartExerciseTitle');
+        if (eT) eT.textContent = `TODAY HOURLY STEP ACTIVITY (${totStepsTitle.toLocaleString()} TOTAL STEPS • ${totMilesTitle} MI)`;
         const hT = document.getElementById('repChartHRTitle'); if (hT) hT.textContent = "DAILY 24-HOUR HEART RATE & 5-ZONE CARDIAC LOAD (BPM)";
         const bT = document.getElementById('repChartBPTitle'); if (bT) bT.textContent = "DAILY 24-HOUR AMBULATORY BLOOD PRESSURE (SYSTOLIC / DIASTOLIC)";
         const oT = document.getElementById('repChartSpO2Title'); if (oT) oT.textContent = "DAILY NOCTURNAL SPO2 & APNEA HYPOXIA STABILITY (%)";
@@ -17024,11 +17039,13 @@ function switchTab(tabId) {
         ];
 
         const sT = document.getElementById('repChartSleepTitle');
-        if (sT) sT.textContent = "LAST NIGHT NOCTURNAL SLEEP HYPNOGRAM (7.4 HOURS • 91% EFFICIENCY)";
+        const liveSleepEndH = (typeof lastSleepTotalHours !== 'undefined' && lastSleepTotalHours > 0) ? lastSleepTotalHours.toFixed(1) : '0.0';
+        if (sT) sT.textContent = (typeof lastSleepTotalHours !== 'undefined' && lastSleepTotalHours > 0) ? `LAST NIGHT NOCTURNAL SLEEP HYPNOGRAM (${liveSleepEndH} HOURS • 91% EFFICIENCY)` : "LAST NIGHT NOCTURNAL SLEEP HYPNOGRAM (AWAITING WATCH SYNC)";
         const eT = document.getElementById('repChartExerciseTitle');
         if (eT) {
-          const totSteps = typeof lastSteps !== 'undefined' && lastSteps > 0 ? lastSteps : 2772;
-          eT.textContent = `TODAY HOURLY STEP ACTIVITY (${totSteps.toLocaleString()} TOTAL STEPS)`;
+          const totSteps = (typeof lastSteps !== 'undefined' && lastSteps > 0) ? lastSteps : 0;
+          const totMiles = (totSteps * 0.000473).toFixed(2);
+          eT.textContent = `TODAY HOURLY STEP ACTIVITY (${totSteps.toLocaleString()} TOTAL STEPS • ${totMiles} MI)`;
         }
       } else if (isWeekly) {
         const curGWeekly = is83Mode ? 191 : 118;
