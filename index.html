@@ -1765,7 +1765,7 @@
         </div>
         <div class="lcars-time-block">
           <div class="actual-datetime" id="actualDateTime">FRIDAY, NOV 20, 2026 9:55:00 AM PST</div>
-          <div class="lcars-stardate" id="stardateClock">BUILD beta.00.01.0025</div>
+          <div class="lcars-stardate" id="stardateClock">BUILD beta.00.01.0027</div>
         </div>
         
       </div>
@@ -9388,7 +9388,7 @@
       const year = now.getFullYear();
       const startOfYear = new Date(year, 0, 1);
       const dayOfYear = (now - startOfYear) / (1000 * 60 * 60 * 24);
-      document.getElementById("stardateClock").textContent = "BUILD beta.00.01.0025";
+      document.getElementById("stardateClock").textContent = "BUILD beta.00.01.0027";
     }
     setInterval(updateClock, 1000);
     updateClock();
@@ -21726,7 +21726,8 @@ All 14 LCARS consoles, 8-lane metabolic chart, and clinical database now match y
       // -------------------------------------------------------------
       // 4. TAB 04: MEAL PLANNER (#pageDietTrades)
       // -------------------------------------------------------------
-      if (typeof refreshGlucoseRecommendation === 'function') {
+      if (typeof refreshGlucoseRecommendation === 'function' && g > 0 && window._lastLoggedSnackGlucose !== g) {
+        window._lastLoggedSnackGlucose = g;
         refreshGlucoseRecommendation();
       }
 
@@ -22806,7 +22807,8 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
             const hudG = document.getElementById('hudGlucose');
             if (hudG) hudG.textContent = `${mgdl} mg/dL`;
             
-            if (typeof refreshGlucoseRecommendation === 'function') {
+            if (typeof refreshGlucoseRecommendation === 'function' && window._lastLoggedSnackGlucose !== mgdl) {
+              window._lastLoggedSnackGlucose = mgdl;
               refreshGlucoseRecommendation();
             }
           }
@@ -23238,7 +23240,7 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
         if (title) { title.style.color = '#ff8888'; title.textContent = "ELEVATED GLUCOSE DETECTED • TRIGGER 4-PILLAR CLEARANCE"; }
         if (msg) msg.textContent = `Current reading: ${curVal} mg/dL is above optimal baseline. Action Plan: 1) Drink 12 oz cold water; 2) Take a 10-15 minute walk (triggers muscle GLUT4 non-insulin clearance); 3) Stick strictly to Green Zone foods (<2g carb) like cucumbers or boiled eggs.`;
       }
-      logLCARS(`Smart Glucose Snack Notifier updated for ${curVal} mg/dL`, "sys");
+      // Silenced repetitive logger to prevent memory leak and log flood
     }
 
 
