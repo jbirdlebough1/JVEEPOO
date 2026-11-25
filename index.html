@@ -2364,19 +2364,19 @@
 
           
 
-          <!-- COMPONENT 1: 360° LIVE BIOMETRIC CONSOLE (MULTI-SENSOR TELEMETRY SYNTHESIS) -->
-          <div class="diet-form-card" id="secMetabolic360" style="border-left-color: var(--lcars-banana);">
+          <!-- COMPONENT 1 & 2 MERGED: EXERCISE AND ACTIVITY LOG -->
+          <div class="diet-form-card" id="secMetabolicExercise" style="border-left-color: var(--lcars-peach);">
             <div class="setup-section-title" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
               <div>
-                <span style="color: var(--lcars-banana);">01. 360° REAL-TIME PHYSIOLOGICAL CONSOLE</span>
-                <span style="font-size: 0.8rem; color: var(--lcars-gray); display: block;">SYNCHRONIZED SENSOR TELEMETRY &amp; METABOLIC HOMEOSTASIS</span>
+                <span style="color: var(--lcars-peach);">01. EXERCISE AND ACTIVITY LOG</span>
+                <span style="font-size: 0.8rem; color: var(--lcars-green); display: block;">SYNCHRONIZED SENSOR TELEMETRY &amp; NON-INSULIN GLUT4 ACTIVATION</span>
               </div>
               <div style="display: flex; gap: 8px;">
                 <button class="lcars-btn btn-banana" style="flex: none; padding: 4px 14px; font-size: 0.8rem;" onclick="switchTab('reports')">OPEN 360° SYNCHRONIZED TALL CHART (TAB 04)</button>
               </div>
             </div>
 
-            <!-- 6 Synchronized Real-Time Biometric Tiles -->
+            <!-- Synchronized Biometric & Activity Summary Badges -->
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-top: 6px;">
               <!-- Tile 1: Blood Glucose -->
               <div class="stat-card" style="border-left-color: var(--lcars-banana);">
@@ -2408,29 +2408,6 @@
                 <span class="stat-card-val" id="tile360Temp" style="color: var(--lcars-blue);">97.3°F</span>
                 <span class="stat-card-sub">Euvolemic Diurnal Curve</span>
               </div>
-              <!-- Tile 6: Kinetic Energy -->
-              <div class="stat-card" style="border-left-color: var(--lcars-lilac);">
-                <span class="stat-card-title">KINETIC ACTIVITY</span>
-                <span class="stat-card-val" id="tile360Motion" style="color: var(--lcars-lilac);">0 <span style="font-size: 0.9rem;">steps</span></span>
-                <span class="stat-card-sub" id="tile360MotionSub">Awaiting Watch Sync</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- COMPONENT 2: EXERCISE & KINETIC ACTIVITY LOG ("GLUT4 TRANSLOCATION ENGINE") -->
-          <div class="diet-form-card" id="secMetabolicExercise" style="border-left-color: var(--lcars-peach);">
-            <div class="setup-section-title" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
-              <div>
-                <span style="color: var(--lcars-peach);">02. EXERCISE &amp; KINETIC ACTIVITY LOG (GLUT4 CLEARANCE)</span>
-                <span style="font-size: 0.8rem; color: var(--lcars-green); display: block;">NON-INSULIN SKELETAL MUSCLE GLUCOSE TRANSPORTER 4 (GLUT4) ACTIVATION</span>
-              </div>
-              <div style="display: flex; gap: 8px;">
-
-              </div>
-            </div>
-
-            <!-- Activity Summary Badges -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 4px;">
               <div class="stat-card" style="border-left-color: var(--lcars-banana);">
                 <span class="stat-card-title">ACTIVE STEPS TODAY</span>
                 <span class="stat-card-val" id="valStepCount">-- <span style="font-size: 1rem;">steps</span></span>
