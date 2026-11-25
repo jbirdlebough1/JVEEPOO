@@ -2607,56 +2607,6 @@
               </div>
             </div>
 
-            <!-- Meal Log Entry Form -->
-            <div class="diet-form-grid" style="margin-top: 10px;">
-              <div class="setup-field">
-                <label class="setup-label">DATE &amp; TIME</label>
-                <input type="datetime-local" id="dietTimestamp" class="setup-input">
-              </div>
-              <div class="setup-field">
-                <label class="setup-label">MEAL / EVENT TYPE</label>
-                <select id="dietMealType" class="setup-select">
-                  <option value="Breakfast">BREAKFAST</option>
-                  <option value="Lunch">LUNCH</option>
-                  <option value="Dinner">DINNER</option>
-                  <option value="Snack">SNACK / REFRESHMENT</option>
-                  <option value="Fasting">FASTING LOG</option>
-                </select>
-              </div>
-              <div class="setup-field" style="grid-column: span 2;">
-                <label class="setup-label">FOOD / BEVERAGE DESCRIPTION</label>
-                <input type="text" id="dietDesc" class="setup-input" placeholder="e.g. Grilled salmon, roasted asparagus, riced cauliflower, olive oil, unsweetened tea">
-              </div>
-              <div class="setup-field">
-                <label class="setup-label">ESTIMATED CARBS (G)</label>
-                <input type="number" id="dietCarbs" class="setup-input" value="18" min="0" max="500">
-              </div>
-              <div class="setup-field">
-                <label class="setup-label">PROTEIN (G)</label>
-                <input type="number" id="dietProtein" class="setup-input" value="32" min="0" max="300">
-              </div>
-              <div class="setup-field">
-                <label class="setup-label">CALORIES (KCAL)</label>
-                <input type="number" id="dietCalories" class="setup-input" value="480" min="0" max="4000">
-              </div>
-              <div class="setup-field">
-                <label class="setup-label">FLUID / WATER INTAKE (OZ)</label>
-                <input type="number" id="dietFluidOz" class="setup-input" value="12" min="0" max="128">
-              </div>
-              <div class="setup-field">
-                <label class="setup-label">GLUCOSE CONTEXT</label>
-                <select id="dietContext" class="setup-select">
-                  <option value="Pre-Meal">PRE-MEAL (FASTING)</option>
-                  <option value="1-Hr Post">1-HOUR POST-MEAL</option>
-                  <option value="2-Hr Post">2-HOUR POST-MEAL</option>
-                  <option value="Post-Meal Walk">PAIRED WITH POST-MEAL WALK</option>
-                </select>
-              </div>
-            </div>
-            <div style="display: flex; gap: 10px; margin-top: 10px;">
-              <button class="lcars-btn btn-banana" style="flex: 2;" onclick="saveMealEntry()">RECORD MEAL &amp; CORRELATE SENSORS</button>
-              <button class="lcars-btn btn-orange" style="flex: 1;" onclick="clearMealForm()">CLEAR FORM</button>
-            </div>
 
             <!-- History of Logged Meals -->
             <div class="setup-section-title" style="margin-top: 12px;">
@@ -17809,7 +17759,8 @@ Patient`;
     function initDietFormTime() {
       const now = new Date();
       const localISO = new Date(now.getTime() - (now.getTimezoneOffset() * 60000)).toISOString().slice(0, 16);
-      document.getElementById('dietTimestamp').value = localISO;
+      const elTs = document.getElementById('dietTimestamp');
+      if (elTs) elTs.value = localISO;
     }
 
     async function saveMealEntry() {
@@ -17872,10 +17823,14 @@ Patient`;
     }
 
     function clearMealForm() {
-      document.getElementById('dietDesc').value = '';
-      document.getElementById('dietCarbs').value = '0';
-      document.getElementById('dietProtein').value = '0';
-      document.getElementById('dietCalories').value = '0';
+      const elDesc = document.getElementById('dietDesc');
+      if (elDesc) elDesc.value = '';
+      const elCarbs = document.getElementById('dietCarbs');
+      if (elCarbs) elCarbs.value = '0';
+      const elProt = document.getElementById('dietProtein');
+      if (elProt) elProt.value = '0';
+      const elCal = document.getElementById('dietCalories');
+      if (elCal) elCal.value = '0';
       const elFl = document.getElementById('dietFluidOz');
       if (elFl) elFl.value = '12';
       initDietFormTime();
