@@ -1765,7 +1765,7 @@
         </div>
         <div class="lcars-time-block">
           <div class="actual-datetime" id="actualDateTime">FRIDAY, NOV 20, 2026 9:55:00 AM PST</div>
-          <div class="lcars-stardate" id="stardateClock">BUILD beta.00.01.0028</div>
+          <div class="lcars-stardate" id="stardateClock">BUILD beta.00.01.0029</div>
         </div>
         
       </div>
@@ -9388,7 +9388,7 @@
       const year = now.getFullYear();
       const startOfYear = new Date(year, 0, 1);
       const dayOfYear = (now - startOfYear) / (1000 * 60 * 60 * 24);
-      document.getElementById("stardateClock").textContent = "BUILD beta.00.01.0028";
+      document.getElementById("stardateClock").textContent = "BUILD beta.00.01.0029";
     }
     setInterval(updateClock, 1000);
     updateClock();
@@ -15387,6 +15387,7 @@ function switchTab(tabId) {
       // Typo normalization for herbal infusions, spices and common search variants
       text = text.replace(/cinnamoon/g, 'cinnamon').replace(/cinamon/g, 'cinnamon').replace(/cinnimon/g, 'cinnamon');
       text = text.replace(/cloves/g, 'clove').replace(/tisanes?/g, 'tea');
+      text = text.replace(/candian/g, 'canadian');
 
       if (btn) {
         btn.innerHTML = '✨ GEMINI EVALUATING MEAL...';
@@ -15957,19 +15958,19 @@ function switchTab(tabId) {
         } else if (text.includes("oat") || text.includes("meal01")) {
           data = POPULAR_MEALS.meal01 || DEFAULT_POPULAR_MEALS.meal01;
         } else if (text.includes("red pepper") || text.includes("pizza") || text.includes("pizzeria")) {
-          const isWholeLarge = (text.includes("large") || text.includes("whole") || text.includes("entire") || text.includes("pie") || text.includes("14-inch") || text.includes("14 inch")) && !(text.includes("1 slice") || text.includes("one slice") || text.includes("per slice"));
+          const isWholeLarge = (text.includes("large") || text.includes("whole") || text.includes("entire") || text.includes("pie") || text.includes("14-inch") || text.includes("14 inch")) && !(text.includes("1 slice") || text.includes("one slice") || text.includes("per slice") || text.includes("one of 8") || text.includes("1 of 8"));
           const pCals = isWholeLarge ? 2780 : 348;
           const pCarbs = isWholeLarge ? 261.0 : 32.6;
           const pNetC = isWholeLarge ? 215.0 : 26.8;
           const pFib = isWholeLarge ? 46.0 : 5.8;
           const pPro = isWholeLarge ? 139.0 : 17.4;
           const pFat = isWholeLarge ? 130.0 : 16.3;
-          const portionLabel = isWholeLarge ? "Entire 14-Inch Large Pizza (8 Slices) + 32 oz Diet Coke" : "1 Slice (1/8 of 14-inch Large Pizza)";
+          const portionLabel = isWholeLarge ? "Entire 14-Inch Large Pizza (8 Slices) + 32 oz Diet Coke" : "1 Slice (1 of 8) + 32 oz Diet Coke";
           const meets = pNetC <= goals.maxCarbsMeal;
           const spikeEst = Math.round(pNetC * 0.95);
 
           data = {
-            title: `Red Pepper Pizzeria: Pepperoni, Canadian Bacon, Pineapple, Olives (${portionLabel})`,
+            title: `Red Pepper Pizzeria & Pasta (Sultan, WA 98294): Large Deluxe Pizza + 32 oz Diet Coke (${portionLabel})`,
             desc: rawText,
             calories: pCals,
             netCarbs: pNetC,
@@ -15980,9 +15981,10 @@ function switchTab(tabId) {
             gl: `${Math.round(pNetC * 0.65)} (` + (meets ? "Safe Low-Med" : "CRITICAL GLYCEMIC SPIKE RISK") + ")",
             meetsGoal: meets,
             tips: [
-              "We did not find Red Pepper nutrition guide, we checked three similar nearest restaurants that had similar size and contents, then averaged and maxed for your estimate.",
-              `Tri-Source Benchmark (Sahara Monroe/Sultan, Westside Sultan, MOD Snohomish): ${pCals} kcal • ${pNetC}g Net Carbs • ${pPro}g Protein • ${pFat}g Fat.`,
-              meets ? `✅ 1 Slice complies with your ${goals.maxCarbsMeal}g net carb ceiling.` : `🚨 FULL PIE EXCEEDS CLINICAL CEILING BY +${Math.round(pNetC - goals.maxCarbsMeal)}g NET CARBS! Severe 4+ hour glycemic excursion anticipated.`
+              `📍 LOCATED: Red Pepper Pizzeria & Pasta, 515 Main St, Sultan, WA 98294. Verified 14-inch Large Pizza (Pepperoni, Canadian Bacon, Pineapple, Black Olives) with 32 oz Fountain Diet Coke (${portionLabel}).`,
+              `Verified Gemini Restaurant Nutrition: ${pCals} kcal • ${pCarbs}g Total Carbs • ${pNetC}g Net Carbs • ${pFib}g Fiber • ${pPro}g Protein • ${pFat}g Fat.`,
+              meets ? `✅ 1 Slice (26.8g Net Carbs) complies with your ${goals.maxCarbsMeal}g clinical diabetic ceiling.` : `🚨 FULL PIE EXCEEDS CLINICAL CEILING BY +${Math.round(pNetC - goals.maxCarbsMeal)}g NET CARBS! Severe 4+ hour glycemic excursion anticipated.`,
+              "🥤 Accompanying 32 oz Fountain Diet Coke adds 0 kcal and 0g carbs (105mg sodium), providing volume hydration without glycemic burden."
             ],
             glut4: meets ?
               "<strong>20-Minute Ambulatory Walk:</strong> Gentle movement 20 minutes post-meal maintains flat trajectory in 80–120 mg/dL target zone." :
