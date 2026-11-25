@@ -75,3 +75,10 @@ The assistant must maintain continuous, unbroken institutional memory of past fa
 * **Account-Wide Session Trajectory (`.jsonl`) Preservation**:
   * For every build and session across all projects on this account, copy the active conversation logs (`transcript.jsonl` and `transcript_full.jsonl`) from the brain directory into the project's repository under `archive_alpha/logs/` or `session_logs/`.
   * Track and commit these `.jsonl` trajectory files directly into Git on both local and internet remotes to ensure complete, unbroken, reproducible institutional memory.
+
+---
+
+## PRIME DIRECTIVE 7: /terse — ZERO UNREQUESTED COMMENTARY MODE
+* **Absolute Minimum Prose**: Output zero conversational filler, conversational preamble, recap exposition, or speculative commentary.
+* **Terse Deliverables Only**: Deliver strictly the direct answer, verification matrix/test status, file links, and git commit/tag confirmation.
+* **No Unsolicited Explanations**: Do not explain code logic or write essays unless explicitly prompted by the user with "explain" or "why".
