@@ -1054,7 +1054,28 @@
         };
       }
 
-      // 6. General Semantic Fallback
+      // 6. Zero-Sugar / Diet Beverages & Pure Hydration
+      if (/diet|sugar free|sugar-free|zero sugar|zero-sugar|seltzer|water|root beer|unsweetened|coffee|tea|infusion/i.test(t)) {
+        const isCoffee = /coffee|espresso|americano/i.test(t);
+        return {
+          meal_name: text.trim() || "Zero-Sugar Diet Beverage",
+          vendor_matched: "Clinical Dietary Database (Zero-Glycemic Beverages)",
+          calories: isCoffee ? 4 : 0,
+          net_carbs: 0.0,
+          total_carbs: 0.0,
+          fiber: 0.0,
+          protein: 0.0,
+          fat: 0.0,
+          glycemic_load: "0 (Zero Glycemic Impact)",
+          meets_goal: true,
+          projected_spike: "+0 mg/dL (Ideal Flatline)",
+          gemini_notes: "✨ ZERO-GLYCEMIC BEVERAGE: 100% sugar-free hydration delivers zero caloric or glycemic excursion.",
+          trade_alternatives: ["Excellent zero-glycemic hydration choice."],
+          glut4_recommendation: "No postprandial activity required."
+        };
+      }
+
+      // 7. General Semantic Fallback
       let carbs = 28, cals = 480, prot = 32, fat = 18, fib = 6;
       if (/pizza|pasta|spaghetti|macaroni|bread|sub|noodle/.test(t)) {
         carbs = 72; cals = 780; prot = 22; fat = 26; fib = 4;

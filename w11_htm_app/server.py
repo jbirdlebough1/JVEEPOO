@@ -67,7 +67,7 @@ def background_backup_scheduler_worker():
             current_hm = now.strftime("%H:%M")
             current_ymd = now.strftime("%Y-%m-%d")
             if current_hm == backup_config["schedule_time"] and backup_config.get("last_run_date") != current_ymd:
-                print(f"[⏰] 01:00 AM SCHEDULED BACKUP TRIGGERED! Executing automated USB dedup backup...")
+                print("[⏰] 01:00 AM SCHEDULED BACKUP TRIGGERED! Executing automated USB dedup backup...")
                 if USB_BACKUP_AVAILABLE:
                     summary = usb_backup_engine.perform_dedup_backup(backup_config.get("usb_target_path"))
                     backup_config["last_backup_summary"] = summary
@@ -814,7 +814,7 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
             "projected_spike": f"+{round(srv_net_c * 1.5)} to +{round(srv_net_c * 1.8)} mg/dL (Per 1 Serving)",
             "identified_items": [
                 {"name": f"Recommended 1 Portion (1/{servings} of batch)", "portion": f"1 of {servings} slices", "net_carbs": srv_net_c, "fiber": srv_fib, "protein": srv_pro, "fat": srv_fat, "calories": srv_cals},
-                {"name": f"TOTAL RECIPE BATCH MATERIALS (BOM)", "portion": f"Full Dish ({servings} Servings)", "net_carbs": round(tot_net_c, 1), "fiber": round(tot_fib, 1), "protein": round(tot_pro, 1), "fat": round(tot_fat, 1), "calories": tot_cals}
+                {"name": "TOTAL RECIPE BATCH MATERIALS (BOM)", "portion": f"Full Dish ({servings} Servings)", "net_carbs": round(tot_net_c, 1), "fiber": round(tot_fib, 1), "protein": round(tot_pro, 1), "fat": round(tot_fat, 1), "calories": tot_cals}
             ],
             "gemini_notes": f"👩‍🍳 RECIPE BATCH & PORTION CONTROL: Total Recipe Materials yields {tot_cals} kcal and {round(tot_net_c, 1)}g net carbs across {servings} servings. Single recommended serving delivers {srv_cals} kcal and {srv_net_c}g net carbs (" + ("100% compliant with diabetic target." if meets_goal else f"Exceeds target by +{round(srv_net_c - 45)}g.") + f") Maximum safe diabetic intake without spike: {max_safe_servings} serving(s). Strictly avoid consuming entire batch ({round(tot_net_c, 1)}g net carbs -> severe hyperglycemia!).",
             "trade_alternatives": [
@@ -822,7 +822,7 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
                 f"Safe Ceiling: You can consume up to {max_safe_servings} serving(s) ({round(srv_net_c * max_safe_servings, 1)}g net carbs) while remaining below 45g ceiling.",
                 "Ensure accompanying beverage is zero-calorie water or herbal tea."
             ],
-            "glut4_recommendation": f"<strong>15-Minute Ambulatory Walk:</strong> Light movement after consuming 1 serving maintains completely flat trajectory in 80–120 mg/dL target zone."
+            "glut4_recommendation": "<strong>15-Minute Ambulatory Walk:</strong> Light movement after consuming 1 serving maintains completely flat trajectory in 80–120 mg/dL target zone."
         }
 
     # =========================================================================
@@ -1224,7 +1224,7 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
             ],
             "gemini_notes": f"🍬 VERIFIED PHYSICAL BOX LABEL: Per serving (11 pieces): 120 kcal, 26g Total Carbs, 0g Fiber, 24g Total Sugars, 2g Fat, 0g Protein -> 26g Net Carbs. Evaluated portion ({portion_label}): {cals} kcal, {net_c}g Net Carbs ({sugars}g Sugars). Fast fondant sucrose core induces rapid postprandial glucose spike of +{spike} mg/dL.",
             "tips": [
-                f"Verified Box Label: 120 cal, 26g Total Carbs, 24g Sugars, 0g Fiber, 2g Fat, 0g Protein per serving.",
+                "Verified Box Label: 120 cal, 26g Total Carbs, 24g Sugars, 0g Fiber, 2g Fat, 0g Protein per serving.",
                 f"Evaluated portion: {portion_label} = {net_c}g Net Carbs ({sugars}g pure fast sugars).",
                 "Mandatory GLUT4 walking required to prevent rapid hyperglycemic spike."
             ],
@@ -1292,7 +1292,7 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
             "protein": pro,
             "fat": fat,
             "glycemic_load": f"{gl} (HIGH SPIKE HAZARD)",
-            "estimated_cost": f"${3.49 * mult:.2f}",
+            "estimated_cost": f"{net_c}g Net Carbs",
             "meets_goal": False,
             "trade_alternatives": [
                 "ChocZero / Lily's No Added Sugar Crispy Milk Chocolate Bar (2g net carbs, sweetened with Allulose & Monk Fruit — zero diarrhea risk)",
@@ -1359,12 +1359,12 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
                     "title": "Zero-Sugar Sour Lemon-Berry Collagen Protein Gummies",
                     "desc": "Tart, mouth-puckering sour gummies made with grass-fed gelatin (pure collagen protein buffer), freshly squeezed lemon juice, organic citric acid for sour kick, and granulated allulose. Zero sugar, zero glycemic surge.",
                     "calories": 40, "net_carbs": 0.5, "total_carbs": 1.0, "fiber": 0.5, "protein": 8.0, "fat": 0.0,
-                    "glycemic_load": "0 (Zero Glycemic Impact)", "cost": "$1.20 / batch",
+                    "glycemic_load": "0 (Zero Glycemic Impact)", "cost": "Metabolic Safe Band",
                     "bom": [
-                        {"item": "Grass-Fed Unflavored Beef Gelatin (Pure Collagen Buffer)", "portion": "3 tbsp in batch", "dept": "Baking / Health Aisle", "cost": "$4.99", "impact": "High collagen albumin protein, halts gastric glucose entry"},
-                        {"item": "Fresh Squeezed Tart Lemon Juice & Organic Citric Acid", "portion": "1/3 cup lemon juice + 1/2 tsp citric acid", "dept": "Produce / Spice Aisle", "cost": "$1.49", "impact": "Natural tangy sour punch with vitamin C"},
-                        {"item": "Pure Granulated Allulose / Monk Fruit (100% Sugar-Alcohol Free)", "portion": "3 tbsp in batch", "dept": "Baking Aisle", "cost": "$4.99", "impact": "Zero glycemic spike • 0% Sorbitol/Maltitol • No diarrhea risk"},
-                        {"item": "Fresh Crushed Organic Raspberries / Blackberries", "portion": "2 tbsp strained puree", "dept": "Produce Department", "cost": "$2.99", "impact": "Natural berry tartness & bioflavonoids"}
+                        {"item": "Grass-Fed Unflavored Beef Gelatin (Pure Collagen Buffer)", "portion": "3 tbsp in batch", "dept": "Baking / Health Aisle", "cost": "0g Net Carbs", "impact": "High collagen albumin protein, halts gastric glucose entry"},
+                        {"item": "Fresh Squeezed Tart Lemon Juice & Organic Citric Acid", "portion": "1/3 cup lemon juice + 1/2 tsp citric acid", "dept": "Produce / Spice Aisle", "cost": "0g Net Carbs", "impact": "Natural tangy sour punch with vitamin C"},
+                        {"item": "Pure Granulated Allulose / Monk Fruit (100% Sugar-Alcohol Free)", "portion": "3 tbsp in batch", "dept": "Baking Aisle", "cost": "0g Net Carbs", "impact": "Zero glycemic spike • 0% Sorbitol/Maltitol • No diarrhea risk"},
+                        {"item": "Fresh Crushed Organic Raspberries / Blackberries", "portion": "2 tbsp strained puree", "dept": "Produce Department", "cost": "0g Net Carbs", "impact": "Natural berry tartness & bioflavonoids"}
                     ]
                 },
                 {
@@ -1372,12 +1372,12 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
                     "title": "Tart Green Granny Smith Apple & Ceylon Cinnamon Protein Crisp",
                     "desc": "Extra tart green apple slices baked crisp with Ceylon cinnamon, lemon zest, and raw walnuts over non-fat Greek yogurt.",
                     "calories": 115, "net_carbs": 8.5, "total_carbs": 12.0, "fiber": 3.5, "protein": 6.0, "fat": 5.0,
-                    "glycemic_load": "3 (Very Low)", "cost": "$1.40 / serving",
+                    "glycemic_load": "3 (Very Low)", "cost": "Metabolic Safe Band",
                     "bom": [
-                        {"item": "Fresh Tart Green Granny Smith Apple (Sliced Thin)", "portion": "1 medium apple", "dept": "Produce Department", "cost": "$0.99", "impact": "Pectin soluble fiber slows fructose entry"},
-                        {"item": "Plain Non-Fat Greek Yogurt", "portion": "1/2 cup", "dept": "Dairy Department", "cost": "$1.29", "impact": "Albumin protein buffer"},
-                        {"item": "Raw California Walnut Halves", "portion": "1 oz crushed", "dept": "Produce / Nut Aisle", "cost": "$2.49", "impact": "Omega-3 ALA healthy fats"},
-                        {"item": "Fresh Tart Lemon Zest & Ceylon Cinnamon", "portion": "1 tsp generous", "dept": "Produce / Spice Aisle", "cost": "$1.99", "impact": "Sour flavor and insulin sensitization"}
+                        {"item": "Fresh Tart Green Granny Smith Apple (Sliced Thin)", "portion": "1 medium apple", "dept": "Produce Department", "cost": "0g Net Carbs", "impact": "Pectin soluble fiber slows fructose entry"},
+                        {"item": "Plain Non-Fat Greek Yogurt", "portion": "1/2 cup", "dept": "Dairy Department", "cost": "0g Net Carbs", "impact": "Albumin protein buffer"},
+                        {"item": "Raw California Walnut Halves", "portion": "1 oz crushed", "dept": "Produce / Nut Aisle", "cost": "0g Net Carbs", "impact": "Omega-3 ALA healthy fats"},
+                        {"item": "Fresh Tart Lemon Zest & Ceylon Cinnamon", "portion": "1 tsp generous", "dept": "Produce / Spice Aisle", "cost": "0g Net Carbs", "impact": "Sour flavor and insulin sensitization"}
                     ]
                 },
                 {
@@ -1385,17 +1385,17 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
                     "title": "Frozen Sour Citrus-Blueberry Anti-Spike Ice Pops",
                     "desc": "Refreshing, tangy ice pops crafted from pure cold-pressed lemon and lime juice, wild organic blueberries, unsweetened almond milk, and allulose. Completely sugar-free and non-laxative.",
                     "calories": 25, "net_carbs": 1.5, "total_carbs": 2.5, "fiber": 1.0, "protein": 1.0, "fat": 1.0,
-                    "glycemic_load": "0 (Zero Glycemic Impact)", "cost": "$0.85 / pop",
+                    "glycemic_load": "0 (Zero Glycemic Impact)", "cost": "Metabolic Safe Band",
                     "bom": [
-                        {"item": "Fresh Lime & Lemon Citrus Juice", "portion": "1/4 cup each", "dept": "Produce Department", "cost": "$1.29", "impact": "Citric acid buffers glycemic absorption"},
-                        {"item": "Wild Organic Blueberries (Whole)", "portion": "1/4 cup in batch", "dept": "Produce Department", "cost": "$2.99", "impact": "Antioxidant anthocyanins"},
-                        {"item": "Liquid Allulose / Monk Fruit Sweetener Drops", "portion": "to taste", "dept": "Baking Aisle", "cost": "$3.99", "impact": "100% Sugar-Alcohol Free sweetness"},
-                        {"item": "Unsweetened Almond Milk Base", "portion": "1 cup", "dept": "Dairy Alternative Aisle", "cost": "$1.99", "impact": "Smooth zero-sugar pop texture"}
+                        {"item": "Fresh Lime & Lemon Citrus Juice", "portion": "1/4 cup each", "dept": "Produce Department", "cost": "0g Net Carbs", "impact": "Citric acid buffers glycemic absorption"},
+                        {"item": "Wild Organic Blueberries (Whole)", "portion": "1/4 cup in batch", "dept": "Produce Department", "cost": "0g Net Carbs", "impact": "Antioxidant anthocyanins"},
+                        {"item": "Liquid Allulose / Monk Fruit Sweetener Drops", "portion": "to taste", "dept": "Baking Aisle", "cost": "0g Net Carbs", "impact": "100% Sugar-Alcohol Free sweetness"},
+                        {"item": "Unsweetened Almond Milk Base", "portion": "1 cup", "dept": "Dairy Alternative Aisle", "cost": "0g Net Carbs", "impact": "Smooth zero-sugar pop texture"}
                     ]
                 }
             ]
             primary_rec = recipes[0]
-            gemini_explanation = f"✨ GEMINI SAFE OPTION DISCOVERY: You asked for a sour candy to meet your diabetic goals (NOT chocolate). Traditional commercial sour candy (like Sour Patch Kids or sour gummy worms) contains ~102g of pure corn syrup and sugar per 4 oz—severely spiking blood glucose! Instead, Gemini identified 3 commercial zero-sugar sour gummy/drop products at local grocers within 20 miles (sweetened with Allulose/Monk Fruit, 0% Sorbitol, 0% Maltitol, zero diarrhea risk), plus 3 curated diabetic recipes (under 1g net carbs) with full Bill of Materials (BOM) below."
+            gemini_explanation = "✨ GEMINI SAFE OPTION DISCOVERY: You asked for a sour candy to meet your diabetic goals (NOT chocolate). Traditional commercial sour candy (like Sour Patch Kids or sour gummy worms) contains ~102g of pure corn syrup and sugar per 4 oz—severely spiking blood glucose! Instead, Gemini identified 3 commercial zero-sugar sour gummy/drop products at local grocers within 20 miles (sweetened with Allulose/Monk Fruit, 0% Sorbitol, 0% Maltitol, zero diarrhea risk), plus 3 curated diabetic recipes (under 1g net carbs) with full Bill of Materials (BOM) below."
             trades = [
                 "Select SmartSweets Sour Blast Buddies at Fred Meyer (3g net carbs per full bag, 100% sugar-alcohol free).",
                 "Or prepare the Zero-Sugar Sour Lemon-Berry Collagen Protein Gummies recipe below (0.5g net carbs, 8g protein).",
@@ -1416,13 +1416,13 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
                     "title": "Zero-Sugar Spicy Ceylon Cinnamon Glazed Pecans",
                     "desc": "Crunchy raw Georgia pecan halves tossed with fiery Ceylon cinnamon, ground cloves, granulated allulose, and a touch of cayenne. Ultra-low carb lipid matrix with zero glycemic surge.",
                     "calories": 130, "net_carbs": 2.5, "total_carbs": 4.5, "fiber": 2.0, "protein": 3.0, "fat": 12.0,
-                    "glycemic_load": "1 (Near Zero)", "cost": "$1.85 / serving",
+                    "glycemic_load": "1 (Near Zero)", "cost": "Metabolic Safe Band",
                     "bom": [
-                        {"item": "Raw Georgia Pecan Halves (Healthy Monounsaturated Fat)", "portion": "1 cup in batch (~1/4 cup/serving)", "dept": "Produce / Nut Aisle", "cost": "$3.49", "impact": "High fat/fiber matrix halts glucose entry"},
-                        {"item": "Ground Ceylon Cinnamon & Whole Cloves", "portion": "1 tbsp generous", "dept": "Spice Aisle", "cost": "$2.99", "impact": "Cinnamaldehyde & eugenol sensitize insulin"},
-                        {"item": "Granulated Monk Fruit / Allulose Sweetener (100% Sugar-Alcohol Free)", "portion": "2 tbsp in batch", "dept": "Baking Aisle", "cost": "$4.99", "impact": "Zero glycemic spike • 0% Sorbitol / Maltitol • Zero osmotic diarrhea risk"},
-                        {"item": "Organic Cayenne Pepper & Sea Salt", "portion": "1 pinch for hot bite", "dept": "Spice Aisle", "cost": "$1.99", "impact": "Thermogenic capsaicin"},
-                        {"item": "Pure Madagascar Vanilla Extract & Egg White", "portion": "1 tsp vanilla + 1 egg white glaze", "dept": "Baking / Dairy Aisle", "cost": "$2.29", "impact": "Binding glaze with albumin protein"}
+                        {"item": "Raw Georgia Pecan Halves (Healthy Monounsaturated Fat)", "portion": "1 cup in batch (~1/4 cup/serving)", "dept": "Produce / Nut Aisle", "cost": "0g Net Carbs", "impact": "High fat/fiber matrix halts glucose entry"},
+                        {"item": "Ground Ceylon Cinnamon & Whole Cloves", "portion": "1 tbsp generous", "dept": "Spice Aisle", "cost": "0g Net Carbs", "impact": "Cinnamaldehyde & eugenol sensitize insulin"},
+                        {"item": "Granulated Monk Fruit / Allulose Sweetener (100% Sugar-Alcohol Free)", "portion": "2 tbsp in batch", "dept": "Baking Aisle", "cost": "0g Net Carbs", "impact": "Zero glycemic spike • 0% Sorbitol / Maltitol • Zero osmotic diarrhea risk"},
+                        {"item": "Organic Cayenne Pepper & Sea Salt", "portion": "1 pinch for hot bite", "dept": "Spice Aisle", "cost": "0g Net Carbs", "impact": "Thermogenic capsaicin"},
+                        {"item": "Pure Madagascar Vanilla Extract & Egg White", "portion": "1 tsp vanilla + 1 egg white glaze", "dept": "Baking / Dairy Aisle", "cost": "0g Net Carbs", "impact": "Binding glaze with albumin protein"}
                     ]
                 },
                 {
@@ -1430,12 +1430,12 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
                     "title": "Warm Cinnamon-Glazed Baked Apple Slices with Greek Yogurt & Walnuts",
                     "desc": "Thinly sliced tart Granny Smith apple baked with whole cloves, Ceylon cinnamon, and raw California walnuts over protein-rich Greek yogurt.",
                     "calories": 115, "net_carbs": 8.5, "total_carbs": 12.0, "fiber": 3.5, "protein": 6.0, "fat": 5.0,
-                    "glycemic_load": "3 (Very Low)", "cost": "$1.40 / serving",
+                    "glycemic_load": "3 (Very Low)", "cost": "Metabolic Safe Band",
                     "bom": [
-                        {"item": "Fresh Tart Green Granny Smith Apple", "portion": "1 medium apple sliced thin", "dept": "Produce Department", "cost": "$0.99", "impact": "Pectin soluble fiber slows fructose entry"},
-                        {"item": "Plain Non-Fat Greek Yogurt", "portion": "1/2 cup", "dept": "Dairy Department", "cost": "$1.29", "impact": "Slow albumin protein buffer"},
-                        {"item": "Raw California Walnut Halves", "portion": "1 oz crushed", "dept": "Produce / Nut Aisle", "cost": "$2.49", "impact": "Omega-3 ALA fatty acids"},
-                        {"item": "Ground Ceylon Cinnamon & Whole Cloves", "portion": "1 tsp generous", "dept": "Spice Aisle", "cost": "$2.99", "impact": "Eugenol improves insulin sensitivity"}
+                        {"item": "Fresh Tart Green Granny Smith Apple", "portion": "1 medium apple sliced thin", "dept": "Produce Department", "cost": "0g Net Carbs", "impact": "Pectin soluble fiber slows fructose entry"},
+                        {"item": "Plain Non-Fat Greek Yogurt", "portion": "1/2 cup", "dept": "Dairy Department", "cost": "0g Net Carbs", "impact": "Slow albumin protein buffer"},
+                        {"item": "Raw California Walnut Halves", "portion": "1 oz crushed", "dept": "Produce / Nut Aisle", "cost": "0g Net Carbs", "impact": "Omega-3 ALA fatty acids"},
+                        {"item": "Ground Ceylon Cinnamon & Whole Cloves", "portion": "1 tsp generous", "dept": "Spice Aisle", "cost": "0g Net Carbs", "impact": "Eugenol improves insulin sensitivity"}
                     ]
                 },
                 {
@@ -1443,17 +1443,17 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
                     "title": "Hot Fiery Cinnamon-Clove Steamer & Herbal Chai",
                     "desc": "Whole Ceylon cinnamon quills and whole cloves simmered in unsweetened vanilla almond milk with a touch of allulose for warming fiery cinnamon comfort.",
                     "calories": 25, "net_carbs": 0.5, "total_carbs": 1.5, "fiber": 1.0, "protein": 1.0, "fat": 2.0,
-                    "glycemic_load": "0 (Zero Glycemic Impact)", "cost": "$0.95 / mug",
+                    "glycemic_load": "0 (Zero Glycemic Impact)", "cost": "Metabolic Safe Band",
                     "bom": [
-                        {"item": "Whole Ceylon Cinnamon Sticks (True Cinnamon)", "portion": "2 quills", "dept": "Spice Aisle", "cost": "$3.49", "impact": "Zero sugar, natural cinnamaldehyde"},
-                        {"item": "Whole Dried Cloves", "portion": "1 tsp", "dept": "Spice Aisle", "cost": "$2.99", "impact": "Potent antioxidant & beta-cell protective"},
-                        {"item": "Unsweetened Vanilla Almond Milk", "portion": "8 fl oz", "dept": "Dairy Alternative Aisle", "cost": "$1.99", "impact": "Zero sugar creamy emulsion"},
-                        {"item": "Liquid Allulose / Monk Fruit Drops", "portion": "to taste", "dept": "Baking Aisle", "cost": "$3.99", "impact": "Zero insulin demand"}
+                        {"item": "Whole Ceylon Cinnamon Sticks (True Cinnamon)", "portion": "2 quills", "dept": "Spice Aisle", "cost": "0g Net Carbs", "impact": "Zero sugar, natural cinnamaldehyde"},
+                        {"item": "Whole Dried Cloves", "portion": "1 tsp", "dept": "Spice Aisle", "cost": "0g Net Carbs", "impact": "Potent antioxidant & beta-cell protective"},
+                        {"item": "Unsweetened Vanilla Almond Milk", "portion": "8 fl oz", "dept": "Dairy Alternative Aisle", "cost": "0g Net Carbs", "impact": "Zero sugar creamy emulsion"},
+                        {"item": "Liquid Allulose / Monk Fruit Drops", "portion": "to taste", "dept": "Baking Aisle", "cost": "0g Net Carbs", "impact": "Zero insulin demand"}
                     ]
                 }
             ]
             primary_rec = recipes[0]
-            gemini_explanation = f"✨ GEMINI SAFE OPTION DISCOVERY: You asked for a hot candy to meet your diabetic goals. A traditional 4 oz commercial hot candy (like Red Hots or Atomic Fireballs) contains ~108g of pure refined sugar—drastically exceeding your 45g clinical ceiling! Instead, Gemini identified 3 commercial sugar-free cinnamon candies at local grocers within 20 miles (0g net carbs), plus 3 curated diabetic recipes (under 3g net carbs) with full Bill of Materials (BOM) below."
+            gemini_explanation = "✨ GEMINI SAFE OPTION DISCOVERY: You asked for a hot candy to meet your diabetic goals. A traditional 4 oz commercial hot candy (like Red Hots or Atomic Fireballs) contains ~108g of pure refined sugar—drastically exceeding your 45g clinical ceiling! Instead, Gemini identified 3 commercial sugar-free cinnamon candies at local grocers within 20 miles (0g net carbs), plus 3 curated diabetic recipes (under 3g net carbs) with full Bill of Materials (BOM) below."
             trades = [
                 "Select Dr. John's or Russell Stover Sugar-Free Cinnamon Candies at Fred Meyer / Safeway (0g net carbs, zero glycemic surge).",
                 "Or load the Zero-Sugar Spicy Ceylon Cinnamon Glazed Pecans recipe below for crunchy heat with healthy omega fats.",
@@ -1474,13 +1474,13 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
                     "title": "Zero-Sugar Cottage Cheese Blueberry Protein Cake",
                     "desc": "High-protein diabetic cake utilizing low-fat cottage cheese and egg whites as the moist albumin foundation with fresh organic blueberries. Under 7g net carbs per hearty slice.",
                     "calories": 145, "net_carbs": 6.5, "total_carbs": 8.5, "fiber": 2.0, "protein": 13.5, "fat": 6.0,
-                    "glycemic_load": "2 (Ultra-Low)", "cost": "$1.75 / slice",
+                    "glycemic_load": "2 (Ultra-Low)", "cost": "Metabolic Safe Band",
                     "bom": [
-                        {"item": "Low-Fat Cottage Cheese (High Albumin/Casein Base)", "portion": "1 cup in batch (~1/4 cup/slice)", "dept": "Dairy Department", "cost": "$2.49", "impact": "High protein buffer, blunts glycemic spike"},
-                        {"item": "Fresh Organic Blueberries (Anthocyanin Antioxidant)", "portion": "1/2 cup in batch (~2 tbsp/slice)", "dept": "Produce Department", "cost": "$3.49", "impact": "Bioactive polyphenol fiber (<3g net)"},
-                        {"item": "Large Grade A Eggs & Egg Whites", "portion": "2 eggs in batch (~1/2 egg/slice)", "dept": "Dairy / Egg Department", "cost": "$1.99", "impact": "Protein structural binder"},
-                        {"item": "Almond Flour / Oat Fiber Blend (Low-GI Matrix)", "portion": "1/2 cup in batch", "dept": "Baking Aisle", "cost": "$4.29", "impact": "Grain-free slow digesting starch"},
-                        {"item": "Zero-Sugar Monk Fruit / Allulose Granulated Sweetener (100% Sugar-Alcohol Free)", "portion": "to taste", "dept": "Baking Aisle", "cost": "$4.99", "impact": "Zero glycemic spike • 0% Sorbitol / Maltitol • Zero osmotic diarrhea risk"}
+                        {"item": "Low-Fat Cottage Cheese (High Albumin/Casein Base)", "portion": "1 cup in batch (~1/4 cup/slice)", "dept": "Dairy Department", "cost": "0g Net Carbs", "impact": "High protein buffer, blunts glycemic spike"},
+                        {"item": "Fresh Organic Blueberries (Anthocyanin Antioxidant)", "portion": "1/2 cup in batch (~2 tbsp/slice)", "dept": "Produce Department", "cost": "0g Net Carbs", "impact": "Bioactive polyphenol fiber (<3g net)"},
+                        {"item": "Large Grade A Eggs & Egg Whites", "portion": "2 eggs in batch (~1/2 egg/slice)", "dept": "Dairy / Egg Department", "cost": "0g Net Carbs", "impact": "Protein structural binder"},
+                        {"item": "Almond Flour / Oat Fiber Blend (Low-GI Matrix)", "portion": "1/2 cup in batch", "dept": "Baking Aisle", "cost": "0g Net Carbs", "impact": "Grain-free slow digesting starch"},
+                        {"item": "Zero-Sugar Monk Fruit / Allulose Granulated Sweetener (100% Sugar-Alcohol Free)", "portion": "to taste", "dept": "Baking Aisle", "cost": "0g Net Carbs", "impact": "Zero glycemic spike • 0% Sorbitol / Maltitol • Zero osmotic diarrhea risk"}
                     ]
                 },
                 {
@@ -1488,12 +1488,12 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
                     "title": "3-Ingredient Keto Dark Chocolate Avocado Mousse",
                     "desc": "Silky, antioxidant-packed dark chocolate mousse using ripe Haas avocado as a rich monounsaturated lipid buffer with pure Dutch cocoa and monk fruit.",
                     "calories": 160, "net_carbs": 4.0, "total_carbs": 9.0, "fiber": 5.0, "protein": 4.0, "fat": 14.0,
-                    "glycemic_load": "1 (Near Zero)", "cost": "$1.95 / bowl",
+                    "glycemic_load": "1 (Near Zero)", "cost": "Metabolic Safe Band",
                     "bom": [
-                        {"item": "Fresh Ripe Hass Avocado", "portion": "1 medium avocado", "dept": "Produce Department", "cost": "$1.29", "impact": "Monounsaturated fats flatten glucose curve"},
-                        {"item": "Unsweetened Dutch-Process Dark Cocoa Powder", "portion": "3 tbsp", "dept": "Baking Aisle", "cost": "$2.99", "impact": "Flavanol antioxidants, 2g fiber"},
-                        {"item": "Unsweetened Almond Milk & Pure Vanilla", "portion": "1/4 cup", "dept": "Dairy Alternative Aisle", "cost": "$1.99", "impact": "Zero sugar liquid emulsion"},
-                        {"item": "Liquid Monk Fruit or Allulose Sweetener", "portion": "to taste", "dept": "Baking Aisle", "cost": "$3.99", "impact": "Zero insulin response"}
+                        {"item": "Fresh Ripe Hass Avocado", "portion": "1 medium avocado", "dept": "Produce Department", "cost": "0g Net Carbs", "impact": "Monounsaturated fats flatten glucose curve"},
+                        {"item": "Unsweetened Dutch-Process Dark Cocoa Powder", "portion": "3 tbsp", "dept": "Baking Aisle", "cost": "0g Net Carbs", "impact": "Flavanol antioxidants, 2g fiber"},
+                        {"item": "Unsweetened Almond Milk & Pure Vanilla", "portion": "1/4 cup", "dept": "Dairy Alternative Aisle", "cost": "0g Net Carbs", "impact": "Zero sugar liquid emulsion"},
+                        {"item": "Liquid Monk Fruit or Allulose Sweetener", "portion": "to taste", "dept": "Baking Aisle", "cost": "0g Net Carbs", "impact": "Zero insulin response"}
                     ]
                 },
                 {
@@ -1501,12 +1501,12 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
                     "title": "Warm Cinnamon-Glazed Baked Apple Slices with Greek Yogurt & Walnuts",
                     "desc": "Thinly sliced tart Granny Smith apple baked with whole cloves, Ceylon cinnamon, and raw California walnuts over protein-rich Greek yogurt.",
                     "calories": 115, "net_carbs": 8.5, "total_carbs": 12.0, "fiber": 3.5, "protein": 6.0, "fat": 5.0,
-                    "glycemic_load": "3 (Very Low)", "cost": "$1.40 / serving",
+                    "glycemic_load": "3 (Very Low)", "cost": "Metabolic Safe Band",
                     "bom": [
-                        {"item": "Fresh Tart Green Granny Smith Apple", "portion": "1 medium apple sliced thin", "dept": "Produce Department", "cost": "$0.99", "impact": "Pectin soluble fiber slows fructose entry"},
-                        {"item": "Plain Non-Fat Greek Yogurt", "portion": "1/2 cup", "dept": "Dairy Department", "cost": "$1.29", "impact": "Slow albumin protein buffer"},
-                        {"item": "Raw California Walnut Halves", "portion": "1 oz crushed", "dept": "Produce / Nut Aisle", "cost": "$2.49", "impact": "Omega-3 ALA fatty acids"},
-                        {"item": "Ground Ceylon Cinnamon & Whole Cloves", "portion": "1 tsp generous", "dept": "Spice Aisle", "cost": "$2.99", "impact": "Eugenol improves insulin sensitivity"}
+                        {"item": "Fresh Tart Green Granny Smith Apple", "portion": "1 medium apple sliced thin", "dept": "Produce Department", "cost": "0g Net Carbs", "impact": "Pectin soluble fiber slows fructose entry"},
+                        {"item": "Plain Non-Fat Greek Yogurt", "portion": "1/2 cup", "dept": "Dairy Department", "cost": "0g Net Carbs", "impact": "Slow albumin protein buffer"},
+                        {"item": "Raw California Walnut Halves", "portion": "1 oz crushed", "dept": "Produce / Nut Aisle", "cost": "0g Net Carbs", "impact": "Omega-3 ALA fatty acids"},
+                        {"item": "Ground Ceylon Cinnamon & Whole Cloves", "portion": "1 tsp generous", "dept": "Spice Aisle", "cost": "0g Net Carbs", "impact": "Eugenol improves insulin sensitivity"}
                     ]
                 }
             ]
@@ -1532,12 +1532,12 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
                     "title": "3-Ingredient Keto Dark Chocolate Avocado Mousse",
                     "desc": "Silky, antioxidant-packed dark chocolate mousse using ripe Haas avocado as a rich monounsaturated lipid buffer with pure Dutch cocoa and monk fruit.",
                     "calories": 160, "net_carbs": 4.0, "total_carbs": 9.0, "fiber": 5.0, "protein": 4.0, "fat": 14.0,
-                    "glycemic_load": "1 (Near Zero)", "cost": "$1.95 / bowl",
+                    "glycemic_load": "1 (Near Zero)", "cost": "Metabolic Safe Band",
                     "bom": [
-                        {"item": "Fresh Ripe Hass Avocado", "portion": "1 medium avocado", "dept": "Produce Department", "cost": "$1.29", "impact": "Monounsaturated fats flatten glucose curve"},
-                        {"item": "Unsweetened Dutch-Process Dark Cocoa Powder", "portion": "3 tbsp", "dept": "Baking Aisle", "cost": "$2.99", "impact": "Flavanol antioxidants, 2g fiber"},
-                        {"item": "Unsweetened Almond Milk & Pure Vanilla", "portion": "1/4 cup", "dept": "Dairy Alternative Aisle", "cost": "$1.99", "impact": "Zero sugar liquid emulsion"},
-                        {"item": "Liquid Monk Fruit or Allulose Sweetener", "portion": "to taste", "dept": "Baking Aisle", "cost": "$3.99", "impact": "Zero insulin response"}
+                        {"item": "Fresh Ripe Hass Avocado", "portion": "1 medium avocado", "dept": "Produce Department", "cost": "0g Net Carbs", "impact": "Monounsaturated fats flatten glucose curve"},
+                        {"item": "Unsweetened Dutch-Process Dark Cocoa Powder", "portion": "3 tbsp", "dept": "Baking Aisle", "cost": "0g Net Carbs", "impact": "Flavanol antioxidants, 2g fiber"},
+                        {"item": "Unsweetened Almond Milk & Pure Vanilla", "portion": "1/4 cup", "dept": "Dairy Alternative Aisle", "cost": "0g Net Carbs", "impact": "Zero sugar liquid emulsion"},
+                        {"item": "Liquid Monk Fruit or Allulose Sweetener", "portion": "to taste", "dept": "Baking Aisle", "cost": "0g Net Carbs", "impact": "Zero insulin response"}
                     ]
                 },
                 {
@@ -1545,13 +1545,13 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
                     "title": "Zero-Sugar Cottage Cheese Blueberry Protein Cake",
                     "desc": "High-protein diabetic cake utilizing low-fat cottage cheese and egg whites as the moist albumin foundation with fresh organic blueberries. Under 7g net carbs per hearty slice.",
                     "calories": 145, "net_carbs": 6.5, "total_carbs": 8.5, "fiber": 2.0, "protein": 13.5, "fat": 6.0,
-                    "glycemic_load": "2 (Ultra-Low)", "cost": "$1.75 / slice",
+                    "glycemic_load": "2 (Ultra-Low)", "cost": "Metabolic Safe Band",
                     "bom": [
-                        {"item": "Low-Fat Cottage Cheese (High Albumin/Casein Base)", "portion": "1 cup in batch (~1/4 cup/slice)", "dept": "Dairy Department", "cost": "$2.49", "impact": "High protein buffer, blunts glycemic spike"},
-                        {"item": "Fresh Organic Blueberries (Anthocyanin Antioxidant)", "portion": "1/2 cup in batch (~2 tbsp/slice)", "dept": "Produce Department", "cost": "$3.49", "impact": "Bioactive polyphenol fiber (<3g net)"},
-                        {"item": "Large Grade A Eggs & Egg Whites", "portion": "2 eggs in batch (~1/2 egg/slice)", "dept": "Dairy / Egg Department", "cost": "$1.99", "impact": "Protein structural binder"},
-                        {"item": "Almond Flour / Oat Fiber Blend (Low-GI Matrix)", "portion": "1/2 cup in batch", "dept": "Baking Aisle", "cost": "$4.29", "impact": "Grain-free slow digesting starch"},
-                        {"item": "Zero-Sugar Monk Fruit / Allulose Granulated Sweetener (100% Sugar-Alcohol Free)", "portion": "to taste", "dept": "Baking Aisle", "cost": "$4.99", "impact": "Zero glycemic spike • 0% Sorbitol / Maltitol • Zero osmotic diarrhea risk"}
+                        {"item": "Low-Fat Cottage Cheese (High Albumin/Casein Base)", "portion": "1 cup in batch (~1/4 cup/slice)", "dept": "Dairy Department", "cost": "0g Net Carbs", "impact": "High protein buffer, blunts glycemic spike"},
+                        {"item": "Fresh Organic Blueberries (Anthocyanin Antioxidant)", "portion": "1/2 cup in batch (~2 tbsp/slice)", "dept": "Produce Department", "cost": "0g Net Carbs", "impact": "Bioactive polyphenol fiber (<3g net)"},
+                        {"item": "Large Grade A Eggs & Egg Whites", "portion": "2 eggs in batch (~1/2 egg/slice)", "dept": "Dairy / Egg Department", "cost": "0g Net Carbs", "impact": "Protein structural binder"},
+                        {"item": "Almond Flour / Oat Fiber Blend (Low-GI Matrix)", "portion": "1/2 cup in batch", "dept": "Baking Aisle", "cost": "0g Net Carbs", "impact": "Grain-free slow digesting starch"},
+                        {"item": "Zero-Sugar Monk Fruit / Allulose Granulated Sweetener (100% Sugar-Alcohol Free)", "portion": "to taste", "dept": "Baking Aisle", "cost": "0g Net Carbs", "impact": "Zero glycemic spike • 0% Sorbitol / Maltitol • Zero osmotic diarrhea risk"}
                     ]
                 },
                 {
@@ -1559,12 +1559,12 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
                     "title": "Warm Cinnamon-Glazed Baked Apple Slices with Greek Yogurt & Walnuts",
                     "desc": "Thinly sliced tart Granny Smith apple baked with whole cloves, Ceylon cinnamon, and raw California walnuts over protein-rich Greek yogurt.",
                     "calories": 115, "net_carbs": 8.5, "total_carbs": 12.0, "fiber": 3.5, "protein": 6.0, "fat": 5.0,
-                    "glycemic_load": "3 (Very Low)", "cost": "$1.40 / serving",
+                    "glycemic_load": "3 (Very Low)", "cost": "Metabolic Safe Band",
                     "bom": [
-                        {"item": "Fresh Tart Green Granny Smith Apple", "portion": "1 medium apple sliced thin", "dept": "Produce Department", "cost": "$0.99", "impact": "Pectin soluble fiber slows fructose entry"},
-                        {"item": "Plain Non-Fat Greek Yogurt", "portion": "1/2 cup", "dept": "Dairy Department", "cost": "$1.29", "impact": "Slow albumin protein buffer"},
-                        {"item": "Raw California Walnut Halves", "portion": "1 oz crushed", "dept": "Produce / Nut Aisle", "cost": "$2.49", "impact": "Omega-3 ALA fatty acids"},
-                        {"item": "Ground Ceylon Cinnamon & Whole Cloves", "portion": "1 tsp generous", "dept": "Spice Aisle", "cost": "$2.99", "impact": "Eugenol improves insulin sensitivity"}
+                        {"item": "Fresh Tart Green Granny Smith Apple", "portion": "1 medium apple sliced thin", "dept": "Produce Department", "cost": "0g Net Carbs", "impact": "Pectin soluble fiber slows fructose entry"},
+                        {"item": "Plain Non-Fat Greek Yogurt", "portion": "1/2 cup", "dept": "Dairy Department", "cost": "0g Net Carbs", "impact": "Slow albumin protein buffer"},
+                        {"item": "Raw California Walnut Halves", "portion": "1 oz crushed", "dept": "Produce / Nut Aisle", "cost": "0g Net Carbs", "impact": "Omega-3 ALA fatty acids"},
+                        {"item": "Ground Ceylon Cinnamon & Whole Cloves", "portion": "1 tsp generous", "dept": "Spice Aisle", "cost": "0g Net Carbs", "impact": "Eugenol improves insulin sensitivity"}
                     ]
                 }
             ]
@@ -1590,13 +1590,13 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
                     "title": "Zero-Sugar Cottage Cheese Blueberry Protein Cake",
                     "desc": "High-protein diabetic cake utilizing low-fat cottage cheese and egg whites as the moist albumin foundation with fresh organic blueberries. Under 7g net carbs per hearty slice.",
                     "calories": 145, "net_carbs": 6.5, "total_carbs": 8.5, "fiber": 2.0, "protein": 13.5, "fat": 6.0,
-                    "glycemic_load": "2 (Ultra-Low)", "cost": "$1.75 / slice",
+                    "glycemic_load": "2 (Ultra-Low)", "cost": "Metabolic Safe Band",
                     "bom": [
-                        {"item": "Low-Fat Cottage Cheese (High Albumin/Casein Base)", "portion": "1 cup in batch (~1/4 cup/slice)", "dept": "Dairy Department", "cost": "$2.49", "impact": "High protein buffer, blunts glycemic spike"},
-                        {"item": "Fresh Organic Blueberries (Anthocyanin Antioxidant)", "portion": "1/2 cup in batch (~2 tbsp/slice)", "dept": "Produce Department", "cost": "$3.49", "impact": "Bioactive polyphenol fiber (<3g net)"},
-                        {"item": "Large Grade A Eggs & Egg Whites", "portion": "2 eggs in batch (~1/2 egg/slice)", "dept": "Dairy / Egg Department", "cost": "$1.99", "impact": "Protein structural binder"},
-                        {"item": "Almond Flour / Oat Fiber Blend (Low-GI Matrix)", "portion": "1/2 cup in batch", "dept": "Baking Aisle", "cost": "$4.29", "impact": "Grain-free slow digesting starch"},
-                        {"item": "Zero-Sugar Monk Fruit / Allulose Granulated Sweetener (100% Sugar-Alcohol Free)", "portion": "to taste", "dept": "Baking Aisle", "cost": "$4.99", "impact": "Zero glycemic spike • 0% Sorbitol / Maltitol • Zero osmotic diarrhea risk"}
+                        {"item": "Low-Fat Cottage Cheese (High Albumin/Casein Base)", "portion": "1 cup in batch (~1/4 cup/slice)", "dept": "Dairy Department", "cost": "0g Net Carbs", "impact": "High protein buffer, blunts glycemic spike"},
+                        {"item": "Fresh Organic Blueberries (Anthocyanin Antioxidant)", "portion": "1/2 cup in batch (~2 tbsp/slice)", "dept": "Produce Department", "cost": "0g Net Carbs", "impact": "Bioactive polyphenol fiber (<3g net)"},
+                        {"item": "Large Grade A Eggs & Egg Whites", "portion": "2 eggs in batch (~1/2 egg/slice)", "dept": "Dairy / Egg Department", "cost": "0g Net Carbs", "impact": "Protein structural binder"},
+                        {"item": "Almond Flour / Oat Fiber Blend (Low-GI Matrix)", "portion": "1/2 cup in batch", "dept": "Baking Aisle", "cost": "0g Net Carbs", "impact": "Grain-free slow digesting starch"},
+                        {"item": "Zero-Sugar Monk Fruit / Allulose Granulated Sweetener (100% Sugar-Alcohol Free)", "portion": "to taste", "dept": "Baking Aisle", "cost": "0g Net Carbs", "impact": "Zero glycemic spike • 0% Sorbitol / Maltitol • Zero osmotic diarrhea risk"}
                     ]
                 },
                 {
@@ -1604,12 +1604,12 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
                     "title": "3-Ingredient Keto Dark Chocolate Avocado Mousse",
                     "desc": "Silky, antioxidant-packed dark chocolate mousse using ripe Haas avocado as a rich monounsaturated lipid buffer with pure Dutch cocoa and monk fruit.",
                     "calories": 160, "net_carbs": 4.0, "total_carbs": 9.0, "fiber": 5.0, "protein": 4.0, "fat": 14.0,
-                    "glycemic_load": "1 (Near Zero)", "cost": "$1.95 / bowl",
+                    "glycemic_load": "1 (Near Zero)", "cost": "Metabolic Safe Band",
                     "bom": [
-                        {"item": "Fresh Ripe Haas Avocado", "portion": "1 medium avocado", "dept": "Produce Department", "cost": "$1.29", "impact": "Monounsaturated fats flatten glucose curve"},
-                        {"item": "Unsweetened Dutch-Process Dark Cocoa Powder", "portion": "3 tbsp", "dept": "Baking Aisle", "cost": "$2.99", "impact": "Flavanol antioxidants, 2g fiber"},
-                        {"item": "Unsweetened Almond Milk & Pure Vanilla", "portion": "1/4 cup", "dept": "Dairy Alternative Aisle", "cost": "$1.99", "impact": "Zero sugar liquid emulsion"},
-                        {"item": "Liquid Monk Fruit or Allulose Sweetener", "portion": "to taste", "dept": "Baking Aisle", "cost": "$3.99", "impact": "Zero insulin response"}
+                        {"item": "Fresh Ripe Haas Avocado", "portion": "1 medium avocado", "dept": "Produce Department", "cost": "0g Net Carbs", "impact": "Monounsaturated fats flatten glucose curve"},
+                        {"item": "Unsweetened Dutch-Process Dark Cocoa Powder", "portion": "3 tbsp", "dept": "Baking Aisle", "cost": "0g Net Carbs", "impact": "Flavanol antioxidants, 2g fiber"},
+                        {"item": "Unsweetened Almond Milk & Pure Vanilla", "portion": "1/4 cup", "dept": "Dairy Alternative Aisle", "cost": "0g Net Carbs", "impact": "Zero sugar liquid emulsion"},
+                        {"item": "Liquid Monk Fruit or Allulose Sweetener", "portion": "to taste", "dept": "Baking Aisle", "cost": "0g Net Carbs", "impact": "Zero insulin response"}
                     ]
                 },
                 {
@@ -1617,12 +1617,12 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
                     "title": "Warm Cinnamon-Glazed Baked Apple Slices with Greek Yogurt & Walnuts",
                     "desc": "Thinly sliced tart Granny Smith apple baked with whole cloves, Ceylon cinnamon, and raw California walnuts over protein-rich Greek yogurt.",
                     "calories": 115, "net_carbs": 8.5, "total_carbs": 12.0, "fiber": 3.5, "protein": 6.0, "fat": 5.0,
-                    "glycemic_load": "3 (Very Low)", "cost": "$1.40 / serving",
+                    "glycemic_load": "3 (Very Low)", "cost": "Metabolic Safe Band",
                     "bom": [
-                        {"item": "Fresh Tart Green Granny Smith Apple", "portion": "1 medium apple sliced thin", "dept": "Produce Department", "cost": "$0.99", "impact": "Pectin soluble fiber slows fructose entry"},
-                        {"item": "Plain Non-Fat Greek Yogurt", "portion": "1/2 cup", "dept": "Dairy Department", "cost": "$1.29", "impact": "Slow albumin protein buffer"},
-                        {"item": "Raw California Walnut Halves", "portion": "1 oz crushed", "dept": "Produce / Nut Aisle", "cost": "$2.49", "impact": "Omega-3 ALA fatty acids"},
-                        {"item": "Ground Ceylon Cinnamon & Whole Cloves", "portion": "1 tsp generous", "dept": "Spice Aisle", "cost": "$2.99", "impact": "Eugenol improves insulin sensitivity"}
+                        {"item": "Fresh Tart Green Granny Smith Apple", "portion": "1 medium apple sliced thin", "dept": "Produce Department", "cost": "0g Net Carbs", "impact": "Pectin soluble fiber slows fructose entry"},
+                        {"item": "Plain Non-Fat Greek Yogurt", "portion": "1/2 cup", "dept": "Dairy Department", "cost": "0g Net Carbs", "impact": "Slow albumin protein buffer"},
+                        {"item": "Raw California Walnut Halves", "portion": "1 oz crushed", "dept": "Produce / Nut Aisle", "cost": "0g Net Carbs", "impact": "Omega-3 ALA fatty acids"},
+                        {"item": "Ground Ceylon Cinnamon & Whole Cloves", "portion": "1 tsp generous", "dept": "Spice Aisle", "cost": "0g Net Carbs", "impact": "Eugenol improves insulin sensitivity"}
                     ]
                 }
             ]
@@ -1678,7 +1678,7 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
             "protein": 13.5,
             "fat": 6.0,
             "glycemic_load": "2 (Ultra-Low)",
-            "estimated_cost": "$1.75 / slice",
+            "estimated_cost": "6.5g Net Carbs",
             "meets_goal": True,
             "is_restaurant": False,
             "identified_items": [
@@ -1689,11 +1689,11 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
                 {"name": "Zero-Sugar Monk Fruit / Allulose Granulated Sweetener", "portion": "to taste", "net_carbs": 0.0, "fiber": 0.0, "protein": 0.0, "fat": 0.0, "calories": 0}
             ],
             "bom": [
-                {"item": "Low-Fat Cottage Cheese (High Albumin/Casein Base)", "portion": "1 cup in batch (~1/4 cup/slice)", "dept": "Dairy Department", "cost": "$2.49", "impact": "High protein buffer, blunts glycemic spike"},
-                {"item": "Fresh Organic Blueberries (Anthocyanin Antioxidant)", "portion": "1/2 cup in batch (~2 tbsp/slice)", "dept": "Produce Department", "cost": "$3.49", "impact": "Bioactive polyphenol fiber (<3g net)"},
-                {"item": "Large Grade A Eggs & Egg Whites", "portion": "2 eggs in batch (~1/2 egg/slice)", "dept": "Dairy / Egg Department", "cost": "$1.99", "impact": "Protein structural binder"},
-                {"item": "Almond Flour / Oat Fiber Blend (Low-GI Matrix)", "portion": "1/2 cup in batch", "dept": "Baking Aisle", "cost": "$4.29", "impact": "Grain-free slow digesting starch"},
-                {"item": "Zero-Sugar Monk Fruit / Allulose Granulated Sweetener (100% Sugar-Alcohol Free)", "portion": "to taste", "dept": "Baking Aisle", "cost": "$4.99", "impact": "Zero glycemic spike • 0% Sorbitol / Maltitol • Zero osmotic diarrhea risk"}
+                {"item": "Low-Fat Cottage Cheese (High Albumin/Casein Base)", "portion": "1 cup in batch (~1/4 cup/slice)", "dept": "Dairy Department", "cost": "0g Net Carbs", "impact": "High protein buffer, blunts glycemic spike"},
+                {"item": "Fresh Organic Blueberries (Anthocyanin Antioxidant)", "portion": "1/2 cup in batch (~2 tbsp/slice)", "dept": "Produce Department", "cost": "0g Net Carbs", "impact": "Bioactive polyphenol fiber (<3g net)"},
+                {"item": "Large Grade A Eggs & Egg Whites", "portion": "2 eggs in batch (~1/2 egg/slice)", "dept": "Dairy / Egg Department", "cost": "0g Net Carbs", "impact": "Protein structural binder"},
+                {"item": "Almond Flour / Oat Fiber Blend (Low-GI Matrix)", "portion": "1/2 cup in batch", "dept": "Baking Aisle", "cost": "0g Net Carbs", "impact": "Grain-free slow digesting starch"},
+                {"item": "Zero-Sugar Monk Fruit / Allulose Granulated Sweetener (100% Sugar-Alcohol Free)", "portion": "to taste", "dept": "Baking Aisle", "cost": "0g Net Carbs", "impact": "Zero glycemic spike • 0% Sorbitol / Maltitol • Zero osmotic diarrhea risk"}
             ],
             "projected_spike": "+6 to +12 mg/dL (Homeostatic Target Zone)",
             "gemini_notes": "✨ HOME RECIPE MATERIALS ANALYSIS: Low-fat cottage cheese and egg whites supply an albumin/casein protein sponge that decelerates gastric emptying, while almond flour and blueberries maintain net carbs under 7g per slice.",
@@ -2197,7 +2197,7 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
                     {"name": "Diet Soda / Zero Sugar Beverage", "portion": "32 oz", "net_carbs": 0, "fiber": 0, "protein": 0, "calories": 0}
                 ],
                 "projected_spike": "+75 to +90 mg/dL excursion",
-                "gemini_notes": "Carb load breakdown: 50g from 2 buns + 44g from hand-cut fries + 1g tartar. Cost: ~$12.40.",
+                "gemini_notes": "Carb load breakdown: 50g from 2 buns + 44g from hand-cut fries + 1g tartar. Metabolic Burden: High glycemic load",
                 "trade_alternatives": [
                     "Save 1 cheeseburger for dinner (-25g net carbs) -> 70g net.",
                     "Eat half the fries (-22g net carbs) -> 73g net."
@@ -2225,7 +2225,7 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
                     {"name": "Toasted Hamburger Bun", "portion": "1 bun", "net_carbs": 24, "fiber": 1}
                 ],
                 "projected_spike": "+18 to +24 mg/dL (TIR Maintained)",
-                "gemini_notes": "EXCELLENT DIABETIC COMPLIANCE: 28g Net Carbs is well below your 45g ceiling. Cost: ~$5.30.",
+                "gemini_notes": "EXCELLENT DIABETIC COMPLIANCE: 28g Net Carbs is well below your 45g ceiling. Metabolic Burden: High glycemic load",
                 "trade_alternatives": [
                     "Omit bun or order lettuce-wrapped to reduce net carbs to 4g."
                 ],
@@ -2390,7 +2390,7 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
         elif any(w in text for w in ["tots", "tater tots"]):
             r_comps.append({"name": "Deep-Fried Tater Tots Basket", "portion": "approx 6 oz", "net_carbs": 50.0, "fiber": 4.0, "protein": 3.5, "fat": 26.0, "calories": 440})
         elif any(w in text for w in ["mashed potato", "mashed potatoes"]):
-            has_gv = "gravy" in text or not ("no gravy" in text)
+            has_gv = "gravy" in text or "no gravy" not in text
             r_comps.append({"name": f"Garlic Mashed Potatoes{' with Country Gravy' if has_gv else ''}", "portion": "1 cup", "net_carbs": 32.0, "fiber": 3.0, "protein": 4.0, "fat": 9.0, "calories": 230})
         elif any(w in text for w in ["baked potato"]):
             is_ld = any(w in text for w in ["loaded", "bacon", "sour cream", "butter", "cheese"])
@@ -2517,7 +2517,7 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
             })
         if any(w in text for w in ["hash brown", "hashbrown", "hash browns", "hashbrowns"]):
             r_comps.append({"name": "Crispy Diner Griddled Hash Browns", "portion": "approx 5 oz", "net_carbs": 34.0, "fiber": 3.5, "protein": 3.0, "fat": 15.0, "calories": 280})
-        if any(w in text for w in ["bacon", "sausage"]) and not ("burger" in text):
+        if any(w in text for w in ["bacon", "sausage"]) and "burger" not in text:
             r_comps.append({"name": "Smoked Bacon Strips / Breakfast Sausage Links (3 strips)", "portion": "3 pieces", "net_carbs": 1.0, "fiber": 0.0, "protein": 11.0, "fat": 14.0, "calories": 170})
         if any(w in text for w in ["egg", "eggs", "omelet", "scramble"]) and not ("roll" in text or "rice" in text):
             r_comps.append({"name": "Fresh Farm Eggs (2 cooked your way)", "portion": "2 large eggs", "net_carbs": 1.0, "fiber": 0.0, "protein": 13.0, "fat": 12.0, "calories": 165})
@@ -4280,27 +4280,6 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                     analysis["meal_id"] = meal_id
                     analysis["timestamp"] = ts
                     analysis["status"] = "COMMITTED_TO_DB"
-
-                    # Automatically upsert into popular_meals (Meal Pantry) so all cell-uploaded meals & snacks appear in Meal Pantry
-                    try:
-                        upsert_popular_meal({
-                            "id": f"cell_{meal_id}",
-                            "title": analysis["meal_name"],
-                            "description": analysis.get("gemini_notes", desc),
-                            "calories": analysis.get("calories", 0),
-                            "net_carbs": analysis.get("net_carbs", 0),
-                            "total_carbs": analysis.get("total_carbs", 0),
-                            "fiber": analysis.get("fiber", 0),
-                            "protein": analysis.get("protein", 0),
-                            "fat": analysis.get("fat", 0),
-                            "glycemic_load": analysis.get("glycemic_load", "LOW"),
-                            "tips": [analysis.get("gemini_notes", "")],
-                            "meets_goal": 1 if analysis.get("meets_goal", True) else 0,
-                            "is_custom": 1
-                        })
-                        print(f"[✔] Upserted into Meal Pantry (popular_meals): cell_{meal_id} - '{analysis['meal_name']}'")
-                    except Exception as e_pop:
-                        print(f"[!] Warning: failed to upsert cell meal to popular_meals: {e_pop}")
                     print(f"[✔] Gemini Meal Analyzed & Committed to SQLite: ID #{meal_id} - '{analysis['meal_name']}' ({analysis['net_carbs']}g net carbs)")
                 else:
                     analysis["status"] = "ANALYSIS_PREVIEW"
@@ -4691,7 +4670,7 @@ def run():
     socketserver.ThreadingTCPServer.allow_reuse_address = True
     with socketserver.ThreadingTCPServer(("", PORT), VeepooHandler) as httpd:
         print(f"[*] HTTP Telemetry Server running on http://localhost:{PORT}")
-        print(f"[*] Background BLE Auto-Sync active. Standby for watch proximity...")
+        print("[*] Background BLE Auto-Sync active. Standby for watch proximity...")
         try:
             httpd.serve_forever()
         except KeyboardInterrupt:

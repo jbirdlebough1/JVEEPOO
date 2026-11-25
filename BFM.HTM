@@ -15280,20 +15280,21 @@ function switchTab(tabId) {
           }
         }
 
-        const parseClientWeightOz = (str) => {
-          const m = str.match(/(\d+(?:\.\d+)?)\s*(?:oz|ounces?|ounce\b)/i);
-          if (m) return parseFloat(m[1]);
-          const mg = str.match(/(\d+(?:\.\d+)?)\s*(?:g|grams?)\b/i);
-          if (mg) return parseFloat(mg[1]) / 28.35;
-          return null;
-        };
-        const cWeightOz = parseClientWeightOz(rawText);
+        if (!data) {
+          const parseClientWeightOz = (str) => {
+            const m = str.match(/(\d+(?:\.\d+)?)\s*(?:oz|ounces?|ounce\b)/i);
+            if (m) return parseFloat(m[1]);
+            const mg = str.match(/(\d+(?:\.\d+)?)\s*(?:g|grams?)\b/i);
+            if (mg) return parseFloat(mg[1]) / 28.35;
+            return null;
+          };
+          const cWeightOz = parseClientWeightOz(rawText);
 
-        // Explicit Nutrition Label Regex Parser on Client
-        const mCarbs = text.match(/(?:total\s+carbs?|carbohydrates?|net\s+carbs?|carbs?)\s*[:=]?\s*(\d+(?:\.\d+)?)\s*g?/i);
-        const mCals = text.match(/(?:calories?|energy|kcal)\s*[:=]?\s*(\d+)/i);
-        const mFib = text.match(/(?:dietary\s+fiber|fiber|fibre)\s*[:=]?\s*(\d+(?:\.\d+)?)\s*g?/i);
-        const mSugar = text.match(/(?:total\s+sugars?|added\s+sugars?|sugars?)\s*[:=]?\s*(\d+(?:\.\d+)?)\s*g?/i);
+          // Explicit Nutrition Label Regex Parser on Client
+          const mCarbs = text.match(/(?:total\s+carbs?|carbohydrates?|net\s+carbs?|carbs?)\s*[:=]?\s*(\d+(?:\.\d+)?)\s*g?/i);
+          const mCals = text.match(/(?:calories?|energy|kcal)\s*[:=]?\s*(\d+)/i);
+          const mFib = text.match(/(?:dietary\s+fiber|fiber|fibre)\s*[:=]?\s*(\d+(?:\.\d+)?)\s*g?/i);
+          const mSugar = text.match(/(?:total\s+sugars?|added\s+sugars?|sugars?)\s*[:=]?\s*(\d+(?:\.\d+)?)\s*g?/i);
 
         if (mCarbs && (mCals || mFib || mSugar)) {
           const totC = parseFloat(mCarbs[1]);
@@ -15751,6 +15752,7 @@ function switchTab(tabId) {
           };
         }
       }
+    }
 
       currentAnalyzedMealData = data;
 
