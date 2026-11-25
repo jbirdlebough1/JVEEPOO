@@ -296,7 +296,7 @@ def init_database():
             CREATE TABLE IF NOT EXISTS feeling_entries (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 timestamp TEXT NOT NULL,
-                source TEXT DEFAULT 'SHUTTLECRAFT_CELL',
+                source TEXT DEFAULT 'MOBILE_PHONE_CELL',
                 raw_text TEXT NOT NULL,
                 topic TEXT NOT NULL,
                 pain_score REAL DEFAULT 0,
@@ -327,12 +327,12 @@ def init_database():
             cur.execute("""
                 INSERT OR REPLACE INTO user_profiles
                 (user_uid, user_callsign, assigned_registry, baseline_a1c, database_filename, created_at, status)
-                VALUES ('USR-JOHN-01', 'John', 'NCC-5010-A', 6.5, 'telemetry.db', ?, 'ACTIVE')
+                VALUES ('USR-JOHN-01', 'John', 'BFM-5010-01', 6.5, 'telemetry.db', ?, 'ACTIVE')
             """, (now_cell_iso,))
             cur.execute("""
                 INSERT OR REPLACE INTO registered_cells
                 (cell_id, registry_number, user_uid, user_callsign, linked_watch_mac, phone_name, phone_esn, pairing_token, registered_at, status)
-                VALUES ('Cell 1', 'NCC-5010-A', 'USR-JOHN-01', 'John', 'ba:74:a4:b5:dc:75', 'John Mobile (Shuttlecraft-A)', 'ESN-JOHN-01', 'token-john-5010-01', ?, 'ACTIVE')
+                VALUES ('Cell 1', 'BFM-5010-01', 'USR-JOHN-01', 'John', 'ba:74:a4:b5:dc:75', 'John Mobile Phone', 'ESN-JOHN-01', 'token-john-5010-01', ?, 'ACTIVE')
             """, (now_cell_iso,))
             conn.commit()
 
@@ -4506,7 +4506,7 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                 cell_id = payload.get("cell_id", f"Cell {datetime.datetime.now().strftime('%M%S')}")
                 user_uid = payload.get("user_uid", "USR-9482-NEW")
                 user_callsign = payload.get("user_callsign", "Family Member")
-                registry_number = payload.get("assigned_registry", "NCC-5010-A")
+                registry_number = payload.get("assigned_registry", "BFM-5010-01")
                 linked_watch_mac = payload.get("linked_watch_mac", "")
                 target_a1c = float(payload.get("target_a1c", 6.5))
                 pairing_token = str(uuid.uuid4())
@@ -4638,13 +4638,13 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                             f_notes = item.get("notes") or "Docked from Mobile Field Queue"
                             cur.execute("""
                                 INSERT INTO feeling_entries (timestamp, source, raw_text, topic, pain_score, mood_score, notes)
-                                VALUES (?, 'SHUTTLECRAFT_CELL', ?, ?, ?, ?, ?)
+                                VALUES (?, 'MOBILE_PHONE_CELL', ?, ?, ?, ?, ?)
                             """, (f_time, f_raw, f_top, f_pain, f_mood, f_notes))
                             docked_count += 1
                             continue
 
                         m_time = item.get("intake_timestamp") or item.get("timestamp") or now_iso
-                        m_name = item.get("meal_name", "Shuttlecraft Intake")
+                        m_name = item.get("meal_name", "Mobile Intake")
                         cals = item.get("calories", 0)
                         nc = item.get("net_carbs", 0)
                         tc = item.get("total_carbs", nc)
@@ -4657,7 +4657,7 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                         cur.execute("""
                             INSERT INTO meal_entries 
                             (timestamp, meal_name, source, calories, net_carbs, total_carbs, fiber, protein, fat, glycemic_load, vendor_matched, gemini_notes, meets_goal, raw_json, user_uid)
-                            VALUES (?, ?, 'SHUTTLE_DOCK', ?, ?, ?, ?, ?, ?, ?, 1, ?, 1, ?, ?)
+                            VALUES (?, ?, 'PHONE_SYNC', ?, ?, ?, ?, ?, ?, ?, 1, ?, 1, ?, ?)
                         """, (m_time, m_name, cals, nc, tc, fib, prot, fat, gl, item.get("audio_transcript", ""), raw_json_str, cell_uid))
                         docked_count += 1
 

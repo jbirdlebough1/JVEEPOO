@@ -1765,7 +1765,7 @@
         </div>
         <div class="lcars-time-block">
           <div class="actual-datetime" id="actualDateTime">FRIDAY, NOV 20, 2026 9:55:00 AM PST</div>
-          <div class="lcars-stardate" id="stardateClock">BUILD beta.00.01.0032</div>
+          <div class="lcars-stardate" id="stardateClock">BUILD beta.00.01.0034</div>
         </div>
         
       </div>
@@ -1844,7 +1844,7 @@
           <div class="ribbon-value" id="ribbonComm" style="color: #ef4444;">DISCONNECTED (CLICK TO CONNECT)</div>
         </div>
         <div class="ribbon-item blue">
-          <div class="ribbon-label">AUTHORIZED WATCH TRANSPONDER</div>
+          <div class="ribbon-label">AUTHORIZED SMARTWATCH SENSORS</div>
           <div class="ribbon-value" id="ribbonDevice">UNASSIGNED (CLICK TO DISCOVER)</div>
         </div>
         <div class="ribbon-item lilac">
@@ -1972,7 +1972,7 @@
                   READY: PRESS [START FULL SCAN SEQUENCE] TO BEGIN
                 </span>
                 <div id="lblActiveScanDetails" style="font-size: 0.82rem; color: var(--lcars-gray); margin-top: 3px;">
-                  All 6 biometric transponders on Model 5010 will be acquired in non-interfering sequential stages.
+                  All 6 biometric sensors on Model 5010 will be acquired in non-interfering sequential stages.
                 </div>
               </div>
               <div style="display: flex; align-items: center; gap: 12px;">
@@ -2158,7 +2158,7 @@
             <div>
               <span style="font-size: 1.5rem; font-weight: 800; color: #ea580c; font-family: var(--lcars-mono);">14. HARDWARE DIAGNOSTICS &amp; TROUBLESHOOTING</span>
               <div style="font-size: 0.85rem; color: #475569; margin-top: 2px;">
-                SUBSPACE BLE RADIO RECOVERY • PORT 8899 DAEMON VERIFICATION • PACKET LOSS TELEMETRY
+                BLUETOOTH BLE RADIO RECOVERY • PORT 8899 DAEMON VERIFICATION • PACKET LOSS TELEMETRY
               </div>
             </div>
             <span class="badge" style="background: #ffedd5; color: #9a3412; border: 1.5px solid #f97316; font-size: 0.82rem; font-weight: 800; padding: 4px 10px;">
@@ -2169,7 +2169,7 @@
           <!-- Section 1: Live Radio & Telemetry Bridge Health -->
           <div class="setup-section" style="border-left: 8px solid #0284c7; background: #ffffff !important; border: 1.5px solid #cbd5e1; border-radius: 8px; padding: 16px; margin-bottom: 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.04);">
             <div class="setup-section-title" style="border-bottom: 1.5px solid #e2e8f0; padding-bottom: 6px; margin-bottom: 12px; display: flex; justify-content: space-between;">
-              <span style="color: #0369a1; font-weight: 800;">01. SUBSPACE TELEMETRY BRIDGE (PORT 8899) DIAGNOSTICS</span>
+              <span style="color: #0369a1; font-weight: 800;">01. BLUETOOTH TELEMETRY BRIDGE (PORT 8899) DIAGNOSTICS</span>
               <span id="troubleBridgeStatus" style="font-size: 0.76rem; color: #16a34a; font-weight: bold;">● BRIDGE LISTENING (HEALTHY)</span>
             </div>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px;">
@@ -2205,7 +2205,7 @@
             </div>
             <div style="display: flex; flex-direction: column; gap: 10px; font-size: 0.88rem; line-height: 1.5; color: #334155;">
               <div style="background: #fffbeb; border: 1px solid #fde68a; border-radius: 6px; padding: 10px;">
-                <strong style="color: #92400e;">WATCH RECOVERY STEP 1 (SCREEN WAKE):</strong> Ensure the smartwatch screen is actively illuminated. Veepoo and FITAOS watches enter an ultra-low-power BLE broadcast sleep mode when the AMOLED display is dark. Raise your wrist or press the side physical button to wake the transponder before initiating pairing.
+                <strong style="color: #92400e;">WATCH RECOVERY STEP 1 (SCREEN WAKE):</strong> Ensure the smartwatch screen is actively illuminated. Veepoo and FITAOS watches enter an ultra-low-power BLE broadcast sleep mode when the AMOLED display is dark. Raise your wrist or press the side physical button to wake the smartwatch display before initiating pairing.
               </div>
               <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; padding: 10px;">
                 <strong style="color: #166534;">WATCH RECOVERY STEP 2 (MAGNETIC CHARGER HARD RESET):</strong> If the watch is unresponsive or refuses GATT service connection, attach the magnetic USB charging cable for 5 seconds. This forces a hardware power-cycle of the Nordic/Dialog BLE microcontroller without clearing stored sensor telemetry buffers.
@@ -2246,7 +2246,7 @@
               <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 14px;">
                 <div style="font-weight: 800; color: #0f172a; font-size: 0.95rem; margin-bottom: 6px; display: flex; align-items: center; gap: 8px;">
                   <span style="background: #0284c7; color: #ffffff; border-radius: 4px; padding: 2px 8px; font-size: 0.72rem;">FLOW 2</span>
-                  CANNOT FIND CELL PROCEDURE (MOBILE SHUTTLE PROVISIONING & DISCOVERY)
+                  CANNOT FIND CELL PROCEDURE (MOBILE PHONE PROVISIONING & DISCOVERY)
                 </div>
                 <div style="font-size: 0.84rem; color: #334155; line-height: 1.5;">
                   <strong>Symptom:</strong> Desktop BFM shows 0 active mobile cells or fails to link with human user's phone.<br>
@@ -2255,7 +2255,7 @@
                     <li><strong>Same Wi-Fi Network Check:</strong> Verify the cell phone is connected to the exact same Wi-Fi SSID (e.g. 5GHz or 2.4GHz home LAN) as Workstation CL3. Cellular data cannot reach the local port 8899 daemon without LAN bridging.</li>
                     <li><strong>Re-scan QR Code:</strong> Open Tab 10 (CONFIG), scroll to the Cell Onboarding section, open Google Lens on the phone, and scan the high-resolution QR pairing code.</li>
                     <li><strong>Verify Host IP Address:</strong> Ensure the phone browser navigates to <code>http://&lt;PC-LAN-IP&gt;:8899/cell.html</code>. If IP changed due to DHCP lease renewal, check PC IP via <code>ipconfig</code> and update the bookmark.</li>
-                    <li><strong>Approve Shuttle Enrollment:</strong> On desktop Tab 10, review the Cell Registry table. If the phone appears with status <code>AWAITING_APPROVAL</code>, click <em>"APPROVE CELL SHUTTLE"</em> to authorize synchronization.</li>
+                    <li><strong>Approve Phone Enrollment:</strong> On desktop Tab 10, review the Cell Registry table. If the phone appears with status <code>AWAITING_APPROVAL</code>, click <em>"APPROVE MOBILE PHONE"</em> to authorize synchronization.</li>
                   </ol>
                 </div>
               </div>
@@ -2344,7 +2344,7 @@
                     <li><strong>Disable Wireless Client / AP Isolation:</strong> Many home routers (especially mesh systems or guest networks) enable "Client Isolation", which prevents wireless devices from communicating with local PCs. Log into router admin (e.g. <code>192.168.1.1</code>), locate Wi-Fi Advanced Settings, and disable <em>"AP Isolation" / "Client Isolation"</em>.</li>
                     <li><strong>Verify Windows Network Profile is Private:</strong> In Windows 11 &gt; Settings &gt; Network &amp; Internet &gt; Properties, ensure your connection is set to <strong>"Private Network"</strong> (Public networks automatically block all incoming LAN inbound ports).</li>
                     <li><strong>Open Port 8899 Rule in Windows Firewall:</strong> Open PowerShell as Administrator and run:<br>
-                      <code>New-NetFirewallRule -DisplayName "BFM Subspace Port 8899" -Direction Inbound -LocalPort 8899 -Protocol TCP -Action Allow</code>
+                      <code>New-NetFirewallRule -DisplayName "BFM Bluetooth Port 8899" -Direction Inbound -LocalPort 8899 -Protocol TCP -Action Allow</code>
                     </li>
                     <li><strong>Verify Host IP Match:</strong> Run <code>ipconfig</code> in terminal and confirm the IPv4 address matches the IP scanned via QR code.</li>
                   </ol>
@@ -5568,13 +5568,13 @@
 
 
       <!-- =====================================================================
-           TAB 6: SUBSPACE BLE LOG & DIRECT HARDWARE PROTOCOL COMMANDS
+           TAB 6: BLUETOOTH BLE LOG & DIRECT HARDWARE PROTOCOL COMMANDS
            ===================================================================== -->
       <div id="pageLog" class="tab-page">
         <div class="log-page-container">
           <div class="log-page-header">
             <div>
-              <span class="log-page-title">SUBSPACE BLE PROTOCOL PACKET LOG • CHANNEL F0080002/3</span>
+              <span class="log-page-title">BLUETOOTH BLE PROTOCOL PACKET LOG • CHANNEL F0080002/3</span>
               <div style="font-size: 0.8rem; color: #64748b; margin-top: 2px;">REAL-TIME RAW GATT PACKET STREAM & HARDWARE TELEMETRY INSPECTOR</div>
             </div>
             <!-- Hardware commands relocated here for clean ergonomics -->
@@ -5611,10 +5611,10 @@
             <div class="log-line" style="display: flex; justify-content: space-between; align-items: baseline; width: 100%; gap: 12px; padding: 3px 0; border-bottom: 1px dashed rgba(255,255,255,0.06);">
               <div style="display: flex; gap: 8px; align-items: baseline; flex: 1; min-width: 0;">
                 <span class="log-ts">[INIT]</span>
-                <span class="log-sys">BFM 5010 Subspace Telemetry Stream Online. Channel f0080003 pinned for TX write.</span>
+                <span class="log-sys">BFM 5010 Bluetooth Telemetry Stream Online. Channel f0080003 pinned for TX write.</span>
               </div>
               <div class="log-desc" style="flex-shrink: 0; margin-left: auto; text-align: right; font-weight: 700; font-size: 0.82rem; color: #38bdf8; font-family: var(--lcars-font); letter-spacing: 0.02em; padding-left: 12px; white-space: nowrap;">
-                Subspace Diagnostic Bus Online
+                Bluetooth Diagnostic Bus Online
               </div>
             </div>
           </div>
@@ -5651,8 +5651,8 @@
             </div>
             <div style="font-size: 0.95rem; line-height: 1.6; color: #d0d8e8; display: flex; flex-direction: column; gap: 10px;">
               <p>
-                <strong style="color: var(--lcars-banana);">ENGAGING SUBSPACE BLE LINK:</strong> 
-                The BFM 5010 Biofunction Monitor binds directly to the authorized watch transponder (BLE Name <code>VEE</code>, MAC <code>8B:DE:40:83:F6:16</code>) via Chrome Web Bluetooth and dedicated backend <code>server.py</code> on port 8899. If the link state indicates <code>DISCONNECTED</code>, simply click the <strong>COMM LINK STATE</strong> ribbon at the top of the console to re-engage. Ensure the watch screen is awake for immediate GATT handshake.
+                <strong style="color: var(--lcars-banana);">ENGAGING BLUETOOTH BLE LINK:</strong> 
+                The BFM 5010 Biofunction Monitor binds directly to the authorized smartwatch sensor (BLE Name <code>VEE</code>, MAC <code>8B:DE:40:83:F6:16</code>) via Chrome Web Bluetooth and dedicated backend <code>server.py</code> on port 8899. If the link state indicates <code>DISCONNECTED</code>, simply click the <strong>COMM LINK STATE</strong> ribbon at the top of the console to re-engage. Ensure the watch screen is awake for immediate GATT handshake.
               </p>
               <p>
                 <strong style="color: var(--lcars-banana);">COMMENCING SENSOR SCANS:</strong> 
@@ -5891,7 +5891,7 @@
             </div>
             <div style="font-size: 0.95rem; line-height: 1.6; color: #d0d8e8; display: flex; flex-direction: column; gap: 14px;">
               <p>
-                A rigorous clinical understanding of how the Veepoo smartwatch transponder (Model 5010 / H8 / GR-V01) samples, buffers, and stores physiological data is essential for accurate clinical evaluation and patient guidance.
+                A rigorous clinical understanding of how the Veepoo smartsmartwatch sensor (Model 5010 / H8 / GR-V01) samples, buffers, and stores physiological data is essential for accurate clinical evaluation and patient guidance.
               </p>
 
               <!-- Subsection A: Exercise Mode vs. Passive Activity -->
@@ -5989,7 +5989,7 @@
                   The watch captures nocturnal somnography in 5-minute epoch blocks from 20:00 to 10:00. In <strong>02-CARDIO (Bay 3)</strong>, clinicians and patients can toggle seamlessly between <strong>🌙 LAST NIGHT</strong> (Day 0) and <strong>⏮ PREVIOUS NIGHT</strong> (Day -1). When triggered:
                 </p>
                 <ul style="font-size: 0.84rem; color: #b0c0d8; margin-left: 20px; line-height: 1.5; margin-top: 6px;">
-                  <li><strong>BLE Transponder Query:</strong> Opcode <code>0xE0 0x00</code> (Last Night) or <code>0xE0 0x01</code> (Previous Night) downloads the 6-packet stream (96-byte payload) reconstructing Deep, Light, REM, and Wakeful minutes.</li>
+                  <li><strong>BLE Hardware Sensor Query:</strong> Opcode <code>0xE0 0x00</code> (Last Night) or <code>0xE0 0x01</code> (Previous Night) downloads the 6-packet stream (96-byte payload) reconstructing Deep, Light, REM, and Wakeful minutes.</li>
                   <li><strong>Vault Multi-Day Fallback:</strong> If the watch is dormant or unlinked, LCARS queries <code>/api/sleep/records</code> from the local SQLite multi-resolution vault, ensuring clinical access to prior nights' hypnograms at all times.</li>
                 </ul>
               </div>
@@ -9394,7 +9394,7 @@
       const year = now.getFullYear();
       const startOfYear = new Date(year, 0, 1);
       const dayOfYear = (now - startOfYear) / (1000 * 60 * 60 * 24);
-      document.getElementById("stardateClock").textContent = "BUILD beta.00.01.0032";
+      document.getElementById("stardateClock").textContent = "BUILD beta.00.01.0034";
     }
     setInterval(updateClock, 1000);
     updateClock();
@@ -10335,7 +10335,7 @@ function switchTab(tabId) {
         const p = document.getElementById('btnPairNew'); if (p) p.style.display = 'none';
         await proceedWithGattConnection();
       } else {
-        logLCARS('Watch transponder ready. Auto-connecting in background whenever in range.', 'sys');
+        logLCARS('Smartwatch sensor ready. Auto-connecting in background whenever in range.', 'sys');
         const b = document.getElementById('unlinkedBanner'); if (b) b.style.display = 'none';
         const p = document.getElementById('btnPairNew'); if (p) p.style.display = 'none';
         const r = document.getElementById('ribbonComm');
@@ -10419,7 +10419,7 @@ function switchTab(tabId) {
         }
       }
 
-      logLCARS('[+] GATT Subspace connection established!', 'rx');
+      logLCARS('[+] GATT Bluetooth connection established!', 'rx');
       document.getElementById('ribbonDevice').textContent = dName;
 
       await setupGattChannels();
@@ -12158,7 +12158,7 @@ function switchTab(tabId) {
 
       // Clinical events and connection state
       if (upper.includes("GATT SUBSPACE CONNECTION ESTABLISHED") || (upper.includes("GATT") && upper.includes("ESTABLISHED"))) {
-        return "BLE Subspace Link Connected";
+        return "BLE Bluetooth Link Connected";
       }
       if (upper.includes("CHANNELS READY")) {
         return "GATT Command & RX Channels Ready";
@@ -12206,7 +12206,7 @@ function switchTab(tabId) {
         return "Known Smartwatch Discovered via BLE";
       }
       if (upper.includes("SCANNING")) {
-        return "Active BLE Subspace Device Discovery";
+        return "Active BLE Device Discovery";
       }
       if (upper.includes("AUDIO TACTILE")) {
         return "LCARS Tactile Sound Synthesizer";
@@ -12317,7 +12317,7 @@ function switchTab(tabId) {
         }
       }
 
-      if (type === "err") return "Subspace Telemetry Bus Warning / Error";
+      if (type === "err") return "Bluetooth Telemetry Bus Warning / Error";
       if (type === "tx") return "Host Command Transmission to Watch";
       if (type === "rx") return "Watch Sensor Telemetry Broadcast";
       return "LCARS System Telemetry Event";
@@ -12693,7 +12693,7 @@ function switchTab(tabId) {
       if (cfg.defaultTempUnit === 'c' && !isCelsius) toggleTempUnit();
       if (cfg.defaultTempUnit === 'f' && isCelsius) toggleTempUnit();
 
-      logLCARS("[★] All 10 Configuration Matrices successfully saved & transmitted to watch transponder!", "rx");
+      logLCARS("[★] All 10 Configuration Matrices successfully saved & transmitted to smartwatch sensor!", "rx");
       alert("Parameters Transmitted & Saved Successfully!");
     }
 
@@ -20084,7 +20084,7 @@ Patient`;
         if (dietD) dietD.textContent = "Watch removed from wrist for charging or showering. Zero sensor telemetry recorded.";
         if (dietM) dietM.textContent = "Zero biometric data recorded.";
         if (exB) exB.textContent = "OFF-WRIST";
-        if (exD) exD.textContent = "Transponder offline in charging dock.";
+        if (exD) exD.textContent = "Watch sensor offline in charging dock.";
         if (exG) exG.textContent = "0 Steps / 0 MET";
         if (medB) medB.textContent = "MEDICATIONS";
         if (medD) medD.textContent = "[NO MEDICATIONS RECORDED]";
@@ -20908,7 +20908,7 @@ Patient`;
 
       if (!hasPositiveVitals) {
         if (hud) hud.textContent = "READY: SMARTWATCH LINKED (STANDBY) • PRESS [START FULL SCAN SEQUENCE]";
-        if (hudDesc) hudDesc.textContent = "Smartwatch biometric transponders linked in standby. Device buffer contains zero active samples (dormant / off-wrist). Ready for live sequence.";
+        if (hudDesc) hudDesc.textContent = "Smartwatch biometric sensors linked in standby. Device buffer contains zero active samples (dormant / off-wrist). Ready for live sequence.";
         updateOverallProgressBar(0);
         for (let i = 1; i <= 6; i++) {
           setStageCardState(i, 'idle');
@@ -21283,7 +21283,7 @@ All 14 LCARS consoles, 8-lane metabolic chart, and clinical database now match y
 
       // Short 1.5s delay before Stage 2
       const stageLbl = document.getElementById('lblActiveScanStage');
-      if (stageLbl) stageLbl.textContent = "PAUSING 1.5s TO CLEAR SENSOR TRANSPONDER...";
+      if (stageLbl) stageLbl.textContent = "PAUSING 1.5s TO CLEAR SENSOR BUFFER...";
       if (!skipPause) {
         fullScanPauseTimeout = setTimeout(() => {
           if (isFullScanRunning) executeScanStage2_Temp();
@@ -21346,7 +21346,7 @@ All 14 LCARS consoles, 8-lane metabolic chart, and clinical database now match y
       const hT2 = document.getElementById("hudTemp"); if (hT2) hT2.textContent = `${bF.toFixed(1)}°F`;
 
       const stageLbl = document.getElementById('lblActiveScanStage');
-      if (stageLbl) stageLbl.textContent = "PAUSING 1.5s TO CLEAR SENSOR TRANSPONDER...";
+      if (stageLbl) stageLbl.textContent = "PAUSING 1.5s TO CLEAR SENSOR BUFFER...";
       if (!skipPause) {
         fullScanPauseTimeout = setTimeout(() => {
           if (isFullScanRunning) executeScanStage3_BP();
@@ -21409,7 +21409,7 @@ All 14 LCARS consoles, 8-lane metabolic chart, and clinical database now match y
       const hB3 = document.getElementById("hudBp"); if (hB3) hB3.textContent = `${sys}/${dia} mmHg`;
 
       const stageLbl = document.getElementById('lblActiveScanStage');
-      if (stageLbl) stageLbl.textContent = "PAUSING 1.5s TO CLEAR SENSOR TRANSPONDER...";
+      if (stageLbl) stageLbl.textContent = "PAUSING 1.5s TO CLEAR SENSOR BUFFER...";
       if (!skipPause) {
         fullScanPauseTimeout = setTimeout(() => {
           if (isFullScanRunning) executeScanStage4_SpO2();
@@ -21471,7 +21471,7 @@ All 14 LCARS consoles, 8-lane metabolic chart, and clinical database now match y
       const hS4 = document.getElementById("hudSpo2"); if (hS4) hS4.textContent = `${sp}% SpO2`;
 
       const stageLbl = document.getElementById('lblActiveScanStage');
-      if (stageLbl) stageLbl.textContent = "PAUSING 1.5s TO CLEAR SENSOR TRANSPONDER...";
+      if (stageLbl) stageLbl.textContent = "PAUSING 1.5s TO CLEAR SENSOR BUFFER...";
       if (!skipPause) {
         fullScanPauseTimeout = setTimeout(() => {
           if (isFullScanRunning) executeScanStage5_Pulse();
@@ -21527,7 +21527,7 @@ All 14 LCARS consoles, 8-lane metabolic chart, and clinical database now match y
       const hH5 = document.getElementById("hudHrHrv"); if (hH5) hH5.textContent = `${hr} BPM`;
 
       const stageLbl = document.getElementById('lblActiveScanStage');
-      if (stageLbl) stageLbl.textContent = "PAUSING 1.5s TO CLEAR SENSOR TRANSPONDER...";
+      if (stageLbl) stageLbl.textContent = "PAUSING 1.5s TO CLEAR SENSOR BUFFER...";
       if (!skipPause) {
         fullScanPauseTimeout = setTimeout(() => {
           if (isFullScanRunning) executeScanStage6_HRV();
@@ -21635,7 +21635,7 @@ All 14 LCARS consoles, 8-lane metabolic chart, and clinical database now match y
       const stageLbl = document.getElementById('lblActiveScanStage');
       if (stageLbl) stageLbl.textContent = "FULL SCAN SEQUENCE CANCELLED BY OPERATOR";
       const stageDesc = document.getElementById('lblActiveScanDetails');
-      if (stageDesc) stageDesc.textContent = "All watch optical sensors halted. Transponders returned to idle.";
+      if (stageDesc) stageDesc.textContent = "All watch optical sensors halted. Sensor arrays returned to idle.";
       const cDown = document.getElementById('lblFullScanCountdown');
       if (cDown) cDown.textContent = "--s";
 
@@ -22050,7 +22050,7 @@ Notice: For Type 2 diabetes lifestyle management and metabolic tracking only. No
       if (popPoint && typeof openTimelinePointCard === 'function') {
         openTimelinePointCard(parseInt(popPoint) || 5);
       }
-      // Seamless auto-link to known watch transponder
+      // Seamless auto-link to known smartwatch sensor
       await attemptAutoLink();
     });
 
@@ -25816,7 +25816,7 @@ You logged: Entire Box (3.5 Servings / 99g)
     <div style="background: #1e293b; border: 2px solid #38bdf8; border-radius: 10px; width: 90%; max-width: 540px; padding: 22px; color: #f8fafc; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
       <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #334155; padding-bottom: 10px; margin-bottom: 16px;">
         <div style="font-size: 1.15rem; font-weight: 800; color: #38bdf8;">
-          📱 ADD CELL &bull; CELL PROVISIONING
+          📱 ADD PHONE &bull; MOBILE APP PROVISIONING
         </div>
         <button type="button" onclick="closeProvisionModal()" style="background: none; border: none; color: #94a3b8; font-size: 1.4rem; cursor: pointer;">&times;</button>
       </div>
@@ -25849,7 +25849,7 @@ You logged: Entire Box (3.5 Servings / 99g)
         </div>
         <div>
           <label style="font-size: 0.75rem; font-weight: bold; color: #94a3b8;">ASSIGNED REGISTRY NUMBER</label>
-          <input type="text" id="provRegistry" class="setup-input" value="NCC-5010-A" style="width: 100%; padding: 8px; background: #0f172a; border: 1px solid #334155; color: #38bdf8; border-radius: 4px; font-family: monospace;">
+          <input type="text" id="provRegistry" class="setup-input" value="BFM-5010-01" style="width: 100%; padding: 8px; background: #0f172a; border: 1px solid #334155; color: #38bdf8; border-radius: 4px; font-family: monospace;">
         </div>
         <div>
           <label style="font-size: 0.75rem; font-weight: bold; color: #94a3b8;">BASELINE HbA1c TARGET (%)</label>
@@ -25976,11 +25976,16 @@ You logged: Entire Box (3.5 Servings / 99g)
       }
     }
 
+    let _phoneVerifyPollTimer = null;
+
     async function openProvisionModal() {
       const modal = document.getElementById('modalProvisionCell');
       if (modal) modal.style.display = 'flex';
       const res = document.getElementById('provResultBox');
-      if (res) res.style.display = 'none';
+      if (res) {
+        res.style.display = 'block';
+        res.innerHTML = '<span style="color: #38bdf8;">⏳ WAITING FOR MOBILE PHONE TO CONNECT...</span>';
+      }
       const qrBox = document.getElementById('provCellQrContainer');
       const apiBase = (window.location.protocol === 'file:') ? 'http://127.0.0.1:8899' : '';
       try {
@@ -26000,23 +26005,52 @@ You logged: Entire Box (3.5 Servings / 99g)
                 p.style.fill = '#000000';
               });
             }
-            return;
           }
         }
       } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       const qr = document.getElementById('provCellQrImg');
       if (qr) qr.src = `${apiBase}/api/qrcode/cell?_t=${Date.now()}`;
+
+      // Start automatic phone connection verification watchdog
+      if (_phoneVerifyPollTimer) clearInterval(_phoneVerifyPollTimer);
+      _phoneVerifyPollTimer = setInterval(async () => {
+        try {
+          const r = await fetch(`${apiBase}/api/shuttle/roster?_t=${Date.now()}`);
+          if (!r.ok) return;
+          const data = await r.json();
+          const roster = data.roster || [];
+          const activeCell = roster.find(c => c.status === 'ACTIVE' || c.status === 'CONNECTED');
+          if (activeCell) {
+            clearInterval(_phoneVerifyPollTimer);
+            _phoneVerifyPollTimer = null;
+            if (res) {
+              res.style.display = 'block';
+              res.innerHTML = `✅ <strong style="color: #4ade80;">MOBILE PHONE CONNECTED & VERIFIED!</strong><br><span style="color: #cbd5e1;">Device: ${activeCell.phone_name || 'Mobile Phone'} linked. Closing setup window...</span>`;
+            }
+            if (typeof loadFamilyCellsRoster === 'function') loadFamilyCellsRoster();
+            setTimeout(() => { closeProvisionModal(); }, 1800);
+          }
+        } catch (err) {
+          console.warn('[MIL-SPEC HANDLED FAULT]', err);
+        }
+      }, 1500);
     }
 
     function closeProvisionModal() {
+      if (_phoneVerifyPollTimer) {
+        clearInterval(_phoneVerifyPollTimer);
+        _phoneVerifyPollTimer = null;
+      }
       const modal = document.getElementById('modalProvisionCell');
       if (modal) modal.style.display = 'none';
     }
 
+    // closeProvisionModal defined with watchdog cancellation above
+
     async function submitProvisionCell() {
       const cellId = document.getElementById('provCellId').value.trim() || 'Cell-1';
       const handle = document.getElementById('provHandle').value.trim() || 'Primary User';
-      const registry = document.getElementById('provRegistry').value.trim() || 'NCC-5010-A';
+      const registry = document.getElementById('provRegistry').value.trim() || 'BFM-5010-01';
       const a1c = parseFloat(document.getElementById('provTargetA1c').value) || 6.5;
 
       const payload = {
