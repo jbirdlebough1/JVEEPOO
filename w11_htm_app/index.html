@@ -9396,7 +9396,7 @@ function renderWatchTabConnectedDetails() {
       if (allSources.length === 0 && !window._fetchingHydrMeals) {
         window._fetchingHydrMeals = true;
         const apiBase = (window.location.protocol === 'file:' ? 'http://127.0.0.1:8899' : '');
-        fetch(apiBase + '/api/meal/recent?limit=100').then(r => r.json()).then(data => {
+        fetch(apiBase + '/api/meal/recent?limit=100&_t=' + Date.now(), { cache: 'no-store' }).then(r => r.json()).then(data => {
           if (data && data.meals && data.meals.length > 0) {
             window._cachedRecentMeals = data.meals;
             renderDailyHydrationChart(containerId);
@@ -9841,6 +9841,9 @@ function switchTab(tabId) {
           try { initExerciseFormTime(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
           try { render360HealthView(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
           try { propagateStepTelemetry(lastSteps || 0, lastKcal || 0); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+          try { renderDietHistory(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+          try { renderExerciseHistory(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+          try { if (typeof renderDailyHydrationChart === 'function') renderDailyHydrationChart('svgDailyIntakeFluidChart'); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
         } else if (tabId === 'export') {
           const btnExp = document.getElementById('navTabExport');
           const pageExp = document.getElementById('pageExport');
@@ -11754,6 +11757,7 @@ function switchTab(tabId) {
 
       // 5. Tab 13 Operations / Sport Bay
       updateWorkoutWithSteps(s);
+      if (typeof renderExerciseHistory === 'function') renderExerciseHistory();
 
       // 6. Post live pedometer telemetry to server so SQLite reflects current watch state
       if (typeof postTelemetryToServer === 'function') {
@@ -17938,7 +17942,7 @@ Patient`;
       let meals = [];
       try {
         const apiBase = (window.location.protocol === 'file:' ? 'http://127.0.0.1:8899' : '');
-        const resp = await fetch(apiBase + '/api/meal/recent?limit=100');
+        const resp = await fetch(apiBase + '/api/meal/recent?limit=100&_t=' + Date.now(), { cache: 'no-store' });
         if (resp.ok) {
           const data = await resp.json();
           if (data && data.meals && data.meals.length > 0) {
@@ -18006,6 +18010,7 @@ Patient`;
 
       let dayTotalKcal = 0, dayTotalNetC = 0, dayTotalPro = 0, dayTotalFat = 0, dayTotalFib = 0;
       let dayMissedGoalCount = 0;
+      let dayPostGlucoseSum = 0, dayPostGlucoseCount = 0;
 
       // Use todayMeals if present, otherwise use latest entries for live audit
       const intakeSet = todayMeals.length > 0 ? todayMeals : meals.slice(0, 10);
@@ -18022,6 +18027,12 @@ Patient`;
         dayTotalFat += fat;
         dayTotalFib += fib;
 
+        const gReading = m.correlated_glucose || m.glucose || 0;
+        if (gReading > 0) {
+          dayPostGlucoseSum += gReading;
+          dayPostGlucoseCount++;
+        }
+
         if (netC > 45) dayMissedGoalCount++;
 
         // Classify meal occasion: check explicit tags or time of day
@@ -18035,18 +18046,17 @@ Patient`;
         }
 
         const mealTitleLower = (m.meal_name || '').toLowerCase();
-        const isBeverage = mealTitleLower.includes('water') || mealTitleLower.includes('tea') || 
-                           mealTitleLower.includes('infusion') || mealTitleLower.includes('root beer') || 
-                           mealTitleLower.includes('drink') || mealTitleLower.includes('beverage') || 
-                           mealTitleLower.includes('seltzer');
+        const hasSolidFood = /\b(soup|sandwich|apple|banana|berries|sausage|oats|oatmeal|egg|eggs|chicken|beef|pork|steak|fish|salmon|salad|pizza|burger|burrito|taco|bowl|pasta|rice|potato|bread|toast|cheese|granola|yogurt|bacon|pancake|waffle|pie|wrap|chili|stew|roast|turkey|ham|tuna|shrimp|beans|avocado|nuts|almond|cookie|cake|muffin|donut|chips|candy|cracker|fruit|pear|orange|grape)\b/i.test(mealTitleLower);
+        const hasBeverageWord = /\b(water|tea|infusion|root beer|soda|coffee|drink|beverage|seltzer|sparkling|juice|milk|broth)\b/i.test(mealTitleLower);
+        const isBeverageOnly = hasBeverageWord && !hasSolidFood && cal < 80;
 
-        if (mealTitleLower.includes('[snack]') || mealTitleLower.includes('cookie') || (isBeverage && !mealTitleLower.includes('[breakfast]') && !mealTitleLower.includes('[lunch]') && !mealTitleLower.includes('[dinner]'))) {
+        if (mealTitleLower.includes('[snack]') || mealTitleLower.includes('cookie') || (isBeverageOnly && !mealTitleLower.includes('[breakfast]') && !mealTitleLower.includes('[lunch]') && !mealTitleLower.includes('[dinner]'))) {
           occ = 'Snack';
-        } else if (mealTitleLower.includes('[breakfast]') || (!isBeverage && (mealTitleLower.includes('breakfast') || hour < 11))) {
+        } else if (mealTitleLower.includes('[breakfast]') || (!isBeverageOnly && (mealTitleLower.includes('breakfast') || hour < 11))) {
           occ = 'Breakfast';
-        } else if (mealTitleLower.includes('[lunch]') || (!isBeverage && (mealTitleLower.includes('lunch') || (hour >= 11 && hour < 16)))) {
+        } else if (mealTitleLower.includes('[lunch]') || (!isBeverageOnly && (mealTitleLower.includes('lunch') || (hour >= 11 && hour < 16)))) {
           occ = 'Lunch';
-        } else if (mealTitleLower.includes('[dinner]') || (!isBeverage && (mealTitleLower.includes('dinner') || hour >= 16))) {
+        } else if (mealTitleLower.includes('[dinner]') || (!isBeverageOnly && (mealTitleLower.includes('dinner') || hour >= 16))) {
           occ = 'Dinner';
         } else {
           occ = 'Snack';
@@ -18098,9 +18108,10 @@ Patient`;
         if (cEl) cEl.textContent = `${data.count} ${data.count === 1 ? 'item' : 'items'}`;
         if (mEl) mEl.textContent = `${Math.round(data.kcal)} kcal • ${Math.round(data.netC)}g Net Carbs`;
         if (lEl) {
-          const displayFoods = data.foodComponents.length > 0 ? data.foodComponents : data.items;
-          lEl.textContent = displayFoods.length > 0 ? displayFoods.join(', ') : 'None recorded';
-          lEl.title = displayFoods.join(', ');
+          const cleanItems = data.items.map(s => (s || '').replace(/\[[^\]]+\]/g, '').trim()).filter(Boolean);
+          const displayFoods = cleanItems.length > 0 ? cleanItems : data.foodComponents;
+          lEl.textContent = displayFoods.length > 0 ? displayFoods.join(' • ') : 'None recorded';
+          lEl.title = displayFoods.join(' • ');
         }
       });
 
@@ -18134,6 +18145,13 @@ Patient`;
       const sC = document.getElementById('sumCarbs'); if (sC && sC.firstChild) sC.firstChild.textContent = Math.round(dayTotalNetC);
       const sP = document.getElementById('sumProtein'); if (sP && sP.firstChild) sP.firstChild.textContent = Math.round(dayTotalPro);
       const sCal = document.getElementById('sumCalories'); if (sCal && sCal.firstChild) sCal.firstChild.textContent = Math.round(dayTotalKcal);
+      const sPostG = document.getElementById('sumAvgPostGlucose');
+      if (sPostG && sPostG.firstChild) {
+        const liveAvgPostG = dayPostGlucoseCount > 0
+          ? Math.round(dayPostGlucoseSum / dayPostGlucoseCount)
+          : ((typeof lastGlucoseMg !== 'undefined' && lastGlucoseMg > 0) ? Math.round(lastGlucoseMg) : '--');
+        sPostG.firstChild.textContent = `${liveAvgPostG} `;
+      }
 
       // Render 24-Hour Hydration Charts on Tab 03 and Tab 04
       if (typeof renderDailyHydrationChart === 'function') {
@@ -18334,7 +18352,9 @@ Patient`;
       if (!list) return;
       list.innerHTML = '';
 
-      if (exerciseJournal.length === 0) {
+      const liveSteps = (typeof lastSteps !== 'undefined' && lastSteps > 0) ? lastSteps : 0;
+
+      if (exerciseJournal.length === 0 && liveSteps === 0) {
         list.innerHTML = `
           <div style="padding: 20px; text-align: center; color: var(--lcars-peach); font-family: var(--lcars-mono); font-size: 0.9rem; border: 1px dashed #2d241c; border-radius: 6px;">
             [NO EXERCISE LOGGED — JOURNAL EMPTY]
@@ -18343,6 +18363,36 @@ Patient`;
         const valG = document.getElementById('valGlut4Clearance');
         if (valG) valG.innerHTML = `-- <span style="font-size: 1rem;">mg/dL</span>`;
         return;
+      }
+
+      let watchEstDrop = 0;
+      if (liveSteps > 0) {
+        const liveMiles = (liveSteps * 0.000473).toFixed(2);
+        const liveKcal = Math.round(liveSteps * 0.04);
+        const estWalkMins = Math.max(1, Math.round(liveSteps / 90));
+        watchEstDrop = Math.min(45, Math.max(5, Math.round(liveSteps * 0.013)));
+        const todayStr = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        const watchCard = document.createElement('div');
+        watchCard.className = 'diet-item-card';
+        watchCard.style.borderLeftColor = '#10b981';
+        watchCard.innerHTML = `
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+              <strong style="color: #047857; font-size: 1.05rem;">WATCH-SYNCED WALK / AMBULATION (LIVE HARDWARE)</strong>
+              <span style="font-family: var(--lcars-mono); font-size: 0.8rem; color: var(--lcars-gray);">${todayStr} &bull; Live Pedometer</span>
+              <span class="state-badge normal" style="font-size: 0.75rem; background: rgba(16,185,129,0.12); border-color: #10b981; color: #047857;">~${estWalkMins} MIN &bull; ${liveMiles} MI</span>
+            </div>
+            <div style="color: var(--lcars-text); font-size: 0.9rem; margin-top: 2px;">Continuous Veepoo smartwatch pedometer ambulation synchronized: ${liveSteps.toLocaleString()} steps recorded today (${liveMiles} miles, ${liveKcal} active kcal).</div>
+            <div style="margin-top: 6px; display: flex; gap: 6px; flex-wrap: wrap;">
+              <span class="diet-macro-badge badge-carb" style="background: rgba(2,132,199,0.12); color: #0369a1;">STEPS: ${liveSteps.toLocaleString()}</span>
+              <span class="diet-macro-badge badge-protein" style="background: rgba(249,115,22,0.12); color: #c2410c;">ENERGY: ${liveKcal} KCAL</span>
+              <span class="diet-macro-badge badge-glucose" style="background: rgba(16,185,129,0.20); color: #047857; font-weight: bold;">
+                EST. GLUT4 CLEARANCE: -${watchEstDrop} MG/DL
+              </span>
+            </div>
+          </div>
+        `;
+        list.appendChild(watchCard);
       }
 
       let totalDrop = 0, countDrop = 0;
@@ -18379,9 +18429,9 @@ Patient`;
         list.appendChild(item);
       });
 
-      const avgDrop = countDrop > 0 ? Math.round(totalDrop / countDrop) : 34;
+      const avgDrop = countDrop > 0 ? Math.round(totalDrop / countDrop) : (watchEstDrop > 0 ? watchEstDrop : 0);
       const valG = document.getElementById('valGlut4Clearance');
-      if (valG) valG.innerHTML = `-${avgDrop} <span style="font-size: 1rem;">mg/dL</span>`;
+      if (valG) valG.innerHTML = avgDrop > 0 ? `-${avgDrop} <span style="font-size: 1rem;">mg/dL</span>` : `-- <span style="font-size: 1rem;">mg/dL</span>`;
     }
 
     // -------------------------------------------------------------------------
@@ -22685,6 +22735,10 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
           const pageMetabolic = document.getElementById('pageMetabolic');
           if (((pageDiet && pageDiet.classList.contains('active-page')) || (pageMetabolic && pageMetabolic.classList.contains('active-page'))) && typeof renderDietHistory === 'function') {
             renderDietHistory();
+          }
+          if (pageMetabolic && pageMetabolic.classList.contains('active-page')) {
+            if (typeof renderExerciseHistory === 'function') renderExerciseHistory();
+            if (typeof renderDailyHydrationChart === 'function') renderDailyHydrationChart('svgDailyIntakeFluidChart');
           }
           if (typeof loadGoalsComplianceReport === 'function') loadGoalsComplianceReport();
           if (!isFullScanRunning && typeof initFullScanView === 'function') initFullScanView();
