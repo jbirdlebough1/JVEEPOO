@@ -334,7 +334,7 @@ To prevent regressions, the pre-commit gate (`strict_gate_v2.py`) enforces an ex
 | **Phase 2** | Protocol Decoding & 13-Lane Parity | `0xDF` 244B MTU, `0x88` Temp, `0xE0` Sleep + naps, `0xB8` 12h clock lock, 13-Channel 3D & Tall Chart | Live watch verified (`CLE-110`, `CLE-111`, `0055`, `0056`) |
 | **Phase 3** | Mobile Companion (`cell.html`) | Hardware interrogation, IndexedDB offline vault, HDYF pain/mood capture, Homecoming Dock | Div balance `0` & live dock verified |
 | **Phase 4** | Native Launcher & USB Backup | `BFM_Launcher.exe` W11 Taskbar app, `usb_backup_engine.py`, consolidated `13-EXPORT` FHIR/CSV | `file:///` parity (`Check 08`) & USB dedup verified |
-| **Phase 5** | Docs, 84-Slide Deck & Certification | Updated EM/Exec docs, 84-slide consolidated clinician & user deck (Tabs 01–14) + audio, `4`-tool audit certification | `13/13` strict + `21/21` audit + `10/10` E2E + `84/84` slides |
+| **Phase 5** | Docs, 85-Slide Deck & Certification | Updated EM/Exec docs (`beta.00.01.0058`), 85-slide consolidated clinician & user deck (Tabs 01–14, 360° Closed-Loop, 90-Day SVG, Topology, Animated 3D) + audio, `4`-tool audit certification | `13/13` strict + `21/21` audit + `10/10` E2E + `85/85` slides |
 
 1. **Phase 1: Database & Backend Engine**:
    * Implement `telemetry_master.db` with `user_profiles`, `registered_cells` (with `linked_watch_mac`), and `user_legal_acceptance`.

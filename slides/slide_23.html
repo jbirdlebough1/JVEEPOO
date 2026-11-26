@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Slide 23: Goals Compliance Scorecard &amp; Walk-Mitigated Excursion Tracking</title>
+  <title>Slide 23: Animated 3D Multi-Channel Biometric &amp; Behavioral Fly-Through</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
@@ -177,21 +177,51 @@
     <div class="slide-header">
       <div>
         <div class="module-badge">Tab 04: 04-REPORTS</div>
-        <div class="slide-title">Goals Compliance Scorecard &amp; Walk-Mitigated Excursion Tracking</div>
-        <div class="slide-desc">Filterable compliance scorecard auditing daily checkpoints Met, Missed, and Mitigated via post-meal GLUT4 walks.</div>
+        <div class="slide-title">Animated 3D Multi-Channel Biometric &amp; Behavioral Fly-Through</div>
+        <div class="slide-desc">Live rotating 36-frame orbital fly-through rendering all 13 synchronized physiological, activity, sleep, pain, mood, carb, fluid &amp; Rx ribbons.</div>
       </div>
-      <div class="slide-num-badge">SLIDE 23 / 84</div>
+      <div class="slide-num-badge">SLIDE 23 / 85</div>
     </div>
 
     <div class="grid-2col">
       <!-- Left Column: Live Console Screenshot or Custom Visual -->
       <div class="left-screenshot-card">
         <div class="left-screenshot-header">
-          <span style="font-family: monospace; font-size: 0.69rem; color: #0284c7; font-weight: 800;">04-REPORTS • GOALS COMPLIANCE &amp; MITIGATION SCORECARD</span>
+          <span style="font-family: monospace; font-size: 0.69rem; color: #0284c7; font-weight: 800;">04-REPORTS • ANIMATED 13-CHANNEL 3D FLY-THROUGH</span>
           <span style="background: #15803d; color: #ffffff; font-size: 0.59rem; font-weight: 800; padding: 2px 6px; border-radius: 3px; font-family: monospace;">SHARED CARE VIEW</span>
         </div>
         <div class="left-screenshot-viewport">
-          <img src="images/bfm_t04_02_goals_compliance.png" alt="04-REPORTS • GOALS COMPLIANCE &amp; MITIGATION SCORECARD" style="width: 100%; max-height: 100%; object-fit: contain; display: block;">
+          
+<div style="width:100%;height:100%;display:flex;flex-direction:column;background:#ffffff;position:relative;">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 10px;background:#eff6ff;border-bottom:1.5px solid #bfdbfe;font-family:monospace;font-size:0.68rem;">
+    <span style="font-weight:800;color:#0284c7;">LIVE 3D AUTO-FLY SEQUENCE • 13 CHANNELS (36 ORBITAL FRAMES)</span>
+    <span id="flyFrameBadge" style="background:#15803d;color:#fff;padding:1px 7px;border-radius:3px;font-weight:800;">PLAYING FRAME 01 / 36</span>
+  </div>
+  <div style="flex:1;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:4px;background:#f8fafc;">
+    <img id="fly3dImg" src="images/fly3d/bfm_3d_fly_00.jpg" alt="3D Multi-Channel Live Fly-Through" style="width:100%;max-height:100%;object-fit:contain;border-radius:4px;border:1px solid #cbd5e1;">
+  </div>
+  <script>
+    (function() {
+      let frame = 0;
+      const totalFrames = 36;
+      const img = document.getElementById('fly3dImg');
+      const badge = document.getElementById('fly3dImg') ? document.getElementById('flyFrameBadge') : null;
+      const pre = [];
+      for (let i = 0; i < totalFrames; i++) {
+        const im = new Image();
+        im.src = 'images/fly3d/bfm_3d_fly_' + String(i).padStart(2, '0') + '.jpg';
+        pre.push(im);
+      }
+      setInterval(() => {
+        frame = (frame + 1) % totalFrames;
+        const pad = String(frame).padStart(2, '0');
+        if (img) img.src = 'images/fly3d/bfm_3d_fly_' + pad + '.jpg';
+        if (badge) badge.textContent = 'PLAYING FRAME ' + String(frame + 1).padStart(2, '0') + ' / 36';
+      }, 150);
+    })();
+  </script>
+</div>
+
         </div>
       </div>
 
@@ -199,29 +229,29 @@
       <div class="right-column">
         <div class="content-card">
           <div class="card-header-strip">
-            <span>BEHAVIORAL ADHERENCE &amp; MITIGATION AUDIT</span>
+            <span>13-CHANNEL LIVE 3D AUTO-FLY VIEWER</span>
             <span style="color: #64748b;">PATIENT &amp; CLINICIAN WALKTHROUGH</span>
           </div>
           <div class="bullet-item bullet-item-0" data-idx="0">
-            <strong style="color: #0284c7;">Six Clear Summary Counters:</strong> Tracks Total targets checked, Met count, Met percentage, Missed events, Mitigated recoveries, and Overall Score.
+            <strong style="color: #0284c7;">Interactive Depth Perspective Across 13 Ribbons:</strong> Watch Glucose, BP, HR, SpO2, Temp, HRV, Steps, Sleep, Pain, Mood, Carbs, Fluid &amp; Rx fly through time in 3D space.
           </div>
           <div class="bullet-item bullet-item-1" data-idx="1">
-            <strong style="color: #0284c7;">1-Click Filter Views:</strong> Instantly isolate All, Met, or Missed records to focus brief clinic reviews cleanly.
+            <strong style="color: #0284c7;">Zero Blind Spots Between Channels:</strong> Peaks on rear biometric planes line up directly behind foreground meal carbs, hydration steps, and walk triangles.
           </div>
           <div class="bullet-item bullet-item-2" data-idx="2">
-            <strong style="color: #0284c7;">Celebrates Post-Meal Mitigation:</strong> Gives explicit credit when a higher-carb choice is neutralized successfully by a subsequent walk.
+            <strong style="color: #0284c7;">Multi-Scale Time Depth Controls:</strong> Explore 24-hour curves or fly backwards cleanly across 7-day, 30-day, 90-day, and 365-day horizons.
           </div>
           <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.75rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
-            <strong style="color: #15803d;">Key Takeaway:</strong> Rewarding walk-mitigated excursions builds positive momentum rather than discouraging perfectionism.
+            <strong style="color: #15803d;">Key Takeaway:</strong> Flying smoothly around 13 synchronized ribbons lets patients and specialists visualize complex whole-body coupling in seconds.
           </div>
         </div>
 
         <div class="visual-card">
           <div class="card-header-strip">
-            <span>COMPLIANCE &amp; MITIGATION MATRIX</span>
-            <span style="background: #15803d; color: #ffffff; font-size: 0.57rem; padding: 2px 6px; border-radius: 3px;">7D / 30D / QTR / YTD</span>
+            <span>13-CHANNEL 3D ORBITAL VIEWER</span>
+            <span style="background: #0284c7; color: #ffffff; font-size: 0.57rem; padding: 2px 6px; border-radius: 3px;">LIVE AUTO-FLY</span>
           </div>
-          <div style="background:#f8fafc;border:1.5px solid #cbd5e1;border-radius:6px;padding:7px;"><div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1.5px solid #cbd5e1;padding-bottom:3px;margin-bottom:5px;"><span style="font-family:monospace;font-size:0.70rem;font-weight:800;color:#15803d;">COMPLIANCE &amp; MITIGATION MATRIX</span><span style="background:#15803d;color:#fff;font-family:monospace;font-size:0.58rem;font-weight:800;padding:2px 6px;border-radius:3px;">7D / 30D / QTR / YTD</span></div><div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:5px;overflow:hidden;"><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Scorecard Strip</span><span style="font-family:monospace;color:#475569;">Total | Met | Met % | Missed | Mitigated | Score</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#15803d;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">6 KPI TILES</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Filter Toggles</span><span style="font-family:monospace;color:#475569;">ALL / MET / MISSED instant slice</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#15803d;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">1-CLICK</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Quick Strip</span><span style="font-family:monospace;color:#475569;">Sub-report jump buttons sit right below</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#15803d;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">FAST JUMP</span></div></div><div style="margin-top:6px;background:#f0fdf4;border:1.5px solid #86efac;border-radius:5px;padding:6px 9px;"><div style="font-family:monospace;font-size:0.65rem;font-weight:800;color:#15803d;margin-bottom:2px;">PHYSICIAN CALCULUS &amp; MEASUREMENT FITNESS • WEIGHTED ADHERENCE INDEX</div><div style="font-family:monospace;font-size:0.74rem;font-weight:700;color:#0f172a;line-height:1.35;">Score = (N_met + w_mit * N_mitigated) / N_total × 100%</div></div></div><div style="margin-top:6px;background:#eff6ff;border-left:3.5px solid #15803d;padding:6px 9px;border-radius:4px;font-size:0.72rem;color:#1e3a8a;line-height:1.35;"><strong>Clinical Significance:</strong> Weighting mitigated excursions honors kinetic rescue efficacy cleanly in longitudinal adherence scoring.</div>
+          <div style="background:#f8fafc;border:1.5px solid #cbd5e1;border-radius:6px;padding:7px;"><div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1.5px solid #cbd5e1;padding-bottom:3px;margin-bottom:5px;"><span style="font-family:monospace;font-size:0.70rem;font-weight:800;color:#0284c7;">13-CHANNEL 3D ORBITAL VIEWER</span><span style="background:#0284c7;color:#fff;font-family:monospace;font-size:0.58rem;font-weight:800;padding:2px 6px;border-radius:3px;">LIVE AUTO-FLY</span></div><div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:5px;overflow:hidden;"><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Rear Plane Ribbons</span><span style="font-family:monospace;color:#475569;">Glucose | BP | HR | SpO2 | Temp | HRV</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#0284c7;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">PHYSIOLOGY</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Mid &amp; Front Tracks</span><span style="font-family:monospace;color:#475569;">Steps/GLUT4 | Sleep | Pain | Mood | Intake</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#0284c7;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">BEHAVIOR</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Orbit Modes</span><span style="font-family:monospace;color:#475569;">Drag Orbit | Shift Pan | Wheel | Auto Fly</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#0284c7;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">INTERACTIVE</span></div></div><div style="margin-top:6px;background:#f0fdf4;border:1.5px solid #86efac;border-radius:5px;padding:6px 9px;"><div style="font-family:monospace;font-size:0.65rem;font-weight:800;color:#15803d;margin-bottom:2px;">PHYSICIAN CALCULUS &amp; MEASUREMENT FITNESS • ISOMETRIC MANIFOLD VECTOR</div><div style="font-family:monospace;font-size:0.74rem;font-weight:700;color:#0f172a;line-height:1.35;">r_k(t) = (t, k, normalize_k(Value_k(t)))  for channels k = 1..13</div></div></div><div style="margin-top:6px;background:#eff6ff;border-left:3.5px solid #0284c7;padding:6px 9px;border-radius:4px;font-size:0.72rem;color:#1e3a8a;line-height:1.35;"><strong>Clinical Significance:</strong> Mapping all 13 heterogeneous units onto normalized manifolds exposes synchronized phase alignments across endocrine, cardiac, and behavioral systems.</div>
         </div>
       </div>
     </div>

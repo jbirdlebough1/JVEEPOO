@@ -27,7 +27,7 @@ Testing is executed in two strictly decoupled phases:
 
 | Testing Tier | Verification Method | Execution Environment | Tools & Harnesses | Pass / Fail Criteria |
 | :--- | :--- | :--- | :--- | :--- |
-| **Pass 1: Gemini Automated Validation** | Headless automated compilation, AST parsing, schema checks, presentation audit, and REST dispatch | Local Server (`127.0.0.1:8899`) | `audit_zero_defect.py` (`21/21`)<br>`strict_gate_v2.py` (`13/13`)<br>`test_beta1_e2e.py` (`10/10`)<br>`tools/audit_presentation_full.py` (`84/84`) | 100% Pass (0 errors, 0 warnings, 0 defects, 0 OPEN CLEBUGGER items) |
+| **Pass 1: Gemini Automated Validation** | Headless automated compilation, AST parsing, schema checks, presentation audit, and REST dispatch | Local Server (`127.0.0.1:8899`) | `audit_zero_defect.py` (`21/21`)<br>`strict_gate_v2.py` (`13/13`)<br>`test_beta1_e2e.py` (`10/10`)<br>`tools/audit_presentation_full.py` (`85/85`) | 100% Pass (0 errors, 0 warnings, 0 defects, 0 OPEN CLEBUGGER items) |
 | **Pass 2: Human-in-the-Loop Validation** | Human operator manual UI/UX execution via `BFM_Launcher.exe` or double-clicking `BFM.HTM` | Windows 11 Desktop + Chrome/Edge | Windows Explorer<br>`BFM.HTM` / `BFM_Launcher.exe`<br>`D:\CLEBUGGER\bugs.db` | All 14 tabs nominal; 0 blocking defects; user approves UX |
 
 ---
@@ -47,8 +47,8 @@ Before any human testing begins, the automated suite must certify the build with
    * Fail-closed CLEBUGGER synchronization (`tools/sync_clebugger.py --check`, `0 OPEN` across all tagged Beta builds).
 3. **Check 3: Dual-Origin & Telemetry E2E Suite (`test_beta1_e2e.py` — 10 Checks)**:
    * Validates dynamic endpoint resolution (`window.location.protocol === 'file:' ? 'http://127.0.0.1:8899' : ''`), Bleak arbitration (`/api/browser_active`), and zero cross-tenant pollution.
-4. **Check 4: Full 84-Slide Presentation Audit (`tools/audit_presentation_full.py`)**:
-   * Verifies every slide (`01`–`84`) across `presentation/`, `presentation/slides/`, and `slides/` in strict Tab 01 (`01-FULL SCAN`) -> Tab 02 (`02-METABOLIC`) -> Tab 03 (`03-MEAL PLANNER`) -> ... -> Tab 14 order, all live PNG screenshots (`> 15 KB`), custom Slide 02 90-day sampling SVG, Slide 04 collector-to-PC topology, all 36 animated 3D fly-through JPEGs, all MP3 narrations, zero programmer jargon, and clinical measurement truth.
+4. **Check 4: Full 85-Slide Presentation Audit (`tools/audit_presentation_full.py`)**:
+   * Verifies every slide (`01`–`85`) across `presentation/`, `presentation/slides/`, and `slides/` in strict Tab 01 (`01-FULL SCAN`) -> Tab 02 (`02-METABOLIC`) -> Tab 03 (`03-MEAL PLANNER`) -> ... -> Tab 14 order, all live PNG screenshots (`> 15 KB`), custom Slide 02 360-degree closed-loop graphic, Slide 03 90-day sampling SVG, Slide 05 collector-to-PC topology, Slide 23 animated 3D fly-through JPEGs, all MP3 narrations, zero programmer jargon, and clinical measurement truth.
 
 ---
 

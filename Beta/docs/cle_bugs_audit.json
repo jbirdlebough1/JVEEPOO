@@ -1,8 +1,8 @@
 {
-  "latest_build": "beta.00.01.0057",
-  "synced_at": "2026-11-26T09:51:53",
-  "total_bugs": 161,
-  "total_resolved": 161,
+  "latest_build": "beta.00.01.0058",
+  "synced_at": "2026-11-26T10:01:44",
+  "total_bugs": 162,
+  "total_resolved": 162,
   "total_open": 0,
   "bugs": [
     {
@@ -2097,6 +2097,19 @@
       "comments": "Synced from git tag beta.00.01.0057",
       "created_at": "2026-11-26 09:47:48",
       "resolved_at": "2026-11-26 09:47:48"
+    },
+    {
+      "code": "CLE-115",
+      "project": "JVEEPOO",
+      "build": "beta.00.01.0058",
+      "title": "[beta.00.01.0058] release(beta.00.01.0058): add 360-degree closed-loop Slide 02, lock single Aussie female voice, fix Nyquist TTS pronunciation, 85-slide deck",
+      "status": "RESOLVED",
+      "component": "beta.00.01.0058",
+      "affected_files": "Beta/docs/GOOGLE_LEADERSHIP_PRIMER.md, Beta/docs/NARRATION_QA_85_SLIDES.md, Beta/docs/bfm_beta1_master_test_plan.md, Beta/docs/bfm_diabetes_beta1_functional_specification.md, Beta/docs/presentation_build_coverage_audit.json, Beta/docs/walkt",
+      "resolution": "Git commit 32f3619 (2026-11-26 10:01:15): release(beta.00.01.0058): add 360-degree closed-loop Slide 02, lock single Aussie female voice, fix Nyquist TTS pronunciation, 85-slide deck & narration QA",
+      "comments": "Synced from git tag beta.00.01.0058",
+      "created_at": "2026-11-26 10:01:15",
+      "resolved_at": "2026-11-26 10:01:15"
     }
   ]
 }
