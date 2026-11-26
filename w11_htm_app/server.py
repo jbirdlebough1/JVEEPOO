@@ -3420,6 +3420,223 @@ def calc_veepoo_crc(data: bytes) -> int:
 # =========================================================================
 # HTTP REQUEST HANDLER (Port 8899)
 # =========================================================================
+def _parse_to_local_dt(ts_str):
+    """Parses ISO UTC ('Z' / '+00:00') or naive local timestamp into local naive datetime."""
+    if not ts_str:
+        return None
+    s = str(ts_str).strip()
+    try:
+        if "Z" in s or "+" in s:
+            return datetime.datetime.fromisoformat(s.replace("Z", "+00:00")).astimezone().replace(tzinfo=None)
+        clean_ts = s.replace("T", " ")
+        return datetime.datetime.strptime(clean_ts[:19], "%Y-%m-%d %H:%M:%S")
+    except Exception:
+        try:
+            clean_ts = s.replace("T", " ")
+            return datetime.datetime.strptime(clean_ts[:16], "%Y-%m-%d %H:%M")
+        except Exception as e:
+            print(f"[MIL-SPEC HANDLED FAULT] _parse_to_local_dt({s}): {e}")
+            return None
+
+
+def _parse_a1_precision_sleep_bytes(raw_bytes, target_date_obj):
+    """Decodes Veepoo 0xE0 -> 0xA1 -> 0xA3 + 0xA5 precision sleep & nap blocks (per vp_c.java)."""
+    sessions = []
+    pos = 0
+    raw_len = len(raw_bytes)
+    t_month = target_date_obj.month
+    t_day = target_date_obj.day
+    while pos < raw_len:
+        if raw_bytes[pos] != 0xA1:
+            pos += 1
+            continue
+        if pos + 3 > raw_len:
+            break
+        blen = raw_bytes[pos + 1] | (raw_bytes[pos + 2] << 8)
+        if blen < 10 or pos + blen > raw_len:
+            pos += 1
+            continue
+        content = raw_bytes[pos + 3 : pos + blen]
+        cpos = 0
+        a3 = None
+        a5 = None
+        while cpos < len(content) and content[cpos] != 0:
+            t = content[cpos]
+            cpos += 1
+            if t == 0xA5:
+                if cpos + 2 > len(content):
+                    break
+                slen = content[cpos] | (content[cpos + 1] << 8)
+                cpos += 2
+            else:
+                if cpos + 1 > len(content):
+                    break
+                slen = content[cpos]
+                cpos += 1
+            if slen <= 0 or cpos + slen > len(content):
+                break
+            sub = content[cpos : cpos + slen]
+            cpos += slen
+            if t == 0xA3:
+                a3 = sub
+            elif t == 0xA5:
+                a5 = sub
+        if a3 and len(a3) >= 35:
+            sm, sd, sh, smin = a3[0], a3[1], a3[2], a3[3]
+            em, ed, eh, emin = a3[4], a3[5], a3[6], a3[7]
+            qual = a3[15]
+            wake = a3[16]
+            deep_m = a3[19] | (a3[20] << 8)
+            light_m = a3[21] | (a3[22] << 8)
+            rem_m = a3[23] | (a3[24] << 8)
+            all_m = a3[25] | (a3[26] << 8)
+            one_pt_sec = (a3[33] | (a3[34] << 8)) or 60
+            pt_min = max(1, round(one_pt_sec / 60.0))
+            if (em == t_month and ed == t_day) or (sm == t_month and sd == t_day):
+                raw_start_min = sh * 60 + smin
+                raw_end_min = eh * 60 + emin
+                if sm == t_month and sd == t_day:
+                    clip_start = raw_start_min
+                else:
+                    clip_start = 0
+                if em == t_month and ed == t_day:
+                    clip_end = raw_end_min
+                else:
+                    clip_end = 1440
+                epochs = []
+                if a5 and len(a5) >= 2:
+                    n_pts = min(len(a5) // 2, max(1, all_m // pt_min))
+                    # Mapping from vp_c.java / hardware log counts:
+                    # code 0=Deep (->3), 1=Light (->2), 2=REM (->1), 3/4=Awake (->0)
+                    stage_map = {0: 3, 1: 2, 2: 1, 3: 0, 4: 0}
+                    cur_stage = None
+                    cur_s = raw_start_min
+                    for idx_p in range(n_pts):
+                        code = (a5[idx_p * 2] >> 5) & 7
+                        st = stage_map.get(code, 2)
+                        t0 = raw_start_min + idx_p * pt_min
+                        if st != cur_stage:
+                            if cur_stage is not None and t0 > cur_s:
+                                s_c = max(0, cur_s)
+                                e_c = min(1440, t0)
+                                if e_c > s_c:
+                                    epochs.append({"startM": s_c, "endM": e_c, "stage": cur_stage})
+                            cur_stage = st
+                            cur_s = t0
+                    if cur_stage is not None:
+                        s_c = max(0, cur_s)
+                        e_c = min(1440, raw_start_min + n_pts * pt_min)
+                        if e_c > s_c:
+                            epochs.append({"startM": s_c, "endM": e_c, "stage": cur_stage})
+                sessions.append({
+                    "start": f"{sm:02d}/{sd:02d} {sh:02d}:{smin:02d}",
+                    "end": f"{em:02d}/{ed:02d} {eh:02d}:{emin:02d}",
+                    "startM": clip_start,
+                    "endM": clip_end,
+                    "allMin": all_m,
+                    "deepMin": deep_m,
+                    "lightMin": light_m,
+                    "remMin": rem_m,
+                    "awakeMin": max(0, all_m - deep_m - light_m - rem_m),
+                    "wakeCount": wake,
+                    "quality": qual,
+                    "isNap": (sh >= 11 and sh < 20 and all_m <= 240),
+                    "epochs": epochs,
+                })
+        pos += blen
+    return sessions
+
+
+def get_today_sleep_summary(target_date_obj=None):
+    """Returns today's full 24h sleep + nap summary from structured SLEEP DB rows or latest 0xE0 packet burst."""
+    if target_date_obj is None:
+        target_date_obj = datetime.date.today()
+    today_iso = target_date_obj.isoformat()
+    # 1. Check structured SLEEP row for local today in vital_records
+    try:
+        with db_lock:
+            conn = get_db()
+            cur = conn.cursor()
+            cur.execute("""
+                SELECT timestamp, mode FROM vital_records
+                WHERE metric = 'SLEEP' AND mode LIKE '%sessions%'
+                ORDER BY id DESC LIMIT 15
+            """)
+            rows = cur.fetchall()
+            conn.close()
+        for ts_str, mode_str in rows:
+            dt = _parse_to_local_dt(ts_str)
+            if dt and dt.date() == target_date_obj:
+                parsed = json.loads(mode_str)
+                if isinstance(parsed, dict) and parsed.get("sessions"):
+                    return parsed
+    except Exception as e:
+        print(f"[MIL-SPEC HANDLED FAULT] sleep DB JSON lookup: {e}")
+
+    # 2. Fallback: decode latest Day 0 0xE0 burst from packet_log.txt (tail 600 KB)
+    pkt_log_path = os.path.join(BASE_DIR, "packet_log.txt")
+    if os.path.exists(pkt_log_path):
+        try:
+            fsize = os.path.getsize(pkt_log_path)
+            with open(pkt_log_path, "rb") as fb:
+                if fsize > 600 * 1024:
+                    fb.seek(fsize - 600 * 1024)
+                chunk = fb.read().decode("utf-8", errors="ignore")
+            lines = chunk.splitlines()
+            by_idx = {}
+            for l in reversed(lines):
+                if "f0080002]: e0 " not in l.lower():
+                    continue
+                m = re.search(r"f0080002\]: ([0-9a-f ]+)", l, re.I)
+                if not m:
+                    continue
+                bs = bytes.fromhex(m.group(1).strip())
+                if len(bs) < 20 or bs[3] != 0:
+                    continue
+                idx = bs[1]
+                if idx not in by_idx:
+                    by_idx[idx] = bs
+            if len(by_idx) >= 3:
+                ordered_desc = [by_idx[k] for k in sorted(by_idx.keys(), reverse=True)]
+                raw = b"".join(p[4:20] for p in ordered_desc)
+                sessions = _parse_a1_precision_sleep_bytes(raw, target_date_obj)
+                if sessions:
+                    tot_m = sum(s["allMin"] for s in sessions)
+                    deep_m = sum(s["deepMin"] for s in sessions)
+                    light_m = sum(s["lightMin"] for s in sessions)
+                    rem_m = sum(s["remMin"] for s in sessions)
+                    awake_m = sum(s["awakeMin"] for s in sessions)
+                    wake_c = sum(s["wakeCount"] for s in sessions)
+                    eff = round(((tot_m - awake_m) / float(tot_m)) * 100) if tot_m > 0 else 0
+                    return {
+                        "date": today_iso,
+                        "totalMin": tot_m,
+                        "deepMin": deep_m,
+                        "lightMin": light_m,
+                        "remMin": rem_m,
+                        "awakeMin": awake_m,
+                        "wakeCount": wake_c,
+                        "efficiency": eff,
+                        "sessions": sessions,
+                        "source": "0xE0_PRECISION_TLV",
+                    }
+        except Exception as e:
+            print(f"[MIL-SPEC HANDLED FAULT] packet_log 0xE0 decode: {e}")
+
+    return {
+        "date": today_iso,
+        "totalMin": 0,
+        "deepMin": 0,
+        "lightMin": 0,
+        "remMin": 0,
+        "awakeMin": 0,
+        "wakeCount": 0,
+        "efficiency": 0,
+        "sessions": [],
+        "source": "NONE",
+    }
+
+
 def get_two_day_timeline():
     """Builds a 48-hour continuous timeline (Yesterday 00:00 to Today 23:59).
     Past slots with actual data show real metrics with accurate local timezone conversion.
@@ -3457,29 +3674,29 @@ def get_two_day_timeline():
     buckets = {}
     for r in db_records:
         ts_str = r[0]
-        try:
-            if "Z" in ts_str or "+" in ts_str:
-                dt = datetime.datetime.fromisoformat(ts_str.replace("Z", "+00:00")).astimezone().replace(tzinfo=None)
-            else:
-                clean_ts = ts_str.replace("T", " ")
-                dt = datetime.datetime.strptime(clean_ts[:16], "%Y-%m-%d %H:%M")
+        dt = _parse_to_local_dt(ts_str)
+        if not dt:
+            continue
+        if dt.date() == today_date:
+            day_off = 1
+        elif dt.date() == yesterday_date:
+            day_off = 0
+        else:
+            continue
 
-            if dt.date() == today_date:
-                day_off = 1
-            elif dt.date() == yesterday_date:
-                day_off = 0
-            else:
+        slot_key = (day_off, dt.hour, 0 if dt.minute < 30 else 30)
+        if slot_key not in buckets:
+            buckets[slot_key] = {}
+        metric = r[1]
+        val1 = r[2]
+        val2 = r[3]
+        if metric == "PEDOMETER":
+            prev = buckets[slot_key].get("PEDOMETER")
+            v1_f = float(val1 or 0)
+            v2_f = float(val2 or 0)
+            if prev and float(prev[0] or 0) > v1_f:
                 continue
-
-            slot_key = (day_off, dt.hour, 0 if dt.minute < 30 else 30)
-            if slot_key not in buckets:
-                buckets[slot_key] = {}
-            metric = r[1]
-            val1 = r[2]
-            val2 = r[3]
-            buckets[slot_key][metric] = (val1, val2)
-        except Exception:
-            pass
+        buckets[slot_key][metric] = (val1, val2)
 
     meals_by_slot = {}
     for m in meal_rows:
@@ -3501,6 +3718,7 @@ def get_two_day_timeline():
     for day_off in [0, 1]:
         date_obj = yesterday_date if day_off == 0 else today_date
         date_label = "YESTERDAY" if day_off == 0 else "TODAY"
+        running_steps = 0
         for h in range(24):
             for m in [0, 30]:
                 slot_time = f"{h:02d}:{m:02d}"
@@ -3548,42 +3766,24 @@ def get_two_day_timeline():
                         spo2_raw = slot_data.get("BLOOD_OXYGEN", slot_data.get("SPO2"))[0]
                         spo2_val = round(spo2_raw, 1)
                     if has_temp: temp_val = round(slot_data["TEMPERATURE"][0], 1)
-                    if has_steps: steps_val = round(slot_data["PEDOMETER"][0])
+                    if has_steps:
+                        steps_val = round(slot_data["PEDOMETER"][0])
+                        if steps_val > running_steps:
+                            running_steps = steps_val
+                    if steps_val == 0 and running_steps > 0:
+                        steps_val = running_steps
                     notes = "Verified Sensor Telemetry"
                 elif is_am_charge_shower:
                     is_gap = True
+                    steps_val = running_steps
                     notes = "⚡ Watch Not Sensing (Off-Wrist / Shower / Charging)"
-                elif (h == 14) or (h == 15 and m == 0):
-                    # Verified Afternoon Restorative Nap Window (14:00 - 15:00)
-                    # Resting metabolic tone: quiescent steps, lowered HR, stable SpO2
-                    g_val = 104 + (m // 30) * 2
-                    hr_val = 58 + (m // 30)
-                    hrv_val = 68
-                    sys_val = 112
-                    dia_val = 70
-                    spo2_val = 98.4
-                    temp_val = 97.4
-                    steps_val = 0
-                    is_gap = False
-                    entry_is_nap = True
-                    notes = "Restorative Daytime Nap (14:00–15:00)"
-                elif h < 8:
-                    # Verified nocturnal sleep period (watch worn overnight, zero off-wrist gap)
-                    # Diurnal circadian physiological baseline
-                    base_g = 106 + round(4.5 * math.sin((h + m/60.0) / 2.0))
-                    if h >= 6: base_g += (h - 5) * 6  # Dawn awakening glucose rise
-                    g_val = base_g
-                    hr_val = 56 + (h % 3)
-                    hrv_val = 72 - (h % 4)
-                    sys_val = 110 + (h % 4)
-                    dia_val = 68 + (h % 3)
-                    spo2_val = 98.2 - ((h % 2) * 0.3)
-                    temp_val = 96.8 + ((h % 3) * 0.1)
-                    steps_val = 0
-                    notes = "Verified Nocturnal Telemetry (Sleep Architecture)"
                 else:
-                    is_gap = True
-                    notes = "⚡ Unrecorded Duration (Watch Off-Wrist)"
+                    if running_steps > 0:
+                        steps_val = running_steps
+                        notes = "Cumulative Daily Steps (Awaiting Vitals)"
+                    else:
+                        is_gap = True
+                        notes = "⚡ Unrecorded Duration (Watch Off-Wrist / No Telemetry)"
 
                 # Active Medication Regimen (Morning complete meds + Evening Metformin split)
                 med_obj = None
@@ -3630,15 +3830,15 @@ def get_two_day_timeline():
                     "day": date_label,
                     "date": str(date_obj),
                     "time": slot_time,
-                    "isNap": (h == 14 or (h == 15 and m == 0)),
+                    "isNap": False,
                     "fullTime": f"{date_label} {slot_time}",
                     "g": g_val,
                     "sys": sys_val,
                     "dia": dia_val,
                     "hr": hr_val,
                     "hrv": hrv_val,
-                    "spo2": spo2_val or (98.0 if not is_gap and not is_future else None),
-                    "temp": temp_val or (97.4 if not is_gap and not is_future else None),
+                    "spo2": spo2_val,
+                    "temp": temp_val,
                     "steps": steps_val,
                     "isChargingGap": is_gap,
                     "isFuture": is_future,
@@ -3924,7 +4124,11 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
             timeline_data = get_two_day_timeline()
             self.send_json_response(timeline_data)
 
-        # 3b. Nocturnal Sleep Records API (CLE-090)
+        # 3b. Daily 24h Sleep + Nap Precision Summary API (00:01 - 23:59)
+        elif self.path.startswith("/api/sleep/today"):
+            self.send_json_response(get_today_sleep_summary())
+
+        # 3c. Nocturnal Sleep Records API (CLE-090)
         elif self.path.startswith("/api/sleep/records"):
             with db_lock:
                 conn = get_db()
@@ -4342,7 +4546,31 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                 mode = payload.get("mode", "AMBULATORY")
                 raw_hex = payload.get("raw_hex", "")
                 ts = payload.get("timestamp")
+                if ts:
+                    dt_loc = _parse_to_local_dt(ts)
+                    if dt_loc:
+                        ts = dt_loc.isoformat()
                 dev_id = payload.get("device_id") or "VEE_5010"
+                if metric == "PEDOMETER" and float(val1 or 0) <= 0:
+                    today_loc = datetime.date.today()
+                    has_pos = False
+                    with db_lock:
+                        conn = get_db()
+                        cur = conn.cursor()
+                        cur.execute("""
+                            SELECT timestamp, value1 FROM vital_records
+                            WHERE metric = 'PEDOMETER' AND value1 > 0
+                            ORDER BY id DESC LIMIT 30
+                        """)
+                        for r_ts, r_v1 in cur.fetchall():
+                            r_dt = _parse_to_local_dt(r_ts)
+                            if r_dt and r_dt.date() == today_loc:
+                                has_pos = True
+                                break
+                        conn.close()
+                    if has_pos:
+                        self.send_json_response({"status": "IGNORED_ZERO_ECHO"})
+                        return
                 insert_vital_record(metric, val1, val2, unit, progress, status, mode, raw_hex, ts, device_id=dev_id)
                 update_sync_state("BROWSER_GATT_SYNC", 1)
                 self.send_json_response({"status": "SAVED"})
@@ -4851,17 +5079,49 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                         ORDER BY id DESC LIMIT 1
                     """, (m,))
                 row = cur.fetchone()
+                if m == "PEDOMETER":
+                    today_loc = datetime.date.today()
+                    best_ped = None
+                    if target_device:
+                        cur.execute("""
+                            SELECT timestamp, value1, value2, unit, status, mode
+                            FROM vital_records
+                            WHERE metric = 'PEDOMETER' AND (device_id = ? OR device_id IS NULL OR device_id = '')
+                            ORDER BY id DESC LIMIT 200
+                        """, (target_device,))
+                    else:
+                        cur.execute("""
+                            SELECT timestamp, value1, value2, unit, status, mode
+                            FROM vital_records
+                            WHERE metric = 'PEDOMETER'
+                            ORDER BY id DESC LIMIT 200
+                        """)
+                    for p_row in cur.fetchall():
+                        p_dict = dict(p_row)
+                        p_dt = _parse_to_local_dt(p_dict.get("timestamp"))
+                        if p_dt and p_dt.date() == today_loc and float(p_dict.get("value1") or 0) > 0:
+                            best_ped = p_dict
+                            break
+                    if best_ped:
+                        snapshot["vitals"][m] = best_ped
+                    else:
+                        snapshot["vitals"][m] = {"timestamp": datetime.datetime.now().isoformat(), "value1": 0, "value2": 0, "unit": "steps", "status": "OK", "mode": "NO_STEPS_TODAY"}
+                    continue
                 if row:
                     row_dict = dict(row)
-                    if m == "PEDOMETER":
-                        ts_str = str(row_dict.get("timestamp") or "")
-                        rec_date = ts_str.split("T")[0] if "T" in ts_str else ts_str.split(" ")[0]
-                        today_str = datetime.date.today().isoformat()
-                        if rec_date and rec_date != today_str:
-                            row_dict["value1"] = 0
-                            row_dict["value2"] = 0
                     snapshot["vitals"][m] = row_dict
             conn.close()
+        sleep_summary = get_today_sleep_summary()
+        if sleep_summary and sleep_summary.get("totalMin", 0) > 0:
+            snapshot["vitals"]["SLEEP_SUMMARY"] = sleep_summary
+            snapshot["vitals"]["SLEEP"] = {
+                "timestamp": f"{sleep_summary['date']}T23:59:00",
+                "value1": round(sleep_summary["totalMin"] / 60.0, 2),
+                "value2": round(sleep_summary["deepMin"] / 60.0, 2),
+                "unit": "hours",
+                "status": "OK",
+                "mode": json.dumps(sleep_summary),
+            }
         return snapshot
 
     def generate_metabolic_report(self):
