@@ -56,7 +56,7 @@ The project enforces a machine-parsable, deterministic build taxonomy across all
 | :--- | :--- | :--- | :--- |
 | **Alpha Development** | `alpha.xx.xx.xx.xxxx` | Multi-build rapid prototyping, BLE protocol decoding (`CLE-001`–`CLE-108`) | Archived (`alpha.01.00.00.0678`) |
 | **Beta 1 Baseline** | `beta.00.01.0001`–`0056` | Full GATT reverse-engineering (`0xDF`/`0x88`/`0xE0`/`0xB8`), W11 launcher, 13-channel charts, zero CLEBUGGER open defects | Certified (`56` builds tagged & closed) |
-| **Beta 1 Documentation & Deck** | `beta.00.01.0058` | Updated EM/Exec specifications, 85-slide consolidated clinician & user presentation (Tabs 01–14, 0 duplicates, 360° Closed-Loop Whole Picture Slide 02, 90-day accuracy SVG Slide 03, Watch+Phone->PC topology Slide 05, animated 3D fly-through Slide 23, clean narration QA doc), full 4-tool audit certification | Active Production Build |
+| **Beta 1 Documentation & Deck** | `beta.00.01.0059` | Updated EM/Exec specifications, 85-slide consolidated clinician & user presentation (Tabs 01–14, 0 duplicates, 360° Closed-Loop Slide 02, 90-day SVG Slide 03, Collector-to-PC Topology Slide 05, FITAOS 5010 Watch & LEDs/Metal Sensors Slide 06, 5-Specialist Team incl. Neurologist Slide 07, Information Loss Math Slide 08, consolidated GLUT4+Intake Slide 15, animated 3D fly-through Slide 25, smooth-scrolling 2D 13-lane panorama Slides 27–29, screen-matched Tabs 05/06 Slides 49–53, clean narration QA doc + tracked `BETA_BACKLOG_TODO.md`), full 4-tool audit certification | Active Production Build |
 | **General Availability** | `release.01.00.00.0001` | Commercial / community enterprise release for self-help & physician deployment | Roadmap Phase 3 |
 
 ---

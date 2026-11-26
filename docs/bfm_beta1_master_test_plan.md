@@ -48,7 +48,7 @@ Before any human testing begins, the automated suite must certify the build with
 3. **Check 3: Dual-Origin & Telemetry E2E Suite (`test_beta1_e2e.py` — 10 Checks)**:
    * Validates dynamic endpoint resolution (`window.location.protocol === 'file:' ? 'http://127.0.0.1:8899' : ''`), Bleak arbitration (`/api/browser_active`), and zero cross-tenant pollution.
 4. **Check 4: Full 85-Slide Presentation Audit (`tools/audit_presentation_full.py`)**:
-   * Verifies every slide (`01`–`85`) across `presentation/`, `presentation/slides/`, and `slides/` in strict Tab 01 (`01-FULL SCAN`) -> Tab 02 (`02-METABOLIC`) -> Tab 03 (`03-MEAL PLANNER`) -> ... -> Tab 14 order, all live PNG screenshots (`> 15 KB`), custom Slide 02 360-degree closed-loop graphic, Slide 03 90-day sampling SVG, Slide 05 collector-to-PC topology, Slide 23 animated 3D fly-through JPEGs, all MP3 narrations, zero programmer jargon, and clinical measurement truth.
+   * Verifies every slide (`01`–`85`) across `presentation/`, `presentation/slides/`, and `slides/` in strict Tab 01 (`01-FULL SCAN`) -> Tab 02 (`02-METABOLIC`) -> Tab 03 (`03-MEAL PLANNER`) -> ... -> Tab 14 order, all live PNG/JPG screenshots (`> 15 KB`), Slide 02 360-degree closed-loop graphic, Slide 03 90-day sampling SVG, Slide 05 collector-to-PC topology, Slide 06 FITAOS 5010 watch & LED/metal sensors diagram, Slide 07 5-specialist team view, Slide 08 information-loss math graphic, Slide 25 animated 3D fly-through JPEGs, Slides 27–29 voice-synced smooth scrolling (`bfm_t04_tall_full_panorama.png`), screen-matched Tabs 05–06 (`Slides 49–53`), single Aussie female MP3 narrations, zero programmer jargon, and clinical measurement truth.
 
 ---
 

@@ -1,8 +1,8 @@
 {
-  "latest_build": "beta.00.01.0058",
-  "synced_at": "2026-11-26T10:01:44",
-  "total_bugs": 162,
-  "total_resolved": 162,
+  "latest_build": "beta.00.01.0059",
+  "synced_at": "2026-11-26T10:46:49",
+  "total_bugs": 163,
+  "total_resolved": 163,
   "total_open": 0,
   "bugs": [
     {
@@ -2110,6 +2110,19 @@
       "comments": "Synced from git tag beta.00.01.0058",
       "created_at": "2026-11-26 10:01:15",
       "resolved_at": "2026-11-26 10:01:15"
+    },
+    {
+      "code": "CLE-116",
+      "project": "JVEEPOO",
+      "build": "beta.00.01.0059",
+      "title": "[beta.00.01.0059] release(beta.00.01.0059): restore FITAOS 5010 watch & sensors Slide 06, add 5-specialist team Slide 07, info-loss math Slide 08, Mind the Ga",
+      "status": "RESOLVED",
+      "component": "beta.00.01.0059",
+      "affected_files": "Beta/docs/BETA_BACKLOG_TODO.md, Beta/docs/GOOGLE_LEADERSHIP_PRIMER.md, Beta/docs/NARRATION_QA_85_SLIDES.md, Beta/docs/bfm_beta1_master_test_plan.md, Beta/docs/bfm_diabetes_beta1_functional_specification.md, Beta/docs/presentation_build_cove",
+      "resolution": "Git commit 50827d6 (2026-11-26 10:45:56): release(beta.00.01.0059): restore FITAOS 5010 watch & sensors Slide 06, add 5-specialist team Slide 07, info-loss math Slide 08, Mind the Gap Slide 85, merge Tab 02 GLUT4+Intake, add file:/// postMessage smooth scroll on 13-lane Slides 27-29, align Tab 04/05/06 screen-to-voice, log UX & HDYF voice-stress TODOs, 85-slide deck & narration QA",
+      "comments": "Synced from git tag beta.00.01.0059",
+      "created_at": "2026-11-26 10:45:56",
+      "resolved_at": "2026-11-26 10:45:56"
     }
   ]
 }

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Slide 23: Animated 3D Multi-Channel Biometric &amp; Behavioral Fly-Through</title>
+  <title>Slide 23: Step 2 Harm-Reduction Trades &amp; Step 3 Pantry vs Consume Workflow</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
@@ -176,9 +176,9 @@
   <div class="slide-container">
     <div class="slide-header">
       <div>
-        <div class="module-badge">Tab 04: 04-REPORTS</div>
-        <div class="slide-title">Animated 3D Multi-Channel Biometric &amp; Behavioral Fly-Through</div>
-        <div class="slide-desc">Live rotating 36-frame orbital fly-through rendering all 13 synchronized physiological, activity, sleep, pain, mood, carb, fluid &amp; Rx ribbons.</div>
+        <div class="module-badge">Tab 03: 03-MEAL PLANNER</div>
+        <div class="slide-title">Step 2 Harm-Reduction Trades &amp; Step 3 Pantry vs Consume Workflow</div>
+        <div class="slide-desc">Practical carbohydrate swaps saving `42g–65g` sugar before choosing safely between saving a template or logging today&#x27;s meal.</div>
       </div>
       <div class="slide-num-badge">SLIDE 23 / 85</div>
     </div>
@@ -187,41 +187,11 @@
       <!-- Left Column: Live Console Screenshot or Custom Visual -->
       <div class="left-screenshot-card">
         <div class="left-screenshot-header">
-          <span style="font-family: monospace; font-size: 0.69rem; color: #0284c7; font-weight: 800;">04-REPORTS • ANIMATED 13-CHANNEL 3D FLY-THROUGH</span>
+          <span style="font-family: monospace; font-size: 0.69rem; color: #0284c7; font-weight: 800;">03-MEAL PLANNER • ZERO-COST RECIPE BOM &amp; LOCAL GROCERS</span>
           <span style="background: #15803d; color: #ffffff; font-size: 0.59rem; font-weight: 800; padding: 2px 6px; border-radius: 3px; font-family: monospace;">SHARED CARE VIEW</span>
         </div>
         <div class="left-screenshot-viewport">
-          
-<div style="width:100%;height:100%;display:flex;flex-direction:column;background:#ffffff;position:relative;">
-  <div style="display:flex;justify-content:space-between;align-items:center;padding:5px 10px;background:#eff6ff;border-bottom:1.5px solid #bfdbfe;font-family:monospace;font-size:0.68rem;">
-    <span style="font-weight:800;color:#0284c7;">LIVE 3D AUTO-FLY SEQUENCE • 13 CHANNELS (36 ORBITAL FRAMES)</span>
-    <span id="flyFrameBadge" style="background:#15803d;color:#fff;padding:1px 7px;border-radius:3px;font-weight:800;">PLAYING FRAME 01 / 36</span>
-  </div>
-  <div style="flex:1;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:4px;background:#f8fafc;">
-    <img id="fly3dImg" src="images/fly3d/bfm_3d_fly_00.jpg" alt="3D Multi-Channel Live Fly-Through" style="width:100%;max-height:100%;object-fit:contain;border-radius:4px;border:1px solid #cbd5e1;">
-  </div>
-  <script>
-    (function() {
-      let frame = 0;
-      const totalFrames = 36;
-      const img = document.getElementById('fly3dImg');
-      const badge = document.getElementById('fly3dImg') ? document.getElementById('flyFrameBadge') : null;
-      const pre = [];
-      for (let i = 0; i < totalFrames; i++) {
-        const im = new Image();
-        im.src = 'images/fly3d/bfm_3d_fly_' + String(i).padStart(2, '0') + '.jpg';
-        pre.push(im);
-      }
-      setInterval(() => {
-        frame = (frame + 1) % totalFrames;
-        const pad = String(frame).padStart(2, '0');
-        if (img) img.src = 'images/fly3d/bfm_3d_fly_' + pad + '.jpg';
-        if (badge) badge.textContent = 'PLAYING FRAME ' + String(frame + 1).padStart(2, '0') + ' / 36';
-      }, 150);
-    })();
-  </script>
-</div>
-
+          <img src="images/bfm_t03_meal_bom_grocers.png" alt="03-MEAL PLANNER • ZERO-COST RECIPE BOM &amp; LOCAL GROCERS" style="width: 100%; max-height: 100%; object-fit: contain; display: block;">
         </div>
       </div>
 
@@ -229,29 +199,29 @@
       <div class="right-column">
         <div class="content-card">
           <div class="card-header-strip">
-            <span>13-CHANNEL LIVE 3D AUTO-FLY VIEWER</span>
+            <span>ADA SWAPS &amp; CLEAN COMMIT SEPARATION</span>
             <span style="color: #64748b;">PATIENT &amp; CLINICIAN WALKTHROUGH</span>
           </div>
           <div class="bullet-item bullet-item-0" data-idx="0">
-            <strong style="color: #0284c7;">Interactive Depth Perspective Across 13 Ribbons:</strong> Watch Glucose, BP, HR, SpO2, Temp, HRV, Steps, Sleep, Pain, Mood, Carbs, Fluid &amp; Rx fly through time in 3D space.
+            <strong style="color: #0284c7;">Simple Harm-Reduction Swaps:</strong> Step 2 illustrates easy trades: swapping fried sides for salad (-42g carbs) or switching to unsweetened tea (-65g sugar).
           </div>
           <div class="bullet-item bullet-item-1" data-idx="1">
-            <strong style="color: #0284c7;">Zero Blind Spots Between Channels:</strong> Peaks on rear biometric planes line up directly behind foreground meal carbs, hydration steps, and walk triangles.
+            <strong style="color: #0284c7;">Tweak &amp; Re-Assess Iteratively:</strong> Lets users swap bun, sauce, or drink sizes repeatedly until metabolic impact turns green.
           </div>
           <div class="bullet-item bullet-item-2" data-idx="2">
-            <strong style="color: #0284c7;">Multi-Scale Time Depth Controls:</strong> Explore 24-hour curves or fly backwards cleanly across 7-day, 30-day, 90-day, and 365-day horizons.
+            <strong style="color: #0284c7;">Decoupled Step 3 Actions:</strong> Add to Pantry stores templates for future reuse; Consume Now commits real intake into Tab 02 and Tab 04.
           </div>
           <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.75rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
-            <strong style="color: #15803d;">Key Takeaway:</strong> Flying smoothly around 13 synchronized ribbons lets patients and specialists visualize complex whole-body coupling in seconds.
+            <strong style="color: #15803d;">Key Takeaway:</strong> Smart single-ingredient swaps preserve meal enjoyment while keeping peak post-meal glucose safely inside target.
           </div>
         </div>
 
         <div class="visual-card">
           <div class="card-header-strip">
-            <span>13-CHANNEL 3D ORBITAL VIEWER</span>
-            <span style="background: #0284c7; color: #ffffff; font-size: 0.57rem; padding: 2px 6px; border-radius: 3px;">LIVE AUTO-FLY</span>
+            <span>STEP 2 SWAPS -&gt; STEP 3 COMMIT</span>
+            <span style="background: #d97706; color: #ffffff; font-size: 0.57rem; padding: 2px 6px; border-radius: 3px;">-42G TO -65G SAVED</span>
           </div>
-          <div style="background:#f8fafc;border:1.5px solid #cbd5e1;border-radius:6px;padding:7px;"><div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1.5px solid #cbd5e1;padding-bottom:3px;margin-bottom:5px;"><span style="font-family:monospace;font-size:0.70rem;font-weight:800;color:#0284c7;">13-CHANNEL 3D ORBITAL VIEWER</span><span style="background:#0284c7;color:#fff;font-family:monospace;font-size:0.58rem;font-weight:800;padding:2px 6px;border-radius:3px;">LIVE AUTO-FLY</span></div><div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:5px;overflow:hidden;"><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Rear Plane Ribbons</span><span style="font-family:monospace;color:#475569;">Glucose | BP | HR | SpO2 | Temp | HRV</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#0284c7;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">PHYSIOLOGY</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Mid &amp; Front Tracks</span><span style="font-family:monospace;color:#475569;">Steps/GLUT4 | Sleep | Pain | Mood | Intake</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#0284c7;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">BEHAVIOR</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Orbit Modes</span><span style="font-family:monospace;color:#475569;">Drag Orbit | Shift Pan | Wheel | Auto Fly</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#0284c7;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">INTERACTIVE</span></div></div><div style="margin-top:6px;background:#f0fdf4;border:1.5px solid #86efac;border-radius:5px;padding:6px 9px;"><div style="font-family:monospace;font-size:0.65rem;font-weight:800;color:#15803d;margin-bottom:2px;">PHYSICIAN CALCULUS &amp; MEASUREMENT FITNESS • ISOMETRIC MANIFOLD VECTOR</div><div style="font-family:monospace;font-size:0.74rem;font-weight:700;color:#0f172a;line-height:1.35;">r_k(t) = (t, k, normalize_k(Value_k(t)))  for channels k = 1..13</div></div></div><div style="margin-top:6px;background:#eff6ff;border-left:3.5px solid #0284c7;padding:6px 9px;border-radius:4px;font-size:0.72rem;color:#1e3a8a;line-height:1.35;"><strong>Clinical Significance:</strong> Mapping all 13 heterogeneous units onto normalized manifolds exposes synchronized phase alignments across endocrine, cardiac, and behavioral systems.</div>
+          <div style="background:#f8fafc;border:1.5px solid #cbd5e1;border-radius:6px;padding:7px;"><div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1.5px solid #cbd5e1;padding-bottom:3px;margin-bottom:5px;"><span style="font-family:monospace;font-size:0.70rem;font-weight:800;color:#d97706;">STEP 2 SWAPS -&gt; STEP 3 COMMIT</span><span style="background:#d97706;color:#fff;font-family:monospace;font-size:0.58rem;font-weight:800;padding:2px 6px;border-radius:3px;">-42G TO -65G SAVED</span></div><div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:5px;overflow:hidden;"><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Step 2 Options</span><span style="font-family:monospace;color:#475569;">Tweak Ingredients &amp; Review Clinical Swaps</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#d97706;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">ITERATIVE</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Typical Relief</span><span style="font-family:monospace;color:#475569;">42g side swap | 65g unsweetened tea</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#d97706;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">HIGH IMPACT</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Step 3 Buttons</span><span style="font-family:monospace;color:#475569;">Save to Pantry (Safe) vs Consume Now (Log)</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#d97706;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">DECOUPLED</span></div></div><div style="margin-top:6px;background:#f0fdf4;border:1.5px solid #86efac;border-radius:5px;padding:6px 9px;"><div style="font-family:monospace;font-size:0.65rem;font-weight:800;color:#15803d;margin-bottom:2px;">PHYSICIAN CALCULUS &amp; MEASUREMENT FITNESS • EXCURSION ATTENUATION</div><div style="font-family:monospace;font-size:0.74rem;font-weight:700;color:#0f172a;line-height:1.35;">Delta G_saved ≈ k_absorb * (C_orig - C_swap)   -&gt;  -60 to -95 mg/dL peak relief</div></div></div><div style="margin-top:6px;background:#eff6ff;border-left:3.5px solid #d97706;padding:6px 9px;border-radius:4px;font-size:0.72rem;color:#1e3a8a;line-height:1.35;"><strong>Clinical Significance:</strong> Removing 42–65g of rapidly absorbed liquid/refined sugars avoids acute hepatic &amp; beta-cell overload peaks cleanly.</div>
         </div>
       </div>
     </div>
@@ -261,5 +231,56 @@
       <div>AUSTRALIAN VOICE NARRATION • TAB 01–14 SYNCHRONIZED</div>
     </div>
   </div>
+  <script>
+    (function() {
+      let curL = 0, tgtL = 0, curR = 0, tgtR = 0;
+      const vp = document.querySelector('.left-screenshot-viewport');
+      const vc = document.querySelector('.visual-card');
+      const bullets = document.querySelectorAll('.bullet-item');
+      window.addEventListener('message', (ev) => {
+        const d = ev.data;
+        if (!d || d.type !== 'bfmSync') return;
+        bullets.forEach((b, idx) => {
+          if (idx === d.activeIdx) {
+            b.style.background = '#e0f2fe';
+            b.style.borderLeft = '4px solid #0284c7';
+            b.style.color = '#0369a1';
+          } else {
+            b.style.background = 'transparent';
+            b.style.borderLeft = '4px solid transparent';
+            b.style.color = '#1e293b';
+          }
+        });
+        if (d.isSteady) {
+          tgtL = 0; tgtR = 0;
+        } else {
+          if (vp && vp.scrollHeight > vp.clientHeight) {
+            tgtL = (d.targetPct || 0) * (vp.scrollHeight - vp.clientHeight);
+          }
+          if (vc && vc.scrollHeight > vc.clientHeight) {
+            tgtR = (d.rightPct || 0) * (vc.scrollHeight - vc.clientHeight);
+          }
+        }
+      });
+      document.addEventListener('keydown', (e) => {
+        if (['Space', 'ArrowRight', 'ArrowLeft'].includes(e.code) && window.parent && window.parent !== window) {
+          e.preventDefault();
+          window.parent.postMessage({ type: 'bfmKey', code: e.code }, '*');
+        }
+      });
+      function tick() {
+        if (vp && vp.scrollHeight > vp.clientHeight) {
+          curL += (tgtL - curL) * 0.12;
+          if (Math.abs(vp.scrollTop - curL) > 0.4) vp.scrollTop = curL;
+        }
+        if (vc && vc.scrollHeight > vc.clientHeight) {
+          curR += (tgtR - curR) * 0.12;
+          if (Math.abs(vc.scrollTop - curR) > 0.4) vc.scrollTop = curR;
+        }
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    })();
+  </script>
 </body>
 </html>

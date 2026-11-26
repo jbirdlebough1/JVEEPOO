@@ -270,11 +270,12 @@
       <span style="font-family:monospace;font-size:0.70rem;font-weight:800;color:#0284c7;">UNIFIED OUTPUT &#8594; SHARED CAUSE-AND-EFFECT EVIDENCE</span>
       <span style="font-family:monospace;font-size:0.60rem;font-weight:700;color:#15803d;">ZERO THIRD-PARTY CLOUD LOCK-IN</span>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;font-family:monospace;font-size:0.62rem;font-weight:700;text-align:center;">
-      <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:4px;padding:5px;color:#1e3a8a;">PRIMARY DOCTOR</div>
-      <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:4px;padding:5px;color:#1e3a8a;">ENDOCRINOLOGIST</div>
-      <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:4px;padding:5px;color:#1e3a8a;">PHARMACIST</div>
-      <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:4px;padding:5px;color:#1e3a8a;">DIETITIAN</div>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:5px;font-family:monospace;font-size:0.56rem;font-weight:700;text-align:center;">
+      <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:4px;padding:5px 2px;color:#1e3a8a;">PRIMARY CARE</div>
+      <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:4px;padding:5px 2px;color:#1e3a8a;">PHARMACIST</div>
+      <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:4px;padding:5px 2px;color:#1e3a8a;">DIETITIAN</div>
+      <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:4px;padding:5px 2px;color:#1e3a8a;">ENDOCRINE</div>
+      <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:4px;padding:5px 2px;color:#1e3a8a;">NEUROLOGIST</div>
     </div>
   </div>
 </div>
@@ -296,7 +297,7 @@
             <strong style="color: #0284c7;">Cell Phone Collector (On-the-Go Life Events):</strong> Logs restaurant meals, hydration, medications, and How Do You Feel voice notes effortlessly—even offline outdoors—docking over home Wi-Fi.
           </div>
           <div class="bullet-item bullet-item-2" data-idx="2">
-            <strong style="color: #0284c7;">Personal PC BFM Server (Private Clinical Vault):</strong> Unifies watch biometrics and phone choices onto one master timeline on your home computer—giving all four doctors zero-cloud truth.
+            <strong style="color: #0284c7;">Personal PC BFM Server (Private Clinical Vault):</strong> Unifies watch biometrics and phone choices onto one master timeline on your home computer—giving all five doctors zero-cloud truth.
           </div>
           <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.75rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
             <strong style="color: #15803d;">Key Takeaway:</strong> Watch biometrics plus Cell Phone lifestyle logs merge inside your personal PC BFM Server—so cause and effect appear cleanly without third-party cloud lock-in.
@@ -318,5 +319,56 @@
       <div>AUSTRALIAN VOICE NARRATION • TAB 01–14 SYNCHRONIZED</div>
     </div>
   </div>
+  <script>
+    (function() {
+      let curL = 0, tgtL = 0, curR = 0, tgtR = 0;
+      const vp = document.querySelector('.left-screenshot-viewport');
+      const vc = document.querySelector('.visual-card');
+      const bullets = document.querySelectorAll('.bullet-item');
+      window.addEventListener('message', (ev) => {
+        const d = ev.data;
+        if (!d || d.type !== 'bfmSync') return;
+        bullets.forEach((b, idx) => {
+          if (idx === d.activeIdx) {
+            b.style.background = '#e0f2fe';
+            b.style.borderLeft = '4px solid #0284c7';
+            b.style.color = '#0369a1';
+          } else {
+            b.style.background = 'transparent';
+            b.style.borderLeft = '4px solid transparent';
+            b.style.color = '#1e293b';
+          }
+        });
+        if (d.isSteady) {
+          tgtL = 0; tgtR = 0;
+        } else {
+          if (vp && vp.scrollHeight > vp.clientHeight) {
+            tgtL = (d.targetPct || 0) * (vp.scrollHeight - vp.clientHeight);
+          }
+          if (vc && vc.scrollHeight > vc.clientHeight) {
+            tgtR = (d.rightPct || 0) * (vc.scrollHeight - vc.clientHeight);
+          }
+        }
+      });
+      document.addEventListener('keydown', (e) => {
+        if (['Space', 'ArrowRight', 'ArrowLeft'].includes(e.code) && window.parent && window.parent !== window) {
+          e.preventDefault();
+          window.parent.postMessage({ type: 'bfmKey', code: e.code }, '*');
+        }
+      });
+      function tick() {
+        if (vp && vp.scrollHeight > vp.clientHeight) {
+          curL += (tgtL - curL) * 0.12;
+          if (Math.abs(vp.scrollTop - curL) > 0.4) vp.scrollTop = curL;
+        }
+        if (vc && vc.scrollHeight > vc.clientHeight) {
+          curR += (tgtR - curR) * 0.12;
+          if (Math.abs(vc.scrollTop - curR) > 0.4) vc.scrollTop = curR;
+        }
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    })();
+  </script>
 </body>
 </html>

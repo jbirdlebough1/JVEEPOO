@@ -331,5 +331,56 @@
       <div>AUSTRALIAN VOICE NARRATION • TAB 01–14 SYNCHRONIZED</div>
     </div>
   </div>
+  <script>
+    (function() {
+      let curL = 0, tgtL = 0, curR = 0, tgtR = 0;
+      const vp = document.querySelector('.left-screenshot-viewport');
+      const vc = document.querySelector('.visual-card');
+      const bullets = document.querySelectorAll('.bullet-item');
+      window.addEventListener('message', (ev) => {
+        const d = ev.data;
+        if (!d || d.type !== 'bfmSync') return;
+        bullets.forEach((b, idx) => {
+          if (idx === d.activeIdx) {
+            b.style.background = '#e0f2fe';
+            b.style.borderLeft = '4px solid #0284c7';
+            b.style.color = '#0369a1';
+          } else {
+            b.style.background = 'transparent';
+            b.style.borderLeft = '4px solid transparent';
+            b.style.color = '#1e293b';
+          }
+        });
+        if (d.isSteady) {
+          tgtL = 0; tgtR = 0;
+        } else {
+          if (vp && vp.scrollHeight > vp.clientHeight) {
+            tgtL = (d.targetPct || 0) * (vp.scrollHeight - vp.clientHeight);
+          }
+          if (vc && vc.scrollHeight > vc.clientHeight) {
+            tgtR = (d.rightPct || 0) * (vc.scrollHeight - vc.clientHeight);
+          }
+        }
+      });
+      document.addEventListener('keydown', (e) => {
+        if (['Space', 'ArrowRight', 'ArrowLeft'].includes(e.code) && window.parent && window.parent !== window) {
+          e.preventDefault();
+          window.parent.postMessage({ type: 'bfmKey', code: e.code }, '*');
+        }
+      });
+      function tick() {
+        if (vp && vp.scrollHeight > vp.clientHeight) {
+          curL += (tgtL - curL) * 0.12;
+          if (Math.abs(vp.scrollTop - curL) > 0.4) vp.scrollTop = curL;
+        }
+        if (vc && vc.scrollHeight > vc.clientHeight) {
+          curR += (tgtR - curR) * 0.12;
+          if (Math.abs(vc.scrollTop - curR) > 0.4) vc.scrollTop = curR;
+        }
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    })();
+  </script>
 </body>
 </html>
