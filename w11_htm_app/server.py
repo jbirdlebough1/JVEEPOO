@@ -3456,7 +3456,9 @@ def calc_veepoo_crc(data: bytes) -> int:
 
 
 def _parse_df_origin_blocks(packets, day_offset=0):
-    """Reassembles & parses Veepoo 0xDF OriginV3 5-minute history blocks per vp_bu.java / vp_ar.java."""
+    """Reassembles & parses Veepoo 0xDF OriginV3 5-minute history blocks per vp_bu.java / vp_ar.java.
+    Handles 244-byte MTU packets AND out-of-order sub-packet delivery (subIdx 1 arriving before subIdx 0).
+    """
     if not packets:
         return []
 
@@ -3472,64 +3474,42 @@ def _parse_df_origin_blocks(packets, day_offset=0):
             except Exception as e:
                 print(f"[MIL-SPEC HANDLED FAULT] Invalid hex packet in 0xDF stream: {e}")
 
-    blocks = []
-    cur_b1 = 0
-    cur_b2 = 0
-    cur_header = None
-    cur_payload = bytearray()
-    last_sub_idx = -1
-    last_pkt_len = 20
-
-    def _flush_block():
-        if not cur_header or not cur_payload:
-            return
-        valid_len = cur_header["valid_len"]
-        expected_crc = cur_header["expected_crc"]
-        if valid_len <= 0 or len(cur_payload) < valid_len:
-            return
-        trimmed = bytes(cur_payload[:valid_len])
-        if calc_veepoo_crc(trimmed) != expected_crc:
-            return
-        blocks.append((cur_header["day"], trimmed))
-
+    grouped = {}
     for pkt in raw_pkts:
         if len(pkt) < 5 or pkt[0] != 0xDF:
             continue
-        b1, b2 = pkt[1], pkt[2]
-        is_end = (b1 == 0xFF and b2 == 0xFF)
-        if is_end or b1 != cur_b1 or b2 != cur_b2:
-            _flush_block()
-            cur_payload = bytearray()
-            last_sub_idx = -1
-            cur_b1, cur_b2 = b1, b2
-            if not is_end and len(pkt) >= 20 and pkt[3] == 0:
-                pkt_len = pkt[13] & 0xFF
-                if pkt_len < 4 or pkt_len > len(pkt):
-                    pkt_len = last_pkt_len if last_pkt_len >= 4 else 20
-                last_pkt_len = pkt_len
-                cur_header = {
-                    "day": pkt[7] & 0xFF,
-                    "valid_len": pkt[10] & 0xFF,
-                    "expected_crc": ((pkt[12] & 0xFF) << 8) | (pkt[11] & 0xFF),
-                    "pkt_len": pkt_len,
-                }
-            else:
-                cur_header = None
-        else:
-            if not cur_header:
-                continue
-            sub_idx = pkt[3] & 0xFF
-            chunk_len = cur_header["pkt_len"] - 4
-            if chunk_len <= 0 or chunk_len > (len(pkt) - 4):
-                cur_header = None
-                cur_payload = bytearray()
-                last_sub_idx = -1
-                continue
-            if last_sub_idx == -1 or sub_idx != last_sub_idx:
-                cur_payload.extend(pkt[4:4 + chunk_len])
-                last_sub_idx = sub_idx
+        if pkt[1] == 0xFF and pkt[2] == 0xFF:
+            continue
+        bid = (pkt[2] << 8) | pkt[1]
+        sub = pkt[3] & 0xFF
+        grouped.setdefault(bid, {})[sub] = pkt
 
-    _flush_block()
+    blocks = []
+    last_pkt_len = 20
+    for bid in sorted(grouped.keys()):
+        subs = grouped[bid]
+        hdr = subs.get(0)
+        if not hdr or len(hdr) < 20:
+            continue
+        pkt_len = hdr[13] & 0xFF
+        if pkt_len < 4:
+            pkt_len = last_pkt_len if last_pkt_len >= 4 else 20
+        last_pkt_len = pkt_len
+        day_b = hdr[7] & 0xFF
+        valid_len = hdr[10] & 0xFF
+        expected_crc = ((hdr[12] & 0xFF) << 8) | (hdr[11] & 0xFF)
+        payload = bytearray()
+        for sub_idx in sorted(k for k in subs.keys() if k >= 1):
+            dp = subs[sub_idx]
+            chunk_len = min(pkt_len - 4, len(dp) - 4)
+            if chunk_len > 0:
+                payload.extend(dp[4:4 + chunk_len])
+        if valid_len <= 0 or len(payload) < valid_len:
+            continue
+        trimmed = bytes(payload[:valid_len])
+        if calc_veepoo_crc(trimmed) != expected_crc:
+            continue
+        blocks.append((day_b, trimmed))
 
     now_local = datetime.datetime.now()
     parsed_records = []
@@ -3572,6 +3552,8 @@ def _parse_df_origin_blocks(packets, day_offset=0):
             rec["sport"] = (b2v[2] << 8) | b2v[3]
             rec["dis_m"] = (b2v[4] << 8) | b2v[5]
             rec["kcal"] = round(((b2v[6] << 8) | b2v[7]) / 10.0, 1)
+            if len(b2v) >= 10:
+                rec["wear"] = b2v[9]
 
         hrs = []
         for htag in (0xB4, 0xB5):
@@ -3579,6 +3561,9 @@ def _parse_df_origin_blocks(packets, day_offset=0):
                 hrs.extend([v for v in tlvs[htag] if 30 <= v <= 220])
         if hrs:
             rec["hr"] = round(sum(hrs) / len(hrs))
+        else:
+            # Watch off-wrist (charging or shower): no optical HR AND wear state indicates non-wear (or zero motion/vitals)
+            rec["off_wrist"] = True
 
         if 0xB6 in tlvs:
             brs = [v for v in tlvs[0xB6] if 6 <= v <= 45]
@@ -3711,6 +3696,8 @@ def ingest_df_origin_records(records, device_id="VEE_5010"):
                     rr_count += len(rr_list)
                     mean_rr = round(sum(rr_list) / len(rr_list), 1)
                     _upsert("LORENZ_RR", len(rr_list), mean_rr, "ms", mode=json.dumps(rr_list))
+                if rec.get("off_wrist"):
+                    _upsert("WATCH_OFF_WRIST", rec.get("wear", 6), 0, "state", mode="0xDF_OFF_WRIST")
 
             conn.commit()
             cur.execute("SELECT COUNT(*) FROM vital_records")
@@ -3721,6 +3708,41 @@ def ingest_df_origin_records(records, device_id="VEE_5010"):
             conn.close()
 
     return {"inserted": inserted, "steps_5min_total": steps_sum, "rr_epochs": rr_count}
+
+
+def backfill_today_df_from_packet_log():
+    """Backfills any unparsed 0xDF 5-minute watch packets already captured in packet_log.txt into vital_records."""
+    if not os.path.exists(LOG_FILE):
+        return 0
+    try:
+        sz = os.path.getsize(LOG_FILE)
+        with open(LOG_FILE, "rb") as f:
+            f.seek(max(0, sz - 2500000))
+            tail = f.read().decode("utf-8", errors="ignore").splitlines()
+        pkts = []
+        last_tx_df = -1
+        for idx, line in enumerate(tail):
+            if "TX [" in line and ": df 01 00 00" in line.lower():
+                last_tx_df = idx
+        scan_lines = tail[last_tx_df:] if last_tx_df >= 0 else tail
+        for line in scan_lines:
+            if "RX [" in line and ": df " in line.lower():
+                try:
+                    hex_part = line.split("]: ", 1)[1].split(" | ", 1)[0].strip()
+                    pkts.append(hex_part)
+                except Exception:
+                    continue
+        if not pkts:
+            return 0
+        recs = _parse_df_origin_blocks(pkts, day_offset=0)
+        if not recs:
+            return 0
+        stats = ingest_df_origin_records(recs)
+        print(f"[✔] 0xDF Packet Log Backfill: {len(recs)} blocks decoded, +{stats.get('inserted', 0)} records ingested.")
+        return stats.get("inserted", 0)
+    except Exception as e:
+        print(f"[MIL-SPEC HANDLED FAULT] backfill_today_df_from_packet_log error: {e}")
+        return 0
 
 
 def get_today_lorenz_rr():
@@ -4146,6 +4168,7 @@ def get_two_day_timeline():
                 has_steps = ("PEDOMETER" in slot_data) or (s5_slot > 0)
                 has_spo2 = ("BLOOD_OXYGEN" in slot_data) or ("SPO2" in slot_data)
                 has_hrv = "HRV_STRESS" in slot_data
+                has_off_wrist = "WATCH_OFF_WRIST" in slot_data
 
                 is_gap = False
                 g_val = None
@@ -4159,13 +4182,14 @@ def get_two_day_timeline():
                 steps_val = 0
                 notes = ""
 
-                # Real morning shower & watch charge window (07:30 to 08:30) only when zero sensor data exists
+                # Blue shading ONLY for confirmed off-wrist (charging dock or shower) periods
                 is_am_charge_shower = (h == 7 and m >= 30) or (h == 8 and m <= 30)
-                has_any_sensor = has_glucose or has_bp or has_hr or has_temp or has_steps or has_spo2 or has_hrv
+                has_any_worn_vital = has_glucose or has_bp or has_hr or has_temp or has_spo2 or has_hrv
+                has_any_sensor = has_any_worn_vital or has_steps
 
                 if is_future:
                     notes = "Awaiting Live Telemetry (Future Window)"
-                elif has_any_sensor:
+                elif has_any_worn_vital or has_steps:
                     if has_glucose: g_val = round(slot_data["GLUCOSE"][0])
                     if has_bp:
                         sys_val = round(slot_data["BLOOD_PRESSURE"][0])
@@ -4188,18 +4212,18 @@ def get_two_day_timeline():
                     if cum_5min_steps > running_steps:
                         running_steps = cum_5min_steps
                     steps_val = running_steps
-                    notes = "Verified Sensor Telemetry"
-                elif is_am_charge_shower:
+                    if has_off_wrist and not has_any_worn_vital:
+                        is_gap = True
+                        notes = "⚡ Watch Not Sensing (Off-Wrist / Shower / Charging)"
+                    else:
+                        notes = "Verified Sensor Telemetry"
+                elif has_off_wrist or is_am_charge_shower:
                     is_gap = True
                     steps_val = running_steps
                     notes = "⚡ Watch Not Sensing (Off-Wrist / Shower / Charging)"
                 else:
-                    if running_steps > 0:
-                        steps_val = running_steps
-                        notes = "Cumulative Daily Steps (Awaiting Vitals)"
-                    else:
-                        is_gap = True
-                        notes = "⚡ Unrecorded Duration (Watch Off-Wrist / No Telemetry)"
+                    steps_val = running_steps
+                    notes = "Watch Worn (Standby Interval)" if running_steps > 0 else "Nocturnal Standby"
 
                 # Active Medication Regimen (Morning complete meds + Evening Metformin split)
                 med_obj = None
@@ -5621,6 +5645,7 @@ def run():
     print("=" * 70)
 
     init_database()
+    backfill_today_df_from_packet_log()
     start_ble_background_thread()
 
     socketserver.ThreadingTCPServer.allow_reuse_address = True

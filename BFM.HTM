@@ -8957,19 +8957,20 @@
 
     function soundButtonPress(skipRefresh = false) {
       // Audio completely muted per user directive: kill all beep noises
-      if (!skipRefresh) {
-        if (typeof syncStepData === 'function' && gattServer && gattServer.connected && txCharacteristic) {
-          try { syncStepData(true); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
-        }
-        if (typeof pollLiveTelemetryChanges === 'function') {
-          try { pollLiveTelemetryChanges(true); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
-        }
-        if (typeof runFullPipelineAndRefreshAllScreens === 'function') {
-          try { runFullPipelineAndRefreshAllScreens(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
-        }
+      if (!skipRefresh && typeof scheduleUniversalAllPagesRefresh === 'function') {
+        scheduleUniversalAllPagesRefresh(false);
       }
       return;
     }
+
+    document.addEventListener('click', (evt) => {
+      try {
+        const tgt = evt.target && evt.target.closest ? evt.target.closest('button, .lcars-pill, .lcars-btn, [role="tab"]') : null;
+        if (tgt && typeof scheduleUniversalAllPagesRefresh === 'function') {
+          scheduleUniversalAllPagesRefresh(false);
+        }
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+    }, true);
 
     function soundRxPacket() {
       // Audio packet ticks completely disabled per clinical directive
@@ -9618,32 +9619,53 @@ function renderWatchTabConnectedDetails() {
     // =========================================================================
     let _refreshThrottleTimer = null;
     let _isPipelineRunning = false;
-    function scheduleFullPipelineRefresh() {
-      if (_refreshThrottleTimer) return;
+    let _pendingUniversalRefresh = false;
+
+    function scheduleUniversalAllPagesRefresh(immediate = false) {
+      if (typeof syncStepData === 'function' && gattServer && gattServer.connected && txCharacteristic) {
+        try { syncStepData(true); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+      }
+      if (_refreshThrottleTimer) {
+        if (!immediate) return;
+        clearTimeout(_refreshThrottleTimer);
+      }
       _refreshThrottleTimer = setTimeout(async () => {
         _refreshThrottleTimer = null;
-        if (_isPipelineRunning) return;
+        if (_isPipelineRunning) {
+          _pendingUniversalRefresh = true;
+          return;
+        }
         _isPipelineRunning = true;
         try {
           await runFullPipelineAndRefreshAllScreens();
         } finally {
           _isPipelineRunning = false;
+          if (_pendingUniversalRefresh) {
+            _pendingUniversalRefresh = false;
+            scheduleUniversalAllPagesRefresh(true);
+          }
         }
-      }, 350);
+      }, immediate ? 20 : 120);
+    }
+
+    function scheduleFullPipelineRefresh() {
+      scheduleUniversalAllPagesRefresh(false);
     }
 
     async function runFullPipelineAndRefreshAllScreens() {
-      // 1. Fetch latest telemetry and 48-hr timeline from current database/watch
+      // 1. Fetch ALL latest telemetry, 48-hr timeline, sleep, Lorenz R-R, and sub-reports in parallel
       try {
-        if (typeof pollLiveTelemetryChanges === 'function') {
-          await pollLiveTelemetryChanges(true);
-        }
-        if (typeof fetchServer2DayTimeline === 'function') {
-          await fetchServer2DayTimeline();
-        }
+        await Promise.allSettled([
+          (typeof pollLiveTelemetryChanges === 'function') ? pollLiveTelemetryChanges(true) : Promise.resolve(),
+          (typeof fetchServer2DayTimeline === 'function') ? fetchServer2DayTimeline() : Promise.resolve(),
+          (typeof fetchTodaySleepSessions === 'function') ? fetchTodaySleepSessions() : Promise.resolve(),
+          (typeof fetchTodayLorenzData === 'function') ? fetchTodayLorenzData() : Promise.resolve(),
+          (typeof fetchTodaySubReports === 'function') ? fetchTodaySubReports() : Promise.resolve(),
+          (typeof loadFeelingsFor3D === 'function') ? loadFeelingsFor3D() : Promise.resolve()
+        ]);
       } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
 
-      // 2. Propagate current real measurements across dynamic fields (Zero Is Zero)
+      // 2. Propagate current real measurements across EVERY page's dynamic fields (Zero Is Zero)
       if (typeof propagateFullScanResultsToAllPages === 'function' && window._latestTelemetry) {
         const vit = window._latestTelemetry;
         const g = (vit.GLUCOSE && vit.GLUCOSE.value1 > 0) ? Math.round(vit.GLUCOSE.value1) : (typeof lastGlucoseMg !== 'undefined' ? lastGlucoseMg : 0);
@@ -9667,73 +9689,42 @@ function renderWatchTabConnectedDetails() {
         }, false);
       }
 
-      // 3. Recalculate daily hydration chart from journals
-      if (typeof renderDailyHydrationChart === 'function') {
-        renderDailyHydrationChart('curveTimelineFluidWater');
-      }
+      // 3. Unconditionally refresh EVERY page's tables, hydration charts, goals, meds, and metrics
+      const safeRun = (fn) => { try { fn(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); } };
+      safeRun(() => { if (typeof propagateStepTelemetry === 'function') propagateStepTelemetry(lastSteps || 0, lastKcal || 0, null, false); });
+      safeRun(() => { if (typeof render360HealthView === 'function') render360HealthView(); });
+      safeRun(() => { if (typeof renderDietHistory === 'function') renderDietHistory(); });
+      safeRun(() => { if (typeof renderExerciseHistory === 'function') renderExerciseHistory(); });
+      safeRun(() => { if (typeof renderDailyHydrationChart === 'function') renderDailyHydrationChart('svgDailyIntakeFluidChart'); });
+      safeRun(() => { if (typeof renderDailyHydrationChart === 'function') renderDailyHydrationChart('curveTimelineFluidWater'); });
+      safeRun(() => { if (typeof runGoalComplianceAudit === 'function') runGoalComplianceAudit(false); });
+      safeRun(() => { if (typeof loadGoalsComplianceReport === 'function') loadGoalsComplianceReport(); });
+      safeRun(() => { if (typeof loadClinicalGoalsUI === 'function') loadClinicalGoalsUI(); });
+      safeRun(() => { if (typeof renderLongitudinalView === 'function') renderLongitudinalView(); });
+      safeRun(() => { if (typeof renderMedicationRegimen === 'function') renderMedicationRegimen(); });
+      safeRun(() => { if (typeof renderMedicationChangeHistory === 'function') renderMedicationChangeHistory(); });
+      safeRun(() => { if (typeof renderWatchTabConnectedDetails === 'function') renderWatchTabConnectedDetails(); });
+      safeRun(() => { if (typeof syncExportPageWithConfig === 'function') syncExportPageWithConfig(); });
+      safeRun(() => { if (typeof updateWatchMetabolicSubReports === 'function') updateWatchMetabolicSubReports(); });
+      safeRun(() => { if ((typeof isFullScanRunning === 'undefined' || !isFullScanRunning) && typeof initFullScanView === 'function') initFullScanView(); });
 
-      // 4. Recalculate clinical goals audit
-      if (typeof runGoalComplianceAudit === 'function') {
-        runGoalComplianceAudit(false);
-      }
-
-      // 5. Active Tab Scoped Re-renders (Prevents Background DOM & WebGL Thrashing)
-      const pageReports = document.getElementById('pageReports');
-      const isReportsActive = pageReports && pageReports.classList.contains('active-page');
-      if (isReportsActive && typeof renderReportsView === 'function') {
-        renderReportsView();
-      }
-      if (isReportsActive && typeof renderTallSynchronizedChart === 'function') {
-        renderTallSynchronizedChart(currentTallChartTimeframe);
-      }
-      if (isReportsActive && typeof renderSubReportTrendCharts === 'function') {
-        renderSubReportTrendCharts(currentReportTimeframe);
-      }
-
-      const pageDiet = document.getElementById('pageDiet');
-      const pageMetabolic = document.getElementById('pageMetabolic');
-      const isDietActive = (pageDiet && pageDiet.classList.contains('active-page')) || (pageMetabolic && pageMetabolic.classList.contains('active-page'));
-      if (isDietActive && typeof renderDietHistory === 'function') {
-        renderDietHistory();
-      }
-      if (pageMetabolic && pageMetabolic.classList.contains('active-page') && typeof renderExerciseHistory === 'function') {
-        renderExerciseHistory();
-      }
-
-      const pageDietTrades = document.getElementById('pageDietTrades');
-      if (pageDietTrades && pageDietTrades.classList.contains('active-page') && typeof renderLongitudinalView === 'function') {
-        renderLongitudinalView();
-      }
-
-      const pageFullScan = document.getElementById('pageFullScan');
-      if (pageFullScan && pageFullScan.classList.contains('active-page') && (typeof isFullScanRunning === 'undefined' || !isFullScanRunning) && typeof initFullScanView === 'function') {
-        initFullScanView();
-      }
-
-      const pageGoals = document.getElementById('pageGoals');
-      if (pageGoals && pageGoals.classList.contains('active-page') && typeof loadClinicalGoalsUI === 'function') {
-        loadClinicalGoalsUI();
-      }
-
-      const pageMed = document.getElementById('pageMedication');
-      if (pageMed && pageMed.classList.contains('active-page')) {
-        if (typeof renderMedicationRegimen === 'function') renderMedicationRegimen();
-        if (typeof renderMedicationChangeHistory === 'function') renderMedicationChangeHistory();
-      }
-
-      if (isReportsActive) {
-        if (typeof loadFeelingsFor3D === 'function') loadFeelingsFor3D();
+      // 4. Unconditionally re-render ALL Reports charts & KPIs (so hidden OR visible Reports DOM is 100% current)
+      safeRun(() => { if (typeof renderReportsView === 'function') renderReportsView(); });
+      safeRun(() => { if (typeof renderNocturnalSleepHypnogram === 'function') renderNocturnalSleepHypnogram('curveTimelineSleep'); });
+      safeRun(() => { if (typeof renderTallSynchronizedChart === 'function') renderTallSynchronizedChart(currentTallChartTimeframe); });
+      safeRun(() => { if (typeof renderSubReportTrendCharts === 'function') renderSubReportTrendCharts(currentReportTimeframe); });
+      safeRun(() => { if (typeof renderLorenzScatterPlot === 'function') renderLorenzScatterPlot(); });
+      safeRun(() => {
+        const canvas3D = document.getElementById('canvas3DMultiChannel');
+        if (canvas3D && canvas3D.parentElement) {
+          const rect = canvas3D.parentElement.getBoundingClientRect();
+          if (rect.width > 0 && rect.height > 0) {
+            canvas3D.width = rect.width;
+            canvas3D.height = rect.height;
+          }
+        }
         if (typeof render3DMultiChannelScene === 'function') render3DMultiChannelScene();
-      }
-
-      const pageWatch = document.getElementById('pageWatchFaces');
-      if (pageWatch && pageWatch.classList.contains('active-page') && typeof renderWatchTabConnectedDetails === 'function') {
-        renderWatchTabConnectedDetails();
-      }
-
-      if (typeof render360HealthView === 'function') {
-        render360HealthView();
-      }
+      });
     }
 
     // =========================================================================
@@ -9839,7 +9830,10 @@ function switchTab(tabId) {
       if (tabId === 'watchfaces' || tabId === 'troubleshooting') {
         if (typeof renderWatchTabConnectedDetails === 'function') renderWatchTabConnectedDetails();
       }
-      soundButtonPress(true);
+      soundButtonPress(false);
+      if (typeof scheduleUniversalAllPagesRefresh === 'function') {
+        scheduleUniversalAllPagesRefresh(true);
+      }
       // Universally dismiss all modal overlays and dialogs
       const activeModals = ['modalEditMedication', 'timelinePointCardModal', 'modalClinicBloodDraw', 'modalEpicUpload', 'fullScanReportModal', 'modalDraftEmailToDoctor'];
       activeModals.forEach(mId => {
@@ -19638,11 +19632,11 @@ Patient`;
       // Compute Point Coordinates across all lanes
       const xCoords = data.map((d, i) => padLeft + (n > 1 ? (i / (n - 1)) * plotW : plotW / 2));
 
-      // Group contiguous gap indices into single clean charging blocks (prevents label overlap)
+      // Group contiguous gap indices into single clean charging/shower blocks ONLY
       const gapBlocks = [];
       let curBlock = null;
       data.forEach((d, i) => {
-        const isGap = !d.isFuture && (d.isChargingGap || (d.g === null && !d.isFuture));
+        const isGap = !d.isFuture && !!d.isChargingGap;
         if (isGap) {
           if (!curBlock) curBlock = { start: i, end: i };
           else curBlock.end = i;
@@ -19939,7 +19933,7 @@ Patient`;
       const hT = document.getElementById('hudTemp');
       const hEx = document.getElementById('hudExercise');
 
-      if (pt.isChargingGap || pt.g === null) {
+      if (pt.isChargingGap) {
         if (timeBadge) timeBadge.textContent = `TIMESTAMP: ${formatTimeDisplay(pt.time)} (⚡ WATCH CHARGING ON DOCK • 0 TELEMETRY)`;
         if (hG) hG.textContent = `0 mg/dL (Charging)`;
         if (hBp) hBp.textContent = `-- / -- (Off-Wrist)`;
@@ -19949,10 +19943,10 @@ Patient`;
         if (hEx) hEx.textContent = `0 steps • Watch on Charger (~1.2h)`;
       } else {
         if (timeBadge) timeBadge.textContent = `TIMESTAMP: ${formatTimeDisplay(pt.time)} (${pt.meal ? pt.meal.type : (pt.ex ? pt.ex.type : 'Diurnal State')})`;
-        if (hG) hG.textContent = `${pt.g} mg/dL`;
-        if (hBp) hBp.textContent = `${pt.sys}/${pt.dia} mmHg`;
-        if (hHr) hHr.textContent = `${pt.hr} BPM / ${pt.hrv} ms`;
-        if (hSp) hSp.textContent = `${pt.spo2}%`;
+        if (hG) hG.textContent = (pt.g !== null && pt.g > 0) ? `${pt.g} mg/dL` : `-- mg/dL`;
+        if (hBp) hBp.textContent = (pt.sys && pt.sys > 0) ? `${pt.sys}/${pt.dia} mmHg` : `--/-- mmHg`;
+        if (hHr) hHr.textContent = (pt.hr && pt.hr > 0) ? `${pt.hr} BPM / ${pt.hrv || '--'} ms` : `-- BPM / -- ms`;
+        if (hSp) hSp.textContent = (pt.spo2 && pt.spo2 > 0) ? `${pt.spo2}%` : `-- %`;
         if (hT) hT.textContent = `${pt.temp ? pt.temp.toFixed(1) : '--.-'}°F`;
         if (hEx) {
           hEx.textContent = pt.ex ? `${pt.steps} steps • ${pt.ex.type} (${pt.ex.delta <= 0 ? pt.ex.delta : '+' + pt.ex.delta} mg/dL)` : `${pt.steps} steps • Resting Homeostasis`;
@@ -20480,13 +20474,14 @@ Patient`;
           ctx.lineTo(pBack.x, pBack.y);
           ctx.stroke();
 
-          // Time / Epoch stamp at front
+          // Time / Epoch stamp at front (Honors Watch 12-Hour AM/PM Setting)
           const pTime = project3D(tx, -14, zBoxFront - 6, W, H);
           if (pTime && dataset[ptIdx]) {
             ctx.fillStyle = '#475569';
             ctx.font = 'bold 9px monospace';
             ctx.textAlign = 'center';
-            const tickLbl = dataset[ptIdx].time || dataset[ptIdx].day || `${ptIdx}`;
+            const rawTick = dataset[ptIdx].time || dataset[ptIdx].day || `${ptIdx}`;
+            const tickLbl = /\d{1,2}:\d{2}/.test(String(rawTick)) ? formatTimeDisplay(String(rawTick)) : rawTick;
             ctx.fillText(tickLbl, pTime.x, pTime.y);
           }
         }
@@ -20509,7 +20504,15 @@ Patient`;
           case 4: return (d.temp && d.temp > 90) ? parseFloat(d.temp.toFixed(1)) : 0; // CH 05: Body Temp (°F)
           case 5: return (d.hrv && d.hrv > 0) ? d.hrv : 0; // CH 06: HRV / Stress (ms)
           case 6: return (d.steps && d.steps > 0) ? d.steps : 0; // CH 07: Steps
-          case 7: { // CH 08: Sleep Architecture (%)
+          case 7: { // CH 08: Sleep Architecture (%) from genuine watch 0xE0 sessions (00:01 - 23:59 incl. naps)
+            const sData = (window.lastDailySleepData && Array.isArray(window.lastDailySleepData.sessions)) ? window.lastDailySleepData : null;
+            if (sData && sData.sessions.length > 0 && d.time && /^\d{2}:\d{2}/.test(d.time)) {
+              const pH = parseInt(d.time.substring(0, 2), 10);
+              const pM = parseInt(d.time.substring(3, 5), 10);
+              const slotMin = pH * 60 + pM;
+              const hit = sData.sessions.find(s => slotMin >= (s.startM || 0) && slotMin < (s.endM || 0));
+              if (hit) return hit.isNap ? 75 : 85;
+            }
             return (d.notes && d.notes.toLowerCase().includes('sleep')) ? 85 : 0;
           }
           case 8: { // CH 09: Pain Index (0-10)
@@ -20720,8 +20723,10 @@ Patient`;
         ctx.fillStyle = '#475569';
         ctx.font = 'bold 9px monospace';
         ctx.textAlign = 'center';
-        const startLbl = dataset[0] ? (dataset[0].time || dataset[0].day) : 'START';
-        const endLbl = dataset[dataset.length - 1] ? (dataset[dataset.length - 1].time || dataset[dataset.length - 1].day) : 'END';
+        const rawStart = dataset[0] ? (dataset[0].time || dataset[0].day) : 'START';
+        const rawEnd = dataset[dataset.length - 1] ? (dataset[dataset.length - 1].time || dataset[dataset.length - 1].day) : 'END';
+        const startLbl = /\d{1,2}:\d{2}/.test(String(rawStart)) ? formatTimeDisplay(String(rawStart)) : rawStart;
+        const endLbl = /\d{1,2}:\d{2}/.test(String(rawEnd)) ? formatTimeDisplay(String(rawEnd)) : rawEnd;
         ctx.fillText(`TIME (${tf.toUpperCase()}: ${startLbl} – ${endLbl})`, midTimeX, midTimeY);
       }
 
@@ -22996,40 +23001,30 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
             }
           }
 
-          // 9. Synchronize Subordinate Consoles & Tabs (Scoped to Active Page)
-          if (typeof fetchServer2DayTimeline === 'function') {
-            try { await fetchServer2DayTimeline(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
-          }
-          if (typeof fetchTodaySleepSessions === 'function' && (!window.lastDailySleepData || !window.lastDailySleepData.sessions || window.lastDailySleepData.sessions.length === 0)) {
-            try { await fetchTodaySleepSessions(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
-          }
+          // 9. Unconditionally Synchronize ALL Subordinate Consoles, Tabs & Fields
+          await Promise.allSettled([
+            (typeof fetchServer2DayTimeline === 'function') ? fetchServer2DayTimeline() : Promise.resolve(),
+            (typeof fetchTodaySleepSessions === 'function') ? fetchTodaySleepSessions() : Promise.resolve(),
+            (typeof fetchTodayLorenzData === 'function') ? fetchTodayLorenzData() : Promise.resolve(),
+            (typeof fetchTodaySubReports === 'function') ? fetchTodaySubReports() : Promise.resolve()
+          ]);
           if (typeof render360HealthView === 'function') render360HealthView();
-          const pageRep = document.getElementById('pageReports');
-          const isRepActive = pageRep && pageRep.classList.contains('active-page');
-          if (isRepActive && !window.lastRealLorenzData && typeof fetchTodayLorenzData === 'function') {
-            try { await fetchTodayLorenzData(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
-          }
-          if (isRepActive && !window.lastSubReportData && typeof fetchTodaySubReports === 'function') {
-            try { await fetchTodaySubReports(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
-          }
-          if (isRepActive && typeof render3DMultiChannelScene === 'function') render3DMultiChannelScene();
-          if (isRepActive && typeof renderReportsView === 'function') renderReportsView();
-          if (isRepActive && typeof renderTallSynchronizedChart === 'function') renderTallSynchronizedChart(currentTallChartTimeframe);
-          if (isRepActive && typeof renderSubReportTrendCharts === 'function') renderSubReportTrendCharts(currentReportTimeframe);
-
-          const pageDiet = document.getElementById('pageDiet');
-          const pageMetabolic = document.getElementById('pageMetabolic');
-          if (((pageDiet && pageDiet.classList.contains('active-page')) || (pageMetabolic && pageMetabolic.classList.contains('active-page'))) && typeof renderDietHistory === 'function') {
-            renderDietHistory();
-          }
-          if (pageMetabolic && pageMetabolic.classList.contains('active-page')) {
-            if (typeof renderExerciseHistory === 'function') renderExerciseHistory();
-            if (typeof renderDailyHydrationChart === 'function') renderDailyHydrationChart('svgDailyIntakeFluidChart');
-          }
+          if (typeof render3DMultiChannelScene === 'function') render3DMultiChannelScene();
+          if (typeof renderReportsView === 'function') renderReportsView();
+          if (typeof renderNocturnalSleepHypnogram === 'function') renderNocturnalSleepHypnogram('curveTimelineSleep');
+          if (typeof renderTallSynchronizedChart === 'function') renderTallSynchronizedChart(currentTallChartTimeframe);
+          if (typeof renderSubReportTrendCharts === 'function') renderSubReportTrendCharts(currentReportTimeframe);
+          if (typeof renderLorenzScatterPlot === 'function') renderLorenzScatterPlot();
+          if (typeof renderDietHistory === 'function') renderDietHistory();
+          if (typeof renderExerciseHistory === 'function') renderExerciseHistory();
+          if (typeof renderDailyHydrationChart === 'function') renderDailyHydrationChart('svgDailyIntakeFluidChart');
           if (typeof loadGoalsComplianceReport === 'function') loadGoalsComplianceReport();
+          if (typeof loadClinicalGoalsUI === 'function') loadClinicalGoalsUI();
+          if (typeof renderMedicationRegimen === 'function') renderMedicationRegimen();
+          if (typeof renderMedicationChangeHistory === 'function') renderMedicationChangeHistory();
           if (!isFullScanRunning && typeof initFullScanView === 'function') initFullScanView();
           if (typeof updateWatchMetabolicSubReports === 'function') updateWatchMetabolicSubReports();
-      if (typeof renderDailyHydrationChart === 'function') renderDailyHydrationChart('curveTimelineFluidWater');
+          if (typeof renderDailyHydrationChart === 'function') renderDailyHydrationChart('curveTimelineFluidWater');
 
           // Propagate fresh vitals across all screen elements immediately (Zero Is Zero)
           if (typeof propagateFullScanResultsToAllPages === 'function') {
