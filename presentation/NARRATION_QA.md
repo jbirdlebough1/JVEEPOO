@@ -1,4 +1,4 @@
-# BFM Biometric Function Monitor — 85-Slide Narration QA Script (`en-AU-NatashaNeural`)
+# BFM Biometric Function Monitor — 87-Slide Narration QA Script (`en-AU-NatashaNeural`)
 
 **Purpose:** Stripped narration-only script (Slide, Module/Topic, exact spoken audio text) for pronunciation & flow QA.
 
@@ -120,226 +120,234 @@ Scrolling cleanly down the lower half of the stacked chart brings Channels 7 thr
 
 Finally, let's watch the full vertical sweep in action. Starting at the top amber scrubber and live HUD cards, sweeping the dotted crosshair aligns upper blood sugar and pressure readings, then glides smoothly down through Sleep, Pain, Mood, Carbs, Hydration, Medications, and the bottom time axis—where clicking any dot pops a spacious clinical Point Card.
 
-### Slide 30 — Tab 04: 04-REPORTS | Step Target Correlator: Proving Your Personal Active vs Sedentary Gain
+### Slide 30 — Tab 04: 04-REPORTS | Watch Off-Wrist Outage Integrity: Blue Gap Bands Across Every 2D Chart
+
+Whenever you take the watch off your wrist—like today's real twenty-five-minute shower pause from 10:50 to 11:15 AM—every two-dimensional Reports chart from Glucose and A1C through Temperature, Heart Rate, Blood Pressure, SpO2, Hydration, HRV, Sleep, and Steps renders an identical sky-blue Watch Off-Wrist band, cleanly breaking each line with zero synthetic guessing.
+
+### Slide 31 — Tab 04: 04-REPORTS | Step Target Correlator: Proving Your Personal Active vs Sedentary Gain
 
 Here in the Exercise Metabolic Correlator, your own data proves how movement stabilizes blood sugar—contrasting active versus sedentary average glucose alongside a live slider modeling step-by-step A1C and spike reduction.
 
-### Slide 31 — Tab 04: 04-REPORTS | Sub-Report 1: Lead-I ECG Protocol & Diurnal QTc Interval Stability
+### Slide 32 — Tab 04: 04-REPORTS | Sub-Report 1: Lead-I ECG Protocol & Diurnal QTc Interval Stability
 
 Entering our five specialized Sub-Reports opens with Lead-I ECG and QTc trending. Guided 30-second watch bezel measurements pair with diurnal Bazett-corrected QTc intervals holding steadily between 406 and 411 milliseconds safely under the 440 ceiling.
 
-### Slide 32 — Tab 04: 04-REPORTS | Sub-Report 2: Continuous 24-Hour MET Energy Expenditure
+### Slide 33 — Tab 04: 04-REPORTS | Sub-Report 2: Continuous 24-Hour MET Energy Expenditure
 
 Directly below ECG sits the continuous MET Energy Expenditure curve—separating calm 1.0 MET seated baseline rest from metabolically potent 3.0+ MET brisk walking periods.
 
-### Slide 33 — Tab 04: 04-REPORTS | Sub-Report 3: Microvascular Blood Viscosity & Uric Acid Tonometry
+### Slide 34 — Tab 04: 04-REPORTS | Sub-Report 3: Microvascular Blood Viscosity & Uric Acid Tonometry
 
 Sub-Report 3 tracks Optical Blood Composition. Under Poiseuille fluid dynamics, healthy lower blood viscosity—measured consistently here between 3.6 and 3.9 centipoise—promotes smooth capillary circulation and steadier optical glucose readings.
 
-### Slide 34 — Tab 04: 04-REPORTS | Sub-Report 4: BIA Skeletal Muscle Mass — The Primary Glucose Sink
+### Slide 35 — Tab 04: 04-REPORTS | Sub-Report 4: BIA Skeletal Muscle Mass — The Primary Glucose Sink
 
 Sub-Report 4 charts Bioelectrical Impedance skeletal muscle percentage—holding steady at 34.3 percent today. Because skeletal muscle clears over eighty percent of circulating post-meal glucose, preserving lean tissue protects long-term insulin sensitivity.
 
-### Slide 35 — Tab 04: 04-REPORTS | Sub-Report 5: Continuous Respiratory Rate & Autonomic Breath Stability
+### Slide 36 — Tab 04: 04-REPORTS | Sub-Report 5: Continuous Respiratory Rate & Autonomic Breath Stability
 
 Completing our five-panel Sub-Reports bay is continuous Respiratory Rate trending—working alongside SpO2 and HRV to verify tranquil nocturnal breathing and calm autonomic tone.
 
-### Slide 36 — Tab 04: 04-REPORTS | Daily 24-Hour Continuous Glucose Curve & Time-in-Range Velocity
+### Slide 37 — Tab 04: 04-REPORTS | Live Synced Watch Sub-Reports: Continuous MET, Blood Composition & Breath
+
+Right after resyncing the watch, live Sub-Reports update directly from telemetry storage: sixty-three MET epochs climbing to 7.4 MET-hours, seventy optical Blood Composition sweeps, and one hundred thirty-eight Breathing Rate readings—all stamped with the same blue Watch Off-Wrist bands, while unsynced Body Composition and ECG remain honestly blank with zero invented numbers.
+
+### Slide 38 — Tab 04: 04-REPORTS | Daily 24-Hour Continuous Glucose Curve & Time-in-Range Velocity
 
 Next appear the full-width 24-hour individual graphs, opening with Daily Continuous Glucose. Notice the uninterrupted overnight curve transitioning smoothly to 153 milligrams per deciliter at 9 AM inside the green safe corridor.
 
-### Slide 37 — Tab 04: 04-REPORTS | Daily Estimated A1C (GMI) vs 90-Day Laboratory HbA1c Kinetics
+### Slide 39 — Tab 04: 04-REPORTS | Daily Estimated A1C (GMI) vs 90-Day Laboratory HbA1c Kinetics
 
 Directly below glucose sits the Estimated A1C curve—pairing the ADAG transformation with red blood cell kinetics. Because red cells live 120 days, an acute watch GMI reflects rapid weekly wins immediately while true laboratory HbA1c catches up smoothly over ninety days.
 
-### Slide 38 — Tab 04: 04-REPORTS | Optical Photodiode Repeatability (`5.36% CV`) & Personal Calibration Fitness
+### Slide 40 — Tab 04: 04-REPORTS | Optical Photodiode Repeatability (`5.36% CV`) & Personal Calibration Fitness
 
 Our empirical study across twenty manual checks and continuous runs proved a tight 5.36 percent coefficient of variation—confirming crisp optical hardware stability once aligned cleanly to a fasting fingerstick reference.
 
-### Slide 39 — Tab 04: 04-REPORTS | Daily 24-Hour Body Temperature Matrix: Core vs Epidermal Warmth
+### Slide 41 — Tab 04: 04-REPORTS | Daily 24-Hour Body Temperature Matrix: Core vs Epidermal Warmth
 
 Moving next to the Daily 24-Hour Body Temperature Matrix, core and epidermal curves trace cleanly from 97.2 degrees at midnight continuously through waking—offering clear circadian thermal gradients alongside normal physiological bands.
 
-### Slide 40 — Tab 04: 04-REPORTS | Daily 24-Hour Heart Rate & 5-Zone Cardiac Recovery Envelope
+### Slide 42 — Tab 04: 04-REPORTS | Daily 24-Hour Heart Rate & 5-Zone Cardiac Recovery Envelope
 
 Directly below temperature, Daily Heart Rate maps pulse response across all five cardiac zones—showing overnight recovery, a realistic waking orthostatic spike reaching the 100 ceiling, and calm settlement at 69 beats per minute.
 
-### Slide 41 — Tab 04: 04-REPORTS | 24-Hour Ambulatory Blood Pressure & Healthy Nocturnal Dipping
+### Slide 43 — Tab 04: 04-REPORTS | 24-Hour Ambulatory Blood Pressure & Healthy Nocturnal Dipping
 
 Beneath heart rate sits 24-Hour Ambulatory Blood Pressure—charting systolic pressure between 124 and 133 alongside parallel diastolic trends to expose morning surges and nighttime dipping clearly.
 
-### Slide 42 — Tab 04: 04-REPORTS | Nocturnal SpO2 Oximetry (`>=95%`) & Sky-Blue Charging Transparency
+### Slide 44 — Tab 04: 04-REPORTS | Nocturnal SpO2 Oximetry (`>=95%`) & Sky-Blue Charging Transparency
 
 On Nocturnal SpO2, dual-wavelength optical ratios keep worn oxygen saturation clearly visible above the 95 percent hypoxia floor—while sky-blue vertical columns denote charging removal cleanly so off-wrist gaps never trigger false zero-percent alarms.
 
-### Slide 43 — Tab 04: 04-REPORTS | Daily Fluid & Hydration Clearance Analytics Card
+### Slide 45 — Tab 04: 04-REPORTS | Daily Fluid & Hydration Clearance Analytics Card
 
 Inside Reports, the Daily Hydration and Renal Clearance bay expands on Tab 02—displaying ounces, milliliters, remaining daily targets, dehydration risk, and renal clearance metrics in six live boxes.
 
-### Slide 44 — Tab 04: 04-REPORTS | Genuine Watch 2D Lorenz (Poincaré) Scatter Plot (`4,831`+ Real Epochs)
+### Slide 46 — Tab 04: 04-REPORTS | Genuine Watch 2D Lorenz (Poincaré) Scatter Plot (`4,831`+ Real Epochs)
 
 Now look closely at the Clinical 2D Lorenz Poincaré Scatter Plot. Every violet dot marks two genuine consecutive heartbeats measured on your wrist—4,831 beat pairs by 9 AM today—computing an exact 46.7 millisecond RMSSD vagal score and 87 out of 100 Autonomic Health.
 
-### Slide 45 — Tab 04: 04-REPORTS | Early Screening for Diabetic Cardiac Autonomic Neuropathy (CAN)
+### Slide 47 — Tab 04: 04-REPORTS | Early Screening for Diabetic Cardiac Autonomic Neuropathy (CAN)
 
 As summarized in the blue Diagnostic Utility card beside the plot, monitoring the SD1-to-SD2 ratio—sitting at a balanced 0.323 today inside the 0.30 to 0.50 healthy band—screens early Diabetic Cardiac Autonomic Neuropathy years before clinical symptoms develop.
 
-### Slide 46 — Tab 04: 04-REPORTS | Daily 24-Hour Sleep Architecture & Daytime Nap Hypnogram (`9.2h`)
+### Slide 48 — Tab 04: 04-REPORTS | Daily 24-Hour Sleep Architecture & Daytime Nap Hypnogram (`9.2h`)
 
 Below Lorenz sits the Daily 24-Hour Sleep and Nap Hypnogram. Uniquely combining split nocturnal rest with afternoon naps across the full day, it documents 9.2 total sleep hours—26 percent Deep, 19 percent REM, and just 6 minutes awake for 99 percent sleep efficiency.
 
-### Slide 47 — Tab 04: 04-REPORTS | Hourly Step Activity, `2,000`-Step Watch Goal & Hardware Physics
+### Slide 49 — Tab 04: 04-REPORTS | Hourly Step Activity, `2,000`-Step Watch Goal & Hardware Physics
 
 Beneath Sleep sits Today's Hourly Step Activity, charting real cumulative steps seamlessly along the 12-hour clock toward the 2,000-step senior goal—respecting real hardware motion filtering without ever inventing fake micro-steps.
 
-### Slide 48 — Tab 04: 04-REPORTS | Longitudinal YTD Summary & Transparent Raw Telemetry Audit Logs
+### Slide 50 — Tab 04: 04-REPORTS | Longitudinal YTD Summary & Transparent Raw Telemetry Audit Logs
 
 At the foot of Reports, longitudinal YTD tables and Raw Telemetry Audit Logs give full numerical transparency—listing exact timestamps, glucose readings, core temperatures, step counts, and explicit off-wrist charging markers.
 
-### Slide 49 — Tab 05: 05-LEARNING | 05-LEARNING: Movement Correlation (-38 mg/dL) & Carb Threshold (<=22g Net)
+### Slide 51 — Tab 05: 05-LEARNING | 05-LEARNING: Movement Correlation (-38 mg/dL) & Carb Threshold (<=22g Net)
 
 Stepping out of Reports into Tab 05 Learning opens with Section 01 Discovery and the first two phenotype cards visible on screen: taking a 15 to 20 minute post-meal walk cuts glucose spikes by an average of 38 milligrams per deciliter, while keeping meals at or under 22 grams of net carbs preserves 100 percent Time-in-Range.
 
-### Slide 50 — Tab 05: 05-LEARNING | Macro Sequencing (+0.8 mg/dL/min) & Sleep / Circadian Nadir
+### Slide 52 — Tab 05: 05-LEARNING | Macro Sequencing (+0.8 mg/dL/min) & Sleep / Circadian Nadir
 
 Look at the next two purple and sky-blue cards right beside them: eating 25 grams of protein or leafy greens before carbs slows sugar absorption rate down to zero point eight milligrams per deciliter per minute, while nights with oxygen above 96 percent and seven-plus hours of sleep lower morning fasting sugar by up to 18 points and lift Time-in-Range 16 percent.
 
-### Slide 51 — Tab 05: 05-LEARNING | Section 03: Pre-Meal Coaching vs. Post-Meal Watch Metrics Tracker
+### Slide 53 — Tab 05: 05-LEARNING | Section 03: Pre-Meal Coaching vs. Post-Meal Watch Metrics Tracker
 
 Finally, at the bottom of Tab 05 sits Section 03 Pre-Meal Coaching versus Post-Meal Metrics. Here your 28-gram evening snack appears beside your actual watch curve—moving cleanly from 96 up to 123 for a 100 percent Time-in-Range pass—right next to zero-carb dinner and water checks.
 
-### Slide 52 — Tab 06: 06-OPERATIONS | 06-OPERATIONS: Standard Clinical Operation & Real-Time Sensor Workflow
+### Slide 54 — Tab 06: 06-OPERATIONS | 06-OPERATIONS: Standard Clinical Operation & Real-Time Sensor Workflow
 
 Turning to Tab 06 Operations, Section 01 on the upper panel outlines standard clinical workflow: connecting over browser Bluetooth to your authorized smartwatch, running a sequential six-sensor scan while progress advances from orange Scanning to green Complete, and accessing the full Clinical Specification PDF anytime.
 
-### Slide 53 — Tab 06: 06-OPERATIONS | Precision Transducer Calibration Protocol (Venous Lab Sync <=5.0% Error)
+### Slide 55 — Tab 06: 06-OPERATIONS | Precision Transducer Calibration Protocol (Venous Lab Sync <=5.0% Error)
 
 Directly below Section 01 sits Section 02 Precision Transducer Calibration. Because the wrist sensor exhibits high 5.36 percent repeatability with less than 1.8 milligrams standard error, wearing your watch during a scheduled lab blood draw lets you calibrate away factory offset once and align ongoing home trends within five percent of laboratory values.
 
-### Slide 54 — Tab 07: 07-FAQ | 07-FAQ: Built-In Offline Reference Manual for Families & Physicians
+### Slide 56 — Tab 07: 07-FAQ | 07-FAQ: Built-In Offline Reference Manual for Families & Physicians
 
 Tab 07 FAQ turns the console into a complete offline instruction manual—explaining every sensor, diet strategy, and chart metric calmly without ever needing an internet connection.
 
-### Slide 55 — Tab 07: 07-FAQ | Peer-Reviewed Clinical Consensus & Sampling Citations
+### Slide 57 — Tab 07: 07-FAQ | Peer-Reviewed Clinical Consensus & Sampling Citations
 
 Doctors auditing the system find all peer-reviewed references summarized right here in Tab 07—anchoring 288 daily samples and 70 percent Time-in-Range firmly in landmark JAMA and Diabetes Care consensus studies.
 
-### Slide 56 — Tab 07: 07-FAQ | Watch Positioning, Wrist Strap Fit & Best Optical Practices
+### Slide 58 — Tab 07: 07-FAQ | Watch Positioning, Wrist Strap Fit & Best Optical Practices
 
 Practical guidance closes Tab 07: positioning the watch snugly one finger above the wrist bone, keeping the optical window clean, and resting calmly during 30-second manual checks ensures clean precision day and night.
 
-### Slide 57 — Tab 08: 08-CLINICAL GOALS | 08-CLINICAL GOALS: Individualizing Your Personal Target Corridor
+### Slide 59 — Tab 08: 08-CLINICAL GOALS | 08-CLINICAL GOALS: Individualizing Your Personal Target Corridor
 
 Next in order is Tab 08 Clinical Goals, where user and doctor collaborate to customize fasting ceilings, safe glucose bands, and daily net-carb targets that immediately update compliance gauges across the entire platform.
 
-### Slide 58 — Tab 08: 08-CLINICAL GOALS | The Realistic 2,000-Step Senior Floor Synchronized With Your Watch
+### Slide 60 — Tab 08: 08-CLINICAL GOALS | The Realistic 2,000-Step Senior Floor Synchronized With Your Watch
 
 Notice our signature baseline: 2,000 steps per day—synchronized directly with your smartwatch rather than punishing seniors with arbitrary 8,000-step defaults. Consistently clearing three brief post-meal walks turns this floor into daily confidence.
 
-### Slide 59 — Tab 08: 08-CLINICAL GOALS | Quarterly Stepped Milestones & Avoiding Over-Aggressive Drops
+### Slide 61 — Tab 08: 08-CLINICAL GOALS | Quarterly Stepped Milestones & Avoiding Over-Aggressive Drops
 
 Clinicians adjust quarterly milestones safely step-by-step here—preventing overly rapid drops—before transitioning cleanly next into Tab 09 Medication.
 
-### Slide 60 — Tab 09: 09-MEDICATION | 09-MEDICATION: Medical Data Sanctity & Zero Pre-Populated Drugs
+### Slide 62 — Tab 09: 09-MEDICATION | 09-MEDICATION: Medical Data Sanctity & Zero Pre-Populated Drugs
 
 Tab 09 Medication enforces strict medical sanctity. Pre-populating sample prescriptions is an extreme hazard in health software. Until your physician enters a regimen, Tab 09 and every report HUD remain faithfully empty.
 
-### Slide 61 — Tab 09: 09-MEDICATION | Discrete Morning Suite & Dinner Split Scheduling Controls
+### Slide 63 — Tab 09: 09-MEDICATION | Discrete Morning Suite & Dinner Split Scheduling Controls
 
 When prescriptions are entered, discrete morning and evening schedules anchor exact dose markers cleanly beneath post-meal glucose peaks so physicians immediately verify pharmacokinetic alignment.
 
-### Slide 62 — Tab 09: 09-MEDICATION | Pharmacist & Endocrinologist Titration Partnership
+### Slide 64 — Tab 09: 09-MEDICATION | Pharmacist & Endocrinologist Titration Partnership
 
 Clean edit controls preserve exact prescription history for pharmacists and endocrinologists—leading naturally now into Tab 10 Config for watch preferences, USB backups, and household setup.
 
-### Slide 63 — Tab 10: 10-CONFIG | 10-CONFIG: Critical Contraindications & 11-Step Onboarding Guide
+### Slide 65 — Tab 10: 10-CONFIG | 10-CONFIG: Critical Contraindications & 11-Step Onboarding Guide
 
 Opening Tab 10 Configuration highlights clear medical safety disclaimers alongside our 11-Step Chronological Setup Checklist—walking every user smoothly from initial doctor consultation through desktop pairing.
 
-### Slide 64 — Tab 10: 10-CONFIG | Watch Preferences, 12-Hour Clock Parity & Calibration Anchors
+### Slide 66 — Tab 10: 10-CONFIG | Watch Preferences, 12-Hour Clock Parity & Calibration Anchors
 
 Scrolling inside Config reveals hardware display switches—including Imperial miles and Fahrenheit, notification alerts, and the 12-hour clock selector that instantaneously synchronizes both your wrist watch and every chart timeline.
 
-### Slide 65 — Tab 10: 10-CONFIG | Automated Nightly USB Backup & Smart Storage Deduplication
+### Slide 67 — Tab 10: 10-CONFIG | Automated Nightly USB Backup & Smart Storage Deduplication
 
 Right below watch settings sits our Automated Nightly USB Backup engine. Shown live on screen, content deduplication preserves all 14 vault snapshots onto an external thumb drive while actively saving 10.7 percent flash capacity.
 
-### Slide 66 — Tab 10: 10-CONFIG | Hospital EHR Setup & Shared-PC Multi-User Family Binding Roster
+### Slide 68 — Tab 10: 10-CONFIG | Hospital EHR Setup & Shared-PC Multi-User Family Binding Roster
 
 Scrolling further reaches Sections 11 and 12: optional Hospital EHR setup beside the Registered Family Cells Roster—where strict 1-to-1 binding guarantees every family member's watch and phone data stays cleanly separated.
 
-### Slide 67 — Tab 10: 10-CONFIG | Section 13 Hardware Transducer Reference & Physical Sensor Bounds
+### Slide 69 — Tab 10: 10-CONFIG | Section 13 Hardware Transducer Reference & Physical Sensor Bounds
 
 Closing Tab 10 is Section 13's complete Hardware Transducer Table—documenting physical light sensors, thermistors, ECG resolution bounds, and live streaming readiness before inspecting the watch hardware itself in Tab 11.
 
-### Slide 68 — Tab 11: 11-WATCH | 11-WATCH: Live 12-Channel Watch Capability & Command Diagnostics
+### Slide 70 — Tab 11: 11-WATCH | 11-WATCH: Live 12-Channel Watch Capability & Command Diagnostics
 
 Stepping into Tab 11 Watch opens the Hardware Capability Analyzer. At a glance it confirms active watch battery health, firmware build, all 12 accessible biometric streams, and 22 live hardware test probes.
 
-### Slide 69 — Tab 11: 11-WATCH | Adaptive Watch Dial Studio & Smart Read-Only Hardware Boundaries
+### Slide 71 — Tab 11: 11-WATCH | Adaptive Watch Dial Studio & Smart Read-Only Hardware Boundaries
 
 Scrolling down Tab 11 displays watch face slot controls cleanly. When connected to a fixed-ROM watch that cannot overwrite factory dials, BFM automatically hides unsupported custom flash controls below this boundary so users never encounter frustrating failed uploads.
 
-### Slide 70 — Tab 11: 11-WATCH | Why BFM Workstation Surpasses Proprietary Mobile Watch Apps
+### Slide 72 — Tab 11: 11-WATCH | Why BFM Workstation Surpasses Proprietary Mobile Watch Apps
 
 Why use BFM instead of the default phone app? You keep 100 percent of all 12 wearable sensors—while trading fragmented phone rings and overseas clouds for total home privacy, 13-lane cause-and-effect timelines, and direct Epic hospital exports.
 
-### Slide 71 — Tab 12: 12-DATA LOG | 12-DATA LOG: Transparent Live Telemetry Stream Verification
+### Slide 73 — Tab 12: 12-DATA LOG | 12-DATA LOG: Transparent Live Telemetry Stream Verification
 
 Tab 12 Data Log gives immediate transparency that watch data is genuinely flowing. Live timestamped entries confirm incoming vital captures step by step without mysterious black-box delays.
 
-### Slide 72 — Tab 12: 12-DATA LOG | Permanent Local Auditability & Reliable History Backfill
+### Slide 74 — Tab 12: 12-DATA LOG | Permanent Local Auditability & Reliable History Backfill
 
 Because every captured interval writes durably to local disk, brief PC restarts never wipe out recent history—preparing rock-solid verified data for hospital export next in Tab 13.
 
-### Slide 73 — Tab 13: 13-EXPORT | 13-EXPORT: Consolidated Single-Bay Clinical Interoperability Center
+### Slide 75 — Tab 13: 13-EXPORT | 13-EXPORT: Consolidated Single-Bay Clinical Interoperability Center
 
 Step into Tab 13 Export—the single consolidated home for sharing records with healthcare teams. Four clear cards put Epic FHIR bundles, Excel spreadsheets, doctor emails, and our Physician Handbook all in one effortless view.
 
-### Slide 74 — Tab 13: 13-EXPORT | 1-Click HL7 FHIR R4 Collection Bundles & Standardized LOINC Codes
+### Slide 76 — Tab 13: 13-EXPORT | 1-Click HL7 FHIR R4 Collection Bundles & Standardized LOINC Codes
 
 Clicking Card 1 generates an official HL7 FHIR R4 JSON bundle pre-mapped with standardized LOINC codes—2339-0 for glucose, 4548-4 for estimated A1C, 8480-6 for blood pressure, 8867-4 for heart rate, and 59408-5 for oxygen—ingesting straight into Epic or Cerner.
 
-### Slide 75 — Tab 13: 13-EXPORT | Card 2 Clinical CSV Spreadsheets & Card 3 Doctor Email Handoff
+### Slide 77 — Tab 13: 13-EXPORT | Card 2 Clinical CSV Spreadsheets & Card 3 Doctor Email Handoff
 
 Need a spreadsheet or quick clinic handoff? Card 2 downloads an Excel-ready clinical CSV, while Card 3 opens your own email client pre-addressed with step-by-step import instructions so you keep full control before sending.
 
-### Slide 76 — Tab 13: 13-EXPORT | Card 4: The 10-Page Doctor's Clinical Specification & Metrology Handbook
+### Slide 78 — Tab 13: 13-EXPORT | Card 4: The 10-Page Doctor's Clinical Specification & Metrology Handbook
 
 Finally, Card 4 opens the 10-page Doctor's Clinical Specification and Reporting Handbook—briefing physicians transparently on optical transducers, calibration math, and LOINC mapping before we finish workspace tabs at Tab 14 Troubleshooting.
 
-### Slide 77 — Tab 14: 14-TROUBLESHOOTING | 14-TROUBLESHOOTING: Guided Self-Help Without Technical Jargon
+### Slide 79 — Tab 14: 14-TROUBLESHOOTING | 14-TROUBLESHOOTING: Guided Self-Help Without Technical Jargon
 
 Completing all 14 workstation tabs is Tab 14 Troubleshooting. Crafted in plain non-technical language, it guides users calmly through re-linking Bluetooth, verifying storage readiness, and maintaining clean optical posture without needing IT support.
 
-### Slide 78 — Tab 14: 14-TROUBLESHOOTING | Proactive Overdue Sync Protection & Transparent Charging Guidance
+### Slide 80 — Tab 14: 14-TROUBLESHOOTING | Proactive Overdue Sync Protection & Transparent Charging Guidance
 
 Proactive 24-hour overdue sync reminders safeguard watch flash memory against accidental rollovers—wrapping up our 14 desktop tabs before checking how the Mobile Companion follows you on the road.
 
-### Slide 79 — Mobile Companion & HDYF | Mobile Companion Portal: On-the-Go Meal Estimation & Travel Autonomy
+### Slide 81 — Mobile Companion & HDYF | Mobile Companion Portal: On-the-Go Meal Estimation & Travel Autonomy
 
 Away from your desk, BFM's lightweight Mobile Companion turns any smartphone into an instant pocket nutritionist—capturing meal estimates, voice notes, and photos cleanly offline throughout busy days or vacations.
 
-### Slide 80 — Mobile Companion & HDYF | Automatic Homecoming Wi-Fi Synchronization With Verified Zero Loss
+### Slide 82 — Mobile Companion & HDYF | Automatic Homecoming Wi-Fi Synchronization With Verified Zero Loss
 
 Walking back onto home Wi-Fi synchronizes every away-from-home meal straight into your desktop vault—confirming verified storage before clearing the phone queue so nothing ever vanishes.
 
-### Slide 81 — Mobile Companion & HDYF | 'How Do You Feel?' (HDYF): Completing the 360° Human Telemetry Loop
+### Slide 83 — Mobile Companion & HDYF | 'How Do You Feel?' (HDYF): Completing the 360° Human Telemetry Loop
 
 Finally, the How Do You Feel portal captures the missing human dimension: daily vitality, stress, and pain. Knowing whether a busy day carried burning toes or stiff knees helps physicians understand why steps dropped—completing BFM's 360-degree view.
 
-### Slide 82 — Alpha vs Beta Evolution | Alpha vs Beta (1/3): Luminous Visual Clarity, 12h Clocks & Zero-Data Reality
+### Slide 84 — Alpha vs Beta Evolution | Alpha vs Beta (1/3): Luminous Visual Clarity, 12h Clocks & Zero-Data Reality
 
 To appreciate how far BFM has evolved, slides 80 through 82 summarize the leap from Alpha to Beta. Part 1 shows the UI transformation: moving from dark early screens to clean high-contrast light cards, locking 12-hour AM/PM clocks, and enforcing strict Zero-Data honesty.
 
-### Slide 83 — Alpha vs Beta Evolution | Alpha vs Beta (2/3): 13-Channel 3D Parity, Real Lorenz, 24h Naps & Overnight Temp
+### Slide 85 — Alpha vs Beta Evolution | Alpha vs Beta (2/3): 13-Channel 3D Parity, Real Lorenz, 24h Naps & Overnight Temp
 
 Part 2 highlights clinical depth: Alpha's partial 8-lane views expanded into 13 synchronized 2D and 3D channels—adding complete midnight-to-morning temperatures, daytime naps, 80-ounce hydration tracks, blue off-wrist honesty, and authentic beat-to-beat Lorenz plots.
 
-### Slide 84 — Alpha vs Beta Evolution | Alpha vs Beta (3/3): Household Vaults, Mobile HDYF, USB Backup & EHR Export
+### Slide 86 — Alpha vs Beta Evolution | Alpha vs Beta (3/3): Household Vaults, Mobile HDYF, USB Backup & EHR Export
 
 Finally, Part 3 captures ecosystem maturity: moving from a solo desktop prototype to multi-user family isolation, pocket mobile companions capturing How Do You Feel notes on the go, automated nightly USB backups, and one-click Epic hospital exports.
 
-### Slide 85 — Closing: Open Mission | Empowering Users, Physicians & Open Science — Mind the Gap
+### Slide 87 — Closing: Open Mission | Empowering Users, Physicians & Open Science — Mind the Gap
 
 And with that, we conclude our presentation with London's classic platform reminder: Mind the Gap! Because bridging the clinical gap between quarterly blood tests, meals, walks, medications, sleep, and all five doctors is everything the BFM Biometric Function Monitor stands for. Built with Google Gemini, our open-source toolkit ensures others may survive successfully diabetes. Mind the gap, and thank you, mate!

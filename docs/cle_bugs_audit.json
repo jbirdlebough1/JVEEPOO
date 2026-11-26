@@ -1,8 +1,8 @@
 {
-  "latest_build": "beta.00.01.0059",
-  "synced_at": "2026-11-26T10:46:49",
-  "total_bugs": 163,
-  "total_resolved": 163,
+  "latest_build": "beta.00.01.0060",
+  "synced_at": "2026-11-26T11:36:22",
+  "total_bugs": 164,
+  "total_resolved": 164,
   "total_open": 0,
   "bugs": [
     {
@@ -2123,6 +2123,19 @@
       "comments": "Synced from git tag beta.00.01.0059",
       "created_at": "2026-11-26 10:45:56",
       "resolved_at": "2026-11-26 10:45:56"
+    },
+    {
+      "code": "CLE-117",
+      "project": "JVEEPOO",
+      "build": "beta.00.01.0060",
+      "title": "[beta.00.01.0060] release(beta.00.01.0060): render real hardware WATCH_OFF_WRIST (10:50-11:15) blue bands across all 2D 04-REPORTS charts (except 3D multi), c",
+      "status": "RESOLVED",
+      "component": "beta.00.01.0060",
+      "affected_files": "BFM.HTM, Beta/docs/BETA_BACKLOG_TODO.md, Beta/docs/GOOGLE_LEADERSHIP_PRIMER.md, Beta/docs/NARRATION_QA_87_SLIDES.md, Beta/docs/bfm_beta1_master_test_plan.md, Beta/docs/bfm_diabetes_beta1_functional_specification.md, Beta/docs/presentation_b",
+      "resolution": "Git commit 23b7199 (2026-11-26 11:36:14): release(beta.00.01.0060): render real hardware WATCH_OFF_WRIST (10:50-11:15) blue bands across all 2D 04-REPORTS charts (except 3D multi), capture live MET/BloodComp & off-wrist screenshots, expand deck to 87 slides, log TODO-BLE-003 for ECG/BIA history download",
+      "comments": "Synced from git tag beta.00.01.0060",
+      "created_at": "2026-11-26 11:36:14",
+      "resolved_at": "2026-11-26 11:36:14"
     }
   ]
 }

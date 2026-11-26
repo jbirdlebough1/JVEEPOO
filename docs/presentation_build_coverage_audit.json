@@ -7,7 +7,7 @@
     "tab_title": "01-FULL SCAN \u2022 6-SENSOR WORKFLOW & AUDIT REPORT",
     "audio_file": "audio/slide_01.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "02",
@@ -17,7 +17,7 @@
     "tab_title": "01-FULL SCAN \u2022 6-SENSOR WORKFLOW & AUDIT REPORT",
     "audio_file": "audio/slide_02.mp3",
     "has_custom_left": true,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "03",
@@ -27,7 +27,7 @@
     "tab_title": "04-REPORTS \u2022 24H GLUCOSE CURVE & ADAG EA1C / GMI",
     "audio_file": "audio/slide_03.mp3",
     "has_custom_left": true,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "04",
@@ -37,7 +37,7 @@
     "tab_title": "04-REPORTS \u2022 24H GLUCOSE CURVE & ADAG EA1C / GMI",
     "audio_file": "audio/slide_04.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "05",
@@ -47,7 +47,7 @@
     "tab_title": "10-CONFIG \u2022 HOUSEHOLD DEVICE ROSTER & SENSOR SPECS",
     "audio_file": "audio/slide_05.mp3",
     "has_custom_left": true,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "06",
@@ -57,7 +57,7 @@
     "tab_title": "FITAOS 5010 SMARTWATCH \u2022 MULTI-WAVELENGTH LEDS & METAL SENSORS",
     "audio_file": "audio/slide_06.mp3",
     "has_custom_left": true,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "07",
@@ -67,7 +67,7 @@
     "tab_title": "13-EXPORT \u2022 EPIC FHIR R4, LOINC CSV, EMAIL & HANDBOOK",
     "audio_file": "audio/slide_07.mp3",
     "has_custom_left": true,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "08",
@@ -77,7 +77,7 @@
     "tab_title": "04-REPORTS \u2022 24H GLUCOSE CURVE & ADAG EA1C / GMI",
     "audio_file": "audio/slide_08.mp3",
     "has_custom_left": true,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "09",
@@ -87,7 +87,7 @@
     "tab_title": "STARTUP NOTICE \u2022 PERSONAL SELF-HELP AGREEMENT",
     "audio_file": "audio/slide_09.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "10",
@@ -97,7 +97,7 @@
     "tab_title": "CONSOLIDATED HEADER \u2022 LINK, WATCH, BATTERY & VAULT SYNC",
     "audio_file": "audio/slide_10.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "11",
@@ -107,7 +107,7 @@
     "tab_title": "01-FULL SCAN \u2022 6-SENSOR WORKFLOW & AUDIT REPORT",
     "audio_file": "audio/slide_11.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "12",
@@ -117,7 +117,7 @@
     "tab_title": "01-FULL SCAN \u2022 6-SENSOR WORKFLOW & AUDIT REPORT",
     "audio_file": "audio/slide_12.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "13",
@@ -127,7 +127,7 @@
     "tab_title": "01-FULL SCAN \u2022 6-SENSOR WORKFLOW & AUDIT REPORT",
     "audio_file": "audio/slide_13.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "14",
@@ -137,7 +137,7 @@
     "tab_title": "01-FULL SCAN \u2022 MULTI-VECTOR SYNTHESIS SUMMARY",
     "audio_file": "audio/slide_14.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "15",
@@ -147,7 +147,7 @@
     "tab_title": "02-METABOLIC \u2022 9 LIVE TELEMETRY TILES & EXERCISE LOGGER",
     "audio_file": "audio/slide_15.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "16",
@@ -157,7 +157,7 @@
     "tab_title": "02-METABOLIC \u2022 DAILY CONSUMED INTAKE & FLUID PROGRESSION",
     "audio_file": "audio/slide_16.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "17",
@@ -167,7 +167,7 @@
     "tab_title": "02-METABOLIC \u2022 DAILY CONSUMED INTAKE & FLUID PROGRESSION",
     "audio_file": "audio/slide_17.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "18",
@@ -177,7 +177,7 @@
     "tab_title": "02-METABOLIC \u2022 CHRONOLOGICAL MEAL & NUTRITION LEDGER",
     "audio_file": "audio/slide_18.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "19",
@@ -187,7 +187,7 @@
     "tab_title": "03-MEAL PLANNER \u2022 REUSABLE PANTRY & MEAL QUERY",
     "audio_file": "audio/slide_19.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "20",
@@ -197,7 +197,7 @@
     "tab_title": "03-MEAL PLANNER \u2022 PRE-CHOICE METABOLIC EVALUATOR",
     "audio_file": "audio/slide_20.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "21",
@@ -207,7 +207,7 @@
     "tab_title": "03-MEAL PLANNER \u2022 REUSABLE PANTRY & MEAL QUERY",
     "audio_file": "audio/slide_21.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "22",
@@ -217,7 +217,7 @@
     "tab_title": "03-MEAL PLANNER \u2022 ZERO-COST RECIPE BOM & LOCAL GROCERS",
     "audio_file": "audio/slide_22.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "23",
@@ -227,7 +227,7 @@
     "tab_title": "03-MEAL PLANNER \u2022 ZERO-COST RECIPE BOM & LOCAL GROCERS",
     "audio_file": "audio/slide_23.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "24",
@@ -237,7 +237,7 @@
     "tab_title": "03-MEAL PLANNER \u2022 LONGITUDINAL MEAL-TO-METRIC EXPLORER",
     "audio_file": "audio/slide_24.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "25",
@@ -247,7 +247,7 @@
     "tab_title": "04-REPORTS \u2022 ANIMATED 13-CHANNEL 3D FLY-THROUGH",
     "audio_file": "audio/slide_25.mp3",
     "has_custom_left": true,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "26",
@@ -257,7 +257,7 @@
     "tab_title": "04-REPORTS \u2022 GOALS COMPLIANCE & MITIGATION SCORECARD",
     "audio_file": "audio/slide_26.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "27",
@@ -267,7 +267,7 @@
     "tab_title": "04-REPORTS \u2022 FULL 13-LANE SYNCHRONIZED COMPOSITE TIMELINE (VOICE-SYNCED SCROLL)",
     "audio_file": "audio/slide_27.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "28",
@@ -277,7 +277,7 @@
     "tab_title": "04-REPORTS \u2022 FULL 13-LANE SYNCHRONIZED COMPOSITE TIMELINE (VOICE-SYNCED SCROLL)",
     "audio_file": "audio/slide_28.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "29",
@@ -287,566 +287,586 @@
     "tab_title": "04-REPORTS \u2022 FULL 13-LANE SYNCHRONIZED COMPOSITE TIMELINE (VOICE-SYNCED SCROLL)",
     "audio_file": "audio/slide_29.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "30",
+    "title": "Watch Off-Wrist Outage Integrity: Blue Gap Bands Across Every 2D Chart",
+    "module": "Tab 04: 04-REPORTS",
+    "tab_screenshot": "images/bfm_t04_watch_off_wrist.png",
+    "tab_title": "04-REPORTS \u2022 WATCH OFF-WRIST BLUE OUTAGE BANDS ACROSS ALL 2D CHARTS",
+    "audio_file": "audio/slide_30.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
+  },
+  {
+    "slide_num": "31",
     "title": "Step Target Correlator: Proving Your Personal Active vs Sedentary Gain",
     "module": "Tab 04: 04-REPORTS",
     "tab_screenshot": "images/bfm_t04_05_step_glut4_correlator.png",
     "tab_title": "04-REPORTS \u2022 ACTIVE VS SEDENTARY GLUCOSE CORRELATOR",
-    "audio_file": "audio/slide_30.mp3",
-    "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
-  },
-  {
-    "slide_num": "31",
-    "title": "Sub-Report 1: Lead-I ECG Protocol & Diurnal QTc Interval Stability",
-    "module": "Tab 04: 04-REPORTS",
-    "tab_screenshot": "images/bfm_t04_06_sub_ecg_met.png",
-    "tab_title": "04-REPORTS \u2022 LEAD-I ECG / QTC & MET ENERGY EXPENDITURE",
     "audio_file": "audio/slide_31.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "32",
-    "title": "Sub-Report 2: Continuous 24-Hour MET Energy Expenditure",
+    "title": "Sub-Report 1: Lead-I ECG Protocol & Diurnal QTc Interval Stability",
     "module": "Tab 04: 04-REPORTS",
     "tab_screenshot": "images/bfm_t04_06_sub_ecg_met.png",
     "tab_title": "04-REPORTS \u2022 LEAD-I ECG / QTC & MET ENERGY EXPENDITURE",
     "audio_file": "audio/slide_32.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "33",
-    "title": "Sub-Report 3: Microvascular Blood Viscosity & Uric Acid Tonometry",
+    "title": "Sub-Report 2: Continuous 24-Hour MET Energy Expenditure",
     "module": "Tab 04: 04-REPORTS",
-    "tab_screenshot": "images/bfm_t04_07_sub_blood_bia_breath.png",
-    "tab_title": "04-REPORTS \u2022 BLOOD VISCOSITY, BIA MUSCLE & RESPIRATION",
+    "tab_screenshot": "images/bfm_t04_06_sub_ecg_met.png",
+    "tab_title": "04-REPORTS \u2022 LEAD-I ECG / QTC & MET ENERGY EXPENDITURE",
     "audio_file": "audio/slide_33.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "34",
-    "title": "Sub-Report 4: BIA Skeletal Muscle Mass \u2014 The Primary Glucose Sink",
+    "title": "Sub-Report 3: Microvascular Blood Viscosity & Uric Acid Tonometry",
     "module": "Tab 04: 04-REPORTS",
     "tab_screenshot": "images/bfm_t04_07_sub_blood_bia_breath.png",
     "tab_title": "04-REPORTS \u2022 BLOOD VISCOSITY, BIA MUSCLE & RESPIRATION",
     "audio_file": "audio/slide_34.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "35",
-    "title": "Sub-Report 5: Continuous Respiratory Rate & Autonomic Breath Stability",
+    "title": "Sub-Report 4: BIA Skeletal Muscle Mass \u2014 The Primary Glucose Sink",
     "module": "Tab 04: 04-REPORTS",
     "tab_screenshot": "images/bfm_t04_07_sub_blood_bia_breath.png",
     "tab_title": "04-REPORTS \u2022 BLOOD VISCOSITY, BIA MUSCLE & RESPIRATION",
     "audio_file": "audio/slide_35.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "36",
-    "title": "Daily 24-Hour Continuous Glucose Curve & Time-in-Range Velocity",
+    "title": "Sub-Report 5: Continuous Respiratory Rate & Autonomic Breath Stability",
     "module": "Tab 04: 04-REPORTS",
-    "tab_screenshot": "images/bfm_t04_08_glucose_a1c.png",
-    "tab_title": "04-REPORTS \u2022 24H GLUCOSE CURVE & ADAG EA1C / GMI",
+    "tab_screenshot": "images/bfm_t04_07_sub_blood_bia_breath.png",
+    "tab_title": "04-REPORTS \u2022 BLOOD VISCOSITY, BIA MUSCLE & RESPIRATION",
     "audio_file": "audio/slide_36.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "37",
-    "title": "Daily Estimated A1C (GMI) vs 90-Day Laboratory HbA1c Kinetics",
+    "title": "Live Synced Watch Sub-Reports: Continuous MET, Blood Composition & Breath",
     "module": "Tab 04: 04-REPORTS",
-    "tab_screenshot": "images/bfm_t04_08_glucose_a1c.png",
-    "tab_title": "04-REPORTS \u2022 24H GLUCOSE CURVE & ADAG EA1C / GMI",
+    "tab_screenshot": "images/bfm_t04_met_bloodcomp_live.png",
+    "tab_title": "04-REPORTS \u2022 LIVE SYNCED MET, BLOOD COMPOSITION, BIA ZERO-DATA & BREATH",
     "audio_file": "audio/slide_37.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "38",
-    "title": "Optical Photodiode Repeatability (`5.36% CV`) & Personal Calibration Fitness",
+    "title": "Daily 24-Hour Continuous Glucose Curve & Time-in-Range Velocity",
     "module": "Tab 04: 04-REPORTS",
     "tab_screenshot": "images/bfm_t04_08_glucose_a1c.png",
     "tab_title": "04-REPORTS \u2022 24H GLUCOSE CURVE & ADAG EA1C / GMI",
     "audio_file": "audio/slide_38.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "39",
+    "title": "Daily Estimated A1C (GMI) vs 90-Day Laboratory HbA1c Kinetics",
+    "module": "Tab 04: 04-REPORTS",
+    "tab_screenshot": "images/bfm_t04_08_glucose_a1c.png",
+    "tab_title": "04-REPORTS \u2022 24H GLUCOSE CURVE & ADAG EA1C / GMI",
+    "audio_file": "audio/slide_39.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
+  },
+  {
+    "slide_num": "40",
+    "title": "Optical Photodiode Repeatability (`5.36% CV`) & Personal Calibration Fitness",
+    "module": "Tab 04: 04-REPORTS",
+    "tab_screenshot": "images/bfm_t04_08_glucose_a1c.png",
+    "tab_title": "04-REPORTS \u2022 24H GLUCOSE CURVE & ADAG EA1C / GMI",
+    "audio_file": "audio/slide_40.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
+  },
+  {
+    "slide_num": "41",
     "title": "Daily 24-Hour Body Temperature Matrix: Core vs Epidermal Warmth",
     "module": "Tab 04: 04-REPORTS",
     "tab_screenshot": "images/bfm_t04_09_temp_0x88.png",
     "tab_title": "04-REPORTS \u2022 24H CORE VS SKIN BODY TEMPERATURE MATRIX",
-    "audio_file": "audio/slide_39.mp3",
+    "audio_file": "audio/slide_41.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
-    "slide_num": "40",
+    "slide_num": "42",
     "title": "Daily 24-Hour Heart Rate & 5-Zone Cardiac Recovery Envelope",
     "module": "Tab 04: 04-REPORTS",
     "tab_screenshot": "images/bfm_t04_10_hr_bp.png",
     "tab_title": "04-REPORTS \u2022 5-ZONE HEART RATE & AMBULATORY BLOOD PRESSURE",
-    "audio_file": "audio/slide_40.mp3",
+    "audio_file": "audio/slide_42.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
-    "slide_num": "41",
+    "slide_num": "43",
     "title": "24-Hour Ambulatory Blood Pressure & Healthy Nocturnal Dipping",
     "module": "Tab 04: 04-REPORTS",
     "tab_screenshot": "images/bfm_t04_10_hr_bp.png",
     "tab_title": "04-REPORTS \u2022 5-ZONE HEART RATE & AMBULATORY BLOOD PRESSURE",
-    "audio_file": "audio/slide_41.mp3",
+    "audio_file": "audio/slide_43.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
-    "slide_num": "42",
+    "slide_num": "44",
     "title": "Nocturnal SpO2 Oximetry (`>=95%`) & Sky-Blue Charging Transparency",
     "module": "Tab 04: 04-REPORTS",
     "tab_screenshot": "images/bfm_t04_11_spo2_holes.png",
     "tab_title": "04-REPORTS \u2022 SPO2 OXIMETRY & CHARGING EXCLUSION BANDS",
-    "audio_file": "audio/slide_42.mp3",
+    "audio_file": "audio/slide_44.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
-    "slide_num": "43",
+    "slide_num": "45",
     "title": "Daily Fluid & Hydration Clearance Analytics Card",
     "module": "Tab 04: 04-REPORTS",
     "tab_screenshot": "images/bfm_t04_12_hydration_80oz.png",
     "tab_title": "04-REPORTS \u2022 DAILY FLUID INTAKE & RENAL CLEARANCE",
-    "audio_file": "audio/slide_43.mp3",
+    "audio_file": "audio/slide_45.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
-    "slide_num": "44",
+    "slide_num": "46",
     "title": "Genuine Watch 2D Lorenz (Poincar\u00e9) Scatter Plot (`4,831`+ Real Epochs)",
     "module": "Tab 04: 04-REPORTS",
     "tab_screenshot": "images/bfm_t04_13_hrv_lorenz.png",
     "tab_title": "04-REPORTS \u2022 REAL-WATCH 2D LORENZ (POINCARE) HRV PLOT",
-    "audio_file": "audio/slide_44.mp3",
+    "audio_file": "audio/slide_46.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
-    "slide_num": "45",
+    "slide_num": "47",
     "title": "Early Screening for Diabetic Cardiac Autonomic Neuropathy (CAN)",
     "module": "Tab 04: 04-REPORTS",
     "tab_screenshot": "images/bfm_t04_13_hrv_lorenz.png",
     "tab_title": "04-REPORTS \u2022 REAL-WATCH 2D LORENZ (POINCARE) HRV PLOT",
-    "audio_file": "audio/slide_45.mp3",
+    "audio_file": "audio/slide_47.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
-    "slide_num": "46",
+    "slide_num": "48",
     "title": "Daily 24-Hour Sleep Architecture & Daytime Nap Hypnogram (`9.2h`)",
     "module": "Tab 04: 04-REPORTS",
     "tab_screenshot": "images/bfm_t04_14_sleep_0xe0_naps.png",
     "tab_title": "04-REPORTS \u2022 24H SLEEP ARCHITECTURE & DAYTIME NAP HYPNOGRAM",
-    "audio_file": "audio/slide_46.mp3",
+    "audio_file": "audio/slide_48.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
-    "slide_num": "47",
+    "slide_num": "49",
     "title": "Hourly Step Activity, `2,000`-Step Watch Goal & Hardware Physics",
     "module": "Tab 04: 04-REPORTS",
     "tab_screenshot": "images/bfm_t04_15_steps_2000goal.png",
     "tab_title": "04-REPORTS \u2022 HOURLY STEP ACTIVITY VS 2,000-STEP GOAL",
-    "audio_file": "audio/slide_47.mp3",
+    "audio_file": "audio/slide_49.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
-    "slide_num": "48",
+    "slide_num": "50",
     "title": "Longitudinal YTD Summary & Transparent Raw Telemetry Audit Logs",
     "module": "Tab 04: 04-REPORTS",
     "tab_screenshot": "images/bfm_t04_16_ytd_rawlog.png",
     "tab_title": "04-REPORTS \u2022 LONGITUDINAL YTD & TELEMETRY AUDIT LOGS",
-    "audio_file": "audio/slide_48.mp3",
-    "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
-  },
-  {
-    "slide_num": "49",
-    "title": "05-LEARNING: Movement Correlation (-38 mg/dL) & Carb Threshold (<=22g Net)",
-    "module": "Tab 05: 05-LEARNING",
-    "tab_screenshot": "images/bfm_t05_learning.png",
-    "tab_title": "05-LEARNING \u2022 PERSONAL METABOLIC PHENOTYPING",
-    "audio_file": "audio/slide_49.mp3",
-    "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
-  },
-  {
-    "slide_num": "50",
-    "title": "Macro Sequencing (+0.8 mg/dL/min) & Sleep / Circadian Nadir",
-    "module": "Tab 05: 05-LEARNING",
-    "tab_screenshot": "images/bfm_t05_learning.png",
-    "tab_title": "05-LEARNING \u2022 PERSONAL METABOLIC PHENOTYPING",
     "audio_file": "audio/slide_50.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "51",
-    "title": "Section 03: Pre-Meal Coaching vs. Post-Meal Watch Metrics Tracker",
+    "title": "05-LEARNING: Movement Correlation (-38 mg/dL) & Carb Threshold (<=22g Net)",
     "module": "Tab 05: 05-LEARNING",
     "tab_screenshot": "images/bfm_t05_learning.png",
     "tab_title": "05-LEARNING \u2022 PERSONAL METABOLIC PHENOTYPING",
     "audio_file": "audio/slide_51.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "52",
+    "title": "Macro Sequencing (+0.8 mg/dL/min) & Sleep / Circadian Nadir",
+    "module": "Tab 05: 05-LEARNING",
+    "tab_screenshot": "images/bfm_t05_learning.png",
+    "tab_title": "05-LEARNING \u2022 PERSONAL METABOLIC PHENOTYPING",
+    "audio_file": "audio/slide_52.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
+  },
+  {
+    "slide_num": "53",
+    "title": "Section 03: Pre-Meal Coaching vs. Post-Meal Watch Metrics Tracker",
+    "module": "Tab 05: 05-LEARNING",
+    "tab_screenshot": "images/bfm_t05_learning.png",
+    "tab_title": "05-LEARNING \u2022 PERSONAL METABOLIC PHENOTYPING",
+    "audio_file": "audio/slide_53.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
+  },
+  {
+    "slide_num": "54",
     "title": "06-OPERATIONS: Standard Clinical Operation & Real-Time Sensor Workflow",
     "module": "Tab 06: 06-OPERATIONS",
     "tab_screenshot": "images/bfm_t06_operations.png",
     "tab_title": "06-OPERATIONS \u2022 WIRELESS WATCH LINK & SYNC CONTROLS",
-    "audio_file": "audio/slide_52.mp3",
+    "audio_file": "audio/slide_54.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
-    "slide_num": "53",
+    "slide_num": "55",
     "title": "Precision Transducer Calibration Protocol (Venous Lab Sync <=5.0% Error)",
     "module": "Tab 06: 06-OPERATIONS",
     "tab_screenshot": "images/bfm_t06_operations.png",
     "tab_title": "06-OPERATIONS \u2022 WIRELESS WATCH LINK & SYNC CONTROLS",
-    "audio_file": "audio/slide_53.mp3",
-    "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
-  },
-  {
-    "slide_num": "54",
-    "title": "07-FAQ: Built-In Offline Reference Manual for Families & Physicians",
-    "module": "Tab 07: 07-FAQ",
-    "tab_screenshot": "images/bfm_t07_faq.png",
-    "tab_title": "07-FAQ \u2022 BUILT-IN REFERENCE GUIDE & CITATIONS",
-    "audio_file": "audio/slide_54.mp3",
-    "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
-  },
-  {
-    "slide_num": "55",
-    "title": "Peer-Reviewed Clinical Consensus & Sampling Citations",
-    "module": "Tab 07: 07-FAQ",
-    "tab_screenshot": "images/bfm_t07_faq.png",
-    "tab_title": "07-FAQ \u2022 BUILT-IN REFERENCE GUIDE & CITATIONS",
     "audio_file": "audio/slide_55.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "56",
-    "title": "Watch Positioning, Wrist Strap Fit & Best Optical Practices",
+    "title": "07-FAQ: Built-In Offline Reference Manual for Families & Physicians",
     "module": "Tab 07: 07-FAQ",
     "tab_screenshot": "images/bfm_t07_faq.png",
     "tab_title": "07-FAQ \u2022 BUILT-IN REFERENCE GUIDE & CITATIONS",
     "audio_file": "audio/slide_56.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "57",
-    "title": "08-CLINICAL GOALS: Individualizing Your Personal Target Corridor",
-    "module": "Tab 08: 08-CLINICAL GOALS",
-    "tab_screenshot": "images/bfm_t08_goals.png",
-    "tab_title": "08-CLINICAL GOALS \u2022 TARGET CEILINGS & 2,000-STEP FLOOR",
+    "title": "Peer-Reviewed Clinical Consensus & Sampling Citations",
+    "module": "Tab 07: 07-FAQ",
+    "tab_screenshot": "images/bfm_t07_faq.png",
+    "tab_title": "07-FAQ \u2022 BUILT-IN REFERENCE GUIDE & CITATIONS",
     "audio_file": "audio/slide_57.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "58",
-    "title": "The Realistic 2,000-Step Senior Floor Synchronized With Your Watch",
-    "module": "Tab 08: 08-CLINICAL GOALS",
-    "tab_screenshot": "images/bfm_t08_goals.png",
-    "tab_title": "08-CLINICAL GOALS \u2022 TARGET CEILINGS & 2,000-STEP FLOOR",
+    "title": "Watch Positioning, Wrist Strap Fit & Best Optical Practices",
+    "module": "Tab 07: 07-FAQ",
+    "tab_screenshot": "images/bfm_t07_faq.png",
+    "tab_title": "07-FAQ \u2022 BUILT-IN REFERENCE GUIDE & CITATIONS",
     "audio_file": "audio/slide_58.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "59",
-    "title": "Quarterly Stepped Milestones & Avoiding Over-Aggressive Drops",
+    "title": "08-CLINICAL GOALS: Individualizing Your Personal Target Corridor",
     "module": "Tab 08: 08-CLINICAL GOALS",
     "tab_screenshot": "images/bfm_t08_goals.png",
     "tab_title": "08-CLINICAL GOALS \u2022 TARGET CEILINGS & 2,000-STEP FLOOR",
     "audio_file": "audio/slide_59.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "60",
-    "title": "09-MEDICATION: Medical Data Sanctity & Zero Pre-Populated Drugs",
-    "module": "Tab 09: 09-MEDICATION",
-    "tab_screenshot": "images/bfm_t09_medication.png",
-    "tab_title": "09-MEDICATION \u2022 SAFE PRESCRIPTION & SCHEDULE REGISTRY",
+    "title": "The Realistic 2,000-Step Senior Floor Synchronized With Your Watch",
+    "module": "Tab 08: 08-CLINICAL GOALS",
+    "tab_screenshot": "images/bfm_t08_goals.png",
+    "tab_title": "08-CLINICAL GOALS \u2022 TARGET CEILINGS & 2,000-STEP FLOOR",
     "audio_file": "audio/slide_60.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "61",
-    "title": "Discrete Morning Suite & Dinner Split Scheduling Controls",
-    "module": "Tab 09: 09-MEDICATION",
-    "tab_screenshot": "images/bfm_t09_medication.png",
-    "tab_title": "09-MEDICATION \u2022 SAFE PRESCRIPTION & SCHEDULE REGISTRY",
+    "title": "Quarterly Stepped Milestones & Avoiding Over-Aggressive Drops",
+    "module": "Tab 08: 08-CLINICAL GOALS",
+    "tab_screenshot": "images/bfm_t08_goals.png",
+    "tab_title": "08-CLINICAL GOALS \u2022 TARGET CEILINGS & 2,000-STEP FLOOR",
     "audio_file": "audio/slide_61.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "62",
-    "title": "Pharmacist & Endocrinologist Titration Partnership",
+    "title": "09-MEDICATION: Medical Data Sanctity & Zero Pre-Populated Drugs",
     "module": "Tab 09: 09-MEDICATION",
     "tab_screenshot": "images/bfm_t09_medication.png",
     "tab_title": "09-MEDICATION \u2022 SAFE PRESCRIPTION & SCHEDULE REGISTRY",
     "audio_file": "audio/slide_62.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "63",
+    "title": "Discrete Morning Suite & Dinner Split Scheduling Controls",
+    "module": "Tab 09: 09-MEDICATION",
+    "tab_screenshot": "images/bfm_t09_medication.png",
+    "tab_title": "09-MEDICATION \u2022 SAFE PRESCRIPTION & SCHEDULE REGISTRY",
+    "audio_file": "audio/slide_63.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
+  },
+  {
+    "slide_num": "64",
+    "title": "Pharmacist & Endocrinologist Titration Partnership",
+    "module": "Tab 09: 09-MEDICATION",
+    "tab_screenshot": "images/bfm_t09_medication.png",
+    "tab_title": "09-MEDICATION \u2022 SAFE PRESCRIPTION & SCHEDULE REGISTRY",
+    "audio_file": "audio/slide_64.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
+  },
+  {
+    "slide_num": "65",
     "title": "10-CONFIG: Critical Contraindications & 11-Step Onboarding Guide",
     "module": "Tab 10: 10-CONFIG",
     "tab_screenshot": "images/bfm_t10_config_onboarding.png",
     "tab_title": "10-CONFIG \u2022 SAFETY NOTICE & 11-STEP SETUP GUIDE",
-    "audio_file": "audio/slide_63.mp3",
+    "audio_file": "audio/slide_65.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
-    "slide_num": "64",
+    "slide_num": "66",
     "title": "Watch Preferences, 12-Hour Clock Parity & Calibration Anchors",
     "module": "Tab 10: 10-CONFIG",
     "tab_screenshot": "images/bfm_t10_config_clock_cal.png",
     "tab_title": "10-CONFIG \u2022 12H/24H PREFERENCES & OPTICAL CALIBRATION",
-    "audio_file": "audio/slide_64.mp3",
+    "audio_file": "audio/slide_66.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
-    "slide_num": "65",
+    "slide_num": "67",
     "title": "Automated Nightly USB Backup & Smart Storage Deduplication",
     "module": "Tab 10: 10-CONFIG",
     "tab_screenshot": "images/bfm_t10_config_usb_backup.png",
     "tab_title": "10-CONFIG \u2022 AUTOMATED USB BACKUP & FAMILY EHR SETUP",
-    "audio_file": "audio/slide_65.mp3",
+    "audio_file": "audio/slide_67.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
-    "slide_num": "66",
+    "slide_num": "68",
     "title": "Hospital EHR Setup & Shared-PC Multi-User Family Binding Roster",
     "module": "Tab 10: 10-CONFIG",
     "tab_screenshot": "images/bfm_t10_config_roster_transducers.png",
     "tab_title": "10-CONFIG \u2022 HOUSEHOLD DEVICE ROSTER & SENSOR SPECS",
-    "audio_file": "audio/slide_66.mp3",
+    "audio_file": "audio/slide_68.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
-    "slide_num": "67",
+    "slide_num": "69",
     "title": "Section 13 Hardware Transducer Reference & Physical Sensor Bounds",
     "module": "Tab 10: 10-CONFIG",
     "tab_screenshot": "images/bfm_t10_config_roster_transducers.png",
     "tab_title": "10-CONFIG \u2022 HOUSEHOLD DEVICE ROSTER & SENSOR SPECS",
-    "audio_file": "audio/slide_67.mp3",
-    "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
-  },
-  {
-    "slide_num": "68",
-    "title": "11-WATCH: Live 12-Channel Watch Capability & Command Diagnostics",
-    "module": "Tab 11: 11-WATCH",
-    "tab_screenshot": "images/bfm_t11_watch_analyzer.png",
-    "tab_title": "11-WATCH \u2022 12 ACCESSIBLE CHANNELS & HARDWARE HEALTH",
-    "audio_file": "audio/slide_68.mp3",
-    "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
-  },
-  {
-    "slide_num": "69",
-    "title": "Adaptive Watch Dial Studio & Smart Read-Only Hardware Boundaries",
-    "module": "Tab 11: 11-WATCH",
-    "tab_screenshot": "images/bfm_t11_watch_dial_boundary.png",
-    "tab_title": "11-WATCH \u2022 ADAPTIVE WATCH DIAL & READ-ONLY BOUNDARIES",
     "audio_file": "audio/slide_69.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "70",
-    "title": "Why BFM Workstation Surpasses Proprietary Mobile Watch Apps",
+    "title": "11-WATCH: Live 12-Channel Watch Capability & Command Diagnostics",
     "module": "Tab 11: 11-WATCH",
     "tab_screenshot": "images/bfm_t11_watch_analyzer.png",
     "tab_title": "11-WATCH \u2022 12 ACCESSIBLE CHANNELS & HARDWARE HEALTH",
     "audio_file": "audio/slide_70.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "71",
+    "title": "Adaptive Watch Dial Studio & Smart Read-Only Hardware Boundaries",
+    "module": "Tab 11: 11-WATCH",
+    "tab_screenshot": "images/bfm_t11_watch_dial_boundary.png",
+    "tab_title": "11-WATCH \u2022 ADAPTIVE WATCH DIAL & READ-ONLY BOUNDARIES",
+    "audio_file": "audio/slide_71.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
+  },
+  {
+    "slide_num": "72",
+    "title": "Why BFM Workstation Surpasses Proprietary Mobile Watch Apps",
+    "module": "Tab 11: 11-WATCH",
+    "tab_screenshot": "images/bfm_t11_watch_analyzer.png",
+    "tab_title": "11-WATCH \u2022 12 ACCESSIBLE CHANNELS & HARDWARE HEALTH",
+    "audio_file": "audio/slide_72.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
+  },
+  {
+    "slide_num": "73",
     "title": "12-DATA LOG: Transparent Live Telemetry Stream Verification",
     "module": "Tab 12: 12-DATA LOG",
     "tab_screenshot": "images/bfm_t12_datalog.png",
     "tab_title": "12-DATA LOG \u2022 LIVE TRANSPARENT STREAM VERIFICATION",
-    "audio_file": "audio/slide_71.mp3",
+    "audio_file": "audio/slide_73.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
-    "slide_num": "72",
+    "slide_num": "74",
     "title": "Permanent Local Auditability & Reliable History Backfill",
     "module": "Tab 12: 12-DATA LOG",
     "tab_screenshot": "images/bfm_t12_datalog.png",
     "tab_title": "12-DATA LOG \u2022 LIVE TRANSPARENT STREAM VERIFICATION",
-    "audio_file": "audio/slide_72.mp3",
-    "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
-  },
-  {
-    "slide_num": "73",
-    "title": "13-EXPORT: Consolidated Single-Bay Clinical Interoperability Center",
-    "module": "Tab 13: 13-EXPORT",
-    "tab_screenshot": "images/bfm_t13_export_ehr.png",
-    "tab_title": "13-EXPORT \u2022 EPIC FHIR R4, LOINC CSV, EMAIL & HANDBOOK",
-    "audio_file": "audio/slide_73.mp3",
-    "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
-  },
-  {
-    "slide_num": "74",
-    "title": "1-Click HL7 FHIR R4 Collection Bundles & Standardized LOINC Codes",
-    "module": "Tab 13: 13-EXPORT",
-    "tab_screenshot": "images/bfm_t13_export_ehr.png",
-    "tab_title": "13-EXPORT \u2022 EPIC FHIR R4, LOINC CSV, EMAIL & HANDBOOK",
     "audio_file": "audio/slide_74.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "75",
-    "title": "Card 2 Clinical CSV Spreadsheets & Card 3 Doctor Email Handoff",
+    "title": "13-EXPORT: Consolidated Single-Bay Clinical Interoperability Center",
     "module": "Tab 13: 13-EXPORT",
     "tab_screenshot": "images/bfm_t13_export_ehr.png",
     "tab_title": "13-EXPORT \u2022 EPIC FHIR R4, LOINC CSV, EMAIL & HANDBOOK",
     "audio_file": "audio/slide_75.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "76",
-    "title": "Card 4: The 10-Page Doctor's Clinical Specification & Metrology Handbook",
+    "title": "1-Click HL7 FHIR R4 Collection Bundles & Standardized LOINC Codes",
     "module": "Tab 13: 13-EXPORT",
     "tab_screenshot": "images/bfm_t13_export_ehr.png",
     "tab_title": "13-EXPORT \u2022 EPIC FHIR R4, LOINC CSV, EMAIL & HANDBOOK",
     "audio_file": "audio/slide_76.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "77",
+    "title": "Card 2 Clinical CSV Spreadsheets & Card 3 Doctor Email Handoff",
+    "module": "Tab 13: 13-EXPORT",
+    "tab_screenshot": "images/bfm_t13_export_ehr.png",
+    "tab_title": "13-EXPORT \u2022 EPIC FHIR R4, LOINC CSV, EMAIL & HANDBOOK",
+    "audio_file": "audio/slide_77.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
+  },
+  {
+    "slide_num": "78",
+    "title": "Card 4: The 10-Page Doctor's Clinical Specification & Metrology Handbook",
+    "module": "Tab 13: 13-EXPORT",
+    "tab_screenshot": "images/bfm_t13_export_ehr.png",
+    "tab_title": "13-EXPORT \u2022 EPIC FHIR R4, LOINC CSV, EMAIL & HANDBOOK",
+    "audio_file": "audio/slide_78.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
+  },
+  {
+    "slide_num": "79",
     "title": "14-TROUBLESHOOTING: Guided Self-Help Without Technical Jargon",
     "module": "Tab 14: 14-TROUBLESHOOTING",
     "tab_screenshot": "images/bfm_t14_troubleshooting.png",
     "tab_title": "14-TROUBLESHOOTING \u2022 SELF-RECOVERY CHECKLIST",
-    "audio_file": "audio/slide_77.mp3",
+    "audio_file": "audio/slide_79.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
-    "slide_num": "78",
+    "slide_num": "80",
     "title": "Proactive Overdue Sync Protection & Transparent Charging Guidance",
     "module": "Tab 14: 14-TROUBLESHOOTING",
     "tab_screenshot": "images/bfm_t14_troubleshooting.png",
     "tab_title": "14-TROUBLESHOOTING \u2022 SELF-RECOVERY CHECKLIST",
-    "audio_file": "audio/slide_78.mp3",
-    "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
-  },
-  {
-    "slide_num": "79",
-    "title": "Mobile Companion Portal: On-the-Go Meal Estimation & Travel Autonomy",
-    "module": "Mobile Companion & HDYF",
-    "tab_screenshot": "images/bfm_t15_mobile_cell.png",
-    "tab_title": "MOBILE COMPANION \u2022 ON-THE-GO CAPTURE & HDYF PORTAL",
-    "audio_file": "audio/slide_79.mp3",
-    "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
-  },
-  {
-    "slide_num": "80",
-    "title": "Automatic Homecoming Wi-Fi Synchronization With Verified Zero Loss",
-    "module": "Mobile Companion & HDYF",
-    "tab_screenshot": "images/bfm_t15_mobile_cell.png",
-    "tab_title": "MOBILE COMPANION \u2022 ON-THE-GO CAPTURE & HDYF PORTAL",
     "audio_file": "audio/slide_80.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "81",
-    "title": "'How Do You Feel?' (HDYF): Completing the 360\u00b0 Human Telemetry Loop",
+    "title": "Mobile Companion Portal: On-the-Go Meal Estimation & Travel Autonomy",
     "module": "Mobile Companion & HDYF",
     "tab_screenshot": "images/bfm_t15_mobile_cell.png",
     "tab_title": "MOBILE COMPANION \u2022 ON-THE-GO CAPTURE & HDYF PORTAL",
     "audio_file": "audio/slide_81.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
     "slide_num": "82",
+    "title": "Automatic Homecoming Wi-Fi Synchronization With Verified Zero Loss",
+    "module": "Mobile Companion & HDYF",
+    "tab_screenshot": "images/bfm_t15_mobile_cell.png",
+    "tab_title": "MOBILE COMPANION \u2022 ON-THE-GO CAPTURE & HDYF PORTAL",
+    "audio_file": "audio/slide_82.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
+  },
+  {
+    "slide_num": "83",
+    "title": "'How Do You Feel?' (HDYF): Completing the 360\u00b0 Human Telemetry Loop",
+    "module": "Mobile Companion & HDYF",
+    "tab_screenshot": "images/bfm_t15_mobile_cell.png",
+    "tab_title": "MOBILE COMPANION \u2022 ON-THE-GO CAPTURE & HDYF PORTAL",
+    "audio_file": "audio/slide_83.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
+  },
+  {
+    "slide_num": "84",
     "title": "Alpha vs Beta (1/3): Luminous Visual Clarity, 12h Clocks & Zero-Data Reality",
     "module": "Alpha vs Beta Evolution",
     "tab_screenshot": "images/bfm_t01_fullscan_top.png",
     "tab_title": "01-FULL SCAN \u2022 6-SENSOR WORKFLOW & AUDIT REPORT",
-    "audio_file": "audio/slide_82.mp3",
+    "audio_file": "audio/slide_84.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
-    "slide_num": "83",
+    "slide_num": "85",
     "title": "Alpha vs Beta (2/3): 13-Channel 3D Parity, Real Lorenz, 24h Naps & Overnight Temp",
     "module": "Alpha vs Beta Evolution",
     "tab_screenshot": "images/bfm_t04_03_13lane_tall_chart.png",
     "tab_title": "04-REPORTS \u2022 13-LANE SYNCHRONIZED TIMELINE & HUD",
-    "audio_file": "audio/slide_83.mp3",
+    "audio_file": "audio/slide_85.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
-    "slide_num": "84",
+    "slide_num": "86",
     "title": "Alpha vs Beta (3/3): Household Vaults, Mobile HDYF, USB Backup & EHR Export",
     "module": "Alpha vs Beta Evolution",
     "tab_screenshot": "images/bfm_t13_export_ehr.png",
     "tab_title": "13-EXPORT \u2022 EPIC FHIR R4, LOINC CSV, EMAIL & HANDBOOK",
-    "audio_file": "audio/slide_84.mp3",
+    "audio_file": "audio/slide_86.mp3",
     "has_custom_left": false,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   },
   {
-    "slide_num": "85",
+    "slide_num": "87",
     "title": "Empowering Users, Physicians & Open Science \u2014 Mind the Gap",
     "module": "Closing: Open Mission",
     "tab_screenshot": "images/bfm_t01_fullscan_top.png",
     "tab_title": "01-FULL SCAN \u2022 6-SENSOR WORKFLOW & AUDIT REPORT",
-    "audio_file": "audio/slide_85.mp3",
+    "audio_file": "audio/slide_87.mp3",
     "has_custom_left": true,
-    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0059"
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0060"
   }
 ]

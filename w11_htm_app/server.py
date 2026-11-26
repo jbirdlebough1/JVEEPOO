@@ -3944,7 +3944,7 @@ def get_today_lorenz_rr():
 
 
 def get_today_subreports():
-    """Returns genuine watch sub-report series (MET, Blood Comp, Breath, ECG QTc, Body Comp) for local today."""
+    """Returns genuine watch sub-report series (MET, Blood Comp, Breath, ECG QTc, Body Comp) and off-wrist windows for local today."""
     today_date = datetime.date.today()
     start_iso = f"{today_date - datetime.timedelta(days=1)}T00:00:00"
     metrics_wanted = ("MET_5MIN", "BLOOD_COMP", "BREATH_RATE", "ECG_QTC", "BODY_COMP")
@@ -3954,7 +3954,7 @@ def get_today_subreports():
         cur.execute("""
             SELECT timestamp, metric, value1, value2, mode
             FROM vital_records
-            WHERE metric IN ('MET_5MIN', 'BLOOD_COMP', 'BREATH_RATE', 'ECG_QTC', 'BODY_COMP') AND timestamp >= ?
+            WHERE metric IN ('MET_5MIN', 'BLOOD_COMP', 'BREATH_RATE', 'ECG_QTC', 'BODY_COMP', 'WATCH_OFF_WRIST') AND timestamp >= ?
             ORDER BY timestamp ASC
         """, (start_iso,))
         rows = cur.fetchall()
@@ -3962,9 +3962,14 @@ def get_today_subreports():
 
     out = {k: [] for k in metrics_wanted}
     cum_met_hrs = 0.0
+    off_wrist_mins = set()
     for ts_str, met, v1, v2, mode_str in rows:
         dt = _parse_to_local_dt(ts_str)
         if not dt or dt.date() != today_date:
+            continue
+        if met == "WATCH_OFF_WRIST":
+            if float(v1 or 0) > 0:
+                off_wrist_mins.add(dt.hour * 60 + dt.minute)
             continue
         hm = f"{dt.hour:02d}:{dt.minute:02d}"
         if met == "MET_5MIN" and v1 and v1 > 0:
@@ -3978,7 +3983,25 @@ def get_today_subreports():
             out[met].append({"label": hm, "val": round(float(v2 or 0), 2), "core": round(float(v2 or 0), 2), "skin": ua_mgdl})
         elif met in ("ECG_QTC", "BODY_COMP") and v1 and v1 > 0:
             out[met].append({"label": hm, "val": round(float(v1), 1), "core": round(float(v1), 1), "skin": round(float(v2 or 0), 1)})
-    return {"date": str(today_date), **out}
+
+    off_wrist_intervals = []
+    for m_val in sorted(off_wrist_mins):
+        if off_wrist_intervals and (m_val - off_wrist_intervals[-1]["_end_epoch"]) <= 10:
+            off_wrist_intervals[-1]["_end_epoch"] = m_val
+        else:
+            off_wrist_intervals.append({"_start_epoch": m_val, "_end_epoch": m_val})
+    formatted_off_wrist = []
+    for blk in off_wrist_intervals:
+        s_min = blk["_start_epoch"]
+        e_min = min(1440, blk["_end_epoch"] + 5)
+        formatted_off_wrist.append({
+            "startMin": s_min,
+            "endMin": e_min,
+            "start": f"{s_min // 60:02d}:{s_min % 60:02d}",
+            "end": f"{e_min // 60:02d}:{e_min % 60:02d}",
+            "durationMin": max(5, e_min - s_min)
+        })
+    return {"date": str(today_date), "OFF_WRIST_INTERVALS": formatted_off_wrist, **out}
 
 # =========================================================================
 # HTTP REQUEST HANDLER (Port 8899)
