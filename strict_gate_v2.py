@@ -225,9 +225,28 @@ def run_gate():
         log_fail("Missing curveTimelineBreath container in Bay 06 Respiration!")
     log_pass("Header segregation, Bay 06 breath graph, and hardware function mapping table verified.")
 
-    # 12. PRE-BUILD ZERO REGRESSION AUDIT STATUS
-    print("\n[CHECK 12/12] Pre-Build Six Sigma Gate Readiness...")
-    log_pass("Pre-build analysis complete: 12/12 checks verified. Ready for Beta 1 phased execution.")
+    # 12. CLEBUGGER BUILD SYNCHRONIZATION GATE (FAIL-CLOSED ON UNSYNCED BUILDS)
+    print("\n[CHECK 12/13] CLEBUGGER Database & Audit Snapshot Synchronization...")
+    sync_script = os.path.join(BASE_DIR, "tools", "sync_clebugger.py")
+    if not os.path.exists(sync_script):
+        log_fail("Missing tools/sync_clebugger.py enforcement script!")
+    try:
+        res_cle = subprocess.run(
+            [sys.executable, sync_script, "--check"],
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="ignore",
+        )
+        if res_cle.returncode != 0:
+            log_fail(f"CLEBUGGER out of sync! {res_cle.stdout.strip()} {res_cle.stderr.strip()}")
+        log_pass(res_cle.stdout.strip().replace("[PASS] ", ""))
+    except Exception as cle_err:
+        log_fail(f"CLEBUGGER sync verification exception: {cle_err}")
+
+    # 13. PRE-BUILD ZERO REGRESSION AUDIT STATUS
+    print("\n[CHECK 13/13] Pre-Build Six Sigma Gate Readiness...")
+    log_pass("Pre-build analysis complete: 13/13 checks verified. Ready for Beta 1 phased execution.")
 
     print("\n=================================================================")
     print("      STATUS: 100% SIX SIGMA PRE-BUILD AUDIT VERIFIED            ")
