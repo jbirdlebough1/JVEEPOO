@@ -12912,6 +12912,67 @@ function switchTab(tabId) {
       if (typeof renderTallSynchronizedChart === 'function') renderTallSynchronizedChart(tf);
     }
 
+    function getTodayOffWristIntervals() {
+      const out = [];
+      if (!cached2DayTimeline || !Array.isArray(cached2DayTimeline)) return out;
+      const todayPts = cached2DayTimeline.filter(d => d.day === 'TODAY' && !d.isFuture && d.time && /^\d{2}:\d{2}/.test(d.time));
+      let curStartMin = null;
+      let curEndMin = null;
+      todayPts.forEach(d => {
+        const hh = parseInt(d.time.substring(0, 2), 10);
+        const mm = parseInt(d.time.substring(3, 5), 10);
+        const mVal = hh * 60 + mm;
+        if (d.isChargingGap) {
+          if (curStartMin === null) curStartMin = mVal;
+          curEndMin = mVal;
+        } else if (curStartMin !== null) {
+          out.push({ startMin: Math.max(0, curStartMin - 15), endMin: Math.min(1440, curEndMin + 15) });
+          curStartMin = null;
+          curEndMin = null;
+        }
+      });
+      if (curStartMin !== null) {
+        out.push({ startMin: Math.max(0, curStartMin - 15), endMin: Math.min(1440, curEndMin + 15) });
+      }
+      return out;
+    }
+
+    function partitionPointsByOffWristGaps(pts, gaps, getXForMin) {
+      if (!gaps || gaps.length === 0) return pts.length > 0 ? [pts] : [];
+      const segments = [];
+      let curSeg = [];
+      let gIdx = 0;
+      const sortedPts = [...pts].sort((a, b) => a.x - b.x);
+      sortedPts.forEach(pt => {
+        while (gIdx < gaps.length && pt.min > gaps[gIdx].endMin) {
+          if (curSeg.length > 0) {
+            const leftEdgeX = getXForMin(gaps[gIdx].startMin);
+            const rightEdgeX = getXForMin(gaps[gIdx].endMin);
+            const lastInPrev = curSeg[curSeg.length - 1];
+            if (lastInPrev.x < leftEdgeX) curSeg.push({ ...lastInPrev, x: leftEdgeX, isEdge: true });
+            segments.push(curSeg);
+            curSeg = [{ ...pt, x: rightEdgeX, isEdge: true }];
+          }
+          gIdx++;
+        }
+        if (gIdx < gaps.length && pt.min >= gaps[gIdx].startMin && pt.min <= gaps[gIdx].endMin) {
+          return;
+        }
+        curSeg.push(pt);
+      });
+      if (curSeg.length > 0) {
+        if (gIdx < gaps.length) {
+          const leftEdgeX = getXForMin(gaps[gIdx].startMin);
+          const lastPt = curSeg[curSeg.length - 1];
+          if (lastPt.x < leftEdgeX && lastPt.min < gaps[gIdx].startMin) {
+            curSeg.push({ ...lastPt, x: leftEdgeX, isEdge: true });
+          }
+        }
+        segments.push(curSeg);
+      }
+      return segments.filter(s => s.length > 0);
+    }
+
     function renderSvgCurveChart(containerId, data, options = {}) {
       let container = document.getElementById(containerId);
       if (!container) {
@@ -12970,8 +13031,9 @@ function switchTab(tabId) {
       const plotW = W - padLeft - padRight;
       const plotH = H - padTop - padBottom;
 
-      const minY = options.minY !== undefined ? options.minY : Math.min(...data.map(d => d.val)) * 0.9;
-      const maxY = options.maxY !== undefined ? options.maxY : Math.max(...data.map(d => d.val)) * 1.1;
+      const validYVals = validPoints.map(d => d.val);
+      const minY = options.minY !== undefined ? options.minY : Math.min(...validYVals) * 0.9;
+      const maxY = options.maxY !== undefined ? options.maxY : Math.max(...validYVals) * 1.1;
       const rangeY = (maxY - minY) || 1;
 
       const strokeColor = options.strokeColor || "var(--lcars-banana)";
@@ -12988,79 +13050,54 @@ function switchTab(tabId) {
       const hasTimeLabels = data.length > 0 && getMinuteFromLabel(data[0].label) !== null;
       const n = data.length;
       const points = data.map((d, i) => {
+        const min = hasTimeLabels ? (getMinuteFromLabel(d.label) || 0) : i;
         let x;
         if (hasTimeLabels) {
-          const min = getMinuteFromLabel(d.label) || 0;
           x = padLeft + (min / 1440.0) * plotW;
         } else {
           x = padLeft + (n > 1 ? (i / (n - 1)) * plotW : plotW / 2);
         }
         const y = padTop + plotH - ((d.val - minY) / rangeY) * plotH;
-        return { x, y, label: d.label, val: d.val };
+        return { x, y, min, label: d.label, val: d.val };
       });
 
-      // Segment builder: breaks curve across gaps
-      let curvePaths = "";
-      let areaPaths = "";
-      let gapRectsHtml = "";
-      let currentSegment = [];
-
-      function flushCurveSegment() {
-        if (currentSegment.length > 0) {
-          const first = currentSegment[0];
-          const last = currentSegment[currentSegment.length - 1];
-          const segPoints = currentSegment.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" ");
-          curvePaths += `<polyline points="${segPoints}" fill="none" stroke="${strokeColor}" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));"/>`;
-          const segArea = `${first.x.toFixed(1)},${padTop + plotH} ` + segPoints + ` ${last.x.toFixed(1)},${padTop + plotH}`;
-          areaPaths += `<polygon points="${segArea}" fill="url(#${gradId})"/>`;
-          currentSegment = [];
-        }
-      }
-
-      // Group contiguous gap indices into clean translucent blue bars for duration of no data
-      // Strict Zero-Data Reality Principle: Unelapsed future intervals are strictly 0 with NO blue box!
       const curH = new Date().getHours();
       const curM = new Date().getMinutes();
       const curMin = curH * 60 + curM;
+      const offWristGaps = hasTimeLabels ? getTodayOffWristIntervals() : [];
+      const minToX = m => padLeft + (m / 1440.0) * plotW;
 
-      const gapIntervals = [];
-      let activeInterval = null;
-      points.forEach((p, idx) => {
+      let curvePaths = "";
+      let areaPaths = "";
+      let gapRectsHtml = "";
+
+      const usablePts = points.filter((p, idx) => {
         const dItem = data[idx] || {};
         let isFuture = dItem.isFuture || p.isFuture;
-        if (hasTimeLabels && !isFuture) {
-          const mVal = getMinuteFromLabel(p.label);
-          if (mVal !== null && mVal > curMin) isFuture = true;
-        }
-
-        const isGap = !isFuture && (p.isGap || dItem.isGap || dItem.isChargingGap || p.val === null || (p.val === 0 && !options.allowZeroValue));
-        if (isGap) {
-          if (!activeInterval) activeInterval = { startIdx: idx, endIdx: idx };
-          else activeInterval.endIdx = idx;
-        } else {
-          if (activeInterval) {
-            gapIntervals.push(activeInterval);
-            activeInterval = null;
-          }
-          if (!isFuture) currentSegment.push(p);
-        }
+        if (hasTimeLabels && !isFuture && p.min > curMin) isFuture = true;
+        if (isFuture || dItem.isGap || dItem.isChargingGap || p.val === null || p.val === undefined) return false;
+        if (p.val <= 0 && !options.allowZeroValue) return false;
+        return true;
       });
-      if (activeInterval) gapIntervals.push(activeInterval);
-      flushCurveSegment();
 
-      gapIntervals.forEach(interval => {
-        const sP = points[interval.startIdx];
-        const eP = points[interval.endIdx];
-        const prevX = interval.startIdx > 0 ? points[interval.startIdx - 1].x : padLeft;
-        const nextX = interval.endIdx < points.length - 1 ? points[interval.endIdx + 1].x : padLeft + plotW;
-        const startX = (sP.x + prevX) / 2;
-        const endX = (eP.x + nextX) / 2;
-        const barW = Math.max(25, endX - startX);
-        const midX = (startX + endX) / 2;
+      const segList = hasTimeLabels ? partitionPointsByOffWristGaps(usablePts, offWristGaps, minToX) : (usablePts.length > 0 ? [usablePts] : []);
+      segList.forEach(seg => {
+        if (seg.length === 0) return;
+        const first = seg[0];
+        const last = seg[seg.length - 1];
+        const segPoints = seg.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" ");
+        curvePaths += `<polyline points="${segPoints}" fill="none" stroke="${strokeColor}" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));"/>`;
+        const segArea = `${first.x.toFixed(1)},${padTop + plotH} ` + segPoints + ` ${last.x.toFixed(1)},${padTop + plotH}`;
+        areaPaths += `<polygon points="${segArea}" fill="url(#${gradId})"/>`;
+      });
+
+      offWristGaps.forEach(g => {
+        const startX = minToX(g.startMin);
+        const endX = minToX(g.endMin);
+        const barW = Math.max(8, endX - startX);
         gapRectsHtml += `
-          <!-- Blue Translucent Sensing Gap Region (Strictly Watch Not Sensing / Charging) -->
-          <rect x="${startX.toFixed(1)}" y="${padTop}" width="${barW.toFixed(1)}" height="${plotH}" fill="rgba(56, 182, 255, 0.12)" stroke="#0284c7" stroke-width="1" stroke-dasharray="3 2" rx="2">
-            <title>Watch not sensing / off-wrist / charging</title>
+          <rect x="${startX.toFixed(1)}" y="${padTop}" width="${barW.toFixed(1)}" height="${plotH}" fill="rgba(56, 189, 248, 0.16)" stroke="#0284c7" stroke-width="1" stroke-dasharray="3 2" rx="2">
+            <title>Watch off-wrist / charging / shower</title>
           </rect>
         `;
       });
@@ -13283,25 +13320,37 @@ function switchTab(tabId) {
       const skinPoints = [];
 
       data.forEach((d, i) => {
+        const min = hasTimeLabels ? (getMinuteFromLabel(d.label) || 0) : i;
         let x;
         if (hasTimeLabels) {
-          const min = getMinuteFromLabel(d.label) || 0;
           x = padLeft + (min / 1440.0) * plotW;
         } else {
           x = padLeft + (n > 1 ? (i / (n - 1)) * plotW : plotW / 2);
         }
         if (d.core !== null && d.core !== undefined && d.core > 0) {
           const y = padTop + plotH - ((d.core - minY) / rangeY) * plotH;
-          corePoints.push({ x, y, label: d.label, val: d.core });
+          corePoints.push({ x, y, min, label: d.label, val: d.core });
         }
         if (d.skin !== null && d.skin !== undefined && d.skin > 0) {
           const y = padTop + plotH - ((d.skin - minY) / rangeY) * plotH;
-          skinPoints.push({ x, y, label: d.label, val: d.skin });
+          skinPoints.push({ x, y, min, label: d.label, val: d.skin });
         }
       });
 
-      const corePoly = corePoints.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" ");
-      const skinPoly = skinPoints.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" ");
+      const offWristGaps = hasTimeLabels ? getTodayOffWristIntervals() : [];
+      const minToX = m => padLeft + (m / 1440.0) * plotW;
+      let gapRectsHtml = "";
+      offWristGaps.forEach(g => {
+        const gx1 = minToX(g.startMin);
+        const gx2 = minToX(g.endMin);
+        const bw = Math.max(8, gx2 - gx1);
+        gapRectsHtml += `<rect x="${gx1.toFixed(1)}" y="${padTop}" width="${bw.toFixed(1)}" height="${plotH}" fill="rgba(56, 189, 248, 0.16)" stroke="#0284c7" stroke-width="1" stroke-dasharray="3 2" rx="2"><title>Watch off-wrist / charging / shower</title></rect>`;
+      });
+
+      const coreSegs = hasTimeLabels ? partitionPointsByOffWristGaps(corePoints, offWristGaps, minToX) : (corePoints.length > 0 ? [corePoints] : []);
+      const skinSegs = hasTimeLabels ? partitionPointsByOffWristGaps(skinPoints, offWristGaps, minToX) : (skinPoints.length > 0 ? [skinPoints] : []);
+      const corePolysHtml = coreSegs.map(seg => `<polyline points="${seg.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ')}" fill="none" stroke="var(--lcars-blue)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>`).join('');
+      const skinPolysHtml = skinSegs.map(seg => `<polyline points="${seg.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ')}" fill="none" stroke="var(--lcars-orange)" stroke-width="2.2" stroke-dasharray="4 2" stroke-linecap="round" stroke-linejoin="round"/>`).join('');
 
       // X-Axis Time Scale (Honors Watch 12-Hour AM/PM Setting)
       let xAxisHtml = "";
@@ -13367,8 +13416,9 @@ function switchTab(tabId) {
           <rect x="${padLeft}" y="${padTop}" width="${plotW}" height="${plotH}" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" rx="4"/>
           <line x1="${padLeft}" y1="${padTop + plotH/2}" x2="${padLeft + plotW}" y2="${padTop + plotH/2}" stroke="#f1f5f9" stroke-dasharray="2 2" stroke-width="1"/>
           
-          ${corePoly ? `<polyline points="${corePoly}" fill="none" stroke="var(--lcars-blue)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>` : ''}
-          ${skinPoly ? `<polyline points="${skinPoly}" fill="none" stroke="var(--lcars-orange)" stroke-width="2.2" stroke-dasharray="4 2" stroke-linecap="round" stroke-linejoin="round"/>` : ''}
+          ${gapRectsHtml}
+          ${corePolysHtml}
+          ${skinPolysHtml}
           
           ${circlesHtml}
           ${xAxisHtml}
@@ -16954,6 +17004,12 @@ function switchTab(tabId) {
       const nowM = nowDt.getHours() * 60 + nowDt.getMinutes();
       const nowX = padLeft + (nowM / totalDayMinutes) * plotW;
       const nowMarkerHtml = `<line x1="${nowX.toFixed(1)}" y1="${padTop}" x2="${nowX.toFixed(1)}" y2="${padTop + plotH}" stroke="#d97706" stroke-width="1.5" stroke-dasharray="4 3"/>`;
+      let sleepGapHtml = "";
+      (typeof getTodayOffWristIntervals === 'function' ? getTodayOffWristIntervals() : []).forEach(g => {
+        const gx1 = padLeft + (g.startMin / totalDayMinutes) * plotW;
+        const gx2 = padLeft + (g.endMin / totalDayMinutes) * plotW;
+        sleepGapHtml += `<rect x="${gx1.toFixed(1)}" y="${padTop}" width="${Math.max(8, gx2 - gx1).toFixed(1)}" height="${plotH}" fill="rgba(56, 189, 248, 0.22)" stroke="#0284c7" stroke-width="1" stroke-dasharray="3 2" rx="2"><title>Watch off-wrist / charging / shower</title></rect>`;
+      });
 
       const sessionSummaryStr = sortedSessions.map(s =>
         `${formatMinToClock(s.startM)}–${formatMinToClock(s.endM)} (${(s.allMin / 60).toFixed(1)}h${s.isNap ? ' NAP' : ''})`
@@ -16989,6 +17045,7 @@ function switchTab(tabId) {
           <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" style="display: block; width: 100%; height: 240px;">
             <rect x="${padLeft}" y="${padTop}" width="${plotW}" height="${plotH}" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5" rx="4"/>
             ${bgBoxesHtml}
+            ${sleepGapHtml}
             ${epochBlocksHtml}
             ${sessionPolylinesHtml}
             ${nowMarkerHtml}
@@ -19562,8 +19619,8 @@ Patient`;
         { id: "glucose", label: "GLUCOSE (MG/DL)", y: 25, h: 95, minY: 50, maxY: 250, color: "#b45309", unit: "mg/dL" },
         { id: "bp", label: "BLOOD PRESSURE (MMHG)", y: 135, h: 85, minY: 50, maxY: 170, color: "#c2410c", unit: "mmHg" },
         { id: "hr", label: "PULSE & HRV (BPM / MS)", y: 235, h: 80, minY: 40, maxY: 120, color: "#b91c1c", unit: "BPM" },
-        { id: "spo2", label: "OXYGEN SPO2 (%)", y: 330, h: 70, minY: 92, maxY: 100, color: "#15803d", unit: "%" },
-        { id: "temp", label: "TEMPERATURE (°F)", y: 415, h: 65, minY: 95.5, maxY: 99.5, color: "#1d4ed8", unit: "°F" },
+        { id: "spo2", label: "OXYGEN SPO2 (%)", y: 330, h: 70, minY: 90, maxY: 100, color: "#15803d", unit: "%" },
+        { id: "temp", label: "TEMPERATURE (°F)", y: 415, h: 65, minY: 90.0, maxY: 100.5, color: "#1d4ed8", unit: "°F" },
         { id: "exercise", label: "EXERCISE & STEPS", y: 495, h: 80, minY: 0, maxY: 8000, color: "#c2410c", unit: "steps" },
         { id: "diet", label: "DIETARY INTAKE & CARBS", y: 590, h: 80, minY: 0, maxY: 80, color: "#7c3aed", unit: "g" },
         { id: "meds", label: "MEDICATIONS & CHANGES", y: 685, h: 75, minY: 0, maxY: 10, color: "#b45309", unit: "" }
@@ -19649,48 +19706,81 @@ Patient`;
       });
       if (curBlock) gapBlocks.push(curBlock);
 
-      gapBlocks.forEach(blk => {
-        const x1 = padLeft + (n > 1 ? (blk.start / (n - 1)) * plotW : 0);
-        const x2 = padLeft + (n > 1 ? (blk.end / (n - 1)) * plotW : plotW);
-        const gapW = Math.max(40, x2 - x1);
-        const midX = (x1 + x2) / 2;
-
+      // Compute Exact Midpoint Geometry for Contiguous Off-Wrist / Charging / Shower Blue Holes
+      const gapMeta = gapBlocks.map(blk => {
+        const xLeft = blk.start > 0 ? (xCoords[blk.start - 1] + xCoords[blk.start]) / 2 : xCoords[blk.start];
+        const xRight = blk.end < n - 1 ? (xCoords[blk.end] + xCoords[blk.end + 1]) / 2 : xCoords[blk.end];
+        return { start: blk.start, end: blk.end, xLeft, xRight };
+      });
+      const gapStartMap = {};
+      const gapEndMap = {};
+      gapMeta.forEach(gm => {
+        gapStartMap[gm.start] = gm.xLeft;
+        gapEndMap[gm.end] = gm.xRight;
+        const gapW = Math.max(18, gm.xRight - gm.xLeft);
         svg += `
-          <!-- Contiguous Watch Charging / Off-Wrist Region (Subtle Translucent Blue Fill Only) -->
-          <rect x="${x1.toFixed(1)}" y="20" width="${gapW.toFixed(1)}" height="${H - 55}" fill="rgba(56, 189, 248, 0.14)" stroke="#38bdf8" stroke-dasharray="4 4" rx="4"/>
+          <!-- Contiguous Watch Charging / Off-Wrist Region (Exact Midpoint Blue Hole Across All Lanes) -->
+          <rect x="${gm.xLeft.toFixed(1)}" y="20" width="${gapW.toFixed(1)}" height="${H - 55}" fill="rgba(56, 189, 248, 0.18)" stroke="#0284c7" stroke-dasharray="4 3" rx="3">
+            <title>Watch off-wrist / charging / shower</title>
+          </rect>
         `;
       });
 
-      // Helper to generate discontinuous SVG path segments respecting charging gaps
+      // Helper to generate discontinuous SVG path segments extending cleanly to the exact edges of blue off-wrist holes
       function buildSegmentedPath(pts, laneObj) {
         let pathD = "";
         let areaD = "";
-        let currentSeg = [];
+        const runs = [];
+        let curRun = null;
 
-        function flushSegment() {
-          if (currentSeg.length > 0) {
-            const first = currentSeg[0];
-            const last = currentSeg[currentSeg.length - 1];
+        pts.forEach((p, idx) => {
+          const isFutureSlot = data[idx] && data[idx].isFuture;
+          if (p.isGap || isFutureSlot) {
+            if (curRun) { runs.push(curRun); curRun = null; }
+          } else {
+            if (!curRun) curRun = { startIdx: idx, endIdx: idx, measured: [] };
+            curRun.endIdx = idx;
+            if (p.val !== null && p.val !== undefined && p.val > 0) {
+              curRun.measured.push(p);
+            }
+          }
+        });
+        if (curRun) runs.push(curRun);
+
+        runs.forEach(run => {
+          if (run.measured.length === 0) return;
+          const seq = [...run.measured];
+          // Extend right edge of preceding blue hole into first measured point of this worn run
+          if (run.startIdx > 0 && gapEndMap[run.startIdx - 1] !== undefined) {
+            const rxEdge = gapEndMap[run.startIdx - 1];
+            if (seq[0].x > rxEdge) {
+              seq.unshift({ x: rxEdge, y: seq[0].y, val: seq[0].val });
+            }
+          }
+          // Extend last measured point to left edge of following blue hole, or to latest elapsed worn slot
+          const lastMeas = seq[seq.length - 1];
+          if (run.endIdx < n - 1 && gapStartMap[run.endIdx + 1] !== undefined) {
+            const lxEdge = gapStartMap[run.endIdx + 1];
+            if (lastMeas.x < lxEdge) {
+              seq.push({ x: lxEdge, y: lastMeas.y, val: lastMeas.val });
+            }
+          } else if (lastMeas.x < xCoords[run.endIdx]) {
+            seq.push({ x: xCoords[run.endIdx], y: lastMeas.y, val: lastMeas.val });
+          }
+
+          if (seq.length > 0) {
+            const first = seq[0];
+            const last = seq[seq.length - 1];
             pathD += ` M ${first.x.toFixed(1)} ${first.y.toFixed(1)}`;
             let segArea = ` M ${first.x.toFixed(1)} ${(laneObj.y + laneObj.h).toFixed(1)} L ${first.x.toFixed(1)} ${first.y.toFixed(1)}`;
-            for (let k = 1; k < currentSeg.length; k++) {
-              pathD += ` L ${currentSeg[k].x.toFixed(1)} ${currentSeg[k].y.toFixed(1)}`;
-              segArea += ` L ${currentSeg[k].x.toFixed(1)} ${currentSeg[k].y.toFixed(1)}`;
+            for (let k = 1; k < seq.length; k++) {
+              pathD += ` L ${seq[k].x.toFixed(1)} ${seq[k].y.toFixed(1)}`;
+              segArea += ` L ${seq[k].x.toFixed(1)} ${seq[k].y.toFixed(1)}`;
             }
             segArea += ` L ${last.x.toFixed(1)} ${(laneObj.y + laneObj.h).toFixed(1)} Z`;
             areaD += segArea;
-            currentSeg = [];
-          }
-        }
-
-        pts.forEach(p => {
-          if (p.val === null || p.val === undefined || p.isGap) {
-            flushSegment();
-          } else {
-            currentSeg.push(p);
           }
         });
-        flushSegment();
         return { pathD, areaD };
       }
 
@@ -19745,34 +19835,41 @@ Patient`;
         <path d="${hrvSeg.pathD}" fill="none" stroke="var(--lcars-lilac)" stroke-width="1.8" stroke-dasharray="3 2" stroke-linecap="round"/>
       `;
 
-      // Lane 4: SpO2 Curve Discontinuous across gaps
+      // Lane 4: SpO2 Curve Discontinuous across gaps (with sample dots)
       const spLane = lanes[3];
       const spPtsList = data.map((d, i) => ({
         x: xCoords[i],
-        y: d.spo2 !== null ? spLane.y + spLane.h - ((d.spo2 - spLane.minY) / (spLane.maxY - spLane.minY)) * spLane.h : spLane.y + spLane.h,
+        y: d.spo2 !== null ? spLane.y + spLane.h - ((Math.max(spLane.minY, Math.min(spLane.maxY, d.spo2)) - spLane.minY) / (spLane.maxY - spLane.minY)) * spLane.h : spLane.y + spLane.h,
         val: d.spo2, isGap: d.isChargingGap
       }));
       const spSeg = buildSegmentedPath(spPtsList, spLane);
-      svg += `
-        <path d="${spSeg.pathD}" fill="none" stroke="var(--lcars-green)" stroke-width="2" stroke-linecap="round"/>
-      `;
+      svg += `<path d="${spSeg.pathD}" fill="none" stroke="var(--lcars-green)" stroke-width="2.2" stroke-linecap="round"/>`;
+      spPtsList.forEach(p => {
+        if (!p.isGap && p.val !== null && p.val > 0) {
+          svg += `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="2.8" fill="var(--lcars-green)" stroke="#ffffff" stroke-width="1"/>`;
+        }
+      });
 
-      // Lane 5: Temperature Curve Discontinuous across gaps
+      // Lane 5: Temperature Curve Discontinuous across gaps (with sample dots)
       const tLane = lanes[4];
       const tPtsList = data.map((d, i) => ({
         x: xCoords[i],
-        y: d.temp !== null ? tLane.y + tLane.h - ((d.temp - tLane.minY) / (tLane.maxY - tLane.minY)) * tLane.h : tLane.y + tLane.h,
+        y: d.temp !== null ? tLane.y + tLane.h - ((Math.max(tLane.minY, Math.min(tLane.maxY, d.temp)) - tLane.minY) / (tLane.maxY - tLane.minY)) * tLane.h : tLane.y + tLane.h,
         val: d.temp, isGap: d.isChargingGap
       }));
       const tSeg = buildSegmentedPath(tPtsList, tLane);
-      svg += `
-        <path d="${tSeg.pathD}" fill="none" stroke="var(--lcars-blue)" stroke-width="2" stroke-linecap="round"/>
-      `;
+      svg += `<path d="${tSeg.pathD}" fill="none" stroke="var(--lcars-blue)" stroke-width="2.2" stroke-linecap="round"/>`;
+      tPtsList.forEach(p => {
+        if (!p.isGap && p.val !== null && p.val > 0) {
+          svg += `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="2.8" fill="var(--lcars-blue)" stroke="#ffffff" stroke-width="1"/>`;
+        }
+      });
 
-      // Lane 6: Kinetic Steps / Exercise Bars & Badges
+      // Lane 6: Kinetic Steps / Exercise Bars & Badges (skip inside blue off-wrist gaps)
       const exLane = lanes[5];
       const maxSteps = Math.max(...data.map(d => d.steps), 4000);
       data.forEach((d, i) => {
+        if (d.isChargingGap || d.isFuture) return;
         const barH = (d.steps / maxSteps) * (exLane.h - 20);
         const barY = exLane.y + exLane.h - barH - 4;
         svg += `
@@ -20487,20 +20584,77 @@ Patient`;
         }
       }
 
+      // 4b. Translucent Blue 3D Off-Wrist / Charging / Shower Holes Spanning All 10 Channels
+      const gapBlocks3D = [];
+      let curGap3D = null;
+      for (let i = 0; i < numPoints; i++) {
+        const dItem = dataset[i] || {};
+        if (!dItem.isFuture && !!dItem.isChargingGap) {
+          if (!curGap3D) curGap3D = { start: i, end: i };
+          else curGap3D.end = i;
+        } else if (curGap3D) {
+          gapBlocks3D.push(curGap3D);
+          curGap3D = null;
+        }
+      }
+      if (curGap3D) gapBlocks3D.push(curGap3D);
+
+      const xOf3D = i => -380 + i * xStep;
+      const gap3DStartMap = {};
+      const gap3DEndMap = {};
+      gapBlocks3D.forEach(blk => {
+        const xL = blk.start > 0 ? (xOf3D(blk.start - 1) + xOf3D(blk.start)) / 2 : xOf3D(blk.start);
+        const xR = blk.end < numPoints - 1 ? (xOf3D(blk.end) + xOf3D(blk.end + 1)) / 2 : xOf3D(blk.end);
+        gap3DStartMap[blk.start] = xL;
+        gap3DEndMap[blk.end] = xR;
+        const pFL = project3D(xL, 0, zBoxFront, W, H);
+        const pFR = project3D(xR, 0, zBoxFront, W, H);
+        const pBL = project3D(xL, 0, zBoxBack, W, H);
+        const pBR = project3D(xR, 0, zBoxBack, W, H);
+        const pTFL = project3D(xL, yBoxCeil, zBoxFront, W, H);
+        const pTFR = project3D(xR, yBoxCeil, zBoxFront, W, H);
+        const pTBL = project3D(xL, yBoxCeil, zBoxBack, W, H);
+        const pTBR = project3D(xR, yBoxCeil, zBoxBack, W, H);
+        if (pFL && pFR && pBR && pBL) {
+          ctx.beginPath();
+          ctx.moveTo(pFL.x, pFL.y); ctx.lineTo(pFR.x, pFR.y); ctx.lineTo(pBR.x, pBR.y); ctx.lineTo(pBL.x, pBL.y);
+          ctx.closePath();
+          ctx.fillStyle = 'rgba(56, 189, 248, 0.24)';
+          ctx.fill();
+          ctx.strokeStyle = '#0284c7';
+          ctx.lineWidth = 1.2;
+          ctx.stroke();
+        }
+        if (pFL && pBL && pTBL && pTFL) {
+          ctx.beginPath();
+          ctx.moveTo(pFL.x, pFL.y); ctx.lineTo(pBL.x, pBL.y); ctx.lineTo(pTBL.x, pTBL.y); ctx.lineTo(pTFL.x, pTFL.y);
+          ctx.closePath();
+          ctx.fillStyle = 'rgba(56, 189, 248, 0.14)';
+          ctx.fill();
+        }
+        if (pFR && pBR && pTBR && pTFR) {
+          ctx.beginPath();
+          ctx.moveTo(pFR.x, pFR.y); ctx.lineTo(pBR.x, pBR.y); ctx.lineTo(pTBR.x, pTBR.y); ctx.lineTo(pTFR.x, pTFR.y);
+          ctx.closePath();
+          ctx.fillStyle = 'rgba(56, 189, 248, 0.14)';
+          ctx.fill();
+        }
+      });
+
       // Extract real time-series data point for channel c at index/hour idx
       function getChannelValueAtHour(channelIndex, idx) {
         if (!dataset || idx >= dataset.length) return 0;
         const d = dataset[idx];
         if (!d) return 0;
 
-        // Pure Zero-Data Reality Principle: unelapsed future intervals strictly display 0
+        // Pure Zero-Data Reality Principle: unelapsed future intervals & off-wrist blue holes display 0
         if (d.isFuture || d.isChargingGap) return 0;
 
         switch(channelIndex) {
           case 0: return (d.g && d.g > 0) ? d.g : 0; // CH 01: Glucose (mg/dL)
           case 1: return (d.sys && d.sys > 0) ? d.sys : 0; // CH 02: Blood Pressure (mmHg)
           case 2: return (d.hr && d.hr > 0) ? d.hr : 0; // CH 03: Heart Rate (BPM)
-          case 3: return (d.spo2 && d.spo2 > 0) ? Math.round(d.spo2) : 0; // CH 04: SpO2 (%)
+          case 3: return (d.spo2 && d.spo2 > 0) ? Math.round(d.spo2 * 10) / 10 : 0; // CH 04: SpO2 (%)
           case 4: return (d.temp && d.temp > 90) ? parseFloat(d.temp.toFixed(1)) : 0; // CH 05: Body Temp (°F)
           case 5: return (d.hrv && d.hrv > 0) ? d.hrv : 0; // CH 06: HRV / Stress (ms)
           case 6: return (d.steps && d.steps > 0) ? d.steps : 0; // CH 07: Steps
@@ -20548,87 +20702,111 @@ Patient`;
       const allPlottedPoints = []; // Collected for hover HUD inspection
       const gridTopProjs = {}; // Store top projections for cross-channel wireframe mesh
 
+      function normValToY3D(cIdx, val, ch) {
+        if (!val || val <= 0) return 0;
+        let normVal = val;
+        let denom = ch.max - ch.min;
+        if (cIdx === 4) { normVal = Math.max(0, val - 90); denom = 15; }
+        else if (cIdx === 3) { normVal = Math.max(0, val - 80); denom = 20; } // 80..100% SpO2 range
+        return Math.min(110, (normVal / denom) * 110);
+      }
+
       for (const item of renderOrder) {
         const c = item.index;
         const channel = CHANNELS_3D[c];
         const cz = zStart + c * zSpacing;
 
-        // Build data points array for this channel across active timeframe points
-        const pts = [];
+        // Partition elapsed slots into worn runs (broken strictly on d.isChargingGap blue holes)
+        const wornRuns = [];
+        let curRun = null;
         for (let i = 0; i < numPoints; i++) {
-          const x = -380 + i * xStep;
           const dItem = dataset[i] || {};
-          const timeLabel = dItem.time || dItem.day || `${i}`;
-          let val = getChannelValue(c, i);
-
-          // Normalize Y height: max ribbon height = 110px
-          let normVal = val;
-          if (c === 4 && val > 0) normVal = Math.max(0, val - 90);
-          const range = channel.max - channel.min;
-          const normY = normVal > 0 ? Math.min(110, (normVal / range) * 110) : 0;
-          pts.push({ x: x, y: normY, val: val, hour: i, timeLabel: timeLabel });
-        }
-
-        // Project top and bottom points
-        const topProjs = [];
-        const botProjs = [];
-        for (let i = 0; i < pts.length; i++) {
-          const pt = pts[i];
-          const pTop = project3D(pt.x, pt.y, cz, W, H);
-          const pBot = project3D(pt.x, 0, cz, W, H);
-          if (pTop && pBot) {
-            topProjs.push(pTop);
-            botProjs.push(pBot);
-            if (pt.val > 0) {
-              allPlottedPoints.push({
-                channel: channel,
-                pt: pt,
-                top: pTop,
-                bot: pBot,
-                cz: cz
-              });
+          if (dItem.isFuture || dItem.isChargingGap) {
+            if (curRun) { wornRuns.push(curRun); curRun = null; }
+          } else {
+            if (!curRun) curRun = { startIdx: i, endIdx: i, measured: [] };
+            curRun.endIdx = i;
+            const val = getChannelValue(c, i);
+            if (val > 0) {
+              const x = xOf3D(i);
+              const y = normValToY3D(c, val, channel);
+              curRun.measured.push({ x, y, val, hour: i, timeLabel: dItem.time || dItem.day || `${i}`, isMeasured: true });
             }
           }
         }
-        gridTopProjs[c] = topProjs;
+        if (curRun) wornRuns.push(curRun);
 
-        if (topProjs.length > 1) {
-          // 1. Draw Ribbon Polygon
-          ctx.beginPath();
-          ctx.moveTo(topProjs[0].x, topProjs[0].y);
-          for (let i = 1; i < topProjs.length; i++) ctx.lineTo(topProjs[i].x, topProjs[i].y);
-          for (let i = botProjs.length - 1; i >= 0; i--) ctx.lineTo(botProjs[i].x, botProjs[i].y);
-          ctx.closePath();
+        let lastMeasuredPt = null;
+        let lastMeasuredProj = null;
 
-          ctx.fillStyle = channel.bg;
-          ctx.fill();
-
-          // 2. Draw Top Glowing Crest Line
-          ctx.beginPath();
-          ctx.moveTo(topProjs[0].x, topProjs[0].y);
-          for (let i = 1; i < topProjs.length; i++) ctx.lineTo(topProjs[i].x, topProjs[i].y);
-          ctx.strokeStyle = channel.color;
-          ctx.lineWidth = 2.0;
-          ctx.stroke();
-
-          // 3. Draw Vertical Struts at Key Intervals (every 4 hours)
-          ctx.lineWidth = 1.0;
-          ctx.strokeStyle = 'rgba(100, 116, 139, 0.25)';
-          for (let i = 0; i < topProjs.length; i += 4) {
-            ctx.beginPath();
-            ctx.moveTo(topProjs[i].x, topProjs[i].y);
-            ctx.lineTo(botProjs[i].x, botProjs[i].y);
-            ctx.stroke();
+        wornRuns.forEach(run => {
+          if (run.measured.length === 0) return;
+          const seq = [...run.measured];
+          // Extend cleanly to exact edges of preceding / following blue off-wrist hole (never cross it, never drop worn signals to 0!)
+          if (run.startIdx > 0 && gap3DEndMap[run.startIdx - 1] !== undefined) {
+            const xEdgeR = gap3DEndMap[run.startIdx - 1];
+            if (seq[0].x > xEdgeR) seq.unshift({ x: xEdgeR, y: seq[0].y, val: seq[0].val, hour: run.startIdx, timeLabel: seq[0].timeLabel, isMeasured: false });
+          }
+          const tailM = seq[seq.length - 1];
+          if (run.endIdx < numPoints - 1 && gap3DStartMap[run.endIdx + 1] !== undefined) {
+            const xEdgeL = gap3DStartMap[run.endIdx + 1];
+            if (tailM.x < xEdgeL) seq.push({ x: xEdgeL, y: tailM.y, val: tailM.val, hour: run.endIdx, timeLabel: tailM.timeLabel, isMeasured: false });
+          } else if (c <= 6 && tailM.x < xOf3D(run.endIdx)) {
+            seq.push({ x: xOf3D(run.endIdx), y: tailM.y, val: tailM.val, hour: run.endIdx, timeLabel: tailM.timeLabel, isMeasured: false });
           }
 
-          // 4. Draw Individual Data Point Nodes (Circles & Drop Pins) along the Crest
-          for (let i = 0; i < topProjs.length; i++) {
-            const pt = pts[i];
-            if (pt.val > 0) {
-              const p = topProjs[i];
-              const b = botProjs[i];
+          const topProjs = [];
+          const botProjs = [];
+          seq.forEach(pt => {
+            const pTop = project3D(pt.x, pt.y, cz, W, H);
+            const pBot = project3D(pt.x, 0, cz, W, H);
+            if (pTop && pBot) {
+              topProjs.push(pTop);
+              botProjs.push(pBot);
+              if (pt.isMeasured) {
+                allPlottedPoints.push({ channel, pt, top: pTop, bot: pBot, cz });
+                lastMeasuredPt = pt;
+                lastMeasuredProj = pTop;
+              }
+            } else {
+              topProjs.push(null);
+              botProjs.push(null);
+            }
+          });
 
-              // Laser drop pin to floor
+          const validTop = topProjs.filter(Boolean);
+          const validBot = botProjs.filter(Boolean);
+          if (validTop.length > 1) {
+            ctx.beginPath();
+            ctx.moveTo(validTop[0].x, validTop[0].y);
+            for (let i = 1; i < validTop.length; i++) ctx.lineTo(validTop[i].x, validTop[i].y);
+            for (let i = validBot.length - 1; i >= 0; i--) ctx.lineTo(validBot[i].x, validBot[i].y);
+            ctx.closePath();
+            ctx.fillStyle = channel.bg;
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.moveTo(validTop[0].x, validTop[0].y);
+            for (let i = 1; i < validTop.length; i++) ctx.lineTo(validTop[i].x, validTop[i].y);
+            ctx.strokeStyle = channel.color;
+            ctx.lineWidth = 2.0;
+            ctx.stroke();
+
+            ctx.lineWidth = 1.0;
+            ctx.strokeStyle = 'rgba(100, 116, 139, 0.25)';
+            for (let i = 0; i < validTop.length; i += 4) {
+              ctx.beginPath();
+              ctx.moveTo(validTop[i].x, validTop[i].y);
+              ctx.lineTo(validBot[i].x, validBot[i].y);
+              ctx.stroke();
+            }
+          }
+
+          for (let i = 0; i < seq.length; i++) {
+            const pt = seq[i];
+            const p = topProjs[i];
+            const b = botProjs[i];
+            if (pt.isMeasured && p && b) {
               ctx.beginPath();
               ctx.moveTo(p.x, p.y);
               ctx.lineTo(b.x, b.y);
@@ -20636,7 +20814,6 @@ Patient`;
               ctx.lineWidth = 0.8;
               ctx.stroke();
 
-              // Data Point Node Circle
               ctx.beginPath();
               ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
               ctx.fillStyle = channel.color;
@@ -20646,41 +20823,33 @@ Patient`;
               ctx.stroke();
             }
           }
+        });
 
-          // 5. Latest Value Indicator Dot & Tag on Crest
-          let lastActiveIdx = -1;
-          for (let i = topProjs.length - 1; i >= 0; i--) {
-            if (pts[i].val > 0) {
-              lastActiveIdx = i;
-              break;
-            }
-          }
-          if (lastActiveIdx >= 0) {
-            const pEnd = topProjs[lastActiveIdx];
-            const curVal = pts[lastActiveIdx].val;
-            ctx.fillStyle = channel.color;
-            ctx.beginPath();
-            ctx.arc(pEnd.x, pEnd.y, 5.5, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.lineWidth = 2.0;
-            ctx.strokeStyle = '#ffffff';
-            ctx.stroke();
+        // 5. Latest Value Indicator Dot & Tag on Crest
+        if (lastMeasuredPt && lastMeasuredProj) {
+          const pEnd = lastMeasuredProj;
+          const curVal = lastMeasuredPt.val;
+          ctx.fillStyle = channel.color;
+          ctx.beginPath();
+          ctx.arc(pEnd.x, pEnd.y, 5.5, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.lineWidth = 2.0;
+          ctx.strokeStyle = '#ffffff';
+          ctx.stroke();
 
-            // Value badge with background pill for 100% legibility on light gray
-            const valStr = `${curVal} ${channel.unit}`;
-            ctx.font = 'bold 9px monospace';
-            const textW = ctx.measureText(valStr).width;
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.92)';
-            ctx.fillRect(pEnd.x + 6, pEnd.y - 7, textW + 6, 14);
-            ctx.strokeStyle = channel.color;
-            ctx.lineWidth = 1.0;
-            ctx.strokeRect(pEnd.x + 6, pEnd.y - 7, textW + 6, 14);
+          const valStr = `${curVal} ${channel.unit}`;
+          ctx.font = 'bold 9px monospace';
+          const textW = ctx.measureText(valStr).width;
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.92)';
+          ctx.fillRect(pEnd.x + 6, pEnd.y - 7, textW + 6, 14);
+          ctx.strokeStyle = channel.color;
+          ctx.lineWidth = 1.0;
+          ctx.strokeRect(pEnd.x + 6, pEnd.y - 7, textW + 6, 14);
 
-            ctx.fillStyle = '#0f172a';
-            ctx.textAlign = 'left';
-            ctx.textBaseline = 'middle';
-            ctx.fillText(valStr, pEnd.x + 9, pEnd.y);
-          }
+          ctx.fillStyle = '#0f172a';
+          ctx.textAlign = 'left';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(valStr, pEnd.x + 9, pEnd.y);
         }
       }
 

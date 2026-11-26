@@ -3827,17 +3827,21 @@ def get_today_subreports():
         conn.close()
 
     out = {k: [] for k in metrics_wanted}
+    cum_met_hrs = 0.0
     for ts_str, met, v1, v2, mode_str in rows:
         dt = _parse_to_local_dt(ts_str)
         if not dt or dt.date() != today_date:
             continue
         hm = f"{dt.hour:02d}:{dt.minute:02d}"
         if met == "MET_5MIN" and v1 and v1 > 0:
-            out[met].append({"label": hm, "val": round(float(v1), 1)})
+            cum_met_hrs += float(v1) * (5.0 / 60.0)
+            out[met].append({"label": hm, "val": round(cum_met_hrs, 1)})
         elif met == "BREATH_RATE" and v1 and v1 > 0:
             out[met].append({"label": hm, "val": round(float(v1))})
         elif met == "BLOOD_COMP":
-            out[met].append({"label": hm, "val": round(float(v2 or 0), 2), "core": round(float(v2 or 0), 2), "skin": round(float(v1 or 0), 1)})
+            ua_raw = float(v1 or 0)
+            ua_mgdl = round(ua_raw / 59.48, 2) if ua_raw > 20.0 else round(ua_raw, 2)
+            out[met].append({"label": hm, "val": round(float(v2 or 0), 2), "core": round(float(v2 or 0), 2), "skin": ua_mgdl})
         elif met in ("ECG_QTC", "BODY_COMP") and v1 and v1 > 0:
             out[met].append({"label": hm, "val": round(float(v1), 1), "core": round(float(v1), 1), "skin": round(float(v2 or 0), 1)})
     return {"date": str(today_date), **out}
