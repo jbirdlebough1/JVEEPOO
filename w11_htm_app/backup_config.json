@@ -2,17 +2,17 @@
   "schedule_time": "01:00",
   "usb_target_path": null,
   "last_backup_summary": {
-    "timestamp": "2026-11-20 14:28:37",
+    "timestamp": "2026-11-25 16:57:16",
     "usb_target": "D:\\LCARS_USB_BACKUP\\LCARS_BACKUP",
-    "snapshot_id": "snapshot_2026-11-20_142837",
-    "total_files": 14,
-    "new_blobs_stored": 1,
-    "deduped_blobs_reused": 13,
-    "logical_data_size_mb": 7.86,
-    "physical_pool_size_mb": 12.33,
-    "dedup_ratio": "0.64x",
+    "snapshot_id": "snapshot_2026-11-25_165715",
+    "total_files": 35,
+    "new_blobs_stored": 5,
+    "deduped_blobs_reused": 30,
+    "logical_data_size_mb": 74.95,
+    "physical_pool_size_mb": 130.32,
+    "dedup_ratio": "0.58x",
     "space_saved_percent": "0.0%",
     "status": "SUCCESS \u2022 AIR-GAPPED VERIFIED"
   },
-  "last_run_date": "2026-11-20"
+  "last_run_date": "2026-11-25"
 }

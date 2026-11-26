@@ -3382,6 +3382,45 @@ async def run_ble_auto_sync_loop():
                             except Exception as df_err:
                                 print(f"[MIL-SPEC HANDLED FAULT] 0xDF auto-sync fault: {df_err}")
 
+                            # 6. Query 5-Minute Temperature History for Day 0 (0x88 per vp_cx.java)
+                            temp_buffer = []
+                            temp_done_evt = asyncio.Event()
+
+                            def on_temp_notify(sender, data):
+                                nonlocal rx_count
+                                if data and len(data) >= 20 and data[0] == 0x88:
+                                    temp_buffer.append(bytes(data))
+                                    b3, b4, b5, b6 = data[3], data[4], data[5], data[6]
+                                    if (b3 == b5 and b4 == b6) or (b3 == 0 and b4 == 0) or (b5 == 0 and b6 == 0):
+                                        temp_done_evt.set()
+                                else:
+                                    ptype = parse_and_store_packet(data)
+                                    if ptype:
+                                        rx_count += 1
+
+                            try:
+                                await client.stop_notify(VEEPOO_NOTIFY_UUID)
+                                await client.start_notify(VEEPOO_NOTIFY_UUID, on_temp_notify)
+                                t88_pkt = bytearray(20)
+                                t88_pkt[0] = 0x88
+                                t88_pkt[1] = 0x01
+                                t88_pkt[2] = 0x00  # Day 0 (today)
+                                t88_pkt[3] = 0x01
+                                t88_pkt[4] = 0x00
+                                await client.write_gatt_char(VEEPOO_WRITE_UUID, t88_pkt, response=False)
+                                try:
+                                    await asyncio.wait_for(temp_done_evt.wait(), timeout=3.5)
+                                except asyncio.TimeoutError:
+                                    print("[MIL-SPEC HANDLED FAULT] 0x88 temp wait bounded timeout elapsed")
+                                if temp_buffer:
+                                    parsed_88 = _parse_88_temp_packets(temp_buffer, day_offset=0)
+                                    if parsed_88:
+                                        t88_stats = ingest_temp_history_records(parsed_88)
+                                        rx_count += t88_stats.get("inserted", 0)
+                                        print(f"[✔] 0x88 Temp History Sync: {len(parsed_88)} points, +{t88_stats.get('inserted', 0)} records")
+                            except Exception as t88_err:
+                                print(f"[MIL-SPEC HANDLED FAULT] 0x88 temp auto-sync fault: {t88_err}")
+
                             await client.stop_notify(VEEPOO_NOTIFY_UUID)
                             update_sync_state("SYNC_SUCCESS", rx_count)
                             print(f"[✔] Proximity Auto-Sync Completed. {rx_count} records committed to vault.")
@@ -3745,6 +3784,101 @@ def backfill_today_df_from_packet_log():
         return 0
 
 
+def _parse_88_temp_packets(packets, day_offset=0):
+    """Decodes Veepoo 0x88 historical 5-minute temperature packets per vp_cx.java."""
+    parsed = {}
+    ref_date = datetime.date.today() - datetime.timedelta(days=day_offset)
+    for raw in (packets or []):
+        try:
+            if isinstance(raw, (bytes, bytearray)):
+                b = bytes(raw)
+            else:
+                b = bytes.fromhex(str(raw).replace(" ", "").strip())
+            if len(b) < 20 or b[0] != 0x88:
+                continue
+            total_pkg = (b[4] << 8) | b[3]
+            if total_pkg == 0:
+                continue
+            month, dom, hour, minute = b[7], b[8], b[9], b[10]
+            if month < 1 or month > 12 or dom < 1 or dom > 31 or hour >= 24 or minute >= 60:
+                continue
+            core_c = ((b[12] << 8) | b[11]) / 10.0
+            skin_c = ((b[14] << 8) | b[13]) / 10.0
+            if core_c < 12.0 or core_c > 48.0:
+                continue
+            yr = ref_date.year - (1 if month > ref_date.month + 1 else 0)
+            try:
+                datetime.date(yr, month, dom)
+            except ValueError:
+                continue
+            ts = f"{yr:04d}-{month:02d}-{dom:02d}T{hour:02d}:{minute:02d}:00"
+            core_f = round(core_c * 9.0 / 5.0 + 32.0, 1)
+            skin_f = round(skin_c * 9.0 / 5.0 + 32.0, 1) if (12.0 <= skin_c <= 48.0) else 0.0
+            parsed[ts] = {"timestamp": ts, "core_f": core_f, "skin_f": skin_f}
+        except Exception as e:
+            print(f"[MIL-SPEC HANDLED FAULT] _parse_88_temp_packets parse error: {e}")
+    return [parsed[k] for k in sorted(parsed.keys())]
+
+
+def ingest_temp_history_records(records, device_id="VEE_5010"):
+    """Idempotently inserts decoded 0x88 temperature history points into vital_records."""
+    if not records:
+        return {"inserted": 0}
+    inserted = 0
+    with db_lock:
+        conn = get_db()
+        cur = conn.cursor()
+        try:
+            for rec in records:
+                ts = rec["timestamp"]
+                cur.execute("SELECT id FROM vital_records WHERE timestamp = ? AND metric = 'TEMPERATURE' LIMIT 1", (ts,))
+                if cur.fetchone():
+                    continue
+                cur.execute("""
+                    INSERT INTO vital_records (timestamp, metric, value1, value2, unit, progress, status, mode, raw_hex, device_id)
+                    VALUES (?, 'TEMPERATURE', ?, ?, '°F', 100, 'NOMINAL', '0x88_TEMP_HIST', '', ?)
+                """, (ts, rec["core_f"], rec["skin_f"], device_id))
+                inserted += 1
+            conn.commit()
+            cur.execute("SELECT COUNT(*) FROM vital_records")
+            ble_state["total_records"] = cur.fetchone()[0]
+        except Exception as e:
+            print(f"[MIL-SPEC HANDLED FAULT] ingest_temp_history_records failed: {e}")
+        finally:
+            conn.close()
+    return {"inserted": inserted}
+
+
+def backfill_today_temp_from_packet_log():
+    """Backfills any unparsed 0x88 temperature history packets already captured in packet_log.txt."""
+    if not os.path.exists(LOG_FILE):
+        return 0
+    try:
+        sz = os.path.getsize(LOG_FILE)
+        with open(LOG_FILE, "rb") as f:
+            f.seek(max(0, sz - 2500000))
+            tail = f.read().decode("utf-8", errors="ignore").splitlines()
+        pkts = []
+        for line in tail:
+            if "RX [" in line and ": 88 " in line.lower():
+                try:
+                    hex_part = line.split("]: ", 1)[1].split(" | ", 1)[0].strip()
+                    pkts.append(hex_part)
+                except Exception as e:
+                    print(f"[MIL-SPEC HANDLED FAULT] backfill_today_temp line parse: {e}")
+        if not pkts:
+            return 0
+        recs = _parse_88_temp_packets(pkts, day_offset=0)
+        if not recs:
+            return 0
+        stats = ingest_temp_history_records(recs)
+        print(f"[✔] 0x88 Temp Log Backfill: {len(recs)} points decoded, +{stats.get('inserted', 0)} records ingested.")
+        return stats.get("inserted", 0)
+    except Exception as e:
+        print(f"[MIL-SPEC HANDLED FAULT] backfill_today_temp_from_packet_log error: {e}")
+        return 0
+
+
 def get_today_lorenz_rr():
     """Returns genuine watch R-R intervals and Poincaré metrics for local today from 0xDF LORENZ_RR."""
     today_date = datetime.date.today()
@@ -4092,13 +4226,52 @@ def get_two_day_timeline():
         db_records = cur.fetchall()
 
         cur.execute("""
-            SELECT timestamp, meal_name, net_carbs, calories
+            SELECT timestamp, meal_name, net_carbs, calories, COALESCE(fluid_oz, 0)
             FROM meal_entries
             WHERE timestamp >= ?
             ORDER BY timestamp ASC
         """, (f"{yesterday_date} 00:00:00",))
         meal_rows = cur.fetchall()
+
+        feeling_rows = []
+        try:
+            cur.execute("""
+                SELECT timestamp, pain_score, mood_score
+                FROM feeling_entries
+                WHERE timestamp >= ?
+                ORDER BY timestamp ASC
+            """, (f"{yesterday_date} 00:00:00",))
+            feeling_rows = cur.fetchall()
+        except Exception as fe_err:
+            print(f"[MIL-SPEC HANDLED FAULT] feeling_entries timeline query: {fe_err}")
         conn.close()
+
+    today_sleep_summary = get_today_sleep_summary()
+    today_sleep_sessions = today_sleep_summary.get("sessions", []) if isinstance(today_sleep_summary, dict) else []
+
+    def _slot_sleep_info(day_off_val, h_val, m_val):
+        if day_off_val != 1 or not today_sleep_sessions:
+            return (0, None, False)
+        slot_s = h_val * 60 + m_val
+        slot_e = slot_s + 30
+        best_sess = None
+        for sess in today_sleep_sessions:
+            ss = sess.get("startM", 0)
+            se = sess.get("endM", 0)
+            if max(slot_s, ss) < min(slot_e, se):
+                best_sess = sess
+                break
+        if not best_sess:
+            return (0, None, False)
+        stage_pct_map = {3: (95, "DEEP"), 1: (85, "REM"), 2: (75, "LIGHT"), 0: (25, "AWAKE")}
+        best_overlap = -1
+        chosen = (75 if best_sess.get("isNap") else 85, "NAP" if best_sess.get("isNap") else "SLEEP")
+        for ep in best_sess.get("epochs", []):
+            ov = min(slot_e, ep.get("endM", 0)) - max(slot_s, ep.get("startM", 0))
+            if ov > best_overlap:
+                best_overlap = ov
+                chosen = stage_pct_map.get(ep.get("stage", 2), (75, "LIGHT"))
+        return (chosen[0], chosen[1], bool(best_sess.get("isNap")))
 
     buckets = {}
     slot_steps_5min = {}
@@ -4133,8 +4306,9 @@ def get_two_day_timeline():
     meals_by_slot = {}
     for m in meal_rows:
         try:
-            clean_m = m[0].replace("T", " ")
-            dt = datetime.datetime.strptime(clean_m[:16], "%Y-%m-%d %H:%M")
+            dt = _parse_to_local_dt(m[0])
+            if not dt:
+                continue
             if dt.date() == today_date:
                 day_off = 1
             elif dt.date() == yesterday_date:
@@ -4142,9 +4316,46 @@ def get_two_day_timeline():
             else:
                 continue
             slot_key = (day_off, dt.hour, 0 if dt.minute < 30 else 30)
-            meals_by_slot[slot_key] = {"name": m[1], "carbs": m[2], "cal": m[3]}
-        except Exception:
-            pass
+            m_name = (m[1] or "Meal").strip()
+            m_carbs = float(m[2] or 0)
+            m_cal = float(m[3] or 0)
+            m_fl = float(m[4] or 0)
+            if slot_key in meals_by_slot:
+                prev_m = meals_by_slot[slot_key]
+                names = prev_m["_names"]
+                if m_name and m_name not in names:
+                    names.append(m_name)
+                prev_m["name"] = " + ".join(names)
+                prev_m["carbs"] = round(prev_m["carbs"] + m_carbs, 1)
+                prev_m["cal"] = round(prev_m["cal"] + m_cal)
+                prev_m["fluid_oz"] = round(prev_m["fluid_oz"] + m_fl, 1)
+            else:
+                meals_by_slot[slot_key] = {
+                    "_names": [m_name] if m_name else [],
+                    "name": m_name,
+                    "carbs": round(m_carbs, 1),
+                    "cal": round(m_cal),
+                    "fluid_oz": round(m_fl, 1)
+                }
+        except Exception as meal_err:
+            print(f"[MIL-SPEC HANDLED FAULT] meal_entries slot bucket: {meal_err}")
+
+    feelings_by_slot = {}
+    for fr in feeling_rows:
+        try:
+            dt = _parse_to_local_dt(fr[0])
+            if not dt:
+                continue
+            if dt.date() == today_date:
+                day_off = 1
+            elif dt.date() == yesterday_date:
+                day_off = 0
+            else:
+                continue
+            slot_key = (day_off, dt.hour, 0 if dt.minute < 30 else 30)
+            feelings_by_slot[slot_key] = (fr[1], fr[2])
+        except Exception as fe_parse_err:
+            print(f"[MIL-SPEC HANDLED FAULT] feeling_entries parse: {fe_parse_err}")
 
     timeline = []
     for day_off in [0, 1]:
@@ -4152,8 +4363,10 @@ def get_two_day_timeline():
         date_label = "YESTERDAY" if day_off == 0 else "TODAY"
         running_steps = 0
         cum_5min_steps = 0
+        running_fluid_oz = 0.0
         for h in range(24):
             for m in [0, 30]:
+                prev_running_steps = running_steps
                 slot_time = f"{h:02d}:{m:02d}"
                 full_slot_dt = datetime.datetime(date_obj.year, date_obj.month, date_obj.day, h, m)
                 slot_key = (day_off, h, m)
@@ -4189,7 +4402,6 @@ def get_two_day_timeline():
                 # Blue shading ONLY for confirmed off-wrist (charging dock or shower) periods
                 is_am_charge_shower = (h == 7 and m >= 30) or (h == 8 and m <= 30)
                 has_any_worn_vital = has_glucose or has_bp or has_hr or has_temp or has_spo2 or has_hrv
-                has_any_sensor = has_any_worn_vital or has_steps
 
                 if is_future:
                     notes = "Awaiting Live Telemetry (Future Window)"
@@ -4229,51 +4441,52 @@ def get_two_day_timeline():
                     steps_val = running_steps
                     notes = "Watch Worn (Standby Interval)" if running_steps > 0 else "Nocturnal Standby"
 
-                # Active Medication Regimen (Morning complete meds + Evening Metformin split)
-                med_obj = None
-                if not is_future:
-                    if h == 8 and m == 30:
-                        med_obj = {
-                            "name": "Morning Regimen",
-                            "taken": True,
-                            "desc": "Metformin 500mg, Empagliflozin 10mg, Atorvastatin 20mg (with Breakfast)"
-                        }
-                    elif h == 19 and m == 0:
-                        med_obj = {
-                            "name": "Evening Regimen",
-                            "taken": True,
-                            "desc": "Metformin 500mg (with Dinner)"
-                        }
+                slot_step_delta = 0 if (is_future or is_gap) else max(s5_slot, max(0, running_steps - prev_running_steps))
 
-                # Exercise / GLUT4 Ambulatory Walks
+                # Medications are intentionally NOT hardcoded on the server (Prime Directive 4: Medical Data Sanctity)
+                med_obj = None
+
+                # Genuine GLUT4 Ambulatory Walks detected from real 30-min step bursts (zero hardcoded fake times)
                 ex_obj = None
-                if not is_future:
-                    if (h == 9 and m == 0 and steps_val >= 50) or (h == 13 and m == 0 and steps_val >= 1000) or (h == 19 and m == 30 and steps_val >= 2000):
-                        ex_obj = {
-                            "type": "Post-Meal GLUT4 Walk",
-                            "dur": 15,
-                            "steps": steps_val,
-                            "delta": -34,
-                            "desc": "15-min brisk ambulatory walk: blunted postprandial glucose spike"
-                        }
+                if not is_future and not is_gap and slot_step_delta >= 120:
+                    est_delta = -max(8, min(40, round(slot_step_delta / 18)))
+                    ex_obj = {
+                        "type": "Ambulatory GLUT4 Walk",
+                        "dur": max(5, min(30, round(slot_step_delta / 80))),
+                        "steps": slot_step_delta,
+                        "delta": est_delta,
+                        "desc": f"Real watch step burst (+{slot_step_delta} steps in 30m window)"
+                    }
 
                 meal_obj = None
-                if meal_data:
+                slot_fluid_oz = 0.0
+                if meal_data and not is_future:
+                    slot_fluid_oz = float(meal_data.get("fluid_oz") or 0.0)
+                    running_fluid_oz = round(running_fluid_oz + slot_fluid_oz, 1)
                     meal_obj = {
                         "type": "Meal",
-                        "desc": meal_data["name"][:36],
+                        "desc": meal_data["name"][:42],
                         "carbs": meal_data["carbs"],
-                        "cal": meal_data["cal"]
+                        "cal": meal_data["cal"],
+                        "fluidOz": round(slot_fluid_oz, 1)
                     }
-                    if g_val is None and not is_future:
+                    if g_val is None:
                         is_gap = False
-                        notes = "Meal Logged"
+                        notes = "Meal / Hydration Logged"
+
+                sleep_pct, sleep_stage, is_nap_slot = (0, None, False) if is_future else _slot_sleep_info(day_off, h, m)
+                if sleep_pct > 0 and notes in ("Nocturnal Standby", "Watch Worn (Standby Interval)"):
+                    notes = f"Sleep Cycle ({sleep_stage})"
+
+                f_pair = feelings_by_slot.get(slot_key)
+                pain_val = float(f_pair[0]) if (f_pair and f_pair[0] is not None and not is_future) else None
+                mood_val = float(f_pair[1]) if (f_pair and f_pair[1] is not None and not is_future) else None
 
                 entry = {
                     "day": date_label,
                     "date": str(date_obj),
                     "time": slot_time,
-                    "isNap": False,
+                    "isNap": is_nap_slot,
                     "fullTime": f"{date_label} {slot_time}",
                     "g": g_val,
                     "sys": sys_val,
@@ -4284,6 +4497,13 @@ def get_two_day_timeline():
                     "temp": temp_val,
                     "skinTemp": skin_temp_val,
                     "steps": steps_val,
+                    "slotSteps": slot_step_delta,
+                    "fluidOz": round(slot_fluid_oz, 1),
+                    "cumFluidOz": 0.0 if is_future else round(running_fluid_oz, 1),
+                    "sleepPct": sleep_pct,
+                    "sleepStage": sleep_stage,
+                    "pain": pain_val,
+                    "mood": mood_val,
                     "isChargingGap": is_gap,
                     "isFuture": is_future,
                     "meal": meal_obj,
@@ -5490,6 +5710,22 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
             except Exception as e:
                 self.send_json_response({"status": "ERROR", "error": str(e)}, 400)
 
+        # 0x88 Temperature History Ingestion (from Chrome Web Bluetooth)
+        elif self.path == "/api/temp_history/ingest":
+            record_browser_activity()
+            content_length = int(self.headers.get("Content-Length", 0))
+            body = self.rfile.read(content_length).decode("utf-8", errors="ignore")
+            try:
+                payload = json.loads(body)
+                packets = payload.get("packets", [])
+                day_off = int(payload.get("day_offset", 0))
+                dev_id = payload.get("device_id") or "VEE_5010"
+                records = _parse_88_temp_packets(packets, day_offset=day_off)
+                stats = ingest_temp_history_records(records, device_id=dev_id)
+                self.send_json_response({"status": "OK", "parsed": len(records), **stats})
+            except Exception as e:
+                self.send_json_response({"status": "ERROR", "error": str(e)}, 400)
+
         else:
             self.send_error(404, "Not Found")
 
@@ -5650,6 +5886,7 @@ def run():
 
     init_database()
     backfill_today_df_from_packet_log()
+    backfill_today_temp_from_packet_log()
     start_ble_background_thread()
 
     socketserver.ThreadingTCPServer.allow_reuse_address = True
