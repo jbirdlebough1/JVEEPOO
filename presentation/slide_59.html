@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slide 59: 09-MEDICATION: Medical Data Sanctity &amp; Zero Pre-Populated Drugs</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      background: #f8fafc;
+      color: #0f172a;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    .slide-container {
+      width: 100%;
+      height: 100vh;
+      padding: 12px 18px;
+      display: flex;
+      flex-direction: column;
+      background: #f8fafc;
+    }
+    .slide-header {
+      border-bottom: 2px solid #cbd5e1;
+      padding-bottom: 6px;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-shrink: 0;
+    }
+    .module-badge {
+      display: inline-block;
+      background: #e0f2fe;
+      border: 1px solid #0284c7;
+      color: #0369a1;
+      font-size: 0.65rem;
+      font-weight: 800;
+      padding: 2px 7px;
+      border-radius: 3px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-family: monospace;
+      margin-bottom: 3px;
+    }
+    .slide-title {
+      font-size: 1.28rem;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.15;
+    }
+    .slide-desc {
+      font-size: 0.79rem;
+      color: #475569;
+      margin-top: 2px;
+      font-weight: 500;
+    }
+    .slide-num-badge {
+      font-family: monospace;
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #0284c7;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      padding: 3px 9px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+    }
+    .left-screenshot-card {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      min-height: 0;
+      overflow: hidden;
+    }
+    .left-screenshot-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1.5px solid #e2e8f0;
+      padding-bottom: 5px;
+      margin-bottom: 6px;
+      flex-shrink: 0;
+    }
+    .left-screenshot-viewport {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      background: #ffffff;
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    .right-column {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 0;
+      overflow: hidden;
+    }
+    .content-card {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 9px 13px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      flex: 1;
+      overflow-y: auto;
+    }
+    .bullet-item {
+      border-left: 4px solid transparent;
+      border-radius: 4px;
+      padding: 5px 8px;
+      font-size: 0.77rem;
+      line-height: 1.36;
+      color: #1e293b;
+      transition: background 0.25s ease, border-left-color 0.25s ease;
+    }
+    .visual-card {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 8px 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      overflow-y: auto;
+      flex-shrink: 0;
+      max-height: 48%;
+    }
+    .card-header-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1.5px solid #e2e8f0;
+      padding-bottom: 4px;
+      margin-bottom: 5px;
+      font-family: monospace;
+      font-size: 0.70rem;
+      font-weight: 800;
+      color: #0284c7;
+    }
+    .slide-footer {
+      border-top: 1px solid #cbd5e1;
+      padding-top: 4px;
+      margin-top: 6px;
+      display: flex;
+      justify-content: space-between;
+      font-family: monospace;
+      font-size: 0.67rem;
+      color: #64748b;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <div class="slide-header">
+      <div>
+        <div class="module-badge">Tab 09: 09-MEDICATION</div>
+        <div class="slide-title">09-MEDICATION: Medical Data Sanctity &amp; Zero Pre-Populated Drugs</div>
+        <div class="slide-desc">Strictly honoring `[NO MEDICATIONS RECORDED]` unless explicitly entered by the patient or physician—zero fabricated sample prescriptions.</div>
+      </div>
+      <div class="slide-num-badge">SLIDE 59 / 84</div>
+    </div>
+
+    <div class="grid-2col">
+      <!-- Left Column: Live Console Screenshot or Custom Visual -->
+      <div class="left-screenshot-card">
+        <div class="left-screenshot-header">
+          <span style="font-family: monospace; font-size: 0.69rem; color: #0284c7; font-weight: 800;">09-MEDICATION • SAFE PRESCRIPTION &amp; SCHEDULE REGISTRY</span>
+          <span style="background: #15803d; color: #ffffff; font-size: 0.59rem; font-weight: 800; padding: 2px 6px; border-radius: 3px; font-family: monospace;">SHARED CARE VIEW</span>
+        </div>
+        <div class="left-screenshot-viewport">
+          <img src="images/bfm_t09_medication.png" alt="09-MEDICATION • SAFE PRESCRIPTION &amp; SCHEDULE REGISTRY" style="width: 100%; max-height: 100%; object-fit: contain; display: block;">
+        </div>
+      </div>
+
+      <!-- Right Column: Narrative Points + Doctor Calculus & Clinical Fitness -->
+      <div class="right-column">
+        <div class="content-card">
+          <div class="card-header-strip">
+            <span>PRESCRIPTION INTEGRITY &amp; ZERO-MOCK SANCTITY</span>
+            <span style="color: #64748b;">PATIENT &amp; CLINICIAN WALKTHROUGH</span>
+          </div>
+          <div class="bullet-item bullet-item-0" data-idx="0">
+            <strong style="color: #0284c7;">The Patient-Physician Sanctity Rule:</strong> Pre-populating sample diabetes medications is an unacceptable safety hazard; empty profiles show zero drugs cleanly.
+          </div>
+          <div class="bullet-item bullet-item-1" data-idx="1">
+            <strong style="color: #0284c7;">Consistent Honest Reporting Everywhere:</strong> Unprescribed states read [NO MEDICATIONS RECORDED] identically in Tab 09 tables, Tab 04 HUDs, and exported files.
+          </div>
+          <div class="bullet-item bullet-item-2" data-idx="2">
+            <strong style="color: #0284c7;">Strict User-Vault Isolation:</strong> One household member&#x27;s prescription list can never bleed onto another family profile.
+          </div>
+          <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.75rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
+            <strong style="color: #15803d;">Key Takeaway:</strong> Guaranteeing zero synthetic prescriptions builds absolute confidence for pharmacists and attending physicians.
+          </div>
+        </div>
+
+        <div class="visual-card">
+          <div class="card-header-strip">
+            <span>PHARMACOLOGICAL ZERO-MOCK SHIELD</span>
+            <span style="background: #dc2626; color: #ffffff; font-size: 0.57rem; padding: 2px 6px; border-radius: 3px;">EXPLICIT INPUT ONLY</span>
+          </div>
+          <div style="background:#f8fafc;border:1.5px solid #cbd5e1;border-radius:6px;padding:7px;"><div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1.5px solid #cbd5e1;padding-bottom:3px;margin-bottom:5px;"><span style="font-family:monospace;font-size:0.70rem;font-weight:800;color:#dc2626;">PHARMACOLOGICAL ZERO-MOCK SHIELD</span><span style="background:#dc2626;color:#fff;font-family:monospace;font-size:0.58rem;font-weight:800;padding:2px 6px;border-radius:3px;">EXPLICIT INPUT ONLY</span></div><div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:5px;overflow:hidden;"><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Default View</span><span style="font-family:monospace;color:#475569;">[NO MEDICATIONS RECORDED] banner</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#dc2626;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">HONEST EMPTY</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Safety Rule</span><span style="font-family:monospace;color:#475569;">Zero pre-filled Metformin or sample drugs</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#dc2626;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">ZERO HAZARD</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Data Ownership</span><span style="font-family:monospace;color:#475569;">Belongs strictly to user &amp; physician</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#dc2626;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">PROTECTED</span></div></div><div style="margin-top:6px;background:#f0fdf4;border:1.5px solid #86efac;border-radius:5px;padding:6px 9px;"><div style="font-family:monospace;font-size:0.65rem;font-weight:800;color:#15803d;margin-bottom:2px;">PHYSICIAN CALCULUS &amp; MEASUREMENT FITNESS • THERAPY ATTRIBUTION INVARIANT</div><div style="font-family:monospace;font-size:0.74rem;font-weight:700;color:#0f172a;line-height:1.35;">Treatment_effect(t) = 0 identically whenever Prescription Set = Empty</div></div></div><div style="margin-top:6px;background:#eff6ff;border-left:3.5px solid #dc2626;padding:6px 9px;border-radius:4px;font-size:0.72rem;color:#1e3a8a;line-height:1.35;"><strong>Clinical Significance:</strong> Keeping baseline pharmacology strictly zero prevents attributing spontaneous lifestyle improvements to imaginary medication doses.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div>BFM BIOMETRIC FUNCTION MONITOR • POWERED BY GOOGLE GEMINI AI</div>
+      <div>AUSTRALIAN VOICE NARRATION • TAB 01–14 SYNCHRONIZED</div>
+    </div>
+  </div>
+</body>
+</html>

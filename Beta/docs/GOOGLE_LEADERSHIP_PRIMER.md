@@ -41,10 +41,10 @@ To institutionalize engineering excellence, the BFM project operationalizes **To
 
 | Engineering Quality Pillar | Industry Status Quo | BFM Closed-Loop Standard |
 | :--- | :--- | :--- |
-| **Statistical Defect Control** | 3 Sigma (66,807 DPMO) typical in consumer health apps | **Six Sigma (<= 3.4 DPMO)** enforced across core telemetry and math |
+| **Statistical Defect Control** | 3 Sigma (66,807 DPMO) typical in consumer health apps | **Six Sigma (<= 3.4 DPMO)** enforced across 13 strict gate checks & 21 zero-defect checks |
 | **SEI-CMMI Maturity** | Level 1 (Initial / Ad-Hoc) or Level 2 (Managed) | **Level 5 (Optimizing)**: Dynamic root-cause correction and self-tuning |
-| **Defect Tracking Engine** | Manual bug spreadsheets or static issue trackers | **CLEBugger Daemon**: Real-time HTTP REST bug and anomaly logging on port 8999 |
-| **Closed-Loop Engineering** | Open-loop releases; user complaints drive slow patches | **Closed-Loop Synthesis**: Code changes immediately audited against regression gates |
+| **Defect Tracking Engine** | Manual bug spreadsheets or static issue trackers | **CLEBUGGER Unified DB (`D:\CLEBUGGER\bugs.db`)**: Fail-closed Check 12/13 sync (`tools/sync_clebugger.py`, `0 OPEN`) |
+| **Closed-Loop Engineering** | Open-loop releases; user complaints drive slow patches | **Closed-Loop Synthesis**: Code changes immediately audited against regression gates & `.jsonl` trajectory logs |
 
 ---
 
@@ -54,10 +54,10 @@ The project enforces a machine-parsable, deterministic build taxonomy across all
 
 | Release Phase | Canonical Taxonomy | Description & Role | Current Build State |
 | :--- | :--- | :--- | :--- |
-| **Alpha Development** | `alpha.xx.xx.xx.xxxx` | Multi-build rapid prototyping, BLE protocol decoding, exploratory UI | Archived at `alpha.01.00.00.0678` |
-| **Beta 1 First Build** | `beta.00.01.0001` | First formal release candidate subjected to two-pass verification | Field Audited (RCA Performed) |
-| **Beta 1 Clean Reset** | `beta.00.01.0002` | Clean-slate production release: Zero-Data standard, Abrams UI, HBand 2.0 parity | Active Production Target |
-| **General Availability** | `release.01.00.00.0001` | Commercial / community enterprise release for patient and physician deployment | Roadmap Phase 3 |
+| **Alpha Development** | `alpha.xx.xx.xx.xxxx` | Multi-build rapid prototyping, BLE protocol decoding (`CLE-001`–`CLE-108`) | Archived (`alpha.01.00.00.0678`) |
+| **Beta 1 Baseline** | `beta.00.01.0001`–`0056` | Full GATT reverse-engineering (`0xDF`/`0x88`/`0xE0`/`0xB8`), W11 launcher, 13-channel charts, zero CLEBUGGER open defects | Certified (`56` builds tagged & closed) |
+| **Beta 1 Documentation & Deck** | `beta.00.01.0057` | Updated EM/Exec specifications, 84-slide consolidated clinician & user presentation (Tabs 01–14, 0 duplicates, custom 90-day accuracy SVG, Watch+Phone->PC topology diagram, animated 3D fly-through), full 4-tool audit certification | Active Production Build |
+| **General Availability** | `release.01.00.00.0001` | Commercial / community enterprise release for self-help & physician deployment | Roadmap Phase 3 |
 
 ---
 
@@ -69,16 +69,16 @@ Traditional Continuous Glucose Monitors (CGMs) cost upwards of 3,600 to 6,000 US
 
 ---
 
-### 6. Star Ship Gemini (NCC-202X) Desktop Console
+### 6. BFM Biometric Function Monitor Desktop Console (`beta.00.01.0057`)
 
 The **BFM Console (Powered By Gemini)** transforms accessible consumer optical wearables into an enterprise-grade metabolic workstation:
 
 | Console Core Component | Technical Implementation | Operational Role |
 | :--- | :--- | :--- |
-| **Desktop Workstation** | Master standalone `BFM.HTM` console | Primary family PC command center; direct Web Bluetooth to watch |
-| **Local SQLite Vault** | Air-gapped local `telemetry.db` on port 8899 | Zero-cloud, high-speed multi-sensor storage with dual USB/SD backup |
-| **EHR Interoperability** | Native HL7 FHIR R4 JSON & LOINC CSV | 1-Click clinical exports formatted for direct ingestion into Epic MyChart |
-| **HBand 2.0 Equivalence** | 12-Channel continuous sensor acquisition | Optical Glucose, BP, HR, HRV, SpO2, Temp, ECG strips, MET, and Sleep |
+| **Desktop Workstation** | Master standalone `BFM.HTM` + `BFM_Launcher.exe` (14 Operational Tabs) | Primary family PC command center; direct Web Bluetooth to watch; `file:///` parity |
+| **Local SQLite Vault** | Air-gapped local `w11_htm_app/telemetry.db` (`70,858+` vital epochs) on port `8899` | Zero-cloud, high-speed multi-sensor storage with automated USB dedup backup |
+| **EHR Interoperability** | Native HL7 FHIR R4 JSON & LOINC CSV (`13-EXPORT`) | 1-Click exports formatted for physician review and EHR ingestion |
+| **HBand 2.0 Full Parity** | 13-Channel 3D Multi & 13-Lane Tall Chart + `0xDF` / `0x88` / `0xE0` / `0xB8` GATT | Glucose, BP, HR, HRV/Lorenz (`8,859` R-R epochs), SpO2, Core/Skin Temp, Steps (`2,000` goal), Sleep + Naps, Pain, Mood, Carbs, Fluid (`80 fl oz`), Medications Rx |
 
 ---
 

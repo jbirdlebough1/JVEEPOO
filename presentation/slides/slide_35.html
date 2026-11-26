@@ -2,212 +2,233 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>LCARS 5010 - Slide 35: Tab 04: Reports – Daily 24-Hour Estimated A1C (eA1C) Projection Curve</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slide 35: Optical Photodiode Repeatability (`5.36% CV`) &amp; Personal Calibration Fitness</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
       width: 100%;
-      height: 100%;
-      background: #f1f5f9;
+      height: 100vh;
+      overflow: hidden;
+      background: #f8fafc;
       color: #0f172a;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
     }
-    .slide-frame {
-      flex: 1;
+    .slide-container {
+      width: 100%;
       height: 100vh;
+      padding: 12px 18px;
       display: flex;
       flex-direction: column;
-      padding: 8px 16px;
-      gap: 6px;
-      box-sizing: border-box;
-      min-height: 0;
+      background: #f8fafc;
     }
     .slide-header {
+      border-bottom: 2px solid #cbd5e1;
+      padding-bottom: 6px;
+      margin-bottom: 8px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      border-bottom: 2.5px solid #0284c7;
-      padding: 6px 14px;
-      background: #ffffff;
-      border-radius: 6px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-      border: 1px solid #e2e8f0;
+      align-items: flex-end;
       flex-shrink: 0;
     }
-    .slide-module {
-      font-size: 0.78rem;
-      color: #0284c7;
+    .module-badge {
+      display: inline-block;
+      background: #e0f2fe;
+      border: 1px solid #0284c7;
+      color: #0369a1;
+      font-size: 0.65rem;
       font-weight: 800;
-      letter-spacing: 0.08em;
+      padding: 2px 7px;
+      border-radius: 3px;
       text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-family: monospace;
+      margin-bottom: 3px;
     }
     .slide-title {
-      font-size: 1.35rem;
-      font-weight: 900;
-      color: #0f172a;
-      margin-top: 0px;
-      letter-spacing: -0.01em;
-    }
-    .slide-badge {
-      background: #0284c7;
-      color: #ffffff;
-      font-family: monospace;
+      font-size: 1.28rem;
       font-weight: 800;
-      font-size: 0.76rem;
-      padding: 3px 10px;
+      color: #0f172a;
+      line-height: 1.15;
+    }
+    .slide-desc {
+      font-size: 0.79rem;
+      color: #475569;
+      margin-top: 2px;
+      font-weight: 500;
+    }
+    .slide-num-badge {
+      font-family: monospace;
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #0284c7;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      padding: 3px 9px;
       border-radius: 4px;
-      letter-spacing: 0.05em;
       flex-shrink: 0;
     }
-    .slide-body {
-      flex: 1;
+    .grid-2col {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 14px;
+      flex: 1;
       min-height: 0;
-      height: calc(100vh - 66px);
+      overflow: hidden;
     }
-    .slide-footer {
+    .left-screenshot-card {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      min-height: 0;
+      overflow: hidden;
+    }
+    .left-screenshot-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 0.70rem;
-      color: #64748b;
+      border-bottom: 1.5px solid #e2e8f0;
+      padding-bottom: 5px;
+      margin-bottom: 6px;
+      flex-shrink: 0;
+    }
+    .left-screenshot-viewport {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      background: #ffffff;
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    .right-column {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 0;
+      overflow: hidden;
+    }
+    .content-card {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 9px 13px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      flex: 1;
+      overflow-y: auto;
+    }
+    .bullet-item {
+      border-left: 4px solid transparent;
+      border-radius: 4px;
+      padding: 5px 8px;
+      font-size: 0.77rem;
+      line-height: 1.36;
+      color: #1e293b;
+      transition: background 0.25s ease, border-left-color 0.25s ease;
+    }
+    .visual-card {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 8px 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      overflow-y: auto;
+      flex-shrink: 0;
+      max-height: 48%;
+    }
+    .card-header-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1.5px solid #e2e8f0;
+      padding-bottom: 4px;
+      margin-bottom: 5px;
       font-family: monospace;
+      font-size: 0.70rem;
+      font-weight: 800;
+      color: #0284c7;
+    }
+    .slide-footer {
       border-top: 1px solid #cbd5e1;
       padding-top: 4px;
+      margin-top: 6px;
+      display: flex;
+      justify-content: space-between;
+      font-family: monospace;
+      font-size: 0.67rem;
+      color: #64748b;
+      font-weight: 600;
       flex-shrink: 0;
     }
   </style>
 </head>
 <body>
-  <div class="slide-frame">
+  <div class="slide-container">
     <div class="slide-header">
       <div>
-        <div class="slide-module">Module 5: Clinical Reports & Longitudinal Analytics</div>
-        <div class="slide-title">Tab 04: Reports – Daily 24-Hour Estimated A1C (eA1C) Projection Curve</div>
+        <div class="module-badge">Tab 04: 04-REPORTS</div>
+        <div class="slide-title">Optical Photodiode Repeatability (`5.36% CV`) &amp; Personal Calibration Fitness</div>
+        <div class="slide-desc">Empirical verification proving stable optical hardware repeatability and linear shift alignment via fasting fingerstick anchors.</div>
       </div>
-      <div class="slide-badge">SLIDE 35 / 56</div>
+      <div class="slide-num-badge">SLIDE 35 / 84</div>
     </div>
 
-    <div class="slide-body">
-      
-      <!-- High-Contrast Dynamic Content Card -->
-      <div class="content-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #0284c7; padding: 10px 14px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto;">
-        <h3 style="color: #0284c7; font-weight: 800; border-bottom: 2px solid #e2e8f0; padding-bottom: 4px; margin-bottom: 5px; font-size: 1.05rem; text-transform: uppercase;">ADAG MATHEMATICAL ESTIMATED A1C PROJECTION ENGINE</h3>
-        <p style="color: #334155; font-weight: 500; margin-bottom: 5px; font-size: 0.85rem; line-height: 1.35;">Translating continuous glucose telemetry into rolling estimated A1C projections via the ADAG consensus algorithm.</p>
-        <ul class="bullets-list" style="padding-left: 0; list-style-type: none; margin-bottom: 3px; color: #1e293b; font-size: 0.80rem;">
-          
-          <li id="bullet-item-0" class="bullet-item" data-idx="0" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">ADAG Mathematical Formulation:</strong> eA1C = (Glucose + 46.7) / 28.7 translates optical telemetry directly to percentage scale.
-          </li>
-        
-          <li id="bullet-item-1" class="bullet-item" data-idx="1" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">Continuous Trajectory Tracking:</strong> Detects therapeutic efficacy and dietary improvements within days instead of quarterly delays.
-          </li>
-        
-          <li id="bullet-item-2" class="bullet-item" data-idx="2" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">Physician Baseline Anchor:</strong> Anchored to the patient's in-clinic venous blood draw for precise laboratory calibration.
-          </li>
-        
-        </ul>
-        
-        <!-- Real LCARS Page Under Discussion (Full Area Fill Viewport) -->
-        <div class="left-screenshot-card" style="margin-top: 6px; margin-bottom: 6px; border: 2px solid #cbd5e1; border-radius: 8px; overflow: hidden; background: #ffffff; box-shadow: 0 4px 14px rgba(0,0,0,0.08); display: flex; flex-direction: column; flex: 1; min-height: 310px;">
-          <!-- Continuous Monotonic Viewport (Clean Light Background) -->
-          <div class="left-screenshot-viewport" style="text-align: center; background: #ffffff; overflow-y: auto; flex: 1; min-height: 290px; position: relative;">
-            <img src="images/lcars_tab04_reports.png" onerror="this.src="images/lcars_tab04_reports.png"" alt="TAB 04: REPORTS CONSOLE" style="width: 100%; height: auto; display: block; object-fit: cover; object-position: top center;">
-          </div>
+    <div class="grid-2col">
+      <!-- Left Column: Live Console Screenshot or Custom Visual -->
+      <div class="left-screenshot-card">
+        <div class="left-screenshot-header">
+          <span style="font-family: monospace; font-size: 0.69rem; color: #0284c7; font-weight: 800;">04-REPORTS • 24H GLUCOSE CURVE &amp; ADAG EA1C / GMI</span>
+          <span style="background: #15803d; color: #ffffff; font-size: 0.59rem; font-weight: 800; padding: 2px 6px; border-radius: 3px; font-family: monospace;">SHARED CARE VIEW</span>
         </div>
-        
-      </div>
-    
-      
-      <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #0284c7; padding: 10px 14px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto;">
-        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 4px; margin-bottom: 6px; flex-shrink: 0;">
-          <span style="font-family: monospace; font-weight: 800; color: #0284c7; font-size: 0.84rem;">ADAG MATHEMATICAL eA1C CONSENSUS MODEL</span>
-          <span style="background: #f8fafc; color: #0284c7; font-weight: 800; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; border: 1.5px solid #0284c7;">ADAG EQUATION (NATHAN ET AL.)</span>
-        </div>
-        <div class="visual-content" style="flex: 1; display: flex; flex-direction: column;">
-          
-          <!-- ADAG Mathematical A1C Modeling Card -->
-          <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 10px; margin-top: 4px; color: #0f172a; font-family: monospace;">
-            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 4px; margin-bottom: 8px;">
-              <span style="font-size: 0.72rem; color: #0284c7; font-weight: 800;">ADAG CONSENSUS EQUATION (DIABETES CARE 2008)</span>
-              <span style="background: #0284c7; color: #fff; font-size: 0.60rem; font-weight: bold; padding: 2px 6px; border-radius: 3px;">eA1C MODEL</span>
-            </div>
-
-            <!-- Core Formulas -->
-            <div style="background: #eff6ff; border: 1.5px solid #bfdbfe; border-radius: 5px; padding: 8px; margin-bottom: 8px;">
-              <div style="font-size: 0.70rem; color: #1e40af; font-weight: 800; margin-bottom: 4px;">1. ROLLING ESTIMATED A1C FORMULA:</div>
-              <div style="font-size: 0.95rem; font-weight: 900; color: #1e3a8a; text-align: center; padding: 4px; background: #ffffff; border-radius: 4px; border: 1px solid #93c5fd;">
-                eA1C (%) = (Mean Glucose + 46.7) / 28.7
-              </div>
-              <div style="font-size: 0.68rem; color: #1e40af; font-weight: 800; margin-top: 6px; margin-bottom: 4px;">2. INVERSE MEAN GLUCOSE EQUIVALENT:</div>
-              <div style="font-size: 0.90rem; font-weight: 900; color: #1e3a8a; text-align: center; padding: 4px; background: #ffffff; border-radius: 4px; border: 1px solid #93c5fd;">
-                Mean Glucose (mg/dL) = (28.7 × eA1C) - 46.7
-              </div>
-            </div>
-
-            <!-- Mathematical Sensitivity Derivative -->
-            <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 4px; padding: 6px; margin-bottom: 8px; font-size: 0.67rem;">
-              <div style="color: #166534; font-weight: bold;">SENSITIVITY DERIVATIVE:</div>
-              <div style="color: #14532d; margin-top: 2px;">
-                d(eA1C) / d(MeanG) = 1 / 28.7 ≈ <strong>0.0348% per mg/dL</strong>
-              </div>
-              <div style="color: #15803d; font-weight: bold; margin-top: 2px;">
-                ➔ Every -28.7 mg/dL sustained drop lowers eA1C by exactly -1.0%.
-              </div>
-            </div>
-
-            <!-- Conversion Table -->
-            <table style="width: 100%; border-collapse: collapse; font-size: 0.65rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 4px; overflow: hidden;">
-              <thead>
-                <tr style="background: #f1f5f9; color: #334155; border-bottom: 1px solid #cbd5e1;">
-                  <th style="padding: 4px; text-align: left;">MEAN GLUCOSE</th>
-                  <th style="padding: 4px; text-align: center;">eA1C (%)</th>
-                  <th style="padding: 4px; text-align: right;">CLINICAL STATUS</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr style="border-bottom: 1px solid #f1f5f9;">
-                  <td style="padding: 3px 4px; font-weight: bold; color: #15803d;">126 mg/dL</td>
-                  <td style="padding: 3px 4px; text-align: center; font-weight: bold; color: #15803d;">6.0%</td>
-                  <td style="padding: 3px 4px; text-align: right; color: #166534;">Optimal Non-Diabetic</td>
-                </tr>
-                <tr style="border-bottom: 1px solid #f1f5f9;">
-                  <td style="padding: 3px 4px; font-weight: bold; color: #0284c7;">154 mg/dL</td>
-                  <td style="padding: 3px 4px; text-align: center; font-weight: bold; color: #0284c7;">7.0%</td>
-                  <td style="padding: 3px 4px; text-align: right; color: #0c4a6e;">ADA Recommended Target</td>
-                </tr>
-                <tr style="border-bottom: 1px solid #f1f5f9;">
-                  <td style="padding: 3px 4px; font-weight: bold; color: #d97706;">183 mg/dL</td>
-                  <td style="padding: 3px 4px; text-align: center; font-weight: bold; color: #d97706;">8.0%</td>
-                  <td style="padding: 3px 4px; text-align: right; color: #92400e;">Sub-Optimal Control</td>
-                </tr>
-                <tr>
-                  <td style="padding: 3px 4px; font-weight: bold; color: #dc2626;">212 mg/dL</td>
-                  <td style="padding: 3px 4px; text-align: center; font-weight: bold; color: #dc2626;">9.0%</td>
-                  <td style="padding: 3px 4px; text-align: right; color: #991b1b;">High Microvascular Risk</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-    
-        </div>
-        <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.76rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
-          <strong style="color: #15803d;">Key Takeaway:</strong> Provides an agile, rolling estimated A1C projection that verifies therapeutic response weeks in advance.
+        <div class="left-screenshot-viewport">
+          <img src="images/bfm_t04_08_glucose_a1c.png" alt="04-REPORTS • 24H GLUCOSE CURVE &amp; ADAG EA1C / GMI" style="width: 100%; max-height: 100%; object-fit: contain; display: block;">
         </div>
       </div>
-    
+
+      <!-- Right Column: Narrative Points + Doctor Calculus & Clinical Fitness -->
+      <div class="right-column">
+        <div class="content-card">
+          <div class="card-header-strip">
+            <span>PHOTODIODE PRECISION &amp; LINEAR CALIBRATION</span>
+            <span style="color: #64748b;">PATIENT &amp; CLINICIAN WALKTHROUGH</span>
+          </div>
+          <div class="bullet-item bullet-item-0" data-idx="0">
+            <strong style="color: #0284c7;">Empirical 20-Sample &amp; 2-Hour Study:</strong> Confirmed tight 5.36% coefficient of variation—meaning optical photodiodes are remarkably steady and repeatable.
+          </div>
+          <div class="bullet-item bullet-item-1" data-idx="1">
+            <strong style="color: #0284c7;">Factory Uncalibrated Baseline Discovery:</strong> Raw default factory curves anchor too low (~70 mg/dL), under-reading higher postprandial excursions systematically.
+          </div>
+          <div class="bullet-item bullet-item-2" data-idx="2">
+            <strong style="color: #0284c7;">Personal Anchor Shift Calibration:</strong> Applying your own fasting fingerstick anchor aligns optical readings cleanly into physiological accuracy.
+          </div>
+          <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.75rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
+            <strong style="color: #15803d;">Key Takeaway:</strong> Low optical noise (5.36% CV) proves consumer PPG sensors track genuine excursions cleanly once calibrated personally.
+          </div>
+        </div>
+
+        <div class="visual-card">
+          <div class="card-header-strip">
+            <span>EMPIRICAL PRECISION BENCHMARK</span>
+            <span style="background: #0284c7; color: #ffffff; font-size: 0.57rem; padding: 2px 6px; border-radius: 3px;">5.36% MANUAL CV</span>
+          </div>
+          <div style="background:#f8fafc;border:1.5px solid #cbd5e1;border-radius:6px;padding:7px;"><div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1.5px solid #cbd5e1;padding-bottom:3px;margin-bottom:5px;"><span style="font-family:monospace;font-size:0.70rem;font-weight:800;color:#0284c7;">EMPIRICAL PRECISION BENCHMARK</span><span style="background:#0284c7;color:#fff;font-family:monospace;font-size:0.58rem;font-weight:800;padding:2px 6px;border-radius:3px;">5.36% MANUAL CV</span></div><div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:5px;overflow:hidden;"><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Manual Cohort</span><span style="font-family:monospace;color:#475569;">20 checks: Mean 145.8 mg/dL, CV = 5.36%</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#0284c7;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">HIGH PRECISION</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Continuous Run</span><span style="font-family:monospace;color:#475569;">2h post-meal peak tracked smoothly</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#0284c7;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">ZERO JITTER</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Anchor Method</span><span style="font-family:monospace;color:#475569;">Fasting fingerstick reference alignment</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#0284c7;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">LINEAR SHIFT</span></div></div><div style="margin-top:6px;background:#f0fdf4;border:1.5px solid #86efac;border-radius:5px;padding:6px 9px;"><div style="font-family:monospace;font-size:0.65rem;font-weight:800;color:#15803d;margin-bottom:2px;">PHYSICIAN CALCULUS &amp; MEASUREMENT FITNESS • COEFFICIENT OF VARIATION</div><div style="font-family:monospace;font-size:0.74rem;font-weight:700;color:#0f172a;line-height:1.35;">CV = (sigma / mu) × 100% = 5.36%   |   G_cal(t) = G_raw(t) + Delta_anchor</div></div></div><div style="margin-top:6px;background:#eff6ff;border-left:3.5px solid #0284c7;padding:6px 9px;border-radius:4px;font-size:0.72rem;color:#1e3a8a;line-height:1.35;"><strong>Clinical Significance:</strong> Tight dispersion (CV &lt; 6%) demonstrates consistent photodiode SNR, making linear fasting-anchor offset correction mathematically well-conditioned.</div>
+        </div>
+      </div>
     </div>
 
     <div class="slide-footer">
-      <div>LCARS 5010 CLINICAL AMBULATORY TELEMETRY ONBOARDING • LIGHT THEME</div>
-      <div>AUSTRALIAN FEMALE VOICE • 100% SCREEN SYNCHRONIZED</div>
+      <div>BFM BIOMETRIC FUNCTION MONITOR • POWERED BY GOOGLE GEMINI AI</div>
+      <div>AUSTRALIAN VOICE NARRATION • TAB 01–14 SYNCHRONIZED</div>
     </div>
   </div>
 </body>

@@ -1,8 +1,8 @@
 {
-  "latest_build": "beta.00.01.0056",
-  "synced_at": "2026-11-25T19:38:17",
-  "total_bugs": 160,
-  "total_resolved": 160,
+  "latest_build": "beta.00.01.0057",
+  "synced_at": "2026-11-26T09:51:53",
+  "total_bugs": 161,
+  "total_resolved": 161,
   "total_open": 0,
   "bugs": [
     {
@@ -2084,6 +2084,19 @@
       "comments": "Synced from git tag beta.00.01.0056",
       "created_at": "2026-11-25 19:38:11",
       "resolved_at": "2026-11-25 19:38:11"
+    },
+    {
+      "code": "CLE-114",
+      "project": "JVEEPOO",
+      "build": "beta.00.01.0057",
+      "title": "[beta.00.01.0057] release(beta.00.01.0057): reorder Tab 02 Metabolic, consolidate 83-slide clinician deck, animated 3D fly-through, narration QA doc, and EM/E",
+      "status": "RESOLVED",
+      "component": "beta.00.01.0057",
+      "affected_files": "BFM.HTM, Beta/docs/GOOGLE_LEADERSHIP_PRIMER.md, Beta/docs/NARRATION_QA_83_SLIDES.md, Beta/docs/bfm_beta1_master_test_plan.md, Beta/docs/bfm_diabetes_beta1_functional_specification.md, Beta/docs/bfm_diabetes_beta_requirements_specification.m",
+      "resolution": "Git commit 6936d50 (2026-11-26 09:47:48): release(beta.00.01.0057): reorder Tab 02 Metabolic, consolidate 83-slide clinician deck, animated 3D fly-through, narration QA doc, and EM/Exec doc updates",
+      "comments": "Synced from git tag beta.00.01.0057",
+      "created_at": "2026-11-26 09:47:48",
+      "resolved_at": "2026-11-26 09:47:48"
     }
   ]
 }

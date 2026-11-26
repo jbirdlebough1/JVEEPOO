@@ -29,13 +29,13 @@ A full year of continuous 24-hour ambulatory monitoring generates the following 
 
 | Telemetry Stream | Frequency & Packet Size | Daily Footprint | 365-Day (1-Year) Total |
 | :--- | :--- | :--- | :--- |
-| **5-Min Continuous Health (0xA7)** | 288 epochs/day &times; 8 bytes (Glucose, HR, BP, SpO2) | 2.30 KB / day | **840 KB / year** |
-| **Daily Kinetic Activity (0x89)** | 48 half-hour step & burn slots &times; 16 bytes | 0.77 KB / day | **281 KB / year** |
-| **Circadian Sleep Hypnograms (0xE0)** | 6 packets/night (Deep, Light, REM, Awakenings) | 0.12 KB / day | **44 KB / year** |
-| **Meal Intake & Nutritional BOM** | 4–6 logged meals/snacks &times; 500 bytes JSON | 2.50 KB / day | **912 KB / year** |
-| **Pharmacological Doses & Regimen** | Morning & Dinner split records &times; 200 bytes | 0.40 KB / day | **146 KB / year** |
-| **Periodic 1 Hz Workout Sessions** | 30-min brisk walk @ 1 sample/sec (Pulse stream) | 3.60 KB / session | **1.31 MB / year** |
-| **TOTAL ANNUAL TELEMETRY FOOTPRINT** | **All 8 channels synchronized** | **~9.7 KB / day** | **< 3.55 MB / year** |
+| **5-Min OriginV3 Full-Day Health (`0xDF` / 244B MTU)** | 288 epochs/day (`0xB1`–`0xC2` blocks: Glucose, HR, BP, SpO2, HRV/R-R) | ~14.4 KB / day | **~5.25 MB / year** |
+| **Daily Core & Skin Temperature History (`0x88`)** | 144 slots/day (`0x00`–`0x8F` dual thermal curve, `00:00–23:59`) | 1.15 KB / day | **420 KB / year** |
+| **Daily Kinetic Activity & Pedometer (`0xA8` / `0x07`)** | 48 half-hour step & GLUT4 slots + live pedometer sync (`2,000` goal) | 0.77 KB / day | **281 KB / year** |
+| **Circadian Sleep Hypnograms & Naps (`0xE0`)** | Multi-session `0xA1 -> 0xA3+0xA5` TLV (nocturnal + daytime naps) | 0.24 KB / day | **88 KB / year** |
+| **Meal Intake, Hydration & Nutritional BOM** | 4–6 logged meals/snacks + fluid oz (`fluid_oz`) | 2.50 KB / day | **912 KB / year** |
+| **Pharmacological Doses & Regimen** | User/physician-entered Rx records (Zero synthetic fallback) | 0.40 KB / day | **146 KB / year** |
+| **TOTAL ANNUAL TELEMETRY FOOTPRINT** | **All 13 channels synchronized (`w11_htm_app/telemetry.db`)** | **~19.5 KB / day** | **~7.1 MB / year** |
 
 > [!NOTE]
 > Even with SQLite indexing and relational metadata overhead, **1 full year of continuous ambulatory data occupies less than 15–25 MB**. 
@@ -55,21 +55,12 @@ A full year of continuous 24-hour ambulatory monitoring generates the following 
 
 ### Pillar 2: Daily Automated External Backup to USB / SD Card
 
-Physicians and clinical risk managers require off-device redundancy so that device theft, hardware damage, or OS upgrades never result in lost health telemetry.
+Physicians and risk managers require off-device redundancy so that device theft, hardware damage, or OS upgrades never result in lost health telemetry.
 
-```
-[Watch Sync Complete] > [Append to 1-Yr SQLite-WASM Vault]
-                                    
-                  Daily External Backup Triggered
-                                    
-         
-         ▼                                                     ▼
-[Chromium: Win, Mac, Linux, ChromeOS]              [Mobile / Safari Fallback]
-  • File System Access API                           • Programmatic Blob Stream
-  • One-Time USB/SD Folder Bind                      • 1-Click System Save Dialog
-  • Silent background write to:                      • Direct export to external drive
-    <USB_DRIVE>:\BFM_VAULT\daily_backup.sqlite       via native Files app
-```
+| Backup Execution Target | Mechanism & API | Automated Output Artifact | Verification Standard |
+| :--- | :--- | :--- | :--- |
+| **Desktop Chromium (`BFM.HTM` / `BFM_Launcher.exe`)** | File System Access API (`window.showDirectoryPicker()`) + `usb_backup_engine.py` | Deduplicated `<USB_DRIVE>:\BFM_VAULT\BFM_VAULT_YYYY-MM-DD.sqlite` + `BFM_BACKUP_LATEST.sqlite` | Persistent `IndexedDB` directory handle; zero duplicate overwrite clutter |
+| **Mobile & Safari Fallback (`cell.html`)** | Programmatic Blob stream & 1-click OS Files save dialog | Date-stamped SQLite snapshot + HL7 FHIR R4 JSON bundle | Embedded SHA-256 integrity hash verified on workstation dock |
 
 #### 1. Chromium Desktop & ChromeOS: The File System Access API
 On Chrome, Edge, and Opera (Windows, macOS, Linux, ChromeOS):
@@ -87,37 +78,25 @@ On Chrome, Edge, and Opera (Windows, macOS, Linux, ChromeOS):
 
 ---
 
-### Pillar 3: Zero-Variance Clinical Determinism Across All Platforms
+### Pillar 3: Zero-Variance Determinism Across All Platforms
 
-Doctors and endocrinologists look for absolute consistency. If a patient displays a 14-day report on an iPad during a clinic visit, the mean glucose, postprandial spikes, Time-in-Range (TIR), and estimated A1c (eA1c) must match the numbers on their home Windows PC down to the last decimal place.
+Physicians and endocrinologists require absolute consistency across views and platforms. Across the 13-channel 3D Multi-Channel viewer, the 13-Lane Synchronized Tall Chart, and exported Epic FHIR R4 JSON bundles, mean glucose, postprandial spikes, Time-in-Range (TIR), hydration (`fl oz`), and estimated A1c (eA1C / GMI) must agree to the last decimal place (`0.000%` variance).
 
-```
-       [Raw Optical PPG Absorption & Accelerometry Telemetry]
-                                 
-     
-     ▼                                                       ▼
-[Patient Home PC: Windows 11]                   [Clinic Consultation: iPadOS]
-  • Calculated Mean Glucose: 139.4 mg/dL          • Calculated Mean Glucose: 139.4 mg/dL
-  • Time-in-Range (70–180): 88.2%                 • Time-in-Range (70–180): 88.2%
-  • Projected Excursion: +54 mg/dL                • Projected Excursion: +54 mg/dL
-  • eA1c: 6.48%                                   • eA1c: 6.48%
-                                                            
-     
-                                 ▼
-         [VARIANCE = 0.000% • BIT-FOR-BIT CLINICAL CONCORDANCE]
-```
+| Execution Environment | Shared Dataset Source | Reported Convergence Metrics | Variance vs. Desktop |
+| :--- | :--- | :--- | :--- |
+| **Windows 11 Desktop (`BFM.HTM` / `BFM_Launcher.exe`)** | `getTallSynchronizedDataset()` & `w11_htm_app/telemetry.db` | Mean Glucose, TIR (70–180), Step Total (`2,000` goal), Hydration (`80.0 fl oz`), eA1C | **Baseline (`0.000%`)** |
+| **Mobile Companion (`cell.html`) & Clinic Export (`13-EXPORT`)** | Identical REST `/api/telemetry/timeline` & FHIR R4 serializer | Identical glucose curve, meal BOM carbs, medication events, and LOINC codes | **`0.000%` (Bit-for-bit Concordance)** |
 
 #### Deterministic Engineering Standards
 1. **Fixed-Precision Math Core**:
-   * All clinical formulas avoid nondeterministic floating-point drift by utilizing fixed-precision integer math or strict rounding standards conforming to **CLSI EP05-A3** and **ISO 15197**.
-   * Example: Glucose calculations compute in integer micro-units before final display formatting:
-     Glucose}_{calibrated}} = round}(Baseline} + {\Delta G_{optical}} \times K_{cal}}}{1000})
-2. **Identical Inlined SQLite Engine**:
-   * By compiling the exact same `sqlite3-wasm` binary into the `.HTM`, SQL queries (`ORDER BY`, `GROUP BY`, date formatting, aggregate means) execute with identical C-level bytecode semantics on ARM64 (Apple Silicon, Android) and x86_64 (Windows, Intel).
-3. **Standardized Clinical Terminology & Units**:
-   * Glucose: mg/dL} (primary) and mmol/L} (dual-scale).
-   * Energy & Carbs: kcal}, g net carbs} (carbs minus fiber).
-   * Time: ISO 8601 timestamps (`YYYY-MM-DDTHH:MM:SSZ`) anchored to device UTC offsets to prevent time-zone distortion when traveling.
+   * All glycemic and kinetic formulas avoid floating-point drift by utilizing integer micro-units or strict rounding standards conforming to **CLSI EP05-A3** and **ISO 15197**:
+     `Glucose_calibrated = round((Baseline + DeltaG_optical * K_cal) / 1000)`
+2. **Identical SQLite Engine & Unified Chart Source**:
+   * All 13 channels (`CH 01` Glucose through `CH 13` Medications Rx) read from the single `getTallSynchronizedDataset()` pipeline so the 3D perspective engine and 2D 13-Lane Tall Chart never diverge (`CLE-107`, `beta.00.01.0055`).
+3. **Standardized Terminology & Units**:
+   * Glucose: `mg/dL` (primary) and `mmol/L` (dual-scale).
+   * Energy & Carbs: `kcal`, `g net carbs` (total carbs minus fiber), and `fl oz` fluid hydration.
+   * Time: Watch-locked **12-hour (`0xB8` Page-0 guarded) or 24-hour** display format applied uniformly across every chart axis.
 
 ---
 

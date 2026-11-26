@@ -2,239 +2,320 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>LCARS 5010 - Slide 04: Metrological Precision & Noise Convergence: The Math of High-Density Telemetry</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slide 04: How BFM Connects: Smartwatch &amp; Cell Phone Collectors Linked to Your PC Server</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
       width: 100%;
-      height: 100%;
-      background: #f1f5f9;
+      height: 100vh;
+      overflow: hidden;
+      background: #f8fafc;
       color: #0f172a;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
     }
-    .slide-frame {
-      flex: 1;
+    .slide-container {
+      width: 100%;
       height: 100vh;
+      padding: 12px 18px;
       display: flex;
       flex-direction: column;
-      padding: 8px 16px;
-      gap: 6px;
-      box-sizing: border-box;
-      min-height: 0;
+      background: #f8fafc;
     }
     .slide-header {
+      border-bottom: 2px solid #cbd5e1;
+      padding-bottom: 6px;
+      margin-bottom: 8px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      border-bottom: 2.5px solid #0284c7;
-      padding: 6px 14px;
-      background: #ffffff;
-      border-radius: 6px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-      border: 1px solid #e2e8f0;
+      align-items: flex-end;
       flex-shrink: 0;
     }
-    .slide-module {
-      font-size: 0.78rem;
-      color: #0284c7;
+    .module-badge {
+      display: inline-block;
+      background: #e0f2fe;
+      border: 1px solid #0284c7;
+      color: #0369a1;
+      font-size: 0.65rem;
       font-weight: 800;
-      letter-spacing: 0.08em;
+      padding: 2px 7px;
+      border-radius: 3px;
       text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-family: monospace;
+      margin-bottom: 3px;
     }
     .slide-title {
-      font-size: 1.35rem;
-      font-weight: 900;
-      color: #0f172a;
-      margin-top: 0px;
-      letter-spacing: -0.01em;
-    }
-    .slide-badge {
-      background: #0284c7;
-      color: #ffffff;
-      font-family: monospace;
+      font-size: 1.28rem;
       font-weight: 800;
-      font-size: 0.76rem;
-      padding: 3px 10px;
+      color: #0f172a;
+      line-height: 1.15;
+    }
+    .slide-desc {
+      font-size: 0.79rem;
+      color: #475569;
+      margin-top: 2px;
+      font-weight: 500;
+    }
+    .slide-num-badge {
+      font-family: monospace;
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #0284c7;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      padding: 3px 9px;
       border-radius: 4px;
-      letter-spacing: 0.05em;
       flex-shrink: 0;
     }
-    .slide-body {
-      flex: 1;
+    .grid-2col {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 14px;
+      flex: 1;
       min-height: 0;
-      height: calc(100vh - 66px);
+      overflow: hidden;
     }
-    .slide-footer {
+    .left-screenshot-card {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      min-height: 0;
+      overflow: hidden;
+    }
+    .left-screenshot-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 0.70rem;
-      color: #64748b;
+      border-bottom: 1.5px solid #e2e8f0;
+      padding-bottom: 5px;
+      margin-bottom: 6px;
+      flex-shrink: 0;
+    }
+    .left-screenshot-viewport {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      background: #ffffff;
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    .right-column {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 0;
+      overflow: hidden;
+    }
+    .content-card {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 9px 13px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      flex: 1;
+      overflow-y: auto;
+    }
+    .bullet-item {
+      border-left: 4px solid transparent;
+      border-radius: 4px;
+      padding: 5px 8px;
+      font-size: 0.77rem;
+      line-height: 1.36;
+      color: #1e293b;
+      transition: background 0.25s ease, border-left-color 0.25s ease;
+    }
+    .visual-card {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 8px 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      overflow-y: auto;
+      flex-shrink: 0;
+      max-height: 48%;
+    }
+    .card-header-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1.5px solid #e2e8f0;
+      padding-bottom: 4px;
+      margin-bottom: 5px;
       font-family: monospace;
+      font-size: 0.70rem;
+      font-weight: 800;
+      color: #0284c7;
+    }
+    .slide-footer {
       border-top: 1px solid #cbd5e1;
       padding-top: 4px;
+      margin-top: 6px;
+      display: flex;
+      justify-content: space-between;
+      font-family: monospace;
+      font-size: 0.67rem;
+      color: #64748b;
+      font-weight: 600;
       flex-shrink: 0;
     }
   </style>
 </head>
 <body>
-  <div class="slide-frame">
+  <div class="slide-container">
     <div class="slide-header">
       <div>
-        <div class="slide-module">Module 1: Introduction & Clinical Scope</div>
-        <div class="slide-title">Metrological Precision & Noise Convergence: The Math of High-Density Telemetry</div>
+        <div class="module-badge">Intro: Closing the Loop</div>
+        <div class="slide-title">How BFM Connects: Smartwatch &amp; Cell Phone Collectors Linked to Your PC Server</div>
+        <div class="slide-desc">Clean two-collector ecosystem: your Smartwatch captures passive 24/7 biometrics and your Cell Phone captures meals &amp; HDYF anywhere—both docking directly to your private PC BFM Server.</div>
       </div>
-      <div class="slide-badge">SLIDE 04 / 56</div>
+      <div class="slide-num-badge">SLIDE 04 / 84</div>
     </div>
 
-    <div class="slide-body">
-      
-      <!-- High-Contrast Dynamic Content Card -->
-      <div class="content-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #0284c7; padding: 10px 14px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto;">
-        <h3 style="color: #0284c7; font-weight: 800; border-bottom: 2px solid #e2e8f0; padding-bottom: 4px; margin-bottom: 5px; font-size: 1.05rem; text-transform: uppercase;">CENTRAL LIMIT THEOREM & NOISE SUPPRESSION MATH</h3>
-        <p style="color: #334155; font-weight: 500; margin-bottom: 5px; font-size: 0.85rem; line-height: 1.35;">How sample size scales resolution and measurement quality: mathematical proof of SE = σ/√N, Central Limit Theorem, and 161× SNR noise suppression.</p>
-        <ul class="bullets-list" style="padding-left: 0; list-style-type: none; margin-bottom: 3px; color: #1e293b; font-size: 0.80rem;">
+    <div class="grid-2col">
+      <!-- Left Column: Live Console Screenshot or Custom Visual -->
+      <div class="left-screenshot-card">
+        <div class="left-screenshot-header">
+          <span style="font-family: monospace; font-size: 0.69rem; color: #0284c7; font-weight: 800;">10-CONFIG • HOUSEHOLD DEVICE ROSTER &amp; SENSOR SPECS</span>
+          <span style="background: #15803d; color: #ffffff; font-size: 0.59rem; font-weight: 800; padding: 2px 6px; border-radius: 3px; font-family: monospace;">SHARED CARE VIEW</span>
+        </div>
+        <div class="left-screenshot-viewport">
           
-          <li id="bullet-item-0" class="bullet-item" data-idx="0" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">More Samples = Higher Resolution & Quality:</strong> Metrological law dictates that measurement uncertainty is inversely proportional to the square root of sample size: SE = σ/√N. Increasing N directly sharpens clinical resolution and suppresses stochastic noise.
-          </li>
-        
-          <li id="bullet-item-1" class="bullet-item" data-idx="1" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">Error Variance Reduction (Var(x̄) = σ²/N):</strong> N=2 quarterly lab draws yield an error variance of 0.5σ². LCARS N=25,920 reduces error variance to 0.000038σ²—a 99.4% elimination of uncertainty, transforming noisy bio-signals into crystalline trajectories.
-          </li>
-        
-          <li id="bullet-item-2" class="bullet-item" data-idx="2" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">161× Signal-to-Noise Ratio (SNR ∝ √N):</strong> Coherent continuous averaging enhances SNR by √N. At N=25,920, random sensor noise and epidermal baseline wander are suppressed by a factor of 161 (24.1 dB SNR improvement), revealing subtle metabolic dynamics.
-          </li>
-        
-          <li id="bullet-item-3" class="bullet-item" data-idx="3" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">Autocorrelation & Temporal Repeatability:</strong> Discrete epochs enable continuous autocorrelation Rxx(τ) = E[x(t)x(t+τ)]. High-density time-series allow Kalman filtering and trend verification that sporadic spot-checks are mathematically incapable of performing.
-          </li>
-        
-        </ul>
-        
-        <!-- Real LCARS Page Under Discussion (Full Area Fill Viewport) -->
-        <div class="left-screenshot-card" style="margin-top: 6px; margin-bottom: 6px; border: 2px solid #cbd5e1; border-radius: 8px; overflow: hidden; background: #ffffff; box-shadow: 0 4px 14px rgba(0,0,0,0.08); display: flex; flex-direction: column; flex: 1; flex: 1; height: 100%; min-height: 480px;">
-          <!-- Continuous Monotonic Viewport (Clean Light Background) -->
-          <div class="left-screenshot-viewport" style="text-align: center; background: #ffffff; overflow-y: auto; flex: 1; flex: 1; height: 100%; min-height: 460px; position: relative;">
-            <img src="images/lcars_chart_ytd.png" onerror="this.src="images/lcars_chart_ytd.png"" alt="03-METABOLIC CONSOLE • 90-DAY STATISTICAL REGRESSION & POWER" style="width: 100%; height: 100%; min-height: 460px; object-fit: cover; object-position: top center; display: block; object-fit: cover; object-position: top center;">
+<div style="width:100%;height:100%;display:flex;flex-direction:column;justify-content:space-between;gap:8px;padding:8px;background:#f8fafc;overflow-y:auto;">
+  <div style="background:#ffffff;border:1.5px solid #cbd5e1;border-radius:6px;padding:8px 12px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1.5px solid #e2e8f0;padding-bottom:5px;margin-bottom:8px;">
+      <span style="font-family:monospace;font-size:0.74rem;font-weight:800;color:#0284c7;">SYSTEM TOPOLOGY: WEARABLE &amp; MOBILE COLLECTORS &#8594; PERSONAL PC SERVER</span>
+      <span style="background:#0284c7;color:#fff;font-family:monospace;font-size:0.58rem;font-weight:800;padding:2px 7px;border-radius:3px;">100% LOCAL SOVEREIGNTY</span>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 78px 1.15fr;gap:6px;align-items:center;">
+      <!-- LEFT COLUMN: TWO FIELD DATA COLLECTORS -->
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <!-- Collector 1: Smartwatch -->
+        <div style="background:#eff6ff;border:2px solid #0284c7;border-radius:6px;padding:8px 10px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;">
+            <span style="font-family:monospace;font-size:0.70rem;font-weight:800;color:#0369a1;">1. SMARTWATCH COLLECTOR</span>
+            <span style="background:#0284c7;color:#fff;font-family:monospace;font-size:0.54rem;font-weight:800;padding:1px 5px;border-radius:3px;">24/7 WRIST</span>
+          </div>
+          <div style="font-size:0.68rem;color:#0f172a;line-height:1.35;">
+            <div><strong>Passive 5-Min Telemetry:</strong></div>
+            <div>&#8226; Glucose, BP, Pulse &amp; SpO2</div>
+            <div>&#8226; Core/Skin Temp &amp; HRV R-R</div>
+            <div>&#8226; Steps, Deep/REM Sleep &amp; Naps</div>
           </div>
         </div>
-        
-      </div>
-    
-      
-      <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #0284c7; padding: 8px 12px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow: hidden;">
-        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 4px; margin-bottom: 6px; flex-shrink: 0;">
-          <span style="font-family: monospace; font-weight: 800; color: #0284c7; font-size: 0.84rem;">ERROR CONVERGENCE & SNR SCALING</span>
-          <span style="background: #f8fafc; color: #0284c7; font-weight: 800; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; border: 1.5px solid #0284c7;">SE = σ/√N • 161× NOISE SUPPRESSION</span>
-        </div>
-        <div class="visual-content" style="flex: 1; display: flex; flex-direction: column;">
-          
-          <!-- Error Convergence & SNR Resolution Scale (Compact Fit) -->
-          <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 6px 8px; color: #0f172a;">
-            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 2px; margin-bottom: 5px;">
-              <span style="font-family: monospace; font-size: 0.68rem; color: #0284c7; font-weight: 800;">STATISTICAL ERROR CONVERGENCE (SE = σ / √N)</span>
-              <span style="background: #0284c7; color: #fff; font-size: 0.58rem; font-weight: bold; padding: 1px 5px; border-radius: 3px; font-family: monospace;">CENTRAL LIMIT</span>
-            </div>
 
-            <div style="display: flex; flex-direction: column; gap: 4px; font-family: monospace; font-size: 0.63rem;">
-              <div>
-                <div style="display: flex; justify-content: space-between; color: #dc2626; font-weight: bold;">
-                  <span>QUARTERLY LAB (N=2 SAMPLES): SE = 0.707 σ</span>
-                  <span>UNCERTAINTY: 70.7%</span>
-                </div>
-                <div style="height: 15px; background: #fee2e2; border-radius: 3px; border: 1px solid #ef4444; position: relative; overflow: hidden; display: flex; align-items: center;">
-                  <div style="width: 70.7%; height: 100%; background: #ef4444; opacity: 0.7;"></div>
-                  <span style="position: absolute; left: 6px; font-size: 0.55rem; color: #ffffff; font-weight: 800;">CI: ±1.38 σ (EXTREME UNCERTAINTY)</span>
-                </div>
-              </div>
-
-              <div>
-                <div style="display: flex; justify-content: space-between; color: #d97706; font-weight: bold;">
-                  <span>FINGERSTICKS (N=180 SAMPLES): SE = 0.075 σ</span>
-                  <span>UNCERTAINTY: 7.5%</span>
-                </div>
-                <div style="height: 15px; background: #fef3c7; border-radius: 3px; border: 1px solid #f59e0b; position: relative; overflow: hidden; display: flex; align-items: center;">
-                  <div style="width: 28%; height: 100%; background: #f59e0b; opacity: 0.7;"></div>
-                  <span style="position: absolute; left: 6px; font-size: 0.55rem; color: #78350f; font-weight: 800;">CI: ±0.15 σ (MODERATE VARIANCE)</span>
-                </div>
-              </div>
-
-              <div>
-                <div style="display: flex; justify-content: space-between; color: #15803d; font-weight: bold;">
-                  <span>LCARS 5010 (N=25,920 SAMPLES): SE = 0.0062 σ</span>
-                  <span>UNCERTAINTY: 0.62%</span>
-                </div>
-                <div style="height: 16px; background: linear-gradient(90deg, #15803d, #16a34a); border-radius: 3px; border: 1.5px solid #15803d; display: flex; align-items: center; padding: 0 6px;">
-                  <span style="font-size: 0.56rem; color: #ffffff; font-weight: 800;">CI: ±0.012 σ • 161× NOISE SUPPRESSION • NEAR-ZERO VARIANCE</span>
-                </div>
-              </div>
-            </div>
+        <!-- Collector 2: Cell Phone -->
+        <div style="background:#ecfeff;border:2px solid #0891b2;border-radius:6px;padding:8px 10px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;">
+            <span style="font-family:monospace;font-size:0.70rem;font-weight:800;color:#0e7490;">2. CELL PHONE COLLECTOR</span>
+            <span style="background:#0891b2;color:#fff;font-family:monospace;font-size:0.54rem;font-weight:800;padding:1px 5px;border-radius:3px;">ON-THE-GO</span>
           </div>
-
-          <!-- Statistical Comparison Table -->
-          <div style="margin-top: 5px; border: 1.5px solid #cbd5e1; border-radius: 5px; overflow: hidden; background: #ffffff;">
-            <table style="width: 100%; border-collapse: collapse; font-size: 0.62rem; text-align: left; font-family: monospace;">
-              <thead>
-                <tr style="background: #f1f5f9; color: #0f172a; border-bottom: 1.5px solid #cbd5e1;">
-                  <th style="padding: 2px 4px;">STATISTICAL METRIC</th>
-                  <th style="padding: 2px 4px; color: #dc2626;">LAB A1C (N=2)</th>
-                  <th style="padding: 2px 4px; color: #d97706;">FINGERSTICKS</th>
-                  <th style="padding: 2px 4px; color: #15803d; background: #f0fdf4;">LCARS (N=25,920)</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr style="border-bottom: 1px solid #f1f5f9;">
-                  <td style="padding: 2px 4px; font-weight: bold;">Sample Size (N)</td>
-                  <td style="padding: 2px 4px; color: #dc2626;">2 Points</td>
-                  <td style="padding: 2px 4px; color: #d97706;">180 Points</td>
-                  <td style="padding: 2px 4px; color: #15803d; font-weight: bold; background: #f0fdf4;">25,920 Points</td>
-                </tr>
-                <tr style="border-bottom: 1px solid #f1f5f9;">
-                  <td style="padding: 2px 4px; font-weight: bold;">Standard Error (SE)</td>
-                  <td style="padding: 2px 4px; color: #dc2626;">0.7071 σ</td>
-                  <td style="padding: 2px 4px; color: #d97706;">0.0745 σ</td>
-                  <td style="padding: 2px 4px; color: #15803d; font-weight: bold; background: #f0fdf4;">0.0062 σ (114× lower)</td>
-                </tr>
-                <tr style="border-bottom: 1px solid #f1f5f9;">
-                  <td style="padding: 2px 4px; font-weight: bold;">SNR Improvement (√N)</td>
-                  <td style="padding: 2px 4px; color: #dc2626;">1.41× Baseline</td>
-                  <td style="padding: 2px 4px; color: #d97706;">13.4× (+9.5×)</td>
-                  <td style="padding: 2px 4px; color: #15803d; font-weight: bold; background: #f0fdf4;">161.0× (+161× gain)</td>
-                </tr>
-                <tr>
-                  <td style="padding: 2px 4px; font-weight: bold;">Confidence Interval</td>
-                  <td style="padding: 2px 4px; color: #dc2626;">±138% Width</td>
-                  <td style="padding: 2px 4px; color: #d97706;">±14.6% Width</td>
-                  <td style="padding: 2px 4px; color: #15803d; font-weight: bold; background: #f0fdf4;">±1.2% (True Value)</td>
-                </tr>
-              </tbody>
-            </table>
+          <div style="font-size:0.68rem;color:#0f172a;line-height:1.35;">
+            <div><strong>Offline-Ready Lifestyle App:</strong></div>
+            <div>&#8226; Pre-Meal Photo/Carb Estimation</div>
+            <div>&#8226; Water Intake &amp; Scheduled Meds</div>
+            <div>&#8226; HDYF Voice Notes, Pain &amp; Mood</div>
           </div>
-
-          <!-- Metrology Callout -->
-          <div style="margin-top: 5px; background: #f0fdf4; border-left: 3px solid #16a34a; padding: 4px 8px; border-radius: 4px; font-size: 0.62rem; color: #14532d; line-height: 1.3; font-family: monospace;">
-            <strong>METROLOGICAL LAW:</strong> In stochastic signal processing, noise is zero-mean Gaussian. Averaging N independent measurements diminishes noise by 1/√N. LCARS achieves 161× higher precision than quarterly blood draws.
-          </div>
-
-        </div>
-        <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.76rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
-          <strong style="color: #15803d;">Key Takeaway:</strong> More samples yield higher resolution and measurement quality: by the Central Limit Theorem, LCARS's 25,920 continuous glucose samples reduce standard error by 99.4% (SE = σ/√N) and suppress noise by 161× (SNR ∝ √N), elevating clinical precision and repeatability far beyond isolated snapshots.
         </div>
       </div>
-    
+
+      <!-- CENTER COLUMN: CONVERGENCE SVG ARROWS -->
+      <svg viewBox="0 0 78 210" style="width:100%;height:210px;display:block;">
+        <!-- Top arrow: Watch -> PC -->
+        <path d="M 4 52 C 36 52, 36 86, 68 86" fill="none" stroke="#0284c7" stroke-width="2.5"/>
+        <polygon points="66,81 75,86 66,91" fill="#0284c7"/>
+        <rect x="6" y="34" width="60" height="14" rx="3" fill="#e0f2fe" stroke="#0284c7" stroke-width="0.8"/>
+        <text x="36" y="44" text-anchor="middle" font-family="monospace" font-size="7.5" font-weight="bold" fill="#0369a1">BLUETOOTH</text>
+
+        <!-- Bottom arrow: Phone -> PC -->
+        <path d="M 4 158 C 36 158, 36 124, 68 124" fill="none" stroke="#0891b2" stroke-width="2.5"/>
+        <polygon points="66,119 75,124 66,129" fill="#0891b2"/>
+        <rect x="6" y="162" width="60" height="14" rx="3" fill="#cffafe" stroke="#0891b2" stroke-width="0.8"/>
+        <text x="36" y="172" text-anchor="middle" font-family="monospace" font-size="7.5" font-weight="bold" fill="#0e7490">HOME WI-FI</text>
+      </svg>
+
+      <!-- RIGHT COLUMN: PERSONAL PC BFM SERVER HUB -->
+      <div style="background:#f0fdf4;border:2.5px solid #15803d;border-radius:8px;padding:10px 12px;box-shadow:0 2px 6px rgba(21,128,61,0.12);">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;border-bottom:1.5px solid #bbf7d0;padding-bottom:4px;">
+          <span style="font-family:monospace;font-size:0.74rem;font-weight:800;color:#15803d;">3. PERSONAL PC: BFM SERVER</span>
+          <span style="background:#15803d;color:#fff;font-family:monospace;font-size:0.54rem;font-weight:800;padding:1px 6px;border-radius:3px;">HOME VAULT</span>
+        </div>
+        <div style="font-size:0.69rem;color:#0f172a;line-height:1.45;">
+          <div style="margin-bottom:4px;"><strong>Private Unifying Clinical Brain:</strong></div>
+          <div>&#8226; Merges Watch + Phone timelines seamlessly</div>
+          <div>&#8226; Stores years locally in encrypted SQLite vault</div>
+          <div>&#8226; Computes ADAG eA1C, GMI, TIR &amp; GLUT4 scores</div>
+          <div>&#8226; Serves 14-Tab Dashboard &amp; 3D Fly-Through</div>
+          <div>&#8226; Generates Epic FHIR R4 &amp; Physician PDF Packs</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM BANNER: SHARED CLINICAL LOOP -->
+  <div style="background:#ffffff;border:1.5px solid #0284c7;border-radius:6px;padding:8px 12px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+      <span style="font-family:monospace;font-size:0.70rem;font-weight:800;color:#0284c7;">UNIFIED OUTPUT &#8594; SHARED CAUSE-AND-EFFECT EVIDENCE</span>
+      <span style="font-family:monospace;font-size:0.60rem;font-weight:700;color:#15803d;">ZERO THIRD-PARTY CLOUD LOCK-IN</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;font-family:monospace;font-size:0.62rem;font-weight:700;text-align:center;">
+      <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:4px;padding:5px;color:#1e3a8a;">PRIMARY DOCTOR</div>
+      <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:4px;padding:5px;color:#1e3a8a;">ENDOCRINOLOGIST</div>
+      <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:4px;padding:5px;color:#1e3a8a;">PHARMACIST</div>
+      <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:4px;padding:5px;color:#1e3a8a;">DIETITIAN</div>
+    </div>
+  </div>
+</div>
+
+        </div>
+      </div>
+
+      <!-- Right Column: Narrative Points + Doctor Calculus & Clinical Fitness -->
+      <div class="right-column">
+        <div class="content-card">
+          <div class="card-header-strip">
+            <span>TWO FIELD COLLECTORS UNIFIED BY ONE PRIVATE PC SERVER</span>
+            <span style="color: #64748b;">PATIENT &amp; CLINICIAN WALKTHROUGH</span>
+          </div>
+          <div class="bullet-item bullet-item-0" data-idx="0">
+            <strong style="color: #0284c7;">Smartwatch Collector (Passive Wrist Sensing):</strong> Continuously harvests 5-minute optical glucose, blood pressure, heart rate, oxygen, temperature, HRV, steps, and sleep day and night.
+          </div>
+          <div class="bullet-item bullet-item-1" data-idx="1">
+            <strong style="color: #0284c7;">Cell Phone Collector (On-the-Go Life Events):</strong> Logs restaurant meals, hydration, medications, and How Do You Feel voice notes effortlessly—even offline outdoors—docking over home Wi-Fi.
+          </div>
+          <div class="bullet-item bullet-item-2" data-idx="2">
+            <strong style="color: #0284c7;">Personal PC BFM Server (Private Clinical Vault):</strong> Unifies watch biometrics and phone choices onto one master timeline on your home computer—giving all four doctors zero-cloud truth.
+          </div>
+          <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.75rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
+            <strong style="color: #15803d;">Key Takeaway:</strong> Watch biometrics plus Cell Phone lifestyle logs merge inside your personal PC BFM Server—so cause and effect appear cleanly without third-party cloud lock-in.
+          </div>
+        </div>
+
+        <div class="visual-card">
+          <div class="card-header-strip">
+            <span>COLLECTOR-TO-PC ARCHITECTURE</span>
+            <span style="background: #0284c7; color: #ffffff; font-size: 0.57rem; padding: 2px 6px; border-radius: 3px;">2 COLLECTORS -&gt; 1 PC</span>
+          </div>
+          <div style="background:#f8fafc;border:1.5px solid #cbd5e1;border-radius:6px;padding:7px;"><div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1.5px solid #cbd5e1;padding-bottom:3px;margin-bottom:5px;"><span style="font-family:monospace;font-size:0.70rem;font-weight:800;color:#0284c7;">COLLECTOR-TO-PC ARCHITECTURE</span><span style="background:#0284c7;color:#fff;font-family:monospace;font-size:0.58rem;font-weight:800;padding:2px 6px;border-radius:3px;">2 COLLECTORS -&gt; 1 PC</span></div><div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:5px;overflow:hidden;"><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Smartwatch Collector</span><span style="font-family:monospace;color:#475569;">24/7 passive vitals over home Bluetooth</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#0284c7;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">CONTINUOUS</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Cell Phone Collector</span><span style="font-family:monospace;color:#475569;">Meals, fluids, meds &amp; HDYF over Wi-Fi</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#0284c7;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">OFFLINE SAFE</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Personal PC BFM Server</span><span style="font-family:monospace;color:#475569;">Private SQLite vault, 14 tabs &amp; FHIR R4</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#0284c7;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">ZERO CLOUD</span></div></div><div style="margin-top:6px;background:#f0fdf4;border:1.5px solid #86efac;border-radius:5px;padding:6px 9px;"><div style="font-family:monospace;font-size:0.65rem;font-weight:800;color:#15803d;margin-bottom:2px;">PHYSICIAN CALCULUS &amp; MEASUREMENT FITNESS • CAUSAL ALIGNMENT OPERATOR</div><div style="font-family:monospace;font-size:0.74rem;font-weight:700;color:#0f172a;line-height:1.35;">State(t) = Watch_Vitals(t) U Phone_Context(t) -&gt; PC_Vault (delta_t &lt;= 5 min)</div></div></div><div style="margin-top:6px;background:#eff6ff;border-left:3.5px solid #0284c7;padding:6px 9px;border-radius:4px;font-size:0.72rem;color:#1e3a8a;line-height:1.35;"><strong>Clinical Significance:</strong> Merging objective wrist physiology with mobile meal and symptom timestamps directly on the household PC server eliminates multi-app silos before every doctor visit.</div>
+        </div>
+      </div>
     </div>
 
     <div class="slide-footer">
-      <div>LCARS 5010 CLINICAL AMBULATORY TELEMETRY ONBOARDING • LIGHT THEME</div>
-      <div>AUSTRALIAN FEMALE VOICE • 100% SCREEN SYNCHRONIZED</div>
+      <div>BFM BIOMETRIC FUNCTION MONITOR • POWERED BY GOOGLE GEMINI AI</div>
+      <div>AUSTRALIAN VOICE NARRATION • TAB 01–14 SYNCHRONIZED</div>
     </div>
   </div>
 </body>

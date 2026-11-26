@@ -1,6 +1,6 @@
 # BFM Biometric Function Monitor: Master Test Plan
-## Build Under Test: `beta.00.01.0002` • Six Sigma & SEI-CMMI Level 5 Quality Assurance
-**System Architecture:** Star Ship Gemini NCC-202X • Desktop Console & Home Wi-Fi Companion Portal  
+## Build Under Test: `beta.00.01.0057` • Six Sigma & SEI-CMMI Level 5 Quality Assurance
+**System Architecture:** BFM Biometric Function Monitor (`BFM.HTM` & `BFM_Launcher.exe`) • Desktop Console & Home Wi-Fi Companion Portal (`cell.html`)  
 **Document Classification:** Enterprise Quality Management & Human-Centric Testing Protocol  
 **Pioneer, Inventor & Philosophical Leader:** The Author (Creator, Chief Architect, and Inventor)  
 **Corporate & Technology Sponsor:** Google (Sponsoring, Hosting, and Powering via Google Gemini AI)  
@@ -27,8 +27,8 @@ Testing is executed in two strictly decoupled phases:
 
 | Testing Tier | Verification Method | Execution Environment | Tools & Harnesses | Pass / Fail Criteria |
 | :--- | :--- | :--- | :--- | :--- |
-| **Pass 1: Gemini Automated Validation** | Headless automated compilation, AST parsing, schema checks, and REST dispatch | Local Node CL3 (`127.0.0.1:8899`) | `audit_zero_defect.py`<br>`strict_gate_v2.py`<br>`test_beta1_e2e.py` | 100% Pass (0 errors, 0 warnings, 0 defects) |
-| **Pass 2: Human-in-the-Loop Validation** | Human operator manual UI/UX execution starting by double-clicking `BFM.HTM` | Windows 11 Desktop + Chrome/Edge | Windows Explorer<br>`BFM.HTM`<br>CLEBugger (`:8999`) | All 14 tab bays nominal; 0 blocking defects; user likes UX |
+| **Pass 1: Gemini Automated Validation** | Headless automated compilation, AST parsing, schema checks, presentation audit, and REST dispatch | Local Server (`127.0.0.1:8899`) | `audit_zero_defect.py` (`21/21`)<br>`strict_gate_v2.py` (`13/13`)<br>`test_beta1_e2e.py` (`10/10`)<br>`tools/audit_presentation_full.py` (`84/84`) | 100% Pass (0 errors, 0 warnings, 0 defects, 0 OPEN CLEBUGGER items) |
+| **Pass 2: Human-in-the-Loop Validation** | Human operator manual UI/UX execution via `BFM_Launcher.exe` or double-clicking `BFM.HTM` | Windows 11 Desktop + Chrome/Edge | Windows Explorer<br>`BFM.HTM` / `BFM_Launcher.exe`<br>`D:\CLEBUGGER\bugs.db` | All 14 tabs nominal; 0 blocking defects; user approves UX |
 
 ---
 
@@ -36,22 +36,19 @@ Testing is executed in two strictly decoupled phases:
 
 Before any human testing begins, the automated suite must certify the build with zero defects:
 
-1. **Check 1: Zero Defect Visual Cleanliness (`audit_zero_defect.py`)**:
-   * Evaluates all documentation, presentations, and display files across 8 strict checks.
-   * Asserts 0 broken image links, 0 fragile SVG embeds, 0 LaTeX math tokens, 0 ASCII box-art, and 0 raw flowcharts.
-2. **Check 2: Ten-Point Six Sigma Pre-Commit Gate (`strict_gate_v2.py`)**:
+1. **Check 1: Zero Defect Visual Cleanliness & Runtime Parity (`audit_zero_defect.py` — 21 Checks)**:
+   * Evaluates documentation, presentations, `BFM.HTM`, `cell.html`, and `server.py` across 21 automated checks.
+   * Asserts 0 broken image links, 0 fragile SVG embeds, 0 LaTeX math tokens, 0 ASCII box-art, 0 raw flowcharts, `file:///` parity, and pure zero-data compliance.
+2. **Check 2: Thirteen-Point Six Sigma Pre-Commit Gate (`strict_gate_v2.py` — 13 Checks)**:
    * Bit-for-bit SHA-256 parity between root `BFM.HTM`, `index.html`, and `w11_htm_app/index.html`.
-   * HTML DOM tag balance (Opens == Closes == 1,995, Diff == 0).
-   * JavaScript AST compilation via Node.js `--check`.
-   * Python AST bytecode compilation (`server.py`).
-   * SQLite deduplication & confectionery safety truth tables.
-   * Zero monetary price residue in nutrition headers.
-   * Multi-tenant database schema integrity.
-   * Mobile companion `cell.html` DOM balance.
-   * FHIR R4 JSON schema export template validation.
-3. **Check 3: Dual-Origin API Connectivity (`test_beta1_e2e.py`)**:
-   * Validates dynamic endpoint resolution: `window.location.protocol === 'file:' ? 'http://127.0.0.1:8899' : ''`.
-   * Asserts zero failed fetch calls when launched directly from the local file system.
+   * HTML DOM tag balance (Opens == Closes == `1,957`, Diff == `0`) across all 14 direct-child `<main>` tabs.
+   * JavaScript AST compilation via Node.js `--check` and Python AST bytecode compilation (`server.py`).
+   * SQLite deduplication & confectionery safety truth tables, zero monetary cost residue, and multi-tenant 3-way triad schema integrity.
+   * Fail-closed CLEBUGGER synchronization (`tools/sync_clebugger.py --check`, `0 OPEN` across all tagged Beta builds).
+3. **Check 3: Dual-Origin & Telemetry E2E Suite (`test_beta1_e2e.py` — 10 Checks)**:
+   * Validates dynamic endpoint resolution (`window.location.protocol === 'file:' ? 'http://127.0.0.1:8899' : ''`), Bleak arbitration (`/api/browser_active`), and zero cross-tenant pollution.
+4. **Check 4: Full 84-Slide Presentation Audit (`tools/audit_presentation_full.py`)**:
+   * Verifies every slide (`01`–`84`) across `presentation/`, `presentation/slides/`, and `slides/` in strict Tab 01 (`01-FULL SCAN`) -> Tab 02 (`02-METABOLIC`) -> Tab 03 (`03-MEAL PLANNER`) -> ... -> Tab 14 order, all live PNG screenshots (`> 15 KB`), custom Slide 02 90-day sampling SVG, Slide 04 collector-to-PC topology, all 36 animated 3D fly-through JPEGs, all MP3 narrations, zero programmer jargon, and clinical measurement truth.
 
 ---
 
@@ -89,53 +86,45 @@ The human tester executes the following sequential protocol, beginning by locati
 4. Verify Medication Management table displays: `[NO ACTIVE MEDICATIONS RECORDED]`.
 5. Verify Patient Chart Number / MRN field displays: `[UNASSIGNED]`. Zero synthetic MRN strings.
 
-#### Step 6: Watch Connection, Full Scan & Real-Time Metabolic Ingestion
-1. Click **`⚡ SYNC WATCH NOW`** on the status ribbon.
-2. Watch transponder links via Web Bluetooth; full 24-hour telemetry dump initiates.
-3. Verify that upon scan completion, **Bay 03 (Metabolic Console) immediately updates** with live downloaded glucose, blood pressure, temperature, and SpO2 readings.
-4. Verify that the charts refresh with real physical watch data with zero staleness.
+#### Step 6: Watch Connection, `0xDF`/`0x88`/`0xE0`/`0xB8` Scan & Real-Time Ingestion
+1. Click **`⚡ SYNC WATCH NOW`** on the status ribbon (or run tab switch / button press active hardware harvest).
+2. Watch transponder links via Web Bluetooth; `0xDF` OriginV3 244B MTU 5-min history, `0x88` Core/Skin temperature history (`00:00–23:59`), and `0xE0` 24h Sleep + daytime naps ingest automatically.
+3. Verify `0xB8` Page-0 `READ` guard preserves user **12-hour vs 24-hour** clock format across all Reports charts and **2,000** step goal parity (`0xA3`).
+4. Verify **13-Channel 3D Multi** and **13-Lane Tall Chart** display identical signals (`CH 01` Glucose through `CH 13` Medications Rx), blue off-wrist exclusion bands during charging/shower, and event overlays (`▲ GLUT4`, `▲ Carbs`, `+oz` Fluid, `▼ Rx`).
 
-#### Step 7: HBand 2.0 Full Sensor Equivalence Verification
-1. Verify native display of continuous optical glucose, blood pressure, resting heart rate, HRV/stress, and SpO2.
-2. Verify dedicated presentation of **raw ECG rhythm strip canvas** (25 mm/sec sweep, PR/QT intervals).
-3. Verify **MET energy expenditure gauge** (active vs. resting metabolic rates).
-4. Verify **multi-stage sleep architecture hypnogram** (deep, light, REM, awake cycles).
+#### Step 7: HBand 2.0 Sensor Equivalence & Model 5010 Dial Boundary
+1. Verify continuous optical glucose, blood pressure, resting heart rate, genuine **`8,859`-epoch R-R Lorenz Poincaré**, SpO2, Core/Skin Temperature, and METs.
+2. Verify **raw ECG rhythm strip canvas** (25 mm/sec sweep, PR/QT intervals) and **multi-stage sleep architecture hypnogram** (`Deep`, `REM`, `Light`, `Awake` + daytime naps).
+3. In `11-WATCH`, verify Model 5010 non-writable dial hardware correctly hides dial-overwrite UI below `#boxDialOverwriteExp`.
 
-#### Step 8: Meal Planner, Exact Estimation & Immediate Journal Commitment
-1. Navigate to **02-MEAL PLANNER**.
+#### Step 8: Meal Planner, Exact Estimation & Hydration Commitment (`03-MEAL PLANNER`)
+1. Navigate to **`03-MEAL PLANNER`** (`pageDietTrades`).
 2. Enter: *"Taco Time Northwest: Fiesta Platter, seasoned beef, sour cream, and 32 oz diet soda"*.
-3. Click **`ESTIMATE NUTRITION (GEMINI)`**.
-4. Verify estimated nutritional return matches published disclosures: **520 kcal, 33g net carbs, 28g protein, 28g fat, 32 oz fluid**, and zero monetary price strings.
-5. Click **`🚀 CONSUME NOW (LOG TO MEAL LOG)`**.
-6. Navigate to Chronological Nutrition & Meal Journal: verify meal is immediately appended to today's log and today's total net carbs update in real time.
+3. Click **`ESTIMATE NUTRITION (GEMINI)`** and verify exact published facts: **520 kcal, 33g net carbs, 28g protein, 28g fat, 32 oz fluid**, with zero monetary price strings.
+4. Click **`🚀 CONSUME NOW (LOG TO MEAL LOG)`** and verify total calories, net carbs, and daily hydration (`fl oz`, e.g., `80.0 fl oz`) update immediately on Charts (`CH 11` & `CH 12`).
 
 #### Step 9: "How Do You Feel?" (HDYF) Somatosensory Pain & Discomfort Logging
 1. Open the companion portal on local Wi-Fi (`http://<PC_IP>:8899/cell.html`).
-2. Respond to the daily prompt: *"How do you feel right now?"*.
-3. Voice or type a somatosensory complaint: *"Burning pain in toes tonight, knees stiff after walking."*
-4. Verify statement is committed to `patient_experiential_journal` with exact timestamp.
-5. On Desktop BFM Console, verify complaint is parsed into categories: **Neuropathic Burning (Rank 7/10)** and **Articular Stiffness (Rank 5/10)**.
-6. Verify marker appears anchored directly over the correlated glucose and HRV telemetry on the master timeline.
+2. Respond to *"How do you feel right now?"* and submit a somatosensory note (e.g., *"Burning pain in toes tonight, knees stiff after walking"*).
+3. Verify record persists in `feeling_entries` (`w11_htm_app/telemetry.db`) and renders directly in `CH 09: PAIN INDEX` and `CH 10: MOOD SCALE`.
 
-#### Step 10: Single Consolidated EHR Data Export (Bay 05)
-1. Navigate to **05-EXPORT** (`05-EHR DATA EXPORT`).
-2. Verify all export triggers (Epic FHIR R4 JSON, LOINC CSV, SQLite snapshot, dual backup) are centralized in Bay 05.
-3. Verify that duplicate export buttons have been eliminated from Tabs 01, 04, and 12.
-4. Enter patient chart number (or leave unassigned); click **`1-CLICK GENERATE EPIC FHIR R4 JSON`**.
-5. Verify downloaded file validates against HL7 FHIR R4 schema and contains zero hardcoded synthetic MRN strings.
+#### Step 10: Single Consolidated EHR Data Export & USB Backup (`13-EXPORT`)
+1. Navigate to **`13-EXPORT`** (`pageExport`).
+2. Verify all export triggers (Epic FHIR R4 JSON, LOINC CSV, SQLite snapshot, deduplicated USB backup) are centralized in `13-EXPORT` without scattered buttons across other tabs.
+3. Click **`1-CLICK GENERATE EPIC FHIR R4 JSON`** and verify HL7 FHIR R4 validation with zero synthetic MRNs.
 
 ---
 
-### 5. Defect Logging & CLEBugger Integration (Port 8999)
+### 5. Defect Logging & CLEBUGGER Synchronization (`D:\CLEBUGGER\bugs.db`)
 
-Every anomaly, UI defect, or functional failure discovered during Pass 2 manual testing must be logged directly into the CLEBugger daemon running on port 8999:
+Every anomaly, UI defect, or change request discovered during testing is persisted in **`D:\CLEBUGGER\bugs.db`** (`JVEEPOO` project) and audited by **`tools/sync_clebugger.py`**:
 
-* **Endpoint**: `http://127.0.0.1:8999/api/bugs`
+* **Canonical CLI Gate**: `python tools/sync_clebugger.py --check` (enforced by `strict_gate_v2.py` Check 12/13).
 * **Defect Classification**:
-  - **Sev 1 (Critical Safety / Data Loss)**: Corrupted medical data, fake mock prescriptions, failed hardware communication.
-  - **Sev 2 (Functional / Visual Anomaly)**: Stale chart rendering, theme clipping, incorrect nutritional calculation.
-  - **Sev 3 (Cosmetic / Usability)**: Button alignment, label wording, minor layout padding.
-* **Closed-Loop Resolution**: A build cannot achieve Six Sigma certification until all logged Sev 1 and Sev 2 defects have been resolved, re-tested, and verified with zero regression.
+  - **Sev 0 / Sev 1 (Critical Safety / Data Loss)**: Fake mock data leaks, missing sensor bands (`0xDF`/`0x88`/`0xE0`), 12h clock overwrites, or failed GATT transport.
+  - **Sev 2 (Functional / Visual Anomaly)**: Chart desync between 3D Multi and Tall Chart, theme clipping, incorrect nutrition calculation.
+  - **Sev 3 (Cosmetic / Usability)**: Button alignment, label wording, layout padding.
+* **Zero-Open Certification**: Build release requires **`0 OPEN`** unresolved defects in `D:\CLEBUGGER\bugs.db` (`CLE-001`–`CLE-112` + all Beta builds resolved).
 
 ---
 

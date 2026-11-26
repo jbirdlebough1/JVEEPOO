@@ -2,187 +2,233 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>LCARS 5010 - Slide 41: Tab 04: Reports – Nocturnal Sleep Duration & Hypnogram Architecture</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slide 41: Genuine Watch 2D Lorenz (Poincaré) Scatter Plot (`4,831`+ Real Epochs)</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
       width: 100%;
-      height: 100%;
-      background: #f1f5f9;
+      height: 100vh;
+      overflow: hidden;
+      background: #f8fafc;
       color: #0f172a;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
     }
-    .slide-frame {
-      flex: 1;
+    .slide-container {
+      width: 100%;
       height: 100vh;
+      padding: 12px 18px;
       display: flex;
       flex-direction: column;
-      padding: 8px 16px;
-      gap: 6px;
-      box-sizing: border-box;
-      min-height: 0;
+      background: #f8fafc;
     }
     .slide-header {
+      border-bottom: 2px solid #cbd5e1;
+      padding-bottom: 6px;
+      margin-bottom: 8px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      border-bottom: 2.5px solid #0284c7;
-      padding: 6px 14px;
-      background: #ffffff;
-      border-radius: 6px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-      border: 1px solid #e2e8f0;
+      align-items: flex-end;
       flex-shrink: 0;
     }
-    .slide-module {
-      font-size: 0.78rem;
-      color: #0284c7;
+    .module-badge {
+      display: inline-block;
+      background: #e0f2fe;
+      border: 1px solid #0284c7;
+      color: #0369a1;
+      font-size: 0.65rem;
       font-weight: 800;
-      letter-spacing: 0.08em;
+      padding: 2px 7px;
+      border-radius: 3px;
       text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-family: monospace;
+      margin-bottom: 3px;
     }
     .slide-title {
-      font-size: 1.35rem;
-      font-weight: 900;
-      color: #0f172a;
-      margin-top: 0px;
-      letter-spacing: -0.01em;
-    }
-    .slide-badge {
-      background: #0284c7;
-      color: #ffffff;
-      font-family: monospace;
+      font-size: 1.28rem;
       font-weight: 800;
-      font-size: 0.76rem;
-      padding: 3px 10px;
+      color: #0f172a;
+      line-height: 1.15;
+    }
+    .slide-desc {
+      font-size: 0.79rem;
+      color: #475569;
+      margin-top: 2px;
+      font-weight: 500;
+    }
+    .slide-num-badge {
+      font-family: monospace;
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #0284c7;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      padding: 3px 9px;
       border-radius: 4px;
-      letter-spacing: 0.05em;
       flex-shrink: 0;
     }
-    .slide-body {
-      flex: 1;
+    .grid-2col {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 14px;
+      flex: 1;
       min-height: 0;
-      height: calc(100vh - 66px);
+      overflow: hidden;
     }
-    .slide-footer {
+    .left-screenshot-card {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      min-height: 0;
+      overflow: hidden;
+    }
+    .left-screenshot-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 0.70rem;
-      color: #64748b;
+      border-bottom: 1.5px solid #e2e8f0;
+      padding-bottom: 5px;
+      margin-bottom: 6px;
+      flex-shrink: 0;
+    }
+    .left-screenshot-viewport {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      background: #ffffff;
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    .right-column {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 0;
+      overflow: hidden;
+    }
+    .content-card {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 9px 13px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      flex: 1;
+      overflow-y: auto;
+    }
+    .bullet-item {
+      border-left: 4px solid transparent;
+      border-radius: 4px;
+      padding: 5px 8px;
+      font-size: 0.77rem;
+      line-height: 1.36;
+      color: #1e293b;
+      transition: background 0.25s ease, border-left-color 0.25s ease;
+    }
+    .visual-card {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 8px 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      overflow-y: auto;
+      flex-shrink: 0;
+      max-height: 48%;
+    }
+    .card-header-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1.5px solid #e2e8f0;
+      padding-bottom: 4px;
+      margin-bottom: 5px;
       font-family: monospace;
+      font-size: 0.70rem;
+      font-weight: 800;
+      color: #0284c7;
+    }
+    .slide-footer {
       border-top: 1px solid #cbd5e1;
       padding-top: 4px;
+      margin-top: 6px;
+      display: flex;
+      justify-content: space-between;
+      font-family: monospace;
+      font-size: 0.67rem;
+      color: #64748b;
+      font-weight: 600;
       flex-shrink: 0;
     }
   </style>
 </head>
 <body>
-  <div class="slide-frame">
+  <div class="slide-container">
     <div class="slide-header">
       <div>
-        <div class="slide-module">Module 5: Clinical Reports & Longitudinal Analytics</div>
-        <div class="slide-title">Tab 04: Reports – Nocturnal Sleep Duration & Hypnogram Architecture</div>
+        <div class="module-badge">Tab 04: 04-REPORTS</div>
+        <div class="slide-title">Genuine Watch 2D Lorenz (Poincaré) Scatter Plot (`4,831`+ Real Epochs)</div>
+        <div class="slide-desc">Cardiologist-grade Poincaré scatter plotting genuine beat-to-beat R-R intervals (`Mean 802 ms`, `SDNN 76.1`, `RMSSD 46.7`, Score `87/100`).</div>
       </div>
-      <div class="slide-badge">SLIDE 41 / 56</div>
+      <div class="slide-num-badge">SLIDE 41 / 84</div>
     </div>
 
-    <div class="slide-body">
-      
-      <!-- High-Contrast Dynamic Content Card -->
-      <div class="content-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #0284c7; padding: 10px 14px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto;">
-        <h3 style="color: #0284c7; font-weight: 800; border-bottom: 2px solid #e2e8f0; padding-bottom: 4px; margin-bottom: 5px; font-size: 1.05rem; text-transform: uppercase;">CIRCADIAN SLEEP HYPNOGRAM & METABOLIC RESTORATION</h3>
-        <p style="color: #334155; font-weight: 500; margin-bottom: 5px; font-size: 0.85rem; line-height: 1.35;">Polysomnographic sleep architecture tracking total sleep duration, deep sleep, light sleep, and REM cycles.</p>
-        <ul class="bullets-list" style="padding-left: 0; list-style-type: none; margin-bottom: 3px; color: #1e293b; font-size: 0.80rem;">
-          
-          <li id="bullet-item-0" class="bullet-item" data-idx="0" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">Multisensor Sleep Stage Modeling:</strong> Synthesizes wrist actigraphy, PPG pulse slowing, and thermal nadir into hypnogram stages.
-          </li>
-        
-          <li id="bullet-item-1" class="bullet-item" data-idx="1" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">Restorative Deep Sleep Ratio:</strong> Audits slow-wave sleep duration essential for cellular repair and insulin sensitivity restoration.
-          </li>
-        
-          <li id="bullet-item-2" class="bullet-item" data-idx="2" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">Dawn Phenomenon Mitigation:</strong> Sustained, uninterrupted nocturnal sleep blunts morning cortisol spikes that drive fasting hyperglycemia.
-          </li>
-        
-        </ul>
-        
-        <!-- Real LCARS Page Under Discussion (Full Area Fill Viewport) -->
-        <div class="left-screenshot-card" style="margin-top: 6px; margin-bottom: 6px; border: 2px solid #cbd5e1; border-radius: 8px; overflow: hidden; background: #ffffff; box-shadow: 0 4px 14px rgba(0,0,0,0.08); display: flex; flex-direction: column; flex: 1; min-height: 310px;">
-          <!-- Continuous Monotonic Viewport (Clean Light Background) -->
-          <div class="left-screenshot-viewport" style="text-align: center; background: #ffffff; overflow-y: auto; flex: 1; min-height: 290px; position: relative;">
-            <img src="images/lcars_tab04_reports.png" onerror="this.src="images/lcars_tab04_reports.png"" alt="TAB 04: REPORTS CONSOLE" style="width: 100%; height: auto; display: block; object-fit: cover; object-position: top center;">
-          </div>
+    <div class="grid-2col">
+      <!-- Left Column: Live Console Screenshot or Custom Visual -->
+      <div class="left-screenshot-card">
+        <div class="left-screenshot-header">
+          <span style="font-family: monospace; font-size: 0.69rem; color: #0284c7; font-weight: 800;">04-REPORTS • REAL-WATCH 2D LORENZ (POINCARE) HRV PLOT</span>
+          <span style="background: #15803d; color: #ffffff; font-size: 0.59rem; font-weight: 800; padding: 2px 6px; border-radius: 3px; font-family: monospace;">SHARED CARE VIEW</span>
         </div>
-        
-      </div>
-    
-      
-      <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #0284c7; padding: 10px 14px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto;">
-        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 4px; margin-bottom: 6px; flex-shrink: 0;">
-          <span style="font-family: monospace; font-weight: 800; color: #0284c7; font-size: 0.84rem;">POLYSOMNOGRAPHIC ARCHITECTURE & GLYCEMIA</span>
-          <span style="background: #f8fafc; color: #0284c7; font-weight: 800; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; border: 1.5px solid #0284c7;">SOMNO-03 HYPNOGRAM</span>
-        </div>
-        <div class="visual-content" style="flex: 1; display: flex; flex-direction: column;">
-          
-          <!-- Polysomnographic Sleep Stages & Endocrine Feedback Card -->
-          <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 10px; margin-top: 4px; color: #0f172a; font-family: monospace; font-size: 0.67rem; line-height: 1.4;">
-            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 4px; margin-bottom: 8px;">
-              <span style="font-size: 0.72rem; color: #0284c7; font-weight: 800;">MULTISENSOR POLYSOMNOGRAPHY & STAGING</span>
-              <span style="background: #0284c7; color: #fff; font-size: 0.60rem; font-weight: bold; padding: 2px 6px; border-radius: 3px;">SLEEP MATRIX</span>
-            </div>
-
-            <!-- Multisensor Modeling -->
-            <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 4px; padding: 6px; margin-bottom: 6px;">
-              <strong style="color: #1e40af; font-size: 0.70rem;">1. MULTISENSOR SLEEP STAGE SYNTHESIS:</strong>
-              <div style="color: #1e3a8a; margin-top: 2px;">
-                Synthesizes tri-axial accelerometer micro-movement zero-crossings, optical PPG pulse rate deceleration, and wrist epidermal heat-flux nadirs to accurately classify nocturnal epochs without cumbersome clinical polysomnography leads.
-              </div>
-            </div>
-
-            <!-- Four Hypnogram Stages -->
-            <div style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 4px; padding: 6px; margin-bottom: 6px;">
-              <strong style="color: #15803d; font-size: 0.70rem;">2. THE FOUR HYPNOGRAM STAGES & CLINICAL BENCHMARKS:</strong>
-              <div style="color: #14532d; margin-top: 2px;">
-                • <strong>Deep Delta Sleep (N3):</strong> Target 1.5–2.0h (&gt;20%). Slow-wave delta rhythms suppress pituitary ACTH, blunting overnight cortisol and re-sensitizing muscle GLUT4 insulin receptors.<br>
-                • <strong>Light Sleep (N1/N2):</strong> 50%–60% of total rest; physiological baseline rest.<br>
-                • <strong>REM Dreaming (R):</strong> 20%–25%; autonomic and neurovascular restoration.<br>
-                • <strong>Awake Epochs:</strong> &lt;5%; minimal micro-arousals.
-              </div>
-            </div>
-
-            <!-- Endocrine-Glycemic Axis -->
-            <div style="background: #fef2f2; border: 1px solid #fecaca; border-radius: 4px; padding: 6px; margin-bottom: 6px;">
-              <strong style="color: #dc2626; font-size: 0.70rem;">3. THE SLEEP-GLYCEMIC CASCADE:</strong>
-              <div style="color: #7f1d1d; margin-top: 2px;">
-                Patients achieving &lt;15% deep sleep exhibit a <strong>23% reduction in whole-body insulin sensitivity</strong>. Unsuppressed nocturnal cortisol accelerates hepatic gluconeogenesis, producing stubborn morning fasting blood glucose spikes (&gt;170 mg/dL).
-              </div>
-            </div>
-
-            <div style="background: #f1f5f9; border-left: 3px solid #0284c7; padding: 5px 8px; border-radius: 3px; font-size: 0.65rem; color: #334155;">
-              <strong>ACTIONABLE SLEEP HYGIENE:</strong> Auditing hypnogram architecture verifies that evening meal timing, bedtime routine, and CPAP compliance actively protect glycemic resilience.
-            </div>
-          </div>
-    
-        </div>
-        <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.76rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
-          <strong style="color: #15803d;">Key Takeaway:</strong> Reconstructs nocturnal sleep architecture to audit restorative deep sleep and curb dawn hyperglycemia.
+        <div class="left-screenshot-viewport">
+          <img src="images/bfm_t04_13_hrv_lorenz.png" alt="04-REPORTS • REAL-WATCH 2D LORENZ (POINCARE) HRV PLOT" style="width: 100%; max-height: 100%; object-fit: contain; display: block;">
         </div>
       </div>
-    
+
+      <!-- Right Column: Narrative Points + Doctor Calculus & Clinical Fitness -->
+      <div class="right-column">
+        <div class="content-card">
+          <div class="card-header-strip">
+            <span>AUTHENTIC BEAT-TO-BEAT POINCARE SCATTER</span>
+            <span style="color: #64748b;">PATIENT &amp; CLINICIAN WALKTHROUGH</span>
+          </div>
+          <div class="bullet-item bullet-item-0" data-idx="0">
+            <strong style="color: #0284c7;">100% Authentic Watch R-R Telemetry:</strong> Plotted strictly from real consecutive watch heartbeat intervals (N = 4,831 by 9 AM; scaling past 9,000+ across full days).
+          </div>
+          <div class="bullet-item bullet-item-1" data-idx="1">
+            <strong style="color: #0284c7;">Zero Fake Geometric Templates:</strong> Irregular beat outliers and comet clusters reflect your true living cardiac rhythm rather than pre-drawn ellipses.
+          </div>
+          <div class="bullet-item bullet-item-2" data-idx="2">
+            <strong style="color: #0284c7;">Composite Autonomic Health 87 / 100:</strong> Nominal Vagal Tone banner and Identity line (RR_n+1 = RR_n) reveal rhythm dispersion instantly.
+          </div>
+          <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.75rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
+            <strong style="color: #15803d;">Key Takeaway:</strong> Genuine Poincaré scatter plots deliver clinical HRV insight previously limited to specialized Holter monitor labs.
+          </div>
+        </div>
+
+        <div class="visual-card">
+          <div class="card-header-strip">
+            <span>REAL-WATCH LORENZ GEOMETRY</span>
+            <span style="background: #7c3aed; color: #ffffff; font-size: 0.57rem; padding: 2px 6px; border-radius: 3px;">N = 4,831+ REAL EPOCHS</span>
+          </div>
+          <div style="background:#f8fafc;border:1.5px solid #cbd5e1;border-radius:6px;padding:7px;"><div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1.5px solid #cbd5e1;padding-bottom:3px;margin-bottom:5px;"><span style="font-family:monospace;font-size:0.70rem;font-weight:800;color:#7c3aed;">REAL-WATCH LORENZ GEOMETRY</span><span style="background:#7c3aed;color:#fff;font-family:monospace;font-size:0.58rem;font-weight:800;padding:2px 6px;border-radius:3px;">N = 4,831+ REAL EPOCHS</span></div><div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:5px;overflow:hidden;"><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Morning Count</span><span style="font-family:monospace;color:#475569;">4,831 real beat pairs synced by 9:09 AM</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#7c3aed;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">AUTONOMIC</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Mean Beat / HR</span><span style="font-family:monospace;color:#475569;">802 ms mean R-R (75 BPM average)</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#7c3aed;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">NOMINAL</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">SDNN &amp; RMSSD</span><span style="font-family:monospace;color:#475569;">SDNN 76.1 ms (Total) | RMSSD 46.7 ms (Vagal)</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#7c3aed;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">VERIFIED 87/100</span></div></div><div style="margin-top:6px;background:#f0fdf4;border:1.5px solid #86efac;border-radius:5px;padding:6px 9px;"><div style="font-family:monospace;font-size:0.65rem;font-weight:800;color:#15803d;margin-bottom:2px;">PHYSICIAN CALCULUS &amp; MEASUREMENT FITNESS • POINCARE GEOMETRIC VARIANCE</div><div style="font-family:monospace;font-size:0.74rem;font-weight:700;color:#0f172a;line-height:1.35;">SD1 = sqrt(Var(RR_{n+1} - RR_n) / 2) = 33.0 ms  |  SD2 = 102.4 ms</div></div></div><div style="margin-top:6px;background:#eff6ff;border-left:3.5px solid #7c3aed;padding:6px 9px;border-radius:4px;font-size:0.72rem;color:#1e3a8a;line-height:1.35;"><strong>Clinical Significance:</strong> Orthogonal variance decomposition isolates instantaneous parasympathetic beat braking (SD1) from slower sympathetic thermoregulatory oscillations (SD2).</div>
+        </div>
+      </div>
     </div>
 
     <div class="slide-footer">
-      <div>LCARS 5010 CLINICAL AMBULATORY TELEMETRY ONBOARDING • LIGHT THEME</div>
-      <div>AUSTRALIAN FEMALE VOICE • 100% SCREEN SYNCHRONIZED</div>
+      <div>BFM BIOMETRIC FUNCTION MONITOR • POWERED BY GOOGLE GEMINI AI</div>
+      <div>AUSTRALIAN VOICE NARRATION • TAB 01–14 SYNCHRONIZED</div>
     </div>
   </div>
 </body>

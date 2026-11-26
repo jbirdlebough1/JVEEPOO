@@ -166,15 +166,22 @@ Instead, it suffers from a **pure systematic linear offset (scale depression)**:
 - At lower glucose levels (135 - 145 mg/dL), the watch reads low by ~ 22 - 28 mg/dL.
 - At postprandial peak levels (200 - 245 mg/dL), the watch reads low by ~ 50 - 62 mg/dL.
 
-```mermaid
-xychart-beta
-    title "Optical PPG vs. Reference Laboratory Profile (mg/dL)"
-    x-axis ["08:15", "08:33", "09:15", "10:07", "11:06", "12:01", "12:45", "13:25", "14:00", "14:25"]
-    y-axis "Blood Glucose (mg/dL)" 100 --> 260
-    line [165, 210, 188, 175, 165, 160, 165, 244, 186, 164]
-    line [138, 160, 154, 152, 140, 138, 138, 182, 151, 137]
-```
-*(Blue line: Reference Glycemic Curve anchored to 8.5% HbA1c; Green line: Raw Optical Watch Telemetry).*
+| Sample Timestamp | Reference Glycemic Curve (8.5% HbA1c Anchor, mg/dL) | Raw Optical Watch Telemetry (mg/dL) | Delta Bias (mg/dL) |
+| :---: | :---: | :---: | :---: |
+| `08:15` | 165 | 138 | -27 |
+| `08:33` | 210 | 160 | -50 |
+| `09:15` | 188 | 154 | -34 |
+| `10:07` | 175 | 152 | -23 |
+| `11:06` | 165 | 140 | -25 |
+| `12:01` | 160 | 138 | -22 |
+| `12:45` | 165 | 138 | -27 |
+| `13:25` | 244 | 182 | -62 |
+| `14:00` | 186 | 151 | -35 |
+| `14:25` | 164 | 137 | -27 |
+*(Reference Glycemic Curve anchored to 8.5% HbA1c vs. Raw Optical Watch Telemetry from `0x89` / `0xDF` continuous sampling).*
+
+> [!NOTE]
+> As of build **`beta.00.01.0057`**, `BFM.HTM` decodes continuous 5-minute `0xDF` OriginV3 packets across all 48 diurnal slots (`00:00–23:59`, `70,858+` SQLite epochs in `w11_htm_app/telemetry.db`) and isolates uncalibrated factory baseline offsets cleanly under the Pure Zero-Data Reality mandate (zero synthetic curve smoothing or `enrichBiometrics` overwrites).
 
 ### 5.2 Resolution: Personalized Private Mode Calibration (`0x89 0x02`)
 The Veepoo Model 5010 firmware includes a dedicated hardware calibration register (`0x89 0x02`). 

@@ -1,479 +1,842 @@
 [
   {
     "slide_num": "01",
-    "title": "Why This Toolset: An Author's Journey & Multidisciplinary Care",
-    "module": "Module 1: Introduction & Clinical Scope",
-    "features": [
-      "LCARS Sickbay Header, 5010 Clinical Telemetry Branding"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "Closing the Type 2 Diabetes Loop: One Shared View for User & Doctors",
+    "module": "Intro: Closing the Loop",
+    "tab_screenshot": "images/bfm_t01_fullscan_top.png",
+    "tab_title": "01-FULL SCAN \u2022 6-SENSOR WORKFLOW & AUDIT REPORT",
+    "audio_file": "audio/slide_01.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "02",
-    "title": "The Snapshot Fallacy: Sampling Mathematics & Metrology",
-    "module": "Module 1: Introduction & Clinical Scope",
-    "features": [
-      "Air-Gapped Telemetry, BLE GATT Architecture, 5-Second 288x8 Protocol, Nyquist Oversampling (0.2 Hz vs 0.0055 Hz)"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "The Data-Loss Crisis: Ad-Hoc Sampling vs Continuous Consolidation",
+    "module": "Intro: Closing the Loop",
+    "tab_screenshot": "images/bfm_t04_08_glucose_a1c.png",
+    "tab_title": "04-REPORTS \u2022 24H GLUCOSE CURVE & ADAG EA1C / GMI",
+    "audio_file": "audio/slide_02.mp3",
+    "has_custom_left": true,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "03",
-    "title": "Mathematical Sampling Theory: Nyquist Kinetics & Biological Aliasing",
-    "module": "Module 1: Introduction & Clinical Scope",
-    "features": [
-      "Air-Gapped Telemetry, BLE GATT Architecture, 5-Second 288x8 Protocol, Nyquist Oversampling (0.2 Hz vs 0.0055 Hz)"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "Mathematical Proof of Measurement Fitness: Nyquist Kinetics & Noise Suppression",
+    "module": "Intro: Closing the Loop",
+    "tab_screenshot": "images/bfm_t04_08_glucose_a1c.png",
+    "tab_title": "04-REPORTS \u2022 24H GLUCOSE CURVE & ADAG EA1C / GMI",
+    "audio_file": "audio/slide_03.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "04",
-    "title": "Metrological Precision & Noise Convergence: The Math of High-Density Telemetry",
-    "module": "Module 1: Introduction & Clinical Scope",
-    "features": [
-      "Air-Gapped Telemetry, BLE GATT Architecture, 5-Second 288x8 Protocol, Nyquist Oversampling (0.2 Hz vs 0.0055 Hz)"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "How BFM Connects: Smartwatch & Cell Phone Collectors Linked to Your PC Server",
+    "module": "Intro: Closing the Loop",
+    "tab_screenshot": "images/bfm_t10_config_roster_transducers.png",
+    "tab_title": "10-CONFIG \u2022 HOUSEHOLD DEVICE ROSTER & SENSOR SPECS",
+    "audio_file": "audio/slide_04.mp3",
+    "has_custom_left": true,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "05",
-    "title": "Peer-Reviewed References, Citations & Interactive Gemini Research Query",
-    "module": "Module 1: Introduction & Clinical Scope",
-    "features": [
-      "Air-Gapped Telemetry, BLE GATT Architecture, 5-Second 288x8 Protocol, Nyquist Oversampling (0.2 Hz vs 0.0055 Hz)"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "Non-Diagnostic Legal Shield & Cryptographic Informed Consent",
+    "module": "Intro: Closing the Loop",
+    "tab_screenshot": "images/bfm_00_legal_modal.png",
+    "tab_title": "STARTUP NOTICE \u2022 PERSONAL SELF-HELP AGREEMENT",
+    "audio_file": "audio/slide_05.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "06",
-    "title": "The FITAOS 5150 Smartwatch & 8 Biometric Measurements",
-    "module": "Module 1: Introduction & Clinical Scope",
-    "features": [
-      "FITAOS 5150 / 5010 Hardware Specs, 8 Continuous Biometric Measurements"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "Sovereign Zero-Cloud Privacy & Consolidated Top Status Ribbon",
+    "module": "Intro: Closing the Loop",
+    "tab_screenshot": "images/bfm_00_header_ribbon.png",
+    "tab_title": "CONSOLIDATED HEADER \u2022 LINK, WATCH, BATTERY & VAULT SYNC",
+    "audio_file": "audio/slide_06.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "07",
-    "title": "Strict Zero-Egress Local Telemetry vs Cloud Silos",
-    "module": "Module 1: Introduction & Clinical Scope",
-    "features": [
-      "Optical Glucose PPG Tonometry, Continuous Glucose Waveform, eA1C Calculation (ADAG Equation)"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "Logical 14-Tab Architecture: Guided Clinical Flow (Tabs 01 to 14)",
+    "module": "Intro: Closing the Loop",
+    "tab_screenshot": "images/bfm_t01_fullscan_top.png",
+    "tab_title": "01-FULL SCAN \u2022 6-SENSOR WORKFLOW & AUDIT REPORT",
+    "audio_file": "audio/slide_07.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "08",
-    "title": "Core Clinical Targets: Achieving HbA1c <6.8% and TIR >70%",
-    "module": "Module 1: Introduction & Clinical Scope",
-    "features": [
-      "Optical Glucose PPG Tonometry, Continuous Glucose Waveform, eA1C Calculation (ADAG Equation)"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "01-FULL SCAN: Guided 6-Sensor Sequential Acquisition",
+    "module": "Tab 01: 01-FULL SCAN",
+    "tab_screenshot": "images/bfm_t01_fullscan_top.png",
+    "tab_title": "01-FULL SCAN \u2022 6-SENSOR WORKFLOW & AUDIT REPORT",
+    "audio_file": "audio/slide_08.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "09",
-    "title": "Physician-Patient Collaborative Care Partnership",
-    "module": "Module 2: Physician-Patient Alignment & Calibration",
-    "features": [
-      "Optical Glucose PPG Tonometry, Continuous Glucose Waveform, eA1C Calculation (ADAG Equation)"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "Consolidated Biometric Audit Report & Instant Status Badges",
+    "module": "Tab 01: 01-FULL SCAN",
+    "tab_screenshot": "images/bfm_t01_fullscan_top.png",
+    "tab_title": "01-FULL SCAN \u2022 6-SENSOR WORKFLOW & AUDIT REPORT",
+    "audio_file": "audio/slide_09.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "10",
-    "title": "Clinical Glycemic Band: Standardizing on 60\u2013200 mg/dL",
-    "module": "Module 2: Physician-Patient Alignment & Calibration",
-    "features": [
-      "PWTT Ambulatory Blood Pressure, Systolic/Diastolic Calibration, Nocturnal BP Dipping"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "Clinical Multi-Vector Synthesis: Whole-System Interpretation",
+    "module": "Tab 01: 01-FULL SCAN",
+    "tab_screenshot": "images/bfm_t01_fullscan_synthesis.png",
+    "tab_title": "01-FULL SCAN \u2022 MULTI-VECTOR SYNTHESIS SUMMARY",
+    "audio_file": "audio/slide_10.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "11",
-    "title": "In-Clinic Venous Blood Draw Calibration & Baseline Anchor",
-    "module": "Module 2: Physician-Patient Alignment & Calibration",
-    "features": [
-      "PWTT Ambulatory Blood Pressure, Systolic/Diastolic Calibration, Nocturnal BP Dipping"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "02-METABOLIC: Your Live Cardiometabolic & Movement Cockpit",
+    "module": "Tab 02: 02-METABOLIC",
+    "tab_screenshot": "images/bfm_t02_metabolic_exercise.png",
+    "tab_title": "02-METABOLIC \u2022 9 LIVE TELEMETRY TILES & EXERCISE LOGGER",
+    "audio_file": "audio/slide_11.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "12",
-    "title": "Standardizing Strictly on Private Mode Telemetry",
-    "module": "Module 2: Physician-Patient Alignment & Calibration",
-    "features": [
-      "PWTT Ambulatory Blood Pressure, Systolic/Diastolic Calibration, Nocturnal BP Dipping"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "GLUT4 Muscle Contraction & Exercise Clearance Journal",
+    "module": "Tab 02: 02-METABOLIC",
+    "tab_screenshot": "images/bfm_t02_metabolic_exercise.png",
+    "tab_title": "02-METABOLIC \u2022 9 LIVE TELEMETRY TILES & EXERCISE LOGGER",
+    "audio_file": "audio/slide_12.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "13",
-    "title": "Continuous Ambulatory Background Acquisition",
-    "module": "Module 2: Physician-Patient Alignment & Calibration",
-    "features": [
-      "Nocturnal SpO2 Tonometry, OSAHS Apnea Hypoxia Dip Detection (<90% Drops)"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "Daily Consumed Intake Summary: Net Carbs, Protein & Meal Windows",
+    "module": "Tab 02: 02-METABOLIC",
+    "tab_screenshot": "images/bfm_t02_metabolic_diet_summary.png",
+    "tab_title": "02-METABOLIC \u2022 DAILY CONSUMED INTAKE & FLUID PROGRESSION",
+    "audio_file": "audio/slide_13.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "14",
-    "title": "Tab 01: VITALS \u2013 Optical Glucose Absorption Spectroscopy",
-    "module": "Module 3: Core Biosensor Array Operations",
-    "features": [
-      "Nocturnal SpO2 Tonometry, OSAHS Apnea Hypoxia Dip Detection (<90% Drops)"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "24-Hour Fluid Progression & Hemoconcentration Prevention",
+    "module": "Tab 02: 02-METABOLIC",
+    "tab_screenshot": "images/bfm_t02_metabolic_diet_summary.png",
+    "tab_title": "02-METABOLIC \u2022 DAILY CONSUMED INTAKE & FLUID PROGRESSION",
+    "audio_file": "audio/slide_14.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "15",
-    "title": "Tab 01: VITALS \u2013 Dual-Matrix Thermometry & Circadian Nadir",
-    "module": "Module 3: Core Biosensor Array Operations",
-    "features": [
-      "Dual-Matrix Core Circadian Temperature vs Cutaneous Skin Temperature Nadir"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "Chronological Nutrition Journal: Transparent Audit & Headroom",
+    "module": "Tab 02: 02-METABOLIC",
+    "tab_screenshot": "images/bfm_t02_metabolic_diet_journal.png",
+    "tab_title": "02-METABOLIC \u2022 CHRONOLOGICAL MEAL & NUTRITION LEDGER",
+    "audio_file": "audio/slide_15.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "16",
-    "title": "Tab 02: CARDIO \u2013 Pulse Wave Transit Time Blood Pressure",
-    "module": "Module 3: Core Biosensor Array Operations",
-    "features": [
-      "Dual-Matrix Core Circadian Temperature vs Cutaneous Skin Temperature Nadir"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "03-MEAL PLANNER: Pathway A Curated Pantry & Multi-Modal Query",
+    "module": "Tab 03: 03-MEAL PLANNER",
+    "tab_screenshot": "images/bfm_t03_meal_pantry.png",
+    "tab_title": "03-MEAL PLANNER \u2022 REUSABLE PANTRY & MEAL QUERY",
+    "audio_file": "audio/slide_16.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "17",
-    "title": "Tab 02: CARDIO \u2013 Dual-Wavelength SpO2 & Apnea Screening",
-    "module": "Module 3: Core Biosensor Array Operations",
-    "features": [
-      "Dual-Matrix Core Circadian Temperature vs Cutaneous Skin Temperature Nadir"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "Pre-Choice Metabolic Evaluator: Seven Macros, Hydration & GLUT4 Rx",
+    "module": "Tab 03: 03-MEAL PLANNER",
+    "tab_screenshot": "images/bfm_t03_meal_estimator.png",
+    "tab_title": "03-MEAL PLANNER \u2022 PRE-CHOICE METABOLIC EVALUATOR",
+    "audio_file": "audio/slide_17.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "18",
-    "title": "Tab 02: CARDIO \u2013 Autonomic HRV & Sympatho-Vagal Stress",
-    "module": "Module 3: Core Biosensor Array Operations",
-    "features": [
-      "Autonomic HRV R-R Interval Spectrum, SDNN/RMSSD, 2D Lorenz Poincar\u00e9 Cardiac Scatter Dynamics"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "Verified Geo-Located Restaurant Disclosures vs Zero-Guessing Honesty",
+    "module": "Tab 03: 03-MEAL PLANNER",
+    "tab_screenshot": "images/bfm_t03_meal_pantry.png",
+    "tab_title": "03-MEAL PLANNER \u2022 REUSABLE PANTRY & MEAL QUERY",
+    "audio_file": "audio/slide_18.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "19",
-    "title": "03-METABOLIC Console: Real-Time Physiological Telemetry",
-    "module": "Module 4: Tab 03 METABOLIC Console & Behavioral Science",
-    "features": [
-      "Autonomic HRV R-R Interval Spectrum, SDNN/RMSSD, 2D Lorenz Poincar\u00e9 Cardiac Scatter Dynamics"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "Zero-Cost Metabolic Recipe Bill of Materials & 20-Mile Local Grocers",
+    "module": "Tab 03: 03-MEAL PLANNER",
+    "tab_screenshot": "images/bfm_t03_meal_bom_grocers.png",
+    "tab_title": "03-MEAL PLANNER \u2022 ZERO-COST RECIPE BOM & LOCAL GROCERS",
+    "audio_file": "audio/slide_19.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "20",
-    "title": "GLUT4 Translocation Kinetics: How Exercise Lowers Glucose",
-    "module": "Module 4: Tab 03 METABOLIC Console & Behavioral Science",
-    "features": [
-      "Autonomic HRV R-R Interval Spectrum, SDNN/RMSSD, 2D Lorenz Poincar\u00e9 Cardiac Scatter Dynamics"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "Step 2 Harm-Reduction Trades & Step 3 Pantry vs Consume Workflow",
+    "module": "Tab 03: 03-MEAL PLANNER",
+    "tab_screenshot": "images/bfm_t03_meal_bom_grocers.png",
+    "tab_title": "03-MEAL PLANNER \u2022 ZERO-COST RECIPE BOM & LOCAL GROCERS",
+    "audio_file": "audio/slide_20.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "21",
-    "title": "The GLUT4 Exercise Journal: Calculating Direct \u0394G Glucose Drops",
-    "module": "Module 4: Tab 03 METABOLIC Console & Behavioral Science",
-    "features": [
-      "Sleep Hypnogram Architecture, REM/Deep/Light Cycles, Circadian Glycemic Coupling"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "Doctor & Patient Longitudinal Meal-to-Metric Explorer",
+    "module": "Tab 03: 03-MEAL PLANNER",
+    "tab_screenshot": "images/bfm_t03_meal_longitudinal.png",
+    "tab_title": "03-MEAL PLANNER \u2022 LONGITUDINAL MEAL-TO-METRIC EXPLORER",
+    "audio_file": "audio/slide_21.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "22",
-    "title": "Macronutrient Meal Logger: Net Carbs, Protein, Fat & Calories",
-    "module": "Module 4: Tab 03 METABOLIC Console & Behavioral Science",
-    "features": [
-      "Sleep Hypnogram Architecture, REM/Deep/Light Cycles, Circadian Glycemic Coupling"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "Animated 3D Multi-Channel Biometric & Behavioral Fly-Through",
+    "module": "Tab 04: 04-REPORTS",
+    "tab_screenshot": "images/bfm_t04_01_3d_multichannel.png",
+    "tab_title": "04-REPORTS \u2022 ANIMATED 13-CHANNEL 3D FLY-THROUGH",
+    "audio_file": "audio/slide_22.mp3",
+    "has_custom_left": true,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "23",
-    "title": "ADA Carbohydrate Trades & Gemini-Curated Diabetic Recipes",
-    "module": "Module 4: Tab 03 METABOLIC Console & Behavioral Science",
-    "features": [
-      "Sleep Hypnogram Architecture, REM/Deep/Light Cycles, Circadian Glycemic Coupling"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "Goals Compliance Scorecard & Walk-Mitigated Excursion Tracking",
+    "module": "Tab 04: 04-REPORTS",
+    "tab_screenshot": "images/bfm_t04_02_goals_compliance.png",
+    "tab_title": "04-REPORTS \u2022 GOALS COMPLIANCE & MITIGATION SCORECARD",
+    "audio_file": "audio/slide_23.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "24",
-    "title": "The Diabetes Learning Engine: Personal Glycemic Phenotyping",
-    "module": "Module 5: The Diabetes Learning Engine",
-    "features": [
-      "Kinetic Step Activity, MET Ergonomics, Non-Insulin GLUT4 Post-Meal Glucose Clearance"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "360\u00b0 Synchronized 13-Lane Master Timeline & 10-Tile HUD",
+    "module": "Tab 04: 04-REPORTS",
+    "tab_screenshot": "images/bfm_t04_03_13lane_tall_chart.png",
+    "tab_title": "04-REPORTS \u2022 13-LANE SYNCHRONIZED TIMELINE & HUD",
+    "audio_file": "audio/slide_24.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "25",
-    "title": "Circadian Fasting Windows & Dawn Phenomenon Suppression",
-    "module": "Module 5: The Diabetes Learning Engine",
-    "features": [
-      "Kinetic Step Activity, MET Ergonomics, Non-Insulin GLUT4 Post-Meal Glucose Clearance"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "Lower Lanes (CH 07\u201313): Sleep, Pain, Mood, Carbs, Fluid & Rx",
+    "module": "Tab 04: 04-REPORTS",
+    "tab_screenshot": "images/bfm_t04_04_tall_chart_scrubber.png",
+    "tab_title": "04-REPORTS \u2022 LANES 07\u201313: EXERCISE, SLEEP, PAIN, MOOD & INTAKE",
+    "audio_file": "audio/slide_25.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "26",
-    "title": "Sleep Architecture & Glycemic Resilience: SpO2, REM & Cortisol",
-    "module": "Module 5: The Diabetes Learning Engine",
-    "features": [
-      "Kinetic Step Activity, MET Ergonomics, Non-Insulin GLUT4 Post-Meal Glucose Clearance"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "Interactive Vertical Scrubber & Click-to-Pop Clinical Point Cards",
+    "module": "Tab 04: 04-REPORTS",
+    "tab_screenshot": "images/bfm_t04_03_13lane_tall_chart.png",
+    "tab_title": "04-REPORTS \u2022 13-LANE SYNCHRONIZED TIMELINE & HUD",
+    "audio_file": "audio/slide_26.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "27",
-    "title": "Correlating Behavioral Habits with Direct Sensor Evidence",
-    "module": "Module 5: The Diabetes Learning Engine",
-    "features": [
-      "Bivariate Step Volume vs Mean Glucose Correlator Engine (boxExerciseMetabolicCorrelation)"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "Step Target Correlator: Proving Your Personal Active vs Sedentary Gain",
+    "module": "Tab 04: 04-REPORTS",
+    "tab_screenshot": "images/bfm_t04_05_step_glut4_correlator.png",
+    "tab_title": "04-REPORTS \u2022 ACTIVE VS SEDENTARY GLUCOSE CORRELATOR",
+    "audio_file": "audio/slide_27.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "28",
-    "title": "Actionable Clinical Reports & Epic EHR Integration",
-    "module": "Module 5: The Diabetes Learning Engine",
-    "features": [
-      "Doctor's Epic EHR Gateway, Tab 04 Toolbar & On-Demand Clinical Goal Compliance Audit (% Goals Met)"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "Sub-Report 1: Lead-I ECG Protocol & Diurnal QTc Interval Stability",
+    "module": "Tab 04: 04-REPORTS",
+    "tab_screenshot": "images/bfm_t04_06_sub_ecg_met.png",
+    "tab_title": "04-REPORTS \u2022 LEAD-I ECG / QTC & MET ENERGY EXPENDITURE",
+    "audio_file": "audio/slide_28.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "29",
-    "title": "Tab 04 Architecture: Single Tall Synchronized Multi-Measurement Chart",
-    "module": "Module 6: Tab 04 Synchronized Tall Chart",
-    "features": [
-      "360\u00b0 Synchronized 8-Lane Telemetry Stack (#boxSynchronizedTallChart, #svgTallMaster), Continuous Scrubber (#tallVerticalScrubberLine, #tallHudRibbon)"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "Sub-Report 2: Continuous 24-Hour MET Energy Expenditure",
+    "module": "Tab 04: 04-REPORTS",
+    "tab_screenshot": "images/bfm_t04_06_sub_ecg_met.png",
+    "tab_title": "04-REPORTS \u2022 LEAD-I ECG / QTC & MET ENERGY EXPENDITURE",
+    "audio_file": "audio/slide_29.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "30",
-    "title": "The 8 Stacked Measurement Lanes: Complete Multi-Variable Audit",
-    "module": "Module 6: Tab 04 Synchronized Tall Chart",
-    "features": [
-      "360\u00b0 Synchronized 8-Lane Telemetry Stack (#boxSynchronizedTallChart, #svgTallMaster), Continuous Scrubber (#tallVerticalScrubberLine, #tallHudRibbon)"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "Sub-Report 3: Microvascular Blood Viscosity & Uric Acid Tonometry",
+    "module": "Tab 04: 04-REPORTS",
+    "tab_screenshot": "images/bfm_t04_07_sub_blood_bia_breath.png",
+    "tab_title": "04-REPORTS \u2022 BLOOD VISCOSITY, BIA MUSCLE & RESPIRATION",
+    "audio_file": "audio/slide_30.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "31",
-    "title": "The Continuous Vertical Scrubber Line: Cross-Correlating Causes",
-    "module": "Module 6: Tab 04 Synchronized Tall Chart",
-    "features": [
-      "360\u00b0 Synchronized 8-Lane Telemetry Stack (#boxSynchronizedTallChart, #svgTallMaster), Continuous Scrubber (#tallVerticalScrubberLine, #tallHudRibbon)"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "Sub-Report 4: BIA Skeletal Muscle Mass \u2014 The Primary Glucose Sink",
+    "module": "Tab 04: 04-REPORTS",
+    "tab_screenshot": "images/bfm_t04_07_sub_blood_bia_breath.png",
+    "tab_title": "04-REPORTS \u2022 BLOOD VISCOSITY, BIA MUSCLE & RESPIRATION",
+    "audio_file": "audio/slide_31.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "32",
-    "title": "Click-to-Pop Clinical Point Cards: Instant Micro-Audits",
-    "module": "Module 6: Tab 04 Synchronized Tall Chart",
-    "features": [
-      "Interactive Point Audit Modal (#timelinePointCardModal), Longitudinal Med Change Marker Cutting Top-to-Bottom"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "Sub-Report 5: Continuous Respiratory Rate & Autonomic Breath Stability",
+    "module": "Tab 04: 04-REPORTS",
+    "tab_screenshot": "images/bfm_t04_07_sub_blood_bia_breath.png",
+    "tab_title": "04-REPORTS \u2022 BLOOD VISCOSITY, BIA MUSCLE & RESPIRATION",
+    "audio_file": "audio/slide_32.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "33",
-    "title": "Pinning '\ud83d\udc8a MED CHANGE' Milestones: Auditing Progress vs Regression",
-    "module": "Module 6: Tab 04 Synchronized Tall Chart",
-    "features": [
-      "Interactive Point Audit Modal (#timelinePointCardModal), Longitudinal Med Change Marker Cutting Top-to-Bottom"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "Daily 24-Hour Continuous Glucose Curve & Time-in-Range Velocity",
+    "module": "Tab 04: 04-REPORTS",
+    "tab_screenshot": "images/bfm_t04_08_glucose_a1c.png",
+    "tab_title": "04-REPORTS \u2022 24H GLUCOSE CURVE & ADAG EA1C / GMI",
+    "audio_file": "audio/slide_33.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "34",
-    "title": "Daily 24-Hour Continuous Glucose Curve & TIR Dynamics",
-    "module": "Module 5: Clinical Reports & Longitudinal EHR Records",
-    "features": [
-      "Diabetic Goal Anchoring (eA1C 8.3%), Hypoglycemia Unawareness Prevention, Personalized Targets"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "Daily Estimated A1C (GMI) vs 90-Day Laboratory HbA1c Kinetics",
+    "module": "Tab 04: 04-REPORTS",
+    "tab_screenshot": "images/bfm_t04_08_glucose_a1c.png",
+    "tab_title": "04-REPORTS \u2022 24H GLUCOSE CURVE & ADAG EA1C / GMI",
+    "audio_file": "audio/slide_34.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "35",
-    "title": "Daily 24-Hour Estimated A1C (eA1C) Projection Curve",
-    "module": "Module 5: Clinical Reports & Longitudinal EHR Records",
-    "features": [
-      "Diabetic Goal Anchoring (eA1C 8.3%), Hypoglycemia Unawareness Prevention, Personalized Targets"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "Optical Photodiode Repeatability (`5.36% CV`) & Personal Calibration Fitness",
+    "module": "Tab 04: 04-REPORTS",
+    "tab_screenshot": "images/bfm_t04_08_glucose_a1c.png",
+    "tab_title": "04-REPORTS \u2022 24H GLUCOSE CURVE & ADAG EA1C / GMI",
+    "audio_file": "audio/slide_35.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "36",
-    "title": "Daily 24-Hour Body Temperature Matrix: Core vs Epidermal Wrist",
-    "module": "Module 5: Clinical Reports & Longitudinal EHR Records",
-    "features": [
-      "Executive Annual YTD Medical Summary (#boxYtdSummary), ADA Homeostasis TIR Scoring"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "Daily 24-Hour Body Temperature Matrix: Core vs Epidermal Warmth",
+    "module": "Tab 04: 04-REPORTS",
+    "tab_screenshot": "images/bfm_t04_09_temp_0x88.png",
+    "tab_title": "04-REPORTS \u2022 24H CORE VS SKIN BODY TEMPERATURE MATRIX",
+    "audio_file": "audio/slide_36.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "37",
-    "title": "24-Hour Ambulatory Blood Pressure Dual-Band (PWTT Systolic/Diastolic)",
-    "module": "Module 5: Clinical Reports & Longitudinal EHR Records",
-    "features": [
-      "Executive Annual YTD Medical Summary (#boxYtdSummary), ADA Homeostasis TIR Scoring"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "Daily 24-Hour Heart Rate & 5-Zone Cardiac Recovery Envelope",
+    "module": "Tab 04: 04-REPORTS",
+    "tab_screenshot": "images/bfm_t04_10_hr_bp.png",
+    "tab_title": "04-REPORTS \u2022 5-ZONE HEART RATE & AMBULATORY BLOOD PRESSURE",
+    "audio_file": "audio/slide_37.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "38",
-    "title": "Nocturnal SpO2 & OSAHS Apnea Hypoxia Dips Matrix",
-    "module": "Module 5: Clinical Reports & Longitudinal EHR Records",
-    "features": [
-      "H-Band Protocol Parity, 48 30-Minute Telemetry Slots (#svgHBand48Slots), 5-Zone Cardiac Load Matrix"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "24-Hour Ambulatory Blood Pressure & Healthy Nocturnal Dipping",
+    "module": "Tab 04: 04-REPORTS",
+    "tab_screenshot": "images/bfm_t04_10_hr_bp.png",
+    "tab_title": "04-REPORTS \u2022 5-ZONE HEART RATE & AMBULATORY BLOOD PRESSURE",
+    "audio_file": "audio/slide_38.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "39",
-    "title": "24-Hour Heart Rate & 5-Zone Cardiac Load",
-    "module": "Module 5: Clinical Reports & Longitudinal EHR Records",
-    "features": [
-      "H-Band Protocol Parity, 48 30-Minute Telemetry Slots (#svgHBand48Slots), 5-Zone Cardiac Load Matrix"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "Nocturnal SpO2 Oximetry (`>=95%`) & Sky-Blue Charging Transparency",
+    "module": "Tab 04: 04-REPORTS",
+    "tab_screenshot": "images/bfm_t04_11_spo2_holes.png",
+    "tab_title": "04-REPORTS \u2022 SPO2 OXIMETRY & CHARGING EXCLUSION BANDS",
+    "audio_file": "audio/slide_39.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "40",
-    "title": "Autonomic HRV & Lorenz Cardiac Scatter Dynamics",
-    "module": "Module 5: Clinical Reports & Longitudinal EHR Records",
-    "features": [
-      "H-Band 2D Lorenz Poincar\u00e9 Scatter Plot (boxChartHRV, svgLorenzScatter, Comet/Torpedo/Club/Fork/Complex Morphologies)"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "Daily Fluid & Hydration Clearance Analytics Card",
+    "module": "Tab 04: 04-REPORTS",
+    "tab_screenshot": "images/bfm_t04_12_hydration_80oz.png",
+    "tab_title": "04-REPORTS \u2022 DAILY FLUID INTAKE & RENAL CLEARANCE",
+    "audio_file": "audio/slide_40.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "41",
-    "title": "Nocturnal Sleep Duration & Circadian Hypnogram Architecture",
-    "module": "Module 5: Clinical Reports & Longitudinal EHR Records",
-    "features": [
-      "ADA Diet Trades Engine (#pageDietTrades), Smart Glucose-Driven Snack Notifier, Fast Food Helper"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "Genuine Watch 2D Lorenz (Poincar\u00e9) Scatter Plot (`4,831`+ Real Epochs)",
+    "module": "Tab 04: 04-REPORTS",
+    "tab_screenshot": "images/bfm_t04_13_hrv_lorenz.png",
+    "tab_title": "04-REPORTS \u2022 REAL-WATCH 2D LORENZ (POINCARE) HRV PLOT",
+    "audio_file": "audio/slide_41.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "42",
-    "title": "Ambulatory Physical Activity, Step Density & GLUT4 Clearance",
-    "module": "Module 5: Clinical Reports & Longitudinal EHR Records",
-    "features": [
-      "ADA Diet Trades Engine (#pageDietTrades), Smart Glucose-Driven Snack Notifier, Fast Food Helper"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "Early Screening for Diabetic Cardiac Autonomic Neuropathy (CAN)",
+    "module": "Tab 04: 04-REPORTS",
+    "tab_screenshot": "images/bfm_t04_13_hrv_lorenz.png",
+    "tab_title": "04-REPORTS \u2022 REAL-WATCH 2D LORENZ (POINCARE) HRV PLOT",
+    "audio_file": "audio/slide_42.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "43",
-    "title": "Tab 11 Architecture: Active Pharmacological Regimen Management",
-    "module": "Module 7: Tab 11 Medication Management",
-    "features": [
-      "Interactive Diabetic Meal Builder & Gemini Nutrition Coach (Macros, Goals Comparison, GLUT4 Prescription)"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "Daily 24-Hour Sleep Architecture & Daytime Nap Hypnogram (`9.2h`)",
+    "module": "Tab 04: 04-REPORTS",
+    "tab_screenshot": "images/bfm_t04_14_sleep_0xe0_naps.png",
+    "tab_title": "04-REPORTS \u2022 24H SLEEP ARCHITECTURE & DAYTIME NAP HYPNOGRAM",
+    "audio_file": "audio/slide_43.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "44",
-    "title": "Two Discrete Daily Intake Schedules: Morning Suite & Dinner Split",
-    "module": "Module 7: Tab 11 Medication Management",
-    "features": [
-      "Interactive Diabetic Meal Builder & Gemini Nutrition Coach (Macros, Goals Comparison, GLUT4 Prescription)"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "Hourly Step Activity, `2,000`-Step Watch Goal & Hardware Physics",
+    "module": "Tab 04: 04-REPORTS",
+    "tab_screenshot": "images/bfm_t04_15_steps_2000goal.png",
+    "tab_title": "04-REPORTS \u2022 HOURLY STEP ACTIVITY VS 2,000-STEP GOAL",
+    "audio_file": "audio/slide_44.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "45",
-    "title": "Granular Medication Editing, Deletion & Titration Adherence",
-    "module": "Module 7: Tab 11 Medication Management",
-    "features": [
-      "Custom Watch Faces Studio (#pageWatchFaces), Hybrid Dial Marketplace (659 Dial Binaries)"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "Longitudinal YTD Summary & Transparent Raw Telemetry Audit Logs",
+    "module": "Tab 04: 04-REPORTS",
+    "tab_screenshot": "images/bfm_t04_16_ytd_rawlog.png",
+    "tab_title": "04-REPORTS \u2022 LONGITUDINAL YTD & TELEMETRY AUDIT LOGS",
+    "audio_file": "audio/slide_45.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "46",
-    "title": "Tab 12 Full Scan: Automated Sequential 6-Sensor Diagnostic Pipeline",
-    "module": "Module 8: Tab 12 Sequential Full Scan",
-    "features": [
-      "Custom Watch Faces Studio (#pageWatchFaces), Hybrid Dial Marketplace (659 Dial Binaries)"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "05-LEARNING: Personal Metabolic Phenotyping Across Multiple Horizons",
+    "module": "Tab 05: 05-LEARNING",
+    "tab_screenshot": "images/bfm_t05_learning.png",
+    "tab_title": "05-LEARNING \u2022 PERSONAL METABOLIC PHENOTYPING",
+    "audio_file": "audio/slide_46.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "47",
-    "title": "Live Stage Progression, Non-Interfering Scan Flow & Clinical Report",
-    "module": "Module 8: Tab 12 Sequential Full Scan",
-    "features": [
-      "Medication Scheduling & Adherence Tracker (#pageMedication), Pill Logging"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "Separating Hormonal Dawn Phenomenon From Evening Dinner Carryover",
+    "module": "Tab 05: 05-LEARNING",
+    "tab_screenshot": "images/bfm_t05_learning.png",
+    "tab_title": "05-LEARNING \u2022 PERSONAL METABOLIC PHENOTYPING",
+    "audio_file": "audio/slide_47.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "48",
-    "title": "OEM App vs LCARS Matrix Part 1: Hardware Parity & Zero-Cloud Privacy",
-    "module": "Module 9: Master Capability Matrix: OEM App vs LCARS",
-    "features": [
-      "Medication Scheduling & Adherence Tracker (#pageMedication), Pill Logging"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "Non-Dietary Drivers: How Poor Sleep, Pain & Dehydration Raise Glucose",
+    "module": "Tab 05: 05-LEARNING",
+    "tab_screenshot": "images/bfm_t05_learning.png",
+    "tab_title": "05-LEARNING \u2022 PERSONAL METABOLIC PHENOTYPING",
+    "audio_file": "audio/slide_48.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "49",
-    "title": "OEM App vs LCARS Matrix Part 2: Calibration, Timelines & Metabolic Engine",
-    "module": "Module 9: Master Capability Matrix: OEM App vs LCARS",
-    "features": [
-      "Sequential Automated Biometric Full Scan (#pageFullScan, 6 Sensors in 90 Seconds)"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "Printable Personal Behavioral Brief for Attending Doctor Visits",
+    "module": "Tab 05: 05-LEARNING",
+    "tab_screenshot": "images/bfm_t05_learning.png",
+    "tab_title": "05-LEARNING \u2022 PERSONAL METABOLIC PHENOTYPING",
+    "audio_file": "audio/slide_49.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "50",
-    "title": "OEM App vs LCARS Matrix Part 3: Senior-Friendly Ergonomics & 21:1 Contrast",
-    "module": "Module 9: Master Capability Matrix: OEM App vs LCARS",
-    "features": [
-      "Sequential Automated Biometric Full Scan (#pageFullScan, 6 Sensors in 90 Seconds)"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "06-OPERATIONS: Effortless Watch Connection & Wireless Reliability",
+    "module": "Tab 06: 06-OPERATIONS",
+    "tab_screenshot": "images/bfm_t06_operations.png",
+    "tab_title": "06-OPERATIONS \u2022 WIRELESS WATCH LINK & SYNC CONTROLS",
+    "audio_file": "audio/slide_50.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "51",
-    "title": "Outpatient Clinical Review: YTD, Monthly & Daily Telemetry Records",
-    "module": "Module 10: Clinical Summaries & Achieving Diabetic Goals",
-    "features": [
-      "Closed-Loop Biofeedback Architecture, Google Diabetes Research Sponsorship Repository, Zero-PHI Open Science"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "Always Fresh on Every Interaction: Zero-Stale Harvesting Discipline",
+    "module": "Tab 06: 06-OPERATIONS",
+    "tab_screenshot": "images/bfm_t06_operations.png",
+    "tab_title": "06-OPERATIONS \u2022 WIRELESS WATCH LINK & SYNC CONTROLS",
+    "audio_file": "audio/slide_51.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "52",
-    "title": "Evolution to Closed-Loop Biofeedback: The Global Diabetes Research Opportunity",
-    "module": "Module 10: Clinical Summaries, Closed-Loop Science & Open Source",
-    "features": [
-      "Closed-Loop Biofeedback Architecture, Google Diabetes Research Sponsorship Repository, Zero-PHI Open Science"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "Preserving Continuous Ambulatory Duty Cycle & Avoiding Dropouts",
+    "module": "Tab 06: 06-OPERATIONS",
+    "tab_screenshot": "images/bfm_t06_operations.png",
+    "tab_title": "06-OPERATIONS \u2022 WIRELESS WATCH LINK & SYNC CONTROLS",
+    "audio_file": "audio/slide_52.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   },
   {
     "slide_num": "53",
-    "title": "Open Source Copyleft, Documentation & Powered by Google Gemini Pro",
-    "module": "Module 10: Clinical Summaries & Open Source Ecosystem",
-    "features": [
-      "Closed-Loop Biofeedback Architecture, Google Diabetes Research Sponsorship Repository, Zero-PHI Open Science"
-    ],
-    "status": "100% COVERED IN BUILD"
+    "title": "07-FAQ: Built-In Offline Reference Manual for Families & Physicians",
+    "module": "Tab 07: 07-FAQ",
+    "tab_screenshot": "images/bfm_t07_faq.png",
+    "tab_title": "07-FAQ \u2022 BUILT-IN REFERENCE GUIDE & CITATIONS",
+    "audio_file": "audio/slide_53.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
+  },
+  {
+    "slide_num": "54",
+    "title": "Peer-Reviewed Clinical Consensus & Sampling Citations",
+    "module": "Tab 07: 07-FAQ",
+    "tab_screenshot": "images/bfm_t07_faq.png",
+    "tab_title": "07-FAQ \u2022 BUILT-IN REFERENCE GUIDE & CITATIONS",
+    "audio_file": "audio/slide_54.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
+  },
+  {
+    "slide_num": "55",
+    "title": "Watch Positioning, Wrist Strap Fit & Best Optical Practices",
+    "module": "Tab 07: 07-FAQ",
+    "tab_screenshot": "images/bfm_t07_faq.png",
+    "tab_title": "07-FAQ \u2022 BUILT-IN REFERENCE GUIDE & CITATIONS",
+    "audio_file": "audio/slide_55.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
+  },
+  {
+    "slide_num": "56",
+    "title": "08-CLINICAL GOALS: Individualizing Your Personal Target Corridor",
+    "module": "Tab 08: 08-CLINICAL GOALS",
+    "tab_screenshot": "images/bfm_t08_goals.png",
+    "tab_title": "08-CLINICAL GOALS \u2022 TARGET CEILINGS & 2,000-STEP FLOOR",
+    "audio_file": "audio/slide_56.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
+  },
+  {
+    "slide_num": "57",
+    "title": "The Realistic 2,000-Step Senior Floor Synchronized With Your Watch",
+    "module": "Tab 08: 08-CLINICAL GOALS",
+    "tab_screenshot": "images/bfm_t08_goals.png",
+    "tab_title": "08-CLINICAL GOALS \u2022 TARGET CEILINGS & 2,000-STEP FLOOR",
+    "audio_file": "audio/slide_57.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
+  },
+  {
+    "slide_num": "58",
+    "title": "Quarterly Stepped Milestones & Avoiding Over-Aggressive Drops",
+    "module": "Tab 08: 08-CLINICAL GOALS",
+    "tab_screenshot": "images/bfm_t08_goals.png",
+    "tab_title": "08-CLINICAL GOALS \u2022 TARGET CEILINGS & 2,000-STEP FLOOR",
+    "audio_file": "audio/slide_58.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
+  },
+  {
+    "slide_num": "59",
+    "title": "09-MEDICATION: Medical Data Sanctity & Zero Pre-Populated Drugs",
+    "module": "Tab 09: 09-MEDICATION",
+    "tab_screenshot": "images/bfm_t09_medication.png",
+    "tab_title": "09-MEDICATION \u2022 SAFE PRESCRIPTION & SCHEDULE REGISTRY",
+    "audio_file": "audio/slide_59.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
+  },
+  {
+    "slide_num": "60",
+    "title": "Discrete Morning Suite & Dinner Split Scheduling Controls",
+    "module": "Tab 09: 09-MEDICATION",
+    "tab_screenshot": "images/bfm_t09_medication.png",
+    "tab_title": "09-MEDICATION \u2022 SAFE PRESCRIPTION & SCHEDULE REGISTRY",
+    "audio_file": "audio/slide_60.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
+  },
+  {
+    "slide_num": "61",
+    "title": "Pharmacist & Endocrinologist Titration Partnership",
+    "module": "Tab 09: 09-MEDICATION",
+    "tab_screenshot": "images/bfm_t09_medication.png",
+    "tab_title": "09-MEDICATION \u2022 SAFE PRESCRIPTION & SCHEDULE REGISTRY",
+    "audio_file": "audio/slide_61.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
+  },
+  {
+    "slide_num": "62",
+    "title": "10-CONFIG: Critical Contraindications & 11-Step Onboarding Guide",
+    "module": "Tab 10: 10-CONFIG",
+    "tab_screenshot": "images/bfm_t10_config_onboarding.png",
+    "tab_title": "10-CONFIG \u2022 SAFETY NOTICE & 11-STEP SETUP GUIDE",
+    "audio_file": "audio/slide_62.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
+  },
+  {
+    "slide_num": "63",
+    "title": "Watch Preferences, 12-Hour Clock Parity & Calibration Anchors",
+    "module": "Tab 10: 10-CONFIG",
+    "tab_screenshot": "images/bfm_t10_config_clock_cal.png",
+    "tab_title": "10-CONFIG \u2022 12H/24H PREFERENCES & OPTICAL CALIBRATION",
+    "audio_file": "audio/slide_63.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
+  },
+  {
+    "slide_num": "64",
+    "title": "Automated Nightly USB Backup & Smart Storage Deduplication",
+    "module": "Tab 10: 10-CONFIG",
+    "tab_screenshot": "images/bfm_t10_config_usb_backup.png",
+    "tab_title": "10-CONFIG \u2022 AUTOMATED USB BACKUP & FAMILY EHR SETUP",
+    "audio_file": "audio/slide_64.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
+  },
+  {
+    "slide_num": "65",
+    "title": "Hospital EHR Setup & Shared-PC Multi-User Family Binding Roster",
+    "module": "Tab 10: 10-CONFIG",
+    "tab_screenshot": "images/bfm_t10_config_roster_transducers.png",
+    "tab_title": "10-CONFIG \u2022 HOUSEHOLD DEVICE ROSTER & SENSOR SPECS",
+    "audio_file": "audio/slide_65.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
+  },
+  {
+    "slide_num": "66",
+    "title": "Section 13 Hardware Transducer Reference & Physical Sensor Bounds",
+    "module": "Tab 10: 10-CONFIG",
+    "tab_screenshot": "images/bfm_t10_config_roster_transducers.png",
+    "tab_title": "10-CONFIG \u2022 HOUSEHOLD DEVICE ROSTER & SENSOR SPECS",
+    "audio_file": "audio/slide_66.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
+  },
+  {
+    "slide_num": "67",
+    "title": "11-WATCH: Live 12-Channel Watch Capability & Command Diagnostics",
+    "module": "Tab 11: 11-WATCH",
+    "tab_screenshot": "images/bfm_t11_watch_analyzer.png",
+    "tab_title": "11-WATCH \u2022 12 ACCESSIBLE CHANNELS & HARDWARE HEALTH",
+    "audio_file": "audio/slide_67.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
+  },
+  {
+    "slide_num": "68",
+    "title": "Adaptive Watch Dial Studio & Smart Read-Only Hardware Boundaries",
+    "module": "Tab 11: 11-WATCH",
+    "tab_screenshot": "images/bfm_t11_watch_dial_boundary.png",
+    "tab_title": "11-WATCH \u2022 ADAPTIVE WATCH DIAL & READ-ONLY BOUNDARIES",
+    "audio_file": "audio/slide_68.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
+  },
+  {
+    "slide_num": "69",
+    "title": "Why BFM Workstation Surpasses Proprietary Mobile Watch Apps",
+    "module": "Tab 11: 11-WATCH",
+    "tab_screenshot": "images/bfm_t11_watch_analyzer.png",
+    "tab_title": "11-WATCH \u2022 12 ACCESSIBLE CHANNELS & HARDWARE HEALTH",
+    "audio_file": "audio/slide_69.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
+  },
+  {
+    "slide_num": "70",
+    "title": "12-DATA LOG: Transparent Live Telemetry Stream Verification",
+    "module": "Tab 12: 12-DATA LOG",
+    "tab_screenshot": "images/bfm_t12_datalog.png",
+    "tab_title": "12-DATA LOG \u2022 LIVE TRANSPARENT STREAM VERIFICATION",
+    "audio_file": "audio/slide_70.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
+  },
+  {
+    "slide_num": "71",
+    "title": "Permanent Local Auditability & Reliable History Backfill",
+    "module": "Tab 12: 12-DATA LOG",
+    "tab_screenshot": "images/bfm_t12_datalog.png",
+    "tab_title": "12-DATA LOG \u2022 LIVE TRANSPARENT STREAM VERIFICATION",
+    "audio_file": "audio/slide_71.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
+  },
+  {
+    "slide_num": "72",
+    "title": "13-EXPORT: Consolidated Single-Bay Clinical Interoperability Center",
+    "module": "Tab 13: 13-EXPORT",
+    "tab_screenshot": "images/bfm_t13_export_ehr.png",
+    "tab_title": "13-EXPORT \u2022 EPIC FHIR R4, LOINC CSV, EMAIL & HANDBOOK",
+    "audio_file": "audio/slide_72.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
+  },
+  {
+    "slide_num": "73",
+    "title": "1-Click HL7 FHIR R4 Collection Bundles & Standardized LOINC Codes",
+    "module": "Tab 13: 13-EXPORT",
+    "tab_screenshot": "images/bfm_t13_export_ehr.png",
+    "tab_title": "13-EXPORT \u2022 EPIC FHIR R4, LOINC CSV, EMAIL & HANDBOOK",
+    "audio_file": "audio/slide_73.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
+  },
+  {
+    "slide_num": "74",
+    "title": "Card 2 Clinical CSV Spreadsheets & Card 3 Doctor Email Handoff",
+    "module": "Tab 13: 13-EXPORT",
+    "tab_screenshot": "images/bfm_t13_export_ehr.png",
+    "tab_title": "13-EXPORT \u2022 EPIC FHIR R4, LOINC CSV, EMAIL & HANDBOOK",
+    "audio_file": "audio/slide_74.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
+  },
+  {
+    "slide_num": "75",
+    "title": "Card 4: The 10-Page Doctor's Clinical Specification & Metrology Handbook",
+    "module": "Tab 13: 13-EXPORT",
+    "tab_screenshot": "images/bfm_t13_export_ehr.png",
+    "tab_title": "13-EXPORT \u2022 EPIC FHIR R4, LOINC CSV, EMAIL & HANDBOOK",
+    "audio_file": "audio/slide_75.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
+  },
+  {
+    "slide_num": "76",
+    "title": "14-TROUBLESHOOTING: Guided Self-Help Without Technical Jargon",
+    "module": "Tab 14: 14-TROUBLESHOOTING",
+    "tab_screenshot": "images/bfm_t14_troubleshooting.png",
+    "tab_title": "14-TROUBLESHOOTING \u2022 SELF-RECOVERY CHECKLIST",
+    "audio_file": "audio/slide_76.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
+  },
+  {
+    "slide_num": "77",
+    "title": "Proactive Overdue Sync Protection & Transparent Charging Guidance",
+    "module": "Tab 14: 14-TROUBLESHOOTING",
+    "tab_screenshot": "images/bfm_t14_troubleshooting.png",
+    "tab_title": "14-TROUBLESHOOTING \u2022 SELF-RECOVERY CHECKLIST",
+    "audio_file": "audio/slide_77.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
+  },
+  {
+    "slide_num": "78",
+    "title": "Mobile Companion Portal: On-the-Go Meal Estimation & Travel Autonomy",
+    "module": "Mobile Companion & HDYF",
+    "tab_screenshot": "images/bfm_t15_mobile_cell.png",
+    "tab_title": "MOBILE COMPANION \u2022 ON-THE-GO CAPTURE & HDYF PORTAL",
+    "audio_file": "audio/slide_78.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
+  },
+  {
+    "slide_num": "79",
+    "title": "Automatic Homecoming Wi-Fi Synchronization With Verified Zero Loss",
+    "module": "Mobile Companion & HDYF",
+    "tab_screenshot": "images/bfm_t15_mobile_cell.png",
+    "tab_title": "MOBILE COMPANION \u2022 ON-THE-GO CAPTURE & HDYF PORTAL",
+    "audio_file": "audio/slide_79.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
+  },
+  {
+    "slide_num": "80",
+    "title": "'How Do You Feel?' (HDYF): Completing the 360\u00b0 Human Telemetry Loop",
+    "module": "Mobile Companion & HDYF",
+    "tab_screenshot": "images/bfm_t15_mobile_cell.png",
+    "tab_title": "MOBILE COMPANION \u2022 ON-THE-GO CAPTURE & HDYF PORTAL",
+    "audio_file": "audio/slide_80.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
+  },
+  {
+    "slide_num": "81",
+    "title": "Alpha vs Beta (1/3): Luminous Visual Clarity, 12h Clocks & Zero-Data Reality",
+    "module": "Alpha vs Beta Evolution",
+    "tab_screenshot": "images/bfm_t01_fullscan_top.png",
+    "tab_title": "01-FULL SCAN \u2022 6-SENSOR WORKFLOW & AUDIT REPORT",
+    "audio_file": "audio/slide_81.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
+  },
+  {
+    "slide_num": "82",
+    "title": "Alpha vs Beta (2/3): 13-Channel 3D Parity, Real Lorenz, 24h Naps & Overnight Temp",
+    "module": "Alpha vs Beta Evolution",
+    "tab_screenshot": "images/bfm_t04_03_13lane_tall_chart.png",
+    "tab_title": "04-REPORTS \u2022 13-LANE SYNCHRONIZED TIMELINE & HUD",
+    "audio_file": "audio/slide_82.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
+  },
+  {
+    "slide_num": "83",
+    "title": "Alpha vs Beta (3/3): Household Vaults, Mobile HDYF, USB Backup & EHR Export",
+    "module": "Alpha vs Beta Evolution",
+    "tab_screenshot": "images/bfm_t13_export_ehr.png",
+    "tab_title": "13-EXPORT \u2022 EPIC FHIR R4, LOINC CSV, EMAIL & HANDBOOK",
+    "audio_file": "audio/slide_83.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
+  },
+  {
+    "slide_num": "84",
+    "title": "Empowering Users, Physicians & Open Science With Google Gemini",
+    "module": "Closing: Open Mission",
+    "tab_screenshot": "images/bfm_t01_fullscan_top.png",
+    "tab_title": "01-FULL SCAN \u2022 6-SENSOR WORKFLOW & AUDIT REPORT",
+    "audio_file": "audio/slide_84.mp3",
+    "has_custom_left": false,
+    "status": "100% COVERED & TAB-ORDERED IN BETA.00.01.0057"
   }
 ]

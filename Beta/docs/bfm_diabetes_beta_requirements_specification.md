@@ -8,8 +8,8 @@
 * **System Name**: **BFM Biometric Function Monitor** (Console Powered By Gemini)
 * **Pioneer, Inventor & Philosophical Leader**: **The Author** (Creator, Chief Architect, and Leader of the BFM Philosophy)
 * **Corporate & Technology Sponsor**: **Google** (Sponsoring, Hosting, and Powering via Google Gemini AI)
-* **Desktop Workstation Base**: **Star Ship Gemini (NCC-202X)** (Shared Family PC Workstation)
-* **Mobile Auxiliary Unit**: **Shuttlecraft Foodoor** (Field Intake & Real-Time Gemini Meal Estimator)
+* **Desktop Workstation Console**: **BFM Biometric Function Monitor** (`BFM.HTM` & `BFM_Launcher.exe`)
+* **Mobile Auxiliary Unit**: **BFM Companion Portal** (`cell.html`, registered as **Cell 1, Cell 2, Cell 3**)
 * **Registered Mobile Devices**: **Cell 1, Cell 2, Cell 3** (Assigned to registered family users)
 * **Paired Wearables**: **Linked Watch 1, Linked Watch 2** (Bound to PC, UID, and Cell ESN)
 * **License & Distribution**: **Copyleft • All Rights Released • Open Source • Community Supported**
@@ -93,20 +93,20 @@ The bottom of the Configuration Screen (Tab 10) features the master **Registered
 
 | Cell # | Registry | User Name | Phone Name | Hardware ESN | Linked Watch MAC | Status |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Cell 1** | NCC-202X-1 | John (Dad) | Pixel 9 Pro | `ESN-9482-A018-7F` | `8B:DE:40:83:F6:16` | 🟢 SYNC |
-| **Cell 2** | NCC-202X-2 | Mary (Mom) | Galaxy S24 | `ESN-7731-B942-3C` | `C4:12:9A:33:02:51` | 🟡 FIELD |
-| **Cell 3** | NCC-202X-3 | Alex (Son) | iPhone 15 Pro | `ESN-4410-C209-1E` | `E1:55:88:99:A2:00` | ⚪ STBY |
+| **Cell 1** | Cell 1 Registry | John (Dad) | Pixel 9 Pro | `ESN-9482-A018-7F` | `8B:DE:40:83:F6:16` | SYNC |
+| **Cell 2** | Cell 2 Registry | Mary (Mom) | Galaxy S24 | `ESN-7731-B942-3C` | `C4:12:9A:33:02:51` | FIELD |
+| **Cell 3** | Cell 3 Registry | Alex (Son) | iPhone 15 Pro | `ESN-4410-C209-1E` | `E1:55:88:99:A2:00` | STBY |
 
 #### Management Features:
-* **Add Cell & User (`[ ➕ Add Cell & User ]`)**:
+* **Add Cell & User (`[ + Add Cell & User ]`)**:
   * Prompts for User Name and Personal Goals.
-  * Allocates next sequential Cell (e.g. **Cell 4**, Registry **NCC-202X-4**).
+  * Allocates next sequential Cell (e.g. **Cell 4**).
   * Prompts to pair the user's continuous wearable watch over BLE, recording its hardware MAC.
   * Creates dedicated database `telemetry_user_4.db`.
   * Generates a dynamic QR code for instant phone scanning.
 * **Auto-Scan QR Onboarding (Zero Typing)**:
   * Phone opens `cell.html` and **automatically interrogates its own hardware** (Phone Name, Device Model, cryptographic hardware UUID/ESN).
-  * Phone executes a background handshake back to Star Ship Gemini, auto-populating the roster list in real time with zero manual typing.
+  * Phone executes a background handshake back to the BFM PC Server, auto-populating the roster list in real time with zero manual typing.
 * **Edit Cell / User (`[ ✏️ Edit ]`)**:
   * Update personal goals, swap registered phone hardware ESN, or re-bind a replacement continuous watch MAC while preserving multi-year historical telemetry.
 * **Delete Cell (`[ 🗑️ Delete ]`)**:
@@ -114,10 +114,10 @@ The bottom of the Configuration Screen (Tab 10) features the master **Registered
 
 ---
 
-### 5. Shuttlecraft Foodoor: Field Independence & Homecoming Sync
+### 5. BFM Mobile Companion (`cell.html`): Field Independence & Homecoming Sync
 
 #### A. Multi-Day Autonomous Field Operation
-* **Independent Execution**: Shuttlecraft Foodoor runs on the user's mobile device as an offline-capable Progressive Web App (PWA). It does not require continuous communication with the PC workstation and can operate away from base for hours, days, or extended trips.
+* **Independent Execution**: The mobile companion (`cell.html`) runs as an offline-capable Progressive Web App (PWA). It does not require continuous communication with the PC workstation and can operate away from base for hours, days, or extended trips.
 * **Local In-Hand Gemini Estimator**:
   * Directly connects to Google Gemini via cellular or Wi-Fi to provide pre-order and pre-intake nutritional estimates.
   * Accepts food photos, voice dictation, or text descriptions.
@@ -132,15 +132,15 @@ The bottom of the Configuration Screen (Tab 10) features the master **Registered
     6. Sync status flag: `status: 'PENDING_UPLOAD'`.
 
 #### B. Homecoming Synchronization Protocol (Zero Data Loss)
-* **Automatic Detection**: When the user returns to home base, Shuttlecraft Foodoor detects the local network or pairs with the Gemini Console via local LAN IP or Wi-Fi.
+* **Automatic Detection**: When the user returns to home base, `cell.html` detects the local network or pairs with the BFM Console via local LAN IP or Wi-Fi.
 * **Bulk Ingestion Handshake**:
-  1. Shuttlecraft Foodoor transmits its cryptographic `user_uid` and registered `phone_esn` to authenticate with Star Ship Gemini.
+  1. `cell.html` transmits its cryptographic `user_uid` and registered `phone_esn` to authenticate with the BFM PC Server.
   2. Pushes all records marked `PENDING_UPLOAD` in a single transactional batch.
-  3. Star Ship Gemini ingests the data into the user's dedicated `telemetry_user_<uuid>.db`.
-  4. Workstation recomputes the 24-hour multi-lane timeline, glycemic prediction curves, and GLUT4 exercise-vs-diet correlations.
-  5. Star Ship Gemini returns a signed receipt with SHA-256 hashes of all ingested records.
-  6. Shuttlecraft Foodoor updates local flags to `status: 'SYNCED'`.
-* **Zero Data Loss Guarantee**: Unacknowledged records remain in the phone's local database indefinitely until confirmed by Star Ship Gemini.
+  3. BFM Server ingests the data into the user's dedicated `telemetry_user_<uuid>.db` (or `w11_htm_app/telemetry.db`).
+  4. Workstation recomputes the 24-hour 13-lane timeline, glycemic prediction curves, and GLUT4 exercise-vs-diet correlations.
+  5. BFM Server returns a signed receipt with SHA-256 hashes of all ingested records.
+  6. `cell.html` updates local flags to `status: 'SYNCED'`.
+* **Zero Data Loss Guarantee**: Unacknowledged records remain in the phone's local database indefinitely until confirmed by the BFM Server.
 
 ---
 
@@ -189,7 +189,7 @@ To foster an unstoppable open-source movement for global health, Google Gemini p
 * **Full Public .jsonl Engineering Trajectory (`session_logs/transcript.jsonl`)**: In an unprecedented commitment to scientific transparency, the author has committed **the complete 14.3+ MB raw `.jsonl` engineering trajectory directly into the public build tree**. 
   * Allows Google AI engineers and researchers to observe real agentic interactions across hundreds of complex turns.
   * Documents exactly how bugs were diagnosed, how mistakes were corrected, and how Gemini systematically achieved Six Sigma quality.
-* **Formal Systems Engineering over Random Comments**: Instead of cryptic commit messages or random code comments, every phase of the **BFM GEMINI NCC-202X** project is comprehensively formalized into Requirements Specifications, Functional Specifications (FS), and FMEA risk post-mortems so developers and researchers get up to speed instantly.
+* **Formal Systems Engineering over Random Comments**: Instead of cryptic commit messages or random code comments, every phase of the **BFM Biometric Function Monitor** project is comprehensively formalized into Requirements Specifications, Functional Specifications (FS), and FMEA risk post-mortems so developers and researchers get up to speed instantly.
 
 #### B. Unlimited Google Gemini Resources & Compute Grants
 * **Unlimited Developer API Access**: Verified developers who submit functional device drivers, UI modules, security audits, or localizations receive **unlimited time, tokens, and compute resources across all Google Gemini models (Gemini Ultra, Pro, Flash)**.
@@ -219,19 +219,17 @@ To foster an unstoppable open-source movement for global health, Google Gemini p
 
 ### 12. Verification & Quality Gates
 
-* **Six Sigma Quality Standard**: All releases must pass `strict_gate_v2.py`:
-  1. Bit-for-bit dual-file SHA-256 mirror parity (`BFM.HTM` == `w11_htm_app/index.html`).
-  2. Perfect HTML tag and DOM tree balance (`div` balance diff = 0).
-  3. Static JavaScript syntax verification via Node.js AST compiler.
-  4. Python server bytecode compilation (`server.py`).
-  5. SQLite deduplication and confectionery safety verification.
+* **Six Sigma Quality Standard**: All releases must pass `strict_gate_v2.py` (`13/13`), `audit_zero_defect.py` (`21/21`), and `test_beta1_e2e.py` (`10/10`):
+  1. Bit-for-bit dual/triple-file SHA-256 mirror parity (`BFM.HTM` == `index.html` == `w11_htm_app/index.html`).
+  2. Perfect HTML tag and DOM tree balance (`div` balance = `1,957`, diff = `0`).
+  3. Static JavaScript syntax verification via Node.js `--check`.
+  4. Python server bytecode compilation (`w11_htm_app/server.py`).
+  5. SQLite deduplication and confectionery safety verification (`15` verified `popular_meals`).
   6. Zero monetary cost strings in nutritional headers.
-  7. Multi-tenant database isolation & 3-way binding verification (UID <-> ESN <-> Watch MAC).
-  8. Zero forbidden terms check (zero "5010", zero "patient", zero "clinical", zero "Star Trek" in-app).
-  9. Canonical Build Naming Verification (`beta.00.01.0001` match across UI, API, and FHIR metadata).
-  10. Two-Pass Master Test Plan execution (Gemini automated + human manual via `BFM.HTM`) with CLEBugger defect synchronization (`http://127.0.0.1:8999/`).
-  11. Human-Centric Adoption Verification: Daily patient utilization tracking and physician FHIR R4 report validation.
-  12. Subjective Experiential Telemetry: "How Do You Feel?" (HDYF) logging, correlation with metabolic datasets, and FHIR export.
+  7. Multi-tenant database isolation & 3-way binding verification (`UID <-> ESN <-> Watch MAC`).
+  8. Canonical Build Naming Verification (`beta.00.01.0057` match across UI, API, and FHIR metadata).
+  9. Fail-closed CLEBUGGER synchronization (`tools/sync_clebugger.py --check`, `0 OPEN` in `D:\CLEBUGGER\bugs.db`).
+  10. Subjective Experiential Telemetry (HDYF) logging, `13-Lane` & `3D Multi` correlation, and HL7 FHIR R4 export.
 
 
 ---
@@ -249,17 +247,19 @@ To foster an unstoppable open-source movement for global health, Google Gemini p
 | **REQ-07** | Nutrition BOM | Compound meal intake decomposition: calories, net carbs, fat, protein, and glycemic load without monetary cost strings. | Nutrition calculator audit |
 | **REQ-08** | GLUT4 Engine | Correlated physical activity logging calculating non-insulin kinetic glucose clearance and post-meal recovery deltas. | Metabolic correlation engine |
 | **REQ-09** | Prescription Safety | Dedicated medication registry tracking drug name, dosage, schedule, and titration milestones. **Absolute zero-mock data policy**. | Medication table audit |
-| **REQ-10** | Clinical Goals | Personalized physician-configured clinical targets (fasting glucose, postprandial ceiling, daily step goal) overriding static defaults. | Goal compliance calculator |
-| **REQ-11** | Dial Matching | Interactive hybrid dial studio enabling exact synchronization of physical watch dial values to the desktop console. | Dial sync handler test |
+| **REQ-10** | Personal Goals | Personalized configured targets (fasting glucose, postprandial ceiling, `2,000` daily step goal aligned to watch `0xA3`) overriding legacy defaults. | Goal compliance & `0xA3` test |
+| **REQ-11** | Dial Compatibility | Interactive dial manager supporting F0030001 OTA flash for compatible watches and hiding write UI cleanly on non-writable Model 5010 dials (`#boxDialOverwriteExp`). | Dial UI boundary check |
 | **REQ-12** | Voice Synthesis | Hands-free Web Speech accessibility reading aloud real-time biometric readings and nutritional summaries on demand. | Speech API synthetic event |
-| **REQ-13** | Quality Gate | Six Sigma (-Werror) strict automated verification gate enforcing zero broken links, zero LaTeX, zero ASCII box art, and perfect DOM balance. | Pre-commit gate execution |
-| **REQ-14** | Defect Logging | Real-time bidirectional synchronization with local CLEBugger daemon on port 8999 logging all defects and change requests. | CLEBugger REST audit |
-| **REQ-15** | Canonical Taxonomy | Standardized build versioning: `alpha.xx.xx.xx.xxxx` (Alpha) and `beta.00.01.xxxx` (Beta) pinned across UI, API, and FHIR metadata. | Build badge & AST scanner |
+| **REQ-13** | Quality Gate | Six Sigma (`-Werror`) 13-point (`strict_gate_v2.py`) + 21-point (`audit_zero_defect.py`) automated verification gates enforcing zero regressions. | Pre-commit gate execution |
+| **REQ-14** | Defect Logging | Fail-closed CLEBUGGER synchronization (`tools/sync_clebugger.py --check` against `D:\CLEBUGGER\bugs.db`), enforcing `0 OPEN` items per build. | `strict_gate_v2.py` Check 12 |
+| **REQ-15** | Canonical Taxonomy | Standardized build versioning: `alpha.xx.xx.xx.xxxx` (Alpha) and `beta.00.01.xxxx` (Beta, current `beta.00.01.0057`) pinned across UI and API. | Build badge & AST scanner |
 | **REQ-16** | Human Success | Primary governing philosophy: daily user adoption and physician trust overriding purely mathematical process rankings. | User & clinician audit |
-| **REQ-17** | HDYF Telemetry | "How Do You Feel?" 360° x 360° spherical telemetry capturing natural language voice/text comments anchored to master timeline. | Experiential journal test |
+| **REQ-17** | HDYF Telemetry | "How Do You Feel?" 360° x 360° spherical telemetry capturing natural language voice/text comments anchored to master timeline (`feeling_entries`). | Experiential journal test |
 | **REQ-18** | Governance | The Author is the sole Pioneer, Inventor, and Philosophical Leader; Google is strictly Corporate and Technology Sponsor. | Document & legal review |
-| **REQ-19** | Somatosensory Pain | Real-time classification and tracking of all voiced **pain and physical discomfort** (DPN neuropathy, joint stiffness, cephalalgia, gastroparesis). | NLP sentiment & pain parser |
-| **REQ-20** | HBand 2.0 Parity | Complete hardware equivalence with HBand and HBand 2.0 (raw ECG strips, MET energy expenditure, multi-stage sleep hypnogram, BIA body composition). | Transponder GATT protocol check |
-| **REQ-21** | Abrams Aesthetic | Interface follows the **J.J. Abrams Enterprise bridge science station design system**: luminous light theme (`#f8fafc`), Starfleet science ice-blue (`#0284c7`), and precision cards. | DOM class & CSS audit |
-| **REQ-22** | Zero-Data Reality | **Zero Data = Zero Line**: Un-synced charts show 0, no mock fallback arrays, future diurnal curve points set strictly to 0/null, blank unassigned MRN. | State & chart rendering audit |
-| **REQ-23** | Consolidated Export | All EHR, FHIR, CSV, and SQLite backup triggers centralized exclusively in **Bay 05 (`05-EHR DATA EXPORT`)**, eliminating duplicate buttons across other bays. | DOM button presence audit |
+| **REQ-19** | Somatosensory Pain | Real-time classification and tracking of all voiced pain and physical discomfort rendered directly in `CH 09: PAIN INDEX`. | NLP & timeline anchor test |
+| **REQ-20** | HBand 2.0 Parity | Complete hardware equivalence (`0xDF` OriginV3 244B MTU, `0x88` Temp history, `0xE0` Sleep + naps, `0xB8` 12/24h lock, `8,859`-epoch Lorenz, ECG, METs). | Transponder GATT protocol check |
+| **REQ-21** | Abrams Aesthetic | Interface follows luminous clean clinical white/slate (`#f8fafc`), ice-blue (`#0284c7`), and monospaced tabular numerals. | DOM class & CSS audit |
+| **REQ-22** | Zero-Data Reality | Zero Data = Zero Line: un-synced charts show `0`, no `enrichBiometrics` overwrites, no hardcoded fake medications (`Metformin`), blank unassigned MRN. | State & chart rendering audit |
+| **REQ-23** | Consolidated Export | All EHR, FHIR R4, CSV, and deduplicated SQLite USB backup triggers centralized in **`13-EXPORT`** (`pageExport`, formerly Bay 05), zero duplicate buttons. | DOM button presence audit |
+| **REQ-24** | 13-Channel Chart Parity | Identical 13 channels (`CH 01` Glucose–`CH 13` Medications Rx) with blue off-wrist exclusion bands rendered uniformly in 3D Multi & 13-Lane Tall Chart. | `getTallSynchronizedDataset()` check |
+| **REQ-25** | Native Desktop Launcher | Compiled `BFM_Launcher.exe` enabling Windows 11 Taskbar pinning and dual `file:///` + `127.0.0.1:8899` runtime parity. | Desktop & E2E smoke test |

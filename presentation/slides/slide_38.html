@@ -2,186 +2,233 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>LCARS 5010 - Slide 38: Tab 04: Reports – Nocturnal SpO2 & OSAHS Apnea Hypoxia Matrix</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slide 38: 24-Hour Ambulatory Blood Pressure &amp; Healthy Nocturnal Dipping</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
       width: 100%;
-      height: 100%;
-      background: #f1f5f9;
+      height: 100vh;
+      overflow: hidden;
+      background: #f8fafc;
       color: #0f172a;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
     }
-    .slide-frame {
-      flex: 1;
+    .slide-container {
+      width: 100%;
       height: 100vh;
+      padding: 12px 18px;
       display: flex;
       flex-direction: column;
-      padding: 8px 16px;
-      gap: 6px;
-      box-sizing: border-box;
-      min-height: 0;
+      background: #f8fafc;
     }
     .slide-header {
+      border-bottom: 2px solid #cbd5e1;
+      padding-bottom: 6px;
+      margin-bottom: 8px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      border-bottom: 2.5px solid #0284c7;
-      padding: 6px 14px;
-      background: #ffffff;
-      border-radius: 6px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-      border: 1px solid #e2e8f0;
+      align-items: flex-end;
       flex-shrink: 0;
     }
-    .slide-module {
-      font-size: 0.78rem;
-      color: #0284c7;
+    .module-badge {
+      display: inline-block;
+      background: #e0f2fe;
+      border: 1px solid #0284c7;
+      color: #0369a1;
+      font-size: 0.65rem;
       font-weight: 800;
-      letter-spacing: 0.08em;
+      padding: 2px 7px;
+      border-radius: 3px;
       text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-family: monospace;
+      margin-bottom: 3px;
     }
     .slide-title {
-      font-size: 1.35rem;
-      font-weight: 900;
-      color: #0f172a;
-      margin-top: 0px;
-      letter-spacing: -0.01em;
-    }
-    .slide-badge {
-      background: #0284c7;
-      color: #ffffff;
-      font-family: monospace;
+      font-size: 1.28rem;
       font-weight: 800;
-      font-size: 0.76rem;
-      padding: 3px 10px;
+      color: #0f172a;
+      line-height: 1.15;
+    }
+    .slide-desc {
+      font-size: 0.79rem;
+      color: #475569;
+      margin-top: 2px;
+      font-weight: 500;
+    }
+    .slide-num-badge {
+      font-family: monospace;
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #0284c7;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      padding: 3px 9px;
       border-radius: 4px;
-      letter-spacing: 0.05em;
       flex-shrink: 0;
     }
-    .slide-body {
-      flex: 1;
+    .grid-2col {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 14px;
+      flex: 1;
       min-height: 0;
-      height: calc(100vh - 66px);
+      overflow: hidden;
     }
-    .slide-footer {
+    .left-screenshot-card {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      min-height: 0;
+      overflow: hidden;
+    }
+    .left-screenshot-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 0.70rem;
-      color: #64748b;
+      border-bottom: 1.5px solid #e2e8f0;
+      padding-bottom: 5px;
+      margin-bottom: 6px;
+      flex-shrink: 0;
+    }
+    .left-screenshot-viewport {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      background: #ffffff;
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    .right-column {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 0;
+      overflow: hidden;
+    }
+    .content-card {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 9px 13px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      flex: 1;
+      overflow-y: auto;
+    }
+    .bullet-item {
+      border-left: 4px solid transparent;
+      border-radius: 4px;
+      padding: 5px 8px;
+      font-size: 0.77rem;
+      line-height: 1.36;
+      color: #1e293b;
+      transition: background 0.25s ease, border-left-color 0.25s ease;
+    }
+    .visual-card {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 8px 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      overflow-y: auto;
+      flex-shrink: 0;
+      max-height: 48%;
+    }
+    .card-header-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1.5px solid #e2e8f0;
+      padding-bottom: 4px;
+      margin-bottom: 5px;
       font-family: monospace;
+      font-size: 0.70rem;
+      font-weight: 800;
+      color: #0284c7;
+    }
+    .slide-footer {
       border-top: 1px solid #cbd5e1;
       padding-top: 4px;
+      margin-top: 6px;
+      display: flex;
+      justify-content: space-between;
+      font-family: monospace;
+      font-size: 0.67rem;
+      color: #64748b;
+      font-weight: 600;
       flex-shrink: 0;
     }
   </style>
 </head>
 <body>
-  <div class="slide-frame">
+  <div class="slide-container">
     <div class="slide-header">
       <div>
-        <div class="slide-module">Module 5: Clinical Reports & Longitudinal Analytics</div>
-        <div class="slide-title">Tab 04: Reports – Nocturnal SpO2 & OSAHS Apnea Hypoxia Matrix</div>
+        <div class="module-badge">Tab 04: 04-REPORTS</div>
+        <div class="slide-title">24-Hour Ambulatory Blood Pressure &amp; Healthy Nocturnal Dipping</div>
+        <div class="slide-desc">Cuffless dual-band Systolic (`124–133 mmHg`) and Diastolic pressure monitoring against `&lt;120 / &lt;80` clinical baselines.</div>
       </div>
-      <div class="slide-badge">SLIDE 38 / 56</div>
+      <div class="slide-num-badge">SLIDE 38 / 84</div>
     </div>
 
-    <div class="slide-body">
-      
-      <!-- High-Contrast Dynamic Content Card -->
-      <div class="content-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #0284c7; padding: 10px 14px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto;">
-        <h3 style="color: #0284c7; font-weight: 800; border-bottom: 2px solid #e2e8f0; padding-bottom: 4px; margin-bottom: 5px; font-size: 1.05rem; text-transform: uppercase;">NOCTURNAL OXIMETRY & APNEA HYPOXIA DESATURATION</h3>
-        <p style="color: #334155; font-weight: 500; margin-bottom: 5px; font-size: 0.85rem; line-height: 1.35;">High-frequency dual-wavelength pulse oximetry auditing nocturnal oxygen saturation and obstructive sleep apnea events.</p>
-        <ul class="bullets-list" style="padding-left: 0; list-style-type: none; margin-bottom: 3px; color: #1e293b; font-size: 0.80rem;">
-          
-          <li id="bullet-item-0" class="bullet-item" data-idx="0" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">Dual-Wavelength Optical Oximetry:</strong> 660nm and 940nm photoplethysmography tracks arterial saturation continuously.
-          </li>
-        
-          <li id="bullet-item-1" class="bullet-item" data-idx="1" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">Oxygen Desaturation Index (ODI):</strong> Quantifies transient desaturations (>4% dip) to screen for Obstructive Sleep Apnea.
-          </li>
-        
-          <li id="bullet-item-2" class="bullet-item" data-idx="2" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">Cortisol & Glycemic Link:</strong> Detects nocturnal hypoxia episodes that trigger stress hormone surges and morning glucose spikes.
-          </li>
-        
-        </ul>
-        
-        <!-- Real LCARS Page Under Discussion (Full Area Fill Viewport) -->
-        <div class="left-screenshot-card" style="margin-top: 6px; margin-bottom: 6px; border: 2px solid #cbd5e1; border-radius: 8px; overflow: hidden; background: #ffffff; box-shadow: 0 4px 14px rgba(0,0,0,0.08); display: flex; flex-direction: column; flex: 1; min-height: 310px;">
-          <!-- Continuous Monotonic Viewport (Clean Light Background) -->
-          <div class="left-screenshot-viewport" style="text-align: center; background: #ffffff; overflow-y: auto; flex: 1; min-height: 290px; position: relative;">
-            <img src="images/lcars_slide38_clinical_goals.png" onerror="this.src="images/lcars_slide38_clinical_goals.png"" alt="TAB 04: REPORTS CONSOLE" style="width: 100%; height: auto; display: block; object-fit: cover; object-position: top center;">
-          </div>
+    <div class="grid-2col">
+      <!-- Left Column: Live Console Screenshot or Custom Visual -->
+      <div class="left-screenshot-card">
+        <div class="left-screenshot-header">
+          <span style="font-family: monospace; font-size: 0.69rem; color: #0284c7; font-weight: 800;">04-REPORTS • 5-ZONE HEART RATE &amp; AMBULATORY BLOOD PRESSURE</span>
+          <span style="background: #15803d; color: #ffffff; font-size: 0.59rem; font-weight: 800; padding: 2px 6px; border-radius: 3px; font-family: monospace;">SHARED CARE VIEW</span>
         </div>
-        
-      </div>
-    
-      
-      <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #dc2626; padding: 10px 14px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto;">
-        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 4px; margin-bottom: 6px; flex-shrink: 0;">
-          <span style="font-family: monospace; font-weight: 800; color: #0284c7; font-size: 0.84rem;">PULSE OXIMETRY & APNEA-CORTISOL GLYCEMIC AXIS</span>
-          <span style="background: #f8fafc; color: #dc2626; font-weight: 800; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; border: 1.5px solid #dc2626;">ODI-4% HYPOXIA MATRIX</span>
-        </div>
-        <div class="visual-content" style="flex: 1; display: flex; flex-direction: column;">
-          
-          <!-- Dual-Wavelength SpO2 & Apnea-Cortisol Detail Card -->
-          <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 10px; margin-top: 4px; color: #0f172a; font-family: monospace; font-size: 0.67rem; line-height: 1.4;">
-            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 4px; margin-bottom: 8px;">
-              <span style="font-size: 0.72rem; color: #dc2626; font-weight: 800;">DUAL-WAVELENGTH OXIMETRY & APNEA</span>
-              <span style="background: #dc2626; color: #fff; font-size: 0.60rem; font-weight: bold; padding: 2px 6px; border-radius: 3px;">RATIO-OF-RATIOS</span>
-            </div>
-
-            <!-- Optical Physics Ratio-of-Ratios -->
-            <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 4px; padding: 6px; margin-bottom: 6px;">
-              <strong style="color: #1e40af; font-size: 0.70rem;">1. DUAL-WAVELENGTH OPTICAL RATIO (R):</strong>
-              <div style="color: #1e3a8a; margin-top: 2px;">
-                R = [AC(660nm) / DC(660nm)] / [AC(940nm) / DC(940nm)]. Deoxygenated hemoglobin preferentially absorbs 660nm red light, while oxygenated HbO2 absorbs 940nm infrared. LCARS samples arterial pulse absorption continuously at 1% saturation resolution.
-              </div>
-            </div>
-
-            <!-- ODI Criteria -->
-            <div style="background: #fffbeb; border: 1px solid #fde68a; border-radius: 4px; padding: 6px; margin-bottom: 6px;">
-              <strong style="color: #92400e; font-size: 0.70rem;">2. OXYGEN DESATURATION INDEX (ODI-4%):</strong>
-              <div style="color: #78350f; margin-top: 2px;">
-                Quantifies nocturnal dips >= 4% below baseline lasting >= 10 seconds.<br>
-                • Normal: &lt;5 dips/hour • Mild OSA: 5–14 • Moderate: 15–29 • Severe: >= 30.<br>
-                Sustained baseline below 95% indicates obstructive hypoventilation.
-              </div>
-            </div>
-
-            <!-- Endocrine Cortisol Surge Mechanism -->
-            <div style="background: #fef2f2; border: 1.5px solid #fecaca; border-radius: 4px; padding: 6px; margin-bottom: 6px;">
-              <strong style="color: #dc2626; font-size: 0.70rem;">3. THE APNEA-CORTISOL GLYCEMIC SURGE:</strong>
-              <div style="color: #7f1d1d; margin-top: 2px;">
-                Nocturnal airway collapse triggers carotid chemoreceptors, spiking sympathetic catecholamines and cortisol. Unsuppressed cortisol stimulates hepatic glycogenolysis, driving refractory morning fasting spikes (&gt;180 mg/dL) that resist standard evening medication.
-              </div>
-            </div>
-
-            <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 3px; padding: 5px 8px; font-size: 0.65rem; color: #166534;">
-              <strong>CLINICAL INTERVENTION:</strong> Telemetry screens for occult sleep apnea, justifying home sleep studies, CPAP compliance, and bedtime airway optimization to stabilize morning glycemia.
-            </div>
-          </div>
-    
-        </div>
-        <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.76rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
-          <strong style="color: #15803d;">Key Takeaway:</strong> Screens for nocturnal obstructive sleep apnea dips that cause dawn cortisol spikes and glycemic instability.
+        <div class="left-screenshot-viewport">
+          <img src="images/bfm_t04_10_hr_bp.png" alt="04-REPORTS • 5-ZONE HEART RATE &amp; AMBULATORY BLOOD PRESSURE" style="width: 100%; max-height: 100%; object-fit: contain; display: block;">
         </div>
       </div>
-    
+
+      <!-- Right Column: Narrative Points + Doctor Calculus & Clinical Fitness -->
+      <div class="right-column">
+        <div class="content-card">
+          <div class="card-header-strip">
+            <span>AMBULATORY SYSTOLIC &amp; DIASTOLIC TRENDS</span>
+            <span style="color: #64748b;">PATIENT &amp; CLINICIAN WALKTHROUGH</span>
+          </div>
+          <div class="bullet-item bullet-item-0" data-idx="0">
+            <strong style="color: #0284c7;">Dual Systolic &amp; Diastolic Envelope:</strong> Plots upper blue Systolic and lower orange Diastolic traces continuously across sleeping and waking hours.
+          </div>
+          <div class="bullet-item bullet-item-1" data-idx="1">
+            <strong style="color: #0284c7;">Evaluating 10–20% Nocturnal Dipping:</strong> Healthy cardiovascular physiology dips blood pressure gently during deep sleep; flat non-dipping alerts physicians.
+          </div>
+          <div class="bullet-item bullet-item-2" data-idx="2">
+            <strong style="color: #0284c7;">Morning Surge Visibility:</strong> Catches acute early-morning pressure rises long before an afternoon doctor appointment.
+          </div>
+          <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.75rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
+            <strong style="color: #15803d;">Key Takeaway:</strong> Round-the-clock pressure curves reveal morning surges and non-dipping hypertension hidden by single office arm cuffs.
+          </div>
+        </div>
+
+        <div class="visual-card">
+          <div class="card-header-strip">
+            <span>AMBULATORY PWTT PRESSURE</span>
+            <span style="background: #0284c7; color: #ffffff; font-size: 0.57rem; padding: 2px 6px; border-radius: 3px;">124–133 MMHG SYS</span>
+          </div>
+          <div style="background:#f8fafc;border:1.5px solid #cbd5e1;border-radius:6px;padding:7px;"><div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1.5px solid #cbd5e1;padding-bottom:3px;margin-bottom:5px;"><span style="font-family:monospace;font-size:0.70rem;font-weight:800;color:#0284c7;">AMBULATORY PWTT PRESSURE</span><span style="background:#0284c7;color:#fff;font-family:monospace;font-size:0.58rem;font-weight:800;padding:2px 6px;border-radius:3px;">124–133 MMHG SYS</span></div><div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:5px;overflow:hidden;"><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Measured Today</span><span style="font-family:monospace;color:#475569;">127/85 current morning ambulatory read</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#0284c7;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">PWTT OPTICAL</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Clinical Goal</span><span style="font-family:monospace;color:#475569;">&lt;120 / &lt;80 mmHg | 10–20% Sleep Dip</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#0284c7;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">REFERENCED</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Morning Span</span><span style="font-family:monospace;color:#475569;">Continuous 12 AM–9 AM readings intact</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#0284c7;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">UNBROKEN</span></div></div><div style="margin-top:6px;background:#f0fdf4;border:1.5px solid #86efac;border-radius:5px;padding:6px 9px;"><div style="font-family:monospace;font-size:0.65rem;font-weight:800;color:#15803d;margin-bottom:2px;">PHYSICIAN CALCULUS &amp; MEASUREMENT FITNESS • NOCTURNAL DIPPING INTEGRAL</div><div style="font-family:monospace;font-size:0.74rem;font-weight:700;color:#0f172a;line-height:1.35;">Dip% = (Mean_SBP_day - Mean_SBP_night) / Mean_SBP_day × 100%  [Target 10–20%]</div></div></div><div style="margin-top:6px;background:#eff6ff;border-left:3.5px solid #0284c7;padding:6px 9px;border-radius:4px;font-size:0.72rem;color:#1e3a8a;line-height:1.35;"><strong>Clinical Significance:</strong> Preserving &gt;=10% nocturnal pressure dipping correlates strongly with reduced renal and cerebrovascular strain in Type 2 diabetes.</div>
+        </div>
+      </div>
     </div>
 
     <div class="slide-footer">
-      <div>LCARS 5010 CLINICAL AMBULATORY TELEMETRY ONBOARDING • LIGHT THEME</div>
-      <div>AUSTRALIAN FEMALE VOICE • 100% SCREEN SYNCHRONIZED</div>
+      <div>BFM BIOMETRIC FUNCTION MONITOR • POWERED BY GOOGLE GEMINI AI</div>
+      <div>AUSTRALIAN VOICE NARRATION • TAB 01–14 SYNCHRONIZED</div>
     </div>
   </div>
 </body>

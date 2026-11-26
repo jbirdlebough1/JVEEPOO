@@ -2,197 +2,233 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>LCARS 5010 - Slide 28: Tab 05: Export – Standard HL7 FHIR R4 & Clinical Datasets</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slide 28: Sub-Report 1: Lead-I ECG Protocol &amp; Diurnal QTc Interval Stability</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
       width: 100%;
-      height: 100%;
-      background: #f1f5f9;
+      height: 100vh;
+      overflow: hidden;
+      background: #f8fafc;
       color: #0f172a;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
     }
-    .slide-frame {
-      flex: 1;
+    .slide-container {
+      width: 100%;
       height: 100vh;
+      padding: 12px 18px;
       display: flex;
       flex-direction: column;
-      padding: 8px 16px;
-      gap: 6px;
-      box-sizing: border-box;
-      min-height: 0;
+      background: #f8fafc;
     }
     .slide-header {
+      border-bottom: 2px solid #cbd5e1;
+      padding-bottom: 6px;
+      margin-bottom: 8px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      border-bottom: 2.5px solid #0284c7;
-      padding: 6px 14px;
-      background: #ffffff;
-      border-radius: 6px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-      border: 1px solid #e2e8f0;
+      align-items: flex-end;
       flex-shrink: 0;
     }
-    .slide-module {
-      font-size: 0.78rem;
-      color: #0284c7;
+    .module-badge {
+      display: inline-block;
+      background: #e0f2fe;
+      border: 1px solid #0284c7;
+      color: #0369a1;
+      font-size: 0.65rem;
       font-weight: 800;
-      letter-spacing: 0.08em;
+      padding: 2px 7px;
+      border-radius: 3px;
       text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-family: monospace;
+      margin-bottom: 3px;
     }
     .slide-title {
-      font-size: 1.35rem;
-      font-weight: 900;
-      color: #0f172a;
-      margin-top: 0px;
-      letter-spacing: -0.01em;
-    }
-    .slide-badge {
-      background: #0284c7;
-      color: #ffffff;
-      font-family: monospace;
+      font-size: 1.28rem;
       font-weight: 800;
-      font-size: 0.76rem;
-      padding: 3px 10px;
+      color: #0f172a;
+      line-height: 1.15;
+    }
+    .slide-desc {
+      font-size: 0.79rem;
+      color: #475569;
+      margin-top: 2px;
+      font-weight: 500;
+    }
+    .slide-num-badge {
+      font-family: monospace;
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #0284c7;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      padding: 3px 9px;
       border-radius: 4px;
-      letter-spacing: 0.05em;
       flex-shrink: 0;
     }
-    .slide-body {
-      flex: 1;
+    .grid-2col {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 14px;
+      flex: 1;
       min-height: 0;
-      height: calc(100vh - 66px);
+      overflow: hidden;
     }
-    .slide-footer {
+    .left-screenshot-card {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      min-height: 0;
+      overflow: hidden;
+    }
+    .left-screenshot-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 0.70rem;
-      color: #64748b;
+      border-bottom: 1.5px solid #e2e8f0;
+      padding-bottom: 5px;
+      margin-bottom: 6px;
+      flex-shrink: 0;
+    }
+    .left-screenshot-viewport {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      background: #ffffff;
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    .right-column {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 0;
+      overflow: hidden;
+    }
+    .content-card {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 9px 13px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      flex: 1;
+      overflow-y: auto;
+    }
+    .bullet-item {
+      border-left: 4px solid transparent;
+      border-radius: 4px;
+      padding: 5px 8px;
+      font-size: 0.77rem;
+      line-height: 1.36;
+      color: #1e293b;
+      transition: background 0.25s ease, border-left-color 0.25s ease;
+    }
+    .visual-card {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 8px 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      overflow-y: auto;
+      flex-shrink: 0;
+      max-height: 48%;
+    }
+    .card-header-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1.5px solid #e2e8f0;
+      padding-bottom: 4px;
+      margin-bottom: 5px;
       font-family: monospace;
+      font-size: 0.70rem;
+      font-weight: 800;
+      color: #0284c7;
+    }
+    .slide-footer {
       border-top: 1px solid #cbd5e1;
       padding-top: 4px;
+      margin-top: 6px;
+      display: flex;
+      justify-content: space-between;
+      font-family: monospace;
+      font-size: 0.67rem;
+      color: #64748b;
+      font-weight: 600;
       flex-shrink: 0;
     }
   </style>
 </head>
 <body>
-  <div class="slide-frame">
+  <div class="slide-container">
     <div class="slide-header">
       <div>
-        <div class="slide-module">Module 5: The Diabetes Learning Engine</div>
-        <div class="slide-title">Tab 05: Export – Standard HL7 FHIR R4 & Clinical Datasets</div>
+        <div class="module-badge">Tab 04: 04-REPORTS</div>
+        <div class="slide-title">Sub-Report 1: Lead-I ECG Protocol &amp; Diurnal QTc Interval Stability</div>
+        <div class="slide-desc">Guided 30-second finger-bezel ECG sweep paired with diurnal QTc repolarization trending (`406–411 ms`, well below `440 ms` ceiling).</div>
       </div>
-      <div class="slide-badge">SLIDE 28 / 56</div>
+      <div class="slide-num-badge">SLIDE 28 / 84</div>
     </div>
 
-    <div class="slide-body">
-      
-      <!-- High-Contrast Dynamic Content Card -->
-      <div class="content-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #0284c7; padding: 10px 14px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto;">
-        <h3 style="color: #0284c7; font-weight: 800; border-bottom: 2px solid #e2e8f0; padding-bottom: 4px; margin-bottom: 5px; font-size: 1.05rem; text-transform: uppercase;">UNIVERSAL EHR INTEROPERABILITY & DIRECT DOCTOR IMPORT</h3>
-        <p style="color: #334155; font-weight: 500; margin-bottom: 5px; font-size: 0.85rem; line-height: 1.35;">Universal interoperability that Epic, Cerner, and other EHR systems import directly without conversion; patient can email or portal-send to their doctor.</p>
-        <ul class="bullets-list" style="padding-left: 0; list-style-type: none; margin-bottom: 3px; color: #1e293b; font-size: 0.80rem;">
-          
-          <li id="bullet-item-0" class="bullet-item" data-idx="0" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">Universal HL7 FHIR Release 4 Standard:</strong> Generates official JSON collection bundles with certified LOINC codes (2339-0 Glucose, 4548-4 eA1C, 8480-6 BP) and UCUM units.
-          </li>
-        
-          <li id="bullet-item-1" class="bullet-item" data-idx="1" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">Zero Conversion Required by Clinic:</strong> Modern EHRs like Epic Hyperspace and Cerner Millennium import standard FHIR R4 and RFC-4180 CSV files directly into flowsheet records.
-          </li>
-        
-          <li id="bullet-item-2" class="bullet-item" data-idx="2" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">Patient-Directed Delivery:</strong> Patient downloads the files and emails them to their doctor or attaches them inside MyChart with complete air-gapped privacy.
-          </li>
-        
-          <li id="bullet-item-3" class="bullet-item" data-idx="3" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">1-Click Email Drafter with Import Guide:</strong> Pre-fills a clinical email to your physician with your MRN and clear instructions for medical records staff on importing the data.
-          </li>
-        
-        </ul>
-        
-        <!-- Real LCARS Page Under Discussion (Full Area Fill Viewport) -->
-        <div class="left-screenshot-card" style="margin-top: 6px; margin-bottom: 6px; border: 2px solid #cbd5e1; border-radius: 8px; overflow: hidden; background: #ffffff; box-shadow: 0 4px 14px rgba(0,0,0,0.08); display: flex; flex-direction: column; flex: 1; min-height: 310px;">
-          <!-- Continuous Monotonic Viewport (Clean Light Background) -->
-          <div class="left-screenshot-viewport" style="text-align: center; background: #ffffff; overflow-y: auto; flex: 1; min-height: 290px; position: relative;">
-            <img src="images/lcars_tab05_export.png" onerror="this.src="images/lcars_tab05_export.png"" alt="TAB 05: EXPORT CONSOLE" style="width: 100%; height: auto; display: block; object-fit: cover; object-position: top center;">
-          </div>
+    <div class="grid-2col">
+      <!-- Left Column: Live Console Screenshot or Custom Visual -->
+      <div class="left-screenshot-card">
+        <div class="left-screenshot-header">
+          <span style="font-family: monospace; font-size: 0.69rem; color: #0284c7; font-weight: 800;">04-REPORTS • LEAD-I ECG / QTC &amp; MET ENERGY EXPENDITURE</span>
+          <span style="background: #15803d; color: #ffffff; font-size: 0.59rem; font-weight: 800; padding: 2px 6px; border-radius: 3px; font-family: monospace;">SHARED CARE VIEW</span>
         </div>
-        
-      </div>
-    
-      
-      <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #0284c7; padding: 10px 14px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto;">
-        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 4px; margin-bottom: 6px; flex-shrink: 0;">
-          <span style="font-family: monospace; font-weight: 800; color: #0284c7; font-size: 0.84rem;">AIR-GAPPED CLINICAL REPORT EXPORT</span>
-          <span style="background: #f8fafc; color: #0284c7; font-weight: 800; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; border: 1.5px solid #0284c7;">SMART-ON-FHIR R4 • 305M PATIENTS</span>
-        </div>
-        <div class="visual-content" style="flex: 1; display: flex; flex-direction: column;">
-          
-          <!-- What is Epic & Why Direct Integration is Critical -->
-          <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 10px; margin-top: 4px; color: #0f172a;">
-            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 4px; margin-bottom: 8px;">
-              <span style="font-family: monospace; font-size: 0.72rem; color: #0284c7; font-weight: 800;">EPIC ELECTRONIC HEALTH RECORD (EHR) BRIDGE</span>
-              <span style="background: #0284c7; color: #fff; font-size: 0.60rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; font-family: monospace;">SMART-ON-FHIR R4</span>
-            </div>
-
-            <!-- What is Epic Educational Card -->
-            <div style="background: #eff6ff; border: 1.5px solid #bfdbfe; border-radius: 5px; padding: 8px; font-family: monospace; font-size: 0.68rem; line-height: 1.35;">
-              <div style="color: #1e40af; font-weight: 900; font-size: 0.74rem;">
-                🏥 WHAT IS EPIC SYSTEMS?
-              </div>
-              <div style="color: #1e3a8a; margin-top: 4px;">
-                <strong>Global Healthcare Standard:</strong> Epic is the gold-standard hospital and outpatient Electronic Health Record (EHR) platform managing records for over <strong>305 million patients worldwide</strong> (&gt;78% of US hospital capacity, including Mayo Clinic, Johns Hopkins, Kaiser Permanente, and Cleveland Clinic).
-              </div>
-            </div>
-
-            <!-- The Toolbar Upload Button Highlight -->
-            <div style="margin-top: 6px; background: #ffffff; border: 1.5px solid #0284c7; border-radius: 5px; padding: 8px; display: flex; align-items: center; justify-content: space-between;">
-              <div>
-                <div style="font-size: 0.65rem; color: #64748b; font-family: monospace;">TOOLBAR ACTION TRIGGER (TAB 05)</div>
-                <div style="font-size: 0.85rem; font-weight: 900; color: #0284c7; font-family: monospace;">📤 PUSH TO DOCTOR'S EPIC</div>
-              </div>
-              <div style="background: #0284c7; color: #ffffff; font-size: 0.60rem; font-weight: bold; padding: 3px 8px; border-radius: 4px; font-family: monospace;">
-                1-CLICK COMMIT
-              </div>
-            </div>
-
-            <!-- Why This Integration is Essential (3 Core Pillars) -->
-            <div style="margin-top: 6px; display: flex; flex-direction: column; gap: 5px; font-family: monospace; font-size: 0.67rem;">
-              <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 4px; padding: 6px;">
-                <strong style="color: #166534;">1. Closes the 15-Minute Visit Gap:</strong>
-                <span style="color: #14532d;"> Eliminates oral recall guesswork. Doctors receive pre-correlated 90-day time-series directly inside their official clinical encounter charting.</span>
-              </div>
-              <div style="background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 4px; padding: 6px;">
-                <strong style="color: #0284c7;">2. Objective Drug Titration:</strong>
-                <span style="color: #0c4a6e;"> Pharmacists and endocrinologists immediately adjust basal insulin, metformin, or GLP-1s based on verified nocturnal nadirs and post-meal spikes.</span>
-              </div>
-              <div style="background: #fffbeb; border: 1px solid #fde68a; border-radius: 4px; padding: 6px;">
-                <strong style="color: #d97706;">3. Remote Patient Monitoring (RPM):</strong>
-                <span style="color: #92400e;"> Directly qualifies clinical practices for Medicare/private insurance RPM billing codes (CPT 99453, 99454, 99457).</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-        <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.76rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
-          <strong style="color: #15803d;">Key Takeaway:</strong> Standard HL7 FHIR R4 and CSV formats ensure your doctor's office can import your continuous telemetry directly into Epic or Cerner without conversion, keeping you in complete control.
+        <div class="left-screenshot-viewport">
+          <img src="images/bfm_t04_06_sub_ecg_met.png" alt="04-REPORTS • LEAD-I ECG / QTC &amp; MET ENERGY EXPENDITURE" style="width: 100%; max-height: 100%; object-fit: contain; display: block;">
         </div>
       </div>
-    
+
+      <!-- Right Column: Narrative Points + Doctor Calculus & Clinical Fitness -->
+      <div class="right-column">
+        <div class="content-card">
+          <div class="card-header-strip">
+            <span>LEAD-I ECG &amp; QTC VENTRICULAR SAFETY</span>
+            <span style="color: #64748b;">PATIENT &amp; CLINICIAN WALKTHROUGH</span>
+          </div>
+          <div class="bullet-item bullet-item-0" data-idx="0">
+            <strong style="color: #0284c7;">30-Second Guided Bezel Acquisition:</strong> Red instruction banner guides effortless thumb-and-forefinger bezel contact to capture micro-volt rhythm strips.
+          </div>
+          <div class="bullet-item bullet-item-1" data-idx="1">
+            <strong style="color: #0284c7;">Diurnal QTc Trend Monitoring:</strong> Tracks corrected QT intervals hovering safely between 406 and 411 ms beneath the 440 ms prolonged warning floor.
+          </div>
+          <div class="bullet-item bullet-item-2" data-idx="2">
+            <strong style="color: #0284c7;">Critical Diabetic Cardiac Screening:</strong> Detects repolarization stretch during sharp hypoglycemia or autonomic stress.
+          </div>
+          <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.75rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
+            <strong style="color: #15803d;">Key Takeaway:</strong> Co-monitoring QTc repolarization intervals alongside continuous glucose screens acute arrhythmic stress proactively.
+          </div>
+        </div>
+
+        <div class="visual-card">
+          <div class="card-header-strip">
+            <span>CARDIAC REPOLARIZATION SUB-REPORT</span>
+            <span style="background: #dc2626; color: #ffffff; font-size: 0.57rem; padding: 2px 6px; border-radius: 3px;">406–411 MS QTC</span>
+          </div>
+          <div style="background:#f8fafc;border:1.5px solid #cbd5e1;border-radius:6px;padding:7px;"><div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1.5px solid #cbd5e1;padding-bottom:3px;margin-bottom:5px;"><span style="font-family:monospace;font-size:0.70rem;font-weight:800;color:#dc2626;">CARDIAC REPOLARIZATION SUB-REPORT</span><span style="background:#dc2626;color:#fff;font-family:monospace;font-size:0.58rem;font-weight:800;padding:2px 6px;border-radius:3px;">406–411 MS QTC</span></div><div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:5px;overflow:hidden;"><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Acquisition</span><span style="font-family:monospace;color:#475569;">30s right-bezel thumb/finger electrode</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#dc2626;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">GUIDED</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Measured Span</span><span style="font-family:monospace;color:#475569;">406–411 ms stable across day</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#dc2626;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">NOMINAL &lt;440</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Clinical Role</span><span style="font-family:monospace;color:#475569;">Guards against hypo-induced arrhythmia</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#dc2626;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">SAFETY NET</span></div></div><div style="margin-top:6px;background:#f0fdf4;border:1.5px solid #86efac;border-radius:5px;padding:6px 9px;"><div style="font-family:monospace;font-size:0.65rem;font-weight:800;color:#15803d;margin-bottom:2px;">PHYSICIAN CALCULUS &amp; MEASUREMENT FITNESS • BAZETT QTc CORRECTION</div><div style="font-family:monospace;font-size:0.74rem;font-weight:700;color:#0f172a;line-height:1.35;">QTc = QT / sqrt(RR_sec)   [Upper Safe Bound: &lt;= 440 ms]</div></div></div><div style="margin-top:6px;background:#eff6ff;border-left:3.5px solid #dc2626;padding:6px 9px;border-radius:4px;font-size:0.72rem;color:#1e3a8a;line-height:1.35;"><strong>Clinical Significance:</strong> Rate-correcting ventricular depolarization/repolarization duration by sqrt(RR) allows reliable ischemia and hypoglycemia stress detection across shifting heart rates.</div>
+        </div>
+      </div>
     </div>
 
     <div class="slide-footer">
-      <div>LCARS 5010 CLINICAL AMBULATORY TELEMETRY ONBOARDING • LIGHT THEME</div>
-      <div>AUSTRALIAN FEMALE VOICE • 100% SCREEN SYNCHRONIZED</div>
+      <div>BFM BIOMETRIC FUNCTION MONITOR • POWERED BY GOOGLE GEMINI AI</div>
+      <div>AUSTRALIAN VOICE NARRATION • TAB 01–14 SYNCHRONIZED</div>
     </div>
   </div>
 </body>

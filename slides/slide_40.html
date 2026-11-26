@@ -2,208 +2,233 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>LCARS 5010 - Slide 40: Tab 04: Reports – Autonomic HRV & 2D Poincaré (Lorenz) Scatter Dynamics</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slide 40: Daily Fluid &amp; Hydration Clearance Analytics Card</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
       width: 100%;
-      height: 100%;
-      background: #f1f5f9;
+      height: 100vh;
+      overflow: hidden;
+      background: #f8fafc;
       color: #0f172a;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
     }
-    .slide-frame {
-      flex: 1;
+    .slide-container {
+      width: 100%;
       height: 100vh;
+      padding: 12px 18px;
       display: flex;
       flex-direction: column;
-      padding: 8px 16px;
-      gap: 6px;
-      box-sizing: border-box;
-      min-height: 0;
+      background: #f8fafc;
     }
     .slide-header {
+      border-bottom: 2px solid #cbd5e1;
+      padding-bottom: 6px;
+      margin-bottom: 8px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      border-bottom: 2.5px solid #0284c7;
-      padding: 6px 14px;
-      background: #ffffff;
-      border-radius: 6px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-      border: 1px solid #e2e8f0;
+      align-items: flex-end;
       flex-shrink: 0;
     }
-    .slide-module {
-      font-size: 0.78rem;
-      color: #0284c7;
+    .module-badge {
+      display: inline-block;
+      background: #e0f2fe;
+      border: 1px solid #0284c7;
+      color: #0369a1;
+      font-size: 0.65rem;
       font-weight: 800;
-      letter-spacing: 0.08em;
+      padding: 2px 7px;
+      border-radius: 3px;
       text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-family: monospace;
+      margin-bottom: 3px;
     }
     .slide-title {
-      font-size: 1.35rem;
-      font-weight: 900;
-      color: #0f172a;
-      margin-top: 0px;
-      letter-spacing: -0.01em;
-    }
-    .slide-badge {
-      background: #0284c7;
-      color: #ffffff;
-      font-family: monospace;
+      font-size: 1.28rem;
       font-weight: 800;
-      font-size: 0.76rem;
-      padding: 3px 10px;
+      color: #0f172a;
+      line-height: 1.15;
+    }
+    .slide-desc {
+      font-size: 0.79rem;
+      color: #475569;
+      margin-top: 2px;
+      font-weight: 500;
+    }
+    .slide-num-badge {
+      font-family: monospace;
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #0284c7;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      padding: 3px 9px;
       border-radius: 4px;
-      letter-spacing: 0.05em;
       flex-shrink: 0;
     }
-    .slide-body {
-      flex: 1;
+    .grid-2col {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 14px;
+      flex: 1;
       min-height: 0;
-      height: calc(100vh - 66px);
+      overflow: hidden;
     }
-    .slide-footer {
+    .left-screenshot-card {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      min-height: 0;
+      overflow: hidden;
+    }
+    .left-screenshot-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 0.70rem;
-      color: #64748b;
+      border-bottom: 1.5px solid #e2e8f0;
+      padding-bottom: 5px;
+      margin-bottom: 6px;
+      flex-shrink: 0;
+    }
+    .left-screenshot-viewport {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      background: #ffffff;
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    .right-column {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 0;
+      overflow: hidden;
+    }
+    .content-card {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 9px 13px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      flex: 1;
+      overflow-y: auto;
+    }
+    .bullet-item {
+      border-left: 4px solid transparent;
+      border-radius: 4px;
+      padding: 5px 8px;
+      font-size: 0.77rem;
+      line-height: 1.36;
+      color: #1e293b;
+      transition: background 0.25s ease, border-left-color 0.25s ease;
+    }
+    .visual-card {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 8px 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      overflow-y: auto;
+      flex-shrink: 0;
+      max-height: 48%;
+    }
+    .card-header-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1.5px solid #e2e8f0;
+      padding-bottom: 4px;
+      margin-bottom: 5px;
       font-family: monospace;
+      font-size: 0.70rem;
+      font-weight: 800;
+      color: #0284c7;
+    }
+    .slide-footer {
       border-top: 1px solid #cbd5e1;
       padding-top: 4px;
+      margin-top: 6px;
+      display: flex;
+      justify-content: space-between;
+      font-family: monospace;
+      font-size: 0.67rem;
+      color: #64748b;
+      font-weight: 600;
       flex-shrink: 0;
     }
   </style>
 </head>
 <body>
-  <div class="slide-frame">
+  <div class="slide-container">
     <div class="slide-header">
       <div>
-        <div class="slide-module">Module 5: Clinical Reports & Longitudinal Analytics</div>
-        <div class="slide-title">Tab 04: Reports – Autonomic HRV & 2D Poincaré (Lorenz) Scatter Dynamics</div>
+        <div class="module-badge">Tab 04: 04-REPORTS</div>
+        <div class="slide-title">Daily Fluid &amp; Hydration Clearance Analytics Card</div>
+        <div class="slide-desc">Reports hydration panel quantifying daily ounces, milliliters, target progress, dehydration risk level &amp; renal glucose clearance.</div>
       </div>
-      <div class="slide-badge">SLIDE 40 / 56</div>
+      <div class="slide-num-badge">SLIDE 40 / 84</div>
     </div>
 
-    <div class="slide-body">
-      
-      <!-- High-Contrast Dynamic Content Card -->
-      <div class="content-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #0284c7; padding: 10px 14px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto;">
-        <h3 style="color: #0284c7; font-weight: 800; border-bottom: 2px solid #e2e8f0; padding-bottom: 4px; margin-bottom: 5px; font-size: 1.05rem; text-transform: uppercase;">AUTONOMIC HRV & 2D LORENZ SCATTER PARITY</h3>
-        <p style="color: #334155; font-weight: 500; margin-bottom: 5px; font-size: 0.85rem; line-height: 1.35;">Nocturnal and diurnal heart rate variability telemetry with full 2D Lorenz (Poincaré) scatter dynamics.</p>
-        <ul class="bullets-list" style="padding-left: 0; list-style-type: none; margin-bottom: 3px; color: #1e293b; font-size: 0.80rem;">
-          
-          <li id="bullet-item-0" class="bullet-item" data-idx="0" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">2D Lorenz Scatter Parity:</strong> Plots beat-to-beat R-R intervals (RR_n vs RR_n+1) across 1,200 nocturnal epochs to audit autonomic stability.
-          </li>
-        
-          <li id="bullet-item-1" class="bullet-item" data-idx="1" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">5 Morphological Diagnostic Patterns:</strong> Distinguishes healthy Comet dispersion from Torpedo fatigue, Club rigidity, Fork PVCs, and Complex AFib.
-          </li>
-        
-          <li id="bullet-item-2" class="bullet-item" data-idx="2" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">Diabetic Autonomic Screening:</strong> Transverse SD1 compression flags parasympathetic vagal withdrawal and early diabetic cardiac autonomic neuropathy.
-          </li>
-        
-        </ul>
-        
-        <!-- Real LCARS Page Under Discussion (Full Area Fill Viewport) -->
-        <div class="left-screenshot-card" style="margin-top: 6px; margin-bottom: 6px; border: 2px solid #cbd5e1; border-radius: 8px; overflow: hidden; background: #ffffff; box-shadow: 0 4px 14px rgba(0,0,0,0.08); display: flex; flex-direction: column; flex: 1; min-height: 310px;">
-          <!-- Continuous Monotonic Viewport (Clean Light Background) -->
-          <div class="left-screenshot-viewport" style="text-align: center; background: #ffffff; overflow-y: auto; flex: 1; min-height: 290px; position: relative;">
-            <img src="images/lcars_slide40_lorenz_scatter.png" onerror="this.src="images/lcars_slide40_lorenz_scatter.png"" alt="TAB 04: REPORTS CONSOLE" style="width: 100%; height: auto; display: block; object-fit: cover; object-position: top center;">
-          </div>
+    <div class="grid-2col">
+      <!-- Left Column: Live Console Screenshot or Custom Visual -->
+      <div class="left-screenshot-card">
+        <div class="left-screenshot-header">
+          <span style="font-family: monospace; font-size: 0.69rem; color: #0284c7; font-weight: 800;">04-REPORTS • DAILY FLUID INTAKE &amp; RENAL CLEARANCE</span>
+          <span style="background: #15803d; color: #ffffff; font-size: 0.59rem; font-weight: 800; padding: 2px 6px; border-radius: 3px; font-family: monospace;">SHARED CARE VIEW</span>
         </div>
-        
-      </div>
-    
-      
-      <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #7c3aed; padding: 10px 14px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto;">
-        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 4px; margin-bottom: 6px; flex-shrink: 0;">
-          <span style="font-family: monospace; font-weight: 800; color: #0284c7; font-size: 0.84rem;">2D LORENZ & POINCARÉ MATHEMATICS</span>
-          <span style="background: #f8fafc; color: #7c3aed; font-weight: 800; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; border: 1.5px solid #7c3aed;">CLINICAL PARITY (SD1 / SD2)</span>
-        </div>
-        <div class="visual-content" style="flex: 1; display: flex; flex-direction: column;">
-          
-          <!-- Autonomic HRV & OEM App Poincaré Lorenz Geometry Card -->
-          <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 10px; margin-top: 4px; color: #0f172a; font-family: monospace; font-size: 0.67rem;">
-            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 4px; margin-bottom: 8px;">
-              <span style="font-size: 0.72rem; color: #7c3aed; font-weight: 800;">OEM App 2D POINCARÉ & TIME-DOMAIN FORMULAS</span>
-              <span style="background: #7c3aed; color: #fff; font-size: 0.60rem; font-weight: bold; padding: 2px 6px; border-radius: 3px;">CLINICAL SPEC</span>
-            </div>
-
-            <!-- Time-Domain Formulas -->
-            <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 4px; padding: 6px; margin-bottom: 6px;">
-              <div style="color: #1e40af; font-weight: bold;">1. TIME-DOMAIN STANDARD METRICS:</div>
-              <div style="color: #1e3a8a; margin-top: 3px;">
-                • <strong>Beat Interval:</strong> RR_i = t_i - t_{i-1} (ms)<br>
-                • <strong>Total Autonomic Power:</strong> SDNN = √[ 1/(N-1) ∑ (RR_i - Mean_RR)² ]<br>
-                • <strong>Parasympathetic Vagal Tone:</strong> RMSSD = √[ 1/(N-1) ∑ (RR_{i+1} - RR_i)² ]
-              </div>
-            </div>
-
-            <!-- Poincaré Lorenz Scatter Geometry -->
-            <div style="background: #f5f3ff; border: 1.5px solid #ddd6fe; border-radius: 4px; padding: 6px; margin-bottom: 6px;">
-              <div style="color: #5b21b6; font-weight: bold;">2. LORENZ 2D SCATTER ELLIPSE EQUATIONS (RR_i vs RR_{i+1}):</div>
-              <div style="color: #4c1d95; margin-top: 3px;">
-                • <strong>Transverse Axis (Instantaneous Vagal):</strong><br>
-                &nbsp;&nbsp;SD1 = √[ 1/2 Var(RR_{i+1} - RR_i) ] = <strong>RMSSD / √2</strong><br>
-                • <strong>Longitudinal Axis (Total / Sympathetic):</strong><br>
-                &nbsp;&nbsp;SD2 = √[ 2·SDNN² - 1/2·RMSSD² ]<br>
-                • <strong>Sympatho-Vagal Balance Ratio:</strong><br>
-                &nbsp;&nbsp;Ratio = <strong>SD1 / SD2</strong> (Normal resting ratio: 0.30 – 0.50)
-              </div>
-            </div>
-
-            <!-- OEM App 5 Morphology Classification Matrix -->
-            <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 5px; padding: 6px; font-size: 0.63rem;">
-              <div style="font-weight: 800; color: #0f172a; margin-bottom: 4px; border-bottom: 1px solid #e2e8f0; padding-bottom: 2px;">
-                5-ZONE MORPHOLOGICAL CLASSIFICATION MATRIX:
-              </div>
-              <table style="width: 100%; border-collapse: collapse; text-align: left;">
-                <tr style="border-bottom: 1px solid #f1f5f9;">
-                  <td style="color: #15803d; font-weight: 800; padding: 2px;">✨ COMET (NORMAL)</td>
-                  <td style="color: #334155; padding: 2px;">Wide fan, robust vagal recovery (SD1 &gt; 25 ms, Score: 88).</td>
-                </tr>
-                <tr style="border-bottom: 1px solid #f1f5f9;">
-                  <td style="color: #dc2626; font-weight: 800; padding: 2px;">⚡ TORPEDO (FATIGUE)</td>
-                  <td style="color: #334155; padding: 2px;">Narrow diagonal cigar; autonomic neuropathy &amp; exhaustion (SD1 &lt; 10 ms).</td>
-                </tr>
-                <tr style="border-bottom: 1px solid #f1f5f9;">
-                  <td style="color: #d97706; font-weight: 800; padding: 2px;">⚪ CLUB (RIGID)</td>
-                  <td style="color: #334155; padding: 2px;">Compact round cluster; low autonomic plasticity &amp; tachycardia.</td>
-                </tr>
-                <tr style="border-bottom: 1px solid #f1f5f9;">
-                  <td style="color: #7c3aed; font-weight: 800; padding: 2px;">🔱 FORK (BIFURCATED)</td>
-                  <td style="color: #334155; padding: 2px;">Parallel wings; premature ventricular contractions (PVCs) / bigeminy.</td>
-                </tr>
-                <tr>
-                  <td style="color: #b91c1c; font-weight: 800; padding: 2px;">🌐 COMPLEX (AFIB)</td>
-                  <td style="color: #334155; padding: 2px;">Chaotic multi-cluster scatter; atrial fibrillation &amp; high ectopy.</td>
-                </tr>
-              </table>
-            </div>
-          </div>
-        
-        </div>
-        <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.76rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
-          <strong style="color: #15803d;">Key Takeaway:</strong> 2D Lorenz scatter plots screen for diabetic cardiac autonomic neuropathy and stress-induced glucose surges.
+        <div class="left-screenshot-viewport">
+          <img src="images/bfm_t04_12_hydration_80oz.png" alt="04-REPORTS • DAILY FLUID INTAKE &amp; RENAL CLEARANCE" style="width: 100%; max-height: 100%; object-fit: contain; display: block;">
         </div>
       </div>
-    
+
+      <!-- Right Column: Narrative Points + Doctor Calculus & Clinical Fitness -->
+      <div class="right-column">
+        <div class="content-card">
+          <div class="card-header-strip">
+            <span>HYDRATION STATUS &amp; RENAL CLEARANCE</span>
+            <span style="color: #64748b;">PATIENT &amp; CLINICIAN WALKTHROUGH</span>
+          </div>
+          <div class="bullet-item bullet-item-0" data-idx="0">
+            <strong style="color: #0284c7;">Six Real-Time Clinical Boxes:</strong> Tracks Fluid Total (fl oz), Volume (mL), Progress (%), Remaining to Target, Dehydration Risk, and Renal Clearance.
+          </div>
+          <div class="bullet-item bullet-item-1" data-idx="1">
+            <strong style="color: #0284c7;">Synced Straight From Consumed Logs:</strong> Zero fake fluid placeholders—morning reads 0.0 fl oz until drinks log, scaling immediately on full 80 fl oz hydration days.
+          </div>
+          <div class="bullet-item bullet-item-2" data-idx="2">
+            <strong style="color: #0284c7;">Supports Optical Measurement Stability:</strong> Prevents hemoconcentration drift caused by inadequate fluid intake.
+          </div>
+          <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.75rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
+            <strong style="color: #15803d;">Key Takeaway:</strong> Co-reporting fluid clearance inside Reports gives nephrologists and patients unified hydration accountability.
+          </div>
+        </div>
+
+        <div class="visual-card">
+          <div class="card-header-strip">
+            <span>REPORTS HYDRATION METRIC PANEL</span>
+            <span style="background: #0284c7; color: #ffffff; font-size: 0.57rem; padding: 2px 6px; border-radius: 3px;">6 CLINICAL BOXES</span>
+          </div>
+          <div style="background:#f8fafc;border:1.5px solid #cbd5e1;border-radius:6px;padding:7px;"><div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1.5px solid #cbd5e1;padding-bottom:3px;margin-bottom:5px;"><span style="font-family:monospace;font-size:0.70rem;font-weight:800;color:#0284c7;">REPORTS HYDRATION METRIC PANEL</span><span style="background:#0284c7;color:#fff;font-family:monospace;font-size:0.58rem;font-weight:800;padding:2px 6px;border-radius:3px;">6 CLINICAL BOXES</span></div><div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:5px;overflow:hidden;"><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Metric Grid</span><span style="font-family:monospace;color:#475569;">Total oz | mL | % | Remaining | Risk | Renal</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#0284c7;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">COMPLETE</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Timeline Card</span><span style="font-family:monospace;color:#475569;">24h stepped progression curve below</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#0284c7;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">12H AXIS</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Zero-Data Truth</span><span style="font-family:monospace;color:#475569;">Reflects real logged drinks only</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#0284c7;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">100% HONEST</span></div></div><div style="margin-top:6px;background:#f0fdf4;border:1.5px solid #86efac;border-radius:5px;padding:6px 9px;"><div style="font-family:monospace;font-size:0.65rem;font-weight:800;color:#15803d;margin-bottom:2px;">PHYSICIAN CALCULUS &amp; MEASUREMENT FITNESS • RENAL FILTRATION PROXY</div><div style="font-family:monospace;font-size:0.74rem;font-weight:700;color:#0f172a;line-height:1.35;">eGFR_clear ∝ Hydrostatic Hydration Head  |  Risk = f(Fluid_deficit)</div></div></div><div style="margin-top:6px;background:#eff6ff;border-left:3.5px solid #0284c7;padding:6px 9px;border-radius:4px;font-size:0.72rem;color:#1e3a8a;line-height:1.35;"><strong>Clinical Significance:</strong> Maintaining steady daytime fluid throughput stabilizes glomerular perfusion and prevents falsely elevated glycemic concentration readings.</div>
+        </div>
+      </div>
     </div>
 
     <div class="slide-footer">
-      <div>LCARS 5010 CLINICAL AMBULATORY TELEMETRY ONBOARDING • LIGHT THEME</div>
-      <div>AUSTRALIAN FEMALE VOICE • 100% SCREEN SYNCHRONIZED</div>
+      <div>BFM BIOMETRIC FUNCTION MONITOR • POWERED BY GOOGLE GEMINI AI</div>
+      <div>AUSTRALIAN VOICE NARRATION • TAB 01–14 SYNCHRONIZED</div>
     </div>
   </div>
 </body>

@@ -1775,7 +1775,7 @@
         </div>
         <div class="lcars-time-block">
           <div class="actual-datetime" id="actualDateTime">FRIDAY, NOV 20, 2026 9:55:00 AM PST</div>
-          <div class="lcars-stardate" id="stardateClock">BUILD beta.00.01.0056</div>
+          <div class="lcars-stardate" id="stardateClock">BUILD beta.00.01.0057</div>
         </div>
         
       </div>
@@ -1786,11 +1786,11 @@
       <button id="navTabFullScan" class="lcars-pill pill-blue active" onclick="switchTab('fullscan')">
         <span class="tab-label">01-FULL SCAN</span>
       </button>
-      <button id="navTabDietTrades" class="lcars-pill pill-green" onclick="switchTab('diettrades')">
-        <span class="tab-label">02-MEAL PLANNER</span>
-      </button>
       <button id="navTabMetabolic" class="lcars-pill pill-peach" onclick="switchTab('metabolic')">
-        <span class="tab-label">03-METABOLIC</span>
+        <span class="tab-label">02-METABOLIC</span>
+      </button>
+      <button id="navTabDietTrades" class="lcars-pill pill-green" onclick="switchTab('diettrades')">
+        <span class="tab-label">03-MEAL PLANNER</span>
       </button>
       <button id="navTabReports" class="lcars-pill pill-blue" onclick="switchTab('reports')">
         <span class="tab-label">04-REPORTS</span>
@@ -9032,7 +9032,7 @@
       const year = now.getFullYear();
       const startOfYear = new Date(year, 0, 1);
       const dayOfYear = (now - startOfYear) / (1000 * 60 * 60 * 24);
-      document.getElementById("stardateClock").textContent = "BUILD beta.00.01.0056";
+      document.getElementById("stardateClock").textContent = "BUILD beta.00.01.0057";
     }
     setInterval(updateClock, 1000);
     updateClock();

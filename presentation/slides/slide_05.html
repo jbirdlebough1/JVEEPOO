@@ -2,221 +2,233 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>LCARS 5010 - Slide 05: Peer-Reviewed References, Citations & Interactive Gemini Research Query</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slide 05: Non-Diagnostic Legal Shield &amp; Cryptographic Informed Consent</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
       width: 100%;
-      height: 100%;
-      background: #f1f5f9;
+      height: 100vh;
+      overflow: hidden;
+      background: #f8fafc;
       color: #0f172a;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
     }
-    .slide-frame {
-      flex: 1;
+    .slide-container {
+      width: 100%;
       height: 100vh;
+      padding: 12px 18px;
       display: flex;
       flex-direction: column;
-      padding: 8px 16px;
-      gap: 6px;
-      box-sizing: border-box;
-      min-height: 0;
+      background: #f8fafc;
     }
     .slide-header {
+      border-bottom: 2px solid #cbd5e1;
+      padding-bottom: 6px;
+      margin-bottom: 8px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      border-bottom: 2.5px solid #0284c7;
-      padding: 6px 14px;
-      background: #ffffff;
-      border-radius: 6px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-      border: 1px solid #e2e8f0;
+      align-items: flex-end;
       flex-shrink: 0;
     }
-    .slide-module {
-      font-size: 0.78rem;
-      color: #0284c7;
+    .module-badge {
+      display: inline-block;
+      background: #e0f2fe;
+      border: 1px solid #0284c7;
+      color: #0369a1;
+      font-size: 0.65rem;
       font-weight: 800;
-      letter-spacing: 0.08em;
+      padding: 2px 7px;
+      border-radius: 3px;
       text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-family: monospace;
+      margin-bottom: 3px;
     }
     .slide-title {
-      font-size: 1.35rem;
-      font-weight: 900;
-      color: #0f172a;
-      margin-top: 0px;
-      letter-spacing: -0.01em;
-    }
-    .slide-badge {
-      background: #0284c7;
-      color: #ffffff;
-      font-family: monospace;
+      font-size: 1.28rem;
       font-weight: 800;
-      font-size: 0.76rem;
-      padding: 3px 10px;
+      color: #0f172a;
+      line-height: 1.15;
+    }
+    .slide-desc {
+      font-size: 0.79rem;
+      color: #475569;
+      margin-top: 2px;
+      font-weight: 500;
+    }
+    .slide-num-badge {
+      font-family: monospace;
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #0284c7;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      padding: 3px 9px;
       border-radius: 4px;
-      letter-spacing: 0.05em;
       flex-shrink: 0;
     }
-    .slide-body {
-      flex: 1;
+    .grid-2col {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 14px;
+      flex: 1;
       min-height: 0;
-      height: calc(100vh - 66px);
+      overflow: hidden;
     }
-    .slide-footer {
+    .left-screenshot-card {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      min-height: 0;
+      overflow: hidden;
+    }
+    .left-screenshot-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 0.70rem;
-      color: #64748b;
+      border-bottom: 1.5px solid #e2e8f0;
+      padding-bottom: 5px;
+      margin-bottom: 6px;
+      flex-shrink: 0;
+    }
+    .left-screenshot-viewport {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      background: #ffffff;
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    .right-column {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 0;
+      overflow: hidden;
+    }
+    .content-card {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 9px 13px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      flex: 1;
+      overflow-y: auto;
+    }
+    .bullet-item {
+      border-left: 4px solid transparent;
+      border-radius: 4px;
+      padding: 5px 8px;
+      font-size: 0.77rem;
+      line-height: 1.36;
+      color: #1e293b;
+      transition: background 0.25s ease, border-left-color 0.25s ease;
+    }
+    .visual-card {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 8px 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      overflow-y: auto;
+      flex-shrink: 0;
+      max-height: 48%;
+    }
+    .card-header-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1.5px solid #e2e8f0;
+      padding-bottom: 4px;
+      margin-bottom: 5px;
       font-family: monospace;
+      font-size: 0.70rem;
+      font-weight: 800;
+      color: #0284c7;
+    }
+    .slide-footer {
       border-top: 1px solid #cbd5e1;
       padding-top: 4px;
+      margin-top: 6px;
+      display: flex;
+      justify-content: space-between;
+      font-family: monospace;
+      font-size: 0.67rem;
+      color: #64748b;
+      font-weight: 600;
       flex-shrink: 0;
     }
   </style>
 </head>
 <body>
-  <div class="slide-frame">
+  <div class="slide-container">
     <div class="slide-header">
       <div>
-        <div class="slide-module">Module 1: Introduction & Clinical Scope</div>
-        <div class="slide-title">Peer-Reviewed References, Citations & Interactive Gemini Research Query</div>
+        <div class="module-badge">Intro: Closing the Loop</div>
+        <div class="slide-title">Non-Diagnostic Legal Shield &amp; Cryptographic Informed Consent</div>
+        <div class="slide-desc">Transparent personal self-help boundary clarifying BFM complements—and never replaces—clinical blood tests or physician care.</div>
       </div>
-      <div class="slide-badge">SLIDE 05 / 56</div>
+      <div class="slide-num-badge">SLIDE 05 / 84</div>
     </div>
 
-    <div class="slide-body">
-      
-      <!-- High-Contrast Dynamic Content Card -->
-      <div class="content-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #0284c7; padding: 10px 14px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto;">
-        <h3 style="color: #0284c7; font-weight: 800; border-bottom: 2px solid #e2e8f0; padding-bottom: 4px; margin-bottom: 5px; font-size: 1.05rem; text-transform: uppercase;">PEER-REVIEWED CITATIONS & AI SELF-VALIDATION</h3>
-        <p style="color: #334155; font-weight: 500; margin-bottom: 5px; font-size: 0.85rem; line-height: 1.35;">Grounding continuous telemetry in peer-reviewed science: Shannon, Nyquist, Battelino (TIR), Beck (JAMA), Danne, ISO 15197, and live Gemini AI literature verification.</p>
-        <ul class="bullets-list" style="padding-left: 0; list-style-type: none; margin-bottom: 3px; color: #1e293b; font-size: 0.80rem;">
-          
-          <li id="bullet-item-0" class="bullet-item" data-idx="0" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">Foundational Information Theory (Shannon & Nyquist):</strong> Shannon CE (1949) 'Communication in the Presence of Noise' (Proc IRE) & Nyquist H (1928) 'Certain Topics in Telegraph Transmission Theory' (AIEE). Mathematically proving that biological signal reconstruction requires fs >= 2 * fmax.
-          </li>
-        
-          <li id="bullet-item-1" class="bullet-item" data-idx="1" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">Clinical Time-in-Range Consensus (Battelino et al., 2019):</strong> Battelino T, et al. 'Clinical Targets for Continuous Glucose Monitoring Data Interpretation: Recommendations From the International Consensus on Time in Range' (Diabetes Care 2019; 42:1593–1603). Establishing TIR >70% as the true clinical gold standard.
-          </li>
-        
-          <li id="bullet-item-2" class="bullet-item" data-idx="2" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">Continuous Telemetry Efficacy in JAMA (Beck et al., 2017):</strong> Beck RW, et al. 'Effect of Continuous Glucose Monitoring on Glycemic Control in Adults With Type 1 and Type 2 Diabetes' (JAMA 2017; 317(4):371–378). Multicenter trial proving continuous tracking significantly suppresses glycemic variability.
-          </li>
-        
-          <li id="bullet-item-3" class="bullet-item" data-idx="3" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">Interactive Self-Validation via Google Gemini Pro:</strong> This presentation is self-validating. Clinicians and engineers can click any citation link or submit live queries below to have Google Gemini Pro retrieve recent PubMed clinical literature and metrological standards.
-          </li>
-        
-        </ul>
-        
-        <!-- Real LCARS Page Under Discussion (Full Area Fill Viewport) -->
-        <div class="left-screenshot-card" style="margin-top: 6px; margin-bottom: 6px; border: 2px solid #cbd5e1; border-radius: 8px; overflow: hidden; background: #ffffff; box-shadow: 0 4px 14px rgba(0,0,0,0.08); display: flex; flex-direction: column; flex: 1; flex: 1; height: 100%; min-height: 480px;">
-          <!-- Continuous Monotonic Viewport (Clean Light Background) -->
-          <div class="left-screenshot-viewport" style="text-align: center; background: #ffffff; overflow-y: auto; flex: 1; flex: 1; height: 100%; min-height: 460px; position: relative;">
-            <img src="images/lcars_tab07_help.png" onerror="this.src="images/lcars_tab07_help.png"" alt="08-HELP & FAQ • CLINICAL CITATIONS & GEMINI PRO KNOWLEDGE BASE" style="width: 100%; height: 100%; min-height: 460px; object-fit: cover; object-position: top center; display: block; object-fit: cover; object-position: top center;">
-          </div>
+    <div class="grid-2col">
+      <!-- Left Column: Live Console Screenshot or Custom Visual -->
+      <div class="left-screenshot-card">
+        <div class="left-screenshot-header">
+          <span style="font-family: monospace; font-size: 0.69rem; color: #0284c7; font-weight: 800;">STARTUP NOTICE • PERSONAL SELF-HELP AGREEMENT</span>
+          <span style="background: #15803d; color: #ffffff; font-size: 0.59rem; font-weight: 800; padding: 2px 6px; border-radius: 3px; font-family: monospace;">SHARED CARE VIEW</span>
         </div>
-        
-      </div>
-    
-      
-      <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #15803d; padding: 8px 12px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow: hidden;">
-        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 4px; margin-bottom: 6px; flex-shrink: 0;">
-          <span style="font-family: monospace; font-weight: 800; color: #0284c7; font-size: 0.84rem;">PEER-REVIEWED REFERENCES & GEMINI RESEARCH QUERY</span>
-          <span style="background: #f8fafc; color: #15803d; font-weight: 800; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; border: 1.5px solid #15803d;">PUBMED & DOI VERIFIED • GEMINI PRO</span>
-        </div>
-        <div class="visual-content" style="flex: 1; display: flex; flex-direction: column;">
-          
-          <!-- Curated Peer-Reviewed Literature List (Compact Fit) -->
-          <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 6px 8px; color: #0f172a;">
-            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 2px; margin-bottom: 5px;">
-              <span style="font-family: monospace; font-size: 0.68rem; color: #0284c7; font-weight: 800;">PEER-REVIEWED CITATIONS & RESEARCH</span>
-              <span style="background: #15803d; color: #fff; font-size: 0.58rem; font-weight: bold; padding: 1px 5px; border-radius: 3px; font-family: monospace;">DOI VERIFIED</span>
-            </div>
-
-            <!-- Citation Cards List -->
-            <div style="display: flex; flex-direction: column; gap: 4px; font-size: 0.63rem;">
-              <a href="https://doi.org/10.1109/JRPROC.1949.232969" target="_blank" style="text-decoration: none; color: inherit; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 3px; padding: 3px 6px; display: block;">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                  <span style="font-weight: 800; color: #0284c7; font-family: monospace;">1. Shannon CE (1949) • Proc. IRE 37(1):10–21</span>
-                  <span style="background: #e0f2fe; color: #0369a1; font-size: 0.55rem; padding: 1px 4px; border-radius: 2px; font-weight: bold;">DOI ↗</span>
-                </div>
-                <div style="color: #334155; line-height: 1.25;"><em>"Communication in the Presence of Noise"</em> — Mathematical proof of sampling theorem (fs >= 2W).</div>
-              </a>
-
-              <a href="https://doi.org/10.2337/dci19-0028" target="_blank" style="text-decoration: none; color: inherit; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 3px; padding: 3px 6px; display: block;">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                  <span style="font-weight: 800; color: #15803d; font-family: monospace;">2. Battelino T, et al. (2019) • Diabetes Care 42:1593</span>
-                  <span style="background: #dcfce7; color: #166534; font-size: 0.55rem; padding: 1px 4px; border-radius: 2px; font-weight: bold;">TIR &gt;70% ↗</span>
-                </div>
-                <div style="color: #334155; line-height: 1.25;"><em>"Recommendations From International Consensus on Time in Range"</em> — Validates TIR over A1C.</div>
-              </a>
-
-              <a href="https://doi.org/10.1001/jama.2016.19975" target="_blank" style="text-decoration: none; color: inherit; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 3px; padding: 3px 6px; display: block;">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                  <span style="font-weight: 800; color: #7c3aed; font-family: monospace;">3. Beck RW, et al. (2017) • JAMA 317(4):371–378</span>
-                  <span style="background: #ede9fe; color: #5b21b6; font-size: 0.55rem; padding: 1px 4px; border-radius: 2px; font-weight: bold;">JAMA ↗</span>
-                </div>
-                <div style="color: #334155; line-height: 1.25;"><em>"Effect of Continuous Glucose Monitoring on Glycemic Control"</em> — Proves hypoglycemia reduction.</div>
-              </a>
-
-              <a href="https://doi.org/10.2337/dc17-1600" target="_blank" style="text-decoration: none; color: inherit; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 3px; padding: 3px 6px; display: block;">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                  <span style="font-weight: 800; color: #b45309; font-family: monospace;">4. Danne T, et al. (2017) • Diabetes Care 40:1631</span>
-                  <span style="background: #fef3c7; color: #92400e; font-size: 0.55rem; padding: 1px 4px; border-radius: 2px; font-weight: bold;">CONSENSUS ↗</span>
-                </div>
-                <div style="color: #334155; line-height: 1.25;"><em>"International Consensus on CGM"</em> — Establishes standardized 288-sample daily ambulatory profile.</div>
-              </a>
-            </div>
-          </div>
-
-          <!-- Interactive Gemini Research Query Card -->
-          <div style="margin-top: 5px; background: #eff6ff; border: 1.5px solid #93c5fd; border-radius: 5px; padding: 6px 8px; font-family: monospace;">
-            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #bfdbfe; padding-bottom: 2px; margin-bottom: 4px;">
-              <span style="color: #1e40af; font-weight: 900; font-size: 0.68rem;">✨ GOOGLE GEMINI PRO: LIVE RESEARCH VALIDATION</span>
-              <span style="background: #2563eb; color: #ffffff; font-size: 0.55rem; font-weight: bold; padding: 1px 5px; border-radius: 2px;">SELF-VALIDATING</span>
-            </div>
-
-            <!-- Quick Query Buttons -->
-            <div style="display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 5px;">
-              <a href="https://scholar.google.com/scholar?q=continuous+glucose+monitoring+nyquist+sampling+kinetics" target="_blank" style="text-decoration: none; background: #ffffff; border: 1px solid #93c5fd; border-radius: 3px; padding: 2px 6px; font-size: 0.60rem; color: #1d4ed8; font-weight: bold;">
-                🔍 Nyquist Sampling & CGM Kinetics ↗
-              </a>
-              <a href="https://pubmed.ncbi.nlm.nih.gov/?term=continuous+glucose+monitoring+time+in+range+vs+a1c" target="_blank" style="text-decoration: none; background: #ffffff; border: 1px solid #93c5fd; border-radius: 3px; padding: 2px 6px; font-size: 0.60rem; color: #1d4ed8; font-weight: bold;">
-                🔍 PubMed: TIR &gt;70% vs A1C Outcomes ↗
-              </a>
-            </div>
-
-            <!-- Search Form -->
-            <form action="https://scholar.google.com/scholar" method="get" target="_blank" style="display: flex; gap: 4px;">
-              <input type="text" name="q" placeholder="Enter clinical topic..." style="flex: 1; padding: 3px 6px; font-size: 0.62rem; border: 1px solid #93c5fd; border-radius: 3px; background: #ffffff; color: #0f172a;" value="continuous glucose telemetry Nyquist MARD">
-              <button type="submit" style="background: #2563eb; color: #ffffff; border: none; border-radius: 3px; padding: 3px 8px; font-size: 0.62rem; font-weight: bold; cursor: pointer;">
-                Query Gemini ↗
-              </button>
-            </form>
-          </div>
-
-        </div>
-        <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.76rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
-          <strong style="color: #15803d;">Key Takeaway:</strong> Firmly anchored in peer-reviewed science (Shannon, Nyquist, Battelino, Beck, ISO 15197), continuous telemetry replaces static snapshots with validated time-series metrics. Clinicians and researchers can query Google Gemini Pro directly on this slide to retrieve additional clinical citations in real time.
+        <div class="left-screenshot-viewport">
+          <img src="images/bfm_00_legal_modal.png" alt="STARTUP NOTICE • PERSONAL SELF-HELP AGREEMENT" style="width: 100%; max-height: 100%; object-fit: contain; display: block;">
         </div>
       </div>
-    
+
+      <!-- Right Column: Narrative Points + Doctor Calculus & Clinical Fitness -->
+      <div class="right-column">
+        <div class="content-card">
+          <div class="card-header-strip">
+            <span>CLEAR PERSONAL SELF-HELP BOUNDARY</span>
+            <span style="color: #64748b;">PATIENT &amp; CLINICIAN WALKTHROUGH</span>
+          </div>
+          <div class="bullet-item bullet-item-0" data-idx="0">
+            <strong style="color: #0284c7;">Personal Wellness Biofeedback Tool:</strong> Designates BFM explicitly as experimental non-diagnostic software; approved capillary meters govern acute insulin dosing.
+          </div>
+          <div class="bullet-item bullet-item-1" data-idx="1">
+            <strong style="color: #0284c7;">Permanent Acceptance Verification:</strong> Every household profile confirms terms acceptance cleanly before viewing dashboards.
+          </div>
+          <div class="bullet-item bullet-item-2" data-idx="2">
+            <strong style="color: #0284c7;">Physician Partnership Empowerment:</strong> Protects open-source contributors while giving doctors clean, unembellished physiological records.
+          </div>
+          <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.75rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
+            <strong style="color: #15803d;">Key Takeaway:</strong> Clear non-diagnostic boundaries establish ethical medical transparency from the very first launch click.
+          </div>
+        </div>
+
+        <div class="visual-card">
+          <div class="card-header-strip">
+            <span>ETHICAL &amp; REGULATORY CLEARANCE</span>
+            <span style="background: #b45309; color: #ffffff; font-size: 0.57rem; padding: 2px 6px; border-radius: 3px;">SELF-HELP TOOL</span>
+          </div>
+          <div style="background:#f8fafc;border:1.5px solid #cbd5e1;border-radius:6px;padding:7px;"><div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1.5px solid #cbd5e1;padding-bottom:3px;margin-bottom:5px;"><span style="font-family:monospace;font-size:0.70rem;font-weight:800;color:#b45309;">ETHICAL &amp; REGULATORY CLEARANCE</span><span style="background:#b45309;color:#fff;font-family:monospace;font-size:0.58rem;font-weight:800;padding:2px 6px;border-radius:3px;">SELF-HELP TOOL</span></div><div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:5px;overflow:hidden;"><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Software Class</span><span style="font-family:monospace;color:#475569;">Experimental Open-Source Biofeedback</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#b45309;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">NON-FDA CGM</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Clinical Decision Rule</span><span style="font-family:monospace;color:#475569;">Lab A1C &amp; fingersticks govern therapy</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#b45309;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">PHYSICIAN LED</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Agreement State</span><span style="font-family:monospace;color:#475569;">Logged permanently per user profile</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#b45309;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">AUDITABLE</span></div></div><div style="margin-top:6px;background:#f0fdf4;border:1.5px solid #86efac;border-radius:5px;padding:6px 9px;"><div style="font-family:monospace;font-size:0.65rem;font-weight:800;color:#15803d;margin-bottom:2px;">PHYSICIAN CALCULUS &amp; MEASUREMENT FITNESS • MEASUREMENT SCOPE</div><div style="font-family:monospace;font-size:0.74rem;font-weight:700;color:#0f172a;line-height:1.35;">G_optical(t) ~ G_venous(t) - Offset_personal  (calibratable trend telemetry)</div></div></div><div style="margin-top:6px;background:#eff6ff;border-left:3.5px solid #b45309;padding:6px 9px;border-radius:4px;font-size:0.72rem;color:#1e3a8a;line-height:1.35;"><strong>Clinical Significance:</strong> Clear regulatory separation assures physicians that home optical trends inform lifestyle adherence safely alongside periodic certified laboratory panels.</div>
+        </div>
+      </div>
     </div>
 
     <div class="slide-footer">
-      <div>LCARS 5010 CLINICAL AMBULATORY TELEMETRY ONBOARDING • LIGHT THEME</div>
-      <div>AUSTRALIAN FEMALE VOICE • 100% SCREEN SYNCHRONIZED</div>
+      <div>BFM BIOMETRIC FUNCTION MONITOR • POWERED BY GOOGLE GEMINI AI</div>
+      <div>AUSTRALIAN VOICE NARRATION • TAB 01–14 SYNCHRONIZED</div>
     </div>
   </div>
 </body>

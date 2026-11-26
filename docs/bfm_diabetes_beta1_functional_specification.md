@@ -9,11 +9,11 @@
 * **Core Paradigm Shift**: Transitioning from rapid ad-hoc prototyping to **formal pre-build functional specifications, failure mode analysis (FMEA), and Six Sigma zero-regression enforcement**.
 * **The Author's 20-Year AI Provenance (Since 2007)**: Engineering AI and cloud systems for nearly two decades. After testing early Gemini, the author spent **18 grueling months fighting Claude's chronic development issues** (context drift, logic hallucinations, and regressive syntax breaks). Returning to **current-generation Google Gemini** produced **immediate, transformative success**: dramatically lower defects, rock-solid architectural compliance, and superior full-stack code quality.
 * **Open Engineering Trajectory (`.jsonl`)**: In an unprecedented commitment to scientific rigor, the author has committed the **entire 14.3+ MB raw `.jsonl` trajectory (`session_logs/transcript.jsonl`) directly into the public build tree**. Google AI engineers, DeepMind researchers, and community developers can inspect real-world turn-by-turn performance, bug post-mortems, and iterative learning.
-* **Rigorous Systems Engineering over Random Comments**: Eliminates cryptic commits and random comments. Every architectural decision on Star Ship Gemini NCC-202X is backed by formal Requirements, Functional Specifications (FS), and FMEA risk post-mortems.
+* **Rigorous Systems Engineering over Random Comments**: Eliminates cryptic commits and random comments. Every architectural decision on the **BFM Biometric Function Monitor (`beta.00.01.0057`)** is backed by formal Requirements, Functional Specifications (FS), and FMEA risk post-mortems.
 * **Pioneer, Inventor & Philosophical Leader**: **The Author** (Creator, Chief Architect, and Leader of the BFM Philosophy)
 * **Corporate & Technology Sponsor**: **Google** (Sponsoring, Hosting, and Powering via Google Gemini AI)
-* **Base Vessel**: **Star Ship Gemini (NCC-202X)** (Desktop Workstation Console)
-* **Auxiliary Units**: **Shuttlecraft Foodoor** (Mobile PWA, registered as **Cell 1, Cell 2, Cell 3...**)
+* **Workstation Console**: **BFM Biometric Function Monitor** (`BFM.HTM` & native Windows `BFM_Launcher.exe`, 14 Operational Tabs)
+* **Auxiliary Units**: **BFM Mobile Companion** (`cell.html`, registered as **Cell 1, Cell 2, Cell 3...**)
 * **Continuous Wearables**: **Linked Watch 1, Linked Watch 2** (Paired to PC, bound to UID and Cell ESN)
 * **Primary Metric of Success**: **First-pass Six Sigma verification** with zero tag balance errors, zero cross-tenant data pollution, zero PHI cloud egress, and zero functional regressions from Alpha.
 * **Visual Cleanliness & Zero Defect Quality Mandate**:
@@ -32,22 +32,22 @@ Every requirement specified in [`bfm_diabetes_beta_requirements_specification.md
 
 | Req ID | Requirement Description | Functional Module Target | Source File / Endpoint | Verification Mechanism |
 | :--- | :--- | :--- | :--- | :--- |
-| **REQ-01** | BFM Console • Star Ship Gemini NCC-202X Branding | Title Bar & Main Header | `index.html` Line 6, 1629 | AST & DOM String Match |
-| **REQ-02** | Complete removal of "5010" across UI and code | Universal Wearable Layer | `index.html`, `server.py` | Strict Gate Check 8 (Forbidden Terms) |
-| **REQ-03** | Complete removal of "Patient" and "Clinical" | Liability & Regulatory Shield | All `.html`, `.py`, `.md` | Strict Gate Check 8 (Forbidden Terms) |
-| **REQ-04** | Star Trek limited strictly to presentation intro | IP & Trademark Quarantine | `presentation/TRANSCRIPT.md` | Strict Gate Check 8 (Forbidden Terms) |
-| **REQ-05** | Copyleft Disclaimer & Immutable User Acceptance | Legal Acceptance Modal | `index.html` (Tab 10), SQLite | Query `user_legal_acceptance` |
+| **REQ-01** | BFM Biometric Function Monitor (`BFM.HTM`) Branding | Title Bar & Main Header | `BFM.HTM`, `index.html` | AST & DOM String Match |
+| **REQ-02** | Model 5010 Dial Write Compatibility Boundary | Dial Tab (`11-WATCH`) | `BFM.HTM` `#boxDialOverwriteExp` | Conditional hide below screenshot on non-writable dials |
+| **REQ-03** | Zero Synthetic Placeholder Leakage | Zero-Data Guardrails | All `.html`, `.py`, `.md` | `audit_zero_defect.py` Checks 09 & 16 |
+| **REQ-04** | Star Trek limited strictly to historical intro tribute | IP & Trademark Quarantine | `presentation/TRANSCRIPT.md` | Compliance Audit |
+| **REQ-05** | Copyleft Disclaimer & Immutable User Acceptance | Legal Acceptance Modal | `BFM.HTM` (Tab 10), SQLite | Query `user_legal_acceptance` |
 | **REQ-06** | 3-Way Triad Binding: UID <-> ESN <-> Watch MAC | Multi-Tenant Dispatcher | `server.py` & `watch_monitor.py` | Multi-Source Concurrent Ingest Test |
-| **REQ-07** | Registered Family Cells & Watch Roster on Tab 10 | Fleet Manager UI | `index.html` (Tab 10 Bottom) | DOM Element Inspection & CRUD Tests |
+| **REQ-07** | Registered Family Cells & Watch Roster on Tab 10 | Fleet Manager UI | `BFM.HTM` (Tab 10 Bottom) | DOM Element Inspection & CRUD Tests |
 | **REQ-08** | Auto-Scan QR Handshake (Phone Name + ESN) | Mobile Onboarding Engine | `cell.html` + `/api/shuttle/register` | Automated ESN Reflection Test |
-| **REQ-09** | Shuttlecraft Foodoor Multi-Day Offline Autonomy | Mobile Client Vault | `cell.html` (IndexedDB) | Disconnected Mode Intake Test |
+| **REQ-09** | Mobile Companion (`cell.html`) Multi-Day Offline Autonomy | Mobile Client Vault | `cell.html` (IndexedDB) | Disconnected Mode Intake Test |
 | **REQ-10** | Homecoming Data Transfer with Zero Data Loss | Bulk Ingestion Engine | `server.py` + `cell.html` | SHA-256 Receipt Verification |
-| **REQ-11** | Automated Daily Dual USB/SD Backup | Removable Storage Sync | `index.html` (Tab 05) | File System Access API Export Test |
-| **REQ-12** | Complete refactor from `lcars-` to `bfm-` | Modular CSS/DOM Standard | `index.html`, `cell.html` | Strict Gate Check 3 (DOM Hierarchy) |
+| **REQ-11** | Automated Daily Deduplicated USB Backup | Removable Storage Sync | `BFM.HTM` (`13-EXPORT`) & `usb_backup_engine.py` | File System Access API & USB Dedup Test |
+| **REQ-12** | Complete refactor from `lcars-` to `bfm-` | Modular CSS/DOM Standard | `BFM.HTM`, `cell.html` | Strict Gate Check 2 (DOM Hierarchy) |
 | **REQ-13** | Developer Incentives & Unlimited Gemini Assets | Open Source Ecosystem | `docs/GOOGLE_LEADERSHIP_PRIMER.md` | Institutional Review Board Portal |
-| **REQ-14** | Zero Defect Mandate & Visual Cleanliness Standard | Quality Assurance Subsystem | `audit_zero_defect.py` | Automated Zero Defect Pre-Commit Gate |
-| **REQ-15** | Canonical Build Naming Standard (`beta.00.01.0001`) | Versioning Subsystem | All UI, API & Manifests | Regex & Checksum Parity Gate |
-| **REQ-16** | Two-Pass Master Test Plan & CLEBugger Integration | Quality Assurance / TQM | `docs/bfm_beta1_master_test_plan.md` | Automated Pass 1 + Human Pass 2 via `BFM.HTM` |
+| **REQ-14** | Zero Defect Mandate & Visual Cleanliness Standard | Quality Assurance Subsystem | `audit_zero_defect.py` (`21/21`) | Automated Zero Defect Pre-Commit Gate |
+| **REQ-15** | Canonical Build Naming Standard (`beta.00.01.0057`) | Versioning Subsystem | All UI, API & Manifests | Regex & Checksum Parity Gate |
+| **REQ-16** | Two-Pass Master Test Plan & CLEBUGGER Sync Gate | Quality Assurance / TQM | `tools/sync_clebugger.py`, `D:\CLEBUGGER\bugs.db` | `strict_gate_v2.py` Check 12 (`0 OPEN`) |
 | **REQ-17** | Human-Centric User & Physician Adoption Metric | Behavioral Feedback Engine | Longitudinal Vault & FHIR | Daily Active Use (>=90%) & Doctor FHIR Review |
 | **REQ-18** | Subjective Experiential Telemetry ("How Do You Feel?") | Behavioral Psychology / HDYF | `cell.html`, `server.py`, DB | Mobile HDYF Prompt, Home Wi-Fi Sync & FHIR Export |
 | **REQ-19** | Somatosensory Pain & Physical Discomfort Telemetry | HDYF NLP Classification Engine | `cell.html`, `server.py`, DB | Pain & Discomfort Extraction and Timeline Anchor |
@@ -64,9 +64,9 @@ An exhaustive audit of the 23,000+ lines of Alpha codebase was conducted to cate
 
 | Migration Stream | Source Alpha Asset | Scope & Target Module | Technical Rationale & Architectural Rule |
 | :--- | :--- | :--- | :--- |
-| **Stream 1: Verbatim Reuse**<br>(100% Preserved) | `watch_monitor.py`<br>`server.py` Sec 08<br>`index.html` Tab 04 | • 6-Sensor Optical BLE Pipeline (0x89, 0xD0, 0x80, 0xA0, 0xA8)<br>• ADAG eA1C Math: `(Glucose + 46.7) / 28.7`<br>• Circadian 8-Lane Timelines with high-contrast halos<br>• Locked Conagra / USDA Nutrition Truth Tables | Reverse-engineered sensor packet handlers and clinical math pass zero-variance audits. Preserved without modification to prevent regressions. |
-| **Stream 2: Refactored Modules**<br>(Structural Hardening) | `index.html`<br>`cell.html`<br>`server.py`<br>`watch_monitor.py` | • CSS/DOM: 1,847 replacements (`lcars-` -> `bfm-`)<br>• Universal Sensor Array (strip legacy "5010")<br>• Multi-Tenant Storage: `telemetry_user_<uuid>.db`<br>• Dynamic Dispatcher: 3-Way Triad Routing | Eliminates CSS naming collisions, decodes multi-user hardware concurrent streams, and isolates family health vaults. |
-| **Stream 3: Newly Engineered**<br>(Beta 1 Capabilities) | `index.html` Tab 10<br>`server.py`<br>`cell.html` PWA<br>`strict_gate_v2.py` | • Tab 10 Family Cells & Wearables Master Roster<br>• Auto-Scan Handshake (`/api/shuttle/register`)<br>• Offline Mobile Vault (`cell.html` IndexedDB)<br>• Automated Daily Dual USB/SD Backup (`.sqlite` + FHIR)<br>• Legal Startup Acceptance Gate Modal & DB Table | Delivers multi-user family PC routing, zero-data-loss mobile field autonomy, and automated hospital interoperability. |
+| **Stream 1: Verbatim Reuse**<br>(100% Preserved) | `watch_monitor.py`<br>`server.py`<br>`BFM.HTM` Tab 04 | • OriginV3 244B MTU & Optical BLE Pipeline (`0xDF`, `0x88`, `0xE0`, `0xB8`, `0x89`, `0xD0`, `0x80`, `0xA8`, `0x07`)<br>• ADAG eA1C Math: `(Glucose + 46.7) / 28.7`<br>• Unified 13-Lane & 3D Multi-Channel Timelines (`getTallSynchronizedDataset()`)<br>• Locked Conagra / USDA / Restaurant Nutrition Truth Tables (`15` `popular_meals`) | Verified protocol packet handlers and glycemic math pass zero-variance audits across all 48 daily 30-min intervals. |
+| **Stream 2: Refactored Modules**<br>(Structural Hardening) | `BFM.HTM`<br>`cell.html`<br>`server.py`<br>`watch_monitor.py` | • CSS/DOM structural unification across 14 operational tabs (`1,957` balanced `<div>` tags)<br>• Dynamic API base wrapper (`file:/// -> http://127.0.0.1:8899`)<br>• `/api/browser_active` Bleak radio arbitration + serialized GATT TX queue<br>• Dynamic Dispatcher: 3-Way Triad Routing (`UID <-> ESN <-> MAC`) | Eliminates BLE contention, enforces `file:///` parity, prevents `0xB8` 12h clock overwrites (`CLE-110`), and removes all fake placeholders. |
+| **Stream 3: Newly Engineered**<br>(Beta `00.01.0057` Capabilities) | `BFM.HTM`<br>`server.py`<br>`BFM_Launcher.exe`<br>`usb_backup_engine.py`<br>`strict_gate_v2.py` | • `0xDF` 244B MTU out-of-order block assembly + genuine `8,859`-epoch R-R Lorenz Poincaré<br>• `0x88` continuous Core/Skin temperature history (`00:00–23:59`, `113`+ rows)<br>• `0xE0` 24h Sleep + daytime naps + `2,000` step goal + Hydration (`fl oz`) overlays<br>• Native `BFM_Launcher.exe`, deduplicated USB backup, fail-closed CLEBUGGER Check 12/13 | Delivers full 24h multi-sensor capture, 13-channel 3D/2D parity, Windows 11 Taskbar launch, and zero open CLEBUGGER defects. |
 
 ### Detailed Component Inventory:
 
@@ -93,8 +93,8 @@ An exhaustive audit of the 23,000+ lines of Alpha codebase was conducted to cate
     1. Incoming payload `phone_esn` (for field meals from cells).
     2. Incoming BLE packet `watch_mac` (for continuous biometrics from watches).
 * **Branding and Header Badges**:
-  * Workstation title updated to `BFM Console • Star Ship Gemini NCC-202X (Powered By Gemini)`.
-  * Mobile companion updated to `Shuttlecraft Foodoor • Cell 1 (or Cell 2, Cell 3)`.
+  * Workstation title updated to `BFM Biometric Function Monitor • Console (Powered By Gemini)`.
+  * Mobile companion updated to `BFM Mobile Companion • Cell 1 (or Cell 2, Cell 3)`.
 
 #### 3. Newly Engineered Components:
 * **Tab 10 Family Cells & Wearables Roster**: Interactive HTML/CSS table with CRUD buttons (`Add Cell & User`, `Edit`, `Delete`), listing Cell #, Registry, User Name, Phone Name, Hardware ESN, Linked Watch MAC, and Status.
@@ -116,9 +116,9 @@ In shared household computing, the active monitor screen cannot be trusted for r
 | Hardware Source Layer | Device Signature | Dispatcher Lookup (`telemetry_master.db`) | Target Local Vault | Anti-Collision Protection |
 | :--- | :--- | :--- | :--- | :--- |
 | **Dad's Wrist Watch (BLE)** | `MAC 8B:DE:40:83:F6:16` | Matches `linked_watch_mac` -> `USR-001` | `telemetry_user_USR-001.db` | Routes by MAC; ignores active screen |
-| **Dad's Shuttlecraft (Wi-Fi)** | `ESN-9482-A018-7F` | Matches `phone_esn` -> `USR-001` | `telemetry_user_USR-001.db` | Two-phase commit with SHA-256 receipts |
+| **Dad's Mobile Companion (Wi-Fi)** | `ESN-9482-A018-7F` | Matches `phone_esn` -> `USR-001` | `telemetry_user_USR-001.db` | Two-phase commit with SHA-256 receipts |
 | **Mom's Wrist Watch (BLE)** | `MAC C4:12:9A:33:02:51` | Matches `linked_watch_mac` -> `USR-002` | `telemetry_user_USR-002.db` | Streamed into Mom's vault in background |
-| **Mom's Shuttlecraft (Wi-Fi)** | `ESN-7731-B942-3C` | Matches `phone_esn` -> `USR-002` | `telemetry_user_USR-002.db` | Zero cross-talk with Dad's active tab |
+| **Mom's Mobile Companion (Wi-Fi)** | `ESN-7731-B942-3C` | Matches `phone_esn` -> `USR-002` | `telemetry_user_USR-002.db` | Zero cross-talk with Dad's active tab |
 | **Son's Standby Roster** | `ESN-4410-C209-1E` | Matches `phone_esn` -> `USR-003` | `telemetry_user_USR-003.db` | Registered and isolated on Tab 10 |
 
 * **Screen Independence**: The PC monitor remains undisturbed on Dad's charts while Mom's watch and cell sync quietly in the background with zero cross-tenant contamination.
@@ -304,34 +304,37 @@ CREATE TABLE IF NOT EXISTS field_meals (
 
 ---
 
-## 8. Ten-Point Six Sigma Pre-Build Quality Gate
+## 8. Thirteen-Point Six Sigma Pre-Build Quality Gate (`strict_gate_v2.py`)
 
-To prevent regressions, the pre-commit gate (`strict_gate_v2.py`) enforces an exhaustive **10-Point Six Sigma Gate**:
+To prevent regressions, the pre-commit gate (`strict_gate_v2.py`) enforces an exhaustive **13-Point Six Sigma Gate** (`-Werror`):
 
 | Check ID | Verification Target | Target File / Artifact | Standard of Zero Regression |
 | :---: | :--- | :--- | :--- |
-| **Check 01** | Dual-File SHA-256 Parity | `index.html` == `w11_htm_app/index.html` | Bit-for-bit identical cryptographic checksum. |
-| **Check 02** | Strict Div Tag Balance | `index.html` & `cell.html` | Opens == Closes, Div balance difference == 0. |
-| **Check 03** | DOM Workspace Hierarchy | `index.html` | All tab pages are direct children of `<main.bfm-workspace>`. |
-| **Check 04** | JavaScript AST Syntax | `index.html` | Node.js syntax verification passes with zero warnings. |
-| **Check 05** | Python Server AST | `server.py` | Python bytecode compilation passes with zero syntax errors. |
-| **Check 06** | SQLite 3-Way Triad DDL | `telemetry_master.db` | Foreign keys and UNIQUE constraints verified on ESN & MAC. |
-| **Check 07** | Confectionery Safety Math | `popular_meals` table | Locked truth tables; zero high-sugar confections. |
-| **Check 08** | Zero Monetary Cost Strings | Tab 09 BOM Headers | Zero monetary price residue; strictly metabolic impact metrics. |
-| **Check 09** | Zero Forbidden Terms | Entire Workspace | 0 instances of "5010", "Patient", "Clinical", "Star Trek". |
-| **Check 10** | Concurrent Ingest Test | Hardware Triad Dispatcher | Mock watch + cell concurrent sync with 0 cross-talk. |
+| **Check 01** | Triple-File SHA-256 Parity | `BFM.HTM` == `index.html` == `w11_htm_app/index.html` | Bit-for-bit identical cryptographic checksum. |
+| **Check 02** | Strict Div Tag Balance | `BFM.HTM` (`1,957` opens == `1,957` closes) | Opens == Closes, Div balance difference == `0`. |
+| **Check 03** | JavaScript AST Syntax | `BFM.HTM` | Node.js `--check` passes with zero errors. |
+| **Check 04** | Python Server AST | `w11_htm_app/server.py` | Python bytecode compilation passes cleanly. |
+| **Check 05** | SQLite Dedup & Safety | `w11_htm_app/telemetry.db` (`popular_meals`) | `15` unique meals; zero high-sugar confections flagged safe. |
+| **Check 06** | Zero Monetary Cost Strings | `BFM.HTM` BOM Headers | Zero `$` price residue; strictly metabolic impact metrics. |
+| **Check 07** | Mobile Client Tag Balance | `w11_htm_app/cell.html` | Opens == Closes, Div balance difference == `0`. |
+| **Check 08** | SQLite 3-Way Triad DDL | `user_profiles`, `registered_cells` | Foreign keys and `UNIQUE` constraints verified on ESN & MAC. |
+| **Check 09** | HL7 FHIR R4 Bundle Schema | FHIR R4 Export Template | Valid LOINC Observation collection with deterministic hash. |
+| **Check 10** | Cell Registry & Delete API | `telemetry.db` + `server.py` | `Cell 1` active + `/api/shuttle/cell/delete` verified. |
+| **Check 11** | Hardware Table & UI Segregation | `BFM.HTM` (`#tblWatchFunctions`, `#curveTimelineBreath`) | Forbidden header button removed; transducer map intact. |
+| **Check 12** | Fail-Closed CLEBUGGER Sync | `tools/sync_clebugger.py --check` (`D:\CLEBUGGER\bugs.db`) | `0 OPEN` items across all tagged Beta builds & Alpha defects. |
+| **Check 13** | Pre-Build Gate Readiness | Full Gate Suite (`13/13 PASS`) | Zero warnings, zero un-synced deltas. |
 
 ---
 
-## 9. Phased Implementation Roadmap for Beta 1
+## 9. Completed & Active Implementation Phases (`beta.00.01.0001` -> `beta.00.01.0057`)
 
-| Phase | Milestone Name | Key Engineering Deliverables | -Werror Quality Gate Check |
+| Phase | Milestone Name | Key Engineering Deliverables | Verified Quality Gate |
 | :---: | :--- | :--- | :--- |
-| **Phase 1** | Database & Backend Engine | `telemetry_master.db`, `registered_cells`, `/api/shuttle/dock`, dynamic BLE packet router | Schema constraint verification & SQLite connection routing test |
-| **Phase 2** | Workstation UI Refactoring | CSS migration `lcars-` -> `bfm-`, Tab 10 Master Roster, Legal Acceptance Modal | Strict Div Balance (Opens == Closes == 1965, Diff == 0) |
-| **Phase 3** | Mobile Auxiliary Client | `cell.html` device interrogation, IndexedDB offline vault, Homecoming Dock button | ESN reflection test & IndexedDB disconnected ingestion test |
-| **Phase 4** | Dual External Storage Backup | Automated daily `.sqlite` + Epic FHIR R4 `.json` bundle generator with manifests | File System Access API export & schema validation |
-| **Phase 5** | Verification & Certification | End-to-end multi-device concurrent sync verification & documentation freeze | 10/10 Six Sigma Pre-Build Gate Pass (`strict_gate_v2.py`) |
+| **Phase 1** | Database & Triad Engine | `user_profiles`, `registered_cells`, `/api/shuttle/dock`, `70,858+` vital epochs in `telemetry.db` | Schema constraints & `Cell 1` triad verified |
+| **Phase 2** | Protocol Decoding & 13-Lane Parity | `0xDF` 244B MTU, `0x88` Temp, `0xE0` Sleep + naps, `0xB8` 12h clock lock, 13-Channel 3D & Tall Chart | Live watch verified (`CLE-110`, `CLE-111`, `0055`, `0056`) |
+| **Phase 3** | Mobile Companion (`cell.html`) | Hardware interrogation, IndexedDB offline vault, HDYF pain/mood capture, Homecoming Dock | Div balance `0` & live dock verified |
+| **Phase 4** | Native Launcher & USB Backup | `BFM_Launcher.exe` W11 Taskbar app, `usb_backup_engine.py`, consolidated `13-EXPORT` FHIR/CSV | `file:///` parity (`Check 08`) & USB dedup verified |
+| **Phase 5** | Docs, 84-Slide Deck & Certification | Updated EM/Exec docs, 84-slide consolidated clinician & user deck (Tabs 01–14) + audio, `4`-tool audit certification | `13/13` strict + `21/21` audit + `10/10` E2E + `84/84` slides |
 
 1. **Phase 1: Database & Backend Engine**:
    * Implement `telemetry_master.db` with `user_profiles`, `registered_cells` (with `linked_watch_mac`), and `user_legal_acceptance`.
@@ -339,7 +342,7 @@ To prevent regressions, the pre-commit gate (`strict_gate_v2.py`) enforces an ex
    * Refactor BLE ingestion in `watch_monitor.py` / `server.py` to route packets by source `watch_mac`.
 2. **Phase 2: Workstation UI Refactoring (`index.html`)**:
    * Refactor CSS/DOM from `lcars-` to `bfm-`.
-   * Update title and header to **BFM Console • Star Ship Gemini NCC-202X (Powered By Gemini)**.
+   * Update title and header to **BFM Biometric Function Monitor (Powered By Gemini)**.
    * Add the **Registered Family Cells & Wearable Watch Roster** to Tab 10 bottom with Add/Edit/Delete modals.
    * Add the Startup Legal Acceptance Modal.
 3. **Phase 3: Mobile Auxiliary Client (`cell.html`)**:
@@ -347,9 +350,9 @@ To prevent regressions, the pre-commit gate (`strict_gate_v2.py`) enforces an ex
    * Implement IndexedDB offline vault for field meals.
    * Implement the one-click Homecoming Docking transfer button.
 4. **Phase 4: Dual External USB/SD Storage Backup**:
-   * Implement automated daily `.sqlite` + Epic FHIR R4 `.json` bundle generator with SHA-256 manifests.
+   * Implement automated daily `.sqlite` + Epic FHIR R4 `.json` bundle generator with SHA-256 manifests (`usb_backup_engine.py`).
 5. **Phase 5: Verification & Gate Certification**:
-   * Execute 10-point Six Sigma gate (`strict_gate_v2.py`).
+   * Execute 13-point Six Sigma gate (`strict_gate_v2.py`) and 21-point zero-defect suite (`audit_zero_defect.py`).
    * Perform end-to-end multi-device concurrent sync verification.
 
 
@@ -399,16 +402,16 @@ BFM delivers complete functional equivalence with **HBand and HBand 2.0** across
 
 | Wearable Stream | GATT Command / Protocol | HBand 2.0 Benchmark | BFM Workstation Implementation | Zero-Data Display Rule |
 | :--- | :--- | :--- | :--- | :--- |
-| **Optical Glucose** | `0x87` Calibration & Stream | Real-time glucose, TIR (60-200), daily average, eA1C. | Real-time tile, TIR breakdown, 24-hr diurnal curve. | Displays `0 mg/dL` until first physical scan. |
-| **Hemodynamics (BP)** | `0x02` Optical PPG / Oscillometric | Systolic, Diastolic, MAP, hypertension staging. | Hemodynamic dual-line gauge, morning surge detector. | Displays `0 / 0 mmHg` until first physical scan. |
-| **Resting & Peak HR** | `0x01` 5-10 Min Duty Cycle | Continuous HR timeline, resting heart rate (RHR), zones. | 24-Hour continuous heart rate envelope, RHR baseline. | Displays `0 BPM` until first physical scan. |
-| **HRV & Autonomic Stress** | `0x08` R-R Interval & SDNN | Lorenz scatter plot, HRV score (0-100 ms), autonomic balance. | Real-time stress index, Lorenz plot, autonomic card. | Displays `0 ms` until first physical scan. |
-| **SpO2 & Nocturnal Apnea** | `0x12` Red/Infrared Ratio | Nocturnal oxygenation, desaturation index (ODI), hypoxia count. | Continuous oxygenation track, apnea cluster alerts. | Displays `0 %` until first physical scan. |
-| **Body Temperature** | `0x0C` Contact NTC Sensor | Dual-channel core estimate and skin contact curve (°F / °C). | Diurnal temperature oscillation graph, febrile alerts. | Displays `0.0 °F` until first physical scan. |
-| **ECG Waveform Strip** | `0x99` Micro-Volt Lead | 30-60s rhythm strip, PR interval, QRS duration, QT interval, Afib. | 25 mm/sec canvas rhythm strip, arrhythmia flag, PDF export. | Displays flat baseline (`0 µV`) until ECG sampled. |
-| **MET Energy Expenditure** | `0x89` Accelerometer + HR | Real-time energy expenditure in METs (1.0 = rest, 3.0+ = walk). | Instantaneous MET gauge, cumulative daily MET-hours. | Displays `1.0 MET` (resting baseline) or `0`. |
-| **Sleep Architecture** | `0xE0` Multi-Stage Actigraphy | Total sleep, Deep, Light, REM, Awake count, Sleep Score. | Full stacked hypnogram, sleep debt, dawn surge alignment. | Displays `0 hrs / 0 score` until nocturnal sync. |
-| **Body Composition (BIA)** | `0x78` Dual-Frequency Impedance | Body fat %, muscle mass (lbs), body water %, BMI, visceral fat. | Multi-metric composition card, longitudinal lean/fat ratio. | Displays `0.0 %` until calibration entry. |
+| **Optical Glucose** | `0xDF` / `0x87` / `0x89` Stream | Real-time glucose, TIR (70–180), daily average, eA1C/GMI. | Real-time tile, TIR breakdown, 48-slot 24-hr curve & `CH 01`. | Displays `0 mg/dL` until first physical scan. |
+| **Hemodynamics (BP)** | `0xDF` / `0x02` Optical PPG | Systolic, Diastolic, MAP, morning surge staging. | Hemodynamic dual-line gauge & `CH 02: BLOOD PRESSURE`. | Displays `0 / 0 mmHg` until first physical scan. |
+| **Resting & Peak HR** | `0xDF` / `0xD0` Continuous | Continuous HR timeline, RHR baseline, zones. | 24-Hour envelope (`00:00–23:59`) & `CH 03: HEART RATE`. | Displays `0 BPM` until first physical scan. |
+| **HRV & Lorenz R-R** | `0xDF` / `0x08` R-R Scatter | Lorenz Poincaré plot (`8,859` watch R-R epochs), HRV (ms). | Real-time Poincaré scatter plot & `CH 06: HRV / STRESS`. | Displays `0 ms` until genuine R-R epochs sync. |
+| **SpO2 & Nocturnal Apnea** | `0xDF` / `0x12` Red/IR Ratio | Nocturnal oxygenation, desaturation index, off-wrist holes. | Continuous oxygenation track & `CH 04: OXYGEN SpO2`. | Blue off-wrist band when un-worn; never false `0%`. |
+| **Body Core & Skin Temp** | `0x88` Historical Thermal | Dual-channel Core & Skin curve (`00:00–23:59`, `113`+ rows). | Diurnal thermal curve & `CH 05: BODY TEMP (°F)`. | Displays `0.0 °F` until `0x88` sync. |
+| **Steps & GLUT4 Walk** | `0xA8` / `0x07` / `0xA3` Sync | Cumulative steps matched to `2,000` watch goal (`0xA3`). | Kinetic timeline + `▲ GLUT4` walk badges (`CH 07`). | `<15`-step MCU debounce strictly respected. |
+| **Sleep & Daytime Naps** | `0xE0` Multi-Session TLV | Total sleep, Deep, Light, REM, Awake (`00:01–23:59` + naps). | Full stacked hypnogram & `CH 08: SLEEP ARCH`. | Displays `0 hrs / 0 score` until nocturnal sync. |
+| **Time Format & Config** | `0xB8` Page-0 Protected | Watch 12-hour vs 24-hour display format synchronized UI-wide. | Read-guard stops `b8 02 02 01` overwrite (`CLE-110`); re-renders charts live. | Respects `#cfgTimeFormat` (`timeFormatUserSet`). |
+| **ECG, BIA & Hydration** | `0x99`, `0x78`, BOM (`fluid_oz`) | 25 mm/sec Lead-I ECG, BIA muscle %, `80.0 fl oz` hydration & Rx. | ECG canvas, BIA curve, `CH 09`–`CH 13` (`Pain`, `Mood`, `Carbs`, `Fluid`, `Rx`). | Zero hardcoded fake meds (`Metformin` excised). |
 
 ---
 

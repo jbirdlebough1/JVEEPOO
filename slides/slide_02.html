@@ -2,270 +2,333 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>LCARS 5010 - Slide 02: The Snapshot Fallacy: Sampling Mathematics & Metrology</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slide 02: The Data-Loss Crisis: Ad-Hoc Sampling vs Continuous Consolidation</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
       width: 100%;
-      height: 100%;
-      background: #f1f5f9;
+      height: 100vh;
+      overflow: hidden;
+      background: #f8fafc;
       color: #0f172a;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
     }
-    .slide-frame {
-      flex: 1;
+    .slide-container {
+      width: 100%;
       height: 100vh;
+      padding: 12px 18px;
       display: flex;
       flex-direction: column;
-      padding: 8px 16px;
-      gap: 6px;
-      box-sizing: border-box;
-      min-height: 0;
+      background: #f8fafc;
     }
     .slide-header {
+      border-bottom: 2px solid #cbd5e1;
+      padding-bottom: 6px;
+      margin-bottom: 8px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      border-bottom: 2.5px solid #0284c7;
-      padding: 6px 14px;
-      background: #ffffff;
-      border-radius: 6px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-      border: 1px solid #e2e8f0;
+      align-items: flex-end;
       flex-shrink: 0;
     }
-    .slide-module {
-      font-size: 0.78rem;
-      color: #0284c7;
+    .module-badge {
+      display: inline-block;
+      background: #e0f2fe;
+      border: 1px solid #0284c7;
+      color: #0369a1;
+      font-size: 0.65rem;
       font-weight: 800;
-      letter-spacing: 0.08em;
+      padding: 2px 7px;
+      border-radius: 3px;
       text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-family: monospace;
+      margin-bottom: 3px;
     }
     .slide-title {
-      font-size: 1.35rem;
-      font-weight: 900;
-      color: #0f172a;
-      margin-top: 0px;
-      letter-spacing: -0.01em;
-    }
-    .slide-badge {
-      background: #0284c7;
-      color: #ffffff;
-      font-family: monospace;
+      font-size: 1.28rem;
       font-weight: 800;
-      font-size: 0.76rem;
-      padding: 3px 10px;
+      color: #0f172a;
+      line-height: 1.15;
+    }
+    .slide-desc {
+      font-size: 0.79rem;
+      color: #475569;
+      margin-top: 2px;
+      font-weight: 500;
+    }
+    .slide-num-badge {
+      font-family: monospace;
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #0284c7;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      padding: 3px 9px;
       border-radius: 4px;
-      letter-spacing: 0.05em;
       flex-shrink: 0;
     }
-    .slide-body {
-      flex: 1;
+    .grid-2col {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 14px;
+      flex: 1;
       min-height: 0;
-      height: calc(100vh - 66px);
+      overflow: hidden;
     }
-    .slide-footer {
+    .left-screenshot-card {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      min-height: 0;
+      overflow: hidden;
+    }
+    .left-screenshot-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 0.70rem;
-      color: #64748b;
+      border-bottom: 1.5px solid #e2e8f0;
+      padding-bottom: 5px;
+      margin-bottom: 6px;
+      flex-shrink: 0;
+    }
+    .left-screenshot-viewport {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      background: #ffffff;
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    .right-column {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 0;
+      overflow: hidden;
+    }
+    .content-card {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 9px 13px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      flex: 1;
+      overflow-y: auto;
+    }
+    .bullet-item {
+      border-left: 4px solid transparent;
+      border-radius: 4px;
+      padding: 5px 8px;
+      font-size: 0.77rem;
+      line-height: 1.36;
+      color: #1e293b;
+      transition: background 0.25s ease, border-left-color 0.25s ease;
+    }
+    .visual-card {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 8px 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      overflow-y: auto;
+      flex-shrink: 0;
+      max-height: 48%;
+    }
+    .card-header-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1.5px solid #e2e8f0;
+      padding-bottom: 4px;
+      margin-bottom: 5px;
       font-family: monospace;
+      font-size: 0.70rem;
+      font-weight: 800;
+      color: #0284c7;
+    }
+    .slide-footer {
       border-top: 1px solid #cbd5e1;
       padding-top: 4px;
+      margin-top: 6px;
+      display: flex;
+      justify-content: space-between;
+      font-family: monospace;
+      font-size: 0.67rem;
+      color: #64748b;
+      font-weight: 600;
       flex-shrink: 0;
     }
   </style>
 </head>
 <body>
-  <div class="slide-frame">
+  <div class="slide-container">
     <div class="slide-header">
       <div>
-        <div class="slide-module">Module 1: Introduction & Clinical Scope</div>
-        <div class="slide-title">The Snapshot Fallacy: Sampling Mathematics & Metrology</div>
+        <div class="module-badge">Intro: Closing the Loop</div>
+        <div class="slide-title">The Data-Loss Crisis: Ad-Hoc Sampling vs Continuous Consolidation</div>
+        <div class="slide-desc">90-Day Timeline &amp; Sensitivity/Specificity proof comparing Quarterly A1C (N=2), Random Fingersticks (30–90) &amp; BFM Watch (288/day × 12).</div>
       </div>
-      <div class="slide-badge">SLIDE 02 / 56</div>
+      <div class="slide-num-badge">SLIDE 02 / 84</div>
     </div>
 
-    <div class="slide-body">
-      
-      <!-- High-Contrast Dynamic Content Card -->
-      <div class="content-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #0284c7; padding: 10px 14px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto;">
-        <h3 style="color: #0284c7; font-weight: 800; border-bottom: 2px solid #e2e8f0; padding-bottom: 4px; margin-bottom: 5px; font-size: 1.05rem; text-transform: uppercase;">SAMPLING MATHEMATICS & METROLOGY CRITERIA</h3>
-        <p style="color: #334155; font-weight: 500; margin-bottom: 5px; font-size: 0.85rem; line-height: 1.35;">Why single, start-and-end quarterly draws, and random spot-checks fail: mathematical proof via Nyquist criteria, error convergence, and the 5 dimensions of metrology.</p>
-        <ul class="bullets-list" style="padding-left: 0; list-style-type: none; margin-bottom: 3px; color: #1e293b; font-size: 0.80rem;">
-          
-          <li id="bullet-item-0" class="bullet-item" data-idx="0" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">Quarterly Lab: Two Samples (Day 0 & Day 90):</strong> A quarterly lab test yields only N=2 samples—one at the start (Day 0) and one at the end (Day 90). Between them lies a 90-day total blind interval of 7.78 million seconds, causing complete Nyquist aliasing.
-          </li>
-        
-          <li id="bullet-item-1" class="bullet-item" data-idx="1" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">Random Spot-Checks vs Automated Telemetry:</strong> Fingersticks capture sporadic awake points (N≈180), missing nocturnal nadirs and postprandial curves. Automated LCARS captures 288 samples/day (N=25,920 glucose; 207,360 total), achieving continuous kinetic tracking.
-          </li>
-        
-          <li id="bullet-item-2" class="bullet-item" data-idx="2" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">The 5 Metrology Dimensions Compared:</strong> More samples yield higher resolution and quality: Sensitivity jumps from <15% to >98%; Specificity provides true baseline context; Accuracy is anchor-calibrated; Precision CI narrows by 1/√N; Repeatability achieves continuous autocorrelation.
-          </li>
-        
-          <li id="bullet-item-3" class="bullet-item" data-idx="3" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">Nyquist Theorem & Standard Error Math:</strong> Shannon-Nyquist criterion mandates fs ≥ 2 fmax. Biological half-life (15-30m) requires 5-min epochs (fs = 3.33 mHz). High-density sampling (N=25,920) reduces standard error (SE = σ/√N) by 99.4% (161× noise suppression).
-          </li>
-        
-        </ul>
-        
-        <!-- Real LCARS Page Under Discussion (Full Area Fill Viewport) -->
-        <div class="left-screenshot-card" style="margin-top: 6px; margin-bottom: 6px; border: 2px solid #cbd5e1; border-radius: 8px; overflow: hidden; background: #ffffff; box-shadow: 0 4px 14px rgba(0,0,0,0.08); display: flex; flex-direction: column; flex: 1; min-height: 310px;">
-          <!-- Continuous Monotonic Viewport (Clean Light Background) -->
-          <div class="left-screenshot-viewport" style="text-align: center; background: #ffffff; overflow-y: auto; flex: 1; min-height: 290px; position: relative;">
-            <img src="images/lcars_tab01_fullscan.png" onerror="this.src="images/lcars_tab01_fullscan.png"" alt="01-VITALS CONSOLE • 288 CONTINUOUS TELEMETRY SAMPLES" style="width: 100%; height: auto; display: block; object-fit: cover; object-position: top center;">
-          </div>
+    <div class="grid-2col">
+      <!-- Left Column: Live Console Screenshot or Custom Visual -->
+      <div class="left-screenshot-card">
+        <div class="left-screenshot-header">
+          <span style="font-family: monospace; font-size: 0.69rem; color: #0284c7; font-weight: 800;">04-REPORTS • 24H GLUCOSE CURVE &amp; ADAG EA1C / GMI</span>
+          <span style="background: #15803d; color: #ffffff; font-size: 0.59rem; font-weight: 800; padding: 2px 6px; border-radius: 3px; font-family: monospace;">SHARED CARE VIEW</span>
         </div>
-        
+        <div class="left-screenshot-viewport">
+          
+<div style="width:100%;height:100%;display:flex;flex-direction:column;gap:8px;padding:6px;background:#f8fafc;overflow-y:auto;">
+  <!-- TOP GRAPH: 90-DAY SAMPLING TIMELINE -->
+  <div style="background:#ffffff;border:1.5px solid #cbd5e1;border-radius:6px;padding:8px 10px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1.5px solid #e2e8f0;padding-bottom:4px;margin-bottom:7px;">
+      <span style="font-family:monospace;font-size:0.74rem;font-weight:800;color:#0284c7;">1. 90-DAY SAMPLING TIMELINE: AD-HOC LOSS VS CONTINUOUS WATCH</span>
+      <span style="background:#0284c7;color:#fff;font-family:monospace;font-size:0.58rem;font-weight:800;padding:2px 6px;border-radius:3px;">90 DAYS (7.78M SEC)</span>
+    </div>
+
+    <!-- Row 1: Quarterly Lab A1C (2 samples, 90 days apart) -->
+    <div style="margin-bottom:7px;">
+      <div style="display:flex;justify-content:space-between;font-family:monospace;font-size:0.66rem;font-weight:700;color:#dc2626;margin-bottom:2px;">
+        <span>QUARTERLY LAB A1C: 2 SAMPLES (90 DAYS APART)</span>
+        <span>N = 2 DRAWS (DAY 0 &amp; DAY 90)</span>
       </div>
-    
-      
-      <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #0284c7; padding: 10px 14px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto;">
-        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 4px; margin-bottom: 6px; flex-shrink: 0;">
-          <span style="font-family: monospace; font-weight: 800; color: #0284c7; font-size: 0.84rem;">MATHEMATICAL SAMPLING THEORY & METROLOGY</span>
-          <span style="background: #f8fafc; color: #0284c7; font-weight: 800; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; border: 1.5px solid #0284c7;">fs ≥ 2 fmax • SE = σ/√N</span>
+      <div style="position:relative;height:22px;background:#fee2e2;border:1px solid #ef4444;border-radius:4px;display:flex;align-items:center;padding:0 8px;">
+        <div style="width:11px;height:11px;background:#dc2626;border-radius:50%;flex-shrink:0;"></div>
+        <div style="flex:1;border-top:2px dashed #f87171;margin:0 6px;position:relative;text-align:center;">
+          <span style="position:relative;top:-9px;background:#fee2e2;padding:0 5px;font-family:monospace;font-size:0.58rem;font-weight:800;color:#991b1b;">DAY 0 &#8592; 90-DAY BLIND VOID (99.99% DATA LOST) &#8594; DAY 90</span>
         </div>
-        <div class="visual-content" style="flex: 1; display: flex; flex-direction: column;">
-          
-          <!-- 90-Day Sampling Timeline: Quarterly Lab vs Fingersticks vs LCARS Continuous -->
-          <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 10px; margin-top: 4px; color: #0f172a;">
-            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 4px; margin-bottom: 8px;">
-              <span style="font-family: monospace; font-size: 0.72rem; color: #0284c7; font-weight: 800; letter-spacing: 0.05em;">90-DAY SAMPLING RESOLUTION TIMELINE</span>
-              <span style="background: #0284c7; color: #fff; font-size: 0.60rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; font-family: monospace;">MORE SAMPLES = HIGHER RESOLUTION & QUALITY</span>
-            </div>
+        <div style="width:11px;height:11px;background:#dc2626;border-radius:50%;flex-shrink:0;"></div>
+      </div>
+    </div>
 
-            <!-- 90-Day Timeline Graphic Bars -->
-            <div style="display: flex; flex-direction: column; gap: 7px; font-family: monospace; font-size: 0.68rem;">
-              <!-- Tier 1: Quarterly Lab (N=2: Start & End of 90 Days) -->
-              <div>
-                <div style="display: flex; justify-content: space-between; color: #dc2626; font-weight: bold; margin-bottom: 2px;">
-                  <span>1. QUARTERLY LAB: 2 SAMPLES (START DAY 0 & END DAY 90)</span>
-                  <span>N=2 SAMPLES / 90 DAYS (fs = 6.4×10⁻⁸ Hz)</span>
-                </div>
-                <div style="position: relative; height: 18px; background: #fee2e2; border-radius: 4px; border: 1px solid #ef4444; overflow: hidden; display: flex; align-items: center;">
-                  <!-- Day 0 Sample Point -->
-                  <div style="position: absolute; left: 4px; width: 12px; height: 12px; background: #dc2626; border-radius: 50%; box-shadow: 0 0 6px #ef4444;" title="Start Lab Draw (Day 0)"></div>
-                  <!-- 90-Day Blind Interval Line -->
-                  <div style="position: absolute; left: 20px; right: 20px; height: 2px; background: #94a3b8; border-style: dashed;"></div>
-                  <!-- Day 90 Sample Point -->
-                  <div style="position: absolute; right: 4px; width: 12px; height: 12px; background: #dc2626; border-radius: 50%; box-shadow: 0 0 6px #ef4444;" title="End Lab Draw (Day 90)"></div>
-                  <span style="position: absolute; left: 26px; font-size: 0.58rem; color: #991b1b; font-weight: bold;">
-                    📍 DAY 0 ────── 90-DAY TOTAL BLIND VOID (7.78M SECONDS: ZERO DATA) ────── 📍 DAY 90
-                  </span>
-                </div>
-              </div>
+    <!-- Row 2: Random Fingersticks (30-90 samples over 90 days) -->
+    <div style="margin-bottom:7px;">
+      <div style="display:flex;justify-content:space-between;font-family:monospace;font-size:0.66rem;font-weight:700;color:#d97706;margin-bottom:2px;">
+        <span>RANDOM FINGERSTICKS: 30–90 SPOT SAMPLES OVER 90 DAYS</span>
+        <span>0.3–1.0 CHECK / DAY (AD-HOC AWAKE ONLY)</span>
+      </div>
+      <div style="height:22px;background:#fef3c7;border:1px solid #f59e0b;border-radius:4px;display:flex;align-items:center;justify-content:space-between;padding:0 10px;font-family:monospace;font-size:0.62rem;font-weight:700;color:#b45309;">
+        <span>&#9679;</span><span>&#9679;</span><span>&#9679;</span>
+        <span style="font-size:0.57rem;">MISSES SLEEP &amp; 30-MIN MEAL PEAKS</span>
+        <span>&#9679;</span><span>&#9679;</span><span>&#9679;</span>
+      </div>
+    </div>
 
-              <!-- Tier 2: Conventional Fingersticks (1-4/day sporadic) -->
-              <div>
-                <div style="display: flex; justify-content: space-between; color: #d97706; font-weight: bold; margin-bottom: 2px;">
-                  <span>2. RANDOM SPOT-CHECKS: SPORADIC FINGERSTICKS (N≈180)</span>
-                  <span>~180 POINTS / 90 DAYS (SUB-NEYE-QUIST)</span>
-                </div>
-                <div style="position: relative; height: 18px; background: #fef3c7; border-radius: 4px; border: 1px solid #f59e0b; overflow: hidden; display: flex; align-items: center; justify-content: space-around;">
-                  <span style="color: #b45309; font-size: 0.65rem; font-weight: bold;">• &nbsp; • &nbsp; • &nbsp; • &nbsp; • &nbsp; • &nbsp; • &nbsp; • &nbsp; • &nbsp; • &nbsp; • &nbsp; • &nbsp; • &nbsp; • &nbsp; • (SPORADIC AWAKE BIAS: NOCTURNAL BLIND)</span>
-                </div>
-              </div>
+    <!-- Row 3: BFM Continuous Watch (288 samples/day x 12 streams) -->
+    <div>
+      <div style="display:flex;justify-content:space-between;font-family:monospace;font-size:0.66rem;font-weight:800;color:#15803d;margin-bottom:2px;">
+        <span>BFM CONTINUOUS WATCH: 288 SAMPLES/DAY &#215; 12 STREAMS</span>
+        <span>25,920 GLUCOSE • 311,040 TOTAL / 90D</span>
+      </div>
+      <div style="height:24px;background:linear-gradient(90deg,#15803d,#16a34a,#0284c7,#16a34a,#15803d);border:1.5px solid #15803d;border-radius:4px;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 4px rgba(21,128,61,0.25);">
+        <span style="font-family:monospace;font-size:0.62rem;font-weight:800;color:#ffffff;letter-spacing:0.03em;">CONTINUOUS 5-MIN COVERAGE (24/7) • ZERO AD-HOC BLINDNESS • FULL CAUSE &amp; EFFECT</span>
+      </div>
+    </div>
+  </div>
 
-              <!-- Tier 3: LCARS 5010 Continuous 288x8 Automated Telemetry -->
-              <div>
-                <div style="display: flex; justify-content: space-between; color: #15803d; font-weight: bold; margin-bottom: 2px;">
-                  <span>3. AUTOMATED CONTINUOUS: LCARS 5010 (288/DAY × 8 CHANNELS)</span>
-                  <span>25,920 GLUCOSE • 207,360 TOTAL SAMPLES</span>
-                </div>
-                <div style="position: relative; height: 20px; background: linear-gradient(90deg, #16a34a, #22c55e, #0284c7, #22c55e, #16a34a); border-radius: 4px; border: 1.5px solid #16a34a; overflow: hidden; display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 4px rgba(22,163,74,0.3);">
-                  <span style="font-size: 0.62rem; color: #ffffff; font-weight: 800; letter-spacing: 0.05em; text-shadow: 0 1px 2px rgba(0,0,0,0.5);">
-                    ████ FULL NEYE-QUIST RECONSTRUCTION: fs = 3.33 mHz ≥ 2 fmax • 25,920 CONTINUOUS EPOCHS ████
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
+  <!-- BOTTOM GRAPH: SENSITIVITY & SPECIFICITY COMPARISON SVG -->
+  <div style="background:#ffffff;border:1.5px solid #cbd5e1;border-radius:6px;padding:8px 10px;flex:1;display:flex;flex-direction:column;">
+    <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1.5px solid #e2e8f0;padding-bottom:4px;margin-bottom:6px;">
+      <span style="font-family:monospace;font-size:0.74rem;font-weight:800;color:#0284c7;">2. CLINICAL DETECTION FITNESS: SENSITIVITY &amp; SPECIFICITY</span>
+      <span style="font-family:monospace;font-size:0.60rem;font-weight:700;color:#475569;">&#9632; SENSITIVITY (EXCURSIONS) &nbsp; &#9632; SPECIFICITY (TRUE BASELINE)</span>
+    </div>
+    <svg viewBox="0 0 640 245" style="width:100%;flex:1;max-height:245px;display:block;">
+      <!-- Grid lines -->
+      <line x1="65" y1="20" x2="615" y2="20" stroke="#e2e8f0" stroke-dasharray="3,3"/>
+      <text x="58" y="24" text-anchor="end" font-family="monospace" font-size="11" fill="#64748b">100%</text>
+      <line x1="65" y1="65" x2="615" y2="65" stroke="#e2e8f0" stroke-dasharray="3,3"/>
+      <text x="58" y="69" text-anchor="end" font-family="monospace" font-size="11" fill="#64748b">75%</text>
+      <line x1="65" y1="110" x2="615" y2="110" stroke="#e2e8f0" stroke-dasharray="3,3"/>
+      <text x="58" y="114" text-anchor="end" font-family="monospace" font-size="11" fill="#64748b">50%</text>
+      <line x1="65" y1="155" x2="615" y2="155" stroke="#e2e8f0" stroke-dasharray="3,3"/>
+      <text x="58" y="159" text-anchor="end" font-family="monospace" font-size="11" fill="#64748b">25%</text>
+      <line x1="65" y1="200" x2="615" y2="200" stroke="#94a3b8" stroke-width="1.5"/>
+      <text x="58" y="204" text-anchor="end" font-family="monospace" font-size="11" fill="#64748b">0%</text>
 
-          <!-- Metrology 5-Dimension Comparison Table -->
-          <div style="margin-top: 8px; border: 1.5px solid #cbd5e1; border-radius: 6px; overflow: hidden; background: #ffffff;">
-            <table style="width: 100%; border-collapse: collapse; font-size: 0.69rem; text-align: left;">
-              <thead>
-                <tr style="background: #f1f5f9; color: #0f172a; border-bottom: 2px solid #cbd5e1; font-family: monospace;">
-                  <th style="padding: 4px 6px;">METROLOGY DIMENSION</th>
-                  <th style="padding: 4px 6px; color: #dc2626;">QUARTERLY LAB (N=2)</th>
-                  <th style="padding: 4px 6px; color: #d97706;">RANDOM SPOT (N≈180)</th>
-                  <th style="padding: 4px 6px; color: #15803d; background: #f0fdf4;">AUTOMATED 288×8 (N=25,920)</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr style="border-bottom: 1px solid #e2e8f0;">
-                  <td style="padding: 3px 6px; font-weight: bold; color: #334155;">Sensitivity (Excursion Detection)</td>
-                  <td style="padding: 3px 6px; color: #dc2626; font-family: monospace;">&lt; 10% (Blind to 90d excursions)</td>
-                  <td style="padding: 3px 6px; color: #d97706; font-family: monospace;">35% – 50% (Awake only)</td>
-                  <td style="padding: 3px 6px; color: #15803d; font-family: monospace; font-weight: bold; background: #f0fdf4;">&gt; 98% (All peaks & nocturnal nadirs)</td>
-                </tr>
-                <tr style="border-bottom: 1px solid #e2e8f0;">
-                  <td style="padding: 3px 6px; font-weight: bold; color: #334155;">Specificity (True Homeostasis)</td>
-                  <td style="padding: 3px 6px; color: #dc2626; font-family: monospace;">Poor (Hypoglycemia masks A1C)</td>
-                  <td style="padding: 3px 6px; color: #d97706; font-family: monospace;">Moderate (Isolated spikes)</td>
-                  <td style="padding: 3px 6px; color: #15803d; font-family: monospace; font-weight: bold; background: #f0fdf4;">&gt; 96% (Full contextual trajectory)</td>
-                </tr>
-                <tr style="border-bottom: 1px solid #e2e8f0;">
-                  <td style="padding: 3px 6px; font-weight: bold; color: #334155;">Accuracy (|x̄ - μ| True Value)</td>
-                  <td style="padding: 3px 6px; color: #dc2626; font-family: monospace;">Confounded by RBC lifespan</td>
-                  <td style="padding: 3px 6px; color: #d97706; font-family: monospace;">±15% Strip Enzyme Bias</td>
-                  <td style="padding: 3px 6px; color: #15803d; font-family: monospace; font-weight: bold; background: #f0fdf4;">Calibrated Multi-Sensor Fusion</td>
-                </tr>
-                <tr style="border-bottom: 1px solid #e2e8f0;">
-                  <td style="padding: 3px 6px; font-weight: bold; color: #334155;">Precision (Dispersion / CI)</td>
-                  <td style="padding: 3px 6px; color: #dc2626; font-family: monospace;">df=1: Wide CI (±1.38 σ)</td>
-                  <td style="padding: 3px 6px; color: #d97706; font-family: monospace;">CI: ±1.96σ/√180 = ±0.15 σ</td>
-                  <td style="padding: 3px 6px; color: #15803d; font-family: monospace; font-weight: bold; background: #f0fdf4;">High CI: ±1.96σ/√25920 = ±0.012 σ</td>
-                </tr>
-                <tr style="border-bottom: 1px solid #e2e8f0;">
-                  <td style="padding: 3px 6px; font-weight: bold; color: #334155;">Repeatability (Reproducibility)</td>
-                  <td style="padding: 3px 6px; color: #dc2626; font-family: monospace;">Zero (Unrepeatable across 90d)</td>
-                  <td style="padding: 3px 6px; color: #d97706; font-family: monospace;">Strip-to-strip CV 8% – 12%</td>
-                  <td style="padding: 3px 6px; color: #15803d; font-family: monospace; font-weight: bold; background: #f0fdf4;">Continuous Autocorrelation Rxx(τ)</td>
-                </tr>
-                <tr>
-                  <td style="padding: 3px 6px; font-weight: bold; color: #334155;">Standard Error (SE = σ/√N)</td>
-                  <td style="padding: 3px 6px; color: #dc2626; font-family: monospace; font-weight: bold;">SE = σ/√2 = 0.707 σ</td>
-                  <td style="padding: 3px 6px; color: #d97706; font-family: monospace;">SE = σ/√180 = 0.0745 σ</td>
-                  <td style="padding: 3px 6px; color: #15803d; font-family: monospace; font-weight: 800; background: #f0fdf4;">SE = σ/√25920 = 0.0062 σ (99.4% Reduction)</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+      <!-- Group 1: Quarterly Lab A1C (N=2): Sens 10% (h=18), Spec 25% (h=45) -->
+      <rect x="95" y="182" width="46" height="18" rx="3" fill="#dc2626"/>
+      <text x="118" y="176" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#dc2626">10%</text>
+      <rect x="147" y="155" width="46" height="45" rx="3" fill="#f87171"/>
+      <text x="170" y="149" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#b91c1c">25%</text>
+      <text x="144" y="218" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#0f172a">QUARTERLY LAB</text>
+      <text x="144" y="232" text-anchor="middle" font-family="monospace" font-size="10" fill="#64748b">(2 Draws / 90d)</text>
 
-          <!-- Mathematical Rigor Callout: The Formulas -->
-          <div style="margin-top: 6px; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; font-family: monospace; font-size: 0.67rem;">
-            <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 4px; padding: 6px;">
-              <div style="color: #1e40af; font-weight: bold;">📐 NEYE-QUIST SHANNON THEOREM</div>
-              <div style="color: #1e3a8a; margin-top: 2px; line-height: 1.35;">fs ≥ 2 fmax | t½ = 15-30m ⟹ fmax ≈ 1.1 mHz<br>5-min rate (fs = 3.33 mHz) &gt; 2 fmax: <strong>Zero Aliasing</strong></div>
-            </div>
-            <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 4px; padding: 6px;">
-              <div style="color: #166534; font-weight: bold;">📈 RESOLUTION & SNR CONVERGENCE</div>
-              <div style="color: #14532d; margin-top: 2px; line-height: 1.35;">SNR ∝ √N | SE = σ / √N<br>N = 25,920 ⟹ <strong>161× Noise Suppression</strong> & True Kinetic Quality</div>
-            </div>
-          </div>
+      <!-- Group 2: Random Fingersticks (30-90): Sens 40% (h=72), Spec 60% (h=108) -->
+      <rect x="275" y="128" width="46" height="72" rx="3" fill="#d97706"/>
+      <text x="298" y="122" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#b45309">40%</text>
+      <rect x="327" y="92" width="46" height="108" rx="3" fill="#fbbf24"/>
+      <text x="350" y="86" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#92400e">60%</text>
+      <text x="324" y="218" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#0f172a">FINGERSTICKS</text>
+      <text x="324" y="232" text-anchor="middle" font-family="monospace" font-size="10" fill="#64748b">(30–90 Spots / 90d)</text>
 
-        </div>
-        <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.76rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
-          <strong style="color: #15803d;">Key Takeaway:</strong> More samples yield higher resolution and measurement quality. A quarterly lab has only 2 samples (Day 0 & Day 90) with a 90-day blind interval. Automated continuous telemetry (N=25,920) satisfies the Nyquist criterion (fs ≥ 2 fmax), reduces standard error by 99.4% (SE = σ/√N), and achieves superior sensitivity, specificity, accuracy, precision, and repeatability.
+      <!-- Group 3: BFM Watch (288/d x 12): Sens 98% (h=176), Spec 96% (h=173) -->
+      <rect x="455" y="24" width="46" height="176" rx="3" fill="#15803d"/>
+      <text x="478" y="18" text-anchor="middle" font-family="monospace" font-size="12" font-weight="bold" fill="#15803d">98%</text>
+      <rect x="507" y="27" width="46" height="173" rx="3" fill="#0284c7"/>
+      <text x="530" y="18" text-anchor="middle" font-family="monospace" font-size="12" font-weight="bold" fill="#0284c7">96%</text>
+      <text x="504" y="218" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#0f172a">BFM WATCH 288&#215;12</text>
+      <text x="504" y="232" text-anchor="middle" font-family="monospace" font-size="10" fill="#15803d">(311,040 Obs / 90d)</text>
+
+      <!-- Legend inside chart top-left -->
+      <rect x="75" y="26" width="10" height="10" fill="#15803d"/>
+      <text x="90" y="35" font-family="monospace" font-size="10" font-weight="bold" fill="#1e293b">Sensitivity (Hypo &amp; Peak Detection)</text>
+      <rect x="75" y="42" width="10" height="10" fill="#0284c7"/>
+      <text x="90" y="51" font-family="monospace" font-size="10" font-weight="bold" fill="#1e293b">Specificity (True Metabolic Baseline)</text>
+    </svg>
+  </div>
+</div>
+
         </div>
       </div>
-    
+
+      <!-- Right Column: Narrative Points + Doctor Calculus & Clinical Fitness -->
+      <div class="right-column">
+        <div class="content-card">
+          <div class="card-header-strip">
+            <span>WHY AD-HOC COLLECTION LOSES CRITICAL CLINICAL EVIDENCE</span>
+            <span style="color: #64748b;">PATIENT &amp; CLINICIAN WALKTHROUGH</span>
+          </div>
+          <div class="bullet-item bullet-item-0" data-idx="0">
+            <strong style="color: #0284c7;">Quarterly Lab A1C (2 Samples, 90 Days Apart):</strong> Leaves a 7.78-million-second blind void between Day 0 and Day 90—averaging dangerous peaks and lows into one deceptive number.
+          </div>
+          <div class="bullet-item bullet-item-1" data-idx="1">
+            <strong style="color: #0284c7;">Random Fingersticks (30–90 Spots in 90 Days):</strong> Awake-only spot checks miss every overnight low and 30-minute postprandial peak, yielding poor (~40%) excursion sensitivity.
+          </div>
+          <div class="bullet-item bullet-item-2" data-idx="2">
+            <strong style="color: #0284c7;">BFM Continuous Watch (288/Day × 12 Streams):</strong> Captures 25,920 glucose points and 311,040 total observations per quarter—achieving 98% sensitivity and 96% baseline specificity.
+          </div>
+          <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.75rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
+            <strong style="color: #15803d;">Key Takeaway:</strong> Replacing ad-hoc spot checks with continuous 5-minute watch telemetry eliminates 99% of clinical data loss and reveals true sensitivity and specificity.
+          </div>
+        </div>
+
+        <div class="visual-card">
+          <div class="card-header-strip">
+            <span>90-DAY DETECTION FITNESS COMPARISON</span>
+            <span style="background: #15803d; color: #ffffff; font-size: 0.57rem; padding: 2px 6px; border-radius: 3px;">98% SENS / 96% SPEC</span>
+          </div>
+          <div style="background:#f8fafc;border:1.5px solid #cbd5e1;border-radius:6px;padding:7px;"><div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1.5px solid #cbd5e1;padding-bottom:3px;margin-bottom:5px;"><span style="font-family:monospace;font-size:0.70rem;font-weight:800;color:#15803d;">90-DAY DETECTION FITNESS COMPARISON</span><span style="background:#15803d;color:#fff;font-family:monospace;font-size:0.58rem;font-weight:800;padding:2px 6px;border-radius:3px;">98% SENS / 96% SPEC</span></div><div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:5px;overflow:hidden;"><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Quarterly Lab (N=2)</span><span style="font-family:monospace;color:#475569;">10% Sensitivity | 25% Specificity</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#15803d;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">99.99% LOSS</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Fingersticks (30–90)</span><span style="font-family:monospace;color:#475569;">40% Sensitivity | 60% Specificity</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#15803d;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">AWAKE BIAS</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Watch (288/d × 12)</span><span style="font-family:monospace;color:#475569;">98% Sensitivity | 96% Specificity</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#15803d;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">FULL RECON</span></div></div><div style="margin-top:6px;background:#f0fdf4;border:1.5px solid #86efac;border-radius:5px;padding:6px 9px;"><div style="font-family:monospace;font-size:0.65rem;font-weight:800;color:#15803d;margin-bottom:2px;">PHYSICIAN CALCULUS &amp; MEASUREMENT FITNESS • NYQUIST &amp; STANDARD ERROR</div><div style="font-family:monospace;font-size:0.74rem;font-weight:700;color:#0f172a;line-height:1.35;">f_s &gt;= 2 f_max  |  SE = sigma / sqrt(N)  |  Loss = 1 - (N_spot / N_cont)</div></div></div><div style="margin-top:6px;background:#eff6ff;border-left:3.5px solid #15803d;padding:6px 9px;border-radius:4px;font-size:0.72rem;color:#1e3a8a;line-height:1.35;"><strong>Clinical Significance:</strong> Look at the bottom sensitivity and specificity chart: raising N from 2 quarterly labs or 60 random fingersticks to 25,920 continuous points shrinks standard error by 99.4%.</div>
+        </div>
+      </div>
     </div>
 
     <div class="slide-footer">
-      <div>LCARS 5010 CLINICAL AMBULATORY TELEMETRY ONBOARDING • LIGHT THEME</div>
-      <div>AUSTRALIAN FEMALE VOICE • 100% SCREEN SYNCHRONIZED</div>
+      <div>BFM BIOMETRIC FUNCTION MONITOR • POWERED BY GOOGLE GEMINI AI</div>
+      <div>AUSTRALIAN VOICE NARRATION • TAB 01–14 SYNCHRONIZED</div>
     </div>
   </div>
 </body>

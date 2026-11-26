@@ -2,199 +2,233 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>LCARS 5010 - Slide 16: Tab 03: Cardio – Pulse Wave Transit Time Blood Pressure</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slide 16: 03-MEAL PLANNER: Pathway A Curated Pantry &amp; Multi-Modal Query</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
       width: 100%;
-      height: 100%;
-      background: #f1f5f9;
+      height: 100vh;
+      overflow: hidden;
+      background: #f8fafc;
       color: #0f172a;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
     }
-    .slide-frame {
-      flex: 1;
+    .slide-container {
+      width: 100%;
       height: 100vh;
+      padding: 12px 18px;
       display: flex;
       flex-direction: column;
-      padding: 8px 16px;
-      gap: 6px;
-      box-sizing: border-box;
-      min-height: 0;
+      background: #f8fafc;
     }
     .slide-header {
+      border-bottom: 2px solid #cbd5e1;
+      padding-bottom: 6px;
+      margin-bottom: 8px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      border-bottom: 2.5px solid #0284c7;
-      padding: 6px 14px;
-      background: #ffffff;
-      border-radius: 6px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-      border: 1px solid #e2e8f0;
+      align-items: flex-end;
       flex-shrink: 0;
     }
-    .slide-module {
-      font-size: 0.78rem;
-      color: #0284c7;
+    .module-badge {
+      display: inline-block;
+      background: #e0f2fe;
+      border: 1px solid #0284c7;
+      color: #0369a1;
+      font-size: 0.65rem;
       font-weight: 800;
-      letter-spacing: 0.08em;
+      padding: 2px 7px;
+      border-radius: 3px;
       text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-family: monospace;
+      margin-bottom: 3px;
     }
     .slide-title {
-      font-size: 1.35rem;
-      font-weight: 900;
-      color: #0f172a;
-      margin-top: 0px;
-      letter-spacing: -0.01em;
-    }
-    .slide-badge {
-      background: #0284c7;
-      color: #ffffff;
-      font-family: monospace;
+      font-size: 1.28rem;
       font-weight: 800;
-      font-size: 0.76rem;
-      padding: 3px 10px;
+      color: #0f172a;
+      line-height: 1.15;
+    }
+    .slide-desc {
+      font-size: 0.79rem;
+      color: #475569;
+      margin-top: 2px;
+      font-weight: 500;
+    }
+    .slide-num-badge {
+      font-family: monospace;
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #0284c7;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      padding: 3px 9px;
       border-radius: 4px;
-      letter-spacing: 0.05em;
       flex-shrink: 0;
     }
-    .slide-body {
-      flex: 1;
+    .grid-2col {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 14px;
+      flex: 1;
       min-height: 0;
-      height: calc(100vh - 66px);
+      overflow: hidden;
     }
-    .slide-footer {
+    .left-screenshot-card {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      min-height: 0;
+      overflow: hidden;
+    }
+    .left-screenshot-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 0.70rem;
-      color: #64748b;
+      border-bottom: 1.5px solid #e2e8f0;
+      padding-bottom: 5px;
+      margin-bottom: 6px;
+      flex-shrink: 0;
+    }
+    .left-screenshot-viewport {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      background: #ffffff;
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    .right-column {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 0;
+      overflow: hidden;
+    }
+    .content-card {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 9px 13px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      flex: 1;
+      overflow-y: auto;
+    }
+    .bullet-item {
+      border-left: 4px solid transparent;
+      border-radius: 4px;
+      padding: 5px 8px;
+      font-size: 0.77rem;
+      line-height: 1.36;
+      color: #1e293b;
+      transition: background 0.25s ease, border-left-color 0.25s ease;
+    }
+    .visual-card {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 8px 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      overflow-y: auto;
+      flex-shrink: 0;
+      max-height: 48%;
+    }
+    .card-header-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1.5px solid #e2e8f0;
+      padding-bottom: 4px;
+      margin-bottom: 5px;
       font-family: monospace;
+      font-size: 0.70rem;
+      font-weight: 800;
+      color: #0284c7;
+    }
+    .slide-footer {
       border-top: 1px solid #cbd5e1;
       padding-top: 4px;
+      margin-top: 6px;
+      display: flex;
+      justify-content: space-between;
+      font-family: monospace;
+      font-size: 0.67rem;
+      color: #64748b;
+      font-weight: 600;
       flex-shrink: 0;
     }
   </style>
 </head>
 <body>
-  <div class="slide-frame">
+  <div class="slide-container">
     <div class="slide-header">
       <div>
-        <div class="slide-module">Module 3: Core Biosensor Array Operations</div>
-        <div class="slide-title">Tab 03: Cardio – Pulse Wave Transit Time Blood Pressure</div>
+        <div class="module-badge">Tab 03: 03-MEAL PLANNER</div>
+        <div class="slide-title">03-MEAL PLANNER: Pathway A Curated Pantry &amp; Multi-Modal Query</div>
+        <div class="slide-desc">Before you eat, pick from saved pantry staples on the left or describe any new restaurant order by text, voice, or photo on the right.</div>
       </div>
-      <div class="slide-badge">SLIDE 16 / 56</div>
+      <div class="slide-num-badge">SLIDE 16 / 84</div>
     </div>
 
-    <div class="slide-body">
-      
-      <!-- High-Contrast Dynamic Content Card -->
-      <div class="content-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #0284c7; padding: 10px 14px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto;">
-        <h3 style="color: #0284c7; font-weight: 800; border-bottom: 2px solid #e2e8f0; padding-bottom: 4px; margin-bottom: 5px; font-size: 1.05rem; text-transform: uppercase;">TAB 02: CARDIO – PWTT BLOOD PRESSURE</h3>
-        <p style="color: #334155; font-weight: 500; margin-bottom: 5px; font-size: 0.85rem; line-height: 1.35;">Non-invasive ambulatory blood pressure estimation via arterial pulse wave velocity.</p>
-        <ul class="bullets-list" style="padding-left: 0; list-style-type: none; margin-bottom: 3px; color: #1e293b; font-size: 0.80rem;">
-          
-          <li id="bullet-item-0" class="bullet-item" data-idx="0" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">Cuffless Ambulatory Tracking:</strong> Estimates blood pressure from arterial pulse wave velocity without uncomfortable cuff inflation.
-          </li>
-        
-          <li id="bullet-item-1" class="bullet-item" data-idx="1" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">Nocturnal Dipping Verification:</strong> Checks that blood pressure drops by 10 to 20 percent overnight during restful sleep.
-          </li>
-        
-          <li id="bullet-item-2" class="bullet-item" data-idx="2" style="margin-bottom: 4px; line-height: 1.3; padding: 4px 8px; border-radius: 4px; border-left: 4px solid transparent; transition: background 0.2s, border-color 0.2s;">
-            <strong style="color: #0369a1;">Cardiovascular Risk Reduction:</strong> Alerts patient and physician to hypertensive spikes or non-dipping patterns.
-          </li>
-        
-        </ul>
-        
-        <!-- Real LCARS Page Under Discussion (Full Area Fill Viewport) -->
-        <div class="left-screenshot-card" style="margin-top: 6px; margin-bottom: 6px; border: 2px solid #cbd5e1; border-radius: 8px; overflow: hidden; background: #ffffff; box-shadow: 0 4px 14px rgba(0,0,0,0.08); display: flex; flex-direction: column; flex: 1; min-height: 310px;">
-          <!-- Continuous Monotonic Viewport (Clean Light Background) -->
-          <div class="left-screenshot-viewport" style="text-align: center; background: #ffffff; overflow-y: auto; flex: 1; min-height: 290px; position: relative;">
-            <img src="images/lcars_tab03_cardio.png" onerror="this.src="images/lcars_tab03_cardio.png"" alt="TAB 03: CARDIO CONSOLE" style="width: 100%; height: auto; display: block; object-fit: cover; object-position: top center;">
-          </div>
+    <div class="grid-2col">
+      <!-- Left Column: Live Console Screenshot or Custom Visual -->
+      <div class="left-screenshot-card">
+        <div class="left-screenshot-header">
+          <span style="font-family: monospace; font-size: 0.69rem; color: #0284c7; font-weight: 800;">03-MEAL PLANNER • REUSABLE PANTRY &amp; MEAL QUERY</span>
+          <span style="background: #15803d; color: #ffffff; font-size: 0.59rem; font-weight: 800; padding: 2px 6px; border-radius: 3px; font-family: monospace;">SHARED CARE VIEW</span>
         </div>
-        
-      </div>
-    
-      
-      <div class="visual-card" style="background: #ffffff; color: #091428; border: 2px solid #cbd5e1; border-top: 6px solid #d97706; padding: 10px 14px; border-radius: 8px; display: flex; flex-direction: column; height: 100%; min-height: 0; box-sizing: border-box; overflow-y: auto;">
-        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 4px; margin-bottom: 6px; flex-shrink: 0;">
-          <span style="font-family: monospace; font-weight: 800; color: #0284c7; font-size: 0.84rem;">TAB 03: CARDIO – BLOOD PRESSURE</span>
-          <span style="background: #f8fafc; color: #d97706; font-weight: 800; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; border: 1.5px solid #d97706;">AMBULATORY PWTT</span>
-        </div>
-        <div class="visual-content" style="flex: 1; display: flex; flex-direction: column;">
-          
-          <!-- Pulse Wave Transit Time (PWTT) & Hemodynamic Arterial Waveform -->
-          <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 10px; margin-top: 4px; color: #0f172a;">
-            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #cbd5e1; padding-bottom: 4px; margin-bottom: 6px;">
-              <span style="font-family: monospace; font-size: 0.72rem; color: #0284c7; font-weight: 800;">PWTT DUAL-SIGNAL HEMODYNAMIC SYNCHRONIZATION</span>
-              <span style="background: #d97706; color: #fff; font-size: 0.60rem; font-weight: bold; padding: 2px 6px; border-radius: 3px; font-family: monospace;">ECG + PPG TIMING</span>
-            </div>
-
-            <!-- SVG Diagram: ECG R-Wave to Wrist PPG Transit Time & Waveform -->
-            <svg viewBox="0 0 420 170" style="width: 100%; height: auto; display: block; background: #ffffff; border-radius: 4px; border: 1px solid #e2e8f0;">
-              <!-- Signal 1: Central Cardiac ECG (Ventricular Ejection Start) -->
-              <text x="20" y="24" fill="#0284c7" font-size="8" font-family="monospace" font-weight="bold">1. CARDIAC ECG (AORTIC VALVE OPENS AT R-PEAK: t₀)</text>
-              <path d="M 20 45 L 80 45 L 88 48 L 95 18 L 102 52 L 108 45 L 140 45 Q 155 35, 170 45 L 400 45" fill="none" stroke="#0284c7" stroke-width="2"/>
-              <circle cx="95" cy="18" r="3" fill="#dc2626"/>
-              <text x="95" y="12" fill="#dc2626" font-size="7" font-family="monospace" text-anchor="middle" font-weight="bold">R-PEAK (t₀)</text>
-
-              <!-- Vertical Timing Markers showing PWTT -->
-              <line x1="95" y1="18" x2="95" y2="125" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="3,2"/>
-              <line x1="210" y1="75" x2="210" y2="125" stroke="#15803d" stroke-width="1.5" stroke-dasharray="3,2"/>
-
-              <!-- PWTT Delta Time Arrow -->
-              <line x1="95" y1="65" x2="210" y2="65" stroke="#d97706" stroke-width="2"/>
-              <rect x="120" y="56" width="65" height="16" fill="#fef3c7" rx="3" stroke="#f59e0b"/>
-              <text x="152" y="68" fill="#b45309" font-size="7" font-family="monospace" text-anchor="middle" font-weight="bold">PWTT = 215 ms</text>
-
-              <!-- Signal 2: Peripheral Wrist Optical PPG (Arterial Pulse Arrival) -->
-              <text x="20" y="85" fill="#15803d" font-size="8" font-family="monospace" font-weight="bold">2. WRIST OPTICAL PPG (PULSE ARRIVAL & DICROTIC NOTCH: t₁)</text>
-              <path d="M 20 120 L 170 120 C 185 120, 195 78, 210 78 C 225 78, 235 98, 245 94 C 255 90, 270 120, 310 120 L 400 120" fill="none" stroke="#15803d" stroke-width="2.5"/>
-              <circle cx="210" cy="78" r="3" fill="#15803d"/>
-              <text x="210" y="72" fill="#15803d" font-size="7" font-family="monospace" text-anchor="middle" font-weight="bold">SYSTOLIC PEAK</text>
-              <circle cx="245" cy="94" r="2.5" fill="#d97706"/>
-              <text x="245" y="88" fill="#d97706" font-size="6.5" font-family="monospace" text-anchor="middle">DICROTIC NOTCH</text>
-
-              <!-- PWV & BP Readout Card -->
-              <rect x="290" y="130" width="120" height="32" rx="4" fill="#f8fafc" stroke="#cbd5e1"/>
-              <text x="350" y="142" fill="#334155" font-size="7" font-family="monospace" text-anchor="middle">CALCULATED BP</text>
-              <text x="350" y="157" fill="#dc2626" font-size="11" font-family="monospace" text-anchor="middle" font-weight="bold">126 / 84 MMHG</text>
-            </svg>
-
-            <!-- Physical Law Callout -->
-            <div style="margin-top: 6px; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; font-family: monospace; font-size: 0.67rem;">
-              <div style="background: #fffbeb; border: 1px solid #fde68a; border-radius: 4px; padding: 5px;">
-                <div style="color: #92400e; font-weight: bold;">📐 MOENS-KORTEWEG PHYSICAL LAW</div>
-                <div style="color: #78350f; margin-top: 2px;">PWV = Distance / PWTT = sqrt( (E * h) / (2 * r * rho) )<br>Stiffened hypertensive arteries accelerate pulse wave arrival.</div>
-              </div>
-              <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 4px; padding: 5px;">
-                <div style="color: #166534; font-weight: bold;">🌙 NOCTURNAL DIPPING CRITERION</div>
-                <div style="color: #14532d; margin-top: 2px;">Verifies healthy 10%–20% overnight blood pressure dip without disturbing sleep with an inflating cuff.</div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-        <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.76rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
-          <strong style="color: #15803d;">Key Takeaway:</strong> Continuous cuffless blood pressure monitoring that captures 24-hour cardiovascular dipping.
+        <div class="left-screenshot-viewport">
+          <img src="images/bfm_t03_meal_pantry.png" alt="03-MEAL PLANNER • REUSABLE PANTRY &amp; MEAL QUERY" style="width: 100%; max-height: 100%; object-fit: contain; display: block;">
         </div>
       </div>
-    
+
+      <!-- Right Column: Narrative Points + Doctor Calculus & Clinical Fitness -->
+      <div class="right-column">
+        <div class="content-card">
+          <div class="card-header-strip">
+            <span>PRE-CHOICE NUTRITION COACH FLOWCHART</span>
+            <span style="color: #64748b;">PATIENT &amp; CLINICIAN WALKTHROUGH</span>
+          </div>
+          <div class="bullet-item bullet-item-0" data-idx="0">
+            <strong style="color: #0284c7;">Pathway A: One-Click Safe Pantry:</strong> 15 curated household meals and restaurant staples distinguish green-check safe options from amber high-carb warnings.
+          </div>
+          <div class="bullet-item bullet-item-1" data-idx="1">
+            <strong style="color: #0284c7;">Pathway B: Text, Voice Order &amp; Plate Photos:</strong> Describe what you plan to eat, tap quick restaurant chips, set beverage ounces, and estimate before ordering.
+          </div>
+          <div class="bullet-item bullet-item-2" data-idx="2">
+            <strong style="color: #0284c7;">Non-Consumption Planning:</strong> Test recipes and menu items freely without changing today&#x27;s live calorie total until you click Consume Now.
+          </div>
+          <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.75rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
+            <strong style="color: #15803d;">Key Takeaway:</strong> Evaluating meals BEFORE ingestion turns nutrition from guilt-driven hindsight into effortless pre-order empowerment.
+          </div>
+        </div>
+
+        <div class="visual-card">
+          <div class="card-header-strip">
+            <span>STEP 1: PRE-CHOICE PATHWAYS</span>
+            <span style="background: #0284c7; color: #ffffff; font-size: 0.57rem; padding: 2px 6px; border-radius: 3px;">15 SAFE PANTRY ITEMS</span>
+          </div>
+          <div style="background:#f8fafc;border:1.5px solid #cbd5e1;border-radius:6px;padding:7px;"><div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1.5px solid #cbd5e1;padding-bottom:3px;margin-bottom:5px;"><span style="font-family:monospace;font-size:0.70rem;font-weight:800;color:#0284c7;">STEP 1: PRE-CHOICE PATHWAYS</span><span style="background:#0284c7;color:#fff;font-family:monospace;font-size:0.58rem;font-weight:800;padding:2px 6px;border-radius:3px;">15 SAFE PANTRY ITEMS</span></div><div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:5px;overflow:hidden;"><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Pathway A</span><span style="font-family:monospace;color:#475569;">15 curated saved templates (Edit/Delete)</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#0284c7;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">ZERO DUPLICATES</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Pathway B</span><span style="font-family:monospace;color:#475569;">Natural text + Voice + Photo + Fluid oz</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#0284c7;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">GEMINI COACH</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Quick Presets</span><span style="font-family:monospace;color:#475569;">Pot Pie, Soup, Spiced Tea, Diner orders</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#0284c7;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">1-CLICK</span></div></div><div style="margin-top:6px;background:#f0fdf4;border:1.5px solid #86efac;border-radius:5px;padding:6px 9px;"><div style="font-family:monospace;font-size:0.65rem;font-weight:800;color:#15803d;margin-bottom:2px;">PHYSICIAN CALCULUS &amp; MEASUREMENT FITNESS • OPTIMAL PORTION SEARCH</div><div style="font-family:monospace;font-size:0.74rem;font-weight:700;color:#0f172a;line-height:1.35;">Choose Portion x minimizing  |G_peak(x) - G_target|  subject to C_net(x) &lt;= 45g</div></div></div><div style="margin-top:6px;background:#eff6ff;border-left:3.5px solid #0284c7;padding:6px 9px;border-radius:4px;font-size:0.72rem;color:#1e3a8a;line-height:1.35;"><strong>Clinical Significance:</strong> Solving portion sizing constraints before ingestion flattens postprandial excursions far more effectively than post-hoc medication tweaks.</div>
+        </div>
+      </div>
     </div>
 
     <div class="slide-footer">
-      <div>LCARS 5010 CLINICAL AMBULATORY TELEMETRY ONBOARDING • LIGHT THEME</div>
-      <div>AUSTRALIAN FEMALE VOICE • 100% SCREEN SYNCHRONIZED</div>
+      <div>BFM BIOMETRIC FUNCTION MONITOR • POWERED BY GOOGLE GEMINI AI</div>
+      <div>AUSTRALIAN VOICE NARRATION • TAB 01–14 SYNCHRONIZED</div>
     </div>
   </div>
 </body>
