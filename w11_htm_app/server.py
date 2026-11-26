@@ -3343,7 +3343,44 @@ async def run_ble_auto_sync_loop():
                             cal_pkt[1] = 0x02
                             cal_pkt[2] = 0x02
                             await client.write_gatt_char(VEEPOO_WRITE_UUID, cal_pkt, response=False)
-                            await asyncio.sleep(1.0)
+                            await asyncio.sleep(0.5)
+
+                            # 5. Query 5-Minute OriginV3 History for Day 0 (0xDF) to capture overnight steps, skin temp & R-R epochs
+                            df_buffer = []
+                            df_done_evt = asyncio.Event()
+
+                            def on_df_notify(sender, data):
+                                nonlocal rx_count
+                                if data and len(data) >= 4 and data[0] == 0xDF:
+                                    df_buffer.append(bytes(data))
+                                    if data[1] == 0xFF and data[2] == 0xFF:
+                                        df_done_evt.set()
+                                else:
+                                    ptype = parse_and_store_packet(data)
+                                    if ptype:
+                                        rx_count += 1
+
+                            try:
+                                await client.stop_notify(VEEPOO_NOTIFY_UUID)
+                                await client.start_notify(VEEPOO_NOTIFY_UUID, on_df_notify)
+                                df_pkt = bytearray(20)
+                                df_pkt[0] = 0xDF
+                                df_pkt[1] = 0x01
+                                df_pkt[2] = 0x00
+                                df_pkt[3] = 0x00  # Day 0 (today since midnight)
+                                await client.write_gatt_char(VEEPOO_WRITE_UUID, df_pkt, response=False)
+                                try:
+                                    await asyncio.wait_for(df_done_evt.wait(), timeout=4.5)
+                                except asyncio.TimeoutError:
+                                    pass
+                                if df_buffer:
+                                    parsed_df = _parse_df_origin_blocks(df_buffer, day_offset=0)
+                                    if parsed_df:
+                                        df_stats = ingest_df_origin_records(parsed_df)
+                                        rx_count += df_stats.get("inserted", 0)
+                                        print(f"[✔] 0xDF 5-Min Origin Sync: {len(parsed_df)} blocks, +{df_stats.get('inserted', 0)} records")
+                            except Exception as df_err:
+                                print(f"[MIL-SPEC HANDLED FAULT] 0xDF auto-sync fault: {df_err}")
 
                             await client.stop_notify(VEEPOO_NOTIFY_UUID)
                             update_sync_state("SYNC_SUCCESS", rx_count)
@@ -3416,6 +3453,372 @@ def calc_veepoo_crc(data: bytes) -> int:
     for b in data:
         crc = (((crc >> 8) & 255) ^ VEEPOO_CRC_TABLE[(crc & 255) ^ b]) & 65535
     return crc & 65535
+
+
+def _parse_df_origin_blocks(packets, day_offset=0):
+    """Reassembles & parses Veepoo 0xDF OriginV3 5-minute history blocks per vp_bu.java / vp_ar.java."""
+    if not packets:
+        return []
+
+    raw_pkts = []
+    for item in packets:
+        if isinstance(item, (bytes, bytearray)):
+            raw_pkts.append(bytes(item))
+        elif isinstance(item, str):
+            try:
+                toks = [int(t, 16) for t in item.strip().split() if len(t) == 2]
+                if toks:
+                    raw_pkts.append(bytes(toks))
+            except Exception as e:
+                print(f"[MIL-SPEC HANDLED FAULT] Invalid hex packet in 0xDF stream: {e}")
+
+    blocks = []
+    cur_b1 = 0
+    cur_b2 = 0
+    cur_header = None
+    cur_payload = bytearray()
+    last_sub_idx = -1
+    last_pkt_len = 20
+
+    def _flush_block():
+        if not cur_header or not cur_payload:
+            return
+        valid_len = cur_header["valid_len"]
+        expected_crc = cur_header["expected_crc"]
+        if valid_len <= 0 or len(cur_payload) < valid_len:
+            return
+        trimmed = bytes(cur_payload[:valid_len])
+        if calc_veepoo_crc(trimmed) != expected_crc:
+            return
+        blocks.append((cur_header["day"], trimmed))
+
+    for pkt in raw_pkts:
+        if len(pkt) < 5 or pkt[0] != 0xDF:
+            continue
+        b1, b2 = pkt[1], pkt[2]
+        is_end = (b1 == 0xFF and b2 == 0xFF)
+        if is_end or b1 != cur_b1 or b2 != cur_b2:
+            _flush_block()
+            cur_payload = bytearray()
+            last_sub_idx = -1
+            cur_b1, cur_b2 = b1, b2
+            if not is_end and len(pkt) >= 20 and pkt[3] == 0:
+                pkt_len = pkt[13] & 0xFF
+                if pkt_len < 4 or pkt_len > len(pkt):
+                    pkt_len = last_pkt_len if last_pkt_len >= 4 else 20
+                last_pkt_len = pkt_len
+                cur_header = {
+                    "day": pkt[7] & 0xFF,
+                    "valid_len": pkt[10] & 0xFF,
+                    "expected_crc": ((pkt[12] & 0xFF) << 8) | (pkt[11] & 0xFF),
+                    "pkt_len": pkt_len,
+                }
+            else:
+                cur_header = None
+        else:
+            if not cur_header:
+                continue
+            sub_idx = pkt[3] & 0xFF
+            chunk_len = cur_header["pkt_len"] - 4
+            if chunk_len <= 0 or chunk_len > (len(pkt) - 4):
+                cur_header = None
+                cur_payload = bytearray()
+                last_sub_idx = -1
+                continue
+            if last_sub_idx == -1 or sub_idx != last_sub_idx:
+                cur_payload.extend(pkt[4:4 + chunk_len])
+                last_sub_idx = sub_idx
+
+    _flush_block()
+
+    now_local = datetime.datetime.now()
+    parsed_records = []
+    seen_ts = set()
+    for blk_day, payload in blocks:
+        d_off = blk_day if 0 <= blk_day <= 7 else day_offset
+        pos = 0
+        plen = len(payload)
+        tlvs = {}
+        while pos + 2 <= plen:
+            tag = payload[pos]
+            tlen = payload[pos + 1]
+            pos += 2
+            if pos + tlen > plen:
+                break
+            tlvs[tag] = payload[pos:pos + tlen]
+            pos += tlen
+
+        t_bytes = tlvs.get(0xB1)
+        if not t_bytes or len(t_bytes) < 4 or (t_bytes[0] == 0 and t_bytes[1] == 0):
+            continue
+        hour = t_bytes[2] & 0xFF
+        minute = t_bytes[3] & 0xFF
+        if hour > 23 or minute > 59:
+            continue
+        target_date = now_local.date() - datetime.timedelta(days=d_off)
+        rec_dt = datetime.datetime(target_date.year, target_date.month, target_date.day, hour, minute, 0)
+        if rec_dt > now_local:
+            continue
+        ts_iso = rec_dt.isoformat()
+        if ts_iso in seen_ts:
+            continue
+        seen_ts.add(ts_iso)
+
+        rec = {"timestamp": ts_iso, "hour": hour, "minute": minute}
+
+        if 0xB2 in tlvs and len(tlvs[0xB2]) >= 8:
+            b2v = tlvs[0xB2]
+            rec["step"] = (b2v[0] << 8) | b2v[1]
+            rec["sport"] = (b2v[2] << 8) | b2v[3]
+            rec["dis_m"] = (b2v[4] << 8) | b2v[5]
+            rec["kcal"] = round(((b2v[6] << 8) | b2v[7]) / 10.0, 1)
+
+        hrs = []
+        for htag in (0xB4, 0xB5):
+            if htag in tlvs:
+                hrs.extend([v for v in tlvs[htag] if 30 <= v <= 220])
+        if hrs:
+            rec["hr"] = round(sum(hrs) / len(hrs))
+
+        if 0xB6 in tlvs:
+            brs = [v for v in tlvs[0xB6] if 6 <= v <= 45]
+            if brs:
+                rec["breath"] = round(sum(brs) / len(brs))
+
+        if 0xB7 in tlvs and len(tlvs[0xB7]) >= 51:
+            rr50 = list(tlvs[0xB7][1:51])
+            hrv_mins = []
+            for m_i in range(5):
+                prev = -1
+                abs_sum = 0
+                cnt = 0
+                for v in rr50[m_i * 10:(m_i + 1) * 10]:
+                    if 30 <= v <= 210:
+                        if prev != -1:
+                            abs_sum += abs(prev - v)
+                            cnt += 1
+                        prev = v
+                if cnt > 0:
+                    hrv_mins.append(round((abs_sum * 10) / cnt) % 211)
+            valid_hrvs = [h for h in hrv_mins if 1 <= h <= 210]
+            if valid_hrvs:
+                rec["hrv"] = round(sum(valid_hrvs) / len(valid_hrvs))
+            rr_ms = [round(60000.0 / v, 1) for v in rr50 if 30 <= v <= 210]
+            if len(rr_ms) >= 2:
+                rec["rr_ms"] = rr_ms
+
+        if 0xB8 in tlvs and len(tlvs[0xB8]) >= 2:
+            sys_v, dia_v = tlvs[0xB8][0], tlvs[0xB8][1]
+            if 60 <= sys_v <= 240 and 35 <= dia_v <= 150:
+                rec["sys"] = sys_v
+                rec["dia"] = dia_v
+
+        if 0xB9 in tlvs and len(tlvs[0xB9]) >= 5:
+            sp_vals = [v for v in tlvs[0xB9][:5] if 70 <= v <= 100]
+            if sp_vals:
+                rec["spo2"] = round(sum(sp_vals) / len(sp_vals), 1)
+
+        if 0xBE in tlvs and len(tlvs[0xBE]) >= 2:
+            gv = tlvs[0xBE]
+            raw_g = ((gv[1] & 0xFF) << 8) | (gv[0] & 0xFF)
+            if raw_g > 0:
+                mmol = ((raw_g & 0x1FFF) / 100.0) if raw_g > 8191 else (raw_g / 100.0)
+                if 2.0 <= mmol <= 30.0:
+                    rec["glucose"] = round(mmol * 18.0182)
+
+        if 0xBF in tlvs and len(tlvs[0xBF]) >= 1 and tlvs[0xBF][0] > 0:
+            rec["stress"] = tlvs[0xBF][0]
+
+        if 0xC1 in tlvs and len(tlvs[0xC1]) >= 1 and tlvs[0xC1][0] > 0:
+            rec["met"] = round(tlvs[0xC1][0] / 10.0, 1)
+
+        if 0xC2 in tlvs and len(tlvs[0xC2]) >= 10:
+            bc = tlvs[0xC2]
+            tcho = (((bc[1] & 0xFF) << 8) | (bc[0] & 0xFF)) / 100.0
+            tag_v = (((bc[3] & 0xFF) << 8) | (bc[2] & 0xFF)) / 100.0
+            hdl = (((bc[5] & 0xFF) << 8) | (bc[4] & 0xFF)) / 100.0
+            ldl = (((bc[7] & 0xFF) << 8) | (bc[6] & 0xFF)) / 100.0
+            uric = (((bc[9] & 0xFF) << 8) | (bc[8] & 0xFF)) / 10.0
+            if any(x > 0 for x in (tcho, tag_v, hdl, ldl, uric)):
+                rec["blood_comp"] = {"tcho": round(tcho, 2), "tag": round(tag_v, 2), "hdl": round(hdl, 2), "ldl": round(ldl, 2), "uric_acid": round(uric, 1)}
+
+        if 0xC3 in tlvs and len(tlvs[0xC3]) >= 4:
+            tc = tlvs[0xC3]
+            base_c = (((tc[1] & 0xFF) << 8) | (tc[0] & 0xFF)) / 10.0
+            core_c = (((tc[3] & 0xFF) << 8) | (tc[2] & 0xFF)) / 10.0
+            if 12.0 <= base_c <= 48.0 and 12.0 <= core_c <= 48.0:
+                rec["skin_f"] = round(base_c * 1.8 + 32.0, 1)
+                rec["core_f"] = round(core_c * 1.8 + 32.0, 1)
+
+        parsed_records.append(rec)
+
+    parsed_records.sort(key=lambda r: r["timestamp"])
+    return parsed_records
+
+
+def ingest_df_origin_records(records, device_id="VEE_5010"):
+    """Idempotently stores parsed 0xDF 5-minute telemetry blocks into vital_records."""
+    if not records:
+        return {"inserted": 0, "steps_5min_total": 0, "rr_epochs": 0}
+
+    inserted = 0
+    steps_sum = 0
+    rr_count = 0
+
+    with db_lock:
+        conn = get_db()
+        cur = conn.cursor()
+        try:
+            for rec in records:
+                ts = rec["timestamp"]
+
+                def _upsert(metric, v1, v2, unit, mode="0xDF_5MIN"):
+                    nonlocal inserted
+                    cur.execute("SELECT id FROM vital_records WHERE timestamp = ? AND metric = ? LIMIT 1", (ts, metric))
+                    if cur.fetchone():
+                        return
+                    cur.execute("""
+                        INSERT INTO vital_records (timestamp, metric, value1, value2, unit, progress, status, mode, raw_hex, device_id)
+                        VALUES (?, ?, ?, ?, ?, 100, 'NOMINAL', ?, '', ?)
+                    """, (ts, metric, v1, v2, unit, mode, device_id))
+                    inserted += 1
+
+                if "step" in rec and rec["step"] > 0:
+                    steps_sum += rec["step"]
+                    _upsert("PEDOMETER_5MIN", rec["step"], rec.get("kcal", 0), "steps")
+                if "hr" in rec:
+                    _upsert("HEART_RATE", rec["hr"], 0, "BPM")
+                if "sys" in rec and "dia" in rec:
+                    _upsert("BLOOD_PRESSURE", rec["sys"], rec["dia"], "mmHg")
+                if "core_f" in rec and "skin_f" in rec:
+                    _upsert("TEMPERATURE", rec["core_f"], rec["skin_f"], "°F")
+                if "glucose" in rec:
+                    ea1c = round((rec["glucose"] + 46.7) / 28.7, 1)
+                    _upsert("GLUCOSE", rec["glucose"], ea1c, "mg/dL")
+                if "spo2" in rec:
+                    _upsert("BLOOD_OXYGEN", rec["spo2"], 0, "%")
+                if "hrv" in rec:
+                    _upsert("HRV_STRESS", rec["hrv"], rec.get("stress", 0), "ms")
+                if "breath" in rec:
+                    _upsert("BREATH_RATE", rec["breath"], 0, "RPM")
+                if "met" in rec:
+                    _upsert("MET_5MIN", rec["met"], 0, "MET")
+                if "blood_comp" in rec:
+                    bc = rec["blood_comp"]
+                    _upsert("BLOOD_COMP", bc["uric_acid"], bc["tcho"], "mg/dL", mode=json.dumps(bc))
+                if "rr_ms" in rec and len(rec["rr_ms"]) >= 2:
+                    rr_list = rec["rr_ms"]
+                    rr_count += len(rr_list)
+                    mean_rr = round(sum(rr_list) / len(rr_list), 1)
+                    _upsert("LORENZ_RR", len(rr_list), mean_rr, "ms", mode=json.dumps(rr_list))
+
+            conn.commit()
+            cur.execute("SELECT COUNT(*) FROM vital_records")
+            ble_state["total_records"] = cur.fetchone()[0]
+        except Exception as e:
+            print(f"[MIL-SPEC HANDLED FAULT] ingest_df_origin_records failed: {e}")
+        finally:
+            conn.close()
+
+    return {"inserted": inserted, "steps_5min_total": steps_sum, "rr_epochs": rr_count}
+
+
+def get_today_lorenz_rr():
+    """Returns genuine watch R-R intervals and Poincaré metrics for local today from 0xDF LORENZ_RR."""
+    today_date = datetime.date.today()
+    start_iso = f"{today_date - datetime.timedelta(days=1)}T00:00:00"
+    with db_lock:
+        conn = get_db()
+        cur = conn.cursor()
+        cur.execute("""
+            SELECT timestamp, mode
+            FROM vital_records
+            WHERE metric = 'LORENZ_RR' AND timestamp >= ?
+            ORDER BY timestamp ASC
+        """, (start_iso,))
+        rows = cur.fetchall()
+        conn.close()
+
+    pairs = []
+    for ts_str, mode_str in rows:
+        dt = _parse_to_local_dt(ts_str)
+        if not dt or dt.date() != today_date or not mode_str:
+            continue
+        try:
+            arr = json.loads(mode_str)
+            valid = [float(x) for x in arr if 300.0 <= float(x) <= 1800.0]
+            for i in range(len(valid) - 1):
+                pairs.append({"x": round(valid[i], 1), "y": round(valid[i + 1], 1)})
+        except Exception as e:
+            print(f"[MIL-SPEC HANDLED FAULT] Bad LORENZ_RR JSON: {e}")
+
+    n = len(pairs)
+    if n < 2:
+        return {"date": str(today_date), "n_epochs": n, "pairs": [], "metrics": None, "source": "0xDF_WATCH_RR"}
+
+    import math
+    xs = [p["x"] for p in pairs]
+    ys = [p["y"] for p in pairs]
+    mean_x = sum(xs) / n
+    mean_y = sum(ys) / n
+    mean_rr = (mean_x + mean_y) / 2.0
+    bpm = round(60000.0 / mean_rr) if mean_rr > 0 else 0
+    sdnn = math.sqrt(sum((x - mean_x) ** 2 for x in xs) / max(1, n - 1))
+    diffs = [p["y"] - p["x"] for p in pairs]
+    rmssd = math.sqrt(sum(d * d for d in diffs) / max(1, n - 1))
+    sd1 = rmssd / math.sqrt(2.0)
+    sd2 = math.sqrt(max(1.0, 2.0 * (sdnn ** 2) - 0.5 * (rmssd ** 2)))
+    ratio = sd1 / sd2 if sd2 > 0 else 0.0
+
+    return {
+        "date": str(today_date),
+        "n_epochs": n,
+        "pairs": pairs,
+        "metrics": {
+            "meanRR": round(mean_rr, 1),
+            "bpm": bpm,
+            "sdnn": round(sdnn, 1),
+            "rmssd": round(rmssd, 1),
+            "sd1": round(sd1, 1),
+            "sd2": round(sd2, 1),
+            "ratio": round(ratio, 3),
+        },
+        "source": "0xDF_WATCH_RR",
+    }
+
+
+def get_today_subreports():
+    """Returns genuine watch sub-report series (MET, Blood Comp, Breath, ECG QTc, Body Comp) for local today."""
+    today_date = datetime.date.today()
+    start_iso = f"{today_date - datetime.timedelta(days=1)}T00:00:00"
+    metrics_wanted = ("MET_5MIN", "BLOOD_COMP", "BREATH_RATE", "ECG_QTC", "BODY_COMP")
+    with db_lock:
+        conn = get_db()
+        cur = conn.cursor()
+        cur.execute("""
+            SELECT timestamp, metric, value1, value2, mode
+            FROM vital_records
+            WHERE metric IN ('MET_5MIN', 'BLOOD_COMP', 'BREATH_RATE', 'ECG_QTC', 'BODY_COMP') AND timestamp >= ?
+            ORDER BY timestamp ASC
+        """, (start_iso,))
+        rows = cur.fetchall()
+        conn.close()
+
+    out = {k: [] for k in metrics_wanted}
+    for ts_str, met, v1, v2, mode_str in rows:
+        dt = _parse_to_local_dt(ts_str)
+        if not dt or dt.date() != today_date:
+            continue
+        hm = f"{dt.hour:02d}:{dt.minute:02d}"
+        if met == "MET_5MIN" and v1 and v1 > 0:
+            out[met].append({"label": hm, "val": round(float(v1), 1)})
+        elif met == "BREATH_RATE" and v1 and v1 > 0:
+            out[met].append({"label": hm, "val": round(float(v1))})
+        elif met == "BLOOD_COMP":
+            out[met].append({"label": hm, "val": round(float(v2 or 0), 2), "core": round(float(v2 or 0), 2), "skin": round(float(v1 or 0), 1)})
+        elif met in ("ECG_QTC", "BODY_COMP") and v1 and v1 > 0:
+            out[met].append({"label": hm, "val": round(float(v1), 1), "core": round(float(v1), 1), "skin": round(float(v2 or 0), 1)})
+    return {"date": str(today_date), **out}
 
 # =========================================================================
 # HTTP REQUEST HANDLER (Port 8899)
@@ -3672,6 +4075,7 @@ def get_two_day_timeline():
         conn.close()
 
     buckets = {}
+    slot_steps_5min = {}
     for r in db_records:
         ts_str = r[0]
         dt = _parse_to_local_dt(ts_str)
@@ -3690,10 +4094,12 @@ def get_two_day_timeline():
         metric = r[1]
         val1 = r[2]
         val2 = r[3]
+        if metric == "PEDOMETER_5MIN":
+            slot_steps_5min[slot_key] = slot_steps_5min.get(slot_key, 0) + round(float(val1 or 0))
+            continue
         if metric == "PEDOMETER":
             prev = buckets[slot_key].get("PEDOMETER")
             v1_f = float(val1 or 0)
-            v2_f = float(val2 or 0)
             if prev and float(prev[0] or 0) > v1_f:
                 continue
         buckets[slot_key][metric] = (val1, val2)
@@ -3719,6 +4125,7 @@ def get_two_day_timeline():
         date_obj = yesterday_date if day_off == 0 else today_date
         date_label = "YESTERDAY" if day_off == 0 else "TODAY"
         running_steps = 0
+        cum_5min_steps = 0
         for h in range(24):
             for m in [0, 30]:
                 slot_time = f"{h:02d}:{m:02d}"
@@ -3728,12 +4135,15 @@ def get_two_day_timeline():
                 is_future = full_slot_dt > now
                 slot_data = buckets.get(slot_key, {})
                 meal_data = meals_by_slot.get(slot_key)
+                s5_slot = slot_steps_5min.get(slot_key, 0) if not is_future else 0
+                if s5_slot > 0:
+                    cum_5min_steps += s5_slot
 
                 has_glucose = "GLUCOSE" in slot_data
                 has_bp = "BLOOD_PRESSURE" in slot_data
                 has_hr = "HEART_RATE" in slot_data
                 has_temp = "TEMPERATURE" in slot_data
-                has_steps = "PEDOMETER" in slot_data
+                has_steps = ("PEDOMETER" in slot_data) or (s5_slot > 0)
                 has_spo2 = ("BLOOD_OXYGEN" in slot_data) or ("SPO2" in slot_data)
                 has_hrv = "HRV_STRESS" in slot_data
 
@@ -3745,6 +4155,7 @@ def get_two_day_timeline():
                 hrv_val = None
                 spo2_val = None
                 temp_val = None
+                skin_temp_val = None
                 steps_val = 0
                 notes = ""
 
@@ -3765,13 +4176,18 @@ def get_two_day_timeline():
                     if has_spo2:
                         spo2_raw = slot_data.get("BLOOD_OXYGEN", slot_data.get("SPO2"))[0]
                         spo2_val = round(spo2_raw, 1)
-                    if has_temp: temp_val = round(slot_data["TEMPERATURE"][0], 1)
-                    if has_steps:
-                        steps_val = round(slot_data["PEDOMETER"][0])
-                        if steps_val > running_steps:
-                            running_steps = steps_val
-                    if steps_val == 0 and running_steps > 0:
-                        steps_val = running_steps
+                    if has_temp:
+                        temp_val = round(slot_data["TEMPERATURE"][0], 1)
+                        t2_raw = slot_data["TEMPERATURE"][1]
+                        if t2_raw and float(t2_raw) > 50:
+                            skin_temp_val = round(float(t2_raw), 1)
+                    if "PEDOMETER" in slot_data:
+                        ped_v = round(slot_data["PEDOMETER"][0])
+                        if ped_v > running_steps:
+                            running_steps = ped_v
+                    if cum_5min_steps > running_steps:
+                        running_steps = cum_5min_steps
+                    steps_val = running_steps
                     notes = "Verified Sensor Telemetry"
                 elif is_am_charge_shower:
                     is_gap = True
@@ -3823,7 +4239,6 @@ def get_two_day_timeline():
                     }
                     if g_val is None and not is_future:
                         is_gap = False
-                        g_val = 148
                         notes = "Meal Logged"
 
                 entry = {
@@ -3839,6 +4254,7 @@ def get_two_day_timeline():
                     "hrv": hrv_val,
                     "spo2": spo2_val,
                     "temp": temp_val,
+                    "skinTemp": skin_temp_val,
                     "steps": steps_val,
                     "isChargingGap": is_gap,
                     "isFuture": is_future,
@@ -4127,6 +4543,14 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
         # 3b. Daily 24h Sleep + Nap Precision Summary API (00:01 - 23:59)
         elif self.path.startswith("/api/sleep/today"):
             self.send_json_response(get_today_sleep_summary())
+
+        # 3b2. Daily Genuine Watch Lorenz R-R Poincaré API (0xDF)
+        elif self.path.startswith("/api/lorenz/today"):
+            self.send_json_response(get_today_lorenz_rr())
+
+        # 3b3. Daily Genuine Watch Sub-Reports API (MET, Blood Comp, Breath, ECG, BIA)
+        elif self.path.startswith("/api/subreports/today"):
+            self.send_json_response(get_today_subreports())
 
         # 3c. Nocturnal Sleep Records API (CLE-090)
         elif self.path.startswith("/api/sleep/records"):
@@ -5021,6 +5445,22 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                 self.send_json_response(summary)
             except Exception as e:
                 self.send_json_response({"status": "ERROR", "error": str(e)}, 500)
+
+        # 0xDF OriginV3 5-Min History Ingestion (from Chrome Web Bluetooth)
+        elif self.path == "/api/origin/ingest":
+            record_browser_activity()
+            content_length = int(self.headers.get("Content-Length", 0))
+            body = self.rfile.read(content_length).decode("utf-8", errors="ignore")
+            try:
+                payload = json.loads(body)
+                packets = payload.get("packets", [])
+                day_off = int(payload.get("day_offset", 0))
+                dev_id = payload.get("device_id") or "VEE_5010"
+                records = _parse_df_origin_blocks(packets, day_offset=day_off)
+                stats = ingest_df_origin_records(records, device_id=dev_id)
+                self.send_json_response({"status": "OK", "blocks_parsed": len(records), **stats})
+            except Exception as e:
+                self.send_json_response({"status": "ERROR", "error": str(e)}, 400)
 
         else:
             self.send_error(404, "Not Found")

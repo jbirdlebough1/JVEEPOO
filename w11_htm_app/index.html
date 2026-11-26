@@ -3266,9 +3266,9 @@
 
               <!-- Top Scrubber Slider -->
               <div style="display: flex; align-items: center; gap: 10px;">
-                <span style="font-family: var(--lcars-mono); font-size: 0.75rem; color: var(--lcars-gray);" id="tallScrubberStartLbl">00:00</span>
+                <span style="font-family: var(--lcars-mono); font-size: 0.75rem; color: var(--lcars-gray);" id="tallScrubberStartLbl">12:00 AM</span>
                 <input type="range" id="tallScrubberSlider" min="0" max="100" value="50" oninput="onTallScrubberMoved(this.value)" style="flex: 1; accent-color: var(--lcars-banana); cursor: pointer; height: 8px;">
-                <span style="font-family: var(--lcars-mono); font-size: 0.75rem; color: var(--lcars-gray);" id="tallScrubberEndLbl">24:00</span>
+                <span style="font-family: var(--lcars-mono); font-size: 0.75rem; color: var(--lcars-gray);" id="tallScrubberEndLbl">11:59 PM</span>
               </div>
 
               <!-- Synchronized Multi-Parameter HUD Ribbon -->
@@ -4170,22 +4170,18 @@
               <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 12px; gap: 8px;">
                 <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
                   <span style="font-size: 1.02rem; font-weight: 800; color: #5b21b6; letter-spacing: 0.03em;">CLINICAL PROTOCOL: 2D LORENZ (POINCARÉ) SCATTER PLOT</span>
-                  <span id="lorenzShapeBadge" style="background: #15803d; color: #ffffff; font-family: monospace; font-size: 0.72rem; font-weight: 800; padding: 3px 8px; border-radius: 4px;">COMET SHAPE (NORMAL VAGAL TONE)</span>
+                  <span id="lorenzShapeBadge" style="background: #475569; color: #ffffff; font-family: monospace; font-size: 0.72rem; font-weight: 800; padding: 3px 8px; border-radius: 4px;">AWAITING REAL WATCH R-R DATA</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 8px;">
                   <span style="font-family: monospace; font-size: 0.72rem; color: #475569; font-weight: 700;">AUTONOMIC HEALTH:</span>
-                  <span id="lorenzHealthScore" style="background: #eff6ff; color: #1d4ed8; border: 1.5px solid #3b82f6; font-family: monospace; font-size: 0.76rem; font-weight: 800; padding: 2px 8px; border-radius: 4px;">88 / 100 • RESILIENT</span>
+                  <span id="lorenzHealthScore" style="background: #f8fafc; color: #475569; border: 1.5px solid #cbd5e1; font-family: monospace; font-size: 0.76rem; font-weight: 800; padding: 2px 8px; border-radius: 4px;">-- / 100 • NO DATA</span>
                 </div>
               </div>
 
-              <!-- Standard Morphologies Control Bar -->
-              <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; align-items: center;">
-                <span style="font-size: 0.72rem; font-weight: 800; color: #334155; margin-right: 4px;">CARDIAC MORPHOLOGY MODES:</span>
-                <button type="button" class="lorenz-btn" id="btnLorenzComet" onclick="setLorenzMorphology('comet')" style="cursor: pointer; padding: 4px 10px; font-size: 0.72rem; font-weight: 700; border-radius: 4px; border: 1.5px solid #16a34a; background: #dcfce7; color: #15803d; transition: all 0.15s ease;">✨ COMET (PATIENT BASELINE)</button>
-                <button type="button" class="lorenz-btn" id="btnLorenzTorpedo" onclick="setLorenzMorphology('torpedo')" style="cursor: pointer; padding: 4px 10px; font-size: 0.72rem; font-weight: 700; border-radius: 4px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #334155; transition: all 0.15s ease;">⚡ TORPEDO (FATIGUE / NEUROPATHY)</button>
-                <button type="button" class="lorenz-btn" id="btnLorenzClub" onclick="setLorenzMorphology('club')" style="cursor: pointer; padding: 4px 10px; font-size: 0.72rem; font-weight: 700; border-radius: 4px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #334155; transition: all 0.15s ease;">⚪ CLUB (LOW VARIABILITY)</button>
-                <button type="button" class="lorenz-btn" id="btnLorenzFork" onclick="setLorenzMorphology('fork')" style="cursor: pointer; padding: 4px 10px; font-size: 0.72rem; font-weight: 700; border-radius: 4px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #334155; transition: all 0.15s ease;">🔱 FORK (BIFURCATED / PVC)</button>
-                <button type="button" class="lorenz-btn" id="btnLorenzComplex" onclick="setLorenzMorphology('complex')" style="cursor: pointer; padding: 4px 10px; font-size: 0.72rem; font-weight: 700; border-radius: 4px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #334155; transition: all 0.15s ease;">🌐 COMPLEX (ARRHYTHMIA / AFIB)</button>
+              <!-- Real Hardware 0xDF Telemetry Source Bar (Zero Synthetic Simulator) -->
+              <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; align-items: center; justify-content: space-between; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 6px 10px;">
+                <span style="font-size: 0.74rem; font-family: monospace; font-weight: 800; color: #334155;">SOURCE: GENUINE WATCH 0xDF 5-MIN HRV / R-R STREAM (ZERO SYNTHETIC DATA)</span>
+                <button type="button" class="lcars-btn btn-blue" style="flex: none; width: auto; padding: 4px 12px; font-size: 0.72rem;" onclick="queryOriginHistoryData(0, true)">↻ SYNC 0xDF R-R NOW</button>
               </div>
 
               <!-- Two-Column Main Layout: SVG Canvas + Metrics Strip -->
@@ -4194,7 +4190,7 @@
                 <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 10px; position: relative;">
                   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; font-size: 0.68rem; font-family: monospace; color: #64748b;">
                     <span>AXIS: RR(n+1) vs RR(n) [400 - 1400 MS]</span>
-                    <span style="color: #7c3aed; font-weight: bold;">N = 1,200 CARDIAC EPOCHS</span>
+                    <span id="lorenzEpochCount" style="color: #7c3aed; font-weight: bold;">N = 0 REAL WATCH EPOCHS</span>
                   </div>
                   <svg id="svgLorenzScatter" viewBox="0 0 460 360" style="width: 100%; height: auto; display: block; background: #fafafa; border-radius: 4px; border: 1px solid #e2e8f0;"></svg>
                 </div>
@@ -4205,35 +4201,35 @@
                   <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; font-family: monospace;">
                     <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; padding: 6px 8px;">
                       <div style="font-size: 0.60rem; color: #64748b; font-weight: bold;">MEAN R-R INTERVAL</div>
-                      <div id="mMeanRR" style="font-size: 0.90rem; font-weight: 800; color: #0284c7;">852 ms (70 BPM)</div>
+                      <div id="mMeanRR" style="font-size: 0.90rem; font-weight: 800; color: #0284c7;">-- ms (-- BPM)</div>
                     </div>
                     <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; padding: 6px 8px;">
                       <div style="font-size: 0.60rem; color: #64748b; font-weight: bold;">SDNN (TOTAL POWER)</div>
-                      <div id="mSDNN" style="font-size: 0.90rem; font-weight: 800; color: #7c3aed;">64.2 ms</div>
+                      <div id="mSDNN" style="font-size: 0.90rem; font-weight: 800; color: #7c3aed;">-- ms</div>
                     </div>
                     <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; padding: 6px 8px;">
                       <div style="font-size: 0.60rem; color: #64748b; font-weight: bold;">RMSSD (VAGAL TONE)</div>
-                      <div id="mRMSSD" style="font-size: 0.90rem; font-weight: 800; color: #16a34a;">41.8 ms</div>
+                      <div id="mRMSSD" style="font-size: 0.90rem; font-weight: 800; color: #16a34a;">-- ms</div>
                     </div>
                     <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; padding: 6px 8px;">
                       <div style="font-size: 0.60rem; color: #64748b; font-weight: bold;">SD1 (TRANSVERSE AXIS)</div>
-                      <div id="mSD1" style="font-size: 0.90rem; font-weight: 800; color: #15803d;">29.6 ms</div>
+                      <div id="mSD1" style="font-size: 0.90rem; font-weight: 800; color: #15803d;">-- ms</div>
                     </div>
                     <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; padding: 6px 8px;">
                       <div style="font-size: 0.60rem; color: #64748b; font-weight: bold;">SD2 (LONGITUDINAL AXIS)</div>
-                      <div id="mSD2" style="font-size: 0.90rem; font-weight: 800; color: #2563eb;">85.9 ms</div>
+                      <div id="mSD2" style="font-size: 0.90rem; font-weight: 800; color: #2563eb;">-- ms</div>
                     </div>
                     <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; padding: 6px 8px;">
                       <div style="font-size: 0.60rem; color: #64748b; font-weight: bold;">SD1 / SD2 BALANCE RATIO</div>
-                      <div id="mRatio" style="font-size: 0.90rem; font-weight: 800; color: #d97706;">0.344 (Normal 0.3-0.5)</div>
+                      <div id="mRatio" style="font-size: 0.90rem; font-weight: 800; color: #d97706;">-- (Target: 0.30 - 0.50)</div>
                     </div>
                   </div>
 
                   <!-- Diagnostic Clinical Impression Card -->
-                  <div id="lorenzDiagCard" style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 5px; padding: 8px 10px; font-size: 0.73rem; color: #14532d; line-height: 1.35;">
-                    <strong style="color: #15803d;">CARDIAC CLINICAL IMPRESSION:</strong>
+                  <div id="lorenzDiagCard" style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 5px; padding: 8px 10px; font-size: 0.73rem; color: #334155; line-height: 1.35;">
+                    <strong style="color: #0284c7;">CARDIAC TELEMETRY STATUS:</strong>
                     <div id="lorenzDiagText" style="margin-top: 3px;">
-                      Classic <strong>Comet Shape</strong> indicates robust parasympathetic vagal recovery during nocturnal rest. R-R dispersion demonstrates strong cardioprotective autonomic reserve with zero premature ventricular or atrial ectopy detected.
+                      Awaiting real watch 0xDF R-R telemetry synchronization. Zero synthetic or simulated epochs displayed.
                     </div>
                   </div>
 
@@ -9317,12 +9313,50 @@
     // =========================================================================
     
     // =========================================================================
-    // 12/24-HOUR CHRONOMETER TIME FORMATTING HELPER
+    // 12/24-HOUR CHRONOMETER TIME FORMATTING HELPER (WATCH SETTING DRIVEN)
     // =========================================================================
+    function isWatch12HourFormat() {
+      try {
+        const el = document.getElementById('cfgTimeFormat');
+        if (el && el.value !== undefined && el.value !== '') {
+          return parseInt(el.value, 10) !== 24;
+        }
+        const saved = localStorage.getItem('veepoo_user_config');
+        if (saved) {
+          const cfg = JSON.parse(saved);
+          if (cfg && cfg.timeFormat !== undefined) {
+            return parseInt(cfg.timeFormat, 10) !== 24;
+          }
+        }
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+      return true; // Default Model 5010 setting: 12-Hour AM/PM
+    }
+
+    function formatAxisHourLabel(hr) {
+      if (!isWatch12HourFormat()) {
+        return hr === 24 ? "24:00" : `${String(hr).padStart(2, '0')}:00`;
+      }
+      if (hr === 0 || hr === 24) return "12 AM";
+      if (hr < 12) return `${hr} AM`;
+      if (hr === 12) return "12 PM";
+      return `${hr - 12} PM`;
+    }
+
+    function formatClockMin(minVal) {
+      const m = Math.max(0, Math.min(1439, Math.round(minVal)));
+      const h24 = Math.floor(m / 60);
+      const mm = m % 60;
+      if (!isWatch12HourFormat()) {
+        return `${String(h24).padStart(2, '0')}:${String(mm).padStart(2, '0')}`;
+      }
+      const ampm = h24 >= 12 ? 'PM' : 'AM';
+      const h12 = (h24 % 12) || 12;
+      return `${h12}:${String(mm).padStart(2, '0')} ${ampm}`;
+    }
+
     function formatTimeDisplay(timeStr) {
       if (!timeStr) return "";
-      const is12 = (typeof getInt === 'function' ? getInt('cfgTimeFormat', 12) : 12) === 12;
-      if (!is12) return timeStr;
+      if (!isWatch12HourFormat()) return timeStr;
       const m = timeStr.match(/(\d{1,2}):(\d{2})/);
       if (!m) return timeStr;
       let h = parseInt(m[1], 10);
@@ -9875,11 +9909,16 @@ function switchTab(tabId) {
           if (typeof querySleepData === 'function' && gattServer && gattServer.connected && txCharacteristic) {
             try { setTimeout(() => querySleepData(0, true), 250); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
           }
+          if (typeof queryOriginHistoryData === 'function' && gattServer && gattServer.connected && txCharacteristic) {
+            try { setTimeout(() => queryOriginHistoryData(0, false), 650); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+          }
           const refreshAllReportsCharts = async () => {
             try {
               if (typeof pollLiveTelemetryChanges === 'function') await pollLiveTelemetryChanges(true);
               if (typeof fetchServer2DayTimeline === 'function') await fetchServer2DayTimeline();
               if (typeof fetchTodaySleepSessions === 'function') await fetchTodaySleepSessions();
+              if (typeof fetchTodayLorenzData === 'function') await fetchTodayLorenzData();
+              if (typeof fetchTodaySubReports === 'function') await fetchTodaySubReports();
               const pageRepNow = document.getElementById('pageReports');
               if (pageRepNow && pageRepNow.classList.contains('active-page')) {
                 if (typeof renderReportsView === 'function') renderReportsView();
@@ -10255,6 +10294,12 @@ function switchTab(tabId) {
           querySleepData(1);
         }
         await new Promise(r => setTimeout(r, 600));
+
+        // Step 7b: 5-Minute OriginV3 History Sync for Today (0xDF 0x01 0x00 0x00)
+        if (typeof queryOriginHistoryData === 'function') {
+          queryOriginHistoryData(0, true);
+        }
+        await new Promise(r => setTimeout(r, 1200));
 
         // Step 8: Trigger Server Sync & Telemetry Deduplication
         try {
@@ -11088,6 +11133,37 @@ function switchTab(tabId) {
         }
       }
 
+      // 0xB8 Page 0: Custom Setting Time Format & Metric Units Sync (vp_u.java)
+      if (header === 0xB8 && bytes.length >= 20 && bytes[19] === 0 && (bytes[1] === 0x01 || bytes[1] === 0x02)) {
+        const tfByte = bytes[3]; // 1 = 24-Hour, 2 = 12-Hour
+        if (tfByte === 1 || tfByte === 2) {
+          const fmt = tfByte === 1 ? 24 : 12;
+          const elTf = document.getElementById('cfgTimeFormat');
+          if (elTf) elTf.value = String(fmt);
+          try {
+            const raw = localStorage.getItem('veepoo_user_config');
+            const cfg = raw ? JSON.parse(raw) : {};
+            cfg.timeFormat = fmt;
+            localStorage.setItem('veepoo_user_config', JSON.stringify(cfg));
+          } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+        }
+      }
+
+      // 0xDF: 5-Minute OriginV3 History Stream (Overnight Steps, Skin Temp, R-R / HRV)
+      if (header === 0xDF && bytes.length >= 4) {
+        if (!window._dfOriginBuffer) window._dfOriginBuffer = [];
+        const hexPkt = Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join(' ');
+        window._dfOriginBuffer.push(hexPkt);
+        if (window._dfSyncTimer) clearTimeout(window._dfSyncTimer);
+        if (bytes[1] === 0xFF && bytes[2] === 0xFF) {
+          flushDfOriginBuffer();
+        } else {
+          window._dfSyncTimer = setTimeout(() => {
+            if (typeof flushDfOriginBuffer === 'function') flushDfOriginBuffer();
+          }, 1200);
+        }
+      }
+
       // 0x07 or 0xA8: Real-Time Pedometer / Step Telemetry (Veepoo Protocol vp_bp.java / vp_bt.java)
       if ((header === 0x07 || header === 0xA8) && bytes.length >= 5) {
         const steps = (bytes[1] << 24) | (bytes[2] << 16) | (bytes[3] << 8) | bytes[4];
@@ -11679,6 +11755,57 @@ function switchTab(tabId) {
 
       // 2. If watch is connected, transmit Opcode 0xE0 to read hardware registers
       querySleepData(dayOffset);
+    }
+
+    window._dfOriginBuffer = window._dfOriginBuffer || [];
+    window._dfSyncTimer = null;
+    window._lastDfSyncTs = 0;
+
+    function queryOriginHistoryData(dayOffset = 0, force = false) {
+      const now = Date.now();
+      if (!force && (now - (window._lastDfSyncTs || 0) < 180000)) return;
+      if (!txCharacteristic || !gattServer || !gattServer.connected) return;
+      if (force && typeof soundButtonPress === 'function') soundButtonPress();
+      window._lastDfSyncTs = now;
+      window._currentDfQueryDay = dayOffset;
+      window._dfOriginBuffer = [];
+      if (window._dfSyncTimer) clearTimeout(window._dfSyncTimer);
+      logLCARS(`[*] Transmitting Opcode 0xDF to sync 5-Min Overnight Steps, Temp & R-R Telemetry (Day ${dayOffset})...`, "tx");
+      const cmd = new Uint8Array(20);
+      cmd[0] = 0xDF;
+      cmd[1] = 0x01;
+      cmd[2] = 0x00;
+      cmd[3] = dayOffset & 0xFF;
+      sendCommandBytes(cmd);
+    }
+
+    async function flushDfOriginBuffer() {
+      if (window._dfSyncTimer) { clearTimeout(window._dfSyncTimer); window._dfSyncTimer = null; }
+      const pkts = window._dfOriginBuffer ? window._dfOriginBuffer.splice(0) : [];
+      if (pkts.length === 0) return;
+      try {
+        const resp = await fetch('/api/origin/ingest', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            packets: pkts,
+            day_offset: window._currentDfQueryDay || 0,
+            device_id: 'VEE_5010'
+          })
+        });
+        if (resp.ok) {
+          const res = await resp.json();
+          logLCARS(`[✔ 0xDF ORIGIN] Decoded ${res.blocks_parsed || 0} 5-min watch blocks (${res.steps_5min_total || 0} steps, ${res.rr_epochs || 0} R-R epochs).`, "rx");
+          if (typeof fetchServer2DayTimeline === 'function') await fetchServer2DayTimeline();
+          if (typeof fetchTodayLorenzData === 'function') await fetchTodayLorenzData();
+          if (typeof fetchTodaySubReports === 'function') await fetchTodaySubReports();
+          const pageRep = document.getElementById('pageReports');
+          if (pageRep && pageRep.classList.contains('active-page')) {
+            if (typeof renderReportsView === 'function') renderReportsView();
+            if (typeof renderTallSynchronizedChart === 'function') renderTallSynchronizedChart(currentTallChartTimeframe);
+          }
+        }
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
     }
 
     function querySleepData(dayOffset = 0, silent = false) {
@@ -12963,17 +13090,13 @@ function switchTab(tabId) {
         });
       }
 
-      // X-Axis Time Scale: Clear, Non-Colliding Grid Ticks (Standardized on 12-Hour AM/PM Format)
+      // X-Axis Time Scale: Honors Watch 12-Hour AM/PM Setting
       let xAxisHtml = "";
       if (hasTimeLabels) {
         const majorTicks = [0, 4, 8, 12, 16, 20, 24];
         majorTicks.forEach(hr => {
           const x = padLeft + (hr / 24.0) * plotW;
-          let label;
-          if (hr === 0 || hr === 24) label = "12 AM";
-          else if (hr < 12) label = `${hr} AM`;
-          else if (hr === 12) label = "12 PM";
-          else label = `${hr - 12} PM`;
+          const label = formatAxisHourLabel(hr);
           xAxisHtml += `
             <line x1="${x.toFixed(1)}" y1="${padTop + plotH}" x2="${x.toFixed(1)}" y2="${padTop + plotH + 5}" stroke="#94a3b8" stroke-width="1.5"/>
             <text x="${x.toFixed(1)}" y="${padTop + plotH + 18}" text-anchor="middle" fill="#475569" font-family="var(--lcars-mono)" font-size="10" font-weight="800">${label}</text>
@@ -13186,13 +13309,13 @@ function switchTab(tabId) {
       const corePoly = corePoints.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" ");
       const skinPoly = skinPoints.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" ");
 
-      // X-Axis Time Scale
+      // X-Axis Time Scale (Honors Watch 12-Hour AM/PM Setting)
       let xAxisHtml = "";
       if (hasTimeLabels) {
         const majorTicks = [0, 4, 8, 12, 16, 20, 24];
         majorTicks.forEach(hr => {
           const x = padLeft + (hr / 24.0) * plotW;
-          const label = hr === 24 ? "24:00" : `${hr.toString().padStart(2, '0')}:00`;
+          const label = formatAxisHourLabel(hr);
           xAxisHtml += `
             <line x1="${x.toFixed(1)}" y1="${padTop + plotH}" x2="${x.toFixed(1)}" y2="${padTop + plotH + 5}" stroke="#94a3b8" stroke-width="1.5"/>
             <text x="${x.toFixed(1)}" y="${padTop + plotH + 18}" text-anchor="middle" fill="#475569" font-family="var(--lcars-mono)" font-size="10" font-weight="800">${label}</text>
@@ -13265,43 +13388,10 @@ function switchTab(tabId) {
     }
 
     // =========================================================================
-    // CLINICAL PROTOCOL SPECIFICATION: 2D LORENZ (POINCARÉ) SCATTER ENGINE
+    // REAL-DATA 2D LORENZ (POINCARÉ) SCATTER ENGINE (ZERO SYNTHETIC DATA)
     // =========================================================================
-    let currentLorenzMorphology = localStorage.getItem('bfm_lorenz_morphology') || 'comet';
-
-    function setLorenzMorphology(morph) {
-      currentLorenzMorphology = morph;
-      try { localStorage.setItem('bfm_lorenz_morphology', morph); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
-
-      const btns = ['btnLorenzComet', 'btnLorenzTorpedo', 'btnLorenzClub', 'btnLorenzFork', 'btnLorenzComplex'];
-      btns.forEach(id => {
-        const b = document.getElementById(id);
-        if (b) {
-          b.style.background = '#f8fafc';
-          b.style.borderColor = '#cbd5e1';
-          b.style.color = '#334155';
-        }
-      });
-
-      const configMap = {
-        'comet': { btnId: 'btnLorenzComet', bg: '#dcfce7', border: '#16a34a', color: '#15803d' },
-        'torpedo': { btnId: 'btnLorenzTorpedo', bg: '#fee2e2', border: '#dc2626', color: '#991b1b' },
-        'club': { btnId: 'btnLorenzClub', bg: '#fef3c7', border: '#d97706', color: '#92400e' },
-        'fork': { btnId: 'btnLorenzFork', bg: '#fae8ff', border: '#a855f7', color: '#6b21a8' },
-        'complex': { btnId: 'btnLorenzComplex', bg: '#fee2e2', border: '#ef4444', color: '#b91c1c' }
-      };
-
-      const cfg = configMap[morph];
-      if (cfg) {
-        const ab = document.getElementById(cfg.btnId);
-        if (ab) {
-          ab.style.background = cfg.bg;
-          ab.style.borderColor = cfg.border;
-          ab.style.color = cfg.color;
-        }
-      }
-
-      renderLorenzScatterPlot(morph);
+    function setLorenzMorphology() {
+      renderLorenzScatterPlot();
     }
 
     function viewLorenzScatterFromCardio() {
@@ -13312,261 +13402,106 @@ function switchTab(tabId) {
       }, 250);
     }
 
-    function renderLorenzScatterPlot(morphology = 'comet') {
+    function renderLorenzScatterPlot() {
       const svg = document.getElementById('svgLorenzScatter');
       if (!svg) return;
 
-      const n = 1200;
-      let points = [];
-      let seed = 42;
-      function rnd() {
-        seed = (seed * 9301 + 49297) % 233280;
-        return seed / 233280;
-      }
-      function gauss(mean, stdev) {
-        let u = 0, v = 0;
-        while (u === 0) u = rnd();
-        while (v === 0) v = rnd();
-        return mean + stdev * Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
-      }
+      const lData = window.lastRealLorenzData;
+      const pairs = (lData && Array.isArray(lData.pairs)) ? lData.pairs : [];
+      const metrics = (lData && lData.metrics) ? lData.metrics : null;
+      const n = pairs.length;
 
-      let badgeText = "COMET SHAPE (NORMAL VAGAL TONE)";
-      let badgeBg = "#15803d";
-      let healthScore = "88 / 100 • RESILIENT";
-      let healthBg = "#eff6ff";
-      let healthCol = "#1d4ed8";
-      let healthBorder = "#3b82f6";
-      let diagColor = "#15803d";
-      let diagBorder = "#86efac";
-      let diagBg = "#f0fdf4";
-      let diagText = "Classic <strong>Comet Shape</strong> indicates robust parasympathetic vagal recovery during nocturnal rest. R-R dispersion demonstrates strong cardioprotective autonomic reserve with zero premature ventricular or atrial ectopy detected.";
-
-      if (morphology === 'comet') {
-        for (let i = 0; i < n; i++) {
-          let u = gauss(850, 95);
-          u = Math.max(560, Math.min(1250, u));
-          let t = (u - 560) / (1250 - 560);
-          let perp_sigma = 12 + 42 * Math.pow(t, 1.3);
-          let perp = gauss(0, perp_sigma);
-          let x = u - perp * 0.7071;
-          let y = u + perp * 0.7071;
-          points.push({ x: Math.round(x * 10) / 10, y: Math.round(y * 10) / 10 });
-        }
-      } else if (morphology === 'torpedo') {
-        badgeText = "TORPEDO SHAPE (AUTONOMIC FATIGUE / CAN)";
-        badgeBg = "#dc2626";
-        healthScore = "42 / 100 • COMPROMISED";
-        healthBg = "#fef2f2";
-        healthCol = "#dc2626";
-        healthBorder = "#f87171";
-        diagColor = "#dc2626";
-        diagBorder = "#fca5a5";
-        diagBg = "#fef2f2";
-        diagText = "Narrow <strong>Torpedo Shape</strong> indicates severe parasympathetic vagal withdrawal and sympathetic dominance. Frequently observed in diabetic cardiac autonomic neuropathy (CAN), high chronic distress, or post-exertional exhaustion.";
-        for (let i = 0; i < n; i++) {
-          let u = gauss(780, 85);
-          u = Math.max(620, Math.min(1080, u));
-          let perp = gauss(0, 9);
-          let x = u - perp * 0.7071;
-          let y = u + perp * 0.7071;
-          points.push({ x: Math.round(x * 10) / 10, y: Math.round(y * 10) / 10 });
-        }
-      } else if (morphology === 'club') {
-        badgeText = "CLUB SHAPE (LOW VARIABILITY / RIGID)";
-        badgeBg = "#d97706";
-        healthScore = "55 / 100 • REDUCED";
-        healthBg = "#fffbeb";
-        healthCol = "#b45309";
-        healthBorder = "#fcd34d";
-        diagColor = "#d97706";
-        diagBorder = "#fde68a";
-        diagBg = "#fffbeb";
-        diagText = "Compact <strong>Club Shape</strong> reflects marked reduction in overall heart rate variability and autonomic plasticity. Characterizes sinus tachycardia or early arterial stiffening with diminished dynamic reserve.";
-        for (let i = 0; i < n; i++) {
-          let x = gauss(680, 26);
-          let y = gauss(680, 26);
-          points.push({ x: Math.round(x * 10) / 10, y: Math.round(y * 10) / 10 });
-        }
-      } else if (morphology === 'fork') {
-        badgeText = "FORK SHAPE (BIFURCATED / PVC BIGEMINY)";
-        badgeBg = "#7c3aed";
-        healthScore = "58 / 100 • ECTOPIC DETECTED";
-        healthBg = "#faf5ff";
-        healthCol = "#6b21a8";
-        healthBorder = "#d8b4fe";
-        diagColor = "#7c3aed";
-        diagBorder = "#e9d5ff";
-        diagBg = "#faf5ff";
-        diagText = "Bifurcated <strong>Fork Shape</strong> indicates alternating premature ventricular contractions (PVCs) or bigeminy with compensatory pauses. High RMSSD is artifactually driven by ectopic cycle transitions.";
-        for (let i = 0; i < n; i++) {
-          let r = rnd();
-          let x, y;
-          if (r < 0.60) {
-            let u = gauss(820, 70);
-            let perp = gauss(0, 25);
-            x = u - perp * 0.7071;
-            y = u + perp * 0.7071;
-          } else if (r < 0.80) {
-            x = gauss(620, 25);
-            y = gauss(1040, 30);
-          } else {
-            x = gauss(1040, 30);
-            y = gauss(620, 25);
-          }
-          points.push({ x: Math.round(x * 10) / 10, y: Math.round(y * 10) / 10 });
-        }
-      } else if (morphology === 'complex') {
-        badgeText = "COMPLEX SHAPE (CHAOTIC / AFIB ARRHYTHMIA)";
-        badgeBg = "#b91c1c";
-        healthScore = "35 / 100 • ARRHYTHMIC";
-        healthBg = "#fef2f2";
-        healthCol = "#991b1b";
-        healthBorder = "#ef4444";
-        diagColor = "#b91c1c";
-        diagBorder = "#f87171";
-        diagBg = "#fef2f2";
-        diagText = "Chaotic <strong>Complex Multi-Cluster Shape</strong> demonstrates complete loss of respiratory sinus rhythm organization, consistent with atrial fibrillation (AFib) or frequent multi-focal ectopic bursts.";
-        const centers = [[650, 720], [740, 640], [880, 920], [950, 780], [620, 980], [980, 620]];
-        for (let i = 0; i < n; i++) {
-          let c = centers[Math.floor(rnd() * centers.length)];
-          let x = gauss(c[0], 42);
-          let y = gauss(c[1], 42);
-          points.push({ x: Math.round(x * 10) / 10, y: Math.round(y * 10) / 10 });
-        }
-      }
-
-      // Compute statistics
-      const xs = points.map(p => p.x);
-      const ys = points.map(p => p.y);
-      const meanX = xs.reduce((a, b) => a + b, 0) / n;
-      const meanY = ys.reduce((a, b) => a + b, 0) / n;
-      const meanRR = (meanX + meanY) / 2.0;
-      const bpm = Math.round(60000.0 / meanRR);
-
-      const varianceX = xs.reduce((acc, v) => acc + Math.pow(v - meanX, 2), 0) / (n - 1);
-      const sdnn = Math.sqrt(varianceX);
-
-      const diffs = points.map(p => p.y - p.x);
-      const rmssd = Math.sqrt(diffs.reduce((acc, d) => acc + d * d, 0) / (n - 1));
-
-      const sd1 = rmssd / Math.SQRT2;
-      const val2 = 2.0 * Math.pow(sdnn, 2) - 0.5 * Math.pow(rmssd, 2);
-      const sd2 = Math.sqrt(Math.max(1.0, val2));
-      const ratio = sd1 / sd2;
-
-      // Update UI elements
       const badgeEl = document.getElementById('lorenzShapeBadge');
-      if (badgeEl) {
-        badgeEl.textContent = badgeText;
-        badgeEl.style.background = badgeBg;
-      }
       const healthEl = document.getElementById('lorenzHealthScore');
-      if (healthEl) {
-        healthEl.textContent = healthScore;
-        healthEl.style.background = healthBg;
-        healthEl.style.color = healthCol;
-        healthEl.style.borderColor = healthBorder;
-      }
+      const countEl = document.getElementById('lorenzEpochCount');
       const cardEl = document.getElementById('lorenzDiagCard');
-      if (cardEl) {
-        cardEl.style.background = diagBg;
-        cardEl.style.borderColor = diagBorder;
-        cardEl.style.color = diagColor;
-      }
       const diagTextEl = document.getElementById('lorenzDiagText');
-      if (diagTextEl) diagTextEl.innerHTML = diagText;
-
       const elMean = document.getElementById('mMeanRR');
-      if (elMean) elMean.textContent = `${Math.round(meanRR)} ms (${bpm} BPM)`;
       const elSDNN = document.getElementById('mSDNN');
-      if (elSDNN) elSDNN.textContent = `${sdnn.toFixed(1)} ms`;
       const elRMSSD = document.getElementById('mRMSSD');
-      if (elRMSSD) elRMSSD.textContent = `${rmssd.toFixed(1)} ms`;
       const elSD1 = document.getElementById('mSD1');
-      if (elSD1) elSD1.textContent = `${sd1.toFixed(1)} ms`;
       const elSD2 = document.getElementById('mSD2');
-      if (elSD2) elSD2.textContent = `${sd2.toFixed(1)} ms`;
       const elRatio = document.getElementById('mRatio');
-      if (elRatio) elRatio.textContent = `${ratio.toFixed(3)} (Target: 0.30 - 0.50)`;
 
-      // Render SVG Canvas
       const padLeft = 55;
       const padRight = 20;
       const padTop = 20;
       const padBottom = 45;
       const plotW = 460 - padLeft - padRight;
       const plotH = 360 - padTop - padBottom;
-
       const minRR = 400.0;
       const maxRR = 1400.0;
       const rangeRR = maxRR - minRR;
+      const mapX = val => padLeft + ((val - minRR) / rangeRR) * plotW;
+      const mapY = val => padTop + plotH - ((val - minRR) / rangeRR) * plotH;
 
-      function mapX(val) {
-        return padLeft + ((val - minRR) / rangeRR) * plotW;
-      }
-      function mapY(val) {
-        return padTop + plotH - ((val - minRR) / rangeRR) * plotH;
-      }
-
-      let svgHtml = '';
-
+      let gridHtml = '';
       for (let grid = 400; grid <= 1400; grid += 200) {
         const gx = mapX(grid);
         const gy = mapY(grid);
-        svgHtml += `<line x1="${gx.toFixed(1)}" y1="${padTop}" x2="${gx.toFixed(1)}" y2="${padTop + plotH}" stroke="#e2e8f0" stroke-width="1" />`;
-        svgHtml += `<text x="${gx.toFixed(1)}" y="${padTop + plotH + 16}" font-size="9" font-family="monospace" fill="#64748b" text-anchor="middle">${grid}</text>`;
-        svgHtml += `<line x1="${padLeft}" y1="${gy.toFixed(1)}" x2="${padLeft + plotW}" y2="${gy.toFixed(1)}" stroke="#e2e8f0" stroke-width="1" />`;
-        svgHtml += `<text x="${padLeft - 8}" y="${gy.toFixed(1) + 3}" font-size="9" font-family="monospace" fill="#64748b" text-anchor="end">${grid}</text>`;
+        gridHtml += `<line x1="${gx.toFixed(1)}" y1="${padTop}" x2="${gx.toFixed(1)}" y2="${padTop + plotH}" stroke="#e2e8f0" stroke-width="1" />`;
+        gridHtml += `<text x="${gx.toFixed(1)}" y="${padTop + plotH + 16}" font-size="9" font-family="monospace" fill="#64748b" text-anchor="middle">${grid}</text>`;
+        gridHtml += `<line x1="${padLeft}" y1="${gy.toFixed(1)}" x2="${padLeft + plotW}" y2="${gy.toFixed(1)}" stroke="#e2e8f0" stroke-width="1" />`;
+        gridHtml += `<text x="${padLeft - 8}" y="${gy.toFixed(1) + 3}" font-size="9" font-family="monospace" fill="#64748b" text-anchor="end">${grid}</text>`;
+      }
+      gridHtml += `<rect x="${padLeft}" y="${padTop}" width="${plotW}" height="${plotH}" fill="none" stroke="#cbd5e1" stroke-width="1.5" />`;
+      gridHtml += `<line x1="${mapX(400).toFixed(1)}" y1="${mapY(400).toFixed(1)}" x2="${mapX(1400).toFixed(1)}" y2="${mapY(1400).toFixed(1)}" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.85" />`;
+      gridHtml += `<text x="${padLeft + plotW / 2}" y="${360 - 8}" font-size="10" font-family="monospace" fill="#334155" font-weight="bold" text-anchor="middle">RR_n INTERVAL (CURRENT BEAT) — MS</text>`;
+      gridHtml += `<text x="14" y="${padTop + plotH / 2}" font-size="10" font-family="monospace" fill="#334155" font-weight="bold" text-anchor="middle" transform="rotate(-90 14 ${padTop + plotH / 2})">RR_{n+1} INTERVAL (NEXT BEAT) — MS</text>`;
+
+      if (n < 10 || !metrics) {
+        if (badgeEl) { badgeEl.textContent = "AWAITING REAL WATCH R-R DATA"; badgeEl.style.background = "#475569"; }
+        if (healthEl) { healthEl.textContent = "-- / 100 • NO DATA"; healthEl.style.background = "#f8fafc"; healthEl.style.color = "#475569"; healthEl.style.borderColor = "#cbd5e1"; }
+        if (countEl) countEl.textContent = `N = ${n} REAL WATCH EPOCHS`;
+        if (cardEl) { cardEl.style.background = "#f8fafc"; cardEl.style.borderColor = "#cbd5e1"; cardEl.style.color = "#334155"; }
+        if (diagTextEl) diagTextEl.textContent = "Zero real watch R-R epochs recorded today. Connect watch to sync 0xDF 5-minute HRV/R-R telemetry. Zero synthetic data displayed.";
+        if (elMean) elMean.textContent = "-- ms (-- BPM)";
+        if (elSDNN) elSDNN.textContent = "-- ms";
+        if (elRMSSD) elRMSSD.textContent = "-- ms";
+        if (elSD1) elSD1.textContent = "-- ms";
+        if (elSD2) elSD2.textContent = "-- ms";
+        if (elRatio) elRatio.textContent = "-- (Target: 0.30 - 0.50)";
+
+        svg.innerHTML = gridHtml + `
+          <rect x="${padLeft + 30}" y="${padTop + plotH / 2 - 26}" width="${plotW - 60}" height="52" rx="6" fill="rgba(255,255,255,0.94)" stroke="#cbd5e1" stroke-width="1.2"/>
+          <text x="${padLeft + plotW / 2}" y="${padTop + plotH / 2 - 4}" font-size="11" font-family="monospace" font-weight="bold" fill="#0284c7" text-anchor="middle">[NO 0xDF WATCH R-R EPOCHS SYNCED TODAY]</text>
+          <text x="${padLeft + plotW / 2}" y="${padTop + plotH / 2 + 13}" font-size="9" font-family="monospace" fill="#64748b" text-anchor="middle">Connect watch &amp; click SYNC 0xDF R-R NOW — Zero synthetic data</text>
+        `;
+        return;
       }
 
-      svgHtml += `<rect x="${padLeft}" y="${padTop}" width="${plotW}" height="${plotH}" fill="none" stroke="#cbd5e1" stroke-width="1.5" />`;
+      const { meanRR, bpm, sdnn, rmssd, sd1, sd2, ratio } = metrics;
+      const shapeDesc = ratio >= 0.25 && ratio <= 0.65 ? "REAL WATCH R-R • NOMINAL VAGAL TONE" : "REAL WATCH R-R TELEMETRY";
+      const healthNum = Math.min(98, Math.max(40, Math.round(45 + Math.min(45, rmssd * 0.9))));
 
-      const x1Id = mapX(400);
-      const y1Id = mapY(400);
-      const x2Id = mapX(1400);
-      const y2Id = mapY(1400);
-      svgHtml += `<line x1="${x1Id.toFixed(1)}" y1="${y1Id.toFixed(1)}" x2="${x2Id.toFixed(1)}" y2="${y2Id.toFixed(1)}" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.85" />`;
-      svgHtml += `<text x="${x2Id - 10}" y="${y2Id + 16}" font-size="8.5" font-family="monospace" fill="#64748b" font-weight="bold" text-anchor="end">IDENTITY: RR(n+1)=RR(n)</text>`;
+      if (badgeEl) { badgeEl.textContent = shapeDesc; badgeEl.style.background = "#15803d"; }
+      if (healthEl) { healthEl.textContent = `${healthNum} / 100 • VERIFIED`; healthEl.style.background = "#eff6ff"; healthEl.style.color = "#1d4ed8"; healthEl.style.borderColor = "#3b82f6"; }
+      if (countEl) countEl.textContent = `N = ${n.toLocaleString()} REAL WATCH EPOCHS`;
+      if (cardEl) { cardEl.style.background = "#f0fdf4"; cardEl.style.borderColor = "#86efac"; cardEl.style.color = "#14532d"; }
+      if (diagTextEl) diagTextEl.textContent = `Computed strictly from ${n} genuine watch 0xDF R-R beat intervals recorded today (Mean ${Math.round(meanRR)} ms / ${bpm} BPM, SDNN ${sdnn.toFixed(1)} ms, SD1/SD2 ${ratio.toFixed(3)}). Zero synthetic points.`;
+
+      if (elMean) elMean.textContent = `${Math.round(meanRR)} ms (${bpm} BPM)`;
+      if (elSDNN) elSDNN.textContent = `${sdnn.toFixed(1)} ms`;
+      if (elRMSSD) elRMSSD.textContent = `${rmssd.toFixed(1)} ms`;
+      if (elSD1) elSD1.textContent = `${sd1.toFixed(1)} ms`;
+      if (elSD2) elSD2.textContent = `${sd2.toFixed(1)} ms`;
+      if (elRatio) elRatio.textContent = `${ratio.toFixed(3)} (Target: 0.30 - 0.50)`;
+
+      let svgHtml = gridHtml;
+      svgHtml += `<text x="${mapX(1400) - 10}" y="${mapY(1400) + 16}" font-size="8.5" font-family="monospace" fill="#64748b" font-weight="bold" text-anchor="end">IDENTITY: RR(n+1)=RR(n)</text>`;
 
       const cx = mapX(meanRR);
       const cy = mapY(meanRR);
       const rx = (sd2 / rangeRR) * plotW * 0.95;
       const ry = (sd1 / rangeRR) * plotH * 0.95;
       svgHtml += `<ellipse cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" rx="${rx.toFixed(1)}" ry="${ry.toFixed(1)}" transform="rotate(-45 ${cx.toFixed(1)} ${cy.toFixed(1)})" fill="#ede9fe" fill-opacity="0.38" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="3 3" />`;
-
       svgHtml += `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="3" fill="#0f172a" />`;
 
-      const sd2Len = (sd2 / rangeRR) * plotW * 0.65;
-      const sd2X = cx + sd2Len * 0.7071;
-      const sd2Y = cy - sd2Len * 0.7071;
-      svgHtml += `<line x1="${cx.toFixed(1)}" y1="${cy.toFixed(1)}" x2="${sd2X.toFixed(1)}" y2="${sd2Y.toFixed(1)}" stroke="#2563eb" stroke-width="2" />`;
-      svgHtml += `<circle cx="${sd2X.toFixed(1)}" cy="${sd2Y.toFixed(1)}" r="2.5" fill="#2563eb" />`;
-      svgHtml += `<text x="${sd2X + 6}" y="${sd2Y - 4}" font-size="8" font-family="monospace" fill="#1d4ed8" font-weight="bold">SD2 (SYMP)</text>`;
-
-      const sd1Len = (sd1 / rangeRR) * plotH * 0.95;
-      const sd1X = cx - sd1Len * 0.7071;
-      const sd1Y = cy - sd1Len * 0.7071;
-      svgHtml += `<line x1="${cx.toFixed(1)}" y1="${cy.toFixed(1)}" x2="${sd1X.toFixed(1)}" y2="${sd1Y.toFixed(1)}" stroke="#15803d" stroke-width="2" />`;
-      svgHtml += `<circle cx="${sd1X.toFixed(1)}" cy="${sd1Y.toFixed(1)}" r="2.5" fill="#15803d" />`;
-      svgHtml += `<text x="${sd1X - 6}" y="${sd1Y - 4}" font-size="8" font-family="monospace" fill="#15803d" font-weight="bold" text-anchor="end">SD1 (VAGAL)</text>`;
-
-      let ptColor = '#4f46e5';
-      if (morphology === 'torpedo') ptColor = '#dc2626';
-      else if (morphology === 'club') ptColor = '#d97706';
-      else if (morphology === 'fork') ptColor = '#7c3aed';
-      else if (morphology === 'complex') ptColor = '#b91c1c';
-
-      points.forEach(p => {
+      pairs.forEach(p => {
         if (p.x >= minRR && p.x <= maxRR && p.y >= minRR && p.y <= maxRR) {
-          const px = mapX(p.x);
-          const py = mapY(p.y);
-          svgHtml += `<circle cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="1.8" fill="${ptColor}" opacity="0.45" />`;
+          svgHtml += `<circle cx="${mapX(p.x).toFixed(1)}" cy="${mapY(p.y).toFixed(1)}" r="2.1" fill="#4f46e5" opacity="0.55" />`;
         }
       });
-
-      svgHtml += `<text x="${padLeft + plotW / 2}" y="${360 - 8}" font-size="10" font-family="monospace" fill="#334155" font-weight="bold" text-anchor="middle">RR_n INTERVAL (CURRENT BEAT) — MS</text>`;
-      svgHtml += `<text x="14" y="${padTop + plotH / 2}" font-size="10" font-family="monospace" fill="#334155" font-weight="bold" text-anchor="middle" transform="rotate(-90 14 ${padTop + plotH / 2})">RR_{n+1} INTERVAL (NEXT BEAT) — MS</text>`;
-
       svg.innerHTML = svgHtml;
     }
 
@@ -16766,49 +16701,14 @@ function switchTab(tabId) {
       let breathData = [];
 
       if (isDaily) {
-        const nowObj = new Date();
-        const curH = nowObj.getHours();
-        const curM = nowObj.getMinutes();
-        const nowHM = `${String(curH).padStart(2, '0')}:${String(curM).padStart(2, '0')}`;
-        const hours = Array.from({ length: 24 }, (_, idx) => `${String(idx).padStart(2, '0')}:00`);
-        if (curM > 0 && !hours.includes(nowHM)) {
-          hours.push(nowHM);
-          hours.sort();
+        const sub = window.lastSubReportData || {};
+        if (Array.isArray(sub.ECG_QTC) && sub.ECG_QTC.length > 0) ecgData = sub.ECG_QTC;
+        if (Array.isArray(sub.MET_5MIN) && sub.MET_5MIN.length > 0) metData = sub.MET_5MIN;
+        if (Array.isArray(sub.BLOOD_COMP) && sub.BLOOD_COMP.length > 0) bloodCompData = sub.BLOOD_COMP;
+        if (Array.isArray(sub.BODY_COMP) && sub.BODY_COMP.length > 0) bodyCompData = sub.BODY_COMP;
+        if (Array.isArray(sub.BREATH_RATE) && sub.BREATH_RATE.length > 0) {
+          breathData = sub.BREATH_RATE;
         }
-        const liveHr = (typeof lastHR !== 'undefined' && lastHR > 0) ? lastHR : 72;
-        const liveHrv = (typeof lastHRV !== 'undefined' && lastHRV > 0) ? lastHRV : 64;
-        const liveSteps = (typeof lastSteps !== 'undefined' && lastSteps > 0) ? lastSteps : 0;
-        const todayTimelinePts = (typeof cached2DayTimeline !== 'undefined' && Array.isArray(cached2DayTimeline))
-          ? cached2DayTimeline.filter(d => d.day === 'TODAY' && !d.isFuture && !d.isChargingGap)
-          : [];
-
-        hours.forEach((h) => {
-          const parts = h.split(':').map(Number);
-          const isFuture = (parts[0] > curH) || (parts[0] === curH && parts[1] > curM);
-          const isLivePoint = (h === nowHM);
-          const hPrefix = `${String(parts[0]).padStart(2, '0')}:`;
-          const matchingSlot = todayTimelinePts.find(p => p.time === h)
-            || todayTimelinePts.filter(p => p.time && p.time.startsWith(hPrefix)).slice(-1)[0];
-
-          const slotHr = isLivePoint ? liveHr : ((matchingSlot && matchingSlot.hr > 0) ? matchingSlot.hr : (parts[0] < 7 ? 58 : 72));
-          const slotHrv = isLivePoint ? liveHrv : ((matchingSlot && matchingSlot.hrv > 0) ? matchingSlot.hrv : 62);
-          const slotSteps = isLivePoint ? liveSteps : ((matchingSlot && matchingSlot.steps > 0) ? matchingSlot.steps : 0);
-
-          const qtcVal = Math.round(406 + Math.max(0, (slotHr - 60) * 0.45));
-          const lfHfVal = parseFloat((1.10 + (slotHr > 80 ? 0.25 : 0.08) - (slotHrv / 200)).toFixed(2));
-          const metCumVal = parseFloat((1.0 + (parts[0] * 1.25) + (slotSteps * 0.0025)).toFixed(1));
-          const viscVal = parseFloat((3.7 + ((parts[0] % 3) * 0.1) - (slotSteps > 100 ? 0.1 : 0)).toFixed(1));
-          const uricVal = parseFloat((5.0 + ((parts[0] % 4) * 0.1)).toFixed(1));
-          const musVal = parseFloat((34.1 + (slotSteps > 150 ? 0.2 : 0.1)).toFixed(1));
-          const fatVal = parseFloat((22.5 - (slotSteps > 150 ? 0.2 : 0.1)).toFixed(1));
-          const brVal = Math.round(13 + (parts[0] >= 7 ? 1 : 0) + (slotHr > 80 ? 1 : 0));
-
-          ecgData.push({ label: h, val: isFuture ? 0 : qtcVal, core: isFuture ? 0 : qtcVal, skin: isFuture ? 0 : lfHfVal });
-          metData.push({ label: h, val: isFuture ? 0 : metCumVal });
-          bloodCompData.push({ label: h, val: isFuture ? 0 : viscVal, core: isFuture ? 0 : viscVal, skin: isFuture ? 0 : uricVal });
-          bodyCompData.push({ label: h, val: isFuture ? 0 : musVal, core: isFuture ? 0 : musVal, skin: isFuture ? 0 : fatVal });
-          breathData.push({ label: h, val: isFuture ? 0 : brVal, core: isFuture ? 0 : brVal, skin: isFuture ? 0 : 0 });
-        });
       } else if (isWeekly) {
         const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
         const qtcW = [415, 412, 414, 412, 410, 408, 411];
@@ -16933,16 +16833,11 @@ function switchTab(tabId) {
 
     
     // =========================================================================
-    // H BAND-STYLE 24-HOUR DAILY SLEEP & NAP HYPNOGRAM RENDERER (00:01 - 23:59)
+    // H BAND-STYLE 24-HOUR DAILY SLEEP & NAP HYPNOGRAM RENDERER (12:01 AM - 11:59 PM)
     // Detailed stages: Deep Sleep (#15803d), Light Sleep (#2563eb), REM (#0891b2), Awake (#e11d48)
     // =========================================================================
     function formatMinToClock(minVal) {
-      const m = Math.max(0, Math.min(1439, Math.round(minVal)));
-      const h24 = Math.floor(m / 60);
-      const mm = m % 60;
-      const ampm = h24 >= 12 ? 'PM' : 'AM';
-      const h12 = (h24 % 12) || 12;
-      return `${h12}:${String(mm).padStart(2, '0')} ${ampm}`;
+      return formatClockMin(minVal);
     }
 
     function renderNocturnalSleepHypnogram(containerId) {
@@ -17050,18 +16945,8 @@ function switchTab(tabId) {
         }
       });
 
-      // X-axis 24h ticks (00:01 -> 23:59)
-      const xTimes = [
-        { m: 1, label: "12:01 AM" },
-        { m: 180, label: "03:00 AM" },
-        { m: 360, label: "06:00 AM" },
-        { m: 540, label: "09:00 AM" },
-        { m: 720, label: "12:00 PM" },
-        { m: 900, label: "03:00 PM" },
-        { m: 1080, label: "06:00 PM" },
-        { m: 1260, label: "09:00 PM" },
-        { m: 1439, label: "11:59 PM" }
-      ];
+      // X-axis 24h ticks (honors watch 12-hour vs 24-hour setting)
+      const xTimes = [1, 180, 360, 540, 720, 900, 1080, 1260, 1439].map(m => ({ m, label: formatClockMin(m) }));
       let xAxisHtml = "";
       xTimes.forEach(t => {
         const x = padLeft + (t.m / totalDayMinutes) * plotW;
@@ -17266,7 +17151,10 @@ function switchTab(tabId) {
               diaMod += Math.min(10, Math.round(steps / 300));
             }
             if (p.g !== null && p.g !== undefined) glucoseData.push({ label: p.time, val: p.g });
-            if (p.temp !== null && p.temp !== undefined) tempData.push({ label: p.time, val: p.temp, core: p.temp, skin: (p.temp > 90 ? p.temp - 5.0 : p.temp) });
+            if (p.temp !== null && p.temp !== undefined) {
+              const skVal = (p.skinTemp !== null && p.skinTemp !== undefined && p.skinTemp > 50) ? p.skinTemp : null;
+              tempData.push({ label: p.time, val: p.temp, core: p.temp, skin: skVal });
+            }
             if (p.hr !== null && p.hr !== undefined) hrData.push({ label: p.time, val: p.hr > 0 ? p.hr : Math.min(135, Math.max(52, hrMod)) });
             if (p.sys !== null && p.sys !== undefined) bpData.push({ label: p.time, val: p.sys > 0 ? p.sys : sysMod, core: p.sys > 0 ? p.sys : sysMod, skin: (p.dia && p.dia > 0) ? p.dia : diaMod });
             if (p.spo2 !== null && p.spo2 !== undefined) spo2Data.push({ label: p.time, val: p.spo2 });
@@ -17292,27 +17180,9 @@ function switchTab(tabId) {
         if (typeof lastHRV !== 'undefined' && lastHRV > 0 && (hrvData.length === 0 || hrvData[hrvData.length - 1].label < nowHM)) {
           hrvData.push({ label: liveLbl, val: lastHRV });
         }
-        // Ensure nocturnal SpO2 continuity across sleep and daytime windows
-        if (spo2Data.length <= 1) {
-          const nocturnalSpO2 = [
-            { label: '00:00', val: 98.2 }, { label: '02:00', val: 97.8 }, { label: '04:00', val: 97.6 },
-            { label: '06:00', val: 98.0 }, { label: '08:00', val: (typeof lastSpO2 !== 'undefined' && lastSpO2 > 0) ? lastSpO2 : 98.0 },
-            { label: '10:00', val: 98.5 }, { label: '12:00', val: 98.2 }, { label: '14:00', val: 98.4 }
-          ];
-          spo2Data = nocturnalSpO2;
-        }
-
-        // Ensure autonomic HRV continuity across circadian rest and active states
-        if (hrvData.length <= 1) {
-          const circadianHRV = [
-            { label: '00:00', val: 68 }, { label: '02:00', val: 72 }, { label: '04:00', val: 74 },
-            { label: '06:00', val: 62 }, { label: '08:00', val: 58 }, { label: '10:00', val: 64 },
-            { label: '12:00', val: 60 }, { label: '14:00', val: 62 }
-          ];
-          hrvData = circadianHRV;
-        }
         if (typeof lastBodyF !== 'undefined' && lastBodyF > 0 && (tempData.length === 0 || tempData[tempData.length - 1].label < nowHM)) {
-          tempData.push({ label: liveLbl, val: lastBodyF, core: lastBodyF, skin: lastBodyF - 5.0 });
+          const skLive = (typeof lastSkinF !== 'undefined' && lastSkinF > 50) ? lastSkinF : null;
+          tempData.push({ label: liveLbl, val: lastBodyF, core: lastBodyF, skin: skLive });
         }
         if (bestDailySteps > 0 && (exerciseData.length === 0 || exerciseData[exerciseData.length - 1].label < nowHM || exerciseData[exerciseData.length - 1].val < bestDailySteps)) {
           exerciseData.push({ label: `${nowHM} (Active)`, val: bestDailySteps });
@@ -17416,6 +17286,64 @@ function switchTab(tabId) {
         }
       }
 
+      // Compute Top 5 Reports KPI Cards directly from real series & live vitals (Zero Hardcoded Placeholders)
+      const validG = glucoseData.map(d => d.val).filter(v => v !== null && v !== undefined && v > 0);
+      if (validG.length > 0) {
+        const avgG = Math.round(validG.reduce((a, b) => a + b, 0) / validG.length);
+        const minG = Math.round(Math.min(...validG));
+        const maxG = Math.round(Math.max(...validG));
+        const ea1cAvg = ((avgG + 46.7) / 28.7).toFixed(1);
+        const inRangeCnt = validG.filter(v => v >= 70 && v <= 180).length;
+        const tirPct = Math.round((inRangeCnt / validG.length) * 100);
+        const rG = document.getElementById('repAvgGlucose');
+        if (rG) rG.innerHTML = `${avgG} <span style="font-size: 1rem;">mg/dL</span>`;
+        const rSubG = document.getElementById('repRangeGlucose');
+        if (rSubG) rSubG.textContent = `Range: ${minG}–${maxG} mg/dL (${validG.length} readings)`;
+        const rA1C = document.getElementById('repAvgA1C');
+        if (rA1C) rA1C.textContent = `${ea1cAvg}%`;
+        const rA1CSt = document.getElementById('repA1CStatus');
+        if (rA1CSt) rA1CSt.textContent = `ADAG Calculated (${avgG} mg/dL avg)`;
+        const rHome = document.getElementById('repHomestasis');
+        if (rHome) rHome.textContent = `${tirPct}%`;
+      } else {
+        const rG = document.getElementById('repAvgGlucose');
+        if (rG) rG.innerHTML = `-- <span style="font-size: 1rem;">mg/dL</span>`;
+        const rSubG = document.getElementById('repRangeGlucose');
+        if (rSubG) rSubG.textContent = `Awaiting Telemetry`;
+        const rA1C = document.getElementById('repAvgA1C');
+        if (rA1C) rA1C.textContent = `--%`;
+        const rA1CSt = document.getElementById('repA1CStatus');
+        if (rA1CSt) rA1CSt.textContent = `Awaiting Telemetry`;
+        const rHome = document.getElementById('repHomestasis');
+        if (rHome) rHome.textContent = `--%`;
+      }
+
+      const validCoreT = tempData.map(d => d.core).filter(v => v !== null && v !== undefined && v > 50);
+      if (validCoreT.length > 0) {
+        const avgCore = validCoreT.reduce((a, b) => a + b, 0) / validCoreT.length;
+        const minCore = Math.min(...validCoreT);
+        const maxCore = Math.max(...validCoreT);
+        const rT = document.getElementById('repAvgTemp');
+        if (rT) rT.innerHTML = `${avgCore.toFixed(1)} <span style="font-size: 1rem;">°F</span>`;
+        const rSubT = document.getElementById('repRangeTemp');
+        if (rSubT) rSubT.textContent = `Range: ${minCore.toFixed(1)}–${maxCore.toFixed(1)}°F (${validCoreT.length} readings)`;
+      } else {
+        const rT = document.getElementById('repAvgTemp');
+        if (rT) rT.innerHTML = `--.- <span style="font-size: 1rem;">°F</span>`;
+        const rSubT = document.getElementById('repRangeTemp');
+        if (rSubT) rSubT.textContent = `Awaiting Telemetry`;
+      }
+
+      const validSkinT = tempData.map(d => d.skin).filter(v => v !== null && v !== undefined && v > 50);
+      if (validSkinT.length > 0) {
+        const avgSkin = validSkinT.reduce((a, b) => a + b, 0) / validSkinT.length;
+        const rS = document.getElementById('repAvgSkin');
+        if (rS) rS.innerHTML = `${avgSkin.toFixed(1)} <span style="font-size: 1rem;">°F</span>`;
+      } else {
+        const rS = document.getElementById('repAvgSkin');
+        if (rS) rS.innerHTML = `--.- <span style="font-size: 1rem;">°F</span>`;
+      }
+
       // Compute estimated A1C array from glucose
       a1cData = glucoseData.map(d => ({
         label: d.label,
@@ -17441,8 +17369,11 @@ function switchTab(tabId) {
         ]
       });
 
+      const allTempVals = [...validCoreT, ...validSkinT];
+      const tempMinY = allTempVals.length > 0 ? Math.max(70, Math.floor(Math.min(...allTempVals) - 2)) : 90;
+      const tempMaxY = allTempVals.length > 0 ? Math.max(100, Math.ceil(Math.max(...allTempVals) + 1)) : 100;
       renderSvgDualCurveChart('repChartTemp', tempData, { 
-        minY: 90, maxY: 100, 
+        minY: tempMinY, maxY: tempMaxY, 
         referenceLines: [{ val: 98.6, label: "98.6° NORMAL", color: "#15803d" }] 
       });
 
@@ -17495,7 +17426,7 @@ function switchTab(tabId) {
       // Populate Raw Telemetry Table
       if (typeof renderRawTelemetryTable === "function") renderRawTelemetryTable();
       if (typeof renderStepGlucoseCorrelator === "function") renderStepGlucoseCorrelator();
-      if (typeof renderLorenzScatterPlot === "function") renderLorenzScatterPlot(currentLorenzMorphology);
+      if (typeof renderLorenzScatterPlot === "function") renderLorenzScatterPlot();
       if (typeof updateWatchMetabolicSubReports === "function") updateWatchMetabolicSubReports();
       if (typeof renderDailyHydrationChart === 'function') renderDailyHydrationChart('curveTimelineFluidWater');
       if (typeof renderSubReportTrendCharts === "function") renderSubReportTrendCharts(currentReportTimeframe);
@@ -19392,6 +19323,30 @@ Patient`;
       return null;
     }
 
+    async function fetchTodayLorenzData() {
+      try {
+        const resp = await fetch(`/api/lorenz/today?_t=${Date.now()}`, { cache: 'no-store' });
+        if (resp.ok) {
+          const data = await resp.json();
+          window.lastRealLorenzData = data;
+          return data;
+        }
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+      return null;
+    }
+
+    async function fetchTodaySubReports() {
+      try {
+        const resp = await fetch(`/api/subreports/today?_t=${Date.now()}`, { cache: 'no-store' });
+        if (resp.ok) {
+          const data = await resp.json();
+          window.lastSubReportData = data;
+          return data;
+        }
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+      return null;
+    }
+
     function getTallSynchronizedDataset(tf) {
       const curG = (typeof lastGlucoseMg !== 'undefined' && lastGlucoseMg > 0) ? lastGlucoseMg : 106;
       
@@ -19605,8 +19560,8 @@ Patient`;
       // Update slider bounds & labels
       const sStart = document.getElementById('tallScrubberStartLbl');
       const sEnd = document.getElementById('tallScrubberEndLbl');
-      if (sStart && data[0]) sStart.textContent = data[0].time;
-      if (sEnd && data[n-1]) sEnd.textContent = data[n-1].time;
+      if (sStart && data[0]) sStart.textContent = formatTimeDisplay(data[0].time);
+      if (sEnd && data[n-1]) sEnd.textContent = formatTimeDisplay(data[n-1].time);
 
       // Lane Coordinates (Y positions)
       const lanes = [
@@ -19985,7 +19940,7 @@ Patient`;
       const hEx = document.getElementById('hudExercise');
 
       if (pt.isChargingGap || pt.g === null) {
-        if (timeBadge) timeBadge.textContent = `TIMESTAMP: ${pt.time} (⚡ WATCH CHARGING ON DOCK • 0 TELEMETRY)`;
+        if (timeBadge) timeBadge.textContent = `TIMESTAMP: ${formatTimeDisplay(pt.time)} (⚡ WATCH CHARGING ON DOCK • 0 TELEMETRY)`;
         if (hG) hG.textContent = `0 mg/dL (Charging)`;
         if (hBp) hBp.textContent = `-- / -- (Off-Wrist)`;
         if (hHr) hHr.textContent = `0 BPM / 0 ms`;
@@ -19993,7 +19948,7 @@ Patient`;
         if (hT) hT.textContent = `--.- °F`;
         if (hEx) hEx.textContent = `0 steps • Watch on Charger (~1.2h)`;
       } else {
-        if (timeBadge) timeBadge.textContent = `TIMESTAMP: ${pt.time} (${pt.meal ? pt.meal.type : (pt.ex ? pt.ex.type : 'Diurnal State')})`;
+        if (timeBadge) timeBadge.textContent = `TIMESTAMP: ${formatTimeDisplay(pt.time)} (${pt.meal ? pt.meal.type : (pt.ex ? pt.ex.type : 'Diurnal State')})`;
         if (hG) hG.textContent = `${pt.g} mg/dL`;
         if (hBp) hBp.textContent = `${pt.sys}/${pt.dia} mmHg`;
         if (hHr) hHr.textContent = `${pt.hr} BPM / ${pt.hrv} ms`;
@@ -22983,6 +22938,14 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
             if (tileT) tileT.innerHTML = `${bodyF}°F <span style="font-size: 0.85rem;">(${skinF}°F skin)</span>`;
             const hudTemp = document.getElementById('hudTemp');
             if (hudTemp) hudTemp.textContent = `${bodyF}°F`;
+            const repT = document.getElementById('repAvgTemp');
+            if (repT && repT.textContent.includes('--')) repT.innerHTML = `${bodyF} <span style="font-size: 1rem;">°F</span>`;
+            const repRT = document.getElementById('repRangeTemp');
+            if (repRT && repRT.textContent === 'Awaiting Telemetry') repRT.textContent = `Latest: ${bodyF}°F`;
+            const repSk = document.getElementById('repAvgSkin');
+            if (repSk && vitals.TEMPERATURE.value2 && vitals.TEMPERATURE.value2 > 50 && repSk.textContent.includes('--')) {
+              repSk.innerHTML = `${vitals.TEMPERATURE.value2.toFixed(1)} <span style="font-size: 1rem;">°F</span>`;
+            }
           }
 
           // 7. Update Pedometer & Steps (Universal Step Propagation)
@@ -23043,6 +23006,12 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
           if (typeof render360HealthView === 'function') render360HealthView();
           const pageRep = document.getElementById('pageReports');
           const isRepActive = pageRep && pageRep.classList.contains('active-page');
+          if (isRepActive && !window.lastRealLorenzData && typeof fetchTodayLorenzData === 'function') {
+            try { await fetchTodayLorenzData(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+          }
+          if (isRepActive && !window.lastSubReportData && typeof fetchTodaySubReports === 'function') {
+            try { await fetchTodaySubReports(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+          }
           if (isRepActive && typeof render3DMultiChannelScene === 'function') render3DMultiChannelScene();
           if (isRepActive && typeof renderReportsView === 'function') renderReportsView();
           if (isRepActive && typeof renderTallSynchronizedChart === 'function') renderTallSynchronizedChart(currentTallChartTimeframe);
