@@ -108,7 +108,7 @@
 - **Visual:** `images/bfm_t01_fullscan_top.png` (`01-FULL SCAN • 6-SENSOR WORKFLOW & AUDIT REPORT`)
 - **Key Takeaway:** Pairing every measurement with instant target context helps families recognize healthy stability immediately.
 
-> Directly below the pipeline sits the Consolidated Biometric Audit Report. Notice the clean cards: 178 glucose inside safe range, 129 over 86 blood pressure yielding a healthy 43 millimeter pulse pressure and 100 Mean Arterial Pressure, 97 percent oxygen, and 80 beats per minute.
+> Directly below the pipeline sits the Consolidated Biometric Audit Report. Notice the exact six cards on screen: 153 milligrams per deciliter optical glucose inside safe range, 92.3 degrees core temperature with 80.1 degrees skin warmth, 127 over 85 blood pressure yielding a 42 millimeter pulse pressure and 99 Mean Arterial Pressure, 98 percent oxygen, 69 beats per minute, and 36 milliseconds HRV.
 
 ## Slide 14: Clinical Multi-Vector Synthesis: Whole-System Interpretation
 
