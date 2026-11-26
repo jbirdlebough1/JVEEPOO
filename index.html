@@ -1775,7 +1775,7 @@
         </div>
         <div class="lcars-time-block">
           <div class="actual-datetime" id="actualDateTime">FRIDAY, NOV 20, 2026 9:55:00 AM PST</div>
-          <div class="lcars-stardate" id="stardateClock">BUILD beta.00.01.0048</div>
+          <div class="lcars-stardate" id="stardateClock">BUILD beta.00.01.0050</div>
         </div>
         
       </div>
@@ -7776,6 +7776,8 @@
             </div>
           </div>
 
+          <div id="watchFaceWritableSections" style="display: none; flex-direction: column; gap: 14px;">
+
           <!-- =====================================================================
                HARDWARE EXPERIMENT: OVERWRITE FACE 3 WITH FACE 2 (CLE-009)
                Hardware Slot Feasibility & Dial Extraction Analysis
@@ -8412,6 +8414,8 @@
             </div>
           </div>
 
+          </div> <!-- End #watchFaceWritableSections -->
+
         </div>
       </div>
 
@@ -9031,7 +9035,7 @@
       const year = now.getFullYear();
       const startOfYear = new Date(year, 0, 1);
       const dayOfYear = (now - startOfYear) / (1000 * 60 * 60 * 24);
-      document.getElementById("stardateClock").textContent = "BUILD beta.00.01.0048";
+      document.getElementById("stardateClock").textContent = "BUILD beta.00.01.0050";
     }
     setInterval(updateClock, 1000);
     updateClock();
@@ -9244,6 +9248,16 @@
           st.textContent = "100% PASS • 15/15 FUNCTIONS";
           st.style.color = "#15803d";
         }
+        if (typeof probeWatchFaceWritableCapability === "function") {
+          probeWatchFaceWritableCapability().then((writable) => {
+            logAnalyzerTerminal(writable
+              ? "[WATCH FACE] WRITABLE — custom watch-face sections displayed."
+              : "[WATCH FACE] NOT COMPATIBLE — custom watch-face sections hidden.");
+          }).catch((e) => {
+            console.warn('[MIL-SPEC HANDLED FAULT]', e);
+            syncWatchFaceWritableUI();
+          });
+        }
       }, 650);
     }
 
@@ -9358,6 +9372,7 @@ function renderWatchTabConnectedDetails() {
         if (diagId) diagId.textContent = "VEE_5010";
         if (badgeId) badgeId.textContent = "VEEPOO 5010 (VEE)";
       }
+      if (typeof syncWatchFaceWritableUI === 'function') syncWatchFaceWritableUI();
     }
 
     // =========================================================================
@@ -9893,6 +9908,7 @@ function switchTab(tabId) {
           try { if (typeof initUnifiedGlucoseRing === 'function') initUnifiedGlucoseRing(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
           try { if (typeof loadStockDialInventory === 'function' && (!stockDialInventory || stockDialInventory.length === 0)) loadStockDialInventory(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
           try { if (typeof veepooCatalog !== 'undefined' && veepooCatalog.length === 0 && typeof loadVeepooDialCatalog === 'function') loadVeepooDialCatalog(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+          try { if (typeof syncWatchFaceWritableUI === 'function') syncWatchFaceWritableUI(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
           try { queryCurrentWatchFace(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
         } else if (tabId === 'help') {
           const btn = document.getElementById('navTabHelp');
@@ -9962,6 +9978,8 @@ function switchTab(tabId) {
     let lastUiBaseInfo = null;
     let _ui0x50Waiters = [];
     let _uiDoogWaiters = [];
+    let watchFaceWritableSupported = false;
+    let watchFaceWritableReason = 'NOT_VERIFIED';
     let allWriteChars = [];
     let rxCharacteristics = [];
     let totalBytesRx = 0;
@@ -10378,9 +10396,19 @@ function switchTab(tabId) {
 
       logLCARS('[*] Transmitting 0xA1 Authentication & Time Handshake...', 'tx');
       sendAuthHandshake();
+      if (!uiCtrlCharacteristic || !uiDataCharacteristic) {
+        if (typeof updateWatchFaceWritableVisibility === 'function') {
+          updateWatchFaceWritableVisibility(false, 'NO_F0030001_SERVICE');
+        }
+      }
       setTimeout(() => {
         querySleepData(0); // Fetch last night's sleep automatically
       }, 800);
+      setTimeout(() => {
+        if (typeof probeWatchFaceWritableCapability === 'function') {
+          probeWatchFaceWritableCapability().catch((e) => console.warn('[MIL-SPEC HANDLED FAULT]', e));
+        }
+      }, 1200);
     }
 
     let isAutoReconnecting = false;
@@ -10423,6 +10451,7 @@ function switchTab(tabId) {
       txCharacteristic = null;
       uiCtrlCharacteristic = null;
       uiDataCharacteristic = null;
+      if (typeof syncWatchFaceWritableUI === 'function') syncWatchFaceWritableUI();
       logLCARS('Watch link severed (screen asleep or out of range). Reconnecting in background...', 'sys');
       updateConnectionStateUI();
       startAutoReconnectLoop();
@@ -10620,8 +10649,15 @@ function switchTab(tabId) {
           if (elAddr) elAddr.textContent = `0x${flashAddr.toString(16).toUpperCase().padStart(8, '0')}`;
           if (elMax) elMax.textContent = `${maxLen.toLocaleString()} Bytes (${Math.round(maxLen/1024)} KB)`;
           if (elCrc) elCrc.textContent = `${currentCrc} (0x${currentCrc.toString(16).toUpperCase()})`;
+          if (typeof updateWatchFaceWritableVisibility === 'function') {
+            const writable = !!(uiCtrlCharacteristic && uiDataCharacteristic && isOk && flashAddr > 0 && maxLen > 0);
+            updateWatchFaceWritableVisibility(writable, writable ? '0x50_FLASH_WRITABLE' : '0x50_FLASH_ADDR_ZERO_OR_UNWRITABLE');
+          }
         } else if (opType === 1) {
           logLCARS(`[${isOk ? '✔' : '!'}] 0x50 ENTER UPDATE MODE ACK: uiKind=0x0${uiKind} status=${bytes[3]} (${isOk ? 'READY' : 'REJECTED'})`, isOk ? 'rx' : 'err');
+          if (!isOk && typeof updateWatchFaceWritableVisibility === 'function') {
+            updateWatchFaceWritableVisibility(false, '0x50_UPDATE_MODE_REJECTED');
+          }
         }
         if (typeof _ui0x50Waiters !== 'undefined' && _ui0x50Waiters.length > 0) {
           const remaining = [];
@@ -23873,6 +23909,102 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
 
   
     // =========================================================================
+    // WATCH FACE WRITABILITY DETECTION & CONDITIONAL UI GATING
+    // =========================================================================
+    function updateWatchFaceWritableVisibility(isWritable, reason = '') {
+      const activeId = (typeof window !== 'undefined' && window._connectedWatchId) ||
+                       (typeof localStorage !== 'undefined' ? localStorage.getItem('bfm_connected_watch_id') : null) ||
+                       'VEE_5010';
+      watchFaceWritableSupported = !!isWritable;
+      window._watchFaceWritable = watchFaceWritableSupported;
+      watchFaceWritableReason = reason || (watchFaceWritableSupported ? 'SUPPORTED' : 'NOT_COMPATIBLE');
+      try {
+        if (typeof localStorage !== 'undefined') {
+          localStorage.setItem(`bfm_watchface_writable_${activeId}`, watchFaceWritableSupported ? '1' : '0');
+        }
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+
+      const sec = document.getElementById('watchFaceWritableSections');
+      if (sec) {
+        sec.style.display = watchFaceWritableSupported ? 'flex' : 'none';
+      }
+      if (watchFaceWritableSupported) {
+        try { if (typeof initUnifiedGlucoseRing === 'function') initUnifiedGlucoseRing(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+        try { if (typeof loadStockDialInventory === 'function' && (!stockDialInventory || stockDialInventory.length === 0)) loadStockDialInventory(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+        try { if (typeof veepooCatalog !== 'undefined' && veepooCatalog.length === 0 && typeof loadVeepooDialCatalog === 'function') loadVeepooDialCatalog(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+      }
+    }
+
+    function syncWatchFaceWritableUI() {
+      const activeId = (typeof window !== 'undefined' && window._connectedWatchId) ||
+                       (typeof localStorage !== 'undefined' ? localStorage.getItem('bfm_connected_watch_id') : null) ||
+                       'VEE_5010';
+      const liveSessionWritable = !!(uiCtrlCharacteristic && uiDataCharacteristic && lastUiBaseInfo && lastUiBaseInfo.isOk && lastUiBaseInfo.flashAddr > 0 && lastUiBaseInfo.maxLen > 0);
+      let isWritable = liveSessionWritable;
+      if (!isWritable && activeId !== 'VEE_5010') {
+        try {
+          isWritable = (typeof localStorage !== 'undefined' && localStorage.getItem(`bfm_watchface_writable_${activeId}`) === '1');
+        } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+      }
+      if (activeId === 'VEE_5010' && !liveSessionWritable) {
+        isWritable = false;
+      }
+      watchFaceWritableSupported = isWritable;
+      window._watchFaceWritable = isWritable;
+      const sec = document.getElementById('watchFaceWritableSections');
+      if (sec) {
+        sec.style.display = isWritable ? 'flex' : 'none';
+      }
+      return isWritable;
+    }
+
+    async function probeWatchFaceWritableCapability() {
+      if (!gattServer || !gattServer.connected) {
+        updateWatchFaceWritableVisibility(false, 'WATCH_NOT_CONNECTED');
+        return false;
+      }
+      if (!uiCtrlCharacteristic || !uiDataCharacteristic) {
+        try {
+          const uiService = await gattServer.getPrimaryService(VEEPOO_UI_SERVICE_UUID);
+          if (uiService) {
+            if (!uiCtrlCharacteristic) {
+              uiCtrlCharacteristic = await uiService.getCharacteristic(VEEPOO_UI_CTRL_UUID);
+              await uiCtrlCharacteristic.startNotifications();
+              uiCtrlCharacteristic.removeEventListener('characteristicvaluechanged', onUiTransferNotify);
+              uiCtrlCharacteristic.addEventListener('characteristicvaluechanged', onUiTransferNotify);
+            }
+            if (!uiDataCharacteristic) {
+              uiDataCharacteristic = await uiService.getCharacteristic(VEEPOO_UI_DATA_UUID);
+            }
+          }
+        } catch (e) {
+          console.warn('[MIL-SPEC HANDLED FAULT]', e);
+        }
+      }
+      if (!uiCtrlCharacteristic || !uiDataCharacteristic) {
+        updateWatchFaceWritableVisibility(false, 'NO_F0030001_SERVICE');
+        return false;
+      }
+      for (const uiKind of [0x01, 0x02]) {
+        try {
+          const waitInfo = waitFor0x50Response(2, uiKind, 2500);
+          const qPkt = new Uint8Array(20);
+          qPkt[0] = 0x50; qPkt[1] = 0x02; qPkt[2] = uiKind;
+          await sendCommandBytes(qPkt);
+          const info = await waitInfo;
+          if (info && info.isOk && info.flashAddr > 0 && info.maxLen > 0) {
+            updateWatchFaceWritableVisibility(true, `0x50_WRITABLE_TYPE_${uiKind}`);
+            return true;
+          }
+        } catch (e) {
+          console.warn('[MIL-SPEC HANDLED FAULT]', e);
+        }
+      }
+      updateWatchFaceWritableVisibility(false, '0x50_UNWRITABLE_OR_ZERO_ADDR');
+      return false;
+    }
+
+    // =========================================================================
     // OFFICIAL VEEPOO CLOUD DIAL MARKET CATALOG (659 THEMES) & REAL DOOG FLASHER
     // =========================================================================
     let veepooCatalog = [];
@@ -24004,6 +24136,7 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
 
       if (!uiCtrlCharacteristic || !uiDataCharacteristic) {
         const msg = 'HARDWARE VERDICT: Watch firmware does NOT expose Veepoo UI Transfer Service (F0030001) — Watch cannot perform BLE watch-face upgrades.';
+        if (typeof updateWatchFaceWritableVisibility === 'function') updateWatchFaceWritableVisibility(false, 'NO_F0030001_SERVICE');
         logLCARS(`[!] ${msg}`, 'err');
         if (elTx) elTx.textContent = 'UNSUPPORTED: NO F0030001 UI SERVICE';
         setUi(100, 'HARDWARE UNSUPPORTED (NO F0030001)', msg, '#ef4444');
@@ -24026,6 +24159,7 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
 
       if (!baseInfo || !baseInfo.isOk || !baseInfo.maxLen) {
         const msg = 'HARDWARE VERDICT: Watch rejected 0x50 flash partition query — Watch face upgrades not supported on this firmware.';
+        if (typeof updateWatchFaceWritableVisibility === 'function') updateWatchFaceWritableVisibility(false, '0x50_INFO_REJECTED');
         logLCARS(`[!] ${msg}`, 'err');
         if (elTx) elTx.textContent = 'REJECTED: 0x50 0x02 QUERY FAILED';
         setUi(100, 'HARDWARE REJECTED (0x50 0x02)', msg, '#ef4444');
@@ -24082,6 +24216,7 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
 
       if (!enterAck || !enterAck.isOk) {
         const msg = 'HARDWARE VERDICT: Watch rejected 0x50 0x01 Enter UI Update Mode — firmware refuses external dial writes.';
+        if (typeof updateWatchFaceWritableVisibility === 'function') updateWatchFaceWritableVisibility(false, 'ENTER_UPDATE_REJECTED');
         logLCARS(`[!] ${msg}`, 'err');
         if (elTx) elTx.textContent = 'REJECTED: 0x50 0x01 UPDATE MODE';
         setUi(100, 'UPDATE MODE REJECTED', msg, '#ef4444');
@@ -24173,6 +24308,7 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
         if (elTx) elTx.textContent = `✔ HARDWARE PASS: DOOG FLASH + CRC 0x${devCrc.toString(16).toUpperCase()} VERIFIED`;
 
         setUi(100, `✔ HARDWARE PASS: "${dialName}" FLASHED (CRC 0x${devCrc.toString(16).toUpperCase()})`, 'Watch accepted binary & verified CRC-16 match — Watch face upgrades SUPPORTED!', '#22c55e');
+        if (typeof updateWatchFaceWritableVisibility === 'function') updateWatchFaceWritableVisibility(true, 'DOOG_CRC_VERIFIED');
         logLCARS(`[✔] HARDWARE PASS: Watch accepted "${dialName}" (${padded.length} B, CRC 0x${devCrc.toString(16).toUpperCase()})!`, 'rx');
         if (typeof soundSuccess === 'function') soundSuccess();
 
