@@ -1775,7 +1775,7 @@
         </div>
         <div class="lcars-time-block">
           <div class="actual-datetime" id="actualDateTime">FRIDAY, NOV 20, 2026 9:55:00 AM PST</div>
-          <div class="lcars-stardate" id="stardateClock">BUILD beta.00.01.0055</div>
+          <div class="lcars-stardate" id="stardateClock">BUILD beta.00.01.0056</div>
         </div>
         
       </div>
@@ -4998,7 +4998,7 @@
             <div class="setup-grid">
               <div class="setup-field">
                 <label class="setup-label">CHRONOMETER TIME DISPLAY FORMAT</label>
-                <select id="cfgTimeFormat" class="setup-select">
+                <select id="cfgTimeFormat" class="setup-select" onchange="onWatchTimeFormatChanged(this.value)">
                   <option value="12">12-HOUR (AM/PM STANDARD)</option>
                   <option value="24">24-HOUR MILITARY</option>
                 </select>
@@ -9032,7 +9032,7 @@
       const year = now.getFullYear();
       const startOfYear = new Date(year, 0, 1);
       const dayOfYear = (now - startOfYear) / (1000 * 60 * 60 * 24);
-      document.getElementById("stardateClock").textContent = "BUILD beta.00.01.0055";
+      document.getElementById("stardateClock").textContent = "BUILD beta.00.01.0056";
     }
     setInterval(updateClock, 1000);
     updateClock();
@@ -9318,19 +9318,81 @@
     // =========================================================================
     function isWatch12HourFormat() {
       try {
-        const el = document.getElementById('cfgTimeFormat');
-        if (el && el.value !== undefined && el.value !== '') {
-          return parseInt(el.value, 10) !== 24;
-        }
         const saved = localStorage.getItem('veepoo_user_config');
         if (saved) {
           const cfg = JSON.parse(saved);
           if (cfg && cfg.timeFormat !== undefined) {
-            return parseInt(cfg.timeFormat, 10) !== 24;
+            const parsedFmt = parseInt(cfg.timeFormat, 10);
+            // Heal prior 0xB8 read-broadcast overwrite when user never explicitly selected 24-hour mode
+            if (parsedFmt === 24 && cfg.timeFormatUserSet !== true) {
+              cfg.timeFormat = 12;
+              try { localStorage.setItem('veepoo_user_config', JSON.stringify(cfg)); } catch (e2) { console.warn('[MIL-SPEC HANDLED FAULT]', e2); }
+              const elHeal = document.getElementById('cfgTimeFormat');
+              if (elHeal) elHeal.value = "12";
+              return true;
+            }
+            return parsedFmt !== 24;
           }
+        }
+        const el = document.getElementById('cfgTimeFormat');
+        if (el && el.value !== undefined && el.value !== '') {
+          return parseInt(el.value, 10) !== 24;
         }
       } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       return true; // Default Model 5010 setting: 12-Hour AM/PM
+    }
+
+    function buildWatchPage0TimePacket(is12Hour) {
+      let cfg = {};
+      try {
+        const raw = localStorage.getItem('veepoo_user_config');
+        if (raw) cfg = JSON.parse(raw);
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+      const c0 = new Uint8Array(20);
+      c0[0] = 0xB8;
+      c0[1] = 0x01; // Set
+      c0[2] = (cfg.metricSystem === 'metric') ? 1 : 2;
+      c0[3] = is12Hour ? 2 : 1; // 2 = 12-Hour AM/PM, 1 = 24-Hour
+      c0[4] = (cfg.heartAuto === 0) ? 2 : 1; // Preserve Auto HR Detect ON
+      c0[5] = (cfg.bpAuto === 0) ? 2 : 1;    // Preserve Auto BP Detect ON
+      c0[6] = (cfg.sportOverRemain === 1) ? 1 : 2;
+      c0[7] = (cfg.voiceBpHeart === 1) ? 1 : 2;
+      c0[8] = (cfg.findPhoneUi === 1) ? 1 : 2;
+      c0[9] = (cfg.stopwatchUi === 1) ? 1 : 2;
+      c0[10] = (cfg.spo2LowRemind === 0) ? 2 : 1;
+      c0[11] = (cfg.skinMelanin !== undefined) ? cfg.skinMelanin : 1;
+      c0[12] = (cfg.autoHrv === 0) ? 2 : 1;
+      c0[13] = (cfg.notifCall === 1) ? 1 : 2;
+      c0[14] = (cfg.disconnectRemind === 1) ? 1 : 2;
+      c0[15] = (cfg.sosGesture === 1) ? 1 : 2;
+      c0[16] = 1;
+      c0[18] = (cfg.musicControl === 1) ? 1 : 2;
+      c0[19] = 0; // Page 0
+      return c0;
+    }
+
+    function refreshAllClockCharts() {
+      try { if (typeof renderReportsView === 'function') renderReportsView(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+      try { if (typeof renderTallSynchronizedChart === 'function') renderTallSynchronizedChart(currentTallChartTimeframe); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+      try { if (typeof render3DMultiChannelScene === 'function') render3DMultiChannelScene(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+      try { if (typeof renderDailyHydrationChart === 'function') renderDailyHydrationChart(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+      try { if (typeof renderNocturnalSleepHypnogram === 'function') renderNocturnalSleepHypnogram('curveTimelineSleep'); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+      try { if (typeof renderHBand48Chart === 'function') renderHBand48Chart(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+    }
+
+    function onWatchTimeFormatChanged(val) {
+      const fmt = parseInt(val, 10) === 24 ? 24 : 12;
+      try {
+        const raw = localStorage.getItem('veepoo_user_config');
+        const cfg = raw ? JSON.parse(raw) : {};
+        cfg.timeFormat = fmt;
+        cfg.timeFormatUserSet = true;
+        localStorage.setItem('veepoo_user_config', JSON.stringify(cfg));
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+      if (txCharacteristic && gattServer && gattServer.connected) {
+        try { sendCommandBytes(buildWatchPage0TimePacket(fmt !== 24)); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+      }
+      refreshAllClockCharts();
     }
 
     function formatAxisHourLabel(hr) {
@@ -11134,18 +11196,24 @@ function switchTab(tabId) {
         }
       }
 
-      // 0xB8 Page 0: Custom Setting Time Format & Metric Units Sync (vp_u.java)
+      // 0xB8 Page 0: Custom Setting Time Format Status (vp_u.java) — NEVER allow watch READ broadcast to clobber user 12h setting
       if (header === 0xB8 && bytes.length >= 20 && bytes[19] === 0 && (bytes[1] === 0x01 || bytes[1] === 0x02)) {
         const tfByte = bytes[3]; // 1 = 24-Hour, 2 = 12-Hour
         if (tfByte === 1 || tfByte === 2) {
-          const fmt = tfByte === 1 ? 24 : 12;
-          const elTf = document.getElementById('cfgTimeFormat');
-          if (elTf) elTf.value = String(fmt);
+          const watchFmt = tfByte === 1 ? 24 : 12;
           try {
             const raw = localStorage.getItem('veepoo_user_config');
             const cfg = raw ? JSON.parse(raw) : {};
-            cfg.timeFormat = fmt;
-            localStorage.setItem('veepoo_user_config', JSON.stringify(cfg));
+            const desiredFmt = (cfg.timeFormatUserSet === true && cfg.timeFormat !== undefined) ? parseInt(cfg.timeFormat, 10) : 12;
+            const elTf = document.getElementById('cfgTimeFormat');
+            if (elTf) elTf.value = String(desiredFmt);
+            if (bytes[1] === 0x02 && watchFmt !== desiredFmt && txCharacteristic && gattServer && gattServer.connected && !window._b8ResyncPending) {
+              window._b8ResyncPending = true;
+              setTimeout(() => {
+                window._b8ResyncPending = false;
+                try { sendCommandBytes(buildWatchPage0TimePacket(desiredFmt !== 24)); } catch (e2) { console.warn('[MIL-SPEC HANDLED FAULT]', e2); }
+              }, 300);
+            }
           } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
         }
       }
@@ -11291,11 +11359,9 @@ function switchTab(tabId) {
     }
 
     function sendAuthHandshake() {
-      // Proactively ensure watch is in 12-Hour System (0xB8 Page 0, byte[3] = 2)
+      // Proactively enforce user-configured 12/24-hour system using full vp_u.java Page 0 SET packet
       try {
-        const c0 = new Uint8Array(20);
-        c0[0] = 0xB8; c0[1] = 0x01; c0[2] = 0x02; c0[3] = 0x02;
-        sendCommandBytes(c0);
+        sendCommandBytes(buildWatchPage0TimePacket(isWatch12HourFormat()));
       } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
 
       const buf = new Uint8Array(20);
@@ -12733,6 +12799,7 @@ function switchTab(tabId) {
         msgScreenLight: getInt('cfgMsgScreenLight', 1),
 
         timeFormat: getInt('cfgTimeFormat', 12),
+        timeFormatUserSet: true,
         metricSystem: getVal('cfgMetricSystem', 'imperial'),
         disconnectRemind: getInt('cfgDisconnectRemind', 1),
         findPhoneUi: getInt('cfgFindPhoneUi', 1),
@@ -25276,22 +25343,21 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
       updateChronoSim();
     }
 
-    // Explicit 12-Hour System command to Watch via Opcode 0xB8 Page 0 (byte[3]=2) and 0xA1
+    // Explicit 12-Hour System command to Watch via full vp_u.java 0xB8 Page 0 packet and 0xA1
     async function setWatch12HourFormat() {
       soundButtonPress();
       logLCARS("[*] Transmitting Opcode 0xB8 Page 0 to configure Watch to 12-Hour AM/PM format...", "tx");
-      
-      // 0xB8 Page 0: byte 0=0xB8, byte 1=1 (Set), byte 2=2 (Imperial), byte 3=2 (12-Hour format)
-      const c0 = new Uint8Array(20);
-      c0[0] = 0xB8;
-      c0[1] = 0x01; // Set
-      c0[2] = 0x02; // Imperial
-      c0[3] = 0x02; // 12-Hour System (2 = 12hr, 1 = 24hr)
-      await sendCommandBytes(c0);
+
+      onWatchTimeFormatChanged("12");
+      const elTf = document.getElementById('cfgTimeFormat');
+      if (elTf) elTf.value = "12";
+
+      await sendCommandBytes(buildWatchPage0TimePacket(true));
 
       // Follow up with RTC synchronization
       setTimeout(() => {
         sendAuthHandshake();
+        refreshAllClockCharts();
         logLCARS("[+] Watch hardware successfully configured to 12-Hour AM/PM system!", "rx");
       }, 350);
     }
