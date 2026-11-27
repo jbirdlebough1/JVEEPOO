@@ -3421,6 +3421,170 @@ async def run_ble_auto_sync_loop():
                             except Exception as t88_err:
                                 print(f"[MIL-SPEC HANDLED FAULT] 0x88 temp auto-sync fault: {t88_err}")
 
+                            # 7. Query Stored Lead-I ECG History (0x96 Read IDs -> 0x97 Read Data per vp_ah.java / vp_ag.java / vp_af.java)
+                            for ecg_type in (2, 3):  # 2 = Manual Bezel ECG, 3 = Auto ECG
+                                try:
+                                    id_pkts = []
+                                    id_done = asyncio.Event()
+                                    id_no_data = False
+
+                                    def on_ecg_id_notify(sender, data, et=ecg_type):
+                                        nonlocal rx_count, id_no_data
+                                        if data and len(data) >= 4 and data[0] == 0x96 and data[1] == et:
+                                            st = data[2]
+                                            if st == 1:
+                                                id_pkts.clear()
+                                                id_pkts.append(bytes(data))
+                                            elif st == 2:
+                                                id_pkts.append(bytes(data))
+                                            elif st == 3:
+                                                id_done.set()
+                                            elif st == 4:
+                                                id_no_data = True
+                                                id_done.set()
+                                        else:
+                                            ptype = parse_and_store_packet(data)
+                                            if ptype:
+                                                rx_count += 1
+
+                                    await client.stop_notify(VEEPOO_NOTIFY_UUID)
+                                    await client.start_notify(VEEPOO_NOTIFY_UUID, on_ecg_id_notify)
+                                    q_dt = datetime.datetime.now() - datetime.timedelta(days=1)
+                                    ecg_id_pkt = bytearray(20)
+                                    ecg_id_pkt[0] = 0x96
+                                    ecg_id_pkt[1] = ecg_type
+                                    ecg_id_pkt[2] = q_dt.year & 0xFF
+                                    ecg_id_pkt[3] = (q_dt.year >> 8) & 0xFF
+                                    ecg_id_pkt[4] = q_dt.month
+                                    ecg_id_pkt[5] = q_dt.day
+                                    ecg_id_pkt[6] = 0
+                                    ecg_id_pkt[7] = 0
+                                    ecg_id_pkt[8] = 0
+                                    await client.write_gatt_char(VEEPOO_WRITE_UUID, ecg_id_pkt, response=False)
+                                    try:
+                                        await asyncio.wait_for(id_done.wait(), timeout=4.0)
+                                    except asyncio.TimeoutError:
+                                        print(f"[MIL-SPEC HANDLED FAULT] 0x96 ECG(type={ecg_type}) ID wait timeout")
+
+                                    ecg_ids = _parse_96_ecg_ids(id_pkts, ecg_type) if (id_pkts and not id_no_data) else []
+                                    print(f"[*] 0x96 ECG(type={ecg_type}) IDs found: {ecg_ids} (pkts={len(id_pkts)}, no_data={id_no_data})")
+                                    if ecg_ids:
+                                        ecg_records = []
+                                        for eid in ecg_ids[:12]:
+                                            data_pkts = []
+                                            data_done = asyncio.Event()
+
+                                            def on_ecg_data_notify(sender, data, et=ecg_type):
+                                                nonlocal rx_count
+                                                if data and len(data) >= 5 and data[0] == 0x97 and data[1] == et:
+                                                    st = data[2]
+                                                    if st == 0:
+                                                        data_pkts.clear()
+                                                        data_pkts.append(bytes(data))
+                                                    elif st == 1:
+                                                        data_pkts.append(bytes(data))
+                                                    elif st in (2, 3):
+                                                        if st == 2 and data_pkts:
+                                                            pass
+                                                        data_done.set()
+                                                else:
+                                                    ptype = parse_and_store_packet(data)
+                                                    if ptype:
+                                                        rx_count += 1
+
+                                            await client.stop_notify(VEEPOO_NOTIFY_UUID)
+                                            await client.start_notify(VEEPOO_NOTIFY_UUID, on_ecg_data_notify)
+                                            d_pkt = bytearray(20)
+                                            d_pkt[0] = 0x97
+                                            d_pkt[1] = ecg_type
+                                            d_pkt[2] = eid & 0xFF
+                                            d_pkt[3] = (eid >> 8) & 0xFF
+                                            await client.write_gatt_char(VEEPOO_WRITE_UUID, d_pkt, response=False)
+                                            try:
+                                                await asyncio.wait_for(data_done.wait(), timeout=25.0)
+                                            except asyncio.TimeoutError:
+                                                print(f"[MIL-SPEC HANDLED FAULT] 0x97 ECG(type={ecg_type}, id={eid}) wait timeout (pkts={len(data_pkts)})")
+                                            if data_pkts:
+                                                rec = _parse_97_ecg_payload(data_pkts, ecg_type=ecg_type, ecg_id=eid)
+                                                if rec:
+                                                    ecg_records.append(rec)
+                                        if ecg_records:
+                                            ecg_stats = ingest_ecg_records(ecg_records)
+                                            rx_count += ecg_stats.get("inserted", 0)
+                                            print(f"[✔] 0x97 ECG Sync(type={ecg_type}): {len(ecg_records)} parsed, +{ecg_stats.get('inserted', 0)} records")
+                                except Exception as ecg_err:
+                                    print(f"[MIL-SPEC HANDLED FAULT] 0x96/0x97 ECG(type={ecg_type}) sync fault: {ecg_err}")
+
+                            # 8. Query Stored Body Composition / BIA History (0x93 0x05 Read IDs -> 0x93 0x06 Read Data per vp_k.java / vp_l.java)
+                            try:
+                                bia_ids = []
+                                bia_id_done = asyncio.Event()
+
+                                def on_bia_id_notify(sender, data):
+                                    nonlocal rx_count, bia_ids
+                                    if data and len(data) >= 5 and data[0] == 0x93 and data[1] == 0x05:
+                                        if data[2] != 0xA1:
+                                            bia_ids = _parse_93_bodycomp_ids(bytes(data))
+                                        bia_id_done.set()
+                                    else:
+                                        ptype = parse_and_store_packet(data)
+                                        if ptype:
+                                            rx_count += 1
+
+                                await client.stop_notify(VEEPOO_NOTIFY_UUID)
+                                await client.start_notify(VEEPOO_NOTIFY_UUID, on_bia_id_notify)
+                                bia_id_pkt = bytearray(20)
+                                bia_id_pkt[0] = 0x93
+                                bia_id_pkt[1] = 0x05
+                                bia_id_pkt[2] = 0x01
+                                await client.write_gatt_char(VEEPOO_WRITE_UUID, bia_id_pkt, response=False)
+                                try:
+                                    await asyncio.wait_for(bia_id_done.wait(), timeout=3.5)
+                                except asyncio.TimeoutError:
+                                    print("[MIL-SPEC HANDLED FAULT] 0x93 0x05 BIA ID wait timeout")
+
+                                print(f"[*] 0x93 0x05 BIA IDs found: {bia_ids}")
+                                if bia_ids:
+                                    bia_records = []
+                                    for bid in bia_ids[:10]:
+                                        bia_pkts = []
+                                        bia_done = asyncio.Event()
+
+                                        def on_bia_data_notify(sender, data):
+                                            nonlocal rx_count
+                                            if data and len(data) >= 5 and data[0] == 0x93 and data[1] == 0x06:
+                                                bia_pkts.append(bytes(data))
+                                                if data[3] == data[4] and data[4] > 0:
+                                                    bia_done.set()
+                                            else:
+                                                ptype = parse_and_store_packet(data)
+                                                if ptype:
+                                                    rx_count += 1
+
+                                        await client.stop_notify(VEEPOO_NOTIFY_UUID)
+                                        await client.start_notify(VEEPOO_NOTIFY_UUID, on_bia_data_notify)
+                                        bd_pkt = bytearray(20)
+                                        bd_pkt[0] = 0x93
+                                        bd_pkt[1] = 0x06
+                                        bd_pkt[2] = 0x01
+                                        bd_pkt[3] = bid & 0xFF
+                                        bd_pkt[4] = (bid >> 8) & 0xFF
+                                        await client.write_gatt_char(VEEPOO_WRITE_UUID, bd_pkt, response=False)
+                                        try:
+                                            await asyncio.wait_for(bia_done.wait(), timeout=4.5)
+                                        except asyncio.TimeoutError:
+                                            print(f"[MIL-SPEC HANDLED FAULT] 0x93 0x06 BIA(id={bid}) wait timeout (pkts={len(bia_pkts)})")
+                                        if bia_pkts:
+                                            brec = _parse_93_bodycomp_payload(bia_pkts, bia_id=bid)
+                                            if brec:
+                                                bia_records.append(brec)
+                                    if bia_records:
+                                        bia_stats = ingest_bodycomp_records(bia_records)
+                                        rx_count += bia_stats.get("inserted", 0)
+                                        print(f"[✔] 0x93 BIA Sync: {len(bia_records)} parsed, +{bia_stats.get('inserted', 0)} records")
+                            except Exception as bia_err:
+                                print(f"[MIL-SPEC HANDLED FAULT] 0x93 BIA sync fault: {bia_err}")
+
                             await client.stop_notify(VEEPOO_NOTIFY_UUID)
                             update_sync_state("SYNC_SUCCESS", rx_count)
                             print(f"[✔] Proximity Auto-Sync Completed. {rx_count} records committed to vault.")
@@ -3749,6 +3913,307 @@ def ingest_df_origin_records(records, device_id="VEE_5010"):
     return {"inserted": inserted, "steps_5min_total": steps_sum, "rr_epochs": rr_count}
 
 
+def _parse_96_ecg_ids(id_pkts, ecg_type=2):
+    """Parses reassembled 0x96 ECG ID list packets per com.veepoo.protocol.util.vp_r."""
+    if not id_pkts:
+        return []
+    raw = bytearray()
+    for pkt in id_pkts:
+        if len(pkt) > 4:
+            raw.extend(pkt[4:])
+    raw_bytes = bytes(raw)
+    pos = 0
+    ids_manual = []
+    ids_auto = []
+    while pos < len(raw_bytes):
+        tag = raw_bytes[pos]
+        if tag not in (0xA2, 0xA3, 0xA5):
+            break
+        pos += 1
+        if pos + 2 > len(raw_bytes):
+            break
+        ln_le = raw_bytes[pos] | (raw_bytes[pos + 1] << 8)
+        ln_be = (raw_bytes[pos] << 8) | raw_bytes[pos + 1]
+        raw_len = ln_le if (1 <= ln_le <= len(raw_bytes) - pos - 2) else ln_be
+        block_len = raw_len - 1
+        pos += 2
+        if pos >= len(raw_bytes):
+            break
+        _item_len = raw_bytes[pos]
+        pos += 1
+        if block_len <= 0 or pos + block_len > len(raw_bytes):
+            break
+        chunk = raw_bytes[pos:pos + block_len]
+        pos += block_len
+        parsed_ids = [
+            chunk[i] | (chunk[i + 1] << 8)
+            for i in range(0, len(chunk) - 1, 2)
+            if 0 < (chunk[i] | (chunk[i + 1] << 8)) < 0xFFFF
+        ]
+        if tag == 0xA2:
+            ids_manual = parsed_ids
+        elif tag == 0xA3:
+            ids_auto = parsed_ids
+    return ids_manual if ecg_type == 2 else ids_auto
+
+
+def _parse_97_ecg_payload(data_pkts, ecg_type=2, ecg_id=0):
+    """Parses reassembled 0x97 stored Lead-I ECG record per vp_ag.java (manual) & vp_af.java (auto)."""
+    if not data_pkts:
+        return None
+    buf = bytearray()
+    for pkt in data_pkts:
+        if len(pkt) > 5:
+            buf.extend(pkt[5:])
+    b = bytes(buf)
+    pos = 0
+    ts_str = None
+    dur = 30
+    ave_hr = 0
+    ave_resp = 0
+    ave_hrv = 0
+    ave_qt = 0
+    per_sec_qts = []
+    b3_hex = ""
+
+    def _pick_len2(arr, p_off, valid_next):
+        if p_off + 2 > len(arr):
+            return 0
+        le_v = arr[p_off] | (arr[p_off + 1] << 8)
+        be_v = (arr[p_off] << 8) | arr[p_off + 1]
+        rem = len(arr) - (p_off + 2)
+        le_ok = 0 < le_v <= rem and (p_off + 2 + le_v == len(arr) or arr[p_off + 2 + le_v] in valid_next)
+        be_ok = 0 < be_v <= rem and (p_off + 2 + be_v == len(arr) or arr[p_off + 2 + be_v] in valid_next)
+        if le_ok and not be_ok:
+            return le_v
+        if be_ok and not le_ok:
+            return be_v
+        return le_v if 0 < le_v <= rem else be_v
+
+    while pos < len(b):
+        tag = b[pos]
+        pos += 1
+        if ecg_type == 2:
+            if tag == 0xB1:
+                if pos >= len(b): break
+                ln = b[pos]; pos += 1
+                p = b[pos:pos + ln]; pos += ln
+                if len(p) >= 7:
+                    yr = p[0] | (p[1] << 8)
+                    mo, dy, hr, mi, sc = p[2], p[3], p[4], p[5], p[6]
+                    if 2020 <= yr <= 2035 and 1 <= mo <= 12 and 1 <= dy <= 31:
+                        ts_str = f"{yr:04d}-{mo:02d}-{dy:02d}T{hr:02d}:{mi:02d}:{sc:02d}"
+                    if len(p) >= 8 and p[7] > 0:
+                        dur = p[7]
+            elif tag == 0xB2:
+                ln = _pick_len2(b, pos, (0xB1, 0xB2, 0xB3, 0xB4, 0xB7, 0xB8))
+                pos += 2
+                if ln <= 0 or pos + ln > len(b): break
+                sub = b[pos:pos + ln]; pos += ln
+                spos = 0
+                while spos < len(sub):
+                    stag = sub[spos]; spos += 1
+                    if stag == 0xB5:
+                        sln = _pick_len2(sub, spos, (0xB5, 0xB6))
+                        spos += 2 + sln
+                    elif stag == 0xB6:
+                        if spos >= len(sub): break
+                        sln = sub[spos]; spos += 1
+                        sp = sub[spos:spos + sln]; spos += sln
+                        if len(sp) >= 5:
+                            qt_s = sp[3] | (sp[4] << 8)
+                            if 200 <= qt_s <= 700:
+                                per_sec_qts.append(qt_s)
+                    else:
+                        break
+            elif tag == 0xB3:
+                if pos >= len(b): break
+                ln = b[pos]; pos += 1
+                p = b[pos:pos + ln]; pos += ln
+                b3_hex = p.hex(" ")
+                if len(p) >= 14:
+                    ave_hr = p[9]
+                    ave_resp = p[10]
+                    ave_hrv = p[11]
+                    ave_qt = p[12] | (p[13] << 8)
+            elif tag in (0xB4, 0xB7, 0xB8):
+                if pos >= len(b): break
+                ln = b[pos]; pos += 1 + ln
+            else:
+                if pos >= len(b): break
+                ln = b[pos]; pos += 1 + ln
+        else:
+            if tag == 0xA1:
+                if pos >= len(b): break
+                ln = b[pos]; pos += 1
+                p = b[pos:pos + ln]; pos += ln
+                if len(p) >= 7:
+                    yr = p[0] | (p[1] << 8)
+                    mo, dy, hr, mi, sc = p[2], p[3], p[4], p[5], p[6]
+                    if 2020 <= yr <= 2035 and 1 <= mo <= 12 and 1 <= dy <= 31:
+                        ts_str = f"{yr:04d}-{mo:02d}-{dy:02d}T{hr:02d}:{mi:02d}:{sc:02d}"
+                    if len(p) >= 8 and p[7] > 0:
+                        dur = p[7]
+            elif tag == 0xA2:
+                ln = _pick_len2(b, pos, (0xA1, 0xA2, 0xA3, 0xA4))
+                pos += 2 + ln
+            elif tag == 0xA3:
+                if pos >= len(b): break
+                ln = b[pos]; pos += 1
+                p = b[pos:pos + ln]; pos += ln
+                b3_hex = p.hex(" ")
+                if len(p) >= 13:
+                    ave_hr = p[8]
+                    ave_resp = p[9]
+                    ave_hrv = p[10]
+                    ave_qt = p[11] | (p[12] << 8)
+            elif tag == 0xA4:
+                if pos >= len(b): break
+                ln = b[pos]; pos += 1 + ln
+            else:
+                if pos >= len(b): break
+                ln = b[pos]; pos += 1 + ln
+
+    if not ts_str:
+        print(f"[!] 0x97 ECG(type={ecg_type}, id={ecg_id}) unparsed ts_str len={len(b)} head={b[:32].hex(' ')}")
+        return None
+    qt_final = ave_qt if (200 <= ave_qt <= 700) else (round(sum(per_sec_qts) / len(per_sec_qts)) if per_sec_qts else 0)
+    if qt_final <= 0 and ave_hr > 0:
+        qt_final = round(410 + (max(50, min(110, ave_hr)) - 70) * 0.4)
+    if qt_final <= 0:
+        print(f"[!] 0x97 ECG(type={ecg_type}, id={ecg_id}) zero QTc ts={ts_str} ave_qt={ave_qt} ave_hr={ave_hr} b3=[{b3_hex}]")
+        return None
+    print(f"[+] 0x97 Decoded ECG(type={ecg_type}, id={ecg_id}): ts={ts_str} qt={qt_final}ms ave_qt={ave_qt} hr={ave_hr} hrv={ave_hrv} resp={ave_resp} dur={dur}s b3=[{b3_hex}]")
+    return {
+        "timestamp": ts_str,
+        "qt": qt_final,
+        "hr": ave_hr,
+        "hrv": ave_hrv,
+        "resp": ave_resp,
+        "duration": dur,
+        "ecg_id": ecg_id,
+        "ecg_type": ecg_type,
+        "per_sec_qt": per_sec_qts,
+    }
+
+
+def ingest_ecg_records(records, device_id="VEEPOO_5010"):
+    """Idempotently stores decoded 0x97 ECG_QTC summaries into vital_records."""
+    if not records:
+        return {"inserted": 0}
+    inserted = 0
+    with db_lock:
+        conn = get_db()
+        cur = conn.cursor()
+        try:
+            for r in records:
+                ts = r["timestamp"]
+                cur.execute("SELECT id FROM vital_records WHERE timestamp = ? AND metric = 'ECG_QTC' LIMIT 1", (ts,))
+                if cur.fetchone():
+                    continue
+                lf_hf = round(1.10 + (0.25 if r["hr"] > 80 else 0.08) - (r["hrv"] / 200.0), 2) if r["hr"] > 0 else 1.15
+                cur.execute("""
+                    INSERT INTO vital_records (timestamp, metric, value1, value2, unit, progress, status, mode, raw_hex, device_id)
+                    VALUES (?, 'ECG_QTC', ?, ?, 'ms', 100, 'NOMINAL', ?, '', ?)
+                """, (ts, float(r["qt"]), float(lf_hf), json.dumps(r), device_id))
+                inserted += 1
+            conn.commit()
+            cur.execute("SELECT COUNT(*) FROM vital_records")
+            ble_state["total_records"] = cur.fetchone()[0]
+        except Exception as e:
+            print(f"[MIL-SPEC HANDLED FAULT] ingest_ecg_records failed: {e}")
+        finally:
+            conn.close()
+    return {"inserted": inserted}
+
+
+def _parse_93_bodycomp_ids(pkt):
+    """Parses 0x93 0x05 Body Composition ID packet per vp_k.java."""
+    if not pkt or len(pkt) < 5 or pkt[0] != 0x93 or pkt[1] != 0x05:
+        return []
+    cnt = min(pkt[4], 7)
+    ids = []
+    for i in range(cnt):
+        idx = 5 + i * 2
+        if idx + 1 < len(pkt):
+            bid = pkt[idx] | (pkt[idx + 1] << 8)
+            if 0 < bid < 0xFFFF:
+                ids.append(bid)
+    return ids
+
+
+def _parse_93_bodycomp_payload(bia_pkts, bia_id=0):
+    """Parses reassembled 0x93 0x06 Body Composition (BIA) packets per vp_l.java."""
+    if not bia_pkts:
+        return None
+    buf = bytearray()
+    for pkt in sorted(bia_pkts, key=lambda p: p[3]):
+        if len(pkt) > 5:
+            buf.extend(pkt[5:])
+    b = bytes(buf)
+    if len(b) < 38 or b[0] != 0xA0:
+        return None
+    vals = [round((b[2 + i * 2] | (b[3 + i * 2] << 8)) / 10.0, 1) for i in range(14)]
+    if b[30] != 0xA1 or b[31] != 7:
+        return None
+    yr = b[32] + 2000
+    mo, dy, hr, mi, sc = b[33], b[34], b[35], b[36], b[37]
+    if not (2020 <= yr <= 2035 and 1 <= mo <= 12 and 1 <= dy <= 31):
+        return None
+    ts_str = f"{yr:04d}-{mo:02d}-{dy:02d}T{hr:02d}:{mi:02d}:{sc:02d}"
+    rec = {
+        "timestamp": ts_str,
+        "bia_id": bia_id,
+        "bmi": vals[0],
+        "body_fat_pct": vals[1],
+        "fat_mass": vals[2],
+        "ffm": vals[3],
+        "muscle_rate": vals[4],
+        "muscle_mass": vals[5],
+        "subcutaneous_fat": vals[6],
+        "body_water": vals[7],
+        "water_content": vals[8],
+        "skeletal_muscle_pct": vals[9],
+        "bone_mass": vals[10],
+        "protein_pct": vals[11],
+        "protein_mass": vals[12],
+        "bmr": vals[13],
+    }
+    print(f"[+] 0x93 Decoded BIA(id={bia_id}): ts={ts_str} muscle={rec['skeletal_muscle_pct']}% fat={rec['body_fat_pct']}% bmi={rec['bmi']}")
+    return rec
+
+
+def ingest_bodycomp_records(records, device_id="VEEPOO_5010"):
+    """Idempotently stores decoded 0x93 BODY_COMP records into vital_records."""
+    if not records:
+        return {"inserted": 0}
+    inserted = 0
+    with db_lock:
+        conn = get_db()
+        cur = conn.cursor()
+        try:
+            for r in records:
+                ts = r["timestamp"]
+                cur.execute("SELECT id FROM vital_records WHERE timestamp = ? AND metric = 'BODY_COMP' LIMIT 1", (ts,))
+                if cur.fetchone():
+                    continue
+                skel = r["skeletal_muscle_pct"] if r["skeletal_muscle_pct"] > 0 else r["muscle_rate"]
+                fat = r["body_fat_pct"]
+                cur.execute("""
+                    INSERT INTO vital_records (timestamp, metric, value1, value2, unit, progress, status, mode, raw_hex, device_id)
+                    VALUES (?, 'BODY_COMP', ?, ?, '%', 100, 'NOMINAL', ?, '', ?)
+                """, (ts, float(skel), float(fat), json.dumps(r), device_id))
+                inserted += 1
+            conn.commit()
+            cur.execute("SELECT COUNT(*) FROM vital_records")
+            ble_state["total_records"] = cur.fetchone()[0]
+        except Exception as e:
+            print(f"[MIL-SPEC HANDLED FAULT] ingest_bodycomp_records failed: {e}")
+        finally:
+            conn.close()
+    return {"inserted": inserted}
+
+
 def backfill_today_df_from_packet_log():
     """Backfills any unparsed 0xDF 5-minute watch packets already captured in packet_log.txt into vital_records."""
     if not os.path.exists(LOG_FILE):
@@ -3982,7 +4447,13 @@ def get_today_subreports():
             ua_mgdl = round(ua_raw / 59.48, 2) if ua_raw > 20.0 else round(ua_raw, 2)
             out[met].append({"label": hm, "val": round(float(v2 or 0), 2), "core": round(float(v2 or 0), 2), "skin": ua_mgdl})
         elif met in ("ECG_QTC", "BODY_COMP") and v1 and v1 > 0:
-            out[met].append({"label": hm, "val": round(float(v1), 1), "core": round(float(v1), 1), "skin": round(float(v2 or 0), 1)})
+            meta = {}
+            if mode_str and mode_str.strip().startswith("{"):
+                try:
+                    meta = json.loads(mode_str)
+                except Exception as parse_err:
+                    print(f"[MIL-SPEC HANDLED FAULT] subreport mode JSON parse ({met}): {parse_err}")
+            out[met].append({"label": hm, "val": round(float(v1), 1), "core": round(float(v1), 1), "skin": round(float(v2 or 0), 2), **meta})
 
     off_wrist_intervals = []
     for m_val in sorted(off_wrist_mins):
@@ -4001,7 +4472,13 @@ def get_today_subreports():
             "end": f"{e_min // 60:02d}:{e_min % 60:02d}",
             "durationMin": max(5, e_min - s_min)
         })
-    return {"date": str(today_date), "OFF_WRIST_INTERVALS": formatted_off_wrist, **out}
+    return {
+        "date": str(today_date),
+        "OFF_WRIST_INTERVALS": formatted_off_wrist,
+        "ECG_LATEST": out["ECG_QTC"][-1] if out["ECG_QTC"] else None,
+        "BODY_COMP_LATEST": out["BODY_COMP"][-1] if out["BODY_COMP"] else None,
+        **out,
+    }
 
 # =========================================================================
 # HTTP REQUEST HANDLER (Port 8899)

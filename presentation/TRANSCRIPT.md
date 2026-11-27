@@ -25,7 +25,7 @@
 ## Slide 03: The Data-Loss Crisis: Ad-Hoc Sampling vs Continuous Consolidation
 
 - **Section:** Intro: Closing the Loop
-- **Visual:** `images/bfm_t04_08_glucose_a1c.png` (`04-REPORTS • 24H GLUCOSE CURVE & ADAG EA1C / GMI`)
+- **Visual:** `images/bfm_t04_08_glucose_a1c.png` (`04-REPORTS • DAILY 24H GLUCOSE CURVE & ADAG EA1C / GMI`)
 - **Key Takeaway:** Replacing ad-hoc spot checks with continuous 5-minute watch telemetry eliminates 99% of clinical data loss and reveals true sensitivity and specificity.
 
 > Let's look closely at the two graphs on the left explaining why ad-hoc tracking fails. Top shows a 90-day timeline: quarterly A1C gives only two blood draws ninety days apart; random fingersticks give thirty to ninety waking pinpricks; whereas your smartwatch captures 288 continuous readings daily across 12 biometric channels—over three hundred and eleven thousand total observations per quarter. Directly beneath, our Sensitivity and Specificity bar chart proves the medical impact: excursion sensitivity rises from 10 percent with labs and 40 percent with fingersticks to 98 percent with continuous biofunction monitoring.
@@ -33,7 +33,7 @@
 ## Slide 04: Mathematical Proof of Measurement Fitness: Nyquist Kinetics & Noise Suppression
 
 - **Section:** Intro: Closing the Loop
-- **Visual:** `images/bfm_t04_08_glucose_a1c.png` (`04-REPORTS • 24H GLUCOSE CURVE & ADAG EA1C / GMI`)
+- **Visual:** `images/bfm_t04_08_glucose_a1c.png` (`04-REPORTS • DAILY 24H GLUCOSE CURVE & ADAG EA1C / GMI`)
 - **Key Takeaway:** Five-minute sampling satisfies classic physics theorems so rising glucose slopes (`dG/dt`) stay razor sharp for attending physicians.
 
 > In medical physics, a measurement is only fit if the clock ticks faster than biology changes. Because digesting carbohydrates shift bloodstream glucose over 15 to 30 minutes, Nyquist kinetics require readings at least every seven and a half minutes. Continuous five-minute watch sampling beats that limit easily—suppressing noise 161-fold over ninety days.
@@ -65,7 +65,7 @@
 ## Slide 08: Information Loss Management Math: Current Medical Practice vs BFM User Team
 
 - **Section:** Intro: Closing the Loop
-- **Visual:** `images/bfm_t04_08_glucose_a1c.png` (`04-REPORTS • 24H GLUCOSE CURVE & ADAG EA1C / GMI`)
+- **Visual:** `images/bfm_t04_08_glucose_a1c.png` (`04-REPORTS • DAILY 24H GLUCOSE CURVE & ADAG EA1C / GMI`)
 - **Key Takeaway:** Mathematically, moving from serial fragmented referrals to one shared parallel vault boosts retained clinical information from 0.11% to 94.1%—an 855-fold gain.
 
 > Here is the exact mathematics of information loss management. Under standard fragmented medical care, sparse fingersticks capture barely one and a half percent of daily glucose behavior, human memory recalls roughly forty percent, and each serial referral between your five specialists drops another thirty-five percent—leaving just zero point one one percent of the original biological truth intact. By contrast, BFM captures ninety-six percent continuously and shares one unbroken timestamped dataset in parallel across all five doctors with zero handoff decay—preserving ninety-four point one percent of clinical information, an eight hundred and fifty-five fold improvement.
@@ -254,74 +254,74 @@
 
 > Here in the Exercise Metabolic Correlator, your own data proves how movement stabilizes blood sugar—contrasting active versus sedentary average glucose alongside a live slider modeling step-by-step A1C and spike reduction.
 
-## Slide 32: Sub-Report 1: Lead-I ECG Protocol & Diurnal QTc Interval Stability
+## Slide 32: Sub-Report 1: Live Watch Lead-I ECG Protocol & QT / QTc Ventricular Safety
 
 - **Section:** Tab 04: 04-REPORTS
-- **Visual:** `images/bfm_t04_06_sub_ecg_met.png` (`04-REPORTS • LEAD-I ECG / QTC & MET ENERGY EXPENDITURE`)
-- **Key Takeaway:** Co-monitoring QTc repolarization intervals alongside continuous glucose screens acute arrhythmic stress proactively.
+- **Visual:** `images/bfm_t04_06_sub_ecg_met.png` (`04-REPORTS • LIVE LEAD-I ECG (250 MS QT / 389 MS QTC) & MET`)
+- **Key Takeaway:** Real watch-synced Lead-I QT/QTc repolarization and LF/HF balance pair directly with diurnal glucose to guard cardiac safety proactively.
 
-> Entering our five specialized Sub-Reports opens with Lead-I ECG and QTc trending. Guided 30-second watch bezel measurements pair with diurnal Bazett-corrected QTc intervals holding steadily between 406 and 411 milliseconds safely under the 440 ceiling.
+> Entering our five specialized Sub-Reports opens with live synced Lead-I ECG from your watch at 10:23 AM: 250 milliseconds raw QT, translating to 389 milliseconds Bazett-corrected QTc with a calm 1.31 autonomic ratio, framed cleanly beside today's blue Watch Off-Wrist intervals.
 
 ## Slide 33: Sub-Report 2: Continuous 24-Hour MET Energy Expenditure
 
 - **Section:** Tab 04: 04-REPORTS
-- **Visual:** `images/bfm_t04_06_sub_ecg_met.png` (`04-REPORTS • LEAD-I ECG / QTC & MET ENERGY EXPENDITURE`)
-- **Key Takeaway:** Tracking MET intensity verifies true muscular energy burn behind every step total.
+- **Visual:** `images/bfm_t04_sub_met_live.png` (`04-REPORTS • CONTINUOUS 24H MET ENERGY EXPENDITURE (101 EPOCHS)`)
+- **Key Takeaway:** Autonomous 24/7 MET intensity verifies genuine muscular energy burn behind daily step counts with zero manual button presses.
 
-> Directly below ECG sits the continuous MET Energy Expenditure curve—separating calm 1.0 MET seated baseline rest from metabolically potent 3.0+ MET brisk walking periods.
+> Sub-Report 2 tracks continuous 24-hour MET Energy Expenditure across 101 live five-minute epochs—separating quiet sleep and seated hours from productive 3.5 MET brisk walking toward a strong 34.2 MET-hours daily total.
 
 ## Slide 34: Sub-Report 3: Microvascular Blood Viscosity & Uric Acid Tonometry
 
 - **Section:** Tab 04: 04-REPORTS
-- **Visual:** `images/bfm_t04_07_sub_blood_bia_breath.png` (`04-REPORTS • BLOOD VISCOSITY, BIA MUSCLE & RESPIRATION`)
+- **Visual:** `images/bfm_t04_07_sub_blood_bia_breath.png` (`04-REPORTS • BLOOD VISCOSITY (115 SWEEPS) & URIC ACID`)
 - **Key Takeaway:** Microvascular viscosity trending links daily hydration directly to capillary circulation and optical measurement stability.
 
-> Sub-Report 3 tracks Optical Blood Composition. Under Poiseuille fluid dynamics, healthy lower blood viscosity—measured consistently here between 3.6 and 3.9 centipoise—promotes smooth capillary circulation and steadier optical glucose readings.
+> Sub-Report 3 plots 115 live optical Blood Composition sweeps—tracking blood viscosity near 3.8 centipoise alongside lower serum uric acid safely under the 6.5 threshold, with every Watch Off-Wrist outage window marked cleanly in sky blue.
 
-## Slide 35: Sub-Report 4: BIA Skeletal Muscle Mass — The Primary Glucose Sink
-
-- **Section:** Tab 04: 04-REPORTS
-- **Visual:** `images/bfm_t04_07_sub_blood_bia_breath.png` (`04-REPORTS • BLOOD VISCOSITY, BIA MUSCLE & RESPIRATION`)
-- **Key Takeaway:** Preserving lean skeletal muscle guarantees your body retains its main non-insulin glucose disposal capacity.
-
-> Sub-Report 4 charts Bioelectrical Impedance skeletal muscle percentage—holding steady at 34.3 percent today. Because skeletal muscle clears over eighty percent of circulating post-meal glucose, preserving lean tissue protects long-term insulin sensitivity.
-
-## Slide 36: Sub-Report 5: Continuous Respiratory Rate & Autonomic Breath Stability
+## Slide 35: Sub-Report 4: Live Synced BIA Skeletal Muscle & Body Composition
 
 - **Section:** Tab 04: 04-REPORTS
-- **Visual:** `images/bfm_t04_07_sub_blood_bia_breath.png` (`04-REPORTS • BLOOD VISCOSITY, BIA MUSCLE & RESPIRATION`)
-- **Key Takeaway:** Adding continuous respiratory trends rounds out a complete non-invasive cardiopulmonary assessment.
+- **Visual:** `images/bfm_t04_sub_bodycomp_live.png` (`04-REPORTS • LIVE BIA BODY COMPOSITION (37.3% MUSCLE / 26.5% FAT)`)
+- **Key Takeaway:** Preserving 37.3% skeletal muscle mass guarantees strong non-insulin GLUT4 glucose disposal alongside healthy body fat and water balance.
 
-> Completing our five-panel Sub-Reports bay is continuous Respiratory Rate trending—working alongside SpO2 and HRV to verify tranquil nocturnal breathing and calm autonomic tone.
+> Sub-Report 4 displays your real Bioelectrical Impedance scan synced at 11:20 AM: 37.3 percent skeletal muscle mass—47.5 kilograms of primary glucose-clearing tissue—alongside 26.5 percent body fat, a normal 24.4 BMI, and 57.4 percent cellular water.
 
-## Slide 37: Live Synced Watch Sub-Reports: Continuous MET, Blood Composition & Breath
+## Slide 36: Sub-Report 5: Continuous 24h Respiratory Rate & Nocturnal Mechanics
 
 - **Section:** Tab 04: 04-REPORTS
-- **Visual:** `images/bfm_t04_met_bloodcomp_live.png` (`04-REPORTS • LIVE SYNCED MET, BLOOD COMPOSITION, BIA ZERO-DATA & BREATH`)
-- **Key Takeaway:** Genuine synced MET, Blood Composition, and Breath curves populate live while unsynced BIA and ECG channels strictly obey Pure Zero-Data honesty.
+- **Visual:** `images/bfm_t04_sub_breath_live.png` (`04-REPORTS • 24H RESPIRATORY RATE & NOCTURNAL MECHANICS (227 EPOCHS)`)
+- **Key Takeaway:** 227 live continuous breathing epochs verify tranquil 14 RPM nocturnal respiration and low apnea burden alongside clean vagal tone.
 
-> Right after resyncing the watch, live Sub-Reports update directly from telemetry storage: sixty-three MET epochs climbing to 7.4 MET-hours, seventy optical Blood Composition sweeps, and one hundred thirty-eight Breathing Rate readings—all stamped with the same blue Watch Off-Wrist bands, while unsynced Body Composition and ECG remain honestly blank with zero invented numbers.
+> Completing our five-panel Sub-Reports bay is dedicated Respiratory Rate tracking across 227 live epochs—confirming calm 14-breath-per-minute resting cadence, a normal 2.4-per-hour nocturnal apnea index, and 95.8 percent breathing regularity.
+
+## Slide 37: All 5 Watch Sub-Reports Live Synced: ECG, MET, Blood Comp, BIA & Breath
+
+- **Section:** Tab 04: 04-REPORTS
+- **Visual:** `images/bfm_t04_met_bloodcomp_live.png` (`04-REPORTS • ALL 5 LIVE SYNCED WATCH SUB-REPORTS`)
+- **Key Takeaway:** All five hardware Sub-Report transducers—manual ECG & BIA plus continuous MET, Blood Comp & Breath—sync directly from watch storage.
+
+> Looking across all five Sub-Reports together confirms complete live hardware sync: watch ECG from 10:23 AM and BIA Body Composition from 11:20 AM join 101 MET epochs, 115 Blood Composition sweeps, and 227 Breathing Rate samples—all stamped consistently with blue Watch Off-Wrist intervals.
 
 ## Slide 38: Daily 24-Hour Continuous Glucose Curve & Time-in-Range Velocity
 
 - **Section:** Tab 04: 04-REPORTS
-- **Visual:** `images/bfm_t04_08_glucose_a1c.png` (`04-REPORTS • 24H GLUCOSE CURVE & ADAG EA1C / GMI`)
-- **Key Takeaway:** Inspecting full-width diurnal glucose shows physicians exact fasting nadirs, waking rises, and post-meal slopes cleanly.
+- **Visual:** `images/bfm_t04_08_glucose_a1c.png` (`04-REPORTS • DAILY 24H GLUCOSE CURVE & ADAG EA1C / GMI`)
+- **Key Takeaway:** Inspecting today's full Daily 24-Hour glucose curve reveals exact overnight lows, daytime peaks, and true Off-Wrist breaks immediately.
 
-> Next appear the full-width 24-hour individual graphs, opening with Daily Continuous Glucose. Notice the uninterrupted overnight curve transitioning smoothly to 153 milligrams per deciliter at 9 AM inside the green safe corridor.
+> Next appear our individual Daily 24-Hour charts, opening with today's Continuous Glucose Timeline. You can read every sleeping hour around 60 to 66 milligrams per deciliter, afternoon climbs peaking at 188 milligrams, and honest Watch Off-Wrist breaks straight through 8 PM.
 
-## Slide 39: Daily Estimated A1C (GMI) vs 90-Day Laboratory HbA1c Kinetics
+## Slide 39: Daily 24-Hour Estimated A1C (eA1C) vs 120-Day Lab HbA1c Kinetics
 
 - **Section:** Tab 04: 04-REPORTS
-- **Visual:** `images/bfm_t04_08_glucose_a1c.png` (`04-REPORTS • 24H GLUCOSE CURVE & ADAG EA1C / GMI`)
-- **Key Takeaway:** Understanding red blood cell turnover reconciles daily watch progress with quarterly venipuncture lab results cleanly.
+- **Visual:** `images/bfm_t04_08_glucose_a1c.png` (`04-REPORTS • DAILY 24H GLUCOSE CURVE & ADAG EA1C / GMI`)
+- **Key Takeaway:** Reading Daily 24-Hour eA1C beside red blood cell turnover prevents mistaking fast daily improvements for lab discrepancies.
 
-> Directly below glucose sits the Estimated A1C curve—pairing the ADAG transformation with red blood cell kinetics. Because red cells live 120 days, an acute watch GMI reflects rapid weekly wins immediately while true laboratory HbA1c catches up smoothly over ninety days.
+> Directly beneath glucose sits today's Daily 24-Hour Estimated A1C curve—tracking hourly fluctuations from 3.7 percent overnight up to an 8.2 percent daytime peak against the 7.0 ADA standard and 8.3 percent lab anchor, while true venous HbA1c integrates slowly over 120 days.
 
 ## Slide 40: Optical Photodiode Repeatability (`5.36% CV`) & Personal Calibration Fitness
 
 - **Section:** Tab 04: 04-REPORTS
-- **Visual:** `images/bfm_t04_08_glucose_a1c.png` (`04-REPORTS • 24H GLUCOSE CURVE & ADAG EA1C / GMI`)
+- **Visual:** `images/bfm_t04_08_glucose_a1c.png` (`04-REPORTS • DAILY 24H GLUCOSE CURVE & ADAG EA1C / GMI`)
 - **Key Takeaway:** Low optical noise (5.36% CV) proves consumer PPG sensors track genuine excursions cleanly once calibrated personally.
 
 > Our empirical study across twenty manual checks and continuous runs proved a tight 5.36 percent coefficient of variation—confirming crisp optical hardware stability once aligned cleanly to a fasting fingerstick reference.
@@ -433,42 +433,42 @@
 ## Slide 54: 06-OPERATIONS: Standard Clinical Operation & Real-Time Sensor Workflow
 
 - **Section:** Tab 06: 06-OPERATIONS
-- **Visual:** `images/bfm_t06_operations.png` (`06-OPERATIONS • WIRELESS WATCH LINK & SYNC CONTROLS`)
-- **Key Takeaway:** Plain-English operating procedures keep daily watch pairing, live full scans, and specification downloads effortless.
+- **Visual:** `images/bfm_t06_operations.png` (`06-OPERATIONS • SECTION 01 STANDARD WORKFLOW & BLUETOOTH LINK`)
+- **Key Takeaway:** Plain-English operating procedures keep watch pairing, live 6-sensor sweeps, and Clinical Specification PDF access effortless.
 
-> Turning to Tab 06 Operations, Section 01 on the upper panel outlines standard clinical workflow: connecting over browser Bluetooth to your authorized smartwatch, running a sequential six-sensor scan while progress advances from orange Scanning to green Complete, and accessing the full Clinical Specification PDF anytime.
+> Turning to Tab 06 Operations, Section 01 outlines standard clinical workflow: verifying the connected Bluetooth link to your authorized VEE watch, starting a sequential six-sensor scan while badges shift from orange Scanning to green Complete, and opening the Clinical Specification PDF anytime.
 
 ## Slide 55: Precision Transducer Calibration Protocol (Venous Lab Sync <=5.0% Error)
 
 - **Section:** Tab 06: 06-OPERATIONS
-- **Visual:** `images/bfm_t06_operations.png` (`06-OPERATIONS • WIRELESS WATCH LINK & SYNC CONTROLS`)
-- **Key Takeaway:** One careful calibration alongside a scheduled clinical blood draw aligns ongoing home optical curves within 5% of lab plasma truth.
+- **Visual:** `images/bfm_t06_calibration.png` (`06-OPERATIONS • SECTION 02 TRANSDUCER LAB CALIBRATION (<=5.0%)`)
+- **Key Takeaway:** Section 02's 5-step calibration protocol pairs your watch directly with certified clinical lab work toward <=5.0% plasma alignment.
 
-> Directly below Section 01 sits Section 02 Precision Transducer Calibration. Because the wrist sensor exhibits high 5.36 percent repeatability with less than 1.8 milligrams standard error, wearing your watch during a scheduled lab blood draw lets you calibrate away factory offset once and align ongoing home trends within five percent of laboratory values.
+> Moving cleanly down to Section 02 Precision Transducer Calibration, clinical tests confirm crisp 5.36 percent repeatability. Following the five-step blood-draw procedure and exact field mapping table converts lab HbA1c—like 8.3 percent into 191.5 milligrams—aligning home trends within five percent.
 
 ## Slide 56: 07-FAQ: Built-In Offline Reference Manual for Families & Physicians
 
 - **Section:** Tab 07: 07-FAQ
-- **Visual:** `images/bfm_t07_faq.png` (`07-FAQ • BUILT-IN REFERENCE GUIDE & CITATIONS`)
-- **Key Takeaway:** Embedding comprehensive self-help documentation inside the app eliminates lost paper manuals forever.
+- **Visual:** `images/bfm_t07_faq.png` (`07-FAQ • Q1–Q3 BUILT-IN REFERENCE GUIDE & PRIVATE MODE`)
+- **Key Takeaway:** Embedding plain-language Q1–Q3 guidance inside the console eliminates lost paper manuals for both families and clinic doctors.
 
-> Tab 07 FAQ turns the console into a complete offline instruction manual—explaining every sensor, diet strategy, and chart metric calmly without ever needing an internet connection.
+> Tab 07 FAQ turns the console into a complete offline manual—opening with Q1 through Q3 on personalized Private calibration, collaborative family mentoring, and transparent 1-second scan packets.
 
-## Slide 57: Peer-Reviewed Clinical Consensus & Sampling Citations
-
-- **Section:** Tab 07: 07-FAQ
-- **Visual:** `images/bfm_t07_faq.png` (`07-FAQ • BUILT-IN REFERENCE GUIDE & CITATIONS`)
-- **Key Takeaway:** Grounded in peer-reviewed JAMA and Diabetes Care publications, every BFM target earns immediate clinician respect.
-
-> Doctors auditing the system find all peer-reviewed references summarized right here in Tab 07—anchoring 288 daily samples and 70 percent Time-in-Range firmly in landmark JAMA and Diabetes Care consensus studies.
-
-## Slide 58: Watch Positioning, Wrist Strap Fit & Best Optical Practices
+## Slide 57: Q5–Q7: Doctor Print Reports, Manual Watch Tests & Long-Term Trends
 
 - **Section:** Tab 07: 07-FAQ
-- **Visual:** `images/bfm_t07_faq.png` (`07-FAQ • BUILT-IN REFERENCE GUIDE & CITATIONS`)
-- **Key Takeaway:** Ten seconds of proper wrist fit boosts continuous sensor fidelity dramatically day and night.
+- **Visual:** `images/bfm_t07_faq_mid.png` (`07-FAQ • Q5–Q7 DOCTOR PRINTING, MANUAL TESTS & LONG-TERM TRENDS`)
+- **Key Takeaway:** Questions 5 through 7 explain cleanly how to print doctor-ready packets, trigger manual watch tests, and compare long-term trends.
 
-> Practical guidance closes Tab 07: positioning the watch snugly one finger above the wrist bone, keeping the optical window clean, and resting calmly during 30-second manual checks ensures clean precision day and night.
+> Scrolling through Questions 5 to 7 in Tab 07 clarifies practical day-to-day execution: printing white-paper clinical packets for doctor visits, knowing when ECG or BIA requires touching the bezel versus automatic 24/7 MET tracking, and switching multi-month trend horizons.
+
+## Slide 58: Sensor Placement, Wrist Strap Fit & Signal Integrity Guidelines
+
+- **Section:** Tab 07: 07-FAQ
+- **Visual:** `images/bfm_t07_faq_placement.png` (`07-FAQ • SENSOR PLACEMENT & SIGNAL INTEGRITY GUIDELINES`)
+- **Key Takeaway:** Proper wrist fit, clean optical glass, and 25-second forearm stability maximize daily signal-to-noise ratio effortlessly.
+
+> Bottom guidelines close Tab 07 alongside Q8 and Q9: maintaining snug strap tension, cleaning the bottom optical crystal and thermal pads with isopropyl alcohol, and resting your arm flat for 25 seconds keeps signal quality crisp and cache-free.
 
 ## Slide 59: 08-CLINICAL GOALS: Individualizing Your Personal Target Corridor
 

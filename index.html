@@ -3760,8 +3760,8 @@
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-top: 12px; text-align: center;">
               <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px;">
                 <div style="font-size: 0.72rem; color: #64748b; font-weight: bold;">QTc INTERVAL</div>
-                <div style="font-size: 1.25rem; font-weight: 900; color: #0f172a; font-family: var(--lcars-mono);">412 <span style="font-size: 0.8rem;">ms</span></div>
-                <div style="font-size: 0.7rem; color: #15803d; font-weight: bold;">Normal (&lt;440 ms)</div>
+                <div id="subValEcgQtc" style="font-size: 1.25rem; font-weight: 900; color: #0f172a; font-family: var(--lcars-mono);">412 <span style="font-size: 0.8rem;">ms</span></div>
+                <div id="subValEcgQtcStatus" style="font-size: 0.7rem; color: #15803d; font-weight: bold;">Normal (&lt;440 ms)</div>
               </div>
               <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px;">
                 <div style="font-size: 0.72rem; color: #64748b; font-weight: bold;">PHYSICAL AUTONOMIC STRESS</div>
@@ -3770,12 +3770,12 @@
               </div>
               <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px;">
                 <div style="font-size: 0.72rem; color: #64748b; font-weight: bold;">SYMPATHOVAGAL (LF/HF)</div>
-                <div style="font-size: 1.25rem; font-weight: 900; color: #0284c7; font-family: var(--lcars-mono);">1.22</div>
+                <div id="subValLfHf" style="font-size: 1.25rem; font-weight: 900; color: #0284c7; font-family: var(--lcars-mono);">1.22</div>
                 <div style="font-size: 0.7rem; color: #0f172a;">Target: 1.0 - 1.5</div>
               </div>
               <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px;">
                 <div style="font-size: 0.72rem; color: #64748b; font-weight: bold;">CARDIAC RESILIENCE</div>
-                <div style="font-size: 1.25rem; font-weight: 900; color: #15803d; font-family: var(--lcars-mono);">88 / 100</div>
+                <div id="subValCardiacResilience" style="font-size: 1.25rem; font-weight: 900; color: #15803d; font-family: var(--lcars-mono);">88 / 100</div>
                 <div style="font-size: 0.7rem; color: #15803d;">Healthy Vagal Tone (Comet)</div>
               </div>
             </div>
@@ -3922,22 +3922,22 @@
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-top: 12px; text-align: center;">
               <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px;">
                 <div style="font-size: 0.72rem; color: #64748b; font-weight: bold;">BODY FAT PERCENTAGE</div>
-                <div style="font-size: 1.25rem; font-weight: 900; color: #0f172a; font-family: var(--lcars-mono);">22.4%</div>
+                <div id="subValBiaFat" style="font-size: 1.25rem; font-weight: 900; color: #0f172a; font-family: var(--lcars-mono);">22.4%</div>
                 <div style="font-size: 0.7rem; color: #15803d; font-weight: bold;">Healthy Adult Range</div>
               </div>
               <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px;">
                 <div style="font-size: 0.72rem; color: #64748b; font-weight: bold;">SKELETAL MUSCLE MASS</div>
-                <div style="font-size: 1.25rem; font-weight: 900; color: #15803d; font-family: var(--lcars-mono);">34.2 <span style="font-size: 0.8rem;">kg</span></div>
+                <div id="subValBiaMuscle" style="font-size: 1.25rem; font-weight: 900; color: #15803d; font-family: var(--lcars-mono);">34.2 <span style="font-size: 0.8rem;">kg</span></div>
                 <div style="font-size: 0.7rem; color: #15803d;">Protective Glucose Sink</div>
               </div>
               <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px;">
                 <div style="font-size: 0.72rem; color: #64748b; font-weight: bold;">BODY MASS INDEX (BMI)</div>
-                <div style="font-size: 1.25rem; font-weight: 900; color: #0284c7; font-family: var(--lcars-mono);">24.8 <span style="font-size: 0.8rem;">kg/m²</span></div>
+                <div id="subValBiaBmi" style="font-size: 1.25rem; font-weight: 900; color: #0284c7; font-family: var(--lcars-mono);">24.8 <span style="font-size: 0.8rem;">kg/m²</span></div>
                 <div style="font-size: 0.7rem; color: #15803d;">Normal Range (18.5 - 24.9)</div>
               </div>
               <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px;">
                 <div style="font-size: 0.72rem; color: #64748b; font-weight: bold;">CELLULAR WATER RATIO</div>
-                <div style="font-size: 1.25rem; font-weight: 900; color: #0f172a; font-family: var(--lcars-mono);">0.62</div>
+                <div id="subValBiaWater" style="font-size: 1.25rem; font-weight: 900; color: #0f172a; font-family: var(--lcars-mono);">0.62</div>
                 <div style="font-size: 0.7rem; color: #15803d;">No Peripheral Edema</div>
               </div>
             </div>
@@ -13496,6 +13496,7 @@ function switchTab(tabId) {
       const minY = options.minY !== undefined ? options.minY : Math.min(...allVals) * 0.95;
       const maxY = options.maxY !== undefined ? options.maxY : Math.max(...allVals) * 1.05;
       const rangeY = (maxY - minY) || 1;
+      const unit = options.unit || "";
 
       function getMinuteFromLabel(lbl) {
         if (!lbl) return null;
@@ -13571,35 +13572,44 @@ function switchTab(tabId) {
         });
       }
 
-      // Circles & Values
+      // Circles & Values (with crisp vertical marker + pill when single-point daily manual ECG/BIA scan)
       let circlesHtml = "";
       let lastValX = -999;
+      const isSingleCore = (corePoints.length === 1);
       corePoints.forEach((p, idx) => {
         const showVal = (p.x - lastValX >= 36) || idx === 0 || idx === corePoints.length - 1;
         if (showVal) lastValX = p.x;
-        const valY = (p.y < padTop + 16) ? (p.y + 16) : (p.y - 8);
+        const valY = (p.y < padTop + 18) ? (p.y + 18) : (p.y - 10);
+        const pillText = isSingleCore ? `${p.val}${unit ? ' ' + unit : ''} (${p.label})` : `${p.val}`;
+        const pillW = isSingleCore ? Math.max(76, pillText.length * 6.4) : 32;
 
         circlesHtml += `
           <g>
-            <circle class="plot-point" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="4" 
+            ${isSingleCore ? `<line x1="${p.x.toFixed(1)}" y1="${padTop}" x2="${p.x.toFixed(1)}" y2="${(padTop + plotH).toFixed(1)}" stroke="var(--lcars-blue)" stroke-width="1.5" stroke-dasharray="3 2" opacity="0.65"/>` : ''}
+            <circle class="plot-point" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${isSingleCore ? 5.5 : 4}" 
                     fill="var(--lcars-blue)" stroke="#ffffff" stroke-width="2">
               <title>Biometric Function Monitor</title>
             </circle>
             ${showVal ? `
-              <rect x="${(p.x - 16).toFixed(1)}" y="${(valY - 10).toFixed(1)}" width="32" height="13" fill="rgba(255,255,255,0.9)" stroke="#e2e8f0" stroke-width="0.8" rx="2"/>
+              <rect x="${(p.x - pillW / 2).toFixed(1)}" y="${(valY - 10).toFixed(1)}" width="${pillW.toFixed(1)}" height="14" fill="rgba(255,255,255,0.94)" stroke="#cbd5e1" stroke-width="0.9" rx="3"/>
               <text x="${p.x.toFixed(1)}" y="${valY.toFixed(1)}" text-anchor="middle" 
-                    fill="var(--lcars-blue)" font-family="var(--lcars-mono)" font-size="9" font-weight="900">${p.val}</text>
+                    fill="var(--lcars-blue)" font-family="var(--lcars-mono)" font-size="9" font-weight="900">${pillText}</text>
             ` : ''}
           </g>
         `;
       });
 
+      const isSingleSkin = (skinPoints.length === 1);
       skinPoints.forEach(p => {
         circlesHtml += `
-          <circle class="plot-point" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="3" 
+          <circle class="plot-point" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${isSingleSkin ? 4.5 : 3}" 
                   fill="var(--lcars-orange)" stroke="#ffffff" stroke-width="1.5">
             <title>Biometric Function Monitor</title>
           </circle>
+          ${isSingleSkin ? `
+            <rect x="${(p.x - 22).toFixed(1)}" y="${(Math.min(padTop + plotH - 4, p.y + 16) - 10).toFixed(1)}" width="44" height="13" fill="rgba(255,255,255,0.92)" stroke="#fed7aa" stroke-width="0.8" rx="2"/>
+            <text x="${p.x.toFixed(1)}" y="${Math.min(padTop + plotH - 4, p.y + 16).toFixed(1)}" text-anchor="middle" fill="var(--lcars-orange)" font-family="var(--lcars-mono)" font-size="8.5" font-weight="900">${p.val}</text>
+          ` : ''}
         `;
       });
 
@@ -16854,13 +16864,33 @@ function switchTab(tabId) {
       const elRer = document.getElementById('subValRER');
       if (elRer) elRer.textContent = rer.toFixed(2);
 
-      // 02. ECG Stress & Autonomic Balance
-      const lfHf = parseFloat((1.10 + (hr > 80 ? 0.25 : 0.08) - (hrv / 200)).toFixed(2));
+      // 02. ECG Stress & Autonomic Balance (override with genuine synced 0x97 ECG record when available)
+      const subEcg = (window.lastSubReportData && window.lastSubReportData.ECG_LATEST) ? window.lastSubReportData.ECG_LATEST : null;
+      const elQtc = document.getElementById('subValEcgQtc');
+      const elQtcSt = document.getElementById('subValEcgQtcStatus');
+      if (subEcg && subEcg.core > 0) {
+        if (elQtc) elQtc.innerHTML = `${Math.round(subEcg.core)} <span style="font-size: 0.8rem;">ms</span>`;
+        if (elQtcSt) elQtcSt.textContent = (subEcg.core <= 440) ? `Watch Synced ${subEcg.label} (<440 ms)` : `Elevated QTc (${subEcg.label})`;
+      }
+      const lfHf = (subEcg && subEcg.skin > 0) ? parseFloat(subEcg.skin) : parseFloat((1.10 + (hr > 80 ? 0.25 : 0.08) - (hrv / 200)).toFixed(2));
       const elLfHf = document.getElementById('subValLfHf');
       if (elLfHf) elLfHf.textContent = lfHf.toFixed(2);
       const resilience = Math.min(96, Math.max(70, Math.round(hrv * 1.2 + (100 - hr) * 0.2)));
       const elRes = document.getElementById('subValCardiacResilience');
       if (elRes) elRes.textContent = `${resilience} / 100`;
+
+      // 05. Body Composition / BIA (override with genuine synced 0x93 BIA record when available)
+      const subBia = (window.lastSubReportData && window.lastSubReportData.BODY_COMP_LATEST) ? window.lastSubReportData.BODY_COMP_LATEST : null;
+      if (subBia) {
+        const elBf = document.getElementById('subValBiaFat');
+        const elBm = document.getElementById('subValBiaMuscle');
+        const elBmi = document.getElementById('subValBiaBmi');
+        const elBw = document.getElementById('subValBiaWater');
+        if (elBf && subBia.body_fat_pct > 0) elBf.textContent = `${subBia.body_fat_pct}%`;
+        if (elBm && subBia.skeletal_muscle_pct > 0) elBm.innerHTML = `${subBia.skeletal_muscle_pct}% <span style="font-size: 0.72rem;">(${subBia.muscle_mass} kg)</span>`;
+        if (elBmi && subBia.bmi > 0) elBmi.innerHTML = `${subBia.bmi} <span style="font-size: 0.8rem;">kg/m²</span>`;
+        if (elBw && subBia.body_water > 0) elBw.textContent = `${subBia.body_water}%`;
+      }
 
       // 03. MET Activity Index
       const walkHrs = parseFloat((steps / 2800).toFixed(1));
@@ -17020,8 +17050,10 @@ function switchTab(tabId) {
       }
 
       // Render Sub-Report 02: ECG Trend Dual Curve (QTc vs 440 ms ceiling & LF/HF)
+      const ecgVals = (ecgData || []).map(d => d.core || d.val || 0).filter(v => v > 0);
+      const ecgMinY = ecgVals.length ? Math.min(360, Math.max(180, Math.floor((Math.min(...ecgVals) - 30) / 10) * 10)) : 360;
       renderSvgDualCurveChart('curveTimelineECG', ecgData, {
-        minY: 360, maxY: 480, unit: "ms",
+        minY: ecgMinY, maxY: 480, unit: "ms",
         referenceLines: [
           { val: 440, label: "440 MS QTc CEILING", color: "#e11d48" },
           { val: 412, label: "412 MS NORMAL BASELINE", color: "#15803d" }

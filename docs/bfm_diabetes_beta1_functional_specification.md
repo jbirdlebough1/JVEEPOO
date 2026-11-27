@@ -411,7 +411,7 @@ BFM delivers complete functional equivalence with **HBand and HBand 2.0** across
 | **Steps & GLUT4 Walk** | `0xA8` / `0x07` / `0xA3` Sync | Cumulative steps matched to `2,000` watch goal (`0xA3`). | Kinetic timeline + `▲ GLUT4` walk badges (`CH 07`). | `<15`-step MCU debounce strictly respected. |
 | **Sleep & Daytime Naps** | `0xE0` Multi-Session TLV | Total sleep, Deep, Light, REM, Awake (`00:01–23:59` + naps). | Full stacked hypnogram & `CH 08: SLEEP ARCH`. | Displays `0 hrs / 0 score` until nocturnal sync. |
 | **Time Format & Config** | `0xB8` Page-0 Protected | Watch 12-hour vs 24-hour display format synchronized UI-wide. | Read-guard stops `b8 02 02 01` overwrite (`CLE-110`); re-renders charts live. | Respects `#cfgTimeFormat` (`timeFormatUserSet`). |
-| **ECG, BIA & Hydration** | `0x99`, `0x78`, BOM (`fluid_oz`) | 25 mm/sec Lead-I ECG, BIA muscle %, `80.0 fl oz` hydration & Rx. | ECG canvas, BIA curve, `CH 09`–`CH 13` (`Pain`, `Mood`, `Carbs`, `Fluid`, `Rx`). | Zero hardcoded fake meds (`Metformin` excised). |
+| **ECG, BIA & Hydration** | `0x96`/`0x97`, `0x93 0x05`/`0x06`, BOM (`fluid_oz`) | 25 mm/sec Lead-I ECG, BIA muscle %, `80.0 fl oz` hydration & Rx. | Live synced ECG QT/QTc + LF/HF, BIA skeletal muscle/fat/BMI/water & `CH 09`–`CH 13` (`Pain`, `Mood`, `Carbs`, `Fluid`, `Rx`). | Zero hardcoded fake meds (`Metformin` excised); `TODO-BLE-003` closed in `beta.00.01.0062`. |
 
 ---
 
