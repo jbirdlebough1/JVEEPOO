@@ -1,8 +1,8 @@
 {
-  "latest_build": "beta.00.01.0070",
-  "synced_at": "2026-11-27T09:57:25",
-  "total_bugs": 174,
-  "total_resolved": 174,
+  "latest_build": "beta.00.01.0071",
+  "synced_at": "2026-11-27T10:05:38",
+  "total_bugs": 175,
+  "total_resolved": 175,
   "total_open": 0,
   "bugs": [
     {
@@ -2266,6 +2266,19 @@
       "comments": "Synced from git tag beta.00.01.0070",
       "created_at": "2026-11-27 09:56:50",
       "resolved_at": "2026-11-27 09:56:50"
+    },
+    {
+      "code": "CLE-128",
+      "project": "JVEEPOO",
+      "build": "beta.00.01.0071",
+      "title": "[beta.00.01.0071] beta.00.01.0071: purge hardcoded food crap from BFM-Cell.apk, wire direct live Gemini 2.5 Flash Search & Home Wi-Fi key sync",
+      "status": "RESOLVED",
+      "component": "BFM Clinical Console",
+      "affected_files": "Beta/docs/walkthrough_beta_00_01_0071.md, docs/walkthrough_beta_00_01_0071.md",
+      "resolution": "Git commit 2bcad99 (2026-11-27 10:05:30): beta.00.01.0071: purge hardcoded food crap from BFM-Cell.apk, wire direct live Gemini 2.5 Flash Search & Home Wi-Fi key sync",
+      "comments": "Synced from git tag beta.00.01.0071",
+      "created_at": "2026-11-27 10:05:30",
+      "resolved_at": "2026-11-27 10:05:30"
     }
   ]
 }

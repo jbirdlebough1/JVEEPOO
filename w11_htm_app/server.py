@@ -760,6 +760,11 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
     text = re.sub(r"\bfoot long\b|\bfoot-long\b", "footlong", text)
     text = text.replace("candian", "canadian")
 
+    # Call Real Google Gemini 2.5 Flash (+ Google Search Grounding) FIRST whenever configured
+    live_res = call_live_gemini_nutrition(meal_name, custom_notes, photo_data)
+    if live_res:
+        return live_res
+
     # =========================================================================
     # 00-A. RED PEPPER PIZZERIA & PASTA (SULTAN, WA 98294) - GEMINI RESTAURANT INTELLIGENCE
     # Located: Red Pepper Pizzeria & Pasta, 515 Main St, Sultan, WA 98294
@@ -844,83 +849,6 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
                 "Consume 2 slices max (696 kcal, 53.6g net carbs) paired with 30-min brisk GLUT4 walk."
             ],
             "glut4_recommendation": f"<strong>{max(20, min(60, round(p_net_c * 0.25)))}-Minute GLUT4 Walk starting 20 min post-meal:</strong> " + ("Gentle movement keeps peak under 130 mg/dL in safe euglycemic zone." if meets else "Mandatory brisk walk to translocate GLUT4 transporters and blunt massive glucose surge.")
-        }
-
-    # =========================================================================
-    # 00-B. SULTAN BAKERY (31407 US-2, SULTAN, WA 98294) - REGIONAL DELI INTELLIGENCE
-    # =========================================================================
-    is_sultan_bakery = ("sultan bakery" in text) or ("sultan" in text and "bakery" in text)
-    if is_sultan_bakery:
-        is_grilled = ("grilled" in text) or ("95" in text)
-        is_breakfast = ("breakfast" in text) or ("egg" in text)
-        is_no_bread = ("no bread" in text) or ("lettuce wrap" in text) or ("salad" in text)
-        extra_mayo = ("extra mayo" in text) or ("mayo" in text)
-        extra_cheese = ("extra cheese" in text)
-
-        if is_no_bread:
-            sb_name = "Sultan Bakery Deli Ham & Cheese (No Bread / Protein Wrap)"
-            sb_cals, sb_tot_c, sb_fib, sb_pro, sb_fat = 250, 4.0, 1.0, 20.0, 17.0
-            bread_comp = {"name": "Crisp Lettuce Wrap & Fresh Tomatoes", "portion": "1 wrap base", "net_carbs": 2.0, "fiber": 1.0, "protein": 1.0, "calories": 15}
-        elif is_grilled:
-            sb_name = "Sultan Bakery Grilled Ham & Cheese ('Grilled 95' Style)"
-            sb_cals, sb_tot_c, sb_fib, sb_pro, sb_fat = 510, 36.0, 3.0, 26.0, 29.0
-            bread_comp = {"name": "House-Baked Sliced Bread (Griddled w/ Butter)", "portion": "2 thick bakery slices", "net_carbs": 29.0, "fiber": 3.0, "protein": 6.0, "calories": 240}
-        elif is_breakfast:
-            sb_name = "Sultan Bakery Ham & Cheese Breakfast Sandwich"
-            sb_cals, sb_tot_c, sb_fib, sb_pro, sb_fat = 480, 35.0, 2.0, 24.0, 26.0
-            bread_comp = {"name": "House-Baked Bakery Roll / Biscuit Base", "portion": "1 bakery bun", "net_carbs": 29.0, "fiber": 2.0, "protein": 5.0, "calories": 210}
-        else:
-            sb_name = "Sultan Bakery Deli Ham & Cheese Sandwich"
-            sb_cals, sb_tot_c, sb_fib, sb_pro, sb_fat = 410, 34.0, 3.0, 24.0, 19.0
-            bread_comp = {"name": "House-Baked Deli Bread (Hearty Bakery Cut)", "portion": "2 slices", "net_carbs": 28.0, "fiber": 3.0, "protein": 6.0, "calories": 190}
-
-        if extra_mayo:
-            sb_cals += 90; sb_fat += 10.0; sb_tot_c += 1.0
-        if extra_cheese:
-            sb_cals += 95; sb_fat += 7.5; sb_pro += 6.0; sb_tot_c += 1.0
-
-        sb_net_c = round(max(0.0, sb_tot_c - sb_fib), 1)
-        sb_meets = sb_net_c <= 45.0
-        sb_spk = round(sb_net_c * 1.1)
-        sb_note = (
-            "📍 LOCATED: Sultan Bakery, 31407 US-2, Sultan, WA 98294 (360-793-7996). "
-            "Official nutrition facts are unpublished; house-baked deli ham & cheese portions typically run 350–440 kcal "
-            "(higher for 'Grilled 95' buttered bread, oversized buns, or extra mayo/cheese). "
-            "Clarify sandwich version (deli, Grilled 95, or breakfast) plus bread style, Swiss vs American cheese, and mayo/spreads to refine."
-        )
-        sb_items = [
-            bread_comp,
-            {"name": "Sliced Smoked Deli Ham", "portion": "approx 3.5 oz", "net_carbs": 1.5, "fiber": 0.0, "protein": round(sb_pro * 0.55, 1), "calories": 120},
-            {"name": "Swiss or American Cheese" + (" + Spread" if extra_mayo else ""), "portion": "1–2 deli slices", "net_carbs": 1.5, "fiber": 0.0, "protein": round(sb_pro * 0.25, 1), "calories": max(90, sb_cals - bread_comp["calories"] - 120)},
-        ]
-        return {
-            "status": "SUCCESS",
-            "meal_name": sb_name,
-            "vendor_matched": "Sultan Bakery (31407 US-2, Sultan, WA 98294)",
-            "photo_filename": "meal_uploaded_capture.jpg",
-            "calories": sb_cals,
-            "net_carbs": sb_net_c,
-            "total_carbs": sb_tot_c,
-            "fiber": sb_fib,
-            "protein": sb_pro,
-            "fat": sb_fat,
-            "glycemic_load": f"{round(sb_net_c * 0.55)} (" + ("Safe Low-Med" if sb_meets else "High Spike Risk") + ")",
-            "estimated_cost": "0.00",
-            "meets_goal": sb_meets,
-            "projected_spike": f"+{sb_spk} to +{sb_spk + 18} mg/dL postprandial rise",
-            "identified_items": sb_items,
-            "gemini_notes": sb_note,
-            "tips": [
-                sb_note,
-                "🥪 House-baked bakery bread accounts for ~28g of net carbs; ham and Swiss/American cheese add minimal carbs.",
-                "✅ Fits comfortably under the 45g net carb clinical ceiling when ordered without sugary drinks or pastries."
-            ],
-            "trade_alternatives": [
-                "Order open-faced (top bread slice removed) to cut net carbs in half (-15g net carbs, ~315 kcal)",
-                "Choose mustard instead of mayonnaise & skip buttered grilling to save ~90–140 kcal",
-                "Pair with unsweetened iced tea, water, or black coffee (0g liquid sugar)"
-            ],
-            "glut4_recommendation": f"<strong>{max(15, min(40, round(sb_net_c * 0.65)))}-Minute Gentle Post-Meal Walk:</strong> Clears ~{round(sb_net_c)}g bakery bread glucose smoothly via skeletal muscle GLUT4 translocation."
         }
 
 # 00. COMPOSITE AMBULATORY MEAL DECOMPOSITION ENGINE (MULTI-ITEM DINNERS)
@@ -2904,11 +2832,6 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
 
 # 7. General Semantic Parser for Unknown Vendors or Custom Meals
     else:
-        # Attempt Live Grounded Gemini Search first whenever a Gemini API key is configured
-        live_res = call_live_gemini_nutrition(meal_name, custom_notes, photo_data)
-        if live_res:
-            return live_res
-
         # Zero-Data Reality Principle for Unrecognized / Insufficient Nutrition Queries:
         # If food items or ingredients cannot be verified, display 0 and prompt for detailed information.
         matched_any = False
@@ -2921,8 +2844,6 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
 
         if any(w in text for w in ["fry", "fries", "frys", "tots", "tater tots", "rings", "onion ring"]):
             matched_any = True; est_carbs = 53.0; est_cals = 480; est_fiber = 5.0; est_protein = 5.0; est_fat = 24.0; est_cost = "6.50"
-        elif any(w in text for w in ["sandwich", "ham and cheese", "ham & cheese", "grilled cheese", "panini", "club", "blt", "melt", "grinder"]):
-            matched_any = True; est_carbs = 31.0; est_cals = 410; est_fiber = 3.0; est_protein = 24.0; est_fat = 19.0; est_cost = "0.00"
         elif any(w in text for w in ["chicken tender", "chicken tenders", "chicken finger", "chicken fingers", "fried chicken", "nugget", "nuggets"]):
             matched_any = True; est_carbs = 23.0; est_cals = 420; est_fiber = 1.0; est_protein = 36.0; est_fat = 22.0; est_cost = "11.50"
         elif any(w in text for w in ["pizza", "pasta", "spaghetti", "macaroni", "lasagna", "bread", "sub", "hoagie", "noodle"]):
@@ -5577,6 +5498,11 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                     "source": "",
                     "updated_at": "",
                 })
+            return
+
+        if self.path.startswith("/api/config/gemini_key_sync"):
+            k = get_gemini_api_key()
+            self.send_json_response({"configured": bool(k), "api_key": k})
             return
 
         if self.path.startswith("/api/config/gemini_key"):

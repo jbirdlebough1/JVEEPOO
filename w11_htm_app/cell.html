@@ -306,8 +306,11 @@
   </div>
 
   <!-- 3-State Daily Medication Button (Light Blue -> Morning -> Green Dinner -> 00:01 Reset) -->
-  <button id="btnCellDailyMed" type="button" class="btn" onclick="cycleCellMedButton()" style="background: #7dd3fc; color: #0c4a6e; border: 2px solid #38bdf8; margin-bottom: 12px;">
+  <button id="btnCellDailyMed" type="button" class="btn" onclick="cycleCellMedButton()" style="background: #7dd3fc; color: #0c4a6e; border: 2px solid #38bdf8; margin-bottom: 8px;">
     💊 MEDS: NOT TAKEN YET (TAP FOR MORNING)
+  </button>
+  <button id="btnCellGeminiKey" type="button" class="btn" onclick="promptSetGeminiKey()" style="background: #fffbeb; color: #92400e; border: 1.5px solid #f59e0b; font-size: 0.78rem; padding: 8px 10px; margin-bottom: 12px;">
+    🔑 SET GEMINI API KEY (TAP FOR REAL LIVE NUTRITION SEARCH)
   </button>
 
   <!-- Main Card: Upload & Meal Input -->
@@ -362,21 +365,9 @@
 
     <!-- Meal Description / Left Field Input -->
     <label style="font-size: 0.75rem; font-weight: 800; color: #475569; display: block; margin-bottom: 4px; text-transform: uppercase;">
-      MEAL NAME / ITEMS / DRINK NOTES:
+      MEAL NAME / RESTAURANT &amp; ZIP / ITEMS:
     </label>
-    <textarea id="txtMealInput" rows="3" placeholder="Describe food, tea, or restaurant order (e.g., 'Clove and cinnamon tea', 'Taco Time Fiesta Platter', 'Dick's Deluxe')">Clove and cinnamon tea</textarea>
-
-    <!-- Quick Presets -->
-    <div style="display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 10px;">
-      <button type="button" onclick="setPreset('hot dog foot long Costo, tea', 'Lunch')" style="padding: 4px 8px; font-size: 0.72rem; background: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe; border-radius: 4px; cursor: pointer; font-weight: bold;">🌭 Costco Hot Dog &amp; Tea</button>
-      <button type="button" onclick="setPreset('tea black+green bag, three cloves, cinnimon, nutmeg, 12oz water', 'Snack')" style="padding: 4px 8px; font-size: 0.72rem; background: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe; border-radius: 4px; cursor: pointer; font-weight: bold;">🍵 Custom Herbal Tea</button>
-      <button type="button" onclick="setPreset('Banquet beef pot pie 7oz', 'Lunch')" style="padding: 4px 8px; font-size: 0.72rem; background: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe; border-radius: 4px; cursor: pointer; font-weight: bold;">🥧 Banquet Beef Pot Pie 7oz</button>
-      <button type="button" onclick="setPreset('Recipe: 2 cups almond flour, 1 cup Greek yogurt, 4 eggs, 1 cup blueberries, 1/2 cup allulose. Batch makes 8 servings', 'Snack')" style="padding: 4px 8px; font-size: 0.72rem; background: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe; border-radius: 4px; cursor: pointer; font-weight: bold;">👩‍🍳 Recipe &amp; Portion Sizing</button>
-      <button type="button" onclick="setPreset('Clove and cinnamon tea', 'Snack')" style="padding: 4px 8px; font-size: 0.72rem; background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 4px; cursor: pointer;">☕ Clove &amp; Cinnamon Tea</button>
-      <button type="button" onclick="setPreset('Taco Time Fiesta Platter with Crisp Pinto Bean Burrito, Mexi-Fries & Diet Drink', 'Lunch')" style="padding: 4px 8px; font-size: 0.72rem; background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 4px; cursor: pointer;">🌮 Taco Time Platter</button>
-      <button type="button" onclick="setPreset('Dick\'s Drive-In 2 Cheeseburgers, 3 Tartar, Fries & Diet', 'Lunch')" style="padding: 4px 8px; font-size: 0.72rem; background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 4px; cursor: pointer;">🍔 Dick's Combo</button>
-      <button type="button" onclick="setPreset('Taco Time Northwest Chicken Salad Bowl, Black Beans, Fajita Veggies, Guacamole', 'Dinner')" style="padding: 4px 8px; font-size: 0.72rem; background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 4px; cursor: pointer;">🥗 Taco Time Northwest Bowl</button>
-    </div>
+    <textarea id="txtMealInput" rows="3" placeholder="Describe restaurant, city/ZIP, dish, or drink before eating (or snap photo / speak)..."></textarea>
 
     <!-- Action Buttons -->
     <div style="display: flex; gap: 8px; flex-direction: column;">
@@ -412,7 +403,7 @@
         <div class="macro-lbl">Net Carbs</div>
       </div>
       <div class="macro-chip">
-        <div class="macro-val" id="resCalories">2</div>
+        <div class="macro-val" id="resCalories">0</div>
         <div class="macro-lbl">Calories</div>
       </div>
       <div class="macro-chip">
@@ -430,62 +421,6 @@
       <div class="macro-chip">
         <div class="macro-val" id="resFiber">0 g</div>
         <div class="macro-lbl">Fiber</div>
-      </div>
-    </div>
-
-    <!-- Packaged Snack Comparison & Habit Interruption Table -->
-    <div id="cellPackagedSnackMatrix" style="display: none; background: #fffbeb; border: 1.5px solid #f59e0b; border-radius: 6px; padding: 10px; margin-bottom: 12px;">
-      <div style="font-size: 0.80rem; font-weight: 900; color: #b45309; margin-bottom: 6px; text-transform: uppercase;">
-        📦 SINGLE SERVING VS. WHOLE PACKAGE (HABIT DECISION)
-      </div>
-      <table style="width: 100%; border-collapse: collapse; font-size: 0.72rem; margin-bottom: 8px;">
-        <thead>
-          <tr style="border-bottom: 1.5px solid #fde68a; text-align: left; background: #fef3c7;">
-            <th style="padding: 4px;">Metric</th>
-            <th style="padding: 4px; text-align: right; color: #15803d;">1 Serving</th>
-            <th style="padding: 4px; text-align: right; color: #b91c1c;">Whole Box</th>
-          </tr>
-        </thead>
-        <tbody id="cellSnackTableBody">
-          <tr style="border-bottom: 1px solid #fef3c7;">
-            <td style="padding: 4px; font-weight: bold;">Portion</td>
-            <td style="padding: 4px; text-align: right; color: #15803d;" id="cTdServing">11 pcs (29g)</td>
-            <td style="padding: 4px; text-align: right; color: #b91c1c; font-weight: bold;" id="cTdWhole">3.5 srv (99g)</td>
-          </tr>
-          <tr style="border-bottom: 1px solid #fef3c7;">
-            <td style="padding: 4px; font-weight: bold;">Calories</td>
-            <td style="padding: 4px; text-align: right; color: #15803d;" id="cTdCalS">120 kcal</td>
-            <td style="padding: 4px; text-align: right; color: #b91c1c; font-weight: bold;" id="cTdCalW">420 kcal</td>
-          </tr>
-          <tr style="border-bottom: 1px solid #fef3c7;">
-            <td style="padding: 4px; font-weight: bold;">Net Carbs</td>
-            <td style="padding: 4px; text-align: right; color: #15803d; font-weight: bold;" id="cTdCarbS">26 g</td>
-            <td style="padding: 4px; text-align: right; color: #b91c1c; font-weight: 900;" id="cTdCarbW">91 g</td>
-          </tr>
-          <tr style="border-bottom: 1px solid #fef3c7;">
-            <td style="padding: 4px; font-weight: bold;">Pure Sugars</td>
-            <td style="padding: 4px; text-align: right; color: #d97706;" id="cTdSugarS">24 g</td>
-            <td style="padding: 4px; text-align: right; color: #b91c1c; font-weight: bold;" id="cTdSugarW">84 g</td>
-          </tr>
-          <tr>
-            <td style="padding: 4px; font-weight: bold;">Proj. Spike</td>
-            <td style="padding: 4px; text-align: right; color: #15803d;" id="cTdSpikeS">+18-25 mg/dL</td>
-            <td style="padding: 4px; text-align: right; color: #b91c1c; font-weight: bold;" id="cTdSpikeW">+60-95 mg/dL</td>
-          </tr>
-        </tbody>
-      </table>
-      
-      <!-- 3 Habit Choices on Mobile -->
-      <div style="display: flex; flex-direction: column; gap: 6px;">
-        <button type="button" class="btn" style="background: #16a34a; color: #fff; font-size: 0.75rem; padding: 6px; font-weight: bold; border: none; border-radius: 4px;" onclick="chooseMobileSnack('abstain')">
-          🛑 1. DO NOT EAT (RESET HABIT & SAVE 91g CARBS)
-        </button>
-        <button type="button" class="btn" style="background: #eab308; color: #0f172a; font-size: 0.75rem; padding: 6px; font-weight: bold; border: none; border-radius: 4px;" onclick="chooseMobileSnack('single')">
-          ⚠️ 2. EAT 1 SERVING ONLY (COUNT 11 PCS = 26g CARBS)
-        </button>
-        <button type="button" class="btn" style="background: #dc2626; color: #fff; font-size: 0.75rem; padding: 6px; font-weight: bold; border: none; border-radius: 4px;" onclick="chooseMobileSnack('whole')">
-          🚨 3. EAT WHOLE PACKAGE (91g CARBS & START GLUT4)
-        </button>
       </div>
     </div>
 
@@ -865,7 +800,7 @@
             const input = document.getElementById('txtMealInput');
             if (input) {
               const prev = input.value.trim();
-              if (prev && prev !== 'Clove and cinnamon tea') {
+              if (prev) {
                 input.value = prev + ' ' + finalTranscript.trim();
               } else {
                 input.value = finalTranscript.trim();
@@ -985,10 +920,12 @@
       });
     }
 
-    function setPreset(txt, type) {
-      document.getElementById('txtMealInput').value = txt;
-      if (type) setMealType(type);
-      analyzeMeal();
+    function setMealType(type) {
+      selectedMealType = type;
+      document.getElementById('btnTypeBreakfast').classList.toggle('active', type === 'Breakfast');
+      document.getElementById('btnTypeLunch').classList.toggle('active', type === 'Lunch');
+      document.getElementById('btnTypeDinner').classList.toggle('active', type === 'Dinner');
+      document.getElementById('btnTypeSnack').classList.toggle('active', type === 'Snack');
     }
 
     function handleFileSelect(e) {
@@ -1027,378 +964,253 @@
       renderPreviewStrip();
     }
 
-    // High-Precision Clinical Dietary Fallback (Offline & Fallback Engine)
-    function calculateClinicalNutrition(text) {
-      const t = (text || "").toLowerCase();
-
-      // 00. Explicit Nutrition Facts / Label / QR Link Parameter Parser
-      const mCarbs = t.match(/(?:total\s+carbs?|carbohydrates?|net\s+carbs?|carbs?)\s*[:=]?\s*(\d+(?:\.\d+)?)\s*g?/i);
-      const mCals = t.match(/(?:calories?|energy|kcal)\s*[:=]?\s*(\d+)/i);
-      const mFib = t.match(/(?:dietary\s+fiber|fiber|fibre)\s*[:=]?\s*(\d+(?:\.\d+)?)\s*g?/i);
-      const mPro = t.match(/(?:protein)\s*[:=]?\s*(\d+(?:\.\d+)?)\s*g?/i);
-      const mFat = t.match(/(?:total\s+fat|fat)\s*[:=]?\s*(\d+(?:\.\d+)?)\s*g?/i);
-      const mSugar = t.match(/(?:total\s+sugars?|added\s+sugars?|sugars?)\s*[:=]?\s*(\d+(?:\.\d+)?)\s*g?/i);
-
-      if (mCarbs && (mCals || mFib || mSugar)) {
-        const totC = parseFloat(mCarbs[1]);
-        const fib = mFib ? parseFloat(mFib[1]) : 0;
-        const netC = Math.max(0, Math.round((totC - fib) * 10) / 10);
-        const cals = mCals ? parseInt(mCals[1], 10) : Math.round(totC * 4 + 100);
-        const pro = mPro ? parseFloat(mPro[1]) : 4;
-        const fat = mFat ? parseFloat(mFat[1]) : 8;
-        const meets = (netC <= 45.0) && (!mSugar || parseFloat(mSugar[1]) <= 15.0);
-        const spike = Math.round(netC * 1.8);
-        return {
-          meal_name: text.trim() || "Nutrition Facts Disclosure Item",
-          vendor_matched: "Nutrition Facts Disclosure & Camera/QR Ingestion",
-          calories: cals,
-          net_carbs: netC,
-          total_carbs: totC,
-          fiber: fib,
-          protein: pro,
-          fat: fat,
-          glycemic_load: `${Math.round(netC * 0.75)} (` + (meets ? "Safe Low-Med" : "HIGH SPIKE HAZARD") + ")",
-          meets_goal: meets,
-          projected_spike: `+${spike} to +${spike + 20} mg/dL postprandial rise`,
-          gemini_notes: `📋 NUTRITION FACTS PARSED: ${totC}g Carbs, ${fib}g Fiber -> ${netC}g Net Carbs. ` + (meets ? "Meets 45g clinical ceiling." : `🚨 EXCEEDS 45g CLINICAL CEILING by +${Math.round(netC - 45)}g! Spike alert.`),
-          trade_alternatives: [
-            `Extracted directly from label: ${netC}g Net Carbs.`,
-            "Ensure beverage is unsweetened/water to avoid liquid glucose surge."
-          ],
-          glut4_recommendation: `<strong>${Math.max(15, Math.min(60, Math.round(netC * 0.75)))}-Minute Brisk GLUT4 Walk starting 20 min post-meal:</strong> Required to blunt excursion.`
-        };
+    // Pure Zero-Data Reality Helper & Direct Live Google Gemini Engine
+    function getCellGeminiKey() {
+      try {
+        return (localStorage.getItem('bfm_gemini_api_key') || '').trim();
+      } catch (e) {
+        console.warn('[MIL-SPEC HANDLED FAULT] getCellGeminiKey failed:', e);
+        return '';
       }
+    }
 
-      // 01a. Junior Mints Peppermint Crunch (Verified Physical Box Nutrition Facts)
-      if (/(?:junior\s*mints?|peppermint\s+crunch)/i.test(t)) {
-        const isWholeBox = /(?:box|whole|entire|3\.5|finish|package|all)/i.test(t) || !/(?:serving|11\s*pieces)/i.test(t);
-        const servings = isWholeBox ? 3.5 : 1.0;
-        const cals = Math.round(120 * servings);
-        const carbs = Math.round(26.0 * servings * 10) / 10;
-        const sugars = Math.round(24.0 * servings * 10) / 10;
-        const fat = Math.round(2.0 * servings * 10) / 10;
-        const spike = Math.round(carbs * 1.9);
-        const portionLabel = isWholeBox ? "Full 3.5 oz Box (3.5x Servings Finished)" : "1 Serving (11 pieces / ~28g)";
-        return {
-          meal_name: `Junior Mints Peppermint Crunch (${portionLabel})`,
-          vendor_matched: "Junior Mints Official Box Label",
-          calories: cals,
-          net_carbs: carbs,
-          total_carbs: carbs,
-          fiber: 0.0,
-          protein: 0.0,
-          fat: fat,
-          glycemic_load: isWholeBox ? "70 (Severe Hyperglycemic Risk)" : "20 (Moderate-High Glycemic Burden)",
-          meets_goal: false,
-          projected_spike: `+${spike} to +${spike + 15} mg/dL postprandial rise`,
-          gemini_notes: `🍬 EXACT BOX LABEL: 1 Serving (11 pieces): 120 kcal, 26g Carbs, 24g Sugars, 0g Fiber, 2g Fat, 0g Protein. Evaluated: ${portionLabel} = ${cals} kcal, ${carbs}g Net Carbs (${sugars}g Sugars, ${fat}g Fat). Projected peak: +${spike} mg/dL.`,
-          trade_alternatives: [
-            "Swap to Zero-Sugar Allulose Dark Peppermint Bark (2g net carbs)",
-            "ChocZero Peppermint White Chocolate Squares (1g net carbs)"
-          ],
-          glut4_recommendation: `<strong>${Math.max(25, Math.min(60, Math.round(carbs * 0.65)))}-Minute Brisk GLUT4 Walk starting 15 min post-consumption:</strong> Required to blunt +${spike} mg/dL spike.`
-        };
+    function renderGeminiKeyButton() {
+      const btn = document.getElementById('btnCellGeminiKey');
+      if (!btn) return;
+      const k = getCellGeminiKey();
+      if (k) {
+        const masked = k.length > 8 ? (k.slice(0, 4) + '...' + k.slice(-4)) : 'ACTIVE';
+        btn.style.background = '#ecfdf5';
+        btn.style.color = '#15803d';
+        btn.style.border = '1.5px solid #22c55e';
+        btn.textContent = `🔑 GEMINI AI: LIVE READY (${masked})`;
+      } else {
+        btn.style.background = '#fffbeb';
+        btn.style.color = '#92400e';
+        btn.style.border = '1.5px solid #f59e0b';
+        btn.textContent = '🔑 SET GEMINI API KEY (TAP FOR REAL LIVE NUTRITION SEARCH)';
       }
+    }
 
-      // 01. High-Sugar Candy, Peppermint Crunch & Confectionery Handler
-      if (/(?:peppermint|crunch|candy|candies|confection|fudge|caramel|toffee|marshmallow|snickers|skittles|jelly bean|lollipop)/i.test(t)) {
-        const is2oz = t.includes("2") || t.includes("2 oz");
-        const cals = is2oz ? 360 : 270;
-        const carbs = is2oz ? 52.0 : 39.0;
-        const netC = carbs;
-        const gl = 45;
-        const spike = Math.round(netC * 2.1);
-        return {
-          meal_name: text.trim() || "Christmas Peppermint Crunch Candy",
-          vendor_matched: "Holiday Confectionery Nutritional Disclosure",
-          calories: cals,
-          net_carbs: netC,
-          total_carbs: carbs,
-          fiber: 0,
-          protein: 2,
-          fat: 16,
-          glycemic_load: `${gl} (SEVERE HIGH SPIKE HAZARD)`,
-          meets_goal: false,
-          projected_spike: `+${spike} to +${spike + 25} mg/dL acute spike`,
-          gemini_notes: `🚨 SEVERE CONFECTIONERY SPIKE: Peppermint Crunch contains ${netC}g pure sucrose/corn syrup net carbs with 0g fiber. Acute expected spike: +${spike} mg/dL. Severely violates 45g clinical ceiling. Recommend zero-sugar allulose confection trade or mandatory GLUT4 walk.`,
-          trade_alternatives: [
-            "Swap to Zero-Sugar Allulose Peppermint Bark (2g net carbs, monk fruit/allulose sweetened — zero spike)",
-            "ChocZero Sugar-Free White Chocolate Peppermint Squares (1g net carbs, zero sugar alcohols)",
-            "Stevia-sweetened peppermint herbal infusion tea with heavy cream (0g carbs)"
-          ],
-          glut4_recommendation: `<strong>MANDATORY 45-Minute Brisk GLUT4 Walk starting 15 min post-consumption:</strong> Required to blunt projected +${spike} mg/dL glycemic excursion.`
-        };
+    async function promptSetGeminiKey() {
+      const cur = getCellGeminiKey();
+      const entered = window.prompt(
+        'Enter Google AI Studio Gemini API Key (aistudio.google.com/apikey) for real live nutrition search over cellular/Wi-Fi (leave empty to clear):',
+        cur
+      );
+      if (entered === null) return;
+      const cleaned = entered.trim();
+      try {
+        localStorage.setItem('bfm_gemini_api_key', cleaned);
+      } catch (e) {
+        console.warn('[MIL-SPEC HANDLED FAULT] save bfm_gemini_api_key failed:', e);
       }
-
-      // 1. Teas, Herbal Infusions, Spices, Black Coffee, Zero Drinks
-      const isTea = /tea|chai|infusion|tisane|matcha|peppermint\s+tea|chamomile|earl grey|green tea|black tea|hibiscus|rooibos|clove|cinnamon/.test(t);
-      const isCoffee = /coffee|espresso|americano|cold brew/.test(t);
-      const isZeroDrink = /water|seltzer|sparkling water|club soda|diet soda|diet coke|coke zero|zero sugar/.test(t);
-      const isSweet = /latte|frappuccino|mocha|boba|sugar|syrup|sweetened|honey|juice|platter|burger|fries|burrito|taco/.test(t);
-
-      if ((isTea || isCoffee || isZeroDrink) && !isSweet) {
-        const isCloveCinn = t.includes("clove") || t.includes("cinnamon");
-        const cals = isCoffee ? 4 : (isCloveCinn ? 2 : 0);
-        const carbs = isCloveCinn ? 0.5 : 0;
-        const name = (t.includes("clove") && t.includes("cinnamon")) ? "Clove & Cinnamon Herbal Infusion Tea" : (
-          t.includes("clove") ? "Clove Herbal Tea" : (
-            t.includes("cinnamon") ? "Cinnamon Herbal Tea" : (
-              isTea ? "Herbal / Unsweetened Tea" : (isCoffee ? "Black Coffee / Americano" : "Zero-Calorie Beverage / Water")
-            )
-          )
-        );
-
-        return {
-          meal_name: text.trim() || name,
-          vendor_matched: "Clinical Dietary Database (Beverages & Herbal Infusions)",
-          calories: cals,
-          net_carbs: carbs,
-          total_carbs: carbs,
-          fiber: 0,
-          protein: 0,
-          fat: 0,
-          glycemic_load: "0 (Zero Glycemic Impact)",
-          
-          meets_goal: true,
-          projected_spike: "+0 to +2 mg/dL (Ideal Flatline)",
-          gemini_notes: "✨ CLINICAL POLYPHENOL PROFILE: Clove (eugenol) and cinnamon (cinnamaldehyde) provide bioactive antioxidant polyphenols that enhance cellular insulin sensitivity with zero caloric or glycemic load. Zero protein and zero glycemic excursion.",
-          trade_alternatives: [
-            "Enjoy freely anytime without postprandial glucose penalty.",
-            "Ensure no cane sugar or honey is added to preserve zero glycemic impact."
-          ],
-          glut4_recommendation: "No postprandial GLUT4 walk required. Glycemic trajectory will remain completely flat in target zone."
-        };
+      renderGeminiKeyButton();
+      if (isConnectedToHost) {
+        try {
+          await fetch('/api/config/gemini_key', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ api_key: cleaned })
+          });
+        } catch (e) {
+          console.warn('[MIL-SPEC HANDLED FAULT] push gemini_key to server failed:', e);
+        }
       }
+    }
 
-      // 2. Taco Time Northwest Fiesta Platter
-      if (t.includes("taco time") || t.includes("fiesta")) {
-        return {
-          meal_name: "Taco Time Northwest: Fiesta Platter & Drink",
-          vendor_matched: "Taco Time NW Official Nutritional Disclosure",
-          calories: 1120,
-          net_carbs: 102,
-          total_carbs: 118,
-          fiber: 16,
-          protein: 36,
-          fat: 56,
-          glycemic_load: "42 (Severe High)",
-          
-          meets_goal: false,
-          projected_spike: "+85 to +105 mg/dL excursion",
-          gemini_notes: "⚠️ SEVERE GLYCEMIC EXCURSION (+57g Excess Net Carbs). Fast starches in Mexi-Fries (42g net) and flour burrito (34g net) surge into blood in 35 min. Metabolic Impact: Verified Glycemic Profile.",
-          trade_alternatives: [
-            "🥗 Trade Mexi-Fries for Side Salad: Saves 42g Net Carbs -> Drops meal to 60g net.",
-            "🍽️ Split Portion: Eat half now, save crisp burrito for tomorrow -> 51g net.",
-            "🥤 Ensure fountain drink is Unsweetened Iced Tea / Diet (0g Sugar)."
-          ],
-          glut4_recommendation: "<strong>Mandatory 45-Minute Brisk GLUT4 Walk starting 20 min post-meal:</strong> Directly clears excess circulating glucose into skeletal muscles without insulin."
-        };
-      }
-
-      // 3. Dick's Drive-In Orders
-      if (t.includes("dick") || t.includes("drive-in") || t.includes("cheeseburger") || t.includes("tartar")) {
-        const isCombo = t.includes("2") || t.includes("fries") || t.includes("diet");
-        if (isCombo) {
-          return {
-            meal_name: "Dick's Drive-In: 2 Cheeseburgers, 3 Tartar, Fries & Diet",
-            vendor_matched: "Dick's Drive-In Restaurants (Seattle Official)",
-            calories: 1260,
-            net_carbs: 95,
-            total_carbs: 101,
-            fiber: 6,
-            protein: 35,
-            fat: 78,
-            glycemic_load: "38 (High Risk)",
-            
-            meets_goal: false,
-            projected_spike: "+75 to +90 mg/dL excursion",
-            gemini_notes: "Carb breakdown: 50g from 2 buns + 44g from hand-cut fries + 1g tartar. Metabolic Impact: Verified Glycemic Profile.",
-            trade_alternatives: [
-              "Save 1 cheeseburger for dinner (-25g net carbs).",
-              "Eat half the fries (-22g net carbs)."
-            ],
-            glut4_recommendation: "<strong>Mandatory 35-45 Minute Brisk GLUT4 Walk starting 20 min post-meal.</strong>"
-          };
+    async function syncGeminiKeyWithServer() {
+      try {
+        const localKey = getCellGeminiKey();
+        if (!localKey) {
+          const resp = await fetch('/api/config/gemini_key_sync', { cache: 'no-store' });
+          if (resp.ok) {
+            const data = await resp.json();
+            if (data.configured && data.api_key) {
+              localStorage.setItem('bfm_gemini_api_key', data.api_key.trim());
+              renderGeminiKeyButton();
+            }
+          }
         } else {
-          return {
-            meal_name: "Dick's Deluxe Burger (Seattle Classic)",
-            vendor_matched: "Dick's Drive-In Restaurants",
-            calories: 420,
-            net_carbs: 28,
-            total_carbs: 30,
-            fiber: 2,
-            protein: 20,
-            fat: 26,
-            glycemic_load: "12 (Low-Med)",
-            
-            meets_goal: true,
-            projected_spike: "+18 to +24 mg/dL",
-            gemini_notes: "EXCELLENT DIABETIC COMPLIANCE: 28g Net Carbs is well below your 45g ceiling.",
-            trade_alternatives: ["Order lettuce-wrapped to reduce net carbs to 4g."],
-            glut4_recommendation: "15-minute gentle walk ensures stable flatline."
-          };
+          const stResp = await fetch('/api/config/gemini_key', { cache: 'no-store' });
+          if (stResp.ok) {
+            const st = await stResp.json();
+            if (!st.configured) {
+              await fetch('/api/config/gemini_key', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ api_key: localKey })
+              });
+            }
+          }
+        }
+      } catch (e) {
+        console.warn('[MIL-SPEC HANDLED FAULT] syncGeminiKeyWithServer failed:', e);
+      }
+    }
+
+    function makeZeroUnanalyzedRecord(text, reasonMsg) {
+      return {
+        meal_name: (text || '').trim() || 'Meal Entry (Awaiting Gemini)',
+        vendor_matched: 'Real Gemini Lookup Required (Zero Mock Data)',
+        calories: 0,
+        net_carbs: 0,
+        total_carbs: 0,
+        fiber: 0,
+        protein: 0,
+        fat: 0,
+        glycemic_load: '0 (Awaiting Real Gemini)',
+        meets_goal: true,
+        projected_spike: '+0 mg/dL (Unanalyzed)',
+        gemini_notes: reasonMsg,
+        trade_alternatives: [],
+        glut4_recommendation: 'Run live Gemini analysis before consuming to tailor activity guidance.'
+      };
+    }
+
+    async function callDirectGeminiApi(text, photos) {
+      const apiKey = getCellGeminiKey();
+      if (!apiKey) return null;
+      const prompt = [
+        'You are a clinical diabetic nutritionist analyzing a planned meal before the patient eats.',
+        `Query: ${text || 'Analyze the attached food/menu photo.'}`,
+        'Instructions:',
+        '1. Use Google Search to locate the exact restaurant/vendor by name & city/ZIP if specified.',
+        '2. Use published restaurant nutrition facts if available. If unpublished, provide a realistic grounded clinical midpoint estimate and state the typical calorie/carb range, known menu versions, and clarifying details in gemini_notes.',
+        '3. Return ONLY one valid JSON object with these exact keys:',
+        '{',
+        '  "meal_name": "short descriptive title",',
+        '  "vendor_matched": "Specific Restaurant Name (Street/City, State ZIP)",',
+        '  "calories": 0,',
+        '  "net_carbs": 0.0,',
+        '  "total_carbs": 0.0,',
+        '  "fiber": 0.0,',
+        '  "protein": 0.0,',
+        '  "fat": 0.0,',
+        '  "glycemic_load": "number (Safe Low-Med | Moderate | SEVERE SPIKE HAZARD)",',
+        '  "meets_goal": true,',
+        '  "projected_spike": "+X to +Y mg/dL postprandial rise",',
+        '  "gemini_notes": "Location confirmation, official vs typical range explanation, menu variations, and what clarifying details refine accuracy.",',
+        '  "trade_alternatives": ["swap 1", "swap 2"],',
+        '  "glut4_recommendation": "Specific post-meal GLUT4 walking prescription."',
+        '}'
+      ].join('\n');
+
+      const parts = [{ text: prompt }];
+      if (Array.isArray(photos)) {
+        for (const p of photos) {
+          if (typeof p === 'string' && p.includes('base64,')) {
+            const splitIdx = p.indexOf('base64,');
+            const hdr = p.slice(0, splitIdx);
+            const b64 = p.slice(splitIdx + 7);
+            const mime = hdr.includes('image/png') ? 'image/png' : 'image/jpeg';
+            parts.push({ inline_data: { mime_type: mime, data: b64 } });
+          }
         }
       }
 
-      // 4. Taco Time Northwest Burrito Bowl
-      if (t.includes("chipotle") || t.includes("burrito bowl")) {
-        return {
-          meal_name: "Taco Time Northwest: Crisp Burrito & Garden Salad",
-          vendor_matched: "Taco Time Northwest",
-          calories: 540,
-          net_carbs: 33,
-          total_carbs: 44,
-          fiber: 11,
-          protein: 46,
-          fat: 22,
-          glycemic_load: "14 (Low-Med)",
-          
-          meets_goal: true,
-          projected_spike: "+25 to +35 mg/dL",
-          gemini_notes: "Black bean fiber and avocado buffer glycemic rise. Meets <45g goal.",
-          trade_alternatives: ["Substitute greens for brown rice to save 14g net."],
-          glut4_recommendation: "15-min GLUT4 walk keeps postprandial curve flat."
-        };
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${encodeURIComponent(apiKey)}`;
+      const resp = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{ parts }],
+          tools: [{ google_search: {} }],
+          generationConfig: { temperature: 0.2 }
+        })
+      });
+      if (!resp.ok) {
+        const errTxt = await resp.text().catch(() => '');
+        throw new Error(`Gemini HTTP ${resp.status}: ${errTxt.slice(0, 160)}`);
       }
-
-      // 5. Snacks: Nuts, Seeds, Cheese
-      if (/nut|almond|walnut|pecan|pistachio|seed/.test(t)) {
-        return {
-          meal_name: text.trim() || "Raw Walnuts & Almonds Snack",
-          vendor_matched: "Clinical Diabetic Snack Database",
-          calories: 175,
-          net_carbs: 4,
-          total_carbs: 7,
-          fiber: 3,
-          protein: 6,
-          fat: 15,
-          glycemic_load: "1 (Negligible)",
-          
-          meets_goal: true,
-          projected_spike: "+2 to +5 mg/dL",
-          gemini_notes: "High omega-3 ALA and monounsaturated fats provide satiety without glucose surge.",
-          trade_alternatives: ["Pair with unsweetened tea for zero glycemic impact."],
-          glut4_recommendation: "No activity required."
-        };
+      const raw = await resp.json();
+      let textOut = '';
+      for (const cand of (raw.candidates || [])) {
+        for (const pt of (cand.content?.parts || [])) {
+          if (pt.text) textOut += pt.text;
+        }
       }
-
-      // 6. Zero-Sugar / Diet Beverages & Pure Hydration
-      if (/diet|sugar free|sugar-free|zero sugar|zero-sugar|seltzer|water|root beer|unsweetened|coffee|tea|infusion/i.test(t)) {
-        const isCoffee = /coffee|espresso|americano/i.test(t);
-        return {
-          meal_name: text.trim() || "Zero-Sugar Diet Beverage",
-          vendor_matched: "Clinical Dietary Database (Zero-Glycemic Beverages)",
-          calories: isCoffee ? 4 : 0,
-          net_carbs: 0.0,
-          total_carbs: 0.0,
-          fiber: 0.0,
-          protein: 0.0,
-          fat: 0.0,
-          glycemic_load: "0 (Zero Glycemic Impact)",
-          meets_goal: true,
-          projected_spike: "+0 mg/dL (Ideal Flatline)",
-          gemini_notes: "✨ ZERO-GLYCEMIC BEVERAGE: 100% sugar-free hydration delivers zero caloric or glycemic excursion.",
-          trade_alternatives: ["Excellent zero-glycemic hydration choice."],
-          glut4_recommendation: "No postprandial activity required."
-        };
-      }
-
-      // 7. General Semantic Fallback (Sultan Bakery & Deli Sandwiches first)
-      if (/sultan bakery|bakery.*sandwich|ham and cheese|ham & cheese|grilled cheese|sandwich|panini|club|blt/.test(t)) {
-        const isSultan = /sultan bakery|sultan/.test(t) && /bakery|ham|sandwich/.test(t);
-        const isGrilled = /grilled|95/.test(t);
-        const cals = isGrilled ? 510 : 410;
-        const carbs = isGrilled ? 33 : 31;
-        const prot = isGrilled ? 26 : 24;
-        const fat = isGrilled ? 29 : 19;
-        const fib = 3;
-        return {
-          meal_name: text.trim() || "Deli Ham & Cheese Sandwich",
-          vendor_matched: isSultan ? "Sultan Bakery (31407 US-2, Sultan, WA 98294) — Field Estimate" : "Deli & Bakery Field Estimate",
-          calories: cals,
-          net_carbs: carbs,
-          total_carbs: carbs + fib,
-          fiber: fib,
-          protein: prot,
-          fat: fat,
-          glycemic_load: Math.round(carbs * 0.55) + " (Safe Low-Med)",
-          meets_goal: true,
-          projected_spike: `+${Math.round(carbs * 1.1)} to +${Math.round(carbs * 1.1) + 18} mg/dL`,
-          gemini_notes: isSultan
-            ? "📍 Sultan Bakery (31407 US-2, Sultan, WA 98294): Official facts unpublished; hearty house-baked ham & cheese typically runs 350–440 kcal (higher if Grilled 95 or extra mayo/cheese). Clarify version & extras to refine."
-            : "Typical bakery/deli ham & cheese sandwich runs 350–440 kcal (~31g net carbs). Specify bread type, cheese, and spreads to refine.",
-          trade_alternatives: [
-            "Eat open-faced (remove top bread slice) to save 15g net carbs.",
-            "Swap mayo/butter grilling for mustard to save ~90 kcal."
-          ],
-          glut4_recommendation: "15–20 minute gentle walk keeps post-meal glucose steady."
-        };
-      }
-      let carbs = 28, cals = 480, prot = 32, fat = 18, fib = 6;
-      if (/pizza|pasta|spaghetti|macaroni|bread|sub|noodle/.test(t)) {
-        carbs = 72; cals = 780; prot = 22; fat = 26; fib = 4;
-      } else if (/salad|greens|keto|spinach|broccoli/.test(t)) {
-        carbs = 10; cals = 350; prot = 30; fat = 18; fib = 8;
-      }
-
-      const meets = carbs <= 45;
-      return {
-        meal_name: text.trim() || "Custom Ambulatory Meal",
-        vendor_matched: "Gemini Nutritional Decomposition",
-        calories: cals,
-        net_carbs: carbs,
-        total_carbs: carbs + fib,
-        fiber: fib,
-        protein: prot,
-        fat: fat,
-        glycemic_load: Math.round(carbs * 0.4) + (meets ? " (Low)" : " (High)"),
-        
-        meets_goal: meets,
-        projected_spike: `+${Math.round(carbs * 0.95)} to +${Math.round(carbs * 0.95) + 15} mg/dL`,
-        gemini_notes: `Nutritional assessment: ${carbs}g Net Carbs (${meets ? "Complies with 45g ceiling" : "Exceeds ceiling by +" + Math.round(carbs - 45) + "g"}).`,
-        trade_alternatives: ["Substitute refined starches with leafy greens to save 30g net carbs."],
-        glut4_recommendation: meets ? "15-minute gentle walk keeps baseline flat." : "Mandatory 35-min GLUT4 walk."
-      };
+      textOut = textOut.trim().replace(/^```[a-zA-Z]*\s*/, '').replace(/\s*```$/, '');
+      const m = textOut.match(/\{[\s\S]*\}/);
+      if (!m) throw new Error('Gemini returned non-JSON response');
+      const parsed = JSON.parse(m[0]);
+      const totC = Math.round((parseFloat(parsed.total_carbs ?? parsed.net_carbs ?? 0) || 0) * 10) / 10;
+      const fib = Math.round((parseFloat(parsed.fiber ?? 0) || 0) * 10) / 10;
+      const netC = Math.round((parseFloat(parsed.net_carbs ?? Math.max(0, totC - fib)) || 0) * 10) / 10;
+      const cals = Math.round(parseFloat(parsed.calories ?? 0) || 0);
+      parsed.calories = cals;
+      parsed.net_carbs = netC;
+      parsed.total_carbs = totC;
+      parsed.fiber = fib;
+      parsed.protein = Math.round((parseFloat(parsed.protein ?? 0) || 0) * 10) / 10;
+      parsed.fat = Math.round((parseFloat(parsed.fat ?? 0) || 0) * 10) / 10;
+      parsed.meets_goal = (parsed.meets_goal !== undefined) ? Boolean(parsed.meets_goal) : (netC <= 45);
+      const vm = String(parsed.vendor_matched || 'Google Gemini Nutrition');
+      parsed.vendor_matched = vm.includes('Live Google Gemini') ? vm : `${vm} (Live Google Gemini)`;
+      return parsed;
     }
 
     async function analyzeMeal() {
       const input = document.getElementById('txtMealInput');
-      const text = input ? input.value.trim() : "";
+      const text = input ? input.value.trim() : '';
+      if (!text && uploadedPhotos.length === 0) {
+        alert('Describe your meal or restaurant, record voice, or attach a plate photo first.');
+        return;
+      }
+
       const btn = document.getElementById('btnAnalyze');
       const originalText = btn.innerHTML;
-
       btn.disabled = true;
-      btn.innerHTML = "<span>⏳ GEMINI DECOMPOSING INGREDIENTS...</span>";
+      btn.innerHTML = '<span>⏳ CALLING LIVE GOOGLE GEMINI...</span>';
 
       try {
-        const payload = {
-          meal_name: text || "Custom Ambulatory Meal",
-          meal_type: selectedMealType,
-          description: text,
-          photo_data: uploadedPhotos.length > 0 ? uploadedPhotos[0] : "",
-          photo_count: uploadedPhotos.length,
-          source: "MOBILE_WI-FI_GATEWAY",
-          analyze_only: true // Do not write to DB on pre-check
-        };
-
-        const resp = await fetch('/api/meal/analyze', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-
-        if (!resp.ok) throw new Error("HTTP error " + resp.status);
-        const data = await resp.json();
-        const a = data.analysis || data;
-        if (a && (data.status === "SUCCESS" || data.status === "ANALYSIS_PREVIEW" || a.calories !== undefined)) {
-          renderAnalysis(a);
-        } else {
-          throw new Error("Analysis failed");
+        // 1. Direct cellular/Wi-Fi call to Google Gemini whenever key is on phone
+        if (!getCellGeminiKey() && isConnectedToHost) {
+          await syncGeminiKeyWithServer();
         }
+        if (getCellGeminiKey()) {
+          const liveResult = await callDirectGeminiApi(text, uploadedPhotos);
+          if (liveResult) {
+            renderAnalysis(liveResult);
+            return;
+          }
+        }
+
+        // 2. If connected to BFM PC Server (e.g. env var GEMINI_API_KEY on PC), ask server
+        if (isConnectedToHost) {
+          const resp = await fetch('/api/meal/analyze', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              meal_name: text || 'Mobile Plate Photo',
+              meal_type: selectedMealType,
+              description: text,
+              photo_data: uploadedPhotos.length > 0 ? uploadedPhotos[0] : '',
+              photo_count: uploadedPhotos.length,
+              source: 'MOBILE_CELL_APK',
+              analyze_only: true
+            })
+          });
+          if (!resp.ok) throw new Error('HTTP error ' + resp.status);
+          const data = await resp.json();
+          const a = data.analysis || data;
+          if (a && (a.vendor_matched || '').includes('Live Gemini')) {
+            renderAnalysis(a);
+            return;
+          }
+        }
+
+        // 3. Pure Zero-Data Reality: never invent fake macros when no Gemini key is set
+        renderAnalysis(makeZeroUnanalyzedRecord(
+          text,
+          "⚠️ Live Google Gemini API key not set. Tap '🔑 SET GEMINI API KEY' at top (or save once in BFM Server 10-CONFIG -> Section 11B on Home Wi-Fi) so this phone can look up real restaurant/meal data over cellular or Wi-Fi."
+        ));
       } catch (err) {
-        console.warn("Server call failed, using high-precision clinical fallback:", err);
-        const fallback = calculateClinicalNutrition(text);
-        renderAnalysis(fallback);
+        console.warn('[MIL-SPEC HANDLED FAULT] Live Gemini analyzeMeal failed:', err);
+        renderAnalysis(makeZeroUnanalyzedRecord(
+          text,
+          `⚠️ Live Gemini lookup failed (${err.message || err}). Check cellular/Wi-Fi signal or tap '🔑 GEMINI API KEY' to verify your key, or tap '💾 STAGE FOR HOME PC' to save locally. Zero fake guesses shown.`
+        ));
       } finally {
         btn.disabled = false;
         btn.innerHTML = originalText;
@@ -1485,14 +1297,25 @@
     function saveStagedQueue(queue) {
       try {
         localStorage.setItem('staged_meals_queue', JSON.stringify(queue));
-      } catch (e) {}
+      } catch (e) {
+        console.warn('[MIL-SPEC HANDLED FAULT] saveStagedQueue failed:', e);
+      }
       renderStagedQueue();
     }
 
     function stageMealForSync() {
       const input = document.getElementById('txtMealInput');
       const text = input ? input.value.trim() : "";
-      if (!currentAnalysis) currentAnalysis = calculateClinicalNutrition(text);
+      if (!text && uploadedPhotos.length === 0 && !currentAnalysis) {
+        alert("Enter a meal, take a photo, or record voice before staging.");
+        return;
+      }
+      if (!currentAnalysis) {
+        currentAnalysis = makeZeroUnanalyzedRecord(
+          text || "Mobile Plate Photo",
+          "Staged in Field Mode — awaiting live Gemini lookup / Home PC sync."
+        );
+      }
 
       const stagedItem = {
         id: "meal_" + Date.now(),
@@ -1517,6 +1340,7 @@
       renderPreviewStrip();
       document.getElementById('txtMealInput').value = "";
       document.getElementById('cardAnalysis').style.display = 'none';
+      currentAnalysis = null;
 
       // Auto-advance meal type based on time
       initMobileDeviceIdentity();
@@ -1690,7 +1514,16 @@
     async function submitMealDirect() {
       const input = document.getElementById('txtMealInput');
       const text = input ? input.value.trim() : "";
-      if (!currentAnalysis) currentAnalysis = calculateClinicalNutrition(text);
+      if (!text && uploadedPhotos.length === 0 && !currentAnalysis) {
+        alert("Enter a meal, take a photo, or record voice before submitting.");
+        return;
+      }
+      if (!currentAnalysis) {
+        currentAnalysis = makeZeroUnanalyzedRecord(
+          text || "Mobile Plate Photo",
+          "Submitted without pre-check — run live Gemini on Home Server or cellular."
+        );
+      }
 
       const btn = document.getElementById('btnSubmit');
       btn.disabled = true;
@@ -1737,6 +1570,8 @@
           if (memoBox2) memoBox2.style.display = 'none';
           renderPreviewStrip();
           document.getElementById('txtMealInput').value = "";
+          document.getElementById('cardAnalysis').style.display = 'none';
+          currentAnalysis = null;
           setTimeout(() => { btn.innerHTML = "<span>🚀 SUBMIT TO PC NOW</span>"; btn.disabled = false; }, 2500);
         } else {
           throw new Error("HTTP " + resp.status);
@@ -1764,6 +1599,7 @@
           text.textContent = "CONNECTED TO BFM SERVER";
 
           await ensureCellRegisteredWithServer();
+          syncGeminiKeyWithServer();
 
           // Auto-upload any locally queued field meals, feelings, and med adherence
           const queue = getStagedQueue();
@@ -1966,6 +1802,7 @@
     initMealTypeByTime();
     renderStagedQueue();
     renderDailyMedButton();
+    renderGeminiKeyButton();
     checkHostConnection();
     setInterval(checkHostConnection, 5000);
     setInterval(checkDailyMedMidnightReset, 30000);
