@@ -24,7 +24,7 @@ To guarantee enterprise elegance, maximum readability across all platforms, and 
 2. **Zero LaTeX / Raw Math Clutter**: Absolutely zero `$` or `$$` math delimiters, zero KaTeX / MathJax markers, zero LaTeX macros (`\frac`, `\sigma`, `\sqrt`, `\approx`, `\pm`, `\times`, `\ge`, `\le`, `\iff`, `\ne`). Math must use natural, clean plain-text typography (`(Glucose + 46.7) / 28.7`, `sigma / sqrt(N)`, `<= 45g`, `+/- 15%`).
 3. **Zero Monospace ASCII Box-Art**: Absolutely zero box-drawing characters (`┌`, `┐`, `└`, `┘`, `│`, `─`, `├`, `┤`, `┬`, `┴`, `┼`). Replaced with clean, accessible Markdown tables.
 4. **Zero Raw Text Flowchart Code Blocks**: Absolutely zero `flowchart TD`, `subgraph`, or raw text pseudo-code diagrams in user-facing documents.
-5. **Zero Forbidden Legacy Terms**: Zero "5010", zero "patient", zero "clinical", zero "Star Trek" in-app.
+5. **Zero Forbidden Legacy Terms**: Zero "5010", zero "patient", zero "clinical", zero sci-fi or trademarked franchise terms in-app or docs.
 6. **Mandatory Automated Pre-Commit Audit**: Every document, presentation, and display code file must pass the automated `audit_zero_defect.py` tool (`-Werror`) with zero defects before staging or committing.
 
 ---
@@ -38,7 +38,7 @@ To protect the author, open-source contributors, and community partners from leg
 * **Terminology Sanitization**:
   * The term **"Patient" is strictly prohibited** across the codebase, UI, and documentation; **"User"** or **"Operator"** is used exclusively.
   * The term **"Clinical" is strictly prohibited**; replaced with **"Personal"**, **"Biometric"**, **"Self-Help"**, or **"Biofunction"**.
-  * The phrase **"Star Trek" is strictly barred from the application software** to prevent trademark infringement; historical inspiration tributes to Gene Roddenberry and Scott Chambliss are confined exclusively to the educational presentation preface under nominative fair use.
+  * All third-party franchise or sci-fi terminology is strictly barred from the application software and documentation to prevent trademark infringement and maintain clinical neutrality.
   * Device-specific labels (e.g. **5010**) are completely removed in favor of universal **Wearable Bio-Sensor Array** support.
 
 #### B. Complete Release of Liability
@@ -220,7 +220,7 @@ To foster an unstoppable open-source movement for global health, Google Gemini p
 | :--- | :--- | :--- | :--- |
 | **REQ-01** | Architecture | Sovereign, air-gapped standalone execution from local file system (`BFM.HTM`) with zero mandatory cloud connectivity. | Dual origin test (`file:///` and `http://127.0.0.1:8899`) |
 | **REQ-02** | Security & Legal | Mandatory startup terms-of-use acceptance modal cryptographically hashed and logged to SQLite table `user_legal_acceptance`. | Audit table inspection |
-| **REQ-03** | Hardware Binding | 3-Way binding triad strictly isolating data: User Profile (`UID`) <-> Cell Portal (`ESN`) <-> Watch Transponder (`MAC`). | Relational schema integrity check |
+| **REQ-03** | Hardware Binding | 3-Way binding triad strictly isolating data: User Profile (`UID`) <-> Cell Portal (`ESN`) <-> Watch Sensor (`MAC`). | Relational schema integrity check |
 | **REQ-04** | Data Storage | Relational SQLite vault storing continuous 5-minute telemetry, meals, exercises, and medications. | Schema DDL validation |
 | **REQ-05** | EHR Export | 1-Click US-Core Epic FHIR R4 JSON bundle and LOINC-coded CSV clinical export generated strictly on demand. | FHIR R4 JSON schema validator |
 | **REQ-06** | Dual Backup | Automated daily dual external backup generating synchronized SQLite snapshot, FHIR JSON, and SHA-256 checksum manifest. | Backup engine audit |
@@ -238,7 +238,7 @@ To foster an unstoppable open-source movement for global health, Google Gemini p
 | **REQ-18** | Governance | The Author is the sole Pioneer, Inventor, and Philosophical Leader; the project currently has no sponsors and is actively seeking sponsorship (Veepoo / FITAOS, PPG watch vendors, Google Gemini). | Document & legal review |
 | **REQ-19** | Somatosensory Pain | Real-time classification and tracking of all voiced pain and physical discomfort rendered directly in `CH 09: PAIN INDEX`. | NLP & timeline anchor test |
 | **REQ-20** | HBand 2.0 Parity | Complete hardware equivalence (`0xDF` OriginV3 244B MTU, `0x88` Temp history, `0xE0` Sleep + naps, `0xB8` 12/24h lock, `8,859`-epoch Lorenz, ECG, METs). | Transponder GATT protocol check |
-| **REQ-21** | Abrams Aesthetic | Interface follows luminous clean clinical white/slate (`#f8fafc`), ice-blue (`#0284c7`), and monospaced tabular numerals. | DOM class & CSS audit |
+| **REQ-21** | Clinical UI Aesthetic | Interface follows luminous clean clinical white/slate (`#f8fafc`), ice-blue (`#0284c7`), and monospaced tabular numerals. | DOM class & CSS audit |
 | **REQ-22** | Zero-Data Reality | Zero Data = Zero Line: un-synced charts show `0`, no `enrichBiometrics` overwrites, no hardcoded fake medications (`Metformin`), blank unassigned MRN. | State & chart rendering audit |
 | **REQ-23** | Consolidated Export | All EHR, FHIR R4, CSV, and deduplicated SQLite USB backup triggers centralized in **`13-EXPORT`** (`pageExport`, formerly Bay 05), zero duplicate buttons. | DOM button presence audit |
 | **REQ-24** | 13-Channel Chart Parity | Identical 13 channels (`CH 01` Glucose–`CH 13` Medications Rx) with blue off-wrist exclusion bands rendered uniformly in 3D Multi & 13-Lane Tall Chart. | `getTallSynchronizedDataset()` check |

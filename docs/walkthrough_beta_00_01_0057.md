@@ -33,7 +33,7 @@
 | Verification Suite | Scope | Result |
 |---|---|---|
 | `strict_gate_v2.py` | Mirror SHA-256, `1,957/1,957` DOM tags, `cell.html` (`80/80`), Node & Python ASTs, FHIR/DB/CLEBUGGER | **13/13 PASS** |
-| `audit_zero_defect.py` | Doc links, zero `$` delimiters, zero ASCII box-art, zero-data reality, Abrams theme, 3D Multi | **21/21 PASS** |
+| `audit_zero_defect.py` | Doc links, zero `$` delimiters, zero ASCII box-art, zero-data reality, Clinical light theme, 3D Multi | **21/21 PASS** |
 | `test_beta1_e2e.py` | Live `127.0.0.1:8899` REST health, Cell provisioning, docking, dual SQLite + Epic FHIR R4 export | **10/10 PASS** |
 | `tools/audit_presentation_full.py` | `84/84` slides monotonic Tab `01->14`, Slide 02 SVG, Slide 04 Watch+Phone->PC topology, 144 `fly3d` JPEGs, zero programmer jargon, `168` MP3s | **84/84 PASS** |
 | `tools/sync_clebugger.py` | `D:\CLEBUGGER\bugs.db` (`JVEEPOO` `57/57` Beta tags, `0 OPEN` defects) | **SYNCED (0 OPEN)** |

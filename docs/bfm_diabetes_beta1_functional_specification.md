@@ -21,7 +21,7 @@
   2. **Zero LaTeX / Raw Math Clutter**: Absolutely zero `$` or `$$` math delimiters, zero KaTeX / MathJax markers, zero LaTeX macros (`\frac`, `\sigma`, `\sqrt`, `\approx`, `\pm`, `\times`, `\ge`, `\le`, `\iff`, `\ne`). Math must use natural, clean plain-text typography (`(Glucose + 46.7) / 28.7`, `sigma / sqrt(N)`, `<= 45g`, `+/- 15%`).
   3. **Zero Monospace ASCII Box-Art**: Absolutely zero box-drawing characters (`┌`, `┐`, `└`, `┘`, `│`, `─`, `├`, `┤`, `┬`, `┴`, `┼`). Replaced with clean, accessible Markdown tables.
   4. **Zero Raw Text Flowchart Code Blocks**: Absolutely zero `flowchart TD`, `subgraph`, or raw text pseudo-code diagrams in user-facing documents.
-  5. **Zero Forbidden Legacy Terms**: Zero "5010", zero "patient", zero "clinical", zero "Star Trek" in-app.
+  5. **Zero Forbidden Legacy Terms**: Zero "5010", zero "patient", zero "clinical", zero sci-fi or trademarked franchise terms in-app or docs.
   6. **Mandatory Automated Pre-Commit Audit**: Every document, presentation, and display code file must pass the automated `audit_zero_defect.py` tool (`-Werror`) with zero defects before staging or committing.
 
 ---
@@ -35,7 +35,7 @@ Every requirement specified in [`bfm_diabetes_beta_requirements_specification.md
 | **REQ-01** | BFM Biometric Function Monitor (`BFM.HTM`) Branding | Title Bar & Main Header | `BFM.HTM`, `index.html` | AST & DOM String Match |
 | **REQ-02** | Model 5010 Dial Write Compatibility Boundary | Dial Tab (`11-WATCH`) | `BFM.HTM` `#boxDialOverwriteExp` | Conditional hide below screenshot on non-writable dials |
 | **REQ-03** | Zero Synthetic Placeholder Leakage | Zero-Data Guardrails | All `.html`, `.py`, `.md` | `audit_zero_defect.py` Checks 09 & 16 |
-| **REQ-04** | Star Trek limited strictly to historical intro tribute | IP & Trademark Quarantine | `presentation/TRANSCRIPT.md` | Compliance Audit |
+| **REQ-04** | Zero sci-fi or trademarked franchise terms in-app or docs | IP & Trademark Quarantine | `presentation/TRANSCRIPT.md` | Compliance Audit |
 | **REQ-05** | Copyleft Disclaimer & Immutable User Acceptance | Legal Acceptance Modal | `BFM.HTM` (Tab 10), SQLite | Query `user_legal_acceptance` |
 | **REQ-06** | 3-Way Triad Binding: UID <-> ESN <-> Watch MAC | Multi-Tenant Dispatcher | `server.py` & `watch_monitor.py` | Multi-Source Concurrent Ingest Test |
 | **REQ-07** | Registered Family Cells Roster & W11 Cell Isolation | Fleet Manager UI & W11 Host | `BFM.HTM` (`10-CONFIG`), `server.py` | DOM Roster Check & Zero W11 Cell Shortcut |
@@ -52,7 +52,7 @@ Every requirement specified in [`bfm_diabetes_beta_requirements_specification.md
 | **REQ-18** | Subjective Experiential Telemetry ("How Do You Feel?") | Behavioral Psychology / HDYF | `cell.html`, `server.py`, DB | Mobile HDYF Prompt, Home Wi-Fi Sync & FHIR Export |
 | **REQ-19** | Somatosensory Pain & Physical Discomfort Telemetry | HDYF NLP Classification Engine | `cell.html`, `server.py`, DB | Pain & Discomfort Extraction and Timeline Anchor |
 | **REQ-20** | HBand & HBand 2.0 Full Hardware Equivalence | Universal Wearable Subsystem | BLE GATT Stream & DB | Raw ECG, MET, Sleep Hypnogram, BIA Verification |
-| **REQ-21** | Abrams-Era Bridge Science Station Design System | Luminous Clinical UI Framework | `BFM.HTM`, CSS System | Light Slate `#f8fafc`, Ice-Blue `#0284c7`, Zero Slabs |
+| **REQ-21** | High-Contrast Luminous Clinical UI Design System | Luminous Clinical UI Framework | `BFM.HTM`, CSS System | Light Slate `#f8fafc`, Ice-Blue `#0284c7`, Zero Slabs |
 | **REQ-22** | Pure Zero-Data Reality Principle (Zero Is Zero) | Telemetry & Database State Engine | All Charts, Gauges, Journals | Un-synced 0 Baseline, Empty Journals, Blank MRN |
 | **REQ-23** | Consolidated Single-Bay EHR Data Export | Export Subsystem | `BFM.HTM` (Bay 05) | 1-Click Centralized Export, Zero Redundant Triggers |
 
@@ -167,7 +167,7 @@ CREATE TABLE IF NOT EXISTS user_profiles (
     target_tir_min REAL DEFAULT 70.0,           -- Target Time-in-Range Floor (mg/dL)
     target_tir_max REAL DEFAULT 140.0,          -- Target Time-in-Range Ceiling (mg/dL)
     assigned_cell_id TEXT UNIQUE,               -- Assigned Cell (e.g., "Cell 1")
-    assigned_registry TEXT UNIQUE,              -- Starfleet Registry (e.g., "NCC-202X-1")
+    assigned_registry TEXT UNIQUE,              -- Assigned Registry ID (e.g., "BFM-202X-1")
     database_filename TEXT NOT NULL,            -- Isolated DB (e.g., "telemetry_user_1.db")
     created_timestamp TEXT NOT NULL
 );
@@ -217,7 +217,7 @@ CREATE TABLE IF NOT EXISTS watch_telemetry (
     FOREIGN KEY(source_watch_mac) REFERENCES registered_cells(linked_watch_mac)
 );
 
--- 5. Ingested Field Meals from Shuttlecraft Foodoor
+-- 5. Ingested Field Meals from Mobile Companion
 CREATE TABLE IF NOT EXISTS field_meals (
     meal_id INTEGER PRIMARY KEY AUTOINCREMENT,
     intake_timestamp TEXT NOT NULL,
@@ -243,13 +243,13 @@ CREATE TABLE IF NOT EXISTS field_meals (
 | Step | Phase & Operation | Initiator & Endpoint | Payload / Protocol Data | Destination & System State |
 | :---: | :--- | :--- | :--- | :--- |
 | **01** | Dynamic QR Generation | PC Console (`index.html` Tab 10) | `GET /api/shuttle/provision?uid=USR-002` | Server generates cryptographically bound pairing token. |
-| **02** | Device Interrogation | Shuttlecraft PWA (`cell.html`) | Scans Dynamic QR Code | Interrogates phone hardware name & crypto-generated ESN. |
-| **03** | Registration Handshake | Shuttlecraft -> Server | `POST /api/shuttle/register` | Transmits pairing token, phone name, hardware ESN. |
+| **02** | Device Interrogation | Mobile Companion (`cell.html`) | Scans Dynamic QR Code | Interrogates phone hardware name & crypto-generated ESN. |
+| **03** | Registration Handshake | Mobile -> Server | `POST /api/shuttle/register` | Transmits pairing token, phone name, hardware ESN. |
 | **04** | Master Registry Lock | Server (`server.py`) | `INSERT INTO registered_cells` | Locks ESN to `USR-002` & Linked Watch MAC; returns 200 OK. |
-| **05** | Offline Field Autonomy | Shuttlecraft PWA | Mobile IndexedDB Local Vault | Encrypted local storage of meal photos (BLOBs) & audio. |
-| **06** | Homecoming Bulk Dock | Shuttlecraft -> Server | `POST /api/shuttle/dock` | Transmits ESN + batch array of pending field meals. |
+| **05** | Offline Field Autonomy | Mobile Companion | Mobile IndexedDB Local Vault | Encrypted local storage of meal photos (BLOBs) & audio. |
+| **06** | Homecoming Bulk Dock | Mobile -> Server | `POST /api/shuttle/dock` | Transmits ESN + batch array of pending field meals. |
 | **07** | Triad Signature Routing | Server Ingestion Engine | Query `registered_cells.phone_esn` | Resolves `USR-002`; writes batch to `telemetry_user_2.db`. |
-| **08** | Two-Phase Commit Receipt| Server -> Shuttlecraft | Return verified SHA-256 batch hash | PWA clears `PENDING_UPLOAD` status; Tab 10 updates live. |
+| **08** | Two-Phase Commit Receipt| Server -> Mobile | Return verified SHA-256 batch hash | PWA clears `PENDING_UPLOAD` status; Tab 10 updates live. |
 
 #### 1. Dynamic QR Provisioning (`GET /api/shuttle/provision?uid=<user_uid>`)
 * **Response**:
@@ -376,7 +376,7 @@ The Beta 1 verification protocol enforces a strict **Two-Pass Quality Validation
 ## 11. Longitudinal Behavioral Telemetry & Post-Beta Clinical Adoption Engine
 
 Following the viable Beta 1 release, BFM operationalizes SEI-CMMI Level 5 closed-loop engineering by collecting and analyzing real-world usage behaviors:
-1. **Patient Adherence Metrics**: Tracks frequency of daily mobile meal staging via Shuttlecraft Foodoor (`cell.html`), post-meal physical activity compliance, and nocturnal watch wearing.
+1. **Patient Adherence Metrics**: Tracks frequency of daily mobile meal staging via Mobile Companion (`cell.html`), post-meal physical activity compliance, and nocturnal watch wearing.
 2. **Physician Data Utilization**: Analyzes doctor review of generated Epic FHIR R4 JSON bundles, identifying the most clinically valuable LOINC telemetry streams.
 3. **Closed-Loop Feature Evolution**: Translates user and physician behavioral patterns into prioritized feature enhancements matching the largest set of common real-world requirements.
 
@@ -416,12 +416,12 @@ BFM delivers complete functional equivalence with **HBand and HBand 2.0** across
 
 ---
 
-## 14. Abrams Science Station Design System & Color Specifications
+## 14. Clinical UI Design System & Color Specifications
 
-The BFM interface is authored to the **J.J. Abrams Enterprise bridge science station design system**:
+The BFM interface is authored to a high-contrast luminous clinical design system:
 * **Base Canvas**: Crisp luminous medical white and light slate (`#f8fafc` to `#ffffff`).
 * **Card Containers**: Precision frosted glass cards with 1px subtle border (`#cbd5e1`) and clean drop shadows (`box-shadow: 0 1px 3px rgba(0,0,0,0.05)`).
-* **Telemetry Accents**: Starfleet science ice-blue (`#0284c7`), cobalt (`#1d4ed8`), and cyan (`#06b6d4`).
+* **Telemetry Accents**: Clinical ice-blue (`#0284c7`), cobalt (`#1d4ed8`), and cyan (`#06b6d4`).
 * **Diagnostic Alerts**: Luminous clinical alert amber (`#f59e0b`), clinical nominal emerald (`#10b981`), and critical red (`#ef4444`).
 * **Typography**: Modern clinical sans-serif paired with monospaced tabular numerals (`font-family: monospace; font-variant-numeric: tabular-nums`). Zero 1990s clunky pill bars.
 
@@ -430,7 +430,7 @@ The BFM interface is authored to the **J.J. Abrams Enterprise bridge science sta
 ## 15. Pure Zero-Data Reality Architecture & Empty-State Mandate
 
 In strict accordance with clinical data sanctity:
-1. **Un-synced Telemetry Zeroing**: All charts and gauges display zero (`0`) until valid physical watch transponder data is received. No synthetic sine curves or artificial baselines.
+1. **Un-synced Telemetry Zeroing**: All charts and gauges display zero (`0`) until valid physical watch sensor data is received. No synthetic sine curves or artificial baselines.
 2. **Future Diurnal Truncation**: All 24-hour daily timeline curves are truncated at the current wall-clock hour (`new Date()`). All future hours (e.g. from 12:00 to 23:59) are strictly set to 0 or null.
 3. **Empty Journal Default**: The Chronological Nutrition & Meal Journal and Exercise Journal initialize to completely empty arrays (`[]`). If no meals have been logged, the UI displays: `[NO NUTRITION LOGGED — JOURNAL EMPTY]`.
 4. **Zero-Mock Prescription Table**: The medication table contains zero pre-populated drugs. Only medications explicitly entered by the user or clinician are displayed.

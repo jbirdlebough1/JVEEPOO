@@ -143,7 +143,7 @@
 | "<USER_REQUEST> Medication screen is completely missing we had it perfect before. clinical goals same thing </USER_REQ..." | Historical parity verified against build code and database schema | **PASS** |
 
 ### Charts Timeline And Ui Themes
-*Abrams 2009 bridge science station theme, tall synchronized multi-lane chart with vertical scrubber, non-overlapping indicator markers (■, ▲, ◆), and zero-data future interval guards.*
+*High-contrast luminous clinical theme, tall synchronized multi-lane chart with vertical scrubber, non-overlapping indicator markers (■, ▲, ◆), and zero-data future interval guards.*
 
 | Directive Extract / Historical Requirement | Scope & Verification Criteria | Audit Result |
 |---|---|:---:|

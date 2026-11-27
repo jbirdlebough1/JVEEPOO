@@ -78,16 +78,16 @@ The human tester executes the following sequential protocol, beginning by locati
 4. Click **"✓ I ACCEPT AND UNDERSTAND ALL CLINICAL NOTICES"**.
 5. Verify modal dismisses smoothly, sets `bfm_legal_accepted` in `localStorage`, and commits audit record to database.
 
-#### Step 3: Abrams Science Station Visual Aesthetic Verification
-1. Verify application boots **by default into Light Theme** (Scott / Abrams Science Station Standard).
+#### Step 3: Luminous Clinical Visual Aesthetic Verification
+1. Verify application boots **by default into Light Theme** (High-Contrast Luminous Clinical Standard).
 2. Canvas background is clean luminous slate (`#f8fafc`); cards are crisp white (`#ffffff`) with subtle 1px borders (`#cbd5e1`).
-3. Primary telemetry accents render in Starfleet science ice-blue (`#0284c7`), cobalt (`#1d4ed8`), and cyan (`#06b6d4`).
+3. Primary telemetry accents render in clinical ice-blue (`#0284c7`), cobalt (`#1d4ed8`), and cyan (`#06b6d4`).
 4. Zero 1990s clunky pill bars; high-contrast medical cards with monospaced tabular numerals.
 
 #### Step 4: Header Strip & Comm Link Status Check
 1. Verify top header bar displays **single consolidated battery & Bluetooth monitor** in the status ribbon.
 2. Verify smaller duplicate battery and BT icons have been completely removed from the top strip.
-3. Verify Comm Link State ribbon displays **`Connected`** (in luminous emerald) when watch transponder is linked, never displaying `STANDBY`.
+3. Verify Comm Link State ribbon displays **`Connected`** (in luminous emerald) when watch sensor is linked, never displaying `STANDBY`.
 
 #### Step 5: Pure Zero-Data Reality Baseline Check
 1. Before watch scan, verify all telemetry tiles (`tile360Glucose`, `tile360Bp`, `tile360Spo2`, `tile360Temp`, `tile360HrHrv`) display **`0`** or **`--`** with `(NO DATA)` notice.
@@ -98,7 +98,7 @@ The human tester executes the following sequential protocol, beginning by locati
 
 #### Step 6: Watch Connection, `0xDF`/`0x88`/`0xE0`/`0xB8` Scan & Real-Time Ingestion
 1. Click **`⚡ SYNC WATCH NOW`** on the status ribbon (or run tab switch / button press active hardware harvest).
-2. Watch transponder links via Web Bluetooth; `0xDF` OriginV3 244B MTU 5-min history, `0x88` Core/Skin temperature history (`00:00–23:59`), and `0xE0` 24h Sleep + daytime naps ingest automatically.
+2. Watch sensor links via Web Bluetooth; `0xDF` OriginV3 244B MTU 5-min history, `0x88` Core/Skin temperature history (`00:00–23:59`), and `0xE0` 24h Sleep + daytime naps ingest automatically.
 3. Verify `0xB8` Page-0 `READ` guard preserves user **12-hour vs 24-hour** clock format across all Reports charts and **2,000** step goal parity (`0xA3`).
 4. Verify **13-Channel 3D Multi** and **13-Lane Tall Chart** display identical signals (`CH 01` Glucose through `CH 13` Medications Rx), blue off-wrist exclusion bands during charging/shower, and event overlays (`▲ GLUT4`, `▲ Carbs`, `+oz` Fluid, `▼ Rx`).
 
@@ -146,7 +146,7 @@ Every anomaly, UI defect, or change request discovered during testing is persist
 
 | Human Success Criterion | Operational Verification | Result (Pass / Fail) |
 | :--- | :--- | :--- |
-| **User Joy & Usability** | Did the user find the Abrams Science Station UI elegant, intuitive, and easy to read? | Evaluated in Pass 2 |
+| **User Joy & Usability** | Did the user find the High-Contrast Clinical UI elegant, intuitive, and easy to read? | Evaluated in Pass 2 |
 | **Zero Data Panic** | Did the user experience complete trust in the data (zero fake meds, zero fake meals, zero fake MRN)? | Evaluated in Pass 2 |
 | **Nutritional Confidence** | Did the Meal Planner return exact, reliable nutritional estimates without price clutter? | Evaluated in Pass 2 |
 | **Physiological Insight** | Did the watch scan immediately update the Metabolic console with real-time biometric readings? | Evaluated in Pass 2 |
