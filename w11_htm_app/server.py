@@ -5139,12 +5139,8 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                 $s3.Description = "BFM Biometric Function Monitor Console"
                 $s3.Save()
 
-                $s4 = $WshShell.CreateShortcut("$GroupFolder\\BFM Mobile Cell Gateway.lnk")
-                $s4.TargetPath = "http://127.0.0.1:8899/cell.html"
-                $s4.WorkingDirectory = $WorkingDir
-                $s4.IconLocation = "$IconFile, 0"
-                $s4.Description = "BFM Mobile Cell Field Collector"
-                $s4.Save()
+                $LegacyCellLnk = "$GroupFolder\\BFM Mobile Cell Gateway.lnk"
+                if (Test-Path $LegacyCellLnk) { Remove-Item -Force $LegacyCellLnk }
                 """
                 subprocess.run(["powershell", "-NoProfile", "-Command", ps_cmd], check=True)
                 self.send_json_response({"status": "SUCCESS", "message": "Windows Desktop and Start Menu App List shortcuts installed successfully."})
@@ -6422,6 +6418,32 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
         }
 
 
+def suppress_w11_bt_pairing_toasts():
+    """Suppress Windows 11 Bluetooth Swift Pair / 'Add a device' toast popups for VEE."""
+    if sys.platform != "win32":
+        return
+    try:
+        import winreg
+        toast_keys = (
+            r"Software\Microsoft\Windows\CurrentVersion\Notifications\Settings\Windows.SystemToast.Bthprops",
+            r"Software\Microsoft\Windows\CurrentVersion\Notifications\Settings\Windows.SystemToast.BthQuickPair",
+        )
+        for subkey in toast_keys:
+            with winreg.CreateKeyEx(winreg.HKEY_CURRENT_USER, subkey, 0, winreg.KEY_SET_VALUE) as key:
+                winreg.SetValueEx(key, "Enabled", 0, winreg.REG_DWORD, 0)
+                winreg.SetValueEx(key, "ShowInActionCenter", 0, winreg.REG_DWORD, 0)
+        with winreg.CreateKeyEx(
+            winreg.HKEY_CURRENT_USER,
+            r"Software\Microsoft\Windows\CurrentVersion\Bluetooth\QuickPair",
+            0,
+            winreg.KEY_SET_VALUE,
+        ) as qp_key:
+            winreg.SetValueEx(qp_key, "Value", 0, winreg.REG_DWORD, 0)
+        print("[OK] Suppressed Windows 11 Bluetooth pairing toasts (Bthprops/QuickPair).")
+    except Exception as e:
+        print(f"[MIL-SPEC HANDLED FAULT] suppress_w11_bt_pairing_toasts failed: {e}")
+
+
 def run():
     print("=" * 70)
     print("LCARS 5010 CLINICAL TELEMETRY SERVER & AUTO-SYNC DAEMON")
@@ -6432,6 +6454,7 @@ def run():
     init_database()
     backfill_today_df_from_packet_log()
     backfill_today_temp_from_packet_log()
+    suppress_w11_bt_pairing_toasts()
     start_ble_background_thread()
 
     socketserver.ThreadingTCPServer.allow_reuse_address = True

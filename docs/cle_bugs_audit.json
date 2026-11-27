@@ -1,8 +1,8 @@
 {
-  "latest_build": "beta.00.01.0066",
-  "synced_at": "2026-11-26T22:09:46",
-  "total_bugs": 170,
-  "total_resolved": 170,
+  "latest_build": "beta.00.01.0067",
+  "synced_at": "2026-11-26T22:20:04",
+  "total_bugs": 171,
+  "total_resolved": 171,
   "total_open": 0,
   "bugs": [
     {
@@ -2214,6 +2214,19 @@
       "comments": "Synced from git tag beta.00.01.0066",
       "created_at": "2026-11-26 22:09:20",
       "resolved_at": "2026-11-26 22:09:20"
+    },
+    {
+      "code": "CLE-124",
+      "project": "JVEEPOO",
+      "build": "beta.00.01.0067",
+      "title": "[beta.00.01.0067] beta.00.01.0067: exclude Cell app from W11 BFM server and permanently suppress W11 VEE Bluetooth pairing toasts",
+      "status": "RESOLVED",
+      "component": "BFM Clinical Console",
+      "affected_files": "Beta/docs/BETA_BACKLOG_TODO.md, Beta/docs/GOOGLE_LEADERSHIP_PRIMER.md, Beta/docs/walkthrough_beta_00_01_0067.md, docs/BETA_BACKLOG_TODO.md, docs/GOOGLE_LEADERSHIP_PRIMER.md, docs/walkthrough_beta_00_01_0067.md, w11_htm_app/cell.html, w11_ht",
+      "resolution": "Git commit 4ce4cb7 (2026-11-26 22:19:56): beta.00.01.0067: exclude Cell app from W11 BFM server and permanently suppress W11 VEE Bluetooth pairing toasts",
+      "comments": "Synced from git tag beta.00.01.0067",
+      "created_at": "2026-11-26 22:19:56",
+      "resolved_at": "2026-11-26 22:19:56"
     }
   ]
 }

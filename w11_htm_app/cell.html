@@ -1592,29 +1592,8 @@
 
     
     // =========================================================================
-    // PWA INSTALLATION & OFFLINE FEELING QUEUE BATCHING
+    // OFFLINE FEELING QUEUE BATCHING
     // =========================================================================
-    let deferredPrompt = null;
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      const banner = document.getElementById('pwaInstallBanner');
-      if (banner) banner.style.display = 'flex';
-    });
-
-    async function triggerPwaInstall() {
-      if (deferredPrompt) {
-        deferredPrompt.prompt();
-        const { outcome } = await deferredPrompt.userChoice;
-        if (outcome === 'accepted') {
-          const banner = document.getElementById('pwaInstallBanner');
-          if (banner) banner.style.display = 'none';
-        }
-        deferredPrompt = null;
-      } else {
-        alert("To install BFM Cell on Android/Chrome: Tap browser menu (⋮) -> 'Add to Home screen' or 'Install app'. On iPhone/iPad Safari: Tap Share (⎋) -> 'Add to Home Screen'.");
-      }
-    }
 
     function getStagedFeelings() {
       try {
@@ -1725,6 +1704,8 @@
 
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
+      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      if (!isMobile) return;
       deferredInstallPrompt = e;
       const banner = document.getElementById('pwaInstallBanner');
       if (banner) banner.style.display = 'flex';

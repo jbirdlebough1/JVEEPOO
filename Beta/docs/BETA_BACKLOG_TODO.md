@@ -1,7 +1,7 @@
 # BFM Biometric Function Monitor — Tracked UI & UX Backlog (`TODO`)
 
 **System:** BFM Biometric Function Monitor (`BFM.HTM` / `index.html` / `w11_htm_app/index.html`)  
-**Logged In Build:** `beta.00.01.0066` (2026-11-26)
+**Logged In Build:** `beta.00.01.0067` (2026-11-26)
 
 ---
 
@@ -16,3 +16,4 @@
 | `TODO-UX-005` | Remove Obsolete Meal Pantry Favorites | `03-MEAL PLANNER` (`BFM.HTM` `L6625–7260`), Slides 19 & 23 (`build_beta56_presentation.py`) | Removed legacy Pathway A `#sectionMealPantry` (`#listboxPopularMeals`) and Step 3 `Add to Pantry` buttons from `03-MEAL PLANNER`, widened Step 1 text/voice/photo estimator to full width (`grid-template-columns: 1fr`), recaptured `bfm_t03_meal_pantry.png` & `bfm_t03_meal_bom_grocers.png`, and aligned Slides 19 & 23. | `CLOSED (beta.00.01.0066)` |
 | `TODO-BLE-006` | Watch Lead-I ECG BLE Sync & Bazett QTc Chart Parity | `w11_htm_app/server.py` (`0x96`/`0x97`, `0x93`, `/api/subreports/today`), `BFM.HTM` (`renderSvgDualCurveChart`, `updateWatchMetabolicSubReports`, `renderSubReportTrendCharts`), Slides 32 & 37 | Skipped already-stored `ecg_id`/`bia_id` rows during incremental sync with bounded `12s` / `2.2s` idle waits (ending `id=39901` starvation), computed Bazett QTc (`QT / sqrt(60/HR)`) in `/api/subreports/today` (`388.6 ms` QTc from `250 ms` QT at `145 BPM`), rendered `412 ms` normal baseline and `440 ms` QTc ceiling threshold bands, excluded out-of-scale `LF/HF` line (`skipSkinPlot: true`), verified standalone `file:///D:/veepoo/BFM.HTM`, and aligned Slides 32 & 37. | `CLOSED (beta.00.01.0066)` |
 | `TODO-CELL-005` | Next-Build `/cell` 3-State Daily Med Toggle Button | `w11_htm_app/cell.html` & `w11_htm_app/server.py` | Add a 3-state daily Med button on the `/cell` mobile companion mirroring the BFM server app: starts light blue, 1st press marks morning med taken, 2nd press turns green for dinner meds, and auto-resets to light blue daily at `00:01`. Scheduled for the next build. | `OPEN (NEXT BUILD)` |
+| `TODO-W11-007` | Suppress W11 `Add a device` VEE Toast & Block Desktop Cell Install | `w11_htm_app/server.py` (`create_shortcuts`, `suppress_w11_bt_pairing_toasts`), `w11_htm_app/cell.html` (`beforeinstallprompt`) | Removed W11 Start Menu `BFM Mobile Cell Gateway.lnk` creation from `/api/system/create_shortcuts`, deleted any legacy W11 Cell shortcut, guarded `cell.html` `beforeinstallprompt` strictly to mobile user agents, and enforced startup HKCU registry suppression for `Windows.SystemToast.Bthprops`, `Windows.SystemToast.BthQuickPair`, and `Bluetooth\QuickPair`. | `CLOSED (beta.00.01.0067)` |
