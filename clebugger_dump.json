@@ -3438,5 +3438,53 @@
     "created_at": "2026-11-27 10:05:30",
     "updated_at": "2026-11-27 10:05:30",
     "resolved_at": "2026-11-27 10:05:30"
+  },
+  {
+    "project_name": "JVEEPOO",
+    "bug_number": 129,
+    "bug_code": "CLE-129",
+    "build_number": "beta.00.01.0072",
+    "title": "[beta.00.01.0072] beta.00.01.0072: Restore Pathway A Saved Meals & Step 3 Pantry buttons; remove 4 extra buttons above Estimate",
+    "status": "RESOLVED",
+    "component": "Meal Planner & Nutrition",
+    "affected_files": "BFM.HTM, Beta/docs/BETA_BACKLOG_TODO.md, Beta/docs/GOOGLE_LEADERSHIP_PRIMER.md, Beta/docs/NARRATION_QA_89_SLIDES.md, Beta/docs/presentation_build_coverage_audit.json, Beta/docs/walkthrough_beta_00_01_0072.md, docs/BETA_BACKLOG_TODO.md, docs",
+    "bug_loc": 0,
+    "resolution": "Git commit 31297ee (2026-11-27 10:14:15): beta.00.01.0072: Restore Pathway A Saved Meals & Step 3 Pantry buttons; remove 4 extra buttons above Estimate",
+    "comments": "Synced from git tag beta.00.01.0072",
+    "created_at": "2026-11-27 10:14:15",
+    "updated_at": "2026-11-27 10:14:15",
+    "resolved_at": "2026-11-27 10:14:15"
+  },
+  {
+    "project_name": "JVEEPOO",
+    "bug_number": 130,
+    "bug_code": "CLE-130",
+    "build_number": "beta.00.01.0073",
+    "title": "[beta.00.01.0073] beta.00.01.0073: Zero-account USDA + Nominatim nutrition, automated setup, and hardened BFM Remote APK",
+    "status": "RESOLVED",
+    "component": "BFM Clinical Console",
+    "affected_files": ".gitignore, BFM.HTM, Beta/docs/BETA_BACKLOG_TODO.md, Beta/docs/GOOGLE_LEADERSHIP_PRIMER.md, Beta/docs/walkthrough_beta_00_01_0073.md, docs/BETA_BACKLOG_TODO.md, docs/GOOGLE_LEADERSHIP_PRIMER.md, docs/walkthrough_beta_00_01_0073.md",
+    "bug_loc": 0,
+    "resolution": "Git commit deb18bd (2026-11-27 10:38:15): beta.00.01.0073: Zero-account USDA + Nominatim nutrition, automated setup, and hardened BFM Remote APK",
+    "comments": "Synced from git tag beta.00.01.0073",
+    "created_at": "2026-11-27 10:38:15",
+    "updated_at": "2026-11-27 10:38:15",
+    "resolved_at": "2026-11-27 10:38:15"
+  },
+  {
+    "project_name": "JVEEPOO",
+    "bug_number": 131,
+    "bug_code": "CLE-131",
+    "build_number": "beta.00.01.0074",
+    "title": "[beta.00.01.0074] beta.00.01.0074: Sev 0 purge Foodoor test injection, reclassify Lunch bagel, auto-refresh Cell meal occasion",
+    "status": "RESOLVED",
+    "component": "Meal Planner & Nutrition",
+    "affected_files": "BFM.HTM, Beta/docs/BETA_BACKLOG_TODO.md, Beta/docs/GOOGLE_LEADERSHIP_PRIMER.md, Beta/docs/walkthrough_beta_00_01_0074.md, docs/BETA_BACKLOG_TODO.md, docs/GOOGLE_LEADERSHIP_PRIMER.md, docs/walkthrough_beta_00_01_0074.md, index.html",
+    "bug_loc": 0,
+    "resolution": "Git commit 98d5b65 (2026-11-27 12:39:41): beta.00.01.0074: Sev 0 purge Foodoor test injection, reclassify Lunch bagel, auto-refresh Cell meal occasion",
+    "comments": "Synced from git tag beta.00.01.0074",
+    "created_at": "2026-11-27 12:39:41",
+    "updated_at": "2026-11-27 12:39:41",
+    "resolved_at": "2026-11-27 12:39:41"
   }
 ]

@@ -19,3 +19,7 @@ w11_htm_app/.apk_lan_ip
 Thumbs.db
 
 node_modules/
+
+# Temporary headless browser capture profiles & APK signing IDs
+_chrome_*/
+*.idsig
