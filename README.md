@@ -1,209 +1,118 @@
-# JVEEPOO — FITAOS Model 5010 BFM 360° Continuous Health Console & Clinical Telemetry Suite
+# BFM Biometric Function Monitor — Continuous Metabolic & Clinical Telemetry Platform (`beta.00.01.0074`)
 
-### *Turnkey Physiological Workstation, Non-Invasive Optical Tonometry Glucose Profile, 8.3% HbA1c Calibration Engine & 8-Stream Biometric Synthesis*
+The **BFM Biometric Function Monitor** (`JVEEPOO`) is an open-source, clinician-aligned ambulatory telemetry workstation and zero-account mobile companion built by **The Author** (Sole Pioneer, Inventor, System Architect, and Philosophical Leader) and sponsored by **Google** (Corporate & Technology Sponsor powering solutions via Google Gemini AI).
 
-[![Platform: Cross-Platform](https://img.shields.io/badge/Platform-Windows%2011%20%7C%20macOS%20%7C%20Android%20%7C%20iOS%20%7C%20ChromeOS-blue.svg)](https://github.com/jbirdlebough1/JVEEPOO)
-[![Hardware: Model 5010](https://img.shields.io/badge/Hardware-FITAOS%205150%20%2F%20Veepoo-orange.svg)](https://fitaos.com)
-[![Aesthetic: BFM / Starfleet Sickbay](https://img.shields.io/badge/Aesthetic-BFM%20Biofunction%20Monitor-purple.svg)](https://github.com/jbirdlebough1/JVEEPOO)
-[![Consensus: ADA / ADAG Algorithm](https://img.shields.io/badge/Clinical-ADA%20%2F%20ADAG%20eA1C-green.svg)](docs/clinical_glucose_study_and_a1c_analysis.md)
-[![Heritage: Physio-Control LIFEPAK](https://img.shields.io/badge/Heritage-Physio--Control%20LIFEPAK%20%26%20LifeLine-red.svg)](docs/bfm_diabetes_beta_requirements_specification.md)
-[![License: GPL v3 / Open Source](https://img.shields.io/badge/License-GPL%20v3%20%2F%20Open%20Source-green.svg)](LICENSE)
+[![Build: beta.00.01.0074](https://img.shields.io/badge/Build-beta.00.01.0074-blue.svg)](Beta/docs/walkthrough_beta_00_01_0074.md)
+[![Hardware: Model 5010](https://img.shields.io/badge/Hardware-FITAOS%205150%20%2F%20Veepoo%205010-orange.svg)](https://fitaos.com)
+[![Presentation: 89 Slides](https://img.shields.io/badge/Presentation-89%20Slides%20%2B%20Audio-green.svg)](https://jbirdlebough1.github.io/JVEEPOO/presentation/preview.html)
+[![Zero Defect: Six Sigma](https://img.shields.io/badge/CLEBUGGER-74%2F74%20Zero%20Open-brightgreen.svg)](Beta/docs/BETA_BACKLOG_TODO.md)
+[![License: GPL v3 / Open Source](https://img.shields.io/badge/License-GPL%20v3%20%2F%20Open%20Source-green.svg)](https://github.com/jbirdlebough1/JVEEPOO)
 
 ---
 
-## 🩺 Author's Dedication: Why This Toolset Was Built
+## Author's Dedication: Why This Platform Exists
 
 > *"That Others May Survive Successfully Diabetes"*
 
-The author is a **Type II diabetic** who needed an objective, personal, continuous telemetry tool to collaborate directly with their multidisciplinary care team:
-* 💊 **Diabetic Pharmacist** — Managing medication kinetics, intake schedules, and titration adherence.
-* 🩺 **Primary Care Physician (PCP)** — Longitudinal ambulatory reviews and permanent clinical record keeping.
-* 🔬 **Endocrinologist** — Analyzing insulin sensitivity, glucose variability, and Dawn Phenomenon kinetics.
-* 🥗 **Diabetic Diet Specialist** — Correlating meal macronutrients, ADA carbohydrate trades, and post-meal GLUT4 exercise recovery.
+Conceived and architected out of personal necessity by **The Author** while managing Type 2 Diabetes, **BFM Biometric Function Monitor** gives everyday individuals and their care teams objective, high-resolution, single-screen correlation across nutrition, physical activity, medications, and wearable physiology:
 
-Offered as **experimental open-source software (GPL v3)** with the sincere hope that it empowers others in their daily struggle with diabetes. We invite doctors, clinical specialists, and software engineers to contribute to this mission. We also warmly welcome **Google** and community sponsors to partner with us in expanding this open-access tool to the 800M+ diabetics worldwide.
-
----
-
-## 🛸 Starfleet Heritage: Gene Roddenberry & Scott Chambliss Dedication
-
-Just as the Space Shuttle *Enterprise* (OV-101) inspired a generation of NASA engineers to reach for the stars, this project draws deep creative inspiration from **Gene Roddenberry** and production designer **Scott Chambliss**. 
-
-In the modern Star Trek cinematic universe, Chambliss established the **Biofunction Monitor (BFM)** aesthetic in the Starfleet Sickbay: moving beyond 1980s flat CRT pastel blocks into high-contrast 21:1 clinical white panels, multi-layered physiological waveforms, and intuitive triage color bands. 
-
-In JVEEPOO:
-* **Mothership Workstation**: **USS Gemini (NCC-5010-G)** — The comprehensive PC workstation managing longitudinal storage, multi-user isolation, and automated daily backup.
-* **Mobile Scout**: **Shuttlecraft 01: Foodoor** — The mobile companion enabling pre-order food decisions, multimodal photo/voice meal estimates, and zero-PHI cloud interaction.
+- **Diabetic Pharmacist**: Daily adherence tracking (`Morning Intake 1` / `Dinner Intake 2`) and medication titration context.
+- **Primary Care Physician (PCP)**: Longitudinal ambulatory review and permanent **Epic FHIR R4** + **SQLite** clinical exports.
+- **Endocrinologist**: Postprandial glycemic curves, `ADAG` estimated `eA1C` (`(Glucose + 46.7) / 28.7`), Lead-I `QTc` ECG, and BIA skeletal-muscle glucose sink trends.
+- **Diet & Lifestyle Coach**: Pre-choice meal planning with `<= 45g` net-carb ceiling verification and post-meal `GLUT4` walking clearance prescriptions.
 
 ---
 
-## ⚡ Real-World Clinical Telemetry Heritage: Physio-Control LIFEPAK
+## Visual Showcase (`beta.00.01.0074`)
 
-This system incorporates direct medical device engineering heritage from the author's prior work at **Physio-Control** on the renowned **LIFEPAK (100–300 series) and LifeLine** emergency defibrillator telemetry systems. In those systems, real-time physiological data was relayed directly from the field to triage nurses and emergency physicians, saving countless lives.
+| 14-Tab Desktop Console (`01-FULL SCAN`) | `03-MEAL PLANNER` (Saved Meals & Clean Coach) |
+| :---: | :---: |
+| ![01-FULL SCAN](images/bfm_t01_fullscan_top.png) | ![03-MEAL PLANNER](images/bfm_t03_meal_pantry.png) |
+| **13-Channel 3D Fly-Through (`04-REPORTS`)** | **Google Lens QR -> `BFM Remote` Android Live** |
+| ![04-REPORTS 3D Multichannel](images/bfm_t04_01_3d_multichannel.png) | ![BFM Remote Provisioning & Live Test](images/bfm_t10_cell_provisioning.png) |
 
-Building on that pedigree, the BFM console introduces **Tiered Emergency Dispatch**:
-1. **Tier 1 (Local Awakening)**: Continuous watch monitors detect acute nocturnal hypoglycemia nadir (<54 mg/dL) or severe cardiovascular distress, triggering escalating high-decibel audible alarms on nearby PC and mobile devices to awaken the patient.
-2. **Tier 2 (Emergency Relay)**: If unacknowledged within 3 minutes, an automated SMS alert with GPS coordinates and acute vitals is dispatched to emergency medical services (911) and the primary care physician.
-3. **Tier 3 (30-Day Triage Telemetry Download)**: Arriving EMTs and triage doctors can instantly extract the preceding 30 days of high-density biometric telemetry via BLE or QR code to immediately diagnose root cause (e.g., insulin stacking vs. Somogyi rebound vs. acute cardiac episode).
-
----
-
-## 🎬 Interactive Technical Presentation (40-Slide Audio-Visual Walkthrough)
-
-> [!NOTE]
-> **GitHub File Viewing Notice**: Clicking `.html` files directly within GitHub's web file browser displays raw source code instead of the rendered presentation. To experience the interactive walkthrough with voiceover narration, use either **Option A (Download & Click to Open on PC)** or **Option B (Watch Live in Browser)**:
-
-### 💻 Option A: Download to PC & Click to Open (Recommended for Windows)
-1. **Download the 1-Click Launcher**: Click [**Download Preview_Presentation.exe**](https://raw.githubusercontent.com/jbirdlebough1/JVEEPOO/main/Preview_Presentation.exe) (or download the full repository as a [**ZIP Archive**](https://github.com/jbirdlebough1/JVEEPOO/archive/refs/heads/main.zip) and extract it).
-2. **Launch & Enjoy**: Double-click **`Preview_Presentation.exe`** on your Windows PC. It opens the presentation instantly in your default web browser with synchronized voice narration and live telemetry scrolling!
+| `BFM Remote` Android Field Companion |
+| :---: |
+| ![BFM Remote Mobile Screen](images/bfm_t10_cell_app_live_test.png) |
 
 ---
 
-### 🌐 Option B: Watch Live in Browser (Zero Download Required)
-You can launch the rendered presentation directly inside any desktop or mobile browser via our GitHub Pages deployment:
+## 89-Slide Interactive Presentation & Audio Walkthrough
 
-👉 **[Launch Live Online Presentation (Interactive Web Player)](https://jbirdlebough1.github.io/JVEEPOO/presentation/preview.html)**  
-*(40-slide clinical architecture walkthrough: covers the clinical rationale, physician co-configuration, GLUT4 glycemic exercise kinetics, 8-stream biometric synthesis, medication titration tracking, and ADA goal management with voice narration and live telemetry scrolling)*
+Clicking `.html` files inside GitHub's web viewer shows raw source code. Launch the synchronized **89-slide Australian-narrated clinical presentation** directly using either option:
 
-* 📁 **Source Assets & Narration Script**: [`presentation/`](presentation/) | [`presentation/TRANSCRIPT.md`](presentation/TRANSCRIPT.md)
-* 🩺 **Physician's Master Clinical Specification**: [`docs/generate_cmo_spec.py`](docs/generate_cmo_spec.py) | [`docs/cmo_spec.html`](docs/cmo_spec.html)
-* 📋 **Beta Requirements Specification**: [`docs/bfm_diabetes_beta_requirements_specification.md`](docs/bfm_diabetes_beta_requirements_specification.md)
-* 🏗️ **Cross-Platform Standalone .HTM Architecture Proposal**: [`docs/standalone_htm_cross_platform_architecture_proposal.md`](docs/standalone_htm_cross_platform_architecture_proposal.md)
+1. **Watch Live Online**: [**Open Interactive 89-Slide Presentation Player**](https://jbirdlebough1.github.io/JVEEPOO/presentation/preview.html)
+2. **Windows Local Launcher**: Download and run [**Preview_Presentation.exe**](https://raw.githubusercontent.com/jbirdlebough1/JVEEPOO/main/Preview_Presentation.exe) alongside [**presentation/TRANSCRIPT.md**](presentation/TRANSCRIPT.md).
 
 ---
 
-## ⚡ Fast Operator Quickstart (Windows 11 Workstation)
+## Key Capabilities (`beta.00.01.0074`)
 
-Run the full BFM 5010 clinical telemetry environment on any Windows 11 machine without complex dependencies:
+### 1. Unified 14-Tab Workstation Console (`BFM.HTM`)
+Operates identically via local server (`http://127.0.0.1:8899/`) and standalone desktop launch (`file:///D:/veepoo/BFM.HTM`):
+- **`01-FULL SCAN` & `02-METABOLIC`**: Live hardware vitals harvest (`0xDF`, `0x88`, `0xE0`, `0xB8`, `0x96`/`0x97`, `0x93`), exercise logging, consumed meal ledger, and hydration tracking.
+- **`03-MEAL PLANNER`**: Dual-pathway pre-choice nutrition coach pairing **Pathway A (1-Click Saved Meal Pantry)** (`15` reusable templates with Edit/Delete) beside **Pathway B (Natural-Language Text, Voice Order & Plate Photo Input)**, ADA swap recommendations, and **Step 3** (`Add to Pantry as Meal/Snack`, `Consume Now`, `View in 13-Lane Chart`).
+- **`04-REPORTS`**: Animated **13-Channel 3D Multi-Channel Fly-Through**, Goals Compliance Scorecard, **13-Lane Synchronized 24h–365d Scrubber Timeline**, and **6 Watch Biometric Sub-Reports** (Metabolism/GLUT4, Lead-I ECG/Bazett `QTc`, `MET` Load, Optical Blood Composition/Lipids, Body Composition/BIA, and Breath/Nocturnal AHI).
+- **`05-LEARNING` through `14-TROUBLESHOOTING`**: Clinical physiology education, sensor calibration, ADA clinical goals, Daily Medication adherence registry, Multi-Cell Configuration (`10-CONFIG`), Watch Dial Transfer (`11-WATCH`), Live Data Log, **Epic FHIR R4 + SQLite + SHA-256 Dual USB/SD Export** (`13-EXPORT`), and hardware diagnostics.
 
-### 1. Launch Multithreaded Local Server
-```powershell
-# From the repository root:
-& 'tools\python\python.exe' w11_htm_app\server.py
-```
-*The server initializes on `http://localhost:8899/` with automatic no-cache headers for instant zero-latency UI reloads.*
+### 2. Pure Zero-Data Reality & Heritage Engineering
+- **Zero Synthetic Placeholders (`Zero Is Zero`)**: Unsynced watch streams strictly display `0`; empty meal/medication tables display explicit empty banners; unknown restaurant items output `0` macros rather than fabricated guesses.
+- **Clinical & Human-Factors Pedigree**: Merges real-time emergency telemetry engineering heritage (**Physio-Control LIFEPAK**) with modern **Scott Chambliss 21:1 high-contrast white/cobalt Sickbay legibility** (`#ffffff` cards, `#091428` typography, crisp semantic triage colors).
 
-### 2. Connect Continuous Watch Monitor
-```powershell
-# In a secondary terminal:
-& 'tools\python\python.exe' opt3_ble_python\watch_monitor.py
-```
-*Discovers and pairs with FITAOS Model 5010 over Bluetooth Low Energy (`8B:DE:40:83:F6:16`), streaming continuous 24-hour optical tonometry, dual-lead ECG, blood pressure, core/skin temperature, and pulse oximetry directly into SQLite (`telemetry.db`).*
-
-### 3. Open Operational Console
-Open any modern browser to **`http://localhost:8899/`**.
+### 3. `BFM Remote` Standalone Android App (`w11_htm_app/BFM-Cell.apk` `v0.1.74`)
+- **Zero-Account Casual-User Ready**: Works immediately over cellular data or Wi-Fi with **zero Google Gemini account or API key required**, powered by official **U.S. Gov USDA FoodData Central (`DEMO_KEY`) + OpenStreetMap Nominatim geo-location**. Power users can optionally add a Google Gemini key once in `10-CONFIG` (Section 11B) to auto-sync live Google Search grounding to connected household phones over Home LAN.
+- **Google Lens 2-Step QR Install**: Scan the QR code inside `10-CONFIG -> ADD CELL` (`/api/qrcode/cell` -> `/install/cell` -> `/download/BFM-Cell.apk` or `/download/BFM-Remote.apk`) to install and auto-pair.
+- **Clean Role Separation (Zero Watch BLE)**: Strictly handles pre-choice meal nutrition lookups, **"How Do You Feel?" (HDYF)** voice/text/pain/mood logging, and the **3-state Daily Med toggle** (offline field staging with automatic Home Wi-Fi sync).
+- **Hardened Android Security**: Signed (`apksigner` v2/v3), `allowBackup="false"`, `network_security_config.xml` (cleartext restricted strictly to `localhost`, `127.0.0.1`, and LAN server IP; HTTPS enforced externally), cross-file WebView access disabled, serving on virtual W3C secure origin `http://localhost:18899/cell.html`.
 
 ---
 
-## 🩺 Clinical Telemetry Features & Architecture
+## Fast Operator Quickstart (Windows 11)
 
-### 1. 360-Degree Real-Time Physiological Console
-Correlates 8 simultaneous biometric streams into a unified Starfleet BFM visual display:
-1. **Continuous Glucose Tonometry (60 - 200 mg/dL target range)**
-2. **Estimated A1C Projection Curve (ADAG Formula: $eA1C = \frac{\text{Glucose} + 46.7}{28.7}$)**
-3. **Core vs. Skin Body Temperature Dynamics (°F)**
-4. **Nocturnal Sleep Hypnogram & Staging (Deep Delta, Light, REM Dream)**
-5. **Hourly Exercise Step Kinetics & GLUT4 Muscle Contraction Translocation**
-6. **Cardiovascular Stress & 5-Zone Cardiac Load (BPM)**
-7. **Ambulatory Blood Pressure Oscillometry (Systolic / Diastolic mmHg)**
-8. **Nocturnal SpO2 Stability & Autonomic HRV SDNN Recovery (ms)**
-
-### 2. Standalone Cross-Platform Single-File .HTM Architecture (JumpStart 3D Model)
-- **Universal Zero-Install Deployment**: The entire application compiles into a single, self-contained `.HTM` document with embedded CSS, JavaScript, and inlined SQLite-WASM.
-- **Cross-Platform Parity**: Zero variance in deterministic clinical calculations between Windows, macOS, Android, iOS, and ChromeOS.
-- **Web Bluetooth Standard**: Connects directly to BLE wearables from the browser without native drivers or middleware.
-
-### 3. Multi-User Family Support & Air-Gapped Privacy
-- **Isolated User Profiles**: Multiple family members can share a single PC workstation with isolated databases (`telemetry_user_<uuid>.db`).
-- **QR Code Pairing**: Workstation provisions **Shuttlecraft 01: Foodoor** to mobile devices with cryptographic user pairing tokens.
-- **Zero-PHI Cloud Guarantee**: Mobile food intake analysis and Google Gemini meal estimates operate solely on public commodity food items. Zero medical telemetry or patient health information ever touches the internet or mobile phone.
-
-### 4. Longitudinal Vault & Daily Dual Backup
-- **>= 1-Year Local Retention**: <25 MB annual database footprint stored in high-performance local SQLite using `navigator.storage.persist()`.
-- **Automated External Backup**: Daily 1-click or scheduled export to USB drive or SD card in **both formats**:
-  - Raw `.sqlite`: Immediate, byte-for-byte disaster recovery.
-  - Epic FHIR `.json`: Interoperable clinical exchange formatted for hospital Electronic Health Records (EHR) with SHA-256 integrity manifests.
-
-### 5. Senior Accessibility & Scott Chambliss Sickbay Aesthetics
-- **Luminance Contrast Standard**: Solid white `#ffffff` cards with 21:1 deep navy `#091428` typography exceeding WCAG 2.1 AAA.
-- **Saturated Clinical Readout Colors**: Crimson `#dc2626` (Heart Rate), cobalt `#0284c7` (Temperature), forest green `#15803d` (SpO2), and amber `#d97706` (Blood Pressure).
-- **Tactical Bridge Night Vision**: Preserves dark adaptation and rhodopsin with red, green, and high-contrast monochrome themes.
-- **Hands-Free Speech & Voice Recognition**: Full voice navigation and auditory telemetry readouts for visually impaired or motor-disabled patients.
+1. **Start the Workstation Server & UI**: Double-click [`BFM_Launcher.exe`](BFM_Launcher.exe), or run directly from the repo root:
+   ```powershell
+   & 'tools\python\python.exe' w11_htm_app\server.py
+   ```
+   Then open **`http://localhost:8899/`** (or open **`BFM.HTM`** directly in Chrome/Edge).
+2. **Pair Your Smart Watch**: Click **Link / Connect** in the top status ribbon to connect to your Veepoo / FITAOS Model 5010 watch via Web Bluetooth, or let the background BLE daemon auto-sync nearby watch packets into `w11_htm_app/telemetry.db`.
+3. **Install `BFM Remote` on Android**: Go to **`10-CONFIG` -> `ADD CELL`**, scan the QR code with **Google Lens** or your camera, tap **Install -> Open**, and begin logging meals, feelings, and medications immediately.
 
 ---
 
-## 📊 H-Band vs. BFM Feature Comparison Matrix
+## Six Sigma Verification & Quality Gates
 
-| Clinical & Telemetry Capability | Stock H-Band Mobile App | BFM 5010 Workstation Console |
-| :--- | :---: | :---: |
-| **Longitudinal Display Architecture** | Fragmented isolated tabs | **Unified 360° Single-Screen Telemetry Matrix** |
-| **Glucose Calibration Mode** | Static linear offset | **Clinical 8.3% HbA1c Tonometry Anchor (191.5 mg/dL)** |
-| **Mathematical eA1C Projection** | ❌ Not available | **ADAG Algorithm Real-Time Projection Curve** |
-| **Exercise vs Glycemia Correlation** | Raw daily step counter | **Hour-by-hour GLUT4 glucose drop correlation** |
-| **Dual Temperature Differential** | Single uncalibrated metric | **Simultaneous Core (°F) vs Skin (°F) Matrix** |
-| **Medication Schedule & Titration** | ❌ None | **Morning (Intake 1) & Evening (Intake 2) Suite** |
-| **Clinical Senior Accessibility** | Small gray low-contrast text | **21:1 Solid White Cards, Bold Crimson/Cobalt Numerals** |
-| **Physician Consultation Export** | ❌ Screenshot only | **Standardized Epic FHIR JSON & Print Summary** |
-| **Offline Privacy & Security** | Cloud server synchronization | **100% Local SQLite & Bluetooth LE (Zero Cloud Egress)** |
-| **Multi-User Family PC Support** | Single user only | **Isolated Profile DBs & Mobile Shuttlecraft Pairing** |
-| **Long-Term Data Storage** | Rolling 7-30 days | **>= 1-Year Local Storage with Daily USB/SD Dual Backup** |
+| Suite / Tool | Enforced Scope | Verified Result |
+| :--- | :--- | :--- |
+| `tools/audit_presentation_full.py` *(local suite)* | 89 slides, 178 AU-English MP3 tracks, 144 3D orbital JPEGs, 4 image mirrors | `89/89 PASS` |
+| [`audit_zero_defect.py`](audit_zero_defect.py) | HTML tag balance (`BFM.HTM` `1961/1961`, `cell.html` `77/77`), SHA-256 parity, zero-data rules | `21/21 PASS` |
+| [`test_beta1_e2e.py`](test_beta1_e2e.py) | Live port `8899` APIs, Cell provisioning & dock, Epic FHIR R4 + SQLite backup, JS AST | `10/10 PASS` |
+| [`strict_gate_v2.py`](strict_gate_v2.py) | Multi-tenant triad schema, zero monetary strings in BOM, CLEBUGGER sync (`0 OPEN`) | `13/13 PASS` (`74/74` tags synced) |
 
 ---
 
-## 🌐 Google Gemini Community Expansion & Market Opportunities
+## Repository Structure
 
-1. **Free to 800M+ Diabetics Worldwide**: Positioning Google Gemini as a compassionate global public health ally.
-2. **Developer & Physician Rewards**: Open-source contributors, clinical researchers, and doctors contributing change requests receive complimentary Google Gemini Max subscriptions.
-3. **Patient Recognition Spiffs**: Diabetic users sharing validated lifestyle interventions and metabolic recovery stories receive community badges and incentive rewards.
-4. **Food Manufacturer & Retailer Portal**: Non-PHI aggregated usage data enables food manufacturers (Conagra, Tyson) and retailers (Costco, Sysco) to stock satisfying, crispy, <=45g net carb foods diabetics genuinely want.
-5. **10-Mile Radius Local Sourcing**: Google Diabetes News integrated radar connects patients to local grocery stores and restaurants offering verified diabetic-safe selections.
-
----
-
-## 🗃️ Repository Structure
-
-```
-D:\veepoo\
-├── README.md                           # Master Project Documentation & Quickstart
-├── Preview_Presentation.exe            # Windows 11 Native 1-Click Presentation Launcher
-├── presentation\                       # 40-Slide Presentation Suite
-│   ├── preview.html                    # Auto-advancing interactive presentation player
-│   ├── TRANSCRIPT.md                   # Full 40-slide narration transcript
-│   ├── SimpleLauncher.cs               # C# source for standalone native launcher
-│   └── slides\                         # Individual HTML slide templates (01 to 40)
-├── w11_htm_app\                        # Core BFM Web Application
-│   ├── index.html                      # BFM 5010 Master Single-Page Application (USS Gemini)
-│   ├── cell.html                       # Mobile Companion (Shuttlecraft 01: Foodoor)
-│   ├── server.py                       # Multithreaded local server daemon (Port 8899)
-│   ├── telemetry.db                    # SQLite biometric database
-│   └── sounds\                         # Tactile audio chimes
-├── opt3_ble_python\                    # Bluetooth Low Energy Device Drivers
-│   ├── watch_monitor.py                # Live BLE monitor daemon for Model 5010
-│   └── vpo_protocol.py                 # Reverse-engineered Veepoo/FITAOS binary protocol
-├── docs\                               # Clinical Documentation & Specification
-│   ├── bfm_diabetes_beta_requirements_specification.md # Master Beta Requirements Spec
-│   ├── standalone_htm_cross_platform_architecture_proposal.md # Cross-Platform Architecture
-│   ├── GOOGLE_LEADERSHIP_PRIMER.md     # Google Executive Briefing & Partnership Model
-│   ├── cmo_spec.html                   # Chief Medical Officer clinical specification
-│   ├── generate_cmo_spec.py            # CMO spec HTML & vector PDF generator
-│   └── clinical_glucose_study...md     # Clinical analysis of HbA1c calibration
-├── session_logs\                       # Full Engineering Trajectory & Transcripts
-│   ├── transcript.jsonl                # Compact step-by-step engineering trajectory
-│   └── transcript_full.jsonl           # Complete full-text engineering trajectory
-└── tools\                              # Embedded runtimes and utilities
-    └── python\                         # Standalone Python 3.11 environment
-```
+| Path | Role & Contents |
+| :--- | :--- |
+| [`BFM.HTM`](BFM.HTM) / [`index.html`](index.html) / [`w11_htm_app/index.html`](w11_htm_app/index.html) | Single-file 14-tab BFM workstation console (binary SHA-256 mirrored) |
+| [`w11_htm_app/server.py`](w11_htm_app/server.py) | Multithreaded HTTP API & BLE auto-sync server (port `8899`) + USDA/Nominatim/Gemini bridge |
+| [`w11_htm_app/cell.html`](w11_htm_app/cell.html) & [`w11_htm_app/BFM-Cell.apk`](w11_htm_app/BFM-Cell.apk) | `BFM Remote` Android companion web bundle & signed standalone `.apk` (`v0.1.74`) |
+| [`w11_htm_app/fhir_export_engine.py`](w11_htm_app/fhir_export_engine.py) & [`w11_htm_app/dual_backup_engine.py`](w11_htm_app/dual_backup_engine.py) | Epic FHIR R4 JSON + raw SQLite + SHA-256 manifest export engines |
+| [`presentation/`](presentation/) & [`Preview_Presentation.exe`](Preview_Presentation.exe) | 89-slide clinical deck (`preview.html`, `TRANSCRIPT.md`, `audio/`, `images/`) |
+| [`Beta/docs/`](Beta/docs/) & [`docs/`](docs/) | Build walkthroughs (`beta.00.01.0001`–`0074`), specs, backlog (`BETA_BACKLOG_TODO.md`), CMO docs |
+| [`session_logs/`](session_logs/) & [`archive_alpha/logs/`](archive_alpha/logs/) | Complete `.jsonl` AI conversation & execution trajectories (`transcript.jsonl`, `transcript_full.jsonl`) |
+| `tools/` *(gitignored locally)* | Standalone Python 3.11 runtime, JDK 17, Android SDK 34, APK builder (`build_cell_apk.py`), CLEBUGGER sync |
 
 ---
 
-## 📜 Session Logs (`.jsonl`)
+## Session Trajectory Logs (`.jsonl`)
 
-In accordance with project development protocols, complete conversation transcripts and tool invocation trajectories are committed directly in [`session_logs/`](session_logs/):
-- [`transcript.jsonl`](session_logs/transcript.jsonl): Step-by-step trajectory of all commands and operations.
-- [`transcript_full.jsonl`](session_logs/transcript_full.jsonl): Full un-truncated context logs.
+Complete build trajectories and tool logs are preserved under [`session_logs/`](session_logs/) and [`archive_alpha/logs/`](archive_alpha/logs/):
+- [`session_logs/transcript.jsonl`](session_logs/transcript.jsonl) — Compact chronological engineering trajectory.
+- [`session_logs/transcript_full.jsonl`](session_logs/transcript_full.jsonl) — Full un-truncated step and tool log archive.
 
 ---
 
 > [!CAUTION]
 > **RESEARCH & CLINICAL DISCLAIMER**  
-> This software is experimental research and an assistive telemetry reference tool for diabetic maintenance. It does not replace professional medical diagnosis, continuous blood glucose monitoring (CGM) prescribed by a physician, or emergency medical treatment. Always consult with your attending endocrinologist or physician regarding medication titration and dietary adjustments.
+> This software is experimental open-source assistive research software for wellness tracking and diabetes self-help education. It is **not an FDA-cleared continuous glucose monitor (CGM)** and must **never** be used to diagnose disease or calculate/adjust insulin doses. Always rely on prescription glucometers or cleared CGMs and consult your attending physician or endocrinologist for clinical decisions.
