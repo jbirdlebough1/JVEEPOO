@@ -150,13 +150,13 @@
 
 > At the bottom of Tab 02 lies the full Chronological Meal Journal—listing every logged dish by time alongside clean delete buttons and showing clearly how much carbohydrate headroom remains before planning our next meal in Tab 03.
 
-## Slide 19: 03-MEAL PLANNER: Clean Single-Stream Multi-Modal Meal & Snack Estimator
+## Slide 19: 03-MEAL PLANNER: Dual-Pathway Saved Meal Pantry & Clean Multi-Modal Estimator
 
 - **Section:** Tab 03: 03-MEAL PLANNER
-- **Visual:** `images/bfm_t03_meal_pantry.png` (`03-MEAL PLANNER • CLEAN TEXT, VOICE & PHOTO ESTIMATOR`)
-- **Key Takeaway:** Removing legacy pantry lists and button clutter puts clean natural-language typing, voice, and plate-photo estimation front and center.
+- **Visual:** `images/bfm_t03_meal_pantry.png` (`03-MEAL PLANNER • SAVED MEAL PANTRY & CLEAN TEXT, VOICE & PHOTO INPUT`)
+- **Key Takeaway:** Keeping 1-click saved favorites beside a clean typing, voice, and photo box avoids repetitive entry while eliminating clutter.
 
-> Stepping into Tab 03 Meal Planner shifts focus from tracking past meals to planning upcoming choices cleanly before taking a single bite. Step 1 provides one uncluttered full-width entry accepting typed dishes, voice orders, plate photos, beverage hydration, and four focused discovery prompts.
+> Stepping into Tab 03 Meal Planner shifts focus from tracking past meals to planning upcoming choices cleanly before taking a single bite. Pathway A lets you reuse fifteen saved meal templates in one click with Edit and Delete controls, alongside a clean Pathway B box for text, voice, and plate photos.
 
 ## Slide 20: Pre-Choice Metabolic Evaluator: Seven Live Macros, Hydration & GLUT4 Rx
 
@@ -169,7 +169,7 @@
 ## Slide 21: Verified Geo-Located Restaurant Disclosures vs Zero-Guessing Honesty
 
 - **Section:** Tab 03: 03-MEAL PLANNER
-- **Visual:** `images/bfm_t03_meal_pantry.png` (`03-MEAL PLANNER • CLEAN TEXT, VOICE & PHOTO ESTIMATOR`)
+- **Visual:** `images/bfm_t03_meal_pantry.png` (`03-MEAL PLANNER • SAVED MEAL PANTRY & CLEAN TEXT, VOICE & PHOTO INPUT`)
 - **Key Takeaway:** Pinning exact franchise facts while refusing fake guesses protects insulin-sensitive users at unfamiliar restaurants.
 
 > Generic apps often mis-estimate restaurant meals by forty grams or more. BFM verifies exact chain disclosures like Taco Time's 520-kilocalorie, 33-gram net carb Fiesta Platter and regional venues in zip code 98294—while strictly refusing to invent guesses for unknown dishes.
@@ -182,13 +182,13 @@
 
 > Here in the Recipe Bill of Materials, ingredients are organized straight by grocery aisle alongside their net carb impact—with zero price clutter—paired directly with three verified local grocers within 20 miles ready to print or copy.
 
-## Slide 23: Step 2 Harm-Reduction Trades & Step 3 Consume vs 13-Lane Chart Workflow
+## Slide 23: Step 2 Harm-Reduction Trades & Step 3 Pantry Save vs Consume Now
 
 - **Section:** Tab 03: 03-MEAL PLANNER
 - **Visual:** `images/bfm_t03_meal_bom_grocers.png` (`03-MEAL PLANNER • ZERO-COST RECIPE BOM & LOCAL GROCERS`)
-- **Key Takeaway:** Smart single-ingredient swaps preserve meal enjoyment while keeping peak post-meal glucose safely inside target.
+- **Key Takeaway:** Smart swaps plus 1-click Pantry saving keep favorite meals one tap away while preventing premature calorie logging.
 
-> If an initial meal estimate lands above target, Step 2 suggests practical swaps saving 42 to 65 grams of sugar before Step 3 lets you click Consume Now to log the meal or inspect it inside Tab 04's 13-lane chart.
+> If an initial meal estimate lands above target, Step 2 suggests practical swaps saving 42 to 65 grams of sugar before Step 3 lets you save the recipe to your Meal or Snack Pantry, consume now, or view the 13-lane chart.
 
 ## Slide 24: Doctor & Patient Longitudinal Meal-to-Metric Explorer
 

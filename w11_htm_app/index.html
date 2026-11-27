@@ -6654,7 +6654,7 @@
                   🥗 MEAL &amp; SNACK PLANNER &bull; GEMINI PRE-CHOICE NUTRITION COACH
                 </span>
                 <span style="font-size: 0.82rem; color: #475569; display: block; margin-top: 2px;">
-                  PLAN MEAL/SNACK &bull; GEMINI ESTIMATION &bull; CLINICAL TRADES &bull; CONSUME &amp; COMMIT
+                  PLAN MEAL/SNACK &bull; REUSE PANTRY &bull; GEMINI ESTIMATION &bull; CLINICAL TRADES &bull; CONSUME &amp; COMMIT
                 </span>
               </div>
             </div>
@@ -6674,11 +6674,11 @@
                   🔄 INTERACTIVE CLINICAL MEAL &amp; SNACK DECISION FLOWCHART
                 </strong>
                 <span style="font-size: 0.72rem; color: #64748b; font-family: var(--lcars-mono);">
-                  DIET QUERY &bull; PRE-CHOICE ESTIMATION &bull; RE-ASSESS / ADA TRADES &bull; CONSUME
+                  DIET QUERY &bull; PRE-CHOICE ESTIMATION &bull; RE-ASSESS / ADA TRADES &bull; PANTRY OR CONSUME
                 </span>
               </div>
 
-              <!-- FLOWCHART STEP 1: PLAN NEW MEAL OR SNACK -->
+              <!-- FLOWCHART STEP 1: CHOOSE INPUT METHOD (EXISTING PANTRY OR NEW MEAL) -->
               <div style="display: flex; gap: 14px; align-items: stretch; background: #ffffff; border: 1.5px solid #94a3b8; border-left: 6px solid #0284c7; border-radius: 6px; padding: 12px; margin-bottom: 0;">
                 <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 90px; border-right: 1.5px solid #e2e8f0; padding-right: 12px; text-align: center;">
                   <span style="font-size: 0.75rem; font-weight: 900; color: #0284c7; font-family: var(--lcars-mono);">STEP 1</span>
@@ -6686,14 +6686,38 @@
                   <span style="font-size: 0.65rem; font-weight: 800; color: #475569; text-transform: uppercase;">DIET QUERY</span>
                 </div>
                 
-                <div style="flex: 1; display: grid; grid-template-columns: 1fr; gap: 12px;">
+                <div style="flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
                   
-                  <!-- PLAN NEW MEAL OR SNACK -->
+                  <!-- PATHWAY A: MEAL PANTRY (1-CLICK REUSE) -->
+                  <!-- MEAL PANTRY: REUSABLE TEMPLATES & PREVIOUSLY CONSUMED MEALS -->
+                  <div id="sectionMealPantry" style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 6px; padding: 10px;">
+                    <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px;">
+                      <label for="listboxPopularMeals" style="font-size: 0.8rem; font-weight: 800; color: #166534; text-transform: uppercase;">
+                        📋 PATHWAY A: REUSE MEAL PANTRY (SAVED MEAL &amp; SNACK TEMPLATES)
+                      </label>
+                      <span style="font-size: 0.68rem; color: #15803d; font-weight: 800; background: #dcfce7; padding: 2px 6px; border-radius: 4px;">
+                        1-CLICK SELECT
+                      </span>
+                    </div>
+                    <div style="font-size: 0.72rem; color: #4b5563; margin-bottom: 6px;">
+                      Select any previously consumed or saved meal template to instant-populate metrics:
+                    </div>
+                    <select id="listboxPopularMeals" size="5" style="width: 100%; border: 1.5px solid #0284c7; border-radius: 4px; padding: 6px 8px; font-size: 0.85rem; font-family: inherit; color: #0f172a; background: #ffffff; cursor: pointer; box-shadow: inset 0 1px 3px rgba(0,0,0,0.06);" onchange="onSelectPopularMealFromListbox(this.value)" onclick="onSelectPopularMealFromListbox(this.value)">
+                      <option value="" disabled selected>[NO SAVED MEALS IN PANTRY — USE ESTIMATE &amp; SAVE BELOW]</option>
+                    </select>
+                    <div style="display: flex; gap: 8px; margin-top: 8px; justify-content: flex-end; align-items: center;">
+                      <span id="lblPantryStatusMsg" style="font-size: 0.72rem; color: #16a34a; font-weight: bold; margin-right: auto; display: none;"></span>
+                      <button type="button" id="btnEditSelectedPopularMeal" class="lcars-btn btn-blue" style="font-size: 0.74rem; padding: 4px 10px; font-weight: bold;" onclick="editSelectedPopularMealFromListbox()">✏️ EDIT SELECTED MEAL</button>
+                      <button type="button" id="btnDeleteSelectedPopularMeal" class="lcars-btn btn-peach" style="font-size: 0.74rem; padding: 4px 10px; font-weight: bold;" onclick="deleteSelectedPopularMealFromListbox()">🗑️ DELETE SELECTED MEAL</button>
+                    </div>
+                  </div>
+
+                  <!-- PATHWAY B: PLAN NEW MEAL OR SNACK -->
                   <div id="sectionNewMeal" style="background: #f0f9ff; border: 1.5px solid #7dd3fc; border-radius: 6px; padding: 10px; display: flex; flex-direction: column; justify-content: space-between;">
                     <div>
                       <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px;">
                         <label for="txtMealBuilderInput" style="font-size: 0.8rem; font-weight: 800; color: #0369a1; text-transform: uppercase;">
-                          ➕ PLAN MEAL OR SNACK (TEXT, VOICE OR PHOTO)
+                          ➕ PATHWAY B: PLAN NEW MEAL OR SNACK (TEXT, VOICE OR PHOTO)
                         </label>
                         <span style="font-size: 0.68rem; color: #0284c7; font-weight: 800; background: #e0f2fe; padding: 2px 6px; border-radius: 4px;">
                           NATURAL LANGUAGE
@@ -6723,21 +6747,6 @@
                         <button type="button" class="lcars-btn" style="background: #ef4444; color: #fff; font-size: 0.70rem; padding: 3px 8px; border-radius: 4px; border: none; cursor: pointer;" onclick="clearMenuPhoto()">✕ Remove</button>
                       </div>
                       <textarea id="txtMealBuilderInput" rows="3" style="width: 100%; box-sizing: border-box; padding: 8px 10px; border: 1.5px solid #0284c7; border-radius: 4px; font-size: 0.88rem; font-family: sans-serif; color: #0f172a; background: #fff; resize: vertical;" placeholder="Enter meal or snack (e.g. 'Taco Time Northwest crisp bean burrito, fresh side salad, and unsweetened iced tea')">Snack Strawberry Vanilla Granola</textarea>
-                      <div style="margin-top: 4px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
-                        <span style="font-size: 0.70rem; font-weight: 800; color: #0369a1; font-family: var(--lcars-mono);">💡 DISCOVERY TOKENS:</span>
-                        <button type="button" class="lcars-btn" style="padding: 2px 8px; font-size: 0.70rem; background: #e0f2fe; color: #0369a1; border: 1px solid #7dd3fc; border-radius: 4px; font-weight: bold;" onclick="setMealQueryToken(\'I want a hot candy that meets my goals what is best\')">
-                          🌶️ hot candy that meets my goals
-                        </button>
-                        <button type="button" class="lcars-btn" style="padding: 2px 8px; font-size: 0.70rem; background: #e0f2fe; color: #0369a1; border: 1px solid #7dd3fc; border-radius: 4px; font-weight: bold;" onclick="setMealQueryToken(\'find me a sugar free dessert like \\\'blueberry cake\\\'\')">
-                          🍰 find me a sugar free dessert like 'blueberry cake'
-                        </button>
-                        <button type="button" class="lcars-btn" style="padding: 2px 8px; font-size: 0.70rem; background: #e0f2fe; color: #0369a1; border: 1px solid #7dd3fc; border-radius: 4px; font-weight: bold;" onclick="setMealQueryToken(\'find me a diabetic treat like \\\'ice cream parfait\\\'\')">
-                          🍨 find me a diabetic treat like 'ice cream parfait'
-                        </button>
-                        <button type="button" class="lcars-btn" style="padding: 2px 8px; font-size: 0.70rem; background: #e0f2fe; color: #0369a1; border: 1px solid #7dd3fc; border-radius: 4px; font-weight: bold;" onclick="setMealQueryToken(\'find me a safe snack like \\\'chocolate candy\\\'\')">
-                          🍫 find me a safe snack like 'chocolate candy'
-                        </button>
-                      </div>
                     </div>
 
                     <!-- Beverage / Hydration Control & Analyze Button -->
@@ -7209,7 +7218,7 @@
                 </div>
               </div>
 
-              <!-- FLOWCHART STEP 3: WORKFLOW DECISION (CONSUME NOW OR VIEW CHARTS) -->
+              <!-- FLOWCHART STEP 3: WORKFLOW DECISION (SAVE TO PANTRY OR CONSUME NOW) -->
               <div style="display: flex; gap: 14px; align-items: stretch; background: #ffffff; border: 1.5px solid #94a3b8; border-left: 6px solid #f59e0b; border-radius: 6px; padding: 12px;">
                 <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 90px; border-right: 1.5px solid #e2e8f0; padding-right: 12px; text-align: center;">
                   <span style="font-size: 0.75rem; font-weight: 900; color: #f59e0b; font-family: var(--lcars-mono);">STEP 3</span>
@@ -7218,13 +7227,19 @@
                 </div>
                 <div style="flex: 1; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
                   <div>
-                    <strong style="font-size: 0.85rem; color: #0f172a;">READY TO LOG THIS CHOICE OR INSPECT LONGITUDINAL CHARTS?</strong>
+                    <strong style="font-size: 0.85rem; color: #0f172a;">LIKE THIS CHOICE? BUILD YOUR REFERENCE LIBRARY OR CONSUME NOW:</strong>
                     <div style="font-size: 0.74rem; color: #475569; margin-top: 2px;">
-                      • <strong>Consume Now:</strong> Commits this evaluated meal right now into your daily meal journal and updates today's Daily Intake Summary.<br>
-                      • <strong>View in 13-Lane Chart:</strong> Opens Tab 04 Reports to inspect glucose &amp; GLUT4 walk response alongside meal intake pins.
+                      • <strong>Add to Meal Pantry:</strong> Stores this as a saved reference template (Meal or Snack) for 1-click reuse (does NOT log as eaten today).<br>
+                      • <strong>Consume Now:</strong> Commits this meal right now into your daily meal log and updates today's Daily Intake Summary.
                     </div>
                   </div>
                   <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                    <button type="button" class="lcars-btn btn-banana" style="font-size: 0.82rem; padding: 8px 14px; font-weight: 800;" onclick="saveAnalyzedMealToPantry('Meal')">
+                      ⭐ ADD TO PANTRY AS MEAL
+                    </button>
+                    <button type="button" class="lcars-btn btn-ice" style="font-size: 0.82rem; padding: 8px 14px; font-weight: 800; background: #0284c7; color: #fff; border: 1.5px solid #0369a1;" onclick="saveAnalyzedMealToPantry('Snack')">
+                      🍵 ADD TO PANTRY AS SNACK
+                    </button>
                     <button type="button" class="lcars-btn btn-green" style="font-size: 0.82rem; padding: 8px 18px; font-weight: 900;" onclick="submitActualMealAndMonitorMetrics()">
                       🚀 CONSUME NOW (LOG TO MEAL LOG)
                     </button>

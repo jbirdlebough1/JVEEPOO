@@ -76,9 +76,9 @@ Just beneath the meal cards sits the 24-Hour Fluid Progression chart targeting 6
 
 At the bottom of Tab 02 lies the full Chronological Meal Journal—listing every logged dish by time alongside clean delete buttons and showing clearly how much carbohydrate headroom remains before planning our next meal in Tab 03.
 
-### Slide 19 — Tab 03: 03-MEAL PLANNER | 03-MEAL PLANNER: Clean Single-Stream Multi-Modal Meal & Snack Estimator
+### Slide 19 — Tab 03: 03-MEAL PLANNER | 03-MEAL PLANNER: Dual-Pathway Saved Meal Pantry & Clean Multi-Modal Estimator
 
-Stepping into Tab 03 Meal Planner shifts focus from tracking past meals to planning upcoming choices cleanly before taking a single bite. Step 1 provides one uncluttered full-width entry accepting typed dishes, voice orders, plate photos, beverage hydration, and four focused discovery prompts.
+Stepping into Tab 03 Meal Planner shifts focus from tracking past meals to planning upcoming choices cleanly before taking a single bite. Pathway A lets you reuse fifteen saved meal templates in one click with Edit and Delete controls, alongside a clean Pathway B box for text, voice, and plate photos.
 
 ### Slide 20 — Tab 03: 03-MEAL PLANNER | Pre-Choice Metabolic Evaluator: Seven Live Macros, Hydration & GLUT4 Rx
 
@@ -92,9 +92,9 @@ Generic apps often mis-estimate restaurant meals by forty grams or more. BFM ver
 
 Here in the Recipe Bill of Materials, ingredients are organized straight by grocery aisle alongside their net carb impact—with zero price clutter—paired directly with three verified local grocers within 20 miles ready to print or copy.
 
-### Slide 23 — Tab 03: 03-MEAL PLANNER | Step 2 Harm-Reduction Trades & Step 3 Consume vs 13-Lane Chart Workflow
+### Slide 23 — Tab 03: 03-MEAL PLANNER | Step 2 Harm-Reduction Trades & Step 3 Pantry Save vs Consume Now
 
-If an initial meal estimate lands above target, Step 2 suggests practical swaps saving 42 to 65 grams of sugar before Step 3 lets you click Consume Now to log the meal or inspect it inside Tab 04's 13-lane chart.
+If an initial meal estimate lands above target, Step 2 suggests practical swaps saving 42 to 65 grams of sugar before Step 3 lets you save the recipe to your Meal or Snack Pantry, consume now, or view the 13-lane chart.
 
 ### Slide 24 — Tab 03: 03-MEAL PLANNER | Doctor & Patient Longitudinal Meal-to-Metric Explorer
 
