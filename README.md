@@ -1,11 +1,11 @@
-# BFM Biometric Function Monitor — Continuous Metabolic & Clinical Telemetry Platform (`beta.00.01.0074`)
+# BFM Biometric Function Monitor — Continuous Metabolic & Clinical Telemetry Platform (`beta.00.01.0075`)
 
 The **BFM Biometric Function Monitor** (`JVEEPOO`) is an independent, open-source, clinician-aligned ambulatory telemetry workstation and zero-account mobile companion built by **The Author** (Sole Pioneer, Inventor, System Architect, and Philosophical Leader), developed with Google Gemini AI (currently independent with no sponsors).
 
-[![Build: beta.00.01.0074](https://img.shields.io/badge/Build-beta.00.01.0074-blue.svg)](Beta/docs/walkthrough_beta_00_01_0074.md)
+[![Build: beta.00.01.0075](https://img.shields.io/badge/Build-beta.00.01.0075-blue.svg)](Beta/docs/walkthrough_beta_00_01_0075.md)
 [![Hardware: Model 5010](https://img.shields.io/badge/Hardware-FITAOS%205150%20%2F%20Veepoo%205010-orange.svg)](https://fitaos.com)
 [![Presentation: 89 Slides](https://img.shields.io/badge/Presentation-89%20Slides%20%2B%20Audio-green.svg)](https://jbirdlebough1.github.io/JVEEPOO/presentation/preview.html)
-[![Zero Defect: Six Sigma](https://img.shields.io/badge/CLEBUGGER-74%2F74%20Zero%20Open-brightgreen.svg)](Beta/docs/BETA_BACKLOG_TODO.md)
+[![Zero Defect: Six Sigma](https://img.shields.io/badge/CLEBUGGER-75%2F75%20Zero%20Open-brightgreen.svg)](Beta/docs/BETA_BACKLOG_TODO.md)
 [![License: GPL v3 / Open Source](https://img.shields.io/badge/License-GPL%20v3%20%2F%20Open%20Source-green.svg)](https://github.com/jbirdlebough1/JVEEPOO)
 
 ---
@@ -30,7 +30,7 @@ Conceived and architected out of personal necessity by **The Author** while mana
 
 ---
 
-## Visual Showcase (`beta.00.01.0074`)
+## Visual Showcase (`beta.00.01.0075`)
 
 | 14-Tab Desktop Console (`01-FULL SCAN`) | `03-MEAL PLANNER` (Saved Meals & Clean Coach) |
 | :---: | :---: |
@@ -53,7 +53,7 @@ Clicking `.html` files inside GitHub's web viewer shows raw source code. Launch 
 
 ---
 
-## Key Capabilities (`beta.00.01.0074`)
+## Key Capabilities (`beta.00.01.0075`)
 
 ### 1. Unified 14-Tab Workstation Console (`BFM.HTM`)
 Operates identically via local server (`http://127.0.0.1:8899/`) and standalone desktop launch (`file:///D:/veepoo/BFM.HTM`):

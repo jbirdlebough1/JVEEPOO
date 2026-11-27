@@ -1,8 +1,8 @@
 {
-  "latest_build": "beta.00.01.0074",
-  "synced_at": "2026-11-27T12:48:28",
-  "total_bugs": 178,
-  "total_resolved": 178,
+  "latest_build": "beta.00.01.0075",
+  "synced_at": "2026-11-27T15:33:57",
+  "total_bugs": 179,
+  "total_resolved": 179,
   "total_open": 0,
   "bugs": [
     {
@@ -2318,6 +2318,19 @@
       "comments": "Synced from git tag beta.00.01.0074",
       "created_at": "2026-11-27 12:39:41",
       "resolved_at": "2026-11-27 12:39:41"
+    },
+    {
+      "code": "CLE-132",
+      "project": "JVEEPOO",
+      "build": "beta.00.01.0075",
+      "title": "[beta.00.01.0075] release(beta.00.01.0075): Public GitHub Beta release package, updated docs, cross-platform matrix & glucose watch intelligence",
+      "status": "RESOLVED",
+      "component": "beta.00.01.0075",
+      "affected_files": "Beta/docs/walkthrough_beta_00_01_0075.md, README.md, archive_alpha/logs/transcript.jsonl, archive_alpha/logs/transcript_full.jsonl, docs/walkthrough_beta_00_01_0075.md, session_logs/transcript.jsonl, session_logs/transcript_full.jsonl",
+      "resolution": "Git commit 598f8e1 (2026-11-27 15:33:23): release(beta.00.01.0075): Public GitHub Beta release package, updated docs, cross-platform matrix & glucose watch intelligence",
+      "comments": "Synced from git tag beta.00.01.0075",
+      "created_at": "2026-11-27 15:33:23",
+      "resolved_at": "2026-11-27 15:33:23"
     }
   ]
 }
