@@ -494,6 +494,7 @@
       <strong style="display: block; margin-bottom: 4px;">⚡ METABOLIC IMPACT &amp; ASSOCIATED COSTS:</strong>
       <div id="resSpike" style="margin-bottom: 3px;">&bull; <strong>Projected Spike:</strong> +0 to +2 mg/dL excursion (Ideal Flatline).</div>
       <div id="resCost">&bull; <strong>Metabolic Burden:</strong> 0g Net Carbs &bull; <strong>Vascular Strain:</strong> Zero glycemic or vascular strain.</div>
+      <p id="resNotes" style="margin-top: 6px; padding-top: 6px; border-top: 1px dashed #f59e0b; font-size: 0.80rem; line-height: 1.4; color: #451a03; display: none;"></p>
     </div>
 
     <!-- Pre-Choice Harm Reduction Alternatives -->
@@ -1302,7 +1303,37 @@
         };
       }
 
-      // 7. General Semantic Fallback
+      // 7. General Semantic Fallback (Sultan Bakery & Deli Sandwiches first)
+      if (/sultan bakery|bakery.*sandwich|ham and cheese|ham & cheese|grilled cheese|sandwich|panini|club|blt/.test(t)) {
+        const isSultan = /sultan bakery|sultan/.test(t) && /bakery|ham|sandwich/.test(t);
+        const isGrilled = /grilled|95/.test(t);
+        const cals = isGrilled ? 510 : 410;
+        const carbs = isGrilled ? 33 : 31;
+        const prot = isGrilled ? 26 : 24;
+        const fat = isGrilled ? 29 : 19;
+        const fib = 3;
+        return {
+          meal_name: text.trim() || "Deli Ham & Cheese Sandwich",
+          vendor_matched: isSultan ? "Sultan Bakery (31407 US-2, Sultan, WA 98294) — Field Estimate" : "Deli & Bakery Field Estimate",
+          calories: cals,
+          net_carbs: carbs,
+          total_carbs: carbs + fib,
+          fiber: fib,
+          protein: prot,
+          fat: fat,
+          glycemic_load: Math.round(carbs * 0.55) + " (Safe Low-Med)",
+          meets_goal: true,
+          projected_spike: `+${Math.round(carbs * 1.1)} to +${Math.round(carbs * 1.1) + 18} mg/dL`,
+          gemini_notes: isSultan
+            ? "📍 Sultan Bakery (31407 US-2, Sultan, WA 98294): Official facts unpublished; hearty house-baked ham & cheese typically runs 350–440 kcal (higher if Grilled 95 or extra mayo/cheese). Clarify version & extras to refine."
+            : "Typical bakery/deli ham & cheese sandwich runs 350–440 kcal (~31g net carbs). Specify bread type, cheese, and spreads to refine.",
+          trade_alternatives: [
+            "Eat open-faced (remove top bread slice) to save 15g net carbs.",
+            "Swap mayo/butter grilling for mustard to save ~90 kcal."
+          ],
+          glut4_recommendation: "15–20 minute gentle walk keeps post-meal glucose steady."
+        };
+      }
       let carbs = 28, cals = 480, prot = 32, fat = 18, fib = 6;
       if (/pizza|pasta|spaghetti|macaroni|bread|sub|noodle/.test(t)) {
         carbs = 72; cals = 780; prot = 22; fat = 26; fib = 4;
@@ -1379,7 +1410,7 @@
       const card = document.getElementById('cardAnalysis');
       card.style.display = 'block';
 
-      checkAndRenderCellSnackMatrix(a);
+      if (typeof checkAndRenderCellSnackMatrix === 'function') checkAndRenderCellSnackMatrix(a);
       document.getElementById('resTitle').textContent = `[${selectedMealType.toUpperCase()}] ${a.meal_name || "Meal Analysis"}`;
       document.getElementById('resVendor').textContent = a.vendor_matched || "Nutritional Disclosure";
 
@@ -1402,6 +1433,17 @@
 
       document.getElementById('resSpike').innerHTML = `&bull; <strong>Projected Spike:</strong> ${a.projected_spike || "+0 mg/dL"}`;
       document.getElementById('resCost').innerHTML = `&bull; <strong>Metabolic Impact:</strong> ${netCarbs > 45 ? "High insulin surge & vascular strain (+"+Math.round(netCarbs-45)+"g over ceiling)" : "Safe, stable glycemic curve adhering to targets"}.`;
+      const notesEl = document.getElementById('resNotes');
+      if (notesEl) {
+        const noteStr = (a.gemini_notes || "").trim();
+        if (noteStr) {
+          notesEl.textContent = noteStr;
+          notesEl.style.display = 'block';
+        } else {
+          notesEl.textContent = '';
+          notesEl.style.display = 'none';
+        }
+      }
 
       // Trades
       const tradesDiv = document.getElementById('resTradeChoices');

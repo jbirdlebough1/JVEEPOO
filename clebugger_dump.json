@@ -3406,5 +3406,21 @@
     "created_at": "2026-11-27 09:31:40",
     "updated_at": "2026-11-27 09:31:40",
     "resolved_at": "2026-11-27 09:31:40"
+  },
+  {
+    "project_name": "JVEEPOO",
+    "bug_number": 127,
+    "bug_code": "CLE-127",
+    "build_number": "beta.00.01.0070",
+    "title": "[beta.00.01.0070] beta.00.01.0070: fix missing checkAndRenderCellSnackMatrix crash on Cell, resolve Sultan Bakery / sandwich estimation, and wire live Gemini ",
+    "status": "RESOLVED",
+    "component": "BFM Clinical Console",
+    "affected_files": "BFM.HTM, Beta/docs/BETA_BACKLOG_TODO.md, Beta/docs/GOOGLE_LEADERSHIP_PRIMER.md, Beta/docs/walkthrough_beta_00_01_0070.md, docs/BETA_BACKLOG_TODO.md, docs/GOOGLE_LEADERSHIP_PRIMER.md, docs/walkthrough_beta_00_01_0070.md, index.html",
+    "bug_loc": 0,
+    "resolution": "Git commit 81901cf (2026-11-27 09:56:50): beta.00.01.0070: fix missing checkAndRenderCellSnackMatrix crash on Cell, resolve Sultan Bakery / sandwich estimation, and wire live Gemini 2.5 Flash Search grounding",
+    "comments": "Synced from git tag beta.00.01.0070",
+    "created_at": "2026-11-27 09:56:50",
+    "updated_at": "2026-11-27 09:56:50",
+    "resolved_at": "2026-11-27 09:56:50"
   }
 ]

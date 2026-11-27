@@ -5290,6 +5290,29 @@
             </div>
           </div>
 
+          <!-- SECTION 11B: LIVE GOOGLE GEMINI API KEY (SEARCH GROUNDING) -->
+          <div class="setup-section" style="border-left-color: #0284c7; margin-top: 18px; background: #ffffff; border: 1.5px solid #cbd5e1; border-left: 6px solid #0284c7; border-radius: 8px; padding: 16px;">
+            <div class="setup-section-title" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 12px;">
+              <div>
+                <span style="color: #0284c7; font-size: 1.08rem; font-weight: 800; letter-spacing: 0.4px;">
+                  11B. LIVE GOOGLE GEMINI AI KEY (OPTIONAL SEARCH GROUNDING)
+                </span>
+                <span style="font-size: 0.76rem; color: #64748b; display: block; margin-top: 2px;">
+                  ENABLES LIVE GOOGLE SEARCH RESTAURANT NUTRITION LOOKUP FOR ANY UNLISTED BAKERY, CAFE, OR DINER (LOCAL REGIONAL ENGINE REMAINS ACTIVE WITHOUT A KEY)
+                </span>
+              </div>
+              <span id="lblGeminiKeyStatus" style="font-size: 0.74rem; font-weight: 800; color: #64748b; font-family: monospace;">CHECKING KEY...</span>
+            </div>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+              <input type="password" id="cfgGeminiApiKey" class="setup-input" placeholder="Paste Google AI Studio Gemini API Key (AIza...)" style="flex: 1; min-width: 240px; padding: 8px 10px; border: 1.5px solid #94a3b8; border-radius: 4px; font-family: monospace; font-size: 0.85rem; color: #0f172a; background: #f8fafc;">
+              <button type="button" class="lcars-btn btn-green" onclick="saveGeminiApiKey()" style="font-size: 0.80rem; padding: 8px 14px; font-weight: bold;">🔑 SAVE GEMINI KEY</button>
+              <button type="button" class="lcars-btn btn-peach" onclick="clearGeminiApiKey()" style="font-size: 0.80rem; padding: 8px 12px; font-weight: bold;">✖ CLEAR KEY</button>
+            </div>
+            <div style="font-size: 0.74rem; color: #475569; margin-top: 8px;">
+              Stored strictly locally inside this PC's SQLite database (`sync_state`) — used solely for public food nutrition queries (zero PHI sent). Free key portal: <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener" style="color: #0284c7; font-weight: bold;">aistudio.google.com/apikey</a>
+            </div>
+          </div>
+
           <!-- SECTION 12: REGISTERED FAMILY CELLS & WEARABLE SENSOR ROSTER -->
           <div class="setup-section" style="border-left-color: #38bdf8; margin-top: 24px; background: #0f172a; border: 1.5px solid #334155; border-left: 6px solid #38bdf8; border-radius: 8px; padding: 18px; color: #f8fafc;">
             <div class="setup-section-title" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #334155; padding-bottom: 10px; margin-bottom: 14px;">
@@ -17954,6 +17977,64 @@ function switchTab(tabId) {
       }
       if (typeof soundNotification === 'function') soundNotification();
     }
+
+    async function loadGeminiApiKeyStatus() {
+      const lbl = document.getElementById('lblGeminiKeyStatus');
+      if (!lbl) return;
+      try {
+        const resp = await fetch('/api/config/gemini_key', { cache: 'no-store' });
+        if (!resp.ok) throw new Error('HTTP ' + resp.status);
+        const data = await resp.json();
+        if (data.configured) {
+          lbl.textContent = `ACTIVE (${data.masked})`;
+          lbl.style.color = '#16a34a';
+        } else {
+          lbl.textContent = 'LOCAL REGIONAL ENGINE (NO KEY SAVED)';
+          lbl.style.color = '#64748b';
+        }
+      } catch (e) {
+        console.warn('[MIL-SPEC HANDLED FAULT] loadGeminiApiKeyStatus failed:', e);
+      }
+    }
+
+    async function saveGeminiApiKey() {
+      const inp = document.getElementById('cfgGeminiApiKey');
+      const k = inp ? inp.value.trim() : '';
+      if (!k) {
+        if (typeof showToast === 'function') showToast('Paste a Gemini API key first (or click Clear Key).');
+        return;
+      }
+      try {
+        const resp = await fetch('/api/config/gemini_key', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ api_key: k })
+        });
+        const data = await resp.json();
+        if (inp) inp.value = '';
+        await loadGeminiApiKeyStatus();
+        if (typeof showToast === 'function') showToast(`✓ Live Gemini API Key saved (${data.masked})`);
+      } catch (e) {
+        console.warn('[MIL-SPEC HANDLED FAULT] saveGeminiApiKey failed:', e);
+      }
+    }
+
+    async function clearGeminiApiKey() {
+      try {
+        await fetch('/api/config/gemini_key', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ api_key: '' })
+        });
+        const inp = document.getElementById('cfgGeminiApiKey');
+        if (inp) inp.value = '';
+        await loadGeminiApiKeyStatus();
+        if (typeof showToast === 'function') showToast('Gemini API Key cleared (using local regional engine).');
+      } catch (e) {
+        console.warn('[MIL-SPEC HANDLED FAULT] clearGeminiApiKey failed:', e);
+      }
+    }
+    setTimeout(loadGeminiApiKeyStatus, 500);
 
     function syncExportPageWithConfig() {
       const cfg = getPatientEhrConfig();
