@@ -2,7 +2,7 @@
 
 **Release Tag:** `beta.00.01.0064`  
 **Scope:** Recaptured `09-MEDICATION` Screenshot (`bfm_t09_medication.png`) with Actual User-Entered BFM Regimen + Slide 62 Alignment  
-**Governance:** Pioneer & Chief Architect (The Author) • Technology Sponsor: Google (Google Gemini AI)
+**Governance:** Pioneer & Chief Architect (The Author) • Sponsorship Status: Independent Beta (No current sponsors; seeking sponsors)
 
 ---
 

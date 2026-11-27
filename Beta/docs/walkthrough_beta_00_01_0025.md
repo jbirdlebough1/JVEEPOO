@@ -2,7 +2,7 @@
 **BUILD TAG**: `beta.00.01.0025`  
 **TIMESTAMP**: 2026-11-24 21:13:30 PST  
 **SYSTEM**: BFM Biometric Function Monitor  
-**CORPORATE SPONSOR**: Google Gemini AI  
+**SPONSORSHIP STATUS**: Independent Beta — No current sponsors (actively seeking sponsors)  
 **AUTHOR**: System Architect & Pioneer  
 
 ---

@@ -2,7 +2,7 @@
 
 **Release Tag:** `beta.00.01.0065`  
 **Scope:** Upgraded Doctor's Clinical Reference & Metrology Guide (`VEEPOO_5010_CLINICAL_SPECIFICATION_AND_REPORTING_GUIDE.pdf`) into a 23-Page Peer-Vetted Physician Clinical Monograph with Graphical Mathematical Equations, Vector SVG Schematics, Live `beta.00.01.0064` Screenshots & 30 Linked Peer-Reviewed DOIs/Standards  
-**Governance:** Pioneer & Chief Architect (The Author) • Technology Sponsor: Google (Google Gemini AI)
+**Governance:** Pioneer & Chief Architect (The Author) • Sponsorship Status: Independent Beta (No current sponsors; seeking sponsors)
 
 ---
 

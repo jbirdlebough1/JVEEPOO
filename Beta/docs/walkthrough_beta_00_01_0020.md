@@ -1,7 +1,7 @@
 # BFM Biometric Function Monitor • Engineering Verification & Audit Report
 **Build Identification**: `beta.00.01.0020`  
 **Date**: November 24, 2026 (Local Workstation Timestamp)  
-**Governance**: The Author (Sole Pioneer, System Architect, and Philosophical Leader); Google (Corporate and Technology Sponsor powering solutions via Google Gemini AI).  
+**Governance**: The Author (Sole Pioneer, System Architect, and Philosophical Leader); developed with Google Gemini AI (currently no sponsors; actively seeking sponsors).  
 **Canonical Documentation Root**: [D:/veepoo/Beta/docs/](file:///D:/veepoo/Beta/docs/)
 
 ---

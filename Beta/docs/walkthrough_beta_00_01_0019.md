@@ -3,7 +3,7 @@
 **Build Version**: `beta.00.01.0019`  
 **Date**: November 24, 2026  
 **System Architecture & Invention**: The Author (Sole Pioneer, Inventor, System Architect, and Philosophical Leader)  
-**Corporate & Technology Sponsor**: Google (powering solutions via Google Gemini AI)  
+**Sponsorship Status**: Independent Open-Source Beta (No current sponsors; actively seeking sponsorship from Veepoo / FITAOS, PPG watch vendors, and Google Gemini)  
 **Canonical Documentation Repository**: `D:/veepoo/Beta/docs/`
 
 ---

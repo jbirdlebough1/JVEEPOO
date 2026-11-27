@@ -2,7 +2,7 @@
 
 **Release Tag:** `beta.00.01.0062`  
 **Scope:** Live Watch Lead-I ECG & BIA Body Composition BLE Sync (`TODO-BLE-003` Closed) + Full Left/Right & Narration Presentation Alignment Across Slides 32–39 and 54–58  
-**Governance:** Pioneer & Chief Architect (The Author) • Technology Sponsor: Google (Google Gemini AI)
+**Governance:** Pioneer & Chief Architect (The Author) • Sponsorship Status: Independent Beta (No current sponsors; seeking sponsors)
 
 ---
 

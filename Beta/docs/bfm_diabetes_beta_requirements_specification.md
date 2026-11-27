@@ -7,7 +7,7 @@
 
 * **System Name**: **BFM Biometric Function Monitor** (Console Powered By Gemini)
 * **Pioneer, Inventor & Philosophical Leader**: **The Author** (Creator, Chief Architect, and Leader of the BFM Philosophy)
-* **Corporate & Technology Sponsor**: **Google** (Sponsoring, Hosting, and Powering via Google Gemini AI)
+* **Sponsorship Status**: Independent Open-Source Beta — **no current sponsors** (actively seeking sponsorship from Veepoo / FITAOS, similar PPG watch vendors, and Google Gemini)
 * **Desktop Workstation Console**: **BFM Biometric Function Monitor** (`BFM.HTM` & `BFM_Launcher.exe`)
 * **Mobile Auxiliary Unit**: **BFM Companion Portal** (`cell.html`, registered as **Cell 1, Cell 2, Cell 3**)
 * **Registered Mobile Devices**: **Cell 1, Cell 2, Cell 3** (Assigned to registered family users)
@@ -235,7 +235,7 @@ To foster an unstoppable open-source movement for global health, Google Gemini p
 | **REQ-15** | Canonical Taxonomy | Standardized build versioning: `alpha.xx.xx.xx.xxxx` (Alpha) and `beta.00.01.xxxx` (Beta, current `beta.00.01.0057`) pinned across UI and API. | Build badge & AST scanner |
 | **REQ-16** | Human Success | Primary governing philosophy: daily user adoption and physician trust overriding purely mathematical process rankings. | User & clinician audit |
 | **REQ-17** | HDYF Telemetry | "How Do You Feel?" 360° x 360° spherical telemetry capturing natural language voice/text comments anchored to master timeline (`feeling_entries`). | Experiential journal test |
-| **REQ-18** | Governance | The Author is the sole Pioneer, Inventor, and Philosophical Leader; Google is strictly Corporate and Technology Sponsor. | Document & legal review |
+| **REQ-18** | Governance | The Author is the sole Pioneer, Inventor, and Philosophical Leader; the project currently has no sponsors and is actively seeking sponsorship (Veepoo / FITAOS, PPG watch vendors, Google Gemini). | Document & legal review |
 | **REQ-19** | Somatosensory Pain | Real-time classification and tracking of all voiced pain and physical discomfort rendered directly in `CH 09: PAIN INDEX`. | NLP & timeline anchor test |
 | **REQ-20** | HBand 2.0 Parity | Complete hardware equivalence (`0xDF` OriginV3 244B MTU, `0x88` Temp history, `0xE0` Sleep + naps, `0xB8` 12/24h lock, `8,859`-epoch Lorenz, ECG, METs). | Transponder GATT protocol check |
 | **REQ-21** | Abrams Aesthetic | Interface follows luminous clean clinical white/slate (`#f8fafc`), ice-blue (`#0284c7`), and monospaced tabular numerals. | DOM class & CSS audit |

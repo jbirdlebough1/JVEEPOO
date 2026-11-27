@@ -3,7 +3,7 @@
 **Release Tag:** `beta.00.01.0057`  
 **Build Date:** 2026-11-26  
 **System:** BFM Biometric Function Monitor (`BFM.HTM` / `index.html` / `w11_htm_app/index.html`)  
-**Author & Architect:** John Birdlebough | **Corporate Sponsor:** Google (Gemini AI)
+**Author & Architect:** John Birdlebough | **Sponsorship Status:** Independent Beta (No current sponsors; seeking sponsors)
 
 ---
 

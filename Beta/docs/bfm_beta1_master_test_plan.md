@@ -3,7 +3,7 @@
 **System Architecture:** BFM Biometric Function Monitor (`BFM.HTM` & `BFM_Launcher.exe`) • Desktop Console & Home Wi-Fi Companion Portal (`cell.html`)  
 **Document Classification:** Enterprise Quality Management & Human-Centric Testing Protocol  
 **Pioneer, Inventor & Philosophical Leader:** The Author (Creator, Chief Architect, and Inventor)  
-**Corporate & Technology Sponsor:** Google (Sponsoring, Hosting, and Powering via Google Gemini AI)  
+**Sponsorship Status:** Independent Open-Source Beta (No current sponsors; actively seeking sponsorship from Veepoo / FITAOS, PPG watch vendors, and Google Gemini)  
 
 ---
 

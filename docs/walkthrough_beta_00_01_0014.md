@@ -1,6 +1,6 @@
 # BFM Biometric Function Monitor — Build beta.00.01.0014 Walkthrough & Verification Scorecard
 
-The **BFM Biometric Function Monitor** is the clinical and consumer metabolic monitoring platform engineered under the architectural leadership of the Author, with corporate and technology sponsorship by Google. Build `beta.00.01.0014` delivers an exhaustive, Six Sigma zero-defect resolution across all user-mandated Sev 1 life-critical requirements, multi-watch telemetry isolation, watch face engineering, reactive pipeline updates, and troubleshooting recovery procedures.
+The **BFM Biometric Function Monitor** is the clinical and consumer metabolic monitoring platform engineered under the architectural leadership of the Author, developed with Google Gemini AI (currently independent with no sponsors; actively seeking sponsors). Build `beta.00.01.0014` delivers an exhaustive, Six Sigma zero-defect resolution across all user-mandated Sev 1 life-critical requirements, multi-watch telemetry isolation, watch face engineering, reactive pipeline updates, and troubleshooting recovery procedures.
 
 ---
 

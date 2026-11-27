@@ -1,7 +1,7 @@
 # BFM Biometric Function Monitor System: Beta 00.01.0017 Walkthrough & Six Sigma Zero-Defect Scorecard
 
 **The Author:** Sole Pioneer, Inventor, System Architect, and Philosophical Leader across all projects  
-**Google:** Corporate & Technology Sponsor (powering solutions via Google Gemini AI)  
+**Sponsorship Status:** Independent Open-Source Beta (No current sponsors; actively seeking sponsorship from Veepoo / FITAOS, PPG watch vendors, and Google Gemini)  
 **Build Tag:** `beta.00.01.0017` (Commit: `d9a913c`)  
 **Dual Remotes:** Synchronized to `origin` (`C:/recover/git_repos/JVEEPOO.git`) and `github` (`https://github.com/jbirdlebough1/JVEEPOO.git`)
 

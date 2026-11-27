@@ -2,7 +2,7 @@
 
 **Release Tag:** `beta.00.01.0063`  
 **Scope:** Logged & Closed `TODO-UX-001` (`RESTAURANT PRE-CHOICE` Clutter Removal in `03-MEAL PLANNER`) + Slides 19–20 Live Evaluator Alignment  
-**Governance:** Pioneer & Chief Architect (The Author) • Technology Sponsor: Google (Google Gemini AI)
+**Governance:** Pioneer & Chief Architect (The Author) • Sponsorship Status: Independent Beta (No current sponsors; seeking sponsors)
 
 ---
 

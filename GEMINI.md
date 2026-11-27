@@ -46,7 +46,7 @@ The assistant must maintain continuous, unbroken institutional memory of past fa
 
 ## PRIME DIRECTIVE 5: GOVERNANCE & ROLES
 * **The Author**: Sole Pioneer, Inventor, System Architect, and Philosophical Leader across all projects.
-* **Google**: Corporate & Technology Sponsor (powering solutions via Google Gemini AI).
+* **Sponsorship Status**: Currently independent with **no sponsors** (actively seeking sponsorship from Veepoo / FITAOS, PPG watch vendors, and Google Gemini). Never claim active corporate sponsorship.
 * **Nomenclature**: In executive and specification documents, always introduce "BFM Biometric Function Monitor" in the first paragraph.
 
 ---

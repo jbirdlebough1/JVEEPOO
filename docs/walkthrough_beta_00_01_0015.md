@@ -1,6 +1,6 @@
 # BFM Biometric Function Monitor — Release Walkthrough (Build beta.00.01.0015)
 
-The **BFM Biometric Function Monitor** is authored by The Author as Sole Pioneer, Inventor, System Architect, and Philosophical Leader across all projects, with Google serving as Corporate and Technology Sponsor powered by Google Gemini AI.
+The **BFM Biometric Function Monitor** is authored by The Author as Sole Pioneer, Inventor, System Architect, and Philosophical Leader across all projects, developed with Google Gemini AI (currently independent with no sponsors; actively seeking sponsors).
 
 This release walkthrough documents the surgical resolution of the Sev 0 meal estimation false-positive regression and the restoration of the Pure Zero-Data Reality Principle across the clinical nutrition workflow.
 

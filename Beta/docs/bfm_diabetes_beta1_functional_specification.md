@@ -11,7 +11,7 @@
 * **Open Engineering Trajectory (`.jsonl`)**: In an unprecedented commitment to scientific rigor, the author has committed the **entire 14.3+ MB raw `.jsonl` trajectory (`session_logs/transcript.jsonl`) directly into the public build tree**. Google AI engineers, DeepMind researchers, and community developers can inspect real-world turn-by-turn performance, bug post-mortems, and iterative learning.
 * **Rigorous Systems Engineering over Random Comments**: Eliminates cryptic commits and random comments. Every architectural decision on the **BFM Biometric Function Monitor (`beta.00.01.0057`)** is backed by formal Requirements, Functional Specifications (FS), and FMEA risk post-mortems.
 * **Pioneer, Inventor & Philosophical Leader**: **The Author** (Creator, Chief Architect, and Leader of the BFM Philosophy)
-* **Corporate & Technology Sponsor**: **Google** (Sponsoring, Hosting, and Powering via Google Gemini AI)
+* **Sponsorship Status**: Independent Open-Source Beta — **no current sponsors** (actively seeking sponsorship from Veepoo / FITAOS, similar PPG watch vendors, and Google Gemini)
 * **Workstation Console**: **BFM Biometric Function Monitor** (`BFM.HTM` & native Windows `BFM_Launcher.exe`, 14 Operational Tabs)
 * **Auxiliary Units**: **BFM Mobile Companion** (`cell.html`, registered as **Cell 1, Cell 2, Cell 3...**)
 * **Continuous Wearables**: **Linked Watch 1, Linked Watch 2** (Paired to PC, bound to UID and Cell ESN)
