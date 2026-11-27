@@ -494,18 +494,18 @@
 
 > Clinicians adjust quarterly milestones safely step-by-step here—preventing overly rapid drops—before transitioning cleanly next into Tab 09 Medication.
 
-## Slide 62: 09-MEDICATION: Medical Data Sanctity & Zero Pre-Populated Drugs
+## Slide 62: 09-MEDICATION: Medical Data Sanctity & Active Entered Regimen
 
 - **Section:** Tab 09: 09-MEDICATION
-- **Visual:** `images/bfm_t09_medication.png` (`09-MEDICATION • SAFE PRESCRIPTION & SCHEDULE REGISTRY`)
-- **Key Takeaway:** Guaranteeing zero synthetic prescriptions builds absolute confidence for pharmacists and attending physicians.
+- **Visual:** `images/bfm_t09_medication.png` (`09-MEDICATION • USER-ENTERED ACTIVE REGIMEN & TITRATION LOG`)
+- **Key Takeaway:** Combining zero fabricated defaults on fresh installs with faithful tracking of every user-entered prescription builds complete physician trust.
 
-> Tab 09 Medication enforces strict medical sanctity. Pre-populating sample prescriptions is an extreme hazard in health software. Until your physician enters a regimen, Tab 09 and every report HUD remain faithfully empty.
+> Tab 09 Medication enforces strict medical sanctity. New installs never fabricate sample prescriptions; instead, what you enter appears cleanly here—your eleven morning medications taken at 10:47 AM, evening split Metformin XR at 7:01 PM, and three logged titration changes below.
 
 ## Slide 63: Discrete Morning Suite & Dinner Split Scheduling Controls
 
 - **Section:** Tab 09: 09-MEDICATION
-- **Visual:** `images/bfm_t09_medication.png` (`09-MEDICATION • SAFE PRESCRIPTION & SCHEDULE REGISTRY`)
+- **Visual:** `images/bfm_t09_medication.png` (`09-MEDICATION • USER-ENTERED ACTIVE REGIMEN & TITRATION LOG`)
 - **Key Takeaway:** Exact dose-to-meal timing visibility lets doctors spot whether delayed or split timing smooths excursions better.
 
 > When prescriptions are entered, discrete morning and evening schedules anchor exact dose markers cleanly beneath post-meal glucose peaks so physicians immediately verify pharmacokinetic alignment.
@@ -513,7 +513,7 @@
 ## Slide 64: Pharmacist & Endocrinologist Titration Partnership
 
 - **Section:** Tab 09: 09-MEDICATION
-- **Visual:** `images/bfm_t09_medication.png` (`09-MEDICATION • SAFE PRESCRIPTION & SCHEDULE REGISTRY`)
+- **Visual:** `images/bfm_t09_medication.png` (`09-MEDICATION • USER-ENTERED ACTIVE REGIMEN & TITRATION LOG`)
 - **Key Takeaway:** Uniting accurate pill timing with 24-hour curve stability empowers clinical pharmacists to fine-tune regimens gently.
 
 > Clean edit controls preserve exact prescription history for pharmacists and endocrinologists—leading naturally now into Tab 10 Config for watch preferences, USB backups, and household setup.

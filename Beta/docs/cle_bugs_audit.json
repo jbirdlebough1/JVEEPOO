@@ -1,8 +1,8 @@
 {
-  "latest_build": "beta.00.01.0063",
-  "synced_at": "2026-11-26T20:44:17",
-  "total_bugs": 167,
-  "total_resolved": 167,
+  "latest_build": "beta.00.01.0064",
+  "synced_at": "2026-11-26T21:08:14",
+  "total_bugs": 168,
+  "total_resolved": 168,
   "total_open": 0,
   "bugs": [
     {
@@ -2175,6 +2175,19 @@
       "comments": "Synced from git tag beta.00.01.0063",
       "created_at": "2026-11-26 20:44:09",
       "resolved_at": "2026-11-26 20:44:09"
+    },
+    {
+      "code": "CLE-121",
+      "project": "JVEEPOO",
+      "build": "beta.00.01.0064",
+      "title": "[beta.00.01.0064] beta.00.01.0064: Capture actual BFM 09-MEDICATION regimen on Slide 62",
+      "status": "RESOLVED",
+      "component": "BFM Clinical Console",
+      "affected_files": "Beta/docs/GOOGLE_LEADERSHIP_PRIMER.md, Beta/docs/NARRATION_QA_87_SLIDES.md, Beta/docs/presentation_build_coverage_audit.json, Beta/docs/walkthrough_beta_00_01_0064.md, docs/GOOGLE_LEADERSHIP_PRIMER.md, docs/NARRATION_QA_87_SLIDES.md, docs/p",
+      "resolution": "Git commit c8e2751 (2026-11-26 21:08:07): beta.00.01.0064: Capture actual BFM 09-MEDICATION regimen on Slide 62",
+      "comments": "Synced from git tag beta.00.01.0064",
+      "created_at": "2026-11-26 21:08:07",
+      "resolved_at": "2026-11-26 21:08:07"
     }
   ]
 }

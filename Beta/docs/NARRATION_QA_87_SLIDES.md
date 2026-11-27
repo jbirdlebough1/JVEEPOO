@@ -248,9 +248,9 @@ Notice our signature baseline: 2,000 steps per day—synchronized directly with 
 
 Clinicians adjust quarterly milestones safely step-by-step here—preventing overly rapid drops—before transitioning cleanly next into Tab 09 Medication.
 
-### Slide 62 — Tab 09: 09-MEDICATION | 09-MEDICATION: Medical Data Sanctity & Zero Pre-Populated Drugs
+### Slide 62 — Tab 09: 09-MEDICATION | 09-MEDICATION: Medical Data Sanctity & Active Entered Regimen
 
-Tab 09 Medication enforces strict medical sanctity. Pre-populating sample prescriptions is an extreme hazard in health software. Until your physician enters a regimen, Tab 09 and every report HUD remain faithfully empty.
+Tab 09 Medication enforces strict medical sanctity. New installs never fabricate sample prescriptions; instead, what you enter appears cleanly here—your eleven morning medications taken at 10:47 AM, evening split Metformin XR at 7:01 PM, and three logged titration changes below.
 
 ### Slide 63 — Tab 09: 09-MEDICATION | Discrete Morning Suite & Dinner Split Scheduling Controls
 
