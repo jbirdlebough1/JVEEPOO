@@ -38,10 +38,10 @@ Every requirement specified in [`bfm_diabetes_beta_requirements_specification.md
 | **REQ-04** | Star Trek limited strictly to historical intro tribute | IP & Trademark Quarantine | `presentation/TRANSCRIPT.md` | Compliance Audit |
 | **REQ-05** | Copyleft Disclaimer & Immutable User Acceptance | Legal Acceptance Modal | `BFM.HTM` (Tab 10), SQLite | Query `user_legal_acceptance` |
 | **REQ-06** | 3-Way Triad Binding: UID <-> ESN <-> Watch MAC | Multi-Tenant Dispatcher | `server.py` & `watch_monitor.py` | Multi-Source Concurrent Ingest Test |
-| **REQ-07** | Registered Family Cells & Watch Roster on Tab 10 | Fleet Manager UI | `BFM.HTM` (Tab 10 Bottom) | DOM Element Inspection & CRUD Tests |
-| **REQ-08** | Auto-Scan QR Handshake (Phone Name + ESN) | Mobile Onboarding Engine | `cell.html` + `/api/shuttle/register` | Automated ESN Reflection Test |
-| **REQ-09** | Mobile Companion (`cell.html`) Multi-Day Offline Autonomy | Mobile Client Vault | `cell.html` (IndexedDB) | Disconnected Mode Intake Test |
-| **REQ-10** | Homecoming Data Transfer with Zero Data Loss | Bulk Ingestion Engine | `server.py` + `cell.html` | SHA-256 Receipt Verification |
+| **REQ-07** | Registered Family Cells Roster & W11 Cell Isolation | Fleet Manager UI & W11 Host | `BFM.HTM` (`10-CONFIG`), `server.py` | DOM Roster Check & Zero W11 Cell Shortcut |
+| **REQ-08** | QR Auto-Download Standalone Android `BFM-Cell.apk` & Auto-Register | Mobile Onboarding Engine | `/api/qrcode/cell`, `/install/cell`, `/download/BFM-Cell.apk`, `/api/shuttle/register` | Real-Device Android `Cell PASS` (`ESN-9482-A01`, `ACTIVE`) |
+| **REQ-09** | `BFM-Cell.apk` Multi-Day Field Autonomy & Zero Watch BLE Coupling | Mobile Native APK (`com.bfm.cell`) | `w11_htm_app/BFM-Cell.apk`, `cell.html` (Zero BLE permissions) | Native `file:///android_asset/` launch + local field queue |
+| **REQ-10** | Homecoming Wi-Fi Auto-Sync (Meals, Feelings & 3-State Med Toggle) | Bulk Ingestion & Med Sync Engine | `server.py`, `cell.html`, `daily_med_adherence` | `CONNECTED TO BFM SERVER`, `POST /api/meds/daily_status`, SHA-256 Receipt |
 | **REQ-11** | Automated Daily Deduplicated USB Backup | Removable Storage Sync | `BFM.HTM` (`13-EXPORT`) & `usb_backup_engine.py` | File System Access API & USB Dedup Test |
 | **REQ-12** | Complete refactor from `lcars-` to `bfm-` | Modular CSS/DOM Standard | `BFM.HTM`, `cell.html` | Strict Gate Check 2 (DOM Hierarchy) |
 | **REQ-13** | Developer Incentives & Unlimited Gemini Assets | Open Source Ecosystem | `docs/GOOGLE_LEADERSHIP_PRIMER.md` | Institutional Review Board Portal |
@@ -97,10 +97,11 @@ An exhaustive audit of the 23,000+ lines of Alpha codebase was conducted to cate
   * Mobile companion updated to `BFM Mobile Companion • Cell 1 (or Cell 2, Cell 3)`.
 
 #### 3. Newly Engineered Components:
-* **Tab 10 Family Cells & Wearables Roster**: Interactive HTML/CSS table with CRUD buttons (`Add Cell & User`, `Edit`, `Delete`), listing Cell #, Registry, User Name, Phone Name, Hardware ESN, Linked Watch MAC, and Status.
-* **Auto-Discovery Handshake (`/api/shuttle/register`)**: Receives mobile hardware parameters (`phone_name`, `phone_esn`) and establishes binding without user typing.
-* **Hardware ESN Ingestion Router (`/api/shuttle/dock`)**: Validates device credentials and dispatches field intake batches directly into the owner's isolated database.
-* **IndexedDB Offline Mobile Vault (`cell.html`)**: Stores food photos (BLOBs), audio transcripts, and Gemini breakdown JSON locally during multi-day away trips.
+* **Tab 10 Family Cells Roster**: Interactive HTML/CSS table (`tblShuttleRoster`) with `+ ADD CELL` QR provisioning and Delete CRUD controls, showing live `Cell 1 | Android BFM Cell App | ESN-9482-A01 | ACTIVE`.
+* **Standalone Android APK (`w11_htm_app/BFM-Cell.apk`, `tools/build_cell_apk.py`)**: Signed `com.bfm.cell` Android WebView package built with portable JDK 17 + Android SDK 34 (`apksigner` v2/v3 verified), declaring **zero Bluetooth permissions**, bundling `cell.html` offline with native photo picker, mic/camera grant, tap-to-edit server IP, and zero install banner (`BFM_IS_NATIVE_APP`).
+* **QR Auto-Install & Auto-Register (`/api/qrcode/cell`, `/install/cell`, `/download/BFM-Cell.apk`, `/api/shuttle/register`)**: Scanning the Tab 10 QR downloads `BFM-Cell.apk` straight to Android Downloads; launching on home Wi-Fi executes `auto_register` automatically (`ACTIVE`).
+* **3-State Daily Med Toggle & Midnight Reset (`#btnCellDailyMed`, `daily_med_adherence`, `/api/meds/daily_status`)**: Light blue (untaken) -> 1st press mid blue morning taken -> 2nd press green dinner taken -> auto-reset to light blue at `00:01` daily, synchronized bidirectionally with `BFM.HTM` Tab `09-MEDICATION`.
+* **Hardware ESN Ingestion Router (`/api/shuttle/dock`)**: Validates device credentials and dispatches field intake meals & HDYF feelings cleanly into `w11_htm_app/telemetry.db` when home Wi-Fi reconnects.
 * **Dual USB/SD Storage Backup Engine (`index.html` Tab 05)**: Browser File System Access API integration exporting raw `.sqlite` and Epic FHIR R4 `.json` bundles with SHA-256 manifests.
 
 ---

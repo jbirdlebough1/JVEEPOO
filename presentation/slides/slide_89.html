@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slide 89: Empowering Users, Physicians &amp; Open Science — Mind the Gap</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      background: #f8fafc;
+      color: #0f172a;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    .slide-container {
+      width: 100%;
+      height: 100vh;
+      padding: 12px 18px;
+      display: flex;
+      flex-direction: column;
+      background: #f8fafc;
+    }
+    .slide-header {
+      border-bottom: 2px solid #cbd5e1;
+      padding-bottom: 6px;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-shrink: 0;
+    }
+    .module-badge {
+      display: inline-block;
+      background: #e0f2fe;
+      border: 1px solid #0284c7;
+      color: #0369a1;
+      font-size: 0.65rem;
+      font-weight: 800;
+      padding: 2px 7px;
+      border-radius: 3px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-family: monospace;
+      margin-bottom: 3px;
+    }
+    .slide-title {
+      font-size: 1.28rem;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.15;
+    }
+    .slide-desc {
+      font-size: 0.79rem;
+      color: #475569;
+      margin-top: 2px;
+      font-weight: 500;
+    }
+    .slide-num-badge {
+      font-family: monospace;
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #0284c7;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      padding: 3px 9px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+    }
+    .left-screenshot-card {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      min-height: 0;
+      overflow: hidden;
+    }
+    .left-screenshot-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1.5px solid #e2e8f0;
+      padding-bottom: 5px;
+      margin-bottom: 6px;
+      flex-shrink: 0;
+    }
+    .left-screenshot-viewport {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      background: #ffffff;
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    .right-column {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 0;
+      overflow: hidden;
+    }
+    .content-card {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 9px 13px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      flex: 1;
+      overflow-y: auto;
+    }
+    .bullet-item {
+      border-left: 4px solid transparent;
+      border-radius: 4px;
+      padding: 5px 8px;
+      font-size: 0.77rem;
+      line-height: 1.36;
+      color: #1e293b;
+      transition: background 0.25s ease, border-left-color 0.25s ease;
+    }
+    .visual-card {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 8px 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      overflow-y: auto;
+      flex-shrink: 0;
+      max-height: 48%;
+    }
+    .card-header-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1.5px solid #e2e8f0;
+      padding-bottom: 4px;
+      margin-bottom: 5px;
+      font-family: monospace;
+      font-size: 0.70rem;
+      font-weight: 800;
+      color: #0284c7;
+    }
+    .slide-footer {
+      border-top: 1px solid #cbd5e1;
+      padding-top: 4px;
+      margin-top: 6px;
+      display: flex;
+      justify-content: space-between;
+      font-family: monospace;
+      font-size: 0.67rem;
+      color: #64748b;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <div class="slide-header">
+      <div>
+        <div class="module-badge">Closing: Open Mission</div>
+        <div class="slide-title">Empowering Users, Physicians &amp; Open Science — Mind the Gap</div>
+        <div class="slide-desc">Complete, verified, and free forever: unifying human compassion and clinical rigor to mind every gap so others may survive successfully diabetes.</div>
+      </div>
+      <div class="slide-num-badge">SLIDE 89 / 89</div>
+    </div>
+
+    <div class="grid-2col">
+      <!-- Left Column: Live Console Screenshot or Custom Visual -->
+      <div class="left-screenshot-card">
+        <div class="left-screenshot-header">
+          <span style="font-family: monospace; font-size: 0.69rem; color: #0284c7; font-weight: 800;">01-FULL SCAN • 6-SENSOR WORKFLOW &amp; AUDIT REPORT</span>
+          <span style="background: #15803d; color: #ffffff; font-size: 0.59rem; font-weight: 800; padding: 2px 6px; border-radius: 3px; font-family: monospace;">SHARED CARE VIEW</span>
+        </div>
+        <div class="left-screenshot-viewport">
+          
+<div style="width:100%;height:100%;display:flex;flex-direction:column;justify-content:space-between;gap:8px;padding:8px;background:#f8fafc;overflow-y:auto;">
+  <div style="background:#ffffff;border:1.5px solid #cbd5e1;border-radius:6px;padding:10px 12px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1.5px solid #e2e8f0;padding-bottom:4px;margin-bottom:8px;">
+      <span style="font-family:monospace;font-size:0.72rem;font-weight:800;color:#0284c7;">CLOSING MISSION: MINDING THE 90-DAY DIABETES INFORMATION GAP</span>
+      <span style="background:#0019a8;color:#fff;font-family:monospace;font-size:0.56rem;font-weight:800;padding:2px 7px;border-radius:3px;">THAT OTHERS MAY SURVIVE</span>
+    </div>
+
+    <svg viewBox="0 0 600 296" style="width:100%;height:auto;max-height:296px;display:block;">
+      <!-- Subtle London Tile Platform Backdrop -->
+      <rect x="8" y="6" width="584" height="202" rx="10" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5"/>
+
+      <!-- Authentic London Underground Roundel -->
+      <circle cx="300" cy="96" r="68" fill="none" stroke="#dc241f" stroke-width="22"/>
+      <circle cx="300" cy="96" r="57" fill="#ffffff"/>
+      <rect x="168" y="75" width="264" height="42" rx="4" fill="#0019a8"/>
+      <text x="300" y="104" text-anchor="middle" font-family="sans-serif" font-size="24" font-weight="900" letter-spacing="2.5" fill="#ffffff">MIND THE GAP</text>
+
+      <!-- Sub-caption under Roundel -->
+      <text x="300" y="198" text-anchor="middle" font-family="monospace" font-size="10.5" font-weight="bold" fill="#334155">BRIDGING THE 90-DAY BLIND GAP BETWEEN QUARTERLY LABS &amp; DAILY REALITY</text>
+
+      <!-- Classic British Rail / Tube Platform Edge Hazard Sign -->
+      <rect x="8" y="216" width="584" height="72" rx="6" fill="#ffd329" stroke="#111827" stroke-width="3"/>
+      <polygon points="14,220 34,220 20,238 14,238" fill="#111827"/>
+      <polygon points="54,220 74,220 60,238 40,238" fill="#111827"/>
+      <polygon points="566,220 586,220 586,238 552,238" fill="#111827"/>
+      <polygon points="526,220 546,220 532,238 512,238" fill="#111827"/>
+
+      <text x="300" y="249" text-anchor="middle" font-family="sans-serif" font-size="24" font-weight="900" letter-spacing="4" fill="#111827">MIND THE GAP</text>
+      <text x="300" y="271" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#111827">288 SAMPLES/DAY • 5 SPECIALISTS ALIGNED • LOCAL VAULT + GOOGLE GEMINI</text>
+    </svg>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;font-family:monospace;font-size:0.60rem;font-weight:800;text-align:center;">
+    <div style="background:#fef2f2;border:1.5px solid #dc241f;border-radius:5px;padding:6px;color:#991b1b;">90-DAY LAB GAP CLOSED</div>
+    <div style="background:#eff6ff;border:1.5px solid #0019a8;border-radius:5px;padding:6px;color:#1e3a8a;">5-SPECIALIST TEAM ALIGNED</div>
+    <div style="background:#f0fdf4;border:1.5px solid #15803d;border-radius:5px;padding:6px;color:#166534;">OPEN SOURCE • GOOGLE GEMINI</div>
+  </div>
+</div>
+
+        </div>
+      </div>
+
+      <!-- Right Column: Narrative Points + Doctor Calculus & Clinical Fitness -->
+      <div class="right-column">
+        <div class="content-card">
+          <div class="card-header-strip">
+            <span>OPEN-SOURCE COLLABORATION &amp; MINDING THE GAP</span>
+            <span style="color: #64748b;">PATIENT &amp; CLINICIAN WALKTHROUGH</span>
+          </div>
+          <div class="bullet-item bullet-item-0" data-idx="0">
+            <strong style="color: #0284c7;">BFM Minds the 90-Day Information Gap:</strong> Like London&#x27;s famous platform warning, BFM bridges every dangerous gap between quarterly labs, meals, walks, meds, feelings, and sleep.
+          </div>
+          <div class="bullet-item bullet-item-1" data-idx="1">
+            <strong style="color: #0284c7;">User Joy + 5-Specialist Trust Powered by Gemini:</strong> Gives individuals and their entire five-doctor medical team one shared, zero-cloud truth of cause and effect.
+          </div>
+          <div class="bullet-item bullet-item-2" data-idx="2">
+            <strong style="color: #0284c7;">Open Invitation to Doctors, Engineers &amp; Sponsors:</strong> Clinicians, researchers, and Google collaborators worldwide are welcomed to refine and expand this toolkit—that others may survive successfully diabetes.
+          </div>
+          <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.75rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
+            <strong style="color: #15803d;">Key Takeaway:</strong> That Others May Survive Successfully Diabetes — Minding the Gap with clinical honesty, sovereign privacy, and Google Gemini.
+          </div>
+        </div>
+
+        <div class="visual-card">
+          <div class="card-header-strip">
+            <span>MIND THE GAP • CLINICAL MISSION</span>
+            <span style="background: #dc241f; color: #ffffff; font-size: 0.57rem; padding: 2px 6px; border-radius: 3px;">OPEN SOURCE MISSION</span>
+          </div>
+          <div style="background:#f8fafc;border:1.5px solid #cbd5e1;border-radius:6px;padding:7px;"><div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1.5px solid #cbd5e1;padding-bottom:3px;margin-bottom:5px;"><span style="font-family:monospace;font-size:0.70rem;font-weight:800;color:#dc241f;">MIND THE GAP • CLINICAL MISSION</span><span style="background:#dc241f;color:#fff;font-family:monospace;font-size:0.58rem;font-weight:800;padding:2px 6px;border-radius:3px;">OPEN SOURCE MISSION</span></div><div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:5px;overflow:hidden;"><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Console Flow</span><span style="font-family:monospace;color:#475569;">Tabs 01–14 Strictly Verified &amp; Ordered</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#dc241f;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">COMPLETE</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Core Principle</span><span style="font-family:monospace;color:#475569;">Mind the 90-Day Gap | Shared Team View</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#dc241f;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">TRUSTED</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Open Charter</span><span style="font-family:monospace;color:#475569;">Copyleft Free Forever • Powered by Gemini</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#dc241f;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">GLOBAL INVITE</span></div></div><div style="margin-top:6px;background:#f0fdf4;border:1.5px solid #86efac;border-radius:5px;padding:6px 9px;"><div style="font-family:monospace;font-size:0.65rem;font-weight:800;color:#15803d;margin-bottom:2px;">PHYSICIAN CALCULUS &amp; MEASUREMENT FITNESS • ULTIMATE SYSTEM OBJECTIVE</div><div style="font-family:monospace;font-size:0.74rem;font-weight:700;color:#0f172a;line-height:1.35;">Maximize TIR (&gt;70%) &amp; Info Retained (94.1%)  |  Close the 90-Day Care Gap</div></div></div><div style="margin-top:6px;background:#eff6ff;border-left:3.5px solid #dc241f;padding:6px 9px;border-radius:4px;font-size:0.72rem;color:#1e3a8a;line-height:1.35;"><strong>Clinical Significance:</strong> Success is measured daily not by abstract software metrics, but by closing every care gap so patients enjoy healthier A1C trends and calm daily confidence.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div>BFM BIOMETRIC FUNCTION MONITOR • POWERED BY GOOGLE GEMINI AI</div>
+      <div>AUSTRALIAN VOICE NARRATION • TAB 01–14 SYNCHRONIZED</div>
+    </div>
+  </div>
+  <script>
+    (function() {
+      let curL = 0, tgtL = 0, curR = 0, tgtR = 0;
+      const vp = document.querySelector('.left-screenshot-viewport');
+      const vc = document.querySelector('.visual-card');
+      const bullets = document.querySelectorAll('.bullet-item');
+      window.addEventListener('message', (ev) => {
+        const d = ev.data;
+        if (!d || d.type !== 'bfmSync') return;
+        bullets.forEach((b, idx) => {
+          if (idx === d.activeIdx) {
+            b.style.background = '#e0f2fe';
+            b.style.borderLeft = '4px solid #0284c7';
+            b.style.color = '#0369a1';
+          } else {
+            b.style.background = 'transparent';
+            b.style.borderLeft = '4px solid transparent';
+            b.style.color = '#1e293b';
+          }
+        });
+        if (d.isSteady) {
+          tgtL = 0; tgtR = 0;
+        } else {
+          if (vp && vp.scrollHeight > vp.clientHeight) {
+            tgtL = (d.targetPct || 0) * (vp.scrollHeight - vp.clientHeight);
+          }
+          if (vc && vc.scrollHeight > vc.clientHeight) {
+            tgtR = (d.rightPct || 0) * (vc.scrollHeight - vc.clientHeight);
+          }
+        }
+      });
+      document.addEventListener('keydown', (e) => {
+        if (['Space', 'ArrowRight', 'ArrowLeft'].includes(e.code) && window.parent && window.parent !== window) {
+          e.preventDefault();
+          window.parent.postMessage({ type: 'bfmKey', code: e.code }, '*');
+        }
+      });
+      function tick() {
+        if (vp && vp.scrollHeight > vp.clientHeight) {
+          curL += (tgtL - curL) * 0.12;
+          if (Math.abs(vp.scrollTop - curL) > 0.4) vp.scrollTop = curL;
+        }
+        if (vc && vc.scrollHeight > vc.clientHeight) {
+          curR += (tgtR - curR) * 0.12;
+          if (Math.abs(vc.scrollTop - curR) > 0.4) vc.scrollTop = curR;
+        }
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    })();
+  </script>
+</body>
+</html>

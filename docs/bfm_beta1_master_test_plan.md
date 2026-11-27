@@ -103,10 +103,14 @@ The human tester executes the following sequential protocol, beginning by locati
 3. Click **`ESTIMATE NUTRITION (GEMINI)`** and verify exact published facts: **520 kcal, 33g net carbs, 28g protein, 28g fat, 32 oz fluid**, with zero monetary price strings.
 4. Click **`🚀 CONSUME NOW (LOG TO MEAL LOG)`** and verify total calories, net carbs, and daily hydration (`fl oz`, e.g., `80.0 fl oz`) update immediately on Charts (`CH 11` & `CH 12`).
 
-#### Step 9: "How Do You Feel?" (HDYF) Somatosensory Pain & Discomfort Logging
-1. Open the companion portal on local Wi-Fi (`http://<PC_IP>:8899/cell.html`).
-2. Respond to *"How do you feel right now?"* and submit a somatosensory note (e.g., *"Burning pain in toes tonight, knees stiff after walking"*).
-3. Verify record persists in `feeling_entries` (`w11_htm_app/telemetry.db`) and renders directly in `CH 09: PAIN INDEX` and `CH 10: MOOD SCALE`.
+#### Step 9: Android `BFM-Cell.apk` QR Installation, Offline Field Mode, HDYF & 3-State Med Toggle (`Cell PASS`)
+1. Open **`10-CONFIG`** on the Windows 11 BFM Server, confirm no `BFM Mobile Cell Gateway.lnk` exists in Windows 11 Start Menu Programs, click **`+ ADD CELL`**, and scan the QR code (`/api/qrcode/cell` -> `http://<PC-IP>:8899/install/cell`) using Android Camera / Google Lens.
+2. Verify `/install/cell` automatically downloads **`BFM-Cell.apk`** (`com.bfm.cell`, `41829` bytes, zero Bluetooth permissions) into Android **Downloads**; tap **Open -> Install -> Open**, then close Chrome and launch **BFM Cell** solely from the phone Home Screen icon.
+3. Verify installed app startup: **`#pwaInstallBanner` is hidden**, top-right status pill displays green **`CONNECTED TO BFM SERVER`** (tap-to-edit server IP works), and **`10-CONFIG`** roster automatically shows **`Cell 1 | Android BFM Cell App | ESN-9482-A01 | ACTIVE`**.
+4. Tap `#btnCellDailyMed`: verify **light blue** (`MEDS: NOT TAKEN YET`) -> 1st press transitions to **mid blue** (`MORNING MEDS TAKEN`) -> 2nd press transitions to **green** (`MORNING & DINNER MEDS TAKEN`), syncing cleanly via `/api/meds/daily_status` and auto-resetting at `00:01`.
+5. Submit a test meal / HDYF feeling note while disconnected from home Wi-Fi (status pill displays **`FIELD MODE (SAVING LOCALLY)`**), reconnect home Wi-Fi, and verify automatic upload into `w11_htm_app/telemetry.db` (`feeling_entries` & meal intake timeline) with zero data loss.
+
+#### Real-Device Android Result: **`PASS` (`beta.00.01.0068` — `Cell 1 ACTIVE`, Morning Med Synced `09:22 AM`)**
 
 #### Step 10: Single Consolidated EHR Data Export & USB Backup (`13-EXPORT`)
 1. Navigate to **`13-EXPORT`** (`pageExport`).

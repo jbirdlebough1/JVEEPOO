@@ -3390,5 +3390,21 @@
     "created_at": "2026-11-27 09:16:48",
     "updated_at": "2026-11-27 09:16:48",
     "resolved_at": "2026-11-27 09:16:48"
+  },
+  {
+    "project_name": "JVEEPOO",
+    "bug_number": 126,
+    "bug_code": "CLE-126",
+    "build_number": "beta.00.01.0069",
+    "title": "[beta.00.01.0069] beta.00.01.0069: update all docs with Cell PASS APK specs & test plan, capture live Cell screenshots, and expand presentation to 89 slides",
+    "status": "RESOLVED",
+    "component": "BFM Clinical Console",
+    "affected_files": "Beta/docs/GOOGLE_LEADERSHIP_PRIMER.md, Beta/docs/NARRATION_QA_89_SLIDES.md, Beta/docs/bfm_beta1_master_test_plan.md, Beta/docs/bfm_diabetes_beta1_functional_specification.md, Beta/docs/bfm_diabetes_beta_requirements_specification.md, Beta/d",
+    "bug_loc": 0,
+    "resolution": "Git commit 568a94b (2026-11-27 09:31:40): beta.00.01.0069: update all docs with Cell PASS APK specs & test plan, capture live Cell screenshots, and expand presentation to 89 slides",
+    "comments": "Synced from git tag beta.00.01.0069",
+    "created_at": "2026-11-27 09:31:40",
+    "updated_at": "2026-11-27 09:31:40",
+    "resolved_at": "2026-11-27 09:31:40"
   }
 ]

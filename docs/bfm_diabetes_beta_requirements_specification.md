@@ -89,58 +89,38 @@ The BFM platform completely eliminates this vulnerability via the **3-Way Hardwa
 
 ### 4. Registered Family Cells & Wearables Roster (Tab 10)
 
-The bottom of the Configuration Screen (Tab 10) features the master **Registered Family Cells & Wearables Roster**:
+The bottom of the Configuration Screen (Tab 10) features the master **Registered Family Cells & Wearables Roster** (pure zero-data compliant: empty unless real cells register, strictly excluding any Cell desktop shortcut on the Windows 11 BFM Server):
 
-| Cell # | Registry | User Name | Phone Name | Hardware ESN | Linked Watch MAC | Status |
+| Cell # | Registry | User Name | Phone App | Hardware ESN | Link Mode | Status |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Cell 1** | Cell 1 Registry | John (Dad) | Pixel 9 Pro | `ESN-9482-A018-7F` | `8B:DE:40:83:F6:16` | SYNC |
-| **Cell 2** | Cell 2 Registry | Mary (Mom) | Galaxy S24 | `ESN-7731-B942-3C` | `C4:12:9A:33:02:51` | FIELD |
-| **Cell 3** | Cell 3 Registry | Alex (Son) | iPhone 15 Pro | `ESN-4410-C209-1E` | `E1:55:88:99:A2:00` | STBY |
+| **Cell 1** | `BFM-5010-01` | Active Household Member | `Android BFM Cell App` | `ESN-9482-A01` | Home Wi-Fi -> Server | `ACTIVE` |
 
-#### Management Features:
+#### Management Features & Strict Architectural Role Separation:
 * **Add Cell & User (`[ + Add Cell & User ]`)**:
-  * Prompts for User Name and Personal Goals.
-  * Allocates next sequential Cell (e.g. **Cell 4**).
-  * Prompts to pair the user's continuous wearable watch over BLE, recording its hardware MAC.
-  * Creates dedicated database `telemetry_user_4.db`.
-  * Generates a dynamic QR code for instant phone scanning.
-* **Auto-Scan QR Onboarding (Zero Typing)**:
-  * Phone opens `cell.html` and **automatically interrogates its own hardware** (Phone Name, Device Model, cryptographic hardware UUID/ESN).
-  * Phone executes a background handshake back to the BFM PC Server, auto-populating the roster list in real time with zero manual typing.
-* **Edit Cell / User (`[ ✏️ Edit ]`)**:
-  * Update personal goals, swap registered phone hardware ESN, or re-bind a replacement continuous watch MAC while preserving multi-year historical telemetry.
-* **Delete Cell (`[ 🗑️ Delete ]`)**:
-  * Decommissions the registered cell, unbinds ESN and watch MAC, and optionally archives the user database.
+  * Generates a dynamic QR code (`/api/qrcode/cell`) pointing to `http://<PC-LAN-IP>:8899/install/cell`.
+  * **Android APK QR Auto-Install (`BFM-Cell.apk`)**: Scanning the QR code automatically downloads signed standalone `BFM-Cell.apk` (`com.bfm.cell`, v2/v3 APK Signature, **zero Bluetooth permissions**) into the phone's `Downloads` folder -> tap **Open -> Install -> Open** -> launch from the permanent **BFM Cell** cross & Wi-Fi Home Screen icon (`icon-192.png` / `icon-512.png`).
+* **Auto-Register Handshake (`/api/shuttle/register`)**:
+  * Launching **BFM Cell** on Home Wi-Fi automatically executes an `auto_register` handshake back to `server.py`, registering the active phone even if an earlier Cell row was deleted (`status = ACTIVE`).
+* **Windows 11 Desktop Isolation**:
+  * `/api/system/create_shortcuts` excludes mobile Cell shortcuts from Windows 11 Start Menu/Desktop and deletes any legacy `BFM Mobile Cell Gateway.lnk`, while `cell.html` restricts install banners solely to mobile web browsers and hides `#pwaInstallBanner` inside the installed APK (`BFM_IS_NATIVE_APP`).
+  * Windows 11 Bluetooth Swift Pair toast popups (`Windows.SystemToast.Bthprops`, `Windows.SystemToast.BthQuickPair`, `Bluetooth\QuickPair`) are suppressed via startup `winreg` enforcement.
+* **Edit / Delete Cell (`[ ✏️ Edit ]` / `[ 🗑️ Delete ]`)**:
+  * Updates profile goals or decommissions a registered Cell cleanly.
 
 ---
 
-### 5. BFM Mobile Companion (`cell.html`): Field Independence & Homecoming Sync
+### 5. BFM Mobile Companion (`BFM-Cell.apk`): Field Independence, Homecoming Sync & 3-State Meds
 
-#### A. Multi-Day Autonomous Field Operation
-* **Independent Execution**: The mobile companion (`cell.html`) runs as an offline-capable Progressive Web App (PWA). It does not require continuous communication with the PC workstation and can operate away from base for hours, days, or extended trips.
-* **Local In-Hand Gemini Estimator**:
-  * Directly connects to Google Gemini via cellular or Wi-Fi to provide pre-order and pre-intake nutritional estimates.
-  * Accepts food photos, voice dictation, or text descriptions.
-  * Returns immediate macronutrients (calories, net carbs, fiber, protein, fat) and predicted glycemic impact before the user eats.
-* **Persistent Local In-Flight Storage (IndexedDB)**:
-  * Every intake event is stored in the phone's secure local storage containing:
-    1. Full-resolution food photo (BLOB).
-    2. Audio recording and speech-to-text transcript.
-    3. User text notes and meal classification tags.
-    4. Complete Google Gemini nutritional analysis JSON.
-    5. Timestamp of inquiry and consumption.
-    6. Sync status flag: `status: 'PENDING_UPLOAD'`.
+#### A. Strict Dual-Role Boundary (Never Connects to Watch)
+* **Zero Watch BLE Coupling**: Wrist watch biometric acquisition runs exclusively on the Windows 11 BFM PC Server. `BFM-Cell.apk` declares **zero Bluetooth permissions** (`INTERNET`, `ACCESS_NETWORK_STATE`, `CAMERA`, `RECORD_AUDIO` only) and exclusively handles **Meal/Beverage Intake (text, multi-photo, voice order)**, **"How Do You Feel?" (HDYF) voice/pain/mood logs**, and the **3-State Daily Medication Button**.
 
-#### B. Homecoming Synchronization Protocol (Zero Data Loss)
-* **Automatic Detection**: When the user returns to home base, `cell.html` detects the local network or pairs with the BFM Console via local LAN IP or Wi-Fi.
-* **Bulk Ingestion Handshake**:
-  1. `cell.html` transmits its cryptographic `user_uid` and registered `phone_esn` to authenticate with the BFM PC Server.
-  2. Pushes all records marked `PENDING_UPLOAD` in a single transactional batch.
-  3. BFM Server ingests the data into the user's dedicated `telemetry_user_<uuid>.db` (or `w11_htm_app/telemetry.db`).
-  4. Workstation recomputes the 24-hour 13-lane timeline, glycemic prediction curves, and GLUT4 exercise-vs-diet correlations.
-  5. BFM Server returns a signed receipt with SHA-256 hashes of all ingested records.
-  6. `cell.html` updates local flags to `status: 'SYNCED'`.
-* **Zero Data Loss Guarantee**: Unacknowledged records remain in the phone's local database indefinitely until confirmed by the BFM Server.
+#### B. Multi-Day Autonomous Field Operation & Homecoming Wi-Fi Sync
+* **Native Offline Boot**: `BFM-Cell.apk` loads `file:///android_asset/cell.html` directly from APK storage so it launches immediately away from home with zero browser bar and zero install banners.
+* **Home Wi-Fi Detection & Tap-to-Edit IP**:
+  * When home Wi-Fi reaches the BFM Server (`/api/telemetry/latest`), the status pill displays green **`CONNECTED TO BFM SERVER`** and automatically uploads any locally staged meals, HDYF feelings, and pending medication clicks (`POST /api/meds/daily_status`).
+  * Away from home, the status pill switches to **`FIELD MODE (SAVING LOCALLY)`**, persisting meals, photos, audio transcripts, feelings, and med clicks in `localStorage` until home Wi-Fi returns. Tapping the status pill lets the user inspect or update the BFM Server LAN IP if the router IP changes.
+* **3-State Daily Med Toggle Button (`#btnCellDailyMed` -> `/api/meds/daily_status`)**:
+  * Mirrors BFM desktop `09-MEDICATION`: starts **light blue** (`MEDS: NOT TAKEN YET`), 1st tap marks **morning meds taken** (mid blue + timestamp), 2nd tap marks **morning & dinner meds taken** (green + timestamp), and auto-resets to **light blue** daily at `00:01` local time, syncing with desktop `takeAllMorningMeds()` / `takeDinnerMeds()` via SQLite table `daily_med_adherence`.
 
 ---
 

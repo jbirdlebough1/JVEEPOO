@@ -1,4 +1,4 @@
-# BFM Biometric Function Monitor — 87-Slide Narration QA Script (`en-AU-NatashaNeural`)
+# BFM Biometric Function Monitor — 89-Slide Narration QA Script (`en-AU-NatashaNeural`)
 
 **Purpose:** Stripped narration-only script (Slide, Module/Topic, exact spoken audio text) for pronunciation & flow QA.
 
@@ -274,80 +274,88 @@ Right below watch settings sits our Automated Nightly USB Backup engine. Shown l
 
 ### Slide 68 — Tab 10: 10-CONFIG | Hospital EHR Setup & Shared-PC Multi-User Family Binding Roster
 
-Scrolling further reaches Sections 11 and 12: optional Hospital EHR setup beside the Registered Family Cells Roster—where strict 1-to-1 binding guarantees every family member's watch and phone data stays cleanly separated.
+Scrolling further reaches Sections 11 and 12: optional Hospital EHR setup beside the Registered Family Cells Roster—now displaying Cell 1 active with our Android BFM Cell app so every family member's data stays cleanly separated.
 
-### Slide 69 — Tab 10: 10-CONFIG | Section 13 Hardware Transducer Reference & Physical Sensor Bounds
+### Slide 69 — Tab 10: 10-CONFIG | Cell Provisioning: QR Auto-Download of Standalone Android BFM-Cell App
+
+Clicking Add Cell inside Config opens our streamlined QR provisioning portal. Scanning it with Google Lens or Camera automatically downloads the signed Android BFM-Cell installer straight into Downloads. Once installed from its new cross and Wi-Fi phone icon, the Cell runs completely independently with zero Bluetooth permissions.
+
+### Slide 70 — Tab 10: 10-CONFIG | Live Cell App Verification: Home Wi-Fi Auto-Sync, Field Mode & 3-State Meds
+
+And here is our verified Android device test result: the installed BFM Cell app boots straight into Connected to BFM Server mode with zero install cards, logs meals, photos, feelings, and the new three-state daily medication toggle verified live at 9:22 AM, and switches seamlessly to local field storage whenever away from home Wi-Fi.
+
+### Slide 71 — Tab 10: 10-CONFIG | Section 13 Hardware Transducer Reference & Physical Sensor Bounds
 
 Closing Tab 10 is Section 13's complete Hardware Transducer Table—documenting physical light sensors, thermistors, ECG resolution bounds, and live streaming readiness before inspecting the watch hardware itself in Tab 11.
 
-### Slide 70 — Tab 11: 11-WATCH | 11-WATCH: Live 12-Channel Watch Capability & Command Diagnostics
+### Slide 72 — Tab 11: 11-WATCH | 11-WATCH: Live 12-Channel Watch Capability & Command Diagnostics
 
 Stepping into Tab 11 Watch opens the Hardware Capability Analyzer. At a glance it confirms active watch battery health, firmware build, all 12 accessible biometric streams, and 22 live hardware test probes.
 
-### Slide 71 — Tab 11: 11-WATCH | Adaptive Watch Dial Studio & Smart Read-Only Hardware Boundaries
+### Slide 73 — Tab 11: 11-WATCH | Adaptive Watch Dial Studio & Smart Read-Only Hardware Boundaries
 
 Scrolling down Tab 11 displays watch face slot controls cleanly. When connected to a fixed-ROM watch that cannot overwrite factory dials, BFM automatically hides unsupported custom flash controls below this boundary so users never encounter frustrating failed uploads.
 
-### Slide 72 — Tab 11: 11-WATCH | Why BFM Workstation Surpasses Proprietary Mobile Watch Apps
+### Slide 74 — Tab 11: 11-WATCH | Why BFM Workstation Surpasses Proprietary Mobile Watch Apps
 
 Why use BFM instead of the default phone app? You keep 100 percent of all 12 wearable sensors—while trading fragmented phone rings and overseas clouds for total home privacy, 13-lane cause-and-effect timelines, and direct Epic hospital exports.
 
-### Slide 73 — Tab 12: 12-DATA LOG | 12-DATA LOG: Transparent Live Telemetry Stream Verification
+### Slide 75 — Tab 12: 12-DATA LOG | 12-DATA LOG: Transparent Live Telemetry Stream Verification
 
 Tab 12 Data Log gives immediate transparency that watch data is genuinely flowing. Live timestamped entries confirm incoming vital captures step by step without mysterious black-box delays.
 
-### Slide 74 — Tab 12: 12-DATA LOG | Permanent Local Auditability & Reliable History Backfill
+### Slide 76 — Tab 12: 12-DATA LOG | Permanent Local Auditability & Reliable History Backfill
 
 Because every captured interval writes durably to local disk, brief PC restarts never wipe out recent history—preparing rock-solid verified data for hospital export next in Tab 13.
 
-### Slide 75 — Tab 13: 13-EXPORT | 13-EXPORT: Consolidated Single-Bay Clinical Interoperability Center
+### Slide 77 — Tab 13: 13-EXPORT | 13-EXPORT: Consolidated Single-Bay Clinical Interoperability Center
 
 Step into Tab 13 Export—the single consolidated home for sharing records with healthcare teams. Four clear cards put Epic FHIR bundles, Excel spreadsheets, doctor emails, and our Physician Handbook all in one effortless view.
 
-### Slide 76 — Tab 13: 13-EXPORT | 1-Click HL7 FHIR R4 Collection Bundles & Standardized LOINC Codes
+### Slide 78 — Tab 13: 13-EXPORT | 1-Click HL7 FHIR R4 Collection Bundles & Standardized LOINC Codes
 
 Clicking Card 1 generates an official HL7 FHIR R4 JSON bundle pre-mapped with standardized LOINC codes—2339-0 for glucose, 4548-4 for estimated A1C, 8480-6 for blood pressure, 8867-4 for heart rate, and 59408-5 for oxygen—ingesting straight into Epic or Cerner.
 
-### Slide 77 — Tab 13: 13-EXPORT | Card 2 Clinical CSV Spreadsheets & Card 3 Doctor Email Handoff
+### Slide 79 — Tab 13: 13-EXPORT | Card 2 Clinical CSV Spreadsheets & Card 3 Doctor Email Handoff
 
 Need a spreadsheet or quick clinic handoff? Card 2 downloads an Excel-ready clinical CSV, while Card 3 opens your own email client pre-addressed with step-by-step import instructions so you keep full control before sending.
 
-### Slide 78 — Tab 13: 13-EXPORT | Card 4: The 23-Page Physician Clinical Monograph & Vetted Citations
+### Slide 80 — Tab 13: 13-EXPORT | Card 4: The 23-Page Physician Clinical Monograph & Vetted Citations
 
 Finally, Card 4 opens the comprehensive 23-page Physician Clinical Reference Monograph—complete with clean graphical mathematical equations, five live sub-report chapters, LOINC mapping, and thirty hyperlinked peer-reviewed citations before finishing at Tab 14 Troubleshooting.
 
-### Slide 79 — Tab 14: 14-TROUBLESHOOTING | 14-TROUBLESHOOTING: Guided Self-Help Without Technical Jargon
+### Slide 81 — Tab 14: 14-TROUBLESHOOTING | 14-TROUBLESHOOTING: Guided Self-Help Without Technical Jargon
 
 Completing all 14 workstation tabs is Tab 14 Troubleshooting. Crafted in plain non-technical language, it guides users calmly through re-linking Bluetooth, verifying storage readiness, and maintaining clean optical posture without needing IT support.
 
-### Slide 80 — Tab 14: 14-TROUBLESHOOTING | Proactive Overdue Sync Protection & Transparent Charging Guidance
+### Slide 82 — Tab 14: 14-TROUBLESHOOTING | Proactive Overdue Sync Protection & Transparent Charging Guidance
 
 Proactive 24-hour overdue sync reminders safeguard watch flash memory against accidental rollovers—wrapping up our 14 desktop tabs before checking how the Mobile Companion follows you on the road.
 
-### Slide 81 — Mobile Companion & HDYF | Mobile Companion Portal: On-the-Go Meal Estimation & Travel Autonomy
+### Slide 83 — Mobile Companion & HDYF | Mobile Companion Portal: On-the-Go Meal Estimation & Travel Autonomy
 
 Away from your desk, BFM's lightweight Mobile Companion turns any smartphone into an instant pocket nutritionist—capturing meal estimates, voice notes, and photos cleanly offline throughout busy days or vacations.
 
-### Slide 82 — Mobile Companion & HDYF | Automatic Homecoming Wi-Fi Synchronization With Verified Zero Loss
+### Slide 84 — Mobile Companion & HDYF | Automatic Homecoming Wi-Fi Synchronization With Verified Zero Loss
 
 Walking back onto home Wi-Fi synchronizes every away-from-home meal straight into your desktop vault—confirming verified storage before clearing the phone queue so nothing ever vanishes.
 
-### Slide 83 — Mobile Companion & HDYF | 'How Do You Feel?' (HDYF): Completing the 360° Human Telemetry Loop
+### Slide 85 — Mobile Companion & HDYF | 'How Do You Feel?' (HDYF): Completing the 360° Human Telemetry Loop
 
 Finally, the How Do You Feel portal captures the missing human dimension: daily vitality, stress, and pain. Knowing whether a busy day carried burning toes or stiff knees helps physicians understand why steps dropped—completing BFM's 360-degree view.
 
-### Slide 84 — Alpha vs Beta Evolution | Alpha vs Beta (1/3): Luminous Visual Clarity, 12h Clocks & Zero-Data Reality
+### Slide 86 — Alpha vs Beta Evolution | Alpha vs Beta (1/3): Luminous Visual Clarity, 12h Clocks & Zero-Data Reality
 
 To appreciate how far BFM has evolved, slides 80 through 82 summarize the leap from Alpha to Beta. Part 1 shows the UI transformation: moving from dark early screens to clean high-contrast light cards, locking 12-hour AM/PM clocks, and enforcing strict Zero-Data honesty.
 
-### Slide 85 — Alpha vs Beta Evolution | Alpha vs Beta (2/3): 13-Channel 3D Parity, Real Lorenz, 24h Naps & Overnight Temp
+### Slide 87 — Alpha vs Beta Evolution | Alpha vs Beta (2/3): 13-Channel 3D Parity, Real Lorenz, 24h Naps & Overnight Temp
 
 Part 2 highlights clinical depth: Alpha's partial 8-lane views expanded into 13 synchronized 2D and 3D channels—adding complete midnight-to-morning temperatures, daytime naps, 80-ounce hydration tracks, blue off-wrist honesty, and authentic beat-to-beat Lorenz plots.
 
-### Slide 86 — Alpha vs Beta Evolution | Alpha vs Beta (3/3): Household Vaults, Mobile HDYF, USB Backup & EHR Export
+### Slide 88 — Alpha vs Beta Evolution | Alpha vs Beta (3/3): Household Vaults, Mobile HDYF, USB Backup & EHR Export
 
 Finally, Part 3 captures ecosystem maturity: moving from a solo desktop prototype to multi-user family isolation, pocket mobile companions capturing How Do You Feel notes on the go, automated nightly USB backups, and one-click Epic hospital exports.
 
-### Slide 87 — Closing: Open Mission | Empowering Users, Physicians & Open Science — Mind the Gap
+### Slide 89 — Closing: Open Mission | Empowering Users, Physicians & Open Science — Mind the Gap
 
 And with that, we conclude our presentation with London's classic platform reminder: Mind the Gap! Because bridging the clinical gap between quarterly blood tests, meals, walks, medications, sleep, and all five doctors is everything the BFM Biometric Function Monitor stands for. Built with Google Gemini, our open-source toolkit ensures others may survive successfully diabetes. Mind the gap, and thank you, mate!

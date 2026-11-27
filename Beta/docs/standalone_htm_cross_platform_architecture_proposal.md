@@ -14,7 +14,8 @@ This proposal establishes three non-negotiable architectural pillars:
 
 | Workstation Layer | Platforms & Drivers | Key Responsibilities |
 | :--- | :--- | :--- |
-| **Client Platforms** | Windows PC, Apple Mac, Chromebook, Android, iPadOS | Zero-install single-file HTM execution via modern browser. |
+| **Workstation Client** | Windows 11 (`BFM.HTM` / `BFM_Launcher.exe`) | Monolithic `.HTM` workstation console; excludes Cell shortcuts & suppresses W11 Swift Pair toasts. |
+| **Android Cell Companion** | Standalone Signed APK (`BFM-Cell.apk`, `com.bfm.cell`) | Offline-capable intake, HDYF feelings & 3-state daily Med app (zero BLE permissions; auto Wi-Fi sync). |
 | **Hardware Driver** | Web Bluetooth GATT (0xFEE7) | Direct continuous BLE telemetry streaming from wrist sensor. |
 | **Deterministic Core** | Standalone JavaScript / WASM | IEEE 754 fixed-precision math, GLUT4 kinetics, eA1C modeling. |
 | **Local Vault** | SQLite-WASM / IndexedDB | 365-day continuous epoch storage (<25MB) with eviction shield. |
@@ -60,7 +61,7 @@ Physicians and risk managers require off-device redundancy so that device theft,
 | Backup Execution Target | Mechanism & API | Automated Output Artifact | Verification Standard |
 | :--- | :--- | :--- | :--- |
 | **Desktop Chromium (`BFM.HTM` / `BFM_Launcher.exe`)** | File System Access API (`window.showDirectoryPicker()`) + `usb_backup_engine.py` | Deduplicated `<USB_DRIVE>:\BFM_VAULT\BFM_VAULT_YYYY-MM-DD.sqlite` + `BFM_BACKUP_LATEST.sqlite` | Persistent `IndexedDB` directory handle; zero duplicate overwrite clutter |
-| **Mobile & Safari Fallback (`cell.html`)** | Programmatic Blob stream & 1-click OS Files save dialog | Date-stamped SQLite snapshot + HL7 FHIR R4 JSON bundle | Embedded SHA-256 integrity hash verified on workstation dock |
+| **Android Field Companion (`BFM-Cell.apk`)** | Offline `localStorage` queue inside signed WebView + automatic home Wi-Fi sync (`checkHostConnection()`) | Meals, photos, voice memos, HDYF feelings & `/api/meds/daily_status` docked to PC SQLite | Confirmed SHA-256 & SQLite persistence on home Wi-Fi reconnect |
 
 #### 1. Chromium Desktop & ChromeOS: The File System Access API
 On Chrome, Edge, and Opera (Windows, macOS, Linux, ChromeOS):

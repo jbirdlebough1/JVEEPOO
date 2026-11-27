@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Slide 69: Section 13 Hardware Transducer Reference &amp; Physical Sensor Bounds</title>
+  <title>Slide 69: Cell Provisioning: QR Auto-Download of Standalone Android BFM-Cell App</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
@@ -177,21 +177,21 @@
     <div class="slide-header">
       <div>
         <div class="module-badge">Tab 10: 10-CONFIG</div>
-        <div class="slide-title">Section 13 Hardware Transducer Reference &amp; Physical Sensor Bounds</div>
-        <div class="slide-desc">Auditable reference table documenting every photodiode, thermistor, and electrode (`CH-01`..`CH-10+`) plus range and storage mapping.</div>
+        <div class="slide-title">Cell Provisioning: QR Auto-Download of Standalone Android BFM-Cell App</div>
+        <div class="slide-desc">Scanning the Tab 10 QR code auto-downloads signed `BFM-Cell.apk` straight to Android Downloads (`41.8 KB`, zero Bluetooth permissions) and blocks desktop install.</div>
       </div>
-      <div class="slide-num-badge">SLIDE 69 / 87</div>
+      <div class="slide-num-badge">SLIDE 69 / 89</div>
     </div>
 
     <div class="grid-2col">
       <!-- Left Column: Live Console Screenshot or Custom Visual -->
       <div class="left-screenshot-card">
         <div class="left-screenshot-header">
-          <span style="font-family: monospace; font-size: 0.69rem; color: #0284c7; font-weight: 800;">10-CONFIG • HOUSEHOLD DEVICE ROSTER &amp; SENSOR SPECS</span>
+          <span style="font-family: monospace; font-size: 0.69rem; color: #0284c7; font-weight: 800;">10-CONFIG • ANDROID BFM-CELL QR PROVISIONING &amp; APK AUTO-DOWNLOAD</span>
           <span style="background: #15803d; color: #ffffff; font-size: 0.59rem; font-weight: 800; padding: 2px 6px; border-radius: 3px; font-family: monospace;">SHARED CARE VIEW</span>
         </div>
         <div class="left-screenshot-viewport">
-          <img src="images/bfm_t10_config_roster_transducers.png" alt="10-CONFIG • HOUSEHOLD DEVICE ROSTER &amp; SENSOR SPECS" style="width: 100%; max-height: 100%; object-fit: contain; display: block;">
+          <img src="images/bfm_t10_cell_provisioning.png" alt="10-CONFIG • ANDROID BFM-CELL QR PROVISIONING &amp; APK AUTO-DOWNLOAD" style="width: 100%; max-height: 100%; object-fit: contain; display: block;">
         </div>
       </div>
 
@@ -199,29 +199,29 @@
       <div class="right-column">
         <div class="content-card">
           <div class="card-header-strip">
-            <span>COMPLETE TRANSDUCER SPECIFICATION TABLE</span>
+            <span>QR AUTO-DOWNLOAD &amp; W11 SERVER ISOLATION</span>
             <span style="color: #64748b;">PATIENT &amp; CLINICIAN WALKTHROUGH</span>
           </div>
           <div class="bullet-item bullet-item-0" data-idx="0">
-            <strong style="color: #0284c7;">Transparent Hardware Sensor Provenance:</strong> Documents exact physical sensor hardware behind every number: Multi-Wavelength Optical, Dual Green PPG, PWTT, NTC Thermistor.
+            <strong style="color: #0284c7;">3-Step QR Onboarding on Android:</strong> Scan the QR code with Camera or Google Lens -&gt; BFM-Cell APK downloads automatically to Downloads -&gt; tap Open, Install, Open.
           </div>
           <div class="bullet-item bullet-item-1" data-idx="1">
-            <strong style="color: #0284c7;">Published Dynamic Range &amp; Resolution:</strong> States hardware limits cleanly (e.g., Heart Rate 40–220 BPM ±1 BPM, SpO2 70–100% ±1%, Temp 85–108°F @ 0.1°F).
+            <strong style="color: #0284c7;">Strictly Excluded From Windows 11 Server:</strong> The Cell app only installs on phones (never Windows 11 Start Menu or Desktop), while Windows Bluetooth Quick-Pair toast popups are suppressed automatically.
           </div>
           <div class="bullet-item bullet-item-2" data-idx="2">
-            <strong style="color: #0284c7;">Live Streaming Status Verification:</strong> Displays real-time streaming readiness across every primary channel before moving to Tab 11.
+            <strong style="color: #0284c7;">Strict Watch vs Cell Separation:</strong> Watch biometrics flow directly to the PC Workstation via Bluetooth; the Android Cell carries zero Bluetooth permissions and only handles food, feelings, and meds.
           </div>
           <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 6px 10px; border-radius: 4px; font-size: 0.75rem; color: #14532d; margin-top: auto; flex-shrink: 0;">
-            <strong style="color: #15803d;">Key Takeaway:</strong> Full transducer specification transparency lets clinical engineers verify wearable limits at a glance.
+            <strong style="color: #15803d;">Key Takeaway:</strong> One QR scan installs a true standalone Android Cell app with its own Home Screen cross and Wi-Fi icon—never cluttering Chrome or Windows 11.
           </div>
         </div>
 
         <div class="visual-card">
           <div class="card-header-strip">
-            <span>SECTION 13 SENSOR TRANSUCER MAP</span>
-            <span style="background: #0284c7; color: #ffffff; font-size: 0.57rem; padding: 2px 6px; border-radius: 3px;">RANGE &amp; RESOLUTION</span>
+            <span>QR APK INSTALL FLOW</span>
+            <span style="background: #0284c7; color: #ffffff; font-size: 0.57rem; padding: 2px 6px; border-radius: 3px;">ANDROID STANDALONE</span>
           </div>
-          <div style="background:#f8fafc;border:1.5px solid #cbd5e1;border-radius:6px;padding:7px;"><div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1.5px solid #cbd5e1;padding-bottom:3px;margin-bottom:5px;"><span style="font-family:monospace;font-size:0.70rem;font-weight:800;color:#0284c7;">SECTION 13 SENSOR TRANSUCER MAP</span><span style="background:#0284c7;color:#fff;font-family:monospace;font-size:0.58rem;font-weight:800;padding:2px 6px;border-radius:3px;">RANGE &amp; RESOLUTION</span></div><div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:5px;overflow:hidden;"><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">HR &amp; SpO2 Specs</span><span style="font-family:monospace;color:#475569;">40–220 BPM (±1) | 70–100% (±1%)</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#0284c7;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">PUBLISHED</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Thermal &amp; ECG</span><span style="font-family:monospace;color:#475569;">85–108°F (0.1°F) | 512 Hz Lead-I 300–600ms</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#0284c7;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">PUBLISHED</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Next Tab Flow</span><span style="font-family:monospace;color:#475569;">11-WATCH Capability &amp; Dial Studio</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#0284c7;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">TAB 11 NEXT</span></div></div><div style="margin-top:6px;background:#f0fdf4;border:1.5px solid #86efac;border-radius:5px;padding:6px 9px;"><div style="font-family:monospace;font-size:0.65rem;font-weight:800;color:#15803d;margin-bottom:2px;">PHYSICIAN CALCULUS &amp; MEASUREMENT FITNESS • QUANTIZATION FLOOR</div><div style="font-family:monospace;font-size:0.74rem;font-weight:700;color:#0f172a;line-height:1.35;">Resolution delta_q = 0.1°F (Temp), 1 BPM (HR), 1% (SpO2) within sensor SNR bounds</div></div></div><div style="margin-top:6px;background:#eff6ff;border-left:3.5px solid #0284c7;padding:6px 9px;border-radius:4px;font-size:0.72rem;color:#1e3a8a;line-height:1.35;"><strong>Clinical Significance:</strong> Publishing explicit dynamic ranges and quantization floors establishes clear metrological uncertainty intervals for attending specialists.</div>
+          <div style="background:#f8fafc;border:1.5px solid #cbd5e1;border-radius:6px;padding:7px;"><div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1.5px solid #cbd5e1;padding-bottom:3px;margin-bottom:5px;"><span style="font-family:monospace;font-size:0.70rem;font-weight:800;color:#0284c7;">QR APK INSTALL FLOW</span><span style="background:#0284c7;color:#fff;font-family:monospace;font-size:0.58rem;font-weight:800;padding:2px 6px;border-radius:3px;">ANDROID STANDALONE</span></div><div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:5px;overflow:hidden;"><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">QR Landing</span><span style="font-family:monospace;color:#475569;">Auto-triggers Android APK download (41.8 KB)</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#0284c7;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">ZERO TYPING</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">App Icon</span><span style="font-family:monospace;color:#475569;">Custom navy + cyan cross with Wi-Fi arcs</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#0284c7;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">HOME SCREEN</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-bottom:1px solid #e2e8f0;font-size:0.73rem;"><span style="font-weight:700;color:#1e293b;">Role Guard</span><span style="font-family:monospace;color:#475569;">Zero Bluetooth permissions on Android Cell</span><span style="background:#f1f5f9;border:1px solid #cbd5e1;color:#0284c7;font-family:monospace;font-size:0.63rem;font-weight:800;padding:1px 5px;border-radius:3px;">STRICT SPLIT</span></div></div><div style="margin-top:6px;background:#f0fdf4;border:1.5px solid #86efac;border-radius:5px;padding:6px 9px;"><div style="font-family:monospace;font-size:0.65rem;font-weight:800;color:#15803d;margin-bottom:2px;">PHYSICIAN CALCULUS &amp; MEASUREMENT FITNESS • SEPARATION INVARIANT</div><div style="font-family:monospace;font-size:0.74rem;font-weight:700;color:#0f172a;line-height:1.35;">Watch Biometrics (PC Server Only)  ||  Meals, Feelings &amp; Meds (Android Cell -&gt; Wi-Fi Sync)</div></div></div><div style="margin-top:6px;background:#eff6ff;border-left:3.5px solid #0284c7;padding:6px 9px;border-radius:4px;font-size:0.72rem;color:#1e3a8a;line-height:1.35;"><strong>Clinical Significance:</strong> Isolating BLE watch telemetry on the PC workstation while running portable intake/feelings inside a lightweight APK prevents pairing conflicts and drains.</div>
         </div>
       </div>
     </div>

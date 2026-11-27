@@ -1,8 +1,8 @@
 {
-  "latest_build": "beta.00.01.0068",
-  "synced_at": "2026-11-27T09:17:28",
-  "total_bugs": 172,
-  "total_resolved": 172,
+  "latest_build": "beta.00.01.0069",
+  "synced_at": "2026-11-27T09:31:48",
+  "total_bugs": 173,
+  "total_resolved": 173,
   "total_open": 0,
   "bugs": [
     {
@@ -2240,6 +2240,19 @@
       "comments": "Synced from git tag beta.00.01.0068",
       "created_at": "2026-11-27 09:16:48",
       "resolved_at": "2026-11-27 09:16:48"
+    },
+    {
+      "code": "CLE-126",
+      "project": "JVEEPOO",
+      "build": "beta.00.01.0069",
+      "title": "[beta.00.01.0069] beta.00.01.0069: update all docs with Cell PASS APK specs & test plan, capture live Cell screenshots, and expand presentation to 89 slides",
+      "status": "RESOLVED",
+      "component": "BFM Clinical Console",
+      "affected_files": "Beta/docs/GOOGLE_LEADERSHIP_PRIMER.md, Beta/docs/NARRATION_QA_89_SLIDES.md, Beta/docs/bfm_beta1_master_test_plan.md, Beta/docs/bfm_diabetes_beta1_functional_specification.md, Beta/docs/bfm_diabetes_beta_requirements_specification.md, Beta/d",
+      "resolution": "Git commit 568a94b (2026-11-27 09:31:40): beta.00.01.0069: update all docs with Cell PASS APK specs & test plan, capture live Cell screenshots, and expand presentation to 89 slides",
+      "comments": "Synced from git tag beta.00.01.0069",
+      "created_at": "2026-11-27 09:31:40",
+      "resolved_at": "2026-11-27 09:31:40"
     }
   ]
 }
