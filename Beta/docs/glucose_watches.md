@@ -33,28 +33,17 @@ The **BFM Biometric Function Monitor** (`JVEEPOO`) is an independent, open-sourc
 
 ---
 
-## 2. Currently Available PPG Smartwatches (Vendor, Price & Capability)
+## 2. Currently Available PPG Glucose-Trend Smartwatches (Vendor, Price & Capability)
 
-> *Clinical Notice: Optical non-invasive blood glucose and cuffless blood pressure estimates on consumer watches are general wellness/trend indicators only and are **not FDA-cleared CGM or diagnostic medical devices**. Only Veepoo/`H Band` (`0xFEE7`) protocol watches integrate natively with BFM today, with the **Model 5010 Veepoo / FITAOS** watch hardware-verified so far.*
+> *Clinical Notice: Optical non-invasive blood glucose and hyperglycemia risk estimates on consumer watches are general wellness/trend indicators only and are **not FDA-cleared CGM or diagnostic medical devices**. Only Veepoo/`H Band` (`0xFEE7`) protocol watches integrate natively with BFM today, with the **Model 5010 Veepoo / FITAOS** watch hardware-verified so far. Mainstream smartwatches without native optical glucose sensing (Apple, Samsung, Pixel, Fitbit, Garmin, Withings, Amazfit, Polar, OnePlus, Bangle.js) are excluded.*
 
-| Vendor & Model | Official Vendor Link | Approx. Retail Price *(USD)* | Core PPG & Biometric Sensor Capabilities | BFM Protocol Status |
+| Vendor & Model | Official Vendor Link | Approx. Retail Price *(USD)* | Core PPG Glucose & Biometric Sensor Capabilities | BFM Protocol Status |
 | :--- | :--- | :--- | :--- | :--- |
-| **FITAOS P12 / Max / Pro / 5150 Series** | https://fitaos.com | 70 – 130 USD | Multi-LED PPG (HR, SpO2, HRV/Lorenz, optical BP & glucose trend, lipids/uric acid estimates), Lead-I ECG (512 Hz), Skin Temp, BIA (select), Sleep/Apnea | **Native Veepoo (`0xFEE7`)** *(Model 5010 verified)* |
-| **Veepoo Watch RIG** | https://www.veepoo.cn | 70 – 120 USD *(OEM/partner retail)* | Multi-channel green/red/IR PPG (`MAX86176`: HR, SpO2, HRV, optical BP trend, sleep apnea), Lead-I ECG (512 Hz), Skin Temp | **Native Veepoo (`0xFEE7`)** *(untested)* |
-| **Veepoo OEM ET480 / ET580 / E500** | https://www.veepoo.cn | 40 – 80 USD *(global resellers)* | Multi-LED PPG (HR, SpO2, HRV, optical BP & glucose trend), Lead-I ECG (512 Hz), Skin Temp, BIA Body Comp (`E500`), Sleep | **Native Veepoo (`0xFEE7`)** *(untested)* |
-| **Samsung Galaxy Watch 8 / Ultra** | https://www.samsung.com/us/watches/ | 349 – 649 USD | Multi-LED BioActive PPG (HR, SpO2, HRV, cuff-calibrated BP, vascular load, antioxidant index), Lead-I ECG, **BIA Body Comp**, Skin Temp | Requires Wear OS / Galaxy Health bridge |
-| **Apple Watch Series 11 / Ultra 3** | https://www.apple.com/watch/ | 399 – 799 USD | Multi-path optical PPG (HR, SpO2, HRV, irregular rhythm, sleep apnea breathing disturbances), Lead-I ECG, Wrist Temp *(no BP or BIA)* | iOS-only / HealthKit export |
-| **Google Pixel Watch 4 / 5** | https://store.google.com/category/watches | 349 – 399 USD | Multi-path PPG (HR, SpO2, HRV, sleep apnea), Lead-I ECG, Skin Temp, cEDA stress sensor *(no BP or BIA)* | Requires Wear OS / Health Connect bridge |
-| **Fitbit Sense 2** | https://store.google.com/category/watches | 200 – 300 USD | Multi-path optical PPG (HR, SpO2, HRV, irregular rhythm), Lead-I ECG, Skin Temp, cEDA stress | Requires Fitbit Web API / Health Connect |
-| **Fitbit Charge 6** | https://store.google.com/category/watches | 160 USD | Multi-path optical PPG (HR, SpO2, HRV), Lead-I ECG, EDA stress *(no skin temp or BIA)* | Requires Fitbit Web API / Health Connect |
-| **Huawei Watch D2** | https://consumer.huawei.com/en/wearables/ | 350 – 450 USD *(limited US retail)* | TruSense PPG (HR, SpO2, HRV, arterial stiffness), Lead-I ECG, **True Mechanical Micro-Airbag Cuff BP**, Skin Temp | Proprietary Huawei Health app |
-| **Huawei Watch GT 5 Pro** | https://consumer.huawei.com/en/wearables/ | 330 – 450 USD | TruSense PPG (HR, SpO2, HRV, arterial stiffness), Lead-I ECG, Skin Temp | Proprietary Huawei Health app |
-| **Garmin Venu 3 / 4 & Fenix 8** | https://www.garmin.com/en-US/c/wearables-smartwatches/ | 450 – 1,000+ USD | Elevate Gen 5 PPG (HR, Pulse Ox SpO2, continuous HRV status, respiration, Body Battery), Lead-I ECG, Skin Temp *(no BP or BIA)* | Requires Garmin Connect / FIT export |
-| **Withings ScanWatch 2 / Nova** | https://www.withings.com/us/en/watches | 350 – 600 USD | Multi-wavelength PPG (HR, SpO2, HRV, respiratory insights), Medical-grade Lead-I ECG, TempTech 24/7 Baseline Temp *(no BP or BIA)* | Requires Withings Health Mate API |
-| **Amazfit Balance** | https://www.amazfit.com | 199 – 249 USD | BioTracker 5.0 dual-LED PPG (HR, SpO2, HRV, stress, readiness), **BIA Body Composition** (muscle/fat/water), Skin Temp *(no ECG)* | Requires Zepp / Health Connect bridge |
-| **Polar Vantage V3** | https://www.polar.com/us-en/vantage/v3 | 699 USD | Polar Elixir optical PPG (HR, SpO2, HRV), Wrist Lead-I ECG, Nocturnal Skin Temp *(no BP or BIA)* | Polar BLE / Polar Flow API |
-| **OnePlus Watch 3** | https://www.oneplus.com/us/oneplus-watch-3 | 329 – 350 USD | 8-channel HR + 16-channel SpO2 optical PPG, Wrist Temp, Vascular health check *(no US ECG or BIA)* | Requires Wear OS / OHealth bridge |
-| **Bangle.js 2 (Open-Source BLE)** | https://banglejs.com | 100 – 115 USD | Open-firmware `VC31B` optical PPG (raw PPG waveform & HR accessible directly via Web Bluetooth) *(no ECG, SpO2, BP, or BIA)* | **Direct Open Web Bluetooth** (candidate driver) |
+| **FITAOS P12 / Max / Pro / 5150 Series** | https://fitaos.com | 70 – 130 USD | Multi-LED PPG (**optical blood glucose trend**, HR, SpO2, HRV/Lorenz, optical BP, lipids/uric acid estimates), Lead-I ECG (512 Hz), Skin Temp, BIA (select), Sleep/Apnea | **Native Veepoo (`0xFEE7`)** *(Model 5010 verified)* |
+| **Veepoo OEM ET480 / ET580 / E500 / E600** | https://www.veepoo.cn | 40 – 80 USD *(global resellers)* | Multi-LED PPG (**optical blood glucose trend**, HR, SpO2, HRV, optical BP), Lead-I ECG (512 Hz), Skin Temp, BIA Body Comp (`E500`), Sleep | **Native Veepoo (`0xFEE7`)** *(untested)* |
+| **Yucheng / HealthWear OEM Glucose Watches** | Shenzhen ODM *(Amazon / AliExpress / white-label)* | 40 – 110 USD | Multi-wavelength PPG (**optical blood glucose trend**, HR, SpO2, HRV, BP, lipids & uric acid estimates), Lead-I ECG, Skin Temp | Not yet supported (`HealthWear` BLE stack) |
+| **JointCorp (J-Style) 2051F / 2025F BGEM Watches** | https://www.jointcorp.com | 60 – 140 USD *(OEM/partner retail)* | `BGEM` multi-wavelength PPG (**non-invasive blood glucose trend/risk**, HR, SpO2, HRV), Lead-I ECG | Not yet supported (`JCHealth` BLE stack) |
+| **Huawei Watch 4 / Watch 4 Pro** | https://consumer.huawei.com/en/wearables/ | 400 – 650 USD *(limited US retail)* | Multi-sensor PPG + pulse-wave **Hyperglycemia Risk Assessment** (study-backed risk evaluation, not raw `mg/dL`), Lead-I ECG, SpO2, Skin Temp, Arterial Stiffness | Closed Huawei Health ecosystem |
 
 ---
 
