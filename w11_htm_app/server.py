@@ -659,7 +659,7 @@ def _mask_gemini_key(k):
     return k[:4] + "..." + k[-4:]
 
 
-APK_VERSION = "0.1.73"
+APK_VERSION = "0.1.74"
 
 
 def _is_private_lan_ip(ip_str):
@@ -6825,6 +6825,9 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
 
                         m_time = item.get("intake_timestamp") or item.get("timestamp") or now_iso
                         m_name = item.get("meal_name", "Mobile Intake")
+                        if "simulated cell foodoor" in str(m_name).lower():
+                            print("[MIL-SPEC ZERO-DATA GUARD] Rejected synthetic Simulated Cell Foodoor payload in /api/shuttle/dock.")
+                            continue
                         cals = item.get("calories", 0)
                         nc = item.get("net_carbs", 0)
                         tc = item.get("total_carbs", nc)

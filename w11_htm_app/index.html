@@ -27122,17 +27122,8 @@ You logged: Entire Box (3.5 Servings / 99g)
         const payload = {
           cell_id: cellId,
           phone_esn: phoneEsn,
-          batch_records: [
-            {
-              intake_timestamp: new Date().toISOString(),
-              meal_name: "Simulated Cell Foodoor Ingestion",
-              calories: 320,
-              net_carbs: 18,
-              protein: 24,
-              fat: 14,
-              glycemic_impact_score: "LOW"
-            }
-          ]
+          test_ping: true,
+          batch_records: []
         };
         const resp = await fetch('/api/shuttle/dock', {
           method: 'POST',
@@ -27141,12 +27132,13 @@ You logged: Entire Box (3.5 Servings / 99g)
         });
         const res = await resp.json();
         if (resp.ok) {
-          alert(`⚡ CELL CONNECTION VERIFIED: ${cellId} connected with BFM (${res.docked_records} record synced at ${res.last_docked_at})!`);
+          alert(`⚡ CELL CONNECTION VERIFIED: ${cellId} linked with BFM Server (zero synthetic records written; last seen ${res.last_docked_at}).`);
           loadFamilyCellsRoster();
         } else {
           alert("Connection error: " + (res.error || "Unknown"));
         }
       } catch (e) {
+        console.warn('[MIL-SPEC HANDLED FAULT] testCellConnection ping failed:', e);
         alert("Connection network error: " + e.message);
       }
     }
