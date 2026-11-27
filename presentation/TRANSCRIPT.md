@@ -150,13 +150,13 @@
 
 > At the bottom of Tab 02 lies the full Chronological Meal Journal—listing every logged dish by time alongside clean delete buttons and showing clearly how much carbohydrate headroom remains before planning our next meal in Tab 03.
 
-## Slide 19: 03-MEAL PLANNER: Pathway A Curated Pantry & Clean Multi-Modal Input
+## Slide 19: 03-MEAL PLANNER: Clean Single-Stream Multi-Modal Meal & Snack Estimator
 
 - **Section:** Tab 03: 03-MEAL PLANNER
-- **Visual:** `images/bfm_t03_meal_pantry.png` (`03-MEAL PLANNER • CLEAN PATHWAY A PANTRY & PATHWAY B INPUT`)
-- **Key Takeaway:** Decluttering Pathway B puts clean natural-language typing, voice, and pantry reuse front and center before ingestion.
+- **Visual:** `images/bfm_t03_meal_pantry.png` (`03-MEAL PLANNER • CLEAN TEXT, VOICE & PHOTO ESTIMATOR`)
+- **Key Takeaway:** Removing legacy pantry lists and button clutter puts clean natural-language typing, voice, and plate-photo estimation front and center.
 
-> Stepping into Tab 03 Meal Planner shifts focus from tracking past meals to planning upcoming choices cleanly before taking a single bite. Pathway A on the left offers 15 curated pantry favorites, while uncluttered Pathway B on the right accepts typed dishes, voice orders, plate photos, and focused discovery prompts.
+> Stepping into Tab 03 Meal Planner shifts focus from tracking past meals to planning upcoming choices cleanly before taking a single bite. Step 1 provides one uncluttered full-width entry accepting typed dishes, voice orders, plate photos, beverage hydration, and four focused discovery prompts.
 
 ## Slide 20: Pre-Choice Metabolic Evaluator: Seven Live Macros, Hydration & GLUT4 Rx
 
@@ -169,7 +169,7 @@
 ## Slide 21: Verified Geo-Located Restaurant Disclosures vs Zero-Guessing Honesty
 
 - **Section:** Tab 03: 03-MEAL PLANNER
-- **Visual:** `images/bfm_t03_meal_pantry.png` (`03-MEAL PLANNER • CLEAN PATHWAY A PANTRY & PATHWAY B INPUT`)
+- **Visual:** `images/bfm_t03_meal_pantry.png` (`03-MEAL PLANNER • CLEAN TEXT, VOICE & PHOTO ESTIMATOR`)
 - **Key Takeaway:** Pinning exact franchise facts while refusing fake guesses protects insulin-sensitive users at unfamiliar restaurants.
 
 > Generic apps often mis-estimate restaurant meals by forty grams or more. BFM verifies exact chain disclosures like Taco Time's 520-kilocalorie, 33-gram net carb Fiesta Platter and regional venues in zip code 98294—while strictly refusing to invent guesses for unknown dishes.
@@ -182,13 +182,13 @@
 
 > Here in the Recipe Bill of Materials, ingredients are organized straight by grocery aisle alongside their net carb impact—with zero price clutter—paired directly with three verified local grocers within 20 miles ready to print or copy.
 
-## Slide 23: Step 2 Harm-Reduction Trades & Step 3 Pantry vs Consume Workflow
+## Slide 23: Step 2 Harm-Reduction Trades & Step 3 Consume vs 13-Lane Chart Workflow
 
 - **Section:** Tab 03: 03-MEAL PLANNER
 - **Visual:** `images/bfm_t03_meal_bom_grocers.png` (`03-MEAL PLANNER • ZERO-COST RECIPE BOM & LOCAL GROCERS`)
 - **Key Takeaway:** Smart single-ingredient swaps preserve meal enjoyment while keeping peak post-meal glucose safely inside target.
 
-> If an initial meal estimate lands above target, Step 2 suggests practical swaps saving 42 to 65 grams of sugar before Step 3 lets you cleanly choose between saving a reusable template or clicking Consume Now to log it.
+> If an initial meal estimate lands above target, Step 2 suggests practical swaps saving 42 to 65 grams of sugar before Step 3 lets you click Consume Now to log the meal or inspect it inside Tab 04's 13-lane chart.
 
 ## Slide 24: Doctor & Patient Longitudinal Meal-to-Metric Explorer
 
@@ -258,9 +258,9 @@
 
 - **Section:** Tab 04: 04-REPORTS
 - **Visual:** `images/bfm_t04_06_sub_ecg_met.png` (`04-REPORTS • LIVE LEAD-I ECG (250 MS QT / 389 MS QTC) & MET`)
-- **Key Takeaway:** Real watch-synced Lead-I QT/QTc repolarization and LF/HF balance pair directly with diurnal glucose to guard cardiac safety proactively.
+- **Key Takeaway:** Plotted Lead-I Bazett QTc (388.6 ms) with explicit 412 ms & 440 ms safety thresholds guards ventricular repolarization alongside daily glucose.
 
-> Entering our five specialized Sub-Reports opens with live synced Lead-I ECG from your watch at 10:23 AM: 250 milliseconds raw QT, translating to 389 milliseconds Bazett-corrected QTc with a calm 1.31 autonomic ratio, framed cleanly beside today's blue Watch Off-Wrist intervals.
+> Entering our five specialized Sub-Reports opens with live synced Lead-I ECG from your watch at 10:23 AM: 250 milliseconds raw QT, plotted directly as 388.6 milliseconds Bazett-corrected QTc well below the 412 millisecond baseline and 440 millisecond ceiling lines.
 
 ## Slide 33: Sub-Report 2: Continuous 24-Hour MET Energy Expenditure
 
@@ -300,7 +300,7 @@
 - **Visual:** `images/bfm_t04_met_bloodcomp_live.png` (`04-REPORTS • ALL 5 LIVE SYNCED WATCH SUB-REPORTS`)
 - **Key Takeaway:** All five hardware Sub-Report transducers—manual ECG & BIA plus continuous MET, Blood Comp & Breath—sync directly from watch storage.
 
-> Looking across all five Sub-Reports together confirms complete live hardware sync: watch ECG from 10:23 AM and BIA Body Composition from 11:20 AM join 101 MET epochs, 115 Blood Composition sweeps, and 227 Breathing Rate samples—all stamped consistently with blue Watch Off-Wrist intervals.
+> Looking across all five Sub-Reports together confirms complete live hardware sync: plotted watch ECG from 10:23 AM at 388.6 milliseconds QTc and BIA Body Composition from 11:20 AM join 102 MET epochs, 115 Blood Composition sweeps, and 229 Breathing Rate samples—all stamped consistently with blue Watch Off-Wrist intervals.
 
 ## Slide 38: Daily 24-Hour Continuous Glucose Curve & Time-in-Range Velocity
 

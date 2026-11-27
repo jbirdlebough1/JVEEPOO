@@ -76,9 +76,9 @@ Just beneath the meal cards sits the 24-Hour Fluid Progression chart targeting 6
 
 At the bottom of Tab 02 lies the full Chronological Meal Journal—listing every logged dish by time alongside clean delete buttons and showing clearly how much carbohydrate headroom remains before planning our next meal in Tab 03.
 
-### Slide 19 — Tab 03: 03-MEAL PLANNER | 03-MEAL PLANNER: Pathway A Curated Pantry & Clean Multi-Modal Input
+### Slide 19 — Tab 03: 03-MEAL PLANNER | 03-MEAL PLANNER: Clean Single-Stream Multi-Modal Meal & Snack Estimator
 
-Stepping into Tab 03 Meal Planner shifts focus from tracking past meals to planning upcoming choices cleanly before taking a single bite. Pathway A on the left offers 15 curated pantry favorites, while uncluttered Pathway B on the right accepts typed dishes, voice orders, plate photos, and focused discovery prompts.
+Stepping into Tab 03 Meal Planner shifts focus from tracking past meals to planning upcoming choices cleanly before taking a single bite. Step 1 provides one uncluttered full-width entry accepting typed dishes, voice orders, plate photos, beverage hydration, and four focused discovery prompts.
 
 ### Slide 20 — Tab 03: 03-MEAL PLANNER | Pre-Choice Metabolic Evaluator: Seven Live Macros, Hydration & GLUT4 Rx
 
@@ -92,9 +92,9 @@ Generic apps often mis-estimate restaurant meals by forty grams or more. BFM ver
 
 Here in the Recipe Bill of Materials, ingredients are organized straight by grocery aisle alongside their net carb impact—with zero price clutter—paired directly with three verified local grocers within 20 miles ready to print or copy.
 
-### Slide 23 — Tab 03: 03-MEAL PLANNER | Step 2 Harm-Reduction Trades & Step 3 Pantry vs Consume Workflow
+### Slide 23 — Tab 03: 03-MEAL PLANNER | Step 2 Harm-Reduction Trades & Step 3 Consume vs 13-Lane Chart Workflow
 
-If an initial meal estimate lands above target, Step 2 suggests practical swaps saving 42 to 65 grams of sugar before Step 3 lets you cleanly choose between saving a reusable template or clicking Consume Now to log it.
+If an initial meal estimate lands above target, Step 2 suggests practical swaps saving 42 to 65 grams of sugar before Step 3 lets you click Consume Now to log the meal or inspect it inside Tab 04's 13-lane chart.
 
 ### Slide 24 — Tab 03: 03-MEAL PLANNER | Doctor & Patient Longitudinal Meal-to-Metric Explorer
 
@@ -130,7 +130,7 @@ Here in the Exercise Metabolic Correlator, your own data proves how movement sta
 
 ### Slide 32 — Tab 04: 04-REPORTS | Sub-Report 1: Live Watch Lead-I ECG Protocol & QT / QTc Ventricular Safety
 
-Entering our five specialized Sub-Reports opens with live synced Lead-I ECG from your watch at 10:23 AM: 250 milliseconds raw QT, translating to 389 milliseconds Bazett-corrected QTc with a calm 1.31 autonomic ratio, framed cleanly beside today's blue Watch Off-Wrist intervals.
+Entering our five specialized Sub-Reports opens with live synced Lead-I ECG from your watch at 10:23 AM: 250 milliseconds raw QT, plotted directly as 388.6 milliseconds Bazett-corrected QTc well below the 412 millisecond baseline and 440 millisecond ceiling lines.
 
 ### Slide 33 — Tab 04: 04-REPORTS | Sub-Report 2: Continuous 24-Hour MET Energy Expenditure
 
@@ -150,7 +150,7 @@ Completing our five-panel Sub-Reports bay is dedicated Respiratory Rate tracking
 
 ### Slide 37 — Tab 04: 04-REPORTS | All 5 Watch Sub-Reports Live Synced: ECG, MET, Blood Comp, BIA & Breath
 
-Looking across all five Sub-Reports together confirms complete live hardware sync: watch ECG from 10:23 AM and BIA Body Composition from 11:20 AM join 101 MET epochs, 115 Blood Composition sweeps, and 227 Breathing Rate samples—all stamped consistently with blue Watch Off-Wrist intervals.
+Looking across all five Sub-Reports together confirms complete live hardware sync: plotted watch ECG from 10:23 AM at 388.6 milliseconds QTc and BIA Body Composition from 11:20 AM join 102 MET epochs, 115 Blood Composition sweeps, and 229 Breathing Rate samples—all stamped consistently with blue Watch Off-Wrist intervals.
 
 ### Slide 38 — Tab 04: 04-REPORTS | Daily 24-Hour Continuous Glucose Curve & Time-in-Range Velocity
 

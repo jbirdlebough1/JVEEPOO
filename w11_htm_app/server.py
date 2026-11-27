@@ -3469,23 +3469,41 @@ async def run_ble_auto_sync_loop():
                                     ecg_ids = _parse_96_ecg_ids(id_pkts, ecg_type) if (id_pkts and not id_no_data) else []
                                     print(f"[*] 0x96 ECG(type={ecg_type}) IDs found: {ecg_ids} (pkts={len(id_pkts)}, no_data={id_no_data})")
                                     if ecg_ids:
+                                        existing_ecg_ids = set()
+                                        try:
+                                            with db_lock:
+                                                c_e = get_db()
+                                                for (m_s,) in c_e.cursor().execute("SELECT mode FROM vital_records WHERE metric = 'ECG_QTC'").fetchall():
+                                                    if m_s and m_s.strip().startswith("{"):
+                                                        try:
+                                                            em = json.loads(m_s)
+                                                            if em.get("ecg_id") is not None:
+                                                                existing_ecg_ids.add(int(em["ecg_id"]))
+                                                        except Exception as parse_ex:
+                                                            print(f"[MIL-SPEC HANDLED FAULT] ecg_id meta parse: {parse_ex}")
+                                                c_e.close()
+                                        except Exception as db_ex:
+                                            print(f"[MIL-SPEC HANDLED FAULT] existing_ecg_ids query: {db_ex}")
+
                                         ecg_records = []
                                         for eid in ecg_ids[:12]:
+                                            if int(eid) in existing_ecg_ids:
+                                                continue
                                             data_pkts = []
                                             data_done = asyncio.Event()
+                                            last_pkt_t = [time.monotonic()]
 
-                                            def on_ecg_data_notify(sender, data, et=ecg_type):
+                                            def on_ecg_data_notify(sender, data, et=ecg_type, lpt=last_pkt_t):
                                                 nonlocal rx_count
                                                 if data and len(data) >= 5 and data[0] == 0x97 and data[1] == et:
                                                     st = data[2]
+                                                    lpt[0] = time.monotonic()
                                                     if st == 0:
                                                         data_pkts.clear()
                                                         data_pkts.append(bytes(data))
                                                     elif st == 1:
                                                         data_pkts.append(bytes(data))
                                                     elif st in (2, 3):
-                                                        if st == 2 and data_pkts:
-                                                            pass
                                                         data_done.set()
                                                 else:
                                                     ptype = parse_and_store_packet(data)
@@ -3500,10 +3518,13 @@ async def run_ble_auto_sync_loop():
                                             d_pkt[2] = eid & 0xFF
                                             d_pkt[3] = (eid >> 8) & 0xFF
                                             await client.write_gatt_char(VEEPOO_WRITE_UUID, d_pkt, response=False)
-                                            try:
-                                                await asyncio.wait_for(data_done.wait(), timeout=25.0)
-                                            except asyncio.TimeoutError:
-                                                print(f"[MIL-SPEC HANDLED FAULT] 0x97 ECG(type={ecg_type}, id={eid}) wait timeout (pkts={len(data_pkts)})")
+                                            deadline = time.monotonic() + 12.0
+                                            while not data_done.is_set() and time.monotonic() < deadline:
+                                                if len(data_pkts) >= 8 and (time.monotonic() - last_pkt_t[0]) >= 2.2:
+                                                    break
+                                                await asyncio.sleep(0.25)
+                                            if not data_done.is_set():
+                                                print(f"[MIL-SPEC HANDLED FAULT] 0x97 ECG(type={ecg_type}, id={eid}) bounded wait ended (pkts={len(data_pkts)})")
                                             if data_pkts:
                                                 rec = _parse_97_ecg_payload(data_pkts, ecg_type=ecg_type, ecg_id=eid)
                                                 if rec:
@@ -3545,8 +3566,26 @@ async def run_ble_auto_sync_loop():
 
                                 print(f"[*] 0x93 0x05 BIA IDs found: {bia_ids}")
                                 if bia_ids:
+                                    existing_bia_ids = set()
+                                    try:
+                                        with db_lock:
+                                            c_b = get_db()
+                                            for (m_b,) in c_b.cursor().execute("SELECT mode FROM vital_records WHERE metric = 'BODY_COMP'").fetchall():
+                                                if m_b and m_b.strip().startswith("{"):
+                                                    try:
+                                                        bm = json.loads(m_b)
+                                                        if bm.get("bia_id") is not None:
+                                                            existing_bia_ids.add(int(bm["bia_id"]))
+                                                    except Exception as parse_bx:
+                                                        print(f"[MIL-SPEC HANDLED FAULT] bia_id meta parse: {parse_bx}")
+                                            c_b.close()
+                                    except Exception as db_bx:
+                                        print(f"[MIL-SPEC HANDLED FAULT] existing_bia_ids query: {db_bx}")
+
                                     bia_records = []
                                     for bid in bia_ids[:10]:
+                                        if int(bid) in existing_bia_ids:
+                                            continue
                                         bia_pkts = []
                                         bia_done = asyncio.Event()
 
@@ -4453,7 +4492,13 @@ def get_today_subreports():
                     meta = json.loads(mode_str)
                 except Exception as parse_err:
                     print(f"[MIL-SPEC HANDLED FAULT] subreport mode JSON parse ({met}): {parse_err}")
-            out[met].append({"label": hm, "val": round(float(v1), 1), "core": round(float(v1), 1), "skin": round(float(v2 or 0), 2), **meta})
+            if met == "ECG_QTC":
+                qt_raw = round(float(v1), 1)
+                hr_val = float(meta.get("hr") or 0)
+                qtc_val = round(qt_raw / ((60.0 / hr_val) ** 0.5), 1) if (35.0 <= hr_val <= 220.0 and qt_raw < 340.0) else qt_raw
+                out[met].append({"label": hm, "val": qtc_val, "core": qtc_val, "qtc": qtc_val, "raw_qt": qt_raw, "skin": round(float(v2 or 0), 2), **meta})
+            else:
+                out[met].append({"label": hm, "val": round(float(v1), 1), "core": round(float(v1), 1), "skin": round(float(v2 or 0), 2), **meta})
 
     off_wrist_intervals = []
     for m_val in sorted(off_wrist_mins):

@@ -1,8 +1,8 @@
 {
-  "latest_build": "beta.00.01.0065",
-  "synced_at": "2026-11-26T21:22:03",
-  "total_bugs": 169,
-  "total_resolved": 169,
+  "latest_build": "beta.00.01.0066",
+  "synced_at": "2026-11-26T22:09:46",
+  "total_bugs": 170,
+  "total_resolved": 170,
   "total_open": 0,
   "bugs": [
     {
@@ -2201,6 +2201,19 @@
       "comments": "Synced from git tag beta.00.01.0065",
       "created_at": "2026-11-26 21:21:54",
       "resolved_at": "2026-11-26 21:21:54"
+    },
+    {
+      "code": "CLE-123",
+      "project": "JVEEPOO",
+      "build": "beta.00.01.0066",
+      "title": "[beta.00.01.0066] beta.00.01.0066: remove obsolete Meal Pantry Favorites, fix watch Lead-I ECG sync & Bazett QTc chart, log next-build /cell 3-state Med toggl",
+      "status": "RESOLVED",
+      "component": "Meal Planner & Nutrition",
+      "affected_files": "BFM.HTM, Beta/docs/BETA_BACKLOG_TODO.md, Beta/docs/GOOGLE_LEADERSHIP_PRIMER.md, Beta/docs/NARRATION_QA_87_SLIDES.md, Beta/docs/presentation_build_coverage_audit.json, Beta/docs/walkthrough_beta_00_01_0066.md, docs/BETA_BACKLOG_TODO.md, docs",
+      "resolution": "Git commit 3dc4da4 (2026-11-26 22:09:20): beta.00.01.0066: remove obsolete Meal Pantry Favorites, fix watch Lead-I ECG sync & Bazett QTc chart, log next-build /cell 3-state Med toggle",
+      "comments": "Synced from git tag beta.00.01.0066",
+      "created_at": "2026-11-26 22:09:20",
+      "resolved_at": "2026-11-26 22:09:20"
     }
   ]
 }

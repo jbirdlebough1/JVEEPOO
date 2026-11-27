@@ -6631,7 +6631,7 @@
                   🥗 MEAL &amp; SNACK PLANNER &bull; GEMINI PRE-CHOICE NUTRITION COACH
                 </span>
                 <span style="font-size: 0.82rem; color: #475569; display: block; margin-top: 2px;">
-                  PLAN MEAL/SNACK &bull; REUSE PANTRY &bull; GEMINI ESTIMATION &bull; CLINICAL TRADES &bull; CONSUME &amp; COMMIT
+                  PLAN MEAL/SNACK &bull; GEMINI ESTIMATION &bull; CLINICAL TRADES &bull; CONSUME &amp; COMMIT
                 </span>
               </div>
             </div>
@@ -6651,11 +6651,11 @@
                   🔄 INTERACTIVE CLINICAL MEAL &amp; SNACK DECISION FLOWCHART
                 </strong>
                 <span style="font-size: 0.72rem; color: #64748b; font-family: var(--lcars-mono);">
-                  DIET QUERY &bull; PRE-CHOICE ESTIMATION &bull; RE-ASSESS / ADA TRADES &bull; PANTRY OR CONSUME
+                  DIET QUERY &bull; PRE-CHOICE ESTIMATION &bull; RE-ASSESS / ADA TRADES &bull; CONSUME
                 </span>
               </div>
 
-              <!-- FLOWCHART STEP 1: CHOOSE INPUT METHOD (EXISTING PANTRY OR NEW MEAL) -->
+              <!-- FLOWCHART STEP 1: PLAN NEW MEAL OR SNACK -->
               <div style="display: flex; gap: 14px; align-items: stretch; background: #ffffff; border: 1.5px solid #94a3b8; border-left: 6px solid #0284c7; border-radius: 6px; padding: 12px; margin-bottom: 0;">
                 <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 90px; border-right: 1.5px solid #e2e8f0; padding-right: 12px; text-align: center;">
                   <span style="font-size: 0.75rem; font-weight: 900; color: #0284c7; font-family: var(--lcars-mono);">STEP 1</span>
@@ -6663,38 +6663,14 @@
                   <span style="font-size: 0.65rem; font-weight: 800; color: #475569; text-transform: uppercase;">DIET QUERY</span>
                 </div>
                 
-                <div style="flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                <div style="flex: 1; display: grid; grid-template-columns: 1fr; gap: 12px;">
                   
-                  <!-- PATHWAY A: MEAL PANTRY (1-CLICK REUSE) -->
-                  <!-- MEAL PANTRY: REUSABLE TEMPLATES & PREVIOUSLY CONSUMED MEALS -->
-                  <div id="sectionMealPantry" style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 6px; padding: 10px;">
-                    <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px;">
-                      <label for="listboxPopularMeals" style="font-size: 0.8rem; font-weight: 800; color: #166534; text-transform: uppercase;">
-                        📋 PATHWAY A: REUSE MEAL PANTRY (SAVED MEAL &amp; SNACK TEMPLATES)
-                      </label>
-                      <span style="font-size: 0.68rem; color: #15803d; font-weight: 800; background: #dcfce7; padding: 2px 6px; border-radius: 4px;">
-                        1-CLICK SELECT
-                      </span>
-                    </div>
-                    <div style="font-size: 0.72rem; color: #4b5563; margin-bottom: 6px;">
-                      Select any previously consumed or saved meal template to instant-populate metrics:
-                    </div>
-                    <select id="listboxPopularMeals" size="5" style="width: 100%; border: 1.5px solid #0284c7; border-radius: 4px; padding: 6px 8px; font-size: 0.85rem; font-family: inherit; color: #0f172a; background: #ffffff; cursor: pointer; box-shadow: inset 0 1px 3px rgba(0,0,0,0.06);" onchange="onSelectPopularMealFromListbox(this.value)" onclick="onSelectPopularMealFromListbox(this.value)">
-                      <option value="" disabled selected>[NO SAVED MEALS IN PANTRY — USE ESTIMATE &amp; SAVE BELOW]</option>
-                    </select>
-                    <div style="display: flex; gap: 8px; margin-top: 8px; justify-content: flex-end; align-items: center;">
-                      <span id="lblPantryStatusMsg" style="font-size: 0.72rem; color: #16a34a; font-weight: bold; margin-right: auto; display: none;"></span>
-                      <button type="button" id="btnEditSelectedPopularMeal" class="lcars-btn btn-blue" style="font-size: 0.74rem; padding: 4px 10px; font-weight: bold;" onclick="editSelectedPopularMealFromListbox()">✏️ EDIT SELECTED MEAL</button>
-                      <button type="button" id="btnDeleteSelectedPopularMeal" class="lcars-btn btn-peach" style="font-size: 0.74rem; padding: 4px 10px; font-weight: bold;" onclick="deleteSelectedPopularMealFromListbox()">🗑️ DELETE SELECTED MEAL</button>
-                    </div>
-                  </div>
-
-                  <!-- PATHWAY B: PLAN NEW MEAL OR SNACK -->
+                  <!-- PLAN NEW MEAL OR SNACK -->
                   <div id="sectionNewMeal" style="background: #f0f9ff; border: 1.5px solid #7dd3fc; border-radius: 6px; padding: 10px; display: flex; flex-direction: column; justify-content: space-between;">
                     <div>
                       <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px;">
                         <label for="txtMealBuilderInput" style="font-size: 0.8rem; font-weight: 800; color: #0369a1; text-transform: uppercase;">
-                          ➕ PATHWAY B: PLAN NEW MEAL OR SNACK
+                          ➕ PLAN MEAL OR SNACK (TEXT, VOICE OR PHOTO)
                         </label>
                         <span style="font-size: 0.68rem; color: #0284c7; font-weight: 800; background: #e0f2fe; padding: 2px 6px; border-radius: 4px;">
                           NATURAL LANGUAGE
@@ -7210,7 +7186,7 @@
                 </div>
               </div>
 
-              <!-- FLOWCHART STEP 3: WORKFLOW DECISION (SAVE TO PANTRY OR CONSUME NOW) -->
+              <!-- FLOWCHART STEP 3: WORKFLOW DECISION (CONSUME NOW OR VIEW CHARTS) -->
               <div style="display: flex; gap: 14px; align-items: stretch; background: #ffffff; border: 1.5px solid #94a3b8; border-left: 6px solid #f59e0b; border-radius: 6px; padding: 12px;">
                 <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 90px; border-right: 1.5px solid #e2e8f0; padding-right: 12px; text-align: center;">
                   <span style="font-size: 0.75rem; font-weight: 900; color: #f59e0b; font-family: var(--lcars-mono);">STEP 3</span>
@@ -7219,24 +7195,18 @@
                 </div>
                 <div style="flex: 1; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
                   <div>
-                    <strong style="font-size: 0.85rem; color: #0f172a;">LIKE THIS CHOICE? BUILD YOUR REFERENCE LIBRARY OR CONSUME NOW:</strong>
+                    <strong style="font-size: 0.85rem; color: #0f172a;">READY TO LOG THIS CHOICE OR INSPECT LONGITUDINAL CHARTS?</strong>
                     <div style="font-size: 0.74rem; color: #475569; margin-top: 2px;">
-                      • <strong>Add to Meal Pantry:</strong> Stores this as a saved reference template (Meal or Snack) for 1-click reuse (does NOT log as eaten today).<br>
-                      • <strong>Consume Now:</strong> Commits this meal right now into your daily meal log and updates today's Daily Intake Summary.
+                      • <strong>Consume Now:</strong> Commits this evaluated meal right now into your daily meal journal and updates today's Daily Intake Summary.<br>
+                      • <strong>View in 13-Lane Chart:</strong> Opens Tab 04 Reports to inspect glucose &amp; GLUT4 walk response alongside meal intake pins.
                     </div>
                   </div>
                   <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                    <button type="button" class="lcars-btn btn-banana" style="font-size: 0.82rem; padding: 8px 14px; font-weight: 800;" onclick="saveAnalyzedMealToPantry('Meal')">
-                      ⭐ ADD TO PANTRY AS MEAL
-                    </button>
-                    <button type="button" class="lcars-btn btn-ice" style="font-size: 0.82rem; padding: 8px 14px; font-weight: 800; background: #0284c7; color: #fff; border: 1.5px solid #0369a1;" onclick="saveAnalyzedMealToPantry('Snack')">
-                      🍵 ADD TO PANTRY AS SNACK
-                    </button>
                     <button type="button" class="lcars-btn btn-green" style="font-size: 0.82rem; padding: 8px 18px; font-weight: 900;" onclick="submitActualMealAndMonitorMetrics()">
                       🚀 CONSUME NOW (LOG TO MEAL LOG)
                     </button>
                     <button type="button" class="lcars-btn btn-peach" style="font-size: 0.82rem; padding: 8px 12px;" onclick="switchTab('reports')">
-                      📊 VIEW IN 8-LANE CHART (TAB 04)
+                      📊 VIEW IN 13-LANE CHART (TAB 04)
                     </button>
                   </div>
                 </div>
@@ -13487,9 +13457,9 @@ function switchTab(tabId) {
         }
         if (d.core !== null && d.core !== undefined && d.core > 0) {
           const y = padTop + plotH - ((d.core - minY) / rangeY) * plotH;
-          corePoints.push({ x, y, min, label: d.label, val: d.core });
+          corePoints.push({ x, y, min, label: d.label, val: d.core, meta: d });
         }
-        if (d.skin !== null && d.skin !== undefined && d.skin > 0) {
+        if (!options.skipSkinPlot && d.skin !== null && d.skin !== undefined && d.skin > 0) {
           const y = padTop + plotH - ((d.skin - minY) / rangeY) * plotH;
           skinPoints.push({ x, y, min, label: d.label, val: d.skin });
         }
@@ -13505,6 +13475,19 @@ function switchTab(tabId) {
         const tag = bw >= 44 ? 'WATCH OFF' : 'OFF';
         gapRectsHtml += `<rect x="${gx1.toFixed(1)}" y="${padTop}" width="${bw.toFixed(1)}" height="${plotH}" fill="rgba(56, 189, 248, 0.24)" stroke="#0284c7" stroke-width="1.2" stroke-dasharray="3 2" rx="2"><title>Watch off-wrist / charging / shower</title></rect><text x="${(gx1 + bw / 2).toFixed(1)}" y="${padTop + 11}" text-anchor="middle" fill="#0369a1" font-family="var(--lcars-mono)" font-size="7.5" font-weight="900">${tag}</text>`;
       });
+
+      let refLinesHtml = "";
+      if (Array.isArray(options.referenceLines)) {
+        options.referenceLines.forEach((ref, rIdx) => {
+          if (ref.val >= minY && ref.val <= maxY) {
+            const refY = padTop + plotH - ((ref.val - minY) / rangeY) * plotH;
+            const isAlt = (rIdx % 2 === 1);
+            const anchor = isAlt ? "start" : "end";
+            const textX = isAlt ? (padLeft + 8) : (padLeft + plotW - 8);
+            refLinesHtml += `<line x1="${padLeft}" y1="${refY.toFixed(1)}" x2="${padLeft + plotW}" y2="${refY.toFixed(1)}" stroke="${ref.color || '#64748b'}" stroke-dasharray="4 4" stroke-width="1.4" opacity="0.85"/><text x="${textX}" y="${(refY - 4).toFixed(1)}" text-anchor="${anchor}" fill="${ref.color || '#0f172a'}" font-family="var(--lcars-mono)" font-size="9.5" font-weight="800" style="paint-order: stroke fill; stroke: #ffffff; stroke-width: 3.5px; stroke-linejoin: round;">${ref.label}</text>`;
+          }
+        });
+      }
 
       const coreSegs = hasTimeLabels ? partitionPointsByOffWristGaps(corePoints, offWristGaps, minToX) : (corePoints.length > 0 ? [corePoints] : []);
       const skinSegs = hasTimeLabels ? partitionPointsByOffWristGaps(skinPoints, offWristGaps, minToX) : (skinPoints.length > 0 ? [skinPoints] : []);
@@ -13538,23 +13521,26 @@ function switchTab(tabId) {
         });
       }
 
-      // Circles & Values (with crisp vertical marker + pill when single-point daily manual ECG/BIA scan)
+      // Circles & Values (crisp vertical guide + detailed pill for discrete daily ECG/BIA scans)
       let circlesHtml = "";
       let lastValX = -999;
-      const isSingleCore = (corePoints.length === 1);
+      const isDiscreteCore = (corePoints.length >= 1 && corePoints.length <= 4);
       corePoints.forEach((p, idx) => {
         const showVal = (p.x - lastValX >= 36) || idx === 0 || idx === corePoints.length - 1;
         if (showVal) lastValX = p.x;
         const valY = (p.y < padTop + 18) ? (p.y + 18) : (p.y - 10);
-        const pillText = isSingleCore ? `${p.val}${unit ? ' ' + unit : ''} (${p.label})` : `${p.val}`;
-        const pillW = isSingleCore ? Math.max(76, pillText.length * 6.4) : 32;
+        const pillText = isDiscreteCore ? `${p.val}${unit ? ' ' + unit : ''} (${p.label})` : `${p.val}`;
+        const pillW = isDiscreteCore ? Math.max(78, pillText.length * 6.4) : 32;
+        const tip = (p.meta && p.meta.raw_qt)
+          ? `QTc ${p.val} ms (raw QT ${p.meta.raw_qt} ms • HR ${p.meta.hr || '--'} BPM • ${p.label})`
+          : `Biometric Function Monitor • ${p.val} (${p.label})`;
 
         circlesHtml += `
           <g>
-            ${isSingleCore ? `<line x1="${p.x.toFixed(1)}" y1="${padTop}" x2="${p.x.toFixed(1)}" y2="${(padTop + plotH).toFixed(1)}" stroke="var(--lcars-blue)" stroke-width="1.5" stroke-dasharray="3 2" opacity="0.65"/>` : ''}
-            <circle class="plot-point" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${isSingleCore ? 5.5 : 4}" 
+            ${isDiscreteCore ? `<line x1="${p.x.toFixed(1)}" y1="${padTop}" x2="${p.x.toFixed(1)}" y2="${(padTop + plotH).toFixed(1)}" stroke="var(--lcars-blue)" stroke-width="1.5" stroke-dasharray="3 2" opacity="0.65"/>` : ''}
+            <circle class="plot-point" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${isDiscreteCore ? 5.5 : 4}" 
                     fill="var(--lcars-blue)" stroke="#ffffff" stroke-width="2">
-              <title>Biometric Function Monitor</title>
+              <title>${tip}</title>
             </circle>
             ${showVal ? `
               <rect x="${(p.x - pillW / 2).toFixed(1)}" y="${(valY - 10).toFixed(1)}" width="${pillW.toFixed(1)}" height="14" fill="rgba(255,255,255,0.94)" stroke="#cbd5e1" stroke-width="0.9" rx="3"/>
@@ -13584,6 +13570,7 @@ function switchTab(tabId) {
           <rect x="${padLeft}" y="${padTop}" width="${plotW}" height="${plotH}" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" rx="4"/>
           <line x1="${padLeft}" y1="${padTop + plotH/2}" x2="${padLeft + plotW}" y2="${padTop + plotH/2}" stroke="#f1f5f9" stroke-dasharray="2 2" stroke-width="1"/>
           
+          ${refLinesHtml}
           ${gapRectsHtml}
           ${corePolysHtml}
           ${skinPolysHtml}
@@ -16835,8 +16822,13 @@ function switchTab(tabId) {
       const elQtc = document.getElementById('subValEcgQtc');
       const elQtcSt = document.getElementById('subValEcgQtcStatus');
       if (subEcg && subEcg.core > 0) {
-        if (elQtc) elQtc.innerHTML = `${Math.round(subEcg.core)} <span style="font-size: 0.8rem;">ms</span>`;
-        if (elQtcSt) elQtcSt.textContent = (subEcg.core <= 440) ? `Watch Synced ${subEcg.label} (<440 ms)` : `Elevated QTc (${subEcg.label})`;
+        const dispQtc = Math.round(subEcg.qtc || subEcg.core);
+        const rawQtStr = subEcg.raw_qt ? ` (QT ${Math.round(subEcg.raw_qt)} • HR ${subEcg.hr || '--'})` : '';
+        if (elQtc) elQtc.innerHTML = `${dispQtc} <span style="font-size: 0.8rem;">ms</span>`;
+        if (elQtcSt) elQtcSt.textContent = (dispQtc <= 440) ? `Watch Synced ${subEcg.label}${rawQtStr}` : `Elevated QTc ${subEcg.label}${rawQtStr}`;
+      } else {
+        if (elQtc) elQtc.innerHTML = `0 <span style="font-size: 0.8rem;">ms</span>`;
+        if (elQtcSt) elQtcSt.textContent = `Awaiting Watch ECG Sync`;
       }
       const lfHf = (subEcg && subEcg.skin > 0) ? parseFloat(subEcg.skin) : parseFloat((1.10 + (hr > 80 ? 0.25 : 0.08) - (hrv / 200)).toFixed(2));
       const elLfHf = document.getElementById('subValLfHf');
@@ -17015,11 +17007,12 @@ function switchTab(tabId) {
         });
       }
 
-      // Render Sub-Report 02: ECG Trend Dual Curve (QTc vs 440 ms ceiling & LF/HF)
-      const ecgVals = (ecgData || []).map(d => d.core || d.val || 0).filter(v => v > 0);
-      const ecgMinY = ecgVals.length ? Math.min(360, Math.max(180, Math.floor((Math.min(...ecgVals) - 30) / 10) * 10)) : 360;
+      // Render Sub-Report 02: ECG Trend Dual Curve (QTc vs 440 ms ceiling; LF/HF tracked in KPI)
+      const ecgVals = (ecgData || []).map(d => d.qtc || d.core || d.val || 0).filter(v => v > 0);
+      const ecgMinY = ecgVals.length ? Math.min(340, Math.max(200, Math.floor((Math.min(...ecgVals) - 25) / 10) * 10)) : 340;
+      const ecgMaxY = ecgVals.length ? Math.max(480, Math.ceil((Math.max(...ecgVals) + 20) / 10) * 10) : 480;
       renderSvgDualCurveChart('curveTimelineECG', ecgData, {
-        minY: ecgMinY, maxY: 480, unit: "ms",
+        minY: ecgMinY, maxY: ecgMaxY, unit: "ms", skipSkinPlot: true,
         referenceLines: [
           { val: 440, label: "440 MS QTc CEILING", color: "#e11d48" },
           { val: 412, label: "412 MS NORMAL BASELINE", color: "#15803d" }
