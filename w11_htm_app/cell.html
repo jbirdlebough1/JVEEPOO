@@ -300,10 +300,15 @@
         <div class="sub">PORTABLE INTAKE &amp; FEELING RECORDER &bull; <span id="lblMobileEsn">CELL 1 (ACTIVE)</span></div>
       </div>
     </div>
-    <div id="wifiStatusPill" class="wifi-pill">
+    <div id="wifiStatusPill" class="wifi-pill" onclick="promptEditServerBase()" title="Tap to view or update BFM Server IP" style="cursor: pointer;">
       <span>●</span> <span id="wifiStatusText">CHECKING LINK...</span>
     </div>
   </div>
+
+  <!-- 3-State Daily Medication Button (Light Blue -> Morning -> Green Dinner -> 00:01 Reset) -->
+  <button id="btnCellDailyMed" type="button" class="btn" onclick="cycleCellMedButton()" style="background: #7dd3fc; color: #0c4a6e; border: 2px solid #38bdf8; margin-bottom: 12px;">
+    💊 MEDS: NOT TAKEN YET (TAP FOR MORNING)
+  </button>
 
   <!-- Main Card: Upload & Meal Input -->
   <div class="card">
@@ -606,6 +611,228 @@
   </div>
 
   <script>
+    const _urlParams = new URLSearchParams(window.location.search);
+    const BFM_IS_NATIVE_APP = /BFMCellAndroid/i.test(navigator.userAgent)
+      || window.location.protocol === 'file:'
+      || _urlParams.get('native') === '1'
+      || window.navigator.standalone === true
+      || window.matchMedia('(display-mode: standalone)').matches;
+    const _paramServer = _urlParams.get('server');
+    if (_paramServer && /^https?:\/\//i.test(_paramServer) && !localStorage.getItem('bfm_server_base_manual')) {
+      localStorage.setItem('bfm_server_base', _paramServer.replace(/\/+$/, ''));
+    }
+    function getBfmApiBase() {
+      if (window.location.protocol === 'file:') {
+        return (localStorage.getItem('bfm_server_base') || _paramServer || 'http://192.168.12.207:8899').replace(/\/+$/, '');
+      }
+      return '';
+    }
+    const _origFetch = window.fetch.bind(window);
+    window.fetch = function(input, init) {
+      const base = getBfmApiBase();
+      if (base && typeof input === 'string' && input.startsWith('/')) {
+        return _origFetch(base + input, init);
+      }
+      return _origFetch(input, init);
+    };
+    if (BFM_IS_NATIVE_APP) {
+      const _b = document.getElementById('pwaInstallBanner');
+      if (_b) _b.style.display = 'none';
+    }
+
+    function promptEditServerBase() {
+      const cur = getBfmApiBase() || window.location.origin;
+      const entered = window.prompt("BFM Server URL on Home Wi-Fi:", cur);
+      if (!entered) return;
+      const clean = entered.trim().replace(/\/+$/, '');
+      if (!/^https?:\/\//i.test(clean)) {
+        alert("Server URL must start with http://");
+        return;
+      }
+      localStorage.setItem('bfm_server_base', clean);
+      localStorage.setItem('bfm_server_base_manual', '1');
+      checkHostConnection();
+    }
+
+    let _cellAutoRegistered = false;
+    async function ensureCellRegisteredWithServer() {
+      if (_cellAutoRegistered) return;
+      try {
+        const { esn, cellId } = initMobileDeviceIdentity();
+        const resp = await fetch('/api/shuttle/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            cell_id: cellId,
+            phone_esn: esn,
+            phone_name: 'Android BFM Cell App',
+            auto_register: true
+          })
+        });
+        if (resp.ok) _cellAutoRegistered = true;
+      } catch (e) {
+        console.warn('[MIL-SPEC HANDLED FAULT] auto_register skipped:', e);
+      }
+    }
+
+    function getLocalDateKey(d) {
+      const dt = d || new Date();
+      const y = dt.getFullYear();
+      const m = String(dt.getMonth() + 1).padStart(2, '0');
+      const day = String(dt.getDate()).padStart(2, '0');
+      return `${y}-${m}-${day}`;
+    }
+
+    function formatClockHHMM(d) {
+      const dt = d || new Date();
+      return String(dt.getHours()).padStart(2, '0') + ':' + String(dt.getMinutes()).padStart(2, '0');
+    }
+
+    function loadDailyMedState() {
+      const now = new Date();
+      const today = getLocalDateKey(now);
+      let st = { dateKey: today, state: 0, morningAt: '', dinnerAt: '', synced: true };
+      try {
+        const raw = localStorage.getItem('bfm_cell_daily_med_state');
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (parsed && parsed.dateKey === today) {
+            st = {
+              dateKey: today,
+              state: Number(parsed.state) || 0,
+              morningAt: parsed.morningAt || '',
+              dinnerAt: parsed.dinnerAt || '',
+              synced: parsed.synced !== false
+            };
+          } else if (parsed && parsed.dateKey && parsed.dateKey !== today) {
+            const past0001 = (now.getHours() > 0) || (now.getHours() === 0 && now.getMinutes() >= 1);
+            if (!past0001) {
+              st = {
+                dateKey: parsed.dateKey,
+                state: Number(parsed.state) || 0,
+                morningAt: parsed.morningAt || '',
+                dinnerAt: parsed.dinnerAt || '',
+                synced: parsed.synced !== false
+              };
+            } else {
+              localStorage.setItem('bfm_cell_daily_med_state', JSON.stringify(st));
+            }
+          }
+        }
+      } catch (e) {
+        console.warn('[MIL-SPEC HANDLED FAULT] loadDailyMedState parse error:', e);
+      }
+      return st;
+    }
+
+    function saveDailyMedState(st) {
+      try {
+        localStorage.setItem('bfm_cell_daily_med_state', JSON.stringify(st));
+      } catch (e) {
+        console.warn('[MIL-SPEC HANDLED FAULT] saveDailyMedState error:', e);
+      }
+    }
+
+    function renderDailyMedButton() {
+      const btn = document.getElementById('btnCellDailyMed');
+      if (!btn) return;
+      const st = loadDailyMedState();
+      if (st.state === 0) {
+        btn.style.background = '#7dd3fc';
+        btn.style.color = '#0c4a6e';
+        btn.style.border = '2px solid #38bdf8';
+        btn.textContent = '💊 MEDS: NOT TAKEN YET (TAP FOR MORNING)';
+      } else if (st.state === 1) {
+        btn.style.background = '#0284c7';
+        btn.style.color = '#ffffff';
+        btn.style.border = '2px solid #38bdf8';
+        const t = st.morningAt ? ` (${st.morningAt})` : '';
+        btn.textContent = `💊 MORNING MEDS TAKEN${t} • TAP FOR DINNER`;
+      } else {
+        btn.style.background = '#16a34a';
+        btn.style.color = '#ffffff';
+        btn.style.border = '2px solid #4ade80';
+        const t = st.dinnerAt ? ` (${st.dinnerAt})` : '';
+        btn.textContent = `✅ MORNING & DINNER MEDS TAKEN${t}`;
+      }
+    }
+
+    function checkDailyMedMidnightReset() {
+      const st = loadDailyMedState();
+      const now = new Date();
+      const today = getLocalDateKey(now);
+      const past0001 = (now.getHours() > 0) || (now.getHours() === 0 && now.getMinutes() >= 1);
+      if (past0001 && st.dateKey !== today) {
+        saveDailyMedState({ dateKey: today, state: 0, morningAt: '', dinnerAt: '', synced: true });
+      }
+      renderDailyMedButton();
+    }
+
+    async function syncDailyMedWithServer() {
+      let st = loadDailyMedState();
+      try {
+        if (st.synced === false) {
+          const resp = await fetch('/api/meds/daily_status', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              date_key: st.dateKey,
+              state: st.state,
+              morning_taken_at: st.morningAt,
+              dinner_taken_at: st.dinnerAt,
+              source: 'CELL_APP'
+            })
+          });
+          if (resp.ok) {
+            st.synced = true;
+            saveDailyMedState(st);
+          }
+        } else {
+          const resp = await fetch(`/api/meds/daily_status?date_key=${encodeURIComponent(st.dateKey)}`, { cache: 'no-store' });
+          if (resp.ok) {
+            const srv = await resp.json();
+            const srvState = Number(srv.state || 0);
+            if (srvState > st.state) {
+              st = {
+                dateKey: st.dateKey,
+                state: srvState,
+                morningAt: srv.morning_taken_at || st.morningAt,
+                dinnerAt: srv.dinner_taken_at || st.dinnerAt,
+                synced: true
+              };
+              saveDailyMedState(st);
+              renderDailyMedButton();
+            }
+          }
+        }
+      } catch (e) {
+        console.warn('[MIL-SPEC HANDLED FAULT] syncDailyMedWithServer offline/deferred:', e);
+      }
+    }
+
+    async function cycleCellMedButton() {
+      let st = loadDailyMedState();
+      const now = new Date();
+      const hhmm = formatClockHHMM(now);
+      if (st.state === 0) {
+        st.state = 1;
+        st.morningAt = hhmm;
+        st.synced = false;
+      } else if (st.state === 1) {
+        st.state = 2;
+        st.dinnerAt = hhmm;
+        st.synced = false;
+      } else {
+        alert(`Morning (${st.morningAt || '--'}) & Dinner (${st.dinnerAt || '--'}) meds already marked taken today. Resets at 00:01.`);
+        return;
+      }
+      saveDailyMedState(st);
+      renderDailyMedButton();
+      if (isConnectedToHost) {
+        await syncDailyMedWithServer();
+      }
+    }
+
     let uploadedPhotos = []; // Base64 array
     let currentAnalysis = null;
     let selectedMealType = 'Snack';
@@ -1484,26 +1711,37 @@
     async function checkHostConnection() {
       const pill = document.getElementById('wifiStatusPill');
       const text = document.getElementById('wifiStatusText');
+      const ctrl = new AbortController();
+      const timer = setTimeout(() => ctrl.abort(), 4000);
       try {
-        const resp = await fetch('/api/telemetry/latest', { cache: 'no-store' });
+        const resp = await fetch('/api/telemetry/latest', { cache: 'no-store', signal: ctrl.signal });
+        clearTimeout(timer);
         if (resp.ok) {
           isConnectedToHost = true;
           pill.className = "wifi-pill";
-          text.textContent = "● WI-FI ACTIVE (PC LINKED)";
+          text.textContent = "CONNECTED TO BFM SERVER";
 
-          // If there are staged meals, auto-upload!
+          await ensureCellRegisteredWithServer();
+
+          // Auto-upload any locally queued field meals, feelings, and med adherence
           const queue = getStagedQueue();
           if (queue.length > 0) {
             console.log(`Auto-uploading ${queue.length} staged meals now that PC is reachable...`);
             syncAllStagedMeals();
           }
+          const feelingQueue = getStagedFeelings();
+          if (feelingQueue.length > 0) {
+            syncStagedFeelingsWithServer();
+          }
+          syncDailyMedWithServer();
         } else {
-          throw new Error();
+          throw new Error("HTTP " + resp.status);
         }
       } catch (e) {
+        clearTimeout(timer);
         isConnectedToHost = false;
         pill.className = "wifi-pill offline";
-        text.textContent = "⚡ OFFLINE (STAGING READY)";
+        text.textContent = "FIELD MODE (SAVING LOCALLY)";
       }
     }
 
@@ -1685,14 +1923,16 @@
     initMobileDeviceIdentity();
     initMealTypeByTime();
     renderStagedQueue();
+    renderDailyMedButton();
     checkHostConnection();
     setInterval(checkHostConnection, 5000);
+    setInterval(checkDailyMedMidnightReset, 30000);
 
     // =========================================================================
     // PWA SERVICE WORKER & CELL APP LIST INSTALLATION ENGINE
     // =========================================================================
     let deferredInstallPrompt = null;
-    if ('serviceWorker' in navigator) {
+    if ('serviceWorker' in navigator && window.location.protocol !== 'file:' && !BFM_IS_NATIVE_APP) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('/sw.js').then(reg => {
           console.log('[PWA] BFM Cell Service Worker registered:', reg.scope);
@@ -1704,6 +1944,11 @@
 
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
+      if (BFM_IS_NATIVE_APP) {
+        const b = document.getElementById('pwaInstallBanner');
+        if (b) b.style.display = 'none';
+        return;
+      }
       const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
       if (!isMobile) return;
       deferredInstallPrompt = e;
@@ -1712,6 +1957,15 @@
     });
 
     async function triggerPwaInstall() {
+      if (BFM_IS_NATIVE_APP) {
+        const banner = document.getElementById('pwaInstallBanner');
+        if (banner) banner.style.display = 'none';
+        return;
+      }
+      if (/Android/i.test(navigator.userAgent)) {
+        window.location.href = '/download/BFM-Cell.apk';
+        return;
+      }
       if (deferredInstallPrompt) {
         deferredInstallPrompt.prompt();
         const { outcome } = await deferredInstallPrompt.userChoice;
@@ -1722,16 +1976,20 @@
         }
         deferredInstallPrompt = null;
       } else {
-        alert("To install BFM Cell to your Phone App List:\n\n• Android Chrome: Tap browser menu (⋮) -> 'Install app' or 'Add to Home screen'\n• iPhone Safari: Tap Share (⎋) -> 'Add to Home Screen' (➕)");
+        alert("To install BFM Cell on iPhone Safari: Tap Share (⎋) -> 'Add to Home Screen'. On Android, open /install/cell to download BFM-Cell.apk.");
       }
     }
     window.triggerPwaInstall = triggerPwaInstall;
 
     window.addEventListener('DOMContentLoaded', () => {
-      const isStandalone = window.navigator.standalone === true || window.matchMedia('(display-mode: standalone)').matches;
-      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
       const banner = document.getElementById('pwaInstallBanner');
-      if (banner && !isStandalone && isMobile) {
+      if (!banner) return;
+      if (BFM_IS_NATIVE_APP) {
+        banner.style.display = 'none';
+        return;
+      }
+      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      if (isMobile) {
         banner.style.display = 'flex';
       }
     });

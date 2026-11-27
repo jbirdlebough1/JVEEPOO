@@ -317206,3 +317206,916 @@ atch Sensor Telemetry Broadcast
 [22:31:52] [RX] RX [0000fea1]: 01 90 03 00 | Watch Heartbeat & Bluetooth Link Ping
 [22:31:53] [RX] RX [0000fea1]: 01 90 03 00 | Watch Heartbeat & Bluetooth Link Ping
 [22:31:59] [SYS] Watch link severed (screen asleep or out of range). Reconnecting in background... | Watch Standby / Out of Range
+[22:37:47] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[22:37:47] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[22:52:47] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[22:52:47] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[23:07:47] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[23:07:47] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[23:22:47] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[23:22:47] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[23:37:47] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[23:37:47] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[23:52:47] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[23:52:47] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[00:07:47] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[00:07:47] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[00:22:47] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[00:22:47] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[00:37:47] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[00:37:47] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[00:52:47] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[00:52:47] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[01:07:47] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[01:07:47] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[01:22:47] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[01:22:47] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[01:37:47] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[01:37:47] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[01:52:47] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[01:52:47] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[02:07:47] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[02:07:47] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[02:22:47] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[02:22:47] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[02:37:47] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[02:37:47] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[02:52:47] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[02:52:47] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[03:07:47] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[03:07:47] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[03:22:47] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[03:22:47] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[03:37:47] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[03:37:47] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[03:52:47] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[03:52:47] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[04:07:47] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[04:07:47] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[04:22:47] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[04:22:47] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[04:37:47] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[04:37:47] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[04:52:47] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[04:52:47] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[05:07:47] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[05:07:47] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[05:22:47] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[05:22:47] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[05:37:47] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[05:37:47] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[05:52:47] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[05:52:47] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[06:07:47] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[06:07:47] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[06:22:47] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[06:22:47] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[06:37:47] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[06:37:47] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[06:52:48] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[06:52:48] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[07:07:48] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[07:07:48] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[07:22:48] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[07:22:48] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[07:37:48] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[07:37:48] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[07:52:48] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[07:52:48] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[08:07:48] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[08:07:48] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[08:22:48] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[08:22:48] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[08:37:48] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[08:37:48] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[08:52:48] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[08:52:48] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[09:05:51] [RX] [+] Watch link automatically restored (Attempt 2413)! | Watch Link Automatically Restored
+[09:05:58] [RX] [★] UI Control Channel Bound: f0030002 | Watch Sensor Telemetry Broadcast
+[09:05:58] [RX] [★] UI Binary Data Channel Bound: f0030003 | Watch Sensor Telemetry Broadcast
+[09:05:59] [RX] RX [0000fea1]: 01 39 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:05:59] [TX] [*] Transmitting 0xA1 Authentication & Time Handshake... | Host-Watch Chronometer Synchronization
+[09:05:59] [TX] [*] Synchronized watch daily step goal to 8,000 steps (Opcode 0xA3). | Host Command Transmission to Watch
+[09:06:00] [RX] RX [0000fea1]: 01 39 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:06:00] [TX] [*] Synchronizing real watch pedometer & active calories (0xA8 / 0x07)... | Host Command Transmission to Watch
+[09:06:00] [TX] [*] Transmitting Opcode 0xE0 to read 24h Sleep & Nap Architecture (Day 0)... | Host Command Transmission to Watch
+[09:06:00] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:06:00] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:06:00] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:06:10] [SYS] Watch link severed (screen asleep or out of range). Reconnecting in background... | Watch Standby / Out of Range
+[09:06:12] [RX] [+] Watch link automatically restored (Attempt 1)! | Watch Link Automatically Restored
+[09:06:18] [RX] [★] UI Control Channel Bound: f0030002 | Watch Sensor Telemetry Broadcast
+[09:06:18] [RX] [★] UI Binary Data Channel Bound: f0030003 | Watch Sensor Telemetry Broadcast
+[09:06:19] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:06:19] [TX] [*] Transmitting 0xA1 Authentication & Time Handshake... | Host-Watch Chronometer Synchronization
+[09:06:19] [TX] [*] Synchronized watch daily step goal to 8,000 steps (Opcode 0xA3). | Host Command Transmission to Watch
+[09:06:20] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:06:20] [TX] [*] Synchronizing real watch pedometer & active calories (0xA8 / 0x07)... | Host Command Transmission to Watch
+[09:06:20] [TX] [*] Transmitting Opcode 0xE0 to read 24h Sleep & Nap Architecture (Day 0)... | Host Command Transmission to Watch
+[09:06:21] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:06:22] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:06:23] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:06:24] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:06:24] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:06:24] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:06:25] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:06:25] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:06:26] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:06:27] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:06:28] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:06:29] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:06:30] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:06:31] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:06:32] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:06:33] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:06:34] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:06:35] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:06:36] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:06:36] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:06:36] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:06:37] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:06:37] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:06:38] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:06:39] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:06:40] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:06:41] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:06:42] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:06:43] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:06:44] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:06:45] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:06:46] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:06:47] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:06:48] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:06:48] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:06:48] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:06:48] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:06:49] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:06:50] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:06:51] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:06:52] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:06:53] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:06:54] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:06:55] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:06:56] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:06:57] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:06:58] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:06:59] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:00] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:07:00] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:07:00] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:00] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:07:01] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:02] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:03] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:04] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:05] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:06] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:07] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:08] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:09] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:10] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:11] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:12] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:07:12] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:07:12] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:07:12] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:13] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:14] [RX] RX [f0080002]: bd 03 01 00 02 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:07:14] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:15] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:16] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:17] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:18] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:20] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:20] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:21] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:22] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:24] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:24] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:07:24] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:07:24] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:07:24] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:25] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:26] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:27] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:28] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:29] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:31] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:31] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:33] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:33] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:34] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:35] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:36] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:07:36] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:07:36] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:07:36] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:37] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:38] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:39] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:40] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:41] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:42] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:43] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:44] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:46] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:46] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:48] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:48] [SYS] [★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection... | LCARS System Telemetry Event
+[09:07:48] [SYS] [*] Watch disconnected. Standing by for next 15-min interval. | LCARS System Telemetry Event
+[09:07:48] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:07:48] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:07:48] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:07:49] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:50] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:51] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:52] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:53] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:54] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:55] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:56] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:57] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:58] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:07:59] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:00] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:01] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:08:01] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:08:01] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:08:01] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:02] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:03] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:04] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:05] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:06] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:07] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:08] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:09] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:10] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:11] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:12] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:12] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:08:12] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:08:13] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:13] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:08:14] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:15] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:16] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:17] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:18] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:19] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:20] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:21] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:22] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:23] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:24] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:24] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:08:24] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:08:24] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:08:25] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:26] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:27] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:28] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:29] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:30] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:31] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:32] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:33] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:34] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:35] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:36] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:08:36] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:08:36] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:08:36] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:37] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:38] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:39] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:40] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:41] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:42] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:43] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:44] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:45] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:46] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:48] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:48] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:08:48] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:08:48] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:08:49] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:49] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:50] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:52] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:52] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:53] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:55] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:56] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:56] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:57] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:08:58] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:00] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:00] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:09:00] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:09:00] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:09:01] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:02] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:03] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:04] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:05] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:06] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:07] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:08] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:09] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:10] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:11] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:12] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:12] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:09:12] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:09:12] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:09:13] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:14] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:15] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:16] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:17] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:18] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:19] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:20] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:21] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:22] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:23] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:24] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:24] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:09:24] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:09:24] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:09:25] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:26] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:27] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:28] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:29] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:30] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:31] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:32] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:33] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:34] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:35] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:36] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:09:36] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:09:36] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:09:36] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:37] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:38] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:39] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:40] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:41] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:42] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:43] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:44] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:45] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:46] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:47] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:48] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:09:48] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:09:48] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:09:48] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:49] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:50] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:51] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:52] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:53] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:54] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:55] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:56] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:57] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:58] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:09:59] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:00] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:10:00] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:10:00] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:10:00] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:01] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:02] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:03] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:05] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:06] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:07] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:08] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:09] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:10] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:11] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:12] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:12] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:10:12] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:10:12] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:10:13] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:14] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:15] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:16] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:17] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:18] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:19] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:20] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:21] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:22] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:23] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:24] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:24] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:10:24] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:10:24] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:10:25] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:26] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:27] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:28] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:29] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:30] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:31] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:32] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:33] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:34] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:35] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:36] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:10:36] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:10:36] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:36] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:10:37] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:38] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:39] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:40] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:41] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:42] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:43] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:44] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:45] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:46] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:47] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:48] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:10:48] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:10:48] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:48] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:10:49] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:50] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:51] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:52] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:53] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:54] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:55] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:56] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:57] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:58] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:10:59] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:00] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:11:00] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:11:00] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:00] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:11:01] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:02] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:03] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:04] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:05] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:06] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:07] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:08] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:09] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:10] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:11] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:12] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:12] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:11:12] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:11:13] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:13] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:11:14] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:15] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:16] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:17] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:18] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:19] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:20] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:21] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:23] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:24] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:25] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:25] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:11:25] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:11:25] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:11:26] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:27] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:28] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:29] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:30] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:31] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:32] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:33] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:34] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:35] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:36] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:37] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:11:37] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:11:37] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:38] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:11:38] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:39] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:40] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:41] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:42] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:43] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:44] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:45] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:46] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:47] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:48] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:49] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:11:49] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:11:49] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:50] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:50] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:11:51] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:52] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:53] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:54] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:55] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:56] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:57] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:58] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:11:59] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:00] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:01] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:01] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:12:01] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:12:02] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:12:02] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:03] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:04] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:05] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:06] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:07] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:08] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:09] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:10] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:11] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:12] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:13] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:12:13] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:12:13] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:14] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:12:14] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:15] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:16] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:17] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:18] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:19] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:20] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:21] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:22] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:23] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:24] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:25] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:12:25] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:12:25] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:25] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:12:26] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:27] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:28] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:29] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:30] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:31] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:32] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:33] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:34] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:35] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:36] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:36] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:12:36] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:12:37] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:37] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:12:38] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:39] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:40] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:41] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:42] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:43] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:44] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:45] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:46] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:48] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:49] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:49] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:12:49] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:12:49] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:12:50] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:51] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:52] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:53] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:54] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:55] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:56] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:57] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:58] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:12:59] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:00] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:01] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:01] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:13:01] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:13:02] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:02] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:13:03] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:04] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:05] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:06] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:07] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:08] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:09] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:10] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:11] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:12] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:13] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:13] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:13:13] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:13:14] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:13:14] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:15] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:16] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:17] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:18] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:19] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:20] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:21] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:22] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:23] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:24] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:25] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:25] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:13:25] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:13:26] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:13:26] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:27] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:28] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:29] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:30] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:31] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:32] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:33] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:34] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:35] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:36] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:36] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:13:36] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:13:37] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:38] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:13:38] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:39] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:40] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:41] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:42] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:43] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:44] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:46] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:46] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:47] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:49] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:49] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:13:49] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:13:49] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:49] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:13:51] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:51] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:53] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:53] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:55] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:55] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:57] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:57] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:59] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:13:59] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:01] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:01] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:14:01] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:14:01] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:14:02] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:02] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:04] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:04] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:06] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:06] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:07] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:08] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:10] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:11] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:12] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:13] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:13] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:14:13] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:14:13] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:14:14] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:15] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:16] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:17] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:18] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:19] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:20] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:21] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:22] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:23] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:24] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:24] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:14:24] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:14:25] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:25] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:14:26] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:27] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:28] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:29] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:30] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:31] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:32] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:33] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:34] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:35] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:36] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:37] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:14:37] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:14:37] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:38] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:14:38] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:39] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:40] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:41] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:42] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:43] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:44] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:45] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:46] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:47] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:48] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:49] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:14:49] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:14:49] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:50] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:14:50] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:51] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:52] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:53] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:54] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:55] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:56] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:57] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:58] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:14:59] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:15:00] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:15:01] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:15:01] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:15:01] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:15:02] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:15:02] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:15:03] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:15:04] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:15:05] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:15:06] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:15:07] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:15:08] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:15:09] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:15:10] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:15:11] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:15:12] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:15:13] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:15:13] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:15:13] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:15:14] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:15:14] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:15:15] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:15:17] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:15:17] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:15:19] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:15:19] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:15:21] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:15:21] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:15:22] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:15:23] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:15:24] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:15:24] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:15:24] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:15:26] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:15:26] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:15:26] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:15:28] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:15:28] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:15:30] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:15:30] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:15:32] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:15:32] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:15:34] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:15:35] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:15:36] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:00] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:00] [TX] [*] Synchronizing real watch pedometer & active calories (0xA8 / 0x07)... | Host Command Transmission to Watch
+[09:16:00] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:16:00] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:16:01] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:02] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:02] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:16:03] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:04] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:05] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:06] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:07] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:08] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:09] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:10] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:11] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:12] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:13] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:16:13] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:16:13] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:14] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:16:14] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:15] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:16] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:17] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:18] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:19] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:20] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:21] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:22] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:23] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:24] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:25] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:16:25] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:16:25] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:26] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:16:26] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:27] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:28] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:29] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:30] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:31] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:32] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:33] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:34] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:35] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:36] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:37] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:16:37] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:16:37] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:38] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:16:38] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:39] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:40] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:41] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:42] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:43] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:44] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:45] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:46] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:47] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:48] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:49] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:16:49] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:16:49] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:49] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:16:50] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:51] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:52] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:53] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:54] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:55] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:57] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:57] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:59] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:16:59] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:17:01] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:17:01] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:17:01] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:17:01] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:17:02] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:17:02] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:17:03] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:17:05] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:17:06] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:17:07] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:17:08] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:17:09] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:17:10] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:17:11] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:17:12] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:17:13] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:17:13] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:17:13] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:17:14] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:17:14] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:17:15] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:17:16] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:17:17] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:17:18] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:17:19] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:17:20] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:17:21] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:17:22] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:17:23] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:17:24] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:17:25] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:17:25] [RX] [🔋 BATTERY] Smartwatch battery status: 100% | Watch Sensor Telemetry Broadcast
+[09:17:25] [RX] RX [f0080002]: a0 00 00 00 64 01 64 01 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Power Status • 100% Battery
+[09:17:26] [RX] RX [f0080002]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 | Watch Sensor Telemetry Broadcast
+[09:17:26] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:17:27] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:17:28] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:17:29] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:17:30] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:17:31] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping
+[09:17:32] [RX] RX [0000fea1]: 01 4a 00 00 | Watch Heartbeat & Bluetooth Link Ping

@@ -303,6 +303,16 @@ def init_database():
                 notes TEXT
             )
         """)
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS daily_med_adherence (
+                date_key TEXT PRIMARY KEY,
+                state INTEGER DEFAULT 0,
+                morning_taken_at TEXT DEFAULT '',
+                dinner_taken_at TEXT DEFAULT '',
+                source TEXT DEFAULT 'BFM_DESKTOP',
+                updated_at TEXT NOT NULL
+            )
+        """)
 
         # Seed initial state if empty
         cur.execute("SELECT value FROM sync_state WHERE key = 'last_sync_timestamp'")
@@ -5080,7 +5090,7 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                 import qrcode.image.svg
                 import io
                 ip = get_local_wifi_ip()
-                url = f"http://{ip}:{PORT}/cell.html"
+                url = f"http://{ip}:{PORT}/install/cell"
                 factory = qrcode.image.svg.SvgPathImage
                 img = qrcode.make(url, image_factory=factory)
                 buf = io.BytesIO()
@@ -5175,8 +5185,78 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                 self.send_json_response({"entries": entries, "count": len(entries)})
                 return
 
+        # 0. Android APK Direct Download Route
+        if self.path.split("?")[0] in ["/download/BFM-Cell.apk", "/download/bfm-cell.apk", "/bfm-cell.apk"]:
+            apk_path = os.path.join(BASE_DIR, "BFM-Cell.apk")
+            if not os.path.exists(apk_path):
+                self.send_json_response({"error": "BFM-Cell.apk not built yet"}, 404)
+                return
+            with open(apk_path, "rb") as f:
+                data = f.read()
+            self.send_response(200)
+            self.send_header("Content-Type", "application/vnd.android.package-archive")
+            self.send_header("Content-Disposition", 'attachment; filename="BFM-Cell.apk"')
+            self.send_header("Content-Length", str(len(data)))
+            self.send_header("Cache-Control", "no-store")
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.end_headers()
+            self.wfile.write(data)
+            return
+
+        # 0. Mobile QR Landing / Auto-Download Installer Page
+        if self.path.split("?")[0] in ["/install/cell", "/install/cell/"]:
+            ip = get_local_wifi_ip()
+            install_html = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Install BFM Cell Android App</title>
+  <style>
+    body {{ margin:0; padding:20px; background:#091428; color:#f8fafc; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; text-align:center; }}
+    .card {{ max-width:440px; margin:16px auto; background:#ffffff; color:#0f172a; border:2px solid #38bdf8; border-radius:14px; padding:22px 18px; box-shadow:0 8px 24px rgba(0,0,0,0.35); }}
+    .icon {{ width:92px; height:92px; border-radius:20px; border:3px solid #38bdf8; margin-bottom:12px; }}
+    h1 {{ font-size:1.25rem; color:#0284c7; margin:0 0 6px; font-weight:900; }}
+    .sub {{ font-size:0.84rem; color:#475569; margin-bottom:16px; line-height:1.4; }}
+    .dl-btn {{ display:block; width:100%; box-sizing:border-box; padding:14px 16px; background:#16a34a; color:#ffffff; text-decoration:none; font-weight:900; font-size:1rem; border-radius:10px; margin-bottom:14px; }}
+    .steps {{ text-align:left; background:#f0f9ff; border:1.5px solid #bae6fd; border-radius:8px; padding:12px 14px; font-size:0.84rem; color:#0c4a6e; line-height:1.55; }}
+    .note {{ margin-top:12px; font-size:0.74rem; color:#64748b; font-family:monospace; }}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img class="icon" src="/icon-192.png" alt="BFM Cell Icon">
+    <h1>BFM Cell Android App</h1>
+    <div class="sub">Portable Intake, Feelings &amp; Daily Meds Companion<br>(Home Wi-Fi Server: <strong>{ip}:{PORT}</strong> &bull; No Watch BLE Required)</div>
+    <a id="dlLink" class="dl-btn" href="/download/BFM-Cell.apk">⬇️ DOWNLOAD BFM-Cell.apk</a>
+    <div class="steps">
+      <strong>3-Step Android Install:</strong><br>
+      1. Wait 1 second for <code>BFM-Cell.apk</code> to download into your <strong>Downloads</strong> folder (or tap the green button above).<br>
+      2. Tap <strong>Open</strong> &rarr; <strong>Install</strong> &rarr; <strong>Open</strong>.<br>
+      3. Close Chrome. Always open <strong>BFM Cell</strong> from its phone icon from now on.
+    </div>
+    <div class="note">Standalone APK &bull; Offline Field Queue &bull; Auto Home Wi-Fi Sync</div>
+  </div>
+  <script>
+    setTimeout(function() {{
+      var a = document.getElementById('dlLink');
+      if (a) a.click();
+    }}, 350);
+  </script>
+</body>
+</html>"""
+            data = install_html.encode("utf-8")
+            self.send_response(200)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("Content-Length", str(len(data)))
+            self.send_header("Cache-Control", "no-store")
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.end_headers()
+            self.wfile.write(data)
+            return
+
         # 0. Mobile Food Intake Route (CLE-078)
-        if self.path in ["/cell", "/cell/", "/cell.html"]:
+        if self.path.split("?")[0] in ["/cell", "/cell/", "/cell.html"]:
             cell_file = os.path.join(BASE_DIR, "cell.html")
             if os.path.exists(cell_file):
                 with open(cell_file, "rb") as f:
@@ -5248,6 +5328,39 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                         "baseline_a1c": r[11]
                     })
             self.send_json_response({"status": "OK", "roster": roster})
+            return
+
+        if self.path.startswith("/api/meds/daily_status"):
+            from urllib.parse import urlparse, parse_qs
+            qs = parse_qs(urlparse(self.path).query)
+            date_key = (qs.get("date_key") or [datetime.datetime.now().strftime("%Y-%m-%d")])[0]
+            with db_lock:
+                conn = sqlite3.connect(DB_PATH)
+                cur = conn.cursor()
+                cur.execute(
+                    "SELECT state, morning_taken_at, dinner_taken_at, source, updated_at FROM daily_med_adherence WHERE date_key = ?",
+                    (date_key,),
+                )
+                row = cur.fetchone()
+                conn.close()
+            if row:
+                self.send_json_response({
+                    "date_key": date_key,
+                    "state": int(row[0] or 0),
+                    "morning_taken_at": row[1] or "",
+                    "dinner_taken_at": row[2] or "",
+                    "source": row[3] or "",
+                    "updated_at": row[4] or "",
+                })
+            else:
+                self.send_json_response({
+                    "date_key": date_key,
+                    "state": 0,
+                    "morning_taken_at": "",
+                    "dinner_taken_at": "",
+                    "source": "",
+                    "updated_at": "",
+                })
             return
 
         # Startup Legal Acceptance Status
@@ -6103,6 +6216,39 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                         cur.execute("SELECT cell_id, user_uid, user_callsign, registry_number FROM registered_cells WHERE cell_id = ?", (cell_id,))
                     row = cur.fetchone()
                     if not row:
+                        if payload.get("auto_register") is True:
+                            matched_cell_id = cell_id or "Cell 1"
+                            mac_placeholder = f"CELL-WIFI-{uuid.uuid4().hex[:8].upper()}"
+                            cur.execute(
+                                "SELECT user_uid, user_callsign FROM user_profiles ORDER BY user_uid LIMIT 1"
+                            )
+                            prof = cur.fetchone()
+                            user_uid = prof[0] if prof else "USR-JOHN-01"
+                            callsign = prof[1] if prof else "John"
+                            reg_num = "BFM-5010-01"
+                            cur.execute("""
+                                INSERT OR REPLACE INTO registered_cells (
+                                    cell_id, registry_number, user_uid, user_callsign,
+                                    linked_watch_mac, phone_name, phone_esn, pairing_token,
+                                    registered_at, last_docked_at, status
+                                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'ACTIVE')
+                            """, (
+                                matched_cell_id, reg_num, user_uid, callsign,
+                                mac_placeholder, phone_name, phone_esn, "AUTO-APK",
+                                now_iso, now_iso,
+                            ))
+                            conn.commit()
+                            conn.close()
+                            self.send_json_response({
+                                "status": "REGISTERED",
+                                "cell_id": matched_cell_id,
+                                "user_uid": user_uid,
+                                "user_callsign": callsign,
+                                "registry_number": reg_num,
+                                "phone_esn": phone_esn,
+                                "registered_at": now_iso,
+                            })
+                            return
                         conn.close()
                         self.send_json_response({"status": "ERROR", "error": "Invalid pairing token or cell ID"}, 404)
                         return
@@ -6124,6 +6270,54 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                     "registry_number": reg_num,
                     "phone_esn": phone_esn,
                     "registered_at": now_iso
+                })
+            except Exception as e:
+                self.send_json_response({"status": "ERROR", "error": str(e)}, 400)
+
+        # Daily 3-State Med Adherence Sync (/cell <-> BFM Desktop)
+        elif self.path == "/api/meds/daily_status":
+            content_length = int(self.headers.get("Content-Length", 0))
+            body = self.rfile.read(content_length).decode("utf-8", errors="ignore")
+            try:
+                payload = json.loads(body) if body else {}
+                date_key = str(payload.get("date_key") or datetime.datetime.now().strftime("%Y-%m-%d"))
+                state = int(payload.get("state", 0))
+                morning_at = str(payload.get("morning_taken_at") or "")
+                dinner_at = str(payload.get("dinner_taken_at") or "")
+                source = str(payload.get("source") or "CELL_APP")
+                now_iso = datetime.datetime.now().isoformat()
+                with db_lock:
+                    conn = sqlite3.connect(DB_PATH)
+                    cur = conn.cursor()
+                    cur.execute(
+                        "SELECT morning_taken_at, dinner_taken_at FROM daily_med_adherence WHERE date_key = ?",
+                        (date_key,),
+                    )
+                    existing = cur.fetchone()
+                    if existing:
+                        if not morning_at and existing[0]:
+                            morning_at = existing[0]
+                        if not dinner_at and existing[1]:
+                            dinner_at = existing[1]
+                    cur.execute("""
+                        INSERT INTO daily_med_adherence (date_key, state, morning_taken_at, dinner_taken_at, source, updated_at)
+                        VALUES (?, ?, ?, ?, ?, ?)
+                        ON CONFLICT(date_key) DO UPDATE SET
+                            state = excluded.state,
+                            morning_taken_at = excluded.morning_taken_at,
+                            dinner_taken_at = excluded.dinner_taken_at,
+                            source = excluded.source,
+                            updated_at = excluded.updated_at
+                    """, (date_key, state, morning_at, dinner_at, source, now_iso))
+                    conn.commit()
+                    conn.close()
+                self.send_json_response({
+                    "status": "OK",
+                    "date_key": date_key,
+                    "state": state,
+                    "morning_taken_at": morning_at,
+                    "dinner_taken_at": dinner_at,
+                    "source": source,
                 })
             except Exception as e:
                 self.send_json_response({"status": "ERROR", "error": str(e)}, 400)

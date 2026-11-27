@@ -3374,5 +3374,21 @@
     "created_at": "2026-11-26 22:19:56",
     "updated_at": "2026-11-26 22:19:56",
     "resolved_at": "2026-11-26 22:19:56"
+  },
+  {
+    "project_name": "JVEEPOO",
+    "bug_number": 125,
+    "bug_code": "CLE-125",
+    "build_number": "beta.00.01.0068",
+    "title": "[beta.00.01.0068] beta.00.01.0068: build & sign standalone Android BFM-Cell.apk with QR auto-install, native Wi-Fi/field auto-sync, zero install banner, and 3",
+    "status": "RESOLVED",
+    "component": "BFM Clinical Console",
+    "affected_files": "BFM.HTM, Beta/docs/BETA_BACKLOG_TODO.md, Beta/docs/GOOGLE_LEADERSHIP_PRIMER.md, Beta/docs/walkthrough_beta_00_01_0068.md, docs/BETA_BACKLOG_TODO.md, docs/GOOGLE_LEADERSHIP_PRIMER.md, docs/walkthrough_beta_00_01_0068.md, index.html",
+    "bug_loc": 0,
+    "resolution": "Git commit 857a9d1 (2026-11-27 09:16:48): beta.00.01.0068: build & sign standalone Android BFM-Cell.apk with QR auto-install, native Wi-Fi/field auto-sync, zero install banner, and 3-state daily Med toggle",
+    "comments": "Synced from git tag beta.00.01.0068",
+    "created_at": "2026-11-27 09:16:48",
+    "updated_at": "2026-11-27 09:16:48",
+    "resolved_at": "2026-11-27 09:16:48"
   }
 ]

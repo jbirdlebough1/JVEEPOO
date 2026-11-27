@@ -19016,6 +19016,13 @@ Patient`;
       renderMedicationView();
       logLCARS(`[✓ INTAKE 1 CONFIRMED] All ${count} morning medications taken at ${timeStr}. Adherence recorded.`, "rx");
       if (typeof showToast === 'function') showToast(`✓ All ${count} morning medications marked as taken!`);
+      const _hhmm1 = `${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
+      const _dkey1 = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+      fetch('/api/meds/daily_status', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ date_key: _dkey1, state: 1, morning_taken_at: _hhmm1, source: 'BFM_DESKTOP' })
+      }).catch(e => console.warn('[MIL-SPEC HANDLED FAULT] sync morning med failed:', e));
     }
 
     function takeDinnerMeds() {
@@ -19034,6 +19041,13 @@ Patient`;
       renderMedicationView();
       logLCARS(`[✓ INTAKE 2 CONFIRMED] Dinner medication (Metformin split) taken at ${timeStr}. Adherence recorded.`, "rx");
       if (typeof showToast === 'function') showToast(`✓ Dinner medication marked as taken!`);
+      const _hhmm2 = `${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
+      const _dkey2 = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+      fetch('/api/meds/daily_status', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ date_key: _dkey2, state: 2, dinner_taken_at: _hhmm2, source: 'BFM_DESKTOP' })
+      }).catch(e => console.warn('[MIL-SPEC HANDLED FAULT] sync dinner med failed:', e));
     }
 
     function openEditMedModal(medId) {
@@ -26725,9 +26739,9 @@ You logged: Entire Box (3.5 Servings / 99g)
           </div>
         </div>
         <div style="font-size: 0.78rem; color: #cbd5e1; line-height: 1.45;">
-          1. Open <strong>Google Lens</strong> or <strong>Camera</strong> on your phone.<br>
-          2. Scan QR code to launch <strong>BFM Cell Field Data Collector</strong>.<br>
-          3. Tap <strong>'Add to Home Screen'</strong> to launch with the <strong>🩺 BFM</strong> icon.
+          1. Open <strong>Google Lens</strong> or <strong>Camera</strong> on your Android phone.<br>
+          2. Scan QR code to download <strong>BFM-Cell.apk</strong> into <strong>Downloads</strong>.<br>
+          3. Tap <strong>Open &rarr; Install &rarr; Open</strong>, then launch from the <strong>BFM Cell</strong> icon.
         </div>
       </div>
 
