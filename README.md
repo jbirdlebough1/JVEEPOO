@@ -10,16 +10,23 @@ The **BFM Biometric Function Monitor** (`JVEEPOO`) is an independent, open-sourc
 
 ---
 
-## Author's Dedication: Why This Platform Exists
+## Author's Dedication: Why This Platform Exists (Beta)
 
-> *"That Others May Survive Successfully Diabetes"*
+> *"That Others May Survive Type II Diabetes"* — through watch, cell, and PC data collection and analysis.
 
-Conceived and architected out of personal necessity by **The Author** while managing Type 2 Diabetes, **BFM Biometric Function Monitor** gives everyday individuals and their care teams objective, high-resolution, single-screen correlation across nutrition, physical activity, medications, and wearable physiology:
+Conceived and architected out of personal necessity by **The Author** while managing Type 2 Diabetes, **BFM Biometric Function Monitor** (currently in **Beta**) gives everyday individuals and their care teams objective, high-resolution, single-screen correlation across nutrition, physical activity, medications, and wearable physiology:
 
 - **Diabetic Pharmacist**: Daily adherence tracking (`Morning Intake 1` / `Dinner Intake 2`) and medication titration context.
 - **Primary Care Physician (PCP)**: Longitudinal ambulatory review and permanent **Epic FHIR R4** + **SQLite** clinical exports.
 - **Endocrinologist**: Postprandial glycemic curves, `ADAG` estimated `eA1C` (`(Glucose + 46.7) / 28.7`), Lead-I `QTc` ECG, and BIA skeletal-muscle glucose sink trends.
 - **Diet & Lifestyle Coach**: Pre-choice meal planning with `<= 45g` net-carb ceiling verification and post-meal `GLUT4` walking clearance prescriptions.
+
+### Volunteer Call, Sponsorship & Clinical Impact
+- **Volunteers Needed**: The Author is seeking volunteer **medical professionals who have Type 2 Diabetes** and **medical application programmers who have Type 2 Diabetes** to test, review, and help advance this Beta platform.
+- **Sponsorship & 8-Day Gemini Pro Build Showcase**: We are seeking sponsorship from **Veepoo / FITAOS**, other similar PPG watch vendors, and **Google Gemini**. This entire Beta solution was designed and built to Beta in **8 working days using Gemini Pro** — serving as a showcase for Google that validates the AI development process (complete `.jsonl` session logs are included directly in this source tree) and proves to industry and consumers that AI can be used to meaningfully improve human health.
+- **For Doctors & Specialists**: Solves the blind spot of 90-day point-in-time lab samples by capturing **288 automated samples per day** across **multi-year** longitudinal timelines, enabling significantly more detailed discovery of real-world events impacting the patient.
+- **Community Feedback & Continuous Improvement**: We welcome all comments and clinical/engineering reviews. If you find something incorrect, please send us a solution — the goal of **BFM** is continuous improvement driven by real-world field-use data.
+- **Hardware Testing Note**: We currently only have the **Model 5010 Veepoo / FITAOS** watch available for hardware verification. Current-generation Veepoo watches will connect, and must include the required **PPG sensors** to fully utilize BFM.
 
 ---
 
@@ -55,12 +62,11 @@ Operates identically via local server (`http://127.0.0.1:8899/`) and standalone 
 - **`04-REPORTS`**: Animated **13-Channel 3D Multi-Channel Fly-Through**, Goals Compliance Scorecard, **13-Lane Synchronized 24h–365d Scrubber Timeline**, and **6 Watch Biometric Sub-Reports** (Metabolism/GLUT4, Lead-I ECG/Bazett `QTc`, `MET` Load, Optical Blood Composition/Lipids, Body Composition/BIA, and Breath/Nocturnal AHI).
 - **`05-LEARNING` through `14-TROUBLESHOOTING`**: Clinical physiology education, sensor calibration, ADA clinical goals, Daily Medication adherence registry, Multi-Cell Configuration (`10-CONFIG`), Watch Dial Transfer (`11-WATCH`), Live Data Log, **Epic FHIR R4 + SQLite + SHA-256 Dual USB/SD Export** (`13-EXPORT`), and hardware diagnostics.
 
-### 2. Pure Zero-Data Reality & Heritage Engineering
+### 2. Pure Zero-Data Reality (Beta)
 - **Zero Synthetic Placeholders (`Zero Is Zero`)**: Unsynced watch streams strictly display `0`; empty meal/medication tables display explicit empty banners; unknown restaurant items output `0` macros rather than fabricated guesses.
-- **Clinical & Human-Factors Pedigree**: Merges real-time emergency telemetry engineering heritage (**Physio-Control LIFEPAK**) with modern **Scott Chambliss 21:1 high-contrast white/cobalt Sickbay legibility** (`#ffffff` cards, `#091428` typography, crisp semantic triage colors).
 
 ### 3. `BFM Remote` Standalone Android App (`w11_htm_app/BFM-Cell.apk` `v0.1.74`)
-- **Zero-Account Casual-User Ready**: Works immediately over cellular data or Wi-Fi with **zero Google Gemini account or API key required**, powered by official **U.S. Gov USDA FoodData Central (`DEMO_KEY`) + OpenStreetMap Nominatim geo-location**. Power users can optionally add a Google Gemini key once in `10-CONFIG` (Section 11B) to auto-sync live Google Search grounding to connected household phones over Home LAN.
+- **Zero-Account Casual-User Ready**: Works immediately over cellular data or Wi-Fi with **zero Google Gemini account or API key required**, powered by official **U.S. Gov USDA FoodData Central public API + OpenStreetMap Nominatim geo-location**. Power users can optionally add a Google Gemini key once in `10-CONFIG` (Section 11B) to auto-sync live Google Search grounding to connected household phones over Home LAN.
 - **Google Lens 2-Step QR Install**: Scan the QR code inside `10-CONFIG -> ADD CELL` (`/api/qrcode/cell` -> `/install/cell` -> `/download/BFM-Cell.apk` or `/download/BFM-Remote.apk`) to install and auto-pair.
 - **Clean Role Separation (Zero Watch BLE)**: Strictly handles pre-choice meal nutrition lookups, **"How Do You Feel?" (HDYF)** voice/text/pain/mood logging, and the **3-state Daily Med toggle** (offline field staging with automatic Home Wi-Fi sync).
 - **Hardened Android Security**: Signed (`apksigner` v2/v3), `allowBackup="false"`, `network_security_config.xml` (cleartext restricted strictly to `localhost`, `127.0.0.1`, and LAN server IP; HTTPS enforced externally), cross-file WebView access disabled, serving on virtual W3C secure origin `http://localhost:18899/cell.html`.
