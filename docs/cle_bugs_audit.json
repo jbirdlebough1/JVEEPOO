@@ -1,8 +1,8 @@
 {
-  "latest_build": "beta.00.01.0072",
-  "synced_at": "2026-11-27T10:14:25",
-  "total_bugs": 176,
-  "total_resolved": 176,
+  "latest_build": "beta.00.01.0073",
+  "synced_at": "2026-11-27T10:38:25",
+  "total_bugs": 177,
+  "total_resolved": 177,
   "total_open": 0,
   "bugs": [
     {
@@ -2292,6 +2292,19 @@
       "comments": "Synced from git tag beta.00.01.0072",
       "created_at": "2026-11-27 10:14:15",
       "resolved_at": "2026-11-27 10:14:15"
+    },
+    {
+      "code": "CLE-130",
+      "project": "JVEEPOO",
+      "build": "beta.00.01.0073",
+      "title": "[beta.00.01.0073] beta.00.01.0073: Zero-account USDA + Nominatim nutrition, automated setup, and hardened BFM Remote APK",
+      "status": "RESOLVED",
+      "component": "BFM Clinical Console",
+      "affected_files": ".gitignore, BFM.HTM, Beta/docs/BETA_BACKLOG_TODO.md, Beta/docs/GOOGLE_LEADERSHIP_PRIMER.md, Beta/docs/walkthrough_beta_00_01_0073.md, docs/BETA_BACKLOG_TODO.md, docs/GOOGLE_LEADERSHIP_PRIMER.md, docs/walkthrough_beta_00_01_0073.md",
+      "resolution": "Git commit deb18bd (2026-11-27 10:38:15): beta.00.01.0073: Zero-account USDA + Nominatim nutrition, automated setup, and hardened BFM Remote APK",
+      "comments": "Synced from git tag beta.00.01.0073",
+      "created_at": "2026-11-27 10:38:15",
+      "resolved_at": "2026-11-27 10:38:15"
     }
   ]
 }

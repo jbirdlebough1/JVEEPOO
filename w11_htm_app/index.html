@@ -5290,26 +5290,26 @@
             </div>
           </div>
 
-          <!-- SECTION 11B: LIVE GOOGLE GEMINI API KEY (SEARCH GROUNDING) -->
+          <!-- SECTION 11B: OPTIONAL LIVE GOOGLE GEMINI API KEY (POWER-USER UPGRADE) -->
           <div class="setup-section" style="border-left-color: #0284c7; margin-top: 18px; background: #ffffff; border: 1.5px solid #cbd5e1; border-left: 6px solid #0284c7; border-radius: 8px; padding: 16px;">
             <div class="setup-section-title" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 12px;">
               <div>
                 <span style="color: #0284c7; font-size: 1.08rem; font-weight: 800; letter-spacing: 0.4px;">
-                  11B. LIVE GOOGLE GEMINI AI KEY (OPTIONAL SEARCH GROUNDING)
+                  11B. OPTIONAL POWER-USER UPGRADE: LIVE GOOGLE GEMINI AI KEY (NOT REQUIRED)
                 </span>
                 <span style="font-size: 0.76rem; color: #64748b; display: block; margin-top: 2px;">
-                  ENABLES LIVE GOOGLE SEARCH RESTAURANT NUTRITION LOOKUP FOR ANY UNLISTED BAKERY, CAFE, OR DINER (LOCAL REGIONAL ENGINE REMAINS ACTIVE WITHOUT A KEY)
+                  ZERO-ACCOUNT LIVE USDA NUTRITION &amp; VERIFIED RESTAURANT DISCLOSURES RUN AUTOMATICALLY OUT OF THE BOX ON BOTH PC &amp; BFM REMOTE PHONE
                 </span>
               </div>
-              <span id="lblGeminiKeyStatus" style="font-size: 0.74rem; font-weight: 800; color: #64748b; font-family: monospace;">CHECKING KEY...</span>
+              <span id="lblGeminiKeyStatus" style="font-size: 0.74rem; font-weight: 800; color: #16a34a; font-family: monospace;">CHECKING STATUS...</span>
             </div>
             <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
-              <input type="password" id="cfgGeminiApiKey" class="setup-input" placeholder="Paste Google AI Studio Gemini API Key (AIza...)" style="flex: 1; min-width: 240px; padding: 8px 10px; border: 1.5px solid #94a3b8; border-radius: 4px; font-family: monospace; font-size: 0.85rem; color: #0f172a; background: #f8fafc;">
+              <input type="password" id="cfgGeminiApiKey" class="setup-input" placeholder="Optional: Paste Google AI Studio Gemini API Key (AIza...) to auto-sync PC & Phone" style="flex: 1; min-width: 240px; padding: 8px 10px; border: 1.5px solid #94a3b8; border-radius: 4px; font-family: monospace; font-size: 0.85rem; color: #0f172a; background: #f8fafc;">
               <button type="button" class="lcars-btn btn-green" onclick="saveGeminiApiKey()" style="font-size: 0.80rem; padding: 8px 14px; font-weight: bold;">🔑 SAVE GEMINI KEY</button>
               <button type="button" class="lcars-btn btn-peach" onclick="clearGeminiApiKey()" style="font-size: 0.80rem; padding: 8px 12px; font-weight: bold;">✖ CLEAR KEY</button>
             </div>
             <div style="font-size: 0.74rem; color: #475569; margin-top: 8px;">
-              Stored strictly locally inside this PC's SQLite database (`sync_state`) — used solely for public food nutrition queries (zero PHI sent). Free key portal: <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener" style="color: #0284c7; font-weight: bold;">aistudio.google.com/apikey</a>
+              Optional only: casual users need no Google account or API key. If added once here, it stays local in SQLite (<code>sync_state</code>) and auto-provisions connected Home Wi-Fi phones too (<a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener" style="color: #0284c7; font-weight: bold;">aistudio.google.com/apikey</a>).
             </div>
           </div>
 
@@ -18001,16 +18001,38 @@ function switchTab(tabId) {
         if (!resp.ok) throw new Error('HTTP ' + resp.status);
         const data = await resp.json();
         if (data.configured) {
-          lbl.textContent = `ACTIVE (${data.masked})`;
+          lbl.textContent = `USDA LIVE + GEMINI ARMED (${data.masked})`;
           lbl.style.color = '#16a34a';
         } else {
-          lbl.textContent = 'LOCAL REGIONAL ENGINE (NO KEY SAVED)';
-          lbl.style.color = '#64748b';
+          lbl.textContent = 'ZERO-ACCOUNT USDA LIVE ACTIVE (NO KEY NEEDED)';
+          lbl.style.color = '#16a34a';
         }
       } catch (e) {
         console.warn('[MIL-SPEC HANDLED FAULT] loadGeminiApiKeyStatus failed:', e);
       }
     }
+
+    async function runBfmAutoSetup() {
+      const apiBase = (window.location.protocol === 'file:') ? 'http://127.0.0.1:8899' : '';
+      try {
+        const resp = await fetch(`${apiBase}/api/system/setup_status`, { cache: 'no-store' });
+        if (!resp.ok) throw new Error('HTTP ' + resp.status);
+        let st = await resp.json();
+        if (!st.apk_ready || !st.apk_ip_matches) {
+          const r2 = await fetch(`${apiBase}/api/system/auto_setup`, { method: 'POST' });
+          if (r2.ok) st = await r2.json();
+        }
+        const badge = document.getElementById('provZeroAccountBadge');
+        if (badge && st) {
+          badge.textContent = st.gemini_configured
+            ? '✅ ZERO-ACCOUNT USDA + GEMINI AI ARMED — ZERO PHONE SETUP NEEDED'
+            : '✅ ZERO-ACCOUNT READY — LIVE USDA NUTRITION & HOME WI-FI AUTO-SYNC (NO API KEY NEEDED)';
+        }
+      } catch (e) {
+        console.warn('[MIL-SPEC HANDLED FAULT] runBfmAutoSetup deferred:', e);
+      }
+    }
+    setTimeout(runBfmAutoSetup, 900);
 
     async function saveGeminiApiKey() {
       const inp = document.getElementById('cfgGeminiApiKey');
@@ -26819,7 +26841,7 @@ You logged: Entire Box (3.5 Servings / 99g)
     <div style="background: #1e293b; border: 2px solid #38bdf8; border-radius: 10px; width: 90%; max-width: 540px; padding: 22px; color: #f8fafc; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
       <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid #334155; padding-bottom: 10px; margin-bottom: 16px;">
         <div style="font-size: 1.15rem; font-weight: 800; color: #38bdf8;">
-          📱 ADD PHONE &bull; MOBILE APP PROVISIONING
+          📱 ADD PHONE &bull; BFM REMOTE (GOOGLE LENS AUTO-INSTALL)
         </div>
         <button type="button" onclick="closeProvisionModal()" style="background: none; border: none; color: #94a3b8; font-size: 1.4rem; cursor: pointer;">&times;</button>
       </div>
@@ -26835,30 +26857,36 @@ You logged: Entire Box (3.5 Servings / 99g)
           </div>
         </div>
         <div style="font-size: 0.78rem; color: #cbd5e1; line-height: 1.45;">
-          1. Open <strong>Google Lens</strong> or <strong>Camera</strong> on your Android phone.<br>
-          2. Scan QR code to download <strong>BFM-Cell.apk</strong> into <strong>Downloads</strong>.<br>
-          3. Tap <strong>Open &rarr; Install &rarr; Open</strong>, then launch from the <strong>BFM Cell</strong> icon.
+          1. Open <strong>Google Lens</strong> or <strong>Camera</strong> on your Android phone and scan above.<br>
+          2. Tap <strong>Open &rarr; Install &rarr; Open</strong> to install <strong>BFM Remote</strong>.<br>
+          3. Auto-connects to Home Wi-Fi with zero accounts &mdash; enter Lunch immediately!
+        </div>
+        <div id="provZeroAccountBadge" style="margin-top: 8px; padding: 6px 10px; background: rgba(22, 163, 74, 0.18); border: 1px solid #4ade80; border-radius: 6px; color: #4ade80; font-size: 0.72rem; font-weight: 800;">
+          ✅ ZERO-ACCOUNT READY — LIVE USDA NUTRITION &amp; HOME WI-FI AUTO-SYNC (NO API KEY NEEDED)
         </div>
       </div>
 
-      <div style="display: flex; flex-direction: column; gap: 12px;">
-        <div>
-          <label style="font-size: 0.75rem; font-weight: bold; color: #94a3b8;">CELL DESIGNATION</label>
-          <input type="text" id="provCellId" class="setup-input" value="Cell-1" style="width: 100%; padding: 8px; background: #0f172a; border: 1px solid #334155; color: #f8fafc; border-radius: 4px; font-family: monospace;">
+      <details style="margin-top: 8px; background: #0f172a; border: 1px solid #334155; border-radius: 6px; padding: 8px 10px;">
+        <summary style="cursor: pointer; font-size: 0.78rem; font-weight: bold; color: #94a3b8;">⚙️ Optional Advanced Cell Settings</summary>
+        <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
+          <div>
+            <label style="font-size: 0.75rem; font-weight: bold; color: #94a3b8;">CELL DESIGNATION</label>
+            <input type="text" id="provCellId" class="setup-input" value="Cell-1" style="width: 100%; padding: 8px; background: #0f172a; border: 1px solid #334155; color: #f8fafc; border-radius: 4px; font-family: monospace;">
+          </div>
+          <div>
+            <label style="font-size: 0.75rem; font-weight: bold; color: #94a3b8;">USER HANDLE / NAME</label>
+            <input type="text" id="provHandle" class="setup-input" placeholder="e.g. Primary User, Alex" style="width: 100%; padding: 8px; background: #0f172a; border: 1px solid #334155; color: #f8fafc; border-radius: 4px;">
+          </div>
+          <div>
+            <label style="font-size: 0.75rem; font-weight: bold; color: #94a3b8;">ASSIGNED REGISTRY NUMBER</label>
+            <input type="text" id="provRegistry" class="setup-input" value="BFM-5010-01" style="width: 100%; padding: 8px; background: #0f172a; border: 1px solid #334155; color: #38bdf8; border-radius: 4px; font-family: monospace;">
+          </div>
+          <div>
+            <label style="font-size: 0.75rem; font-weight: bold; color: #94a3b8;">BASELINE HbA1c TARGET (%)</label>
+            <input type="number" id="provTargetA1c" class="setup-input" value="6.5" step="0.1" style="width: 100%; padding: 8px; background: #0f172a; border: 1px solid #334155; color: #f8fafc; border-radius: 4px;">
+          </div>
         </div>
-        <div>
-          <label style="font-size: 0.75rem; font-weight: bold; color: #94a3b8;">USER HANDLE / NAME</label>
-          <input type="text" id="provHandle" class="setup-input" placeholder="e.g. Primary User, Alex" style="width: 100%; padding: 8px; background: #0f172a; border: 1px solid #334155; color: #f8fafc; border-radius: 4px;">
-        </div>
-        <div>
-          <label style="font-size: 0.75rem; font-weight: bold; color: #94a3b8;">ASSIGNED REGISTRY NUMBER</label>
-          <input type="text" id="provRegistry" class="setup-input" value="BFM-5010-01" style="width: 100%; padding: 8px; background: #0f172a; border: 1px solid #334155; color: #38bdf8; border-radius: 4px; font-family: monospace;">
-        </div>
-        <div>
-          <label style="font-size: 0.75rem; font-weight: bold; color: #94a3b8;">BASELINE HbA1c TARGET (%)</label>
-          <input type="number" id="provTargetA1c" class="setup-input" value="6.5" step="0.1" style="width: 100%; padding: 8px; background: #0f172a; border: 1px solid #334155; color: #f8fafc; border-radius: 4px;">
-        </div>
-      </div>
+      </details>
 
       <div id="provResultBox" style="display: none; margin-top: 14px; background: #0f172a; border: 1px solid #4ade80; border-radius: 6px; padding: 10px; font-size: 0.80rem; font-family: monospace; color: #4ade80;">
       </div>
@@ -27013,6 +27041,7 @@ You logged: Entire Box (3.5 Servings / 99g)
       } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       const qr = document.getElementById('provCellQrImg');
       if (qr) qr.src = `${apiBase}/api/qrcode/cell?_t=${Date.now()}`;
+      runBfmAutoSetup();
 
       // Start automatic phone connection verification watchdog
       if (_phoneVerifyPollTimer) clearInterval(_phoneVerifyPollTimer);

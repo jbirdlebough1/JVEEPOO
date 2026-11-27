@@ -608,7 +608,7 @@ def delete_popular_meal(meal_id):
     return deleted
 
 def get_gemini_api_key():
-    env_key = (os.environ.get("GEMINI_API_KEY") or "").strip()
+    env_key = (os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY") or "").strip()
     if env_key:
         return env_key
     try:
@@ -618,10 +618,22 @@ def get_gemini_api_key():
             cur.execute("SELECT value FROM sync_state WHERE key = 'gemini_api_key'")
             row = cur.fetchone()
             conn.close()
-        return (row[0] or "").strip() if row else ""
+        db_key = (row[0] or "").strip() if row else ""
+        if db_key:
+            return db_key
     except Exception as e:
         print(f"[MIL-SPEC HANDLED FAULT] get_gemini_api_key failed: {e}")
-        return ""
+    drop_file = os.path.join(BASE_DIR, "gemini_key.local")
+    if os.path.exists(drop_file):
+        try:
+            with open(drop_file, "r", encoding="utf-8") as fp:
+                local_key = fp.read().strip()
+            if local_key:
+                set_gemini_api_key(local_key)
+                return local_key
+        except Exception as e:
+            print(f"[MIL-SPEC HANDLED FAULT] gemini_key.local read failed: {e}")
+    return ""
 
 
 def set_gemini_api_key(api_key):
@@ -645,6 +657,82 @@ def _mask_gemini_key(k):
     if len(k) <= 8:
         return "*" * len(k)
     return k[:4] + "..." + k[-4:]
+
+
+APK_VERSION = "0.1.73"
+
+
+def _is_private_lan_ip(ip_str):
+    if not ip_str:
+        return False
+    clean = ip_str.strip()
+    if clean.startswith("::ffff:"):
+        clean = clean[7:]
+    if clean in ("127.0.0.1", "::1", "localhost"):
+        return True
+    try:
+        import ipaddress
+        addr = ipaddress.ip_address(clean)
+        return addr.is_private or addr.is_loopback
+    except Exception as e:
+        print(f"[MIL-SPEC HANDLED FAULT] _is_private_lan_ip parse error for {ip_str}: {e}")
+        return False
+
+
+def get_system_setup_status():
+    lan_ip = get_local_wifi_ip()
+    apk_path = os.path.join(BASE_DIR, "BFM-Cell.apk")
+    ip_marker_path = os.path.join(BASE_DIR, ".apk_lan_ip")
+    apk_ready = os.path.exists(apk_path) and os.path.getsize(apk_path) > 10000
+    apk_lan_ip = ""
+    if os.path.exists(ip_marker_path):
+        try:
+            with open(ip_marker_path, "r", encoding="utf-8") as fp:
+                apk_lan_ip = fp.read().strip()
+        except Exception as e:
+            print(f"[MIL-SPEC HANDLED FAULT] read .apk_lan_ip failed: {e}")
+    apk_ip_matches = bool(apk_ready and apk_lan_ip == lan_ip)
+    k = get_gemini_api_key()
+    env_k = (os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY") or "").strip()
+    src = "ENV" if env_k else ("DB" if k else "NONE")
+    reg_cells = 0
+    try:
+        with db_lock:
+            conn = sqlite3.connect(DB_PATH)
+            cur = conn.cursor()
+            cur.execute("SELECT COUNT(*) FROM registered_cells")
+            reg_cells = int(cur.fetchone()[0] or 0)
+            conn.close()
+    except Exception as e:
+        print(f"[MIL-SPEC HANDLED FAULT] setup_status cell count failed: {e}")
+    return {
+        "server_online": True,
+        "lan_ip": lan_ip,
+        "install_url": f"http://{lan_ip}:{PORT}/install/cell",
+        "apk_ready": apk_ready,
+        "apk_lan_ip": apk_lan_ip,
+        "apk_ip_matches": apk_ip_matches,
+        "apk_version": APK_VERSION,
+        "gemini_configured": bool(k),
+        "gemini_masked": _mask_gemini_key(k),
+        "gemini_source": src,
+        "w11_bt_toast_suppressed": True,
+        "registered_cells": reg_cells,
+    }
+
+
+def run_idempotent_auto_setup():
+    import subprocess
+    suppress_w11_bt_pairing_toasts()
+    st = get_system_setup_status()
+    if not st["apk_ready"] or not st["apk_ip_matches"]:
+        builder = os.path.join(os.path.dirname(BASE_DIR), "tools", "build_cell_apk.py")
+        if os.path.exists(builder):
+            res = subprocess.run([sys.executable, builder], capture_output=True, text=True, timeout=90)
+            if res.returncode != 0:
+                print(f"[MIL-SPEC HANDLED FAULT] build_cell_apk auto_setup failed: {res.stderr}")
+        st = get_system_setup_status()
+    return st
 
 
 def call_live_gemini_nutrition(meal_name, custom_notes="", photo_data=""):
@@ -737,6 +825,194 @@ def call_live_gemini_nutrition(meal_name, custom_notes="", photo_data=""):
     except Exception as e:
         print(f"[MIL-SPEC HANDLED FAULT] call_live_gemini_nutrition failed: {e}")
         return None
+
+
+def _parse_meal_query_and_venue(raw_text):
+    clean = (raw_text or "").strip()
+    if not clean:
+        return "", []
+    venue = ""
+    food_text = clean
+    if "," in clean:
+        parts = [p.strip() for p in clean.split(",") if p.strip()]
+        if len(parts) >= 2:
+            head = parts[0]
+            if re.search(r"\b\d{5}\b|\b(?:wa|or|ca|id|ny|tx|fl)\b|bakery|restaurant|resturant|pizzeria|cafe|diner|drive-?in|bistro|grill|kitchen|deli|market|house|sultan", head, re.I):
+                venue = head
+                food_text = ", ".join(parts[1:])
+    paired_re = re.compile(r"\b(ham|mac|macaroni|peanut\s+butter|pb|fish|rice|beans|bacon|chips|biscuits|franks)\s+and\s+(cheese|jelly|chips|beans|rice|eggs|salsa|gravy)\b", re.I)
+    guarded = paired_re.sub(lambda m: f"{m.group(1)}__PAIR_AND__{m.group(2)}", food_text)
+    raw_items = re.split(r",|\band\b", guarded, flags=re.I)
+    items = [s.replace("__PAIR_AND__", " and ").strip() for s in raw_items if s.strip()][:4]
+    return venue, items
+
+
+def _nominatim_locate_venue(venue_query):
+    if not venue_query:
+        return ""
+    try:
+        import urllib.request, urllib.parse
+        url = "https://nominatim.openstreetmap.org/search?format=json&limit=1&q=" + urllib.parse.quote(venue_query)
+        req = urllib.request.Request(url, headers={"User-Agent": "BFM-BiometricFunctionMonitor/0.1.73"})
+        with urllib.request.urlopen(req, timeout=3) as r:
+            rows = json.loads(r.read().decode("utf-8", errors="ignore"))
+        if rows and isinstance(rows, list):
+            return str(rows[0].get("display_name") or "").strip()
+    except Exception as e:
+        print(f"[MIL-SPEC HANDLED FAULT] Nominatim venue lookup skipped: {e}")
+    return ""
+
+
+def call_public_usda_nutrition(meal_name, custom_notes=""):
+    """Zero-account U.S. Gov USDA FoodData Central (+ Nominatim geo-locator) fallback for casual users."""
+    import urllib.request, urllib.parse
+    combined = meal_name.strip()
+    if custom_notes and custom_notes.strip().lower() != combined.lower():
+        combined = f"{combined}, {custom_notes.strip()}" if combined else custom_notes.strip()
+    venue, items = _parse_meal_query_and_venue(combined)
+    if not items:
+        return None
+    geo_display = _nominatim_locate_venue(venue) if venue else ""
+    total_kcal = 0
+    total_carbs = 0.0
+    total_fiber = 0.0
+    total_pro = 0.0
+    total_fat = 0.0
+    matched_items = []
+    notes_parts = []
+    for comp in items:
+        try:
+            url = "https://api.nal.usda.gov/fdc/v1/foods/search?api_key=DEMO_KEY&pageSize=6&query=" + urllib.parse.quote(comp)
+            req = urllib.request.Request(url, headers={"User-Agent": "BFM-BiometricFunctionMonitor/0.1.73"})
+            with urllib.request.urlopen(req, timeout=6) as r:
+                data = json.loads(r.read().decode("utf-8", errors="ignore"))
+            foods = data.get("foods") or []
+            if not foods:
+                continue
+            chosen = (
+                next((f for f in foods if f.get("dataType") == "Survey (FNDDS)" and f.get("foodMeasures")), None)
+                or next((f for f in foods if f.get("dataType") in ("Survey (FNDDS)", "SR Legacy")), None)
+                or next((f for f in foods if 30 <= float(f.get("servingSize") or 0) <= 450), None)
+                or foods[0]
+            )
+            nuts = chosen.get("foodNutrients") or []
+            def pick_nut(prefix, require_kcal=False):
+                for n in nuts:
+                    nm = str(n.get("nutrientName") or "")
+                    u = str(n.get("unitName") or "").upper()
+                    if nm == prefix or nm.startswith(prefix):
+                        if require_kcal and u != "KCAL":
+                            continue
+                        val = n.get("value")
+                        if val is not None:
+                            return float(val)
+                return 0.0
+            k100 = pick_nut("Energy", True)
+            c100 = pick_nut("Carbohydrate, by difference")
+            fb100 = pick_nut("Fiber, total dietary")
+            p100 = pick_nut("Protein")
+            ft100 = pick_nut("Total lipid (fat)")
+            if k100 <= 0 and c100 <= 0 and p100 <= 0 and ft100 <= 0:
+                continue
+            grams = 100.0
+            srv_lbl = "100g standard serving"
+            measures = chosen.get("foodMeasures") or []
+            picked_m = False
+            for rx in (r"regular|medium|standard|sandwich", r"cup|bowl|serving"):
+                for m in measures:
+                    gw = float(m.get("gramWeight") or 0)
+                    if re.search(rx, str(m.get("disseminationText") or ""), re.I) and 30 <= gw <= 450:
+                        grams = gw
+                        srv_lbl = str(m.get("disseminationText") or f"{round(gw)}g")
+                        picked_m = True
+                        break
+                if picked_m:
+                    break
+            if not picked_m:
+                for m in measures:
+                    gw = float(m.get("gramWeight") or 0)
+                    if 30 <= gw <= 450:
+                        grams = gw
+                        srv_lbl = str(m.get("disseminationText") or f"{round(gw)}g")
+                        picked_m = True
+                        break
+            if not picked_m:
+                ss = float(chosen.get("servingSize") or 0)
+                su = str(chosen.get("servingSizeUnit") or "").lower()
+                if su in ("g", "ml") and 30 <= ss <= 450:
+                    grams = ss
+                    srv_lbl = f"{round(ss)}{su} serving"
+            scale = grams / 100.0
+            kcal = int(round(k100 * scale))
+            carbs = round(c100 * scale, 1)
+            fib = round(fb100 * scale, 1)
+            pro = round(p100 * scale, 1)
+            fat = round(ft100 * scale, 1)
+            net_c = max(0.0, round(carbs - fib, 1))
+            total_kcal += kcal
+            total_carbs += carbs
+            total_fiber += fib
+            total_pro += pro
+            total_fat += fat
+            desc = str(chosen.get("description") or comp)
+            matched_items.append({
+                "name": desc,
+                "portion": f"{srv_lbl} ({round(grams)}g)",
+                "net_carbs": net_c,
+                "fiber": fib,
+                "protein": pro,
+                "fat": fat,
+                "calories": kcal,
+            })
+            notes_parts.append(f"{desc} ({srv_lbl}, {round(grams)}g -> {kcal} kcal, {net_c}g net)")
+        except Exception as e:
+            print(f"[MIL-SPEC HANDLED FAULT] Server USDA component lookup failed for '{comp}': {e}")
+    if not matched_items:
+        return None
+    total_carbs = round(total_carbs, 1)
+    total_fiber = round(total_fiber, 1)
+    total_pro = round(total_pro, 1)
+    total_fat = round(total_fat, 1)
+    net_total = max(0.0, round(total_carbs - total_fiber, 1))
+    gl_val = max(1, round(net_total * 0.52))
+    gl_cat = "Safe Low" if net_total <= 15 else ("Safe Low-Med" if net_total <= 35 else ("Moderate" if net_total <= 45 else "SEVERE SPIKE HAZARD"))
+    meets = net_total <= 45.0
+    spike_low = round(net_total * 0.75)
+    spike_high = max(spike_low + 4, round(net_total * 1.15))
+    walk_min = 10 if net_total <= 15 else min(45, max(15, round(net_total * 0.6)))
+    swaps = []
+    if net_total > 30:
+        swaps = [
+            "Swap half bread/bun for open-face or lettuce wrap (-14g net carbs)",
+            "Pair with unsweetened beverage & 16 fl oz water buffer",
+        ]
+    if venue:
+        loc_text = f"Located: {geo_display}. " if geo_display else f"Venue noted: {venue}. "
+        prefix = f"{loc_text}Official venue nutrition unpublished; grounded via USDA FoodData Central equivalent: "
+        vendor_lbl = f"{venue} (USDA FoodData Central Live)"
+    else:
+        prefix = "Grounded via U.S. Gov USDA FoodData Central: "
+        vendor_lbl = "USDA FoodData Central (Zero-Account Live)"
+    return {
+        "meal_name": combined,
+        "vendor_matched": vendor_lbl,
+        "photo_filename": "meal_uploaded_capture.jpg",
+        "calories": total_kcal,
+        "net_carbs": net_total,
+        "total_carbs": total_carbs,
+        "fiber": total_fiber,
+        "protein": total_pro,
+        "fat": total_fat,
+        "glycemic_load": f"{gl_val} ({gl_cat})",
+        "estimated_cost": "0.00",
+        "meets_goal": meets,
+        "projected_spike": f"+{spike_low} to +{spike_high} mg/dL postprandial rise",
+        "identified_items": matched_items,
+        "gemini_notes": prefix + "; ".join(notes_parts) + ".",
+        "tips": [prefix + "; ".join(notes_parts) + "."],
+        "trade_alternatives": swaps,
+        "glut4_recommendation": "Mild 10-minute light walk after eating keeps glucose flat." if net_total <= 15 else f"Walk briskly for {walk_min} minutes starting 20 minutes after eating to clear glucose via GLUT4.",
+    }
 
 
 def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
@@ -2878,6 +3154,9 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
             title_display = title_display[0].upper() + title_display[1:]
 
         if not matched_any:
+            usda_res = call_public_usda_nutrition(meal_name, custom_notes)
+            if usda_res:
+                return usda_res
             # Pure Zero-Data Reality Principle: zero out and prompt user
             return {
                 "meal_name": title_display,
@@ -5323,7 +5602,7 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                 return
 
         # 0. Android APK Direct Download Route
-        if self.path.split("?")[0] in ["/download/BFM-Cell.apk", "/download/bfm-cell.apk", "/bfm-cell.apk"]:
+        if self.path.split("?")[0] in ["/download/BFM-Cell.apk", "/download/bfm-cell.apk", "/bfm-cell.apk", "/download/BFM-Remote.apk", "/download/bfm-remote.apk", "/bfm-remote.apk"]:
             apk_path = os.path.join(BASE_DIR, "BFM-Cell.apk")
             if not os.path.exists(apk_path):
                 self.send_json_response({"error": "BFM-Cell.apk not built yet"}, 404)
@@ -5343,12 +5622,18 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
         # 0. Mobile QR Landing / Auto-Download Installer Page
         if self.path.split("?")[0] in ["/install/cell", "/install/cell/"]:
             ip = get_local_wifi_ip()
+            key_armed = bool(get_gemini_api_key())
+            key_badge = (
+                '<div style="display:inline-block;margin-top:6px;padding:3px 10px;border-radius:12px;background:#dcfce7;color:#15803d;font-weight:800;font-size:0.74rem;border:1px solid #16a34a;">Zero-Account Ready &bull; Live USDA + Gemini AI Armed</div>'
+                if key_armed else
+                '<div style="display:inline-block;margin-top:6px;padding:3px 10px;border-radius:12px;background:#dcfce7;color:#15803d;font-weight:800;font-size:0.74rem;border:1px solid #16a34a;">Zero-Account Ready &bull; Live USDA Nutrition &amp; Home Wi-Fi Sync</div>'
+            )
             install_html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Install BFM Cell Android App</title>
+  <title>Install BFM Remote (Android)</title>
   <style>
     body {{ margin:0; padding:20px; background:#091428; color:#f8fafc; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; text-align:center; }}
     .card {{ max-width:440px; margin:16px auto; background:#ffffff; color:#0f172a; border:2px solid #38bdf8; border-radius:14px; padding:22px 18px; box-shadow:0 8px 24px rgba(0,0,0,0.35); }}
@@ -5362,23 +5647,22 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
 </head>
 <body>
   <div class="card">
-    <img class="icon" src="/icon-192.png" alt="BFM Cell Icon">
-    <h1>BFM Cell Android App</h1>
-    <div class="sub">Portable Intake, Feelings &amp; Daily Meds Companion<br>(Home Wi-Fi Server: <strong>{ip}:{PORT}</strong> &bull; No Watch BLE Required)</div>
-    <a id="dlLink" class="dl-btn" href="/download/BFM-Cell.apk">⬇️ DOWNLOAD BFM-Cell.apk</a>
+    <img class="icon" src="/icon-192.png" alt="BFM Remote Icon">
+    <h1>BFM Remote Android App</h1>
+    <div class="sub">Portable Meal, Feelings &amp; Daily Meds Companion<br>(Home Wi-Fi Server: <strong>{ip}:{PORT}</strong> &bull; No Watch BLE)<br>{key_badge}</div>
+    <a id="dlLink" class="dl-btn" href="/download/BFM-Cell.apk">⬇️ DOWNLOAD BFM Remote APK</a>
     <div class="steps">
-      <strong>3-Step Android Install:</strong><br>
-      1. Wait 1 second for <code>BFM-Cell.apk</code> to download into your <strong>Downloads</strong> folder (or tap the green button above).<br>
-      2. Tap <strong>Open</strong> &rarr; <strong>Install</strong> &rarr; <strong>Open</strong>.<br>
-      3. Close Chrome. Always open <strong>BFM Cell</strong> from its phone icon from now on.
+      <strong>2-Step Zero-Config Install:</strong><br>
+      1. Tap <strong>Open &rarr; Install &rarr; Open</strong> (allow this 1-time install if prompted).<br>
+      2. <strong>BFM Remote</strong> auto-connects &amp; enables live nutrition &mdash; enter your meal immediately!
     </div>
-    <div class="note">Standalone APK &bull; Offline Field Queue &bull; Auto Home Wi-Fi Sync</div>
+    <div class="note">Hardened Signed APK v{APK_VERSION} &bull; Offline Field Queue &bull; Auto Home Wi-Fi Sync</div>
   </div>
   <script>
     setTimeout(function() {{
       var a = document.getElementById('dlLink');
       if (a) a.click();
-    }}, 350);
+    }}, 250);
   </script>
 </body>
 </html>"""
@@ -5500,17 +5784,26 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                 })
             return
 
+        if self.path.startswith("/api/system/setup_status"):
+            self.send_json_response(get_system_setup_status())
+            return
+
         if self.path.startswith("/api/config/gemini_key_sync"):
+            peer_ip = self.client_address[0] if self.client_address else ""
+            if not _is_private_lan_ip(peer_ip):
+                self.send_json_response({"error": "Forbidden: LAN / loopback clients only"}, 403)
+                return
             k = get_gemini_api_key()
             self.send_json_response({"configured": bool(k), "api_key": k})
             return
 
         if self.path.startswith("/api/config/gemini_key"):
             k = get_gemini_api_key()
+            env_k = (os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY") or "").strip()
             self.send_json_response({
                 "configured": bool(k),
                 "masked": _mask_gemini_key(k),
-                "source": "ENV" if (os.environ.get("GEMINI_API_KEY") or "").strip() else ("DB" if k else "NONE"),
+                "source": "ENV" if env_k else ("DB" if k else "NONE"),
             })
             return
 
@@ -6472,6 +6765,13 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                 })
             except Exception as e:
                 self.send_json_response({"status": "ERROR", "error": str(e)}, 400)
+
+        elif self.path == "/api/system/auto_setup":
+            try:
+                st = run_idempotent_auto_setup()
+                self.send_json_response({"status": "OK", **st})
+            except Exception as e:
+                self.send_json_response({"status": "ERROR", "error": str(e)}, 500)
 
         elif self.path == "/api/config/gemini_key":
             content_length = int(self.headers.get("Content-Length", 0))

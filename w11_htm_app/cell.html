@@ -8,8 +8,8 @@
   <link rel="apple-touch-icon" href="/icon-192.png">
   <meta name="theme-color" content="#091428">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="BFM Cell">
-  <title>BFM Cell Data Collector</title>
+  <meta name="apple-mobile-web-app-title" content="BFM Remote">
+  <title>BFM Remote • Portable Companion</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -296,8 +296,8 @@
         🩺
       </div>
       <div>
-        <h1 style="font-size: 1.05rem; font-weight: 900; letter-spacing: 0.04em; color: #38bdf8;">BFM CELL DATA COLLECTOR</h1>
-        <div class="sub">PORTABLE INTAKE &amp; FEELING RECORDER &bull; <span id="lblMobileEsn">CELL 1 (ACTIVE)</span></div>
+        <h1 style="font-size: 1.05rem; font-weight: 900; letter-spacing: 0.04em; color: #38bdf8;">BFM REMOTE</h1>
+        <div class="sub">PORTABLE MEAL, FEELINGS &amp; MEDS COMPANION &bull; <span id="lblMobileEsn">CELL 1 (ACTIVE)</span></div>
       </div>
     </div>
     <div id="wifiStatusPill" class="wifi-pill" onclick="promptEditServerBase()" title="Tap to view or update BFM Server IP" style="cursor: pointer;">
@@ -305,12 +305,11 @@
     </div>
   </div>
 
+  <div id="lblAutoSetupToast" style="display: none; background: #ecfdf5; color: #15803d; border: 1.5px solid #22c55e; border-radius: 6px; padding: 8px 12px; font-size: 0.78rem; font-weight: 800; margin-bottom: 10px; text-align: center;"></div>
+
   <!-- 3-State Daily Medication Button (Light Blue -> Morning -> Green Dinner -> 00:01 Reset) -->
-  <button id="btnCellDailyMed" type="button" class="btn" onclick="cycleCellMedButton()" style="background: #7dd3fc; color: #0c4a6e; border: 2px solid #38bdf8; margin-bottom: 8px;">
+  <button id="btnCellDailyMed" type="button" class="btn" onclick="cycleCellMedButton()" style="background: #7dd3fc; color: #0c4a6e; border: 2px solid #38bdf8; margin-bottom: 12px;">
     💊 MEDS: NOT TAKEN YET (TAP FOR MORNING)
-  </button>
-  <button id="btnCellGeminiKey" type="button" class="btn" onclick="promptSetGeminiKey()" style="background: #fffbeb; color: #92400e; border: 1.5px solid #f59e0b; font-size: 0.78rem; padding: 8px 10px; margin-bottom: 12px;">
-    🔑 SET GEMINI API KEY (TAP FOR REAL LIVE NUTRITION SEARCH)
   </button>
 
   <!-- Main Card: Upload & Meal Input -->
@@ -548,8 +547,10 @@
 
   <script>
     const _urlParams = new URLSearchParams(window.location.search);
-    const BFM_IS_NATIVE_APP = /BFMCellAndroid/i.test(navigator.userAgent)
-      || window.location.protocol === 'file:'
+    const BFM_IS_NATIVE_ORIGIN = window.location.protocol === 'file:'
+      || (window.location.hostname === 'localhost' && window.location.port === '18899');
+    const BFM_IS_NATIVE_APP = /BFMRemoteAndroid|BFMCellAndroid/i.test(navigator.userAgent)
+      || BFM_IS_NATIVE_ORIGIN
       || _urlParams.get('native') === '1'
       || window.navigator.standalone === true
       || window.matchMedia('(display-mode: standalone)').matches;
@@ -558,7 +559,7 @@
       localStorage.setItem('bfm_server_base', _paramServer.replace(/\/+$/, ''));
     }
     function getBfmApiBase() {
-      if (window.location.protocol === 'file:') {
+      if (BFM_IS_NATIVE_ORIGIN) {
         return (localStorage.getItem('bfm_server_base') || _paramServer || 'http://192.168.12.207:8899').replace(/\/+$/, '');
       }
       return '';
@@ -846,7 +847,7 @@
 
       if (!speechRecognizer) initSpeechEngine();
       if (speechRecognizer) {
-        try { speechRecognizer.start(); } catch (e) {}
+        try { speechRecognizer.start(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       }
 
       if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
@@ -893,10 +894,10 @@
       if (feedback) feedback.style.display = 'none';
 
       if (speechRecognizer) {
-        try { speechRecognizer.stop(); } catch (e) {}
+        try { speechRecognizer.stop(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       }
       if (mediaRecorderInstance && mediaRecorderInstance.state !== 'inactive') {
-        try { mediaRecorderInstance.stop(); } catch (e) {}
+        try { mediaRecorderInstance.stop(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       }
     }
 
@@ -918,14 +919,6 @@
           else btn.classList.remove('active');
         }
       });
-    }
-
-    function setMealType(type) {
-      selectedMealType = type;
-      document.getElementById('btnTypeBreakfast').classList.toggle('active', type === 'Breakfast');
-      document.getElementById('btnTypeLunch').classList.toggle('active', type === 'Lunch');
-      document.getElementById('btnTypeDinner').classList.toggle('active', type === 'Dinner');
-      document.getElementById('btnTypeSnack').classList.toggle('active', type === 'Snack');
     }
 
     function handleFileSelect(e) {
@@ -974,22 +967,17 @@
       }
     }
 
+    function showAutoSetupToast(msg) {
+      const toast = document.getElementById('lblAutoSetupToast');
+      if (!toast) return;
+      toast.textContent = msg;
+      toast.style.display = 'block';
+      setTimeout(() => { toast.style.display = 'none'; }, 4000);
+    }
+
     function renderGeminiKeyButton() {
       const btn = document.getElementById('btnCellGeminiKey');
-      if (!btn) return;
-      const k = getCellGeminiKey();
-      if (k) {
-        const masked = k.length > 8 ? (k.slice(0, 4) + '...' + k.slice(-4)) : 'ACTIVE';
-        btn.style.background = '#ecfdf5';
-        btn.style.color = '#15803d';
-        btn.style.border = '1.5px solid #22c55e';
-        btn.textContent = `🔑 GEMINI AI: LIVE READY (${masked})`;
-      } else {
-        btn.style.background = '#fffbeb';
-        btn.style.color = '#92400e';
-        btn.style.border = '1.5px solid #f59e0b';
-        btn.textContent = '🔑 SET GEMINI API KEY (TAP FOR REAL LIVE NUTRITION SEARCH)';
-      }
+      if (btn) btn.style.display = 'none';
     }
 
     async function promptSetGeminiKey() {
@@ -1029,6 +1017,7 @@
             if (data.configured && data.api_key) {
               localStorage.setItem('bfm_gemini_api_key', data.api_key.trim());
               renderGeminiKeyButton();
+              return true;
             }
           }
         } else {
@@ -1047,24 +1036,170 @@
       } catch (e) {
         console.warn('[MIL-SPEC HANDLED FAULT] syncGeminiKeyWithServer failed:', e);
       }
+      return false;
     }
 
     function makeZeroUnanalyzedRecord(text, reasonMsg) {
       return {
-        meal_name: (text || '').trim() || 'Meal Entry (Awaiting Gemini)',
-        vendor_matched: 'Real Gemini Lookup Required (Zero Mock Data)',
+        meal_name: (text || '').trim() || 'Meal Entry (Awaiting Details)',
+        vendor_matched: 'Zero-Data Guard — More Detail Needed',
         calories: 0,
         net_carbs: 0,
         total_carbs: 0,
         fiber: 0,
         protein: 0,
         fat: 0,
-        glycemic_load: '0 (Awaiting Real Gemini)',
+        glycemic_load: '0 (Zero Data)',
         meets_goal: true,
         projected_spike: '+0 mg/dL (Unanalyzed)',
         gemini_notes: reasonMsg,
         trade_alternatives: [],
-        glut4_recommendation: 'Run live Gemini analysis before consuming to tailor activity guidance.'
+        glut4_recommendation: 'Update meal details or tap Stage for Home PC when offline.'
+      };
+    }
+
+    function parseMealQueryAndVenue(rawText) {
+      const clean = (rawText || '').trim();
+      if (!clean) return { venue: '', items: [] };
+      let venue = '';
+      let foodText = clean;
+      if (clean.includes(',')) {
+        const commaParts = clean.split(',').map(s => s.trim()).filter(Boolean);
+        if (commaParts.length >= 2) {
+          const head = commaParts[0];
+          const looksLikeVenue = /\b\d{5}\b|\b(?:wa|or|ca|id|ny|tx|fl)\b|bakery|restaurant|resturant|pizzeria|cafe|diner|drive-?in|bistro|grill|kitchen|deli|market|house|sultan/i.test(head);
+          if (looksLikeVenue) {
+            venue = head;
+            foodText = commaParts.slice(1).join(', ');
+          }
+        }
+      }
+      const pairedRe = /\b(ham|mac|macaroni|peanut\s+butter|pb|fish|rice|beans|bacon|chips|biscuits|franks)\s+and\s+(cheese|jelly|chips|beans|rice|eggs|salsa|gravy)\b/gi;
+      const guarded = foodText.replace(pairedRe, (_, a, b) => `${a}__PAIR_AND__${b}`);
+      const items = guarded
+        .split(/,|\band\b/i)
+        .map(s => s.replace(/__PAIR_AND__/g, ' and ').trim())
+        .filter(Boolean)
+        .slice(0, 4);
+      return { venue, items };
+    }
+
+    function pickUsdaNutrient(food, nameStartsWith, requireKcal) {
+      const list = Array.isArray(food.foodNutrients) ? food.foodNutrients : [];
+      for (const n of list) {
+        const nm = String(n.nutrientName || '');
+        const u = String(n.unitName || '').toUpperCase();
+        if (nm === nameStartsWith || nm.startsWith(nameStartsWith)) {
+          if (requireKcal && u !== 'KCAL') continue;
+          const v = parseFloat(n.value);
+          if (!Number.isNaN(v)) return v;
+        }
+      }
+      return 0;
+    }
+
+    function pickUsdaServingGrams(food) {
+      const measures = Array.isArray(food.foodMeasures) ? food.foodMeasures : [];
+      const preferredOrder = [/regular|medium|standard|sandwich/i, /cup|bowl|serving/i];
+      for (const rx of preferredOrder) {
+        for (const m of measures) {
+          const gw = parseFloat(m.gramWeight);
+          if (rx.test(String(m.disseminationText || '')) && gw >= 30 && gw <= 450) {
+            return { grams: gw, label: m.disseminationText || `${Math.round(gw)}g` };
+          }
+        }
+      }
+      for (const m of measures) {
+        const gw = parseFloat(m.gramWeight);
+        if (gw >= 30 && gw <= 450) {
+          return { grams: gw, label: m.disseminationText || `${Math.round(gw)}g` };
+        }
+      }
+      const ss = parseFloat(food.servingSize);
+      const su = String(food.servingSizeUnit || '').toLowerCase();
+      if ((su === 'g' || su === 'ml') && ss >= 30 && ss <= 450) {
+        return { grams: ss, label: `${Math.round(ss)}${su} serving` };
+      }
+      return { grams: 100, label: '100g standard serving' };
+    }
+
+    async function callPublicUsdaNutritionApi(text) {
+      const { venue, items } = parseMealQueryAndVenue(text);
+      if (!items.length) return null;
+      let totalKcal = 0, totalCarbs = 0, totalFiber = 0, totalPro = 0, totalFat = 0;
+      const matchedNotes = [];
+      for (const comp of items) {
+        try {
+          const url = `https://api.nal.usda.gov/fdc/v1/foods/search?api_key=DEMO_KEY&pageSize=6&query=${encodeURIComponent(comp)}`;
+          const resp = await fetch(url, { cache: 'no-store' });
+          if (!resp.ok) continue;
+          const data = await resp.json();
+          const foods = Array.isArray(data.foods) ? data.foods : [];
+          if (!foods.length) continue;
+          let chosen = foods.find(f => f.dataType === 'Survey (FNDDS)' && Array.isArray(f.foodMeasures) && f.foodMeasures.length > 0)
+            || foods.find(f => (f.dataType === 'Survey (FNDDS)' || f.dataType === 'SR Legacy'))
+            || foods.find(f => parseFloat(f.servingSize) >= 30 && parseFloat(f.servingSize) <= 450)
+            || foods[0];
+          const kcal100 = pickUsdaNutrient(chosen, 'Energy', true);
+          const carb100 = pickUsdaNutrient(chosen, 'Carbohydrate, by difference', false);
+          const fib100 = pickUsdaNutrient(chosen, 'Fiber, total dietary', false);
+          const pro100 = pickUsdaNutrient(chosen, 'Protein', false);
+          const fat100 = pickUsdaNutrient(chosen, 'Total lipid (fat)', false);
+          if (kcal100 <= 0 && carb100 <= 0 && pro100 <= 0 && fat100 <= 0) continue;
+          const srv = pickUsdaServingGrams(chosen);
+          const scale = srv.grams / 100.0;
+          const k = Math.round(kcal100 * scale);
+          const c = Math.round(carb100 * scale * 10) / 10;
+          const fb = Math.round(fib100 * scale * 10) / 10;
+          const pr = Math.round(pro100 * scale * 10) / 10;
+          const ft = Math.round(fat100 * scale * 10) / 10;
+          totalKcal += k;
+          totalCarbs += c;
+          totalFiber += fb;
+          totalPro += pr;
+          totalFat += ft;
+          matchedNotes.push(`${chosen.description} (${srv.label}, ${Math.round(srv.grams)}g -> ${k} kcal, ${Math.max(0, Math.round((c - fb) * 10) / 10)}g net)`);
+        } catch (e) {
+          console.warn('[MIL-SPEC HANDLED FAULT] USDA component lookup failed:', comp, e);
+        }
+      }
+      if (!matchedNotes.length) return null;
+      totalCarbs = Math.round(totalCarbs * 10) / 10;
+      totalFiber = Math.round(totalFiber * 10) / 10;
+      totalPro = Math.round(totalPro * 10) / 10;
+      totalFat = Math.round(totalFat * 10) / 10;
+      const netCarbs = Math.max(0, Math.round((totalCarbs - totalFiber) * 10) / 10);
+      const glVal = Math.max(1, Math.round(netCarbs * 0.52));
+      const glCat = netCarbs <= 15 ? 'Safe Low' : (netCarbs <= 35 ? 'Safe Low-Med' : (netCarbs <= 45 ? 'Moderate' : 'SEVERE SPIKE HAZARD'));
+      const meets = netCarbs <= 45;
+      const spikeLow = Math.round(netCarbs * 0.75);
+      const spikeHigh = Math.max(spikeLow + 4, Math.round(netCarbs * 1.15));
+      const walkMin = netCarbs <= 15 ? 10 : Math.min(45, Math.max(15, Math.round(netCarbs * 0.6)));
+      const swaps = [];
+      if (netCarbs > 30) {
+        swaps.push('Swap half bread/bun for open-face or lettuce wrap (-14g net carbs)');
+        swaps.push('Pair with unsweetened drink & add 16 fl oz water buffer');
+      }
+      const venueLine = venue
+        ? `${venue} does not publish official bakery/cafe nutrition; grounded via USDA FoodData Central equivalent: `
+        : 'Matched via U.S. Gov USDA FoodData Central: ';
+      return {
+        meal_name: text.trim(),
+        vendor_matched: venue ? `${venue} (USDA FoodData Central Live)` : 'USDA FoodData Central (Zero-Account Live)',
+        calories: totalKcal,
+        net_carbs: netCarbs,
+        total_carbs: totalCarbs,
+        fiber: totalFiber,
+        protein: totalPro,
+        fat: totalFat,
+        glycemic_load: `${glVal} (${glCat})`,
+        meets_goal: meets,
+        projected_spike: `+${spikeLow} to +${spikeHigh} mg/dL postprandial rise`,
+        gemini_notes: venueLine + matchedNotes.join('; ') + '.',
+        trade_alternatives: swaps,
+        glut4_recommendation: netCarbs <= 15
+          ? 'Mild 10-minute light walk after eating keeps glucose flat.'
+          : `Take a ${walkMin}-minute brisk walk 20 minutes after eating to activate GLUT4 glucose clearance.`
       };
     }
 
@@ -1161,10 +1296,10 @@
       const btn = document.getElementById('btnAnalyze');
       const originalText = btn.innerHTML;
       btn.disabled = true;
-      btn.innerHTML = '<span>⏳ CALLING LIVE GOOGLE GEMINI...</span>';
+      btn.innerHTML = '<span>⏳ ANALYZING LIVE NUTRITION...</span>';
 
       try {
-        // 1. Direct cellular/Wi-Fi call to Google Gemini whenever key is on phone
+        // 1. Optional power-user upgrade: direct Google Gemini API if key synced on phone
         if (!getCellGeminiKey() && isConnectedToHost) {
           await syncGeminiKeyWithServer();
         }
@@ -1176,7 +1311,7 @@
           }
         }
 
-        // 2. If connected to BFM PC Server (e.g. env var GEMINI_API_KEY on PC), ask server
+        // 2. Home Wi-Fi: ask BFM PC Server (verified regional venues + server USDA/Nominatim lookup)
         if (isConnectedToHost) {
           const resp = await fetch('/api/meal/analyze', {
             method: 'POST',
@@ -1194,22 +1329,29 @@
           if (!resp.ok) throw new Error('HTTP error ' + resp.status);
           const data = await resp.json();
           const a = data.analysis || data;
-          if (a && (a.vendor_matched || '').includes('Live Gemini')) {
+          if (a && ((a.calories || 0) > 0 || (a.total_carbs || 0) > 0 || (a.protein || 0) > 0 || (a.fat || 0) > 0)) {
             renderAnalysis(a);
             return;
           }
         }
 
-        // 3. Pure Zero-Data Reality: never invent fake macros when no Gemini key is set
+        // 3. Direct Cellular / Field Mode (Zero Account): official USDA FoodData Central HTTPS API
+        const usdaResult = await callPublicUsdaNutritionApi(text);
+        if (usdaResult) {
+          renderAnalysis(usdaResult);
+          return;
+        }
+
+        // 4. Pure Zero-Data Reality: zero invented guesses when unrecognized or offline
         renderAnalysis(makeZeroUnanalyzedRecord(
           text,
-          "⚠️ Live Google Gemini API key not set. Tap '🔑 SET GEMINI API KEY' at top (or save once in BFM Server 10-CONFIG -> Section 11B on Home Wi-Fi) so this phone can look up real restaurant/meal data over cellular or Wi-Fi."
+          "I need more detailed information, please update and hit estimate. (If completely offline, tap '💾 STAGE FOR HOME PC' to save locally.)"
         ));
       } catch (err) {
-        console.warn('[MIL-SPEC HANDLED FAULT] Live Gemini analyzeMeal failed:', err);
+        console.warn('[MIL-SPEC HANDLED FAULT] Live nutrition analyzeMeal failed:', err);
         renderAnalysis(makeZeroUnanalyzedRecord(
           text,
-          `⚠️ Live Gemini lookup failed (${err.message || err}). Check cellular/Wi-Fi signal or tap '🔑 GEMINI API KEY' to verify your key, or tap '💾 STAGE FOR HOME PC' to save locally. Zero fake guesses shown.`
+          "I need more detailed information, please update and hit estimate. (Check signal or tap '💾 STAGE FOR HOME PC' to save locally.)"
         ));
       } finally {
         btn.disabled = false;
@@ -1599,7 +1741,12 @@
           text.textContent = "CONNECTED TO BFM SERVER";
 
           await ensureCellRegisteredWithServer();
-          syncGeminiKeyWithServer();
+          await syncGeminiKeyWithServer();
+          renderGeminiKeyButton();
+          if (!localStorage.getItem('bfm_auto_setup_announced')) {
+            localStorage.setItem('bfm_auto_setup_announced', '1');
+            showAutoSetupToast('✅ BFM Remote Ready — Connected to Home Server & Live Nutrition Active. Ready to enter meal!');
+          }
 
           // Auto-upload any locally queued field meals, feelings, and med adherence
           const queue = getStagedQueue();

@@ -13,6 +13,8 @@ tools/
 # Temporary files & logs
 *.log
 *.tmp
+*.local
+w11_htm_app/.apk_lan_ip
 .DS_Store
 Thumbs.db
 
