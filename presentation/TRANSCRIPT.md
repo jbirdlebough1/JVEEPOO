@@ -622,13 +622,13 @@
 
 > Need a spreadsheet or quick clinic handoff? Card 2 downloads an Excel-ready clinical CSV, while Card 3 opens your own email client pre-addressed with step-by-step import instructions so you keep full control before sending.
 
-## Slide 78: Card 4: The 10-Page Doctor's Clinical Specification & Metrology Handbook
+## Slide 78: Card 4: The 23-Page Physician Clinical Monograph & Vetted Citations
 
 - **Section:** Tab 13: 13-EXPORT
 - **Visual:** `images/bfm_t13_export_ehr.png` (`13-EXPORT • EPIC FHIR R4, LOINC CSV, EMAIL & HANDBOOK`)
-- **Key Takeaway:** Handing an attending physician a crisp 10-page metrological handbook converts healthy skepticism into active clinical alignment.
+- **Key Takeaway:** Handing an attending physician a 23-page evidence-backed metrological monograph converts healthy skepticism into 100% clinical alignment.
 
-> Finally, Card 4 opens the 10-page Doctor's Clinical Specification and Reporting Handbook—briefing physicians transparently on optical transducers, calibration math, and LOINC mapping before we finish workspace tabs at Tab 14 Troubleshooting.
+> Finally, Card 4 opens the comprehensive 23-page Physician Clinical Reference Monograph—complete with clean graphical mathematical equations, five live sub-report chapters, LOINC mapping, and thirty hyperlinked peer-reviewed citations before finishing at Tab 14 Troubleshooting.
 
 ## Slide 79: 14-TROUBLESHOOTING: Guided Self-Help Without Technical Jargon
 

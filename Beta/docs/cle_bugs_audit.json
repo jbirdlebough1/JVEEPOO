@@ -1,8 +1,8 @@
 {
-  "latest_build": "beta.00.01.0064",
-  "synced_at": "2026-11-26T21:08:14",
-  "total_bugs": 168,
-  "total_resolved": 168,
+  "latest_build": "beta.00.01.0065",
+  "synced_at": "2026-11-26T21:22:03",
+  "total_bugs": 169,
+  "total_resolved": 169,
   "total_open": 0,
   "bugs": [
     {
@@ -2188,6 +2188,19 @@
       "comments": "Synced from git tag beta.00.01.0064",
       "created_at": "2026-11-26 21:08:07",
       "resolved_at": "2026-11-26 21:08:07"
+    },
+    {
+      "code": "CLE-122",
+      "project": "JVEEPOO",
+      "build": "beta.00.01.0065",
+      "title": "[beta.00.01.0065] beta.00.01.0065: 23-page Physician Clinical Monograph PDF with graphical math and 30 linked DOI/standard refs",
+      "status": "RESOLVED",
+      "component": "BFM Clinical Console",
+      "affected_files": "BFM.HTM, Beta/docs/GOOGLE_LEADERSHIP_PRIMER.md, Beta/docs/NARRATION_QA_87_SLIDES.md, Beta/docs/VEEPOO_5010_CLINICAL_SPECIFICATION_AND_REPORTING_GUIDE.pdf, Beta/docs/cmo_spec.html, Beta/docs/generate_cmo_spec.py, Beta/docs/presentation_build",
+      "resolution": "Git commit 3e61cff (2026-11-26 21:21:54): beta.00.01.0065: 23-page Physician Clinical Monograph PDF with graphical math and 30 linked DOI/standard refs",
+      "comments": "Synced from git tag beta.00.01.0065",
+      "created_at": "2026-11-26 21:21:54",
+      "resolved_at": "2026-11-26 21:21:54"
     }
   ]
 }

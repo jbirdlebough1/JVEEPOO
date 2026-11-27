@@ -312,9 +312,9 @@ Clicking Card 1 generates an official HL7 FHIR R4 JSON bundle pre-mapped with st
 
 Need a spreadsheet or quick clinic handoff? Card 2 downloads an Excel-ready clinical CSV, while Card 3 opens your own email client pre-addressed with step-by-step import instructions so you keep full control before sending.
 
-### Slide 78 — Tab 13: 13-EXPORT | Card 4: The 10-Page Doctor's Clinical Specification & Metrology Handbook
+### Slide 78 — Tab 13: 13-EXPORT | Card 4: The 23-Page Physician Clinical Monograph & Vetted Citations
 
-Finally, Card 4 opens the 10-page Doctor's Clinical Specification and Reporting Handbook—briefing physicians transparently on optical transducers, calibration math, and LOINC mapping before we finish workspace tabs at Tab 14 Troubleshooting.
+Finally, Card 4 opens the comprehensive 23-page Physician Clinical Reference Monograph—complete with clean graphical mathematical equations, five live sub-report chapters, LOINC mapping, and thirty hyperlinked peer-reviewed citations before finishing at Tab 14 Troubleshooting.
 
 ### Slide 79 — Tab 14: 14-TROUBLESHOOTING | 14-TROUBLESHOOTING: Guided Self-Help Without Technical Jargon
 
