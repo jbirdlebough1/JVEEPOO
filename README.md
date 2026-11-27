@@ -1,6 +1,6 @@
 # BFM Biometric Function Monitor — Continuous Metabolic & Clinical Telemetry Platform (`beta.00.01.0074`)
 
-The **BFM Biometric Function Monitor** (`JVEEPOO`) is an open-source, clinician-aligned ambulatory telemetry workstation and zero-account mobile companion built by **The Author** (Sole Pioneer, Inventor, System Architect, and Philosophical Leader) and sponsored by **Google** (Corporate & Technology Sponsor powering solutions via Google Gemini AI).
+The **BFM Biometric Function Monitor** (`JVEEPOO`) is an independent, open-source, clinician-aligned ambulatory telemetry workstation and zero-account mobile companion built by **The Author** (Sole Pioneer, Inventor, System Architect, and Philosophical Leader), developed with Google Gemini AI (currently independent with no sponsors).
 
 [![Build: beta.00.01.0074](https://img.shields.io/badge/Build-beta.00.01.0074-blue.svg)](Beta/docs/walkthrough_beta_00_01_0074.md)
 [![Hardware: Model 5010](https://img.shields.io/badge/Hardware-FITAOS%205150%20%2F%20Veepoo%205010-orange.svg)](https://fitaos.com)
