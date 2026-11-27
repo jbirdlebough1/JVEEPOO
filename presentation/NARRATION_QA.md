@@ -76,13 +76,13 @@ Just beneath the meal cards sits the 24-Hour Fluid Progression chart targeting 6
 
 At the bottom of Tab 02 lies the full Chronological Meal Journal—listing every logged dish by time alongside clean delete buttons and showing clearly how much carbohydrate headroom remains before planning our next meal in Tab 03.
 
-### Slide 19 — Tab 03: 03-MEAL PLANNER | 03-MEAL PLANNER: Pathway A Curated Pantry & Multi-Modal Query
+### Slide 19 — Tab 03: 03-MEAL PLANNER | 03-MEAL PLANNER: Pathway A Curated Pantry & Clean Multi-Modal Input
 
-Stepping into Tab 03 Meal Planner shifts focus from tracking past meals to planning upcoming choices before taking a single bite. Pathway A on the left offers 15 curated pantry favorites, while Pathway B on the right estimates custom meals via typing, voice, or photos.
+Stepping into Tab 03 Meal Planner shifts focus from tracking past meals to planning upcoming choices cleanly before taking a single bite. Pathway A on the left offers 15 curated pantry favorites, while uncluttered Pathway B on the right accepts typed dishes, voice orders, plate photos, and focused discovery prompts.
 
-### Slide 20 — Tab 03: 03-MEAL PLANNER | Pre-Choice Metabolic Evaluator: Seven Macros, Hydration & GLUT4 Rx
+### Slide 20 — Tab 03: 03-MEAL PLANNER | Pre-Choice Metabolic Evaluator: Seven Live Macros, Hydration & GLUT4 Rx
 
-Directly beneath Step 1 sits the Pre-Choice Evaluator answering: what will this choice cost me metabolically? Alongside seven crisp macro tiles, it calculates how 16 ounces of fluid buffers peak velocity and prescribes an exact 20-minute post-meal walk.
+Directly beneath Step 1 sits the Pre-Choice Evaluator answering: what will this choice cost me metabolically? Shown live for a 7-ounce pot pie at 420 kilocalories and 34 grams net carbs—Glycemic Load 15—seven macro tiles pair with 16-ounce hydration buffering and a timed GLUT4 walk.
 
 ### Slide 21 — Tab 03: 03-MEAL PLANNER | Verified Geo-Located Restaurant Disclosures vs Zero-Guessing Honesty
 

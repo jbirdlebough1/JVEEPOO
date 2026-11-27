@@ -150,26 +150,26 @@
 
 > At the bottom of Tab 02 lies the full Chronological Meal Journal—listing every logged dish by time alongside clean delete buttons and showing clearly how much carbohydrate headroom remains before planning our next meal in Tab 03.
 
-## Slide 19: 03-MEAL PLANNER: Pathway A Curated Pantry & Multi-Modal Query
+## Slide 19: 03-MEAL PLANNER: Pathway A Curated Pantry & Clean Multi-Modal Input
 
 - **Section:** Tab 03: 03-MEAL PLANNER
-- **Visual:** `images/bfm_t03_meal_pantry.png` (`03-MEAL PLANNER • REUSABLE PANTRY & MEAL QUERY`)
-- **Key Takeaway:** Evaluating meals BEFORE ingestion turns nutrition from guilt-driven hindsight into effortless pre-order empowerment.
+- **Visual:** `images/bfm_t03_meal_pantry.png` (`03-MEAL PLANNER • CLEAN PATHWAY A PANTRY & PATHWAY B INPUT`)
+- **Key Takeaway:** Decluttering Pathway B puts clean natural-language typing, voice, and pantry reuse front and center before ingestion.
 
-> Stepping into Tab 03 Meal Planner shifts focus from tracking past meals to planning upcoming choices before taking a single bite. Pathway A on the left offers 15 curated pantry favorites, while Pathway B on the right estimates custom meals via typing, voice, or photos.
+> Stepping into Tab 03 Meal Planner shifts focus from tracking past meals to planning upcoming choices cleanly before taking a single bite. Pathway A on the left offers 15 curated pantry favorites, while uncluttered Pathway B on the right accepts typed dishes, voice orders, plate photos, and focused discovery prompts.
 
-## Slide 20: Pre-Choice Metabolic Evaluator: Seven Macros, Hydration & GLUT4 Rx
+## Slide 20: Pre-Choice Metabolic Evaluator: Seven Live Macros, Hydration & GLUT4 Rx
 
 - **Section:** Tab 03: 03-MEAL PLANNER
-- **Visual:** `images/bfm_t03_meal_estimator.png` (`03-MEAL PLANNER • PRE-CHOICE METABOLIC EVALUATOR`)
-- **Key Takeaway:** Knowing your predicted peak BEFORE eating—and how water plus a 20-minute walk flattens it—removes diabetes guesswork.
+- **Visual:** `images/bfm_t03_meal_estimator.png` (`03-MEAL PLANNER • PRE-CHOICE METABOLIC EVALUATOR (420 KCAL / 34G NET)`)
+- **Key Takeaway:** Reviewing all 7 live macro tiles, fluid attenuation, and GLUT4 walk timing BEFORE eating removes diabetes guesswork.
 
-> Directly beneath Step 1 sits the Pre-Choice Evaluator answering: what will this choice cost me metabolically? Alongside seven crisp macro tiles, it calculates how 16 ounces of fluid buffers peak velocity and prescribes an exact 20-minute post-meal walk.
+> Directly beneath Step 1 sits the Pre-Choice Evaluator answering: what will this choice cost me metabolically? Shown live for a 7-ounce pot pie at 420 kilocalories and 34 grams net carbs—Glycemic Load 15—seven macro tiles pair with 16-ounce hydration buffering and a timed GLUT4 walk.
 
 ## Slide 21: Verified Geo-Located Restaurant Disclosures vs Zero-Guessing Honesty
 
 - **Section:** Tab 03: 03-MEAL PLANNER
-- **Visual:** `images/bfm_t03_meal_pantry.png` (`03-MEAL PLANNER • REUSABLE PANTRY & MEAL QUERY`)
+- **Visual:** `images/bfm_t03_meal_pantry.png` (`03-MEAL PLANNER • CLEAN PATHWAY A PANTRY & PATHWAY B INPUT`)
 - **Key Takeaway:** Pinning exact franchise facts while refusing fake guesses protects insulin-sensitive users at unfamiliar restaurants.
 
 > Generic apps often mis-estimate restaurant meals by forty grams or more. BFM verifies exact chain disclosures like Taco Time's 520-kilocalorie, 33-gram net carb Fiesta Platter and regional venues in zip code 98294—while strictly refusing to invent guesses for unknown dishes.
