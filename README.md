@@ -22,7 +22,7 @@ Conceived and architected out of personal necessity by **The Author** while mana
 - **Diet & Lifestyle Coach**: Pre-choice meal planning with `<= 45g` net-carb ceiling verification and post-meal `GLUT4` walking clearance prescriptions.
 
 ### Volunteer Call, Sponsorship & Clinical Impact
-- **Volunteers Needed**: The Author is seeking volunteer **medical professionals who have Type 2 Diabetes** and **medical application programmers who have Type 2 Diabetes** to test, review, and help advance this Beta platform.
+- **Volunteers Needed**: The Author is seeking volunteer **medical professionals who have Type 2 Diabetes**, **medical application programmers who have Type 2 Diabetes**, and **developers with Type 2 Diabetes on macOS and Linux** to test, review, and help advance this Beta platform across desktop operating systems.
 - **Sponsorship & 8-Day Gemini Pro Build Showcase**: We are seeking sponsorship from **Veepoo / FITAOS**, other similar PPG watch vendors, and **Google Gemini**. This entire Beta solution was designed and built to Beta in **8 working days using Gemini Pro** — serving as a showcase for Google that validates the AI development process (complete `.jsonl` session logs are included directly in this source tree) and proves to industry and consumers that AI can be used to meaningfully improve human health.
 - **For Doctors & Specialists**: Solves the blind spot of 90-day point-in-time lab samples by capturing **288 automated samples per day** across **multi-year** longitudinal timelines, enabling significantly more detailed discovery of real-world events impacting the patient.
 - **Community Feedback & Continuous Improvement**: We welcome all comments and clinical/engineering reviews. If you find something incorrect, please send us a solution — the goal of **BFM** is continuous improvement driven by real-world field-use data.
@@ -82,6 +82,16 @@ Operates identically via local server (`http://127.0.0.1:8899/`) and standalone 
    Then open **`http://localhost:8899/`** (or open **`BFM.HTM`** directly in Chrome/Edge).
 2. **Pair Your Smart Watch**: Click **Link / Connect** in the top status ribbon to connect to your Veepoo / FITAOS Model 5010 watch via Web Bluetooth, or let the background BLE daemon auto-sync nearby watch packets into `w11_htm_app/telemetry.db`.
 3. **Install `BFM Remote` on Android**: Go to **`10-CONFIG` -> `ADD CELL`**, scan the QR code with **Google Lens** or your camera, tap **Install -> Open**, and begin logging meals, feelings, and medications immediately.
+
+### Cross-Platform Support (macOS & Linux — Testers Wanted)
+
+`BFM.HTM` is OS-agnostic HTML5/CSS/JS with zero Windows dependencies, and `w11_htm_app/server.py` is cross-platform Python (`bleak` supports macOS CoreBluetooth and Linux BlueZ; Windows registry calls are guarded by `if sys.platform != "win32"`). **We are actively looking for developers with Type 2 Diabetes to test and validate BFM on macOS and Linux platforms.**
+
+| Platform | `BFM.HTM` UI & Watch BLE | `w11_htm_app/server.py` (SQLite + Cell LAN + BLE) | Notes / Requirements |
+| :--- | :--- | :--- | :--- |
+| **macOS** | **Yes** (Chrome / Edge / Brave) | **Yes** (`python3 w11_htm_app/server.py`) | **Safari & Firefox lack Web Bluetooth** — use Chrome/Edge for direct watch link; macOS prompts once for Bluetooth permission. |
+| **Linux** | **Yes** (Chrome / Chromium / Edge) | **Yes** (`python3 w11_htm_app/server.py`) | Requires `bluez` running; in Chrome/Chromium on Linux enable `chrome://flags/#enable-experimental-web-platform-features` for Web Bluetooth (not needed if using `server.py` `bleak` sync). |
+| **Windows-Only Pieces** | None in `BFM.HTM` | Shortcut button route only (`server.py` PowerShell shortcut endpoint) | `BFM_Launcher.exe` and the Windows shortcut installer route are Windows-only and not needed on macOS/Linux. |
 
 ---
 
