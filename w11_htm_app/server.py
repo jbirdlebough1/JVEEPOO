@@ -863,9 +863,90 @@ def _nominatim_locate_venue(venue_query):
     return ""
 
 
-def call_public_usda_nutrition(meal_name, custom_notes=""):
-    """Zero-account U.S. Gov USDA FoodData Central (+ Nominatim geo-locator) fallback for casual users."""
+_USDA_SERVER_COOLDOWN_UNTIL = 0.0
+
+def _extract_off_nutriments_py(p, fallback_name):
+    nu = (p or {}).get("nutriments") or {}
+    k_srv = nu.get("energy-kcal_serving")
+    k_100 = nu.get("energy-kcal_100g")
+    c_srv = nu.get("carbohydrates_serving")
+    c_100 = nu.get("carbohydrates_100g")
+    fb_srv = nu.get("fiber_serving")
+    fb_100 = nu.get("fiber_100g")
+    p_srv = nu.get("proteins_serving")
+    p_100 = nu.get("proteins_100g")
+    ft_srv = nu.get("fat_serving")
+    ft_100 = nu.get("fat_100g")
+    if k_srv and float(k_srv) > 0 and (c_srv is not None or p_srv is not None):
+        return {
+            "desc": str(p.get("product_name") or fallback_name).strip(),
+            "srv_lbl": str(p.get("serving_size") or "1 labeled serving"),
+            "grams": 100.0,
+            "kcal": int(round(float(k_srv))),
+            "carbs": round(float(c_srv or 0.0), 1),
+            "fib": round(float(fb_srv or 0.0), 1),
+            "pro": round(float(p_srv or 0.0), 1),
+            "fat": round(float(ft_srv or 0.0), 1),
+            "source_tag": "Open Food Facts",
+        }
+    elif k_100 and float(k_100) > 0:
+        try:
+            sq = float(p.get("serving_quantity") or 0)
+        except Exception:
+            sq = 0.0
+        scale = (sq / 100.0) if (15.0 <= sq <= 450.0) else 1.0
+        return {
+            "desc": str(p.get("product_name") or fallback_name).strip(),
+            "srv_lbl": str(p.get("serving_size") or (f"{round(sq)}g serving" if scale != 1.0 else "100g reference")),
+            "grams": sq if scale != 1.0 else 100.0,
+            "kcal": int(round(float(k_100) * scale)),
+            "carbs": round(float(c_100 or 0.0) * scale, 1),
+            "fib": round(float(fb_100 or 0.0) * scale, 1),
+            "pro": round(float(p_100 or 0.0) * scale, 1),
+            "fat": round(float(ft_100 or 0.0) * scale, 1),
+            "source_tag": "Open Food Facts",
+        }
+    return None
+
+def _search_openfoodfacts_component(query_text):
+    """Zero-account Open Food Facts nutrition lookup when USDA DEMO_KEY returns 429 or zero matches."""
     import urllib.request, urllib.parse
+    endpoints = [
+        "https://search.openfoodfacts.org/search?q=" + urllib.parse.quote(query_text) + "&page_size=12",
+        "https://world.openfoodfacts.org/cgi/search.pl?search_terms=" + urllib.parse.quote(query_text) + "&search_simple=1&action=process&json=1&page_size=8",
+    ]
+    for url in endpoints:
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": "BFM-BiometricFunctionMonitor/0.1.77"})
+            with urllib.request.urlopen(req, timeout=7) as r:
+                data = json.loads(r.read().decode("utf-8", errors="ignore"))
+            products = data.get("hits") or data.get("products") or []
+            for p in products:
+                res = _extract_off_nutriments_py(p, query_text)
+                if res:
+                    return res
+            for p in products[:3]:
+                code = (p or {}).get("code")
+                if not code:
+                    continue
+                try:
+                    pu = f"https://world.openfoodfacts.org/api/v2/product/{urllib.parse.quote(str(code))}.json?fields=product_name,serving_size,serving_quantity,nutriments"
+                    preq = urllib.request.Request(pu, headers={"User-Agent": "BFM-BiometricFunctionMonitor/0.1.77"})
+                    with urllib.request.urlopen(preq, timeout=6) as pr:
+                        pd = json.loads(pr.read().decode("utf-8", errors="ignore"))
+                    res = _extract_off_nutriments_py(pd.get("product"), p.get("product_name") or query_text)
+                    if res:
+                        return res
+                except Exception as pe:
+                    print(f"[MIL-SPEC HANDLED FAULT] OFF v2 product fetch failed for '{code}': {pe}")
+        except Exception as e:
+            print(f"[MIL-SPEC HANDLED FAULT] Open Food Facts lookup failed for '{query_text}': {e}")
+    return None
+
+def call_public_usda_nutrition(meal_name, custom_notes=""):
+    """Zero-account U.S. Gov USDA FoodData Central (+ Open Food Facts 429 fallback + Nominatim)."""
+    global _USDA_SERVER_COOLDOWN_UNTIL
+    import urllib.request, urllib.parse, urllib.error
     combined = meal_name.strip()
     if custom_notes and custom_notes.strip().lower() != combined.lower():
         combined = f"{combined}, {custom_notes.strip()}" if combined else custom_notes.strip()
@@ -881,92 +962,106 @@ def call_public_usda_nutrition(meal_name, custom_notes=""):
     matched_items = []
     notes_parts = []
     for comp in items:
-        try:
-            url = "https://api.nal.usda.gov/fdc/v1/foods/search?api_key=DEMO_KEY&pageSize=6&query=" + urllib.parse.quote(comp)
-            req = urllib.request.Request(url, headers={"User-Agent": "BFM-BiometricFunctionMonitor/0.1.73"})
-            with urllib.request.urlopen(req, timeout=6) as r:
-                data = json.loads(r.read().decode("utf-8", errors="ignore"))
-            foods = data.get("foods") or []
-            if not foods:
-                continue
-            chosen = (
-                next((f for f in foods if f.get("dataType") == "Survey (FNDDS)" and f.get("foodMeasures")), None)
-                or next((f for f in foods if f.get("dataType") in ("Survey (FNDDS)", "SR Legacy")), None)
-                or next((f for f in foods if 30 <= float(f.get("servingSize") or 0) <= 450), None)
-                or foods[0]
-            )
-            nuts = chosen.get("foodNutrients") or []
-            def pick_nut(prefix, require_kcal=False):
-                for n in nuts:
-                    nm = str(n.get("nutrientName") or "")
-                    u = str(n.get("unitName") or "").upper()
-                    if nm == prefix or nm.startswith(prefix):
-                        if require_kcal and u != "KCAL":
-                            continue
-                        val = n.get("value")
-                        if val is not None:
-                            return float(val)
-                return 0.0
-            k100 = pick_nut("Energy", True)
-            c100 = pick_nut("Carbohydrate, by difference")
-            fb100 = pick_nut("Fiber, total dietary")
-            p100 = pick_nut("Protein")
-            ft100 = pick_nut("Total lipid (fat)")
-            if k100 <= 0 and c100 <= 0 and p100 <= 0 and ft100 <= 0:
-                continue
-            grams = 100.0
-            srv_lbl = "100g standard serving"
-            measures = chosen.get("foodMeasures") or []
-            picked_m = False
-            for rx in (r"regular|medium|standard|sandwich", r"cup|bowl|serving"):
-                for m in measures:
-                    gw = float(m.get("gramWeight") or 0)
-                    if re.search(rx, str(m.get("disseminationText") or ""), re.I) and 30 <= gw <= 450:
-                        grams = gw
-                        srv_lbl = str(m.get("disseminationText") or f"{round(gw)}g")
-                        picked_m = True
-                        break
-                if picked_m:
-                    break
-            if not picked_m:
-                for m in measures:
-                    gw = float(m.get("gramWeight") or 0)
-                    if 30 <= gw <= 450:
-                        grams = gw
-                        srv_lbl = str(m.get("disseminationText") or f"{round(gw)}g")
-                        picked_m = True
-                        break
-            if not picked_m:
-                ss = float(chosen.get("servingSize") or 0)
-                su = str(chosen.get("servingSizeUnit") or "").lower()
-                if su in ("g", "ml") and 30 <= ss <= 450:
-                    grams = ss
-                    srv_lbl = f"{round(ss)}{su} serving"
-            scale = grams / 100.0
-            kcal = int(round(k100 * scale))
-            carbs = round(c100 * scale, 1)
-            fib = round(fb100 * scale, 1)
-            pro = round(p100 * scale, 1)
-            fat = round(ft100 * scale, 1)
-            net_c = max(0.0, round(carbs - fib, 1))
-            total_kcal += kcal
-            total_carbs += carbs
-            total_fiber += fib
-            total_pro += pro
-            total_fat += fat
-            desc = str(chosen.get("description") or comp)
+        found_row = None
+        if time.time() > _USDA_SERVER_COOLDOWN_UNTIL:
+            try:
+                url = "https://api.nal.usda.gov/fdc/v1/foods/search?api_key=DEMO_KEY&pageSize=6&query=" + urllib.parse.quote(comp)
+                req = urllib.request.Request(url, headers={"User-Agent": "BFM-BiometricFunctionMonitor/0.1.77"})
+                with urllib.request.urlopen(req, timeout=6) as r:
+                    data = json.loads(r.read().decode("utf-8", errors="ignore"))
+                foods = data.get("foods") or []
+                if foods:
+                    chosen = (
+                        next((f for f in foods if f.get("dataType") == "Survey (FNDDS)" and f.get("foodMeasures")), None)
+                        or next((f for f in foods if f.get("dataType") in ("Survey (FNDDS)", "SR Legacy")), None)
+                        or next((f for f in foods if 30 <= float(f.get("servingSize") or 0) <= 450), None)
+                        or foods[0]
+                    )
+                    nuts = chosen.get("foodNutrients") or []
+                    def pick_nut(prefix, require_kcal=False):
+                        for n in nuts:
+                            nm = str(n.get("nutrientName") or "")
+                            u = str(n.get("unitName") or "").upper()
+                            if nm == prefix or nm.startswith(prefix):
+                                if require_kcal and u != "KCAL":
+                                    continue
+                                val = n.get("value")
+                                if val is not None:
+                                    return float(val)
+                        return 0.0
+                    k100 = pick_nut("Energy", True)
+                    c100 = pick_nut("Carbohydrate, by difference")
+                    fb100 = pick_nut("Fiber, total dietary")
+                    p100 = pick_nut("Protein")
+                    ft100 = pick_nut("Total lipid (fat)")
+                    if k100 > 0 or c100 > 0 or p100 > 0 or ft100 > 0:
+                        grams = 100.0
+                        srv_lbl = "100g standard serving"
+                        measures = chosen.get("foodMeasures") or []
+                        picked_m = False
+                        for rx in (r"regular|medium|standard|sandwich", r"cup|bowl|serving"):
+                            for m in measures:
+                                gw = float(m.get("gramWeight") or 0)
+                                if re.search(rx, str(m.get("disseminationText") or ""), re.I) and 30 <= gw <= 450:
+                                    grams = gw
+                                    srv_lbl = str(m.get("disseminationText") or f"{round(gw)}g")
+                                    picked_m = True
+                                    break
+                            if picked_m:
+                                break
+                        if not picked_m:
+                            for m in measures:
+                                gw = float(m.get("gramWeight") or 0)
+                                if 30 <= gw <= 450:
+                                    grams = gw
+                                    srv_lbl = str(m.get("disseminationText") or f"{round(gw)}g")
+                                    picked_m = True
+                                    break
+                        if not picked_m:
+                            ss = float(chosen.get("servingSize") or 0)
+                            su = str(chosen.get("servingSizeUnit") or "").lower()
+                            if su in ("g", "ml") and 30 <= ss <= 450:
+                                grams = ss
+                                srv_lbl = f"{round(ss)}{su} serving"
+                        scale = grams / 100.0
+                        found_row = {
+                            "desc": str(chosen.get("description") or comp),
+                            "srv_lbl": f"{srv_lbl} ({round(grams)}g)",
+                            "grams": grams,
+                            "kcal": int(round(k100 * scale)),
+                            "carbs": round(c100 * scale, 1),
+                            "fib": round(fb100 * scale, 1),
+                            "pro": round(p100 * scale, 1),
+                            "fat": round(ft100 * scale, 1),
+                            "source_tag": "USDA",
+                        }
+            except urllib.error.HTTPError as he:
+                if he.code == 429 or he.code >= 500:
+                    _USDA_SERVER_COOLDOWN_UNTIL = time.time() + 300.0
+                print(f"[MIL-SPEC HANDLED FAULT] Server USDA HTTP {he.code} for '{comp}'; falling back to Open Food Facts.")
+            except Exception as e:
+                print(f"[MIL-SPEC HANDLED FAULT] Server USDA component lookup failed for '{comp}': {e}")
+
+        if not found_row:
+            found_row = _search_openfoodfacts_component(comp)
+
+        if found_row:
+            net_c = max(0.0, round(found_row["carbs"] - found_row["fib"], 1))
+            total_kcal += found_row["kcal"]
+            total_carbs += found_row["carbs"]
+            total_fiber += found_row["fib"]
+            total_pro += found_row["pro"]
+            total_fat += found_row["fat"]
             matched_items.append({
-                "name": desc,
-                "portion": f"{srv_lbl} ({round(grams)}g)",
+                "name": found_row["desc"],
+                "portion": found_row["srv_lbl"],
                 "net_carbs": net_c,
-                "fiber": fib,
-                "protein": pro,
-                "fat": fat,
-                "calories": kcal,
+                "fiber": found_row["fib"],
+                "protein": found_row["pro"],
+                "fat": found_row["fat"],
+                "calories": found_row["kcal"],
             })
-            notes_parts.append(f"{desc} ({srv_lbl}, {round(grams)}g -> {kcal} kcal, {net_c}g net)")
-        except Exception as e:
-            print(f"[MIL-SPEC HANDLED FAULT] Server USDA component lookup failed for '{comp}': {e}")
+            notes_parts.append(f"{found_row['desc']} ({found_row['srv_lbl']} -> {found_row['kcal']} kcal, {net_c}g net)")
     if not matched_items:
         return None
     total_carbs = round(total_carbs, 1)

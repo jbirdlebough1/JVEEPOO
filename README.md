@@ -1,11 +1,11 @@
-# BFM Biometric Function Monitor — Continuous Metabolic & Clinical Telemetry Platform (`beta.00.01.0076`)
+# BFM Biometric Function Monitor — Continuous Metabolic & Clinical Telemetry Platform (`beta.00.01.0077`)
 
 The **BFM Biometric Function Monitor** (`JVEEPOO`) is an independent, open-source, clinician-aligned ambulatory telemetry workstation and zero-account mobile companion built by **The Author** (Sole Pioneer, Inventor, System Architect, and Philosophical Leader), developed with Google Gemini AI (currently independent with no sponsors).
 
-[![Build: beta.00.01.0076](https://img.shields.io/badge/Build-beta.00.01.0076-blue.svg)](Beta/docs/walkthrough_beta_00_01_0076.md)
+[![Build: beta.00.01.0077](https://img.shields.io/badge/Build-beta.00.01.0077-blue.svg)](Beta/docs/walkthrough_beta_00_01_0077.md)
 [![Hardware: Model 5010](https://img.shields.io/badge/Hardware-FITAOS%205150%20%2F%20Veepoo%205010-orange.svg)](https://fitaos.com)
 [![Presentation: 89 Slides](https://img.shields.io/badge/Presentation-89%20Slides%20%2B%20Audio-green.svg)](https://jbirdlebough1.github.io/JVEEPOO/presentation/preview.html)
-[![Zero Defect: Six Sigma](https://img.shields.io/badge/CLEBUGGER-76%2F76%20Zero%20Open-brightgreen.svg)](Beta/docs/BETA_BACKLOG_TODO.md)
+[![Zero Defect: Six Sigma](https://img.shields.io/badge/CLEBUGGER-77%2F77%20Zero%20Open-brightgreen.svg)](Beta/docs/BETA_BACKLOG_TODO.md)
 [![License: GPL v3 / Open Source](https://img.shields.io/badge/License-GPL%20v3%20%2F%20Open%20Source-green.svg)](https://github.com/jbirdlebough1/JVEEPOO)
 
 > [!IMPORTANT]
@@ -38,7 +38,7 @@ Conceived and architected out of personal necessity by **The Author** while mana
 
 ---
 
-## Visual Showcase (`beta.00.01.0076`)
+## Visual Showcase (`beta.00.01.0077`)
 
 | 14-Tab Desktop Console (`01-FULL SCAN`) | `03-MEAL PLANNER` (Saved Meals & Clean Coach) |
 | :---: | :---: |
@@ -61,7 +61,7 @@ Clicking `.html` files inside GitHub's web viewer shows raw source code. Launch 
 
 ---
 
-## Key Capabilities (`beta.00.01.0076`)
+## Key Capabilities (`beta.00.01.0077`)
 
 ### 1. Unified 14-Tab Workstation Console (`BFM.HTM`)
 Operates identically via local server (`http://127.0.0.1:8899/`) and standalone desktop launch (`file:///D:/veepoo/BFM.HTM`):
@@ -73,7 +73,7 @@ Operates identically via local server (`http://127.0.0.1:8899/`) and standalone 
 ### 2. Pure Zero-Data Reality (Beta)
 - **Zero Synthetic Placeholders (`Zero Is Zero`)**: Unsynced watch streams strictly display `0`; empty meal/medication tables display explicit empty banners; unknown restaurant items output `0` macros rather than fabricated guesses.
 
-### 3. `BFM Remote` Standalone Android App (`w11_htm_app/BFM-Cell.apk` `v0.1.74`)
+### 3. `BFM Remote` Standalone Android App (`w11_htm_app/BFM-Cell.apk` `v0.1.77`)
 - **Zero-Account Casual-User Ready**: Works immediately over cellular data or Wi-Fi with **zero Google Gemini account or API key required**, powered by official **U.S. Gov USDA FoodData Central public API + OpenStreetMap Nominatim geo-location**. Power users can optionally add a Google Gemini key once in `10-CONFIG` (Section 11B) to auto-sync live Google Search grounding to connected household phones over Home LAN.
 - **Google Lens 2-Step QR Install**: Scan the QR code inside `10-CONFIG -> ADD CELL` (`/api/qrcode/cell` -> `/install/cell` -> `/download/BFM-Cell.apk` or `/download/BFM-Remote.apk`) to install and auto-pair.
 - **Clean Role Separation (Zero Watch BLE)**: Strictly handles pre-choice meal nutrition lookups, **"How Do You Feel?" (HDYF)** voice/text/pain/mood logging, and the **3-state Daily Med toggle** (offline field staging with automatic Home Wi-Fi sync).
@@ -120,7 +120,7 @@ Operates identically via local server (`http://127.0.0.1:8899/`) and standalone 
 | :--- | :--- |
 | [`BFM.HTM`](BFM.HTM) / [`index.html`](index.html) / [`w11_htm_app/index.html`](w11_htm_app/index.html) | Single-file 14-tab BFM workstation console (binary SHA-256 mirrored) |
 | [`w11_htm_app/server.py`](w11_htm_app/server.py) | Multithreaded HTTP API & BLE auto-sync server (port `8899`) + USDA/Nominatim/Gemini bridge |
-| [`w11_htm_app/cell.html`](w11_htm_app/cell.html) & [`w11_htm_app/BFM-Cell.apk`](w11_htm_app/BFM-Cell.apk) | `BFM Remote` Android companion web bundle & signed standalone `.apk` (`v0.1.74`) |
+| [`w11_htm_app/cell.html`](w11_htm_app/cell.html) & [`w11_htm_app/BFM-Cell.apk`](w11_htm_app/BFM-Cell.apk) | `BFM Remote` Android companion web bundle & signed standalone `.apk` (`v0.1.77`) |
 | [`w11_htm_app/fhir_export_engine.py`](w11_htm_app/fhir_export_engine.py) & [`w11_htm_app/dual_backup_engine.py`](w11_htm_app/dual_backup_engine.py) | Epic FHIR R4 JSON + raw SQLite + SHA-256 manifest export engines |
 | [`presentation/`](presentation/) & [`Preview_Presentation.exe`](Preview_Presentation.exe) | 89-slide clinical deck (`preview.html`, `TRANSCRIPT.md`, `audio/`, `images/`) |
 | [`Beta/docs/`](Beta/docs/) & [`docs/`](docs/) | Build walkthroughs (`beta.00.01.0001`–`0074`), specs, backlog (`BETA_BACKLOG_TODO.md`), CMO docs |

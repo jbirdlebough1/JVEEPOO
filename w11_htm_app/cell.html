@@ -1067,6 +1067,154 @@
       };
     }
 
+    function _parseNumWithMultiplier(strVal, mult) {
+      const n = parseFloat(strVal);
+      if (isNaN(n) || n < 0) return null;
+      return Math.round(n * mult * 10) / 10;
+    }
+
+    function parseNutritionFactsOcrText(ocrText, typedText = '') {
+      const norm = String(ocrText || '').replace(/\r/g, '\n');
+      if (norm.trim().length < 8) return null;
+
+      let mult = 1.0;
+      const tLow = String(typedText || '').toLowerCase();
+      if (/\bhalf\b|\b1\/2\b/.test(tLow)) mult = 0.5;
+      else if (/\bdouble\b|\btwo\b|\b2\s*(?:servings?|slices?|pieces?|bars?|packs?)\b/.test(tLow)) mult = 2.0;
+      else {
+        const mServ = tLow.match(/(\d+(?:\.\d+)?)\s*(?:servings?|x)\b/);
+        if (mServ) {
+          const v = parseFloat(mServ[1]);
+          if (v > 0 && v <= 10) mult = v;
+        }
+      }
+
+      const mCal = norm.match(/calories[^0-9]{0,16}(\d{1,4})/i);
+      const mCarb = norm.match(/total\s+carb(?:ohydrate)?s?[^0-9]{0,16}(\d+(?:\.\d+)?)\s*g?/i)
+        || norm.match(/\bcarbohydrates?[^0-9]{0,16}(\d+(?:\.\d+)?)\s*g?/i);
+      const mFib = norm.match(/(?:dietary\s+)?fiber[^0-9]{0,16}(\d+(?:\.\d+)?)\s*g?/i);
+      const mSug = norm.match(/(?:total\s+)?sugars?[^0-9]{0,16}(\d+(?:\.\d+)?)\s*g?/i);
+      const mPro = norm.match(/protein[^0-9]{0,16}(\d+(?:\.\d+)?)\s*g?/i);
+      const mFat = norm.match(/total\s+fat[^0-9]{0,16}(\d+(?:\.\d+)?)\s*g?/i);
+      const mSrv = norm.match(/serving\s+size[:\s]*([^\n]{2,42})/i);
+
+      const cals = mCal ? Math.round(parseFloat(mCal[1]) * mult) : 0;
+      const totCarbs = mCarb ? (_parseNumWithMultiplier(mCarb[1], mult) ?? 0) : 0;
+      const fib = mFib ? (_parseNumWithMultiplier(mFib[1], mult) ?? 0) : 0;
+      const sugars = mSug ? (_parseNumWithMultiplier(mSug[1], mult) ?? 0) : 0;
+      const pro = mPro ? (_parseNumWithMultiplier(mPro[1], mult) ?? 0) : 0;
+      const fat = mFat ? (_parseNumWithMultiplier(mFat[1], mult) ?? 0) : 0;
+
+      if (cals <= 0 && totCarbs <= 0 && pro <= 0 && fat <= 0) return null;
+
+      const netCarbs = Math.max(0, Math.round((totCarbs - fib) * 10) / 10);
+      const glVal = Math.max(1, Math.round(netCarbs * 0.52));
+      const glCat = netCarbs <= 15 ? 'Safe Low' : (netCarbs <= 35 ? 'Safe Low-Med' : (netCarbs <= 45 ? 'Moderate' : 'SEVERE SPIKE HAZARD'));
+      const meets = netCarbs <= 45;
+      const spikeLow = Math.round(netCarbs * 0.75);
+      const spikeHigh = Math.max(spikeLow + 4, Math.round(netCarbs * 1.15));
+      const walkMin = netCarbs <= 15 ? 10 : Math.min(45, Math.max(15, Math.round(netCarbs * 0.6)));
+      const swaps = [];
+      if (netCarbs > 30) {
+        swaps.push('Reduce portion by 1/2 to cut net carbs in half');
+        swaps.push('Pair with unsweetened drink & add 16 fl oz water buffer');
+      }
+
+      const srvDesc = mSrv ? mSrv[1].trim() : '1 labeled serving';
+      const title = (typedText || '').trim() || `Nutrition Label (${srvDesc})`;
+      const sugarNote = mSug ? ` • Sugars: ${sugars}g` : '';
+      return {
+        meal_name: title,
+        vendor_matched: 'Nutrition Facts Label (On-Device OCR)',
+        calories: cals,
+        net_carbs: netCarbs,
+        total_carbs: totCarbs,
+        fiber: fib,
+        protein: pro,
+        fat: fat,
+        glycemic_load: `${glVal} (${glCat})`,
+        meets_goal: meets,
+        projected_spike: `+${spikeLow} to +${spikeHigh} mg/dL postprandial rise`,
+        gemini_notes: `Read directly from photo Nutrition Facts label (Serving: ${srvDesc}${mult !== 1 ? `, x${mult}` : ''}): ${cals} kcal • Total Carbs: ${totCarbs}g • Fiber: ${fib}g${sugarNote} • Net Carbs: ${netCarbs}g • Protein: ${pro}g • Total Fat: ${fat}g.`,
+        trade_alternatives: swaps,
+        glut4_recommendation: netCarbs <= 15
+          ? 'Mild 10-minute light walk after eating keeps glucose flat.'
+          : `Take a ${walkMin}-minute brisk walk 20 minutes after eating to activate GLUT4 glucose clearance.`
+      };
+    }
+
+    async function _loadTesseractOnce() {
+      if (window.Tesseract && typeof window.Tesseract.recognize === 'function') {
+        return window.Tesseract;
+      }
+      if (!window._tesseractLoadingPromise) {
+        window._tesseractLoadingPromise = new Promise((resolve, reject) => {
+          const s = document.createElement('script');
+          s.src = 'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';
+          s.async = true;
+          const timer = setTimeout(() => reject(new Error('Tesseract CDN load timed out')), 15000);
+          s.onload = () => {
+            clearTimeout(timer);
+            if (window.Tesseract) resolve(window.Tesseract);
+            else reject(new Error('Tesseract global missing after script load'));
+          };
+          s.onerror = () => {
+            clearTimeout(timer);
+            reject(new Error('Failed loading Tesseract OCR script'));
+          };
+          document.head.appendChild(s);
+        });
+      }
+      try {
+        return await window._tesseractLoadingPromise;
+      } catch (e) {
+        window._tesseractLoadingPromise = null;
+        throw e;
+      }
+    }
+
+    async function _preprocessLabelPhotoCanvas(dataUrl) {
+      return await new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => {
+          const maxW = 1400;
+          const scale = img.width > maxW ? (maxW / img.width) : 1.0;
+          const w = Math.max(1, Math.round(img.width * scale));
+          const h = Math.max(1, Math.round(img.height * scale));
+          const canvas = document.createElement('canvas');
+          canvas.width = w;
+          canvas.height = h;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, w, h);
+          try {
+            const imgData = ctx.getImageData(0, 0, w, h);
+            const d = imgData.data;
+            const contrast = 1.45;
+            for (let i = 0; i < d.length; i += 4) {
+              const lum = 0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2];
+              const v = Math.min(255, Math.max(0, Math.round((lum - 128) * contrast + 128)));
+              d[i] = v; d[i + 1] = v; d[i + 2] = v;
+            }
+            ctx.putImageData(imgData, 0, 0);
+          } catch (e) {
+            console.warn('[MIL-SPEC HANDLED FAULT] Label contrast boost skipped:', e);
+          }
+          resolve(canvas);
+        };
+        img.onerror = () => reject(new Error('Invalid image data for label OCR'));
+        img.src = dataUrl;
+      });
+    }
+
+    async function extractNutritionLabelFromPhoto(photoDataUrl, typedText = '') {
+      if (!photoDataUrl) return null;
+      const tess = await _loadTesseractOnce();
+      const canvas = await _preprocessLabelPhotoCanvas(photoDataUrl);
+      const res = await tess.recognize(canvas, 'eng');
+      const ocrText = (res && res.data && res.data.text) ? res.data.text : '';
+      return parseNutritionFactsOcrText(ocrText, typedText);
+    }
+
     function parseMealQueryAndVenue(rawText) {
       const clean = (rawText || '').trim();
       if (!clean) return { venue: '', items: [] };
@@ -1083,14 +1231,115 @@
           }
         }
       }
-      const pairedRe = /\b(ham|mac|macaroni|peanut\s+butter|pb|fish|rice|beans|bacon|chips|biscuits|franks)\s+and\s+(cheese|jelly|chips|beans|rice|eggs|salsa|gravy)\b/gi;
-      const guarded = foodText.replace(pairedRe, (_, a, b) => `${a}__PAIR_AND__${b}`);
+      const pairedRe = /\b(ham|mac|macaroni|peanut\s+butter|pb|fish|rice|beans|bacon|chips|biscuits|franks|crackers|cream)\s+(and|&|with)\s+(cheese|jelly|chips|beans|rice|eggs|salsa|gravy|dreamwip|cool\s*whip|whipped\s+cream)\b/gi;
+      const guarded = foodText.replace(pairedRe, (_, a, conj, b) => `${a}__PAIR_CONJ_${conj.trim()}__${b}`);
       const items = guarded
-        .split(/,|\band\b/i)
-        .map(s => s.replace(/__PAIR_AND__/g, ' and ').trim())
+        .split(/,|;|\+|\b(?:and|with|plus)\b/i)
+        .map(s => s.replace(/__PAIR_CONJ_([^_]+)__/g, ' $1 ').trim())
         .filter(Boolean)
-        .slice(0, 4);
+        .slice(0, 6);
       return { venue, items };
+    }
+
+    function _cleanFoodComponentQuery(comp) {
+      const raw = String(comp || '').trim();
+      const low = raw.toLowerCase();
+      if (/^(?:\d+\s*(?:fl\s*oz|oz|cups?|glasses?|bottles?)\s+)?(?:water|tap water|spring water|seltzer|sparkling water|diet\s+(?:coke|cola|soda|pepsi|root\s*beer|sprite|dr\.?\s*pepper)|zero\s+sugar\s+soda|coke\s+zero|unsweetened\s+(?:iced\s+)?tea|green\s+tea|black\s+coffee|plain\s+tea|tea\s+\d+\s*oz|coffee\s+\d+\s*oz)$/i.test(low)) {
+        return { isZeroCalDrink: true, query: raw, portionScale: 1.0, note: `${raw} (0 kcal, 0g net carbs)` };
+      }
+      let portionScale = 1.0;
+      if (/\bhalf\b|\b1\/2\b/.test(low)) portionScale = 0.5;
+      else if (/\bsmall\b/.test(low)) portionScale = 0.75;
+      else if (/\btwo\b|\b2\s*(?:slices?|pieces?|bars?)\b/.test(low)) portionScale = 2.0;
+      const mOz = low.match(/(\d+(?:\.\d+)?)\s*oz\b/);
+      if (mOz && parseFloat(mOz[1]) > 0 && parseFloat(mOz[1]) <= 16) {
+        portionScale = Math.max(0.25, Math.min(3.0, parseFloat(mOz[1]) / 3.5));
+      }
+      let q = raw
+        .replace(/\b(?:one|two|three|a|an|half|1\/2)\s+(?:small|large|medium|regular)?\s*(?:slice|piece|bowl|cup|serving|order)\s*(?:of)?\b/gi, ' ')
+        .replace(/\b\d+(?:\.\d+)?\s*(?:fl\s*oz|oz|grams?|g|ml)\b/gi, ' ')
+        .replace(/\b(?:sugar\s*free|unsweetened|small|medium|large|homemade)\b/gi, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+      return { isZeroCalDrink: false, query: q || raw, portionScale, note: '' };
+    }
+
+    function _extractOffNutriments(p, fallbackName) {
+      const nu = p && p.nutriments ? p.nutriments : {};
+      const kSrv = parseFloat(nu['energy-kcal_serving']);
+      const k100 = parseFloat(nu['energy-kcal_100g']);
+      const cSrv = parseFloat(nu['carbohydrates_serving']);
+      const c100 = parseFloat(nu['carbohydrates_100g']);
+      const fSrv = parseFloat(nu['fiber_serving']);
+      const f100 = parseFloat(nu['fiber_100g']);
+      const pSrv = parseFloat(nu['proteins_serving']);
+      const p100 = parseFloat(nu['proteins_100g']);
+      const ftSrv = parseFloat(nu['fat_serving']);
+      const ft100 = parseFloat(nu['fat_100g']);
+
+      let kcal = 0, carbs = 0, fib = 0, pro = 0, fat = 0, srvLbl = '1 serving';
+      if (!isNaN(kSrv) && kSrv > 0 && (!isNaN(cSrv) || !isNaN(pSrv))) {
+        kcal = Math.round(kSrv);
+        carbs = Math.round((isNaN(cSrv) ? 0 : cSrv) * 10) / 10;
+        fib = Math.round((isNaN(fSrv) ? 0 : fSrv) * 10) / 10;
+        pro = Math.round((isNaN(pSrv) ? 0 : pSrv) * 10) / 10;
+        fat = Math.round((isNaN(ftSrv) ? 0 : ftSrv) * 10) / 10;
+        srvLbl = p.serving_size ? String(p.serving_size) : '1 labeled serving';
+      } else if (!isNaN(k100) && k100 > 0) {
+        const sq = parseFloat(p.serving_quantity);
+        const scale = (!isNaN(sq) && sq >= 15 && sq <= 450) ? (sq / 100.0) : 1.0;
+        kcal = Math.round(k100 * scale);
+        carbs = Math.round((isNaN(c100) ? 0 : c100) * scale * 10) / 10;
+        fib = Math.round((isNaN(f100) ? 0 : f100) * scale * 10) / 10;
+        pro = Math.round((isNaN(p100) ? 0 : p100) * scale * 10) / 10;
+        fat = Math.round((isNaN(ft100) ? 0 : ft100) * scale * 10) / 10;
+        srvLbl = (!isNaN(sq) && sq >= 15 && sq <= 450)
+          ? (p.serving_size ? String(p.serving_size) : `${Math.round(sq)}g serving`)
+          : '100g reference';
+      } else {
+        return null;
+      }
+      const name = String(p.product_name || fallbackName).trim();
+      return { name, srvLbl, kcal, carbs, fib, pro, fat, sourceTag: 'Open Food Facts' };
+    }
+
+    async function searchOpenFoodFactsComponent(searchQuery) {
+      const endpoints = [
+        `https://search.openfoodfacts.org/search?q=${encodeURIComponent(searchQuery)}&page_size=12`,
+        `https://world.openfoodfacts.org/cgi/search.pl?search_terms=${encodeURIComponent(searchQuery)}&search_simple=1&action=process&json=1&page_size=8`
+      ];
+      for (const url of endpoints) {
+        try {
+          const ctrl = new AbortController();
+          const tId = setTimeout(() => ctrl.abort(), 7000);
+          const resp = await fetch(url, { cache: 'no-store', signal: ctrl.signal });
+          clearTimeout(tId);
+          if (!resp.ok) continue;
+          const data = await resp.json();
+          const products = Array.isArray(data.hits) ? data.hits : (Array.isArray(data.products) ? data.products : []);
+          for (const p of products) {
+            const parsed = _extractOffNutriments(p, searchQuery);
+            if (parsed) return parsed;
+          }
+          // Search-a-licious hits often omit inline nutriments — resolve top 3 barcodes via fast v2/product API
+          for (const p of products.slice(0, 3)) {
+            if (!p || !p.code) continue;
+            try {
+              const pUrl = `https://world.openfoodfacts.org/api/v2/product/${encodeURIComponent(p.code)}.json?fields=product_name,serving_size,serving_quantity,nutriments`;
+              const pResp = await fetch(pUrl, { cache: 'no-store' });
+              if (!pResp.ok) continue;
+              const pData = await pResp.json();
+              const parsed = _extractOffNutriments(pData && pData.product, p.product_name || searchQuery);
+              if (parsed) return parsed;
+            } catch (pe) {
+              console.warn('[MIL-SPEC HANDLED FAULT] OFF v2 product fetch failed:', p.code, pe);
+            }
+          }
+        } catch (e) {
+          console.warn('[MIL-SPEC HANDLED FAULT] Open Food Facts lookup failed:', url, e);
+        }
+      }
+      return null;
     }
 
     function pickUsdaNutrient(food, nameStartsWith, requireKcal) {
@@ -1137,41 +1386,89 @@
       if (!items.length) return null;
       let totalKcal = 0, totalCarbs = 0, totalFiber = 0, totalPro = 0, totalFat = 0;
       const matchedNotes = [];
+      const enginesUsed = new Set();
+      window._usdaCooldownUntil = window._usdaCooldownUntil || 0;
+
       for (const comp of items) {
-        try {
-          const url = `https://api.nal.usda.gov/fdc/v1/foods/search?api_key=DEMO_KEY&pageSize=6&query=${encodeURIComponent(comp)}`;
-          const resp = await fetch(url, { cache: 'no-store' });
-          if (!resp.ok) continue;
-          const data = await resp.json();
-          const foods = Array.isArray(data.foods) ? data.foods : [];
-          if (!foods.length) continue;
-          let chosen = foods.find(f => f.dataType === 'Survey (FNDDS)' && Array.isArray(f.foodMeasures) && f.foodMeasures.length > 0)
-            || foods.find(f => (f.dataType === 'Survey (FNDDS)' || f.dataType === 'SR Legacy'))
-            || foods.find(f => parseFloat(f.servingSize) >= 30 && parseFloat(f.servingSize) <= 450)
-            || foods[0];
-          const kcal100 = pickUsdaNutrient(chosen, 'Energy', true);
-          const carb100 = pickUsdaNutrient(chosen, 'Carbohydrate, by difference', false);
-          const fib100 = pickUsdaNutrient(chosen, 'Fiber, total dietary', false);
-          const pro100 = pickUsdaNutrient(chosen, 'Protein', false);
-          const fat100 = pickUsdaNutrient(chosen, 'Total lipid (fat)', false);
-          if (kcal100 <= 0 && carb100 <= 0 && pro100 <= 0 && fat100 <= 0) continue;
-          const srv = pickUsdaServingGrams(chosen);
-          const scale = srv.grams / 100.0;
-          const k = Math.round(kcal100 * scale);
-          const c = Math.round(carb100 * scale * 10) / 10;
-          const fb = Math.round(fib100 * scale * 10) / 10;
-          const pr = Math.round(pro100 * scale * 10) / 10;
-          const ft = Math.round(fat100 * scale * 10) / 10;
-          totalKcal += k;
-          totalCarbs += c;
-          totalFiber += fb;
-          totalPro += pr;
-          totalFat += ft;
-          matchedNotes.push(`${chosen.description} (${srv.label}, ${Math.round(srv.grams)}g -> ${k} kcal, ${Math.max(0, Math.round((c - fb) * 10) / 10)}g net)`);
-        } catch (e) {
-          console.warn('[MIL-SPEC HANDLED FAULT] USDA component lookup failed:', comp, e);
+        const cleaned = _cleanFoodComponentQuery(comp);
+        if (cleaned.isZeroCalDrink) {
+          matchedNotes.push(cleaned.note);
+          continue;
+        }
+        let foundItem = null;
+        if (Date.now() > window._usdaCooldownUntil) {
+          try {
+            const url = `https://api.nal.usda.gov/fdc/v1/foods/search?api_key=DEMO_KEY&pageSize=6&query=${encodeURIComponent(cleaned.query)}`;
+            const ctrl = new AbortController();
+            const tId = setTimeout(() => ctrl.abort(), 5000);
+            const resp = await fetch(url, { cache: 'no-store', signal: ctrl.signal });
+            clearTimeout(tId);
+            if (resp.status === 429 || resp.status >= 500) {
+              window._usdaCooldownUntil = Date.now() + 300000;
+              console.warn('[MIL-SPEC HANDLED FAULT] USDA rate limited (HTTP ' + resp.status + '); switching to Open Food Facts.');
+            } else if (resp.ok) {
+              const data = await resp.json();
+              const foods = Array.isArray(data.foods) ? data.foods : [];
+              if (foods.length > 0) {
+                const chosen = foods.find(f => f.dataType === 'Survey (FNDDS)' && Array.isArray(f.foodMeasures) && f.foodMeasures.length > 0)
+                  || foods.find(f => (f.dataType === 'Survey (FNDDS)' || f.dataType === 'SR Legacy'))
+                  || foods.find(f => parseFloat(f.servingSize) >= 30 && parseFloat(f.servingSize) <= 450)
+                  || foods[0];
+                const kcal100 = pickUsdaNutrient(chosen, 'Energy', true);
+                const carb100 = pickUsdaNutrient(chosen, 'Carbohydrate, by difference', false);
+                const fib100 = pickUsdaNutrient(chosen, 'Fiber, total dietary', false);
+                const pro100 = pickUsdaNutrient(chosen, 'Protein', false);
+                const fat100 = pickUsdaNutrient(chosen, 'Total lipid (fat)', false);
+                if (kcal100 > 0 || carb100 > 0 || pro100 > 0 || fat100 > 0) {
+                  const srv = pickUsdaServingGrams(chosen);
+                  const scale = (srv.grams / 100.0) * cleaned.portionScale;
+                  foundItem = {
+                    name: chosen.description,
+                    srvLbl: `${srv.label}, ${Math.round(srv.grams * cleaned.portionScale)}g`,
+                    kcal: Math.round(kcal100 * scale),
+                    carbs: Math.round(carb100 * scale * 10) / 10,
+                    fib: Math.round(fib100 * scale * 10) / 10,
+                    pro: Math.round(pro100 * scale * 10) / 10,
+                    fat: Math.round(fat100 * scale * 10) / 10,
+                    sourceTag: 'USDA'
+                  };
+                }
+              }
+            }
+          } catch (e) {
+            console.warn('[MIL-SPEC HANDLED FAULT] USDA component lookup failed:', cleaned.query, e);
+          }
+        }
+
+        if (!foundItem) {
+          const off = await searchOpenFoodFactsComponent(cleaned.query);
+          if (off) {
+            const sc = cleaned.portionScale;
+            foundItem = {
+              name: off.name,
+              srvLbl: off.srvLbl,
+              kcal: Math.round(off.kcal * sc),
+              carbs: Math.round(off.carbs * sc * 10) / 10,
+              fib: Math.round(off.fib * sc * 10) / 10,
+              pro: Math.round(off.pro * sc * 10) / 10,
+              fat: Math.round(off.fat * sc * 10) / 10,
+              sourceTag: 'Open Food Facts'
+            };
+          }
+        }
+
+        if (foundItem) {
+          totalKcal += foundItem.kcal;
+          totalCarbs += foundItem.carbs;
+          totalFiber += foundItem.fib;
+          totalPro += foundItem.pro;
+          totalFat += foundItem.fat;
+          enginesUsed.add(foundItem.sourceTag);
+          const itemNet = Math.max(0, Math.round((foundItem.carbs - foundItem.fib) * 10) / 10);
+          matchedNotes.push(`${foundItem.name} (${foundItem.srvLbl} -> ${foundItem.kcal} kcal, ${itemNet}g net)`);
         }
       }
+
       if (!matchedNotes.length) return null;
       totalCarbs = Math.round(totalCarbs * 10) / 10;
       totalFiber = Math.round(totalFiber * 10) / 10;
@@ -1189,12 +1486,13 @@
         swaps.push('Swap half bread/bun for open-face or lettuce wrap (-14g net carbs)');
         swaps.push('Pair with unsweetened drink & add 16 fl oz water buffer');
       }
+      const srcStr = enginesUsed.size ? Array.from(enginesUsed).join(' + ') : 'USDA FoodData Central';
       const venueLine = venue
-        ? `${venue} does not publish official bakery/cafe nutrition; grounded via USDA FoodData Central equivalent: `
-        : 'Matched via U.S. Gov USDA FoodData Central: ';
+        ? `${venue} does not publish official nutrition; grounded via ${srcStr}: `
+        : `Matched via ${srcStr}: `;
       return {
         meal_name: text.trim(),
-        vendor_matched: venue ? `${venue} (USDA FoodData Central Live)` : 'USDA FoodData Central (Zero-Account Live)',
+        vendor_matched: venue ? `${venue} (${srcStr} Live)` : `${srcStr} (Zero-Account Live)`,
         calories: totalKcal,
         net_carbs: netCarbs,
         total_carbs: totalCarbs,
@@ -1311,52 +1609,83 @@
       try {
         // 1. Optional power-user upgrade: direct Google Gemini API if key synced on phone
         if (!getCellGeminiKey() && isConnectedToHost) {
-          await syncGeminiKeyWithServer();
+          try { await syncGeminiKeyWithServer(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
         }
         if (getCellGeminiKey()) {
-          const liveResult = await callDirectGeminiApi(text, uploadedPhotos);
-          if (liveResult) {
-            renderAnalysis(liveResult);
+          try {
+            const liveResult = await callDirectGeminiApi(text, uploadedPhotos);
+            if (liveResult) {
+              renderAnalysis(liveResult);
+              return;
+            }
+          } catch (e) {
+            console.warn('[MIL-SPEC HANDLED FAULT] Gemini API failed; falling through to OCR/USDA:', e);
+          }
+        }
+
+        // 2. Zero-Account Photo Nutrition Facts Label OCR (works on cellular or Wi-Fi without Gemini key)
+        if (uploadedPhotos.length > 0) {
+          btn.innerHTML = '<span>⏳ READING NUTRITION LABEL PHOTO...</span>';
+          try {
+            const ocrResult = await extractNutritionLabelFromPhoto(uploadedPhotos[0], text);
+            if (ocrResult) {
+              renderAnalysis(ocrResult);
+              return;
+            }
+          } catch (e) {
+            console.warn('[MIL-SPEC HANDLED FAULT] Label OCR fallback failed:', e);
+          }
+        }
+
+        // 3. Home Wi-Fi: ask BFM PC Server (verified regional venues + server USDA/OFF lookup)
+        if (isConnectedToHost && text) {
+          btn.innerHTML = '<span>⏳ ANALYZING VIA BFM SERVER...</span>';
+          try {
+            const ctrl = new AbortController();
+            const tId = setTimeout(() => ctrl.abort(), 7000);
+            const resp = await fetch('/api/meal/analyze', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                meal_name: text || 'Mobile Plate Photo',
+                meal_type: selectedMealType,
+                description: text,
+                photo_data: uploadedPhotos.length > 0 ? uploadedPhotos[0] : '',
+                photo_count: uploadedPhotos.length,
+                source: 'MOBILE_CELL_APK',
+                analyze_only: true
+              }),
+              signal: ctrl.signal
+            });
+            clearTimeout(tId);
+            if (resp.ok) {
+              const data = await resp.json();
+              const a = data.analysis || data;
+              if (a && ((a.calories || 0) > 0 || (a.total_carbs || 0) > 0 || (a.protein || 0) > 0 || (a.fat || 0) > 0)) {
+                renderAnalysis(a);
+                return;
+              }
+            }
+          } catch (e) {
+            console.warn('[MIL-SPEC HANDLED FAULT] Home server analyze failed; trying cellular USDA/OFF:', e);
+          }
+        }
+
+        // 4. Direct Cellular / Field Mode (Zero Account): USDA FoodData Central + Open Food Facts fallback
+        if (text) {
+          btn.innerHTML = '<span>⏳ SEARCHING USDA / OPEN FOOD FACTS...</span>';
+          const usdaResult = await callPublicUsdaNutritionApi(text);
+          if (usdaResult) {
+            renderAnalysis(usdaResult);
             return;
           }
         }
 
-        // 2. Home Wi-Fi: ask BFM PC Server (verified regional venues + server USDA/Nominatim lookup)
-        if (isConnectedToHost) {
-          const resp = await fetch('/api/meal/analyze', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              meal_name: text || 'Mobile Plate Photo',
-              meal_type: selectedMealType,
-              description: text,
-              photo_data: uploadedPhotos.length > 0 ? uploadedPhotos[0] : '',
-              photo_count: uploadedPhotos.length,
-              source: 'MOBILE_CELL_APK',
-              analyze_only: true
-            })
-          });
-          if (!resp.ok) throw new Error('HTTP error ' + resp.status);
-          const data = await resp.json();
-          const a = data.analysis || data;
-          if (a && ((a.calories || 0) > 0 || (a.total_carbs || 0) > 0 || (a.protein || 0) > 0 || (a.fat || 0) > 0)) {
-            renderAnalysis(a);
-            return;
-          }
-        }
-
-        // 3. Direct Cellular / Field Mode (Zero Account): official USDA FoodData Central HTTPS API
-        const usdaResult = await callPublicUsdaNutritionApi(text);
-        if (usdaResult) {
-          renderAnalysis(usdaResult);
-          return;
-        }
-
-        // 4. Pure Zero-Data Reality: zero invented guesses when unrecognized or offline
-        renderAnalysis(makeZeroUnanalyzedRecord(
-          text,
-          "I need more detailed information, please update and hit estimate. (If completely offline, tap '💾 STAGE FOR HOME PC' to save locally.)"
-        ));
+        // 5. Pure Zero-Data Reality: zero invented guesses when unrecognized or offline
+        const photoHint = uploadedPhotos.length > 0
+          ? 'Could not read clear Nutrition Facts text from photo — enter the food name or calories/carbs above and tap ESTIMATE, or tap STAGE FOR HOME PC.'
+          : "I need more detailed information, please update and hit estimate. (If completely offline, tap '💾 STAGE FOR HOME PC' to save locally.)";
+        renderAnalysis(makeZeroUnanalyzedRecord(text || 'Mobile Plate Photo', photoHint));
       } catch (err) {
         console.warn('[MIL-SPEC HANDLED FAULT] Live nutrition analyzeMeal failed:', err);
         renderAnalysis(makeZeroUnanalyzedRecord(
