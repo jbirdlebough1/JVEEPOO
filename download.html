@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BFM Biometric Function Monitor — 1-Click Downloads</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 32px 16px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f1f5f9;
+      color: #0f172a;
+      display: flex;
+      justify-content: center;
+    }
+    .card {
+      max-width: 720px;
+      width: 100%;
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 12px;
+      padding: 28px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 1.45rem;
+      color: #0369a1;
+    }
+    p {
+      margin: 0 0 18px;
+      color: #475569;
+      line-height: 1.5;
+    }
+    .status {
+      padding: 12px 14px;
+      border-radius: 8px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: #1e40af;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .dl-card {
+      display: block;
+      text-decoration: none;
+      background: #f8fafc;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 14px 16px;
+      color: #0f172a;
+      transition: border-color 0.15s ease, background 0.15s ease;
+    }
+    .dl-card:hover {
+      border-color: #0284c7;
+      background: #f0f9ff;
+    }
+    .dl-title {
+      font-weight: 700;
+      color: #0369a1;
+      margin-bottom: 4px;
+    }
+    .dl-sub {
+      font-size: 0.85rem;
+      color: #475569;
+    }
+    .live-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 18px;
+      background: #0284c7;
+      color: #ffffff;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>BFM Biometric Function Monitor — 1-Click Download</h1>
+    <p>Files below save directly into your <strong>Downloads</strong> folder (never opening raw HTML source code). Double-click <strong>BFM.HTM</strong> in Chrome/Edge to run immediately, or run <strong>BFM_Installer.exe</strong> for full Windows Desktop + Start Menu installation.</p>
+    <div id="dlStatus" class="status">Select any package below, or wait for your automatic download to begin.</div>
+    <div class="grid">
+      <a class="dl-card" href="BFM_Installer.exe" download="BFM_Installer.exe">
+        <div class="dl-title">BFM_Installer.exe (Full Windows Setup)</div>
+        <div class="dl-sub">Downloads latest BFM, installs to LocalAppData, adds Desktop + Start Menu icons, and launches.</div>
+      </a>
+      <a class="dl-card" href="BFM.HTM" download="BFM.HTM">
+        <div class="dl-title">BFM.HTM (Single-File Workstation)</div>
+        <div class="dl-sub">Saves BFM.HTM to Downloads (1.6 MB). Double-click to run offline in Chrome or Edge.</div>
+      </a>
+      <a class="dl-card" href="BFM_Launcher.exe" download="BFM_Launcher.exe">
+        <div class="dl-title">BFM_Launcher.exe (Portable Launcher)</div>
+        <div class="dl-sub">Starts local backend server if installed and opens BFM cleanly.</div>
+      </a>
+      <a class="dl-card" href="w11_htm_app/BFM-Cell.apk" download="BFM-Cell.apk">
+        <div class="dl-title">BFM-Cell.apk (Android Companion)</div>
+        <div class="dl-sub">Offline meal/medication/HDYF mobile field companion.</div>
+      </a>
+    </div>
+    <a class="live-btn" href="index.html">Launch Live Web App Now (Zero Download)</a>
+  </div>
+  <script>
+    (function () {
+      const FILE_MAP = {
+        'bfm.htm': { href: 'BFM.HTM', name: 'BFM.HTM' },
+        'bfm_installer.exe': { href: 'BFM_Installer.exe', name: 'BFM_Installer.exe' },
+        'bfm_launcher.exe': { href: 'BFM_Launcher.exe', name: 'BFM_Launcher.exe' },
+        'bfm-cell.apk': { href: 'w11_htm_app/BFM-Cell.apk', name: 'BFM-Cell.apk' }
+      };
+      const params = new URLSearchParams(window.location.search);
+      const req = (params.get('file') || '').trim().toLowerCase();
+      const entry = FILE_MAP[req];
+      const statusEl = document.getElementById('dlStatus');
+      if (entry) {
+        if (statusEl) statusEl.textContent = 'Starting download to your Downloads folder: ' + entry.name + ' ...';
+        const link = document.createElement('a');
+        link.href = entry.href;
+        link.setAttribute('download', entry.name);
+        link.style.display = 'none';
+        document.body.appendChild(link);
+        link.click();
+      }
+    })();
+  </script>
+</body>
+</html>

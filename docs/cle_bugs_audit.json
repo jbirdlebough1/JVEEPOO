@@ -1,8 +1,8 @@
 {
-  "latest_build": "beta.00.01.0078",
-  "synced_at": "2026-11-27T18:13:01",
-  "total_bugs": 182,
-  "total_resolved": 182,
+  "latest_build": "beta.00.01.0079",
+  "synced_at": "2026-11-27T20:16:26",
+  "total_bugs": 183,
+  "total_resolved": 183,
   "total_open": 0,
   "bugs": [
     {
@@ -2370,6 +2370,19 @@
       "comments": "Synced from git tag beta.00.01.0078",
       "created_at": "2026-11-27 18:12:52",
       "resolved_at": "2026-11-27 18:12:52"
+    },
+    {
+      "code": "CLE-136",
+      "project": "JVEEPOO",
+      "build": "beta.00.01.0079",
+      "title": "[beta.00.01.0079] fix(sync,reports,installer): event-driven watch BLE sync, live reports API/tables, 1-click download.html & BFM_Installer.exe (beta.00.01.007",
+      "status": "RESOLVED",
+      "component": "sync,reports,installer",
+      "affected_files": "BFM.HTM, BFM_Installer.exe, BFM_Launcher.exe, Beta/docs/walkthrough_beta_00_01_0079.md, README.md, archive_alpha/logs/transcript.jsonl, archive_alpha/logs/transcript_full.jsonl, docs/walkthrough_beta_00_01_0079.md",
+      "resolution": "Git commit 9c016be (2026-11-27 20:16:16): fix(sync,reports,installer): event-driven watch BLE sync, live reports API/tables, 1-click download.html & BFM_Installer.exe (beta.00.01.0079)",
+      "comments": "Synced from git tag beta.00.01.0079",
+      "created_at": "2026-11-27 20:16:16",
+      "resolved_at": "2026-11-27 20:16:16"
     }
   ]
 }

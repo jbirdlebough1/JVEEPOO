@@ -73,7 +73,17 @@ namespace BfmLauncher
             string serverScript = Path.Combine(baseDir, @"w11_htm_app\server.py");
             if (!File.Exists(serverScript))
             {
-                return;
+                string installedRoot = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "BFM");
+                string altScript = Path.Combine(installedRoot, @"w11_htm_app\server.py");
+                if (File.Exists(altScript))
+                {
+                    serverScript = altScript;
+                    baseDir = installedRoot;
+                }
+                else
+                {
+                    return;
+                }
             }
 
             string pythonExe = FindPythonExecutable(baseDir);
@@ -112,6 +122,12 @@ namespace BfmLauncher
             if (File.Exists(bfmPath))
             {
                 return new Uri(bfmPath).AbsoluteUri;
+            }
+
+            string installedBfm = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"BFM\BFM.HTM");
+            if (File.Exists(installedBfm))
+            {
+                return new Uri(installedBfm).AbsoluteUri;
             }
 
             string idxPath = Path.Combine(baseDir, "index.html");

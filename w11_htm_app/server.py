@@ -3874,81 +3874,83 @@ async def run_ble_auto_sync_loop():
                             await client.write_gatt_char(VEEPOO_WRITE_UUID, cal_pkt, response=False)
                             await asyncio.sleep(0.5)
 
-                            # 5. Query 5-Minute OriginV3 History for Day 0 (0xDF) to capture overnight steps, skin temp & R-R epochs
-                            df_buffer = []
-                            df_done_evt = asyncio.Event()
+                            # 5. Query 5-Minute OriginV3 History for Day 0 (Today) and Day 1 (Yesterday)
+                            for df_day in (0, 1):
+                                df_buffer = []
+                                df_done_evt = asyncio.Event()
 
-                            def on_df_notify(sender, data):
-                                nonlocal rx_count
-                                if data and len(data) >= 4 and data[0] == 0xDF:
-                                    df_buffer.append(bytes(data))
-                                    if data[1] == 0xFF and data[2] == 0xFF:
-                                        df_done_evt.set()
-                                else:
-                                    ptype = parse_and_store_packet(data)
-                                    if ptype:
-                                        rx_count += 1
+                                def on_df_notify(sender, data, _buf=df_buffer, _evt=df_done_evt):
+                                    nonlocal rx_count
+                                    if data and len(data) >= 4 and data[0] == 0xDF:
+                                        _buf.append(bytes(data))
+                                        if data[1] == 0xFF and data[2] == 0xFF:
+                                            _evt.set()
+                                    else:
+                                        ptype = parse_and_store_packet(data)
+                                        if ptype:
+                                            rx_count += 1
 
-                            try:
-                                await client.stop_notify(VEEPOO_NOTIFY_UUID)
-                                await client.start_notify(VEEPOO_NOTIFY_UUID, on_df_notify)
-                                df_pkt = bytearray(20)
-                                df_pkt[0] = 0xDF
-                                df_pkt[1] = 0x01
-                                df_pkt[2] = 0x00
-                                df_pkt[3] = 0x00  # Day 0 (today since midnight)
-                                await client.write_gatt_char(VEEPOO_WRITE_UUID, df_pkt, response=False)
                                 try:
-                                    await asyncio.wait_for(df_done_evt.wait(), timeout=4.5)
-                                except asyncio.TimeoutError:
-                                    pass
-                                if df_buffer:
-                                    parsed_df = _parse_df_origin_blocks(df_buffer, day_offset=0)
-                                    if parsed_df:
-                                        df_stats = ingest_df_origin_records(parsed_df)
-                                        rx_count += df_stats.get("inserted", 0)
-                                        print(f"[✔] 0xDF 5-Min Origin Sync: {len(parsed_df)} blocks, +{df_stats.get('inserted', 0)} records")
-                            except Exception as df_err:
-                                print(f"[MIL-SPEC HANDLED FAULT] 0xDF auto-sync fault: {df_err}")
+                                    await client.stop_notify(VEEPOO_NOTIFY_UUID)
+                                    await client.start_notify(VEEPOO_NOTIFY_UUID, on_df_notify)
+                                    df_pkt = bytearray(20)
+                                    df_pkt[0] = 0xDF
+                                    df_pkt[1] = 0x01
+                                    df_pkt[2] = 0x00
+                                    df_pkt[3] = df_day
+                                    await client.write_gatt_char(VEEPOO_WRITE_UUID, df_pkt, response=False)
+                                    try:
+                                        await asyncio.wait_for(df_done_evt.wait(), timeout=(8.0 if df_day == 0 else 6.0))
+                                    except asyncio.TimeoutError:
+                                        print(f"[MIL-SPEC HANDLED FAULT] 0xDF day {df_day} bounded timeout elapsed")
+                                    if df_buffer:
+                                        parsed_df = _parse_df_origin_blocks(df_buffer, day_offset=df_day)
+                                        if parsed_df:
+                                            df_stats = ingest_df_origin_records(parsed_df)
+                                            rx_count += df_stats.get("inserted", 0)
+                                            print(f"[✔] 0xDF Day {df_day} Origin Sync: {len(parsed_df)} blocks, +{df_stats.get('inserted', 0)} records")
+                                except Exception as df_err:
+                                    print(f"[MIL-SPEC HANDLED FAULT] 0xDF day {df_day} auto-sync fault: {df_err}")
 
-                            # 6. Query 5-Minute Temperature History for Day 0 (0x88 per vp_cx.java)
-                            temp_buffer = []
-                            temp_done_evt = asyncio.Event()
+                            # 6. Query 5-Minute Temperature History for Day 0 (Today) and Day 1 (Yesterday)
+                            for temp_day in (0, 1):
+                                temp_buffer = []
+                                temp_done_evt = asyncio.Event()
 
-                            def on_temp_notify(sender, data):
-                                nonlocal rx_count
-                                if data and len(data) >= 20 and data[0] == 0x88:
-                                    temp_buffer.append(bytes(data))
-                                    b3, b4, b5, b6 = data[3], data[4], data[5], data[6]
-                                    if (b3 == b5 and b4 == b6) or (b3 == 0 and b4 == 0) or (b5 == 0 and b6 == 0):
-                                        temp_done_evt.set()
-                                else:
-                                    ptype = parse_and_store_packet(data)
-                                    if ptype:
-                                        rx_count += 1
+                                def on_temp_notify(sender, data, _tbuf=temp_buffer, _tevt=temp_done_evt):
+                                    nonlocal rx_count
+                                    if data and len(data) >= 20 and data[0] == 0x88:
+                                        _tbuf.append(bytes(data))
+                                        b3, b4, b5, b6 = data[3], data[4], data[5], data[6]
+                                        if (b3 == b5 and b4 == b6) or (b3 == 0 and b4 == 0) or (b5 == 0 and b6 == 0):
+                                            _tevt.set()
+                                    else:
+                                        ptype = parse_and_store_packet(data)
+                                        if ptype:
+                                            rx_count += 1
 
-                            try:
-                                await client.stop_notify(VEEPOO_NOTIFY_UUID)
-                                await client.start_notify(VEEPOO_NOTIFY_UUID, on_temp_notify)
-                                t88_pkt = bytearray(20)
-                                t88_pkt[0] = 0x88
-                                t88_pkt[1] = 0x01
-                                t88_pkt[2] = 0x00  # Day 0 (today)
-                                t88_pkt[3] = 0x01
-                                t88_pkt[4] = 0x00
-                                await client.write_gatt_char(VEEPOO_WRITE_UUID, t88_pkt, response=False)
                                 try:
-                                    await asyncio.wait_for(temp_done_evt.wait(), timeout=3.5)
-                                except asyncio.TimeoutError:
-                                    print("[MIL-SPEC HANDLED FAULT] 0x88 temp wait bounded timeout elapsed")
-                                if temp_buffer:
-                                    parsed_88 = _parse_88_temp_packets(temp_buffer, day_offset=0)
-                                    if parsed_88:
-                                        t88_stats = ingest_temp_history_records(parsed_88)
-                                        rx_count += t88_stats.get("inserted", 0)
-                                        print(f"[✔] 0x88 Temp History Sync: {len(parsed_88)} points, +{t88_stats.get('inserted', 0)} records")
-                            except Exception as t88_err:
-                                print(f"[MIL-SPEC HANDLED FAULT] 0x88 temp auto-sync fault: {t88_err}")
+                                    await client.stop_notify(VEEPOO_NOTIFY_UUID)
+                                    await client.start_notify(VEEPOO_NOTIFY_UUID, on_temp_notify)
+                                    t88_pkt = bytearray(20)
+                                    t88_pkt[0] = 0x88
+                                    t88_pkt[1] = 0x01
+                                    t88_pkt[2] = temp_day
+                                    t88_pkt[3] = 0x01
+                                    t88_pkt[4] = 0x00
+                                    await client.write_gatt_char(VEEPOO_WRITE_UUID, t88_pkt, response=False)
+                                    try:
+                                        await asyncio.wait_for(temp_done_evt.wait(), timeout=(5.0 if temp_day == 0 else 4.0))
+                                    except asyncio.TimeoutError:
+                                        print(f"[MIL-SPEC HANDLED FAULT] 0x88 temp day {temp_day} wait bounded timeout elapsed")
+                                    if temp_buffer:
+                                        parsed_88 = _parse_88_temp_packets(temp_buffer, day_offset=temp_day)
+                                        if parsed_88:
+                                            t88_stats = ingest_temp_history_records(parsed_88)
+                                            rx_count += t88_stats.get("inserted", 0)
+                                            print(f"[✔] 0x88 Day {temp_day} Temp History Sync: {len(parsed_88)} points, +{t88_stats.get('inserted', 0)} records")
+                                except Exception as t88_err:
+                                    print(f"[MIL-SPEC HANDLED FAULT] 0x88 day {temp_day} temp auto-sync fault: {t88_err}")
 
                             # 7. Query Stored Lead-I ECG History (0x96 Read IDs -> 0x97 Read Data per vp_ah.java / vp_ag.java / vp_af.java)
                             for ecg_type in (2, 3):  # 2 = Manual Bezel ECG, 3 = Auto ECG
@@ -5054,6 +5056,173 @@ def get_today_subreports():
         **out,
     }
 
+
+def get_historical_reports(timeframe="weekly"):
+    """Aggregates real SQLite vital_records across weekly (7d), monthly (30d), quarterly (90d), or yearly (12m)."""
+    tf = (timeframe or "weekly").lower()
+    days_map = {"weekly": 7, "monthly": 30, "quarterly": 90, "yearly": 365}
+    days = days_map.get(tf, 7)
+    today_date = datetime.date.today()
+    start_date = today_date - datetime.timedelta(days=days - 1)
+    start_iso = f"{start_date}T00:00:00"
+
+    wanted = (
+        "GLUCOSE", "TEMPERATURE", "HEART_RATE", "BLOOD_PRESSURE",
+        "SPO2", "BLOOD_OXYGEN", "HRV_STRESS", "HRV",
+        "PEDOMETER", "PEDOMETER_5MIN", "SLEEP",
+        "MET_5MIN", "BREATH_RATE", "ECG_QTC", "BLOOD_COMP", "BODY_COMP"
+    )
+    placeholders = ",".join(["?"] * len(wanted))
+    with db_lock:
+        conn = get_db()
+        cur = conn.cursor()
+        cur.execute(
+            f"SELECT timestamp, metric, value1, value2, mode FROM vital_records WHERE metric IN ({placeholders}) AND timestamp >= ? ORDER BY timestamp ASC",
+            (*wanted, start_iso),
+        )
+        rows = cur.fetchall()
+        conn.close()
+
+    by_day = {}
+    for ts_str, met, v1, v2, mode_str in rows:
+        dt = _parse_to_local_dt(ts_str)
+        if not dt:
+            continue
+        dkey = dt.strftime("%Y-%m-%d")
+        day_b = by_day.setdefault(dkey, {
+            "g": [], "core": [], "skin": [], "hr": [], "sys": [], "dia": [],
+            "spo2": [], "hrv": [], "ped_max": 0.0, "ped_5m": 0.0, "sleep_max": 0.0,
+            "met_5m": 0.0, "breath": [], "qtc": [], "lfhf": [], "visc": [], "uric": [],
+            "muscle": [], "fat": []
+        })
+        f1 = float(v1) if v1 is not None else 0.0
+        f2 = float(v2) if v2 is not None else 0.0
+        if met == "GLUCOSE" and f1 > 0:
+            day_b["g"].append(f1)
+        elif met == "TEMPERATURE" and f1 > 50:
+            day_b["core"].append(f1)
+            if f2 > 50:
+                day_b["skin"].append(f2)
+        elif met == "HEART_RATE" and f1 > 0:
+            day_b["hr"].append(f1)
+        elif met == "BLOOD_PRESSURE" and f1 > 0 and f2 > 0:
+            day_b["sys"].append(f1)
+            day_b["dia"].append(f2)
+        elif met in ("SPO2", "BLOOD_OXYGEN") and f1 > 0:
+            day_b["spo2"].append(f1)
+        elif met in ("HRV_STRESS", "HRV") and f1 > 0:
+            day_b["hrv"].append(f1)
+        elif met == "PEDOMETER" and f1 > day_b["ped_max"]:
+            day_b["ped_max"] = f1
+        elif met == "PEDOMETER_5MIN" and f1 > 0:
+            day_b["ped_5m"] += f1
+        elif met == "SLEEP" and f1 > day_b["sleep_max"]:
+            day_b["sleep_max"] = f1
+        elif met == "MET_5MIN" and f1 > 0:
+            day_b["met_5m"] += f1 * (5.0 / 60.0)
+        elif met == "BREATH_RATE" and f1 > 0:
+            day_b["breath"].append(f1)
+        elif met == "ECG_QTC" and f1 > 0:
+            day_b["qtc"].append(f1)
+            if f2 > 0:
+                day_b["lfhf"].append(f2)
+        elif met == "BLOOD_COMP" and f1 > 0:
+            ua = (f1 / 59.48) if f1 > 20.0 else f1
+            day_b["uric"].append(ua)
+            if f2 > 0:
+                day_b["visc"].append(f2)
+        elif met == "BODY_COMP" and mode_str and str(mode_str).strip().startswith("{"):
+            try:
+                meta = json.loads(mode_str)
+                if float(meta.get("skeletal_muscle_pct") or 0) > 0:
+                    day_b["muscle"].append(float(meta["skeletal_muscle_pct"]))
+                if float(meta.get("body_fat_pct") or 0) > 0:
+                    day_b["fat"].append(float(meta["body_fat_pct"]))
+            except Exception as e:
+                print(f"[MIL-SPEC HANDLED FAULT] history BODY_COMP JSON parse: {e}")
+
+    def _avg(lst, digits=1):
+        return round(sum(lst) / len(lst), digits) if lst else None
+
+    if tf == "yearly":
+        grouped_keys = []
+        y, m = today_date.year, today_date.month
+        for _ in range(12):
+            grouped_keys.append(f"{y:04d}-{m:02d}")
+            m -= 1
+            if m == 0:
+                m = 12
+                y -= 1
+        grouped_keys.reverse()
+    else:
+        grouped_keys = [(start_date + datetime.timedelta(days=i)).strftime("%Y-%m-%d") for i in range(days)]
+
+    buckets = []
+    for key in grouped_keys:
+        if tf == "yearly":
+            sub_days = [d for dk, d in by_day.items() if dk.startswith(key)]
+            label = datetime.datetime.strptime(key + "-01", "%Y-%m-%d").strftime("%b %Y")
+        else:
+            d = by_day.get(key)
+            sub_days = [d] if d else []
+            dt_k = datetime.datetime.strptime(key, "%Y-%m-%d")
+            label = dt_k.strftime("%a %m/%d") if tf == "weekly" else dt_k.strftime("%m/%d")
+
+        if not sub_days:
+            buckets.append({
+                "key": key, "label": label, "g": None, "core": None, "skin": None,
+                "hr": None, "sys": None, "dia": None, "spo2": None, "hrv": None,
+                "steps": 0, "sleep_hrs": None, "met_hrs": None, "breath": None,
+                "qtc": None, "lf_hf": None, "visc": None, "uric": None,
+                "muscle_pct": None, "fat_pct": None, "samples": 0
+            })
+            continue
+
+        all_g = [x for d in sub_days for x in d["g"]]
+        all_core = [x for d in sub_days for x in d["core"]]
+        all_skin = [x for d in sub_days for x in d["skin"]]
+        all_hr = [x for d in sub_days for x in d["hr"]]
+        all_sys = [x for d in sub_days for x in d["sys"]]
+        all_dia = [x for d in sub_days for x in d["dia"]]
+        all_sp = [x for d in sub_days for x in d["spo2"]]
+        all_hrv = [x for d in sub_days for x in d["hrv"]]
+        all_br = [x for d in sub_days for x in d["breath"]]
+        all_qtc = [x for d in sub_days for x in d["qtc"]]
+        all_lf = [x for d in sub_days for x in d["lfhf"]]
+        all_visc = [x for d in sub_days for x in d["visc"]]
+        all_uric = [x for d in sub_days for x in d["uric"]]
+        all_mus = [x for d in sub_days for x in d["muscle"]]
+        all_fat = [x for d in sub_days for x in d["fat"]]
+        day_steps = [round(max(d["ped_max"], d["ped_5m"])) for d in sub_days if max(d["ped_max"], d["ped_5m"]) > 0]
+        day_sleep = [round(d["sleep_max"], 1) for d in sub_days if d["sleep_max"] > 0]
+        day_met = [round(d["met_5m"], 1) for d in sub_days if d["met_5m"] > 0]
+
+        buckets.append({
+            "key": key,
+            "label": label,
+            "g": round(sum(all_g) / len(all_g)) if all_g else None,
+            "core": _avg(all_core, 1),
+            "skin": _avg(all_skin, 1),
+            "hr": round(sum(all_hr) / len(all_hr)) if all_hr else None,
+            "sys": round(sum(all_sys) / len(all_sys)) if all_sys else None,
+            "dia": round(sum(all_dia) / len(all_dia)) if all_dia else None,
+            "spo2": _avg(all_sp, 1),
+            "hrv": round(sum(all_hrv) / len(all_hrv)) if all_hrv else None,
+            "steps": round(sum(day_steps) / len(day_steps)) if day_steps else 0,
+            "sleep_hrs": _avg(day_sleep, 1),
+            "met_hrs": _avg(day_met, 1),
+            "breath": round(sum(all_br) / len(all_br)) if all_br else None,
+            "qtc": round(sum(all_qtc) / len(all_qtc)) if all_qtc else None,
+            "lf_hf": _avg(all_lf, 2),
+            "visc": _avg(all_visc, 2),
+            "uric": _avg(all_uric, 2),
+            "muscle_pct": _avg(all_mus, 1),
+            "fat_pct": _avg(all_fat, 1),
+            "samples": len(all_g) + len(all_hr) + len(all_core),
+        })
+
+    return {"status": "OK", "timeframe": tf, "buckets": buckets, "count": len(buckets)}
+
 # =========================================================================
 # HTTP REQUEST HANDLER (Port 8899)
 # =========================================================================
@@ -6032,6 +6201,12 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
         # 3b3. Daily Genuine Watch Sub-Reports API (MET, Blood Comp, Breath, ECG, BIA)
         elif self.path.startswith("/api/subreports/today"):
             self.send_json_response(get_today_subreports())
+
+        # 3b4. Real Aggregated Historical Reports API (Weekly / Monthly / Quarterly / Yearly)
+        elif self.path.startswith("/api/reports/history"):
+            parsed_q = urllib.parse.parse_qs(urllib.parse.urlparse(self.path).query)
+            tf_param = parsed_q.get("timeframe", ["weekly"])[0]
+            self.send_json_response(get_historical_reports(tf_param))
 
         # 3c. Nocturnal Sleep Records API (CLE-090)
         elif self.path.startswith("/api/sleep/records"):
@@ -7212,7 +7387,7 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
             "ble": {
                 "rssi": -62,
                 "connected": ble_state.get("active_connection", False),
-                "battery_pct": 97.0,
+                "battery_pct": 0.0,
                 "mac": TARGET_MAC
             },
             "vitals": {}
@@ -7220,6 +7395,10 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
         with db_lock:
             conn = get_db()
             cur = conn.cursor()
+            cur.execute("SELECT COALESCE(MAX(id), 0) FROM vital_records")
+            max_id_row = cur.fetchone()
+            if max_id_row and max_id_row[0]:
+                snapshot["db_version"] = int(max_id_row[0])
             metrics = ["GLUCOSE", "BLOOD_PRESSURE", "HEART_RATE", "SPO2", "BLOOD_OXYGEN", "TEMPERATURE", "PEDOMETER", "BATTERY", "HRV_STRESS", "HRV", "SLEEP", "FLUID_INTAKE"]
             for m in metrics:
                 if target_device:
@@ -7227,14 +7406,14 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                         SELECT timestamp, value1, value2, unit, status, mode 
                         FROM vital_records 
                         WHERE metric = ? AND (device_id = ? OR device_id IS NULL OR device_id = '')
-                        ORDER BY id DESC LIMIT 1
+                        ORDER BY timestamp DESC, id DESC LIMIT 1
                     """, (m, target_device))
                 else:
                     cur.execute("""
                         SELECT timestamp, value1, value2, unit, status, mode 
                         FROM vital_records 
                         WHERE metric = ? 
-                        ORDER BY id DESC LIMIT 1
+                        ORDER BY timestamp DESC, id DESC LIMIT 1
                     """, (m,))
                 row = cur.fetchone()
                 if m == "PEDOMETER":
@@ -7245,14 +7424,14 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                             SELECT timestamp, value1, value2, unit, status, mode
                             FROM vital_records
                             WHERE metric = 'PEDOMETER' AND (device_id = ? OR device_id IS NULL OR device_id = '')
-                            ORDER BY id DESC LIMIT 200
+                            ORDER BY timestamp DESC, id DESC LIMIT 200
                         """, (target_device,))
                     else:
                         cur.execute("""
                             SELECT timestamp, value1, value2, unit, status, mode
                             FROM vital_records
                             WHERE metric = 'PEDOMETER'
-                            ORDER BY id DESC LIMIT 200
+                            ORDER BY timestamp DESC, id DESC LIMIT 200
                         """)
                     for p_row in cur.fetchall():
                         p_dict = dict(p_row)
@@ -7269,6 +7448,9 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                     row_dict = dict(row)
                     snapshot["vitals"][m] = row_dict
             conn.close()
+        bat_vital = snapshot["vitals"].get("BATTERY")
+        if bat_vital and float(bat_vital.get("value1") or 0) > 0:
+            snapshot["ble"]["battery_pct"] = float(bat_vital["value1"])
         sleep_summary = get_today_sleep_summary()
         if sleep_summary and sleep_summary.get("totalMin", 0) > 0:
             snapshot["vitals"]["SLEEP_SUMMARY"] = sleep_summary

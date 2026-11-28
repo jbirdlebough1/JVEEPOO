@@ -9673,6 +9673,7 @@ function renderWatchTabConnectedDetails() {
     let _pendingUniversalRefresh = false;
 
     function scheduleUniversalAllPagesRefresh(immediate = false) {
+      if (window._isFullWatchSyncRunning) return;
       if (typeof syncStepData === 'function' && gattServer && gattServer.connected && txCharacteristic) {
         try { syncStepData(true); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       }
@@ -9712,6 +9713,9 @@ function renderWatchTabConnectedDetails() {
           (typeof fetchTodaySleepSessions === 'function') ? fetchTodaySleepSessions() : Promise.resolve(),
           (typeof fetchTodayLorenzData === 'function') ? fetchTodayLorenzData() : Promise.resolve(),
           (typeof fetchTodaySubReports === 'function') ? fetchTodaySubReports() : Promise.resolve(),
+          (typeof currentReportTimeframe !== 'undefined' && currentReportTimeframe !== 'daily' && typeof fetchHistoricalReports === 'function')
+            ? fetchHistoricalReports(currentReportTimeframe)
+            : Promise.resolve(),
           (typeof loadFeelingsFor3D === 'function') ? loadFeelingsFor3D() : Promise.resolve()
         ]);
       } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
@@ -9764,6 +9768,7 @@ function renderWatchTabConnectedDetails() {
       safeRun(() => { if (typeof renderNocturnalSleepHypnogram === 'function') renderNocturnalSleepHypnogram('curveTimelineSleep'); });
       safeRun(() => { if (typeof renderTallSynchronizedChart === 'function') renderTallSynchronizedChart(currentTallChartTimeframe); });
       safeRun(() => { if (typeof renderSubReportTrendCharts === 'function') renderSubReportTrendCharts(currentReportTimeframe); });
+      safeRun(() => { if (typeof renderRawTelemetryTable === 'function') renderRawTelemetryTable(); });
       safeRun(() => { if (typeof renderLorenzScatterPlot === 'function') renderLorenzScatterPlot(); });
       safeRun(() => {
         const canvas3D = document.getElementById('canvas3DMultiChannel');
@@ -10274,6 +10279,30 @@ function switchTab(tabId) {
     let isFullWatchSyncRunning = false;
     let lastFullSyncTime = null;
 
+    function _waitForBleStream(resolverProp, maxMs) {
+      return new Promise((resolve) => {
+        let done = false;
+        const finish = () => {
+          if (done) return;
+          done = true;
+          try { delete window[resolverProp]; } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+          resolve();
+        };
+        window[resolverProp] = finish;
+        setTimeout(finish, maxMs);
+      });
+    }
+
+    async function _bfmFetchTimed(url, opts = {}, timeoutMs = 1500) {
+      const ac = (typeof AbortController !== 'undefined') ? new AbortController() : null;
+      const timer = ac ? setTimeout(() => ac.abort(), timeoutMs) : null;
+      try {
+        return await fetch(url, Object.assign({}, opts, { signal: ac ? ac.signal : undefined }));
+      } finally {
+        if (timer) clearTimeout(timer);
+      }
+    }
+
     async function executeFullWatchConnectSync(deviceName) {
       if (isFullWatchSyncRunning) return;
       isFullWatchSyncRunning = true;
@@ -10300,28 +10329,28 @@ function switchTab(tabId) {
       }
 
       try {
-        // Step 1: Authentication & Real-Time Chronometer Handshake (0xA1 + 0xB8 12-Hour System)
+        // Step 1: Authentication & Real-Time Chronometer Handshake (0xA1 + 0xB8 12-Hour System + 0xA3)
         sendAuthHandshake();
-        await new Promise(r => setTimeout(r, 300));
+        await new Promise(r => setTimeout(r, 650));
 
         // Step 2: Battery & Hardware Revision (0x03)
         const cmdBat = new Uint8Array(20); cmdBat[0] = 0x03;
         await sendCommandBytes(cmdBat);
         await new Promise(r => setTimeout(r, 300));
 
-        // Step 3: Real Pedometer & Active Calories / Distance Registers (0x89 0x01 & 0x07)
+        // Step 3: Real Pedometer & Active Calories / Distance Registers (0x07)
         if (typeof syncStepData === 'function') {
-          syncStepData();
+          syncStepData(true);
         } else {
-          const cmdPed = new Uint8Array(20); cmdPed[0] = 0x89; cmdPed[1] = 0x01;
+          const cmdPed = new Uint8Array(20); cmdPed[0] = 0x07; cmdPed[1] = 0x00;
           await sendCommandBytes(cmdPed);
         }
-        await new Promise(r => setTimeout(r, 400));
+        await new Promise(r => setTimeout(r, 350));
 
         // Step 4: 24-Hour Telemetry Health Dump (0xA7 0x00)
         const cmdHealth = new Uint8Array(20); cmdHealth[0] = 0xA7; cmdHealth[1] = 0x00;
         await sendCommandBytes(cmdHealth);
-        await new Promise(r => setTimeout(r, 400));
+        await new Promise(r => setTimeout(r, 350));
 
         // Step 5: Optical Glucose Calibration Baseline (0x87 0x01)
         if (typeof readWatchGlucoseCalibration === 'function') {
@@ -10330,91 +10359,57 @@ function switchTab(tabId) {
           const cmdG = new Uint8Array(20); cmdG[0] = 0x87; cmdG[1] = 0x01;
           await sendCommandBytes(cmdG);
         }
-        await new Promise(r => setTimeout(r, 400));
+        await new Promise(r => setTimeout(r, 350));
 
-        // Step 6: Nocturnal Sleep Architecture for Last Night (0xE0 0x00)
+        // Step 6: Nocturnal Sleep Architecture (0xE0 Day 0, fallback Day 1 if empty) — await completion
         if (typeof querySleepData === 'function') {
-          querySleepData(0);
+          const sleepWait = _waitForBleStream('_sleepDayResolve', 4500);
+          querySleepData(0, true);
+          await sleepWait;
+          if (!window.lastDailySleepData || !(window.lastDailySleepData.sessions && window.lastDailySleepData.sessions.length)) {
+            const sleepWait1 = _waitForBleStream('_sleepDayResolve', 3500);
+            querySleepData(1, true);
+            await sleepWait1;
+          }
         }
-        await new Promise(r => setTimeout(r, 600));
 
-        // Step 7: Nocturnal Sleep Architecture for Previous Night (0xE0 0x01)
-        if (typeof querySleepData === 'function') {
-          querySleepData(1);
-        }
-        await new Promise(r => setTimeout(r, 600));
-
-        // Step 7b: 5-Minute OriginV3 History Sync for Today (0xDF 0x01 0x00 0x00)
+        // Step 7: 5-Minute OriginV3 History Sync for Day 0 (Today) and Day 1 (Yesterday) — await EOF / quiet tail
         if (typeof queryOriginHistoryData === 'function') {
-          queryOriginHistoryData(0, true);
-        }
-        await new Promise(r => setTimeout(r, 2500));
-        if (window._dfOriginBuffer && window._dfOriginBuffer.length > 0 && typeof flushDfOriginBuffer === 'function') {
-          await flushDfOriginBuffer();
+          for (const dfDay of [0, 1]) {
+            const dfWait = _waitForBleStream('_dfDayResolve', dfDay === 0 ? 15000 : 12000);
+            queryOriginHistoryData(dfDay, true, true);
+            await dfWait;
+            if (window._dfOriginBuffer && window._dfOriginBuffer.length > 0 && typeof flushDfOriginBuffer === 'function') {
+              await flushDfOriginBuffer();
+            }
+          }
         }
 
-        // Step 7c: 5-Minute Temperature History Sync for Today (0x88 0x01 0x00 0x01 0x00)
+        // Step 7b: 5-Minute Temperature History Sync for Day 0 (Today) and Day 1 (Yesterday)
         if (typeof queryTempHistoryData === 'function') {
-          queryTempHistoryData(0, true);
-        }
-        await new Promise(r => setTimeout(r, 1500));
-        if (window._tempHistBuffer && window._tempHistBuffer.length > 0 && typeof flushTempHistoryBuffer === 'function') {
-          await flushTempHistoryBuffer();
+          for (const tDay of [0, 1]) {
+            const tempWait = _waitForBleStream('_tempDayResolve', tDay === 0 ? 8000 : 6000);
+            queryTempHistoryData(tDay, true, true);
+            await tempWait;
+            if (window._tempHistBuffer && window._tempHistBuffer.length > 0 && typeof flushTempHistoryBuffer === 'function') {
+              await flushTempHistoryBuffer();
+            }
+          }
         }
 
-        // Step 8: Trigger Server Sync & Telemetry Deduplication
-        try {
-          const apiBase = (window.location.protocol === 'file:' ? 'http://127.0.0.1:8899' : '');
-          await fetch(`${apiBase}/api/sync/trigger`, { method: 'POST' });
-        } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+        // Step 8: Trigger Server Sync & Telemetry Deduplication (bounded fast timeout)
+        if (window._bfmLocalServerOnline !== false) {
+          try {
+            await _bfmFetchTimed('/api/sync/trigger', { method: 'POST' }, 1500);
+          } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+        }
 
-        // If no steps received yet from a dormant device (H8 off-wrist), set 0 steps cleanly
+        // If no steps received yet from a dormant device, set 0 steps cleanly
         if (typeof lastSteps === 'undefined' || lastSteps === null) {
-          propagateStepTelemetry(0, 0, "0.00");
+          propagateStepTelemetry(0, 0, "0.00", false);
         }
 
-        // Step 9: Re-hydrate ALL UI Consoles, Fields, Charts, and Metrics
-        await pollLiveTelemetryChanges(true);
-        await fetchTelemetryTimeline();
-        // Mandatory biometric harvest propagation
-        if (window._latestTelemetry) {
-          const vit = window._latestTelemetry;
-          if (vit.GLUCOSE && vit.GLUCOSE.value1 > 0) lastGlucoseMg = Math.round(vit.GLUCOSE.value1);
-          if (vit.BLOOD_PRESSURE && vit.BLOOD_PRESSURE.value1 > 0) {
-            lastSystolic = Math.round(vit.BLOOD_PRESSURE.value1);
-            lastDiastolic = Math.round(vit.BLOOD_PRESSURE.value2);
-          }
-          if (vit.HEART_RATE && vit.HEART_RATE.value1 > 0) {
-            lastHR = Math.round(vit.HEART_RATE.value1);
-            lastHeartRate = lastHR;
-          }
-          if (vit.SPO2 && vit.SPO2.value1 > 0) lastSpO2 = Math.round(vit.SPO2.value1);
-          if (vit.BLOOD_OXYGEN && vit.BLOOD_OXYGEN.value1 > 0) lastSpO2 = Math.round(vit.BLOOD_OXYGEN.value1);
-          if (vit.TEMPERATURE && vit.TEMPERATURE.value1 > 0) {
-            lastBodyF = vit.TEMPERATURE.value1;
-            lastSkinF = vit.TEMPERATURE.value2 || (lastBodyF - 2.4);
-            lastBodyC = parseFloat(((lastBodyF - 32) * 5 / 9).toFixed(1));
-          }
-          if (vit.HRV_STRESS && vit.HRV_STRESS.value1 > 0) {
-            lastHRV = Math.round(vit.HRV_STRESS.value1);
-            lastStress = Math.round(vit.HRV_STRESS.value2);
-          }
-          if (typeof propagateFullScanResultsToAllPages === 'function') {
-            propagateFullScanResultsToAllPages({
-              glucose: lastGlucoseMg,
-              bp: { sys: lastSystolic, dia: lastDiastolic },
-              spo2: lastSpO2,
-              hr: lastHR,
-              temp: { bodyF: lastBodyF, skinF: lastSkinF, bodyC: lastBodyC },
-              hrv: { hrv: lastHRV, stress: lastStress }
-            }, false);
-          }
-        }
-        if (typeof initFullScanView === 'function') initFullScanView();
-        if (typeof render360HealthView === 'function') render360HealthView();
-        if (typeof updateWorkoutWithSteps === 'function') updateWorkoutWithSteps(lastSteps || 0);
-
-        // Immediately update all screen elements with harvested vitals via full pipeline
+        // Step 9: Re-hydrate ALL UI Consoles, Fields, Charts, Reports, and Metrics
         await runFullPipelineAndRefreshAllScreens();
 
         // Step 10: State Sync Complete in Vault Sync Status Field (100% Current)
@@ -10435,8 +10430,9 @@ function switchTab(tabId) {
         }
 
         if (typeof soundSuccess === "function") soundSuccess();
-        logLCARS(`[★ SYNC 100% COMPLETE] Full watch dataset downloaded from ${dName} and deduplicated in SQLite. All fields, sleep, and activity updated.`, 'rx');
+        logLCARS(`[★ SYNC 100% COMPLETE] Full watch dataset downloaded from ${dName} and synchronized across all consoles & reports.`, 'rx');
       } catch (err) {
+        console.warn('[MIL-SPEC HANDLED FAULT] executeFullWatchConnectSync:', err);
         logLCARS(`[!] Watch Sync Warning: ${err.message}`, 'err');
       } finally {
         isFullWatchSyncRunning = false;
@@ -10648,6 +10644,7 @@ function switchTab(tabId) {
           timestamp: new Date().toISOString()
         };
         localStorage.setItem('bfm_local_latest_v1', JSON.stringify(map));
+        window._latestTelemetry = Object.assign(window._latestTelemetry || {}, { [metric]: map[metric] });
       } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
     }
 
@@ -11194,10 +11191,11 @@ function switchTab(tabId) {
           if (window._currentSleepQueryDay === 0 && !window._sleepDayOneAttempted) {
             window._sleepDayOneAttempted = true;
             logLCARS("[*] Day 0 sleep not yet archived on watch. Automatically querying Day 1 (Previous Night's Sleep Architecture)...", "sys");
-            setTimeout(() => querySleepData(1), 350);
+            setTimeout(() => querySleepData(1, true), 350);
             return;
           } else {
             logLCARS(`[🌙 SOMNO-03] Sleep Architecture for Day ${window._currentSleepQueryDay || 0}: No record logged on watch.`, "sys");
+            if (typeof window._sleepDayResolve === 'function') window._sleepDayResolve();
           }
         } else {
           // Accumulate multi-packet sleep stream
@@ -11208,7 +11206,7 @@ function switchTab(tabId) {
           if (window._sleepParseTimer) clearTimeout(window._sleepParseTimer);
           window._sleepParseTimer = setTimeout(() => {
             assembleAndParseSleepStream();
-          }, 350);
+          }, 400);
         }
       }
 
@@ -11245,7 +11243,7 @@ function switchTab(tabId) {
         } else {
           window._dfSyncTimer = setTimeout(() => {
             if (typeof flushDfOriginBuffer === 'function') flushDfOriginBuffer();
-          }, 1200);
+          }, 1800);
         }
       }
 
@@ -11863,11 +11861,11 @@ function switchTab(tabId) {
     window._dfSyncTimer = null;
     window._lastDfSyncTs = 0;
 
-    function queryOriginHistoryData(dayOffset = 0, force = false) {
+    function queryOriginHistoryData(dayOffset = 0, force = false, silent = false) {
       const now = Date.now();
       if (!force && (now - (window._lastDfSyncTs || 0) < 180000)) return;
       if (!txCharacteristic || !gattServer || !gattServer.connected) return;
-      if (force && typeof soundButtonPress === 'function') soundButtonPress();
+      if (force && !silent && typeof soundButtonPress === 'function') soundButtonPress();
       window._lastDfSyncTs = now;
       window._currentDfQueryDay = dayOffset;
       window._dfOriginBuffer = [];
@@ -12225,17 +12223,35 @@ function switchTab(tabId) {
 
         const todayStr = _localIsoDateStr(now);
         const rrPairs = [];
+        const metSeries = [];
+        const bloodCompSeries = [];
+        const breathSeries = [];
+        let cumMetHrs = 0.0;
         let metLatest = null, bloodCompLatest = null, breathLatest = null;
         for (const rec of (dfRecords || [])) {
           if (rec.date !== todayStr) continue;
+          const hm = `${String(rec.hour).padStart(2, '0')}:${String(rec.minute).padStart(2, '0')}`;
           if (Array.isArray(rec.rr_ms) && rec.rr_ms.length >= 2) {
             for (let i = 0; i < rec.rr_ms.length - 1; i++) {
               rrPairs.push([rec.rr_ms[i], rec.rr_ms[i + 1]]);
             }
           }
-          if (rec.met > 0) metLatest = rec;
-          if (rec.blood_comp) bloodCompLatest = rec;
-          if (rec.breath > 0) breathLatest = rec;
+          if (rec.met > 0) {
+            metLatest = rec;
+            cumMetHrs += rec.met * (5.0 / 60.0);
+            metSeries.push({ label: hm, val: Math.round(cumMetHrs * 10) / 10 });
+          }
+          if (rec.blood_comp) {
+            bloodCompLatest = rec;
+            const uaRaw = Number(rec.blood_comp.uric_acid || 0);
+            const uaMg = uaRaw > 20 ? Math.round((uaRaw / 59.48) * 100) / 100 : Math.round(uaRaw * 100) / 100;
+            const tcho = Math.round(Number(rec.blood_comp.tcho || 0) * 100) / 100;
+            bloodCompSeries.push({ label: hm, val: tcho, core: tcho, skin: uaMg });
+          }
+          if (rec.breath > 0) {
+            breathLatest = rec;
+            breathSeries.push({ label: hm, val: Math.round(rec.breath) });
+          }
         }
 
         if (rrPairs.length > 0) {
@@ -12249,11 +12265,14 @@ function switchTab(tabId) {
           localStorage.setItem('bfm_local_lorenz_v1', JSON.stringify(lorenzObj));
         }
 
-        if (metLatest || bloodCompLatest || breathLatest) {
-          const sr = Object.assign({ date: todayStr, OFF_WRIST_INTERVALS: [], MET_5MIN: null, BLOOD_COMP: null, BREATH_RATE: null }, window.lastSubReportData || {});
-          if (metLatest) sr.MET_5MIN = { value1: metLatest.met, value2: 0, timestamp: metLatest.timestamp };
-          if (bloodCompLatest) sr.BLOOD_COMP = Object.assign({}, bloodCompLatest.blood_comp, { value1: bloodCompLatest.blood_comp.uric_acid, value2: bloodCompLatest.blood_comp.tcho, timestamp: bloodCompLatest.timestamp });
-          if (breathLatest) sr.BREATH_RATE = { value1: breathLatest.breath, value2: 0, timestamp: breathLatest.timestamp };
+        if (metSeries.length > 0 || bloodCompSeries.length > 0 || breathSeries.length > 0) {
+          const sr = Object.assign({ date: todayStr, OFF_WRIST_INTERVALS: [], MET_5MIN: [], BLOOD_COMP: [], BREATH_RATE: [], ECG_QTC: [], BODY_COMP: [] }, window.lastSubReportData || {});
+          if (metSeries.length > 0) sr.MET_5MIN = metSeries;
+          if (bloodCompSeries.length > 0) sr.BLOOD_COMP = bloodCompSeries;
+          if (breathSeries.length > 0) sr.BREATH_RATE = breathSeries;
+          if (metLatest) sr.MET_LATEST = { value1: metLatest.met, value2: cumMetHrs, timestamp: metLatest.timestamp };
+          if (bloodCompLatest) sr.BLOOD_COMP_LATEST = Object.assign({}, bloodCompLatest.blood_comp, { value1: bloodCompLatest.blood_comp.uric_acid, value2: bloodCompLatest.blood_comp.tcho, timestamp: bloodCompLatest.timestamp });
+          if (breathLatest) sr.BREATH_LATEST = { value1: breathLatest.breath, value2: 0, timestamp: breathLatest.timestamp };
           window.lastSubReportData = sr;
           localStorage.setItem('bfm_local_subreports_v1', JSON.stringify(sr));
         }
@@ -12318,7 +12337,10 @@ function switchTab(tabId) {
         if (typeof initFullScanView === 'function') initFullScanView();
         if (typeof render360HealthView === 'function') render360HealthView();
         if (typeof renderReportsView === 'function') renderReportsView();
+        if (typeof renderNocturnalSleepHypnogram === 'function') renderNocturnalSleepHypnogram('curveTimelineSleep');
         if (typeof renderTallSynchronizedChart === 'function') renderTallSynchronizedChart(currentTallChartTimeframe);
+        if (typeof renderSubReportTrendCharts === 'function') renderSubReportTrendCharts(currentReportTimeframe);
+        if (typeof renderRawTelemetryTable === 'function') renderRawTelemetryTable();
         if (typeof render3DMultiChannelScene === 'function') render3DMultiChannelScene();
         if (typeof renderLorenzScatterPlot === 'function') renderLorenzScatterPlot();
         if (typeof updateWatchMetabolicSubReports === 'function') updateWatchMetabolicSubReports();
@@ -12355,6 +12377,15 @@ function switchTab(tabId) {
         if (rawLor && !window.lastRealLorenzData) window.lastRealLorenzData = JSON.parse(rawLor);
         const rawSub = localStorage.getItem('bfm_local_subreports_v1');
         if (rawSub && !window.lastSubReportData) window.lastSubReportData = JSON.parse(rawSub);
+        const rawSlp = localStorage.getItem('bfm_local_sleep_v1');
+        if (rawSlp && !window.lastDailySleepData) {
+          const parsedSlp = JSON.parse(rawSlp);
+          if (parsedSlp && parsedSlp.totalMin > 0) {
+            window.lastDailySleepData = parsedSlp;
+            lastSleepTotalHours = parseFloat((parsedSlp.totalMin / 60.0).toFixed(1));
+            lastDeepSleepHours = parseFloat(((parsedSlp.deepMin || 0) / 60.0).toFixed(1));
+          }
+        }
         if (rawLatest && typeof propagateFullScanResultsToAllPages === 'function') {
           propagateFullScanResultsToAllPages({
             glucose: lastGlucoseMg || 0,
@@ -12371,54 +12402,56 @@ function switchTab(tabId) {
     async function flushDfOriginBuffer() {
       if (window._dfSyncTimer) { clearTimeout(window._dfSyncTimer); window._dfSyncTimer = null; }
       const pkts = window._dfOriginBuffer ? window._dfOriginBuffer.splice(0) : [];
-      if (pkts.length === 0) return;
-
-      // Always decode & render client-side first (works standalone over file:/// or HTTPS with zero Python server)
-      const localRecs = parseDfOriginBlocksJS(pkts, window._currentDfQueryDay || 0);
-      if (localRecs.length > 0) {
-        mergeStandaloneWatchRecordsJS(localRecs, []);
-        logLCARS(`[✔ 0xDF LOCAL JS] Decoded ${localRecs.length} 5-min watch blocks (${pkts.length} BLE packets) directly in browser.`, "rx");
-      }
-
-      if (window._bfmLocalServerOnline === false && window.location.protocol !== 'file:' && !window.location.hostname.startsWith('127.')) {
-        return;
-      }
       try {
-        const apiBase = (window.location.protocol === 'file:' ? 'http://127.0.0.1:8899' : (window.location.hostname && window.location.hostname.endsWith('github.io') ? 'http://127.0.0.1:8899' : ''));
-        const resp = await fetch(`${apiBase}/api/origin/ingest`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            packets: pkts,
-            day_offset: window._currentDfQueryDay || 0,
-            device_id: 'VEE_5010'
-          })
-        });
-        if (resp.ok) {
-          const res = await resp.json();
-          logLCARS(`[✔ 0xDF ORIGIN] Decoded ${res.blocks_parsed || 0} 5-min watch blocks (${res.steps_5min_total || 0} steps, ${res.rr_epochs || 0} R-R epochs).`, "rx");
-          if (typeof fetchServer2DayTimeline === 'function') await fetchServer2DayTimeline();
-          if (typeof fetchTodayLorenzData === 'function') await fetchTodayLorenzData();
-          if (typeof fetchTodaySubReports === 'function') await fetchTodaySubReports();
-          const pageRep = document.getElementById('pageReports');
-          if (pageRep && pageRep.classList.contains('active-page')) {
+        if (pkts.length === 0) return;
+
+        // Always decode & render client-side first (works standalone over file:/// or HTTPS with zero Python server)
+        const localRecs = parseDfOriginBlocksJS(pkts, window._currentDfQueryDay || 0);
+        if (localRecs.length > 0) {
+          mergeStandaloneWatchRecordsJS(localRecs, []);
+          logLCARS(`[✔ 0xDF LOCAL JS] Decoded ${localRecs.length} 5-min watch blocks (${pkts.length} BLE packets) directly in browser.`, "rx");
+        }
+
+        if (window._bfmLocalServerOnline === false && window.location.protocol !== 'file:' && !window.location.hostname.startsWith('127.')) {
+          return;
+        }
+        try {
+          const apiBase = (window.location.protocol === 'file:' ? 'http://127.0.0.1:8899' : (window.location.hostname && window.location.hostname.endsWith('github.io') ? 'http://127.0.0.1:8899' : ''));
+          const resp = await _bfmFetchTimed(`${apiBase}/api/origin/ingest`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              packets: pkts,
+              day_offset: window._currentDfQueryDay || 0,
+              device_id: 'VEE_5010'
+            })
+          }, 2500);
+          if (resp.ok) {
+            const res = await resp.json();
+            logLCARS(`[✔ 0xDF ORIGIN] Decoded ${res.blocks_parsed || 0} 5-min watch blocks (${res.steps_5min_total || 0} steps, ${res.rr_epochs || 0} R-R epochs).`, "rx");
+            if (typeof fetchServer2DayTimeline === 'function') await fetchServer2DayTimeline();
+            if (typeof fetchTodayLorenzData === 'function') await fetchTodayLorenzData();
+            if (typeof fetchTodaySubReports === 'function') await fetchTodaySubReports();
             if (typeof renderReportsView === 'function') renderReportsView();
             if (typeof renderTallSynchronizedChart === 'function') renderTallSynchronizedChart(currentTallChartTimeframe);
             if (typeof render3DMultiChannelScene === 'function') render3DMultiChannelScene();
+            if (typeof renderRawTelemetryTable === 'function') renderRawTelemetryTable();
           }
-        }
-      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+        } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+      } finally {
+        if (typeof window._dfDayResolve === 'function') window._dfDayResolve();
+      }
     }
 
     window._tempHistBuffer = [];
     window._tempHistTimer = null;
     window._lastTempHistTs = 0;
 
-    function queryTempHistoryData(dayOffset = 0, force = false) {
+    function queryTempHistoryData(dayOffset = 0, force = false, silent = false) {
       const now = Date.now();
       if (!force && (now - (window._lastTempHistTs || 0) < 180000)) return;
       if (!txCharacteristic || !gattServer || !gattServer.connected) return;
-      if (force && typeof soundButtonPress === 'function') soundButtonPress();
+      if (force && !silent && typeof soundButtonPress === 'function') soundButtonPress();
       window._lastTempHistTs = now;
       window._currentTempHistDay = dayOffset;
       window._tempHistBuffer = [];
@@ -12436,40 +12469,42 @@ function switchTab(tabId) {
     async function flushTempHistoryBuffer() {
       if (window._tempHistTimer) { clearTimeout(window._tempHistTimer); window._tempHistTimer = null; }
       const pkts = window._tempHistBuffer ? window._tempHistBuffer.splice(0) : [];
-      if (pkts.length === 0) return;
-
-      const localTemps = parse88TempPacketsJS(pkts, window._currentTempHistDay || 0);
-      if (localTemps.length > 0) {
-        mergeStandaloneWatchRecordsJS([], localTemps);
-        logLCARS(`[✔ 0x88 LOCAL JS] Decoded ${localTemps.length} thermal readings directly in browser.`, "rx");
-      }
-
-      if (window._bfmLocalServerOnline === false && window.location.protocol !== 'file:' && !window.location.hostname.startsWith('127.')) {
-        return;
-      }
       try {
-        const apiBase = (window.location.protocol === 'file:' ? 'http://127.0.0.1:8899' : (window.location.hostname && window.location.hostname.endsWith('github.io') ? 'http://127.0.0.1:8899' : ''));
-        const resp = await fetch(`${apiBase}/api/temp_history/ingest`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            packets: pkts,
-            day_offset: window._currentTempHistDay || 0,
-            device_id: 'VEE_5010'
-          })
-        });
-        if (resp.ok) {
-          const res = await resp.json();
-          logLCARS(`[✔ 0x88 TEMP HISTORY] Decoded ${res.parsed || 0} 5-min thermal readings (+${res.inserted || 0} stored).`, "rx");
-          if (typeof fetchServer2DayTimeline === 'function') await fetchServer2DayTimeline();
-          const pageRep = document.getElementById('pageReports');
-          if (pageRep && pageRep.classList.contains('active-page')) {
+        if (pkts.length === 0) return;
+
+        const localTemps = parse88TempPacketsJS(pkts, window._currentTempHistDay || 0);
+        if (localTemps.length > 0) {
+          mergeStandaloneWatchRecordsJS([], localTemps);
+          logLCARS(`[✔ 0x88 LOCAL JS] Decoded ${localTemps.length} thermal readings directly in browser.`, "rx");
+        }
+
+        if (window._bfmLocalServerOnline === false && window.location.protocol !== 'file:' && !window.location.hostname.startsWith('127.')) {
+          return;
+        }
+        try {
+          const apiBase = (window.location.protocol === 'file:' ? 'http://127.0.0.1:8899' : (window.location.hostname && window.location.hostname.endsWith('github.io') ? 'http://127.0.0.1:8899' : ''));
+          const resp = await _bfmFetchTimed(`${apiBase}/api/temp_history/ingest`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              packets: pkts,
+              day_offset: window._currentTempHistDay || 0,
+              device_id: 'VEE_5010'
+            })
+          }, 2500);
+          if (resp.ok) {
+            const res = await resp.json();
+            logLCARS(`[✔ 0x88 TEMP HISTORY] Decoded ${res.parsed || 0} 5-min thermal readings (+${res.inserted || 0} stored).`, "rx");
+            if (typeof fetchServer2DayTimeline === 'function') await fetchServer2DayTimeline();
             if (typeof renderReportsView === 'function') renderReportsView();
             if (typeof renderTallSynchronizedChart === 'function') renderTallSynchronizedChart(currentTallChartTimeframe);
             if (typeof render3DMultiChannelScene === 'function') render3DMultiChannelScene();
+            if (typeof renderRawTelemetryTable === 'function') renderRawTelemetryTable();
           }
-        }
-      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+        } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+      } finally {
+        if (typeof window._tempDayResolve === 'function') window._tempDayResolve();
+      }
     }
 
     function querySleepData(dayOffset = 0, silent = false) {
@@ -12652,6 +12687,10 @@ function switchTab(tabId) {
         if (typeof soundSuccess === "function") soundSuccess();
 
         try {
+          localStorage.setItem('bfm_local_sleep_v1', JSON.stringify(window.lastDailySleepData));
+        } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+
+        try {
           fetch('/api/telemetry', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -12671,10 +12710,10 @@ function switchTab(tabId) {
         if (typeof renderNocturnalSleepHypnogram === 'function') {
           renderNocturnalSleepHypnogram('curveTimelineSleep');
         }
-        const pageRep = document.getElementById('pageReports');
-        if (pageRep && pageRep.classList.contains('active-page') && typeof renderReportsView === 'function') {
-          renderReportsView();
-        }
+        if (typeof render360HealthView === 'function') render360HealthView();
+        if (typeof renderReportsView === 'function') renderReportsView();
+        if (typeof renderTallSynchronizedChart === 'function') renderTallSynchronizedChart(currentTallChartTimeframe);
+        if (typeof window._sleepDayResolve === 'function') window._sleepDayResolve();
       } else if (window._currentSleepQueryDay === 0 && !window._sleepDayOneAttempted) {
         window._sleepDayOneAttempted = true;
         logLCARS("[*] Day 0 sleep block empty. Querying Day 1...", "sys");
@@ -12683,6 +12722,7 @@ function switchTab(tabId) {
         window.lastDailySleepData = { date: todayIso, totalMin: 0, deepMin: 0, lightMin: 0, remMin: 0, awakeMin: 0, wakeCount: 0, efficiency: 0, sessions: [] };
         lastSleepTotalHours = 0;
         lastDeepSleepHours = 0;
+        if (typeof window._sleepDayResolve === 'function') window._sleepDayResolve();
         const elSleep = document.getElementById("valSleep");
         if (elSleep) elSleep.textContent = "--.-";
         const elDeep = document.getElementById("valDeepSleep");
@@ -13554,6 +13594,27 @@ function switchTab(tabId) {
       renderReportsView();
     }
 
+    window._historicalReportsCache = window._historicalReportsCache || {};
+
+    async function fetchHistoricalReports(tf) {
+      if (!tf || tf === 'daily') return null;
+      if (window._bfmLocalServerOnline === false && window.location.protocol !== 'file:' && !window.location.hostname.startsWith('127.')) {
+        return null;
+      }
+      try {
+        const apiBase = (window.location.protocol === 'file:' ? 'http://127.0.0.1:8899' : (window.location.hostname && window.location.hostname.endsWith('github.io') ? 'http://127.0.0.1:8899' : ''));
+        const resp = await _bfmFetchTimed(`${apiBase}/api/reports/history?timeframe=${encodeURIComponent(tf)}&_t=${Date.now()}`, { cache: 'no-store' }, 2000);
+        if (resp.ok) {
+          const data = await resp.json();
+          if (data && Array.isArray(data.buckets)) {
+            window._historicalReportsCache[tf] = data.buckets;
+            return data.buckets;
+          }
+        }
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT] fetchHistoricalReports:', e); }
+      return null;
+    }
+
     function setReportTimeframe(tf) {
       soundButtonPress();
       currentReportTimeframe = tf;
@@ -13581,6 +13642,15 @@ function switchTab(tabId) {
 
       renderReportsView();
       if (typeof renderTallSynchronizedChart === 'function') renderTallSynchronizedChart(tf);
+      if (tf !== 'daily') {
+        fetchHistoricalReports(tf).then((buckets) => {
+          if (buckets && currentReportTimeframe === tf) {
+            renderReportsView();
+            if (typeof renderTallSynchronizedChart === 'function') renderTallSynchronizedChart(tf);
+            if (typeof renderSubReportTrendCharts === 'function') renderSubReportTrendCharts(tf);
+          }
+        }).catch(e => console.warn('[MIL-SPEC HANDLED FAULT]', e));
+      }
     }
 
     function getTodayOffWristIntervals() {
@@ -17367,27 +17437,26 @@ function switchTab(tabId) {
     }
 
     function updateWatchMetabolicSubReports() {
-      const steps = (typeof lastSteps !== 'undefined' && lastSteps > 0) ? lastSteps : 2772;
-      const hr = (typeof lastHR !== 'undefined' && lastHR > 0) ? lastHR : 72;
-      const hrv = (typeof lastHRV !== 'undefined' && lastHRV > 0) ? lastHRV : 64;
-      const spo2 = (typeof lastSpO2 !== 'undefined' && lastSpO2 > 0) ? lastSpO2 : 98;
-      const temp = (typeof lastBodyF !== 'undefined' && lastBodyF > 0) ? lastBodyF : 97.4;
+      const steps = (typeof lastSteps !== 'undefined' && lastSteps > 0) ? lastSteps : 0;
+      const hr = (typeof lastHR !== 'undefined' && lastHR > 0) ? lastHR : 0;
+      const hrv = (typeof lastHRV !== 'undefined' && lastHRV > 0) ? lastHRV : 0;
+      const hasTelemetry = (steps > 0 || hr > 0 || hrv > 0 || (typeof lastGlucoseMg !== 'undefined' && lastGlucoseMg > 0));
 
-      // 01. Metabolism & BMR / TDEE / GLUT4
-      const bmr = 1680;
+      // 01. Metabolism & BMR / TDEE / GLUT4 (Zero Is Zero when unsynced)
+      const bmr = hasTelemetry ? 1680 : 0;
       const activeKcal = Math.round(steps * 0.04);
-      const tdee = bmr + activeKcal;
-      const glut4Pct = Math.min(380, Math.round(180 + (steps / 20)));
-      const rer = parseFloat((0.80 + Math.min(0.08, (hr - 60) * 0.002)).toFixed(2));
+      const tdee = hasTelemetry ? (bmr + activeKcal) : 0;
+      const glut4Pct = steps > 0 ? Math.min(380, Math.round(180 + (steps / 20))) : 0;
+      const rer = (hr > 0) ? parseFloat((0.80 + Math.min(0.08, Math.max(0, hr - 60) * 0.002)).toFixed(2)) : 0;
 
       const elTdee = document.getElementById('subValTDEE');
       if (elTdee) elTdee.innerHTML = `${tdee.toLocaleString()} <span style="font-size: 0.8rem;">kcal/day</span>`;
       const elActiveBurn = document.getElementById('subValActiveBurn');
-      if (elActiveBurn) elActiveBurn.textContent = `+${activeKcal} Active Burn (${steps.toLocaleString()} steps)`;
+      if (elActiveBurn) elActiveBurn.textContent = hasTelemetry ? `+${activeKcal} Active Burn (${steps.toLocaleString()} steps)` : `0 Active Burn (0 steps)`;
       const elGlut4 = document.getElementById('subValGlut4');
-      if (elGlut4) elGlut4.textContent = `+${glut4Pct}%`;
+      if (elGlut4) elGlut4.textContent = glut4Pct > 0 ? `+${glut4Pct}%` : `0%`;
       const elRer = document.getElementById('subValRER');
-      if (elRer) elRer.textContent = rer.toFixed(2);
+      if (elRer) elRer.textContent = rer > 0 ? rer.toFixed(2) : `0.00`;
 
       // 02. ECG Stress & Autonomic Balance (override with genuine synced 0x97 ECG record when available)
       const subEcg = (window.lastSubReportData && window.lastSubReportData.ECG_LATEST) ? window.lastSubReportData.ECG_LATEST : null;
@@ -17402,10 +17471,10 @@ function switchTab(tabId) {
         if (elQtc) elQtc.innerHTML = `0 <span style="font-size: 0.8rem;">ms</span>`;
         if (elQtcSt) elQtcSt.textContent = `Awaiting Watch ECG Sync`;
       }
-      const lfHf = (subEcg && subEcg.skin > 0) ? parseFloat(subEcg.skin) : parseFloat((1.10 + (hr > 80 ? 0.25 : 0.08) - (hrv / 200)).toFixed(2));
+      const lfHf = (subEcg && subEcg.skin > 0) ? parseFloat(subEcg.skin) : ((hr > 0 && hrv > 0) ? parseFloat((1.10 + (hr > 80 ? 0.25 : 0.08) - (hrv / 200)).toFixed(2)) : 0);
       const elLfHf = document.getElementById('subValLfHf');
-      if (elLfHf) elLfHf.textContent = lfHf.toFixed(2);
-      const resilience = Math.min(96, Math.max(70, Math.round(hrv * 1.2 + (100 - hr) * 0.2)));
+      if (elLfHf) elLfHf.textContent = lfHf > 0 ? lfHf.toFixed(2) : `0.00`;
+      const resilience = (hr > 0 && hrv > 0) ? Math.min(96, Math.max(40, Math.round(hrv * 1.2 + (100 - hr) * 0.2))) : 0;
       const elRes = document.getElementById('subValCardiacResilience');
       if (elRes) elRes.textContent = `${resilience} / 100`;
 
@@ -17423,9 +17492,11 @@ function switchTab(tabId) {
       }
 
       // 03. MET Activity Index
+      const metArr = (window.lastSubReportData && Array.isArray(window.lastSubReportData.MET_5MIN)) ? window.lastSubReportData.MET_5MIN : [];
+      const syncedMetTotal = metArr.length > 0 ? parseFloat(metArr[metArr.length - 1].val || 0) : 0;
       const walkHrs = parseFloat((steps / 2800).toFixed(1));
       const walkMetHrs = parseFloat((walkHrs * 3.5).toFixed(1));
-      const totalMetHrs = parseFloat((7.6 + 11.2 + walkMetHrs).toFixed(1));
+      const totalMetHrs = syncedMetTotal > 0 ? syncedMetTotal : (steps > 0 ? parseFloat((12.0 + walkMetHrs).toFixed(1)) : 0);
       const elMetTotal = document.getElementById('subValMetTotal');
       if (elMetTotal) elMetTotal.textContent = `${totalMetHrs} MET-HRS / DAY`;
       const elMetWalk = document.getElementById('subValMetWalk');
@@ -17434,7 +17505,8 @@ function switchTab(tabId) {
       if (elMetWalkVal) elMetWalkVal.textContent = `${walkMetHrs} MET-hrs (GLUT4)`;
 
       // 06. Breath & Respiratory Mechanics
-      const breathRpm = Math.round(14 + (steps > 2000 ? 1 : 0) + (hr > 85 ? 2 : 0));
+      const brArr = (window.lastSubReportData && Array.isArray(window.lastSubReportData.BREATH_RATE)) ? window.lastSubReportData.BREATH_RATE : [];
+      const breathRpm = brArr.length > 0 ? Math.round(brArr[brArr.length - 1].val || 0) : 0;
       const elBreath = document.getElementById('subValBreathRpm');
       if (elBreath) elBreath.innerHTML = `${breathRpm} <span style="font-size: 0.8rem;">RPM</span>`;
     }
@@ -17505,77 +17577,17 @@ function switchTab(tabId) {
         if (Array.isArray(sub.BREATH_RATE) && sub.BREATH_RATE.length > 0) {
           breathData = sub.BREATH_RATE;
         }
-      } else if (isWeekly) {
-        const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-        const qtcW = [415, 412, 414, 412, 410, 408, 411];
-        const lfHfW = [1.25, 1.20, 1.22, 1.22, 1.16, 1.12, 1.15];
-        const metW = [31.4, 34.2, 29.8, 35.6, 33.1, 38.4, 32.8];
-        const viscW = [3.9, 3.8, 3.8, 3.8, 3.7, 3.7, 3.8];
-        const uricW = [5.4, 5.2, 5.3, 5.2, 5.1, 5.0, 5.1];
-        const muscleW = [34.0, 34.1, 34.1, 34.2, 34.3, 34.4, 34.3];
-        const fatW = [22.6, 22.5, 22.5, 22.4, 22.3, 22.2, 22.3];
-        const breathW = [14, 14, 15, 14, 14, 13, 14];
-
-        days.forEach((d, idx) => {
-          ecgData.push({ label: d, val: qtcW[idx], core: qtcW[idx], skin: lfHfW[idx] });
-          metData.push({ label: d, val: metW[idx] });
-          bloodCompData.push({ label: d, val: viscW[idx], core: viscW[idx], skin: uricW[idx] });
-          bodyCompData.push({ label: d, val: muscleW[idx], core: muscleW[idx], skin: fatW[idx] });
-          breathData.push({ label: d, val: breathW[idx] });
-        });
-      } else if (isMonthly) {
-        for (let d = 1; d <= 30; d++) {
-          const lbl = `D${d}`;
-          const qVal = Math.round(416 - ((d / 30) * 5));
-          const lfVal = parseFloat((1.28 - ((d / 30) * 0.12)).toFixed(2));
-          const mVal = parseFloat((30.5 + ((d / 30) * 4.5)).toFixed(1));
-          const vVal = parseFloat((3.9 - ((d / 30) * 0.2)).toFixed(2));
-          const uVal = parseFloat((5.5 - ((d / 30) * 0.4)).toFixed(1));
-          const musVal = parseFloat((33.8 + ((d / 30) * 0.6)).toFixed(1));
-          const fVal = parseFloat((23.0 - ((d / 30) * 0.8)).toFixed(1));
-          const brVal = Math.round(14 + (d % 2));
-
-          ecgData.push({ label: lbl, val: qVal, core: qVal, skin: lfVal });
-          metData.push({ label: lbl, val: mVal });
-          bloodCompData.push({ label: lbl, val: vVal, core: vVal, skin: uVal });
-          bodyCompData.push({ label: lbl, val: musVal, core: musVal, skin: fVal });
-          breathData.push({ label: lbl, val: brVal });
-        }
-      } else if (isQuarterly) {
-        const weeks = ['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W7', 'W8', 'W9', 'W10', 'W11', 'W12'];
-        weeks.forEach((w, idx) => {
-          const qVal = Math.round(418 - (idx * 0.8));
-          const lfVal = parseFloat((1.26 - (idx * 0.015)).toFixed(2));
-          const mVal = parseFloat((31.0 + (idx * 0.4)).toFixed(1));
-          const vVal = parseFloat((3.88 - (idx * 0.02)).toFixed(2));
-          const uVal = parseFloat((5.45 - (idx * 0.04)).toFixed(1));
-          const musVal = parseFloat((33.9 + (idx * 0.05)).toFixed(1));
-          const fVal = parseFloat((23.2 - (idx * 0.09)).toFixed(1));
-          const brVal = 14;
-
-          ecgData.push({ label: w, val: qVal, core: qVal, skin: lfVal });
-          metData.push({ label: w, val: mVal });
-          bloodCompData.push({ label: w, val: vVal, core: vVal, skin: uVal });
-          bodyCompData.push({ label: w, val: musVal, core: musVal, skin: fVal });
-          breathData.push({ label: w, val: brVal });
-        });
       } else {
-        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-        months.forEach((m, idx) => {
-          const qVal = Math.round(420 - (idx * 0.7));
-          const lfVal = parseFloat((1.32 - (idx * 0.018)).toFixed(2));
-          const mVal = parseFloat((28.5 + (idx * 0.55)).toFixed(1));
-          const vVal = parseFloat((4.1 - (idx * 0.03)).toFixed(2));
-          const uVal = parseFloat((5.7 - (idx * 0.05)).toFixed(1));
-          const musVal = parseFloat((33.4 + (idx * 0.09)).toFixed(1));
-          const fVal = parseFloat((23.5 - (idx * 0.11)).toFixed(1));
-          const brVal = 14;
-
-          ecgData.push({ label: m, val: qVal, core: qVal, skin: lfVal });
-          metData.push({ label: m, val: mVal });
-          bloodCompData.push({ label: m, val: vVal, core: vVal, skin: uVal });
-          bodyCompData.push({ label: m, val: musVal, core: musVal, skin: fVal });
-          breathData.push({ label: m, val: brVal });
+        const buckets = (window._historicalReportsCache && Array.isArray(window._historicalReportsCache[tf]))
+          ? window._historicalReportsCache[tf]
+          : [];
+        buckets.forEach((b) => {
+          const lbl = b.label || b.key || '';
+          if (b.qtc > 0) ecgData.push({ label: lbl, val: b.qtc, core: b.qtc, skin: b.lf_hf || null });
+          if (b.met_hrs > 0) metData.push({ label: lbl, val: b.met_hrs });
+          if (b.visc > 0 || b.uric > 0) bloodCompData.push({ label: lbl, val: b.visc || b.uric, core: b.visc || null, skin: b.uric || null });
+          if (b.muscle_pct > 0 || b.fat_pct > 0) bodyCompData.push({ label: lbl, val: b.muscle_pct || b.fat_pct, core: b.muscle_pct || null, skin: b.fat_pct || null });
+          if (b.breath > 0) breathData.push({ label: lbl, val: b.breath });
         });
       }
 
@@ -17919,11 +17931,9 @@ function switchTab(tabId) {
         ytdBox.style.display = (isYearly || staticClinicalExamplesEnabled) ? 'block' : 'none';
       }
 
-      const currentGlucose = (typeof lastGlucoseMg !== 'undefined' && lastGlucoseMg > 0) 
-        ? lastGlucoseMg 
-        : (glucoseCalMode === 'temp_8_3_a1c' ? 192 : (glucoseCalMode === 'custom_clinic' ? customClinicLabRefMg : 118));
-      const currentSteps = (typeof lastSteps !== 'undefined' && lastSteps > 0) ? lastSteps : 2772;
-      const currentHR = (typeof lastHR !== 'undefined' && lastHR > 0) ? lastHR : 72;
+      const currentGlucose = (typeof lastGlucoseMg !== 'undefined' && lastGlucoseMg > 0) ? lastGlucoseMg : 0;
+      const currentSteps = (typeof lastSteps !== 'undefined' && lastSteps > 0) ? lastSteps : 0;
+      const currentHR = (typeof lastHR !== 'undefined' && lastHR > 0) ? lastHR : 0;
 
       let glucoseData = [];
       let a1cData = [];
@@ -18008,91 +18018,48 @@ function switchTab(tabId) {
           const totMiles = (bestDailySteps * 0.000473).toFixed(2);
           eT.textContent = `TODAY HOURLY STEP ACTIVITY (${bestDailySteps.toLocaleString()} TOTAL STEPS • ${totMiles} MI)`;
         }
-      } else if (isWeekly) {
-        const curGWeekly = is83Mode ? 191 : 118;
-        const curStepsWeekly = (typeof lastSteps !== 'undefined' && lastSteps > 0) ? lastSteps : 2772;
-        glucoseData = [
-          { label: 'Mon', val: is83Mode ? 195 : 124 }, { label: 'Tue', val: is83Mode ? 192 : 121 },
-          { label: 'Wed', val: is83Mode ? 196 : 124 }, { label: 'Thu (Today)', val: curGWeekly },
-          { label: 'Fri', val: is83Mode ? 189 : 116 }, { label: 'Sat', val: is83Mode ? 187 : 115 },
-          { label: 'Sun', val: is83Mode ? 193 : 118 }
-        ];
-
-        tempData = [
-          { label: 'Mon', val: 97.2, core: 97.2, skin: 92.4 }, { label: 'Tue', val: 97.3, core: 97.3, skin: 92.5 },
-          { label: 'Wed', val: 97.2, core: 97.2, skin: 92.4 }, { label: 'Thu', val: 97.4, core: 97.4, skin: 92.6 },
-          { label: 'Fri', val: 97.2, core: 97.2, skin: 92.4 }, { label: 'Sat', val: 97.1, core: 97.1, skin: 92.2 },
-          { label: 'Sun', val: 97.3, core: 97.3, skin: 92.5 }
-        ];
-
-        sleepData = [
-          { label: 'Mon', val: 7.1 }, { label: 'Tue', val: 7.3 }, { label: 'Wed', val: 7.4 },
-          { label: 'Thu', val: 7.4 }, { label: 'Fri', val: 7.5 }, { label: 'Sat', val: 7.8 }, { label: 'Sun', val: 7.6 }
-        ];
-
-        exerciseData = [
-          { label: 'Mon', val: 2420 }, { label: 'Tue', val: 2850 }, { label: 'Wed', val: 2140 },
-          { label: 'Thu', val: curStepsWeekly }, { label: 'Fri', val: 2600 }, { label: 'Sat', val: 3200 }, { label: 'Sun', val: 2800 }
-        ];
-
-        hrData = [
-          { label: 'Mon', val: 66 }, { label: 'Tue', val: 64 }, { label: 'Wed', val: 68 },
-          { label: 'Thu', val: 72 }, { label: 'Fri', val: 65 }, { label: 'Sat', val: 62 }, { label: 'Sun', val: 63 }
-        ];
-
-        bpData = [
-          { label: 'Mon', val: 119, core: 119, skin: 76 }, { label: 'Tue', val: 117, core: 117, skin: 74 },
-          { label: 'Wed', val: 119, core: 119, skin: 75 }, { label: 'Thu', val: 118, core: 118, skin: 76 },
-          { label: 'Fri', val: 116, core: 116, skin: 72 }, { label: 'Sat', val: 115, core: 115, skin: 71 },
-          { label: 'Sun', val: 116, core: 116, skin: 72 }
-        ];
-
-        spo2Data = [
-          { label: 'Mon', val: 97.2 }, { label: 'Tue', val: 97.5 }, { label: 'Wed', val: 97.4 },
-          { label: 'Thu', val: 97.8 }, { label: 'Fri', val: 98.0 }, { label: 'Sat', val: 98.2 }, { label: 'Sun', val: 98.0 }
-        ];
-
-        hrvData = [
-          { label: 'Mon', val: 54 }, { label: 'Tue', val: 58 }, { label: 'Wed', val: 56 },
-          { label: 'Thu', val: 64 }, { label: 'Fri', val: 64 }, { label: 'Sat', val: 68 }, { label: 'Sun', val: 65 }
-        ];
-
-      } else if (isMonthly) {
-        for (let d = 1; d <= 30; d++) {
-          const lbl = `D${d}`;
-          const gVal = is83Mode 
-            ? Math.round(197.3 - ((d / 30) * 5.8))
-            : Math.round(134 - ((d / 30) * 16));
-          glucoseData.push({ label: lbl, val: gVal });
-          tempData.push({ label: lbl, val: 97.2, core: 97.2, skin: 92.4 });
-          sleepData.push({ label: lbl, val: 7.2 });
-          exerciseData.push({ label: lbl, val: Math.round(2000 + (d * 30)) });
-          hrData.push({ label: lbl, val: Math.round(66 - ((d / 30) * 4)) });
-          bpData.push({ label: lbl, val: Math.round(122 - ((d / 30) * 6)), core: Math.round(122 - ((d / 30) * 6)), skin: Math.round(78 - ((d / 30) * 4)) });
-          spo2Data.push({ label: lbl, val: parseFloat((97.2 + ((d / 30) * 0.8)).toFixed(1)) });
-          hrvData.push({ label: lbl, val: Math.round(52 + ((d / 30) * 12)) });
-        }
-
       } else {
-        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-        const gAnnual = [131, 130, 128, 126, 125, 123, 122, 121, 120, 118, 117, 116];
-        const sleepAnnual = [6.8, 6.9, 7.1, 7.2, 7.3, 7.4, 7.4, 7.5, 7.4, 7.6, 7.5, 7.6];
-        const stepsAnnual = [2100, 2250, 2400, 2550, 2700, 2800, 2900, 3050, 3100, 3200, 3150, 3250];
-        const hrAnnual = [72, 71, 70, 68, 67, 66, 65, 65, 64, 63, 63, 62];
-        const bpSysAnnual = [126, 125, 124, 122, 121, 120, 119, 118, 118, 117, 116, 115];
-        const bpDiaAnnual = [82, 81, 80, 78, 78, 77, 76, 75, 75, 74, 73, 73];
-        const spo2Annual = [96.8, 97.0, 97.2, 97.4, 97.5, 97.6, 97.8, 97.9, 98.0, 98.1, 98.2, 98.2];
-        const hrvAnnual = [48, 50, 52, 55, 57, 59, 62, 64, 65, 67, 68, 69];
-
-        for (let m = 0; m < 12; m++) {
-          glucoseData.push({ label: months[m], val: gAnnual[m] });
-          tempData.push({ label: months[m], val: 97.2, core: 97.2, skin: 92.4 });
-          sleepData.push({ label: months[m], val: sleepAnnual[m] });
-          exerciseData.push({ label: months[m], val: stepsAnnual[m] });
-          hrData.push({ label: months[m], val: hrAnnual[m] });
-          bpData.push({ label: months[m], val: bpSysAnnual[m], core: bpSysAnnual[m], skin: bpDiaAnnual[m] });
-          spo2Data.push({ label: months[m], val: spo2Annual[m] });
-          hrvData.push({ label: months[m], val: hrvAnnual[m] });
+        const tfKey = isWeekly ? 'weekly' : (isMonthly ? 'monthly' : 'yearly');
+        const buckets = (window._historicalReportsCache && Array.isArray(window._historicalReportsCache[tfKey]))
+          ? window._historicalReportsCache[tfKey]
+          : [];
+        if (buckets.length > 0) {
+          buckets.forEach((b) => {
+            const lbl = b.label || b.key || '';
+            if (b.g !== null && b.g > 0) glucoseData.push({ label: lbl, val: b.g });
+            if (b.core !== null && b.core > 50) tempData.push({ label: lbl, val: b.core, core: b.core, skin: (b.skin && b.skin > 50) ? b.skin : null });
+            if (b.sleep_hrs !== null && b.sleep_hrs > 0) sleepData.push({ label: lbl, val: b.sleep_hrs });
+            if (b.steps > 0) exerciseData.push({ label: lbl, val: b.steps });
+            if (b.hr !== null && b.hr > 0) hrData.push({ label: lbl, val: b.hr });
+            if (b.sys !== null && b.sys > 0) bpData.push({ label: lbl, val: b.sys, core: b.sys, skin: b.dia || null });
+            if (b.spo2 !== null && b.spo2 > 0) spo2Data.push({ label: lbl, val: b.spo2 });
+            if (b.hrv !== null && b.hrv > 0) hrvData.push({ label: lbl, val: b.hrv });
+          });
+        } else {
+          // Offline / standalone fallback: populate strictly from synced TODAY/YESTERDAY timeline (Zero Is Zero)
+          ['YESTERDAY', 'TODAY'].forEach((dLbl) => {
+            const pts = (cached2DayTimeline || []).filter(p => p.day === dLbl && !p.isFuture);
+            const gVals = pts.map(p => p.g).filter(v => v > 0);
+            const cVals = pts.map(p => p.temp).filter(v => v > 50);
+            const sVals = pts.map(p => p.skinTemp).filter(v => v > 50);
+            const hVals = pts.map(p => p.hr).filter(v => v > 0);
+            const sysVals = pts.map(p => p.sys).filter(v => v > 0);
+            const diaVals = pts.map(p => p.dia).filter(v => v > 0);
+            const spVals = pts.map(p => p.spo2).filter(v => v > 0);
+            const hvVals = pts.map(p => p.hrv).filter(v => v > 0);
+            const stMax = pts.reduce((mx, p) => Math.max(mx, p.steps || 0), 0);
+            const avg = (a) => a.length ? (a.reduce((s, x) => s + x, 0) / a.length) : null;
+            if (gVals.length) glucoseData.push({ label: dLbl, val: Math.round(avg(gVals)) });
+            if (cVals.length) tempData.push({ label: dLbl, val: parseFloat(avg(cVals).toFixed(1)), core: parseFloat(avg(cVals).toFixed(1)), skin: sVals.length ? parseFloat(avg(sVals).toFixed(1)) : null });
+            if (hVals.length) hrData.push({ label: dLbl, val: Math.round(avg(hVals)) });
+            if (sysVals.length) bpData.push({ label: dLbl, val: Math.round(avg(sysVals)), core: Math.round(avg(sysVals)), skin: diaVals.length ? Math.round(avg(diaVals)) : null });
+            if (spVals.length) spo2Data.push({ label: dLbl, val: parseFloat(avg(spVals).toFixed(1)) });
+            if (hvVals.length) hrvData.push({ label: dLbl, val: Math.round(avg(hvVals)) });
+            if (stMax > 0) exerciseData.push({ label: dLbl, val: stMax });
+            if (dLbl === 'TODAY' && window.lastDailySleepData && window.lastDailySleepData.totalMin > 0) {
+              sleepData.push({ label: dLbl, val: parseFloat((window.lastDailySleepData.totalMin / 60.0).toFixed(1)) });
+            }
+          });
         }
       }
 
@@ -18266,6 +18233,11 @@ function switchTab(tabId) {
       if (activeBtn) activeBtn.className = 'lcars-btn btn-banana';
 
       renderRawTelemetryTable();
+      if (tf !== 'daily') {
+        fetchHistoricalReports(tf).then((buckets) => {
+          if (buckets && currentRawDataTimeframe === tf) renderRawTelemetryTable();
+        }).catch(e => console.warn('[MIL-SPEC HANDLED FAULT]', e));
+      }
     }
 
     function renderRawTelemetryTable() {
@@ -18277,92 +18249,48 @@ function switchTab(tabId) {
       const tf = currentRawDataTimeframe || 'daily';
       let rows = [];
 
-      const todayStr = new Date().toISOString().slice(0, 10);
-
       if (tf === 'daily') {
-        rows = [
-          { period: `${todayStr} 00:00:15`, g: 168, core: 97.0, skin: 90.2, steps: 0, status: "Nocturnal Baseline", progress: "100% Synced" },
-          { period: `${todayStr} 04:00:22`, g: 162, core: 96.6, skin: 88.6, steps: 0, status: "Metabolic Nadir", progress: "100% Synced" },
-          { period: `${todayStr} 07:00:05`, g: 174, core: 97.0, skin: 91.2, steps: 120, status: "Dawn Awakening", progress: "100% Synced" },
-          { period: `${todayStr} 08:15:00`, g: 165, core: 97.2, skin: 92.4, steps: 340, status: "Breakfast (Eggs/Toast)", progress: "100% Synced" },
-          { period: `${todayStr} 08:45:30`, g: 148, core: 97.4, skin: 92.8, steps: 2384, status: "Post-Meal GLUT4 Walk", progress: "100% Synced" },
-          { period: `${todayStr} 10:00:12`, g: 142, core: 97.4, skin: 93.2, steps: 2650, status: "Optimal TIR Sustained", progress: "100% Synced" },
-          // Watch Charging Gap (10:30 - 12:00)
-          { period: `${todayStr} 11:00:00`, g: 0, core: null, skin: null, steps: 0, status: "⚡ WATCH CHARGING (OFF-WRIST)", progress: "0% (Charging Gap)", isCharging: true },
-          { period: `${todayStr} 12:30:18`, g: 158, core: 97.2, skin: 92.4, steps: 3200, status: "Watch Donned • Pre-Lunch", progress: "100% Synced" },
-          { period: `${todayStr} 13:15:45`, g: 188, core: 97.3, skin: 92.6, steps: 3980, status: "Post-Lunch GLUT4 Walk", progress: "100% Synced" },
-          { period: `${todayStr} 15:30:00`, g: 152, core: 97.4, skin: 93.0, steps: 4420, status: "ADA Trade Snack (Almonds)", progress: "100% Synced" },
-          { period: `${todayStr} 18:30:10`, g: 178, core: 97.5, skin: 93.4, steps: 5100, status: "Dinner (Salmon / Greens)", progress: "100% Synced" },
-          { period: `${todayStr} 20:00:30`, g: 146, core: 97.2, skin: 92.2, steps: 6180, status: "Evening GLUT4 Stroll", progress: "100% Synced" },
-          { period: `${todayStr} 22:00:00`, g: 140, core: 97.1, skin: 91.4, steps: 6380, status: "Pre-Bedtime Normal", progress: "100% Synced" },
-          { period: `${todayStr} 24:00:00`, g: 138, core: 97.0, skin: 90.6, steps: 6380, status: "24h Cycle Complete", progress: "100% Synced" }
-        ];
-        if (recCount) recCount.textContent = "14 HOURLY SAMPLES AUDITED";
-      } else if (tf === 'weekly') {
-        const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday (Today)', 'Friday', 'Saturday', 'Sunday'];
-        const dates = ['Nov 17', 'Nov 18', 'Nov 19', 'Nov 20', 'Nov 21', 'Nov 22', 'Nov 23'];
-        const glucoses = [174, 168, 172, 160, 162, 158, 164];
-        const stepVols = [6450, 7120, 5800, 6384, 6800, 7500, 6200];
-        const chgNotes = ["Charged 1.1h @ 11:00", "Charged 1.3h @ 10:45", "Charged 1.0h @ 11:15", "Charged 1.2h @ 11:00", "Projected", "Projected", "Projected"];
-
-        rows = days.map((d, i) => ({
-          period: `${dates[i]} (${d})`,
-          g: glucoses[i],
-          core: 97.2,
-          skin: 92.4,
-          steps: stepVols[i],
-          status: `TIR ${Math.round(82 + i * 1.2)}% • ${chgNotes[i]}`,
-          progress: i <= 3 ? "100% Verified" : "Scheduled"
-        }));
-        if (recCount) recCount.textContent = "7 DAILY AUDITS (WEEKLY)";
-      } else if (tf === 'monthly') {
-        // 30 days of telemetry audits in a clean scrollable table
-        rows = [];
-        for (let day = 1; day <= 30; day++) {
-          const isRecent = day <= 20;
-          const gVal = isRecent ? Math.round(185 - (day * 1.2)) : 0; // 0 for unrecorded future days
-          const stepVal = isRecent ? Math.round(5200 + (day * 65)) : 0;
-          rows.push({
-            period: `2026-11-${day.toString().padStart(2, '0')}`,
-            g: gVal,
-            core: isRecent ? 97.2 : null,
-            skin: isRecent ? 92.3 : null,
-            steps: stepVal,
-            status: isRecent ? (day % 4 === 0 ? "⚡ Charged 1.2h • 88% TIR" : "Full Compliance • 86% TIR") : "0 Telemetry (Unrecorded)",
-            progress: isRecent ? "Audited (EHR)" : "Pending (0)"
-          });
-        }
-        if (recCount) recCount.textContent = "30 DAILY AUDITS (MONTHLY)";
+        const todayPts = (cached2DayTimeline || []).filter(p => p.day === 'TODAY' && !p.isFuture);
+        rows = todayPts
+          .filter(p => p.g > 0 || p.temp > 50 || p.hr > 0 || p.steps > 0 || p.isChargingGap || p.meal)
+          .reverse()
+          .map(p => ({
+            period: `${p.date || ''} ${p.time || ''}`.trim(),
+            g: p.g || 0,
+            core: (p.temp && p.temp > 50) ? p.temp : null,
+            skin: (p.skinTemp && p.skinTemp > 50) ? p.skinTemp : ((p.temp && p.temp > 50) ? parseFloat((p.temp - 2.4).toFixed(1)) : null),
+            steps: p.steps || 0,
+            status: p.meal ? `${p.meal.desc}` : (p.notes || (p.hr > 0 ? `HR ${p.hr} BPM • SpO2 ${p.spo2 || '--'}%` : 'Verified Telemetry')),
+            progress: p.isChargingGap ? '0% (Off-Wrist)' : '100% Synced',
+            isCharging: !!p.isChargingGap
+          }));
+        if (recCount) recCount.textContent = `${rows.length} TODAY TELEMETRY WINDOWS`;
       } else {
-        // Yearly 12 months longitudinal
-        const months = ['Jan 2026', 'Feb 2026', 'Mar 2026', 'Apr 2026', 'May 2026', 'Jun 2026', 'Jul 2026', 'Aug 2026', 'Sep 2026', 'Oct 2026', 'Nov 2026 (Cur)', 'Dec 2026 (Goal)'];
-        const a1cVals = [198, 194, 188, 182, 178, 174, 170, 168, 165, 162, 154, 148];
-        const monthSteps = [3200, 3600, 4200, 4800, 5400, 6000, 6200, 6400, 6500, 6600, 6700, 7000];
-        const clinicalNotes = [
-          "Pre-LCARS Baseline • HbA1c 8.5%",
-          "Initial Metformin Titration",
-          "Cauliflower Rice ADA Trades Initiated",
-          "Post-Lunch GLUT4 Walking Habit",
-          "Vegetable Preloading Regimen",
-          "Time-in-Range Reached 78%",
-          "Zero Added Sugar Compliance",
-          "Blood Pressure Normalized (117/75)",
-          "Daily 6,500 Steps Milestone",
-          "💊 MED CHANGE: Metformin 1,000mg BID + Jardiance 10mg",
-          "PROGRESS: Mean Glucose -28 mg/dL; TIR 88%",
-          "Target HbA1c < 6.8% Projected"
-        ];
-
-        rows = months.map((m, idx) => ({
-          period: m,
-          g: a1cVals[idx],
-          core: 97.2,
-          skin: 92.4,
-          steps: monthSteps[idx],
-          status: clinicalNotes[idx],
-          progress: idx <= 10 ? "Committed" : "Target"
+        const buckets = (window._historicalReportsCache && Array.isArray(window._historicalReportsCache[tf]))
+          ? window._historicalReportsCache[tf]
+          : [];
+        rows = [...buckets].reverse().filter(b => b.samples > 0 || b.steps > 0 || b.g > 0 || b.core > 50).map(b => ({
+          period: `${b.key} (${b.label})`,
+          g: b.g || 0,
+          core: (b.core && b.core > 50) ? b.core : null,
+          skin: (b.skin && b.skin > 50) ? b.skin : ((b.core && b.core > 50) ? parseFloat((b.core - 2.4).toFixed(1)) : null),
+          steps: b.steps || 0,
+          status: `TIR / Watch Sync (${b.samples || 0} samples)`,
+          progress: 'Verified (DB)',
+          isCharging: false
         }));
-        if (recCount) recCount.textContent = "12 MONTHLY AUDITS (YEARLY)";
+        if (recCount) recCount.textContent = `${rows.length} ${tf.toUpperCase()} PERIOD AUDITS`;
+      }
+
+      if (rows.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="6" style="padding: 18px; text-align: center; color: #64748b; font-weight: 700;">
+              [NO TELEMETRY RECORDED — CONNECT WATCH TO SYNC]
+            </td>
+          </tr>
+        `;
+        return;
       }
 
       rows.forEach((r, idx) => {
@@ -20264,7 +20192,7 @@ Patient`;
     async function fetchServer2DayTimeline() {
       try {
         const apiBase = (window.location.protocol === 'file:' ? 'http://127.0.0.1:8899' : (window.location.hostname && window.location.hostname.endsWith('github.io') ? 'http://127.0.0.1:8899' : ''));
-        const resp = await fetch(`${apiBase}/api/telemetry/timeline?_t=${Date.now()}`, { cache: 'no-store' });
+        const resp = await _bfmFetchTimed(`${apiBase}/api/telemetry/timeline?_t=${Date.now()}`, { cache: 'no-store' }, 1500);
         if (resp.ok) {
           const data = await resp.json();
           if (Array.isArray(data) && data.length > 0) {
@@ -20283,12 +20211,13 @@ Patient`;
 
     async function fetchTodaySleepSessions() {
       try {
-        const apiBase = (window.location.protocol === 'file:' ? 'http://127.0.0.1:8899' : '');
-        const resp = await fetch(`${apiBase}/api/sleep/today?_t=${Date.now()}`, { cache: 'no-store' });
+        const apiBase = (window.location.protocol === 'file:' ? 'http://127.0.0.1:8899' : (window.location.hostname && window.location.hostname.endsWith('github.io') ? 'http://127.0.0.1:8899' : ''));
+        const resp = await _bfmFetchTimed(`${apiBase}/api/sleep/today?_t=${Date.now()}`, { cache: 'no-store' }, 1500);
         if (resp.ok) {
           const data = await resp.json();
           if (data && data.totalMin > 0 && Array.isArray(data.sessions) && data.sessions.length > 0) {
             window.lastDailySleepData = data;
+            try { localStorage.setItem('bfm_local_sleep_v1', JSON.stringify(data)); } catch (e2) { console.warn('[MIL-SPEC HANDLED FAULT]', e2); }
             lastSleepTotalHours = parseFloat((data.totalMin / 60.0).toFixed(1));
             lastDeepSleepHours = parseFloat(((data.deepMin || 0) / 60.0).toFixed(1));
             const elSleep = document.getElementById("valSleep");
@@ -20303,14 +20232,21 @@ Patient`;
             return data;
           }
         }
-      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+      } catch (e) {
+        console.warn('[MIL-SPEC HANDLED FAULT]', e);
+        try {
+          const rawSlp = localStorage.getItem('bfm_local_sleep_v1');
+          if (rawSlp && !window.lastDailySleepData) window.lastDailySleepData = JSON.parse(rawSlp);
+          if (window.lastDailySleepData) return window.lastDailySleepData;
+        } catch (e3) { console.warn('[MIL-SPEC HANDLED FAULT]', e3); }
+      }
       return null;
     }
 
     async function fetchTodayLorenzData() {
       try {
         const apiBase = (window.location.protocol === 'file:' ? 'http://127.0.0.1:8899' : (window.location.hostname && window.location.hostname.endsWith('github.io') ? 'http://127.0.0.1:8899' : ''));
-        const resp = await fetch(`${apiBase}/api/lorenz/today?_t=${Date.now()}`, { cache: 'no-store' });
+        const resp = await _bfmFetchTimed(`${apiBase}/api/lorenz/today?_t=${Date.now()}`, { cache: 'no-store' }, 1500);
         if (resp.ok) {
           const data = await resp.json();
           window.lastRealLorenzData = data;
@@ -20331,7 +20267,7 @@ Patient`;
     async function fetchTodaySubReports() {
       try {
         const apiBase = (window.location.protocol === 'file:' ? 'http://127.0.0.1:8899' : (window.location.hostname && window.location.hostname.endsWith('github.io') ? 'http://127.0.0.1:8899' : ''));
-        const resp = await fetch(`${apiBase}/api/subreports/today?_t=${Date.now()}`, { cache: 'no-store' });
+        const resp = await _bfmFetchTimed(`${apiBase}/api/subreports/today?_t=${Date.now()}`, { cache: 'no-store' }, 1500);
         if (resp.ok) {
           const data = await resp.json();
           window.lastSubReportData = data;
@@ -20429,110 +20365,62 @@ Patient`;
         if (tf === 'daily' || tf === 'today') return enrichBiometrics(cached2DayTimeline.filter(d => d.day === 'TODAY'));
       }
 
-      if (tf === 'weekly') {
-        const days = ['D-6', 'D-5', 'D-4', 'D-3', 'D-2', 'YESTERDAY', 'TODAY'];
-        return days.map(dName => {
-          if (dName === 'TODAY' && cached2DayTimeline) {
-            const todayPts = cached2DayTimeline.filter(d => d.day === 'TODAY' && !d.isFuture && !d.isChargingGap && d.g > 0);
-            const avgG = todayPts.length ? Math.round(todayPts.reduce((s, x) => s + x.g, 0) / todayPts.length) : ((typeof lastGlucoseMg !== 'undefined' && lastGlucoseMg > 0) ? lastGlucoseMg : null);
-            const avgSys = todayPts.length ? Math.round(todayPts.reduce((s, x) => s + (x.sys || 116), 0) / todayPts.length) : ((typeof lastSystolic !== 'undefined' && lastSystolic > 0) ? lastSystolic : null);
-            const avgDia = todayPts.length ? Math.round(todayPts.reduce((s, x) => s + (x.dia || 74), 0) / todayPts.length) : ((typeof lastDiastolic !== 'undefined' && lastDiastolic > 0) ? lastDiastolic : null);
-            const avgHr = todayPts.length ? Math.round(todayPts.reduce((s, x) => s + (x.hr || 68), 0) / todayPts.length) : ((typeof lastHR !== 'undefined' && lastHR > 0) ? lastHR : null);
-            const avgSpo2 = todayPts.length ? Math.round(todayPts.reduce((s, x) => s + (x.spo2 || 98), 0) / todayPts.length) : ((typeof lastSpO2 !== 'undefined' && lastSpO2 > 0) ? lastSpO2 : null);
-            const totSteps = (typeof lastSteps !== 'undefined' && lastSteps > 0) ? lastSteps : (todayPts.length ? Math.max(...todayPts.map(x => x.steps || 0)) : 0);
-            return {
-              day: 'TODAY', time: 'TODAY', fullTime: 'TODAY',
-              g: avgG, sys: avgSys, dia: avgDia, hr: avgHr, hrv: 45, spo2: avgSpo2, temp: 98.4,
-              steps: totSteps, isChargingGap: false, isFuture: false, notes: 'Today Aggregated Telemetry'
-            };
-          }
-          if (dName === 'YESTERDAY' && cached2DayTimeline) {
-            const yestPts = cached2DayTimeline.filter(d => d.day === 'YESTERDAY' && !d.isFuture && !d.isChargingGap && d.g > 0);
-            if (yestPts.length) {
-              const avgG = Math.round(yestPts.reduce((s, x) => s + x.g, 0) / yestPts.length);
-              const avgSys = Math.round(yestPts.reduce((s, x) => s + (x.sys || 118), 0) / yestPts.length);
-              const avgDia = Math.round(yestPts.reduce((s, x) => s + (x.dia || 76), 0) / yestPts.length);
-              const avgHr = Math.round(yestPts.reduce((s, x) => s + (x.hr || 70), 0) / yestPts.length);
-              const avgSpo2 = Math.round(yestPts.reduce((s, x) => s + (x.spo2 || 98), 0) / yestPts.length);
-              const totSteps = Math.max(...yestPts.map(x => x.steps || 0), 4120);
+      if (tf === 'weekly' || tf === 'monthly' || tf === 'quarterly' || tf === 'yearly') {
+        const buckets = (window._historicalReportsCache && Array.isArray(window._historicalReportsCache[tf]))
+          ? window._historicalReportsCache[tf]
+          : [];
+        if (buckets.length > 0) {
+          return buckets.map(b => ({
+            day: b.label || b.key,
+            time: b.label || b.key,
+            fullTime: `${b.key || ''} (${b.label || ''})`.trim(),
+            g: (b.g && b.g > 0) ? b.g : null,
+            sys: (b.sys && b.sys > 0) ? b.sys : null,
+            dia: (b.dia && b.dia > 0) ? b.dia : null,
+            hr: (b.hr && b.hr > 0) ? b.hr : null,
+            hrv: (b.hrv && b.hrv > 0) ? b.hrv : null,
+            spo2: (b.spo2 && b.spo2 > 0) ? b.spo2 : null,
+            temp: (b.core && b.core > 50) ? b.core : null,
+            steps: b.steps || 0,
+            isChargingGap: !(b.samples > 0 || b.steps > 0),
+            isFuture: false,
+            notes: (b.samples > 0 || b.steps > 0) ? `Verified Aggregated Telemetry (${b.samples || 0} samples)` : '[NO TELEMETRY RECORDED — WATCH NOT SYNCED]'
+          }));
+        }
+        const labelsMap = {
+          weekly: ['D-6', 'D-5', 'D-4', 'D-3', 'D-2', 'YESTERDAY', 'TODAY'],
+          monthly: ['Wk-4', 'Wk-3', 'Wk-2', 'Wk-1', 'THIS WEEK'],
+          quarterly: ['M-2', 'M-1', 'CURRENT MO'],
+          yearly: ['Q1', 'Q2', 'Q3', 'Q4 (CURRENT)']
+        };
+        const slotLabels = labelsMap[tf] || ['TODAY'];
+        return slotLabels.map((lbl, idx) => {
+          const isCur = idx === slotLabels.length - 1;
+          const isYest = tf === 'weekly' && lbl === 'YESTERDAY';
+          if ((isCur || isYest) && cached2DayTimeline && cached2DayTimeline.length > 0) {
+            const targetDay = isYest ? 'YESTERDAY' : 'TODAY';
+            const pts = cached2DayTimeline.filter(d => d.day === targetDay && !d.isFuture && !d.isChargingGap);
+            const gVals = pts.map(p => p.g).filter(v => v > 0);
+            const sysVals = pts.map(p => p.sys).filter(v => v > 0);
+            const diaVals = pts.map(p => p.dia).filter(v => v > 0);
+            const hrVals = pts.map(p => p.hr).filter(v => v > 0);
+            const hrvVals = pts.map(p => p.hrv).filter(v => v > 0);
+            const spVals = pts.map(p => p.spo2).filter(v => v > 0);
+            const tVals = pts.map(p => p.temp).filter(v => v > 50);
+            const avgOrNull = (arr, dec = 0) => arr.length ? parseFloat((arr.reduce((s, x) => s + x, 0) / arr.length).toFixed(dec)) : null;
+            const totSteps = pts.reduce((mx, x) => Math.max(mx, x.steps || 0), isCur && lastSteps > 0 ? lastSteps : 0);
+            const hasAny = gVals.length || hrVals.length || tVals.length || totSteps > 0;
+            if (hasAny) {
               return {
-                day: 'YESTERDAY', time: 'YESTERDAY', fullTime: 'YESTERDAY',
-                g: avgG, sys: avgSys, dia: avgDia, hr: avgHr, hrv: 42, spo2: avgSpo2, temp: 98.2,
-                steps: totSteps, isChargingGap: false, isFuture: false, notes: 'Yesterday Aggregated Telemetry'
+                day: targetDay, time: lbl, fullTime: `${lbl} Telemetry`,
+                g: avgOrNull(gVals, 0), sys: avgOrNull(sysVals, 0), dia: avgOrNull(diaVals, 0),
+                hr: avgOrNull(hrVals, 0), hrv: avgOrNull(hrvVals, 0), spo2: avgOrNull(spVals, 1), temp: avgOrNull(tVals, 1),
+                steps: totSteps, isChargingGap: false, isFuture: false, notes: `${lbl} Synced Telemetry`
               };
             }
           }
           return {
-            day: dName, time: dName, fullTime: `${dName} (Prior Window)`,
-            g: null, sys: null, dia: null, hr: null, hrv: null, spo2: null, temp: null,
-            steps: 0, isChargingGap: true, isFuture: false, notes: '[NO TELEMETRY RECORDED — WATCH NOT SYNCED]'
-          };
-        });
-      }
-
-      if (tf === 'monthly') {
-        const slots = ['Wk-4', 'Wk-3', 'Wk-2', 'Wk-1', 'THIS WEEK'];
-        return slots.map(sName => {
-          if (sName === 'THIS WEEK' && cached2DayTimeline) {
-            return {
-              day: 'THIS WEEK', time: 'THIS WK', fullTime: 'Current Week Telemetry',
-              g: (typeof lastGlucoseMg !== 'undefined' && lastGlucoseMg > 0) ? lastGlucoseMg : 106,
-              sys: (typeof lastSystolic !== 'undefined' && lastSystolic > 0) ? lastSystolic : 118,
-              dia: (typeof lastDiastolic !== 'undefined' && lastDiastolic > 0) ? lastDiastolic : 76,
-              hr: (typeof lastHR !== 'undefined' && lastHR > 0) ? lastHR : 68,
-              hrv: 44, spo2: 98, temp: 98.6,
-              steps: (typeof lastSteps !== 'undefined' && lastSteps > 0) ? lastSteps : 3200,
-              isChargingGap: false, isFuture: false, notes: 'Weekly Aggregated Rollup'
-            };
-          }
-          return {
-            day: sName, time: sName, fullTime: `${sName} (Prior Historical)`,
-            g: null, sys: null, dia: null, hr: null, hrv: null, spo2: null, temp: null,
-            steps: 0, isChargingGap: true, isFuture: false, notes: '[NO TELEMETRY RECORDED — WATCH NOT SYNCED]'
-          };
-        });
-      }
-
-      if (tf === 'quarterly') {
-        const months = ['M-2', 'M-1', 'CURRENT MO'];
-        return months.map(mName => {
-          if (mName === 'CURRENT MO' && cached2DayTimeline) {
-            return {
-              day: 'CURRENT MO', time: 'CURR MO', fullTime: 'Current Month Rollup',
-              g: (typeof lastGlucoseMg !== 'undefined' && lastGlucoseMg > 0) ? lastGlucoseMg : 106,
-              sys: (typeof lastSystolic !== 'undefined' && lastSystolic > 0) ? lastSystolic : 118,
-              dia: (typeof lastDiastolic !== 'undefined' && lastDiastolic > 0) ? lastDiastolic : 76,
-              hr: (typeof lastHR !== 'undefined' && lastHR > 0) ? lastHR : 68,
-              hrv: 45, spo2: 98, temp: 98.4,
-              steps: (typeof lastSteps !== 'undefined' && lastSteps > 0) ? lastSteps : 3500,
-              isChargingGap: false, isFuture: false, notes: 'Quarterly Segment'
-            };
-          }
-          return {
-            day: mName, time: mName, fullTime: `${mName} (Quarterly Segment)`,
-            g: null, sys: null, dia: null, hr: null, hrv: null, spo2: null, temp: null,
-            steps: 0, isChargingGap: true, isFuture: false, notes: '[NO TELEMETRY RECORDED — WATCH NOT SYNCED]'
-          };
-        });
-      }
-
-      if (tf === 'yearly') {
-        const qtrs = ['Q1', 'Q2', 'Q3', 'Q4 (CURRENT)'];
-        return qtrs.map(qName => {
-          if (qName.includes('CURRENT') && cached2DayTimeline) {
-            return {
-              day: 'CURRENT QTR', time: 'CURR QTR', fullTime: 'Yearly Rolling Window',
-              g: (typeof lastGlucoseMg !== 'undefined' && lastGlucoseMg > 0) ? lastGlucoseMg : 106,
-              sys: (typeof lastSystolic !== 'undefined' && lastSystolic > 0) ? lastSystolic : 118,
-              dia: (typeof lastDiastolic !== 'undefined' && lastDiastolic > 0) ? lastDiastolic : 76,
-              hr: (typeof lastHR !== 'undefined' && lastHR > 0) ? lastHR : 68,
-              hrv: 45, spo2: 98, temp: 98.4,
-              steps: (typeof lastSteps !== 'undefined' && lastSteps > 0) ? lastSteps : 3800,
-              isChargingGap: false, isFuture: false, notes: 'Year-to-date Active Telemetry'
-            };
-          }
-          return {
-            day: qName, time: qName, fullTime: `${qName} Historical`,
+            day: lbl, time: lbl, fullTime: `${lbl} (Prior Window)`,
             g: null, sys: null, dia: null, hr: null, hrv: null, spo2: null, temp: null,
             steps: 0, isChargingGap: true, isFuture: false, notes: '[NO TELEMETRY RECORDED — WATCH NOT SYNCED]'
           };
@@ -23978,8 +23866,22 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
 
     async function triggerWatchSyncNow() {
       soundButtonPress();
-      logLCARS("[*] Initiating On-Demand Watch Sync. Telemetry pipeline activating...", "tx");
-      
+      logLCARS("[*] Initiating On-Demand Watch Sync. Verifying Bluetooth GATT link...", "tx");
+
+      if (!txCharacteristic || !gattServer || !gattServer.connected) {
+        const linked = (typeof ensureConnected === 'function') ? await ensureConnected() : false;
+        if (!linked && (!txCharacteristic || !gattServer || !gattServer.connected)) {
+          if (typeof pairNewWatchPrompt === 'function') {
+            await pairNewWatchPrompt();
+          }
+          if (!txCharacteristic || !gattServer || !gattServer.connected) {
+            logLCARS("[!] Watch not connected. Click CONNECT WATCH / SELECT DEVICE or turn on watch screen.", "err");
+            await runFullPipelineAndRefreshAllScreens();
+            return;
+          }
+        }
+      }
+
       const dName = (bluetoothDevice && bluetoothDevice.name) || 'VEE';
       if (typeof executeFullWatchConnectSync === 'function') {
         await executeFullWatchConnectSync(dName);
@@ -23990,8 +23892,9 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
       setTimeout(checkVaultSyncStatus, 1500);
     }
 
-    // BLE Keep-Alive & Continuous Telemetry Harvest Ping (MIL-SPEC)
+    // BLE Keep-Alive & Continuous Telemetry Harvest Ping (MIL-SPEC — guarded during active block transfers)
     setInterval(() => {
+      if (window._isFullWatchSyncRunning) return;
       if (txCharacteristic && gattServer && gattServer.connected) {
         // Lightweight battery query keep-alive ping (0xA0) + Pedometer step query (0x07)
         const ping = new Uint8Array(20);
@@ -24002,6 +23905,7 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
           if (txCharacteristic.writeValueWithoutResponse) {
             txCharacteristic.writeValueWithoutResponse(ping);
             setTimeout(() => {
+              if (window._isFullWatchSyncRunning) return;
               try { txCharacteristic.writeValueWithoutResponse(pingPed); } catch(e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
             }, 300);
           }
@@ -24011,6 +23915,14 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
         startAutoReconnectLoop();
       }
     }, 12000);
+
+    // 5-Minute Continuous 0xDF Origin History Refresh while Chrome holds Web Bluetooth Link
+    setInterval(() => {
+      if (window._isFullWatchSyncRunning) return;
+      if (txCharacteristic && gattServer && gattServer.connected && typeof queryOriginHistoryData === 'function') {
+        try { queryOriginHistoryData(0, true, true); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT] 5-min 0xDF poll:', e); }
+      }
+    }, 300000);
 
     
     // =========================================================================
@@ -24029,7 +23941,7 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
       _isPollingTelemetry = true;
       try {
         const activeWatchId = window._connectedWatchId || (typeof localStorage !== 'undefined' ? localStorage.getItem('bfm_connected_watch_id') : null) || 'VEE_5010';
-        const resp = await fetch(`/api/telemetry/latest?device_id=${encodeURIComponent(activeWatchId)}&_t=${Date.now()}`, { cache: 'no-store' });
+        const resp = await _bfmFetchTimed(`/api/telemetry/latest?device_id=${encodeURIComponent(activeWatchId)}&_t=${Date.now()}`, { cache: 'no-store' }, 1500);
         if (!resp.ok) {
           window._bfmLocalServerOnline = false;
           if (!window._bfmStandaloneHydrated && typeof hydrateStandaloneLocalTelemetry === 'function') {
