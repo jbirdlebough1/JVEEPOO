@@ -108,11 +108,6 @@ namespace BfmLauncher
 
         private static string ResolveLaunchUrl(string baseDir)
         {
-            if (IsServerListening("127.0.0.1", ServerPort, 180))
-            {
-                return "http://127.0.0.1:" + ServerPort + "/";
-            }
-
             string bfmPath = Path.Combine(baseDir, "BFM.HTM");
             if (File.Exists(bfmPath))
             {
@@ -123,6 +118,11 @@ namespace BfmLauncher
             if (File.Exists(idxPath))
             {
                 return new Uri(idxPath).AbsoluteUri;
+            }
+
+            if (IsServerListening("127.0.0.1", ServerPort, 180))
+            {
+                return "http://127.0.0.1:" + ServerPort + "/";
             }
 
             return HostedLiveUrl;

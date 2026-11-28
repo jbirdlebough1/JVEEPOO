@@ -313,6 +313,14 @@ def init_database():
                 updated_at TEXT NOT NULL
             )
         """)
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS user_medications_store (
+                id INTEGER PRIMARY KEY CHECK (id = 1),
+                medications_json TEXT NOT NULL DEFAULT '[]',
+                changes_json TEXT NOT NULL DEFAULT '[]',
+                updated_at TEXT NOT NULL DEFAULT ''
+            )
+        """)
 
         # Seed initial state if empty
         cur.execute("SELECT value FROM sync_state WHERE key = 'last_sync_timestamp'")
@@ -5879,6 +5887,38 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                 })
             return
 
+        if self.path.startswith("/api/meds/regimen"):
+            meds_list = []
+            changes_list = []
+            updated_at = ""
+            with db_lock:
+                conn = sqlite3.connect(DB_PATH)
+                cur = conn.cursor()
+                cur.execute("SELECT medications_json, changes_json, updated_at FROM user_medications_store WHERE id = 1")
+                row = cur.fetchone()
+                conn.close()
+            if row:
+                try:
+                    parsed_meds = json.loads(row[0] or "[]")
+                    if isinstance(parsed_meds, list):
+                        meds_list = parsed_meds
+                except Exception as e:
+                    print(f"[MIL-SPEC HANDLED FAULT] parse medications_json: {e}")
+                try:
+                    parsed_changes = json.loads(row[1] or "[]")
+                    if isinstance(parsed_changes, list):
+                        changes_list = parsed_changes
+                except Exception as e:
+                    print(f"[MIL-SPEC HANDLED FAULT] parse changes_json: {e}")
+                updated_at = row[2] or ""
+            self.send_json_response({
+                "status": "OK",
+                "medications": meds_list,
+                "changes": changes_list,
+                "updated_at": updated_at,
+            })
+            return
+
         if self.path.startswith("/api/system/setup_status"):
             self.send_json_response(get_system_setup_status())
             return
@@ -6859,6 +6899,90 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                     "source": source,
                 })
             except Exception as e:
+                self.send_json_response({"status": "ERROR", "error": str(e)}, 400)
+
+        elif self.path == "/api/meds/regimen":
+            content_length = int(self.headers.get("Content-Length", 0))
+            body = self.rfile.read(content_length).decode("utf-8", errors="ignore")
+            try:
+                payload = json.loads(body) if body else {}
+                if not isinstance(payload, dict):
+                    self.send_json_response({"status": "ERROR", "error": "Invalid JSON object"}, 400)
+                    return
+
+                has_meds = "medications" in payload
+                has_changes = "changes" in payload
+                req_meds = payload.get("medications")
+                req_changes = payload.get("changes")
+                if has_meds and not isinstance(req_meds, list):
+                    self.send_json_response({"status": "ERROR", "error": "medications must be a list"}, 400)
+                    return
+                if has_changes and not isinstance(req_changes, list):
+                    self.send_json_response({"status": "ERROR", "error": "changes must be a list"}, 400)
+                    return
+
+                explicit_clear = bool(payload.get("explicit_clear"))
+                explicit_clear_changes = bool(payload.get("explicit_clear_changes"))
+                now_iso = datetime.datetime.now().isoformat()
+
+                with db_lock:
+                    conn = sqlite3.connect(DB_PATH)
+                    cur = conn.cursor()
+                    cur.execute("SELECT medications_json, changes_json FROM user_medications_store WHERE id = 1")
+                    row = cur.fetchone()
+                    existing_meds = []
+                    existing_changes = []
+                    if row:
+                        try:
+                            parsed = json.loads(row[0] or "[]")
+                            if isinstance(parsed, list):
+                                existing_meds = parsed
+                        except Exception as e:
+                            print(f"[MIL-SPEC HANDLED FAULT] existing medications_json parse: {e}")
+                        try:
+                            parsed = json.loads(row[1] or "[]")
+                            if isinstance(parsed, list):
+                                existing_changes = parsed
+                        except Exception as e:
+                            print(f"[MIL-SPEC HANDLED FAULT] existing changes_json parse: {e}")
+
+                    preserved_meds = False
+                    if (not has_meds) or (len(req_meds) == 0 and len(existing_meds) > 0 and not explicit_clear):
+                        final_meds = existing_meds
+                        if len(existing_meds) > 0 and has_meds and len(req_meds) == 0 and not explicit_clear:
+                            preserved_meds = True
+                    else:
+                        final_meds = req_meds
+
+                    preserved_changes = False
+                    if (not has_changes) or (len(req_changes) == 0 and len(existing_changes) > 0 and not explicit_clear_changes):
+                        final_changes = existing_changes
+                        if len(existing_changes) > 0 and has_changes and len(req_changes) == 0 and not explicit_clear_changes:
+                            preserved_changes = True
+                    else:
+                        final_changes = req_changes
+
+                    cur.execute("""
+                        INSERT INTO user_medications_store (id, medications_json, changes_json, updated_at)
+                        VALUES (1, ?, ?, ?)
+                        ON CONFLICT(id) DO UPDATE SET
+                            medications_json = excluded.medications_json,
+                            changes_json = excluded.changes_json,
+                            updated_at = excluded.updated_at
+                    """, (json.dumps(final_meds), json.dumps(final_changes), now_iso))
+                    conn.commit()
+                    conn.close()
+
+                self.send_json_response({
+                    "status": "OK",
+                    "medications_count": len(final_meds),
+                    "changes_count": len(final_changes),
+                    "preserved_meds": preserved_meds,
+                    "preserved_changes": preserved_changes,
+                    "updated_at": now_iso,
+                })
+            except Exception as e:
+                print(f"[MIL-SPEC HANDLED FAULT] POST /api/meds/regimen: {e}")
                 self.send_json_response({"status": "ERROR", "error": str(e)}, 400)
 
         elif self.path == "/api/system/auto_setup":

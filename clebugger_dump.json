@@ -3534,5 +3534,21 @@
     "created_at": "2026-11-27 17:59:44",
     "updated_at": "2026-11-27 17:59:44",
     "resolved_at": "2026-11-27 17:59:44"
+  },
+  {
+    "project_name": "JVEEPOO",
+    "bug_number": 135,
+    "bug_code": "CLE-135",
+    "build_number": "beta.00.01.0078",
+    "title": "[beta.00.01.0078] fix(meds): restore file:/// BFM.HTM launch priority and add cross-origin SQLite medication regimen sync (beta.00.01.0078)",
+    "status": "RESOLVED",
+    "component": "meds",
+    "affected_files": "BFM.HTM, BFM_Launcher.exe, Beta/docs/walkthrough_beta_00_01_0078.md, README.md, archive_alpha/logs/transcript.jsonl, archive_alpha/logs/transcript_full.jsonl, docs/walkthrough_beta_00_01_0078.md, index.html",
+    "bug_loc": 0,
+    "resolution": "Git commit 5cd04b1 (2026-11-27 18:12:52): fix(meds): restore file:/// BFM.HTM launch priority and add cross-origin SQLite medication regimen sync (beta.00.01.0078)",
+    "comments": "Synced from git tag beta.00.01.0078",
+    "created_at": "2026-11-27 18:12:52",
+    "updated_at": "2026-11-27 18:12:52",
+    "resolved_at": "2026-11-27 18:12:52"
   }
 ]

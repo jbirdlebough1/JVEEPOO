@@ -10047,6 +10047,7 @@ function switchTab(tabId) {
           if (btn) btn.classList.add('active');
           if (page) page.classList.add('active-page');
           try { renderMedicationView(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+          try { hydrateMedicationsFromServer(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
         } else if (tabId === 'goals') {
           const btn = document.getElementById('navTabGoals');
           const page = document.getElementById('pageGoals');
@@ -19557,6 +19558,71 @@ Patient`;
       if (savedChanges) medicationChangeLog = JSON.parse(savedChanges);
     } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
 
+    async function syncMedicationsToServer(opts = {}) {
+      try {
+        const res = await fetch('/api/meds/regimen', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            medications: medicationList,
+            changes: medicationChangeLog,
+            explicit_clear: Boolean(opts.explicitClear),
+            explicit_clear_changes: Boolean(opts.explicitClearChanges)
+          })
+        });
+        if (!res.ok) {
+          console.warn('[MIL-SPEC HANDLED FAULT] syncMedicationsToServer HTTP:', res.status);
+        }
+      } catch (e) {
+        console.warn('[MIL-SPEC HANDLED FAULT] syncMedicationsToServer:', e);
+      }
+    }
+
+    async function hydrateMedicationsFromServer() {
+      try {
+        const res = await fetch('/api/meds/regimen');
+        if (!res.ok) {
+          console.warn('[MIL-SPEC HANDLED FAULT] hydrateMedicationsFromServer HTTP:', res.status);
+          return;
+        }
+        const data = await res.json();
+        const serverMeds = normalizeMedicationList(data.medications);
+        const serverChanges = Array.isArray(data.changes) ? data.changes : [];
+
+        if ((medicationList.length > 0 && serverMeds.length === 0) ||
+            (medicationChangeLog.length > 0 && serverChanges.length === 0)) {
+          await syncMedicationsToServer();
+        }
+
+        let hydrated = false;
+        if (medicationList.length === 0 && serverMeds.length > 0) {
+          medicationList = serverMeds;
+          try {
+            localStorage.setItem('veepoo_medication_list', JSON.stringify(medicationList));
+          } catch (e) {
+            console.warn('[MIL-SPEC HANDLED FAULT]', e);
+          }
+          hydrated = true;
+        }
+        if (medicationChangeLog.length === 0 && serverChanges.length > 0) {
+          medicationChangeLog = serverChanges;
+          try {
+            localStorage.setItem('veepoo_medication_changes', JSON.stringify(medicationChangeLog));
+          } catch (e) {
+            console.warn('[MIL-SPEC HANDLED FAULT]', e);
+          }
+          hydrated = true;
+        }
+
+        if (hydrated) {
+          renderMedicationView();
+          if (typeof renderTallSynchronizedChart === 'function') renderTallSynchronizedChart(currentTallChartTimeframe);
+        }
+      } catch (e) {
+        console.warn('[MIL-SPEC HANDLED FAULT] hydrateMedicationsFromServer:', e);
+      }
+    }
+
     function initMedChangeTime() {
       const now = new Date();
       const localISO = new Date(now.getTime() - (now.getTimezoneOffset() * 60000)).toISOString().slice(0, 16);
@@ -19573,6 +19639,7 @@ Patient`;
         return m;
       });
       try { localStorage.setItem('veepoo_medication_list', JSON.stringify(medicationList)); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+      syncMedicationsToServer();
       renderMedicationView();
       logLCARS(`[+] Medication dose confirmed taken: ID ${medId} at ${timeStr}`, "rx");
     }
@@ -19625,6 +19692,7 @@ Patient`;
         return m;
       });
       try { localStorage.setItem('veepoo_medication_list', JSON.stringify(medicationList)); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+      syncMedicationsToServer();
 
       renderMedicationView();
       if (typeof renderTallSynchronizedChart === 'function') renderTallSynchronizedChart(currentTallChartTimeframe);
@@ -19646,6 +19714,7 @@ Patient`;
         soundButtonPress();
         medicationChangeLog = [];
         localStorage.removeItem('veepoo_medication_changes');
+        syncMedicationsToServer({ explicitClearChanges: true });
         renderMedicationView();
         if (typeof renderTallSynchronizedChart === 'function') renderTallSynchronizedChart(currentTallChartTimeframe);
       }
@@ -19664,6 +19733,7 @@ Patient`;
         return m;
       });
       try { localStorage.setItem('veepoo_medication_list', JSON.stringify(medicationList)); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+      syncMedicationsToServer();
       renderMedicationView();
       logLCARS(`[✓ INTAKE 1 CONFIRMED] All ${count} morning medications taken at ${timeStr}. Adherence recorded.`, "rx");
       if (typeof showToast === 'function') showToast(`✓ All ${count} morning medications marked as taken!`);
@@ -19689,6 +19759,7 @@ Patient`;
         return m;
       });
       try { localStorage.setItem('veepoo_medication_list', JSON.stringify(medicationList)); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+      syncMedicationsToServer();
       renderMedicationView();
       logLCARS(`[✓ INTAKE 2 CONFIRMED] Dinner medication (Metformin split) taken at ${timeStr}. Adherence recorded.`, "rx");
       if (typeof showToast === 'function') showToast(`✓ Dinner medication marked as taken!`);
@@ -19788,6 +19859,7 @@ Patient`;
       }
 
       try { localStorage.setItem('veepoo_medication_list', JSON.stringify(medicationList)); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+      syncMedicationsToServer();
       closeEditMedModal();
       renderMedicationView();
       if (typeof renderTallSynchronizedChart === 'function') renderTallSynchronizedChart(currentTallChartTimeframe);
@@ -19800,6 +19872,7 @@ Patient`;
       if (confirm(`Remove "${name}" from your active medication regimen?`)) {
         medicationList = medicationList.filter(x => x.id !== medId);
         try { localStorage.setItem('veepoo_medication_list', JSON.stringify(medicationList)); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+        syncMedicationsToServer({ explicitClear: medicationList.length === 0 });
         renderMedicationView();
         if (typeof renderTallSynchronizedChart === 'function') renderTallSynchronizedChart(currentTallChartTimeframe);
         logLCARS(`[-] Medication removed from regimen: ${name}`, "rx");
@@ -19825,6 +19898,7 @@ Patient`;
       if (confirm("Clear all medication records and reset to clean zero-data registry?")) {
         medicationList = [];
         localStorage.removeItem('veepoo_medication_list');
+        syncMedicationsToServer({ explicitClear: true });
         renderMedicationView();
         if (typeof renderTallSynchronizedChart === 'function') renderTallSynchronizedChart(currentTallChartTimeframe);
         logLCARS(`[RX PURGED] Regimen cleared to clean zero-data state.`, "rx");
@@ -23202,6 +23276,7 @@ Notice: For Type 2 diabetes lifestyle management and metabolic tracking only. No
       populateSetupFromDevice();
       render360HealthView();
       renderMedicationView();
+      hydrateMedicationsFromServer();
       renderReportsView();
       if (typeof renderTallSynchronizedChart === 'function') renderTallSynchronizedChart('daily');
       const urlParams = new URLSearchParams(window.location.search);
