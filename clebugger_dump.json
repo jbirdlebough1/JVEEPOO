@@ -3582,5 +3582,21 @@
     "created_at": "2026-11-27 21:28:30",
     "updated_at": "2026-11-27 21:28:30",
     "resolved_at": "2026-11-27 21:28:30"
+  },
+  {
+    "project_name": "JVEEPOO",
+    "bug_number": 138,
+    "bug_code": "CLE-138",
+    "build_number": "beta.00.01.0081",
+    "title": "[beta.00.01.0081] beta.00.01.0081: 66-page comprehensive runtime execution, protocol & requirements gap audit manual",
+    "status": "RESOLVED",
+    "component": "BFM Clinical Console",
+    "affected_files": "tag beta.00.01.0081, Tagger: CLE Operator <cle@localhost>, Release beta.00.01.0081: 66-page Runtime Execution, Protocol & Requirements Audit Manual, Beta/docs/BFM_RUNTIME_EXECUTION_MANUAL.html, Beta/docs/BFM_RUNTIME_EXECUTION_MANUAL.md, Bet",
+    "bug_loc": 0,
+    "resolution": "Git commit 95de7f0 (2026-11-27 21:53:50): beta.00.01.0081: 66-page comprehensive runtime execution, protocol & requirements gap audit manual",
+    "comments": "Synced from git tag beta.00.01.0081",
+    "created_at": "2026-11-27 21:53:50",
+    "updated_at": "2026-11-27 21:53:50",
+    "resolved_at": "2026-11-27 21:53:50"
   }
 ]
