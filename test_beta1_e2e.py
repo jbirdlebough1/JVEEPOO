@@ -50,7 +50,11 @@ def run_e2e():
     print("\n[STEP 1/10] Telemetry Server Health & Port 8899 Check...")
     h = get_json("/api/telemetry/latest")
     assert "db_version" in h, "Health check failed!"
-    print(f"  [PASS] Server online. Telemetry DB version: {h.get('db_version')}")
+    batt = h.get("ble", {}).get("battery_pct")
+    assert isinstance(batt, (int, float)) and 0 <= batt <= 100, f"Invalid live battery_pct: {batt}"
+    hist = get_json("/api/reports/history?timeframe=weekly")
+    assert hist.get("status") == "OK" and isinstance(hist.get("buckets"), list) and len(hist["buckets"]) >= 1, f"History check failed: {hist}"
+    print(f"  [PASS] Server online. DB version: {h.get('db_version')} | Battery: {batt}% | Weekly buckets: {len(hist['buckets'])}")
 
     # 2. Multi-Tenant Family Roster
     print("\n[STEP 2/10] Registered Family Cells & Watch Roster Verification...")

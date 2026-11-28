@@ -249,11 +249,198 @@ def run_gate():
         log_fail(f"CLEBUGGER sync verification exception: {cle_err}")
 
     # 13. PRE-BUILD ZERO REGRESSION AUDIT STATUS
-    print("\n[CHECK 13/13] Pre-Build Six Sigma Gate Readiness...")
-    log_pass("Pre-build analysis complete: 13/13 checks verified. Ready for Beta 1 phased execution.")
+    print("\n[CHECK 13/19] Pre-Build Six Sigma Gate Readiness...")
+    log_pass("Pre-build analysis complete: 13/19 checks verified.")
+
+    # 14. GATT SERIALIZATION AUDIT (ZERO UNQUEUED txCharacteristic.writeValue* OUTSIDE sendCommandBytes)
+    print("\n[CHECK 14/19] GATT Write Queue Serialization Gate...")
+    fn_start = html.find("async function sendCommandBytes(")
+    fn_end = html.find("function sendAuthHandshake(")
+    if fn_start < 0 or fn_end <= fn_start:
+        log_fail("Could not locate sendCommandBytes() boundaries in index.html!")
+    outside_html = html[:fn_start] + html[fn_end:]
+    if "txCharacteristic.writeValue" in outside_html:
+        log_fail("Found unqueued txCharacteristic.writeValue* outside sendCommandBytes()! Causes GATT collisions.")
+    log_pass("All primary TX GATT writes strictly serialized through bleWriteQueue in sendCommandBytes().")
+
+    # 15. ZERO DEAD CONNECTION FLAGS, HARDCODED SHOWER WINDOWS, OR SYNTHETIC PLACEHOLDERS
+    print("\n[CHECK 15/19] Real Telemetry Truth & Zero Synthetic/Dead Code Gate...")
+    if "typeof isBleConnected" in html or "is_am_charge_shower" in server_code:
+        log_fail("Dead isBleConnected flag or hardcoded is_am_charge_shower detected!")
+    if '"battery_pct": 97.0' in server_code:
+        log_fail("Hardcoded battery_pct 97.0 detected in server.py!")
+    for fake_tok in ("Eggs/Toast", "Nov 17", "Salmon / Greens"):
+        if fake_tok in html:
+            log_fail(f"Synthetic hardcoded placeholder '{fake_tok}' detected in index.html!")
+    log_pass("Zero dead connection flags, hardcoded off-wrist clock windows, hardcoded battery, or synthetic table rows.")
+
+    # 16. ZERO HIGH-RATE BULK BLE /api/log FLOODING GATE
+    print("\n[CHECK 16/19] Zero BLE Packet /api/log Flooding Gate...")
+    if "isBulkStreamPkt" not in html or "isRawFlood" not in html:
+        log_fail("Missing high-rate BLE /api/log flood guards (isBulkStreamPkt / isRawFlood) in index.html!")
+    log_pass("High-rate 0xDF / 0x88 / 0xE0 / fea1 /api/log flood suppression verified.")
+
+    # 17. 0xE0 SLEEP TRUNCATED-TAIL RESILIENCE GATE
+    print("\n[CHECK 17/19] 0xE0 Multi-Session Sleep Truncated-Tail Resilience Gate...")
+    sys.path.insert(0, os.path.join(BASE_DIR, "w11_htm_app"))
+    import server as _bfm_srv
+    import datetime as _dt
+    _tdate = _dt.date(2026, 11, 27)
+    def _mk_sleep_blk(sh, sm, eh, em, mins):
+        a3 = bytearray(36)
+        a3[0], a3[1], a3[2], a3[3] = 11, 27, sh, sm
+        a3[4], a3[5], a3[6], a3[7] = 11, 27, eh, em
+        a3[15], a3[16] = 2, 1
+        a3[19], a3[20] = mins & 0xFF, (mins >> 8) & 0xFF
+        a3[25], a3[26] = mins & 0xFF, (mins >> 8) & 0xFF
+        a3[33] = 60
+        body = bytes([0xA3, 36]) + bytes(a3) + bytes([0xA5, 20, 0]) + bytes([0x20] * 20)
+        tot = 3 + len(body)
+        return bytes([0xA1, tot & 0xFF, (tot >> 8) & 0xFF]) + body
+    _b1 = _mk_sleep_blk(1, 30, 7, 19, 349)
+    _b2_full = _mk_sleep_blk(17, 5, 17, 55, 50)
+    # Drop final 8 bytes of Block 2 (simulates 2 missing trailing 0xE0 epoch packets while 0xA3 header is intact)
+    _trunc = _b1 + _b2_full[:-8]
+    _sess = _bfm_srv._parse_a1_precision_sleep_bytes(_trunc, _tdate)
+    if len(_sess) != 2 or sum(s["allMin"] for s in _sess) != 399:
+        log_fail(f"0xE0 sleep parser failed truncated-tail resilience: got {len(_sess)} sessions")
+    log_pass("0xE0 sleep parser decoded both Session 1 (349m) and Session 2 (50m) despite dropped tail epoch bytes.")
+
+    # 18. 0xDF PYTHON-VS-JS DECODER PARITY & MAIN REFRESH LOOP CONTRACT
+    print("\n[CHECK 18/19] 0xDF Decoder Parity & Main Loop Refresh Contract Gate...")
+    for sym in ("triggerLiveWatchDeltaSync", "_activePollPromise", "scheduleUniversalAllPagesRefresh", "runFullPipelineAndRefreshAllScreens"):
+        if sym not in html:
+            log_fail(f"Missing core refresh coordinator symbol '{sym}' in index.html!")
+    # Build deterministic 0xDF block for today and verify identical decode in Python and Node.js
+    _tlv = bytes([
+        0xB1, 4, 1, 1, 14, 10,          # 14:10
+        0xB2, 10, 0, 42, 0, 0, 0, 0, 0, 0, 0x40, 0,  # 42 steps
+        0xB4, 5, 72, 74, 76, 74, 74,    # mean HR = 74
+        0xBE, 2, 0xE2, 0x03             # 9.94 mmol/L = 179 mg/dL
+    ])
+    _crc = _bfm_srv.calc_veepoo_crc(_tlv)
+    _hdr = bytearray(20)
+    _hdr[0], _hdr[1], _hdr[2], _hdr[3] = 0xDF, 1, 0, 0
+    _hdr[7], _hdr[10], _hdr[11], _hdr[12], _hdr[13] = 0, len(_tlv), _crc & 0xFF, (_crc >> 8) & 0xFF, 20
+    _subs = []
+    for _i in range(0, len(_tlv), 16):
+        _p = bytearray(20)
+        _p[0], _p[1], _p[2], _p[3] = 0xDF, 1, 0, (_i // 16) + 1
+        _chunk = _tlv[_i:_i + 16]
+        _p[4:4 + len(_chunk)] = _chunk
+        _subs.append(bytes(_p))
+    _py_recs = _bfm_srv._parse_df_origin_blocks([bytes(_hdr)] + _subs, day_offset=0)
+    if not _py_recs or _py_recs[0].get("hr") != 74 or _py_recs[0].get("glucose") != 179 or _py_recs[0].get("step") != 42:
+        log_fail(f"Python 0xDF parity decode failed: {_py_recs}")
+    _js_p1 = html.find("const VEEPOO_CRC_TABLE_JS")
+    _js_p2 = html.find("async function flushDfOriginBuffer")
+    _js_df = html[_js_p1:_js_p2]
+    _pkts_hex = [" ".join(f"{b:02x}" for b in p) for p in ([bytes(_hdr)] + _subs)]
+    _node_code = _js_df + f"\nconst nowOvr=new Date(2026,10,27,23,59,0); const r=parseDfOriginBlocksJS({json.dumps(_pkts_hex)},0,nowOvr); console.log(JSON.stringify(r[0]||{{}}));"
+    _nres = subprocess.run(["node", "-e", _node_code], capture_output=True, text=True)
+    if _nres.returncode != 0:
+        log_fail(f"Node 0xDF parity test failed: {_nres.stderr}")
+    _js_rec = json.loads(_nres.stdout.strip().splitlines()[-1])
+    if _js_rec.get("hr") != _py_recs[0].get("hr") or _js_rec.get("glucose") != _py_recs[0].get("glucose") or _js_rec.get("step") != _py_recs[0].get("step"):
+        log_fail(f"Python vs JS 0xDF mismatch: py={_py_recs[0]} js={_js_rec}")
+    log_pass("Python & JS 0xDF decoders match 1:1 (HR=74, Glucose=179, Steps=42) and main refresh coordinator verified.")
+
+    # 19. MIL-SPEC ZERO SILENT FAILURES & DOCS LINK / LINUX BT HONESTY GATE
+    print("\n[CHECK 19/19] MIL-SPEC Zero Silent Failures & Docs Integrity Gate...")
+    import ast as _ast
+    core_py_targets = [
+        "w11_htm_app/server.py", "w11_htm_app/dual_backup_engine.py",
+        "w11_htm_app/fhir_export_engine.py", "w11_htm_app/usb_backup_engine.py",
+        "audit_zero_defect.py", "strict_gate_v2.py", "test_beta1_e2e.py",
+        "opt3_ble_python/probe_device.py", "opt3_ble_python/watch_monitor.py",
+        "docs/generate_cmo_spec.py", "Beta/docs/generate_cmo_spec.py",
+        "tools/generate_physician_handbook.py",
+    ]
+    py_mil_faults = []
+    for _rel in core_py_targets:
+        _fp = os.path.join(BASE_DIR, _rel)
+        if not os.path.exists(_fp):
+            continue
+        _src = open(_fp, "r", encoding="utf-8", errors="ignore").read()
+        _tree = _ast.parse(_src, filename=_rel)
+        for _node in _ast.walk(_tree):
+            if isinstance(_node, _ast.ExceptHandler):
+                if _node.type is None:
+                    py_mil_faults.append(f"{_rel}:L{_node.lineno} bare except")
+                _seg = _ast.get_source_segment(_src, _node) or ""
+                _trivial = all(isinstance(_s, (_ast.Pass, _ast.Continue, _ast.Break)) for _s in _node.body)
+                _has_log = any(_k in _seg for _k in ("print(", "logging.", "log_fail", "log_warn", "raise", "send_json_response", "send_error", "warnings.", "sys.stderr", "record(", "FAIL", "WARN", "MIL-SPEC"))
+                if _trivial or not _has_log:
+                    py_mil_faults.append(f"{_rel}:L{_node.lineno} silent/unlogged except")
+            elif isinstance(_node, _ast.Call):
+                _fn = _ast.get_source_segment(_src, _node.func) or ""
+                if _fn.endswith("urlopen") and "timeout" not in [_kw.arg for _kw in _node.keywords] and len(_node.args) < 3:
+                    py_mil_faults.append(f"{_rel}:L{_node.lineno} urlopen missing timeout=")
+    if py_mil_faults:
+        log_fail("Python MIL-SPEC silent-failure faults: " + "; ".join(py_mil_faults[:10]))
+
+    frontend_targets = [
+        "BFM.HTM", "w11_htm_app/cell.html", "sw.js", "w11_htm_app/sw.js",
+        "download.html", "tools/BFM_Launcher.cs", "tools/BFM_Installer.cs",
+    ]
+    fe_faults = []
+    for _rel in frontend_targets:
+        _fp = os.path.join(BASE_DIR, _rel)
+        if not os.path.exists(_fp):
+            continue
+        _txt = open(_fp, "r", encoding="utf-8", errors="ignore").read()
+        if re.search(r"catch\s*(?:\([^)]*\))?\s*\{\s*\}", _txt):
+            fe_faults.append(f"{_rel} empty catch{{}}")
+        if re.search(r"\.catch\s*\(\s*(?:\([^)]*\)|[A-Za-z_$][\w$]*)\s*=>\s*\{\s*\}\s*\)", _txt):
+            fe_faults.append(f"{_rel} silent .catch(() => {{}})")
+        for _m in re.finditer(r"\bcatch\s*\([^)]*\)\s*\{", _txt):
+            _depth = 1
+            _pos = _m.end()
+            while _pos < len(_txt) and _depth > 0:
+                if _txt[_pos] == "{":
+                    _depth += 1
+                elif _txt[_pos] == "}":
+                    _depth -= 1
+                _pos += 1
+            _blk = _txt[_m.end():_pos]
+            if not any(_tok in _blk for _tok in ("console.warn", "console.error", "console.log", "logLCARS", "throw", "showToast", "setStatus", "MessageBox", "WriteError", "AppendAllText", "LogFault", "Trace.WriteLine", "logLine")):
+                _ln = _txt[:_m.start()].count("\n") + 1
+                fe_faults.append(f"{_rel}:L{_ln} unlogged catch")
+    if fe_faults:
+        log_fail("Frontend/C# MIL-SPEC catch faults: " + "; ".join(fe_faults[:10]))
+
+    _tracked_mds = subprocess.check_output(["git", "-C", BASE_DIR, "ls-files", "*.md", "**/*.md"], text=True, encoding="utf-8", errors="ignore").splitlines()
+    for _extra_md in ("docs/walkthrough_beta_00_01_0080.md", "Beta/docs/walkthrough_beta_00_01_0080.md"):
+        if _extra_md not in _tracked_mds and os.path.exists(os.path.join(BASE_DIR, _extra_md)):
+            _tracked_mds.append(_extra_md)
+    doc_faults = []
+    _link_re = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
+    _linux_yes_re = re.compile(r"\|\s*\*\*Linux\*\*\s*\|\s*\*\*Yes\*\*", re.I)
+    for _md_rel in sorted(set(_tracked_mds)):
+        _md_rel = _md_rel.strip()
+        if not _md_rel or _md_rel.startswith(("presentation/", "opt1_sdk_official/", "opt2_decompiled/", "archive_alpha/", "session_logs/", "CLEBUGGER/", "node_modules/")):
+            continue
+        _md_fp = os.path.join(BASE_DIR, _md_rel)
+        if not os.path.exists(_md_fp):
+            continue
+        for _lno, _line in enumerate(open(_md_fp, "r", encoding="utf-8", errors="ignore"), 1):
+            if _linux_yes_re.search(_line):
+                doc_faults.append(f"{_md_rel}:L{_lno} Linux BT overclaim")
+            for _lm in _link_re.finditer(_line):
+                _tgt = _lm.group(1).strip()
+                if _tgt.startswith(("http://", "https://", "mailto:", "#", "file://")):
+                    continue
+                _tpath = _tgt.split("#")[0].split("?")[0]
+                if _tpath:
+                    _resolved = os.path.normpath(os.path.join(os.path.dirname(_md_fp), _tpath))
+                    if not os.path.exists(_resolved):
+                        doc_faults.append(f"{_md_rel}:L{_lno} broken link {_tgt}")
+    if doc_faults:
+        log_fail("Docs integrity faults: " + "; ".join(doc_faults[:10]))
+    log_pass(f"MIL-SPEC Check 19 passed: 0 Python/JS/SW/C# silent catches, 0 broken doc links, 0 Linux BT overclaims.")
 
     print("\n=================================================================")
-    print("      STATUS: 100% SIX SIGMA PRE-BUILD AUDIT VERIFIED            ")
+    print("      STATUS: 100% SIX SIGMA PRE-BUILD AUDIT VERIFIED (19/19)    ")
     print("=================================================================")
 
 if __name__ == "__main__":

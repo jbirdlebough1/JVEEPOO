@@ -1085,7 +1085,8 @@ async def html_to_pdf(html_path, pdf_path):
                         if pages:
                             ws_url = pages[0]["webSocketDebuggerUrl"]
                             break
-                except Exception:
+                except Exception as e:
+                    print(f"[MIL-SPEC HANDLED FAULT] CDP poll wait retry: {e}")
                     await asyncio.sleep(0.4)
             if not ws_url:
                 raise RuntimeError("Chrome CDP websocket did not start on 9265")
@@ -1179,7 +1180,8 @@ async def html_to_pdf(html_path, pdf_path):
         proc.terminate()
         try:
             proc.wait(timeout=5)
-        except Exception:
+        except Exception as e:
+            print(f"[MIL-SPEC HANDLED FAULT] Chrome process wait timeout, killing pid: {e}")
             proc.kill()
         shutil.rmtree(udd, ignore_errors=True)
 

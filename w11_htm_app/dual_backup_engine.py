@@ -37,15 +37,15 @@ def perform_dual_backup(target_dir=None, db_path=None):
     if os.path.exists(sqlite_filepath):
         try:
             os.remove(sqlite_filepath)
-        except:
-            pass
+        except OSError as rm_err:
+            print(f"[MIL-SPEC HANDLED FAULT] Could not remove previous SQLite snapshot {sqlite_filepath}: {rm_err}")
 
     try:
         conn = sqlite3.connect(db_path)
         conn.execute(f"VACUUM INTO '{sqlite_filepath}'")
         conn.close()
     except Exception as e:
-        # Fallback to copy if VACUUM INTO fails
+        print(f"[MIL-SPEC HANDLED FAULT] SQLite VACUUM INTO failed, falling back to shutil.copy2: {e}")
         shutil.copy2(db_path, sqlite_filepath)
 
     sqlite_sha256 = hashlib.sha256(open(sqlite_filepath, "rb").read()).hexdigest()

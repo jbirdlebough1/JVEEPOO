@@ -9007,7 +9007,7 @@
       const year = now.getFullYear();
       const startOfYear = new Date(year, 0, 1);
       const dayOfYear = (now - startOfYear) / (1000 * 60 * 60 * 24);
-      document.getElementById("stardateClock").textContent = "BUILD beta.00.01.0057";
+      document.getElementById("stardateClock").textContent = "BUILD beta.00.01.0080";
     }
     setInterval(updateClock, 1000);
     updateClock();
@@ -9672,10 +9672,41 @@ function renderWatchTabConnectedDetails() {
     let _isPipelineRunning = false;
     let _pendingUniversalRefresh = false;
 
+    async function triggerLiveWatchDeltaSync(reason = 'interaction', forceHistory = false) {
+      if (window._isFullWatchSyncRunning || window._isDeltaWatchSyncRunning) return;
+      if (!txCharacteristic || !gattServer || !gattServer.connected) return;
+      window._isDeltaWatchSyncRunning = true;
+      try {
+        if (typeof syncStepData === 'function') {
+          try { syncStepData(true); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+        }
+        const nowTs = Date.now();
+        if ((forceHistory || (nowTs - (window._lastDfSyncTs || 0) >= 45000)) && typeof queryOriginHistoryData === 'function') {
+          const dfWait = _waitForBleStream('_dfDayResolve', 12000);
+          queryOriginHistoryData(0, true, true);
+          await dfWait;
+          if (window._dfOriginBuffer && window._dfOriginBuffer.length > 0 && typeof flushDfOriginBuffer === 'function') {
+            await flushDfOriginBuffer();
+          }
+        }
+        if ((forceHistory || (nowTs - (window._lastSleepAutoSyncTs || 0) >= 180000)) && typeof querySleepData === 'function') {
+          window._lastSleepAutoSyncTs = Date.now();
+          const sleepWait = _waitForBleStream('_sleepDayResolve', 4000);
+          querySleepData(0, true);
+          await sleepWait;
+        }
+        await runFullPipelineAndRefreshAllScreens();
+      } catch (e) {
+        console.warn(`[MIL-SPEC HANDLED FAULT] triggerLiveWatchDeltaSync(${reason}):`, e);
+      } finally {
+        window._isDeltaWatchSyncRunning = false;
+      }
+    }
+
     function scheduleUniversalAllPagesRefresh(immediate = false) {
       if (window._isFullWatchSyncRunning) return;
-      if (typeof syncStepData === 'function' && gattServer && gattServer.connected && txCharacteristic) {
-        try { syncStepData(true); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+      if (!window._isDeltaWatchSyncRunning && txCharacteristic && gattServer && gattServer.connected) {
+        triggerLiveWatchDeltaSync('ui_event', false);
       }
       if (_refreshThrottleTimer) {
         if (!immediate) return;
@@ -9948,51 +9979,16 @@ function switchTab(tabId) {
             const repContainer = pageRep.querySelector('.reports-container');
             if (repContainer) repContainer.scrollTop = 0;
           }
-          // Immediate initial paint + mandatory live BLE & SQLite refresh of ALL Reports charts
+          // Immediate initial paint + serialized watch & SQLite refresh of ALL Reports charts
           try { renderReportsView(); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
           if (typeof renderTallSynchronizedChart === 'function') {
             try { renderTallSynchronizedChart(currentTallChartTimeframe); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
           }
-          if (typeof syncStepData === 'function' && gattServer && gattServer.connected && txCharacteristic) {
-            try { syncStepData(true); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+          if (!window._isFullWatchSyncRunning && txCharacteristic && gattServer && gattServer.connected) {
+            triggerLiveWatchDeltaSync('tab_reports', false);
+          } else {
+            runFullPipelineAndRefreshAllScreens();
           }
-          if (typeof querySleepData === 'function' && gattServer && gattServer.connected && txCharacteristic) {
-            try { setTimeout(() => querySleepData(0, true), 250); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
-          }
-          if (typeof queryOriginHistoryData === 'function' && gattServer && gattServer.connected && txCharacteristic) {
-            try { setTimeout(() => queryOriginHistoryData(0, false), 650); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
-          }
-          if (typeof queryTempHistoryData === 'function' && gattServer && gattServer.connected && txCharacteristic) {
-            try { setTimeout(() => queryTempHistoryData(0, false), 1850); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
-          }
-          const refreshAllReportsCharts = async () => {
-            try {
-              if (typeof pollLiveTelemetryChanges === 'function') await pollLiveTelemetryChanges(true);
-              if (typeof fetchServer2DayTimeline === 'function') await fetchServer2DayTimeline();
-              if (typeof fetchTodaySleepSessions === 'function') await fetchTodaySleepSessions();
-              if (typeof fetchTodayLorenzData === 'function') await fetchTodayLorenzData();
-              if (typeof fetchTodaySubReports === 'function') await fetchTodaySubReports();
-              const pageRepNow = document.getElementById('pageReports');
-              if (pageRepNow && pageRepNow.classList.contains('active-page')) {
-                if (typeof renderReportsView === 'function') renderReportsView();
-                if (typeof renderNocturnalSleepHypnogram === 'function') renderNocturnalSleepHypnogram('curveTimelineSleep');
-                if (typeof renderTallSynchronizedChart === 'function') renderTallSynchronizedChart(currentTallChartTimeframe);
-                const canvas3D = document.getElementById('canvas3DMultiChannel');
-                if (canvas3D && canvas3D.parentElement) {
-                  const rect = canvas3D.parentElement.getBoundingClientRect();
-                  if (rect.width > 0 && rect.height > 0) {
-                    canvas3D.width = rect.width;
-                    canvas3D.height = rect.height;
-                  }
-                }
-                if (typeof render3DMultiChannelScene === 'function') render3DMultiChannelScene();
-              }
-            } catch (e) {
-              console.warn('[MIL-SPEC HANDLED FAULT]', e);
-            }
-          };
-          refreshAllReportsCharts();
-          setTimeout(refreshAllReportsCharts, 1400);
           requestAnimationFrame(() => {
             try {
               const canvas3D = document.getElementById('canvas3DMultiChannel');
@@ -10617,7 +10613,7 @@ function switchTab(tabId) {
             }
           }
         } catch (err) {
-          // Paced silent retry
+          console.warn('[MIL-SPEC HANDLED FAULT] BLE auto-reconnect retry:', err);
         }
         // Paced backoff: 3s for first 5 attempts, then 8s to avoid hammering Windows BLE
         const delay = (attempt < 5) ? 3000 : 8000;
@@ -10703,8 +10699,12 @@ function switchTab(tabId) {
         }
       }
 
-      // Audio packet tick removed
-      logLCARS(`RX [${charUuid.substring(0, 8)}]: ${hex}`, "rx");
+      // Skip per-packet DOM & /api/log flooding on high-rate streams (summary lines still logged cleanly)
+      const isHeartbeat = String(charUuid || '').toLowerCase().includes('fea1') || (bytes.length === 4 && bytes[0] === 0x01 && bytes[2] === 0x09);
+      const isBulkStreamPkt = (header === 0xDF || header === 0x88 || header === 0xE0);
+      if (!isHeartbeat && !isBulkStreamPkt) {
+        logLCARS(`RX [${charUuid.substring(0, 8)}]: ${hex}`, "rx");
+      }
 
       // 0xA1: Auth / Time Sync
       if (header === 0xA1 && bytes.length >= 10) {
@@ -12553,8 +12553,10 @@ function switchTab(tabId) {
         if (fullBuf[pos] !== 0xA1) { pos++; continue; }
         if (pos + 3 > fullBuf.length) break;
         const blen = fullBuf[pos + 1] | (fullBuf[pos + 2] << 8);
-        if (blen < 10 || pos + blen > fullBuf.length) { pos++; continue; }
-        const content = fullBuf.slice(pos + 3, pos + blen);
+        if (blen < 10) { pos++; continue; }
+        // Tolerate missing trailing 0xE0 packets so intact 0xA3 session summaries still decode
+        const contentEnd = Math.min(pos + blen, fullBuf.length);
+        const content = fullBuf.slice(pos + 3, contentEnd);
         let cpos = 0;
         let a3 = null;
         let a5 = null;
@@ -12569,9 +12571,11 @@ function switchTab(tabId) {
             if (cpos + 1 > content.length) break;
             slen = content[cpos++];
           }
-          if (slen <= 0 || cpos + slen > content.length) break;
-          const sub = content.slice(cpos, cpos + slen);
-          cpos += slen;
+          if (slen <= 0) break;
+          const avail = content.length - cpos;
+          if (t !== 0xA5 && slen > avail) break;
+          const sub = content.slice(cpos, cpos + Math.min(slen, avail));
+          cpos += Math.min(slen, avail);
           if (t === 0xA3) a3 = sub;
           else if (t === 0xA5) a5 = sub;
         }
@@ -13133,11 +13137,15 @@ function switchTab(tabId) {
 
       logBox.scrollTop = logBox.scrollHeight;
 
-      fetch("/api/log", {
-        method: "POST",
-        headers: { "Content-Type": "text/plain" },
-        body: `[${ts}] [${type.toUpperCase()}] ${msg} | ${englishDesc}`
-      }).catch((err) => { console.warn('[MIL-SPEC ASYNC REJECTION]', err); });
+      const msgStr = String(msg || '');
+      const isRawFlood = msgStr.startsWith('RX [0000fea1]:') || /^RX \[[^\]]+\]: (?:df|88|e0) /i.test(msgStr);
+      if (!isRawFlood) {
+        fetch("/api/log", {
+          method: "POST",
+          headers: { "Content-Type": "text/plain" },
+          body: `[${ts}] [${type.toUpperCase()}] ${msg} | ${englishDesc}`
+        }).catch((err) => { console.warn('[MIL-SPEC ASYNC REJECTION]', err); });
+      }
     }
 
     function clearDiagLog() {
@@ -14725,6 +14733,7 @@ function switchTab(tabId) {
           alert("🔍 USB SCAN: Default backup location selected (D:\\LCARS_USB_BACKUP\\). Plug in an external USB flash drive to target removable media.");
         }
       } catch (e) {
+        console.warn('[MIL-SPEC HANDLED FAULT] USB drive scan fallback:', e);
         alert("🔍 USB SCAN: Ready to back up to USB flash drive (E:\\, F:\\ or D:\\LCARS_USB_BACKUP).");
       }
     }
@@ -15013,6 +15022,7 @@ function switchTab(tabId) {
           POPULAR_MEALS = {};
         }
       } catch (e) {
+        console.warn('[MIL-SPEC HANDLED FAULT] Popular meals localStorage parse failed:', e);
         POPULAR_MEALS = {};
       }
 
@@ -23892,23 +23902,17 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
       setTimeout(checkVaultSyncStatus, 1500);
     }
 
-    // BLE Keep-Alive & Continuous Telemetry Harvest Ping (MIL-SPEC — guarded during active block transfers)
+    // BLE Keep-Alive & Continuous Telemetry Harvest Ping (MIL-SPEC — serialized strictly via bleWriteQueue)
     setInterval(() => {
-      if (window._isFullWatchSyncRunning) return;
+      if (window._isFullWatchSyncRunning || window._isDeltaWatchSyncRunning) return;
       if (txCharacteristic && gattServer && gattServer.connected) {
-        // Lightweight battery query keep-alive ping (0xA0) + Pedometer step query (0x07)
         const ping = new Uint8Array(20);
         ping[0] = 0xA0;
         const pingPed = new Uint8Array(20);
         pingPed[0] = 0x07; pingPed[1] = 0x00;
         try {
-          if (txCharacteristic.writeValueWithoutResponse) {
-            txCharacteristic.writeValueWithoutResponse(ping);
-            setTimeout(() => {
-              if (window._isFullWatchSyncRunning) return;
-              try { txCharacteristic.writeValueWithoutResponse(pingPed); } catch(e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
-            }, 300);
-          }
+          sendCommandBytes(ping);
+          sendCommandBytes(pingPed);
         } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
       } else if (!isAutoReconnecting) {
         // If not connected, keep attempting background reconnect
@@ -23916,13 +23920,13 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
       }
     }, 12000);
 
-    // 5-Minute Continuous 0xDF Origin History Refresh while Chrome holds Web Bluetooth Link
+    // 2-Minute Continuous Serialized 0xDF/0xE0 Telemetry & UI Refresh while Chrome holds Web Bluetooth Link
     setInterval(() => {
-      if (window._isFullWatchSyncRunning) return;
-      if (txCharacteristic && gattServer && gattServer.connected && typeof queryOriginHistoryData === 'function') {
-        try { queryOriginHistoryData(0, true, true); } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT] 5-min 0xDF poll:', e); }
+      if (window._isFullWatchSyncRunning || window._isDeltaWatchSyncRunning) return;
+      if (txCharacteristic && gattServer && gattServer.connected && typeof triggerLiveWatchDeltaSync === 'function') {
+        triggerLiveWatchDeltaSync('periodic_2min', true);
       }
-    }, 300000);
+    }, 120000);
 
     
     // =========================================================================
@@ -23935,10 +23939,16 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
     let _pendingForceTelemetryPoll = false;
     async function pollLiveTelemetryChanges(force = false) {
       if (_isPollingTelemetry) {
-        if (force) _pendingForceTelemetryPoll = true;
+        if (force) {
+          _pendingForceTelemetryPoll = true;
+          if (window._activePollPromise) {
+            try { await window._activePollPromise; } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+          }
+        }
         return;
       }
       _isPollingTelemetry = true;
+      window._activePollPromise = (async () => {
       try {
         const activeWatchId = window._connectedWatchId || (typeof localStorage !== 'undefined' ? localStorage.getItem('bfm_connected_watch_id') : null) || 'VEE_5010';
         const resp = await _bfmFetchTimed(`/api/telemetry/latest?device_id=${encodeURIComponent(activeWatchId)}&_t=${Date.now()}`, { cache: 'no-store' }, 1500);
@@ -23969,7 +23979,7 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
         // Synchronize Battery & BT Signal in Status Ribbon Bay 3
         const battVal = (data.ble && typeof data.ble.battery_pct === 'number' && data.ble.battery_pct > 0)
           ? data.ble.battery_pct
-          : ((vitals.BATTERY && vitals.BATTERY.value1 > 0) ? vitals.BATTERY.value1 : (typeof lastBattery !== 'undefined' && lastBattery > 0 ? lastBattery : 97));
+          : ((vitals.BATTERY && vitals.BATTERY.value1 > 0) ? vitals.BATTERY.value1 : (typeof lastBattery !== 'undefined' && lastBattery > 0 ? lastBattery : 0));
         const elBatt = document.getElementById('lblRibbonBattery');
         if (elBatt) {
           elBatt.textContent = `${Math.round(battVal)}%`;
@@ -24256,6 +24266,7 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
           }
         }
       } catch (e) {
+        console.warn('[MIL-SPEC HANDLED FAULT] Local server probe unreachable (standalone fallback):', e);
         window._bfmLocalServerOnline = false;
         if (!window._bfmStandaloneHydrated && typeof hydrateStandaloneLocalTelemetry === 'function') {
           window._bfmStandaloneHydrated = true;
@@ -24273,11 +24284,14 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
         console.warn("pollLiveTelemetryChanges error:", e);
       } finally {
         _isPollingTelemetry = false;
+        window._activePollPromise = null;
         if (_pendingForceTelemetryPoll) {
           _pendingForceTelemetryPoll = false;
           setTimeout(() => pollLiveTelemetryChanges(true), 50);
         }
       }
+      })();
+      return window._activePollPromise;
     }
     // Run live telemetry poll every 2.5 seconds
     setInterval(pollLiveTelemetryChanges, 2500);
@@ -24479,6 +24493,7 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
         const saved = localStorage.getItem('veepoo_favorite_recipes');
         return saved ? JSON.parse(saved) : [];
       } catch (e) {
+        console.warn('[MIL-SPEC HANDLED FAULT] Favorite recipes parse failed:', e);
         return [];
       }
     }
@@ -27183,8 +27198,7 @@ You logged: Entire Box (3.5 Servings / 99g)
     async function execute15MinWatchDataDump() {
       logLCARS("[★ 15-MIN AUTO-DUMP] Verifying watch proximity & active connection...", "sys");
       
-      const isConnected = (typeof isBleConnected !== 'undefined' && isBleConnected) && 
-                          (typeof bluetoothDevice !== 'undefined' && bluetoothDevice && bluetoothDevice.gatt && bluetoothDevice.gatt.connected);
+      const isConnected = !!(txCharacteristic && gattServer && gattServer.connected);
 
       if (!isConnected) {
         // Attempt background auto-reconnect if device reference is available
@@ -27566,6 +27580,7 @@ You logged: Entire Box (3.5 Servings / 99g)
           alert('Failed to delete cell: ' + (res.error || resp.statusText));
         }
       } catch (err) {
+        console.warn('[MIL-SPEC HANDLED FAULT] Delete cell failed:', err);
         alert('Network error deleting cell: ' + err.message);
       }
     }
@@ -27674,6 +27689,7 @@ You logged: Entire Box (3.5 Servings / 99g)
           alert("Provisioning failed: " + (res.error || "Unknown"));
         }
       } catch (e) {
+        console.warn('[MIL-SPEC HANDLED FAULT] Cell provision network error:', e);
         alert("Network error: " + e.message);
       }
     }
@@ -27721,6 +27737,7 @@ You logged: Entire Box (3.5 Servings / 99g)
           alert("Dual export failed: " + (res.error || "Unknown"));
         }
       } catch (e) {
+        console.warn('[MIL-SPEC HANDLED FAULT] Dual export failed:', e);
         alert("Export network error: " + e.message);
       }
     }
@@ -27742,6 +27759,7 @@ You logged: Entire Box (3.5 Servings / 99g)
           }
         }
       } catch (e) {
+        console.warn('[MIL-SPEC HANDLED FAULT] Legal status server check failed (local fallback):', e);
         // Fallback to local check
         if (acceptedLocal !== "true") {
           const modal = document.getElementById('modalLegalStartup');

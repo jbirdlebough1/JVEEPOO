@@ -201,7 +201,7 @@
 |---|---|:---:|
 | "<USER_REQUEST> 1, 2, then 3  I have the watch running. </USER_REQUEST> <ADDITIONAL_METADATA> The current local time i..." | Historical parity verified against build code and database schema | **PASS** |
 | "<USER_REQUEST> /goal you have full permission to use all tools without asking.  stop asking for permission. </USER_RE..." | Historical parity verified against build code and database schema | **PASS** |
-| "<USER_REQUEST> Ok generally very good but usual LaTex screw ups $\.  We need to remove Star Trek reference as this ne..." | Historical parity verified against build code and database schema | **PASS** |
+| "<USER_REQUEST> Ok generally very good but usual LaTex screw ups `$\`.  We need to remove Star Trek reference as this ne..." | Historical parity verified against build code and database schema | **PASS** |
 | "<USER_REQUEST> The next tab I was thinking about is a diabetic recipe locator.  Where it would utilize google Gemini ..." | Historical parity verified against build code and database schema | **PASS** |
 | "<USER_REQUEST> a closing slide talking about this is open source copy left, fully documented, powered by Google Gemin..." | Historical parity verified against build code and database schema | **PASS** |
 | "<USER_REQUEST> Gemini who at Google can this be sent to.  This would be a awsome Google hosted diabetic community too..." | Historical parity verified against build code and database schema | **PASS** |

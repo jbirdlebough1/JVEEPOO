@@ -28,7 +28,8 @@ JSONL_PATH = os.path.join(os.path.dirname(__file__), "telemetry_stream.jsonl")
 try:
     import msvcrt
     WINDOWS_KEYBOARD = True
-except ImportError:
+except ImportError as e:
+    print(f"[MIL-SPEC HANDLED FAULT] msvcrt keyboard helper unavailable: {e}")
     WINDOWS_KEYBOARD = False
 
 
@@ -407,7 +408,8 @@ async def keyboard_control_loop(transceiver: WatchTransceiver, stop_event: async
             ch = msvcrt.getch()
             try:
                 key = ch.decode("utf-8")
-            except UnicodeDecodeError:
+            except UnicodeDecodeError as e:
+                print(f"[MIL-SPEC HANDLED FAULT] Non-UTF8 console key ignored: {e}")
                 key = ""
 
             if key == "g":

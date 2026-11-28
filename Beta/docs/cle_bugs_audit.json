@@ -1,8 +1,8 @@
 {
-  "latest_build": "beta.00.01.0079",
-  "synced_at": "2026-11-27T20:16:26",
-  "total_bugs": 183,
-  "total_resolved": 183,
+  "latest_build": "beta.00.01.0080",
+  "synced_at": "2026-11-27T21:30:23",
+  "total_bugs": 184,
+  "total_resolved": 184,
   "total_open": 0,
   "bugs": [
     {
@@ -2383,6 +2383,19 @@
       "comments": "Synced from git tag beta.00.01.0079",
       "created_at": "2026-11-27 20:16:16",
       "resolved_at": "2026-11-27 20:16:16"
+    },
+    {
+      "code": "CLE-137",
+      "project": "JVEEPOO",
+      "build": "beta.00.01.0080",
+      "title": "[beta.00.01.0080] beta.00.01.0080: MIL-SPEC zero-silent-failure audit, serialized BLE main loop, honest Linux BT docs & 19-point strict gate",
+      "status": "RESOLVED",
+      "component": "BLE Telemetry",
+      "affected_files": "tag beta.00.01.0080, Tagger: CLE Operator <cle@localhost>, Release beta.00.01.0080: Full MIL-SPEC code & docs audit + serialized BLE main loop, BFM.HTM, Beta/docs/MASTER_HISTORICAL_AUDIT_CHECKLIST.md, Beta/docs/bfm_beta1_master_test_plan.md",
+      "resolution": "Git commit 138074a (2026-11-27 21:28:30): beta.00.01.0080: MIL-SPEC zero-silent-failure audit, serialized BLE main loop, honest Linux BT docs & 19-point strict gate",
+      "comments": "Synced from git tag beta.00.01.0080",
+      "created_at": "2026-11-27 21:28:30",
+      "resolved_at": "2026-11-27 21:28:30"
     }
   ]
 }

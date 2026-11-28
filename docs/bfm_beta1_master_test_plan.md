@@ -27,18 +27,18 @@ Testing is executed in two strictly decoupled phases:
 
 | Testing Tier | Verification Method | Execution Environment | Tools & Harnesses | Pass / Fail Criteria |
 | :--- | :--- | :--- | :--- | :--- |
-| **Pass 1: Gemini Automated Validation** | Headless automated compilation, AST parsing, schema checks, presentation audit, and REST dispatch | Local Server (`127.0.0.1:8899`) | `audit_zero_defect.py` (`21/21`)<br>`strict_gate_v2.py` (`13/13`)<br>`test_beta1_e2e.py` (`10/10`)<br>`tools/audit_presentation_full.py` (`87/87`) | 100% Pass (0 errors, 0 warnings, 0 defects, 0 OPEN CLEBUGGER items) |
+| **Pass 1: Gemini Automated Validation** | Headless automated compilation, AST parsing, schema checks, presentation audit, and REST dispatch | Local Server (`127.0.0.1:8899`) | `audit_zero_defect.py` (`21/21`)<br>`strict_gate_v2.py` (`19/19`)<br>`test_beta1_e2e.py` (`10/10`)<br>`tools/audit_presentation_full.py` (`87/87`) | 100% Pass (0 errors, 0 warnings, 0 defects, 0 OPEN CLEBUGGER items) |
 | **Pass 2: Human-in-the-Loop Validation** | Human operator manual UI/UX execution via `BFM_Launcher.exe` or double-clicking `BFM.HTM` | Windows 11 Desktop + Chrome/Edge | Windows Explorer<br>`BFM.HTM` / `BFM_Launcher.exe`<br>`D:\CLEBUGGER\bugs.db` | All 14 tabs nominal; 0 blocking defects; user approves UX |
 
-#### Cross-Platform Test Matrix (macOS & Linux — Volunteer Testers Wanted)
+#### Cross-Platform Test Matrix (Windows Verified; Linux BT Unsupported)
 
-`BFM.HTM` is OS-agnostic HTML5/CSS/JS with zero Windows dependencies, and `w11_htm_app/server.py` is cross-platform Python (`bleak` supports macOS CoreBluetooth and Linux BlueZ; Windows registry calls are guarded by `if sys.platform != "win32"`). **We are actively looking for developers with Type 2 Diabetes to test BFM on macOS and Linux platforms.**
+`BFM.HTM` UI rendering is OS-agnostic HTML5/CSS/JS, and `w11_htm_app/server.py` runs across desktop Python (`if sys.platform != "win32"` guards Windows-only calls), **but Bluetooth hardware sync is currently verified only on Windows 10/11**. **Bluetooth does NOT work on Linux** (unsupported). **We are seeking volunteer developers with Type 2 Diabetes to test macOS compatibility.**
 
 | Platform | `BFM.HTM` UI & Watch BLE | `w11_htm_app/server.py` (SQLite + Cell LAN + BLE) | Notes / Requirements |
 | :--- | :--- | :--- | :--- |
-| **macOS** | **Yes** (Chrome / Edge / Brave) | **Yes** (`python3 w11_htm_app/server.py`) | **Safari & Firefox lack Web Bluetooth** — use Chrome/Edge for direct watch link; macOS prompts once for Bluetooth permission. |
-| **Linux** | **Yes** (Chrome / Chromium / Edge) | **Yes** (`python3 w11_htm_app/server.py`) | Requires `bluez` running; in Chrome/Chromium on Linux enable `chrome://flags/#enable-experimental-web-platform-features` for Web Bluetooth (not needed if using `server.py` `bleak` sync). |
-| **Windows-Only Pieces** | None in `BFM.HTM` | Shortcut button route only (`server.py` PowerShell shortcut endpoint) | `BFM_Launcher.exe` and the Windows shortcut installer route are Windows-only and not needed on macOS/Linux. |
+| **macOS** | **Unverified** (Chrome / Edge / Brave — Volunteer Testers Wanted) | **Experimental** (`python3 w11_htm_app/server.py`) | **Safari & Firefox lack Web Bluetooth** — requires Chrome/Edge and macOS Bluetooth permission prompt; untested on real macOS hardware. |
+| **Linux** | **UI Only — Bluetooth NOT Supported on Linux** | **Unsupported for BLE (BT Does Not Work on Linux)** | Linux Chrome Web Bluetooth and Bleak/BlueZ watch sync fail in practice; use **Windows 10/11** for hardware watch telemetry. |
+| **Windows-Only Pieces** | None in `BFM.HTM` | Shortcut button route only (`server.py` PowerShell shortcut endpoint) | `BFM_Launcher.exe` and `BFM_Installer.exe` are Windows desktop conveniences. |
 
 ---
 
@@ -49,7 +49,7 @@ Before any human testing begins, the automated suite must certify the build with
 1. **Check 1: Zero Defect Visual Cleanliness & Runtime Parity (`audit_zero_defect.py` — 21 Checks)**:
    * Evaluates documentation, presentations, `BFM.HTM`, `cell.html`, and `server.py` across 21 automated checks.
    * Asserts 0 broken image links, 0 fragile SVG embeds, 0 LaTeX math tokens, 0 ASCII box-art, 0 raw flowcharts, `file:///` parity, and pure zero-data compliance.
-2. **Check 2: Thirteen-Point Six Sigma Pre-Commit Gate (`strict_gate_v2.py` — 13 Checks)**:
+2. **Check 2: Nineteen-Point Six Sigma Pre-Commit Gate (`strict_gate_v2.py` — 19 Checks)**:
    * Bit-for-bit SHA-256 parity between root `BFM.HTM`, `index.html`, and `w11_htm_app/index.html`.
    * HTML DOM tag balance (Opens == Closes == `1,957`, Diff == `0`) across all 14 direct-child `<main>` tabs.
    * JavaScript AST compilation via Node.js `--check` and Python AST bytecode compilation (`server.py`).

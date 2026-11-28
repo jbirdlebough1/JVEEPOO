@@ -10,7 +10,7 @@ const STATIC_ASSETS = [
 
 self.addEventListener('install', (e) => {
   e.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(STATIC_ASSETS)).catch(() => {})
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(STATIC_ASSETS)).catch((err) => { console.warn('[MIL-SPEC HANDLED FAULT] SW cache pre-warm failed:', err); })
   );
   self.skipWaiting();
 });

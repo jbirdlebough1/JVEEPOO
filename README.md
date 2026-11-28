@@ -1,11 +1,11 @@
-# BFM Biometric Function Monitor — Continuous Metabolic & Clinical Telemetry Platform (`beta.00.01.0079`)
+# BFM Biometric Function Monitor — Continuous Metabolic & Clinical Telemetry Platform (`beta.00.01.0080`)
 
 The **BFM Biometric Function Monitor** (`JVEEPOO`) is an independent, open-source, clinician-aligned ambulatory telemetry workstation and zero-account mobile companion built by **The Author** (Sole Pioneer, Inventor, System Architect, and Philosophical Leader), developed with Google Gemini AI (currently independent with no sponsors).
 
-[![Build: beta.00.01.0079](https://img.shields.io/badge/Build-beta.00.01.0079-blue.svg)](Beta/docs/walkthrough_beta_00_01_0079.md)
+[![Build: beta.00.01.0080](https://img.shields.io/badge/Build-beta.00.01.0080-blue.svg)](Beta/docs/walkthrough_beta_00_01_0080.md)
 [![Hardware: Model 5010](https://img.shields.io/badge/Hardware-FITAOS%205150%20%2F%20Veepoo%205010-orange.svg)](https://fitaos.com)
 [![Presentation: 89 Slides](https://img.shields.io/badge/Presentation-89%20Slides%20%2B%20Audio-green.svg)](https://jbirdlebough1.github.io/JVEEPOO/presentation/preview.html)
-[![Zero Defect: Six Sigma](https://img.shields.io/badge/CLEBUGGER-79%2F79%20Zero%20Open-brightgreen.svg)](Beta/docs/BETA_BACKLOG_TODO.md)
+[![Zero Defect: Six Sigma](https://img.shields.io/badge/CLEBUGGER-80%2F80%20Zero%20Open-brightgreen.svg)](Beta/docs/BETA_BACKLOG_TODO.md)
 [![License: GPL v3 / Open Source](https://img.shields.io/badge/License-GPL%20v3%20%2F%20Open%20Source-green.svg)](https://github.com/jbirdlebough1/JVEEPOO)
 
 > [!IMPORTANT]
@@ -13,7 +13,7 @@ The **BFM Biometric Function Monitor** (`JVEEPOO`) is an independent, open-sourc
 > Clicking `.HTM` files inside GitHub's code viewer opens raw source code. Use these 1-click links instead:
 > - **1-Click Full Windows Installer (`BFM_Installer.exe`):** [**Download `BFM_Installer.exe`**](https://jbirdlebough1.github.io/JVEEPOO/download.html?file=BFM_Installer.exe) *(downloads into your `Downloads` folder -> run -> installs BFM cleanly, adds **Desktop** + **Start Menu** icons, and launches BFM)*
 > - **1-Click Standalone `BFM.HTM` (`1.6 MB` -> Saves to `Downloads`):** [**Download `BFM.HTM`**](https://jbirdlebough1.github.io/JVEEPOO/download.html?file=BFM.HTM) *(one-click download straight to `Downloads` -> double-click in Chrome/Edge to run offline with Web Bluetooth `0xDF` / `0x88` / `0xE0` / `0x07` decoding)*
-> - **1-Click Live Web App (0 MB Download — Windows, macOS & Linux Chrome/Edge):** [**Launch Live BFM Workstation Console**](https://jbirdlebough1.github.io/JVEEPOO/) *(runs directly over HTTPS with Web Bluetooth watch sync and browser vault — zero install required)*
+> - **1-Click Live Web App (0 MB Download — Windows & macOS Chrome/Edge; Linux UI-Only, BT Unsupported on Linux):** [**Launch Live BFM Workstation Console**](https://jbirdlebough1.github.io/JVEEPOO/) *(runs directly over HTTPS with Web Bluetooth watch sync on supported hosts and browser vault — zero install required)*
 > - **Android Field Companion (`BFM-Cell.apk`):** [**Download `BFM-Cell.apk`**](https://jbirdlebough1.github.io/JVEEPOO/download.html?file=BFM-Cell.apk) *(or scan QR in `10-CONFIG -> ADD CELL`)*
 
 ---
@@ -38,7 +38,7 @@ Conceived and architected out of personal necessity by **The Author** while mana
 
 ---
 
-## Visual Showcase (`beta.00.01.0079`)
+## Visual Showcase (`beta.00.01.0080`)
 
 | 14-Tab Desktop Console (`01-FULL SCAN`) | `03-MEAL PLANNER` (Saved Meals & Clean Coach) |
 | :---: | :---: |
@@ -61,7 +61,7 @@ Clicking `.html` files inside GitHub's web viewer shows raw source code. Launch 
 
 ---
 
-## Key Capabilities (`beta.00.01.0079`)
+## Key Capabilities (`beta.00.01.0080`)
 
 ### 1. Unified 14-Tab Workstation Console (`BFM.HTM`)
 Operates identically via local server (`http://127.0.0.1:8899/`) and standalone desktop launch (`file:///D:/veepoo/BFM.HTM`):
@@ -91,15 +91,16 @@ Operates identically via local server (`http://127.0.0.1:8899/`) and standalone 
 2. **Pair Your Smart Watch**: Click **Link / Connect** in the top status ribbon to connect to your Veepoo / FITAOS Model 5010 watch via Web Bluetooth, or let the background BLE daemon auto-sync nearby watch packets into `w11_htm_app/telemetry.db`.
 3. **Install `BFM Remote` on Android**: Go to **`10-CONFIG` -> `ADD CELL`**, scan the QR code with **Google Lens** or your camera, tap **Install -> Open**, and begin logging meals, feelings, and medications immediately.
 
-### Cross-Platform Support (macOS & Linux — Testers Wanted)
+### Cross-Platform Support & Bluetooth Limitations (Windows Verified; Linux BT Unsupported)
 
-`BFM.HTM` is OS-agnostic HTML5/CSS/JS with zero Windows dependencies, and `w11_htm_app/server.py` is cross-platform Python (`bleak` supports macOS CoreBluetooth and Linux BlueZ; Windows registry calls are guarded by `if sys.platform != "win32"`). **We are actively looking for developers with Type 2 Diabetes to test and validate BFM on macOS and Linux platforms.**
+`BFM.HTM` UI rendering works across desktop OS browsers, and `w11_htm_app/server.py` avoids Windows-only APIs except the shortcut installer route (`if sys.platform != "win32"`). **However, live Bluetooth LE watch sync is currently verified on Windows 10/11 only; Bluetooth does NOT work on Linux in testing.**
 
-| Platform | `BFM.HTM` UI & Watch BLE | `w11_htm_app/server.py` (SQLite + Cell LAN + BLE) | Notes / Requirements |
+| Platform | `BFM.HTM` UI & Watch BLE | `w11_htm_app/server.py` (SQLite + Cell LAN + BLE) | Honest Reality / Status |
 | :--- | :--- | :--- | :--- |
-| **macOS** | **Yes** (Chrome / Edge / Brave) | **Yes** (`python3 w11_htm_app/server.py`) | **Safari & Firefox lack Web Bluetooth** — use Chrome/Edge for direct watch link; macOS prompts once for Bluetooth permission. |
-| **Linux** | **Yes** (Chrome / Chromium / Edge) | **Yes** (`python3 w11_htm_app/server.py`) | Requires `bluez` running; in Chrome/Chromium on Linux enable `chrome://flags/#enable-experimental-web-platform-features` for Web Bluetooth (not needed if using `server.py` `bleak` sync). |
-| **Windows-Only Pieces** | None in `BFM.HTM` | Shortcut button route only (`server.py` PowerShell shortcut endpoint) | `BFM_Launcher.exe` and the Windows shortcut installer route are Windows-only and not needed on macOS/Linux. |
+| **Windows 10/11** | **Yes (Verified)** (Chrome / Edge Web Bluetooth) | **Yes (Verified)** (`tools/python/python.exe w11_htm_app/server.py`) | Primary verified watch telemetry hardware platform. |
+| **macOS** | **Experimental / Unverified** (Chrome / Edge; Safari/Firefox lack Web Bluetooth) | **Experimental / Unverified** (`python3 w11_htm_app/server.py`) | Community volunteer testing needed on macOS CoreBluetooth. |
+| **Linux** | **UI Only — Bluetooth NOT Supported on Linux** | **Unsupported on Linux (BT Does Not Work)** | Chrome Web Bluetooth and Bleak/BlueZ watch syncing fail to establish reliable GATT sessions on Linux. |
+| **Windows-Only Pieces** | None in `BFM.HTM` | Shortcut button route only (`server.py` PowerShell shortcut endpoint) | `BFM_Installer.exe` and `BFM_Launcher.exe` are Windows executables. |
 
 ---
 
@@ -110,7 +111,7 @@ Operates identically via local server (`http://127.0.0.1:8899/`) and standalone 
 | `tools/audit_presentation_full.py` *(local suite)* | 89 slides, 178 AU-English MP3 tracks, 144 3D orbital JPEGs, 4 image mirrors | `89/89 PASS` |
 | [`audit_zero_defect.py`](audit_zero_defect.py) | HTML tag balance (`BFM.HTM` `1961/1961`, `cell.html` `77/77`), SHA-256 parity, zero-data rules | `21/21 PASS` |
 | [`test_beta1_e2e.py`](test_beta1_e2e.py) | Live port `8899` APIs, Cell provisioning & dock, Epic FHIR R4 + SQLite backup, JS AST | `10/10 PASS` |
-| [`strict_gate_v2.py`](strict_gate_v2.py) | Multi-tenant triad schema, zero monetary strings in BOM, CLEBUGGER sync (`0 OPEN`) | `13/13 PASS` (`79/79` tags synced) |
+| [`strict_gate_v2.py`](strict_gate_v2.py) | Multi-tenant triad, GATT serialization, log flood guard, `0xE0`/`0xDF` parity, CLEBUGGER (`0 OPEN`) | `18/18 PASS` (`80/80` tags synced) |
 
 ---
 

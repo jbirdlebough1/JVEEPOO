@@ -244,6 +244,7 @@ def run_audit():
                 py_compile.compile(p, doraise=True)
                 print(f"  [OK] {os.path.relpath(p, WORKSPACE_DIR)} compiled cleanly.")
             except Exception as e:
+                print(f"[MIL-SPEC HANDLED FAULT] {os.path.relpath(p, WORKSPACE_DIR)} syntax error: {e}")
                 check7_defects.append(f"{os.path.relpath(p, WORKSPACE_DIR)} syntax error: {e}")
 
     if check7_defects:
@@ -517,6 +518,7 @@ def run_audit():
             if v_cnt < 10000:
                 check17_defects.append(f"vital_records count is only {v_cnt} (< 10,000 threshold)! Historical telemetry dropped!")
         except Exception as e:
+            print(f"[MIL-SPEC HANDLED FAULT] Failed to query telemetry.db vital_records: {e}")
             check17_defects.append(f"Failed to query telemetry.db vital_records: {e}")
 
     if check17_defects:

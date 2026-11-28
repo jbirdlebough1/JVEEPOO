@@ -1805,6 +1805,7 @@
         const q = localStorage.getItem('staged_meals_queue');
         return q ? JSON.parse(q) : [];
       } catch (e) {
+        console.warn('[MIL-SPEC HANDLED FAULT] Staged meal queue parse failed:', e);
         return [];
       }
     }
@@ -2105,6 +2106,7 @@
           throw new Error("HTTP " + resp.status);
         }
       } catch (e) {
+        console.warn('[MIL-SPEC HANDLED FAULT] Direct meal submit failed, staging offline:', e);
         // If PC not connected, gracefully stage it
         stageMealForSync();
         btn.innerHTML = "<span>🚀 SUBMIT TO PC NOW</span>";
@@ -2149,6 +2151,7 @@
           throw new Error("HTTP " + resp.status);
         }
       } catch (e) {
+        console.warn('[MIL-SPEC HANDLED FAULT] Host server heartbeat unreachable (Field Mode):', e);
         clearTimeout(timer);
         isConnectedToHost = false;
         pill.className = "wifi-pill offline";
@@ -2248,6 +2251,7 @@
       try {
         return JSON.parse(localStorage.getItem('bfm_staged_feelings') || '[]');
       } catch (e) {
+        console.warn('[MIL-SPEC HANDLED FAULT] Staged feelings parse failed:', e);
         return [];
       }
     }
@@ -2269,6 +2273,7 @@
           });
           if (!resp.ok) remaining.push(item);
         } catch (e) {
+          console.warn('[MIL-SPEC HANDLED FAULT] Feeling sync deferred:', e);
           remaining.push(item);
         }
       }
@@ -2319,6 +2324,7 @@
           alert("Could not commit feeling to PC. Make sure PC server is running.");
         }
       } catch (e) {
+        console.warn('[MIL-SPEC HANDLED FAULT] Feeling direct submit failed, staging offline:', e);
         const queue = getStagedFeelings();
         queue.push(payload);
         saveStagedFeelings(queue);

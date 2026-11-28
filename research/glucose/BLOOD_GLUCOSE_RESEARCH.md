@@ -36,11 +36,11 @@ In the decompiled Veepoo protocol (`com.veepoo.protocol.*`):
 ## 3. Data Representation & Conversions
 
 * **Units:**
-  * SI Standard: $\text{mmol/L}$
-  * Conventional US: $\text{mg/dL}$
+  * SI Standard: `mmol/L`
+  * Conventional US: `mg/dL`
   * Conversion formula:
-    $$\text{mg/dL} = \text{mmol/L} \times 18.0182$$
-    $$\text{mmol/L} = \frac{\text{mg/dL}}{18.0182}$$
+    * `mg/dL = mmol/L * 18.0182`
+    * `mmol/L = mg/dL / 18.0182`
 * **Packet Byte Structure (GATT payload):**
   * Typically mapped under the proprietary custom service write/notify characteristic.
   * Command byte identifier followed by status flags, integer parts, and decimal multipliers.

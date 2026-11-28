@@ -61,7 +61,8 @@ def generate_fhir_bundle(db_path, output_dir, mrn="PATIENT-MRN-948201", user_uid
             # Format time to ISO 8601
             dt = datetime.datetime.fromisoformat(rec_time.replace("Z", ""))
             iso_time = dt.isoformat() + "Z"
-        except:
+        except (ValueError, TypeError) as ts_err:
+            print(f"[MIL-SPEC HANDLED FAULT] FHIR vital timestamp parse fallback ({rec_time}): {ts_err}")
             iso_time = rec_time
 
         obs_id = f"obs-glucose-{obs_idx}"
@@ -141,7 +142,8 @@ def generate_fhir_bundle(db_path, output_dir, mrn="PATIENT-MRN-948201", user_uid
         try:
             dt = datetime.datetime.fromisoformat(m_time.replace("Z", ""))
             iso_time = dt.isoformat() + "Z"
-        except:
+        except (ValueError, TypeError) as ts_err:
+            print(f"[MIL-SPEC HANDLED FAULT] FHIR meal timestamp parse fallback ({m_time}): {ts_err}")
             iso_time = m_time
 
         obs_id = f"obs-nutrition-{obs_idx}"

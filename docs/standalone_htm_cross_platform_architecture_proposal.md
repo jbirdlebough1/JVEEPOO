@@ -64,7 +64,7 @@ Physicians and risk managers require off-device redundancy so that device theft,
 | **Android Field Companion (`BFM-Cell.apk`)** | Offline `localStorage` queue inside signed WebView + automatic home Wi-Fi sync (`checkHostConnection()`) | Meals, photos, voice memos, HDYF feelings & `/api/meds/daily_status` docked to PC SQLite | Confirmed SHA-256 & SQLite persistence on home Wi-Fi reconnect |
 
 #### 1. Chromium Desktop & ChromeOS: The File System Access API
-On Chrome, Edge, and Opera (Windows, macOS, Linux, ChromeOS):
+On Chrome, Edge, and Opera (Windows 10/11 Verified, macOS Unverified; Linux UI-only — Bluetooth unsupported):
 * **One-Time Pairing**: The user clicks **"Bind USB / SD Backup Drive"** once. The browser displays `window.showDirectoryPicker()`. The user selects their thumb drive or SD card (e.g. `E:\BFM_VAULT`).
 * **Persistent Handle**: The directory handle is serialized in `IndexedDB`.
 * **Zero-Friction Daily Write**: Whenever a daily sync occurs, the application writes:
@@ -106,7 +106,7 @@ Physicians and endocrinologists require absolute consistency across views and pl
 | Capability | Current Two-Tier (PC + Python) | Proposed Standalone Hybrid `.HTM` |
 | :--- | :--- | :--- |
 | **Startup Experience** | Requires running Python in terminal / background | **Double-click `.HTM` file in any browser** |
-| **Supported OS** | Windows PC only | **Windows, macOS, Linux, ChromeOS, Android, iPadOS** |
+| **Supported OS** | Windows PC (Verified BLE) | **Windows 10/11 (Verified BLE); macOS/ChromeOS/Android/iPadOS (Experimental); Linux (UI-Only — BT Unsupported)** |
 | **Hardware BLE Link** | Chrome Web Bluetooth or Python Bleak daemon | **Universal Browser Web Bluetooth (`navigator.bluetooth`)** |
 | **Local Retention** | Hard disk SQLite (`telemetry.db`) | **1-Year Inlined SQLite-WASM + IndexedDB (&ge; 365 Days)** |
 | **External Redundancy** | Manual file copy of `telemetry.db` | **Automated Daily USB / SD Backup via File System API** |
@@ -116,15 +116,16 @@ Physicians and endocrinologists require absolute consistency across views and pl
 
 ---
 
-### Current Beta Cross-Platform Compatibility (macOS & Linux)
+### Current Beta Cross-Platform Compatibility & Bluetooth Limitations
 
-`BFM.HTM` is OS-agnostic HTML5/CSS/JS with zero Windows dependencies, and `w11_htm_app/server.py` is cross-platform Python (`bleak` supports macOS CoreBluetooth and Linux BlueZ; Windows registry calls are guarded by `if sys.platform != "win32"`). **We are actively seeking developers with Type 2 Diabetes to test and validate BFM on macOS and Linux platforms.**
+`BFM.HTM` UI rendering works across desktop OS browsers, and `w11_htm_app/server.py` guards Windows registry/shortcut calls with `if sys.platform != "win32"`. **However, live Bluetooth LE watch telemetry is currently verified on Windows 10/11 only; Bluetooth does NOT work on Linux.**
 
-| Platform | `BFM.HTM` UI & Watch BLE | `w11_htm_app/server.py` (SQLite + Cell LAN + BLE) | Notes / Requirements |
+| Platform | `BFM.HTM` UI & Watch BLE | `w11_htm_app/server.py` (SQLite + Cell LAN + BLE) | Honest Reality / Status |
 | :--- | :--- | :--- | :--- |
-| **macOS** | **Yes** (Chrome / Edge / Brave) | **Yes** (`python3 w11_htm_app/server.py`) | **Safari & Firefox lack Web Bluetooth** — use Chrome/Edge for direct watch link; macOS prompts once for Bluetooth permission. |
-| **Linux** | **Yes** (Chrome / Chromium / Edge) | **Yes** (`python3 w11_htm_app/server.py`) | Requires `bluez` running; in Chrome/Chromium on Linux enable `chrome://flags/#enable-experimental-web-platform-features` for Web Bluetooth (not needed if using `server.py` `bleak` sync). |
-| **Windows-Only Pieces** | None in `BFM.HTM` | Shortcut button route only (`server.py` PowerShell shortcut endpoint) | `BFM_Launcher.exe` and the Windows shortcut installer route are Windows-only and not needed on macOS/Linux. |
+| **Windows 10/11** | **Yes (Verified)** (Chrome / Edge Web Bluetooth) | **Yes (Verified)** | Primary verified watch hardware platform. |
+| **macOS** | **Experimental / Unverified** (Chrome / Edge; Safari/Firefox lack Web Bluetooth) | **Experimental / Unverified** (`python3 w11_htm_app/server.py`) | Needs community developer verification on macOS CoreBluetooth. |
+| **Linux** | **UI Only — Bluetooth NOT Supported on Linux** | **Unsupported on Linux (BT Does Not Work)** | Chrome Web Bluetooth and Bleak/BlueZ watch syncing fail to maintain reliable GATT transfers on Linux. |
+| **Windows-Only Pieces** | None in `BFM.HTM` | Shortcut button route only (`server.py` PowerShell shortcut endpoint) | `BFM_Installer.exe` and `BFM_Launcher.exe` are Windows executables. |
 
 ---
 

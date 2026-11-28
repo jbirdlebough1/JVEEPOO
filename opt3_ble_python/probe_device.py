@@ -43,9 +43,11 @@ async def probe(mac: str):
                             try:
                                 ascii_val = val.decode('utf-8', errors='ignore').strip()
                                 val_str = f" | Value: '{ascii_val}' (Hex: {val.hex()})"
-                            except Exception:
+                            except Exception as dec_err:
+                                print(f"[MIL-SPEC HANDLED FAULT] ASCII decode fallback on {char.uuid}: {dec_err}")
                                 val_str = f" | Hex: {val.hex()}"
                         except Exception as e:
+                            print(f"[MIL-SPEC HANDLED FAULT] GATT read failed on {char.uuid}: {e}")
                             val_str = f" | (Read error: {e})"
                     print(f"   [Char] {char.uuid} [{props}]{val_str}")
 

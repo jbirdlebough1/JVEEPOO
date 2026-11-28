@@ -20,7 +20,8 @@ import time
 try:
     from bleak import BleakScanner, BleakClient
     BLEAK_AVAILABLE = True
-except ImportError:
+except ImportError as e:
+    print(f"[MIL-SPEC HANDLED FAULT] Bleak BLE module unavailable: {e}")
     BLEAK_AVAILABLE = False
 
 
@@ -47,16 +48,16 @@ def load_backup_config():
         try:
             with open(cfg_file, "r", encoding="utf-8") as f:
                 backup_config.update(json.load(f))
-        except:
-            pass
+        except Exception as e:
+            print(f"[MIL-SPEC HANDLED FAULT] Failed loading backup_config.json: {e}")
 
 def save_backup_config():
     cfg_file = os.path.join(BASE_DIR, "backup_config.json")
     try:
         with open(cfg_file, "w", encoding="utf-8") as f:
             json.dump(backup_config, f, indent=2)
-    except:
-        pass
+    except Exception as e:
+        print(f"[MIL-SPEC HANDLED FAULT] Failed saving backup_config.json: {e}")
 
 def background_backup_scheduler_worker():
     print(f"[*] USB Backup Background Scheduler started. Target time: {backup_config['schedule_time']} Daily.")
@@ -86,10 +87,12 @@ def get_local_wifi_ip():
     try:
         s.connect(('10.255.255.255', 1))
         ip = s.getsockname()[0]
-    except Exception:
+    except Exception as e:
+        print(f"[MIL-SPEC HANDLED FAULT] LAN socket IP probe fallback: {e}")
         try:
             ip = socket.gethostbyname(socket.gethostname())
-        except Exception:
+        except Exception as host_err:
+            print(f"[MIL-SPEC HANDLED FAULT] Hostname IP lookup fallback to 127.0.0.1: {host_err}")
             ip = "127.0.0.1"
     finally:
         s.close()
@@ -216,8 +219,9 @@ def init_database():
         try:
             cur.execute("ALTER TABLE vital_records ADD COLUMN device_id TEXT DEFAULT 'VEE_5010'")
             conn.commit()
-        except Exception:
-            pass
+        except sqlite3.OperationalError as e:
+            if "duplicate column" not in str(e).lower():
+                print(f"[MIL-SPEC HANDLED FAULT] Schema migration device_id failed: {e}")
         cur.execute("CREATE INDEX IF NOT EXISTS idx_vital_ts ON vital_records(timestamp)")
         cur.execute("CREATE INDEX IF NOT EXISTS idx_vital_metric ON vital_records(metric)")
         # De-duplication unique index across timestamp and metric
@@ -900,7 +904,8 @@ def _extract_off_nutriments_py(p, fallback_name):
     elif k_100 and float(k_100) > 0:
         try:
             sq = float(p.get("serving_quantity") or 0)
-        except Exception:
+        except (ValueError, TypeError) as e:
+            print(f"[MIL-SPEC HANDLED FAULT] Serving quantity parse fallback: {e}")
             sq = 0.0
         scale = (sq / 100.0) if (15.0 <= sq <= 450.0) else 1.0
         return {
@@ -1466,8 +1471,8 @@ def analyze_meal_with_gemini_backend(meal_name, custom_notes="", photo_data=""):
                         "fluid_oz": float(p_fluid or 16.0)
                     }
                     break
-        except Exception:
-            pass
+        except Exception as e:
+            print(f"[MIL-SPEC HANDLED FAULT] Saved pantry snack parse fallback: {e}")
 
         if not saved_drink:
             saved_drink = {
@@ -3407,7 +3412,8 @@ def get_goals_compliance_report(timeframe="month"):
                     """, (meal_dt.isoformat(), window_end.isoformat()))
                     step_row = cur.fetchone()
                     act_steps = step_row[0] if (step_row and step_row[0]) else 0
-                except Exception:
+                except Exception as e:
+                    print(f"[MIL-SPEC HANDLED FAULT] Post-meal step lookup fallback for {ts_str}: {e}")
                     act_steps = 0
 
                 if act_steps >= 1500:
@@ -3622,8 +3628,8 @@ def get_recent_meals(limit=100):
             if r[15]:
                 try:
                     raw_obj = json.loads(r[15])
-                except Exception:
-                    pass
+                except Exception as e:
+                    print(f"[MIL-SPEC HANDLED FAULT] Meal list raw_json parse error for id={r[0]}: {e}")
             res.append({
                 "id": r[0], "timestamp": r[1], "meal_name": r[2], "source": r[3],
                 "photo_filename": r[4], "calories": r[5], "net_carbs": r[6], "total_carbs": r[7],
@@ -4184,8 +4190,8 @@ async def run_ble_auto_sync_loop():
         try:
             sync_trigger_event.wait(timeout=20.0)
             sync_trigger_event.clear()
-        except Exception:
-            pass
+        except Exception as e:
+            print(f"[MIL-SPEC HANDLED FAULT] BLE sync trigger wait error: {e}")
 
 
 def start_ble_background_thread():
@@ -4804,7 +4810,8 @@ def backfill_today_df_from_packet_log():
                 try:
                     hex_part = line.split("]: ", 1)[1].split(" | ", 1)[0].strip()
                     pkts.append(hex_part)
-                except Exception:
+                except Exception as e:
+                    print(f"[MIL-SPEC HANDLED FAULT] Malformed packet log line skipped: {e}")
                     continue
         if not pkts:
             return 0
@@ -4844,7 +4851,9 @@ def _parse_88_temp_packets(packets, day_offset=0):
             yr = ref_date.year - (1 if month > ref_date.month + 1 else 0)
             try:
                 datetime.date(yr, month, dom)
-            except ValueError:
+            except ValueError as date_err:
+                if minute == 0 and hour == 0:
+                    print(f"[MIL-SPEC HANDLED FAULT] Ignored out-of-range 0x88 temp date ({yr}-{month}-{dom}): {date_err}")
                 continue
             ts = f"{yr:04d}-{month:02d}-{dom:02d}T{hour:02d}:{minute:02d}:00"
             core_f = round(core_c * 9.0 / 5.0 + 32.0, 1)
@@ -5259,10 +5268,12 @@ def _parse_a1_precision_sleep_bytes(raw_bytes, target_date_obj):
         if pos + 3 > raw_len:
             break
         blen = raw_bytes[pos + 1] | (raw_bytes[pos + 2] << 8)
-        if blen < 10 or pos + blen > raw_len:
+        if blen < 10:
             pos += 1
             continue
-        content = raw_bytes[pos + 3 : pos + blen]
+        # Tolerate trailing missing 0xE0 packets as long as 0xA3 summary header fits
+        content_end = min(pos + blen, raw_len)
+        content = raw_bytes[pos + 3 : content_end]
         cpos = 0
         a3 = None
         a5 = None
@@ -5642,8 +5653,7 @@ def get_two_day_timeline():
                 steps_val = 0
                 notes = ""
 
-                # Blue shading ONLY for confirmed off-wrist (charging dock or shower) periods
-                is_am_charge_shower = (h == 7 and m >= 30) or (h == 8 and m <= 30)
+                # Off-wrist gaps come strictly from real watch WATCH_OFF_WRIST records (Zero hardcoded clock rules)
                 has_any_worn_vital = has_glucose or has_bp or has_hr or has_temp or has_spo2 or has_hrv
 
                 if is_future:
@@ -5655,7 +5665,6 @@ def get_two_day_timeline():
                         dia_val = round(slot_data["BLOOD_PRESSURE"][1])
                     if has_hr: hr_val = round(slot_data["HEART_RATE"][0])
                     if has_hrv: hrv_val = round(slot_data["HRV_STRESS"][0])
-                    elif has_hr: hrv_val = max(35, min(95, round(120 - (hr_val * 0.75))))
                     if has_spo2:
                         spo2_raw = slot_data.get("BLOOD_OXYGEN", slot_data.get("SPO2"))[0]
                         spo2_val = round(spo2_raw, 1)
@@ -5676,7 +5685,7 @@ def get_two_day_timeline():
                         notes = "⚡ Watch Not Sensing (Off-Wrist / Shower / Charging)"
                     else:
                         notes = "Verified Sensor Telemetry"
-                elif has_off_wrist or is_am_charge_shower:
+                elif has_off_wrist:
                     is_gap = True
                     steps_val = running_steps
                     notes = "⚡ Watch Not Sensing (Off-Wrist / Shower / Charging)"
@@ -6135,8 +6144,8 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                     last_dt = datetime.datetime.fromisoformat(last_sync_iso)
                     hours_ago = round((datetime.datetime.now() - last_dt).total_seconds() / 3600.0, 1)
                     is_overdue = (hours_ago >= 24.0)
-                except Exception:
-                    pass
+                except Exception as e:
+                    print(f"[MIL-SPEC HANDLED FAULT] Last sync ISO parse fallback ({last_sync_iso}): {e}")
 
             response_data = {
                 "status": ble_state.get("status", "STANDBY"),
@@ -6460,8 +6469,8 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                     if r[15]:
                         try:
                             raw_obj = json.loads(r[15])
-                        except Exception:
-                            pass
+                        except Exception as e:
+                            print(f"[MIL-SPEC HANDLED FAULT] Meal audit raw_json parse error for id={r[0]}: {e}")
                     items.append({
                         "id": r[0], "timestamp": r[1], "meal_name": r[2], "source": r[3],
                         "photo_filename": r[4], "calories": r[5], "net_carbs": r[6], "total_carbs": r[7],
@@ -6507,8 +6516,8 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                     if " " in it["timestamp"]:
                         try:
                             hour = int(it["timestamp"].split(" ")[1].split(":")[0])
-                        except Exception:
-                            pass
+                        except Exception as e:
+                            print(f"[MIL-SPEC HANDLED FAULT] Meal timestamp hour parse fallback ({it['timestamp']}): {e}")
 
                     if "[snack]" in name_lower or "snack" in name_lower or "infusion" in name_lower or " tea" in name_lower or "tea " in name_lower:
                         m_type = "Snack"
@@ -6724,8 +6733,8 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                     body = self.rfile.read(length).decode("utf-8")
                     data = json.loads(body)
                     meal_id = data.get("id")
-                except Exception:
-                    pass
+                except Exception as e:
+                    print(f"[MIL-SPEC HANDLED FAULT] Meal delete payload parse error: {e}")
 
             if meal_id:
                 with db_lock:
@@ -7240,7 +7249,8 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                             try:
                                 dt_utc = datetime.datetime.fromisoformat(m_time_s.replace("Z", "+00:00"))
                                 m_time = dt_utc.astimezone().strftime("%Y-%m-%d %H:%M:%S")
-                            except Exception:
+                            except Exception as e:
+                                print(f"[MIL-SPEC HANDLED FAULT] Shuttle dock UTC timestamp parse fallback ({m_time_s}): {e}")
                                 m_time = m_time_s.replace("T", " ").rstrip("Z")[:19]
                         elif "T" in m_time_s and re.match(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}", m_time_s):
                             m_time = m_time_s.replace("T", " ")[:19]

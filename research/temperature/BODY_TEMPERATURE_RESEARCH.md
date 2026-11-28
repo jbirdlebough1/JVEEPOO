@@ -9,7 +9,7 @@ Veepoo devices that support continuous body temperature tracking generally utili
 2. **Ambient / Internal Reference Sensor:**
    * An onboard thermal sensor inside the watch chassis measuring internal component heat and ambient room temperature.
 3. **Core Body Temperature Compensation Algorithm:**
-   * Epidermal skin temperature is typically $1.5^\circ\text{C} - 2.5^\circ\text{C}$ lower than actual oral or core rectal temperature.
+   * Epidermal skin temperature is typically `1.5°C – 2.5°C` lower than actual oral or core rectal temperature.
    * The firmware applies a compensation algorithm based on ambient temperature to extrapolate estimated core body temperature.
 
 ---
@@ -35,6 +35,6 @@ In the Veepoo protocol (`com.veepoo.protocol.*`):
 ## 3. Data Format in Packets
 
 * Temperature values in payload packets are transmitted as fixed-point integers (e.g. value multiplied by 10 or 100):
-  $$\text{Temperature}(^\circ\text{C}) = \frac{\text{Raw Integer}}{10.0} \quad \text{or} \quad \frac{\text{Raw Integer}}{100.0}$$
-* Supports Celsius ($^\circ\text{C}$) to Fahrenheit ($^\circ\text{F}$) conversion:
-  $$^\circ\text{F} = (^\circ\text{C} \times 1.8) + 32$$
+  * `Temperature (°C) = Raw Integer / 10.0` or `Raw Integer / 100.0`
+* Supports Celsius (`°C`) to Fahrenheit (`°F`) conversion:
+  * `°F = (°C * 1.8) + 32`
