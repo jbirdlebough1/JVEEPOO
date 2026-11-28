@@ -1,12 +1,20 @@
-# BFM Biometric Function Monitor — Continuous Metabolic & Clinical Telemetry Platform (`beta.00.01.0075`)
+# BFM Biometric Function Monitor — Continuous Metabolic & Clinical Telemetry Platform (`beta.00.01.0076`)
 
 The **BFM Biometric Function Monitor** (`JVEEPOO`) is an independent, open-source, clinician-aligned ambulatory telemetry workstation and zero-account mobile companion built by **The Author** (Sole Pioneer, Inventor, System Architect, and Philosophical Leader), developed with Google Gemini AI (currently independent with no sponsors).
 
-[![Build: beta.00.01.0075](https://img.shields.io/badge/Build-beta.00.01.0075-blue.svg)](Beta/docs/walkthrough_beta_00_01_0075.md)
+[![Build: beta.00.01.0076](https://img.shields.io/badge/Build-beta.00.01.0076-blue.svg)](Beta/docs/walkthrough_beta_00_01_0076.md)
 [![Hardware: Model 5010](https://img.shields.io/badge/Hardware-FITAOS%205150%20%2F%20Veepoo%205010-orange.svg)](https://fitaos.com)
 [![Presentation: 89 Slides](https://img.shields.io/badge/Presentation-89%20Slides%20%2B%20Audio-green.svg)](https://jbirdlebough1.github.io/JVEEPOO/presentation/preview.html)
-[![Zero Defect: Six Sigma](https://img.shields.io/badge/CLEBUGGER-75%2F75%20Zero%20Open-brightgreen.svg)](Beta/docs/BETA_BACKLOG_TODO.md)
+[![Zero Defect: Six Sigma](https://img.shields.io/badge/CLEBUGGER-76%2F76%20Zero%20Open-brightgreen.svg)](Beta/docs/BETA_BACKLOG_TODO.md)
 [![License: GPL v3 / Open Source](https://img.shields.io/badge/License-GPL%20v3%20%2F%20Open%20Source-green.svg)](https://github.com/jbirdlebough1/JVEEPOO)
+
+> [!IMPORTANT]
+> **Quick Launch — Do NOT Clone the Full 1.4 GB Repo Just to Run BFM**
+> Clicking `BFM.HTM` inside GitHub's code viewer only shows HTML source code. Use one of these direct launch options instead:
+> - **1-Click Live Web App (0 MB Download — Windows, macOS & Linux Chrome/Edge):** [**Launch Live BFM Workstation Console**](https://jbirdlebough1.github.io/JVEEPOO/) *(runs directly over HTTPS with Web Bluetooth watch sync and browser vault — zero install required)*
+> - **Single-File Offline Download (`1.5 MB`):** [**Download `BFM.HTM`**](https://raw.githubusercontent.com/jbirdlebough1/JVEEPOO/main/BFM.HTM) *(Right-click -> **Save Link As** -> double-click in Chrome/Edge; decodes Veepoo `0xDF` / `0x88` / `0xE0` / `0x07` telemetry directly in the browser with no Python server needed)*
+> - **Portable Windows Launcher (`~9 KB`):** [**Download `BFM_Launcher.exe`**](https://raw.githubusercontent.com/jbirdlebough1/JVEEPOO/main/BFM_Launcher.exe) *(works from any folder — starts local server if present, opens local `BFM.HTM` if present, or launches the live HTTPS console automatically)*
+> - **Android Field Companion (`42 KB`):** [**Download `BFM-Cell.apk`**](https://raw.githubusercontent.com/jbirdlebough1/JVEEPOO/main/w11_htm_app/BFM-Cell.apk) *(or scan QR in `10-CONFIG -> ADD CELL`)*
 
 ---
 
@@ -30,7 +38,7 @@ Conceived and architected out of personal necessity by **The Author** while mana
 
 ---
 
-## Visual Showcase (`beta.00.01.0075`)
+## Visual Showcase (`beta.00.01.0076`)
 
 | 14-Tab Desktop Console (`01-FULL SCAN`) | `03-MEAL PLANNER` (Saved Meals & Clean Coach) |
 | :---: | :---: |
@@ -53,7 +61,7 @@ Clicking `.html` files inside GitHub's web viewer shows raw source code. Launch 
 
 ---
 
-## Key Capabilities (`beta.00.01.0075`)
+## Key Capabilities (`beta.00.01.0076`)
 
 ### 1. Unified 14-Tab Workstation Console (`BFM.HTM`)
 Operates identically via local server (`http://127.0.0.1:8899/`) and standalone desktop launch (`file:///D:/veepoo/BFM.HTM`):

@@ -1437,6 +1437,40 @@
     // =========================================================================
     // OFFLINE STAGED MEALS QUEUE (For Users Out All Day Away from PC)
     // =========================================================================
+    function _localSqlTimestampJS(d = new Date()) {
+      const yr = d.getFullYear();
+      const mo = String(d.getMonth() + 1).padStart(2, '0');
+      const dy = String(d.getDate()).padStart(2, '0');
+      const hh = String(d.getHours()).padStart(2, '0');
+      const mi = String(d.getMinutes()).padStart(2, '0');
+      const ss = String(d.getSeconds()).padStart(2, '0');
+      return `${yr}-${mo}-${dy} ${hh}:${mi}:${ss}`;
+    }
+
+    function _normalizeStagedTimestampJS(tsStr) {
+      if (!tsStr || typeof tsStr !== 'string') return _localSqlTimestampJS(new Date());
+      const clean = tsStr.trim();
+      if (/^\d{4}-\d{2}-\d{2}[ T]\d{2}:\d{2}/.test(clean)) return clean.replace('T', ' ').slice(0, 19);
+      const m12 = clean.match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/i);
+      if (m12) {
+        let hh = parseInt(m12[1], 10);
+        const mm = parseInt(m12[2], 10);
+        const ap = m12[3].toUpperCase();
+        if (ap === 'PM' && hh < 12) hh += 12;
+        if (ap === 'AM' && hh === 12) hh = 0;
+        const d = new Date();
+        d.setHours(hh, mm, 0, 0);
+        return _localSqlTimestampJS(d);
+      }
+      const m24 = clean.match(/^(\d{1,2}):(\d{2})(?::(\d{2}))?$/);
+      if (m24) {
+        const d = new Date();
+        d.setHours(parseInt(m24[1], 10), parseInt(m24[2], 10), parseInt(m24[3] || '0', 10), 0);
+        return _localSqlTimestampJS(d);
+      }
+      return _localSqlTimestampJS(new Date());
+    }
+
     function getStagedQueue() {
       try {
         const q = localStorage.getItem('staged_meals_queue');
@@ -1469,11 +1503,13 @@
         );
       }
 
+      const nowDt = new Date();
       const stagedItem = {
         id: "meal_" + Date.now(),
         meal_type: selectedMealType,
         meal_name: text || currentAnalysis.meal_name,
-        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        timestamp: _localSqlTimestampJS(nowDt),
+        display_time: nowDt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         photo_count: uploadedPhotos.length,
         photos: [...uploadedPhotos],
         audio_memo: recordedAudioBase64,
@@ -1525,7 +1561,7 @@
               ${item.meal_type.toUpperCase()}: ${item.meal_name}
             </div>
             <div style="font-size: 0.72rem; color: #94a3b8;">
-              ${item.timestamp} &bull; ${item.photo_count} photo(s) &bull; ${item.analysis.calories} kcal &bull; ${item.analysis.net_carbs}g net carbs
+              ${item.display_time || item.timestamp} &bull; ${item.photo_count} photo(s) &bull; ${item.analysis.calories} kcal &bull; ${item.analysis.net_carbs}g net carbs
             </div>
           </div>
           <button type="button" onclick="removeStagedMeal(${idx})" style="background: #ef4444; color: white; border: none; border-radius: 4px; padding: 4px 8px; font-size: 0.72rem; cursor: pointer;">
@@ -1555,9 +1591,13 @@
       return { esn, cellId };
     }
 
+    let _isSyncingStagedMeals = false;
+
     async function syncAllStagedMeals() {
+      if (_isSyncingStagedMeals) return;
       const queue = getStagedQueue();
       if (queue.length === 0) return;
+      _isSyncingStagedMeals = true;
 
       const btn = document.getElementById('btnSyncAllStaged');
       if (btn) {
@@ -1570,7 +1610,7 @@
       // Attempt atomic bulk docking to /api/shuttle/dock
       try {
         const batchRecords = queue.map(item => ({
-          intake_timestamp: item.timestamp || new Date().toISOString(),
+          intake_timestamp: _normalizeStagedTimestampJS(item.timestamp),
           meal_name: `[${item.meal_type}] ${item.meal_name}`,
           calories: item.analysis ? item.analysis.calories : item.calories,
           net_carbs: item.analysis ? item.analysis.net_carbs : item.net_carbs,
@@ -1608,6 +1648,7 @@
             btn.innerHTML = "<span>⚡ SYNC ALL STAGED MEALS TO PC</span>";
           }
           renderStagedQueue();
+          _isSyncingStagedMeals = false;
           return;
         }
       } catch (dockErr) {
@@ -1616,51 +1657,56 @@
 
       // Fallback: 1-by-1 upload if dock API fails
       let uploadedCount = 0;
-      for (const item of queue) {
-        try {
-          const payload = {
-            meal_name: `[${item.meal_type}] ${item.meal_name}`,
-            description: item.meal_name,
-            source: "SHUTTLE_FALLBACK_SYNC",
-            photo_data: item.photos && item.photos.length > 0 ? item.photos[0] : "",
-            photo_count: item.photo_count || 0,
-            audio_memo: item.audio_memo || "",
-            commit: true,
-            calories: item.calories,
-            net_carbs: item.net_carbs,
-            total_carbs: item.total_carbs,
-            fiber: item.fiber,
-            protein: item.protein,
-            fat: item.fat,
-            glycemic_load: item.glycemic_load,
-            meets_goal: item.meets_goal
-          };
+      try {
+        for (const item of queue) {
+          try {
+            const a = item.analysis || {};
+            const payload = {
+              meal_name: `[${item.meal_type}] ${item.meal_name}`,
+              description: item.meal_name,
+              source: "SHUTTLE_FALLBACK_SYNC",
+              photo_data: item.photos && item.photos.length > 0 ? item.photos[0] : "",
+              photo_count: item.photo_count || 0,
+              audio_memo: item.audio_memo || "",
+              commit: true,
+              calories: a.calories !== undefined ? a.calories : item.calories,
+              net_carbs: a.net_carbs !== undefined ? a.net_carbs : item.net_carbs,
+              total_carbs: a.total_carbs !== undefined ? a.total_carbs : item.total_carbs,
+              fiber: a.fiber !== undefined ? a.fiber : item.fiber,
+              protein: a.protein !== undefined ? a.protein : item.protein,
+              fat: a.fat !== undefined ? a.fat : item.fat,
+              glycemic_load: a.glycemic_load !== undefined ? a.glycemic_load : item.glycemic_load,
+              meets_goal: a.meets_goal !== undefined ? a.meets_goal : item.meets_goal
+            };
 
-          const resp = await fetch('/api/meal/upload', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-          });
-          if (resp.ok) uploadedCount++;
-        } catch (e) {
-          console.warn("Failed uploading item", item, e);
+            const resp = await fetch('/api/meal/upload', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload)
+            });
+            if (resp.ok) uploadedCount++;
+          } catch (e) {
+            console.warn("Failed uploading item", item, e);
+          }
         }
-      }
 
-      if (uploadedCount > 0) {
-        saveStagedQueue([]);
-        const succ = document.getElementById('lblSubmitSuccess');
-        if (succ) {
-          succ.style.display = 'block';
-          succ.innerHTML = `🎉 <strong>ALL ${uploadedCount} MEALS SYNCHRONIZED TO BFM!</strong> Telemetry &amp; diet journal updated.`;
+        if (uploadedCount > 0) {
+          saveStagedQueue([]);
+          const succ = document.getElementById('lblSubmitSuccess');
+          if (succ) {
+            succ.style.display = 'block';
+            succ.innerHTML = `🎉 <strong>ALL ${uploadedCount} MEALS SYNCHRONIZED TO BFM!</strong> Telemetry &amp; diet journal updated.`;
+          }
         }
-      }
 
-      if (btn) {
-        btn.disabled = false;
-        btn.innerHTML = "<span>⚡ SYNC ALL STAGED MEALS TO PC</span>";
+        if (btn) {
+          btn.disabled = false;
+          btn.innerHTML = "<span>⚡ SYNC ALL STAGED MEALS TO PC</span>";
+        }
+        renderStagedQueue();
+      } finally {
+        _isSyncingStagedMeals = false;
       }
-      renderStagedQueue();
     }
 
     async function submitMealDirect() {

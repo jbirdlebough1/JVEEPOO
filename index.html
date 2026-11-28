@@ -8904,7 +8904,8 @@
     // STANDALONE DESKTOP EXECUTION VECTOR (file:///) RUNTIME PARITY
     // Transparently routes relative /api/* requests to local daemon port 8899
     // =========================================================================
-    const BFM_API_BASE = (window.location.protocol === 'file:') ? 'http://127.0.0.1:8899' : '';
+    const BFM_API_BASE = (window.location.protocol === 'file:') ? 'http://127.0.0.1:8899' : (window.location.hostname && window.location.hostname.endsWith('github.io') ? 'http://127.0.0.1:8899' : '');
+    window._bfmLocalServerOnline = null;
     const _origFetch = window.fetch;
     window.fetch = function(url, opts) {
       if (typeof url === 'string' && url.startsWith('/api/')) {
@@ -10346,13 +10347,19 @@ function switchTab(tabId) {
         if (typeof queryOriginHistoryData === 'function') {
           queryOriginHistoryData(0, true);
         }
-        await new Promise(r => setTimeout(r, 1200));
+        await new Promise(r => setTimeout(r, 2500));
+        if (window._dfOriginBuffer && window._dfOriginBuffer.length > 0 && typeof flushDfOriginBuffer === 'function') {
+          await flushDfOriginBuffer();
+        }
 
         // Step 7c: 5-Minute Temperature History Sync for Today (0x88 0x01 0x00 0x01 0x00)
         if (typeof queryTempHistoryData === 'function') {
           queryTempHistoryData(0, true);
         }
-        await new Promise(r => setTimeout(r, 900));
+        await new Promise(r => setTimeout(r, 1500));
+        if (window._tempHistBuffer && window._tempHistBuffer.length > 0 && typeof flushTempHistoryBuffer === 'function') {
+          await flushTempHistoryBuffer();
+        }
 
         // Step 8: Trigger Server Sync & Telemetry Deduplication
         try {
@@ -10626,8 +10633,25 @@ function switchTab(tabId) {
     // INCOMING TELEMETRY PROCESSOR
     // =========================================================================
     
-    // Real-Time Telemetry Host Synchronization & SQLite Deduplication
+    // Real-Time Telemetry Host Synchronization & SQLite Deduplication (+ Standalone Browser Cache)
+    function saveStandaloneVitalToCache(metric, val1, val2, unit, modeStr) {
+      try {
+        const raw = localStorage.getItem('bfm_local_latest_v1');
+        const map = raw ? JSON.parse(raw) : {};
+        map[metric] = {
+          metric: metric,
+          value1: val1,
+          value2: val2,
+          unit: unit || '',
+          mode: modeStr || 'WEB_BLUETOOTH_STREAM',
+          timestamp: new Date().toISOString()
+        };
+        localStorage.setItem('bfm_local_latest_v1', JSON.stringify(map));
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+    }
+
     function postTelemetryToServer(metric, val1, val2, unit, rawHex) {
+      saveStandaloneVitalToCache(metric, val1, val2, unit, 'WEB_BLUETOOTH_STREAM');
       try {
         const activeWatchId = window._connectedWatchId || localStorage.getItem('bfm_connected_watch_id') || 'VEE_5010';
         const payload = {
@@ -11350,11 +11374,7 @@ function switchTab(tabId) {
     }
 
     function sendAuthHandshake() {
-      // Proactively enforce user-configured 12/24-hour system using full vp_u.java Page 0 SET packet
-      try {
-        sendCommandBytes(buildWatchPage0TimePacket(isWatch12HourFormat()));
-      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
-
+      // 1. Send 0xA1 Authentication & Chronometer Handshake FIRST (required before 0xB8 / 0xA3 / 0xDF / 0x88 / 0xE0)
       const buf = new Uint8Array(20);
       buf[0] = 0xA1; buf[1] = 0x00; buf[2] = 0x00; buf[3] = 0x00;
       const now = new Date();
@@ -11367,7 +11387,12 @@ function switchTab(tabId) {
       buf[14] = 0x00;
       sendCommandBytes(buf);
 
-      // Push configured daily step goal (default 2,000) to watch firmware via Opcode 0xA3 (vp_by.java)
+      // 2. Enforce user-configured 12/24-hour system using full vp_u.java Page 0 SET packet
+      try {
+        sendCommandBytes(buildWatchPage0TimePacket(isWatch12HourFormat()));
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+
+      // 3. Push configured daily step goal (default 2,000) to watch firmware via Opcode 0xA3 (vp_by.java)
       try {
         const goal = (typeof getActiveClinicalGoals === 'function') ? (getActiveClinicalGoals().stepTarget || 2000) : 2000;
         syncWatchStepGoal(goal);
@@ -11855,12 +11880,510 @@ function switchTab(tabId) {
       sendCommandBytes(cmd);
     }
 
+    // =========================================================================
+    // CLIENT-SIDE STANDALONE VEEPOO DECODERS (0xDF OriginV3 & 0x88 Temp Hist)
+    // Ensures BFM.HTM & HTTPS web mode sync full watch telemetry with ZERO server
+    // =========================================================================
+    const VEEPOO_CRC_TABLE_JS = [
+      0, 49345, 49537, 320, 49921, 960, 640, 49729, 50689, 1728, 1920, 51009, 1280, 50625, 50305, 1088,
+      52225, 3264, 3456, 52545, 3840, 53185, 52865, 3648, 2560, 51905, 52097, 2880, 51457, 2496, 2176, 51265,
+      55297, 6336, 6528, 55617, 6912, 56257, 55937, 6720, 7680, 57025, 57217, 8000, 56577, 7616, 7296, 56385,
+      5120, 54465, 54657, 5440, 55041, 6080, 5760, 54849, 53761, 4800, 4992, 54081, 4352, 53697, 53377, 4160,
+      61441, 12480, 12672, 61761, 13056, 62401, 62081, 12864, 13824, 63169, 63361, 14144, 62721, 13760, 13440, 62529,
+      15360, 64705, 64897, 15680, 65281, 16320, 16000, 65089, 64001, 15040, 15232, 64321, 14592, 63937, 63617, 14400,
+      10240, 59585, 59777, 10560, 60161, 11200, 10880, 59969, 60929, 11968, 12160, 61249, 11520, 60865, 60545, 11328,
+      58369, 9408, 9600, 58689, 9984, 59329, 59009, 9792, 8704, 58049, 58241, 9024, 57601, 8640, 8320, 57409,
+      40961, 24768, 24960, 41281, 25344, 41921, 41601, 25152, 26112, 42689, 42881, 26432, 42241, 26048, 25728, 42049,
+      27648, 44225, 44417, 27968, 44801, 28608, 28288, 44609, 43521, 27328, 27520, 43841, 26880, 43457, 43137, 26688,
+      30720, 47297, 47489, 31040, 47873, 31680, 31360, 47681, 48641, 32448, 32640, 48961, 32000, 48577, 48257, 31808,
+      46081, 29888, 30080, 46401, 30464, 47041, 46721, 30272, 29184, 45761, 45953, 29504, 45313, 29120, 28800, 45121,
+      20480, 37057, 37249, 20800, 37633, 21440, 21120, 37441, 38401, 22208, 22400, 38721, 21760, 38337, 38017, 21568,
+      39937, 23744, 23936, 40257, 24320, 40897, 40577, 24128, 23040, 39617, 39809, 23360, 39169, 22976, 22656, 38977,
+      34817, 18624, 18816, 35137, 19200, 35777, 35457, 19008, 19968, 36545, 36737, 20288, 36097, 19904, 19584, 35905,
+      17408, 33985, 34177, 17728, 34561, 18368, 18048, 34369, 33281, 17088, 17280, 33601, 16640, 33217, 32897, 16448
+    ];
+
+    function calcVeepooCrcJS(bytes) {
+      let crc = 65535;
+      for (let i = 0; i < bytes.length; i++) {
+        crc = (((crc >> 8) & 255) ^ VEEPOO_CRC_TABLE_JS[(crc & 255) ^ (bytes[i] & 255)]) & 65535;
+      }
+      return crc & 65535;
+    }
+
+    function _hexToBytesJS(item) {
+      if (item instanceof Uint8Array || Array.isArray(item)) return Array.from(item);
+      if (typeof item !== 'string') return [];
+      const out = [];
+      const toks = item.trim().split(/\s+/);
+      for (const tok of toks) {
+        if (tok.length === 2) {
+          const v = parseInt(tok, 16);
+          if (!isNaN(v)) out.push(v & 0xFF);
+        }
+      }
+      return out;
+    }
+
+    function _localIsoDateStr(d) {
+      return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    }
+
+    function parseDfOriginBlocksJS(packets, dayOffset = 0, nowOverride = null) {
+      if (!packets || !packets.length) return [];
+      const grouped = new Map();
+      for (const item of packets) {
+        const pkt = _hexToBytesJS(item);
+        if (pkt.length < 5 || pkt[0] !== 0xDF) continue;
+        if (pkt[1] === 0xFF && pkt[2] === 0xFF) continue;
+        const bid = (pkt[2] << 8) | pkt[1];
+        const sub = pkt[3] & 0xFF;
+        if (!grouped.has(bid)) grouped.set(bid, new Map());
+        grouped.get(bid).set(sub, pkt);
+      }
+
+      const blocks = [];
+      let lastPktLen = 20;
+      const bids = Array.from(grouped.keys()).sort((a, b) => a - b);
+      for (const bid of bids) {
+        const subs = grouped.get(bid);
+        const hdr = subs.get(0);
+        if (!hdr || hdr.length < 20) continue;
+        let pktLen = hdr[13] & 0xFF;
+        if (pktLen < 4) pktLen = lastPktLen >= 4 ? lastPktLen : 20;
+        lastPktLen = pktLen;
+        const dayB = hdr[7] & 0xFF;
+        const validLen = hdr[10] & 0xFF;
+        const expectedCrc = ((hdr[12] & 0xFF) << 8) | (hdr[11] & 0xFF);
+        const payload = [];
+        const subKeys = Array.from(subs.keys()).filter(k => k >= 1).sort((a, b) => a - b);
+        for (const sk of subKeys) {
+          const dp = subs.get(sk);
+          const chunkLen = Math.min(pktLen - 4, dp.length - 4);
+          for (let i = 0; i < chunkLen; i++) payload.push(dp[4 + i]);
+        }
+        if (validLen <= 0 || payload.length < validLen) continue;
+        const trimmed = payload.slice(0, validLen);
+        if (calcVeepooCrcJS(trimmed) !== expectedCrc) continue;
+        blocks.push({ dayB, payload: trimmed });
+      }
+
+      const nowLocal = nowOverride || new Date();
+      const parsedRecords = [];
+      const seenTs = new Set();
+      for (const blk of blocks) {
+        const dOff = (blk.dayB >= 0 && blk.dayB <= 7) ? blk.dayB : dayOffset;
+        const payload = blk.payload;
+        let pos = 0;
+        const tlvs = {};
+        while (pos + 2 <= payload.length) {
+          const tag = payload[pos];
+          const tlen = payload[pos + 1];
+          pos += 2;
+          if (pos + tlen > payload.length) break;
+          tlvs[tag] = payload.slice(pos, pos + tlen);
+          pos += tlen;
+        }
+        const tBytes = tlvs[0xB1];
+        if (!tBytes || tBytes.length < 4 || (tBytes[0] === 0 && tBytes[1] === 0)) continue;
+        const hour = tBytes[2] & 0xFF;
+        const minute = tBytes[3] & 0xFF;
+        if (hour > 23 || minute > 59) continue;
+        const targetDate = new Date(nowLocal.getFullYear(), nowLocal.getMonth(), nowLocal.getDate() - dOff, hour, minute, 0, 0);
+        if (targetDate.getTime() > nowLocal.getTime()) continue;
+        const dateStr = _localIsoDateStr(targetDate);
+        const tsIso = `${dateStr}T${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}:00`;
+        if (seenTs.has(tsIso)) continue;
+        seenTs.add(tsIso);
+
+        const rec = { timestamp: tsIso, date: dateStr, hour, minute };
+        if (tlvs[0xB2] && tlvs[0xB2].length >= 8) {
+          const b2 = tlvs[0xB2];
+          rec.step = (b2[0] << 8) | b2[1];
+          rec.sport = (b2[2] << 8) | b2[3];
+          rec.dis_m = (b2[4] << 8) | b2[5];
+          rec.kcal = Math.round(((b2[6] << 8) | b2[7])) / 10.0;
+          if (b2.length >= 10) rec.wear = b2[9];
+        }
+        const hrs = [];
+        for (const ht of [0xB4, 0xB5]) {
+          if (tlvs[ht]) {
+            for (const v of tlvs[ht]) {
+              if (v >= 30 && v <= 220) hrs.push(v);
+            }
+          }
+        }
+        if (hrs.length > 0) {
+          rec.hr = Math.round(hrs.reduce((s, x) => s + x, 0) / hrs.length);
+        } else {
+          rec.off_wrist = true;
+        }
+        if (tlvs[0xB6]) {
+          const brs = tlvs[0xB6].filter(v => v >= 6 && v <= 45);
+          if (brs.length > 0) rec.breath = Math.round(brs.reduce((s, x) => s + x, 0) / brs.length);
+        }
+        if (tlvs[0xB7] && tlvs[0xB7].length >= 51) {
+          const rr50 = tlvs[0xB7].slice(1, 51);
+          const hrvMins = [];
+          for (let mi = 0; mi < 5; mi++) {
+            let prev = -1, absSum = 0, cnt = 0;
+            for (let j = mi * 10; j < (mi + 1) * 10; j++) {
+              const v = rr50[j];
+              if (v >= 30 && v <= 210) {
+                if (prev !== -1) { absSum += Math.abs(prev - v); cnt++; }
+                prev = v;
+              }
+            }
+            if (cnt > 0) hrvMins.push(Math.round((absSum * 10) / cnt) % 211);
+          }
+          const validHrvs = hrvMins.filter(h => h >= 1 && h <= 210);
+          if (validHrvs.length > 0) rec.hrv = Math.round(validHrvs.reduce((s, x) => s + x, 0) / validHrvs.length);
+          const rrMs = rr50.filter(v => v >= 30 && v <= 210).map(v => Math.round((60000.0 / v) * 10) / 10);
+          if (rrMs.length >= 2) rec.rr_ms = rrMs;
+        }
+        if (tlvs[0xB8] && tlvs[0xB8].length >= 2) {
+          const sysV = tlvs[0xB8][0], diaV = tlvs[0xB8][1];
+          if (sysV >= 60 && sysV <= 240 && diaV >= 35 && diaV <= 150) {
+            rec.sys = sysV;
+            rec.dia = diaV;
+          }
+        }
+        if (tlvs[0xB9] && tlvs[0xB9].length >= 5) {
+          const spVals = tlvs[0xB9].slice(0, 5).filter(v => v >= 70 && v <= 100);
+          if (spVals.length > 0) rec.spo2 = Math.round((spVals.reduce((s, x) => s + x, 0) / spVals.length) * 10) / 10;
+        }
+        if (tlvs[0xBE] && tlvs[0xBE].length >= 2) {
+          const gv = tlvs[0xBE];
+          const rawG = ((gv[1] & 0xFF) << 8) | (gv[0] & 0xFF);
+          if (rawG > 0) {
+            const mmol = rawG > 8191 ? ((rawG & 0x1FFF) / 100.0) : (rawG / 100.0);
+            if (mmol >= 2.0 && mmol <= 30.0) rec.glucose = Math.round(mmol * 18.0182);
+          }
+        }
+        if (tlvs[0xBF] && tlvs[0xBF].length >= 1 && tlvs[0xBF][0] > 0) rec.stress = tlvs[0xBF][0];
+        if (tlvs[0xC1] && tlvs[0xC1].length >= 1 && tlvs[0xC1][0] > 0) rec.met = Math.round(tlvs[0xC1][0]) / 10.0;
+        if (tlvs[0xC2] && tlvs[0xC2].length >= 10) {
+          const bc = tlvs[0xC2];
+          const tcho = (((bc[1] & 0xFF) << 8) | (bc[0] & 0xFF)) / 100.0;
+          const tagV = (((bc[3] & 0xFF) << 8) | (bc[2] & 0xFF)) / 100.0;
+          const hdl = (((bc[5] & 0xFF) << 8) | (bc[4] & 0xFF)) / 100.0;
+          const ldl = (((bc[7] & 0xFF) << 8) | (bc[6] & 0xFF)) / 100.0;
+          const uric = (((bc[9] & 0xFF) << 8) | (bc[8] & 0xFF)) / 10.0;
+          if ([tcho, tagV, hdl, ldl, uric].some(x => x > 0)) {
+            rec.blood_comp = {
+              tcho: Math.round(tcho * 100) / 100,
+              tag: Math.round(tagV * 100) / 100,
+              hdl: Math.round(hdl * 100) / 100,
+              ldl: Math.round(ldl * 100) / 100,
+              uric_acid: Math.round(uric * 10) / 10
+            };
+          }
+        }
+        if (tlvs[0xC3] && tlvs[0xC3].length >= 4) {
+          const tc = tlvs[0xC3];
+          const baseC = (((tc[1] & 0xFF) << 8) | (tc[0] & 0xFF)) / 10.0;
+          const coreC = (((tc[3] & 0xFF) << 8) | (tc[2] & 0xFF)) / 10.0;
+          if (baseC >= 12.0 && baseC <= 48.0 && coreC >= 12.0 && coreC <= 48.0) {
+            rec.skin_f = Math.round((baseC * 1.8 + 32.0) * 10) / 10;
+            rec.core_f = Math.round((coreC * 1.8 + 32.0) * 10) / 10;
+          }
+        }
+        parsedRecords.push(rec);
+      }
+      parsedRecords.sort((a, b) => a.timestamp.localeCompare(b.timestamp));
+      return parsedRecords;
+    }
+
+    function parse88TempPacketsJS(packets, dayOffset = 0, nowOverride = null) {
+      const parsed = {};
+      const nowLocal = nowOverride || new Date();
+      const refDate = new Date(nowLocal.getFullYear(), nowLocal.getMonth(), nowLocal.getDate() - dayOffset);
+      for (const raw of (packets || [])) {
+        const b = _hexToBytesJS(raw);
+        if (b.length < 20 || b[0] !== 0x88) continue;
+        const totalPkg = (b[4] << 8) | b[3];
+        if (totalPkg === 0) continue;
+        const month = b[7], dom = b[8], hour = b[9], minute = b[10];
+        if (month < 1 || month > 12 || dom < 1 || dom > 31 || hour >= 24 || minute >= 60) continue;
+        const coreC = ((b[12] << 8) | b[11]) / 10.0;
+        const skinC = ((b[14] << 8) | b[13]) / 10.0;
+        if (coreC < 12.0 || coreC > 48.0) continue;
+        const yr = refDate.getFullYear() - (month > (refDate.getMonth() + 2) ? 1 : 0);
+        const dtCheck = new Date(yr, month - 1, dom);
+        if (dtCheck.getFullYear() !== yr || dtCheck.getMonth() !== (month - 1) || dtCheck.getDate() !== dom) continue;
+        const ts = `${yr}-${String(month).padStart(2, '0')}-${String(dom).padStart(2, '0')}T${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}:00`;
+        const coreF = Math.round((coreC * 1.8 + 32.0) * 10) / 10;
+        const skinF = (skinC >= 12.0 && skinC <= 48.0) ? (Math.round((skinC * 1.8 + 32.0) * 10) / 10) : 0.0;
+        parsed[ts] = { timestamp: ts, date: ts.slice(0, 10), hour, minute, core_f: coreF, skin_f: skinF };
+      }
+      return Object.keys(parsed).sort().map(k => parsed[k]);
+    }
+
+    function _buildEmpty2DayTimelineJS() {
+      const now = new Date();
+      const todayStr = _localIsoDateStr(now);
+      const yestDt = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1);
+      const yestStr = _localIsoDateStr(yestDt);
+      const curSlotIdx = Math.floor((now.getHours() * 60 + now.getMinutes()) / 30);
+      const out = [];
+      for (const [dayLabel, dateStr] of [['YESTERDAY', yestStr], ['TODAY', todayStr]]) {
+        for (let i = 0; i < 48; i++) {
+          const hh = String(Math.floor(i / 2)).padStart(2, '0');
+          const mm = (i % 2 === 0) ? '00' : '30';
+          const isFuture = (dayLabel === 'TODAY' && i > curSlotIdx);
+          out.push({
+            day: dayLabel,
+            date: dateStr,
+            time: `${hh}:${mm}`,
+            isNap: false,
+            fullTime: `${dayLabel} ${hh}:${mm}`,
+            g: null, sys: null, dia: null, hr: null, hrv: null, spo2: null,
+            temp: null, skinTemp: null,
+            steps: 0, slotSteps: 0, fluidOz: 0.0, cumFluidOz: 0.0,
+            sleepPct: 0, sleepStage: null, pain: null, mood: null,
+            isChargingGap: false, isFuture: isFuture,
+            meal: null, ex: null, med: null,
+            notes: isFuture ? 'Awaiting Live Telemetry (Future Window)' : 'Watch Sync Ready'
+          });
+        }
+      }
+      return out;
+    }
+
+    function mergeStandaloneWatchRecordsJS(dfRecords = [], tempRecords = []) {
+      try {
+        let timeline = (Array.isArray(cached2DayTimeline) && cached2DayTimeline.length === 96)
+          ? cached2DayTimeline.map(x => Object.assign({}, x))
+          : null;
+        if (!timeline) {
+          try {
+            const saved = localStorage.getItem('bfm_local_timeline_v1');
+            const parsed = saved ? JSON.parse(saved) : null;
+            const todayStr = _localIsoDateStr(new Date());
+            if (Array.isArray(parsed) && parsed.length === 96 && parsed.some(x => x.day === 'TODAY' && x.date === todayStr)) {
+              timeline = parsed;
+            }
+          } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+        }
+        if (!timeline) timeline = _buildEmpty2DayTimelineJS();
+
+        const now = new Date();
+        const curSlotIdx = Math.floor((now.getHours() * 60 + now.getMinutes()) / 30);
+        const byDateSlot = new Map();
+        timeline.forEach((slot) => {
+          if (slot.day === 'TODAY') {
+            const p = slot.time.split(':');
+            const si = parseInt(p[0], 10) * 2 + (parseInt(p[1], 10) >= 30 ? 1 : 0);
+            slot.isFuture = si > curSlotIdx;
+          } else {
+            slot.isFuture = false;
+          }
+          byDateSlot.set(`${slot.date}_${slot.time}`, slot);
+        });
+
+        for (const rec of (dfRecords || [])) {
+          const slotM = rec.minute >= 30 ? '30' : '00';
+          const slotTime = `${String(rec.hour).padStart(2, '0')}:${slotM}`;
+          const slot = byDateSlot.get(`${rec.date}_${slotTime}`);
+          if (!slot || slot.isFuture) continue;
+          if (rec.glucose > 0) slot.g = rec.glucose;
+          if (rec.sys > 0 && rec.dia > 0) { slot.sys = rec.sys; slot.dia = rec.dia; }
+          if (rec.hr > 0) { slot.hr = rec.hr; slot.isChargingGap = false; }
+          else if (rec.off_wrist && !slot.hr) { slot.isChargingGap = true; slot.notes = 'Watch Off-Wrist / Charging'; }
+          if (rec.hrv > 0) slot.hrv = rec.hrv;
+          if (rec.spo2 > 0) slot.spo2 = rec.spo2;
+          if (rec.core_f > 0) slot.temp = rec.core_f;
+          if (rec.skin_f > 0) slot.skinTemp = rec.skin_f;
+          if (rec.step > 0) slot.slotSteps = Math.max(slot.slotSteps || 0, rec.step);
+        }
+
+        for (const trec of (tempRecords || [])) {
+          const slotM = trec.minute >= 30 ? '30' : '00';
+          const slotTime = `${String(trec.hour).padStart(2, '0')}:${slotM}`;
+          const slot = byDateSlot.get(`${trec.date}_${slotTime}`);
+          if (!slot || slot.isFuture) continue;
+          if (trec.core_f > 0) slot.temp = trec.core_f;
+          if (trec.skin_f > 0) slot.skinTemp = trec.skin_f;
+        }
+
+        for (const dayName of ['YESTERDAY', 'TODAY']) {
+          let cum = 0;
+          for (const slot of timeline) {
+            if (slot.day !== dayName) continue;
+            if (slot.isFuture) {
+              slot.steps = 0;
+              continue;
+            }
+            cum += (slot.slotSteps || 0);
+            slot.steps = cum;
+          }
+        }
+
+        cached2DayTimeline = timeline;
+        localStorage.setItem('bfm_local_timeline_v1', JSON.stringify(timeline));
+
+        const todayStr = _localIsoDateStr(now);
+        const rrPairs = [];
+        let metLatest = null, bloodCompLatest = null, breathLatest = null;
+        for (const rec of (dfRecords || [])) {
+          if (rec.date !== todayStr) continue;
+          if (Array.isArray(rec.rr_ms) && rec.rr_ms.length >= 2) {
+            for (let i = 0; i < rec.rr_ms.length - 1; i++) {
+              rrPairs.push([rec.rr_ms[i], rec.rr_ms[i + 1]]);
+            }
+          }
+          if (rec.met > 0) metLatest = rec;
+          if (rec.blood_comp) bloodCompLatest = rec;
+          if (rec.breath > 0) breathLatest = rec;
+        }
+
+        if (rrPairs.length > 0) {
+          const diffs = rrPairs.map(p => p[1] - p[0]);
+          const sums = rrPairs.map(p => p[1] + p[0]);
+          const sd1 = Math.round(Math.sqrt(diffs.reduce((s, d) => s + d * d, 0) / (2 * rrPairs.length)) * 10) / 10;
+          const meanSum = sums.reduce((s, x) => s + x, 0) / sums.length;
+          const sd2 = Math.round(Math.sqrt(sums.reduce((s, x) => s + (x - meanSum) * (x - meanSum), 0) / (2 * rrPairs.length)) * 10) / 10;
+          const lorenzObj = { date: todayStr, n_epochs: rrPairs.length, pairs: rrPairs.slice(-400), metrics: { sd1, sd2 }, source: 'LOCAL_BROWSER_0xDF' };
+          window.lastRealLorenzData = lorenzObj;
+          localStorage.setItem('bfm_local_lorenz_v1', JSON.stringify(lorenzObj));
+        }
+
+        if (metLatest || bloodCompLatest || breathLatest) {
+          const sr = Object.assign({ date: todayStr, OFF_WRIST_INTERVALS: [], MET_5MIN: null, BLOOD_COMP: null, BREATH_RATE: null }, window.lastSubReportData || {});
+          if (metLatest) sr.MET_5MIN = { value1: metLatest.met, value2: 0, timestamp: metLatest.timestamp };
+          if (bloodCompLatest) sr.BLOOD_COMP = Object.assign({}, bloodCompLatest.blood_comp, { value1: bloodCompLatest.blood_comp.uric_acid, value2: bloodCompLatest.blood_comp.tcho, timestamp: bloodCompLatest.timestamp });
+          if (breathLatest) sr.BREATH_RATE = { value1: breathLatest.breath, value2: 0, timestamp: breathLatest.timestamp };
+          window.lastSubReportData = sr;
+          localStorage.setItem('bfm_local_subreports_v1', JSON.stringify(sr));
+        }
+
+        // Update latest global vitals from today's decoded watch stream
+        const latestRec = [...(dfRecords || [])].reverse().find(r => r.date === todayStr && (r.glucose > 0 || r.hr > 0 || r.sys > 0 || r.core_f > 0 || r.step > 0)) || null;
+        if (latestRec) {
+          if (latestRec.glucose > 0) {
+            lastGlucoseMg = latestRec.glucose;
+            lastGlucoseMmol = lastGlucoseMg / 18.0182;
+            saveStandaloneVitalToCache('GLUCOSE', lastGlucoseMg, parseFloat(((lastGlucoseMg + 46.7) / 28.7).toFixed(1)), 'mg/dL', '0xDF_LOCAL_JS');
+          }
+          if (latestRec.sys > 0 && latestRec.dia > 0) {
+            lastSystolic = latestRec.sys; lastDiastolic = latestRec.dia;
+            saveStandaloneVitalToCache('BLOOD_PRESSURE', lastSystolic, lastDiastolic, 'mmHg', '0xDF_LOCAL_JS');
+          }
+          if (latestRec.hr > 0) {
+            lastHR = latestRec.hr; lastHeartRate = lastHR;
+            saveStandaloneVitalToCache('HEART_RATE', lastHR, 0, 'BPM', '0xDF_LOCAL_JS');
+          }
+          if (latestRec.spo2 > 0) {
+            lastSpO2 = Math.round(latestRec.spo2);
+            saveStandaloneVitalToCache('BLOOD_OXYGEN', lastSpO2, 0, '%', '0xDF_LOCAL_JS');
+          }
+          if (latestRec.hrv > 0) {
+            lastHRV = latestRec.hrv; lastStress = latestRec.stress || 0;
+            saveStandaloneVitalToCache('HRV_STRESS', lastHRV, lastStress, 'ms', '0xDF_LOCAL_JS');
+          }
+          if (latestRec.core_f > 0) {
+            lastBodyF = latestRec.core_f;
+            lastSkinF = latestRec.skin_f || parseFloat((lastBodyF - 2.4).toFixed(1));
+            lastBodyC = parseFloat(((lastBodyF - 32) * 5 / 9).toFixed(1));
+            saveStandaloneVitalToCache('TEMPERATURE', lastBodyF, lastSkinF, '°F', '0xDF_LOCAL_JS');
+          }
+        }
+        const todayStepsSum = timeline.filter(s => s.day === 'TODAY' && !s.isFuture).reduce((mx, s) => Math.max(mx, s.steps || 0), 0);
+        if (todayStepsSum > (lastSteps || 0)) {
+          lastSteps = todayStepsSum;
+          lastKcal = Math.round(lastSteps * 0.04);
+          saveStandaloneVitalToCache('PEDOMETER', lastSteps, lastKcal, 'steps', '0xDF_LOCAL_JS');
+        }
+        if ((tempRecords || []).length > 0) {
+          const lastT = tempRecords[tempRecords.length - 1];
+          if (lastT.core_f > 0) {
+            lastBodyF = lastT.core_f;
+            lastSkinF = lastT.skin_f || parseFloat((lastBodyF - 2.4).toFixed(1));
+            lastBodyC = parseFloat(((lastBodyF - 32) * 5 / 9).toFixed(1));
+            saveStandaloneVitalToCache('TEMPERATURE', lastBodyF, lastSkinF, '°F', '0x88_LOCAL_JS');
+          }
+        }
+
+        if (typeof propagateFullScanResultsToAllPages === 'function') {
+          propagateFullScanResultsToAllPages({
+            glucose: lastGlucoseMg || 0,
+            bp: { sys: lastSystolic || 0, dia: lastDiastolic || 0 },
+            spo2: lastSpO2 || 0,
+            hr: lastHR || 0,
+            temp: { bodyF: lastBodyF || 0, skinF: lastSkinF || 0, bodyC: lastBodyC || 0 },
+            hrv: { hrv: lastHRV || 0, stress: lastStress || 0 }
+          }, false);
+        }
+        if (typeof initFullScanView === 'function') initFullScanView();
+        if (typeof render360HealthView === 'function') render360HealthView();
+        if (typeof renderReportsView === 'function') renderReportsView();
+        if (typeof renderTallSynchronizedChart === 'function') renderTallSynchronizedChart(currentTallChartTimeframe);
+        if (typeof render3DMultiChannelScene === 'function') render3DMultiChannelScene();
+        if (typeof renderLorenzScatterPlot === 'function') renderLorenzScatterPlot();
+        if (typeof updateWatchMetabolicSubReports === 'function') updateWatchMetabolicSubReports();
+      } catch (e) {
+        console.warn('[MIL-SPEC HANDLED FAULT] mergeStandaloneWatchRecordsJS:', e);
+      }
+    }
+
+    function hydrateStandaloneLocalTelemetry() {
+      try {
+        const rawLatest = localStorage.getItem('bfm_local_latest_v1');
+        if (rawLatest) {
+          const v = JSON.parse(rawLatest);
+          window._latestTelemetry = v;
+          if (v.GLUCOSE && v.GLUCOSE.value1 > 0) lastGlucoseMg = Math.round(v.GLUCOSE.value1);
+          if (v.BLOOD_PRESSURE && v.BLOOD_PRESSURE.value1 > 0) { lastSystolic = Math.round(v.BLOOD_PRESSURE.value1); lastDiastolic = Math.round(v.BLOOD_PRESSURE.value2); }
+          if (v.HEART_RATE && v.HEART_RATE.value1 > 0) { lastHR = Math.round(v.HEART_RATE.value1); lastHeartRate = lastHR; }
+          const spo = v.BLOOD_OXYGEN || v.SPO2;
+          if (spo && spo.value1 > 0) lastSpO2 = Math.round(spo.value1);
+          if (v.HRV_STRESS && v.HRV_STRESS.value1 > 0) { lastHRV = Math.round(v.HRV_STRESS.value1); lastStress = Math.round(v.HRV_STRESS.value2 || 0); }
+          if (v.TEMPERATURE && v.TEMPERATURE.value1 > 0) {
+            lastBodyF = v.TEMPERATURE.value1;
+            lastSkinF = v.TEMPERATURE.value2 || parseFloat((lastBodyF - 2.4).toFixed(1));
+            lastBodyC = parseFloat(((lastBodyF - 32) * 5 / 9).toFixed(1));
+          }
+          if (v.PEDOMETER && v.PEDOMETER.value1 > 0) { lastSteps = Math.round(v.PEDOMETER.value1); lastKcal = Math.round(v.PEDOMETER.value2 || (lastSteps * 0.04)); }
+        }
+        const rawTl = localStorage.getItem('bfm_local_timeline_v1');
+        if (rawTl && (!cached2DayTimeline || cached2DayTimeline.length === 0)) {
+          const parsedTl = JSON.parse(rawTl);
+          if (Array.isArray(parsedTl) && parsedTl.length > 0) cached2DayTimeline = parsedTl;
+        }
+        const rawLor = localStorage.getItem('bfm_local_lorenz_v1');
+        if (rawLor && !window.lastRealLorenzData) window.lastRealLorenzData = JSON.parse(rawLor);
+        const rawSub = localStorage.getItem('bfm_local_subreports_v1');
+        if (rawSub && !window.lastSubReportData) window.lastSubReportData = JSON.parse(rawSub);
+        if (rawLatest && typeof propagateFullScanResultsToAllPages === 'function') {
+          propagateFullScanResultsToAllPages({
+            glucose: lastGlucoseMg || 0,
+            bp: { sys: lastSystolic || 0, dia: lastDiastolic || 0 },
+            spo2: lastSpO2 || 0,
+            hr: lastHR || 0,
+            temp: { bodyF: lastBodyF || 0, skinF: lastSkinF || 0, bodyC: lastBodyC || 0 },
+            hrv: { hrv: lastHRV || 0, stress: lastStress || 0 }
+          }, false);
+        }
+      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT] hydrateStandaloneLocalTelemetry:', e); }
+    }
+
     async function flushDfOriginBuffer() {
       if (window._dfSyncTimer) { clearTimeout(window._dfSyncTimer); window._dfSyncTimer = null; }
       const pkts = window._dfOriginBuffer ? window._dfOriginBuffer.splice(0) : [];
       if (pkts.length === 0) return;
+
+      // Always decode & render client-side first (works standalone over file:/// or HTTPS with zero Python server)
+      const localRecs = parseDfOriginBlocksJS(pkts, window._currentDfQueryDay || 0);
+      if (localRecs.length > 0) {
+        mergeStandaloneWatchRecordsJS(localRecs, []);
+        logLCARS(`[✔ 0xDF LOCAL JS] Decoded ${localRecs.length} 5-min watch blocks (${pkts.length} BLE packets) directly in browser.`, "rx");
+      }
+
+      if (window._bfmLocalServerOnline === false && window.location.protocol !== 'file:' && !window.location.hostname.startsWith('127.')) {
+        return;
+      }
       try {
-        const apiBase = (window.location.protocol === 'file:' ? 'http://127.0.0.1:8899' : '');
+        const apiBase = (window.location.protocol === 'file:' ? 'http://127.0.0.1:8899' : (window.location.hostname && window.location.hostname.endsWith('github.io') ? 'http://127.0.0.1:8899' : ''));
         const resp = await fetch(`${apiBase}/api/origin/ingest`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -11913,8 +12436,18 @@ function switchTab(tabId) {
       if (window._tempHistTimer) { clearTimeout(window._tempHistTimer); window._tempHistTimer = null; }
       const pkts = window._tempHistBuffer ? window._tempHistBuffer.splice(0) : [];
       if (pkts.length === 0) return;
+
+      const localTemps = parse88TempPacketsJS(pkts, window._currentTempHistDay || 0);
+      if (localTemps.length > 0) {
+        mergeStandaloneWatchRecordsJS([], localTemps);
+        logLCARS(`[✔ 0x88 LOCAL JS] Decoded ${localTemps.length} thermal readings directly in browser.`, "rx");
+      }
+
+      if (window._bfmLocalServerOnline === false && window.location.protocol !== 'file:' && !window.location.hostname.startsWith('127.')) {
+        return;
+      }
       try {
-        const apiBase = (window.location.protocol === 'file:' ? 'http://127.0.0.1:8899' : '');
+        const apiBase = (window.location.protocol === 'file:' ? 'http://127.0.0.1:8899' : (window.location.hostname && window.location.hostname.endsWith('github.io') ? 'http://127.0.0.1:8899' : ''));
         const resp = await fetch(`${apiBase}/api/temp_history/ingest`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -19656,16 +20189,21 @@ Patient`;
 
     async function fetchServer2DayTimeline() {
       try {
-        const apiBase = (window.location.protocol === 'file:' ? 'http://127.0.0.1:8899' : '');
+        const apiBase = (window.location.protocol === 'file:' ? 'http://127.0.0.1:8899' : (window.location.hostname && window.location.hostname.endsWith('github.io') ? 'http://127.0.0.1:8899' : ''));
         const resp = await fetch(`${apiBase}/api/telemetry/timeline?_t=${Date.now()}`, { cache: 'no-store' });
         if (resp.ok) {
           const data = await resp.json();
           if (Array.isArray(data) && data.length > 0) {
             cached2DayTimeline = data;
+            try { localStorage.setItem('bfm_local_timeline_v1', JSON.stringify(data)); } catch (e2) { console.warn('[MIL-SPEC HANDLED FAULT]', e2); }
             return data;
           }
         }
-      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+      } catch (e) {
+        console.warn('[MIL-SPEC HANDLED FAULT]', e);
+        if (typeof hydrateStandaloneLocalTelemetry === 'function') hydrateStandaloneLocalTelemetry();
+        if (Array.isArray(cached2DayTimeline) && cached2DayTimeline.length > 0) return cached2DayTimeline;
+      }
       return null;
     }
 
@@ -19697,27 +20235,43 @@ Patient`;
 
     async function fetchTodayLorenzData() {
       try {
-        const apiBase = (window.location.protocol === 'file:' ? 'http://127.0.0.1:8899' : '');
+        const apiBase = (window.location.protocol === 'file:' ? 'http://127.0.0.1:8899' : (window.location.hostname && window.location.hostname.endsWith('github.io') ? 'http://127.0.0.1:8899' : ''));
         const resp = await fetch(`${apiBase}/api/lorenz/today?_t=${Date.now()}`, { cache: 'no-store' });
         if (resp.ok) {
           const data = await resp.json();
           window.lastRealLorenzData = data;
+          try { localStorage.setItem('bfm_local_lorenz_v1', JSON.stringify(data)); } catch (e2) { console.warn('[MIL-SPEC HANDLED FAULT]', e2); }
           return data;
         }
-      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+      } catch (e) {
+        console.warn('[MIL-SPEC HANDLED FAULT]', e);
+        try {
+          const rawLor = localStorage.getItem('bfm_local_lorenz_v1');
+          if (rawLor && !window.lastRealLorenzData) window.lastRealLorenzData = JSON.parse(rawLor);
+          if (window.lastRealLorenzData) return window.lastRealLorenzData;
+        } catch (e3) { console.warn('[MIL-SPEC HANDLED FAULT]', e3); }
+      }
       return null;
     }
 
     async function fetchTodaySubReports() {
       try {
-        const apiBase = (window.location.protocol === 'file:' ? 'http://127.0.0.1:8899' : '');
+        const apiBase = (window.location.protocol === 'file:' ? 'http://127.0.0.1:8899' : (window.location.hostname && window.location.hostname.endsWith('github.io') ? 'http://127.0.0.1:8899' : ''));
         const resp = await fetch(`${apiBase}/api/subreports/today?_t=${Date.now()}`, { cache: 'no-store' });
         if (resp.ok) {
           const data = await resp.json();
           window.lastSubReportData = data;
+          try { localStorage.setItem('bfm_local_subreports_v1', JSON.stringify(data)); } catch (e2) { console.warn('[MIL-SPEC HANDLED FAULT]', e2); }
           return data;
         }
-      } catch (e) { console.warn('[MIL-SPEC HANDLED FAULT]', e); }
+      } catch (e) {
+        console.warn('[MIL-SPEC HANDLED FAULT]', e);
+        try {
+          const rawSub = localStorage.getItem('bfm_local_subreports_v1');
+          if (rawSub && !window.lastSubReportData) window.lastSubReportData = JSON.parse(rawSub);
+          if (window.lastSubReportData) return window.lastSubReportData;
+        } catch (e3) { console.warn('[MIL-SPEC HANDLED FAULT]', e3); }
+      }
       return null;
     }
 
@@ -23401,7 +23955,15 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
       try {
         const activeWatchId = window._connectedWatchId || (typeof localStorage !== 'undefined' ? localStorage.getItem('bfm_connected_watch_id') : null) || 'VEE_5010';
         const resp = await fetch(`/api/telemetry/latest?device_id=${encodeURIComponent(activeWatchId)}&_t=${Date.now()}`, { cache: 'no-store' });
-        if (!resp.ok) return;
+        if (!resp.ok) {
+          window._bfmLocalServerOnline = false;
+          if (!window._bfmStandaloneHydrated && typeof hydrateStandaloneLocalTelemetry === 'function') {
+            window._bfmStandaloneHydrated = true;
+            hydrateStandaloneLocalTelemetry();
+          }
+          return;
+        }
+        window._bfmLocalServerOnline = true;
         const data = await resp.json();
         const vitals = data.vitals || {};
         window._latestTelemetry = vitals;
@@ -23707,6 +24269,20 @@ OUTPUT FORMAT FOR EACH MEAL/PRODUCT:
           }
         }
       } catch (e) {
+        window._bfmLocalServerOnline = false;
+        if (!window._bfmStandaloneHydrated && typeof hydrateStandaloneLocalTelemetry === 'function') {
+          window._bfmStandaloneHydrated = true;
+          hydrateStandaloneLocalTelemetry();
+          if (typeof render360HealthView === 'function') render360HealthView();
+          if (typeof renderReportsView === 'function') renderReportsView();
+          if (typeof renderTallSynchronizedChart === 'function') renderTallSynchronizedChart(currentTallChartTimeframe);
+          if (typeof render3DMultiChannelScene === 'function') render3DMultiChannelScene();
+        }
+        const elRib = document.getElementById('ribbonSyncStatus');
+        if (elRib && !window._isFullWatchSyncRunning && typeof bluetoothDevice !== 'undefined' && bluetoothDevice && bluetoothDevice.gatt && bluetoothDevice.gatt.connected) {
+          elRib.textContent = '● SYNC COMPLETE (BROWSER STANDALONE)';
+          elRib.style.color = '#10b981';
+        }
         console.warn("pollLiveTelemetryChanges error:", e);
       } finally {
         _isPollingTelemetry = false;

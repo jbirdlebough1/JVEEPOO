@@ -8,13 +8,13 @@ namespace BfmLauncher
 {
     internal static class Program
     {
-        private const string BaseDir = @"D:\veepoo";
-        private const string PythonExe = @"D:\veepoo\tools\python\python.exe";
-        private const string ServerScript = @"w11_htm_app\server.py";
-        private const string ConsoleHtml = @"D:\veepoo\BFM.HTM";
-        private const string ConsoleFileUrl = "file:///D:/veepoo/BFM.HTM";
-        private const string ChromeExe = @"C:\Program Files\Google\Chrome\Application\chrome.exe";
-        private const string FaultLog = @"D:\veepoo\w11_htm_app\launcher_fault.log";
+        private const int ServerPort = 8899;
+        private const string HostedLiveUrl = "https://jbirdlebough1.github.io/JVEEPOO/";
+
+        private static string GetBaseDir()
+        {
+            return AppDomain.CurrentDomain.BaseDirectory.TrimEnd('\\', '/');
+        }
 
         private static bool IsServerListening(string host, int port, int timeoutMs)
         {
@@ -36,27 +36,67 @@ namespace BfmLauncher
             }
         }
 
-        private static void EnsureServerRunning()
+        private static string FindPythonExecutable(string baseDir)
         {
-            if (IsServerListening("127.0.0.1", 8899, 150))
+            string bundled = Path.Combine(baseDir, @"tools\python\python.exe");
+            if (File.Exists(bundled)) return bundled;
+
+            string[] names = { "python.exe", "py.exe" };
+            string pathEnv = Environment.GetEnvironmentVariable("PATH") ?? string.Empty;
+            foreach (string dir in pathEnv.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                string cleanDir = dir.Trim();
+                if (string.IsNullOrEmpty(cleanDir)) continue;
+                foreach (string name in names)
+                {
+                    try
+                    {
+                        string cand = Path.Combine(cleanDir, name);
+                        if (File.Exists(cand)) return cand;
+                    }
+                    catch (Exception ex)
+                    {
+                        LogFault("FindPythonExecutable", ex);
+                    }
+                }
+            }
+            return null;
+        }
+
+        private static void EnsureServerRunning(string baseDir)
+        {
+            if (IsServerListening("127.0.0.1", ServerPort, 150))
             {
                 return;
             }
+
+            string serverScript = Path.Combine(baseDir, @"w11_htm_app\server.py");
+            if (!File.Exists(serverScript))
+            {
+                return;
+            }
+
+            string pythonExe = FindPythonExecutable(baseDir);
+            if (string.IsNullOrEmpty(pythonExe))
+            {
+                return;
+            }
+
             try
             {
                 var psi = new ProcessStartInfo
                 {
-                    FileName = PythonExe,
-                    Arguments = ServerScript,
-                    WorkingDirectory = BaseDir,
+                    FileName = pythonExe,
+                    Arguments = "\"" + serverScript + "\"",
+                    WorkingDirectory = baseDir,
                     UseShellExecute = false,
                     CreateNoWindow = true,
                     WindowStyle = ProcessWindowStyle.Hidden
                 };
                 Process.Start(psi);
-                for (int i = 0; i < 15; i++)
+                for (int i = 0; i < 16; i++)
                 {
-                    if (IsServerListening("127.0.0.1", 8899, 120)) break;
+                    if (IsServerListening("127.0.0.1", ServerPort, 150)) break;
                     Thread.Sleep(150);
                 }
             }
@@ -66,27 +106,76 @@ namespace BfmLauncher
             }
         }
 
-        private static void LaunchBrowserConsole()
+        private static string ResolveLaunchUrl(string baseDir)
+        {
+            if (IsServerListening("127.0.0.1", ServerPort, 180))
+            {
+                return "http://127.0.0.1:" + ServerPort + "/";
+            }
+
+            string bfmPath = Path.Combine(baseDir, "BFM.HTM");
+            if (File.Exists(bfmPath))
+            {
+                return new Uri(bfmPath).AbsoluteUri;
+            }
+
+            string idxPath = Path.Combine(baseDir, "index.html");
+            if (File.Exists(idxPath))
+            {
+                return new Uri(idxPath).AbsoluteUri;
+            }
+
+            return HostedLiveUrl;
+        }
+
+        private static string FindBrowserExecutable()
+        {
+            string pf = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+            string pfx86 = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86);
+            string localApp = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+
+            string[] candidates =
+            {
+                Path.Combine(pf, @"Google\Chrome\Application\chrome.exe"),
+                Path.Combine(pfx86, @"Google\Chrome\Application\chrome.exe"),
+                Path.Combine(localApp, @"Google\Chrome\Application\chrome.exe"),
+                Path.Combine(pfx86, @"Microsoft\Edge\Application\msedge.exe"),
+                Path.Combine(pf, @"Microsoft\Edge\Application\msedge.exe"),
+                Path.Combine(localApp, @"Microsoft\Edge\Application\msedge.exe")
+            };
+
+            foreach (string path in candidates)
+            {
+                if (!string.IsNullOrEmpty(path) && File.Exists(path))
+                {
+                    return path;
+                }
+            }
+            return null;
+        }
+
+        private static void LaunchBrowserConsole(string baseDir, string targetUrl)
         {
             try
             {
-                if (File.Exists(ChromeExe))
+                string browserExe = FindBrowserExecutable();
+                if (!string.IsNullOrEmpty(browserExe))
                 {
-                    var chromePsi = new ProcessStartInfo
+                    var psi = new ProcessStartInfo
                     {
-                        FileName = ChromeExe,
-                        Arguments = "\"" + ConsoleFileUrl + "\"",
-                        WorkingDirectory = BaseDir,
+                        FileName = browserExe,
+                        Arguments = "\"" + targetUrl + "\"",
+                        WorkingDirectory = baseDir,
                         UseShellExecute = false
                     };
-                    Process.Start(chromePsi);
+                    Process.Start(psi);
                     return;
                 }
 
                 var fallbackPsi = new ProcessStartInfo
                 {
-                    FileName = ConsoleHtml,
-                    WorkingDirectory = BaseDir,
+                    FileName = targetUrl,
+                    WorkingDirectory = baseDir,
                     UseShellExecute = true
                 };
                 Process.Start(fallbackPsi);
@@ -101,9 +190,10 @@ namespace BfmLauncher
         {
             try
             {
+                string faultLog = Path.Combine(Path.GetTempPath(), "bfm_launcher_fault.log");
                 string line = string.Format("[{0:yyyy-MM-dd HH:mm:ss}] [MIL-SPEC HANDLED FAULT] {1}: {2}{3}",
                     DateTime.Now, scope, ex, Environment.NewLine);
-                File.AppendAllText(FaultLog, line);
+                File.AppendAllText(faultLog, line);
             }
             catch (Exception logEx)
             {
@@ -116,8 +206,10 @@ namespace BfmLauncher
         {
             try
             {
-                EnsureServerRunning();
-                LaunchBrowserConsole();
+                string baseDir = GetBaseDir();
+                EnsureServerRunning(baseDir);
+                string launchUrl = ResolveLaunchUrl(baseDir);
+                LaunchBrowserConsole(baseDir, launchUrl);
                 return 0;
             }
             catch (Exception ex)

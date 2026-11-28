@@ -6823,10 +6823,40 @@ class VeepooHandler(http.server.SimpleHTTPRequestHandler):
                             docked_count += 1
                             continue
 
-                        m_time = item.get("intake_timestamp") or item.get("timestamp") or now_iso
+                        raw_m_time = item.get("intake_timestamp") or item.get("timestamp") or datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                        m_time_s = str(raw_m_time).strip()
+                        m_time = m_time_s
+                        m12 = re.match(r"^(\d{1,2}):(\d{2})\s*(AM|PM)$", m_time_s, re.I)
+                        m24 = re.match(r"^(\d{1,2}):(\d{2})(?::(\d{2}))?$", m_time_s)
+                        if m12:
+                            hh = int(m12.group(1))
+                            mm = int(m12.group(2))
+                            ap = m12.group(3).upper()
+                            if ap == "PM" and hh < 12:
+                                hh += 12
+                            elif ap == "AM" and hh == 12:
+                                hh = 0
+                            m_time = f"{datetime.date.today().isoformat()} {hh:02d}:{mm:02d}:00"
+                        elif m24:
+                            hh = int(m24.group(1))
+                            mm = int(m24.group(2))
+                            ss = int(m24.group(3) or 0)
+                            m_time = f"{datetime.date.today().isoformat()} {hh:02d}:{mm:02d}:{ss:02d}"
+                        elif m_time_s.endswith("Z") and "T" in m_time_s:
+                            try:
+                                dt_utc = datetime.datetime.fromisoformat(m_time_s.replace("Z", "+00:00"))
+                                m_time = dt_utc.astimezone().strftime("%Y-%m-%d %H:%M:%S")
+                            except Exception:
+                                m_time = m_time_s.replace("T", " ").rstrip("Z")[:19]
+                        elif "T" in m_time_s and re.match(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}", m_time_s):
+                            m_time = m_time_s.replace("T", " ")[:19]
+
                         m_name = item.get("meal_name", "Mobile Intake")
                         if "simulated cell foodoor" in str(m_name).lower():
                             print("[MIL-SPEC ZERO-DATA GUARD] Rejected synthetic Simulated Cell Foodoor payload in /api/shuttle/dock.")
+                            continue
+                        cur.execute("SELECT id FROM meal_entries WHERE timestamp = ? AND meal_name = ? LIMIT 1", (m_time, m_name))
+                        if cur.fetchone():
                             continue
                         cals = item.get("calories", 0)
                         nc = item.get("net_carbs", 0)
